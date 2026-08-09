@@ -8,4 +8,5 @@
 6. `REGEX-1A` — immutable regex match and search primitives
 7. `FILESYSTEM-1A` — immutable file models and frozen JSON models
 8. `JSON-CODEC-1A` — JSON decode/parse and encode/serialize
-9. `FILESYSTEM-2A` — codec-backed generic filesystem reading and writing
+9. `FILESYSTEM-2A` — JSON-backed bounded generic filesystem reading and
+   atomic writing

@@ -6,12 +6,14 @@ from __future__ import annotations
 import os
 from pathlib import Path
 from tempfile import NamedTemporaryFile
+from typing import TYPE_CHECKING
 
-from devtools.filesystem.errors import (
-    FilesystemPermissionError,
-)
-from devtools.filesystem.models import File
+from devtools.filesystem.errors import FileFormatError, FilesystemPermissionError
+from devtools.filesystem.models import JsonFile
 from devtools.filesystem.resolution import resolve_codec
+
+if TYPE_CHECKING:
+    from devtools.filesystem.models import File
 
 
 def write(
@@ -23,7 +25,10 @@ def write(
 
     The file model's format determines the codec used for serialization.
     Writes are performed through a sibling temporary file and atomically
-    replace the destination on success.
+    replace the destination on success. This prevents a normally observing
+    destination from seeing partial replacement contents. It does not fsync
+    the parent directory, so directory-entry durability after sudden power
+    loss remains filesystem-dependent.
 
     :param file: File model to persist.
     :param overwrite: Whether an existing destination may be replaced.
@@ -40,6 +45,10 @@ def write(
     except PermissionError as error:
         msg = f"Permission denied while inspecting file: {file.path}."
         raise FilesystemPermissionError(msg) from error
+
+    if not isinstance(file, JsonFile):
+        msg = f"No codec is implemented for file format: {file.format.value!r}."
+        raise FileFormatError(msg)
 
     codec = resolve_codec(file.format)
     content = codec.encode(file)
@@ -78,7 +87,7 @@ def _atomic_write(
             os.fsync(temporary.fileno())
             temporary_path = Path(temporary.name)
 
-        os.replace(
+        os.replace(  # noqa: PTH105
             temporary_path,
             target,
         )

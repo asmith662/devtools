@@ -21,9 +21,16 @@ explicitly bounded by `CommandOutputPolicy`; results report truncated output and
 dropped events.
 
 `devtools.regex` provides immutable match values and explicit regex operations.
-`devtools.filesystem` provides immutable file models and `JsonCodec`. JSON
-models use recursively frozen mappings and tuples, preserve source-text regex
-search, and provide structured traversal and transformations. A model's
-`content` is source provenance; its `value` is current structured state and is
-what `JsonCodec` serializes. Generic filesystem reading and writing remain
-separate future work.
+`devtools.filesystem` provides immutable file models, `JsonCodec`, and
+JSON-backed generic `read()` / `write()`. JSON models use recursively frozen
+mappings and tuples, preserve source-text regex search, and provide structured
+traversal and transformations. A model's `content` is source provenance; its
+`value` is current structured state and is what `JsonCodec` serializes.
+
+Generic reading is bounded by default and supports an explicit format override;
+JSON is currently the only codec-backed format. Reads check size before and
+after loading, so a file that grows between checks is rejected but can still
+temporarily exceed the configured memory bound. Writes select a codec from the
+model format, use a sibling temporary file, flush and fsync it, then replace
+the destination atomically under normal filesystem semantics. Parent-directory
+durability after sudden power loss is filesystem-dependent.

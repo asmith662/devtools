@@ -3,10 +3,14 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 from devtools.filesystem.codecs import JsonCodec
 from devtools.filesystem.errors import FileFormatError
 from devtools.filesystem.models import FileFormat
-from devtools.paths import ResolvedPath
+
+if TYPE_CHECKING:
+    from devtools.paths import ResolvedPath
 
 
 def resolve_file_format(path: ResolvedPath) -> FileFormat:

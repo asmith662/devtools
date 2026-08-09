@@ -3,18 +3,22 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 from devtools.filesystem.errors import (
-    FileTooLargeError,
     FilesystemNotFoundError,
     FilesystemPermissionError,
+    FileTooLargeError,
     NotAFileError,
 )
-from devtools.filesystem.models import File, FileFormat
 from devtools.filesystem.resolution import (
     resolve_codec,
     resolve_file_format,
 )
-from devtools.paths import ResolvedPath
+
+if TYPE_CHECKING:
+    from devtools.filesystem.models import File, FileFormat
+    from devtools.paths import ResolvedPath
 
 DEFAULT_MAX_READ_BYTES = 16 * 1024 * 1024
 
@@ -30,7 +34,9 @@ def read(
     When ``file_format`` is omitted, the format is inferred from the path.
     An explicit format overrides suffix-based inference.
 
-    The file is size-checked before its contents are loaded into memory.
+    The file is size-checked before loading and again after reading. A file
+    that grows between those checks can still be read into memory before the
+    second check rejects it; no oversized model is returned.
 
     :param path: Resolved path to the file.
     :param file_format: Explicit file format override.
