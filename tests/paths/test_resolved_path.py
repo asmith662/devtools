@@ -18,7 +18,7 @@ def test_constructs_from_an_absolute_path(tmp_path: Path) -> None:
 
     resolved_path = ResolvedPath(path)
 
-    assert resolved_path.path == path
+    assert resolved_path.value == path
 
 
 def test_rejects_a_relative_path() -> None:
@@ -30,7 +30,7 @@ def test_rejects_a_relative_path() -> None:
 def test_is_immutable(tmp_path: Path) -> None:
     """The stored path cannot be reassigned."""
     resolved_path = ResolvedPath(tmp_path)
-    attribute = "path"
+    attribute = "value"
 
     with pytest.raises(FrozenInstanceError):
         setattr(resolved_path, attribute, tmp_path.parent)
@@ -41,13 +41,15 @@ def test_exposes_path_metadata_and_representations(tmp_path: Path) -> None:
     path = tmp_path / "directory" / "archive.tar.gz"
     resolved_path = ResolvedPath(path)
 
-    assert resolved_path.path == path
+    assert resolved_path.value == path
     assert resolved_path.name == "archive.tar.gz"
     assert resolved_path.stem == "archive.tar"
     assert resolved_path.suffix == ".gz"
     assert resolved_path.suffixes == (".tar", ".gz")
+    assert resolved_path.parent == path.parent
     assert resolved_path.parts == path.parts
     assert resolved_path.as_posix() == path.as_posix()
+    assert resolved_path.as_uri() == path.as_uri()
     assert str(resolved_path) == str(path)
     assert os.fspath(resolved_path) == os.fspath(path)
     assert Path(resolved_path) == path

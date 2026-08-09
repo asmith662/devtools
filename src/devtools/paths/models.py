@@ -1,28 +1,39 @@
 # Copyright (c) 2026
-"""Path value objects."""
+"""Immutable path value objects."""
 
 from __future__ import annotations
 
 import os
 from dataclasses import dataclass
-from pathlib import Path
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 @dataclass(frozen=True, slots=True)
 class ResolvedPath(os.PathLike[str]):
-    """Represent an absolute resolved filesystem path.
+    """Represent an immutable absolute filesystem path.
 
-    :ivar path: Absolute filesystem path.
+    The model validates only that its value is absolute. Filesystem
+    normalization and resolution are performed by the path-resolution
+    operations.
+
+    :ivar value: Absolute filesystem path.
     """
 
-    path: Path
+    value: Path
 
     def __post_init__(self) -> None:
-        """Validate path invariants.
+        """Validate model invariants."""
+        self._validate()
+
+    def _validate(self) -> None:
+        """Validate the resolved path value.
 
         :raises ValueError: If the path is not absolute.
         """
-        if not self.path.is_absolute():
+        if not self.value.is_absolute():
             msg = "ResolvedPath requires an absolute path."
             raise ValueError(msg)
 
@@ -30,59 +41,74 @@ class ResolvedPath(os.PathLike[str]):
     def name(self) -> str:
         """Return the final path component.
 
-        :returns: Final component of the path.
+        :returns: Final path component.
         """
-        return self.path.name
+        return self.value.name
 
     @property
     def stem(self) -> str:
         """Return the final component without its last suffix.
 
-        :returns: Stem of the final component.
+        :returns: Final component stem.
         """
-        return self.path.stem
+        return self.value.stem
 
     @property
     def suffix(self) -> str:
         """Return the final path suffix.
 
-        :returns: Final suffix.
+        :returns: Final suffix, including the leading period when present.
         """
-        return self.path.suffix
+        return self.value.suffix
 
     @property
     def suffixes(self) -> tuple[str, ...]:
-        """Return all suffixes.
+        """Return all suffixes for the final path component.
 
         :returns: Immutable sequence of suffixes.
         """
-        return tuple(self.path.suffixes)
+        return tuple(self.value.suffixes)
+
+    @property
+    def parent(self) -> Path:
+        """Return the parent filesystem path.
+
+        :returns: Parent path.
+        """
+        return self.value.parent
 
     @property
     def parts(self) -> tuple[str, ...]:
-        """Return the path components.
+        """Return the filesystem path components.
 
         :returns: Immutable sequence of path components.
         """
-        return self.path.parts
+        return self.value.parts
 
     def as_posix(self) -> str:
         """Return the path using forward slashes.
 
         :returns: POSIX-style path representation.
         """
-        return self.path.as_posix()
+        return self.value.as_posix()
+
+    def as_uri(self) -> str:
+        """Return the path as a file URI.
+
+        :returns: File URI representation.
+        """
+        return self.value.as_uri()
 
     def __str__(self) -> str:
-        """Return the native string representation.
+        """Return the native filesystem representation.
 
-        :returns: Native filesystem string.
+        :returns: Native path string.
         """
-        return str(self.path)
+        return str(self.value)
 
     def __fspath__(self) -> str:
-        """Return the filesystem path representation.
+        """Return the filesystem path protocol representation.
 
         :returns: Native filesystem path string.
         """
-        return os.fspath(self.path)
+        return os.fspath(self.value)
