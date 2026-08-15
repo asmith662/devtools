@@ -72,7 +72,11 @@ def parse_dot_path(
 
     normalized_suffix = suffix if suffix.startswith(".") else f".{suffix}"
 
-    return path.with_suffix(normalized_suffix)
+    try:
+        return path.with_suffix(normalized_suffix)
+    except ValueError as error:
+        msg = f"Invalid dot-path suffix: {suffix!r}."
+        raise PathParsingError(msg) from error
 
 
 def resolve_path(

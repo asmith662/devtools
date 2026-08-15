@@ -5,9 +5,19 @@ from __future__ import annotations
 
 from collections.abc import Callable, Iterator, Mapping
 from dataclasses import dataclass, field, replace
+from typing import TYPE_CHECKING
 
-from devtools.filesystem.models.json.base import JsonCompatible, JsonFile, JsonValue
-from devtools.filesystem.models.json.conversion import freeze_json
+from devtools.conversion import convert
+from devtools.filesystem.models.json.base import (
+    JsonCompatible,
+    JsonFile,
+    JsonMutableValue,
+    JsonValue,
+)
+from devtools.filesystem.models.json.conversion import freeze_json, thaw_json
+
+if TYPE_CHECKING:
+    from devtools.conversion import Converter
 
 
 @dataclass(frozen=True, slots=True)
@@ -81,24 +91,17 @@ class JsonObjectFile(JsonFile, Mapping[str, JsonValue]):
             (key, value) for key, value in self.value.items() if predicate(key, value)
         )
 
-    def with_item(
+    def convert[TargetT](
         self,
-        key: str,
-        value: JsonCompatible,
-    ) -> JsonObjectFile:
-        """Return a copy containing a replaced or added member.
+        converter: Converter[dict[str, JsonMutableValue], TargetT],
+    ) -> TargetT:
+        """Convert a thawed ordinary object through an explicit callable.
 
-        :param key: Object key.
-        :param value: JSON value.
-        :returns: Updated immutable JSON object file.
+        :param converter: Callable receiving an ordinary mutable JSON object.
+        :returns: Converter result.
+        :raises ConversionError: If the converter raises an ordinary exception.
         """
-        updated = dict(self.value)
-        updated[key] = freeze_json(value)
-
-        return replace(
-            self,
-            value=updated,
-        )
+        return convert(_thaw_object(self.value), converter)
 
     def with_items(
         self,
@@ -113,6 +116,25 @@ class JsonObjectFile(JsonFile, Mapping[str, JsonValue]):
         updated.update(
             {key: freeze_json(value) for key, value in values.items()},
         )
+
+        return replace(
+            self,
+            value=updated,
+        )
+
+    def with_item(
+        self,
+        key: str,
+        value: JsonCompatible,
+    ) -> JsonObjectFile:
+        """Return a copy containing a replaced or added member.
+
+        :param key: Object key.
+        :param value: JSON value.
+        :returns: Updated immutable JSON object file.
+        """
+        updated = dict(self.value)
+        updated[key] = freeze_json(value)
 
         return replace(
             self,
@@ -139,3 +161,8 @@ class JsonObjectFile(JsonFile, Mapping[str, JsonValue]):
             self,
             value=updated,
         )
+
+
+def _thaw_object(value: Mapping[str, JsonValue]) -> dict[str, JsonMutableValue]:
+    """Return a conventional mutable object for explicit conversion."""
+    return {key: thaw_json(item) for key, item in value.items()}

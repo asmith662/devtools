@@ -106,6 +106,7 @@ class CommandExecutor:
                 )
             except TimeoutError as error:
                 await self._terminate_and_reap(process)
+                process = None
 
                 timeout = command.timeout
 
@@ -121,6 +122,13 @@ class CommandExecutor:
                 raise CommandTimeoutError(msg) from error
 
         except asyncio.CancelledError:
+            if process is not None:
+                await self._terminate_and_reap(process)
+
+            raise
+        except (CommandNotFoundError, CommandTimeoutError):
+            raise
+        except Exception:
             if process is not None:
                 await self._terminate_and_reap(process)
 
@@ -205,7 +213,7 @@ class CommandExecutor:
         :param process: Running subprocess.
         :param execution: Live execution receiving events.
         :param command: Command defining timeout policy.
-        :returns: Complete stdout and stderr byte sequences.
+        :returns: Retained stdout/stderr byte sequences and truncation flags.
         :raises TimeoutError: If the configured timeout expires.
         """
         operation = self._stream_process(
@@ -227,7 +235,10 @@ class CommandExecutor:
         execution: CommandExecution,
         output_policy: CommandOutputPolicy,
     ) -> tuple[bytes, bytes, bool, bool]:
-        """Stream subprocess output while preserving complete output.
+        """Stream subprocess output while retaining bounded output prefixes.
+
+        Process streams are fully drained during normal completion. Returned
+        bytes contain only the leading prefix retained by the output policy.
 
         :param process: Running subprocess.
         :param execution: Live execution receiving events.

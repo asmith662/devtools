@@ -5,10 +5,19 @@ from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Iterator, Mapping, Sequence
 from dataclasses import dataclass, field, replace
-from typing import overload
+from typing import TYPE_CHECKING, overload
 
-from devtools.filesystem.models.json.base import JsonCompatible, JsonFile, JsonValue
-from devtools.filesystem.models.json.conversion import freeze_json
+from devtools.conversion import convert_all
+from devtools.filesystem.models.json.base import (
+    JsonCompatible,
+    JsonFile,
+    JsonMutableValue,
+    JsonValue,
+)
+from devtools.filesystem.models.json.conversion import freeze_json, thaw_json
+
+if TYPE_CHECKING:
+    from devtools.conversion import Converter
 
 
 @dataclass(frozen=True, slots=True)
@@ -84,6 +93,18 @@ class JsonListFile(JsonFile, Sequence[JsonValue]):
         :returns: Immutable sequence of matches.
         """
         return tuple(item for item in self.value if predicate(item))
+
+    def convert_items[TargetT](
+        self,
+        converter: Converter[JsonMutableValue, TargetT],
+    ) -> tuple[TargetT, ...]:
+        """Convert thawed array items through an explicit callable.
+
+        :param converter: Callable receiving ordinary mutable JSON values.
+        :returns: Immutable converted results in array order.
+        :raises ConversionError: If an item conversion fails.
+        """
+        return convert_all((thaw_json(item) for item in self.value), converter)
 
     def find_by(
         self,

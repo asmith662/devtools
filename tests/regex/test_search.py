@@ -8,12 +8,20 @@ import re
 import pytest
 
 from devtools.regex import (
+    RegexPattern,
     compile_regex,
     find_all_regex,
     iter_regex,
     replace_regex,
     search_regex,
 )
+
+
+def test_regex_pattern_is_available_from_the_package_root() -> None:
+    """The public pattern alias accepts source text at the package boundary."""
+    pattern: RegexPattern = "abc"
+
+    assert compile_regex(pattern).pattern == "abc"
 
 
 def test_compile_regex_supports_strings_and_compiled_patterns() -> None:
@@ -46,3 +54,14 @@ def test_search_find_iteration_replacement_and_flags() -> None:
     assert len(matches) == expected_match_count
     assert search_regex(text, "missing") is None
     assert replace_regex(text, r"\d+", "#", count=1) == "A-# a-22"
+
+
+def test_regex_operations_preserve_standard_library_edge_semantics() -> None:
+    """Zero-width matches, syntax errors, and replacements follow ``re``."""
+    matches = tuple(iter_regex("aa", r"(?=a)"))
+
+    assert tuple(match.span for match in matches) == ((0, 0), (1, 1))
+    assert replace_regex("a-1 b-2", r"([a-z])-(\d)", r"\2:\1") == "1:a 2:b"
+
+    with pytest.raises(re.error):
+        compile_regex("[")

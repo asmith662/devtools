@@ -3,6 +3,9 @@
 
 from __future__ import annotations
 
+from dataclasses import FrozenInstanceError
+from typing import Any
+
 import pytest
 
 from devtools.regex import RegexMatch
@@ -24,12 +27,33 @@ def test_regex_match_exposes_immutable_match_data() -> None:
     assert match.group(0) == "first"
     assert match.group(1) is None
     assert match.named_group("name") == "value"
+    assert match == RegexMatch(
+        "whole",
+        2,
+        7,
+        ("first", None),
+        (("name", "value"),),
+    )
+    equivalent = RegexMatch(
+        "whole",
+        2,
+        7,
+        ("first", None),
+        (("name", "value"),),
+    )
+
+    assert len({match, equivalent}) == 1
 
     with pytest.raises(IndexError):
         match.group(2)
 
     with pytest.raises(KeyError):
         match.named_group("missing")
+
+    mutable_match: Any = match
+
+    with pytest.raises(FrozenInstanceError):
+        mutable_match.start = 0
 
 
 @pytest.mark.parametrize(

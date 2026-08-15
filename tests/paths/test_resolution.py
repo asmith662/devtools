@@ -61,6 +61,14 @@ def test_parse_dot_path_rejects_an_empty_suffix() -> None:
         parse_dot_path("devtools.paths", suffix="")
 
 
+def test_parse_dot_path_normalizes_invalid_suffix_errors() -> None:
+    """Invalid suffix application remains a path-domain parsing failure."""
+    with pytest.raises(PathParsingError, match="Invalid dot-path suffix") as raised:
+        parse_dot_path("devtools.paths", suffix="/bad")
+
+    assert isinstance(raised.value.__cause__, ValueError)
+
+
 def test_resolve_path_normalizes_absolute_paths_without_existing_target(
     tmp_path: Path,
 ) -> None:

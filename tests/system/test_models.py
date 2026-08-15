@@ -12,6 +12,7 @@ def test_operating_system_values_are_stable() -> None:
     assert OperatingSystem.LINUX.value == "linux"
     assert OperatingSystem.MACOS.value == "macos"
     assert OperatingSystem.OTHER.value == "other"
+    assert str(OperatingSystem.WINDOWS) == "windows"
 
 
 @pytest.mark.parametrize(

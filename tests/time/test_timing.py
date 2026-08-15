@@ -47,3 +47,20 @@ def test_stopwatch_context_stops_and_preserves_exceptions(
 
     assert stopwatch.is_stopped is True
     assert stopwatch.elapsed == Duration.nanoseconds(100)
+
+
+def test_stopwatch_context_returns_the_same_instance(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The context manager supplies its active stopwatch to callers."""
+    readings = iter([10, 110])
+    monkeypatch.setattr(
+        "devtools.time.models.stopwatch.perf_counter_ns",
+        lambda: next(readings),
+    )
+
+    stopwatch = Stopwatch()
+    with stopwatch as entered:
+        assert entered is stopwatch
+
+    assert stopwatch.elapsed == Duration.nanoseconds(100)

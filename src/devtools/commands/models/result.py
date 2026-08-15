@@ -21,8 +21,8 @@ class CommandResult:
 
     :ivar command: Command that was executed.
     :ivar exit_code: Process exit code.
-    :ivar stdout: Bytes written to standard output.
-    :ivar stderr: Bytes written to standard error.
+    :ivar stdout: Retained leading bytes written to standard output.
+    :ivar stderr: Retained leading bytes written to standard error.
     :ivar duration: Monotonic elapsed execution duration.
     :ivar stdout_truncated: Whether stdout exceeded the retained limit.
     :ivar stderr_truncated: Whether stderr exceeded the retained limit.

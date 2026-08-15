@@ -7,8 +7,7 @@ from datetime import UTC, date, datetime, timedelta, timezone
 
 import pytest
 
-from devtools.time import Timestamp, parse_timestamp
-from devtools.time.errors import TimestampParsingError
+from devtools.time import TimeError, Timestamp, TimestampParsingError, parse_timestamp
 
 
 def test_parse_timestamp_accepts_existing_timestamp() -> None:
@@ -51,6 +50,7 @@ def test_parse_timestamp_accepts_date_values_at_utc_midnight() -> None:
         ("2026-01-02", datetime(2026, 1, 2, tzinfo=UTC)),
         ("2026/01/02", datetime(2026, 1, 2, tzinfo=UTC)),
         ("01/02/2026", datetime(2026, 1, 2, tzinfo=UTC)),
+        ("  2026-01-02T03:04:05+00:00  ", datetime(2026, 1, 2, 3, 4, 5, tzinfo=UTC)),
     ],
 )
 def test_parse_timestamp_accepts_supported_string_formats(
@@ -75,8 +75,21 @@ def test_parse_timestamp_rejects_invalid_strings(value: str) -> None:
         parse_timestamp(value)
 
 
-def test_timestamp_from_isoformat_uses_the_public_parser() -> None:
-    """The convenience constructor returns a normalized parsed timestamp."""
+def test_timestamp_from_isoformat_accepts_only_iso_text() -> None:
+    """The ISO constructor does not inherit the broad parser's fallbacks."""
     assert Timestamp.from_isoformat("2026-01-02T08:04:05+05:00") == Timestamp(
         datetime(2026, 1, 2, 3, 4, 5, tzinfo=UTC),
     )
+    assert Timestamp.from_isoformat("2026-01-02T03:04:05") == Timestamp(
+        datetime(2026, 1, 2, 3, 4, 5, tzinfo=UTC),
+    )
+
+    with pytest.raises(TimestampParsingError) as raised:
+        Timestamp.from_isoformat("01/02/2026")
+
+    assert isinstance(raised.value.__cause__, ValueError)
+
+
+def test_time_errors_are_available_from_the_public_package() -> None:
+    """The package-level error exports preserve their documented hierarchy."""
+    assert issubclass(TimestampParsingError, TimeError)

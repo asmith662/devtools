@@ -1,36 +1,189 @@
 # Architecture
 
-`devtools` is one Python project and distribution. Its source is organized by
-cohesive capability domains under `src/devtools/`.
+## Purpose
 
-The current domains are `devtools.system`, `devtools.paths`, `devtools.time`,
-`devtools.commands`, `devtools.identity`, `devtools.regex`, and
-`devtools.filesystem`. A domain may grow internal modules when cohesion
-justifies them; capabilities are not made separately distributable preemptively.
+`devtools` is one Python project and distribution organized into cohesive
+capability domains under `src/devtools/`. The architecture records how those
+domains relate; package-local documentation is authoritative for each
+package's exact API and behavior.
 
-`devtools.paths` owns AI-neutral path primitives for ordinary Python callers.
-`ResolvedPath` proves that its stored `pathlib.Path` is absolute; parsing and
-explicit resolution are separate operations. Containment remains future work.
+## Current foundation and integrations
 
-`devtools.time` owns timestamps, durations, parsing, and monotonic elapsed-time
-measurement. `devtools.commands` keeps immutable command specifications apart
-from execution. `CommandExecution` is awaitable and exposes a single-consumer,
-best-effort event stream. Commands clean up an immediate child process on
-timeout or cancellation. Output retention and pending event buffering are
-explicitly bounded by `CommandOutputPolicy`; results report truncated output and
-dropped events.
+The completed foundational tooling milestone consists of independent domains:
 
-`devtools.regex` provides immutable match values and explicit regex operations.
-`devtools.filesystem` provides immutable file models, `JsonCodec`, and
-JSON-backed generic `read()` / `write()`. JSON models use recursively frozen
-mappings and tuples, preserve source-text regex search, and provide structured
-traversal and transformations. A model's `content` is source provenance; its
-`value` is current structured state and is what `JsonCodec` serializes.
+- leaf foundational primitives: `identity`, `system`, `paths`, `time`,
+  `regex`, and `conversion`;
+- communication primitive: `message`;
+- execution infrastructure: `commands`;
+- content and filesystem infrastructure: `filesystem`.
+- generic agent contract: `agents`;
+- provider/agent integration: `codex`, the first concrete `Agent` adapter.
 
-Generic reading is bounded by default and supports an explicit format override;
-JSON is currently the only codec-backed format. Reads check size before and
-after loading, so a file that grows between checks is rejected but can still
-temporarily exceed the configured memory bound. Writes select a codec from the
-model format, use a sibling temporary file, flush and fsync it, then replace
-the destination atomically under normal filesystem semantics. Parent-directory
-durability after sudden power loss is filesystem-dependent.
+This grouping describes the current milestone. It does not imply a
+`core`, `common`, `shared`, or `foundation` source package.
+
+## Package responsibilities
+
+| Package | Cross-package responsibility |
+|---|---|
+| `identity` | Canonical opaque UUID identity generation, parsing, and immutable representation; semantic IDs such as `SessionId` are not yet owned here. |
+| `message` | Immutable textual communication values with semantic message identity, conversational role, and producer/source provenance; not provider integration or session state. |
+| `system` | Coarse operating-system-family detection, not general environment or machine inventory. |
+| `paths` | Path representation, parsing, dot-path conversion, absolute resolution, and known-location construction; not filesystem content I/O or sandbox authorization. |
+| `time` | UTC timestamps, non-negative durations, bounded timestamp parsing, and monotonic elapsed timing; not scheduling. |
+| `commands` | Immutable direct command specifications and asynchronous immediate-child execution with bounded retained output, best-effort events, and timeout/cancellation cleanup; not session or runtime orchestration. |
+| `regex` | Reusable regex compilation, search, iteration, replacement, and immutable match values; not document or file search policy. |
+| `conversion` | Explicit callable conversion and stable failure normalization; not automatic target-type construction or serialization. |
+| `filesystem` | File models, format-native structure, codecs, format resolution, bounded generic reads, and atomic generic writes. Text, JSON, Markdown, and CSV are codec-backed; binary is model-only. |
+| `agents` | Provider-neutral asynchronous message invocation and opaque continuation contract; not provider transport, session history, or runtime routing. |
+| `codex` | Codex CLI adaptation, JSONL final-turn parsing, thread continuation, and a concrete Agent implementation; not generic command execution, provider discovery, or session state. |
+
+Detailed format and lifecycle mechanics belong in the relevant package-local
+documentation, especially [`devtools.filesystem`'s docs](../src/devtools/filesystem/docs/overview.md).
+
+## Dependency graph
+
+```mermaid
+graph TD
+    message --> identity
+    message --> time
+
+    commands --> paths
+    commands --> time
+
+    filesystem --> paths
+    filesystem --> regex
+    filesystem --> conversion
+
+    agents --> message
+
+    codex --> agents
+    codex --> message
+    codex --> commands
+    codex --> paths
+
+    identity
+    system
+```
+
+In text, the only current cross-domain production dependencies are:
+
+```text
+message    -> identity
+message    -> time
+
+commands   -> paths
+commands   -> time
+
+filesystem -> paths
+filesystem -> regex
+filesystem -> conversion
+
+agents     -> message
+
+codex      -> agents
+codex      -> message
+codex      -> commands
+codex      -> paths
+```
+
+`identity`, `system`, `paths`, `time`, `regex`, and `conversion` have no
+dependencies on another `devtools` domain. `system` currently has no production
+consumers. There is no dependency between `commands` and `filesystem` in either
+direction.
+
+## Architectural principles
+
+### Explicit package boundaries
+
+Each domain owns one coherent responsibility. Cross-domain relationships are
+visible, directional dependencies rather than implicit coupling.
+
+### No speculative shared domain
+
+Reusable-looking code does not justify a `core`, `common`, or `shared`
+package. A dedicated reusable domain is extracted after concrete consumers
+demonstrate a stable responsibility; `devtools.conversion` is the current
+example.
+
+### Composition before speculative abstraction
+
+Common abstractions are introduced only after multiple real consumers require
+the same contract. Lower-level packages remain usable without a runtime or
+session layer.
+
+### Static before dynamic
+
+Prefer explicit composition and static mappings until real consumers require
+dynamic registration or plugin behavior. Current filesystem codec resolution
+is intentionally static.
+
+### Immutable values where appropriate
+
+Value-oriented models prefer frozen immutable semantics when their domain
+permits it. Lifecycle objects such as `Stopwatch` and `CommandExecution`
+remain mutable where lifecycle state is intrinsic.
+
+### Stable package-level APIs
+
+Package-root exports define supported public surfaces. Internal modules may
+evolve without becoming additional public contracts.
+
+### Useful error normalization
+
+Standard-library exceptions remain visible when they already provide a useful
+contract. Domains normalize failures only where a stable domain boundary adds
+meaningful context.
+
+### Higher-layer orchestration
+
+Foundational packages provide primitives. Future session and runtime layers
+will compose them rather than embedding orchestration in these domains.
+
+## Cross-package boundaries
+
+`paths` owns path values and resolution policy; `filesystem` owns file content,
+codecs, and I/O. `regex` supplies generic regex mechanics that filesystem text
+models adapt. `conversion` remains independent while JSON and CSV models use
+thin conversion adapters. `commands` consumes path and time primitives but
+does not depend on filesystem. `agents` supplies the generic contract; `codex`
+is a concrete integration above it and composes existing message, command, and
+path primitives without adding session state.
+
+## Documentation authority
+
+```text
+Package-local docs
+    exact package API, behavior, invariants, and local future work
+
+docs/architecture.md
+    cross-package architecture, dependencies, and boundaries
+
+docs/roadmap.md
+    completed and future architectural sequencing
+
+docs/implementation_ledger.md
+    historical implementation milestones and verification state
+
+docs/documentation_map.md
+    documentation navigation and authority map
+```
+
+See the [documentation map](documentation_map.md) for links to every package
+document.
+
+## Foundation status
+
+The `identity`, `system`, `paths`, `time`, `commands`, `regex`, `conversion`,
+`filesystem`, `message`, `agents`, and `codex` milestones are documented and
+frozen.
+
+Frozen means the current milestone contract is documented and verified; it does
+not prevent future, deliberately approved evolution.
+
+## Next architectural boundary
+
+The foundation, generic Agent contract, and first Codex integration are
+complete. The next architectural frontier is session design, followed by the
+composition-oriented `devtools.runtime` layer. Their APIs and internal models
+are intentionally not specified here.

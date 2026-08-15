@@ -30,6 +30,9 @@ addopts = [
     "--cov-report=term-missing",
     "--cov-fail-under=100",
 ]
+markers = [
+    "live_codex: opt-in test that contacts the locally authenticated Codex CLI",
+]
 
 [tool.coverage.run]
 branch = true

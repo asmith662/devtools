@@ -6,6 +6,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
 
+from devtools.time.errors import TimestampParsingError
+
 from .duration import Duration
 
 
@@ -65,10 +67,19 @@ class Timestamp:
 
         :param value: ISO 8601 timestamp representation.
         :returns: Parsed timestamp.
+        :raises TimestampParsingError: If the value is not valid ISO timestamp
+            text.
         """
-        from devtools.time.parsing import parse_timestamp  # noqa: PLC0415
+        try:
+            parsed = datetime.fromisoformat(value)
+        except ValueError as error:
+            msg = f"Invalid ISO timestamp representation: {value!r}."
+            raise TimestampParsingError(msg) from error
 
-        return parse_timestamp(value)
+        if parsed.tzinfo is None or parsed.utcoffset() is None:
+            parsed = parsed.replace(tzinfo=UTC)
+
+        return cls(parsed)
 
     def __add__(self, duration: Duration) -> Timestamp:
         """Advance the timestamp by a duration.

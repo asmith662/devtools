@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import asyncio
 import sys
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Self
 
 import pytest
 
@@ -13,6 +13,7 @@ from devtools.commands import (
     Command,
     CommandError,
     CommandExecutor,
+    CommandExited,
     CommandNotFoundError,
     CommandOutputPolicy,
     CommandTimeoutError,
@@ -22,6 +23,7 @@ from devtools.time import Duration
 
 if TYPE_CHECKING:
     from pathlib import Path
+    from types import TracebackType
 
 
 def test_executor_runs_python_and_preserves_argument_bytes() -> None:
@@ -222,8 +224,99 @@ def test_executor_bounds_retained_output_and_pending_events(
 
         assert result.events_dropped == expected_dropped_events
         assert len(events) == 1
+        assert not any(isinstance(event, CommandExited) for event in events)
 
     asyncio.run(run())
+
+
+def test_executor_allows_zero_output_retention_while_streaming(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Zero limits retain no bytes but do not prevent normal completion."""
+    process = _OutputProcess()
+
+    async def create_process(
+        *_args: object,
+        **_kwargs: object,
+    ) -> _OutputProcess:
+        return process
+
+    monkeypatch.setattr(
+        "devtools.commands.execution.asyncio.create_subprocess_exec",
+        create_process,
+    )
+
+    async def run() -> None:
+        executor = CommandExecutor(
+            output_policy=CommandOutputPolicy(
+                max_stdout_bytes=0,
+                max_stderr_bytes=0,
+                max_pending_events=10,
+            ),
+        )
+        result = await executor.execute(Command("zero-retention-command"))
+
+        assert result.stdout == b""
+        assert result.stderr == b""
+        assert result.stdout_truncated is True
+        assert result.stderr_truncated is True
+        assert result.succeeded is True
+
+    asyncio.run(run())
+
+
+def test_executor_starts_timeout_collection_after_process_creation(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Timeout context creation begins only after subprocess creation succeeds."""
+    timeout_calls: list[float] = []
+    process = _OutputProcess()
+
+    async def create_process(
+        *_args: object,
+        **_kwargs: object,
+    ) -> _OutputProcess:
+        assert timeout_calls == []
+        return process
+
+    def create_timeout(seconds: float) -> _NoopTimeout:
+        timeout_calls.append(seconds)
+        return _NoopTimeout()
+
+    monkeypatch.setattr(
+        "devtools.commands.execution.asyncio.create_subprocess_exec",
+        create_process,
+    )
+    monkeypatch.setattr(
+        "devtools.commands.execution.asyncio.timeout",
+        create_timeout,
+    )
+
+    result = asyncio.run(
+        CommandExecutor().execute(
+            Command("timeout-boundary-command", timeout=Duration.seconds(3)),
+        ),
+    )
+
+    assert result.succeeded is True
+    assert timeout_calls == [3.0]
+
+
+class _NoopTimeout:
+    """Minimal asynchronous timeout context that records no expiry."""
+
+    async def __aenter__(self) -> Self:
+        """Enter the non-expiring timeout context."""
+        return self
+
+    async def __aexit__(
+        self,
+        _exc_type: type[BaseException] | None,
+        _exc_value: BaseException | None,
+        _traceback: TracebackType | None,
+    ) -> bool:
+        """Leave without suppressing an exception."""
+        return False
 
 
 class _TimedOutProcess:
@@ -265,6 +358,9 @@ class _MissingPipesProcess:
     returncode = 0
     stderr = None
     stdout = None
+
+    async def wait(self) -> None:
+        """Model reaping the already-completed invalid subprocess."""
 
 
 class _OutputProcess:

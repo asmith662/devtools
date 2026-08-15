@@ -171,6 +171,7 @@ def test_cancellation_kills_reaps_and_closes_events(
         execution = CommandExecutor().start(Command("blocking-command"))
         events_task = asyncio.create_task(_collect_events(execution))
         awaiter = asyncio.create_task(await_execution(execution))
+        shared_awaiter = asyncio.create_task(await_execution(execution))
 
         await process.stdout.read_started.wait()
         awaiter.cancel()
@@ -178,8 +179,43 @@ def test_cancellation_kills_reaps_and_closes_events(
         with pytest.raises(asyncio.CancelledError):
             await awaiter
 
+        with pytest.raises(asyncio.CancelledError):
+            await shared_awaiter
+
         events = await events_task
 
+        assert process.killed is True
+        assert process.waited is True
+        assert any(isinstance(event, CommandStarted) for event in events)
+        assert not any(isinstance(event, CommandExited) for event in events)
+
+    monkeypatch.setattr(
+        "devtools.commands.execution.asyncio.create_subprocess_exec",
+        create_process,
+    )
+    asyncio.run(run())
+
+
+def test_stream_read_failure_reaps_process_and_closes_events(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """An unexpected stream failure does not leave the immediate child running."""
+    process = _FailingStreamProcess()
+
+    async def create_process(
+        *_args: object,
+        **_kwargs: object,
+    ) -> _FailingStreamProcess:
+        return process
+
+    async def run() -> None:
+        execution = CommandExecutor().start(Command("failing-stream-command"))
+        events_task = asyncio.create_task(_collect_events(execution))
+
+        with pytest.raises(RuntimeError, match="stream failure"):
+            await execution
+
+        events = await events_task
         assert process.killed is True
         assert process.waited is True
         assert any(isinstance(event, CommandStarted) for event in events)
@@ -339,3 +375,32 @@ class _BlockingStream:
         self.read_started.set()
         await self._release.wait()
         return b""
+
+
+class _FailingStreamProcess:
+    """Minimal process fake whose stdout read fails unexpectedly."""
+
+    def __init__(self) -> None:
+        """Initialize a running process with one failing stream."""
+        self.killed = False
+        self.returncode: int | None = None
+        self.stderr = _EmptyStream()
+        self.stdout = _FailingStream()
+        self.waited = False
+
+    def kill(self) -> None:
+        """Record immediate-process termination."""
+        self.killed = True
+
+    async def wait(self) -> None:
+        """Record process cleanup completion."""
+        self.waited = True
+
+
+class _FailingStream:
+    """Minimal stream fake that raises a deterministic read failure."""
+
+    async def read(self, _size: int) -> bytes:
+        """Raise the unexpected stream failure under test."""
+        message = "stream failure"
+        raise RuntimeError(message)

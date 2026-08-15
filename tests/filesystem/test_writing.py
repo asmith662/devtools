@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import os
+from importlib import import_module
 from pathlib import Path
 from typing import Never
 
@@ -12,10 +13,13 @@ import pytest
 
 from devtools.filesystem import (
     BinaryFile,
+    CsvCodec,
     FileFormatError,
     FilesystemPermissionError,
     JsonCodec,
     JsonObjectFile,
+    MarkdownCodec,
+    TextCodec,
     write,
 )
 from devtools.paths import ResolvedPath
@@ -92,9 +96,117 @@ def test_write_overwrites_an_existing_target_by_default(tmp_path: Path) -> None:
     assert json.loads(target.read_text(encoding="utf-8")) == {"status": "new"}
 
 
+def test_write_persists_text_using_the_model_format_not_the_suffix(
+    tmp_path: Path,
+) -> None:
+    """A text model writes text even when its destination has a JSON suffix."""
+    target = tmp_path / "notes.json"
+    file = TextCodec().decode(
+        ResolvedPath(target),
+        "cafÃ©\r\n".encode(),
+    )
+
+    write(file)
+
+    assert target.read_bytes() == "cafÃ©\r\n".encode()
+
+
+def test_write_text_overwrites_or_preserves_existing_destinations(
+    tmp_path: Path,
+) -> None:
+    """Text models use the shared overwrite policy and atomic writer path."""
+    target = tmp_path / "notes.txt"
+    target.write_bytes(b"old")
+    file = TextCodec().decode(ResolvedPath(target), b"new\n")
+
+    with pytest.raises(FileExistsError, match="already exists"):
+        write(file, overwrite=False)
+
+    assert target.read_bytes() == b"old"
+
+    write(file)
+
+    assert target.read_bytes() == b"new\n"
+
+
+def test_write_persists_markdown_using_the_model_format_not_the_suffix(
+    tmp_path: Path,
+) -> None:
+    """A Markdown model uses MarkdownCodec even with a misleading text suffix."""
+    target = tmp_path / "document.txt"
+    content = "# Title\r\n"
+    file = MarkdownCodec().decode(ResolvedPath(target), content.encode())
+
+    write(file)
+
+    assert target.read_bytes() == content.encode()
+
+
+def test_write_markdown_honors_the_shared_overwrite_policy(tmp_path: Path) -> None:
+    """Markdown writes preserve existing data when overwrite is disabled."""
+    target = tmp_path / "document.md"
+    target.write_bytes(b"# Old\n")
+    file = MarkdownCodec().decode(ResolvedPath(target), b"# New\n")
+
+    with pytest.raises(FileExistsError, match="already exists"):
+        write(file, overwrite=False)
+
+    assert target.read_bytes() == b"# Old\n"
+
+
+def test_write_persists_current_csv_state_not_stale_source_provenance(
+    tmp_path: Path,
+) -> None:
+    """CSV writes serialize current rows through CsvCodec despite path suffix."""
+    target = tmp_path / "reports.txt"
+    original = CsvCodec().parse(
+        ResolvedPath(target),
+        "id,status\nreport-1,failed\n",
+    )
+    updated = original.appended(original[0])
+
+    write(updated)
+
+    reparsed = CsvCodec().decode(ResolvedPath(target), target.read_bytes())
+    assert updated.content == original.content
+    assert reparsed.headers == updated.headers
+    assert reparsed.rows == updated.rows
+
+
+def test_write_csv_honors_the_shared_overwrite_policy(tmp_path: Path) -> None:
+    """CSV persistence preserves an existing target when overwrite is disabled."""
+    target = tmp_path / "reports.csv"
+    target.write_bytes(b"id\nold\n")
+    file = CsvCodec().parse(ResolvedPath(target), "id\nnew\n")
+
+    with pytest.raises(FileExistsError, match="already exists"):
+        write(file, overwrite=False)
+
+    assert target.read_bytes() == b"id\nold\n"
+
+
 def test_write_rejects_models_without_an_implemented_codec(tmp_path: Path) -> None:
     """Generic writing exposes only the currently implemented JSON codec."""
     file = BinaryFile(ResolvedPath(tmp_path / "value.bin"), b"data")
+
+    with pytest.raises(FileFormatError, match="No codec"):
+        write(file)
+
+
+def test_write_rejects_a_defensive_model_codec_mismatch(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A broken resolver cannot route a JSON model through the text codec."""
+    target = tmp_path / "value.json"
+    file = JsonCodec().parse(ResolvedPath(target), "{}")
+
+    writing_module = import_module("devtools.filesystem.writing")
+    monkeypatch.setattr(
+        writing_module,
+        "resolve_codec",
+        lambda _file_format: TextCodec(),
+    )
 
     with pytest.raises(FileFormatError, match="No codec"):
         write(file)
@@ -123,6 +235,34 @@ def test_write_normalizes_permission_failures_and_cleans_temporary_files(
     assert temporary_paths[0].parent == target.parent
     assert not temporary_paths[0].exists()
     assert target.read_bytes() == original_content
+
+
+def test_write_cleans_a_temporary_file_when_preparation_fsync_fails(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A temporary path is cleaned when preparation fails before replacement."""
+    target = tmp_path / "preparation.json"
+    original_content = b'{"status":"old"}'
+    target.write_bytes(original_content)
+    file = JsonCodec().parse(ResolvedPath(target), '{"status":"new"}')
+    replace_calls: list[tuple[Path, Path]] = []
+
+    def deny_fsync(_file_descriptor: int) -> None:
+        raise PermissionError
+
+    def record_replace(source: Path, destination: Path) -> None:
+        replace_calls.append((source, destination))
+
+    monkeypatch.setattr("devtools.filesystem.writing.os.fsync", deny_fsync)
+    monkeypatch.setattr("devtools.filesystem.writing.os.replace", record_replace)
+
+    with pytest.raises(FilesystemPermissionError, match="writing"):
+        write(file)
+
+    assert target.read_bytes() == original_content
+    assert replace_calls == []
+    assert tuple(tmp_path.glob(f".{target.name}.*.tmp")) == ()
 
 
 def test_write_normalizes_temporary_cleanup_permission_failures(

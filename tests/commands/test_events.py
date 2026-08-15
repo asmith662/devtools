@@ -5,8 +5,8 @@ from dataclasses import FrozenInstanceError
 
 import pytest
 
-from devtools.commands import Command
-from devtools.commands.events import (
+from devtools.commands import (
+    Command,
     CommandExited,
     CommandStarted,
     CommandStderr,

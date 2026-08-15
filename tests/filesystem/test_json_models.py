@@ -47,6 +47,20 @@ def test_json_object_behaves_as_a_mapping_and_preserves_source_search(
     assert file.find_all_regex("name")
 
 
+def test_json_objects_are_immutable_but_not_universally_hashable(
+    tmp_path: Path,
+) -> None:
+    """MappingProxy-backed JSON values intentionally do not promise hashing."""
+    file = JsonObjectFile(
+        ResolvedPath(tmp_path),
+        "{}",
+        value=_object_value({"name": "Ada"}),
+    )
+
+    with pytest.raises(TypeError, match="unhashable"):
+        hash(file)
+
+
 def test_json_object_transformations_freeze_insertions_and_preserve_original(
     tmp_path: Path,
 ) -> None:

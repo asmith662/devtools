@@ -17,6 +17,9 @@ type JsonCompatible = (
     | tuple[JsonCompatible, ...]
     | Mapping[str, JsonCompatible]
 )
+type JsonMutableValue = (
+    JsonScalar | list[JsonMutableValue] | dict[str, JsonMutableValue]
+)
 
 
 @dataclass(frozen=True, slots=True)

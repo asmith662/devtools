@@ -8,8 +8,9 @@ from pathlib import Path
 from tempfile import NamedTemporaryFile
 from typing import TYPE_CHECKING
 
+from devtools.filesystem.codecs import CsvCodec, JsonCodec, MarkdownCodec, TextCodec
 from devtools.filesystem.errors import FileFormatError, FilesystemPermissionError
-from devtools.filesystem.models import JsonFile
+from devtools.filesystem.models import CsvFile, JsonFile, MarkdownFile, TextFile
 from devtools.filesystem.resolution import resolve_codec
 
 if TYPE_CHECKING:
@@ -46,12 +47,23 @@ def write(
         msg = f"Permission denied while inspecting file: {file.path}."
         raise FilesystemPermissionError(msg) from error
 
-    if not isinstance(file, JsonFile):
-        msg = f"No codec is implemented for file format: {file.format.value!r}."
-        raise FileFormatError(msg)
-
     codec = resolve_codec(file.format)
-    content = codec.encode(file)
+
+    match file, codec:
+        case CsvFile() as csv_file, CsvCodec() as csv_codec:
+            content = csv_codec.encode(csv_file)
+        case JsonFile() as json_file, JsonCodec() as json_codec:
+            content = json_codec.encode(json_file)
+        case MarkdownFile() as markdown_file, MarkdownCodec() as markdown_codec:
+            content = markdown_codec.encode(markdown_file)
+        case TextFile() as text_file, TextCodec() as text_codec if not isinstance(
+            text_file,
+            CsvFile | JsonFile | MarkdownFile,
+        ):
+            content = text_codec.encode(text_file)
+        case _:
+            msg = f"No codec is implemented for file format: {file.format.value!r}."
+            raise FileFormatError(msg)
 
     _atomic_write(
         target,
@@ -82,10 +94,10 @@ def _atomic_write(
             suffix=".tmp",
             delete=False,
         ) as temporary:
+            temporary_path = Path(temporary.name)
             temporary.write(content)
             temporary.flush()
             os.fsync(temporary.fileno())
-            temporary_path = Path(temporary.name)
 
         os.replace(  # noqa: PTH105
             temporary_path,

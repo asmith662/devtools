@@ -10,6 +10,7 @@ import pytest
 from devtools.filesystem import (
     BinaryFile,
     CsvFile,
+    CsvRow,
     FileFormat,
     JsonFile,
     MarkdownFile,
@@ -31,7 +32,12 @@ def test_file_models_expose_their_format_and_value_semantics(tmp_path: Path) -> 
     assert binary.size_bytes == expected_size
     assert binary == BinaryFile(path, b"abc")
     assert TextFile(path, "text").format is FileFormat.TEXT
-    assert CsvFile(path, "a,b").format is FileFormat.CSV
+    assert CsvFile(
+        path,
+        "a,b",
+        headers=("a", "b"),
+        rows=(CsvRow(("a", "b"), ("1", "2")),),
+    ).format is FileFormat.CSV
     assert MarkdownFile(path, "# Title").format is FileFormat.MARKDOWN
     assert JsonFile(path, "{}").format is FileFormat.JSON
 

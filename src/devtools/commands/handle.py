@@ -80,7 +80,10 @@ class CommandExecution:
     def events_dropped(self) -> int:
         """Return the number of events omitted by bounded buffering.
 
-        :returns: Number of output events dropped before observation.
+        Any newly emitted event may be dropped while the queue is full; no event
+        type, including lifecycle events, is privileged.
+
+        :returns: Number of events dropped before observation.
         """
         return self._events_dropped
 
@@ -112,7 +115,7 @@ class CommandExecution:
             yield event
 
     def _emit(self, event: CommandEvent) -> None:
-        """Emit an execution event.
+        """Emit an execution event when bounded queue capacity permits it.
 
         :param event: Event to emit.
         """

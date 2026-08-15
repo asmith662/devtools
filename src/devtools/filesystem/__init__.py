@@ -1,7 +1,7 @@
 # Copyright (c) 2026
 """Immutable filesystem models and filesystem-domain errors."""
 
-from devtools.filesystem.codecs import JsonCodec
+from devtools.filesystem.codecs import CsvCodec, JsonCodec, MarkdownCodec, TextCodec
 from devtools.filesystem.errors import (
     FileFormatError,
     FilesystemError,
@@ -14,7 +14,10 @@ from devtools.filesystem.errors import (
 )
 from devtools.filesystem.models import (
     BinaryFile,
+    CsvDialect,
     CsvFile,
+    CsvQuoting,
+    CsvRow,
     File,
     FileFormat,
     JsonFile,
@@ -24,6 +27,8 @@ from devtools.filesystem.models import (
     JsonScalarFile,
     JsonValue,
     MarkdownFile,
+    MarkdownHeading,
+    MarkdownSection,
     TextFile,
 )
 from devtools.filesystem.reading import DEFAULT_MAX_READ_BYTES, read
@@ -33,7 +38,11 @@ from devtools.filesystem.writing import write
 __all__ = [
     "DEFAULT_MAX_READ_BYTES",
     "BinaryFile",
+    "CsvCodec",
+    "CsvDialect",
     "CsvFile",
+    "CsvQuoting",
+    "CsvRow",
     "File",
     "FileFormat",
     "FileFormatError",
@@ -48,8 +57,12 @@ __all__ = [
     "JsonScalar",
     "JsonScalarFile",
     "JsonValue",
+    "MarkdownCodec",
     "MarkdownFile",
+    "MarkdownHeading",
+    "MarkdownSection",
     "NotAFileError",
+    "TextCodec",
     "TextDecodingError",
     "TextEncodingError",
     "TextFile",

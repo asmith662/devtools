@@ -12,6 +12,7 @@ from devtools.system import OperatingSystem, get_operating_system
         ("Windows", OperatingSystem.WINDOWS),
         ("Linux", OperatingSystem.LINUX),
         ("Darwin", OperatingSystem.MACOS),
+        ("windows", OperatingSystem.OTHER),
         ("Plan9", OperatingSystem.OTHER),
     ],
 )

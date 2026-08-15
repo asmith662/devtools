@@ -9,8 +9,9 @@ class CommandOutputPolicy:
     """Bound memory retained for one command execution.
 
     Output limits apply independently to standard output and standard error.
-    Event buffering is best effort: output events are dropped when the pending
-    event limit is reached so process draining never waits for a consumer.
+    Event buffering is best effort: any newly emitted event is dropped when the
+    pending event limit is reached so process draining never waits for a
+    consumer. No event type is privileged.
 
     :ivar max_stdout_bytes: Maximum stdout bytes retained in a result.
     :ivar max_stderr_bytes: Maximum stderr bytes retained in a result.

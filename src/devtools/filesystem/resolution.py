@@ -5,12 +5,29 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from devtools.filesystem.codecs import JsonCodec
+from devtools.filesystem.codecs import CsvCodec, JsonCodec, MarkdownCodec, TextCodec
 from devtools.filesystem.errors import FileFormatError
 from devtools.filesystem.models import FileFormat
 
 if TYPE_CHECKING:
     from devtools.paths import ResolvedPath
+
+_SUFFIX_FORMATS = {
+    ".csv": FileFormat.CSV,
+    ".json": FileFormat.JSON,
+    ".md": FileFormat.MARKDOWN,
+    ".markdown": FileFormat.MARKDOWN,
+    ".txt": FileFormat.TEXT,
+}
+_CODEC_TYPES: dict[
+    FileFormat,
+    type[CsvCodec | JsonCodec | MarkdownCodec | TextCodec],
+] = {
+    FileFormat.CSV: CsvCodec,
+    FileFormat.JSON: JsonCodec,
+    FileFormat.MARKDOWN: MarkdownCodec,
+    FileFormat.TEXT: TextCodec,
+}
 
 
 def resolve_file_format(path: ResolvedPath) -> FileFormat:
@@ -25,24 +42,26 @@ def resolve_file_format(path: ResolvedPath) -> FileFormat:
     """
     suffix = path.suffix.lower()
 
-    if suffix == ".json":
-        return FileFormat.JSON
-
-    msg = f"Unsupported file format for path: {path}."
-    raise FileFormatError(msg)
+    try:
+        return _SUFFIX_FORMATS[suffix]
+    except KeyError as error:
+        msg = f"Unsupported file format for path: {path}."
+        raise FileFormatError(msg) from error
 
 
 def resolve_codec(
     file_format: FileFormat,
-) -> JsonCodec:
+) -> CsvCodec | JsonCodec | MarkdownCodec | TextCodec:
     """Resolve the codec for a file format.
 
     :param file_format: File format requiring representation conversion.
     :returns: Codec supporting the supplied format.
     :raises FileFormatError: If no codec is implemented for the format.
     """
-    if file_format is FileFormat.JSON:
-        return JsonCodec()
+    try:
+        codec_type = _CODEC_TYPES[file_format]
+    except KeyError as error:
+        msg = f"No codec is implemented for file format: {file_format.value!r}."
+        raise FileFormatError(msg) from error
 
-    msg = f"No codec is implemented for file format: {file_format.value!r}."
-    raise FileFormatError(msg)
+    return codec_type()

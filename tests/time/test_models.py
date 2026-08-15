@@ -118,3 +118,11 @@ def test_duration_arithmetic_and_invalid_operands() -> None:
 
     with pytest.raises(TypeError):
         duration / "two"  # type: ignore[operator]
+
+    with pytest.raises(ZeroDivisionError):
+        duration / 0
+
+
+def test_duration_nanoseconds_uses_timedelta_bounded_precision() -> None:
+    """Sub-microsecond values follow timedelta's available precision."""
+    assert Duration.nanoseconds(1).value == timedelta()

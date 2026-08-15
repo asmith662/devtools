@@ -9,6 +9,7 @@ import pytest
 
 from devtools.filesystem import (
     DEFAULT_MAX_READ_BYTES,
+    CsvFile,
     FileFormat,
     FileFormatError,
     FilesystemNotFoundError,
@@ -17,7 +18,9 @@ from devtools.filesystem import (
     JsonListFile,
     JsonObjectFile,
     JsonScalarFile,
+    MarkdownFile,
     NotAFileError,
+    TextFile,
     read,
 )
 from devtools.paths import ResolvedPath
@@ -59,6 +62,87 @@ def test_read_allows_an_explicit_format_override_and_retains_json_behavior(
     assert isinstance(file, JsonObjectFile)
     assert file.search_regex("Ada") is not None
     assert file.find(lambda key, _value: key == "enabled") == ("enabled", True)
+
+
+def test_read_returns_text_models_with_exact_source_behavior(tmp_path: Path) -> None:
+    """Text suffix resolution retains bytes, metadata, and text-model operations."""
+    source = tmp_path / "notes.TXT"
+    content = "cafÃ©\r\nstatus: ready\n"
+    encoded = content.encode("utf-8")
+    source.write_bytes(encoded)
+
+    file = read(ResolvedPath(source))
+
+    assert isinstance(file, TextFile)
+    assert file.content == content
+    assert file.encoding == "utf-8"
+    assert file.byte_size == len(encoded)
+    assert file.contains("ready") is True
+    assert file.search_regex(r"status: \w+") is not None
+
+
+def test_read_allows_an_explicit_text_override(tmp_path: Path) -> None:
+    """Text format overrides bypass unsupported or absent suffix inference."""
+    source = tmp_path / "message.data"
+    source.write_bytes(b"hello\n")
+
+    file = read(ResolvedPath(source), file_format=FileFormat.TEXT)
+
+    assert isinstance(file, TextFile)
+    assert file.content == "hello\n"
+
+
+@pytest.mark.parametrize("suffix", [".md", ".MARKDOWN"])
+def test_read_returns_rich_markdown_models(tmp_path: Path, suffix: str) -> None:
+    """Markdown suffixes decode to structural models with source access intact."""
+    source = tmp_path / f"document{suffix}"
+    content = "# Title\n## Detail\nText\n"
+    source.write_bytes(content.encode())
+
+    file = read(ResolvedPath(source))
+
+    assert isinstance(file, MarkdownFile)
+    assert file.content == content
+    assert file.headings[1].text == "Detail"
+    assert file.find_section("title") is not None
+    assert file.search_regex("Text") is not None
+
+
+def test_read_allows_an_explicit_markdown_override(tmp_path: Path) -> None:
+    """Markdown overrides bypass suffix inference for source files without a suffix."""
+    source = tmp_path / "readme"
+    source.write_bytes(b"# Title\n")
+
+    file = read(ResolvedPath(source), file_format=FileFormat.MARKDOWN)
+
+    assert isinstance(file, MarkdownFile)
+    assert file.headings[0].text == "Title"
+
+
+def test_read_returns_rich_csv_models(tmp_path: Path) -> None:
+    """Mixed-case CSV paths decode to header-addressable immutable row models."""
+    source = tmp_path / "reports.CSV"
+    content = 'id,status\nreport-1,passed\nreport-2,"needs, review"\n'
+    source.write_bytes(content.encode())
+
+    file = read(ResolvedPath(source))
+
+    assert isinstance(file, CsvFile)
+    assert file.headers == ("id", "status")
+    assert file.column("status") == ("passed", "needs, review")
+    assert file.find_by("id", "report-2") == file[1]
+    assert file.search_regex("review") is not None
+
+
+def test_read_allows_an_explicit_csv_override(tmp_path: Path) -> None:
+    """CSV overrides bypass suffix inference for a source without a suffix."""
+    source = tmp_path / "reports"
+    source.write_bytes(b"id,status\nreport-1,passed\n")
+
+    file = read(ResolvedPath(source), file_format=FileFormat.CSV)
+
+    assert isinstance(file, CsvFile)
+    assert file[0]["status"] == "passed"
 
 
 def test_read_rejects_missing_paths_and_directories(tmp_path: Path) -> None:

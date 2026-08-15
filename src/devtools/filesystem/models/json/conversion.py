@@ -8,7 +8,11 @@ from types import MappingProxyType
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from devtools.filesystem.models.json.base import JsonCompatible, JsonValue
+    from devtools.filesystem.models.json.base import (
+        JsonCompatible,
+        JsonMutableValue,
+        JsonValue,
+    )
 
 
 def freeze_json(value: JsonCompatible) -> JsonValue:
@@ -28,7 +32,7 @@ def freeze_json(value: JsonCompatible) -> JsonValue:
     return value
 
 
-def thaw_json(value: JsonValue) -> JsonCompatible:
+def thaw_json(value: JsonValue) -> JsonMutableValue:
     """Recursively convert an immutable JSON value into serializable storage.
 
     :param value: Immutable JSON value.
