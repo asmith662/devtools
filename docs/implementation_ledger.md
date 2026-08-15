@@ -24,7 +24,7 @@ an API reference or a backlog; see package-local documentation and the
 - Implemented `devtools.conversion`: explicit callable-based single and batch
   conversion with stable fail-fast, indexed failure normalization; JSON and
   CSV models consume it through thin adapters.
-- Implemented `devtools.message`: semantic MessageId composition, stable
+- Implemented Message: semantic MessageId composition, stable
   conversational roles, open source provenance, and immutable textual message
   values with explicit local construction timestamps.
 - Implemented `devtools.filesystem` model foundations: immutable binary, text,
@@ -38,8 +38,8 @@ an API reference or a backlog; see package-local documentation and the
 - Corrected atomic-write cleanup so a sibling temporary path is available for
   cleanup immediately after temporary-file creation.
 - Completed authoritative package-local documentation and milestone-freeze
-  passes for all eight foundational packages and `devtools.message`.
-- Declared the collective foundational tooling and message milestones complete
+  passes for all eight foundational packages and Message.
+- Declared the collective foundational tooling and Message milestones complete
   and frozen.
 
 ## Agent integration milestone
@@ -47,7 +47,7 @@ an API reference or a backlog; see package-local documentation and the
 - Implemented `devtools.agents` as the provider-neutral structural Agent
   contract: async `Agent`, immutable `AgentTurn`, and opaque
   source-owned `ConversationRef` values with source ownership invariants and
-  stateless-turn support. Its only production dependency is `message`.
+  stateless-turn support. Its only production dependency is `context.message`.
 - Implemented and froze `devtools.codex` as the first concrete Agent adapter:
   Codex CLI command construction through `CommandExecutor`, focused JSONL
   parsing, Codex thread-to-`ConversationRef` mapping, and final output-to-
@@ -60,15 +60,23 @@ an API reference or a backlog; see package-local documentation and the
   and read-only resumed write denial in an isolated temporary repository.
 - Completed package-local documentation and freeze reconciliation for
   `devtools.agents`, with Codex as its first validating implementation.
+- Established `devtools.context` by relocating `devtools.message` to
+  `devtools.context.message` before History and Session. Message is retained
+  interaction context; no compatibility alias was retained, and Agent/Codex
+  semantics plus the live Codex acceptance remained unchanged.
+- Implemented and froze `devtools.context.history`: immutable tuple-backed,
+  insertion-ordered Message-only transcripts with standard Sequence semantics,
+  History-preserving slices, and immutable append. History has no identity,
+  timestamps, provider continuation state, or event-log scope.
 
 ## Verification snapshot
 
-At the Codex-freeze checkpoint:
+At the History-freeze checkpoint:
 
 ```text
 Ruff: clean
 mypy: clean
-pytest: 315 passed, 1 skipped
+pytest: 326 passed, 1 skipped
 branch coverage: 100%
 git diff --check: clean
 ```

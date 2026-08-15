@@ -19,7 +19,10 @@ The ledger records history; it does not authorize future architecture.
 
 - [identity overview](../src/devtools/identity/docs/overview.md)
 - [agents overview](../src/devtools/agents/docs/overview.md)
-- [message overview](../src/devtools/message/docs/overview.md)
+- [context overview](../src/devtools/context/docs/overview.md) — Context domain
+  ownership, Message, and History
+- [History](../src/devtools/context/docs/history.md) — exact immutable
+  transcript behavior and API
 - [system overview](../src/devtools/system/docs/overview.md)
 - [paths overview](../src/devtools/paths/docs/overview.md) and
   [resolution](../src/devtools/paths/docs/resolution.md)

@@ -2,7 +2,7 @@
 
 `devtools.codex` is the first concrete implementation of
 [`devtools.agents.Agent`](../../agents/protocols.py). It adapts the local Codex
-CLI into a final assistant [`Message`](../../message/models.py) and an opaque
+CLI into a final assistant [`Message`](../../context/message.py) and an opaque
 provider-owned `ConversationRef`.
 
 ## Public API
@@ -34,7 +34,7 @@ The direct production dependencies are:
 
 ```text
 codex -> agents
-codex -> message
+codex -> context.message
 codex -> commands
 codex -> paths
 ```

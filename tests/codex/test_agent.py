@@ -18,7 +18,7 @@ from devtools.commands import (
     CommandNotFoundError,
     CommandResult,
 )
-from devtools.message import Message, MessageRole, MessageSource
+from devtools.context.message import Message, MessageRole, MessageSource
 from devtools.paths import ResolvedPath
 from devtools.time import Duration
 

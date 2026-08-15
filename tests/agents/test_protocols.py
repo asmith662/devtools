@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from datetime import UTC, datetime
 
 from devtools.agents import Agent, AgentTurn, ConversationRef
-from devtools.message import Message, MessageId, MessageRole, MessageSource
+from devtools.context.message import Message, MessageId, MessageRole, MessageSource
 from devtools.time import Timestamp
 
 

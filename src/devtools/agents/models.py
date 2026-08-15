@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from devtools.message import Message, MessageSource
+    from devtools.context.message import Message, MessageSource
 
 
 @dataclass(frozen=True, slots=True)

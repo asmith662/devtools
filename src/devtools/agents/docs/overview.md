@@ -10,9 +10,9 @@ not provider, plugin, session, or runtime infrastructure.
 from devtools.agents import Agent, AgentTurn, ConversationRef
 ```
 
-The package directly depends only on `devtools.message` for `Message` and
-`MessageSource`. Message identity, timestamps, roles, and source values remain
-owned by that package.
+The package directly depends only on `devtools.context.message` for `Message`
+and `MessageSource`. Message identity, timestamps, roles, and source values
+remain owned by Context.
 
 ## Agent Protocol
 

@@ -13,7 +13,7 @@ import pytest
 
 from devtools.codex import CodexAgent
 from devtools.commands import Command, CommandExecutor
-from devtools.message import Message, MessageRole, MessageSource
+from devtools.context.message import Message, MessageRole, MessageSource
 from devtools.paths import ResolvedPath
 
 if TYPE_CHECKING:

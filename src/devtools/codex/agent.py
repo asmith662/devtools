@@ -11,7 +11,7 @@ from devtools.agents import AgentTurn, ConversationRef
 from devtools.codex.errors import CodexCommandError, CodexOutputError
 from devtools.codex.parsing import parse_codex_turn_output
 from devtools.commands import Command, CommandExecutor
-from devtools.message import Message, MessageRole, MessageSource
+from devtools.context.message import Message, MessageRole, MessageSource
 
 if TYPE_CHECKING:
     from devtools.paths import ResolvedPath

@@ -9,7 +9,7 @@ from datetime import UTC, datetime
 import pytest
 
 from devtools.agents import AgentTurn, ConversationRef
-from devtools.message import Message, MessageId, MessageRole, MessageSource
+from devtools.context.message import Message, MessageId, MessageRole, MessageSource
 from devtools.time import Timestamp
 
 

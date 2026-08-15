@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-"""Tests for message value objects."""
+"""Tests for context message value objects."""
 
 from __future__ import annotations
 
@@ -8,8 +8,20 @@ from datetime import UTC, datetime
 
 import pytest
 
+from devtools.context import Message, MessageId, MessageRole, MessageSource
+from devtools.context.message import (
+    Message as MessageFromSubmodule,
+)
+from devtools.context.message import (
+    MessageId as MessageIdFromSubmodule,
+)
+from devtools.context.message import (
+    MessageRole as MessageRoleFromSubmodule,
+)
+from devtools.context.message import (
+    MessageSource as MessageSourceFromSubmodule,
+)
 from devtools.identity import Identity
-from devtools.message import Message, MessageId, MessageRole, MessageSource
 from devtools.time import Timestamp
 
 
@@ -22,6 +34,14 @@ def _message() -> Message:
         role=MessageRole.USER,
         source=MessageSource("operator"),
     )
+
+
+def test_context_root_reexports_the_canonical_message_types() -> None:
+    """Context root exposes each currently implemented message type."""
+    assert Message is MessageFromSubmodule
+    assert MessageId is MessageIdFromSubmodule
+    assert MessageRole is MessageRoleFromSubmodule
+    assert MessageSource is MessageSourceFromSubmodule
 
 
 def test_message_id_is_a_public_immutable_semantic_identity() -> None:
