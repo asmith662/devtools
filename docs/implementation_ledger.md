@@ -85,18 +85,29 @@ an API reference or a backlog; see package-local documentation and the
   cleanup are verified, coordination state is non-semantic and reconstructed
   fresh, and the real Session/Codex acceptance runs each turn inside
   `Session.turn()`.
+- Implemented and froze `devtools.runtime`: zero-field, keyword-only
+  `Runtime.send()` composes complete `Session.turn()` coordination with one
+  caller-selected Agent invocation, input retention, returned-source validation,
+  returned-Message-before-continuation commit, and non-destructive
+  `conversation=None` handling.
+- Verified Runtime forward-only ordinary-failure and cancellation behavior,
+  same-Session serialization, same-source replacement-continuation handoff,
+  and different-Session concurrency. A real Runtime/Codex acceptance retained
+  an exact two-turn/four-Message transcript, resumed the same provider thread,
+  preserved Session identity/time, and denied a disposable write in an isolated
+  temporary repository.
 
 ## Verification snapshot
 
-At the Session-freeze checkpoint:
+At the Runtime-freeze checkpoint:
 
 ```text
 Ruff: clean
 mypy: clean
-pytest: 350 passed, 2 skipped
+pytest: 363 passed, 3 skipped
 branch coverage: 100%
 git diff --check: clean
-live Session/Codex acceptance under Session.turn(): 1 passed
+live Runtime/Codex acceptance: 1 passed
 ```
 
 ## Deferred work

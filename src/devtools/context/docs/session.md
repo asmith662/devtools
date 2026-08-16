@@ -12,7 +12,7 @@ Message          one contextual utterance
 History          immutable ordered transcript
 ConversationRef  opaque external Agent continuation identity
 Session          mutable retained interaction lifecycle
-Runtime          future coordinator that invokes Agents and updates Session
+Runtime          stateless coordinator that invokes Agents and updates Session
 ```
 
 The first real consumer proof uses the [Codex adapter](../../codex/docs/overview.md),
@@ -171,8 +171,9 @@ members or dictionary keys; use `SessionId` for stable identity values.
 ## Runtime, Agent, and provider boundaries
 
 Session stores retained state, not services. It stores no Agent or CodexAgent
-instances and has no `apply(turn)` operation. A future Runtime may compose the
-existing APIs explicitly:
+instances and has no `apply(turn)` operation. The implemented
+[`Runtime`](../../runtime/docs/overview.md) composes the existing APIs inside
+`session.turn()`:
 
 ```python
 session.add(user_message)
@@ -183,10 +184,9 @@ if turn.conversation is not None:
     session.set_conversation(turn.conversation)
 ```
 
-Runtime is not implemented. Session also does not own Codex executable or
-working-directory settings, sandbox or approval policy, model, endpoint, or
-credentials. It has no repository, filesystem, command, artifact, or context
-compiler state.
+Session does not own Codex executable or working-directory settings, sandbox or
+approval policy, model, endpoint, or credentials. It has no repository,
+filesystem, command, artifact, or context compiler state.
 
 ## Turn coordination
 
@@ -232,7 +232,7 @@ coordination through normal async-context cleanup. Session does not promise
 waiter fairness, FIFO turn scheduling, or caller-submission ordering.
 
 Turn coordination is exclusive access, not a transaction or rollback boundary.
-If a future Runtime has already retained input or output when a later step
+If Runtime has already retained input or output when a later step
 fails, Session does not automatically revert the state already applied.
 
 ## Persistence

@@ -13,17 +13,17 @@ Package-local documentation owns each package's deferred capability work.
 
 ## Foundation — Complete
 
-| Package | Role | Milestone status | Package docs |
-|---|---|---|---|
-| `identity` | Opaque UUID identity primitive | Documented / Frozen | Complete |
-| `system` | Operating-system-family detection | Documented / Frozen | Complete |
-| `paths` | Path values, parsing, and resolution | Documented / Frozen | Complete |
-| `time` | Timestamp, duration, parsing, and timing primitives | Documented / Frozen | Complete |
-| `commands` | Direct asynchronous process execution | Documented / Frozen | Complete |
-| `regex` | Regex utilities and immutable matches | Documented / Frozen | Complete |
-| `conversion` | Explicit callable conversion | Documented / Frozen | Complete |
-| `filesystem` | Models, codecs, and generic file I/O | Documented / Frozen | Complete |
-| `context.message` | Immutable textual communication values | Documented / Frozen | Complete |
+| Package           | Role                                                | Milestone status    | Package docs |
+|-------------------|-----------------------------------------------------|---------------------|--------------|
+| `identity`        | Opaque UUID identity primitive                      | Documented / Frozen | Complete     |
+| `system`          | Operating-system-family detection                   | Documented / Frozen | Complete     |
+| `paths`           | Path values, parsing, and resolution                | Documented / Frozen | Complete     |
+| `time`            | Timestamp, duration, parsing, and timing primitives | Documented / Frozen | Complete     |
+| `commands`        | Direct asynchronous process execution               | Documented / Frozen | Complete     |
+| `regex`           | Regex utilities and immutable matches               | Documented / Frozen | Complete     |
+| `conversion`      | Explicit callable conversion                        | Documented / Frozen | Complete     |
+| `filesystem`      | Models, codecs, and generic file I/O                | Documented / Frozen | Complete     |
+| `context.message` | Immutable textual communication values              | Documented / Frozen | Complete     |
 
 The completed foundation includes command execution lifecycle hardening,
 awaitable executions, streaming best-effort events, bounded command buffering,
@@ -80,17 +80,24 @@ The current one-ref-per-`MessageSource` policy is sufficient for one logical
 Agent per source. Multiple logical same-source Agents require a separate
 participant/Agent-instance identity design before that topology is supported.
 
-## Next: Runtime
+## Runtime â€” Complete
 
-`devtools.runtime` follows session as a later composition and orchestration
-layer. It may consume established primitives and session abstractions, but no
-runtime architecture is specified by this roadmap.
+`devtools.runtime` is documented and frozen as the zero-field coordinator of
+one caller-selected Agent interaction with one Session. Its keyword-only
+`send()` holds Session complete-turn coordination across one Agent invocation,
+records input/output in order, validates returned source, updates non-None
+continuations, and preserves forward-only failure/cancellation semantics.
+Deterministic tests prove same-Session serialization, same-source continuation
+handoff, and different-Session concurrency; an opt-in Codex acceptance proves
+automatic two-turn continuation in an isolated temporary repository.
 
 ## Package-level future work
 
 The completed foundation can evolve through future approved capabilities.
 Those possibilities are maintained in package-local documentation rather than
-duplicated here. None is currently a prerequisite for Runtime design.
+duplicated here. None is currently an active repository-level prerequisite.
+The next capability should be separately designed from concrete consumer
+evidence.
 
 See the [documentation map](documentation_map.md) to locate package-specific
 future-work documentation.

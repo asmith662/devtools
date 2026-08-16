@@ -18,6 +18,7 @@ The completed foundational tooling milestone consists of independent domains:
 - execution infrastructure: `commands`;
 - content and filesystem infrastructure: `filesystem`.
 - generic agent contract: `agents`;
+- stateless interaction coordination: `runtime`;
 - provider/agent integration: `codex`, the first concrete `Agent` adapter.
 
 This grouping describes the current milestone. It does not imply a
@@ -37,6 +38,7 @@ This grouping describes the current milestone. It does not imply a
 | `conversion` | Explicit callable conversion and stable failure normalization; not automatic target-type construction or serialization. |
 | `filesystem` | File models, format-native structure, codecs, format resolution, bounded generic reads, and atomic generic writes. Text, JSON, Markdown, and CSV are codec-backed; binary is model-only. |
 | `agents` | Provider-neutral asynchronous message invocation and opaque continuation contract; not provider transport, session history, or runtime routing. |
+| `runtime` | Stateless coordination of one caller-selected Agent interaction with one Session; not Agent routing, provider transport, or retained Session state. |
 | `codex` | Codex CLI adaptation, JSONL final-turn parsing, thread continuation, and a concrete Agent implementation; not generic command execution, provider discovery, or session state. |
 
 Detailed format and lifecycle mechanics belong in the relevant package-local
@@ -63,6 +65,9 @@ graph TD
     filesystem --> conversion
 
     agents --> context_message
+    runtime --> agents
+    runtime --> context_message
+    runtime --> context_session
 
     codex --> agents
     codex --> context_message
@@ -93,6 +98,9 @@ filesystem -> regex
 filesystem -> conversion
 
 agents     -> context.message
+runtime    -> agents
+runtime    -> context.message
+runtime    -> context.session
 
 codex      -> agents
 codex      -> context.message
@@ -150,8 +158,8 @@ meaningful context.
 
 ### Higher-layer orchestration
 
-Foundational packages provide primitives. Future session and runtime layers
-will compose them rather than embedding orchestration in these domains.
+Foundational packages provide primitives. Runtime composes the established
+Session and Agent contracts without embedding provider execution in either.
 
 ## Cross-package boundaries
 
@@ -164,10 +172,12 @@ does not depend on filesystem. `context` owns retained interaction values;
 them and composes existing context-message, command, and path primitives.
 Context Session retains current Agent continuation references without invoking
 Agents and owns in-memory complete-turn serialization for its mutable History
-and continuation state. Runtime remains the future coordinator that invokes
-Agents and updates Session. Session coordination is object-local and
+and continuation state. Runtime is the stateless one-Agent-interaction
+coordinator: it holds Session-owned complete-turn serialization while awaiting
+an Agent, so different Sessions may proceed concurrently while a Session's
+continuation handoff remains ordered. Session coordination is object-local and
 in-process; persistent or distributed coordination remains outside the current
-architecture.
+architecture. Runtime does not depend on Codex; Codex is one concrete Agent.
 
 Session indexes current external continuation state by `MessageSource`.
 Supporting multiple logical participants sharing one source requires a stronger
@@ -199,14 +209,13 @@ document.
 
 The `identity`, `system`, `paths`, `time`, `commands`, `regex`, `conversion`,
 `filesystem`, `context.message`, `context.history`, `context.session`,
-`agents`, and `codex` milestones are documented and frozen.
+`agents`, `runtime`, and `codex` milestones are documented and frozen.
 
 Frozen means the current milestone contract is documented and verified; it does
 not prevent future, deliberately approved evolution.
 
 ## Next architectural boundary
 
-The foundation, generic Agent contract, first Codex integration, and Context
-Message, History, and Session milestones are complete. The next architectural
-frontier is the composition-oriented `devtools.runtime` layer. Its APIs and
-internal models are intentionally not specified here.
+The foundation, generic Agent contract, first Codex integration, Context
+Message/History/Session, and Runtime milestones are complete. The next
+capability should be separately designed from concrete consumer evidence.
