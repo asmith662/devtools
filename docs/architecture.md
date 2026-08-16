@@ -19,6 +19,7 @@ The completed foundational tooling milestone consists of independent domains:
 - content and filesystem infrastructure: `filesystem`.
 - generic agent contract: `agents`;
 - stateless interaction coordination: `runtime`;
+- durable Session reconstruction: `persistence`;
 - provider/agent integration: `codex`, the first concrete `Agent` adapter.
 
 This grouping describes the current milestone. It does not imply a
@@ -39,6 +40,7 @@ This grouping describes the current milestone. It does not imply a
 | `filesystem` | File models, format-native structure, codecs, format resolution, bounded generic reads, and atomic generic writes. Text, JSON, Markdown, and CSV are codec-backed; binary is model-only. |
 | `agents` | Provider-neutral asynchronous message invocation and opaque continuation contract; not provider transport, session history, or runtime routing. |
 | `runtime` | Stateless coordination of one caller-selected Agent interaction with one Session; not Agent routing, provider transport, or retained Session state. |
+| `persistence` | Strict portable JSON and normalized SQLite durable reconstruction of semantic Session state; not Context storage ownership, Runtime coordination, provider execution, or filesystem I/O policy. |
 | `codex` | Codex CLI adaptation, JSONL final-turn parsing, thread continuation, and a concrete Agent implementation; not generic command execution, provider discovery, or session state. |
 
 Detailed format and lifecycle mechanics belong in the relevant package-local
@@ -68,6 +70,13 @@ graph TD
     runtime --> agents
     runtime --> context_message
     runtime --> context_session
+
+    persistence --> agents
+    persistence --> context_message
+    persistence --> context_history
+    persistence --> context_session
+    persistence --> time
+    persistence --> paths
 
     codex --> agents
     codex --> context_message
@@ -101,6 +110,13 @@ agents     -> context.message
 runtime    -> agents
 runtime    -> context.message
 runtime    -> context.session
+
+persistence -> agents
+persistence -> context.message
+persistence -> context.history
+persistence -> context.session
+persistence -> time
+persistence -> paths
 
 codex      -> agents
 codex      -> context.message
@@ -178,6 +194,10 @@ an Agent, so different Sessions may proceed concurrently while a Session's
 continuation handoff remains ordered. Session coordination is object-local and
 in-process; persistent or distributed coordination remains outside the current
 architecture. Runtime does not depend on Codex; Codex is one concrete Agent.
+Persistence durably serializes and reconstructs semantic Session state without
+making Context storage-aware. It offers strict portable JSON and normalized
+queryable SQLite formats; a loaded Session can then be coordinated by Runtime.
+Persistence has no Codex dependency and does not own Runtime coordination.
 
 Session indexes current external continuation state by `MessageSource`.
 Supporting multiple logical participants sharing one source requires a stronger
@@ -209,7 +229,8 @@ document.
 
 The `identity`, `system`, `paths`, `time`, `commands`, `regex`, `conversion`,
 `filesystem`, `context.message`, `context.history`, `context.session`,
-`agents`, `runtime`, and `codex` milestones are documented and frozen.
+`agents`, `runtime`, `persistence`, and `codex` milestones are documented and
+frozen.
 
 Frozen means the current milestone contract is documented and verified; it does
 not prevent future, deliberately approved evolution.
@@ -217,5 +238,6 @@ not prevent future, deliberately approved evolution.
 ## Next architectural boundary
 
 The foundation, generic Agent contract, first Codex integration, Context
-Message/History/Session, and Runtime milestones are complete. The next
-capability should be separately designed from concrete consumer evidence.
+Message/History/Session, Runtime, and Persistence milestones are complete.
+Evidence is the next user-selected architectural discussion; it remains
+separate from the current frozen persistence contract.

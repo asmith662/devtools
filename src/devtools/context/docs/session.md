@@ -237,10 +237,12 @@ fails, Session does not automatically revert the state already applied.
 
 ## Persistence
 
-Session currently defines no save/load API, serialization format, database
-schema, or filesystem persistence. Future storage design may reconstruct the
-Session state represented by its ID, creation time, History, and current refs;
-each reconstructed object receives fresh local turn coordination.
+Session defines no save/load API, serialization format, database schema, or
+filesystem persistence itself. The implemented
+[`devtools.persistence`](../../persistence/docs/overview.md) domain owns durable
+representation and reconstruction of Session ID, creation time, History, and
+current refs. Reconstruction creates a new Session object with fresh local turn
+coordination; no lock or event-loop state is persisted.
 
 ## Errors and dependencies
 

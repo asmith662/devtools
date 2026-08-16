@@ -91,13 +91,28 @@ Deterministic tests prove same-Session serialization, same-source continuation
 handoff, and different-Session concurrency; an opt-in Codex acceptance proves
 automatic two-turn continuation in an isolated temporary repository.
 
+## Persistence â€” Complete
+
+`devtools.persistence` is documented and frozen as the durable semantic
+reconstruction boundary for Context Session state. Its milestone includes strict
+versioned portable JSON, a normalized SQLite current-snapshot store, immutable
+Message/Session conflict protection, atomic snapshot replacement, missing-row
+corruption detection, and fresh Session turn coordination on reconstruction.
+Deterministic tests prove Runtime continuation after load; an opt-in SQLite
+acceptance proves a reconstructed Session resumes the same real Codex thread in
+an isolated temporary repository.
+
+## Evidence â€” Next
+
+Evidence is the next architectural discussion. It is not implemented or
+authorized by this roadmap entry.
+
 ## Package-level future work
 
 The completed foundation can evolve through future approved capabilities.
 Those possibilities are maintained in package-local documentation rather than
-duplicated here. None is currently an active repository-level prerequisite.
-The next capability should be separately designed from concrete consumer
-evidence.
+duplicated here. Evidence is the active next architectural discussion; its scope
+must be designed separately from concrete consumer evidence.
 
 See the [documentation map](documentation_map.md) to locate package-specific
 future-work documentation.

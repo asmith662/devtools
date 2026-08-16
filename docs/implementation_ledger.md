@@ -96,18 +96,29 @@ an API reference or a backlog; see package-local documentation and the
   an exact two-turn/four-Message transcript, resumed the same provider thread,
   preserved Session identity/time, and denied a disposable write in an isolated
   temporary repository.
+- Implemented and froze `devtools.persistence`: strict versioned portable JSON
+  plus a normalized SQLite current-snapshot store sharing private semantic
+  capture/restoration. SQLite preserves global immutable Message identity and
+  ordered History occurrences, atomically replaces Session snapshots, protects
+  Session/Message identity conflicts, rejects missing referenced Message rows,
+  and validates essential columns before claiming a version-1 schema.
+- Verified rollback removes candidate Session, Message, and association rows;
+  reconstructed Sessions receive fresh local turn coordination and work directly
+  with Runtime. A real SQLite-to-reconstructed-Session-to-Runtime-to-Codex
+  acceptance resumed the same provider thread, retained the exact four-Message
+  History, and preserved read-only execution in an isolated temporary repository.
 
 ## Verification snapshot
 
-At the Runtime-freeze checkpoint:
+At the Persistence-freeze checkpoint:
 
 ```text
 Ruff: clean
 mypy: clean
-pytest: 363 passed, 3 skipped
+pytest: 396 passed, 4 skipped
 branch coverage: 100%
 git diff --check: clean
-live Runtime/Codex acceptance: 1 passed
+live Persistence/Runtime/Codex acceptance: 1 passed
 ```
 
 ## Deferred work
