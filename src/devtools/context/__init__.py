@@ -3,6 +3,7 @@
 
 from devtools.context.history import History
 from devtools.context.message import Message, MessageId, MessageRole, MessageSource
+from devtools.context.session import Session, SessionId
 
 __all__ = [
     "History",
@@ -10,4 +11,6 @@ __all__ = [
     "MessageId",
     "MessageRole",
     "MessageSource",
+    "Session",
+    "SessionId",
 ]

@@ -13,7 +13,8 @@ The completed foundational tooling milestone consists of independent domains:
 
 - leaf foundational primitives: `identity`, `system`, `paths`, `time`,
   `regex`, and `conversion`;
-- retained interaction-context domain: `context` (Message and History);
+- retained interaction-context domain: `context` (Message, History, and
+  Session);
 - execution infrastructure: `commands`;
 - content and filesystem infrastructure: `filesystem`.
 - generic agent contract: `agents`;
@@ -26,8 +27,8 @@ This grouping describes the current milestone. It does not imply a
 
 | Package | Cross-package responsibility |
 |---|---|
-| `identity` | Canonical opaque UUID identity generation, parsing, and immutable representation; semantic IDs such as `SessionId` are not yet owned here. |
-| `context` | Retained interaction context: immutable Message communication values and immutable insertion-ordered Message History now, with application-owned session state as a later milestone; not repository context, filesystem state, command results, agent execution, or runtime orchestration. |
+| `identity` | Canonical opaque UUID identity generation, parsing, and immutable representation; semantic IDs are owned by their respective domains. |
+| `context` | Retained interaction context: immutable Message communication values, immutable insertion-ordered Message History, and mutable identified Session lifecycle state retaining History plus current Agent continuation refs; not repository context, filesystem state, command results, agent execution, or runtime orchestration. |
 | `system` | Coarse operating-system-family detection, not general environment or machine inventory. |
 | `paths` | Path representation, parsing, dot-path conversion, absolute resolution, and known-location construction; not filesystem content I/O or sandbox authorization. |
 | `time` | UTC timestamps, non-negative durations, bounded timestamp parsing, and monotonic elapsed timing; not scheduling. |
@@ -48,6 +49,11 @@ graph TD
     context_message --> identity
     context_message --> time
     context_history --> context_message
+    context_session --> context_message
+    context_session --> context_history
+    context_session --> identity
+    context_session --> time
+    context_session --> agents
 
     commands --> paths
     commands --> time
@@ -73,6 +79,11 @@ In text, the only current cross-domain production dependencies are:
 context.message -> identity
 context.message -> time
 context.history -> context.message
+context.session -> context.message
+context.session -> context.history
+context.session -> identity
+context.session -> time
+context.session -> agents
 
 commands   -> paths
 commands   -> time
@@ -150,8 +161,17 @@ models adapt. `conversion` remains independent while JSON and CSV models use
 thin conversion adapters. `commands` consumes path and time primitives but
 does not depend on filesystem. `context` owns retained interaction values;
 `agents` supplies the generic contract; `codex` is a concrete integration above
-them and composes existing context-message, command, and path primitives
-without adding session state.
+them and composes existing context-message, command, and path primitives.
+Context Session retains current Agent continuation references without invoking
+Agents and owns in-memory complete-turn serialization for its mutable History
+and continuation state. Runtime remains the future coordinator that invokes
+Agents and updates Session. Session coordination is object-local and
+in-process; persistent or distributed coordination remains outside the current
+architecture.
+
+Session indexes current external continuation state by `MessageSource`.
+Supporting multiple logical participants sharing one source requires a stronger
+participant or Agent-instance identity before Runtime coordinates that topology.
 
 ## Documentation authority
 
@@ -178,9 +198,8 @@ document.
 ## Foundation status
 
 The `identity`, `system`, `paths`, `time`, `commands`, `regex`, `conversion`,
-`filesystem`, `context.message`, `context.history`, `agents`, and `codex`
-milestones are documented and frozen. The Context domain remains incomplete
-until Session receives its own milestone.
+`filesystem`, `context.message`, `context.history`, `context.session`,
+`agents`, and `codex` milestones are documented and frozen.
 
 Frozen means the current milestone contract is documented and verified; it does
 not prevent future, deliberately approved evolution.
@@ -188,7 +207,6 @@ not prevent future, deliberately approved evolution.
 ## Next architectural boundary
 
 The foundation, generic Agent contract, first Codex integration, and Context
-establishment and History milestones are complete. The next architectural
-frontier is Session design, followed by the composition-oriented
-`devtools.runtime` layer. Their APIs and internal models are intentionally not
-specified here.
+Message, History, and Session milestones are complete. The next architectural
+frontier is the composition-oriented `devtools.runtime` layer. Its APIs and
+internal models are intentionally not specified here.

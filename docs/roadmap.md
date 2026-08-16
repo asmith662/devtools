@@ -67,13 +67,20 @@ insertion-ordered Message transcript. Its milestone includes standard read-only
 Sequence behavior, History-preserving slices, immutable append, and no history
 identity, timestamps, provider state, or event-log scope.
 
-## Next: Session
+## Context Session — Complete
 
-`devtools.context` Session is the application-owned lifecycle
-for durable interaction state. Its public API, models, continuation policy, and
-storage policy remain intentionally undesigned.
+`devtools.context.session` is the documented and frozen mutable lifecycle for
+one retained interaction. Its milestone includes `SessionId`, immutable History
+replacement, current source-keyed `ConversationRef` storage, real Codex
+continuation through stored state, read-only resumed execution proof, and a
+revised private per-object asynchronous turn context that serializes complete
+same-Session turns while allowing different Sessions to proceed concurrently.
 
-## After Session: Runtime
+The current one-ref-per-`MessageSource` policy is sufficient for one logical
+Agent per source. Multiple logical same-source Agents require a separate
+participant/Agent-instance identity design before that topology is supported.
+
+## Next: Runtime
 
 `devtools.runtime` follows session as a later composition and orchestration
 layer. It may consume established primitives and session abstractions, but no
@@ -83,7 +90,7 @@ runtime architecture is specified by this roadmap.
 
 The completed foundation can evolve through future approved capabilities.
 Those possibilities are maintained in package-local documentation rather than
-duplicated here. None is currently a prerequisite for session design.
+duplicated here. None is currently a prerequisite for Runtime design.
 
 See the [documentation map](documentation_map.md) to locate package-specific
 future-work documentation.

@@ -68,17 +68,35 @@ an API reference or a backlog; see package-local documentation and the
   insertion-ordered Message-only transcripts with standard Sequence semantics,
   History-preserving slices, and immutable append. History has no identity,
   timestamps, provider continuation state, or event-log scope.
+- Implemented and froze `devtools.context.session`: `SessionId` semantic
+  identity and mutable slotted Session lifecycle state with immutable History
+  replacement, read-only live source-keyed `ConversationRef` mapping, duplicate
+  reconstruction-source rejection, object-identity equality, and
+  unhashability. The first milestone stores one current ref per source; it does
+  not yet identify multiple logical same-source participants.
+- Verified Session against the real Codex adapter: stored continuation resumed
+  the same provider thread, retained an exact four-Message transcript, kept
+  Session ID and creation time stable, and preserved resumed read-only write
+  denial in an isolated temporary repository.
+- Revised the frozen Session milestone after Runtime design exposed a
+  same-Session async race risk. Session now owns private per-object turn
+  coordination spanning complete logical turns, including awaited Agent calls;
+  different Session objects remain independent. Cancellation and exception
+  cleanup are verified, coordination state is non-semantic and reconstructed
+  fresh, and the real Session/Codex acceptance runs each turn inside
+  `Session.turn()`.
 
 ## Verification snapshot
 
-At the History-freeze checkpoint:
+At the Session-freeze checkpoint:
 
 ```text
 Ruff: clean
 mypy: clean
-pytest: 326 passed, 1 skipped
+pytest: 350 passed, 2 skipped
 branch coverage: 100%
 git diff --check: clean
+live Session/Codex acceptance under Session.turn(): 1 passed
 ```
 
 ## Deferred work

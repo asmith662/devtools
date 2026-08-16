@@ -3,9 +3,8 @@
 ## Purpose
 
 `devtools.context` owns retained interaction context. Its implemented values
-are immutable textual `Message` communication values and immutable ordered
-`History` transcripts. Application-owned Session state remains the next
-milestone.
+are immutable textual `Message` communication values, immutable ordered
+`History` transcripts, and mutable `Session` interaction lifecycles.
 
 Context is not a generic home for repository, filesystem, search,
 command-result, provider-execution, or runtime state.
@@ -19,6 +18,8 @@ from devtools.context import (
     MessageId,
     MessageRole,
     MessageSource,
+    Session,
+    SessionId,
 )
 ```
 
@@ -30,6 +31,14 @@ supported convenience API for the currently implemented Context values.
 [`History`](history.md) is the immutable insertion-ordered Message transcript
 primitive. It retains what messages occurred without deciding which Messages to
 send to an Agent or storing provider continuation state.
+
+## Session
+
+[`Session`](session.md) is the application-owned mutable lifecycle for one
+retained interaction. It owns one current immutable History and current
+external Agent continuation references, plus local asynchronous complete-turn
+coordination for that mutable state. Session retains state; it does not invoke
+Agents, select model context, persist itself, or own provider configuration.
 
 ## `MessageId`
 
@@ -117,7 +126,17 @@ context.message -> identity
 context.message -> time
 
 context.history -> context.message
+
+context.session -> context.message
+context.session -> context.history
+context.session -> identity
+context.session -> time
+context.session -> agents
 ```
+
+`agents -> context.message` and `context.session -> agents` remain acyclic:
+Agents consume only the narrow Message submodule, while Session stores the
+Agent-owned `ConversationRef` value.
 
 Messages contain no session ID, sequence number, parent/reply relationship,
 provider thread identity, conversation state, storage location, token usage, or
@@ -137,7 +156,7 @@ provider output to an assistant `Message`, while its provider thread remains an
 
 No structured or multimodal content, attachments, severity, TOOL role,
 provider/model metadata, serialization, persistence, reply relationships,
-revisions, token usage, exception embedding, Session, or context compilation
-is implemented. History-specific behavior and limitations are documented in
-[history.md](history.md). Future additions require concrete consumers and a
-separate approved milestone.
+revisions, token usage, exception embedding, or context compilation is
+implemented. History- and Session-specific behavior and limitations are
+documented in [history.md](history.md) and [session.md](session.md). Future
+additions require concrete consumers and a separate approved milestone.
