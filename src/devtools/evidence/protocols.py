@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING, Protocol
 
 if TYPE_CHECKING:
     from devtools.evidence.attempt import Attempt
+    from devtools.evidence.terminal import AttemptTerminalEvidence
 
 
 class AttemptObserver(Protocol):
@@ -17,3 +18,10 @@ class AttemptObserver(Protocol):
 
     def attempt_finished(self, attempt: Attempt) -> None:
         """Observe an attempt after successful terminalization."""
+
+
+class EvidenceSink(Protocol):
+    """Accept immutable terminal Evidence synchronously."""
+
+    def accept(self, evidence: AttemptTerminalEvidence) -> None:
+        """Accept responsibility for one immutable Evidence record."""

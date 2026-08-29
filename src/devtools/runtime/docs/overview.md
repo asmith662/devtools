@@ -5,9 +5,9 @@
 `Runtime` is a configuration-bearing but interaction-stateless coordination
 service that applies one caller-selected `Agent` interaction to one mutable
 `Session`. Its only retained configuration is an optional fixed
-`AttemptObserver`; it owns no retained interaction or provider state. `Session`
-owns retained `History` and current continuation references, while an `Agent`
-owns response and provider behavior.
+`AttemptObserver` and optional fixed `EvidenceSink`; it owns no retained
+interaction or provider state. `Session` owns retained `History` and current
+continuation references, while an `Agent` owns response and provider behavior.
 
 ```text
 Message          one contextual utterance
@@ -25,7 +25,7 @@ acceptance implementation, not a Runtime dependency.
 from devtools.runtime import Runtime
 
 runtime = Runtime()
-# Or: runtime = Runtime(observer=observer)
+# Or: runtime = Runtime(observer=observer, evidence_sink=evidence_sink)
 turn = await runtime.send(
     session=session,
     agent=agent,
@@ -33,10 +33,12 @@ turn = await runtime.send(
 )
 ```
 
-`Runtime` is the complete root public API. `runtime.observer` is readable,
-fixed configuration with type `AttemptObserver | None`; no replacement API
-exists. Runtime has no identity, lifecycle, lock, retained Session, retained
-Agent, continuation, last result, current Attempt, or other interaction state.
+`Runtime` is the complete root public API. `runtime.observer` and
+`runtime.evidence_sink` are readable fixed configuration with types
+`AttemptObserver | None` and `EvidenceSink | None`; no replacement or per-send
+override API exists. Runtime has no identity, lifecycle, lock, retained Session,
+retained Agent, continuation, last result, current Attempt, current Evidence,
+or other interaction state.
 
 ## Coordination algorithm
 
@@ -57,50 +59,69 @@ The complete operation is held inside `session.turn()`, including the awaited
 Agent call. Runtime never directly constructs History or mutates the public
 conversation mapping.
 
-## Optional Attempt observation
+## Optional Attempt observation and terminal Evidence
 
-`Runtime()` and `Runtime(observer=None)` create no Attempt at all: no
-AttemptId, Attempt timestamp, lifecycle bookkeeping, callback, or hidden null
-observer exists for that invocation. The unobserved processing path retains the
-ordinary Runtime contract.
+Runtime creates an Attempt iff either configured capability requires it:
 
-With an observer, Runtime creates an Attempt only after Session turn acquisition
-and successful input retention. It then calls `attempt_started()` before
-continuation lookup or Agent invocation. This is an admission boundary: waiting
-cancellation, input-retention failure, or Attempt construction/start observation
-failure results in no Agent call; the first two create no Attempt/callback.
+| Observer | Evidence sink | Attempt | Terminal Evidence |
+|---|---|---|---|
+| absent | absent | no | no |
+| configured | absent | yes | no discarded record |
+| absent | configured | yes | produced and offered |
+| configured | configured | yes | produced and offered |
 
-After successful start observation, the Attempt spans continuation lookup,
-Agent invocation, returned-source validation, output retention, and
-continuation replacement. Success is established only after those primary
-Runtime commits complete.
+Attempt creation remains after Session turn acquisition and successful input
+retention. Waiting cancellation and input-retention failure therefore create no
+Attempt, terminal Evidence, callback, or sink delivery. `attempt_started()` is
+the conditional `ADMISSION` boundary before primary processing. An Attempt
+spans continuation lookup, Agent invocation, returned-source validation, output
+retention, and replacement of a returned non-None continuation.
 
-Runtime attempts at most one terminal lifecycle method (`succeed()`, `fail()`,
-or `cancel()`) and calls `attempt_finished()` at most once only after successful
-terminalization. Both callbacks receive the same live mutable Attempt; an
-observer needing callback-time values must copy them.
+Runtime owns terminal Evidence stage attribution. It sets the frozen stages
+immediately before their named operations: `ADMISSION` before start observation
+when an observer exists, `CONTINUATION_LOOKUP` before lookup,
+`AGENT_INVOCATION` before `Agent.send()`, `RESULT_VALIDATION` before Runtime
+validation, `OUTPUT_RETENTION` before output retention, and
+`CONTINUATION_REPLACEMENT` before replacement. Stages record where processing
+stopped or was interrupted, not why; admission and replacement are conditional,
+not mandatory state-machine steps.
 
-The precedence is primary Runtime outcome, then Attempt accounting, then
-observer notification. Secondary ordinary `Exception` and
-`asyncio.CancelledError` do not replace an established primary failure,
-cancellation, or committed success; committed success still returns the exact
-`AgentTurn`. There is no wrapper, aggregation, logging, or secondary-error
-collection.
+After all successful Runtime-owned commits, Runtime calls `Attempt.succeed()`.
+After primary ordinary failure or cancellation it calls `fail()` or `cancel()`
+with the current stage represented in immutable terminal Evidence. Normal
+Evidence requires successful terminalization. If terminalization fails and
+Attempt remains RUNNING, Runtime creates no normal Evidence and calls neither
+finished nor sink.
 
-Runtime does not broadly catch `BaseException`. A non-cancellation
-`BaseException` from lifecycle or observer code is intentionally unsuppressed
-and may supersede an active ordinary exception or cancellation during cleanup.
-It propagates after committed success as well. If terminalization fails, it is
-not retried and no finished callback occurs; Attempt remains RUNNING when its
-timestamp acquisition fails.
+When a sink is configured, Runtime constructs at most one
+`AttemptTerminalEvidence` after terminalization, using exact
+`Attempt.completed_at` as `occurred_at`; `.new()` owns its EvidenceId and
+`observed_at`. Observer-only Runtime does not allocate a discarded record.
+Then, in operational order, Runtime invokes `attempt_finished(live Attempt)`
+and offers the same immutable record once to `EvidenceSink.accept()`. Runtime
+does not retry construction or acceptance, and does not create replacement
+Evidence after delivery failure.
 
-Callbacks are synchronous and run under `Session.turn()`. Same-Session observed
-turns serialize from started through finished, while different Sessions remain
-independently concurrent. Runtime supplies no observer-global lock; observers
-own their concurrency safety, must keep work bounded, and cannot synchronously
-reenter Runtime for the same Session because Session turn coordination is
-non-reentrant. Runtime does not roll back observer side effects, and callback
-success is not a durability guarantee.
+Ordinary `Exception` and `asyncio.CancelledError` from construction, finished,
+or sink acceptance are secondary after primary outcome establishment. They do
+not replace committed success, primary failure, or original cancellation.
+Construction failure still permits finished notification but cannot reach the
+sink; finished failure still permits sink acceptance. A non-cancellation
+`BaseException` remains unsuppressed: construction stops before finished/sink,
+finished stops before sink, and sink propagates immediately. Suppressed
+secondary errors have no separate reporting channel in this milestone.
+
+All terminalization, construction, callbacks, and synchronous sink acceptance
+run inside `Session.turn()`. Same-Session acceptance therefore follows turn
+order; Runtime introduces no global lock between Sessions, and shared-sink
+concurrency is sink-owned. A slow sink can delay a next same-Session turn and
+block the event-loop thread, so bounded synchronous sink work is assumed.
+
+`EvidenceSink.accept()` means only that the configured consumer accepted its
+immutable record under its own contract. It does not generically mean
+persistence, durability, fsync, replication, recoverability, queryability, or
+remote export. A policy requiring durable Evidence as a condition of operation
+success requires separate future architecture.
 
 ## Messages and Agent selection
 
@@ -187,9 +208,11 @@ or replay safe or idempotent.
 ## Boundaries
 
 Runtime has no retry, replay, fallback, timeout, deadline, persistence, context
-compiler, concrete Evidence record, routing, or Agent-selection policy. One
-Runtime call invokes one supplied Agent once. Timeout policy belongs to the
-concrete Agent or transport.
+compiler, routing, or Agent-selection policy. One Runtime call invokes one
+supplied Agent once. It does not persist Attempts or Evidence, export telemetry,
+or integrate Dapr/durable workflows. Failure/cancellation stages make no
+provider-side-effect, retry-safety, idempotency, or replayability claim.
+Timeout policy belongs to the concrete Agent or transport.
 
 Runtime inherits Session's current limitation of one current `ConversationRef`
 per `MessageSource`. It does not solve independent continuations for multiple
@@ -204,8 +227,8 @@ runtime -> context.session
 runtime -> evidence
 ```
 
-Evidence does not depend on Runtime. Runtime has no direct Codex or Persistence
-dependency.
+Evidence does not depend on Runtime. Runtime has no direct Codex, Persistence,
+telemetry, or workflow dependency.
 
 ## Live Codex acceptance
 
@@ -218,7 +241,9 @@ is acceptance evidence, not a Runtime dependency on Codex.
 
 ## Constrained future evolution
 
-Concrete factual Evidence, Attempt persistence, retry policy, turn deadlines,
-and routing require separate designs. Session persistence, context compilation,
-provider configuration, ConversationRef parsing, and Agent transport behavior
-remain outside Runtime ownership.
+`EvidenceRecord`, durable Evidence sinks/persistence, Attempt persistence,
+mandatory durability policy, async sinks, secondary-error reporting, retry,
+replay, idempotent delivery, provenance, telemetry adapters, and durable
+workflow infrastructure require separate designs. Session persistence, context
+compilation, provider configuration, ConversationRef parsing, and Agent
+transport behavior remain outside Runtime ownership.

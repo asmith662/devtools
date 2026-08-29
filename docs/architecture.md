@@ -41,7 +41,7 @@ This grouping describes the current milestone. It does not imply a
 | `conversion` | Explicit callable conversion and stable failure normalization; not automatic target-type construction or serialization. |
 | `filesystem` | File models, format-native structure, codecs, format resolution, bounded generic reads, and atomic generic writes. Text, JSON, Markdown, and CSV are codec-backed; binary is model-only. |
 | `agents` | Provider-neutral asynchronous message invocation and opaque continuation contract; not provider transport, session history, or runtime routing. |
-| `runtime` | Configuration-bearing but interaction-stateless coordination of one caller-selected Agent interaction with one Session, with optional Attempt observation; not Agent routing, provider transport, or retained turn state. |
+| `runtime` | Configuration-bearing but interaction-stateless coordination of one caller-selected Agent interaction with one Session, live Attempt observation, and immutable terminal Evidence production/delivery; not Agent routing, provider transport, persistence, or retained turn state. |
 | `persistence` | Strict portable JSON and normalized SQLite durable reconstruction of semantic Session state; not Context storage ownership, Runtime coordination, provider execution, or filesystem I/O policy. |
 | `evidence` | Factual execution evidence: mutable identified Attempt lifecycle plus immutable terminal observations with distinct record identity and typed outcome/stage values; not a provider payload, Runtime coordinator, or persistence store. |
 | `codex` | Codex CLI adaptation, JSONL final-turn parsing, thread continuation, and a concrete Agent implementation; not generic command execution, provider discovery, or session state. |
@@ -210,22 +210,31 @@ and continuation state. Runtime is the configuration-bearing but
 interaction-stateless one-Agent-interaction coordinator: it holds Session-owned
 complete-turn serialization while awaiting an Agent, so different Sessions may
 proceed concurrently while a Session's continuation handoff remains ordered.
-Its optional fixed AttemptObserver records live Attempt lifecycle observation
-without creating retained turn state. Evidence supplies Attempt and
-AttemptObserver but has no Runtime dependency. Session coordination is
-object-local and in-process; persistent or distributed coordination remains
-outside the current architecture. Runtime does not depend on Codex; Codex is one
-concrete Agent.
+Its optional fixed AttemptObserver records live Attempt lifecycle observation,
+and its optional fixed EvidenceSink accepts immutable terminal Evidence,
+without creating retained turn state. Runtime creates an Attempt iff either
+capability is configured, after input retention. It owns stage attribution and
+constructs a terminal value only after successful terminalization and successful
+Runtime-owned commits. Evidence is constructed before finished observation and
+sink acceptance; ordinary/cancellation secondary failures do not replace the
+established primary outcome, while non-cancellation BaseException remains
+unsuppressed. Evidence supplies Attempt, AttemptObserver, terminal values, and
+EvidenceSink but has no Runtime dependency. Session coordination is object-local
+and in-process; persistent or distributed coordination remains outside the
+current architecture. Runtime does not depend on Codex; Codex is one concrete
+Agent.
 Persistence durably serializes and reconstructs semantic Session state without
 making Context storage-aware. It offers strict portable JSON and normalized
 queryable SQLite formats; a loaded Session can then be coordinated by Runtime.
 Persistence has no Codex dependency and does not own Runtime coordination.
-Evidence owns factual Attempt lifecycle and its synchronous observation
-Protocol, plus immutable terminal observations identified by `EvidenceId` and
-referring to their subject by `AttemptId`. It references Context identities
-without changing Session or Persistence; Runtime consumes it one-way for
-optional live observation and does not yet produce terminal Evidence. Durable
-Attempt/Evidence storage remains separate future work.
+Evidence owns factual Attempt lifecycle, its synchronous observation protocol,
+the synchronous terminal-Evidence acceptance seam, and immutable terminal
+observations identified by `EvidenceId` and referring to their subject by
+`AttemptId`. Runtime depends on Evidence one-way and produces at most one normal
+terminal record per Attempt, offering it to a sink at most once under
+`Session.turn()`. Evidence has no Persistence, telemetry, or workflow
+dependency. Durable Attempt/Evidence storage, mandatory durability policy,
+telemetry projection, and durable execution remain separate future work.
 
 Session indexes current external continuation state by `MessageSource`.
 Supporting multiple logical participants sharing one source requires a stronger
@@ -267,6 +276,9 @@ not prevent future, deliberately approved evolution.
 
 The foundation, generic Agent contract, first Codex integration, Context
 Message/History/Session, Runtime, Persistence, Evidence Attempt, immutable
-terminal Evidence value model, and Runtime-to-Attempt observation milestones are
-complete. The next architectural boundary is Runtime-to-terminal-Evidence
-production and delivery design.
+terminal Evidence value model, Runtime-to-Attempt observation, and
+Runtime-to-terminal-Evidence production/delivery milestones are complete and
+frozen. Future architectural discussion can separately address durable Evidence
+storage, mandatory durability policy, broader Evidence taxonomy, telemetry
+projection, or retry/replay/durable execution when concrete pressure justifies
+one.

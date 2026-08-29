@@ -28,6 +28,7 @@ from devtools.evidence import (
     AttemptTerminalEvidence,
     AttemptTerminalOutcome,
     EvidenceId,
+    EvidenceSink,
 )
 ```
 
@@ -59,7 +60,8 @@ different mutable objects.
 `AttemptObserver` is a structural synchronous protocol for this live lifecycle.
 It has `attempt_started(attempt)` and `attempt_finished(attempt)` callbacks.
 It has no default implementation, registry, persistence, delivery, or
-event-stream meaning.
+event-stream meaning. It remains distinct from `EvidenceSink`, which receives
+immutable historical values rather than the live Attempt.
 
 ## Immutable terminal Evidence
 
@@ -125,10 +127,10 @@ construction or delivery, persistence, or telemetry export.
 
 ## Temporal and producer semantics
 
-`occurred_at` is the terminal Attempt lifecycle occurrence being evidenced. A
-future Runtime producer will normally supply the successfully terminalized
-Attempt's `completed_at`; it is not an exact exception, cancellation-arrival,
-provider-event, or external-side-effect timestamp.
+`occurred_at` is the terminal Attempt lifecycle occurrence being evidenced.
+Runtime supplies the exact successfully terminalized Attempt's `completed_at`;
+it is not an exact exception, cancellation-arrival, provider-event, or
+external-side-effect timestamp.
 
 `observed_at` is when this immutable record was constructed. `.new()` creates
 a fresh `EvidenceId` and captures `observed_at` with `Timestamp.now()`, while
@@ -144,13 +146,57 @@ Evidence after Attempt terminalization succeeds. If terminalization fails and
 the Attempt remains RUNNING, normal `AttemptTerminalEvidence` must not be
 fabricated. Accounting-failure Evidence is not implemented.
 
-## Runtime boundary
+## Runtime production and EvidenceSink
 
-Runtime currently consumes only `Attempt` and `AttemptObserver`. With an
-observer configured, it creates an Attempt after turn acquisition and input
-retention, calls `attempt_started()` before Agent work, and calls
-`attempt_finished()` after successful terminalization. It does **not** currently
-construct, emit, deliver, or persist `AttemptTerminalEvidence`.
+`EvidenceSink` is the frozen synchronous structural protocol:
+
+```python
+def accept(self, evidence: AttemptTerminalEvidence) -> None: ...
+```
+
+Runtime holds a sink as fixed configuration and offers it only immutable
+`AttemptTerminalEvidence`, never Attempt, Session, Message, AgentTurn,
+exceptions, tracebacks, provider payloads, or context dictionaries. A normal
+return means the configured consumer accepted responsibility according to its
+own contract. It does **not** generically guarantee persistence, durability,
+fsync, replication, recoverability, queryability, or eventual export. Concrete
+sinks may provide stronger guarantees; the protocol is not a mutable store,
+telemetry abstraction, or generic EvidenceRecord API.
+
+Runtime creates an Attempt iff an observer or sink is configured. Attempt
+creation remains after `Session.turn()` acquisition and successful input
+retention, so lock-wait cancellation and input-retention failure produce no
+Attempt, terminal Evidence, callback, or sink delivery. Observer-only Runtime
+does not allocate discarded Evidence; bare Runtime creates neither Attempt nor
+terminal Evidence.
+
+Runtime is the canonical producer because it owns the Attempt, Runtime-owned
+commit boundaries, stage, and terminal disposition. After successful
+terminalization it constructs Evidence only when a sink exists, then invokes
+`attempt_finished()` when configured, then offers the same immutable object to
+the sink. It constructs at most one normal record per Attempt and attempts sink
+acceptance at most once; there is no retry or replacement EvidenceId.
+
+The stages are set immediately before their named operations. `ADMISSION`
+exists only for observer start admission; `CONTINUATION_REPLACEMENT` exists
+only for a returned non-None continuation. They are not mandatory stages.
+
+Ordinary `Exception` and `asyncio.CancelledError` from Evidence construction,
+finished notification, or sink acceptance are secondary once the primary
+outcome is established. Construction failure still permits finished notification
+but leaves no record for the sink; finished failure still permits sink
+acceptance. Primary success, failure, or cancellation remains authoritative.
+Non-cancellation `BaseException` is unsuppressed: construction stops before
+finished/sink, finished stops before sink, and sink propagates immediately.
+
+Normal terminal Evidence requires successful Attempt terminalization. If it
+fails and Attempt remains RUNNING, Runtime creates no normal Evidence and calls
+neither finished nor sink. All terminalization, construction, callbacks, and
+synchronous sink acceptance occur while `Session.turn()` remains held. This
+preserves same-Session acceptance order but provides no global cross-Session
+order; shared-sink concurrency is sink-owned. A slow synchronous sink can delay
+a later same-Session turn and block the event-loop thread, so acceptance is
+expected to be bounded synchronous work.
 
 ## Data minimization and exclusions
 
@@ -166,18 +212,21 @@ Terminal Evidence is factual input for possible future reconciliation, not a
 decision that work is safe to retry, should retry, is replayable, or is
 idempotent.
 
-Not implemented: Runtime-to-terminal-Evidence production, `EvidenceSink`,
-`EvidenceRecord`, Evidence or Attempt persistence, query APIs, retry/replay
-relationships, participant identity, cause taxonomies, metadata bags,
-provenance, evaluation/governance Evidence, context-compiler Evidence, and
-telemetry or durable-workflow integration. Evidence remains independent of
-OpenTelemetry, OpenInference, Dapr, and other execution substrates, though a
-future adapter may consume these immutable values.
+Not implemented: `EvidenceRecord` or a generalized hierarchy, Evidence or
+Attempt persistence, query APIs, mandatory durability/governance policy,
+secondary-error reporting, async sinks, retry/replay and idempotent delivery,
+participant identity, cause taxonomies, metadata bags, provenance,
+evaluation/governance Evidence, context-compiler Evidence, telemetry adapters,
+and durable-workflow integration. `devtools.persistence` does not persist
+Attempts or terminal Evidence. Evidence remains independent of OpenTelemetry,
+OpenInference, Dapr, and other execution substrates, though future adapters may
+consume these immutable values.
 
 ## Dependencies and freeze status
 
 Evidence depends on `identity`, `time`, and Context semantic values. Runtime
 has a one-way dependency on Evidence; Evidence has no Runtime, Persistence,
-Agents, or Codex dependency. The Attempt lifecycle/observer and immutable
-terminal Evidence value-model concepts are frozen. Future expansion requires a
-deliberate architectural reason rather than opportunistic fields or services.
+Agents, or Codex dependency. The Attempt lifecycle/observer, immutable terminal
+Evidence value model, and Runtime-to-terminal-Evidence producer/delivery
+boundary are frozen. Future expansion requires a deliberate architectural
+reason rather than opportunistic fields, services, or delivery guarantees.

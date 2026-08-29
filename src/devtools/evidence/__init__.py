@@ -2,7 +2,7 @@
 """Factual execution-evidence primitives."""
 
 from devtools.evidence.attempt import Attempt, AttemptId, AttemptState
-from devtools.evidence.protocols import AttemptObserver
+from devtools.evidence.protocols import AttemptObserver, EvidenceSink
 from devtools.evidence.terminal import (
     AttemptCancelled,
     AttemptFailed,
@@ -25,4 +25,5 @@ __all__ = [
     "AttemptTerminalEvidence",
     "AttemptTerminalOutcome",
     "EvidenceId",
+    "EvidenceSink",
 ]

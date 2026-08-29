@@ -67,6 +67,7 @@ def test_terminal_root_and_submodule_api_are_canonical() -> None:
         "AttemptTerminalEvidence",
         "AttemptTerminalOutcome",
         "EvidenceId",
+        "EvidenceSink",
     ]
     assert evidence.Attempt is Attempt
     assert evidence.AttemptId is AttemptId

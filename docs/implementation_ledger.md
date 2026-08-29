@@ -143,8 +143,28 @@ an API reference or a backlog; see package-local documentation and the
   where processing stopped, not failure cause or side-effect/retryability facts.
 - The terminal submodule now declares its exact public `__all__`; direct
   regressions freeze the empty success payload and required failed/cancelled
-  stages. Runtime production/delivery, EvidenceSink, EvidenceRecord, and
-  Attempt/Evidence persistence remain deferred.
+  stages. At that value-model freeze checkpoint, Runtime production/delivery,
+  EvidenceSink, EvidenceRecord, and Attempt/Evidence persistence remained
+  deferred.
+- Implemented and froze Runtime-to-immutable-terminal-Evidence
+  production/delivery. Added the structural synchronous `EvidenceSink` protocol
+  and fixed `Runtime.evidence_sink` configuration. Runtime creates an Attempt
+  iff observer or sink configuration requires it, after input retention, and
+  maps the six frozen Runtime boundaries to terminal failure/cancellation
+  Evidence stages.
+- Runtime now terminalizes before constructing one optional immutable terminal
+  record using exact `Attempt.completed_at` as `occurred_at`; construction
+  precedes finished observation and at-most-once sink acceptance. Finished runs
+  before sink operationally. Ordinary/cancellation construction, observer, and
+  sink failures preserve primary Runtime outcome; non-cancellation
+  `BaseException` short-circuits later secondary work. Delivery is synchronous
+  under `Session.turn()`, preserving same-Session order, with no retry or
+  replacement Evidence record.
+- A read-only audit identified missing freeze-critical cancellation coverage for
+  construction failure and late Runtime stages. The bounded regression correction
+  added exact primary-cancellation identity, one-construction/no-sink proofs and
+  RESULT_VALIDATION, OUTPUT_RETENTION, and CONTINUATION_REPLACEMENT cancellation
+  stage/partial-Session-state regressions before this freeze.
 
 ## Verification snapshot
 
@@ -166,6 +186,18 @@ focused terminal tests: 11 passed
 Evidence suite: 42 passed
 deterministic suite: 464 passed, 5 skipped
 branch coverage: 100.00%
+Ruff: clean
+mypy: clean, 153 files
+git diff --check: clean apart from existing harmless CRLF warnings
+```
+
+At the Runtime-to-terminal-Evidence production/delivery freeze checkpoint:
+
+```text
+focused Runtime tests: 72 passed
+focused Evidence tests: 43 passed
+deterministic suite: 498 passed, 5 skipped
+branch coverage: 100.00% (2,274 statements, 404 branches)
 Ruff: clean
 mypy: clean, 153 files
 git diff --check: clean apart from existing harmless CRLF warnings

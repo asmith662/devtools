@@ -76,6 +76,7 @@ def test_root_and_submodule_expose_the_same_attempt_types() -> None:
         "AttemptTerminalEvidence",
         "AttemptTerminalOutcome",
         "EvidenceId",
+        "EvidenceSink",
     ]
 
 

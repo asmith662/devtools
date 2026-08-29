@@ -106,29 +106,46 @@ an isolated temporary repository.
 
 ## Evidence - Complete / Frozen
 
-`devtools.evidence` is documented and frozen for its live Attempt lifecycle and
-immutable terminal value-model milestones. `Attempt` remains the mutable
-identified lifecycle handle with Session/Message/source attribution;
-`AttemptTerminalEvidence` is a distinct immutable, hashable historical record
-identified by `EvidenceId`, referring to `AttemptId`, timestamps, and a typed
-terminal outcome. The six-value `AttemptStage` vocabulary records processing
-location rather than cause. Runtime does not yet produce terminal Evidence, and
-EvidenceSink, EvidenceRecord, delivery, and persistence remain deferred.
+`devtools.evidence` is documented and frozen for live Attempt lifecycle,
+immutable terminal values, and Runtime terminal Evidence delivery. `Attempt`
+remains the mutable identified lifecycle handle with Session/Message/source
+attribution; `AttemptTerminalEvidence` is a distinct immutable, hashable
+historical record identified by `EvidenceId`, referring to `AttemptId`,
+timestamps, and a typed terminal outcome. The six-value `AttemptStage`
+vocabulary records processing location rather than cause. `EvidenceSink` is the
+frozen synchronous acceptance protocol for immutable terminal records.
 
 ## Runtimeâ†”Attempt integration â€” Complete
 
 The optional Runtime↔Attempt observation seam is implemented, audited,
 corrected, documented, and frozen. It preserves no-observer Runtime behavior,
 creates Attempts only after input retention, and keeps primary Runtime outcomes
-authoritative over ordinary/cancellation secondary observation errors.
+authoritative over ordinary/cancellation secondary observation errors. The later
+terminal-Evidence milestone extends Attempt creation to fixed sink-only mode and
+adds immutable delivery without changing this live-observer contract.
+
+## Runtime → terminal Evidence production/delivery — Complete / Frozen
+
+Runtime now creates an Attempt iff fixed `AttemptObserver` or `EvidenceSink`
+configuration requires it, produces at most one normal immutable terminal
+record after successful terminalization, and offers a constructed record to the
+sink at most once. It preserves primary Runtime success/failure/cancellation
+over ordinary or cancellation secondary delivery failures, while allowing
+non-cancellation `BaseException` to escape. Delivery remains synchronous under
+`Session.turn()` for same-Session ordering. The milestone includes the final
+construction-failure precedence correction and cancellation-stage regressions.
+
+Evidence persistence, durable sinks, mandatory durability policy,
+`EvidenceRecord`, async delivery, secondary-error reporting, retry/replay,
+telemetry, and durable workflow integration remain separate work.
 
 ## Package-level future work
 
 The completed foundation can evolve through future approved capabilities.
 Those possibilities are maintained in package-local documentation rather than
-duplicated here. The next architectural discussion is Runtime-to-terminal-
-Evidence production and delivery design. Attempt/Evidence persistence and
-retry/replay remain separate future work.
+duplicated here. Future discussion may select durable Evidence persistence,
+mandatory durability policy, broader Evidence types, telemetry projection, or
+retry/replay/durable execution when a concrete need establishes priority.
 
 See the [documentation map](documentation_map.md) to locate package-specific
 future-work documentation.

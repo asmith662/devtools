@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import asyncio
+from contextlib import asynccontextmanager
 from typing import TYPE_CHECKING
 
 import pytest
@@ -11,11 +12,21 @@ import pytest
 import devtools.runtime as runtime_package
 from devtools.agents import Agent, AgentTurn, ConversationRef
 from devtools.context import Message, MessageRole, MessageSource, Session
-from devtools.evidence import Attempt, AttemptObserver, AttemptState
+from devtools.evidence import (
+    Attempt,
+    AttemptCancelled,
+    AttemptFailed,
+    AttemptObserver,
+    AttemptStage,
+    AttemptState,
+    AttemptSucceeded,
+    AttemptTerminalEvidence,
+    EvidenceSink,
+)
 from devtools.runtime import Runtime
 
 if TYPE_CHECKING:
-    from collections.abc import Callable, Sequence
+    from collections.abc import AsyncIterator, Callable, Sequence
 
     from devtools.time import Timestamp
 
@@ -71,11 +82,13 @@ class FakeObserver:
         started_error: BaseException | None = None,
         finished_error: BaseException | None = None,
         on_started: Callable[[Attempt], None] | None = None,
+        on_finished: Callable[[Attempt], None] | None = None,
     ) -> None:
         """Initialize recorded lifecycle callbacks and optional failures."""
         self._started_error = started_error
         self._finished_error = finished_error
         self._on_started = on_started
+        self._on_finished = on_finished
         self.events: list[tuple[str, Attempt]] = []
         self.started: list[Attempt] = []
         self.finished: list[Attempt] = []
@@ -93,8 +106,33 @@ class FakeObserver:
         """Record one finished callback and optionally fail it."""
         self.events.append(("finished", attempt))
         self.finished.append(attempt)
+        if self._on_finished is not None:
+            self._on_finished(attempt)
         if self._finished_error is not None:
             raise self._finished_error
+
+
+class FakeSink:
+    """A structural terminal Evidence sink with deterministic controls."""
+
+    def __init__(
+        self,
+        *,
+        error: BaseException | None = None,
+        on_accept: Callable[[AttemptTerminalEvidence], None] | None = None,
+    ) -> None:
+        """Initialize accepted records and optional callback behavior."""
+        self._error = error
+        self._on_accept = on_accept
+        self.accepted: list[AttemptTerminalEvidence] = []
+
+    def accept(self, evidence: AttemptTerminalEvidence) -> None:
+        """Record one acceptance attempt and optionally fail it."""
+        self.accepted.append(evidence)
+        if self._on_accept is not None:
+            self._on_accept(evidence)
+        if self._error is not None:
+            raise self._error
 
 
 class ProcessControl(BaseException):
@@ -116,6 +154,20 @@ def _ref(source: str, value: str) -> ConversationRef:
     return ConversationRef(MessageSource(source), value)
 
 
+def _capture_attempts(monkeypatch: pytest.MonkeyPatch) -> list[Attempt]:
+    """Capture Attempts created through the public class factory."""
+    attempts: list[Attempt] = []
+    original_new = Attempt.new
+
+    def capture_new(**kwargs: object) -> Attempt:
+        attempt = original_new(**kwargs)  # type: ignore[arg-type]
+        attempts.append(attempt)
+        return attempt
+
+    monkeypatch.setattr(Attempt, "new", capture_new)
+    return attempts
+
+
 def test_runtime_root_api_exports_only_runtime() -> None:
     """The Runtime package exposes only its coordination service."""
     assert runtime_package.__all__ == ["Runtime"]
@@ -123,14 +175,19 @@ def test_runtime_root_api_exports_only_runtime() -> None:
 
 
 def test_runtime_observer_configuration_is_optional_fixed_and_structural() -> None:
-    """Runtime retains one readable fixed structural observer configuration."""
+    """Runtime retains readable fixed structural Evidence configuration."""
     observer: AttemptObserver = FakeObserver()
-    runtime = Runtime(observer=observer)
+    sink: EvidenceSink = FakeSink()
+    runtime = Runtime(observer=observer, evidence_sink=sink)
 
     assert Runtime().observer is None
+    assert Runtime().evidence_sink is None
     assert runtime.observer is observer
+    assert runtime.evidence_sink is sink
     with pytest.raises(AttributeError):
         runtime.observer = FakeObserver()  # type: ignore[misc]
+    with pytest.raises(AttributeError):
+        runtime.evidence_sink = FakeSink()  # type: ignore[misc]
 
 
 def test_runtime_observes_a_successful_turn_with_one_live_attempt() -> None:
@@ -227,10 +284,11 @@ def test_runtime_does_not_create_attempt_when_input_retention_fails(
 
         monkeypatch.setattr(Session, "add", fail_add)
         observer = FakeObserver()
+        sink = FakeSink()
         fake = FakeAgent(MessageSource("agent"))
 
         with pytest.raises(LookupError) as raised:
-            await Runtime(observer=observer).send(
+            await Runtime(observer=observer, evidence_sink=sink).send(
                 session=session,
                 agent=fake,
                 message=message,
@@ -238,6 +296,7 @@ def test_runtime_does_not_create_attempt_when_input_retention_fails(
 
         assert raised.value is error
         assert observer.started == observer.finished == []
+        assert sink.accepted == []
         assert fake.calls == []
 
     asyncio.run(exercise())
@@ -258,10 +317,11 @@ def test_runtime_does_not_notify_when_attempt_creation_fails(
 
         monkeypatch.setattr(Attempt, "new", fail_new)
         observer = FakeObserver()
+        sink = FakeSink()
         fake = FakeAgent(MessageSource("agent"))
 
         with pytest.raises(LookupError) as raised:
-            await Runtime(observer=observer).send(
+            await Runtime(observer=observer, evidence_sink=sink).send(
                 session=session,
                 agent=fake,
                 message=message,
@@ -270,6 +330,7 @@ def test_runtime_does_not_notify_when_attempt_creation_fails(
         assert raised.value is error
         assert session.history.messages == (message,)
         assert observer.started == observer.finished == []
+        assert sink.accepted == []
         assert fake.calls == []
 
     asyncio.run(exercise())
@@ -632,7 +693,9 @@ def test_runtime_observes_returned_source_mismatch_as_failed() -> None:
     asyncio.run(exercise())
 
 
-def test_runtime_cancellation_while_waiting_leaves_session_unchanged() -> None:
+def test_runtime_cancellation_while_waiting_leaves_session_unchanged(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     """Cancellation before turn acquisition neither records nor sends input."""
 
     async def exercise() -> None:
@@ -650,12 +713,14 @@ def test_runtime_cancellation_while_waiting_leaves_session_unchanged() -> None:
             ),
         )
         runtime_started = asyncio.Event()
+        attempts = _capture_attempts(monkeypatch)
+        sink = FakeSink()
 
         async with session.turn():
 
             async def invoke() -> AgentTurn:
                 runtime_started.set()
-                return await Runtime().send(
+                return await Runtime(evidence_sink=sink).send(
                     session=session,
                     agent=fake,
                     message=_message("input"),
@@ -668,6 +733,8 @@ def test_runtime_cancellation_while_waiting_leaves_session_unchanged() -> None:
                 await task
 
             assert session.history.messages == ()
+            assert attempts == []
+            assert sink.accepted == []
             assert fake.calls == []
 
     asyncio.run(exercise())
@@ -1386,5 +1453,742 @@ def test_runtime_observer_does_not_serialize_different_sessions() -> None:
         release.set()
         await asyncio.gather(task_a, task_b)
         assert len(observer.finished) == expected_attempt_count
+
+    asyncio.run(exercise())
+
+
+def test_runtime_sink_only_success_delivers_one_exact_terminal_value(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A sink-only success owns one Attempt and one immutable terminal record."""
+
+    async def exercise() -> None:
+        attempts = _capture_attempts(monkeypatch)
+        source = MessageSource("agent")
+        returned = AgentTurn(
+            _message("response", role=MessageRole.ASSISTANT, source="agent"),
+        )
+        sink = FakeSink()
+
+        turn = await Runtime(evidence_sink=sink).send(
+            session=Session.new(),
+            agent=FakeAgent(source, (returned,)),
+            message=_message("request"),
+        )
+
+        assert turn is returned
+        assert len(attempts) == len(sink.accepted) == 1
+        attempt = attempts[0]
+        record = sink.accepted[0]
+        assert attempt.state is AttemptState.SUCCEEDED
+        assert record.attempt_id is attempt.id
+        assert record.occurred_at is attempt.completed_at
+        assert isinstance(record.outcome, AttemptSucceeded)
+
+    asyncio.run(exercise())
+
+
+@pytest.mark.parametrize(
+    "stage",
+    [
+        AttemptStage.CONTINUATION_LOOKUP,
+        AttemptStage.AGENT_INVOCATION,
+        AttemptStage.RESULT_VALIDATION,
+        AttemptStage.OUTPUT_RETENTION,
+        AttemptStage.CONTINUATION_REPLACEMENT,
+    ],
+)
+def test_runtime_sink_only_failure_records_exact_processing_stage(  # noqa: C901
+    stage: AttemptStage,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Each primary processing boundary produces one location-only failure."""
+
+    async def exercise() -> None:
+        error = LookupError(stage.value)
+        source = MessageSource("agent")
+        returned = AgentTurn(
+            _message("response", role=MessageRole.ASSISTANT, source="agent"),
+            _ref("agent", "next"),
+        )
+        session = Session.new()
+        agent = FakeAgent(source, (returned,))
+
+        if stage is AttemptStage.CONTINUATION_LOOKUP:
+            def fail_lookup(_: Session, __: MessageSource) -> ConversationRef | None:
+                raise error
+
+            monkeypatch.setattr(Session, "conversation_for", fail_lookup)
+        elif stage is AttemptStage.AGENT_INVOCATION:
+            agent = FakeAgent(source, error=error)
+        elif stage is AttemptStage.RESULT_VALIDATION:
+            def fail_validation(_: AgentTurn, __: Agent) -> None:
+                raise error
+
+            monkeypatch.setattr(
+                Runtime,
+                "_validate_turn_source",
+                staticmethod(fail_validation),
+            )
+        elif stage is AttemptStage.OUTPUT_RETENTION:
+            original_add = Session.add
+            call_count = 0
+
+            def fail_output_retention(target: Session, value: Message) -> None:
+                nonlocal call_count
+                call_count += 1
+                if call_count > 1:
+                    raise error
+                original_add(target, value)
+
+            monkeypatch.setattr(Session, "add", fail_output_retention)
+        else:
+            def fail_replacement(_: Session, __: ConversationRef) -> None:
+                raise error
+
+            monkeypatch.setattr(Session, "set_conversation", fail_replacement)
+
+        sink = FakeSink()
+        with pytest.raises(LookupError) as raised:
+            await Runtime(evidence_sink=sink).send(
+                session=session,
+                agent=agent,
+                message=_message("request"),
+            )
+
+        assert raised.value is error
+        assert len(sink.accepted) == 1
+        outcome = sink.accepted[0].outcome
+        assert isinstance(outcome, AttemptFailed)
+        assert outcome.stage is stage
+
+    asyncio.run(exercise())
+
+
+@pytest.mark.parametrize(
+    "stage",
+    [
+        AttemptStage.CONTINUATION_LOOKUP,
+        AttemptStage.AGENT_INVOCATION,
+        AttemptStage.RESULT_VALIDATION,
+        AttemptStage.OUTPUT_RETENTION,
+        AttemptStage.CONTINUATION_REPLACEMENT,
+    ],
+)
+def test_runtime_sink_only_cancellation_records_exact_processing_stage(  # noqa: C901, PLR0915
+    stage: AttemptStage,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Cancellation remains primary while terminal Evidence records location."""
+
+    async def exercise() -> None:  # noqa: C901, PLR0915
+        attempts = _capture_attempts(monkeypatch)
+        cancellation = asyncio.CancelledError(stage.value)
+        source = MessageSource("agent")
+        input_message = _message("request")
+        returned = AgentTurn(
+            _message("response", role=MessageRole.ASSISTANT, source="agent"),
+            _ref("agent", "next"),
+        )
+        session = Session.new()
+        agent = FakeAgent(source, (returned,))
+
+        if stage is AttemptStage.CONTINUATION_LOOKUP:
+            def cancel_lookup(
+                _: Session,
+                __: MessageSource,
+            ) -> ConversationRef | None:
+                raise cancellation
+
+            monkeypatch.setattr(Session, "conversation_for", cancel_lookup)
+        elif stage is AttemptStage.AGENT_INVOCATION:
+            agent = FakeAgent(source, error=cancellation)
+        elif stage is AttemptStage.RESULT_VALIDATION:
+            def cancel_validation(_: AgentTurn, __: Agent) -> None:
+                raise cancellation
+
+            monkeypatch.setattr(
+                Runtime,
+                "_validate_turn_source",
+                staticmethod(cancel_validation),
+            )
+        elif stage is AttemptStage.OUTPUT_RETENTION:
+            original_add = Session.add
+            call_count = 0
+
+            def cancel_output_retention(target: Session, value: Message) -> None:
+                nonlocal call_count
+                call_count += 1
+                if call_count > 1:
+                    raise cancellation
+                original_add(target, value)
+
+            monkeypatch.setattr(Session, "add", cancel_output_retention)
+        else:
+            def cancel_replacement(_: Session, __: ConversationRef) -> None:
+                raise cancellation
+
+            monkeypatch.setattr(Session, "set_conversation", cancel_replacement)
+
+        sink = FakeSink()
+        with pytest.raises(asyncio.CancelledError) as raised:
+            await Runtime(evidence_sink=sink).send(
+                session=session,
+                agent=agent,
+                message=input_message,
+            )
+
+        assert raised.value is cancellation
+        assert len(attempts) == len(sink.accepted) == 1
+        attempt = attempts[0]
+        record = sink.accepted[0]
+        assert attempt.state is AttemptState.CANCELLED
+        assert attempt.completed_at is not None
+        assert record.attempt_id is attempt.id
+        outcome = record.outcome
+        assert isinstance(outcome, AttemptCancelled)
+        assert outcome.stage is stage
+        if stage is AttemptStage.RESULT_VALIDATION:
+            assert session.history.messages == (input_message,)
+        elif stage is AttemptStage.OUTPUT_RETENTION:
+            assert session.history.messages == (input_message,)
+            assert session.conversation_for(source) is None
+        elif stage is AttemptStage.CONTINUATION_REPLACEMENT:
+            assert session.history.messages == (input_message, returned.message)
+            assert session.conversation_for(source) is None
+
+    asyncio.run(exercise())
+
+
+@pytest.mark.parametrize(
+    ("primary", "outcome_type"),
+    [
+        (LookupError("admission failed"), AttemptFailed),
+        (asyncio.CancelledError("admission cancelled"), AttemptCancelled),
+    ],
+)
+def test_runtime_admission_outcome_reaches_finished_then_sink(
+    primary: BaseException,
+    outcome_type: type[AttemptFailed | AttemptCancelled],
+) -> None:
+    """Observer admission failures produce ADMISSION Evidence before propagation."""
+
+    async def exercise() -> None:
+        order: list[str] = []
+        observer = FakeObserver(
+            started_error=primary,
+            on_finished=lambda _: order.append("finished"),
+        )
+        sink = FakeSink(on_accept=lambda _: order.append("sink"))
+        agent = FakeAgent(MessageSource("agent"))
+
+        with pytest.raises(type(primary)) as raised:
+            await Runtime(observer=observer, evidence_sink=sink).send(
+                session=Session.new(),
+                agent=agent,
+                message=_message("request"),
+            )
+
+        assert raised.value is primary
+        assert agent.calls == []
+        assert order == ["finished", "sink"]
+        outcome = sink.accepted[0].outcome
+        assert isinstance(outcome, outcome_type)
+        assert outcome.stage is AttemptStage.ADMISSION
+
+    asyncio.run(exercise())
+
+
+def test_runtime_observer_only_constructs_no_terminal_evidence(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Observer-only accounting allocates no discarded immutable record."""
+
+    async def exercise() -> None:
+        def fail_new(**_: object) -> AttemptTerminalEvidence:
+            msg = "terminal Evidence was constructed without a sink"
+            raise AssertionError(msg)
+
+        monkeypatch.setattr(AttemptTerminalEvidence, "new", fail_new)
+        observer = FakeObserver()
+        returned = AgentTurn(
+            _message("response", role=MessageRole.ASSISTANT, source="agent"),
+        )
+
+        turn = await Runtime(observer=observer).send(
+            session=Session.new(),
+            agent=FakeAgent(MessageSource("agent"), (returned,)),
+            message=_message("request"),
+        )
+
+        assert turn is returned
+        assert observer.finished[0].state is AttemptState.SUCCEEDED
+
+    asyncio.run(exercise())
+
+
+@pytest.mark.parametrize(
+    "construction_error",
+    [LookupError("construction failed"), asyncio.CancelledError("construction")],
+)
+def test_runtime_secondary_construction_failure_preserves_success_and_finished(
+    construction_error: BaseException,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Ordinary/cancellation construction failure skips only sink delivery."""
+
+    async def exercise() -> None:
+        construction_count = 0
+
+        def fail_new(**_: object) -> AttemptTerminalEvidence:
+            nonlocal construction_count
+            construction_count += 1
+            raise construction_error
+
+        monkeypatch.setattr(AttemptTerminalEvidence, "new", fail_new)
+        observer = FakeObserver()
+        sink = FakeSink()
+        returned = AgentTurn(
+            _message("response", role=MessageRole.ASSISTANT, source="agent"),
+        )
+
+        turn = await Runtime(observer=observer, evidence_sink=sink).send(
+            session=Session.new(),
+            agent=FakeAgent(MessageSource("agent"), (returned,)),
+            message=_message("request"),
+        )
+
+        assert turn is returned
+        assert construction_count == 1
+        assert observer.finished[0].state is AttemptState.SUCCEEDED
+        assert sink.accepted == []
+
+    asyncio.run(exercise())
+
+
+def test_runtime_secondary_construction_failure_preserves_primary_failure(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Construction failure cannot replace an established Agent failure."""
+
+    async def exercise() -> None:
+        primary = LookupError("agent failed")
+
+        def fail_new(**_: object) -> AttemptTerminalEvidence:
+            msg = "construction failed"
+            raise RuntimeError(msg)
+
+        monkeypatch.setattr(AttemptTerminalEvidence, "new", fail_new)
+        observer = FakeObserver()
+        sink = FakeSink()
+
+        with pytest.raises(LookupError) as raised:
+            await Runtime(observer=observer, evidence_sink=sink).send(
+                session=Session.new(),
+                agent=FakeAgent(MessageSource("agent"), error=primary),
+                message=_message("request"),
+            )
+
+        assert raised.value is primary
+        assert observer.finished[0].state is AttemptState.FAILED
+        assert sink.accepted == []
+
+    asyncio.run(exercise())
+
+
+@pytest.mark.parametrize(
+    "construction_error",
+    [LookupError("construction failed"), asyncio.CancelledError("construction")],
+)
+def test_runtime_secondary_construction_failure_preserves_primary_cancellation(
+    construction_error: BaseException,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Construction failure cannot replace an established Agent cancellation."""
+
+    async def exercise() -> None:
+        attempts = _capture_attempts(monkeypatch)
+        construction_count = 0
+        primary = asyncio.CancelledError("agent cancelled")
+
+        def fail_new(**_: object) -> AttemptTerminalEvidence:
+            nonlocal construction_count
+            construction_count += 1
+            raise construction_error
+
+        monkeypatch.setattr(AttemptTerminalEvidence, "new", fail_new)
+        observer = FakeObserver()
+        sink = FakeSink()
+
+        with pytest.raises(asyncio.CancelledError) as raised:
+            await Runtime(observer=observer, evidence_sink=sink).send(
+                session=Session.new(),
+                agent=FakeAgent(MessageSource("agent"), error=primary),
+                message=_message("request"),
+            )
+
+        assert raised.value is primary
+        assert construction_count == 1
+        assert len(attempts) == len(observer.finished) == 1
+        attempt = attempts[0]
+        assert attempt.state is AttemptState.CANCELLED
+        assert attempt.completed_at is not None
+        assert observer.finished == [attempt]
+        assert sink.accepted == []
+
+    asyncio.run(exercise())
+
+
+def test_runtime_construction_process_control_prevents_all_secondary_delivery(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Construction process control propagates before finished or sink."""
+
+    async def exercise() -> None:
+        process_control = ProcessControl()
+
+        def fail_new(**_: object) -> AttemptTerminalEvidence:
+            raise process_control
+
+        monkeypatch.setattr(AttemptTerminalEvidence, "new", fail_new)
+        observer = FakeObserver()
+        sink = FakeSink()
+        returned = AgentTurn(
+            _message("response", role=MessageRole.ASSISTANT, source="agent"),
+        )
+
+        with pytest.raises(ProcessControl) as raised:
+            await Runtime(observer=observer, evidence_sink=sink).send(
+                session=Session.new(),
+                agent=FakeAgent(MessageSource("agent"), (returned,)),
+                message=_message("request"),
+            )
+
+        assert raised.value is process_control
+        assert observer.finished == []
+        assert sink.accepted == []
+
+    asyncio.run(exercise())
+
+
+@pytest.mark.parametrize(
+    "finished_error",
+    [LookupError("finished failed"), asyncio.CancelledError("finished cancelled")],
+)
+def test_runtime_finished_secondary_failure_does_not_prevent_exact_sink_record(
+    finished_error: BaseException,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Ordinary/cancellation finished failure leaves sink as an independent peer."""
+
+    async def exercise() -> None:
+        constructed: list[AttemptTerminalEvidence] = []
+        original_new = AttemptTerminalEvidence.new
+
+        def capture_new(**kwargs: object) -> AttemptTerminalEvidence:
+            record = original_new(**kwargs)  # type: ignore[arg-type]
+            constructed.append(record)
+            return record
+
+        monkeypatch.setattr(AttemptTerminalEvidence, "new", capture_new)
+        observer = FakeObserver(finished_error=finished_error)
+        sink = FakeSink()
+        returned = AgentTurn(
+            _message("response", role=MessageRole.ASSISTANT, source="agent"),
+        )
+
+        turn = await Runtime(observer=observer, evidence_sink=sink).send(
+            session=Session.new(),
+            agent=FakeAgent(MessageSource("agent"), (returned,)),
+            message=_message("request"),
+        )
+
+        assert turn is returned
+        assert len(constructed) == 1
+        assert sink.accepted == [constructed[0]]
+
+    asyncio.run(exercise())
+
+
+def test_runtime_finished_process_control_prevents_sink() -> None:
+    """Finished process control propagates and stops later sink delivery."""
+
+    async def exercise() -> None:
+        process_control = ProcessControl()
+        observer = FakeObserver(finished_error=process_control)
+        sink = FakeSink()
+        returned = AgentTurn(
+            _message("response", role=MessageRole.ASSISTANT, source="agent"),
+        )
+
+        with pytest.raises(ProcessControl) as raised:
+            await Runtime(observer=observer, evidence_sink=sink).send(
+                session=Session.new(),
+                agent=FakeAgent(MessageSource("agent"), (returned,)),
+                message=_message("request"),
+            )
+
+        assert raised.value is process_control
+        assert sink.accepted == []
+
+    asyncio.run(exercise())
+
+
+@pytest.mark.parametrize(
+    "sink_error",
+    [LookupError("sink failed"), asyncio.CancelledError("sink cancelled")],
+)
+def test_runtime_sink_secondary_failure_preserves_primary_success(
+    sink_error: BaseException,
+) -> None:
+    """Sink ordinary/cancellation failure cannot replace committed success."""
+
+    async def exercise() -> None:
+        sink = FakeSink(error=sink_error)
+        returned = AgentTurn(
+            _message("response", role=MessageRole.ASSISTANT, source="agent"),
+        )
+
+        turn = await Runtime(evidence_sink=sink).send(
+            session=Session.new(),
+            agent=FakeAgent(MessageSource("agent"), (returned,)),
+            message=_message("request"),
+        )
+
+        assert turn is returned
+        assert len(sink.accepted) == 1
+
+    asyncio.run(exercise())
+
+
+def test_runtime_sink_ordinary_failure_preserves_primary_agent_failure() -> None:
+    """Sink failure cannot replace an established ordinary primary error."""
+
+    async def exercise() -> None:
+        primary = LookupError("agent failed")
+        sink = FakeSink(error=RuntimeError("sink failed"))
+
+        with pytest.raises(LookupError) as raised:
+            await Runtime(evidence_sink=sink).send(
+                session=Session.new(),
+                agent=FakeAgent(MessageSource("agent"), error=primary),
+                message=_message("request"),
+            )
+
+        assert raised.value is primary
+        assert len(sink.accepted) == 1
+
+    asyncio.run(exercise())
+
+
+@pytest.mark.parametrize(
+    "sink_error",
+    [RuntimeError("sink failed"), asyncio.CancelledError("sink cancelled")],
+)
+def test_runtime_sink_secondary_failure_preserves_primary_cancellation(
+    sink_error: BaseException,
+) -> None:
+    """Sink failure cannot replace the original Agent cancellation."""
+
+    async def exercise() -> None:
+        primary = asyncio.CancelledError("agent cancelled")
+        sink = FakeSink(error=sink_error)
+
+        with pytest.raises(asyncio.CancelledError) as raised:
+            await Runtime(evidence_sink=sink).send(
+                session=Session.new(),
+                agent=FakeAgent(MessageSource("agent"), error=primary),
+                message=_message("request"),
+            )
+
+        assert raised.value is primary
+        assert len(sink.accepted) == 1
+
+    asyncio.run(exercise())
+
+
+def test_runtime_sink_process_control_propagates() -> None:
+    """Sink process control remains visible after successful primary work."""
+
+    async def exercise() -> None:
+        process_control = ProcessControl()
+        sink = FakeSink(error=process_control)
+        returned = AgentTurn(
+            _message("response", role=MessageRole.ASSISTANT, source="agent"),
+        )
+
+        with pytest.raises(ProcessControl) as raised:
+            await Runtime(evidence_sink=sink).send(
+                session=Session.new(),
+                agent=FakeAgent(MessageSource("agent"), (returned,)),
+                message=_message("request"),
+            )
+
+        assert raised.value is process_control
+        assert len(sink.accepted) == 1
+
+    asyncio.run(exercise())
+
+
+def test_runtime_terminalization_failure_delivers_no_finished_or_evidence(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Failed accounting leaves the Attempt running and stops all delivery."""
+
+    async def exercise() -> None:
+        observer = FakeObserver()
+        sink = FakeSink()
+        accounting_error = RuntimeError("timestamp unavailable")
+
+        def fail_terminalization(_: Attempt) -> None:
+            raise accounting_error
+
+        monkeypatch.setattr(Attempt, "succeed", fail_terminalization)
+        returned = AgentTurn(
+            _message("response", role=MessageRole.ASSISTANT, source="agent"),
+        )
+
+        turn = await Runtime(observer=observer, evidence_sink=sink).send(
+            session=Session.new(),
+            agent=FakeAgent(MessageSource("agent"), (returned,)),
+            message=_message("request"),
+        )
+
+        assert turn is returned
+        assert observer.started[0].state is AttemptState.RUNNING
+        assert observer.finished == []
+        assert sink.accepted == []
+
+    asyncio.run(exercise())
+
+
+def test_runtime_bare_mode_performs_no_terminal_evidence_work(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Bare Runtime preserves the exact uninstrumented allocation boundary."""
+
+    async def exercise() -> None:
+        def fail_attempt(**_: object) -> Attempt:
+            msg = "bare Runtime created an Attempt"
+            raise AssertionError(msg)
+
+        def fail_evidence(**_: object) -> AttemptTerminalEvidence:
+            msg = "bare Runtime created terminal Evidence"
+            raise AssertionError(msg)
+
+        monkeypatch.setattr(Attempt, "new", fail_attempt)
+        monkeypatch.setattr(AttemptTerminalEvidence, "new", fail_evidence)
+        returned = AgentTurn(
+            _message("response", role=MessageRole.ASSISTANT, source="agent"),
+        )
+
+        turn = await Runtime().send(
+            session=Session.new(),
+            agent=FakeAgent(MessageSource("agent"), (returned,)),
+            message=_message("request"),
+        )
+
+        assert turn is returned
+
+    asyncio.run(exercise())
+
+
+def test_runtime_sink_acceptance_remains_inside_same_session_turn_order(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Same-Session sink acceptance finishes before a queued turn invokes Agent."""
+
+    async def exercise() -> None:
+        session = Session.new()
+        entered_first = asyncio.Event()
+        entered_second = asyncio.Event()
+        release_first = asyncio.Event()
+        release_second = asyncio.Event()
+        order: list[str] = []
+        turn_held = False
+        original_turn = Session.turn
+
+        @asynccontextmanager
+        async def tracked_turn(target: Session) -> AsyncIterator[None]:
+            nonlocal turn_held
+            async with original_turn(target):
+                turn_held = True
+                try:
+                    yield
+                finally:
+                    turn_held = False
+
+        def accept_while_held(_: AttemptTerminalEvidence) -> None:
+            assert turn_held
+            order.append("sink")
+
+        monkeypatch.setattr(Session, "turn", tracked_turn)
+        sink = FakeSink(on_accept=accept_while_held)
+        first = FakeAgent(
+            MessageSource("first"),
+            (AgentTurn(_message("one", role=MessageRole.ASSISTANT, source="first")),),
+            entered=entered_first,
+            release=release_first,
+        )
+        second = FakeAgent(
+            MessageSource("second"),
+            (AgentTurn(_message("two", role=MessageRole.ASSISTANT, source="second")),),
+            entered=entered_second,
+            release=release_second,
+        )
+        runtime = Runtime(evidence_sink=sink)
+
+        first_task = asyncio.create_task(
+            runtime.send(session=session, agent=first, message=_message("first")),
+        )
+        await entered_first.wait()
+        second_task = asyncio.create_task(
+            runtime.send(session=session, agent=second, message=_message("second")),
+        )
+        await asyncio.sleep(0)
+        assert not entered_second.is_set()
+        release_first.set()
+        await entered_second.wait()
+        assert order == ["sink"]
+        release_second.set()
+        await asyncio.gather(first_task, second_task)
+        assert order == ["sink", "sink"]
+
+    asyncio.run(exercise())
+
+
+def test_runtime_sink_does_not_serialize_different_sessions() -> None:
+    """Sink support adds no Runtime-global lock across Session objects."""
+
+    async def exercise() -> None:
+        entered_a = asyncio.Event()
+        entered_b = asyncio.Event()
+        release = asyncio.Event()
+        sink = FakeSink()
+        runtime = Runtime(evidence_sink=sink)
+        agent_a = FakeAgent(
+            MessageSource("a"),
+            (AgentTurn(_message("a", role=MessageRole.ASSISTANT, source="a")),),
+            entered=entered_a,
+            release=release,
+        )
+        agent_b = FakeAgent(
+            MessageSource("b"),
+            (AgentTurn(_message("b", role=MessageRole.ASSISTANT, source="b")),),
+            entered=entered_b,
+            release=release,
+        )
+
+        task_a = asyncio.create_task(
+            runtime.send(session=Session.new(), agent=agent_a, message=_message("a")),
+        )
+        task_b = asyncio.create_task(
+            runtime.send(session=Session.new(), agent=agent_b, message=_message("b")),
+        )
+        await asyncio.gather(entered_a.wait(), entered_b.wait())
+        release.set()
+        await asyncio.gather(task_a, task_b)
+        expected_count = len((agent_a, agent_b))
+        assert len(sink.accepted) == expected_count
 
     asyncio.run(exercise())
