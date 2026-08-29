@@ -82,14 +82,16 @@ participant/Agent-instance identity design before that topology is supported.
 
 ## Runtime â€” Complete
 
-`devtools.runtime` is documented and frozen as the zero-field coordinator of
-one caller-selected Agent interaction with one Session. Its keyword-only
-`send()` holds Session complete-turn coordination across one Agent invocation,
+`devtools.runtime` is documented and frozen as a configuration-bearing but
+interaction-stateless coordinator of one caller-selected Agent interaction with
+one Session. Its keyword-only `send()` holds Session complete-turn coordination,
 records input/output in order, validates returned source, updates non-None
 continuations, and preserves forward-only failure/cancellation semantics.
-Deterministic tests prove same-Session serialization, same-source continuation
-handoff, and different-Session concurrency; an opt-in Codex acceptance proves
-automatic two-turn continuation in an isolated temporary repository.
+Its optional fixed AttemptObserver creates no Attempt when absent and observes
+an admitted Attempt through terminalization when present. Deterministic tests
+prove same-Session serialization, same-source continuation handoff, and
+different-Session concurrency; opt-in Codex acceptances prove both unchanged
+two-turn continuation and one observed real Attempt in isolated repositories.
 
 ## Persistence â€” Complete
 
@@ -102,17 +104,31 @@ Deterministic tests prove Runtime continuation after load; an opt-in SQLite
 acceptance proves a reconstructed Session resumes the same real Codex thread in
 an isolated temporary repository.
 
-## Evidence â€” Next
+## Evidence - Complete / Frozen
 
-Evidence is the next architectural discussion. It is not implemented or
-authorized by this roadmap entry.
+`devtools.evidence` is documented and frozen for its live Attempt lifecycle and
+immutable terminal value-model milestones. `Attempt` remains the mutable
+identified lifecycle handle with Session/Message/source attribution;
+`AttemptTerminalEvidence` is a distinct immutable, hashable historical record
+identified by `EvidenceId`, referring to `AttemptId`, timestamps, and a typed
+terminal outcome. The six-value `AttemptStage` vocabulary records processing
+location rather than cause. Runtime does not yet produce terminal Evidence, and
+EvidenceSink, EvidenceRecord, delivery, and persistence remain deferred.
+
+## Runtimeâ†”Attempt integration â€” Complete
+
+The optional Runtime↔Attempt observation seam is implemented, audited,
+corrected, documented, and frozen. It preserves no-observer Runtime behavior,
+creates Attempts only after input retention, and keeps primary Runtime outcomes
+authoritative over ordinary/cancellation secondary observation errors.
 
 ## Package-level future work
 
 The completed foundation can evolve through future approved capabilities.
 Those possibilities are maintained in package-local documentation rather than
-duplicated here. Evidence is the active next architectural discussion; its scope
-must be designed separately from concrete consumer evidence.
+duplicated here. The next architectural discussion is Runtime-to-terminal-
+Evidence production and delivery design. Attempt/Evidence persistence and
+retry/replay remain separate future work.
 
 See the [documentation map](documentation_map.md) to locate package-specific
 future-work documentation.

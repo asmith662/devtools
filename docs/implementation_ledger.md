@@ -107,18 +107,68 @@ an API reference or a backlog; see package-local documentation and the
   with Runtime. A real SQLite-to-reconstructed-Session-to-Runtime-to-Codex
   acceptance resumed the same provider thread, retained the exact four-Message
   History, and preserved read-only execution in an isolated temporary repository.
+- Implemented and froze `devtools.evidence` for its Attempt-only milestone:
+  `AttemptId`, four-state `AttemptState`, and a mutable one-way Attempt
+  lifecycle with immutable SessionId/MessageId/source attribution and observed
+  start/completion timestamps.
+- Corrected Attempt terminalization to obtain `Timestamp.now()` before any
+  lifecycle mutation, so timestamp failure propagates without partially
+  terminalizing the Attempt. Attempt uses object-identity equality and is
+  unhashable; result, diagnostic, retry, Runtime, and Persistence integration
+  remain deliberately absent.
+- Integrated Runtime with Evidence through the narrow structural synchronous
+  `AttemptObserver` Protocol. Runtime now retains only optional fixed observer
+  configuration and remains interaction-stateless; `Runtime()` creates no
+  Attempt. Observed Attempts are created after input retention, started before
+  Agent work, and span continuation lookup through final Runtime commit.
+- Defined primary Runtime outcome precedence over ordinary/cancellation
+  secondary lifecycle or observer errors, while deliberately leaving
+  non-cancellation `BaseException` unsuppressed. Terminalization and callbacks
+  are each at most once, finished callbacks receive the same terminal live
+  Attempt, and all callbacks occur under Session turn coordination.
+- Added deterministic finalization regressions proving the no-observer path
+  never calls `Attempt.new()` and started observation sees retained input and a
+  RUNNING Attempt before Agent invocation. Verified same-Session lifecycle
+  ordering, continuation handoff, different-Session concurrency, and real
+  no-observer plus observed read-only Codex acceptance. No Persistence,
+  concrete Evidence, retry, or participant-identity behavior was added.
+- Implemented and froze immutable terminal Evidence values: `EvidenceId`, the
+  six-value `AttemptStage` location vocabulary, empty `AttemptSucceeded`,
+  required-stage `AttemptFailed` and `AttemptCancelled`, their closed terminal
+  outcome union, and keyword-only `AttemptTerminalEvidence`.
+- Terminal Evidence is a frozen, slotted, hashable structural value with
+  `EvidenceId`, `AttemptId`, caller-supplied terminal `occurred_at`,
+  construction-time `observed_at`, and no wall-clock ordering invariant. It
+  embeds no live Attempt and duplicates no Attempt attribution. Stages state
+  where processing stopped, not failure cause or side-effect/retryability facts.
+- The terminal submodule now declares its exact public `__all__`; direct
+  regressions freeze the empty success payload and required failed/cancelled
+  stages. Runtime production/delivery, EvidenceSink, EvidenceRecord, and
+  Attempt/Evidence persistence remain deferred.
 
 ## Verification snapshot
 
-At the Persistence-freeze checkpoint:
+At the Runtime-to-Attempt integration-freeze checkpoint:
 
 ```text
 Ruff: clean
 mypy: clean
-pytest: 396 passed, 4 skipped
+pytest: 453 passed, 5 skipped
 branch coverage: 100%
 git diff --check: clean
-live Persistence/Runtime/Codex acceptance: 1 passed
+live Runtime/Codex acceptance: no-observer and observed paths passed
+```
+
+At the immutable terminal Evidence value-model freeze checkpoint:
+
+```text
+focused terminal tests: 11 passed
+Evidence suite: 42 passed
+deterministic suite: 464 passed, 5 skipped
+branch coverage: 100.00%
+Ruff: clean
+mypy: clean, 153 files
+git diff --check: clean apart from existing harmless CRLF warnings
 ```
 
 ## Deferred work

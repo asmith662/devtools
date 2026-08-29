@@ -20,6 +20,8 @@ The completed foundational tooling milestone consists of independent domains:
 - generic agent contract: `agents`;
 - stateless interaction coordination: `runtime`;
 - durable Session reconstruction: `persistence`;
+- factual execution evidence: `evidence`, with live Attempt lifecycle and
+  immutable terminal observations;
 - provider/agent integration: `codex`, the first concrete `Agent` adapter.
 
 This grouping describes the current milestone. It does not imply a
@@ -39,8 +41,9 @@ This grouping describes the current milestone. It does not imply a
 | `conversion` | Explicit callable conversion and stable failure normalization; not automatic target-type construction or serialization. |
 | `filesystem` | File models, format-native structure, codecs, format resolution, bounded generic reads, and atomic generic writes. Text, JSON, Markdown, and CSV are codec-backed; binary is model-only. |
 | `agents` | Provider-neutral asynchronous message invocation and opaque continuation contract; not provider transport, session history, or runtime routing. |
-| `runtime` | Stateless coordination of one caller-selected Agent interaction with one Session; not Agent routing, provider transport, or retained Session state. |
+| `runtime` | Configuration-bearing but interaction-stateless coordination of one caller-selected Agent interaction with one Session, with optional Attempt observation; not Agent routing, provider transport, or retained turn state. |
 | `persistence` | Strict portable JSON and normalized SQLite durable reconstruction of semantic Session state; not Context storage ownership, Runtime coordination, provider execution, or filesystem I/O policy. |
+| `evidence` | Factual execution evidence: mutable identified Attempt lifecycle plus immutable terminal observations with distinct record identity and typed outcome/stage values; not a provider payload, Runtime coordinator, or persistence store. |
 | `codex` | Codex CLI adaptation, JSONL final-turn parsing, thread continuation, and a concrete Agent implementation; not generic command execution, provider discovery, or session state. |
 
 Detailed format and lifecycle mechanics belong in the relevant package-local
@@ -77,6 +80,13 @@ graph TD
     persistence --> context_session
     persistence --> time
     persistence --> paths
+
+    evidence --> identity
+    evidence --> time
+    evidence --> context_message
+    evidence --> context_session
+
+    runtime --> evidence
 
     codex --> agents
     codex --> context_message
@@ -117,6 +127,13 @@ persistence -> context.history
 persistence -> context.session
 persistence -> time
 persistence -> paths
+
+evidence -> identity
+evidence -> time
+evidence -> context.message
+evidence -> context.session
+
+runtime    -> evidence
 
 codex      -> agents
 codex      -> context.message
@@ -175,7 +192,8 @@ meaningful context.
 ### Higher-layer orchestration
 
 Foundational packages provide primitives. Runtime composes the established
-Session and Agent contracts without embedding provider execution in either.
+Session, Agent, and optional Evidence observation contracts without embedding
+provider execution in either.
 
 ## Cross-package boundaries
 
@@ -188,16 +206,26 @@ does not depend on filesystem. `context` owns retained interaction values;
 them and composes existing context-message, command, and path primitives.
 Context Session retains current Agent continuation references without invoking
 Agents and owns in-memory complete-turn serialization for its mutable History
-and continuation state. Runtime is the stateless one-Agent-interaction
-coordinator: it holds Session-owned complete-turn serialization while awaiting
-an Agent, so different Sessions may proceed concurrently while a Session's
-continuation handoff remains ordered. Session coordination is object-local and
-in-process; persistent or distributed coordination remains outside the current
-architecture. Runtime does not depend on Codex; Codex is one concrete Agent.
+and continuation state. Runtime is the configuration-bearing but
+interaction-stateless one-Agent-interaction coordinator: it holds Session-owned
+complete-turn serialization while awaiting an Agent, so different Sessions may
+proceed concurrently while a Session's continuation handoff remains ordered.
+Its optional fixed AttemptObserver records live Attempt lifecycle observation
+without creating retained turn state. Evidence supplies Attempt and
+AttemptObserver but has no Runtime dependency. Session coordination is
+object-local and in-process; persistent or distributed coordination remains
+outside the current architecture. Runtime does not depend on Codex; Codex is one
+concrete Agent.
 Persistence durably serializes and reconstructs semantic Session state without
 making Context storage-aware. It offers strict portable JSON and normalized
 queryable SQLite formats; a loaded Session can then be coordinated by Runtime.
 Persistence has no Codex dependency and does not own Runtime coordination.
+Evidence owns factual Attempt lifecycle and its synchronous observation
+Protocol, plus immutable terminal observations identified by `EvidenceId` and
+referring to their subject by `AttemptId`. It references Context identities
+without changing Session or Persistence; Runtime consumes it one-way for
+optional live observation and does not yet produce terminal Evidence. Durable
+Attempt/Evidence storage remains separate future work.
 
 Session indexes current external continuation state by `MessageSource`.
 Supporting multiple logical participants sharing one source requires a stronger
@@ -229,8 +257,8 @@ document.
 
 The `identity`, `system`, `paths`, `time`, `commands`, `regex`, `conversion`,
 `filesystem`, `context.message`, `context.history`, `context.session`,
-`agents`, `runtime`, `persistence`, and `codex` milestones are documented and
-frozen.
+`agents`, `runtime`, `persistence`, `evidence`, and `codex` milestones are
+documented and frozen.
 
 Frozen means the current milestone contract is documented and verified; it does
 not prevent future, deliberately approved evolution.
@@ -238,6 +266,7 @@ not prevent future, deliberately approved evolution.
 ## Next architectural boundary
 
 The foundation, generic Agent contract, first Codex integration, Context
-Message/History/Session, Runtime, and Persistence milestones are complete.
-Evidence is the next user-selected architectural discussion; it remains
-separate from the current frozen persistence contract.
+Message/History/Session, Runtime, Persistence, Evidence Attempt, immutable
+terminal Evidence value model, and Runtime-to-Attempt observation milestones are
+complete. The next architectural boundary is Runtime-to-terminal-Evidence
+production and delivery design.

@@ -2,10 +2,12 @@
 
 ## Purpose
 
-`Runtime` is a stateless coordination service that applies one caller-selected
-`Agent` interaction to one mutable `Session`. It owns no retained interaction
-or provider state; `Session` owns retained `History` and current continuation
-references, while an `Agent` owns response and provider behavior.
+`Runtime` is a configuration-bearing but interaction-stateless coordination
+service that applies one caller-selected `Agent` interaction to one mutable
+`Session`. Its only retained configuration is an optional fixed
+`AttemptObserver`; it owns no retained interaction or provider state. `Session`
+owns retained `History` and current continuation references, while an `Agent`
+owns response and provider behavior.
 
 ```text
 Message          one contextual utterance
@@ -23,6 +25,7 @@ acceptance implementation, not a Runtime dependency.
 from devtools.runtime import Runtime
 
 runtime = Runtime()
+# Or: runtime = Runtime(observer=observer)
 turn = await runtime.send(
     session=session,
     agent=agent,
@@ -30,9 +33,10 @@ turn = await runtime.send(
 )
 ```
 
-`Runtime` is the complete root public API. It has no configuration, identity,
-lifecycle, lock, retained Session, retained Agent, continuation, last result,
-or other interaction state.
+`Runtime` is the complete root public API. `runtime.observer` is readable,
+fixed configuration with type `AttemptObserver | None`; no replacement API
+exists. Runtime has no identity, lifecycle, lock, retained Session, retained
+Agent, continuation, last result, current Attempt, or other interaction state.
 
 ## Coordination algorithm
 
@@ -52,6 +56,51 @@ or other interaction state.
 The complete operation is held inside `session.turn()`, including the awaited
 Agent call. Runtime never directly constructs History or mutates the public
 conversation mapping.
+
+## Optional Attempt observation
+
+`Runtime()` and `Runtime(observer=None)` create no Attempt at all: no
+AttemptId, Attempt timestamp, lifecycle bookkeeping, callback, or hidden null
+observer exists for that invocation. The unobserved processing path retains the
+ordinary Runtime contract.
+
+With an observer, Runtime creates an Attempt only after Session turn acquisition
+and successful input retention. It then calls `attempt_started()` before
+continuation lookup or Agent invocation. This is an admission boundary: waiting
+cancellation, input-retention failure, or Attempt construction/start observation
+failure results in no Agent call; the first two create no Attempt/callback.
+
+After successful start observation, the Attempt spans continuation lookup,
+Agent invocation, returned-source validation, output retention, and
+continuation replacement. Success is established only after those primary
+Runtime commits complete.
+
+Runtime attempts at most one terminal lifecycle method (`succeed()`, `fail()`,
+or `cancel()`) and calls `attempt_finished()` at most once only after successful
+terminalization. Both callbacks receive the same live mutable Attempt; an
+observer needing callback-time values must copy them.
+
+The precedence is primary Runtime outcome, then Attempt accounting, then
+observer notification. Secondary ordinary `Exception` and
+`asyncio.CancelledError` do not replace an established primary failure,
+cancellation, or committed success; committed success still returns the exact
+`AgentTurn`. There is no wrapper, aggregation, logging, or secondary-error
+collection.
+
+Runtime does not broadly catch `BaseException`. A non-cancellation
+`BaseException` from lifecycle or observer code is intentionally unsuppressed
+and may supersede an active ordinary exception or cancellation during cleanup.
+It propagates after committed success as well. If terminalization fails, it is
+not retried and no finished callback occurs; Attempt remains RUNNING when its
+timestamp acquisition fails.
+
+Callbacks are synchronous and run under `Session.turn()`. Same-Session observed
+turns serialize from started through finished, while different Sessions remain
+independently concurrent. Runtime supplies no observer-global lock; observers
+own their concurrency safety, must keep work bounded, and cannot synchronously
+reenter Runtime for the same Session because Session turn coordination is
+non-reentrant. Runtime does not roll back observer side effects, and callback
+success is not a durability guarantee.
 
 ## Messages and Agent selection
 
@@ -129,12 +178,18 @@ cleanup belongs to the concrete Agent.
 Runtime coordination is forward-only, not transactional. It does not roll back
 an earlier Session mutation if a later local operation unexpectedly fails.
 
+An admitted Attempt records the primary Runtime outcome: SUCCEEDED means all
+primary Runtime work completed, FAILED means ordinary non-cancellation failure,
+and CANCELLED means cancellation. FAILED/CANCELLED do not prove a provider,
+filesystem, network, or external side effect did not occur; neither makes retry
+or replay safe or idempotent.
+
 ## Boundaries
 
-Runtime has no retry, fallback, timeout, deadline, persistence, context
-compiler, tracing, attempt, routing, or Agent-selection policy. One Runtime
-call invokes one supplied Agent once. Timeout policy belongs to the concrete
-Agent or transport.
+Runtime has no retry, replay, fallback, timeout, deadline, persistence, context
+compiler, concrete Evidence record, routing, or Agent-selection policy. One
+Runtime call invokes one supplied Agent once. Timeout policy belongs to the
+concrete Agent or transport.
 
 Runtime inherits Session's current limitation of one current `ConversationRef`
 per `MessageSource`. It does not solve independent continuations for multiple
@@ -146,24 +201,24 @@ logical participants sharing a source.
 runtime -> agents
 runtime -> context.message
 runtime -> context.session
+runtime -> evidence
 ```
 
-Runtime has no direct Codex dependency.
+Evidence does not depend on Runtime. Runtime has no direct Codex or Persistence
+dependency.
 
 ## Live Codex acceptance
 
-The opt-in Runtime/Codex acceptance uses an isolated temporary Git repository.
-It verifies fresh input/output retention, Session-stored continuation,
-automatic Runtime continuation lookup, same-thread resume, an exact four-Message
-History, stable SessionId and creation time, and resumed read-only write denial.
-This is evidence that Runtime coordinates one real Agent implementation; it is
-not a requirement that Runtime depend on Codex.
+Opt-in Runtime/Codex acceptance uses an isolated temporary Git repository. The
+no-observer path verifies automatic two-turn continuation, same-thread resume,
+an exact four-Message History, stable SessionId/time, and read-only write denial.
+The observed path verifies a real successful Attempt with exact attribution, the
+same live object across callbacks, two-message History, and write denial. This
+is acceptance evidence, not a Runtime dependency on Codex.
 
 ## Constrained future evolution
 
-Concrete consumers may justify tracing/evidence, an attempt model, turn
-deadline policy, Agent routing/selection, or coordination-policy collaborators.
-Retry policy, Runtime result/error models, and constructor collaborators remain
-speculative. Session persistence, context compilation, provider configuration,
-ConversationRef parsing, and Agent transport behavior remain outside Runtime
-ownership.
+Concrete factual Evidence, Attempt persistence, retry policy, turn deadlines,
+and routing require separate designs. Session persistence, context compilation,
+provider configuration, ConversationRef parsing, and Agent transport behavior
+remain outside Runtime ownership.

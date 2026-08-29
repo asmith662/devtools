@@ -25,14 +25,17 @@ The ledger records history; it does not authorize future architecture.
   transcript behavior and API
 - [Session](../src/devtools/context/docs/session.md) — exact SessionId,
   mutable lifecycle, and continuation-state contract
-- [Runtime overview](../src/devtools/runtime/docs/overview.md) - stateless
-  Agent/Session coordination contract
+- [Runtime overview](../src/devtools/runtime/docs/overview.md) -
+  configuration-bearing, interaction-stateless Agent/Session coordination and
+  optional Attempt observation contract
 - [Persistence overview](../src/devtools/persistence/docs/overview.md) - durable
   semantic Session reconstruction boundary
 - [Persistence JSON](../src/devtools/persistence/docs/json.md) - strict portable
   JSON Session representation
 - [Persistence SQLite](../src/devtools/persistence/docs/sqlite.md) - normalized
   SQLite Session snapshot store
+- [Evidence overview](../src/devtools/evidence/docs/overview.md) - live Attempt
+  lifecycle/AttemptObserver and immutable terminal Evidence value-model contract
 - [system overview](../src/devtools/system/docs/overview.md)
 - [paths overview](../src/devtools/paths/docs/overview.md) and
   [resolution](../src/devtools/paths/docs/resolution.md)

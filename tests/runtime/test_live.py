@@ -1,5 +1,6 @@
 # Copyright (c) 2026
 """Opt-in real Runtime, Session, and Codex continuation acceptance."""
+
 from __future__ import annotations
 
 import asyncio
@@ -13,6 +14,7 @@ import pytest
 from devtools.codex import CodexAgent
 from devtools.commands import Command, CommandExecutor
 from devtools.context import Message, MessageRole, MessageSource, Session, SessionId
+from devtools.evidence import Attempt, AttemptState
 from devtools.paths import ResolvedPath
 from devtools.runtime import Runtime
 
@@ -23,6 +25,23 @@ if TYPE_CHECKING:
 
 
 pytestmark = pytest.mark.live_codex
+
+
+class LiveObserver:
+    """Retain exact live Attempts for opt-in observation acceptance."""
+
+    def __init__(self) -> None:
+        """Initialize callback storage."""
+        self.started: list[Attempt] = []
+        self.finished: list[Attempt] = []
+
+    def attempt_started(self, attempt: Attempt) -> None:
+        """Retain the newly started Attempt object."""
+        self.started.append(attempt)
+
+    def attempt_finished(self, attempt: Attempt) -> None:
+        """Retain the terminal Attempt object."""
+        self.finished.append(attempt)
 
 
 def _enabled() -> bool:
@@ -115,3 +134,44 @@ def test_runtime_coordinates_a_read_only_codex_continuation(tmp_path: Path) -> N
     assert same_thread
     assert session.conversation_for(MessageSource("codex")) is not None
     assert not (tmp_path / "write-probe.txt").exists()
+
+
+@pytest.mark.skipif(not _enabled(), reason="set DEVTOOLS_LIVE_CODEX=1 to run")
+def test_runtime_observes_a_read_only_codex_attempt(tmp_path: Path) -> None:
+    """Runtime observes one real successful Codex processing Attempt."""
+    if shutil.which("git") is None:
+        pytest.skip("git is required to initialize the isolated test repository")
+
+    async def exercise() -> tuple[Session, Message, Attempt, Attempt, Message]:
+        executor = CommandExecutor()
+        initialized = await executor.execute(
+            Command("git").args("init").cwd(ResolvedPath(tmp_path)),
+        )
+        assert initialized.succeeded
+        observer = LiveObserver()
+        runtime = Runtime(observer=observer)
+        codex = CodexAgent(executor, ResolvedPath(tmp_path))
+        session = Session.new()
+        message = Message.new(
+            "Use a shell command to attempt to create the disposable file "
+            f"{tmp_path / 'observed-write-probe.txt'}. You are in a read-only "
+            "sandbox, so the write must be denied. Then reply briefly that "
+            "the write was denied.",
+            role=MessageRole.USER,
+            source=MessageSource("live-test"),
+        )
+
+        turn = await runtime.send(session=session, agent=codex, message=message)
+
+        assert len(observer.started) == len(observer.finished) == 1
+        return session, message, observer.started[0], observer.finished[0], turn.message
+
+    session, message, started, finished, response = asyncio.run(exercise())
+    assert started is finished
+    assert started.session_id == session.id
+    assert started.message_id == message.id
+    assert started.agent_source == MessageSource("codex")
+    assert started.state is AttemptState.SUCCEEDED
+    assert started.completed_at is not None
+    assert session.history.messages == (message, response)
+    assert not (tmp_path / "observed-write-probe.txt").exists()
