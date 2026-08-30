@@ -165,6 +165,19 @@ an API reference or a backlog; see package-local documentation and the
   added exact primary-cancellation identity, one-construction/no-sink proofs and
   RESULT_VALIDATION, OUTPUT_RETENTION, and CONTINUATION_REPLACEMENT cancellation
   stage/partial-Session-state regressions before this freeze.
+- Designed and implemented experimental `ExecutionInspector` as an in-memory,
+  process-local diagnostic consumer of `AttemptObserver` and `EvidenceSink`.
+  A real one-turn local Codex/Runtime exercise found that retained Attempt IDs
+  were not publicly discoverable after `Runtime.send()`.
+- A narrow experimental ergonomic correction added
+  `attempt_ids() -> tuple[AttemptId, ...]` without Runtime changes or new
+  attribution, persistence, or query architecture. A real two-turn local
+  Codex/Runtime exercise validated unordered ID discovery: caller-held input
+  `MessageId` values and `Attempt.message_id` distinguished executions, and
+  `get_evidence_for_attempt()` remained sufficient. No query, latest,
+  Persistence, or AttemptAttribution pressure emerged. The capability is
+  retained as active experimental work: submodule-only, non-durable, and not
+  frozen.
 
 ## Verification snapshot
 

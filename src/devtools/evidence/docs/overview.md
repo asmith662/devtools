@@ -198,6 +198,55 @@ order; shared-sink concurrency is sink-owned. A slow synchronous sink can delay
 a later same-Session turn and block the event-loop thread, so acceptance is
 expected to be bounded synchronous work.
 
+## Experimental execution inspection
+
+**Experimental — retained, submodule-only, process-local, and not frozen.**
+`ExecutionInspector` is a non-durable diagnostic consumer for developers
+inspecting current-process Runtime executions. It consumes the existing
+structural `AttemptObserver` and `EvidenceSink` seams; Runtime has no special
+knowledge of it.
+
+Import it explicitly rather than from the Evidence root API:
+
+```python
+from devtools.evidence.inspection import ExecutionInspector
+```
+
+Its demonstrated configuration is:
+
+```python
+inspector = ExecutionInspector()
+
+runtime = Runtime(
+    observer=inspector,
+    evidence_sink=inspector,
+)
+```
+
+The inspector retains current-process Attempt diagnostics and terminal Evidence
+only. It is not persistent execution history, an audit journal, a durable
+Evidence store, a canonical store, a conflict detector, or an integrity
+authority.
+
+For discovery, `attempt_ids()` returns a point-in-time tuple of currently
+retained `AttemptId` values. It has **no ordering guarantee**: tuple positions
+do not indicate execution, chronological, callback, Session, latest, or oldest
+order. Callers can inspect a selected execution with `get_attempt(attempt_id)`;
+the returned Attempt is the currently retained live object and should be treated
+as observational diagnostic state. Its existing `message_id`, `session_id`,
+`agent_source`, and timestamps can help identify an execution.
+
+`get_evidence(evidence_id)` retrieves a currently retained terminal Evidence
+record, and `get_evidence_for_attempt(attempt_id)` retrieves currently retained
+terminal Evidence records associated with an Attempt. `clear()` discards all
+currently retained diagnostic state. There is no automatic retention bound; use
+`clear()` or release the inspector when diagnostics are no longer needed. No
+cross-thread safety guarantee is provided.
+
+This experimental API and behavior may change as additional diagnostic use
+cases are exercised. It remains outside the frozen Evidence root API and does
+not change the canonical Evidence architecture.
+
 ## Data minimization and exclusions
 
 Terminal Evidence contains semantic identities, timestamps, and typed outcome
