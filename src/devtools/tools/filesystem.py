@@ -6,6 +6,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from devtools.filesystem import read
+from devtools.paths import resolve_path
 from devtools.tools.errors import ToolInputError
 
 if TYPE_CHECKING:
@@ -21,7 +22,7 @@ class ReadRepositoryFileTool:
 
     def __init__(self, root: ResolvedPath) -> None:
         """Create a read-only Tool scoped to one repository root."""
-        self._root = root
+        self._root = _normalize(root)
 
     @property
     def name(self) -> str:
@@ -35,7 +36,9 @@ class ReadRepositoryFileTool:
 
     def validate(self, arguments: ResolvedPath) -> None:
         """Reject paths outside this Tool's configured semantic scope."""
-        if arguments.value.is_relative_to(self._root.value):
+        normalized_arguments = _normalize(arguments)
+
+        if normalized_arguments.value.is_relative_to(self._root.value):
             return
 
         msg = f"Path is outside the configured repository root: {arguments}."
@@ -43,4 +46,9 @@ class ReadRepositoryFileTool:
 
     async def execute(self, arguments: ResolvedPath) -> File:
         """Read one admitted path through the existing synchronous Filesystem API."""
-        return read(arguments)
+        return read(_normalize(arguments))
+
+
+def _normalize(path: ResolvedPath) -> ResolvedPath:
+    """Apply the repository's existing path-resolution semantics."""
+    return resolve_path(path.value)

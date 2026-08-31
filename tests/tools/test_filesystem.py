@@ -15,7 +15,7 @@ from devtools.filesystem import (
     MarkdownFile,
     NotAFileError,
 )
-from devtools.paths import ResolvedPath, resolve_path
+from devtools.paths import ResolvedPath
 from devtools.tools import Tool, ToolInputError, ToolRunner
 from devtools.tools.filesystem import ReadRepositoryFileTool
 
@@ -74,17 +74,53 @@ def test_read_repository_file_tool_rejects_sibling_prefix_without_reading(
     asyncio.run(exercise())
 
 
-def test_read_repository_file_tool_rejects_resolved_parent_escape(
+@pytest.mark.parametrize(
+    ("root_form", "candidate_form"),
+    [
+        ("unnormalized", "normalized"),
+        ("normalized", "unnormalized"),
+    ],
+)
+def test_read_repository_file_tool_normalizes_direct_resolved_path_inputs(
+    tmp_path: Path,
+    root_form: str,
+    candidate_form: str,
+) -> None:
+    """Equivalent direct absolute values receive the same scope decision."""
+    root = tmp_path / "repository"
+    source = root / "notes.md"
+    source.parent.mkdir()
+    source.write_bytes(b"# Notes\n")
+    root_value = root / "nested" / ".." if root_form == "unnormalized" else root
+    candidate_value = (
+        root / "nested" / ".." / source.name
+        if candidate_form == "unnormalized"
+        else source
+    )
+
+    async def exercise() -> None:
+        result = await ToolRunner().execute(
+            ReadRepositoryFileTool(ResolvedPath(root_value)),
+            ResolvedPath(candidate_value),
+        )
+
+        assert isinstance(result, MarkdownFile)
+        assert result.content == "# Notes\n"
+
+    asyncio.run(exercise())
+
+
+def test_read_repository_file_tool_rejects_direct_parent_escape(
     tmp_path: Path,
 ) -> None:
-    """A parent escape is rejected after existing path resolution normalizes it."""
+    """A direct absolute parent escape is rejected after normalization."""
     root = tmp_path / "repository"
-    candidate = resolve_path(root / ".." / "other" / "notes.md")
+    candidate = ResolvedPath(root / ".." / "other" / "notes.md")
 
     async def exercise() -> None:
         with pytest.raises(ToolInputError, match="outside"):
             await ToolRunner().execute(
-                ReadRepositoryFileTool(_resolved(root)),
+                ReadRepositoryFileTool(ResolvedPath(root)),
                 candidate,
             )
 
