@@ -265,6 +265,45 @@ def test_success_without_container_id_is_rejected(tmp_path: Path) -> None:
         )
 
 
+def test_start_rejects_multiline_container_id_before_readiness(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    """Malformed detached output cannot establish a server or enter readiness."""
+    commands: list[Command] = []
+
+    async def execute(command: Command) -> CommandResult:
+        commands.append(command)
+        if command.arguments[0] == "run":
+            return _result(
+                command,
+                stdout=b"noise\n" + _VALID_CONTAINER_ID.encode() + b"\n",
+            )
+
+        return _result(command, stdout=b"true|true\n")
+
+    async def unexpected_probe(_endpoint: str, _model: str) -> bool:
+        msg = "Readiness probe must not run after malformed launch output"
+        raise AssertionError(msg)
+
+    monkeypatch.setattr(
+        "devtools.model_serving.vllm._probe_model_ready",
+        unexpected_probe,
+    )
+    executor = _Executor([])
+    executor.execute = execute  # type: ignore[method-assign]
+
+    with pytest.raises(VLLMLaunchError, match="exactly one valid"):
+        asyncio.run(
+            VLLMServer.start(
+                config=_config(tmp_path),
+                executor=executor,  # type: ignore[arg-type]
+            ),
+        )
+
+    assert [command.arguments[0] for command in commands] == ["run"]
+
+
 @pytest.mark.parametrize(
     "stdout",
     [
@@ -273,6 +312,7 @@ def test_success_without_container_id_is_rejected(tmp_path: Path) -> None:
         b"abc123 extra",
         b"a" * 63,
         b"a" * 65,
+        b"noise\n" + b"a" * 64,
         b"a" * 64 + b"\nsecond-line",
     ],
 )
@@ -510,6 +550,44 @@ def test_inspection_operational_failure_surfaces_without_http_or_stop(
         asyncio.run(server.stop())
 
     assert [command.arguments[0] for command in commands] == ["inspect", "inspect"]
+
+
+def test_different_container_not_found_does_not_establish_absence(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    """A missing-object diagnostic must name this handle's exact container."""
+    different_container_id = "b" * 64
+
+    async def execute(command: Command) -> CommandResult:
+        return _result(
+            command,
+            exit_code=1,
+            stderr=(
+                f"Error: No such object: {different_container_id}"
+            ).encode(),
+        )
+
+    async def unexpected_probe(_endpoint: str, _model: str) -> bool:
+        msg = "HTTP probe must not run after inspect failure"
+        raise AssertionError(msg)
+
+    monkeypatch.setattr(
+        "devtools.model_serving.vllm._probe_model_ready",
+        unexpected_probe,
+    )
+    executor = _Executor([])
+    executor.execute = execute  # type: ignore[method-assign]
+    server = VLLMServer(
+        config=_config(tmp_path),
+        container_id=_VALID_CONTAINER_ID,
+        container_name="devtools-vllm-test",
+        executor=executor,  # type: ignore[arg-type]
+        started_at=__import__("devtools.time", fromlist=["Timestamp"]).Timestamp.now(),
+    )
+
+    with pytest.raises(VLLMInspectionError, match="No such object"):
+        asyncio.run(server.status())
 
 
 def test_startup_cleanup_preserves_primary_failure_when_inspection_fails(
