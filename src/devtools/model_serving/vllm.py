@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import re
 import uuid
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Self
@@ -13,6 +14,7 @@ from urllib.parse import urlsplit
 from devtools.commands import Command, CommandExecutor, CommandResult
 from devtools.model_serving.errors import (
     ServingReadinessTimeoutError,
+    VLLMInspectionError,
     VLLMLaunchError,
     VLLMOwnershipError,
     VLLMStopError,
@@ -34,6 +36,7 @@ _MAX_HOST_PORT = 65_535
 _HTTP_OK = 200
 _HTTP_STATUS_PARTS = 2
 _DEFAULT_READINESS_TIMEOUT = Duration.minutes(10)
+_CONTAINER_ID = re.compile(r"^[0-9a-fA-F]{64}$")
 
 
 @dataclass(frozen=True, slots=True)
@@ -87,6 +90,14 @@ class VLLMServerStatus:
 
     container_running: bool
     model_ready: bool
+
+
+@dataclass(frozen=True, slots=True)
+class _ContainerInspection:
+    """Represent the fixed Docker state projection for one exact container."""
+
+    running: bool
+    ownership_label: str
 
 
 class VLLMServer:
@@ -205,12 +216,11 @@ class VLLMServer:
 
     async def status(self) -> VLLMServerStatus:
         """Return whether the exact owned container is running and model-ready."""
-        result = await self._executor.execute(_inspect_command(self._container_id))
-        if result.failed:
+        inspection = await _inspect_container(self._executor, self._container_id)
+        if inspection is None:
             return VLLMServerStatus(container_running=False, model_ready=False)
 
-        running, _label = _parse_inspection(result)
-        if not running:
+        if not inspection.running:
             return VLLMServerStatus(container_running=False, model_ready=False)
 
         ready = await _probe_model_ready(self.endpoint, self._config.served_model_name)
@@ -221,16 +231,15 @@ class VLLMServer:
 
         Stopping is idempotent: a removed ``--rm`` container is already stopped.
         """
-        inspection = await self._executor.execute(_inspect_command(self._container_id))
-        if inspection.failed:
+        inspection = await _inspect_container(self._executor, self._container_id)
+        if inspection is None:
             return
 
-        running, label = _parse_inspection(inspection)
-        if label != _MANAGED_LABEL_VALUE:
+        if inspection.ownership_label != _MANAGED_LABEL_VALUE:
             msg = "Refusing to stop a container without the expected ownership label."
             raise VLLMOwnershipError(msg)
 
-        if not running:
+        if not inspection.running:
             return
 
         result = await self._executor.execute(_stop_command(self._container_id))
@@ -314,22 +323,64 @@ def _new_container_name() -> str:
 
 def _parse_container_id(result: CommandResult) -> str:
     """Extract Docker's detached container ID from successful standard output."""
-    container_id = result.stdout.decode("utf-8", errors="replace").strip()
-    if not container_id:
-        msg = "Docker reported a successful vLLM launch without a container ID."
+    output = result.stdout.decode("utf-8", errors="replace")
+    lines = [line for line in output.splitlines() if line]
+    if len(lines) != 1 or _CONTAINER_ID.fullmatch(lines[0]) is None:
+        msg = "Docker launch output did not contain exactly one valid container ID."
         raise VLLMLaunchError(msg)
 
-    return container_id.splitlines()[-1]
+    return lines[0]
 
 
-def _parse_inspection(result: CommandResult) -> tuple[bool, str]:
+async def _inspect_container(
+    executor: CommandExecutor,
+    container_id: str,
+) -> _ContainerInspection | None:
+    """Inspect one exact container, distinguishing absence from operational error."""
+    result = await executor.execute(_inspect_command(container_id))
+    if result.failed:
+        if _is_exact_container_not_found(result, container_id):
+            return None
+
+        raise VLLMInspectionError(_inspection_error_message(result))
+
+    return _parse_inspection(result)
+
+
+def _parse_inspection(result: CommandResult) -> _ContainerInspection:
     """Parse the fixed Docker inspection projection used by this module."""
-    value = result.stdout.decode("utf-8", errors="replace").strip()
-    running_text, separator, label = value.partition("|")
-    if not separator:
-        return False, ""
+    lines = result.stdout.decode("utf-8", errors="replace").splitlines()
+    if len(lines) != 1:
+        msg = "Docker inspection output was not a single state projection."
+        raise VLLMInspectionError(msg)
 
-    return running_text.lower() == "true", label
+    value = lines[0]
+    running_text, separator, label = value.partition("|")
+    if not separator or running_text.lower() not in {"true", "false"}:
+        msg = "Docker inspection output was not a valid state projection."
+        raise VLLMInspectionError(msg)
+
+    return _ContainerInspection(
+        running=running_text.lower() == "true",
+        ownership_label=label,
+    )
+
+
+def _is_exact_container_not_found(result: CommandResult, container_id: str) -> bool:
+    """Return whether Docker reported this exact inspected container as absent."""
+    expected = f"error: no such object: {container_id}".casefold()
+    diagnostic = result.stderr.decode("utf-8", errors="replace").strip().casefold()
+    return diagnostic == expected
+
+
+def _inspection_error_message(result: CommandResult) -> str:
+    """Create bounded diagnostics for a Docker inspection failure."""
+    diagnostic = _diagnostic_text(result.stderr or result.stdout)
+    message = (
+        "Docker could not inspect owned vLLM container "
+        f"(exit {result.exit_code})."
+    )
+    return f"{message} {diagnostic}" if diagnostic else message
 
 
 def _launch_error_message(result: CommandResult) -> str:

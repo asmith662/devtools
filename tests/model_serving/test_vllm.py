@@ -13,6 +13,7 @@ from devtools.commands import Command, CommandNotFoundError, CommandResult
 from devtools.model_serving import vllm
 from devtools.model_serving.errors import (
     ServingReadinessTimeoutError,
+    VLLMInspectionError,
     VLLMLaunchError,
     VLLMOwnershipError,
     VLLMStopError,
@@ -24,6 +25,9 @@ from devtools.time import Duration
 
 if TYPE_CHECKING:
     from pathlib import Path
+
+
+_VALID_CONTAINER_ID = "a" * 64
 
 
 def _config(tmp_path: Path, **changes: object) -> VLLMServingConfig:
@@ -47,9 +51,19 @@ def _result(
     *,
     exit_code: int = 0,
     stdout: bytes = b"",
+    stderr: bytes = b"diagnostic",
 ) -> CommandResult:
     """Create a compact ordinary command result."""
-    return CommandResult(command, exit_code, stdout, b"diagnostic", Duration.seconds(0))
+    return CommandResult(command, exit_code, stdout, stderr, Duration.seconds(0))
+
+
+def _not_found_result(command: Command) -> CommandResult:
+    """Create Docker's exact absent-container inspection result."""
+    return _result(
+        command,
+        exit_code=1,
+        stderr=f"Error: No such object: {_VALID_CONTAINER_ID}".encode(),
+    )
 
 
 class _Executor:
@@ -88,14 +102,14 @@ def test_server_exposes_config_and_start_facts(tmp_path: Path) -> None:
     started_at = __import__("devtools.time", fromlist=["Timestamp"]).Timestamp.now()
     server = VLLMServer(
         config=config,
-        container_id="container-123",
+        container_id=_VALID_CONTAINER_ID,
         container_name="devtools-vllm-test",
         executor=_Executor([]),  # type: ignore[arg-type]
         started_at=started_at,
     )
 
     assert server.config is config
-    assert server.container_id == "container-123"
+    assert server.container_id == _VALID_CONTAINER_ID
     assert server.started_at is started_at
 
 
@@ -133,7 +147,7 @@ def test_start_builds_deterministic_owned_docker_launch(
     async def execute(command: Command) -> CommandResult:
         executor.commands.append(command)
         if command.arguments[0] == "run":
-            return _result(command, stdout=b"container-123\n")
+            return _result(command, stdout=_VALID_CONTAINER_ID.encode() + b"\n")
 
         return _result(command, stdout=b"true|true\n")
 
@@ -174,7 +188,7 @@ def test_start_builds_deterministic_owned_docker_launch(
     assert str(config.gpu_memory_utilization) in command.arguments
     assert str(config.max_num_seqs) in command.arguments
     assert "--trust-remote-code" not in command.arguments
-    assert server.container_id == "container-123"
+    assert server.container_id == _VALID_CONTAINER_ID
     assert server.endpoint == "http://127.0.0.1:8123"
     assert server.cache_root == config.cache_root
     assert config.cache_root.value.is_dir()
@@ -190,7 +204,7 @@ def test_launch_honors_explicit_remote_code_opt_in(
     async def execute(command: Command) -> CommandResult:
         executor.commands.append(command)
         if command.arguments[0] == "run":
-            return _result(command, stdout=b"container-123\n")
+            return _result(command, stdout=_VALID_CONTAINER_ID.encode() + b"\n")
 
         return _result(command, stdout=b"true|true\n")
 
@@ -242,13 +256,39 @@ def test_success_without_container_id_is_rejected(tmp_path: Path) -> None:
     """Docker success without detached identity cannot establish ownership."""
     executor = _Executor([_result(Command("docker", ("run",)))])
 
-    with pytest.raises(VLLMLaunchError, match="without a container ID"):
+    with pytest.raises(VLLMLaunchError, match="exactly one valid"):
         asyncio.run(
             VLLMServer.start(
                 config=_config(tmp_path),
                 executor=executor,  # type: ignore[arg-type]
             ),
         )
+
+
+@pytest.mark.parametrize(
+    "stdout",
+    [
+        b" ",
+        b"not-a-container-id",
+        b"abc123 extra",
+        b"a" * 63,
+        b"a" * 65,
+        b"a" * 64 + b"\nsecond-line",
+    ],
+)
+def test_container_id_parser_rejects_malformed_docker_launch_output(
+    stdout: bytes,
+) -> None:
+    """Successful detached launch output must be exactly one Docker full ID."""
+    with pytest.raises(VLLMLaunchError, match="exactly one valid"):
+        vllm._parse_container_id(_result(Command("docker"), stdout=stdout))  # noqa: SLF001
+
+
+def test_container_id_parser_accepts_one_full_id_with_trailing_newline() -> None:
+    """Normal Docker detached output contains one full ID and a line ending."""
+    result = _result(Command("docker"), stdout=_VALID_CONTAINER_ID.encode() + b"\n")
+
+    assert vllm._parse_container_id(result) == _VALID_CONTAINER_ID  # noqa: SLF001
 
 
 def test_readiness_timeout_stops_owned_container(
@@ -261,7 +301,7 @@ def test_readiness_timeout_stops_owned_container(
     async def execute(command: Command) -> CommandResult:
         executor.commands.append(command)
         if command.arguments[0] == "run":
-            return _result(command, stdout=b"container-123\n")
+            return _result(command, stdout=_VALID_CONTAINER_ID.encode() + b"\n")
         if command.arguments[0] == "inspect":
             return _result(command, stdout=b"true|true\n")
 
@@ -289,7 +329,7 @@ def test_readiness_timeout_stops_owned_container(
         "inspect",
         "stop",
     ]
-    assert executor.commands[-1].arguments[-1] == "container-123"
+    assert executor.commands[-1].arguments[-1] == _VALID_CONTAINER_ID
 
 
 def test_cancellation_during_readiness_stops_owned_container(
@@ -303,7 +343,7 @@ def test_cancellation_during_readiness_stops_owned_container(
     async def execute(command: Command) -> CommandResult:
         executor.commands.append(command)
         if command.arguments[0] == "run":
-            return _result(command, stdout=b"container-123\n")
+            return _result(command, stdout=_VALID_CONTAINER_ID.encode() + b"\n")
         if command.arguments[0] == "inspect":
             inspected.set()
             return _result(command, stdout=b"true|true\n")
@@ -332,7 +372,7 @@ def test_cancellation_during_readiness_stops_owned_container(
 
     asyncio.run(run())
 
-    assert executor.commands[-1].arguments == ("stop", "container-123")
+    assert executor.commands[-1].arguments == ("stop", _VALID_CONTAINER_ID)
 
 
 def test_stopped_container_fails_readiness_without_waiting(
@@ -343,7 +383,7 @@ def test_stopped_container_fails_readiness_without_waiting(
 
     async def execute(command: Command) -> CommandResult:
         if command.arguments[0] == "run":
-            return _result(command, stdout=b"container-123\n")
+            return _result(command, stdout=_VALID_CONTAINER_ID.encode() + b"\n")
         return _result(command, stdout=b"false|true\n")
 
     executor.execute = execute  # type: ignore[method-assign]
@@ -376,7 +416,7 @@ def test_status_distinguishes_running_ready_and_stopped(
     monkeypatch.setattr("devtools.model_serving.vllm._probe_model_ready", ready)
     server = VLLMServer(
         config=_config(tmp_path),
-        container_id="container-123",
+        container_id=_VALID_CONTAINER_ID,
         container_name="devtools-vllm-test",
         executor=executor,  # type: ignore[arg-type]
         started_at=__import__("devtools.time", fromlist=["Timestamp"]).Timestamp.now(),
@@ -394,7 +434,7 @@ def test_status_distinguishes_running_ready_and_stopped(
     assert status.model_ready is False
 
     async def missing(command: Command) -> CommandResult:
-        return _result(command, exit_code=1)
+        return _not_found_result(command)
 
     executor.execute = missing  # type: ignore[method-assign]
     assert asyncio.run(server.status()).container_running is False
@@ -412,7 +452,7 @@ def test_stop_requires_ownership_and_is_idempotent(tmp_path: Path) -> None:
     executor.execute = wrong_label  # type: ignore[method-assign]
     server = VLLMServer(
         config=config,
-        container_id="container-123",
+        container_id=_VALID_CONTAINER_ID,
         container_name="devtools-vllm-test",
         executor=executor,  # type: ignore[arg-type]
         started_at=__import__("devtools.time", fromlist=["Timestamp"]).Timestamp.now(),
@@ -425,13 +465,126 @@ def test_stop_requires_ownership_and_is_idempotent(tmp_path: Path) -> None:
 
     async def missing(command: Command) -> CommandResult:
         commands.append(command)
-        return _result(command, exit_code=1)
+        return _not_found_result(command)
 
     executor.execute = missing  # type: ignore[method-assign]
     asyncio.run(server.stop())
 
-    assert commands[0].arguments[-1] == "container-123"
+    assert commands[0].arguments[-1] == _VALID_CONTAINER_ID
     assert len(commands) == 1
+
+
+def test_inspection_operational_failure_surfaces_without_http_or_stop(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    """Unknown Docker state is not silently converted to a stopped server."""
+    commands: list[Command] = []
+
+    async def execute(command: Command) -> CommandResult:
+        commands.append(command)
+        return _result(command, exit_code=1, stderr=b"Cannot connect to daemon")
+
+    async def unexpected_probe(_endpoint: str, _model: str) -> bool:
+        msg = "HTTP probe must not run after inspect failure"
+        raise AssertionError(msg)
+
+    monkeypatch.setattr(
+        "devtools.model_serving.vllm._probe_model_ready",
+        unexpected_probe,
+    )
+    executor = _Executor([])
+    executor.execute = execute  # type: ignore[method-assign]
+    server = VLLMServer(
+        config=_config(tmp_path),
+        container_id=_VALID_CONTAINER_ID,
+        container_name="devtools-vllm-test",
+        executor=executor,  # type: ignore[arg-type]
+        started_at=__import__("devtools.time", fromlist=["Timestamp"]).Timestamp.now(),
+    )
+
+    with pytest.raises(VLLMInspectionError, match="Cannot connect"):
+        asyncio.run(server.status())
+
+    with pytest.raises(VLLMInspectionError, match="Cannot connect"):
+        asyncio.run(server.stop())
+
+    assert [command.arguments[0] for command in commands] == ["inspect", "inspect"]
+
+
+def test_startup_cleanup_preserves_primary_failure_when_inspection_fails(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    """Timeout remains authoritative when secondary owned cleanup is uncertain."""
+    executor = _Executor([])
+    inspection_count = 0
+
+    async def execute(command: Command) -> CommandResult:
+        nonlocal inspection_count
+        if command.arguments[0] == "run":
+            return _result(command, stdout=_VALID_CONTAINER_ID.encode() + b"\n")
+        if command.arguments[0] == "inspect":
+            inspection_count += 1
+            if inspection_count == 1:
+                return _result(command, stdout=b"true|true\n")
+            return _result(command, exit_code=1, stderr=b"Cannot connect to daemon")
+        msg = "Unsafe docker stop must not run"
+        raise AssertionError(msg)
+
+    async def not_ready(_endpoint: str, _model: str) -> bool:
+        return False
+
+    executor.execute = execute  # type: ignore[method-assign]
+    monkeypatch.setattr("devtools.model_serving.vllm._probe_model_ready", not_ready)
+
+    with pytest.raises(ServingReadinessTimeoutError):
+        asyncio.run(
+            VLLMServer.start(
+                config=_config(tmp_path),
+                executor=executor,  # type: ignore[arg-type]
+                readiness_timeout=Duration.seconds(0.01),
+            ),
+        )
+
+
+def test_startup_cleanup_preserves_cancelled_error_identity(
+    tmp_path: Path,
+) -> None:
+    """Secondary inspect failure never replaces the original cancellation object."""
+    primary = asyncio.CancelledError("primary")
+    executor = _Executor([])
+
+    async def execute(command: Command) -> CommandResult:
+        if command.arguments[0] == "run":
+            return _result(command, stdout=_VALID_CONTAINER_ID.encode() + b"\n")
+        if command.arguments[0] == "inspect":
+            inspections = [
+                item for item in executor.commands if item.arguments[0] == "inspect"
+            ]
+            if len(inspections) == 1:
+                raise primary
+            return _result(command, exit_code=1, stderr=b"Cannot connect to daemon")
+        msg = "Unsafe docker stop must not run"
+        raise AssertionError(msg)
+
+    original_execute = execute
+
+    async def recording_execute(command: Command) -> CommandResult:
+        executor.commands.append(command)
+        return await original_execute(command)
+
+    executor.execute = recording_execute  # type: ignore[method-assign]
+
+    with pytest.raises(asyncio.CancelledError) as raised:
+        asyncio.run(
+            VLLMServer.start(
+                config=_config(tmp_path),
+                executor=executor,  # type: ignore[arg-type]
+            ),
+        )
+
+    assert raised.value is primary
 
 
 def test_stop_handles_owned_stopped_and_docker_stop_failure(tmp_path: Path) -> None:
@@ -444,7 +597,7 @@ def test_stop_handles_owned_stopped_and_docker_stop_failure(tmp_path: Path) -> N
     executor.execute = stopped  # type: ignore[method-assign]
     server = VLLMServer(
         config=_config(tmp_path),
-        container_id="container-123",
+        container_id=_VALID_CONTAINER_ID,
         container_name="devtools-vllm-test",
         executor=executor,  # type: ignore[arg-type]
         started_at=__import__("devtools.time", fromlist=["Timestamp"]).Timestamp.now(),
@@ -466,7 +619,7 @@ def test_stop_handles_owned_stopped_and_docker_stop_failure(tmp_path: Path) -> N
         return CommandResult(command, 1, b"", b"", Duration.seconds(0))
 
     executor.execute = failed_stop_without_diagnostic  # type: ignore[method-assign]
-    with pytest.raises(VLLMStopError, match="container-123"):
+    with pytest.raises(VLLMStopError, match=_VALID_CONTAINER_ID):
         asyncio.run(server.stop())
 
 
@@ -476,7 +629,7 @@ def test_failed_start_cleanup_suppresses_secondary_cleanup_error(
     """Cleanup never replaces the primary lifecycle failure."""
     server = VLLMServer(
         config=_config(tmp_path),
-        container_id="container-123",
+        container_id=_VALID_CONTAINER_ID,
         container_name="devtools-vllm-test",
         executor=_Executor([RuntimeError("secondary")]),  # type: ignore[arg-type]
         started_at=__import__("devtools.time", fromlist=["Timestamp"]).Timestamp.now(),
@@ -489,7 +642,11 @@ def test_internal_parsing_and_diagnostics_cover_invalid_docker_output() -> None:
     """Malformed operational output remains safely non-running or bounded."""
     command = Command("docker")
     malformed = _result(command, stdout=b"not-an-inspection")
-    assert vllm._parse_inspection(malformed) == (False, "")  # noqa: SLF001
+    with pytest.raises(VLLMInspectionError):
+        vllm._parse_inspection(malformed)  # noqa: SLF001
+    multiline = _result(command, stdout=b"true|true\nfalse|true\n")
+    with pytest.raises(VLLMInspectionError, match="single state"):
+        vllm._parse_inspection(multiline)  # noqa: SLF001
     assert vllm._diagnostic_text(b"x" * 5_000) == "x" * 4_096  # noqa: SLF001
     assert vllm._launch_error_message(_result(command, exit_code=1)) == (  # noqa: SLF001
         "Docker rejected vLLM launch with exit code 1. diagnostic"

@@ -10,6 +10,10 @@ class VLLMLaunchError(ModelServingError):
     """Raised when Docker rejects an attempted vLLM container launch."""
 
 
+class VLLMInspectionError(ModelServingError):
+    """Raised when Docker cannot establish an owned container's state."""
+
+
 class ServingReadinessTimeoutError(ModelServingError):
     """Raised when a launched provider never becomes ready in time."""
 
