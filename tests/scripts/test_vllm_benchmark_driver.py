@@ -9,7 +9,7 @@ import importlib.util
 import sys
 from dataclasses import replace
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Literal
 
 import pytest
 
@@ -31,6 +31,13 @@ _DRIVER_PATH = Path("scripts/model_benchmarks/vllm.py")
 _DEFAULT_READINESS_TIMEOUT = Duration.minutes(10)
 _CPU_OFFLOAD_GB = 2.0
 _RESULT_CPU_OFFLOAD_GB = 2.5
+_PREFETCH_BACKEND: Literal["prefetch"] = "prefetch"
+_PREFETCH_GROUP_SIZE = 24
+_PREFETCH_NUM_IN_GROUP = 5
+_PREFETCH_STEP = 1
+_RESULT_PREFETCH_GROUP_SIZE = 23
+_RESULT_PREFETCH_NUM_IN_GROUP = 4
+_RESULT_PREFETCH_STEP = 2
 
 
 @pytest.fixture
@@ -105,7 +112,14 @@ def _patch_start(
     driver: ModuleType,
     server: _Server,
     calls: list[str],
-    expected: tuple[Duration, float] = (_DEFAULT_READINESS_TIMEOUT, 0.0),
+    expected: tuple[Duration, float, Literal["prefetch"] | None, int, int, int] = (
+        _DEFAULT_READINESS_TIMEOUT,
+        0.0,
+        None,
+        0,
+        0,
+        0,
+    ),
 ) -> None:
     async def start(
         *,
@@ -113,10 +127,21 @@ def _patch_start(
         executor: object,
         readiness_timeout: Duration,
     ) -> _Server:
-        expected_readiness_timeout, expected_cpu_offload_gb = expected
+        (
+            expected_readiness_timeout,
+            expected_cpu_offload_gb,
+            expected_offload_backend,
+            expected_offload_group_size,
+            expected_offload_num_in_group,
+            expected_offload_prefetch_step,
+        ) = expected
         assert config == replace(
             _config(config.cache_root.value.parent),
             cpu_offload_gb=expected_cpu_offload_gb,
+            offload_backend=expected_offload_backend,
+            offload_group_size=expected_offload_group_size,
+            offload_num_in_group=expected_offload_num_in_group,
+            offload_prefetch_step=expected_offload_prefetch_step,
         )
         assert executor is not None
         assert readiness_timeout == expected_readiness_timeout
@@ -135,13 +160,24 @@ def test_driver_composes_start_benchmark_save_and_stop(
     """The driver composes validated public APIs in their required order."""
     calls: list[str] = []
     server = _Server(calls)
-    config = replace(_config(tmp_path), cpu_offload_gb=_CPU_OFFLOAD_GB)
+    config = replace(
+        _config(tmp_path),
+        cpu_offload_gb=0.0,
+        offload_backend=_PREFETCH_BACKEND,
+        offload_group_size=_PREFETCH_GROUP_SIZE,
+        offload_num_in_group=_PREFETCH_NUM_IN_GROUP,
+        offload_prefetch_step=_PREFETCH_STEP,
+    )
     case = _case()
     result = replace(
         _result(),
         serving=replace(
             _result().serving,
             cpu_offload_gb=_RESULT_CPU_OFFLOAD_GB,
+            offload_backend=_PREFETCH_BACKEND,
+            offload_group_size=_RESULT_PREFETCH_GROUP_SIZE,
+            offload_num_in_group=_RESULT_PREFETCH_NUM_IN_GROUP,
+            offload_prefetch_step=_RESULT_PREFETCH_STEP,
         ),
     )
     result_path = ResolvedPath(tmp_path / "results" / "run.json")
@@ -150,7 +186,14 @@ def test_driver_composes_start_benchmark_save_and_stop(
         driver,
         server,
         calls,
-        expected=(_DEFAULT_READINESS_TIMEOUT, _CPU_OFFLOAD_GB),
+        expected=(
+            _DEFAULT_READINESS_TIMEOUT,
+            0.0,
+            _PREFETCH_BACKEND,
+            _PREFETCH_GROUP_SIZE,
+            _PREFETCH_NUM_IN_GROUP,
+            _PREFETCH_STEP,
+        ),
     )
 
     async def benchmark(
@@ -187,7 +230,11 @@ def test_driver_composes_start_benchmark_save_and_stop(
     assert str(config.cache_root) in output
     assert str(result_path) in output
     assert f"CPU weight offload: {_RESULT_CPU_OFFLOAD_GB} GiB" in output
-    assert f"CPU weight offload: {_CPU_OFFLOAD_GB} GiB" not in output
+    assert "Offload backend: prefetch" in output
+    assert "Prefetch group size: 23" in output
+    assert "Prefetch layers per group: 4" in output
+    assert "Prefetch step: 2" in output
+    assert "Prefetch group size: 24" not in output
 
 
 @pytest.mark.parametrize("failure_site", ["benchmark", "save"])
@@ -325,6 +372,55 @@ def test_driver_builds_public_configuration_from_explicit_arguments(
     assert case.expected_response == "local model ready"
     assert readiness_timeout == driver.DEFAULT_READINESS_TIMEOUT
     assert config.cpu_offload_gb == 0.0
+    assert config.offload_backend is None
+    assert config.offload_group_size == 0
+    assert config.offload_num_in_group == 0
+    assert config.offload_prefetch_step == 0
+
+
+def test_driver_maps_explicit_prefetch_configuration(
+    tmp_path: Path,
+    driver: ModuleType,
+) -> None:
+    """The tracked driver maps its prefetch arguments into public config only."""
+    arguments = driver.parse_arguments(
+        [
+            "--model",
+            "org/model",
+            "--revision",
+            "a" * 40,
+            "--image",
+            "vllm/vllm-openai:v0.26.0",
+            "--cache-root",
+            "cache",
+            "--output-root",
+            "results",
+            "--served-model-name",
+            "local-model",
+            "--max-model-len",
+            "2048",
+            "--gpu-memory-utilization",
+            "0.8",
+            "--offload-backend",
+            "prefetch",
+            "--offload-group-size",
+            "24",
+            "--offload-num-in-group",
+            "5",
+            "--offload-prefetch-step",
+            "1",
+            "--max-num-seqs",
+            "1",
+        ],
+    )
+
+    config, _, _, _ = driver.build_configuration(arguments, base_directory=tmp_path)
+
+    assert config.cpu_offload_gb == 0.0
+    assert config.offload_backend == "prefetch"
+    assert config.offload_group_size == _PREFETCH_GROUP_SIZE
+    assert config.offload_num_in_group == _PREFETCH_NUM_IN_GROUP
+    assert config.offload_prefetch_step == _PREFETCH_STEP
 
 
 def test_driver_maps_custom_readiness_timeout_to_server_start(
@@ -372,7 +468,7 @@ def test_driver_maps_custom_readiness_timeout_to_server_start(
         driver,
         _Server(calls),
         calls,
-        expected=(Duration.minutes(30), _CPU_OFFLOAD_GB),
+        expected=(Duration.minutes(30), _CPU_OFFLOAD_GB, None, 0, 0, 0),
     )
 
     async def benchmark(**_kwargs: object) -> ModelBenchmarkResult:

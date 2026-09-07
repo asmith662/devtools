@@ -9,7 +9,7 @@ import math
 import re
 import uuid
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Self
+from typing import TYPE_CHECKING, Literal, Self
 from urllib.parse import urlsplit
 
 from devtools.commands import Command, CommandExecutor, CommandResult
@@ -61,6 +61,10 @@ class VLLMServingConfig:
     max_num_seqs: int
     trust_remote_code: bool = False
     cpu_offload_gb: float = 0.0
+    offload_backend: Literal["prefetch"] | None = None
+    offload_group_size: int = 0
+    offload_num_in_group: int = 0
+    offload_prefetch_step: int = 0
 
     def __post_init__(self) -> None:
         """Validate structural launch constraints."""
@@ -92,6 +96,8 @@ class VLLMServingConfig:
             msg = "CPU weight offload must be finite and non-negative."
             raise ValueError(msg)
 
+        _validate_prefetch_offload(self)
+
 
 @dataclass(frozen=True, slots=True)
 class VLLMServerStatus:
@@ -107,6 +113,44 @@ class _ContainerInspection:
 
     running: bool
     ownership_label: str
+
+
+def _validate_prefetch_offload(config: VLLMServingConfig) -> None:
+    """Validate the bounded prefetch-offload configuration surface."""
+    if config.offload_backend is None:
+        if any(
+            (
+                config.offload_group_size,
+                config.offload_num_in_group,
+                config.offload_prefetch_step,
+            ),
+        ):
+            msg = "Prefetch settings require the prefetch offload backend."
+            raise ValueError(msg)
+        return
+
+    if config.offload_backend != "prefetch":
+        msg = "The only explicitly supported vLLM offload backend is prefetch."
+        raise ValueError(msg)
+
+    if config.cpu_offload_gb != 0:
+        msg = "Prefetch offload cannot be combined with CPU weight UVA offload."
+        raise ValueError(msg)
+
+    if config.offload_group_size <= 0:
+        msg = "Prefetch offload group size must be positive."
+        raise ValueError(msg)
+
+    if not 0 < config.offload_num_in_group <= config.offload_group_size:
+        msg = (
+            "Prefetch offload count must be positive and no greater than its "
+            "group size."
+        )
+        raise ValueError(msg)
+
+    if config.offload_prefetch_step <= 0:
+        msg = "Prefetch offload step must be positive."
+        raise ValueError(msg)
 
 
 class VLLMServer:
@@ -329,6 +373,19 @@ def _build_launch_command(config: VLLMServingConfig, container_name: str) -> Com
     ]
     if config.cpu_offload_gb > 0:
         arguments.extend(("--cpu-offload-gb", str(config.cpu_offload_gb)))
+    if config.offload_backend == "prefetch":
+        arguments.extend(
+            (
+                "--offload-backend",
+                "prefetch",
+                "--offload-group-size",
+                str(config.offload_group_size),
+                "--offload-num-in-group",
+                str(config.offload_num_in_group),
+                "--offload-prefetch-step",
+                str(config.offload_prefetch_step),
+            ),
+        )
     if config.trust_remote_code:
         arguments.append("--trust-remote-code")
 

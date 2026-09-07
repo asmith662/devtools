@@ -68,6 +68,29 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
         type=float,
         help="GiB of model weights per GPU that vLLM may offload to CPU memory.",
     )
+    parser.add_argument(
+        "--offload-backend",
+        choices=("prefetch",),
+        help="vLLM offload backend; prefetch copies selected layer weights to GPU.",
+    )
+    parser.add_argument(
+        "--offload-group-size",
+        default=0,
+        type=int,
+        help="Number of transformer layers in each vLLM prefetch offload group.",
+    )
+    parser.add_argument(
+        "--offload-num-in-group",
+        default=0,
+        type=int,
+        help="Number of layers offloaded in each vLLM prefetch group.",
+    )
+    parser.add_argument(
+        "--offload-prefetch-step",
+        default=0,
+        type=int,
+        help="Number of layers ahead vLLM prefetches selected offloaded weights.",
+    )
     parser.add_argument("--max-num-seqs", required=True, type=int)
     parser.add_argument("--port", default=8000, type=int)
     parser.add_argument("--prompt", default=_DEFAULT_PROMPT)
@@ -106,6 +129,10 @@ def build_configuration(
             max_model_len=arguments.max_model_len,
             gpu_memory_utilization=arguments.gpu_memory_utilization,
             cpu_offload_gb=arguments.cpu_offload_gb,
+            offload_backend=arguments.offload_backend,
+            offload_group_size=arguments.offload_group_size,
+            offload_num_in_group=arguments.offload_num_in_group,
+            offload_prefetch_step=arguments.offload_prefetch_step,
             max_num_seqs=arguments.max_num_seqs,
             trust_remote_code=arguments.trust_remote_code,
         ),
@@ -167,6 +194,10 @@ def _print_summary(
     print(f"Model revision: {result.serving.model_revision}")
     print(f"Served model: {result.serving.served_model_name}")
     print(f"CPU weight offload: {result.serving.cpu_offload_gb} GiB")
+    print(f"Offload backend: {result.serving.offload_backend or 'disabled'}")
+    print(f"Prefetch group size: {result.serving.offload_group_size}")
+    print(f"Prefetch layers per group: {result.serving.offload_num_in_group}")
+    print(f"Prefetch step: {result.serving.offload_prefetch_step}")
     print(f"TTFT: {result.ttft}")
     print(f"Total duration: {result.total_duration}")
     print(f"Completion tokens: {result.completion_tokens}")

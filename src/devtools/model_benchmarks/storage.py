@@ -21,7 +21,7 @@ from devtools.model_benchmarks.models import (
 from devtools.paths import ResolvedPath
 from devtools.time import Duration, Timestamp
 
-_SCHEMA_VERSION = 2
+_SCHEMA_VERSION = 3
 _SAFE_FILENAME = re.compile(r"[^a-zA-Z0-9._-]+")
 
 
@@ -86,6 +86,10 @@ def _to_json(result: ModelBenchmarkResult) -> dict[str, object]:
             "max_num_seqs": result.serving.max_num_seqs,
             "trust_remote_code": result.serving.trust_remote_code,
             "cpu_offload_gb": result.serving.cpu_offload_gb,
+            "offload_backend": result.serving.offload_backend,
+            "offload_group_size": result.serving.offload_group_size,
+            "offload_num_in_group": result.serving.offload_num_in_group,
+            "offload_prefetch_step": result.serving.offload_prefetch_step,
         },
         "response_text": result.response_text,
         "ttft_seconds": _duration_seconds(result.ttft),
@@ -102,7 +106,7 @@ def _from_json(raw: object) -> ModelBenchmarkResult:
     """Decode the supported experimental artifact schemas."""
     root = _object(raw)
     schema_version = _integer(root["schema_version"])
-    if schema_version not in {1, _SCHEMA_VERSION}:
+    if schema_version not in {1, 2, _SCHEMA_VERSION}:
         msg = "Unsupported model benchmark artifact schema version."
         raise ValueError(msg)
     case = _object(root["case"])
@@ -132,6 +136,26 @@ def _from_json(raw: object) -> ModelBenchmarkResult:
                 0.0
                 if schema_version == 1
                 else _number(serving["cpu_offload_gb"])
+            ),
+            offload_backend=(
+                None
+                if schema_version in {1, 2}
+                else _optional_string(serving["offload_backend"])
+            ),
+            offload_group_size=(
+                0
+                if schema_version in {1, 2}
+                else _integer(serving["offload_group_size"])
+            ),
+            offload_num_in_group=(
+                0
+                if schema_version in {1, 2}
+                else _integer(serving["offload_num_in_group"])
+            ),
+            offload_prefetch_step=(
+                0
+                if schema_version in {1, 2}
+                else _integer(serving["offload_prefetch_step"])
             ),
         ),
         response_text=_string(root["response_text"]),

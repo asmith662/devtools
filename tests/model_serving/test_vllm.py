@@ -29,6 +29,12 @@ if TYPE_CHECKING:
 
 
 _VALID_CONTAINER_ID = "a" * 64
+_PREFETCH_OPTIONS = (
+    "--offload-backend",
+    "--offload-group-size",
+    "--offload-num-in-group",
+    "--offload-prefetch-step",
+)
 
 
 def _config(tmp_path: Path, **changes: object) -> VLLMServingConfig:
@@ -67,6 +73,11 @@ def _not_found_result(command: Command) -> CommandResult:
     )
 
 
+def _assert_no_prefetch_arguments(command: Command) -> None:
+    """Require that a historical command has no prefetch provider flags."""
+    assert all(option not in command.arguments for option in _PREFETCH_OPTIONS)
+
+
 class _Executor:
     """Record commands and return queued results or errors."""
 
@@ -91,6 +102,10 @@ def test_config_is_immutable_hashable_and_preserves_defaults(tmp_path: Path) -> 
 
     assert config.trust_remote_code is False
     assert config.cpu_offload_gb == 0.0
+    assert config.offload_backend is None
+    assert config.offload_group_size == 0
+    assert config.offload_num_in_group == 0
+    assert config.offload_prefetch_step == 0
     assert config == _config(tmp_path)
     assert hash(config) == hash(_config(tmp_path))
 
@@ -129,6 +144,8 @@ def test_server_exposes_config_and_start_facts(tmp_path: Path) -> None:
         ("cpu_offload_gb", -0.1, "offload"),
         ("cpu_offload_gb", float("nan"), "offload"),
         ("cpu_offload_gb", float("inf"), "offload"),
+        ("offload_backend", "uva", "backend"),
+        ("offload_group_size", 1, "require"),
     ],
 )
 def test_config_rejects_invalid_structural_values(
@@ -193,6 +210,7 @@ def test_start_builds_deterministic_owned_docker_launch(
     assert str(config.gpu_memory_utilization) in command.arguments
     assert str(config.max_num_seqs) in command.arguments
     assert "--cpu-offload-gb" not in command.arguments
+    _assert_no_prefetch_arguments(command)
     assert "--trust-remote-code" not in command.arguments
     assert server.container_id == _VALID_CONTAINER_ID
     assert server.endpoint == "http://127.0.0.1:8123"
@@ -210,6 +228,79 @@ def test_launch_adds_exact_positive_cpu_weight_offload(tmp_path: Path) -> None:
     assert command.arguments.count("--cpu-offload-gb") == 1
     option = command.arguments.index("--cpu-offload-gb")
     assert command.arguments[option + 1] == "2.0"
+    _assert_no_prefetch_arguments(command)
+
+
+def test_prefetch_offload_requires_complete_isolated_configuration(
+    tmp_path: Path,
+) -> None:
+    """Prefetch is explicit and cannot accidentally combine with UVA offload."""
+    config = _config(
+        tmp_path,
+        offload_backend="prefetch",
+        offload_group_size=24,
+        offload_num_in_group=5,
+        offload_prefetch_step=1,
+    )
+
+    assert config.offload_backend == "prefetch"
+
+    with pytest.raises(ValueError, match="UVA"):
+        _config(
+            tmp_path,
+            cpu_offload_gb=2.0,
+            offload_backend="prefetch",
+            offload_group_size=24,
+            offload_num_in_group=5,
+            offload_prefetch_step=1,
+        )
+    with pytest.raises(ValueError, match="count"):
+        _config(
+            tmp_path,
+            offload_backend="prefetch",
+            offload_group_size=4,
+            offload_num_in_group=5,
+            offload_prefetch_step=1,
+        )
+    with pytest.raises(ValueError, match="group size"):
+        _config(
+            tmp_path,
+            offload_backend="prefetch",
+            offload_num_in_group=1,
+            offload_prefetch_step=1,
+        )
+    with pytest.raises(ValueError, match="step"):
+        _config(
+            tmp_path,
+            offload_backend="prefetch",
+            offload_group_size=24,
+            offload_num_in_group=5,
+        )
+
+
+def test_launch_adds_exact_prefetch_offload_arguments(tmp_path: Path) -> None:
+    """Prefetch settings map once and only once to vLLM's provider argv."""
+    command = vllm._build_launch_command(  # noqa: SLF001
+        _config(
+            tmp_path,
+            offload_backend="prefetch",
+            offload_group_size=24,
+            offload_num_in_group=5,
+            offload_prefetch_step=1,
+        ),
+        "devtools-vllm-test",
+    )
+
+    assert "--cpu-offload-gb" not in command.arguments
+    expected = {
+        "--offload-backend": "prefetch",
+        "--offload-group-size": "24",
+        "--offload-num-in-group": "5",
+        "--offload-prefetch-step": "1",
+    }
+    for option, value in expected.items():
+        assert command.arguments.count(option) == 1
+        assert command.arguments[command.arguments.index(option) + 1] == value
 
 
 def test_start_preserves_default_readiness_timeout(

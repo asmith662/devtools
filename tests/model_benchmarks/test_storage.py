@@ -27,7 +27,16 @@ if TYPE_CHECKING:
 
 
 _CPU_OFFLOAD_GB = 2.0
-_SCHEMA_VERSION = 2
+_SCHEMA_VERSION = 3
+_PREFETCH_GROUP_SIZE = 24
+_PREFETCH_NUM_IN_GROUP = 5
+_PREFETCH_STEP = 1
+_PREFETCH_FIELDS = (
+    "offload_backend",
+    "offload_group_size",
+    "offload_num_in_group",
+    "offload_prefetch_step",
+)
 
 
 def _result(**changes: object) -> ModelBenchmarkResult:
@@ -65,7 +74,14 @@ def test_save_and_load_round_trip_explicit_schema(tmp_path: Path) -> None:
     """Saved artifacts remain inspectable and reconstruct the immutable result."""
     output_root = ResolvedPath(tmp_path / "results")
     result = _result(
-        serving=replace(_result().serving, cpu_offload_gb=_CPU_OFFLOAD_GB),
+        serving=replace(
+            _result().serving,
+            cpu_offload_gb=_CPU_OFFLOAD_GB,
+            offload_backend="prefetch",
+            offload_group_size=_PREFETCH_GROUP_SIZE,
+            offload_num_in_group=_PREFETCH_NUM_IN_GROUP,
+            offload_prefetch_step=_PREFETCH_STEP,
+        ),
     )
 
     path = save_benchmark_result(result, output_root)
@@ -77,19 +93,27 @@ def test_save_and_load_round_trip_explicit_schema(tmp_path: Path) -> None:
     assert raw["serving"]["provider"] == "vllm"
     assert raw["serving"]["model_revision"] == "a" * 40
     assert raw["serving"]["cpu_offload_gb"] == _CPU_OFFLOAD_GB
+    assert raw["serving"]["offload_backend"] == "prefetch"
+    assert raw["serving"]["offload_group_size"] == _PREFETCH_GROUP_SIZE
+    assert raw["serving"]["offload_num_in_group"] == _PREFETCH_NUM_IN_GROUP
+    assert raw["serving"]["offload_prefetch_step"] == _PREFETCH_STEP
     assert raw["response_text"] == "local model ready"
     assert load_benchmark_result(path) == result
 
 
-def test_save_explicitly_serializes_zero_cpu_offload_in_schema_two(
+def test_save_explicitly_serializes_disabled_offload_in_schema_three(
     tmp_path: Path,
 ) -> None:
-    """Schema two distinguishes an explicit disabled setting from omission."""
+    """Schema three distinguishes explicit disabled states from omission."""
     path = save_benchmark_result(_result(), ResolvedPath(tmp_path / "results"))
     raw = json.loads(path.value.read_text(encoding="utf-8"))
 
     assert raw["schema_version"] == _SCHEMA_VERSION
     assert raw["serving"]["cpu_offload_gb"] == 0.0
+    assert raw["serving"]["offload_backend"] is None
+    assert raw["serving"]["offload_group_size"] == 0
+    assert raw["serving"]["offload_num_in_group"] == 0
+    assert raw["serving"]["offload_prefetch_step"] == 0
 
 
 def test_loads_version_one_artifact_with_historical_zero_cpu_offload(
@@ -101,19 +125,48 @@ def test_loads_version_one_artifact_with_historical_zero_cpu_offload(
     serving = raw["serving"]
     assert isinstance(serving, dict)
     del serving["cpu_offload_gb"]
+    for field in _PREFETCH_FIELDS:
+        del serving[field]
     path = ResolvedPath(tmp_path / "version-one.json")
     path.value.write_text(json.dumps(raw), encoding="utf-8")
 
     assert load_benchmark_result(path) == _result()
 
 
-def test_rejects_schema_two_artifact_missing_cpu_offload(tmp_path: Path) -> None:
-    """Schema two requires explicit complete serving provenance."""
+def test_loads_version_two_artifact_with_historical_disabled_prefetch(
+    tmp_path: Path,
+) -> None:
+    """Pre-prefetch artifacts retain their recorded CPU-offload value."""
+    raw = storage._to_json(  # noqa: SLF001
+        _result(serving=replace(_result().serving, cpu_offload_gb=_CPU_OFFLOAD_GB)),
+    )
+    raw["schema_version"] = 2
+    serving = raw["serving"]
+    assert isinstance(serving, dict)
+    for field in _PREFETCH_FIELDS:
+        del serving[field]
+    path = ResolvedPath(tmp_path / "version-two.json")
+    path.value.write_text(json.dumps(raw), encoding="utf-8")
+
+    result = load_benchmark_result(path)
+    assert result.serving.cpu_offload_gb == _CPU_OFFLOAD_GB
+    assert result.serving.offload_backend is None
+    assert result.serving.offload_group_size == 0
+    assert result.serving.offload_num_in_group == 0
+    assert result.serving.offload_prefetch_step == 0
+
+
+@pytest.mark.parametrize("field", _PREFETCH_FIELDS)
+def test_rejects_schema_three_artifact_missing_prefetch_provenance(
+    tmp_path: Path,
+    field: str,
+) -> None:
+    """Current artifacts require each explicit prefetch reproducibility field."""
     raw = storage._to_json(_result())  # noqa: SLF001
     serving = raw["serving"]
     assert isinstance(serving, dict)
-    del serving["cpu_offload_gb"]
-    path = ResolvedPath(tmp_path / "missing-offload.json")
+    del serving[field]
+    path = ResolvedPath(tmp_path / f"missing-{field}.json")
     path.value.write_text(json.dumps(raw), encoding="utf-8")
 
     with pytest.raises(ValueError, match="Invalid"):
@@ -150,7 +203,7 @@ def test_benchmark_name_cannot_escape_the_explicit_output_root(tmp_path: Path) -
     "content",
     [
         "not json",
-        json.dumps({"schema_version": 3}),
+        json.dumps({"schema_version": 4}),
         json.dumps({"schema_version": 1}),
         json.dumps({"schema_version": 1, "case": {}, "serving": {"provider": "other"}}),
     ],

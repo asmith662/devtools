@@ -23,6 +23,9 @@ if TYPE_CHECKING:
 
 
 _CPU_OFFLOAD_GB = 2.0
+_PREFETCH_GROUP_SIZE = 24
+_PREFETCH_NUM_IN_GROUP = 5
+_PREFETCH_STEP = 1
 
 
 def _case(**changes: object) -> BenchmarkCase:
@@ -140,7 +143,11 @@ def test_serving_snapshot_reads_public_server_config(tmp_path: Path) -> None:
         max_model_len=2048,
         gpu_memory_utilization=0.8,
         max_num_seqs=1,
-        cpu_offload_gb=_CPU_OFFLOAD_GB,
+        cpu_offload_gb=0.0,
+        offload_backend="prefetch",
+        offload_group_size=_PREFETCH_GROUP_SIZE,
+        offload_num_in_group=_PREFETCH_NUM_IN_GROUP,
+        offload_prefetch_step=_PREFETCH_STEP,
     )
     server = VLLMServer(
         config=config,
@@ -151,5 +158,9 @@ def test_serving_snapshot_reads_public_server_config(tmp_path: Path) -> None:
     )
 
     snapshot = VLLMBenchmarkServingSnapshot.from_server(server)
-    assert snapshot.cpu_offload_gb == _CPU_OFFLOAD_GB
+    assert snapshot.cpu_offload_gb == 0.0
+    assert snapshot.offload_backend == "prefetch"
+    assert snapshot.offload_group_size == _PREFETCH_GROUP_SIZE
+    assert snapshot.offload_num_in_group == _PREFETCH_NUM_IN_GROUP
+    assert snapshot.offload_prefetch_step == _PREFETCH_STEP
     assert snapshot.model_repository == config.model.repository

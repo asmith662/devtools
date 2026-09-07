@@ -23,6 +23,11 @@ Readiness waiting is caller-configurable; its default remains ten minutes.
 ``cpu_offload_gb`` is reproducible vLLM launch configuration: zero disables
 CPU model-weight offload, while a positive GiB-per-GPU value can reduce GPU
 pressure at the cost of CPU/GPU weight access during inference.
+``offload_backend="prefetch"`` is a separate, explicit vLLM configuration.
+It offloads selected transformer layers by group and copies their weights into
+GPU buffers before execution. Its group size, layers per group, and prefetch
+step are recorded with the launch configuration; the default keeps prefetch
+disabled.
 If an owned container exits before readiness, the startup failure can include a
 bounded provider log tail. These failure-only diagnostics are not durable logs.
 If owned cleanup also fails, the established startup failure or cancellation

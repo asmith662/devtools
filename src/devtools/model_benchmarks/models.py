@@ -51,6 +51,10 @@ class VLLMBenchmarkServingSnapshot:
     max_num_seqs: int
     trust_remote_code: bool
     cpu_offload_gb: float = 0.0
+    offload_backend: str | None = None
+    offload_group_size: int = 0
+    offload_num_in_group: int = 0
+    offload_prefetch_step: int = 0
 
     @classmethod
     def from_server(cls, server: VLLMServer) -> VLLMBenchmarkServingSnapshot:
@@ -66,6 +70,10 @@ class VLLMBenchmarkServingSnapshot:
             max_num_seqs=config.max_num_seqs,
             trust_remote_code=config.trust_remote_code,
             cpu_offload_gb=config.cpu_offload_gb,
+            offload_backend=config.offload_backend,
+            offload_group_size=config.offload_group_size,
+            offload_num_in_group=config.offload_num_in_group,
+            offload_prefetch_step=config.offload_prefetch_step,
         )
 
 
