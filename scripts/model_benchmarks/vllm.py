@@ -15,8 +15,13 @@ from devtools.model_benchmarks.models import BenchmarkCase, ModelBenchmarkResult
 from devtools.model_benchmarks.runner import run_vllm_benchmark
 from devtools.model_benchmarks.storage import save_benchmark_result
 from devtools.model_serving.huggingface import HuggingFaceModelRef
-from devtools.model_serving.vllm import VLLMServer, VLLMServingConfig
+from devtools.model_serving.vllm import (
+    DEFAULT_READINESS_TIMEOUT,
+    VLLMServer,
+    VLLMServingConfig,
+)
 from devtools.paths import ResolvedPath, resolve_path
+from devtools.time import Duration
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
@@ -63,6 +68,12 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
     parser.add_argument("--expected-response")
     parser.add_argument("--max-tokens", default=32, type=int)
     parser.add_argument("--temperature", default=0.0, type=float)
+    parser.add_argument(
+        "--readiness-timeout-seconds",
+        default=DEFAULT_READINESS_TIMEOUT.total_seconds,
+        type=float,
+        help="Maximum seconds to wait for vLLM model readiness after launch.",
+    )
     parser.add_argument("--trust-remote-code", action="store_true")
     return parser.parse_args(arguments)
 
@@ -71,7 +82,7 @@ def build_configuration(
     arguments: argparse.Namespace,
     *,
     base_directory: Path,
-) -> tuple[VLLMServingConfig, BenchmarkCase, ResolvedPath]:
+) -> tuple[VLLMServingConfig, BenchmarkCase, ResolvedPath, Duration]:
     """Construct validated public library values from explicit driver arguments."""
     cache_root = resolve_path(arguments.cache_root, base_directory=base_directory)
     output_root = resolve_path(arguments.output_root, base_directory=base_directory)
@@ -99,6 +110,7 @@ def build_configuration(
             expected_response=expected_response,
         ),
         output_root,
+        Duration.seconds(arguments.readiness_timeout_seconds),
     )
 
 
@@ -107,11 +119,16 @@ async def run_experiment(
     config: VLLMServingConfig,
     case: BenchmarkCase,
     output_root: ResolvedPath,
+    readiness_timeout: Duration,
 ) -> tuple[ModelBenchmarkResult, ResolvedPath]:
     """Start one owned server, benchmark it once, save the result, and stop it."""
     print(f"Cache root: {config.cache_root}")
     print("Starting vLLM...")
-    server = await VLLMServer.start(config=config, executor=CommandExecutor())
+    server = await VLLMServer.start(
+        config=config,
+        executor=CommandExecutor(),
+        readiness_timeout=readiness_timeout,
+    )
 
     try:
         result = await run_vllm_benchmark(server=server, case=case)
@@ -154,11 +171,18 @@ def _print_summary(
 def main(arguments: Sequence[str] | None = None) -> None:
     """Run one experimental vLLM benchmark invocation."""
     parsed = parse_arguments(arguments)
-    config, case, output_root = build_configuration(
+    config, case, output_root, readiness_timeout = build_configuration(
         parsed,
         base_directory=Path.cwd(),
     )
-    asyncio.run(run_experiment(config=config, case=case, output_root=output_root))
+    asyncio.run(
+        run_experiment(
+            config=config,
+            case=case,
+            output_root=output_root,
+            readiness_timeout=readiness_timeout,
+        ),
+    )
 
 
 if __name__ == "__main__":

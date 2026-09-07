@@ -35,7 +35,7 @@ _MAX_DIAGNOSTIC_BYTES = 4_096
 _MAX_HOST_PORT = 65_535
 _HTTP_OK = 200
 _HTTP_STATUS_PARTS = 2
-_DEFAULT_READINESS_TIMEOUT = Duration.minutes(10)
+DEFAULT_READINESS_TIMEOUT = Duration.minutes(10)
 _CONTAINER_ID = re.compile(r"^[0-9a-fA-F]{64}$")
 
 
@@ -158,7 +158,7 @@ class VLLMServer:
         *,
         config: VLLMServingConfig,
         executor: CommandExecutor,
-        readiness_timeout: Duration = _DEFAULT_READINESS_TIMEOUT,
+        readiness_timeout: Duration = DEFAULT_READINESS_TIMEOUT,
     ) -> Self:
         """Launch one owned vLLM server and return only after model readiness.
 
@@ -190,8 +190,16 @@ class VLLMServer:
 
         return server
 
-    async def wait_ready(self, *, readiness_timeout: Duration) -> None:
+    async def wait_ready(
+        self,
+        *,
+        readiness_timeout: Duration = DEFAULT_READINESS_TIMEOUT,
+    ) -> None:
         """Wait until the owned container exposes the selected model."""
+        if readiness_timeout.total_seconds <= 0:
+            msg = "vLLM readiness timeout must be positive."
+            raise ValueError(msg)
+
         try:
             async with asyncio.timeout(readiness_timeout.total_seconds):
                 while True:

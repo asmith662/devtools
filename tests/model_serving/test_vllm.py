@@ -194,6 +194,59 @@ def test_start_builds_deterministic_owned_docker_launch(
     assert config.cache_root.value.is_dir()
 
 
+def test_start_preserves_default_readiness_timeout(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    """Callers that omit the policy retain the historical ten-minute wait."""
+    executor = _Executor([])
+    observed: list[Duration] = []
+
+    async def execute(command: Command) -> CommandResult:
+        executor.commands.append(command)
+        return _result(command, stdout=_VALID_CONTAINER_ID.encode() + b"\n")
+
+    async def ready(_self: VLLMServer, *, readiness_timeout: Duration) -> None:
+        observed.append(readiness_timeout)
+
+    executor.execute = execute  # type: ignore[method-assign]
+    monkeypatch.setattr(VLLMServer, "wait_ready", ready)
+
+    asyncio.run(VLLMServer.start(config=_config(tmp_path), executor=executor))  # type: ignore[arg-type]
+
+    assert observed == [vllm.DEFAULT_READINESS_TIMEOUT]
+
+
+def test_start_forwards_custom_readiness_timeout(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    """A caller-selected wait policy reaches readiness unchanged."""
+    executor = _Executor([])
+    observed: list[Duration] = []
+    custom_timeout = Duration.seconds(37)
+
+    async def execute(command: Command) -> CommandResult:
+        executor.commands.append(command)
+        return _result(command, stdout=_VALID_CONTAINER_ID.encode() + b"\n")
+
+    async def ready(_self: VLLMServer, *, readiness_timeout: Duration) -> None:
+        observed.append(readiness_timeout)
+
+    executor.execute = execute  # type: ignore[method-assign]
+    monkeypatch.setattr(VLLMServer, "wait_ready", ready)
+
+    asyncio.run(
+        VLLMServer.start(
+            config=_config(tmp_path),
+            executor=executor,  # type: ignore[arg-type]
+            readiness_timeout=custom_timeout,
+        ),
+    )
+
+    assert observed == [custom_timeout]
+
+
 def test_launch_honors_explicit_remote_code_opt_in(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,
@@ -354,7 +407,7 @@ def test_readiness_timeout_stops_owned_container(
 
     monkeypatch.setattr("devtools.model_serving.vllm._probe_model_ready", not_ready)
 
-    with pytest.raises(ServingReadinessTimeoutError):
+    with pytest.raises(ServingReadinessTimeoutError, match=r"0\.01 seconds"):
         asyncio.run(
             VLLMServer.start(
                 config=_config(tmp_path),
@@ -370,6 +423,20 @@ def test_readiness_timeout_stops_owned_container(
         "stop",
     ]
     assert executor.commands[-1].arguments[-1] == _VALID_CONTAINER_ID
+
+
+def test_wait_ready_rejects_nonpositive_timeout(tmp_path: Path) -> None:
+    """Readiness waiting requires a caller-supplied positive allowance."""
+    server = VLLMServer(
+        config=_config(tmp_path),
+        container_id=_VALID_CONTAINER_ID,
+        container_name="devtools-vllm-test",
+        executor=_Executor([]),  # type: ignore[arg-type]
+        started_at=__import__("devtools.time", fromlist=["Timestamp"]).Timestamp.now(),
+    )
+
+    with pytest.raises(ValueError, match="positive"):
+        asyncio.run(server.wait_ready(readiness_timeout=Duration.seconds(0)))
 
 
 def test_cancellation_during_readiness_stops_owned_container(

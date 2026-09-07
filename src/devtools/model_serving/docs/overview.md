@@ -19,6 +19,7 @@ benchmarks, Evidence, or evaluation.
 The vLLM implementation uses an explicit pinned image, a caller-visible Hugging
 Face cache root, an exact pinned repository revision, Docker CLI execution via
 `devtools.commands`, readiness probes, and ownership-safe stop behavior.
+Readiness waiting is caller-configurable; its default remains ten minutes.
 
 ## Required future pressure tests
 

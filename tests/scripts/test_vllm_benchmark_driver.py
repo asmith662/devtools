@@ -27,6 +27,7 @@ if TYPE_CHECKING:
 
 
 _DRIVER_PATH = Path("scripts/model_benchmarks/vllm.py")
+_DEFAULT_READINESS_TIMEOUT = Duration.minutes(10)
 
 
 @pytest.fixture
@@ -101,10 +102,17 @@ def _patch_start(
     driver: ModuleType,
     server: _Server,
     calls: list[str],
+    expected_readiness_timeout: Duration = _DEFAULT_READINESS_TIMEOUT,
 ) -> None:
-    async def start(*, config: VLLMServingConfig, executor: object) -> _Server:
+    async def start(
+        *,
+        config: VLLMServingConfig,
+        executor: object,
+        readiness_timeout: Duration,
+    ) -> _Server:
         assert config == _config(config.cache_root.value.parent)
         assert executor is not None
+        assert readiness_timeout == expected_readiness_timeout
         calls.append("start")
         return server
 
@@ -150,6 +158,7 @@ def test_driver_composes_start_benchmark_save_and_stop(
             config=config,
             case=case,
             output_root=ResolvedPath(tmp_path / "results"),
+            readiness_timeout=Duration.minutes(10),
         ),
     )
 
@@ -190,6 +199,7 @@ def test_driver_preserves_primary_failure_and_stops_owned_server(
                 config=_config(tmp_path),
                 case=_case(),
                 output_root=ResolvedPath(tmp_path / "results"),
+                readiness_timeout=Duration.minutes(10),
             ),
         )
 
@@ -222,6 +232,7 @@ def test_driver_preserves_cancellation_and_stops_owned_server(
                 config=_config(tmp_path),
                 case=_case(),
                 output_root=ResolvedPath(tmp_path / "results"),
+                readiness_timeout=Duration.minutes(10),
             ),
         )
 
@@ -247,6 +258,7 @@ def test_driver_does_not_clean_up_when_startup_fails(
                 config=_config(tmp_path),
                 case=_case(),
                 output_root=ResolvedPath(tmp_path / "results"),
+                readiness_timeout=Duration.minutes(10),
             ),
         )
     assert raised.value is primary
@@ -280,7 +292,7 @@ def test_driver_builds_public_configuration_from_explicit_arguments(
         ],
     )
 
-    config, case, output_root = driver.build_configuration(
+    config, case, output_root, readiness_timeout = driver.build_configuration(
         arguments,
         base_directory=tmp_path,
     )
@@ -290,3 +302,72 @@ def test_driver_builds_public_configuration_from_explicit_arguments(
     assert config.cache_root == ResolvedPath(tmp_path / "cache")
     assert output_root == ResolvedPath(tmp_path / "results")
     assert case.expected_response == "local model ready"
+    assert readiness_timeout == driver.DEFAULT_READINESS_TIMEOUT
+
+
+def test_driver_maps_custom_readiness_timeout_to_server_start(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    driver: ModuleType,
+) -> None:
+    """A caller-selected readiness allowance reaches the lifecycle start call."""
+    arguments = driver.parse_arguments(
+        [
+            "--model",
+            "org/model",
+            "--revision",
+            "a" * 40,
+            "--image",
+            "vllm/vllm-openai:v0.26.0",
+            "--cache-root",
+            "cache",
+            "--output-root",
+            "results",
+            "--served-model-name",
+            "local-model",
+            "--max-model-len",
+            "2048",
+            "--gpu-memory-utilization",
+            "0.8",
+            "--max-num-seqs",
+            "1",
+            "--port",
+            "8123",
+            "--readiness-timeout-seconds",
+            "1800",
+        ],
+    )
+    config, case, output_root, readiness_timeout = driver.build_configuration(
+        arguments,
+        base_directory=tmp_path,
+    )
+    calls: list[str] = []
+    _patch_start(
+        monkeypatch,
+        driver,
+        _Server(calls),
+        calls,
+        expected_readiness_timeout=Duration.minutes(30),
+    )
+
+    async def benchmark(**_kwargs: object) -> ModelBenchmarkResult:
+        calls.append("benchmark")
+        return _result()
+
+    def save(*_args: object) -> ResolvedPath:
+        calls.append("save")
+        return ResolvedPath(tmp_path / "results" / "run.json")
+
+    monkeypatch.setattr(driver, "run_vllm_benchmark", benchmark)
+    monkeypatch.setattr(driver, "save_benchmark_result", save)
+
+    asyncio.run(
+        driver.run_experiment(
+            config=config,
+            case=case,
+            output_root=output_root,
+            readiness_timeout=readiness_timeout,
+        ),
+    )
+
+    assert calls == ["start", "benchmark", "save", "stop"]
