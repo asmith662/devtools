@@ -55,6 +55,7 @@ class VLLMBenchmarkServingSnapshot:
     offload_group_size: int = 0
     offload_num_in_group: int = 0
     offload_prefetch_step: int = 0
+    wsl2_enable_pin_memory: bool = False
 
     @classmethod
     def from_server(cls, server: VLLMServer) -> VLLMBenchmarkServingSnapshot:
@@ -74,6 +75,7 @@ class VLLMBenchmarkServingSnapshot:
             offload_group_size=config.offload_group_size,
             offload_num_in_group=config.offload_num_in_group,
             offload_prefetch_step=config.offload_prefetch_step,
+            wsl2_enable_pin_memory=config.wsl2_enable_pin_memory,
         )
 
 

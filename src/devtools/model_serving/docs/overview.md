@@ -28,6 +28,11 @@ It offloads selected transformer layers by group and copies their weights into
 GPU buffers before execution. Its group size, layers per group, and prefetch
 step are recorded with the launch configuration; the default keeps prefetch
 disabled.
+``wsl2_enable_pin_memory`` is an explicit vLLM WSL2 opt-in that maps to
+``VLLM_WSL2_ENABLE_PIN_MEMORY=1`` inside the launched container. It defaults to
+disabled, but can be needed for CPU/prefetch offload under WSL2. Pinned
+(page-locked) host memory consumes host-memory resources and should be enabled
+deliberately; it does not guarantee compatibility on every WSL installation.
 If an owned container exits before readiness, the startup failure can include a
 bounded provider log tail. These failure-only diagnostics are not durable logs.
 If owned cleanup also fails, the established startup failure or cancellation

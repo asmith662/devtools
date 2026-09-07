@@ -91,6 +91,11 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
         type=int,
         help="Number of layers ahead vLLM prefetches selected offloaded weights.",
     )
+    parser.add_argument(
+        "--wsl2-enable-pin-memory",
+        action="store_true",
+        help="Enable vLLM's WSL2 pinned host-memory opt-in for CPU/prefetch offload.",
+    )
     parser.add_argument("--max-num-seqs", required=True, type=int)
     parser.add_argument("--port", default=8000, type=int)
     parser.add_argument("--prompt", default=_DEFAULT_PROMPT)
@@ -133,6 +138,7 @@ def build_configuration(
             offload_group_size=arguments.offload_group_size,
             offload_num_in_group=arguments.offload_num_in_group,
             offload_prefetch_step=arguments.offload_prefetch_step,
+            wsl2_enable_pin_memory=arguments.wsl2_enable_pin_memory,
             max_num_seqs=arguments.max_num_seqs,
             trust_remote_code=arguments.trust_remote_code,
         ),
@@ -198,6 +204,10 @@ def _print_summary(
     print(f"Prefetch group size: {result.serving.offload_group_size}")
     print(f"Prefetch layers per group: {result.serving.offload_num_in_group}")
     print(f"Prefetch step: {result.serving.offload_prefetch_step}")
+    print(
+        "WSL2 pinned memory: "
+        f"{'enabled' if result.serving.wsl2_enable_pin_memory else 'disabled'}",
+    )
     print(f"TTFT: {result.ttft}")
     print(f"Total duration: {result.total_duration}")
     print(f"Completion tokens: {result.completion_tokens}")

@@ -112,13 +112,22 @@ def _patch_start(
     driver: ModuleType,
     server: _Server,
     calls: list[str],
-    expected: tuple[Duration, float, Literal["prefetch"] | None, int, int, int] = (
+    expected: tuple[
+        Duration,
+        float,
+        Literal["prefetch"] | None,
+        int,
+        int,
+        int,
+        bool,
+    ] = (
         _DEFAULT_READINESS_TIMEOUT,
         0.0,
         None,
         0,
         0,
         0,
+        False,
     ),
 ) -> None:
     async def start(
@@ -134,6 +143,7 @@ def _patch_start(
             expected_offload_group_size,
             expected_offload_num_in_group,
             expected_offload_prefetch_step,
+            expected_wsl2_enable_pin_memory,
         ) = expected
         assert config == replace(
             _config(config.cache_root.value.parent),
@@ -142,6 +152,7 @@ def _patch_start(
             offload_group_size=expected_offload_group_size,
             offload_num_in_group=expected_offload_num_in_group,
             offload_prefetch_step=expected_offload_prefetch_step,
+            wsl2_enable_pin_memory=expected_wsl2_enable_pin_memory,
         )
         assert executor is not None
         assert readiness_timeout == expected_readiness_timeout
@@ -178,6 +189,7 @@ def test_driver_composes_start_benchmark_save_and_stop(
             offload_group_size=_RESULT_PREFETCH_GROUP_SIZE,
             offload_num_in_group=_RESULT_PREFETCH_NUM_IN_GROUP,
             offload_prefetch_step=_RESULT_PREFETCH_STEP,
+            wsl2_enable_pin_memory=True,
         ),
     )
     result_path = ResolvedPath(tmp_path / "results" / "run.json")
@@ -193,6 +205,7 @@ def test_driver_composes_start_benchmark_save_and_stop(
             _PREFETCH_GROUP_SIZE,
             _PREFETCH_NUM_IN_GROUP,
             _PREFETCH_STEP,
+            False,
         ),
     )
 
@@ -234,6 +247,7 @@ def test_driver_composes_start_benchmark_save_and_stop(
     assert "Prefetch group size: 23" in output
     assert "Prefetch layers per group: 4" in output
     assert "Prefetch step: 2" in output
+    assert "WSL2 pinned memory: enabled" in output
     assert "Prefetch group size: 24" not in output
 
 
@@ -376,6 +390,7 @@ def test_driver_builds_public_configuration_from_explicit_arguments(
     assert config.offload_group_size == 0
     assert config.offload_num_in_group == 0
     assert config.offload_prefetch_step == 0
+    assert config.wsl2_enable_pin_memory is False
 
 
 def test_driver_maps_explicit_prefetch_configuration(
@@ -409,6 +424,7 @@ def test_driver_maps_explicit_prefetch_configuration(
             "5",
             "--offload-prefetch-step",
             "1",
+            "--wsl2-enable-pin-memory",
             "--max-num-seqs",
             "1",
         ],
@@ -421,6 +437,7 @@ def test_driver_maps_explicit_prefetch_configuration(
     assert config.offload_group_size == _PREFETCH_GROUP_SIZE
     assert config.offload_num_in_group == _PREFETCH_NUM_IN_GROUP
     assert config.offload_prefetch_step == _PREFETCH_STEP
+    assert config.wsl2_enable_pin_memory is True
 
 
 def test_driver_maps_custom_readiness_timeout_to_server_start(
@@ -468,7 +485,7 @@ def test_driver_maps_custom_readiness_timeout_to_server_start(
         driver,
         _Server(calls),
         calls,
-        expected=(Duration.minutes(30), _CPU_OFFLOAD_GB, None, 0, 0, 0),
+        expected=(Duration.minutes(30), _CPU_OFFLOAD_GB, None, 0, 0, 0, False),
     )
 
     async def benchmark(**_kwargs: object) -> ModelBenchmarkResult:

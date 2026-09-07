@@ -65,6 +65,7 @@ class VLLMServingConfig:
     offload_group_size: int = 0
     offload_num_in_group: int = 0
     offload_prefetch_step: int = 0
+    wsl2_enable_pin_memory: bool = False
 
     def __post_init__(self) -> None:
         """Validate structural launch constraints."""
@@ -343,6 +344,11 @@ class VLLMServer:
 
 def _build_launch_command(config: VLLMServingConfig, container_name: str) -> Command:
     """Build the deterministic Docker argv for one vLLM container."""
+    environment_arguments = (
+        ("--env", "VLLM_WSL2_ENABLE_PIN_MEMORY=1")
+        if config.wsl2_enable_pin_memory
+        else ()
+    )
     arguments = [
         "run",
         "--detach",
@@ -358,6 +364,7 @@ def _build_launch_command(config: VLLMServingConfig, container_name: str) -> Com
         f"type=bind,src={config.cache_root},dst={_CACHE_DESTINATION}",
         "--publish",
         f"127.0.0.1:{config.host_port}:{_CONTAINER_PORT}",
+        *environment_arguments,
         config.image,
         config.model.repository,
         "--revision",

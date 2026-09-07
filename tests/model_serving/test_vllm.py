@@ -35,6 +35,7 @@ _PREFETCH_OPTIONS = (
     "--offload-num-in-group",
     "--offload-prefetch-step",
 )
+_WSL2_PIN_MEMORY_ENVIRONMENT = "VLLM_WSL2_ENABLE_PIN_MEMORY=1"
 
 
 def _config(tmp_path: Path, **changes: object) -> VLLMServingConfig:
@@ -106,6 +107,7 @@ def test_config_is_immutable_hashable_and_preserves_defaults(tmp_path: Path) -> 
     assert config.offload_group_size == 0
     assert config.offload_num_in_group == 0
     assert config.offload_prefetch_step == 0
+    assert config.wsl2_enable_pin_memory is False
     assert config == _config(tmp_path)
     assert hash(config) == hash(_config(tmp_path))
 
@@ -198,9 +200,7 @@ def test_start_builds_deterministic_owned_docker_launch(
     assert "host" in command.arguments
     assert "devtools.model_serving.managed=true" in command.arguments
     assert f"127.0.0.1:{config.host_port}:8000" in command.arguments
-    expected_mount = (
-        f"type=bind,src={config.cache_root},dst=/root/.cache/huggingface"
-    )
+    expected_mount = f"type=bind,src={config.cache_root},dst=/root/.cache/huggingface"
     assert expected_mount in command.arguments
     assert config.image in command.arguments
     assert config.model.repository in command.arguments
@@ -211,6 +211,7 @@ def test_start_builds_deterministic_owned_docker_launch(
     assert str(config.max_num_seqs) in command.arguments
     assert "--cpu-offload-gb" not in command.arguments
     _assert_no_prefetch_arguments(command)
+    assert _WSL2_PIN_MEMORY_ENVIRONMENT not in command.arguments
     assert "--trust-remote-code" not in command.arguments
     assert server.container_id == _VALID_CONTAINER_ID
     assert server.endpoint == "http://127.0.0.1:8123"
@@ -228,6 +229,21 @@ def test_launch_adds_exact_positive_cpu_weight_offload(tmp_path: Path) -> None:
     assert command.arguments.count("--cpu-offload-gb") == 1
     option = command.arguments.index("--cpu-offload-gb")
     assert command.arguments[option + 1] == "2.0"
+    _assert_no_prefetch_arguments(command)
+    assert _WSL2_PIN_MEMORY_ENVIRONMENT not in command.arguments
+
+
+def test_launch_adds_exact_wsl2_pinned_memory_environment(tmp_path: Path) -> None:
+    """The opt-in applies only as one explicit Docker container environment."""
+    command = vllm._build_launch_command(  # noqa: SLF001
+        _config(tmp_path, wsl2_enable_pin_memory=True),
+        "devtools-vllm-test",
+    )
+
+    assert command.arguments.count("--env") == 1
+    option = command.arguments.index("--env")
+    assert command.arguments[option + 1] == _WSL2_PIN_MEMORY_ENVIRONMENT
+    assert "--cpu-offload-gb" not in command.arguments
     _assert_no_prefetch_arguments(command)
 
 
@@ -287,6 +303,7 @@ def test_launch_adds_exact_prefetch_offload_arguments(tmp_path: Path) -> None:
             offload_group_size=24,
             offload_num_in_group=5,
             offload_prefetch_step=1,
+            wsl2_enable_pin_memory=True,
         ),
         "devtools-vllm-test",
     )
@@ -301,6 +318,9 @@ def test_launch_adds_exact_prefetch_offload_arguments(tmp_path: Path) -> None:
     for option, value in expected.items():
         assert command.arguments.count(option) == 1
         assert command.arguments[command.arguments.index(option) + 1] == value
+    assert command.arguments.count("--env") == 1
+    environment_option = command.arguments.index("--env")
+    assert command.arguments[environment_option + 1] == _WSL2_PIN_MEMORY_ENVIRONMENT
 
 
 def test_start_preserves_default_readiness_timeout(
@@ -959,9 +979,7 @@ def test_different_container_not_found_does_not_establish_absence(
         return _result(
             command,
             exit_code=1,
-            stderr=(
-                f"Error: No such object: {different_container_id}"
-            ).encode(),
+            stderr=(f"Error: No such object: {different_container_id}").encode(),
         )
 
     async def unexpected_probe(_endpoint: str, _model: str) -> bool:

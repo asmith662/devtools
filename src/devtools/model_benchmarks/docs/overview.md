@@ -19,6 +19,8 @@ behavior and results.
 They also include explicit vLLM prefetch-offload backend and grouping settings,
 including their disabled defaults, because they change weight placement and
 benchmark performance.
+They include the explicit WSL2 pinned-memory opt-in as well, because it can
+change whether vLLM CPU/prefetch offload works and how it uses host memory.
 
 When vLLM reports completion-token usage, `completion_tokens_per_second` means
 reported completion tokens divided by total benchmark request duration, from
