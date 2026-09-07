@@ -50,6 +50,7 @@ class VLLMBenchmarkServingSnapshot:
     gpu_memory_utilization: float
     max_num_seqs: int
     trust_remote_code: bool
+    cpu_offload_gb: float = 0.0
 
     @classmethod
     def from_server(cls, server: VLLMServer) -> VLLMBenchmarkServingSnapshot:
@@ -64,6 +65,7 @@ class VLLMBenchmarkServingSnapshot:
             gpu_memory_utilization=config.gpu_memory_utilization,
             max_num_seqs=config.max_num_seqs,
             trust_remote_code=config.trust_remote_code,
+            cpu_offload_gb=config.cpu_offload_gb,
         )
 
 

@@ -7,6 +7,7 @@ from __future__ import annotations
 import asyncio
 import importlib.util
 import sys
+from dataclasses import replace
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -28,6 +29,8 @@ if TYPE_CHECKING:
 
 _DRIVER_PATH = Path("scripts/model_benchmarks/vllm.py")
 _DEFAULT_READINESS_TIMEOUT = Duration.minutes(10)
+_CPU_OFFLOAD_GB = 2.0
+_RESULT_CPU_OFFLOAD_GB = 2.5
 
 
 @pytest.fixture
@@ -102,7 +105,7 @@ def _patch_start(
     driver: ModuleType,
     server: _Server,
     calls: list[str],
-    expected_readiness_timeout: Duration = _DEFAULT_READINESS_TIMEOUT,
+    expected: tuple[Duration, float] = (_DEFAULT_READINESS_TIMEOUT, 0.0),
 ) -> None:
     async def start(
         *,
@@ -110,7 +113,11 @@ def _patch_start(
         executor: object,
         readiness_timeout: Duration,
     ) -> _Server:
-        assert config == _config(config.cache_root.value.parent)
+        expected_readiness_timeout, expected_cpu_offload_gb = expected
+        assert config == replace(
+            _config(config.cache_root.value.parent),
+            cpu_offload_gb=expected_cpu_offload_gb,
+        )
         assert executor is not None
         assert readiness_timeout == expected_readiness_timeout
         calls.append("start")
@@ -128,11 +135,23 @@ def test_driver_composes_start_benchmark_save_and_stop(
     """The driver composes validated public APIs in their required order."""
     calls: list[str] = []
     server = _Server(calls)
-    config = _config(tmp_path)
+    config = replace(_config(tmp_path), cpu_offload_gb=_CPU_OFFLOAD_GB)
     case = _case()
-    result = _result()
+    result = replace(
+        _result(),
+        serving=replace(
+            _result().serving,
+            cpu_offload_gb=_RESULT_CPU_OFFLOAD_GB,
+        ),
+    )
     result_path = ResolvedPath(tmp_path / "results" / "run.json")
-    _patch_start(monkeypatch, driver, server, calls)
+    _patch_start(
+        monkeypatch,
+        driver,
+        server,
+        calls,
+        expected=(_DEFAULT_READINESS_TIMEOUT, _CPU_OFFLOAD_GB),
+    )
 
     async def benchmark(
         *,
@@ -167,6 +186,8 @@ def test_driver_composes_start_benchmark_save_and_stop(
     output = capsys.readouterr().out
     assert str(config.cache_root) in output
     assert str(result_path) in output
+    assert f"CPU weight offload: {_RESULT_CPU_OFFLOAD_GB} GiB" in output
+    assert f"CPU weight offload: {_CPU_OFFLOAD_GB} GiB" not in output
 
 
 @pytest.mark.parametrize("failure_site", ["benchmark", "save"])
@@ -303,6 +324,7 @@ def test_driver_builds_public_configuration_from_explicit_arguments(
     assert output_root == ResolvedPath(tmp_path / "results")
     assert case.expected_response == "local model ready"
     assert readiness_timeout == driver.DEFAULT_READINESS_TIMEOUT
+    assert config.cpu_offload_gb == 0.0
 
 
 def test_driver_maps_custom_readiness_timeout_to_server_start(
@@ -329,6 +351,8 @@ def test_driver_maps_custom_readiness_timeout_to_server_start(
             "2048",
             "--gpu-memory-utilization",
             "0.8",
+            "--cpu-offload-gb",
+            "2.0",
             "--max-num-seqs",
             "1",
             "--port",
@@ -341,13 +365,14 @@ def test_driver_maps_custom_readiness_timeout_to_server_start(
         arguments,
         base_directory=tmp_path,
     )
+    assert config.cpu_offload_gb == _CPU_OFFLOAD_GB
     calls: list[str] = []
     _patch_start(
         monkeypatch,
         driver,
         _Server(calls),
         calls,
-        expected_readiness_timeout=Duration.minutes(30),
+        expected=(Duration.minutes(30), _CPU_OFFLOAD_GB),
     )
 
     async def benchmark(**_kwargs: object) -> ModelBenchmarkResult:

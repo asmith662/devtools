@@ -62,6 +62,12 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
     )
     parser.add_argument("--max-model-len", required=True, type=int)
     parser.add_argument("--gpu-memory-utilization", required=True, type=float)
+    parser.add_argument(
+        "--cpu-offload-gb",
+        default=0.0,
+        type=float,
+        help="GiB of model weights per GPU that vLLM may offload to CPU memory.",
+    )
     parser.add_argument("--max-num-seqs", required=True, type=int)
     parser.add_argument("--port", default=8000, type=int)
     parser.add_argument("--prompt", default=_DEFAULT_PROMPT)
@@ -99,6 +105,7 @@ def build_configuration(
             served_model_name=arguments.served_model_name,
             max_model_len=arguments.max_model_len,
             gpu_memory_utilization=arguments.gpu_memory_utilization,
+            cpu_offload_gb=arguments.cpu_offload_gb,
             max_num_seqs=arguments.max_num_seqs,
             trust_remote_code=arguments.trust_remote_code,
         ),
@@ -159,6 +166,7 @@ def _print_summary(
     print(f"Model repository: {result.serving.model_repository}")
     print(f"Model revision: {result.serving.model_revision}")
     print(f"Served model: {result.serving.served_model_name}")
+    print(f"CPU weight offload: {result.serving.cpu_offload_gb} GiB")
     print(f"TTFT: {result.ttft}")
     print(f"Total duration: {result.total_duration}")
     print(f"Completion tokens: {result.completion_tokens}")

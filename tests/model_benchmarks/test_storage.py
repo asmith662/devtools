@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+from dataclasses import replace
 from typing import TYPE_CHECKING
 
 import pytest
@@ -23,6 +24,10 @@ from devtools.time import Duration, Timestamp
 
 if TYPE_CHECKING:
     from pathlib import Path
+
+
+_CPU_OFFLOAD_GB = 2.0
+_SCHEMA_VERSION = 2
 
 
 def _result(**changes: object) -> ModelBenchmarkResult:
@@ -59,18 +64,60 @@ def _result(**changes: object) -> ModelBenchmarkResult:
 def test_save_and_load_round_trip_explicit_schema(tmp_path: Path) -> None:
     """Saved artifacts remain inspectable and reconstruct the immutable result."""
     output_root = ResolvedPath(tmp_path / "results")
-    result = _result()
+    result = _result(
+        serving=replace(_result().serving, cpu_offload_gb=_CPU_OFFLOAD_GB),
+    )
 
     path = save_benchmark_result(result, output_root)
     raw = json.loads(path.value.read_text(encoding="utf-8"))
 
     assert path.value.parent == output_root.value
     assert path.suffix == ".json"
-    assert raw["schema_version"] == 1
+    assert raw["schema_version"] == _SCHEMA_VERSION
     assert raw["serving"]["provider"] == "vllm"
     assert raw["serving"]["model_revision"] == "a" * 40
+    assert raw["serving"]["cpu_offload_gb"] == _CPU_OFFLOAD_GB
     assert raw["response_text"] == "local model ready"
     assert load_benchmark_result(path) == result
+
+
+def test_save_explicitly_serializes_zero_cpu_offload_in_schema_two(
+    tmp_path: Path,
+) -> None:
+    """Schema two distinguishes an explicit disabled setting from omission."""
+    path = save_benchmark_result(_result(), ResolvedPath(tmp_path / "results"))
+    raw = json.loads(path.value.read_text(encoding="utf-8"))
+
+    assert raw["schema_version"] == _SCHEMA_VERSION
+    assert raw["serving"]["cpu_offload_gb"] == 0.0
+
+
+def test_loads_version_one_artifact_with_historical_zero_cpu_offload(
+    tmp_path: Path,
+) -> None:
+    """Pre-offload artifacts reconstruct their historically fixed zero value."""
+    raw = storage._to_json(_result())  # noqa: SLF001
+    raw["schema_version"] = 1
+    serving = raw["serving"]
+    assert isinstance(serving, dict)
+    del serving["cpu_offload_gb"]
+    path = ResolvedPath(tmp_path / "version-one.json")
+    path.value.write_text(json.dumps(raw), encoding="utf-8")
+
+    assert load_benchmark_result(path) == _result()
+
+
+def test_rejects_schema_two_artifact_missing_cpu_offload(tmp_path: Path) -> None:
+    """Schema two requires explicit complete serving provenance."""
+    raw = storage._to_json(_result())  # noqa: SLF001
+    serving = raw["serving"]
+    assert isinstance(serving, dict)
+    del serving["cpu_offload_gb"]
+    path = ResolvedPath(tmp_path / "missing-offload.json")
+    path.value.write_text(json.dumps(raw), encoding="utf-8")
+
+    with pytest.raises(ValueError, match="Invalid"):
+        load_benchmark_result(path)
 
 
 def test_repeated_saves_are_independent(tmp_path: Path) -> None:
@@ -103,7 +150,7 @@ def test_benchmark_name_cannot_escape_the_explicit_output_root(tmp_path: Path) -
     "content",
     [
         "not json",
-        json.dumps({"schema_version": 2}),
+        json.dumps({"schema_version": 3}),
         json.dumps({"schema_version": 1}),
         json.dumps({"schema_version": 1, "case": {}, "serving": {"provider": "other"}}),
     ],

@@ -90,6 +90,7 @@ def test_config_is_immutable_hashable_and_preserves_defaults(tmp_path: Path) -> 
     config = _config(tmp_path)
 
     assert config.trust_remote_code is False
+    assert config.cpu_offload_gb == 0.0
     assert config == _config(tmp_path)
     assert hash(config) == hash(_config(tmp_path))
 
@@ -125,6 +126,9 @@ def test_server_exposes_config_and_start_facts(tmp_path: Path) -> None:
         ("gpu_memory_utilization", 0.0, "utilization"),
         ("gpu_memory_utilization", 1.1, "utilization"),
         ("max_num_seqs", 0, "sequences"),
+        ("cpu_offload_gb", -0.1, "offload"),
+        ("cpu_offload_gb", float("nan"), "offload"),
+        ("cpu_offload_gb", float("inf"), "offload"),
     ],
 )
 def test_config_rejects_invalid_structural_values(
@@ -188,12 +192,24 @@ def test_start_builds_deterministic_owned_docker_launch(
     assert str(config.max_model_len) in command.arguments
     assert str(config.gpu_memory_utilization) in command.arguments
     assert str(config.max_num_seqs) in command.arguments
+    assert "--cpu-offload-gb" not in command.arguments
     assert "--trust-remote-code" not in command.arguments
     assert server.container_id == _VALID_CONTAINER_ID
     assert server.endpoint == "http://127.0.0.1:8123"
     assert server.cache_root == config.cache_root
     assert config.cache_root.value.is_dir()
     assert all(command.arguments[0] != "logs" for command in executor.commands)
+
+
+def test_launch_adds_exact_positive_cpu_weight_offload(tmp_path: Path) -> None:
+    """Positive model-weight offload is one explicit vLLM launch option."""
+    config = _config(tmp_path, cpu_offload_gb=2.0)
+
+    command = vllm._build_launch_command(config, "devtools-vllm-test")  # noqa: SLF001
+
+    assert command.arguments.count("--cpu-offload-gb") == 1
+    option = command.arguments.index("--cpu-offload-gb")
+    assert command.arguments[option + 1] == "2.0"
 
 
 def test_start_preserves_default_readiness_timeout(

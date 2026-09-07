@@ -20,6 +20,9 @@ The vLLM implementation uses an explicit pinned image, a caller-visible Hugging
 Face cache root, an exact pinned repository revision, Docker CLI execution via
 `devtools.commands`, readiness probes, and ownership-safe stop behavior.
 Readiness waiting is caller-configurable; its default remains ten minutes.
+``cpu_offload_gb`` is reproducible vLLM launch configuration: zero disables
+CPU model-weight offload, while a positive GiB-per-GPU value can reduce GPU
+pressure at the cost of CPU/GPU weight access during inference.
 If an owned container exits before readiness, the startup failure can include a
 bounded provider log tail. These failure-only diagnostics are not durable logs.
 If owned cleanup also fails, the established startup failure or cancellation

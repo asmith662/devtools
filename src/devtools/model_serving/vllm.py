@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import math
 import re
 import uuid
 from dataclasses import dataclass
@@ -59,6 +60,7 @@ class VLLMServingConfig:
     gpu_memory_utilization: float
     max_num_seqs: int
     trust_remote_code: bool = False
+    cpu_offload_gb: float = 0.0
 
     def __post_init__(self) -> None:
         """Validate structural launch constraints."""
@@ -84,6 +86,10 @@ class VLLMServingConfig:
 
         if self.max_num_seqs <= 0:
             msg = "Maximum number of sequences must be positive."
+            raise ValueError(msg)
+
+        if not math.isfinite(self.cpu_offload_gb) or self.cpu_offload_gb < 0:
+            msg = "CPU weight offload must be finite and non-negative."
             raise ValueError(msg)
 
 
@@ -321,6 +327,8 @@ def _build_launch_command(config: VLLMServingConfig, container_name: str) -> Com
         "--max-num-seqs",
         str(config.max_num_seqs),
     ]
+    if config.cpu_offload_gb > 0:
+        arguments.extend(("--cpu-offload-gb", str(config.cpu_offload_gb)))
     if config.trust_remote_code:
         arguments.append("--trust-remote-code")
 

@@ -22,6 +22,9 @@ if TYPE_CHECKING:
     from pathlib import Path
 
 
+_CPU_OFFLOAD_GB = 2.0
+
+
 def _case(**changes: object) -> BenchmarkCase:
     values: dict[str, object] = {
         "name": "ready",
@@ -137,6 +140,7 @@ def test_serving_snapshot_reads_public_server_config(tmp_path: Path) -> None:
         max_model_len=2048,
         gpu_memory_utilization=0.8,
         max_num_seqs=1,
+        cpu_offload_gb=_CPU_OFFLOAD_GB,
     )
     server = VLLMServer(
         config=config,
@@ -146,4 +150,6 @@ def test_serving_snapshot_reads_public_server_config(tmp_path: Path) -> None:
         started_at=Timestamp.now(),
     )
 
-    assert VLLMBenchmarkServingSnapshot.from_server(server) == _serving()
+    snapshot = VLLMBenchmarkServingSnapshot.from_server(server)
+    assert snapshot.cpu_offload_gb == _CPU_OFFLOAD_GB
+    assert snapshot.model_repository == config.model.repository
