@@ -17,6 +17,7 @@ from devtools.model_serving.errors import (
     VLLMInspectionError,
     VLLMLaunchError,
     VLLMOwnershipError,
+    VLLMStartupError,
     VLLMStopError,
 )
 from devtools.time import Duration, Timestamp
@@ -37,6 +38,8 @@ _HTTP_OK = 200
 _HTTP_STATUS_PARTS = 2
 DEFAULT_READINESS_TIMEOUT = Duration.minutes(10)
 _CONTAINER_ID = re.compile(r"^[0-9a-fA-F]{64}$")
+_PROVIDER_LOG_TAIL_LINES = 200
+_PROVIDER_LOG_TAIL_BYTES = 16 * 1024
 
 
 @dataclass(frozen=True, slots=True)
@@ -163,7 +166,8 @@ class VLLMServer:
         """Launch one owned vLLM server and return only after model readiness.
 
         :raises VLLMLaunchError: If Docker rejects the detached launch.
-        :raises ServingReadinessTimeoutError: If the model never becomes ready.
+        :raises ServingReadinessTimeoutError: If readiness does not arrive in time.
+        :raises VLLMStartupError: If the container exits before readiness.
         """
         config.cache_root.value.mkdir(parents=True, exist_ok=True)
         container_name = _new_container_name()
@@ -184,8 +188,8 @@ class VLLMServer:
 
         try:
             await server.wait_ready(readiness_timeout=readiness_timeout)
-        except BaseException:
-            await server._stop_after_unsuccessful_start()
+        except BaseException as primary_error:
+            await server._stop_after_unsuccessful_start(primary_error)
             raise
 
         return server
@@ -212,7 +216,13 @@ class VLLMServer:
                             "Owned vLLM container stopped before its model "
                             "became ready."
                         )
-                        raise ServingReadinessTimeoutError(msg)
+                        raise VLLMStartupError(
+                            msg,
+                            provider_log_tail=await _provider_log_tail(
+                                self._executor,
+                                self._container_id,
+                            ),
+                        )
 
                     await asyncio.sleep(_POLL_INTERVAL_SECONDS)
         except TimeoutError as error:
@@ -235,10 +245,7 @@ class VLLMServer:
         return VLLMServerStatus(container_running=True, model_ready=ready)
 
     async def stop(self) -> None:
-        """Stop only the exact Docker container owned by this handle.
-
-        Stopping is idempotent: a removed ``--rm`` container is already stopped.
-        """
+        """Stop and remove only the exact Docker container owned by this handle."""
         inspection = await _inspect_container(self._executor, self._container_id)
         if inspection is None:
             return
@@ -247,23 +254,41 @@ class VLLMServer:
             msg = "Refusing to stop a container without the expected ownership label."
             raise VLLMOwnershipError(msg)
 
-        if not inspection.running:
-            return
+        if inspection.running:
+            result = await self._executor.execute(_stop_command(self._container_id))
+            if result.failed:
+                diagnostic = _diagnostic_text(result.stderr or result.stdout)
+                msg = (
+                    "Docker could not stop owned vLLM container "
+                    f"{self._container_id!r}."
+                )
+                if diagnostic:
+                    msg = f"{msg} {diagnostic}"
+                raise VLLMStopError(msg)
 
-        result = await self._executor.execute(_stop_command(self._container_id))
-        if result.failed:
-            diagnostic = _diagnostic_text(result.stderr or result.stdout)
-            msg = f"Docker could not stop owned vLLM container {self._container_id!r}."
+        removal = await self._executor.execute(_remove_command(self._container_id))
+        if removal.failed and not _is_exact_container_not_found(
+            removal,
+            self._container_id,
+        ):
+            diagnostic = _diagnostic_text(removal.stderr or removal.stdout)
+            msg = (
+                "Docker could not remove owned vLLM container "
+                f"{self._container_id!r}."
+            )
             if diagnostic:
                 msg = f"{msg} {diagnostic}"
             raise VLLMStopError(msg)
 
-    async def _stop_after_unsuccessful_start(self) -> None:
+    async def _stop_after_unsuccessful_start(
+        self,
+        primary_error: BaseException,
+    ) -> None:
         """Attempt owned cleanup while preserving the primary start failure."""
         try:
             await self.stop()
-        except BaseException:  # noqa: BLE001
-            return
+        except BaseException as cleanup_error:  # noqa: BLE001
+            primary_error.add_note(_cleanup_failure_note(cleanup_error))
 
 
 def _build_launch_command(config: VLLMServingConfig, container_name: str) -> Command:
@@ -271,7 +296,6 @@ def _build_launch_command(config: VLLMServingConfig, container_name: str) -> Com
     arguments = [
         "run",
         "--detach",
-        "--rm",
         "--name",
         container_name,
         "--label",
@@ -322,6 +346,19 @@ def _inspect_command(container_id: str) -> Command:
 def _stop_command(container_id: str) -> Command:
     """Build an exact-container Docker stop command."""
     return Command("docker", ("stop", container_id))
+
+
+def _remove_command(container_id: str) -> Command:
+    """Build an exact-container Docker removal command."""
+    return Command("docker", ("rm", container_id))
+
+
+def _logs_command(container_id: str) -> Command:
+    """Build a bounded provider-log request for one exact container."""
+    return Command(
+        "docker",
+        ("logs", "--tail", str(_PROVIDER_LOG_TAIL_LINES), container_id),
+    )
 
 
 def _new_container_name() -> str:
@@ -401,6 +438,33 @@ def _launch_error_message(result: CommandResult) -> str:
 def _diagnostic_text(data: bytes) -> str:
     """Decode a bounded command-output prefix for an error message."""
     return data[:_MAX_DIAGNOSTIC_BYTES].decode("utf-8", errors="replace").strip()
+
+
+def _cleanup_failure_note(error: BaseException) -> str:
+    """Describe a bounded secondary cleanup error on a primary exception."""
+    prefix = "Owned vLLM container cleanup also failed: "
+    available = _MAX_DIAGNOSTIC_BYTES - len(prefix.encode("utf-8"))
+    diagnostic = str(error).encode("utf-8", errors="replace")[:available]
+    detail = diagnostic.decode("utf-8", errors="ignore").strip()
+    return f"{prefix}{detail or type(error).__name__}"
+
+
+async def _provider_log_tail(
+    executor: CommandExecutor,
+    container_id: str,
+) -> str | None:
+    """Return a bounded tail of one exact container's combined provider logs."""
+    try:
+        result = await executor.execute(_logs_command(container_id))
+    except Exception:  # noqa: BLE001
+        return None
+
+    if result.failed:
+        return None
+
+    tail = (result.stdout + result.stderr)[-_PROVIDER_LOG_TAIL_BYTES:]
+    text = tail.decode("utf-8", errors="ignore").strip()
+    return text or None
 
 
 async def _probe_model_ready(endpoint: str, model_name: str) -> bool:

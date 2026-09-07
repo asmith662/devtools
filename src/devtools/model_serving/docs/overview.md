@@ -20,6 +20,10 @@ The vLLM implementation uses an explicit pinned image, a caller-visible Hugging
 Face cache root, an exact pinned repository revision, Docker CLI execution via
 `devtools.commands`, readiness probes, and ownership-safe stop behavior.
 Readiness waiting is caller-configurable; its default remains ten minutes.
+If an owned container exits before readiness, the startup failure can include a
+bounded provider log tail. These failure-only diagnostics are not durable logs.
+If owned cleanup also fails, the established startup failure or cancellation
+remains primary and carries a bounded cleanup diagnostic note.
 
 ## Required future pressure tests
 

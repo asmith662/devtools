@@ -16,6 +16,7 @@ from devtools.model_serving.errors import (
     VLLMInspectionError,
     VLLMLaunchError,
     VLLMOwnershipError,
+    VLLMStartupError,
     VLLMStopError,
 )
 from devtools.model_serving.huggingface import HuggingFaceModelRef
@@ -169,7 +170,7 @@ def test_start_builds_deterministic_owned_docker_launch(
     command = executor.commands[0]
     assert command.executable == "docker"
     assert "--detach" in command.arguments
-    assert "--rm" in command.arguments
+    assert "--rm" not in command.arguments
     assert "--gpus" in command.arguments
     assert "all" in command.arguments
     assert "--ipc" in command.arguments
@@ -192,6 +193,7 @@ def test_start_builds_deterministic_owned_docker_launch(
     assert server.endpoint == "http://127.0.0.1:8123"
     assert server.cache_root == config.cache_root
     assert config.cache_root.value.is_dir()
+    assert all(command.arguments[0] != "logs" for command in executor.commands)
 
 
 def test_start_preserves_default_readiness_timeout(
@@ -421,6 +423,7 @@ def test_readiness_timeout_stops_owned_container(
         "inspect",
         "inspect",
         "stop",
+        "rm",
     ]
     assert executor.commands[-1].arguments[-1] == _VALID_CONTAINER_ID
 
@@ -479,29 +482,248 @@ def test_cancellation_during_readiness_stops_owned_container(
 
     asyncio.run(run())
 
-    assert executor.commands[-1].arguments == ("stop", _VALID_CONTAINER_ID)
+    assert [command.arguments[0] for command in executor.commands[-2:]] == [
+        "stop",
+        "rm",
+    ]
 
 
-def test_stopped_container_fails_readiness_without_waiting(
+def test_cancellation_preserves_identity_when_removal_fails(
+    monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,
 ) -> None:
-    """An exited owned container is not treated as a slow but viable server."""
+    """A cleanup-removal failure becomes a note on the same cancellation."""
+    primary = asyncio.CancelledError("primary cancellation")
     executor = _Executor([])
 
     async def execute(command: Command) -> CommandResult:
+        executor.commands.append(command)
         if command.arguments[0] == "run":
             return _result(command, stdout=_VALID_CONTAINER_ID.encode() + b"\n")
-        return _result(command, stdout=b"false|true\n")
+        if command.arguments[0] == "inspect":
+            return _result(command, stdout=b"false|true\n")
+        return _result(command, exit_code=1, stderr=b"cannot remove after cancel")
+
+    async def cancelled_wait(
+        _server: VLLMServer,
+        *,
+        readiness_timeout: Duration,
+    ) -> None:
+        del readiness_timeout
+        raise primary
 
     executor.execute = execute  # type: ignore[method-assign]
+    monkeypatch.setattr(VLLMServer, "wait_ready", cancelled_wait)
 
-    with pytest.raises(ServingReadinessTimeoutError, match="stopped"):
+    with pytest.raises(asyncio.CancelledError) as raised:
         asyncio.run(
             VLLMServer.start(
                 config=_config(tmp_path),
                 executor=executor,  # type: ignore[arg-type]
             ),
         )
+
+    assert raised.value is primary
+    assert primary.__notes__ == [
+        (
+            "Owned vLLM container cleanup also failed: "
+            "Docker could not remove owned vLLM container "
+            f"'{_VALID_CONTAINER_ID}'. cannot remove after cancel"
+        ),
+    ]
+    assert [command.arguments[0] for command in executor.commands] == [
+        "run",
+        "inspect",
+        "rm",
+    ]
+
+
+def test_readiness_timeout_preserves_primary_when_removal_fails(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    """A removal failure is noted without replacing an elapsed timeout."""
+    executor = _Executor([])
+
+    async def execute(command: Command) -> CommandResult:
+        executor.commands.append(command)
+        if command.arguments[0] == "run":
+            return _result(command, stdout=_VALID_CONTAINER_ID.encode() + b"\n")
+        if command.arguments[0] == "inspect":
+            return _result(command, stdout=b"true|true\n")
+        if command.arguments[0] == "stop":
+            return _result(command)
+        return _result(command, exit_code=1, stderr=b"cannot remove after timeout")
+
+    async def not_ready(_endpoint: str, _model: str) -> bool:
+        return False
+
+    executor.execute = execute  # type: ignore[method-assign]
+    monkeypatch.setattr("devtools.model_serving.vllm._probe_model_ready", not_ready)
+
+    with pytest.raises(ServingReadinessTimeoutError) as raised:
+        asyncio.run(
+            VLLMServer.start(
+                config=_config(tmp_path),
+                executor=executor,  # type: ignore[arg-type]
+                readiness_timeout=Duration.seconds(0.01),
+            ),
+        )
+
+    assert raised.value.__notes__ == [
+        (
+            "Owned vLLM container cleanup also failed: "
+            "Docker could not remove owned vLLM container "
+            f"'{_VALID_CONTAINER_ID}'. cannot remove after timeout"
+        ),
+    ]
+    assert executor.commands[-1].arguments == ("rm", _VALID_CONTAINER_ID)
+
+
+def test_early_container_exit_preserves_bounded_provider_log_tail(
+    tmp_path: Path,
+) -> None:
+    """An early exit retains the newest bounded exact-container provider logs."""
+    executor = _Executor([])
+    provider_stdout = b"\xff" * (vllm._PROVIDER_LOG_TAIL_BYTES + 10)  # noqa: SLF001
+    provider_stderr = b"CUDA out of memory"
+
+    async def execute(command: Command) -> CommandResult:
+        executor.commands.append(command)
+        if command.arguments[0] == "run":
+            return _result(command, stdout=_VALID_CONTAINER_ID.encode() + b"\n")
+        if command.arguments[0] == "inspect":
+            return _result(command, stdout=b"false|true\n")
+        if command.arguments[0] == "logs":
+            return _result(command, stdout=provider_stdout, stderr=provider_stderr)
+        return _result(command)
+
+    executor.execute = execute  # type: ignore[method-assign]
+
+    with pytest.raises(VLLMStartupError, match="stopped") as raised:
+        asyncio.run(
+            VLLMServer.start(
+                config=_config(tmp_path),
+                executor=executor,  # type: ignore[arg-type]
+            ),
+        )
+
+    assert raised.value.provider_log_tail is not None
+    assert raised.value.provider_log_tail.endswith("CUDA out of memory")
+    assert len(raised.value.provider_log_tail.encode()) <= vllm._PROVIDER_LOG_TAIL_BYTES  # noqa: SLF001
+    assert not getattr(raised.value, "__notes__", [])
+    assert [command.arguments[0] for command in executor.commands] == [
+        "run",
+        "inspect",
+        "logs",
+        "inspect",
+        "rm",
+    ]
+    assert executor.commands[2].arguments[-1] == _VALID_CONTAINER_ID
+
+
+def test_early_container_exit_preserves_startup_error_when_removal_fails(
+    tmp_path: Path,
+) -> None:
+    """A failed removal is noted without replacing the provider-exit error."""
+    executor = _Executor([])
+
+    async def execute(command: Command) -> CommandResult:
+        executor.commands.append(command)
+        if command.arguments[0] == "run":
+            return _result(command, stdout=_VALID_CONTAINER_ID.encode() + b"\n")
+        if command.arguments[0] == "inspect":
+            return _result(command, stdout=b"false|true\n")
+        if command.arguments[0] == "logs":
+            return _result(command, stdout=b"CUDA out of memory", stderr=b"")
+        return _result(command, exit_code=1, stderr=b"cannot remove owned container")
+
+    executor.execute = execute  # type: ignore[method-assign]
+
+    with pytest.raises(VLLMStartupError, match="stopped") as raised:
+        asyncio.run(
+            VLLMServer.start(
+                config=_config(tmp_path),
+                executor=executor,  # type: ignore[arg-type]
+            ),
+        )
+
+    assert raised.value.provider_log_tail == "CUDA out of memory"
+    assert raised.value.__notes__ == [
+        (
+            "Owned vLLM container cleanup also failed: "
+            "Docker could not remove owned vLLM container "
+            f"'{_VALID_CONTAINER_ID}'. cannot remove owned container"
+        ),
+    ]
+    assert [command.arguments[0] for command in executor.commands] == [
+        "run",
+        "inspect",
+        "logs",
+        "inspect",
+        "rm",
+    ]
+
+
+def test_early_container_exit_preserves_startup_error_when_logs_fail(
+    tmp_path: Path,
+) -> None:
+    """A secondary Docker-log failure cannot replace the primary startup error."""
+    executor = _Executor([])
+
+    async def execute(command: Command) -> CommandResult:
+        executor.commands.append(command)
+        if command.arguments[0] == "run":
+            return _result(command, stdout=_VALID_CONTAINER_ID.encode() + b"\n")
+        if command.arguments[0] == "inspect":
+            return _result(command, stdout=b"false|true\n")
+        if command.arguments[0] == "logs":
+            return _result(command, exit_code=1, stderr=b"logs unavailable")
+        return _result(command)
+
+    executor.execute = execute  # type: ignore[method-assign]
+
+    with pytest.raises(VLLMStartupError, match="stopped") as raised:
+        asyncio.run(
+            VLLMServer.start(
+                config=_config(tmp_path),
+                executor=executor,  # type: ignore[arg-type]
+            ),
+        )
+
+    assert raised.value.provider_log_tail is None
+    assert executor.commands[-1].arguments == ("rm", _VALID_CONTAINER_ID)
+
+
+def test_early_container_exit_preserves_startup_error_when_log_command_raises(
+    tmp_path: Path,
+) -> None:
+    """An operational log-command error remains secondary to startup failure."""
+    executor = _Executor([])
+
+    async def execute(command: Command) -> CommandResult:
+        executor.commands.append(command)
+        if command.arguments[0] == "run":
+            return _result(command, stdout=_VALID_CONTAINER_ID.encode() + b"\n")
+        if command.arguments[0] == "inspect":
+            return _result(command, stdout=b"false|true\n")
+        if command.arguments[0] == "logs":
+            msg = "docker logs unavailable"
+            raise RuntimeError(msg)
+        return _result(command)
+
+    executor.execute = execute  # type: ignore[method-assign]
+
+    with pytest.raises(VLLMStartupError, match="stopped") as raised:
+        asyncio.run(
+            VLLMServer.start(
+                config=_config(tmp_path),
+                executor=executor,  # type: ignore[arg-type]
+            ),
+        )
+
+    assert raised.value.provider_log_tail is None
+    assert executor.commands[-1].arguments == ("rm", _VALID_CONTAINER_ID)
 
 
 def test_status_distinguishes_running_ready_and_stopped(
@@ -735,8 +957,10 @@ def test_startup_cleanup_preserves_cancelled_error_identity(
 def test_stop_handles_owned_stopped_and_docker_stop_failure(tmp_path: Path) -> None:
     """An owned stopped container is harmless, while failed stop is explicit."""
     executor = _Executor([])
+    commands: list[Command] = []
 
     async def stopped(command: Command) -> CommandResult:
+        commands.append(command)
         return _result(command, stdout=b"false|true\n")
 
     executor.execute = stopped  # type: ignore[method-assign]
@@ -748,6 +972,7 @@ def test_stop_handles_owned_stopped_and_docker_stop_failure(tmp_path: Path) -> N
         started_at=__import__("devtools.time", fromlist=["Timestamp"]).Timestamp.now(),
     )
     asyncio.run(server.stop())
+    assert [command.arguments[0] for command in commands] == ["inspect", "rm"]
 
     async def failed_stop(command: Command) -> CommandResult:
         if command.arguments[0] == "inspect":
@@ -767,20 +992,43 @@ def test_stop_handles_owned_stopped_and_docker_stop_failure(tmp_path: Path) -> N
     with pytest.raises(VLLMStopError, match=_VALID_CONTAINER_ID):
         asyncio.run(server.stop())
 
+    async def failed_removal(command: Command) -> CommandResult:
+        if command.arguments[0] == "inspect":
+            return _result(command, stdout=b"false|true\n")
+        return _result(command, exit_code=1, stdout=b"cannot remove", stderr=b"")
 
-def test_failed_start_cleanup_suppresses_secondary_cleanup_error(
+    executor.execute = failed_removal  # type: ignore[method-assign]
+    with pytest.raises(VLLMStopError, match="cannot remove"):
+        asyncio.run(server.stop())
+
+    async def failed_removal_without_diagnostic(command: Command) -> CommandResult:
+        if command.arguments[0] == "inspect":
+            return _result(command, stdout=b"false|true\n")
+        return CommandResult(command, 1, b"", b"", Duration.seconds(0))
+
+    executor.execute = failed_removal_without_diagnostic  # type: ignore[method-assign]
+    with pytest.raises(VLLMStopError, match=_VALID_CONTAINER_ID):
+        asyncio.run(server.stop())
+
+
+def test_failed_start_cleanup_notes_secondary_cleanup_error(
     tmp_path: Path,
 ) -> None:
     """Cleanup never replaces the primary lifecycle failure."""
+    primary = VLLMStartupError("primary", provider_log_tail=None)
     server = VLLMServer(
         config=_config(tmp_path),
         container_id=_VALID_CONTAINER_ID,
         container_name="devtools-vllm-test",
-        executor=_Executor([RuntimeError("secondary")]),  # type: ignore[arg-type]
+        executor=_Executor([RuntimeError()]),  # type: ignore[arg-type]
         started_at=__import__("devtools.time", fromlist=["Timestamp"]).Timestamp.now(),
     )
 
-    asyncio.run(server._stop_after_unsuccessful_start())  # noqa: SLF001
+    asyncio.run(server._stop_after_unsuccessful_start(primary))  # noqa: SLF001
+
+    assert primary.__notes__ == [
+        "Owned vLLM container cleanup also failed: RuntimeError",
+    ]
 
 
 def test_internal_parsing_and_diagnostics_cover_invalid_docker_output() -> None:
