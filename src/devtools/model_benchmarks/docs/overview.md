@@ -21,6 +21,9 @@ including their disabled defaults, because they change weight placement and
 benchmark performance.
 They include the explicit WSL2 pinned-memory opt-in as well, because it can
 change whether vLLM CPU/prefetch offload works and how it uses host memory.
+They also include whether vLLM applies its CUDA-graph memory estimate during
+automatic KV-cache sizing, because that can determine startup viability and
+later graph-capture headroom.
 
 When vLLM reports completion-token usage, `completion_tokens_per_second` means
 reported completion tokens divided by total benchmark request duration, from

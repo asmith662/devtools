@@ -33,6 +33,13 @@ disabled.
 disabled, but can be needed for CPU/prefetch offload under WSL2. Pinned
 (page-locked) host memory consumes host-memory resources and should be enabled
 deliberately; it does not guarantee compatibility on every WSL installation.
+``estimate_cudagraph_memory`` controls whether vLLM applies its profiled
+CUDA-graph memory estimate to automatic KV-cache sizing. Its default preserves
+vLLM behavior. Setting it to false maps to
+``VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0`` inside the launched container:
+CUDA graphs still capture and consume GPU memory, so this advanced experimental
+control can instead expose a later CUDA OOM if the estimate represented needed
+headroom.
 If an owned container exits before readiness, the startup failure can include a
 bounded provider log tail. These failure-only diagnostics are not durable logs.
 If owned cleanup also fails, the established startup failure or cancellation

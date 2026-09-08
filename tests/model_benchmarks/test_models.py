@@ -149,6 +149,7 @@ def test_serving_snapshot_reads_public_server_config(tmp_path: Path) -> None:
         offload_num_in_group=_PREFETCH_NUM_IN_GROUP,
         offload_prefetch_step=_PREFETCH_STEP,
         wsl2_enable_pin_memory=True,
+        estimate_cudagraph_memory=False,
     )
     server = VLLMServer(
         config=config,
@@ -165,4 +166,5 @@ def test_serving_snapshot_reads_public_server_config(tmp_path: Path) -> None:
     assert snapshot.offload_num_in_group == _PREFETCH_NUM_IN_GROUP
     assert snapshot.offload_prefetch_step == _PREFETCH_STEP
     assert snapshot.wsl2_enable_pin_memory is True
+    assert snapshot.estimate_cudagraph_memory is False
     assert snapshot.model_repository == config.model.repository

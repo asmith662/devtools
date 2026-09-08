@@ -96,6 +96,14 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
         action="store_true",
         help="Enable vLLM's WSL2 pinned host-memory opt-in for CPU/prefetch offload.",
     )
+    parser.add_argument(
+        "--disable-cudagraph-memory-estimate",
+        action="store_true",
+        help=(
+            "Do not apply vLLM's profiled CUDA-graph memory estimate to "
+            "automatic KV-cache sizing; CUDA graphs remain enabled."
+        ),
+    )
     parser.add_argument("--max-num-seqs", required=True, type=int)
     parser.add_argument("--port", default=8000, type=int)
     parser.add_argument("--prompt", default=_DEFAULT_PROMPT)
@@ -139,6 +147,7 @@ def build_configuration(
             offload_num_in_group=arguments.offload_num_in_group,
             offload_prefetch_step=arguments.offload_prefetch_step,
             wsl2_enable_pin_memory=arguments.wsl2_enable_pin_memory,
+            estimate_cudagraph_memory=not arguments.disable_cudagraph_memory_estimate,
             max_num_seqs=arguments.max_num_seqs,
             trust_remote_code=arguments.trust_remote_code,
         ),
@@ -207,6 +216,10 @@ def _print_summary(
     print(
         "WSL2 pinned memory: "
         f"{'enabled' if result.serving.wsl2_enable_pin_memory else 'disabled'}",
+    )
+    print(
+        "CUDA-graph memory estimate: "
+        f"{'enabled' if result.serving.estimate_cudagraph_memory else 'disabled'}",
     )
     print(f"TTFT: {result.ttft}")
     print(f"Total duration: {result.total_duration}")

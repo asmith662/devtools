@@ -27,7 +27,7 @@ if TYPE_CHECKING:
 
 
 _CPU_OFFLOAD_GB = 2.0
-_SCHEMA_VERSION = 4
+_SCHEMA_VERSION = 5
 _PREFETCH_GROUP_SIZE = 24
 _PREFETCH_NUM_IN_GROUP = 5
 _PREFETCH_STEP = 1
@@ -38,6 +38,7 @@ _PREFETCH_FIELDS = (
     "offload_prefetch_step",
 )
 _WSL2_PIN_MEMORY_FIELD = "wsl2_enable_pin_memory"
+_CUDAGRAPH_MEMORY_ESTIMATE_FIELD = "estimate_cudagraph_memory"
 
 
 def _result(**changes: object) -> ModelBenchmarkResult:
@@ -83,6 +84,7 @@ def test_save_and_load_round_trip_explicit_schema(tmp_path: Path) -> None:
             offload_num_in_group=_PREFETCH_NUM_IN_GROUP,
             offload_prefetch_step=_PREFETCH_STEP,
             wsl2_enable_pin_memory=True,
+            estimate_cudagraph_memory=False,
         ),
     )
 
@@ -100,14 +102,15 @@ def test_save_and_load_round_trip_explicit_schema(tmp_path: Path) -> None:
     assert raw["serving"]["offload_num_in_group"] == _PREFETCH_NUM_IN_GROUP
     assert raw["serving"]["offload_prefetch_step"] == _PREFETCH_STEP
     assert raw["serving"][_WSL2_PIN_MEMORY_FIELD] is True
+    assert raw["serving"][_CUDAGRAPH_MEMORY_ESTIMATE_FIELD] is False
     assert raw["response_text"] == "local model ready"
     assert load_benchmark_result(path) == result
 
 
-def test_save_explicitly_serializes_disabled_offload_in_schema_four(
+def test_save_explicitly_serializes_execution_settings_in_schema_five(
     tmp_path: Path,
 ) -> None:
-    """Schema four distinguishes explicit disabled states from omission."""
+    """Schema five distinguishes explicit execution states from omission."""
     expected = _result()
     path = save_benchmark_result(expected, ResolvedPath(tmp_path / "results"))
     raw = json.loads(path.value.read_text(encoding="utf-8"))
@@ -119,6 +122,7 @@ def test_save_explicitly_serializes_disabled_offload_in_schema_four(
     assert raw["serving"]["offload_num_in_group"] == 0
     assert raw["serving"]["offload_prefetch_step"] == 0
     assert raw["serving"][_WSL2_PIN_MEMORY_FIELD] is False
+    assert raw["serving"][_CUDAGRAPH_MEMORY_ESTIMATE_FIELD] is True
     assert load_benchmark_result(path) == expected
 
 
@@ -134,6 +138,7 @@ def test_loads_version_one_artifact_with_historical_zero_cpu_offload(
     for field in _PREFETCH_FIELDS:
         del serving[field]
     del serving[_WSL2_PIN_MEMORY_FIELD]
+    del serving[_CUDAGRAPH_MEMORY_ESTIMATE_FIELD]
     path = ResolvedPath(tmp_path / "version-one.json")
     path.value.write_text(json.dumps(raw), encoding="utf-8")
 
@@ -153,6 +158,7 @@ def test_loads_version_two_artifact_with_historical_disabled_prefetch(
     for field in _PREFETCH_FIELDS:
         del serving[field]
     del serving[_WSL2_PIN_MEMORY_FIELD]
+    del serving[_CUDAGRAPH_MEMORY_ESTIMATE_FIELD]
     path = ResolvedPath(tmp_path / "version-two.json")
     path.value.write_text(json.dumps(raw), encoding="utf-8")
 
@@ -163,6 +169,7 @@ def test_loads_version_two_artifact_with_historical_disabled_prefetch(
     assert result.serving.offload_num_in_group == 0
     assert result.serving.offload_prefetch_step == 0
     assert result.serving.wsl2_enable_pin_memory is False
+    assert result.serving.estimate_cudagraph_memory is True
 
 
 def test_loads_version_three_artifact_with_historical_disabled_wsl2_pin_memory(
@@ -183,14 +190,43 @@ def test_loads_version_three_artifact_with_historical_disabled_wsl2_pin_memory(
     serving = raw["serving"]
     assert isinstance(serving, dict)
     del serving[_WSL2_PIN_MEMORY_FIELD]
+    del serving[_CUDAGRAPH_MEMORY_ESTIMATE_FIELD]
     path = ResolvedPath(tmp_path / "version-three.json")
     path.value.write_text(json.dumps(raw), encoding="utf-8")
 
     assert load_benchmark_result(path) == expected
 
 
-@pytest.mark.parametrize("field", [*_PREFETCH_FIELDS, _WSL2_PIN_MEMORY_FIELD])
-def test_rejects_schema_four_artifact_missing_execution_provenance(
+def test_loads_version_four_artifact_with_historical_enabled_cudagraph_estimate(
+    tmp_path: Path,
+) -> None:
+    """Pre-estimate-control artifacts retain pinned-memory state exactly."""
+    expected = _result(
+        serving=replace(
+            _result().serving,
+            offload_backend="prefetch",
+            offload_group_size=_PREFETCH_GROUP_SIZE,
+            offload_num_in_group=_PREFETCH_NUM_IN_GROUP,
+            offload_prefetch_step=_PREFETCH_STEP,
+            wsl2_enable_pin_memory=True,
+        ),
+    )
+    raw = storage._to_json(expected)  # noqa: SLF001
+    raw["schema_version"] = 4
+    serving = raw["serving"]
+    assert isinstance(serving, dict)
+    del serving[_CUDAGRAPH_MEMORY_ESTIMATE_FIELD]
+    path = ResolvedPath(tmp_path / "version-four.json")
+    path.value.write_text(json.dumps(raw), encoding="utf-8")
+
+    assert load_benchmark_result(path) == expected
+
+
+@pytest.mark.parametrize(
+    "field",
+    [*_PREFETCH_FIELDS, _WSL2_PIN_MEMORY_FIELD, _CUDAGRAPH_MEMORY_ESTIMATE_FIELD],
+)
+def test_rejects_schema_five_artifact_missing_execution_provenance(
     tmp_path: Path,
     field: str,
 ) -> None:
@@ -236,7 +272,7 @@ def test_benchmark_name_cannot_escape_the_explicit_output_root(tmp_path: Path) -
     "content",
     [
         "not json",
-        json.dumps({"schema_version": 5}),
+        json.dumps({"schema_version": 6}),
         json.dumps({"schema_version": 1}),
         json.dumps({"schema_version": 1, "case": {}, "serving": {"provider": "other"}}),
     ],

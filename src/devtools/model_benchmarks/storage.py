@@ -21,7 +21,7 @@ from devtools.model_benchmarks.models import (
 from devtools.paths import ResolvedPath
 from devtools.time import Duration, Timestamp
 
-_SCHEMA_VERSION = 4
+_SCHEMA_VERSION = 5
 _SAFE_FILENAME = re.compile(r"[^a-zA-Z0-9._-]+")
 
 
@@ -91,6 +91,7 @@ def _to_json(result: ModelBenchmarkResult) -> dict[str, object]:
             "offload_num_in_group": result.serving.offload_num_in_group,
             "offload_prefetch_step": result.serving.offload_prefetch_step,
             "wsl2_enable_pin_memory": result.serving.wsl2_enable_pin_memory,
+            "estimate_cudagraph_memory": result.serving.estimate_cudagraph_memory,
         },
         "response_text": result.response_text,
         "ttft_seconds": _duration_seconds(result.ttft),
@@ -107,7 +108,7 @@ def _from_json(raw: object) -> ModelBenchmarkResult:
     """Decode the supported experimental artifact schemas."""
     root = _object(raw)
     schema_version = _integer(root["schema_version"])
-    if schema_version not in {1, 2, 3, _SCHEMA_VERSION}:
+    if schema_version not in {1, 2, 3, 4, _SCHEMA_VERSION}:
         msg = "Unsupported model benchmark artifact schema version."
         raise ValueError(msg)
     case = _object(root["case"])
@@ -162,6 +163,11 @@ def _from_json(raw: object) -> ModelBenchmarkResult:
                 False
                 if schema_version in {1, 2, 3}
                 else _boolean(serving["wsl2_enable_pin_memory"])
+            ),
+            estimate_cudagraph_memory=(
+                True
+                if schema_version in {1, 2, 3, 4}
+                else _boolean(serving["estimate_cudagraph_memory"])
             ),
         ),
         response_text=_string(root["response_text"]),

@@ -120,6 +120,7 @@ def _patch_start(
         int,
         int,
         bool,
+        bool,
     ] = (
         _DEFAULT_READINESS_TIMEOUT,
         0.0,
@@ -128,6 +129,7 @@ def _patch_start(
         0,
         0,
         False,
+        True,
     ),
 ) -> None:
     async def start(
@@ -144,6 +146,7 @@ def _patch_start(
             expected_offload_num_in_group,
             expected_offload_prefetch_step,
             expected_wsl2_enable_pin_memory,
+            expected_estimate_cudagraph_memory,
         ) = expected
         assert config == replace(
             _config(config.cache_root.value.parent),
@@ -153,6 +156,7 @@ def _patch_start(
             offload_num_in_group=expected_offload_num_in_group,
             offload_prefetch_step=expected_offload_prefetch_step,
             wsl2_enable_pin_memory=expected_wsl2_enable_pin_memory,
+            estimate_cudagraph_memory=expected_estimate_cudagraph_memory,
         )
         assert executor is not None
         assert readiness_timeout == expected_readiness_timeout
@@ -190,6 +194,7 @@ def test_driver_composes_start_benchmark_save_and_stop(
             offload_num_in_group=_RESULT_PREFETCH_NUM_IN_GROUP,
             offload_prefetch_step=_RESULT_PREFETCH_STEP,
             wsl2_enable_pin_memory=True,
+            estimate_cudagraph_memory=False,
         ),
     )
     result_path = ResolvedPath(tmp_path / "results" / "run.json")
@@ -206,6 +211,7 @@ def test_driver_composes_start_benchmark_save_and_stop(
             _PREFETCH_NUM_IN_GROUP,
             _PREFETCH_STEP,
             False,
+            True,
         ),
     )
 
@@ -248,6 +254,7 @@ def test_driver_composes_start_benchmark_save_and_stop(
     assert "Prefetch layers per group: 4" in output
     assert "Prefetch step: 2" in output
     assert "WSL2 pinned memory: enabled" in output
+    assert "CUDA-graph memory estimate: disabled" in output
     assert "Prefetch group size: 24" not in output
 
 
@@ -391,6 +398,7 @@ def test_driver_builds_public_configuration_from_explicit_arguments(
     assert config.offload_num_in_group == 0
     assert config.offload_prefetch_step == 0
     assert config.wsl2_enable_pin_memory is False
+    assert config.estimate_cudagraph_memory is True
 
 
 def test_driver_maps_explicit_prefetch_configuration(
@@ -438,6 +446,41 @@ def test_driver_maps_explicit_prefetch_configuration(
     assert config.offload_num_in_group == _PREFETCH_NUM_IN_GROUP
     assert config.offload_prefetch_step == _PREFETCH_STEP
     assert config.wsl2_enable_pin_memory is True
+    assert config.estimate_cudagraph_memory is True
+
+
+def test_driver_maps_disabled_cudagraph_memory_estimate(
+    tmp_path: Path,
+    driver: ModuleType,
+) -> None:
+    """The driver maps its narrow estimator option into public config only."""
+    arguments = driver.parse_arguments(
+        [
+            "--model",
+            "org/model",
+            "--revision",
+            "a" * 40,
+            "--image",
+            "vllm/vllm-openai:v0.26.0",
+            "--cache-root",
+            "cache",
+            "--output-root",
+            "results",
+            "--served-model-name",
+            "local-model",
+            "--max-model-len",
+            "2048",
+            "--gpu-memory-utilization",
+            "0.8",
+            "--disable-cudagraph-memory-estimate",
+            "--max-num-seqs",
+            "1",
+        ],
+    )
+
+    config, _, _, _ = driver.build_configuration(arguments, base_directory=tmp_path)
+
+    assert config.estimate_cudagraph_memory is False
 
 
 def test_driver_maps_custom_readiness_timeout_to_server_start(
@@ -485,7 +528,7 @@ def test_driver_maps_custom_readiness_timeout_to_server_start(
         driver,
         _Server(calls),
         calls,
-        expected=(Duration.minutes(30), _CPU_OFFLOAD_GB, None, 0, 0, 0, False),
+        expected=(Duration.minutes(30), _CPU_OFFLOAD_GB, None, 0, 0, 0, False, True),
     )
 
     async def benchmark(**_kwargs: object) -> ModelBenchmarkResult:

@@ -66,6 +66,7 @@ class VLLMServingConfig:
     offload_num_in_group: int = 0
     offload_prefetch_step: int = 0
     wsl2_enable_pin_memory: bool = False
+    estimate_cudagraph_memory: bool = True
 
     def __post_init__(self) -> None:
         """Validate structural launch constraints."""
@@ -344,11 +345,14 @@ class VLLMServer:
 
 def _build_launch_command(config: VLLMServingConfig, container_name: str) -> Command:
     """Build the deterministic Docker argv for one vLLM container."""
-    environment_arguments = (
-        ("--env", "VLLM_WSL2_ENABLE_PIN_MEMORY=1")
-        if config.wsl2_enable_pin_memory
-        else ()
-    )
+    environment_arguments: tuple[str, ...] = ()
+    if config.wsl2_enable_pin_memory:
+        environment_arguments += ("--env", "VLLM_WSL2_ENABLE_PIN_MEMORY=1")
+    if not config.estimate_cudagraph_memory:
+        environment_arguments += (
+            "--env",
+            "VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0",
+        )
     arguments = [
         "run",
         "--detach",

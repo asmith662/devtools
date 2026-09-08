@@ -56,6 +56,7 @@ class VLLMBenchmarkServingSnapshot:
     offload_num_in_group: int = 0
     offload_prefetch_step: int = 0
     wsl2_enable_pin_memory: bool = False
+    estimate_cudagraph_memory: bool = True
 
     @classmethod
     def from_server(cls, server: VLLMServer) -> VLLMBenchmarkServingSnapshot:
@@ -76,6 +77,7 @@ class VLLMBenchmarkServingSnapshot:
             offload_num_in_group=config.offload_num_in_group,
             offload_prefetch_step=config.offload_prefetch_step,
             wsl2_enable_pin_memory=config.wsl2_enable_pin_memory,
+            estimate_cudagraph_memory=config.estimate_cudagraph_memory,
         )
 
 
