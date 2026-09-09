@@ -99,16 +99,22 @@ def _acquire(
         revision=model.revision,
         cache_dir=str(cache_root.value),
     )
-    path = Path(downloaded).resolve()
+    path = Path(downloaded).absolute()
+    storage_path = path.resolve()
     root = cache_root.value.resolve()
-    if not path.is_relative_to(root):
+    if not path.is_relative_to(root) or not storage_path.is_relative_to(root):
         msg = "Hugging Face returned a path outside the configured cache root."
         raise ValueError(msg)
-    if not path.is_file():
-        msg = "Hugging Face did not return an existing GGUF artifact file."
+    if path.parts[-len(PurePosixPath(model.filename).parts) :] != tuple(
+        PurePosixPath(model.filename).parts,
+    ):
+        msg = (
+            "Hugging Face returned a path that does not retain the requested "
+            "artifact identity."
+        )
         raise ValueError(msg)
-    if path.suffix.casefold() != ".gguf":
-        msg = "Hugging Face returned an artifact that is not a .gguf file."
+    if not storage_path.is_file():
+        msg = "Hugging Face did not return an existing GGUF artifact file."
         raise ValueError(msg)
     return AcquiredGGUF(model, cache_root, ResolvedPath(path))
 

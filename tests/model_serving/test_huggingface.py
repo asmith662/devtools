@@ -146,6 +146,35 @@ def test_acquire_gguf_maps_exact_identity_to_explicit_cache(
     assert GGUFModel(acquired.path).path == ResolvedPath(artifact.resolve())
 
 
+def test_acquire_gguf_retains_snapshot_gguf_path_for_suffixless_blob(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    """A Hub snapshot link may store a GGUF in a suffixless content blob."""
+    cache = tmp_path / "cache"
+    blob = cache / "blobs" / ("a" * 64)
+    blob.parent.mkdir(parents=True)
+    blob.write_bytes(b"GGUF")
+    snapshot = cache / "snapshots" / ("a" * 40) / "model.gguf"
+    snapshot.parent.mkdir(parents=True)
+    snapshot.symlink_to(blob)
+    monkeypatch.setattr(
+        "devtools.model_serving.huggingface.hf_hub_download",
+        lambda **_kwargs: str(snapshot),
+    )
+
+    acquired = asyncio.run(
+        acquire_huggingface_gguf(
+            model=HuggingFaceGGUFRef("org/model", "a" * 40, "model.gguf"),
+            cache_root=ResolvedPath(cache),
+        ),
+    )
+
+    assert acquired.path == ResolvedPath(snapshot.absolute())
+    assert acquired.path.suffix == ".gguf"
+    assert acquired.path.value.resolve() == blob.resolve()
+
+
 @pytest.mark.parametrize(
     "kind",
     ["missing", "directory", "non_gguf", "outside_cache"],
@@ -173,6 +202,31 @@ def test_acquire_gguf_rejects_invalid_hub_result(
     )
 
     with pytest.raises(ValueError, match="Hugging Face"):
+        asyncio.run(
+            acquire_huggingface_gguf(
+                model=HuggingFaceGGUFRef("org/model", "a" * 40, "artifact.gguf"),
+                cache_root=ResolvedPath(cache),
+            ),
+        )
+
+
+def test_acquire_gguf_rejects_snapshot_resolving_outside_cache(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    """A cache-local snapshot link cannot escape its explicit cache root."""
+    cache = tmp_path / "cache"
+    outside = tmp_path / "outside-blob"
+    outside.write_bytes(b"GGUF")
+    snapshot = cache / "snapshots" / ("a" * 40) / "artifact.gguf"
+    snapshot.parent.mkdir(parents=True)
+    snapshot.symlink_to(outside)
+    monkeypatch.setattr(
+        "devtools.model_serving.huggingface.hf_hub_download",
+        lambda **_kwargs: str(snapshot),
+    )
+
+    with pytest.raises(ValueError, match="outside"):
         asyncio.run(
             acquire_huggingface_gguf(
                 model=HuggingFaceGGUFRef("org/model", "a" * 40, "artifact.gguf"),
