@@ -16,6 +16,19 @@ benchmarks, Evidence, or evaluation.
 
 ## Current scope
 
+The experimental `llama_cpp` module is the second concrete provider. Slice 2A
+launches one caller-supplied local `.gguf` entry artifact with a caller-supplied
+tagged or digest-pinned CUDA image. It mounts only the model parent directory
+read-only, exposes the server only on loopback, waits for `/health` (where 503
+means still loading), and owns cleanup through an exact detached Docker ID and
+label. It does not benchmark, acquire models, select quantization, or fit GPU
+memory automatically.
+
+llama.cpp supports `--hf-repo`, `--hf-file`, and a cache controlled by
+`LLAMA_CACHE`; Slice 2A deliberately does not use that unpinned CLI surface.
+A later acquisition slice must preserve repository, exact revision, exact GGUF
+artifact set (including multi-shard artifacts), and an explicit cache root.
+
 The vLLM implementation uses an explicit pinned image, a caller-visible Hugging
 Face cache root, an exact pinned repository revision, Docker CLI execution via
 `devtools.commands`, readiness probes, and ownership-safe stop behavior.

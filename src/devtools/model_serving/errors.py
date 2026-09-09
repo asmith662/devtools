@@ -35,3 +35,30 @@ class VLLMOwnershipError(ModelServingError):
 
 class VLLMStopError(ModelServingError):
     """Raised when Docker cannot stop an owned vLLM container."""
+
+
+class LlamaCppLaunchError(ModelServingError):
+    """Raised when Docker rejects an attempted llama.cpp container launch."""
+
+
+class LlamaCppInspectionError(ModelServingError):
+    """Raised when Docker cannot establish a llama.cpp container's state."""
+
+
+class LlamaCppStartupError(ModelServingError):
+    """Raised when an owned llama.cpp container exits before readiness."""
+
+    def __init__(self, message: str, *, provider_log_tail: str | None) -> None:
+        """Initialize a bounded startup failure diagnostic."""
+        self.provider_log_tail = provider_log_tail
+        if provider_log_tail:
+            message = f"{message}\n\nProvider log tail:\n{provider_log_tail}"
+        super().__init__(message)
+
+
+class LlamaCppOwnershipError(ModelServingError):
+    """Raised when a retained llama.cpp container is not owned by this server."""
+
+
+class LlamaCppStopError(ModelServingError):
+    """Raised when Docker cannot stop an owned llama.cpp container."""
