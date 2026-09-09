@@ -276,6 +276,7 @@ def _build_launch_command(
     container_name: str,
 ) -> Command:
     container_model = f"{_MODEL_DIRECTORY}/{config.model.path.name}"
+    host_model = config.model.path.value.resolve()
     return Command(
         "docker",
         (
@@ -288,7 +289,7 @@ def _build_launch_command(
             "--gpus",
             "all",
             "--mount",
-            f"type=bind,src={config.model.path.parent},dst={_MODEL_DIRECTORY},readonly",
+            f"type=bind,src={host_model},dst={container_model},readonly",
             "--publish",
             f"127.0.0.1:{config.host_port}:{_CONTAINER_PORT}",
             config.image,

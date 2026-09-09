@@ -105,7 +105,7 @@ def test_launch_argv_is_exact_and_safe(tmp_path: Path) -> None:
     assert "--gpus" in command.arguments and "all" in command.arguments
     assert f"127.0.0.1:{config.host_port}:8080" in command.arguments
     assert (
-        f"type=bind,src={config.model.path.parent},dst=/models,readonly"
+        f"type=bind,src={config.model.path.value.resolve()},dst=/models/model.gguf,readonly"
         in command.arguments
     )
     assert (
@@ -133,6 +133,37 @@ def test_launch_argv_is_exact_and_safe(tmp_path: Path) -> None:
     assert (
         cpu_ffn_command.arguments[cpu_ffn_command.arguments.index("--n-cpu-ffn") + 1]
         == "4"
+    )
+
+
+def test_launch_argv_mounts_snapshot_backing_file_with_gguf_target(
+    tmp_path: Path,
+) -> None:
+    """A snapshot link mounts its resolved bytes without losing the GGUF name."""
+    blob = tmp_path / "blobs" / ("a" * 64)
+    blob.parent.mkdir()
+    blob.write_bytes(b"GGUF")
+    snapshot = tmp_path / "snapshots" / "model.gguf"
+    snapshot.parent.mkdir()
+    snapshot.symlink_to(blob)
+    config = _config(
+        tmp_path,
+        model=llama_cpp.GGUFModel(ResolvedPath(snapshot)),
+    )
+
+    command = llama_cpp._build_launch_command(config, "devtools-llama-cpp-test")
+
+    assert (
+        f"type=bind,src={blob.resolve()},dst=/models/model.gguf,readonly"
+        in command.arguments
+    )
+    assert (
+        f"type=bind,src={snapshot.parent},dst=/models,readonly"
+        not in command.arguments
+    )
+    assert (
+        command.arguments[command.arguments.index("--model") + 1]
+        == "/models/model.gguf"
     )
 
 
@@ -378,6 +409,23 @@ def test_remaining_failure_boundaries(
     with pytest.raises(ValueError, match="existing"):
         asyncio.run(
             llama_cpp.LlamaCppServer.start(config=missing, executor=_Executor([]))
+        )
+    directory = tmp_path / "directory.gguf"
+    directory.mkdir()
+    directory_config = llama_cpp.LlamaCppServingConfig(
+        model=llama_cpp.GGUFModel(ResolvedPath(directory)),
+        image=config.image,
+        host_port=config.host_port,
+        served_model_name=config.served_model_name,
+        context_size=config.context_size,
+        gpu_layers=config.gpu_layers,
+    )
+    with pytest.raises(ValueError, match="existing"):
+        asyncio.run(
+            llama_cpp.LlamaCppServer.start(
+                config=directory_config,
+                executor=_Executor([]),
+            )
         )
     command = Command("docker")
     with pytest.raises(LlamaCppLaunchError, match="exit code"):
