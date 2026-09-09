@@ -10,11 +10,14 @@ pressure; this is an experiment premise, not an automatic tuning setting.
 
 The tracked value in `scripts/model_benchmarks/qwen38_llama_cpp_profile.py`
 freezes repository, commit, filename, expected published SHA-256, quant,
-context, GPU-layer setting, FFN placement, cache types, Flash Attention, and
-parallelism. The llama.cpp image/build identity remains an explicit unresolved
-input and must be pinned before a live run. `cache_root`, output root, host
-port, and intentionally provider-selected CPU-thread resolution remain
-environment-specific inputs.
+context, GPU-layer setting, FFN placement, cache types, Flash Attention,
+parallelism, and the runnable llama.cpp image identity. The image is
+`ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e`:
+llama.cpp build `b10868`, commit `304665fe7`, CUDA `12.8.1`, and the
+linux/amd64 child manifest digest. Its multi-architecture index digest is
+`sha256:93e3b8da7ce2d7c501e826e3c87b6fde980fac18a8058d38e24529a5b3b83b94`.
+`cache_root`, output root, host port, and intentionally provider-selected
+CPU-thread resolution remain environment-specific inputs.
 
 The expected SHA-256 is visible provenance only. Generic acquisition currently
 pins repository, revision, and filename but does not verify a digest. Digest

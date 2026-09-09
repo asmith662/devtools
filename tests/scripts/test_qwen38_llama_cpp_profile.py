@@ -19,6 +19,10 @@ if TYPE_CHECKING:
 _PROFILE_PATH = Path("scripts/model_benchmarks/qwen38_llama_cpp_profile.py")
 _CONTEXT_SIZE = 32_768
 _CPU_FFN_LAYERS = 4
+_IMAGE_BUILD_IDENTITY = (
+    "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@"
+    "sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e"
+)
 
 
 @pytest.fixture
@@ -54,6 +58,6 @@ def test_profile_freezes_exact_research_backed_provenance(
     assert profile.flash_attention == "on"
     assert profile.cache_type_k == profile.cache_type_v == "q4_0"
     assert profile.parallel_sequences == 1
-    assert profile.image_build_identity is None
+    assert profile.image_build_identity == _IMAGE_BUILD_IDENTITY
     with pytest.raises(FrozenInstanceError):
         profile.context_size = 1

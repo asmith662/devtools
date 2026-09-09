@@ -45,4 +45,8 @@ QWEN38_27B_UD_IQ4_XS = Qwen38LlamaCppExperimentalProfile(
     cache_type_k="q4_0",
     cache_type_v="q4_0",
     parallel_sequences=1,
+    image_build_identity=(
+        "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@"
+        "sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e"
+    ),
 )
