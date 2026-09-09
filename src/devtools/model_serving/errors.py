@@ -41,6 +41,10 @@ class LlamaCppLaunchError(ModelServingError):
     """Raised when Docker rejects an attempted llama.cpp container launch."""
 
 
+class LlamaCppCapabilityError(ModelServingError):
+    """Raised when the selected llama.cpp image lacks a required CLI option."""
+
+
 class LlamaCppInspectionError(ModelServingError):
     """Raised when Docker cannot establish a llama.cpp container's state."""
 

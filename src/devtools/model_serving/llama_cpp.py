@@ -12,6 +12,7 @@ from urllib.parse import urlsplit
 
 from devtools.commands import Command, CommandExecutor, CommandResult
 from devtools.model_serving.errors import (
+    LlamaCppCapabilityError,
     LlamaCppInspectionError,
     LlamaCppLaunchError,
     LlamaCppOwnershipError,
@@ -36,6 +37,7 @@ _HTTP_OK = 200
 _PROVIDER_LOG_TAIL_LINES = 200
 _PROVIDER_LOG_TAIL_BYTES = 16 * 1024
 _MAX_DIAGNOSTIC_BYTES = 4_096
+_N_CPU_FFN_OPTION = "--n-cpu-ffn"
 DEFAULT_READINESS_TIMEOUT = Duration.minutes(10)
 CacheType = Literal[
     "f32",
@@ -80,6 +82,7 @@ class LlamaCppServingConfig:
     cache_type_k: CacheType = "f16"
     cache_type_v: CacheType = "f16"
     parallel_sequences: int = 1
+    n_cpu_ffn: int = 0
 
     def __post_init__(self) -> None:
         if not self.image.strip() or ":" not in self.image:
@@ -99,6 +102,11 @@ class LlamaCppServingConfig:
             raise ValueError("GPU layers must be an integer, auto, or all.")
         if self.parallel_sequences <= 0:
             raise ValueError("Parallel sequence count must be positive.")
+        if isinstance(self.n_cpu_ffn, bool) or not isinstance(self.n_cpu_ffn, int):
+            msg = "CPU FFN layer count must be an integer."
+            raise TypeError(msg)
+        if self.n_cpu_ffn < 0:
+            raise ValueError("CPU FFN layer count cannot be negative.")
         if self.flash_attention not in _FLASH_ATTENTION_VALUES:
             raise ValueError("Flash Attention must be auto, on, or off.")
         if self.cache_type_k not in _CACHE_TYPE_VALUES:
@@ -173,6 +181,7 @@ class LlamaCppServer:
     ) -> Self:
         if not config.model.path.value.is_file():
             raise ValueError("llama.cpp GGUF model path must be an existing file.")
+        await _preflight_required_features(config, executor)
         name = _new_container_name()
         result = await executor.execute(_build_launch_command(config, name))
         if result.failed:
@@ -303,8 +312,52 @@ def _build_launch_command(
             config.cache_type_v,
             "--parallel",
             str(config.parallel_sequences),
+            *(_n_cpu_ffn_arguments(config.n_cpu_ffn)),
         ),
     )
+
+
+def _n_cpu_ffn_arguments(n_cpu_ffn: int) -> tuple[str, ...]:
+    """Return the optional provider-local FFN placement arguments."""
+    return (_N_CPU_FFN_OPTION, str(n_cpu_ffn)) if n_cpu_ffn else ()
+
+
+def _help_command(config: LlamaCppServingConfig) -> Command:
+    """Ask the configured image's llama-server entrypoint for its CLI help."""
+    return Command("docker", ("run", "--rm", config.image, "--help"))
+
+
+async def _preflight_required_features(
+    config: LlamaCppServingConfig,
+    executor: CommandExecutor,
+) -> None:
+    """Verify required recent llama.cpp options before attempting model launch."""
+    if config.n_cpu_ffn == 0:
+        return
+    result = await executor.execute(_help_command(config))
+    if result.failed:
+        diagnostic = _diagnostic_text(result.stderr or result.stdout)
+        message = (
+            f"Could not establish whether configured llama.cpp image "
+            f"{config.image!r} supports required {_N_CPU_FFN_OPTION}; "
+            f"capability probe exited with code {result.exit_code}."
+        )
+        raise LlamaCppCapabilityError(
+            f"{message} {diagnostic}" if diagnostic else message,
+        )
+    help_text = (result.stdout + result.stderr).decode(errors="replace")
+    if not _advertises_n_cpu_ffn(help_text):
+        msg = (
+            f"Configured llama.cpp image {config.image!r} does not advertise "
+            f"required {_N_CPU_FFN_OPTION} support. Pin an image/build that does "
+            "before launching this profile."
+        )
+        raise LlamaCppCapabilityError(msg)
+
+
+def _advertises_n_cpu_ffn(help_text: str) -> bool:
+    """Match the exact long option, not a similarly named provider feature."""
+    return re.search(r"(?<!\S)--n-cpu-ffn(?=\s|=|,|$)", help_text) is not None
 
 
 def _new_container_name() -> str:

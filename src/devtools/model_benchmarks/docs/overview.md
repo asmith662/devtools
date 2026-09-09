@@ -25,6 +25,18 @@ They also include whether vLLM applies its CUDA-graph memory estimate during
 automatic KV-cache sizing, because that can determine startup viability and
 later graph-capture headroom.
 
+Worker acceptance telemetry is a separate, currently in-memory experimental
+value (`WorkerStoryResult`), not a vLLM benchmark result or a generic metrics
+dictionary. It records a story name and bounded difficulty (1--5), wall-clock
+start and duration, a boolean gate summary, closed supervisor review outcome,
+local repair attempts, correction turns, optional supervisor token usage,
+worker escalation, architecture-violation count, and human intervention.
+Persistence is deferred until a worker-story runner exists; when earned, it
+should use a separate schema-versioned JSON artifact with the same explicit
+output-root and atomic-write principles as benchmark storage. It deliberately
+does not duplicate TTFT, request duration, provider usage, or inference
+throughput.
+
 When vLLM reports completion-token usage, `completion_tokens_per_second` means
 reported completion tokens divided by total benchmark request duration, from
 request start through the terminal stream completion. It is an end-to-end output

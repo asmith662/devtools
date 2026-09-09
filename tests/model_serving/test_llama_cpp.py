@@ -12,6 +12,7 @@ import pytest
 from devtools.commands import Command, CommandExecutor, CommandResult
 from devtools.model_serving import llama_cpp
 from devtools.model_serving.errors import (
+    LlamaCppCapabilityError,
     LlamaCppInspectionError,
     LlamaCppLaunchError,
     LlamaCppOwnershipError,
@@ -66,6 +67,7 @@ def test_values_and_config_validate(tmp_path: Path) -> None:
     config = _config(tmp_path)
     assert config.flash_attention == "auto" and config.cache_type_k == "f16"
     assert config.parallel_sequences == 1 and hash(config)
+    assert config.n_cpu_ffn == 0
     with pytest.raises(FrozenInstanceError):
         config.host_port = 1  # type: ignore[misc]
     for field, value in [
@@ -76,6 +78,7 @@ def test_values_and_config_validate(tmp_path: Path) -> None:
         ("gpu_layers", -1),
         ("gpu_layers", "bad"),
         ("parallel_sequences", 0),
+        ("n_cpu_ffn", -1),
         ("flash_attention", "invalid"),
         ("cache_type_k", "invalid"),
         ("cache_type_v", "invalid"),
@@ -84,6 +87,8 @@ def test_values_and_config_validate(tmp_path: Path) -> None:
             _config(tmp_path, **{field: value})
     with pytest.raises(ValueError, match="gguf"):
         llama_cpp.GGUFModel(ResolvedPath(tmp_path / "model.bin"))
+    with pytest.raises(TypeError, match="integer"):
+        _config(tmp_path, n_cpu_ffn=True)
 
 
 def test_launch_argv_is_exact_and_safe(tmp_path: Path) -> None:
@@ -118,6 +123,85 @@ def test_launch_argv_is_exact_and_safe(tmp_path: Path) -> None:
         assert command.arguments.count(option) == 1
         assert command.arguments[command.arguments.index(option) + 1] == value
     assert "--rm" not in command.arguments and "--hf-repo" not in command.arguments
+    assert "--n-cpu-ffn" not in command.arguments
+
+    cpu_ffn_command = llama_cpp._build_launch_command(
+        _config(tmp_path, n_cpu_ffn=4),
+        "devtools-llama-cpp-test",
+    )
+    assert cpu_ffn_command.arguments.count("--n-cpu-ffn") == 1
+    assert (
+        cpu_ffn_command.arguments[cpu_ffn_command.arguments.index("--n-cpu-ffn") + 1]
+        == "4"
+    )
+
+
+def test_n_cpu_ffn_preflight_uses_exact_image_before_model_launch(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    """A required new option is checked in-image before a serving run exists."""
+    config = _config(tmp_path, n_cpu_ffn=4)
+    command = Command("docker")
+    executor = _Executor(
+        [
+            _result(command, err=b"Usage: llama-server --n-cpu-ffn N\n"),
+            _result(command, out=f"{_ID}\n".encode()),
+        ],
+    )
+
+    async def ready(
+        _self: llama_cpp.LlamaCppServer,
+        *,
+        readiness_timeout: Duration,
+    ) -> None:
+        assert readiness_timeout == llama_cpp.DEFAULT_READINESS_TIMEOUT
+
+    monkeypatch.setattr(llama_cpp.LlamaCppServer, "wait_ready", ready)
+    asyncio.run(llama_cpp.LlamaCppServer.start(config=config, executor=executor))
+
+    assert executor.commands[0].arguments == ("run", "--rm", config.image, "--help")
+    assert executor.commands[1].arguments[0:2] == ("run", "--detach")
+
+
+def test_n_cpu_ffn_preflight_rejects_unsupported_image_before_launch(
+    tmp_path: Path,
+) -> None:
+    """An unsupported image cannot create a serving container by accident."""
+    config = _config(tmp_path, n_cpu_ffn=4)
+    command = Command("docker")
+    executor = _Executor([_result(command, out=b"Usage: llama-server --parallel N\\n")])
+
+    with pytest.raises(LlamaCppCapabilityError, match="does not advertise"):
+        asyncio.run(llama_cpp.LlamaCppServer.start(config=config, executor=executor))
+
+    assert [item.arguments for item in executor.commands] == [
+        ("run", "--rm", config.image, "--help"),
+    ]
+
+
+def test_n_cpu_ffn_preflight_reports_failed_inspection_without_option_claim(
+    tmp_path: Path,
+) -> None:
+    """A Docker/help failure does not prove the image lacks the option."""
+    config = _config(tmp_path, n_cpu_ffn=4)
+    command = Command("docker")
+    executor = _Executor([_result(command, 1, err=b"image unavailable")])
+
+    with pytest.raises(LlamaCppCapabilityError, match="Could not establish") as raised:
+        asyncio.run(llama_cpp.LlamaCppServer.start(config=config, executor=executor))
+
+    assert "does not advertise" not in str(raised.value)
+    assert "image unavailable" in str(raised.value)
+    assert [item.arguments for item in executor.commands] == [
+        ("run", "--rm", config.image, "--help"),
+    ]
+
+
+def test_n_cpu_ffn_option_match_is_exact() -> None:
+    """Similar option names cannot satisfy the selective-placement preflight."""
+    assert llama_cpp._advertises_n_cpu_ffn("  --n-cpu-ffn N")
+    assert not llama_cpp._advertises_n_cpu_ffn("--n-cpu-ffn-other N")
 
 
 def test_id_parser_and_inspection_are_strict() -> None:

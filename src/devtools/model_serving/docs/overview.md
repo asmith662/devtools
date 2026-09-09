@@ -38,6 +38,17 @@ This acquisition slice supports one exact GGUF file only. Some distributions
 are multi-shard artifact sets; their complete pinned acquisition and provenance
 remain future work rather than inferred from filename patterns.
 
+``n_cpu_ffn`` is a llama.cpp-only serving configuration because it changes FFN
+tensor placement, VRAM and host-memory pressure, performance, and benchmark
+reproducibility. Its zero default preserves the image default and emits no CLI
+flag; a positive value emits exactly ``--n-cpu-ffn N``. Negative values are
+invalid. When a positive value is requested, the lifecycle first runs the
+configured image's existing ``llama-server`` entrypoint with ``--help`` and
+requires it to advertise ``--n-cpu-ffn``. This provider-local preflight occurs
+before the detached model-serving container can launch, so an older pinned
+image cannot fail only after a GGUF is acquired. It is intentionally not a
+cross-provider capability mechanism.
+
 The vLLM implementation uses an explicit pinned image, a caller-visible Hugging
 Face cache root, an exact pinned repository revision, Docker CLI execution via
 `devtools.commands`, readiness probes, and ownership-safe stop behavior.
