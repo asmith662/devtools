@@ -25,9 +25,18 @@ label. It does not benchmark, acquire models, select quantization, or fit GPU
 memory automatically.
 
 llama.cpp supports `--hf-repo`, `--hf-file`, and a cache controlled by
-`LLAMA_CACHE`; Slice 2A deliberately does not use that unpinned CLI surface.
-A later acquisition slice must preserve repository, exact revision, exact GGUF
-artifact set (including multi-shard artifacts), and an explicit cache root.
+`LLAMA_CACHE`; devtools instead acquires one selected GGUF with an explicit
+Hugging Face repository, full 40-character commit revision, filename, and
+caller-visible persistent cache root. This uses `huggingface_hub` rather than
+llama.cpp's convenient provider-side resolution so benchmarkable identity does
+not silently resolve `main`. Repeat acquisition reuses the Hub cache normally;
+there is no quant selection, cache pruning, private-token management, or
+download-progress API. Serving remains separate: callers compose the returned
+local artifact path into `GGUFModel`.
+
+This acquisition slice supports one exact GGUF file only. Some distributions
+are multi-shard artifact sets; their complete pinned acquisition and provenance
+remain future work rather than inferred from filename patterns.
 
 The vLLM implementation uses an explicit pinned image, a caller-visible Hugging
 Face cache root, an exact pinned repository revision, Docker CLI execution via
