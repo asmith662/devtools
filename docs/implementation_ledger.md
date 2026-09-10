@@ -179,6 +179,13 @@ an API reference or a backlog; see package-local documentation and the
   retained as active experimental work: submodule-only, non-durable, and not
   frozen.
 
+- Established the repository-owned architecture backlog with stable opaque
+  identifiers, canonical epic/item records, distinct lifecycle, dependency,
+  risk, and validation metadata, and a live-harness validation cadence. The
+  backlog preserves pressure and unresolved semantics without authorizing
+  implementation; roadmap, architecture, package documentation, and this
+  ledger retain separate authority roles.
+
 ## Verification snapshot
 
 At the Runtime-to-Attempt integration-freeze checkpoint:
