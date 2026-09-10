@@ -10,6 +10,15 @@ Repository-level documentation has separate responsibilities:
 - [architecture.md](architecture.md): package relationships, cross-package
   boundaries, dependency direction, and architectural principles.
 - [roadmap.md](roadmap.md): completed and future architectural sequencing.
+- [backlog overview](backlog/overview.md): known pressure, investigations,
+  dependencies, uncertainty, and promotion conditions; backlog presence does
+  not authorize implementation.
+- [backlog metadata](backlog/metadata.md): controlled backlog vocabulary and
+  dependency/validation semantics.
+- [backlog epics](backlog/epics/): canonical records for grouped architectural
+  pressure; they record future work rather than authoritative architecture.
+- [backlog items](backlog/items/): canonical story and investigation records;
+  like epics, they preserve pressure and uncertainty without authorizing work.
 - [implementation_ledger.md](implementation_ledger.md): historical
   implementation milestones and verification state.
 
@@ -69,5 +78,7 @@ When implementation changes:
 2. Update [architecture.md](architecture.md) only when cross-package
    architecture changes.
 3. Update [roadmap.md](roadmap.md) when milestone status or sequencing changes.
-4. Update the [implementation ledger](implementation_ledger.md) when a
+4. Create or update a [backlog item](backlog/overview.md) when research, audit,
+   or real-use evidence identifies pressure or an unresolved responsibility.
+5. Update the [implementation ledger](implementation_ledger.md) when a
    meaningful implementation milestone becomes true.

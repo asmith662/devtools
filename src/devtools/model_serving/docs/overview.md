@@ -18,8 +18,12 @@ benchmarks, Evidence, or evaluation.
 
 The experimental `llama_cpp` module is the second concrete provider. Slice 2A
 launches one caller-supplied local `.gguf` entry artifact with a caller-supplied
-tagged or digest-pinned CUDA image. It mounts only the model parent directory
-read-only, exposes the server only on loopback, waits for `/health` (where 503
+tagged or digest-pinned CUDA image. It preserves the caller-visible semantic
+`.gguf` path, resolves that local path only to find the host backing file, and
+bind-mounts that exact file read-only at `/models/<semantic .gguf filename>`;
+`--model` uses the same container path. This supports ordinary local files and
+cache snapshot entries whose backing storage differs from the public artifact
+path. It exposes the server only on loopback, waits for `/health` (where 503
 means still loading), and owns cleanup through an exact detached Docker ID and
 label. It does not benchmark, acquire models, select quantization, or fit GPU
 memory automatically.

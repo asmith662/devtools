@@ -149,3 +149,17 @@ retry/replay/durable execution when a concrete need establishes priority.
 
 See the [documentation map](documentation_map.md) to locate package-specific
 future-work documentation.
+
+## Selected near-term architecture work
+
+The architecture backlog records all discovered pressure and does not itself
+authorize implementation. The deliberately selected near-term work is:
+
+- [B-0006 — Reconcile authoritative architecture documentation](backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md);
+- [B-0007 — Correct model-serving documentation drift](backlog/items/B-0007-correct-model-serving-documentation-drift.md);
+- [B-0008 — Investigate repository-context discovery for coding harnesses](backlog/items/B-0008-investigate-repository-context-discovery.md);
+- [B-0016 — Define framework live-harness acceptance methodology](backlog/items/B-0016-define-framework-live-harness-acceptance.md).
+
+These entries remain scoped investigations or documentation work until separately
+designed and approved. Deferred governed-execution and effect-governance work
+remains in the [backlog](backlog/overview.md), not this roadmap.
