@@ -23,6 +23,13 @@ collapsing Agent and Principal; and freshness/revalidation for queued, delayed,
 persisted, resumed, detached, or changed-policy/resource/binding work.
 Restrictions must not silently manufacture positive authority.
 
+Keep distinct positive authority, its representation, source/materialization
+and provenance; restrictive policy; approval requirements and approval
+evidence; delegation; revocation; freshness/revalidation; and ephemeral
+authorization results versus durable or transferable evidence. Approval evidence
+is not the workflow that obtains approval, and historical authorization evidence
+is not automatically current authority.
+
 ## Established invariant / validation expectation
 
 Approval is not authorization. A meaningful future live validation is:
@@ -35,10 +42,10 @@ Approval is not authorization. A meaningful future live validation is:
 ## Dependencies / risks / validation
 
 - hard_dependencies: B-0012 when mutating effects are governed
-- pressure_dependencies: B-0014
+- pressure_dependencies: B-0014, B-0020, B-0021, B-0022, B-0024
 - operational_dependencies: discoverable but forbidden harness capability
 - consumers: future governed mutation harnesses
-- unresolved_semantics: authority possession/provenance, restrictions, principals, grants, scopes, approval, revocation, delegation, and freshness/revalidation
+- unresolved_semantics: authority possession/representation/provenance, restrictions, principals, grants, scopes, approval requirements/evidence, revocation, delegation, freshness/revalidation, and ephemeral versus durable authorization evidence
 - risk_if_deferred: none before reusable governed mutation
 - risk_if_implemented_early: policy engine without enforcement boundary
 - promotion_trigger: real harness needs exposure plus denial
@@ -46,4 +53,4 @@ Approval is not authorization. A meaningful future live validation is:
 - live_validation_trigger: forbidden operation reaches real harness boundary
 - first_harness_consumer: Local coding worker / Qwen
 - second_harness_trigger: second harness exercises same denial
-- related: B-0005, B-0012, B-0014, B-0016
+- related: B-0005, B-0012, B-0014, B-0016, B-0020, B-0021, B-0022, B-0024

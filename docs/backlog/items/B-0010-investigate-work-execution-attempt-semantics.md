@@ -27,17 +27,23 @@ re-execution, stronger-model takeover, cancellation/resumption, and durable
 evidence may expose that distinction; none establishes a Work-to-Execution-to-
 Attempt hierarchy.
 
+Future investigation must distinguish framework-owned work/attempt identity
+from provider or external execution identity and from correlation identity.
+Those identities may coincide for a simple operation but need not under retry,
+repair, re-execution, supervisor-requested correction, Codex takeover, or
+cancellation/resumption.
+
 ## Dependencies / risks / validation
 
 - hard_dependencies: none
-- pressure_dependencies: B-0011, B-0014
+- pressure_dependencies: B-0011, B-0014, B-0025, B-0026, B-0028
 - operational_dependencies: multi-attempt consumer
 - consumers: future repair/takeover/durable execution work
 - established_invariants: Runtime -> Attempt -> terminal Evidence is existing evidence, not disposable design
-- unresolved_semantics: logical Work identity, repair/retry identity, takeover, and child execution nesting
+- unresolved_semantics: logical Work identity, repair/retry identity, framework/provider/correlation identities, takeover, cancellation/resumption, and child execution nesting
 - risk_if_deferred: none until current identities are insufficient
 - risk_if_implemented_early: invented hierarchy becomes infrastructure
 - promotion_trigger: user-visible work spans attempts, repairs, or takeover
 - validation_level: NONE
 - live_validation_trigger: real work spans attempts or supervisor transitions
-- related: B-0004, B-0011, B-0014
+- related: B-0004, B-0011, B-0014, B-0025, B-0026, B-0028

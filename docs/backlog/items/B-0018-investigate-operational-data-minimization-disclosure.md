@@ -14,8 +14,10 @@
 
 Investigate collection, disclosure, retention, export, redaction, bounded
 diagnostics, and sensitive-payload handling for source code, prompts, model
-responses, tool arguments/results, paths, repository metadata, exceptions,
-credentials, authorization information, and context payloads.
+responses, tool/action arguments and results, paths, repository metadata,
+provider payloads, exceptions, credentials/secrets, authorization/governance
+information, context payloads, traces, metrics, audit records, and durable
+Evidence.
 
 ## Current evidence / invariants
 
@@ -26,11 +28,11 @@ occurrence happened does not authorize disclosure of all associated payload.
 ## Dependencies / risks / validation
 
 - hard_dependencies: none
-- pressure_dependencies: B-0008, B-0013, B-0017
+- pressure_dependencies: B-0008, B-0013, B-0017, B-0023, B-0024
 - operational_dependencies: concrete diagnostic, observability, or harness payload
 - consumers: future diagnostics, live validation, and governed harnesses
 - established_invariants: bounded diagnostics and data minimization are existing local practices
-- unresolved_semantics: collection, disclosure, retention, export, redaction, sensitive payloads, and authority boundaries
+- unresolved_semantics: collection, disclosure, retention, export, redaction, bounded diagnostics, privacy/sensitive payloads, provider payloads, and authority boundaries
 - risk_if_deferred: useful diagnostics may overcollect or overdisclose operational data
 - risk_if_implemented_early: classification framework, redaction engine, telemetry policy, secret scanner, or retention subsystem
 - promotion_trigger: a real harness needs to retain or export sensitive operational evidence
@@ -38,4 +40,4 @@ occurrence happened does not authorize disclosure of all associated payload.
 - live_validation_trigger: live evidence includes payload whose collection/disclosure boundary matters
 - first_harness_consumer: Local coding worker / Qwen
 - second_harness_trigger: another harness requires equivalent minimization semantics
-- related: B-0008, B-0013, B-0016, B-0017
+- related: B-0008, B-0013, B-0016, B-0017, B-0023, B-0024

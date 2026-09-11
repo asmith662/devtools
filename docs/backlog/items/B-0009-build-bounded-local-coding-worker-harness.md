@@ -27,6 +27,14 @@ how proposals may become identity-resolved, contract-validated canonical
 framework requests before governance and execution, without freezing stages,
 names, types, or ordering.
 
+A model-generated plan or sequence of intended actions is proposed intent, not
+preauthorization. The first bounded Qwen worker should prove reusable
+boundaries without promoting Qwen-specific behavior or protocol details into
+generic semantics. A useful vertical slice may require minimal accepted
+semantics from coding context (B-0008), model interaction (B-0030),
+model-facing actions (B-0020), and active orchestration (B-0029); it need not
+wait for those investigations to be complete.
+
 ## Future effectiveness evidence
 
 When the harness is evaluated, retain enough evidence to determine whether the
@@ -39,12 +47,12 @@ define a metric, benchmark schema, or token-accounting policy.
 ## Dependencies / risks / validation
 
 - hard_dependencies: B-0008
-- pressure_dependencies: B-0012, B-0016
+- pressure_dependencies: B-0012, B-0016, B-0020, B-0029, B-0030
 - operational_dependencies: pinned Qwen serving profile
 - blocked_by: sufficient B-0008 resolution
 - consumers: Local coding worker / Qwen
 - established_invariants: model-generated action proposals do not create execution authority merely by being syntactically valid
-- unresolved_semantics: exact tool/effect loop; proposal-to-canonical-request boundary
+- unresolved_semantics: exact tool/effect loop; proposal-to-canonical-request boundary; minimum vertical slice across context, model, action, and orchestration boundaries
 - risk_if_deferred: no live coding-harness consumer
 - risk_if_implemented_early: context/effect semantics become fixed
 - promotion_trigger: bounded repository-context requirements are designed
@@ -52,4 +60,4 @@ define a metric, benchmark schema, or token-accounting policy.
 - live_validation_trigger: harness can inspect, request an operation, and return evidence
 - first_harness_consumer: Local coding worker / Qwen
 - second_harness_trigger: Codex uses unchanged core semantics
-- related: B-0003, B-0008, B-0016
+- related: B-0003, B-0008, B-0012, B-0016, B-0020, B-0029, B-0030

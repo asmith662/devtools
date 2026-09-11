@@ -35,13 +35,19 @@ to proposal/materialization to authorization denial and absence of execution,
 or context retrieval/compilation to tool execution, returned result, and model
 continuation. These are examples, not an event schema.
 
+Reusable boundaries should be exercised through the earliest bounded real
+consumer capable of validating them, while preventing that first consumer's
+provider or application semantics from becoming generic framework semantics.
+The bounded Qwen coding worker is the expected first major consumer, not a
+reason to begin its implementation here.
+
 ## Dependencies / risks / validation
 
 - hard_dependencies: none
-- pressure_dependencies: B-0003, B-0011, B-0012
+- pressure_dependencies: B-0003, B-0011, B-0012, B-0017, B-0023
 - operational_dependencies: meaningful specialized harness path
 - consumers: future structural framework primitives
-- unresolved_semantics: occurrence evidence, causal boundaries, evidence sufficiency, nondeterminism, provider/framework failures, and CI boundaries
+- unresolved_semantics: occurrence evidence, causal boundaries, evidence sufficiency, nondeterminism, provider/framework failures, CI boundaries, and first-consumer restraint
 - risk_if_deferred: framework semantics may be accepted from mocks alone
 - risk_if_implemented_early: generic test framework before scenarios stabilize
 - promotion_trigger: primitive has unit/integration coverage and a live path
@@ -49,4 +55,4 @@ continuation. These are examples, not an event schema.
 - live_validation_trigger: a primitive has unit/integration coverage and a live path
 - first_harness_consumer: Local coding worker / Qwen
 - second_harness_trigger: Codex or another harness uses unchanged semantics
-- related: B-0015, B-0009, B-0012, B-0013
+- related: B-0015, B-0009, B-0012, B-0013, B-0017, B-0023

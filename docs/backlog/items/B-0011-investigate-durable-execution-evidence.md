@@ -24,16 +24,21 @@ contracts. If execution state becomes durable, schema identity/versioning,
 compatibility, unsupported-version behavior, evolution/migration, and atomic
 persistence where appropriate require separate investigation.
 
+Pressure also includes evolving executable-contract references,
+replay/reconstruction, and whether durable authorization evidence or permits
+are required. This item records durable Evidence needs; it does not own generic
+serialization or persistence mechanics.
+
 ## Dependencies / risks / validation
 
 - hard_dependencies: B-0010
-- pressure_dependencies: B-0016
+- pressure_dependencies: B-0016, B-0024, B-0027, B-0028
 - operational_dependencies: durable recovery/audit consumer
 - consumers: future recovery and audit needs
-- unresolved_semantics: storage, delivery, retention, replay, schema identity/versioning, compatibility, and evolution boundaries
+- unresolved_semantics: storage, delivery, retention, replay/reconstruction, executable-contract references, schema identity/versioning, compatibility, evolution, and durable authorization-evidence boundaries
 - risk_if_deferred: evidence is unavailable beyond process lifetime when required
 - risk_if_implemented_early: generic event store without stable identity semantics
 - promotion_trigger: real recovery, resume, or audit need
 - validation_level: NONE
 - live_validation_trigger: recovery, resume, or external audit is meaningful
-- related: B-0004, B-0010, B-0016
+- related: B-0004, B-0010, B-0016, B-0024, B-0027, B-0028

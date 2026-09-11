@@ -31,11 +31,23 @@ disclosure/access eligibility, selection/transformation, context
 budgeting/compilation, and final model-facing context. These are semantic
 questions, not a commitment to separate packages or APIs.
 
+Further pressure separates candidate information from its eventual disclosure,
+ranking, transformation, synthesis, deduplication, truncation, and budgeting.
+Resolving a known resource is not the same question as discovering relevant
+information. Repository mutation may invalidate prior compiled context. Action
+or tool-discovery information also consumes model context, without implying it
+shares repository discovery implementation.
+
 Candidate context material includes authoritative source material, excerpts,
 deterministic transformations, summaries, syntheses, instructions, tool output,
 and retained information. Derived material must not silently acquire the
-authority of its source. Source/derivation provenance, authority classification,
-freshness, disclosure eligibility, and trust/confidence remain unresolved.
+authority of its source. Source/derivation provenance,
+authoritative-versus-derived classification, freshness/staleness, disclosure
+eligibility, and trust/confidence remain unresolved. Future investigation may
+distinguish resolution, retrieval, context access, compilation, and model
+context, but need not make them separate packages. Contextual information must
+remain narrow and explicit rather than becoming an arbitrary universal Context
+container.
 
 ## Dependencies / risks / validation
 
