@@ -29,13 +29,19 @@ cancellation identity/outcome, and capture observation.
 Multi-harness: after Qwen validates a primitive, Codex or another harness uses
 equivalent semantics without changing the core contract.
 
+Final semantic results may not prove the required runtime path occurred. Future
+acceptance may need causal occurrence evidence, for example model interaction
+to proposal/materialization to authorization denial and absence of execution,
+or context retrieval/compilation to tool execution, returned result, and model
+continuation. These are examples, not an event schema.
+
 ## Dependencies / risks / validation
 
 - hard_dependencies: none
 - pressure_dependencies: B-0003, B-0011, B-0012
 - operational_dependencies: meaningful specialized harness path
 - consumers: future structural framework primitives
-- unresolved_semantics: evidence sufficiency, nondeterminism, provider/framework failures, CI boundaries
+- unresolved_semantics: occurrence evidence, causal boundaries, evidence sufficiency, nondeterminism, provider/framework failures, and CI boundaries
 - risk_if_deferred: framework semantics may be accepted from mocks alone
 - risk_if_implemented_early: generic test framework before scenarios stabilize
 - promotion_trigger: primitive has unit/integration coverage and a live path

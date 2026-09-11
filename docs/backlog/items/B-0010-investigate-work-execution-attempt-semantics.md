@@ -21,6 +21,12 @@ Runtime to Attempt to terminal Evidence is established. Unknown: whether Attempt
 already represents execution, retry/repair identity, supervisor takeover, and
 whether child model/tool activity becomes nested execution.
 
+Independent pressure confirms that one logical requested piece of work need not
+be one concrete attempt. Retries, repairs, supervisor corrections, worker
+re-execution, stronger-model takeover, cancellation/resumption, and durable
+evidence may expose that distinction; none establishes a Work-to-Execution-to-
+Attempt hierarchy.
+
 ## Dependencies / risks / validation
 
 - hard_dependencies: none

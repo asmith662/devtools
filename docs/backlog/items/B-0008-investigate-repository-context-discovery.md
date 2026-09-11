@@ -25,6 +25,18 @@ Questions include inventory, file discovery, source retrieval, text search,
 Python symbols/imports, Markdown sections, snapshot identity, selected-context
 provenance, budgeting, truncation, trust/staleness, and request semantics.
 
+Investigation must also distinguish repository inventory/addressability,
+resolution of a known resource, discovery for an information need,
+disclosure/access eligibility, selection/transformation, context
+budgeting/compilation, and final model-facing context. These are semantic
+questions, not a commitment to separate packages or APIs.
+
+Candidate context material includes authoritative source material, excerpts,
+deterministic transformations, summaries, syntheses, instructions, tool output,
+and retained information. Derived material must not silently acquire the
+authority of its source. Source/derivation provenance, authority classification,
+freshness, disclosure eligibility, and trust/confidence remain unresolved.
+
 ## Dependencies / risks / validation
 
 - hard_dependencies: none
@@ -32,9 +44,9 @@ provenance, budgeting, truncation, trust/staleness, and request semantics.
 - operational_dependencies: paths, filesystem, regex
 - consumers: Local coding worker / Qwen
 - established_invariants: Context is currently conversational, not repository state
-- unresolved_semantics: coding-specific versus reusable boundary
+- unresolved_semantics: coding-specific versus reusable boundary; discovery, access, selection, compilation, provenance, and trust boundaries
 - risk_if_deferred: harness-specific discovery is improvised
-- risk_if_implemented_early: generic Context or Memory architecture
+- risk_if_implemented_early: generic Context, Memory, retrieval, or compiler architecture
 - promotion_trigger: one frozen worker story identifies minimum inputs
 - validation_level: NONE
 - live_validation_trigger: a bounded coding harness consumes selected context

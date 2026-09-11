@@ -21,6 +21,12 @@ Qwen serving is validated. The harness must create real pressure for framework
 acceptance but must not predefine a universal tool loop, execution envelope, or
 effect model.
 
+Model/provider output resembling a tool call is only an action proposal, not a
+trusted executable request or execution authority. Investigation must determine
+how proposals may become identity-resolved, contract-validated canonical
+framework requests before governance and execution, without freezing stages,
+names, types, or ordering.
+
 ## Future effectiveness evidence
 
 When the harness is evaluated, retain enough evidence to determine whether the
@@ -37,7 +43,8 @@ define a metric, benchmark schema, or token-accounting policy.
 - operational_dependencies: pinned Qwen serving profile
 - blocked_by: sufficient B-0008 resolution
 - consumers: Local coding worker / Qwen
-- unresolved_semantics: exact tool/effect loop
+- established_invariants: model-generated action proposals do not create execution authority merely by being syntactically valid
+- unresolved_semantics: exact tool/effect loop; proposal-to-canonical-request boundary
 - risk_if_deferred: no live coding-harness consumer
 - risk_if_implemented_early: context/effect semantics become fixed
 - promotion_trigger: bounded repository-context requirements are designed
