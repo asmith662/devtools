@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-"""Bounded experimental two-round Qwen repository-read composition."""
+"""Bounded experimental Qwen composition with at most two repository reads."""
 
 from __future__ import annotations
 
@@ -24,6 +24,10 @@ if TYPE_CHECKING:
 _ACTION = "read_repository_file"
 _CONTROLLER_SOURCE = MessageSource("runtime")
 _DEFAULT_MAX_PROJECTION_CHARACTERS = 4_096
+_MAX_READS = 2
+_READ_PROPOSAL_FORM = (
+    '{"action":"read_repository_file","path":"<repository-relative-path>"}'
+)
 
 
 class ReadProposalError(ValueError):
@@ -35,19 +39,27 @@ class ResultProjectionError(ValueError):
 
 
 @dataclass(frozen=True, slots=True)
-class QwenReadExperimentResult:
-    """Retain minimal causal facts from one bounded experimental read loop."""
+class QwenReadCycle:
+    """Retain one accepted experimental read and its controller continuation."""
 
-    first_model_text: str
+    proposal: Message
     relative_path: str
     resolved_path: ResolvedPath
     result_projection: str
     follow_up: Message
+
+
+@dataclass(frozen=True, slots=True)
+class QwenReadExperimentResult:
+    """Retain minimal ordered causal facts from the bounded read experiment."""
+
+    task: Message
+    cycles: tuple[QwenReadCycle, ...]
     final_message: Message
 
 
 class QwenReadExperiment:
-    """Coordinate exactly one permitted repository read between two Qwen turns."""
+    """Coordinate up to two permitted reads between ordinary Qwen turns."""
 
     def __init__(
         self,
@@ -69,36 +81,70 @@ class QwenReadExperiment:
         self._max_projection_characters = max_projection_characters
 
     async def run(self, task: Message) -> QwenReadExperimentResult:
-        """Run two normal Runtime turns around one permitted repository read."""
-        first_turn = await self._runtime.send(
+        """Run ordinary Runtime turns around at most two repository reads."""
+        turn = await self._runtime.send(
             session=self._session,
             agent=self._agent,
             message=task,
         )
-        relative_path = _parse_read_proposal(first_turn.message.content)
-        resolved_path = _materialize_relative_path(relative_path, self._root)
+        cycles: list[QwenReadCycle] = []
+        while True:
+            relative_path = _classify_response(turn.message.content)
+            if relative_path is None:
+                return QwenReadExperimentResult(task, tuple(cycles), turn.message)
+            if len(cycles) >= _MAX_READS:
+                msg = "This experiment permits at most two repository reads."
+                raise ReadProposalError(msg)
 
-        tool = ReadRepositoryFileTool(self._root)
-        result = await ToolRunner().execute(tool, resolved_path)
-        projection = _project_text_result(
-            relative_path,
-            result,
-            maximum_characters=self._max_projection_characters,
-        )
-        follow_up = _follow_up_message(task, relative_path, projection)
-        final_turn = await self._runtime.send(
-            session=self._session,
-            agent=self._agent,
-            message=follow_up,
-        )
-        return QwenReadExperimentResult(
-            first_model_text=first_turn.message.content,
-            relative_path=relative_path,
-            resolved_path=resolved_path,
-            result_projection=projection,
-            follow_up=follow_up,
-            final_message=final_turn.message,
-        )
+            resolved_path = _materialize_relative_path(relative_path, self._root)
+            result = await ToolRunner().execute(
+                ReadRepositoryFileTool(self._root),
+                resolved_path,
+            )
+            projection = _project_text_result(
+                relative_path,
+                result,
+                maximum_characters=self._max_projection_characters,
+            )
+            follow_up = _follow_up_message(
+                task,
+                (*cycles, _PromptCycle(relative_path, projection)),
+            )
+            cycles.append(
+                QwenReadCycle(
+                    proposal=turn.message,
+                    relative_path=relative_path,
+                    resolved_path=resolved_path,
+                    result_projection=projection,
+                    follow_up=follow_up,
+                ),
+            )
+            turn = await self._runtime.send(
+                session=self._session,
+                agent=self._agent,
+                message=follow_up,
+            )
+
+
+@dataclass(frozen=True, slots=True)
+class _PromptCycle:
+    """Carry only prompt-reconstruction facts before the cycle is retained."""
+
+    relative_path: str
+    result_projection: str
+
+
+def _classify_response(content: str) -> str | None:
+    """Return an exact read path, reject action-like errors, or accept final text."""
+    if not _looks_action_like(content):
+        return None
+    return _parse_read_proposal(content)
+
+
+def _looks_action_like(content: str) -> bool:
+    """Reserve only proposal-shaped response prefixes for strict validation."""
+    stripped = content.lstrip()
+    return stripped.startswith(("{", "[", "```"))
 
 
 def _parse_read_proposal(content: str) -> str:
@@ -158,7 +204,7 @@ def _project_text_result(
     *,
     maximum_characters: int,
 ) -> str:
-    """Project only bounded text content for the second provider interaction."""
+    """Project only bounded text content for the next provider interaction."""
     if not isinstance(result, TextFile):
         msg = "This bounded experiment can project only text repository files."
         raise ResultProjectionError(msg)
@@ -176,19 +222,30 @@ def _project_text_result(
     )
 
 
-def _follow_up_message(task: Message, relative_path: str, projection: str) -> Message:
-    """Construct a controller-authored SYSTEM continuation for stateless Qwen."""
-    content = (
-        "Continue the original task using the bounded framework action result.\n\n"
-        "Original task:\n"
-        f"{task.content}\n\n"
-        "Accepted action:\n"
-        f"{_ACTION} path={relative_path}\n\n"
-        f"{projection}\n\n"
-        "Answer the original task using that result. Do not propose another action."
+def _follow_up_message(
+    task: Message,
+    cycles: tuple[QwenReadCycle | _PromptCycle, ...],
+) -> Message:
+    """Construct a controller-authored SYSTEM prompt from ordered read results."""
+    results = "\n\n".join(
+        f"Accepted action {index}:\n{_ACTION} path={cycle.relative_path}\n\n"
+        f"{cycle.result_projection}"
+        for index, cycle in enumerate(cycles, start=1)
+    )
+    instruction = (
+        "You may either provide a final plain-text answer, or request one remaining "
+        "repository read. If requesting the read, your entire response must be exactly "
+        "one JSON object and nothing else:\n"
+        f"{_READ_PROPOSAL_FORM}\n"
+        "Its path must be repository-relative."
+        if len(cycles) < _MAX_READS
+        else "Provide the final plain-text answer. Do not propose another action."
     )
     return Message.new(
-        content,
+        "Continue the original task using the bounded framework action results.\n\n"
+        f"Original task:\n{task.content}\n\n"
+        f"{results}\n\n"
+        f"{instruction}",
         role=MessageRole.SYSTEM,
         source=_CONTROLLER_SOURCE,
     )

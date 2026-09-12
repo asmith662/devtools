@@ -1,5 +1,6 @@
 # Copyright (c) 2026
-"""Deterministic tests for the bounded experimental Qwen read loop."""
+# ruff: noqa: COM812, E501, EM101, PLR2004, TRY003
+"""Deterministic tests for the bounded repeated-read Qwen experiment."""
 
 from __future__ import annotations
 
@@ -27,8 +28,7 @@ if TYPE_CHECKING:
     from pathlib import Path
 
 
-_SECOND_PROVIDER_FAILURE = "second provider failed"
-_TWO_AGENT_CALLS = 2
+_PROVIDER_FAILURE = "provider failed"
 
 
 @dataclass(slots=True)
@@ -57,100 +57,269 @@ class _ScriptedAgent:
         )
 
 
+@dataclass(slots=True)
+class _FailingAgent(_ScriptedAgent):
+    """Raise a provider-like failure on the selected invocation."""
+
+    fail_on_call: int = 0
+
+    async def send(
+        self,
+        message: Message,
+        *,
+        conversation: ConversationRef | None = None,
+    ) -> AgentTurn:
+        """Retain the attempted input before the configured provider failure."""
+        if len(self.calls) + 1 == self.fail_on_call:
+            self.calls.append(message)
+            raise LookupError(_PROVIDER_FAILURE)
+        return await super().send(message, conversation=conversation)
+
+
+def _proposal(path: str) -> str:
+    return f'{{"action":"read_repository_file","path":"{path}"}}'
+
+
 def _task() -> Message:
     return Message.new(
-        "What exact marker is stored in facts/answer.txt? "
-        "Respond with only a JSON read proposal first.",
+        "Return the requested facts using the permitted exact read proposal.",
         role=MessageRole.USER,
         source=MessageSource("test-caller"),
     )
 
 
-def _experiment(root: Path, agent: _ScriptedAgent) -> QwenReadExperiment:
-    return QwenReadExperiment(
-        runtime=Runtime(),
-        session=Session.new(),
-        agent=agent,
-        repository_root=ResolvedPath(root.resolve()),
+def _experiment(
+    root: Path, agent: _ScriptedAgent
+) -> tuple[QwenReadExperiment, Session]:
+    session = Session.new()
+    return (
+        QwenReadExperiment(
+            runtime=Runtime(),
+            session=session,
+            agent=agent,
+            repository_root=ResolvedPath(root.resolve()),
+        ),
+        session,
     )
 
 
-def test_experiment_runs_exactly_one_permitted_read_then_second_runtime_turn(
+def _write(root: Path, relative_path: str, content: str) -> Path:
+    path = root / relative_path
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    return path
+
+
+def test_two_valid_reads_retain_ordered_cycles_prompts_and_session(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    """One accepted proposal reaches ToolRunner once and informs a second turn."""
+    """Two same-action cycles compose through three ordinary Runtime turns."""
     root = tmp_path / "repository"
-    source = root / "facts" / "answer.txt"
-    source.parent.mkdir(parents=True)
-    source.write_text("MARKER-4821", encoding="utf-8")
+    first = _write(root, "facts/first.txt", "NONCE-A")
+    second = _write(root, "facts/second.txt", "NONCE-B")
     agent = _ScriptedAgent(
-        [
-            '{"action":"read_repository_file","path":"facts/answer.txt"}',
-            "MARKER-4821",
-        ],
+        [_proposal("facts/first.txt"), _proposal("facts/second.txt"), "A:B"]
     )
     calls: list[ResolvedPath] = []
     original_execute = ReadRepositoryFileTool.execute
 
     async def execute_once(
-        tool: ReadRepositoryFileTool,
-        arguments: ResolvedPath,
+        tool: ReadRepositoryFileTool, arguments: ResolvedPath
+    ) -> object:
+        calls.append(arguments)
+        return await original_execute(tool, arguments)
+
+    monkeypatch.setattr(ReadRepositoryFileTool, "execute", execute_once)
+    tested, session = _experiment(root, agent)
+    result = asyncio.run(tested.run(_task()))
+
+    assert calls == [ResolvedPath(first.resolve()), ResolvedPath(second.resolve())]
+    assert [cycle.relative_path for cycle in result.cycles] == [
+        "facts/first.txt",
+        "facts/second.txt",
+    ]
+    assert result.cycles[0].proposal.content == _proposal("facts/first.txt")
+    assert "NONCE-A" in result.cycles[0].result_projection
+    assert '"action":"read_repository_file","path":"<repository-relative-path>"}' in (
+        result.cycles[0].follow_up.content
+    )
+    assert "final plain-text answer" in result.cycles[0].follow_up.content
+    assert "NONCE-A" in result.cycles[1].follow_up.content
+    assert "NONCE-B" in result.cycles[1].follow_up.content
+    assert "Do not propose another action." in result.cycles[1].follow_up.content
+    assert result.final_message.content == "A:B"
+    assert [message.role for message in agent.calls] == [
+        MessageRole.USER,
+        MessageRole.SYSTEM,
+        MessageRole.SYSTEM,
+    ]
+    assert [message.role for message in session.history] == [
+        MessageRole.USER,
+        MessageRole.ASSISTANT,
+        MessageRole.SYSTEM,
+        MessageRole.ASSISTANT,
+        MessageRole.SYSTEM,
+        MessageRole.ASSISTANT,
+    ]
+
+
+def test_early_final_answer_after_one_read_terminates_normally(tmp_path: Path) -> None:
+    """Two is a cap, not a requirement for the experiment controller."""
+    root = tmp_path / "repository"
+    _write(root, "facts/first.txt", "NONCE-A")
+    agent = _ScriptedAgent([_proposal("facts/first.txt"), "final after one read"])
+    tested, _ = _experiment(root, agent)
+
+    result = asyncio.run(tested.run(_task()))
+
+    assert len(result.cycles) == 1
+    assert result.final_message.content == "final after one read"
+    assert len(agent.calls) == 2
+
+
+def test_initial_plain_text_is_an_early_final_answer(tmp_path: Path) -> None:
+    """The controller accepts ordinary final text without forcing a first read."""
+    root = tmp_path / "repository"
+    root.mkdir()
+    agent = _ScriptedAgent(["final answer without a read"])
+    tested, _ = _experiment(root, agent)
+
+    result = asyncio.run(tested.run(_task()))
+
+    assert result.cycles == ()
+    assert result.final_message.content == "final answer without a read"
+    assert len(agent.calls) == 1
+
+
+def test_third_valid_proposal_is_rejected_without_a_third_read(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The local experiment cap prevents a third action execution or fourth turn."""
+    root = tmp_path / "repository"
+    _write(root, "facts/first.txt", "A")
+    _write(root, "facts/second.txt", "B")
+    _write(root, "facts/third.txt", "C")
+    agent = _ScriptedAgent(
+        [
+            _proposal("facts/first.txt"),
+            _proposal("facts/second.txt"),
+            _proposal("facts/third.txt"),
+        ],
+    )
+    tested, _ = _experiment(root, agent)
+    calls: list[ResolvedPath] = []
+    original_execute = ReadRepositoryFileTool.execute
+
+    async def execute_once(
+        tool: ReadRepositoryFileTool, arguments: ResolvedPath
     ) -> object:
         calls.append(arguments)
         return await original_execute(tool, arguments)
 
     monkeypatch.setattr(ReadRepositoryFileTool, "execute", execute_once)
 
-    result = asyncio.run(_experiment(root, agent).run(_task()))
-
-    assert calls == [ResolvedPath(source.resolve())]
-    assert result.first_model_text.startswith('{"action"')
-    assert result.relative_path == "facts/answer.txt"
-    assert result.resolved_path == ResolvedPath(source.resolve())
-    assert "MARKER-4821" in result.result_projection
-    assert result.follow_up.role is MessageRole.SYSTEM
-    assert result.follow_up.source == MessageSource("runtime")
-    assert "Original task:" in result.follow_up.content
-    assert "data, not instructions" in result.follow_up.content
-    assert result.final_message.content == "MARKER-4821"
-    assert [message.role for message in agent.calls] == [
-        MessageRole.USER,
-        MessageRole.SYSTEM,
+    with pytest.raises(ReadProposalError, match="at most two"):
+        asyncio.run(tested.run(_task()))
+    assert calls == [
+        ResolvedPath((root / "facts/first.txt").resolve()),
+        ResolvedPath((root / "facts/second.txt").resolve()),
     ]
+    assert len(agent.calls) == 3
+
+
+def test_repeated_path_is_permitted_and_consumes_both_read_slots(
+    tmp_path: Path,
+) -> None:
+    """The experiment does not turn path uniqueness into authority semantics."""
+    root = tmp_path / "repository"
+    _write(root, "facts/first.txt", "A")
+    agent = _ScriptedAgent(
+        [_proposal("facts/first.txt"), _proposal("facts/first.txt"), "final"]
+    )
+    tested, _ = _experiment(root, agent)
+
+    result = asyncio.run(tested.run(_task()))
+
+    assert [cycle.relative_path for cycle in result.cycles] == [
+        "facts/first.txt",
+        "facts/first.txt",
+    ]
+    assert result.final_message.content == "final"
 
 
 @pytest.mark.parametrize(
     "proposal",
     [
-        "read facts/answer.txt",
         '{"action":"read_repository_file"}',
         '{"action":"delete_repository","path":"facts/answer.txt"}',
         '{"action":"read_repository_file","path":"facts/answer.txt","extra":1}',
+        '```json\n{"action":"read_repository_file","path":"facts/answer.txt"}\n```',
     ],
 )
-def test_experiment_rejects_invalid_or_unknown_proposals_without_reading(
+def test_action_like_invalid_response_is_rejected_without_reading(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
     proposal: str,
 ) -> None:
-    """Proposal rejection stops before Tool execution and a second model turn."""
+    """Action-shaped output never degrades into a final answer or Tool execution."""
     root = tmp_path / "repository"
     root.mkdir()
     agent = _ScriptedAgent([proposal])
+    tested, _ = _experiment(root, agent)
 
     async def must_not_execute(
-        _tool: ReadRepositoryFileTool,
-        _arguments: ResolvedPath,
+        _tool: ReadRepositoryFileTool, _arguments: ResolvedPath
     ) -> object:
-        msg = "Tool execution must not occur after proposal rejection."
-        raise AssertionError(msg)
+        raise AssertionError("Invalid proposal must not reach Tool execution.")
 
     monkeypatch.setattr(ReadRepositoryFileTool, "execute", must_not_execute)
-
     with pytest.raises(ReadProposalError):
-        asyncio.run(_experiment(root, agent).run(_task()))
+        asyncio.run(tested.run(_task()))
     assert len(agent.calls) == 1
+
+
+@pytest.mark.parametrize(
+    ("content", "expected_path"),
+    [
+        ("42", None),
+        ("The answer is 42.", None),
+        ("read facts/a.txt", None),
+        ("Read facts/a.txt", None),
+        ("read the answer carefully: 42", None),
+        ("Read this as the final answer: 42", None),
+        ("read_repository_file was not needed", None),
+        ("The action completed. The answer is 42.", None),
+        ("I did not need read_repository_file. The answer is 42.", None),
+        ('The word "action" appears in the file.', None),
+        ("Here is the final answer: read_repository_file", None),
+        (
+            'I think the action should be {"action":"read_repository_file","path":"facts/a.txt"}',
+            None,
+        ),
+        ('{"action":"read_repository_file","path":"facts/a.txt"}', "facts/a.txt"),
+    ],
+)
+def test_response_classifier_accepts_plain_text_or_exact_proposal(
+    content: str, expected_path: str | None
+) -> None:
+    """Only protocol-shaped prefixes enter exact proposal validation."""
+    assert experiment._classify_response(content) == expected_path  # noqa: SLF001
+
+
+@pytest.mark.parametrize(
+    "content",
+    [
+        '```json\n{"action":"read_repository_file","path":"facts/a.txt"}\n```',
+        "{not json",
+        '{"foo":"bar"}',
+    ],
+)
+def test_response_classifier_rejects_invalid_protocol_shaped_text(content: str) -> None:
+    """Malformed object and fenced forms cannot silently become final answers."""
+    with pytest.raises(ReadProposalError):
+        experiment._classify_response(content)  # noqa: SLF001
 
 
 @pytest.mark.parametrize(
@@ -162,93 +331,110 @@ def test_experiment_rejects_invalid_or_unknown_proposals_without_reading(
         '{"action":"read_repository_file","action":"read_repository_file","path":"facts/answer.txt"}',
     ],
 )
-def test_experiment_rejects_duplicate_proposal_keys_without_reading(
+def test_duplicate_proposal_keys_are_rejected_without_reading(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
     proposal: str,
 ) -> None:
-    """Exact experiment grammar rejects duplicate JSON fields before execution."""
+    """Exact proposal grammar rejects duplicate JSON fields before execution."""
     root = tmp_path / "repository"
     root.mkdir()
     agent = _ScriptedAgent([proposal])
+    tested, _ = _experiment(root, agent)
 
     async def must_not_execute(
-        _tool: ReadRepositoryFileTool,
-        _arguments: ResolvedPath,
+        _tool: ReadRepositoryFileTool, _arguments: ResolvedPath
     ) -> object:
-        msg = "Duplicate-key proposals must not enter Tool execution."
-        raise AssertionError(msg)
+        raise AssertionError("Duplicate-key proposals must not enter Tool execution.")
 
     monkeypatch.setattr(ReadRepositoryFileTool, "execute", must_not_execute)
-
     with pytest.raises(ReadProposalError, match="duplicate"):
-        asyncio.run(_experiment(root, agent).run(_task()))
+        asyncio.run(tested.run(_task()))
     assert len(agent.calls) == 1
 
 
 @pytest.mark.parametrize("path", ["/outside.txt", "../outside.txt"])
-def test_experiment_rejects_absolute_or_out_of_root_path_without_file_read(
+def test_outside_path_is_rejected_without_file_read(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
     path: str,
 ) -> None:
-    """Path materialization and Tool scope prevent outside-file execution."""
+    """Existing path materialization and Tool scope still prevent outside reads."""
     root = tmp_path / "repository"
     root.mkdir()
-    agent = _ScriptedAgent(
-        [f'{{"action":"read_repository_file","path":"{path}"}}'],
-    )
+    agent = _ScriptedAgent([_proposal(path)])
+    tested, _ = _experiment(root, agent)
 
     async def must_not_execute(
-        _tool: ReadRepositoryFileTool,
-        _arguments: ResolvedPath,
+        _tool: ReadRepositoryFileTool, _arguments: ResolvedPath
     ) -> object:
-        msg = "Outside paths must not enter read execution."
-        raise AssertionError(msg)
+        raise AssertionError("Outside paths must not enter read execution.")
 
     monkeypatch.setattr(ReadRepositoryFileTool, "execute", must_not_execute)
-
     with pytest.raises((ReadProposalError, ToolInputError)):
-        asyncio.run(_experiment(root, agent).run(_task()))
+        asyncio.run(tested.run(_task()))
     assert len(agent.calls) == 1
 
 
-def test_experiment_keeps_tool_failure_distinct_from_proposal_rejection(
-    tmp_path: Path,
-) -> None:
-    """An admitted missing path remains a Filesystem-domain execution failure."""
+def test_invalid_second_proposal_stops_after_first_cycle(tmp_path: Path) -> None:
+    """A malformed later action-like response does not execute or continue."""
     root = tmp_path / "repository"
-    root.mkdir()
+    _write(root, "facts/first.txt", "A")
     agent = _ScriptedAgent(
-        ['{"action":"read_repository_file","path":"facts/missing.txt"}'],
+        [_proposal("facts/first.txt"), '{"action":"unknown","path":"facts/second.txt"}']
     )
+    tested, _ = _experiment(root, agent)
 
-    with pytest.raises(FilesystemNotFoundError):
-        asyncio.run(_experiment(root, agent).run(_task()))
-    assert len(agent.calls) == 1
+    with pytest.raises(ReadProposalError):
+        asyncio.run(tested.run(_task()))
+    assert len(agent.calls) == 2
 
 
-def test_experiment_propagates_second_provider_failure_after_tool_success(
-    tmp_path: Path,
+def test_second_tool_failure_preserves_first_cycle_and_stops(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    """A second model-turn failure remains distinct from the completed Tool read."""
+    """A second read failure does not create another provider turn."""
     root = tmp_path / "repository"
-    source = root / "facts" / "answer.txt"
-    source.parent.mkdir(parents=True)
-    source.write_text("MARKER-4821", encoding="utf-8")
-    agent = _FailingSecondAgent(
-        ['{"action":"read_repository_file","path":"facts/answer.txt"}'],
+    _write(root, "facts/first.txt", "A")
+    _write(root, "facts/second.txt", "B")
+    agent = _ScriptedAgent(
+        [_proposal("facts/first.txt"), _proposal("facts/second.txt")]
     )
+    tested, _ = _experiment(root, agent)
+    original_execute = ReadRepositoryFileTool.execute
+    executions = 0
 
-    with pytest.raises(LookupError, match=_SECOND_PROVIDER_FAILURE):
-        asyncio.run(_experiment(root, agent).run(_task()))
-    assert len(agent.calls) == _TWO_AGENT_CALLS
+    async def fail_second(
+        tool: ReadRepositoryFileTool, arguments: ResolvedPath
+    ) -> object:
+        nonlocal executions
+        executions += 1
+        if executions == 2:
+            raise FilesystemNotFoundError(arguments)
+        return await original_execute(tool, arguments)
+
+    monkeypatch.setattr(ReadRepositoryFileTool, "execute", fail_second)
+    with pytest.raises(FilesystemNotFoundError):
+        asyncio.run(tested.run(_task()))
+    assert executions == 2
+    assert len(agent.calls) == 2
+
+
+def test_later_provider_failure_follows_completed_read_cycle(tmp_path: Path) -> None:
+    """Provider failure remains distinct from the successful preceding read."""
+    root = tmp_path / "repository"
+    _write(root, "facts/first.txt", "A")
+    agent = _FailingAgent([_proposal("facts/first.txt")], fail_on_call=2)
+    tested, _ = _experiment(root, agent)
+
+    with pytest.raises(LookupError, match=_PROVIDER_FAILURE):
+        asyncio.run(tested.run(_task()))
+    assert len(agent.calls) == 2
 
 
 @pytest.mark.parametrize("limit", [0, -1])
 def test_experiment_rejects_nonpositive_projection_limit(
-    tmp_path: Path,
-    limit: int,
+    tmp_path: Path, limit: int
 ) -> None:
     """The bounded projection policy cannot be silently disabled."""
     with pytest.raises(ValueError, match="limit"):
@@ -280,35 +466,12 @@ def test_proposal_parser_rejects_blank_or_noncanonical_path_values(
 def test_projection_is_bounded_and_rejects_non_text_result(tmp_path: Path) -> None:
     """The experiment projects only bounded text rather than rich File objects."""
     text = TextFile(
-        path=ResolvedPath((tmp_path / "answer.txt").resolve()),
-        content="abcdef",
+        path=ResolvedPath((tmp_path / "answer.txt").resolve()), content="abcdef"
     )
     projection = experiment._project_text_result(  # noqa: SLF001
-        "answer.txt",
-        text,
-        maximum_characters=3,
+        "answer.txt", text, maximum_characters=3
     )
     assert "abc" in projection
     assert "projection truncated" in projection
     with pytest.raises(ResultProjectionError, match="only text"):
-        experiment._project_text_result(  # noqa: SLF001
-            "answer.txt",
-            object(),
-            maximum_characters=3,
-        )
-
-
-class _FailingSecondAgent(_ScriptedAgent):
-    """Raise a provider-like failure only after the accepted repository read."""
-
-    async def send(
-        self,
-        message: Message,
-        *,
-        conversation: ConversationRef | None = None,
-    ) -> AgentTurn:
-        """Return first proposal then fail the second ordinary Agent invocation."""
-        if self.calls:
-            self.calls.append(message)
-            raise LookupError(_SECOND_PROVIDER_FAILURE)
-        return await super().send(message, conversation=conversation)
+        experiment._project_text_result("answer.txt", object(), maximum_characters=3)  # noqa: SLF001
