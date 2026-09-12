@@ -8,9 +8,9 @@ from datetime import UTC, datetime
 
 import pytest
 
-from devtools.agents import ConversationRef
 from devtools.context import History, Message, MessageId, MessageRole, MessageSource
 from devtools.context.session import Session, SessionId
+from devtools.interactions import ConversationRef
 from devtools.time import Timestamp
 
 

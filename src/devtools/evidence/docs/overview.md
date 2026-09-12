@@ -39,7 +39,7 @@ The terminal submodule exports exactly `AttemptCancelled`, `AttemptFailed`,
 ## Live Attempt lifecycle
 
 `Attempt` is a mutable live handle for one complete Runtime processing attempt,
-not merely one `Agent.send()` call. `AttemptId` identifies that execution
+not merely one `Interaction.send()` call. `AttemptId` identifies that execution
 occurrence. An Attempt records its `AttemptId`, `SessionId`, input `MessageId`,
 `MessageSource` attribution, `started_at`, lifecycle `state`, and optional
 `completed_at`.
@@ -87,7 +87,7 @@ choose stricter cardinality, and future persistence may own immutable-identity
 conflict detection.
 
 Terminal Evidence intentionally stores no duplicate `SessionId`, `MessageId`,
-or `agent_source`; those remain attributes of the referenced Attempt. This is
+or `interaction_source`; those remain attributes of the referenced Attempt. This is
 the current value-model boundary, not a commitment to a future storage layout.
 
 ## Terminal outcomes and stages
@@ -110,12 +110,12 @@ exception classification, side-effect claim, or retryability signal.
 The exact stable stages are:
 
 - `ADMISSION`: the Attempt exists at the observer admission boundary before
-  primary Agent processing; `attempt_started()` can prevent primary processing.
+  primary Interaction processing; `attempt_started()` can prevent primary processing.
 - `CONTINUATION_LOOKUP`: Runtime is obtaining the current continuation before
-  Agent invocation.
-- `AGENT_INVOCATION`: Runtime has entered Agent invocation. It makes no claim
+  Interaction invocation.
+- `INTERACTION_INVOCATION`: Runtime has entered Interaction invocation. It makes no claim
   whether a provider or another external system received work or made effects.
-- `RESULT_VALIDATION`: Agent invocation returned and Runtime is checking its
+- `RESULT_VALIDATION`: Interaction invocation returned and Runtime is checking its
   own result invariant.
 - `OUTPUT_RETENTION`: validation succeeded and Runtime is retaining the output
   Message in Session history.
@@ -155,7 +155,7 @@ def accept(self, evidence: AttemptTerminalEvidence) -> None: ...
 ```
 
 Runtime holds a sink as fixed configuration and offers it only immutable
-`AttemptTerminalEvidence`, never Attempt, Session, Message, AgentTurn,
+`AttemptTerminalEvidence`, never Attempt, Session, Message, InteractionTurn,
 exceptions, tracebacks, provider payloads, or context dictionaries. A normal
 return means the configured consumer accepted responsibility according to its
 own contract. It does **not** generically guarantee persistence, durability,
@@ -234,7 +234,7 @@ do not indicate execution, chronological, callback, Session, latest, or oldest
 order. Callers can inspect a selected execution with `get_attempt(attempt_id)`;
 the returned Attempt is the currently retained live object and should be treated
 as observational diagnostic state. Its existing `message_id`, `session_id`,
-`agent_source`, and timestamps can help identify an execution.
+`interaction_source`, and timestamps can help identify an execution.
 
 `get_evidence(evidence_id)` retrieves a currently retained terminal Evidence
 record, and `get_evidence_for_attempt(attempt_id)` retrieves currently retained
@@ -256,7 +256,7 @@ payloads, credentials, token/cost data, and arbitrary metadata. This is data
 minimization, not an encryption or access-control guarantee.
 
 Failure and cancellation do not prove that no external side effect occurred;
-in particular, `AGENT_INVOCATION` does not establish provider effect status.
+in particular, `INTERACTION_INVOCATION` does not establish provider effect status.
 Terminal Evidence is factual input for possible future reconciliation, not a
 decision that work is safe to retry, should retry, is replayable, or is
 idempotent.

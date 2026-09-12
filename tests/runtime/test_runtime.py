@@ -10,7 +10,6 @@ from typing import TYPE_CHECKING
 import pytest
 
 import devtools.runtime as runtime_package
-from devtools.agents import Agent, AgentTurn, ConversationRef
 from devtools.context import Message, MessageRole, MessageSource, Session
 from devtools.evidence import (
     Attempt,
@@ -23,6 +22,7 @@ from devtools.evidence import (
     AttemptTerminalEvidence,
     EvidenceSink,
 )
+from devtools.interactions import ConversationRef, Interaction, InteractionTurn
 from devtools.runtime import Runtime
 
 if TYPE_CHECKING:
@@ -31,13 +31,13 @@ if TYPE_CHECKING:
     from devtools.time import Timestamp
 
 
-class FakeAgent:
-    """A structural agent fake with deterministic call controls."""
+class FakeInteraction:
+    """A structural Interaction fake with deterministic call controls."""
 
     def __init__(
         self,
         source: MessageSource,
-        turns: Sequence[AgentTurn] = (),
+        turns: Sequence[InteractionTurn] = (),
         *,
         error: BaseException | None = None,
         entered: asyncio.Event | None = None,
@@ -53,7 +53,7 @@ class FakeAgent:
 
     @property
     def source(self) -> MessageSource:
-        """Return the fake agent source."""
+        """Return the fake Interaction source."""
         return self._source
 
     async def send(
@@ -61,7 +61,7 @@ class FakeAgent:
         message: Message,
         *,
         conversation: ConversationRef | None = None,
-    ) -> AgentTurn:
+    ) -> InteractionTurn:
         """Record one call and return the next configured result."""
         self.calls.append((message, conversation))
         if self._entered is not None:
@@ -198,22 +198,22 @@ def test_runtime_observes_a_successful_turn_with_one_live_attempt() -> None:
         input_message = _message("input", source="caller")
         response = _message("response", role=MessageRole.ASSISTANT, source="agent")
         conversation = _ref("agent", "thread")
-        returned = AgentTurn(response, conversation)
-        fake = FakeAgent(MessageSource("agent"), (returned,))
+        returned = InteractionTurn(response, conversation)
+        fake = FakeInteraction(MessageSource("agent"), (returned,))
 
         def assert_started(attempt: Attempt) -> None:
             assert attempt.state is AttemptState.RUNNING
             assert session.history.messages == (input_message,)
             assert attempt.session_id is session.id
             assert attempt.message_id is input_message.id
-            assert attempt.agent_source is fake.source
+            assert attempt.interaction_source is fake.source
             assert fake.calls == []
 
         observer = FakeObserver(on_started=assert_started)
 
         turn = await Runtime(observer=observer).send(
             session=session,
-            agent=fake,
+            interaction=fake,
             message=input_message,
         )
 
@@ -225,7 +225,7 @@ def test_runtime_observes_a_successful_turn_with_one_live_attempt() -> None:
         assert observer.finished[0] is attempt
         assert attempt.session_id is session.id
         assert attempt.message_id is input_message.id
-        assert attempt.agent_source is fake.source
+        assert attempt.interaction_source is fake.source
         assert observer.events[0] == ("started", attempt)
         assert observer.events[1] == ("finished", attempt)
         assert attempt.state is AttemptState.SUCCEEDED
@@ -248,12 +248,14 @@ def test_runtime_observer_preserves_existing_continuation_and_distinct_attempts(
         message = _message("input")
         first = _message("first", role=MessageRole.ASSISTANT, source="agent")
         second = _message("second", role=MessageRole.ASSISTANT, source="agent")
-        fake = FakeAgent(source, (AgentTurn(first, replacement), AgentTurn(second)))
+        fake = FakeInteraction(
+            source, (InteractionTurn(first, replacement), InteractionTurn(second)),
+        )
         observer = FakeObserver()
         runtime = Runtime(observer=observer)
 
-        await runtime.send(session=session, agent=fake, message=message)
-        await runtime.send(session=session, agent=fake, message=message)
+        await runtime.send(session=session, interaction=fake, message=message)
+        await runtime.send(session=session, interaction=fake, message=message)
 
         assert fake.calls == [(message, previous), (message, replacement)]
         assert session.conversation_for(source) is replacement
@@ -272,7 +274,7 @@ def test_runtime_observer_preserves_existing_continuation_and_distinct_attempts(
 def test_runtime_does_not_create_attempt_when_input_retention_fails(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    """Input retention failure occurs before observer admission and Agent invocation."""
+    """Input retention failure occurs before admission and Interaction invocation."""
 
     async def exercise() -> None:
         session = Session.new()
@@ -285,12 +287,12 @@ def test_runtime_does_not_create_attempt_when_input_retention_fails(
         monkeypatch.setattr(Session, "add", fail_add)
         observer = FakeObserver()
         sink = FakeSink()
-        fake = FakeAgent(MessageSource("agent"))
+        fake = FakeInteraction(MessageSource("agent"))
 
         with pytest.raises(LookupError) as raised:
             await Runtime(observer=observer, evidence_sink=sink).send(
                 session=session,
-                agent=fake,
+                interaction=fake,
                 message=message,
             )
 
@@ -318,12 +320,12 @@ def test_runtime_does_not_notify_when_attempt_creation_fails(
         monkeypatch.setattr(Attempt, "new", fail_new)
         observer = FakeObserver()
         sink = FakeSink()
-        fake = FakeAgent(MessageSource("agent"))
+        fake = FakeInteraction(MessageSource("agent"))
 
         with pytest.raises(LookupError) as raised:
             await Runtime(observer=observer, evidence_sink=sink).send(
                 session=session,
-                agent=fake,
+                interaction=fake,
                 message=message,
             )
 
@@ -346,12 +348,12 @@ def test_runtime_start_observer_failure_fails_attempt_without_sending() -> None:
         message = _message("input")
         error = LookupError("start failed")
         observer = FakeObserver(started_error=error)
-        fake = FakeAgent(MessageSource("agent"))
+        fake = FakeInteraction(MessageSource("agent"))
 
         with pytest.raises(LookupError) as raised:
             await Runtime(observer=observer).send(
                 session=session,
-                agent=fake,
+                interaction=fake,
                 message=message,
             )
 
@@ -376,12 +378,12 @@ def test_runtime_start_observer_cancellation_cancels_attempt_without_sending() -
         message = _message("input")
         error = asyncio.CancelledError()
         observer = FakeObserver(started_error=error)
-        fake = FakeAgent(MessageSource("agent"))
+        fake = FakeInteraction(MessageSource("agent"))
 
         with pytest.raises(asyncio.CancelledError) as raised:
             await Runtime(observer=observer).send(
                 session=session,
-                agent=fake,
+                interaction=fake,
                 message=message,
             )
 
@@ -400,12 +402,12 @@ def test_runtime_propagates_start_observer_process_control_without_cleanup() -> 
         session = Session.new()
         error = ProcessControl()
         observer = FakeObserver(started_error=error)
-        fake = FakeAgent(MessageSource("agent"))
+        fake = FakeInteraction(MessageSource("agent"))
 
         with pytest.raises(ProcessControl) as raised:
             await Runtime(observer=observer).send(
                 session=session,
-                agent=fake,
+                interaction=fake,
                 message=_message("input"),
             )
 
@@ -425,12 +427,12 @@ def test_runtime_coordinates_a_fresh_successful_turn() -> None:
         input_message = _message("input")
         response = _message("response", role=MessageRole.ASSISTANT, source="agent")
         conversation = _ref("agent", "thread-1")
-        returned = AgentTurn(response, conversation)
-        fake: Agent = FakeAgent(MessageSource("agent"), (returned,))
+        returned = InteractionTurn(response, conversation)
+        fake: Interaction = FakeInteraction(MessageSource("agent"), (returned,))
 
         turn = await Runtime().send(
             session=session,
-            agent=fake,
+            interaction=fake,
             message=input_message,
         )
 
@@ -439,7 +441,7 @@ def test_runtime_coordinates_a_fresh_successful_turn() -> None:
         assert session.history[0] is input_message
         assert session.history[1] is response
         assert session.conversation_for(MessageSource("agent")) is conversation
-        assert isinstance(fake, FakeAgent)
+        assert isinstance(fake, FakeInteraction)
         assert fake.calls == [(input_message, None)]
 
     asyncio.run(exercise())
@@ -455,8 +457,8 @@ def test_runtime_without_observer_never_creates_an_attempt(
         input_message = _message("input")
         response = _message("response", role=MessageRole.ASSISTANT, source="agent")
         conversation = _ref("agent", "thread")
-        returned = AgentTurn(response, conversation)
-        fake = FakeAgent(MessageSource("agent"), (returned,))
+        returned = InteractionTurn(response, conversation)
+        fake = FakeInteraction(MessageSource("agent"), (returned,))
 
         def fail_new(**_: object) -> Attempt:
             msg = "Runtime created an Attempt without an observer."
@@ -467,7 +469,7 @@ def test_runtime_without_observer_never_creates_an_attempt(
 
         turn = await runtime.send(
             session=session,
-            agent=fake,
+            interaction=fake,
             message=input_message,
         )
 
@@ -490,12 +492,12 @@ def test_runtime_uses_and_replaces_the_current_continuation() -> None:
         input_message = _message("input")
         response = _message("response", role=MessageRole.ASSISTANT, source="agent")
         replacement = _ref("agent", "thread-new")
-        fake = FakeAgent(
+        fake = FakeInteraction(
             MessageSource("agent"),
-            (AgentTurn(response, replacement),),
+            (InteractionTurn(response, replacement),),
         )
 
-        await Runtime().send(session=session, agent=fake, message=input_message)
+        await Runtime().send(session=session, interaction=fake, message=input_message)
 
         assert fake.calls == [(input_message, previous)]
         assert session.history.messages == (input_message, response)
@@ -512,11 +514,11 @@ def test_runtime_keeps_existing_continuation_when_turn_is_stateless() -> None:
         session = Session.new()
         session.set_conversation(previous)
         response = _message("response", role=MessageRole.ASSISTANT, source="agent")
-        fake = FakeAgent(MessageSource("agent"), (AgentTurn(response),))
+        fake = FakeInteraction(MessageSource("agent"), (InteractionTurn(response),))
 
         await Runtime().send(
             session=session,
-            agent=fake,
+            interaction=fake,
             message=_message("input"),
         )
 
@@ -542,10 +544,12 @@ def test_runtime_accepts_all_message_roles_and_independent_input_source() -> Non
             )
             for role in MessageRole
         )
-        fake = FakeAgent(source, tuple(AgentTurn(response) for response in responses))
+        fake = FakeInteraction(
+            source, tuple(InteractionTurn(response) for response in responses),
+        )
 
         for message in inputs:
-            await Runtime().send(session=session, agent=fake, message=message)
+            await Runtime().send(session=session, interaction=fake, message=message)
 
         assert [call[0] for call in fake.calls] == list(inputs)
         assert all(call[0].source != source for call in fake.calls)
@@ -564,14 +568,14 @@ def test_runtime_retains_repeated_submission_of_the_same_message() -> None:
         input_message = _message("input")
         first = _message("first", role=MessageRole.ASSISTANT, source="agent")
         second = _message("second", role=MessageRole.ASSISTANT, source="agent")
-        fake = FakeAgent(
+        fake = FakeInteraction(
             MessageSource("agent"),
-            (AgentTurn(first), AgentTurn(second)),
+            (InteractionTurn(first), InteractionTurn(second)),
         )
         runtime = Runtime()
 
-        await runtime.send(session=session, agent=fake, message=input_message)
-        await runtime.send(session=session, agent=fake, message=input_message)
+        await runtime.send(session=session, interaction=fake, message=input_message)
+        await runtime.send(session=session, interaction=fake, message=input_message)
 
         assert session.history.messages == (input_message, first, input_message, second)
         assert session.history[0] is session.history[2] is input_message
@@ -581,7 +585,7 @@ def test_runtime_retains_repeated_submission_of_the_same_message() -> None:
 
 
 def test_runtime_preserves_input_and_continuation_when_agent_raises() -> None:
-    """Agent exceptions propagate after recording only the input message."""
+    """Interaction exceptions propagate after recording only the input message."""
 
     async def exercise() -> None:
         previous = _ref("agent", "thread-old")
@@ -589,10 +593,12 @@ def test_runtime_preserves_input_and_continuation_when_agent_raises() -> None:
         session.set_conversation(previous)
         input_message = _message("input")
         error = LookupError("agent failed")
-        fake = FakeAgent(MessageSource("agent"), error=error)
+        fake = FakeInteraction(MessageSource("agent"), error=error)
 
         with pytest.raises(LookupError) as raised:
-            await Runtime().send(session=session, agent=fake, message=input_message)
+            await Runtime().send(
+                session=session, interaction=fake, message=input_message,
+            )
 
         assert raised.value is error
         assert session.history.messages == (input_message,)
@@ -603,7 +609,7 @@ def test_runtime_preserves_input_and_continuation_when_agent_raises() -> None:
 
 
 def test_runtime_observes_agent_failure_without_replacing_primary_error() -> None:
-    """Agent failure terminalizes Attempt while preserving the Agent exception."""
+    """Interaction failure terminalizes Attempt without replacing its exception."""
 
     async def exercise() -> None:
         previous = _ref("agent", "old")
@@ -611,13 +617,13 @@ def test_runtime_observes_agent_failure_without_replacing_primary_error() -> Non
         session.set_conversation(previous)
         message = _message("input")
         error = LookupError("agent failed")
-        fake = FakeAgent(MessageSource("agent"), error=error)
+        fake = FakeInteraction(MessageSource("agent"), error=error)
         observer = FakeObserver()
 
         with pytest.raises(LookupError) as raised:
             await Runtime(observer=observer).send(
                 session=session,
-                agent=fake,
+                interaction=fake,
                 message=message,
             )
 
@@ -632,7 +638,7 @@ def test_runtime_observes_agent_failure_without_replacing_primary_error() -> Non
 
 
 def test_runtime_rejects_a_returned_message_from_another_source() -> None:
-    """Runtime alone validates the selected agent against its returned message."""
+    """Runtime alone validates the selected interaction against its returned message."""
 
     async def exercise() -> None:
         previous = _ref("agent", "thread-old")
@@ -645,16 +651,20 @@ def test_runtime_rejects_a_returned_message_from_another_source() -> None:
             source="other-agent",
         )
         invalid_ref = _ref("other-agent", "other-thread")
-        fake = FakeAgent(
+        fake = FakeInteraction(
             MessageSource("agent"),
-            (AgentTurn(invalid_response, invalid_ref),),
+            (InteractionTurn(invalid_response, invalid_ref),),
         )
 
         with pytest.raises(
             ValueError,
-            match=r"^Agent turn message source does not match agent source\.$",
+            match=(
+                r"^Interaction turn message source does not match interaction source\.$"
+            ),
         ):
-            await Runtime().send(session=session, agent=fake, message=input_message)
+            await Runtime().send(
+                session=session, interaction=fake, message=input_message,
+            )
 
         assert session.history.messages == (input_message,)
         assert session.conversation_for(MessageSource("agent")) is previous
@@ -664,7 +674,7 @@ def test_runtime_rejects_a_returned_message_from_another_source() -> None:
 
 
 def test_runtime_observes_returned_source_mismatch_as_failed() -> None:
-    """Runtime validation failures are Attempt failures, not Agent successes."""
+    """Runtime validation failures are Attempt failures, not Interaction successes."""
 
     async def exercise() -> None:
         source = MessageSource("agent")
@@ -673,16 +683,20 @@ def test_runtime_observes_returned_source_mismatch_as_failed() -> None:
         session.set_conversation(previous)
         message = _message("input")
         invalid = _message("invalid", role=MessageRole.ASSISTANT, source="other")
-        fake = FakeAgent(source, (AgentTurn(invalid, _ref("other", "thread")),))
+        fake = FakeInteraction(
+            source, (InteractionTurn(invalid, _ref("other", "thread")),),
+        )
         observer = FakeObserver()
 
         with pytest.raises(
             ValueError,
-            match=r"^Agent turn message source does not match agent source\.$",
+            match=(
+                r"^Interaction turn message source does not match interaction source\.$"
+            ),
         ):
             await Runtime(observer=observer).send(
                 session=session,
-                agent=fake,
+                interaction=fake,
                 message=message,
             )
 
@@ -700,10 +714,10 @@ def test_runtime_cancellation_while_waiting_leaves_session_unchanged(
 
     async def exercise() -> None:
         session = Session.new()
-        fake = FakeAgent(
+        fake = FakeInteraction(
             MessageSource("agent"),
             (
-                AgentTurn(
+                InteractionTurn(
                     _message(
                         "response",
                         role=MessageRole.ASSISTANT,
@@ -718,11 +732,11 @@ def test_runtime_cancellation_while_waiting_leaves_session_unchanged(
 
         async with session.turn():
 
-            async def invoke() -> AgentTurn:
+            async def invoke() -> InteractionTurn:
                 runtime_started.set()
                 return await Runtime(evidence_sink=sink).send(
                     session=session,
-                    agent=fake,
+                    interaction=fake,
                     message=_message("input"),
                 )
 
@@ -750,10 +764,10 @@ def test_runtime_cancellation_during_agent_releases_the_session_turn() -> None:
         input_message = _message("input")
         entered = asyncio.Event()
         release = asyncio.Event()
-        fake = FakeAgent(
+        fake = FakeInteraction(
             MessageSource("agent"),
             (
-                AgentTurn(
+                InteractionTurn(
                     _message(
                         "response",
                         role=MessageRole.ASSISTANT,
@@ -765,7 +779,7 @@ def test_runtime_cancellation_during_agent_releases_the_session_turn() -> None:
             release=release,
         )
         task = asyncio.create_task(
-            Runtime().send(session=session, agent=fake, message=input_message),
+            Runtime().send(session=session, interaction=fake, message=input_message),
         )
         await entered.wait()
         assert session.history.messages == (input_message,)
@@ -783,7 +797,7 @@ def test_runtime_cancellation_during_agent_releases_the_session_turn() -> None:
 
 
 def test_runtime_observes_cancellation_during_agent_without_replacing_it() -> None:
-    """Agent cancellation retains input and terminalizes the live Attempt."""
+    """Interaction cancellation retains input and terminalizes the live Attempt."""
 
     async def exercise() -> None:
         session = Session.new()
@@ -792,10 +806,10 @@ def test_runtime_observes_cancellation_during_agent_without_replacing_it() -> No
         message = _message("input")
         entered = asyncio.Event()
         release = asyncio.Event()
-        fake = FakeAgent(
+        fake = FakeInteraction(
             MessageSource("agent"),
             (
-                AgentTurn(
+                InteractionTurn(
                     _message("response", role=MessageRole.ASSISTANT, source="agent"),
                 ),
             ),
@@ -806,7 +820,7 @@ def test_runtime_observes_cancellation_during_agent_without_replacing_it() -> No
         task = asyncio.create_task(
             Runtime(observer=observer).send(
                 session=session,
-                agent=fake,
+                interaction=fake,
                 message=message,
             ),
         )
@@ -828,7 +842,7 @@ def test_runtime_observes_cancellation_during_agent_without_replacing_it() -> No
 def test_runtime_preserves_primary_cancellation_when_terminalization_cancels(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    """Secondary terminalization cancellation cannot replace Agent cancellation."""
+    """Secondary terminalization cancellation cannot replace cancellation."""
 
     async def exercise() -> None:
         session = Session.new()
@@ -841,10 +855,10 @@ def test_runtime_preserves_primary_cancellation_when_terminalization_cancels(
 
         monkeypatch.setattr(Attempt, "cancel", cancel_attempt)
         observer = FakeObserver()
-        fake = FakeAgent(
+        fake = FakeInteraction(
             MessageSource("agent"),
             (
-                AgentTurn(
+                InteractionTurn(
                     _message("response", role=MessageRole.ASSISTANT, source="agent"),
                 ),
             ),
@@ -854,7 +868,7 @@ def test_runtime_preserves_primary_cancellation_when_terminalization_cancels(
         task = asyncio.create_task(
             Runtime(observer=observer).send(
                 session=session,
-                agent=fake,
+                interaction=fake,
                 message=_message("input"),
             ),
         )
@@ -886,13 +900,13 @@ def test_runtime_suppresses_ordinary_or_cancellation_finished_failure_after_succ
         session = Session.new()
         message = _message("input")
         response = _message("response", role=MessageRole.ASSISTANT, source="agent")
-        returned = AgentTurn(response, _ref("agent", "thread"))
-        fake = FakeAgent(MessageSource("agent"), (returned,))
+        returned = InteractionTurn(response, _ref("agent", "thread"))
+        fake = FakeInteraction(MessageSource("agent"), (returned,))
         observer = FakeObserver(finished_error=finished_error)
 
         turn = await Runtime(observer=observer).send(
             session=session,
-            agent=fake,
+            interaction=fake,
             message=message,
         )
 
@@ -911,14 +925,14 @@ def test_runtime_propagates_finished_process_control_after_committed_success() -
         session = Session.new()
         message = _message("input")
         response = _message("response", role=MessageRole.ASSISTANT, source="agent")
-        returned = AgentTurn(response)
+        returned = InteractionTurn(response)
         error = ProcessControl()
         observer = FakeObserver(finished_error=error)
 
         with pytest.raises(ProcessControl) as raised:
             await Runtime(observer=observer).send(
                 session=session,
-                agent=FakeAgent(MessageSource("agent"), (returned,)),
+                interaction=FakeInteraction(MessageSource("agent"), (returned,)),
                 message=message,
             )
 
@@ -936,7 +950,7 @@ def test_runtime_propagates_finished_process_control_after_committed_success() -
 def test_runtime_preserves_agent_failure_over_finished_secondary_error(
     finished_error: BaseException,
 ) -> None:
-    """Ordinary or cancellation observer failure cannot mask Agent failure."""
+    """Ordinary or cancellation observer failure cannot mask Interaction failure."""
 
     async def exercise() -> None:
         session = Session.new()
@@ -947,7 +961,7 @@ def test_runtime_preserves_agent_failure_over_finished_secondary_error(
         with pytest.raises(LookupError) as raised:
             await Runtime(observer=observer).send(
                 session=session,
-                agent=FakeAgent(MessageSource("agent"), error=primary),
+                interaction=FakeInteraction(MessageSource("agent"), error=primary),
                 message=message,
             )
 
@@ -958,17 +972,17 @@ def test_runtime_preserves_agent_failure_over_finished_secondary_error(
 
 
 def test_runtime_preserves_cancellation_over_finished_secondary_error() -> None:
-    """Ordinary finished failure cannot mask primary Agent cancellation."""
+    """Ordinary finished failure cannot mask primary Interaction cancellation."""
 
     async def exercise() -> None:
         session = Session.new()
         entered = asyncio.Event()
         release = asyncio.Event()
         observer = FakeObserver(finished_error=LookupError("finished failed"))
-        fake = FakeAgent(
+        fake = FakeInteraction(
             MessageSource("agent"),
             (
-                AgentTurn(
+                InteractionTurn(
                     _message("response", role=MessageRole.ASSISTANT, source="agent"),
                 ),
             ),
@@ -978,7 +992,7 @@ def test_runtime_preserves_cancellation_over_finished_secondary_error() -> None:
         task = asyncio.create_task(
             Runtime(observer=observer).send(
                 session=session,
-                agent=fake,
+                interaction=fake,
                 message=_message("input"),
             ),
         )
@@ -1007,7 +1021,7 @@ def test_runtime_preserves_start_failure_over_finished_secondary_error() -> None
         with pytest.raises(LookupError) as raised:
             await Runtime(observer=observer).send(
                 session=session,
-                agent=FakeAgent(MessageSource("agent")),
+                interaction=FakeInteraction(MessageSource("agent")),
                 message=_message("input"),
             )
 
@@ -1020,7 +1034,7 @@ def test_runtime_preserves_start_failure_over_finished_secondary_error() -> None
 def test_runtime_preserves_primary_agent_failure_when_terminalization_fails(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    """Terminal timestamp failure leaves Attempt running without masking Agent error."""
+    """Terminal timestamp failure leaves Attempt running without masking an error."""
 
     async def exercise() -> None:
         session = Session.new()
@@ -1041,7 +1055,7 @@ def test_runtime_preserves_primary_agent_failure_when_terminalization_fails(
         with pytest.raises(LookupError) as raised:
             await Runtime(observer=observer).send(
                 session=session,
-                agent=FakeAgent(MessageSource("agent"), error=primary),
+                interaction=FakeInteraction(MessageSource("agent"), error=primary),
                 message=message,
             )
 
@@ -1064,7 +1078,7 @@ def test_runtime_preserves_primary_success_when_terminalization_fails(
         session = Session.new()
         message = _message("input")
         response = _message("response", role=MessageRole.ASSISTANT, source="agent")
-        returned = AgentTurn(response, _ref("agent", "thread"))
+        returned = InteractionTurn(response, _ref("agent", "thread"))
 
         def fail_timestamp(_: Attempt) -> None:
             message = "timestamp unavailable"
@@ -1080,7 +1094,7 @@ def test_runtime_preserves_primary_success_when_terminalization_fails(
         observer = FakeObserver(on_started=fail_timestamp)
         turn = await Runtime(observer=observer).send(
             session=session,
-            agent=FakeAgent(MessageSource("agent"), (returned,)),
+            interaction=FakeInteraction(MessageSource("agent"), (returned,)),
             message=message,
         )
 
@@ -1117,9 +1131,9 @@ def test_runtime_observes_later_conversation_commit_failure(
         with pytest.raises(LookupError) as raised:
             await Runtime(observer=observer).send(
                 session=session,
-                agent=FakeAgent(
+                interaction=FakeInteraction(
                     MessageSource("agent"),
-                    (AgentTurn(response, _ref("agent", "thread")),),
+                    (InteractionTurn(response, _ref("agent", "thread")),),
                 ),
                 message=message,
             )
@@ -1146,26 +1160,28 @@ def test_runtime_serializes_complete_turns_for_one_session() -> None:
         response_a = _message("response-a", role=MessageRole.ASSISTANT, source="a")
         input_b = _message("input-b")
         response_b = _message("response-b", role=MessageRole.ASSISTANT, source="b")
-        agent_a = FakeAgent(
+        agent_a = FakeInteraction(
             MessageSource("a"),
-            (AgentTurn(response_a),),
+            (InteractionTurn(response_a),),
             entered=entered_a,
             release=release_a,
         )
-        agent_b = FakeAgent(
+        agent_b = FakeInteraction(
             MessageSource("b"),
-            (AgentTurn(response_b),),
+            (InteractionTurn(response_b),),
             entered=entered_b,
         )
 
         task_a = asyncio.create_task(
-            runtime.send(session=session, agent=agent_a, message=input_a),
+            runtime.send(session=session, interaction=agent_a, message=input_a),
         )
         await entered_a.wait()
 
-        async def invoke_b() -> AgentTurn:
+        async def invoke_b() -> InteractionTurn:
             started_b.set()
-            return await runtime.send(session=session, agent=agent_b, message=input_b)
+            return await runtime.send(
+                session=session, interaction=agent_b, message=input_b,
+            )
 
         task_b = asyncio.create_task(invoke_b())
         await started_b.wait()
@@ -1208,26 +1224,28 @@ def test_runtime_hands_a_replacement_continuation_to_a_queued_same_source_turn()
         response_a = _message("response-a", role=MessageRole.ASSISTANT, source="agent")
         input_b = _message("input-b")
         response_b = _message("response-b", role=MessageRole.ASSISTANT, source="agent")
-        agent_a = FakeAgent(
+        agent_a = FakeInteraction(
             source,
-            (AgentTurn(response_a, replacement),),
+            (InteractionTurn(response_a, replacement),),
             entered=entered_a,
             release=release_a,
         )
-        agent_b = FakeAgent(
+        agent_b = FakeInteraction(
             source,
-            (AgentTurn(response_b),),
+            (InteractionTurn(response_b),),
             entered=entered_b,
         )
         task_a = asyncio.create_task(
-            runtime.send(session=session, agent=agent_a, message=input_a),
+            runtime.send(session=session, interaction=agent_a, message=input_a),
         )
         await entered_a.wait()
         assert agent_a.calls == [(input_a, initial)]
 
-        async def invoke_b() -> AgentTurn:
+        async def invoke_b() -> InteractionTurn:
             started_b.set()
-            return await runtime.send(session=session, agent=agent_b, message=input_b)
+            return await runtime.send(
+                session=session, interaction=agent_b, message=input_b,
+            )
 
         task_b = asyncio.create_task(invoke_b())
         await started_b.wait()
@@ -1257,10 +1275,10 @@ def test_runtime_allows_different_sessions_to_run_concurrently() -> None:
         release = asyncio.Event()
         entered_a = asyncio.Event()
         entered_b = asyncio.Event()
-        agent_a = FakeAgent(
+        agent_a = FakeInteraction(
             MessageSource("a"),
             (
-                AgentTurn(
+                InteractionTurn(
                     _message(
                         "response-a",
                         role=MessageRole.ASSISTANT,
@@ -1271,10 +1289,10 @@ def test_runtime_allows_different_sessions_to_run_concurrently() -> None:
             entered=entered_a,
             release=release,
         )
-        agent_b = FakeAgent(
+        agent_b = FakeInteraction(
             MessageSource("b"),
             (
-                AgentTurn(
+                InteractionTurn(
                     _message(
                         "response-b",
                         role=MessageRole.ASSISTANT,
@@ -1287,10 +1305,14 @@ def test_runtime_allows_different_sessions_to_run_concurrently() -> None:
         )
 
         task_a = asyncio.create_task(
-            runtime.send(session=Session.new(), agent=agent_a, message=_message("a")),
+            runtime.send(
+                session=Session.new(), interaction=agent_a, message=_message("a"),
+            ),
         )
         task_b = asyncio.create_task(
-            runtime.send(session=Session.new(), agent=agent_b, message=_message("b")),
+            runtime.send(
+                session=Session.new(), interaction=agent_b, message=_message("b"),
+            ),
         )
         await asyncio.gather(entered_a.wait(), entered_b.wait())
         assert len(agent_a.calls) == 1
@@ -1316,24 +1338,24 @@ def test_runtime_observer_callbacks_remain_ordered_with_one_session() -> None:
         response_a = _message("response-a", role=MessageRole.ASSISTANT, source="a")
         input_b = _message("input-b")
         response_b = _message("response-b", role=MessageRole.ASSISTANT, source="b")
-        agent_a = FakeAgent(
+        agent_a = FakeInteraction(
             MessageSource("a"),
-            (AgentTurn(response_a),),
+            (InteractionTurn(response_a),),
             entered=entered_a,
             release=release_a,
         )
-        agent_b = FakeAgent(
+        agent_b = FakeInteraction(
             MessageSource("b"),
-            (AgentTurn(response_b),),
+            (InteractionTurn(response_b),),
             entered=entered_b,
         )
 
         task_a = asyncio.create_task(
-            runtime.send(session=session, agent=agent_a, message=input_a),
+            runtime.send(session=session, interaction=agent_a, message=input_a),
         )
         await entered_a.wait()
         task_b = asyncio.create_task(
-            runtime.send(session=session, agent=agent_b, message=input_b),
+            runtime.send(session=session, interaction=agent_b, message=input_b),
         )
         assert agent_b.calls == []
         assert [name for name, _ in observer.events] == ["started"]
@@ -1376,20 +1398,22 @@ def test_runtime_observer_preserves_same_source_continuation_handoff() -> None:
         response_a = _message("response-a", role=MessageRole.ASSISTANT, source="agent")
         input_b = _message("input-b")
         response_b = _message("response-b", role=MessageRole.ASSISTANT, source="agent")
-        agent_a = FakeAgent(
+        agent_a = FakeInteraction(
             source,
-            (AgentTurn(response_a, replacement),),
+            (InteractionTurn(response_a, replacement),),
             entered=entered_a,
             release=release_a,
         )
-        agent_b = FakeAgent(source, (AgentTurn(response_b),), entered=entered_b)
+        agent_b = FakeInteraction(
+            source, (InteractionTurn(response_b),), entered=entered_b,
+        )
 
         task_a = asyncio.create_task(
-            runtime.send(session=session, agent=agent_a, message=input_a),
+            runtime.send(session=session, interaction=agent_a, message=input_a),
         )
         await entered_a.wait()
         task_b = asyncio.create_task(
-            runtime.send(session=session, agent=agent_b, message=input_b),
+            runtime.send(session=session, interaction=agent_b, message=input_b),
         )
         assert agent_b.calls == []
 
@@ -1419,20 +1443,20 @@ def test_runtime_observer_does_not_serialize_different_sessions() -> None:
         release = asyncio.Event()
         entered_a = asyncio.Event()
         entered_b = asyncio.Event()
-        agent_a = FakeAgent(
+        agent_a = FakeInteraction(
             MessageSource("a"),
             (
-                AgentTurn(
+                InteractionTurn(
                     _message("response-a", role=MessageRole.ASSISTANT, source="a"),
                 ),
             ),
             entered=entered_a,
             release=release,
         )
-        agent_b = FakeAgent(
+        agent_b = FakeInteraction(
             MessageSource("b"),
             (
-                AgentTurn(
+                InteractionTurn(
                     _message("response-b", role=MessageRole.ASSISTANT, source="b"),
                 ),
             ),
@@ -1441,10 +1465,14 @@ def test_runtime_observer_does_not_serialize_different_sessions() -> None:
         )
 
         task_a = asyncio.create_task(
-            runtime.send(session=Session.new(), agent=agent_a, message=_message("a")),
+            runtime.send(
+                session=Session.new(), interaction=agent_a, message=_message("a"),
+            ),
         )
         task_b = asyncio.create_task(
-            runtime.send(session=Session.new(), agent=agent_b, message=_message("b")),
+            runtime.send(
+                session=Session.new(), interaction=agent_b, message=_message("b"),
+            ),
         )
         await asyncio.gather(entered_a.wait(), entered_b.wait())
 
@@ -1465,14 +1493,14 @@ def test_runtime_sink_only_success_delivers_one_exact_terminal_value(
     async def exercise() -> None:
         attempts = _capture_attempts(monkeypatch)
         source = MessageSource("agent")
-        returned = AgentTurn(
+        returned = InteractionTurn(
             _message("response", role=MessageRole.ASSISTANT, source="agent"),
         )
         sink = FakeSink()
 
         turn = await Runtime(evidence_sink=sink).send(
             session=Session.new(),
-            agent=FakeAgent(source, (returned,)),
+            interaction=FakeInteraction(source, (returned,)),
             message=_message("request"),
         )
 
@@ -1492,7 +1520,7 @@ def test_runtime_sink_only_success_delivers_one_exact_terminal_value(
     "stage",
     [
         AttemptStage.CONTINUATION_LOOKUP,
-        AttemptStage.AGENT_INVOCATION,
+        AttemptStage.INTERACTION_INVOCATION,
         AttemptStage.RESULT_VALIDATION,
         AttemptStage.OUTPUT_RETENTION,
         AttemptStage.CONTINUATION_REPLACEMENT,
@@ -1507,22 +1535,24 @@ def test_runtime_sink_only_failure_records_exact_processing_stage(  # noqa: C901
     async def exercise() -> None:
         error = LookupError(stage.value)
         source = MessageSource("agent")
-        returned = AgentTurn(
+        returned = InteractionTurn(
             _message("response", role=MessageRole.ASSISTANT, source="agent"),
             _ref("agent", "next"),
         )
         session = Session.new()
-        agent = FakeAgent(source, (returned,))
+        agent = FakeInteraction(source, (returned,))
 
         if stage is AttemptStage.CONTINUATION_LOOKUP:
+
             def fail_lookup(_: Session, __: MessageSource) -> ConversationRef | None:
                 raise error
 
             monkeypatch.setattr(Session, "conversation_for", fail_lookup)
-        elif stage is AttemptStage.AGENT_INVOCATION:
-            agent = FakeAgent(source, error=error)
+        elif stage is AttemptStage.INTERACTION_INVOCATION:
+            agent = FakeInteraction(source, error=error)
         elif stage is AttemptStage.RESULT_VALIDATION:
-            def fail_validation(_: AgentTurn, __: Agent) -> None:
+
+            def fail_validation(_: InteractionTurn, __: Interaction) -> None:
                 raise error
 
             monkeypatch.setattr(
@@ -1543,6 +1573,7 @@ def test_runtime_sink_only_failure_records_exact_processing_stage(  # noqa: C901
 
             monkeypatch.setattr(Session, "add", fail_output_retention)
         else:
+
             def fail_replacement(_: Session, __: ConversationRef) -> None:
                 raise error
 
@@ -1552,7 +1583,7 @@ def test_runtime_sink_only_failure_records_exact_processing_stage(  # noqa: C901
         with pytest.raises(LookupError) as raised:
             await Runtime(evidence_sink=sink).send(
                 session=session,
-                agent=agent,
+                interaction=agent,
                 message=_message("request"),
             )
 
@@ -1569,7 +1600,7 @@ def test_runtime_sink_only_failure_records_exact_processing_stage(  # noqa: C901
     "stage",
     [
         AttemptStage.CONTINUATION_LOOKUP,
-        AttemptStage.AGENT_INVOCATION,
+        AttemptStage.INTERACTION_INVOCATION,
         AttemptStage.RESULT_VALIDATION,
         AttemptStage.OUTPUT_RETENTION,
         AttemptStage.CONTINUATION_REPLACEMENT,
@@ -1586,14 +1617,15 @@ def test_runtime_sink_only_cancellation_records_exact_processing_stage(  # noqa:
         cancellation = asyncio.CancelledError(stage.value)
         source = MessageSource("agent")
         input_message = _message("request")
-        returned = AgentTurn(
+        returned = InteractionTurn(
             _message("response", role=MessageRole.ASSISTANT, source="agent"),
             _ref("agent", "next"),
         )
         session = Session.new()
-        agent = FakeAgent(source, (returned,))
+        agent = FakeInteraction(source, (returned,))
 
         if stage is AttemptStage.CONTINUATION_LOOKUP:
+
             def cancel_lookup(
                 _: Session,
                 __: MessageSource,
@@ -1601,10 +1633,11 @@ def test_runtime_sink_only_cancellation_records_exact_processing_stage(  # noqa:
                 raise cancellation
 
             monkeypatch.setattr(Session, "conversation_for", cancel_lookup)
-        elif stage is AttemptStage.AGENT_INVOCATION:
-            agent = FakeAgent(source, error=cancellation)
+        elif stage is AttemptStage.INTERACTION_INVOCATION:
+            agent = FakeInteraction(source, error=cancellation)
         elif stage is AttemptStage.RESULT_VALIDATION:
-            def cancel_validation(_: AgentTurn, __: Agent) -> None:
+
+            def cancel_validation(_: InteractionTurn, __: Interaction) -> None:
                 raise cancellation
 
             monkeypatch.setattr(
@@ -1625,6 +1658,7 @@ def test_runtime_sink_only_cancellation_records_exact_processing_stage(  # noqa:
 
             monkeypatch.setattr(Session, "add", cancel_output_retention)
         else:
+
             def cancel_replacement(_: Session, __: ConversationRef) -> None:
                 raise cancellation
 
@@ -1634,7 +1668,7 @@ def test_runtime_sink_only_cancellation_records_exact_processing_stage(  # noqa:
         with pytest.raises(asyncio.CancelledError) as raised:
             await Runtime(evidence_sink=sink).send(
                 session=session,
-                agent=agent,
+                interaction=agent,
                 message=input_message,
             )
 
@@ -1680,12 +1714,12 @@ def test_runtime_admission_outcome_reaches_finished_then_sink(
             on_finished=lambda _: order.append("finished"),
         )
         sink = FakeSink(on_accept=lambda _: order.append("sink"))
-        agent = FakeAgent(MessageSource("agent"))
+        agent = FakeInteraction(MessageSource("agent"))
 
         with pytest.raises(type(primary)) as raised:
             await Runtime(observer=observer, evidence_sink=sink).send(
                 session=Session.new(),
-                agent=agent,
+                interaction=agent,
                 message=_message("request"),
             )
 
@@ -1711,13 +1745,13 @@ def test_runtime_observer_only_constructs_no_terminal_evidence(
 
         monkeypatch.setattr(AttemptTerminalEvidence, "new", fail_new)
         observer = FakeObserver()
-        returned = AgentTurn(
+        returned = InteractionTurn(
             _message("response", role=MessageRole.ASSISTANT, source="agent"),
         )
 
         turn = await Runtime(observer=observer).send(
             session=Session.new(),
-            agent=FakeAgent(MessageSource("agent"), (returned,)),
+            interaction=FakeInteraction(MessageSource("agent"), (returned,)),
             message=_message("request"),
         )
 
@@ -1748,13 +1782,13 @@ def test_runtime_secondary_construction_failure_preserves_success_and_finished(
         monkeypatch.setattr(AttemptTerminalEvidence, "new", fail_new)
         observer = FakeObserver()
         sink = FakeSink()
-        returned = AgentTurn(
+        returned = InteractionTurn(
             _message("response", role=MessageRole.ASSISTANT, source="agent"),
         )
 
         turn = await Runtime(observer=observer, evidence_sink=sink).send(
             session=Session.new(),
-            agent=FakeAgent(MessageSource("agent"), (returned,)),
+            interaction=FakeInteraction(MessageSource("agent"), (returned,)),
             message=_message("request"),
         )
 
@@ -1769,7 +1803,7 @@ def test_runtime_secondary_construction_failure_preserves_success_and_finished(
 def test_runtime_secondary_construction_failure_preserves_primary_failure(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    """Construction failure cannot replace an established Agent failure."""
+    """Construction failure cannot replace an established Interaction failure."""
 
     async def exercise() -> None:
         primary = LookupError("agent failed")
@@ -1785,7 +1819,7 @@ def test_runtime_secondary_construction_failure_preserves_primary_failure(
         with pytest.raises(LookupError) as raised:
             await Runtime(observer=observer, evidence_sink=sink).send(
                 session=Session.new(),
-                agent=FakeAgent(MessageSource("agent"), error=primary),
+                interaction=FakeInteraction(MessageSource("agent"), error=primary),
                 message=_message("request"),
             )
 
@@ -1804,7 +1838,7 @@ def test_runtime_secondary_construction_failure_preserves_primary_cancellation(
     construction_error: BaseException,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    """Construction failure cannot replace an established Agent cancellation."""
+    """Construction failure cannot replace an established Interaction cancellation."""
 
     async def exercise() -> None:
         attempts = _capture_attempts(monkeypatch)
@@ -1823,7 +1857,7 @@ def test_runtime_secondary_construction_failure_preserves_primary_cancellation(
         with pytest.raises(asyncio.CancelledError) as raised:
             await Runtime(observer=observer, evidence_sink=sink).send(
                 session=Session.new(),
-                agent=FakeAgent(MessageSource("agent"), error=primary),
+                interaction=FakeInteraction(MessageSource("agent"), error=primary),
                 message=_message("request"),
             )
 
@@ -1853,14 +1887,14 @@ def test_runtime_construction_process_control_prevents_all_secondary_delivery(
         monkeypatch.setattr(AttemptTerminalEvidence, "new", fail_new)
         observer = FakeObserver()
         sink = FakeSink()
-        returned = AgentTurn(
+        returned = InteractionTurn(
             _message("response", role=MessageRole.ASSISTANT, source="agent"),
         )
 
         with pytest.raises(ProcessControl) as raised:
             await Runtime(observer=observer, evidence_sink=sink).send(
                 session=Session.new(),
-                agent=FakeAgent(MessageSource("agent"), (returned,)),
+                interaction=FakeInteraction(MessageSource("agent"), (returned,)),
                 message=_message("request"),
             )
 
@@ -1893,13 +1927,13 @@ def test_runtime_finished_secondary_failure_does_not_prevent_exact_sink_record(
         monkeypatch.setattr(AttemptTerminalEvidence, "new", capture_new)
         observer = FakeObserver(finished_error=finished_error)
         sink = FakeSink()
-        returned = AgentTurn(
+        returned = InteractionTurn(
             _message("response", role=MessageRole.ASSISTANT, source="agent"),
         )
 
         turn = await Runtime(observer=observer, evidence_sink=sink).send(
             session=Session.new(),
-            agent=FakeAgent(MessageSource("agent"), (returned,)),
+            interaction=FakeInteraction(MessageSource("agent"), (returned,)),
             message=_message("request"),
         )
 
@@ -1917,14 +1951,14 @@ def test_runtime_finished_process_control_prevents_sink() -> None:
         process_control = ProcessControl()
         observer = FakeObserver(finished_error=process_control)
         sink = FakeSink()
-        returned = AgentTurn(
+        returned = InteractionTurn(
             _message("response", role=MessageRole.ASSISTANT, source="agent"),
         )
 
         with pytest.raises(ProcessControl) as raised:
             await Runtime(observer=observer, evidence_sink=sink).send(
                 session=Session.new(),
-                agent=FakeAgent(MessageSource("agent"), (returned,)),
+                interaction=FakeInteraction(MessageSource("agent"), (returned,)),
                 message=_message("request"),
             )
 
@@ -1945,13 +1979,13 @@ def test_runtime_sink_secondary_failure_preserves_primary_success(
 
     async def exercise() -> None:
         sink = FakeSink(error=sink_error)
-        returned = AgentTurn(
+        returned = InteractionTurn(
             _message("response", role=MessageRole.ASSISTANT, source="agent"),
         )
 
         turn = await Runtime(evidence_sink=sink).send(
             session=Session.new(),
-            agent=FakeAgent(MessageSource("agent"), (returned,)),
+            interaction=FakeInteraction(MessageSource("agent"), (returned,)),
             message=_message("request"),
         )
 
@@ -1971,7 +2005,7 @@ def test_runtime_sink_ordinary_failure_preserves_primary_agent_failure() -> None
         with pytest.raises(LookupError) as raised:
             await Runtime(evidence_sink=sink).send(
                 session=Session.new(),
-                agent=FakeAgent(MessageSource("agent"), error=primary),
+                interaction=FakeInteraction(MessageSource("agent"), error=primary),
                 message=_message("request"),
             )
 
@@ -1988,7 +2022,7 @@ def test_runtime_sink_ordinary_failure_preserves_primary_agent_failure() -> None
 def test_runtime_sink_secondary_failure_preserves_primary_cancellation(
     sink_error: BaseException,
 ) -> None:
-    """Sink failure cannot replace the original Agent cancellation."""
+    """Sink failure cannot replace the original Interaction cancellation."""
 
     async def exercise() -> None:
         primary = asyncio.CancelledError("agent cancelled")
@@ -1997,7 +2031,7 @@ def test_runtime_sink_secondary_failure_preserves_primary_cancellation(
         with pytest.raises(asyncio.CancelledError) as raised:
             await Runtime(evidence_sink=sink).send(
                 session=Session.new(),
-                agent=FakeAgent(MessageSource("agent"), error=primary),
+                interaction=FakeInteraction(MessageSource("agent"), error=primary),
                 message=_message("request"),
             )
 
@@ -2013,14 +2047,14 @@ def test_runtime_sink_process_control_propagates() -> None:
     async def exercise() -> None:
         process_control = ProcessControl()
         sink = FakeSink(error=process_control)
-        returned = AgentTurn(
+        returned = InteractionTurn(
             _message("response", role=MessageRole.ASSISTANT, source="agent"),
         )
 
         with pytest.raises(ProcessControl) as raised:
             await Runtime(evidence_sink=sink).send(
                 session=Session.new(),
-                agent=FakeAgent(MessageSource("agent"), (returned,)),
+                interaction=FakeInteraction(MessageSource("agent"), (returned,)),
                 message=_message("request"),
             )
 
@@ -2044,13 +2078,13 @@ def test_runtime_terminalization_failure_delivers_no_finished_or_evidence(
             raise accounting_error
 
         monkeypatch.setattr(Attempt, "succeed", fail_terminalization)
-        returned = AgentTurn(
+        returned = InteractionTurn(
             _message("response", role=MessageRole.ASSISTANT, source="agent"),
         )
 
         turn = await Runtime(observer=observer, evidence_sink=sink).send(
             session=Session.new(),
-            agent=FakeAgent(MessageSource("agent"), (returned,)),
+            interaction=FakeInteraction(MessageSource("agent"), (returned,)),
             message=_message("request"),
         )
 
@@ -2078,13 +2112,13 @@ def test_runtime_bare_mode_performs_no_terminal_evidence_work(
 
         monkeypatch.setattr(Attempt, "new", fail_attempt)
         monkeypatch.setattr(AttemptTerminalEvidence, "new", fail_evidence)
-        returned = AgentTurn(
+        returned = InteractionTurn(
             _message("response", role=MessageRole.ASSISTANT, source="agent"),
         )
 
         turn = await Runtime().send(
             session=Session.new(),
-            agent=FakeAgent(MessageSource("agent"), (returned,)),
+            interaction=FakeInteraction(MessageSource("agent"), (returned,)),
             message=_message("request"),
         )
 
@@ -2096,7 +2130,7 @@ def test_runtime_bare_mode_performs_no_terminal_evidence_work(
 def test_runtime_sink_acceptance_remains_inside_same_session_turn_order(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    """Same-Session sink acceptance finishes before a queued turn invokes Agent."""
+    """Same-Session sink acceptance finishes before a queued turn invokes work."""
 
     async def exercise() -> None:
         session = Session.new()
@@ -2124,26 +2158,36 @@ def test_runtime_sink_acceptance_remains_inside_same_session_turn_order(
 
         monkeypatch.setattr(Session, "turn", tracked_turn)
         sink = FakeSink(on_accept=accept_while_held)
-        first = FakeAgent(
+        first = FakeInteraction(
             MessageSource("first"),
-            (AgentTurn(_message("one", role=MessageRole.ASSISTANT, source="first")),),
+            (
+                InteractionTurn(
+                    _message("one", role=MessageRole.ASSISTANT, source="first"),
+                ),
+            ),
             entered=entered_first,
             release=release_first,
         )
-        second = FakeAgent(
+        second = FakeInteraction(
             MessageSource("second"),
-            (AgentTurn(_message("two", role=MessageRole.ASSISTANT, source="second")),),
+            (
+                InteractionTurn(
+                    _message("two", role=MessageRole.ASSISTANT, source="second"),
+                ),
+            ),
             entered=entered_second,
             release=release_second,
         )
         runtime = Runtime(evidence_sink=sink)
 
         first_task = asyncio.create_task(
-            runtime.send(session=session, agent=first, message=_message("first")),
+            runtime.send(session=session, interaction=first, message=_message("first")),
         )
         await entered_first.wait()
         second_task = asyncio.create_task(
-            runtime.send(session=session, agent=second, message=_message("second")),
+            runtime.send(
+                session=session, interaction=second, message=_message("second"),
+            ),
         )
         await asyncio.sleep(0)
         assert not entered_second.is_set()
@@ -2166,24 +2210,28 @@ def test_runtime_sink_does_not_serialize_different_sessions() -> None:
         release = asyncio.Event()
         sink = FakeSink()
         runtime = Runtime(evidence_sink=sink)
-        agent_a = FakeAgent(
+        agent_a = FakeInteraction(
             MessageSource("a"),
-            (AgentTurn(_message("a", role=MessageRole.ASSISTANT, source="a")),),
+            (InteractionTurn(_message("a", role=MessageRole.ASSISTANT, source="a")),),
             entered=entered_a,
             release=release,
         )
-        agent_b = FakeAgent(
+        agent_b = FakeInteraction(
             MessageSource("b"),
-            (AgentTurn(_message("b", role=MessageRole.ASSISTANT, source="b")),),
+            (InteractionTurn(_message("b", role=MessageRole.ASSISTANT, source="b")),),
             entered=entered_b,
             release=release,
         )
 
         task_a = asyncio.create_task(
-            runtime.send(session=Session.new(), agent=agent_a, message=_message("a")),
+            runtime.send(
+                session=Session.new(), interaction=agent_a, message=_message("a"),
+            ),
         )
         task_b = asyncio.create_task(
-            runtime.send(session=Session.new(), agent=agent_b, message=_message("b")),
+            runtime.send(
+                session=Session.new(), interaction=agent_b, message=_message("b"),
+            ),
         )
         await asyncio.gather(entered_a.wait(), entered_b.wait())
         release.set()

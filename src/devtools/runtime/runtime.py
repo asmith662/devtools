@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-"""Stateless coordination of an Agent interaction with a Session."""
+"""Stateless coordination of one Interaction with a Session."""
 
 from __future__ import annotations
 
@@ -20,13 +20,13 @@ from devtools.evidence import (
 if TYPE_CHECKING:
     from collections.abc import Callable
 
-    from devtools.agents import Agent, AgentTurn
     from devtools.context.message import Message
     from devtools.context.session import Session
+    from devtools.interactions import Interaction, InteractionTurn
 
 
 class Runtime:
-    """Coordinate one caller-selected agent interaction with one session."""
+    """Coordinate one caller-selected interaction with one session."""
 
     __slots__ = ("_evidence_sink", "_observer")
 
@@ -58,17 +58,17 @@ class Runtime:
         self,
         *,
         session: Session,
-        agent: Agent,
+        interaction: Interaction,
         message: Message,
-    ) -> AgentTurn:
-        """Apply one agent interaction to a session.
+    ) -> InteractionTurn:
+        """Apply one interaction to a session.
 
         :param session: Retained interaction lifecycle to update.
-        :param agent: Explicitly selected responder.
+        :param interaction: Explicitly selected interaction.
         :param message: Input message to retain and submit.
-        :returns: The agent's unchanged turn result.
+        :returns: The interaction's unchanged turn result.
         :raises ValueError: If the returned message has a different source than
-            the selected agent.
+            the selected interaction.
         """
         observer = self._observer
         evidence_sink = self._evidence_sink
@@ -79,17 +79,17 @@ class Runtime:
                 observer,
                 evidence_sink,
                 session,
-                agent,
+                interaction,
                 message,
             )
             stage = AttemptStage.CONTINUATION_LOOKUP
 
             try:
-                conversation = session.conversation_for(agent.source)
-                stage = AttemptStage.AGENT_INVOCATION
-                turn = await agent.send(message, conversation=conversation)
+                conversation = session.conversation_for(interaction.source)
+                stage = AttemptStage.INTERACTION_INVOCATION
+                turn = await interaction.send(message, conversation=conversation)
                 stage = AttemptStage.RESULT_VALIDATION
-                self._validate_turn_source(turn, agent)
+                self._validate_turn_source(turn, interaction)
                 stage = AttemptStage.OUTPUT_RETENTION
                 session.add(turn.message)
 
@@ -133,7 +133,7 @@ class Runtime:
         observer: AttemptObserver | None,
         evidence_sink: EvidenceSink | None,
         session: Session,
-        agent: Agent,
+        interaction: Interaction,
         message: Message,
     ) -> Attempt | None:
         """Create and admit one Attempt when Evidence configuration needs it."""
@@ -143,7 +143,7 @@ class Runtime:
         attempt = Attempt.new(
             session_id=session.id,
             message_id=message.id,
-            agent_source=agent.source,
+            interaction_source=interaction.source,
         )
         if observer is None:
             return attempt
@@ -172,10 +172,13 @@ class Runtime:
         return attempt
 
     @staticmethod
-    def _validate_turn_source(turn: AgentTurn, agent: Agent) -> None:
-        """Validate that the selected Agent produced the returned Message."""
-        if turn.message.source != agent.source:
-            msg = "Agent turn message source does not match agent source."
+    def _validate_turn_source(
+        turn: InteractionTurn,
+        interaction: Interaction,
+    ) -> None:
+        """Validate that the selected Interaction produced the returned Message."""
+        if turn.message.source != interaction.source:
+            msg = "Interaction turn message source does not match interaction source."
             raise ValueError(msg)
 
     @staticmethod

@@ -1,5 +1,6 @@
 # Copyright (c) 2026
 """Normalized SQLite Session persistence tests."""
+
 from __future__ import annotations
 
 import asyncio
@@ -9,7 +10,6 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from devtools.agents import Agent, AgentTurn, ConversationRef
 from devtools.context import (
     History,
     Message,
@@ -19,6 +19,7 @@ from devtools.context import (
     Session,
     SessionId,
 )
+from devtools.interactions import ConversationRef, Interaction, InteractionTurn
 from devtools.paths import ResolvedPath
 from devtools.persistence import (
     PersistenceConflictError,
@@ -33,18 +34,18 @@ if TYPE_CHECKING:
     from pathlib import Path
 
 
-class FakeAgent:
-    """A structural Agent fake that records its received continuation."""
+class FakeInteraction:
+    """A structural Interaction fake that records its received continuation."""
 
-    def __init__(self, source: MessageSource, turn: AgentTurn) -> None:
-        """Configure one deterministic Agent turn."""
+    def __init__(self, source: MessageSource, turn: InteractionTurn) -> None:
+        """Configure one deterministic Interaction turn."""
         self._source = source
         self._turn = turn
         self.calls: list[tuple[Message, ConversationRef | None]] = []
 
     @property
     def source(self) -> MessageSource:
-        """Return the Agent source."""
+        """Return the Interaction source."""
         return self._source
 
     async def send(
@@ -52,7 +53,7 @@ class FakeAgent:
         message: Message,
         *,
         conversation: ConversationRef | None = None,
-    ) -> AgentTurn:
+    ) -> InteractionTurn:
         """Record and return the configured turn."""
         self.calls.append((message, conversation))
         return self._turn
@@ -429,17 +430,19 @@ def test_sqlite_loaded_session_works_directly_with_runtime(tmp_path: Path) -> No
     assert loaded is not None
     response = _message(2, role=MessageRole.ASSISTANT, source="agent")
     replacement = ConversationRef(MessageSource("agent"), "thread-b")
-    fake: Agent = FakeAgent(MessageSource("agent"), AgentTurn(response, replacement))
+    fake: Interaction = FakeInteraction(
+        MessageSource("agent"), InteractionTurn(response, replacement),
+    )
 
     async def exercise() -> None:
         turn = await Runtime().send(
             session=loaded,
-            agent=fake,
+            interaction=fake,
             message=_message(1),
         )
         assert turn.message is response
 
     asyncio.run(exercise())
-    assert isinstance(fake, FakeAgent)
+    assert isinstance(fake, FakeInteraction)
     assert fake.calls[0][1] == existing
     assert loaded.conversation_for(MessageSource("agent")) == replacement

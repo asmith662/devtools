@@ -325,8 +325,7 @@ class VLLMServer:
         ):
             diagnostic = _diagnostic_text(removal.stderr or removal.stdout)
             msg = (
-                "Docker could not remove owned vLLM container "
-                f"{self._container_id!r}."
+                f"Docker could not remove owned vLLM container {self._container_id!r}."
             )
             if diagnostic:
                 msg = f"{msg} {diagnostic}"
@@ -498,8 +497,7 @@ def _inspection_error_message(result: CommandResult) -> str:
     """Create bounded diagnostics for a Docker inspection failure."""
     diagnostic = _diagnostic_text(result.stderr or result.stdout)
     message = (
-        "Docker could not inspect owned vLLM container "
-        f"(exit {result.exit_code})."
+        f"Docker could not inspect owned vLLM container (exit {result.exit_code})."
     )
     return f"{message} {diagnostic}" if diagnostic else message
 
@@ -562,9 +560,7 @@ async def _probe_model_ready(endpoint: str, model_name: str) -> bool:
     if not isinstance(data, list):
         return False
 
-    return any(
-        isinstance(item, dict) and item.get("id") == model_name for item in data
-    )
+    return any(isinstance(item, dict) and item.get("id") == model_name for item in data)
 
 
 async def _http_get(endpoint: str, path: str) -> tuple[int, str]:
@@ -578,9 +574,7 @@ async def _http_get(endpoint: str, path: str) -> tuple[int, str]:
     try:
         reader, writer = await asyncio.open_connection(host, port)
         request = (
-            f"GET {path} HTTP/1.1\r\n"
-            f"Host: {host}\r\n"
-            "Connection: close\r\n\r\n"
+            f"GET {path} HTTP/1.1\r\nHost: {host}\r\nConnection: close\r\n\r\n"
         ).encode()
         writer.write(request)
         await writer.drain()

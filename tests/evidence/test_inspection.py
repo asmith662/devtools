@@ -9,7 +9,6 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from devtools.agents import AgentTurn, ConversationRef
 from devtools.context import Message, MessageId, MessageRole, MessageSource, Session
 from devtools.evidence import (
     Attempt,
@@ -23,6 +22,7 @@ from devtools.evidence import (
     EvidenceId,
 )
 from devtools.evidence.inspection import ExecutionInspector
+from devtools.interactions import ConversationRef, InteractionTurn
 from devtools.runtime import Runtime
 from devtools.time import Timestamp
 
@@ -30,17 +30,17 @@ if TYPE_CHECKING:
     from collections.abc import Sequence
 
 
-class _FakeAgent:
+class _FakeInteraction:
     """Return one configured turn or raise one configured primary outcome."""
 
     def __init__(
         self,
         source: MessageSource,
-        turns: Sequence[AgentTurn] = (),
+        turns: Sequence[InteractionTurn] = (),
         *,
         error: BaseException | None = None,
     ) -> None:
-        """Create a deterministic Agent test double."""
+        """Create a deterministic Interaction test double."""
         self.source = source
         self._turns = list(turns)
         self._error = error
@@ -50,7 +50,7 @@ class _FakeAgent:
         message: Message,
         *,
         conversation: ConversationRef | None = None,
-    ) -> AgentTurn:
+    ) -> InteractionTurn:
         """Return the next configured result after accepting Runtime arguments."""
         del message, conversation
         if self._error is not None:
@@ -74,7 +74,7 @@ def _attempt(*, id: AttemptId | None = None) -> Attempt:  # noqa: A002
         id=id or AttemptId.new(),
         session_id=Session.new().id,
         message_id=MessageId.new(),
-        agent_source=MessageSource("agent"),
+        interaction_source=MessageSource("agent"),
         started_at=Timestamp.now(),
         state=AttemptState.RUNNING,
         completed_at=None,
@@ -160,7 +160,7 @@ def test_inspector_accepts_first_evidence_receipt_for_an_identity() -> None:
     conflicting = _evidence(
         id=first.id,
         attempt_id=first.attempt_id,
-        outcome=AttemptFailed(AttemptStage.AGENT_INVOCATION),
+        outcome=AttemptFailed(AttemptStage.INTERACTION_INVOCATION),
     )
 
     inspector.accept(first)
@@ -190,7 +190,7 @@ def test_inspector_retains_multiple_evidence_values_for_one_attempt() -> None:
     first = _evidence(attempt_id=attempt_id)
     second = _evidence(
         attempt_id=attempt_id,
-        outcome=AttemptCancelled(AttemptStage.AGENT_INVOCATION),
+        outcome=AttemptCancelled(AttemptStage.INTERACTION_INVOCATION),
     )
 
     inspector.accept(first)
@@ -228,7 +228,9 @@ def test_runtime_both_configuration_publicly_discovers_success() -> None:
         response = _message("response", role=MessageRole.ASSISTANT, source="agent")
         await Runtime(observer=inspector, evidence_sink=inspector).send(
             session=Session.new(),
-            agent=_FakeAgent(MessageSource("agent"), (AgentTurn(response),)),
+            interaction=_FakeInteraction(
+                MessageSource("agent"), (InteractionTurn(response),),
+            ),
             message=_message("request"),
         )
 
@@ -257,7 +259,7 @@ def test_runtime_both_configuration_correlates_failure(
         with pytest.raises(LookupError) as raised:
             await Runtime(observer=inspector, evidence_sink=inspector).send(
                 session=Session.new(),
-                agent=_FakeAgent(MessageSource("agent"), error=primary),
+                interaction=_FakeInteraction(MessageSource("agent"), error=primary),
                 message=_message("request"),
             )
 
@@ -283,7 +285,7 @@ def test_runtime_both_configuration_correlates_cancellation(
         with pytest.raises(asyncio.CancelledError) as raised:
             await Runtime(observer=inspector, evidence_sink=inspector).send(
                 session=Session.new(),
-                agent=_FakeAgent(MessageSource("agent"), error=primary),
+                interaction=_FakeInteraction(MessageSource("agent"), error=primary),
                 message=_message("request"),
             )
 
@@ -307,7 +309,9 @@ def test_runtime_observer_only_retains_orphan_attempt(
         response = _message("response", role=MessageRole.ASSISTANT, source="agent")
         await Runtime(observer=inspector).send(
             session=Session.new(),
-            agent=_FakeAgent(MessageSource("agent"), (AgentTurn(response),)),
+            interaction=_FakeInteraction(
+                MessageSource("agent"), (InteractionTurn(response),),
+            ),
             message=_message("request"),
         )
 
@@ -330,7 +334,9 @@ def test_runtime_sink_only_retains_orphan_evidence(
         response = _message("response", role=MessageRole.ASSISTANT, source="agent")
         await Runtime(evidence_sink=inspector).send(
             session=Session.new(),
-            agent=_FakeAgent(MessageSource("agent"), (AgentTurn(response),)),
+            interaction=_FakeInteraction(
+                MessageSource("agent"), (InteractionTurn(response),),
+            ),
             message=_message("request"),
         )
 

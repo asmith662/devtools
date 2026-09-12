@@ -9,10 +9,10 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from devtools.agents import AgentTurn, ConversationRef
 from devtools.commands import Command, CommandExecutor, CommandNotFoundError
 from devtools.context import Message, MessageRole, MessageSource, Session
 from devtools.evidence import AttemptCancelled, AttemptFailed, AttemptStage
+from devtools.interactions import ConversationRef, InteractionTurn
 from devtools.runtime import Runtime
 from devtools.tools import ToolRunner
 from devtools.tools.command import CommandTool
@@ -24,8 +24,8 @@ if TYPE_CHECKING:
 _EXPECTED_HISTORY_MESSAGES = 2
 
 
-class _CommandToolAgent:
-    """Realistic test Agent that turns one CommandTool result into an AgentTurn."""
+class _CommandToolInteraction:
+    """Map one CommandTool result into an InteractionTurn in a realistic fake."""
 
     def __init__(
         self,
@@ -41,19 +41,19 @@ class _CommandToolAgent:
 
     @property
     def source(self) -> MessageSource:
-        """Return the source represented by this concrete test Agent."""
-        return MessageSource("command-tool-agent")
+        """Return the source represented by this concrete test Interaction."""
+        return MessageSource("command-tool-interaction")
 
     async def send(
         self,
         message: Message,
         *,
         conversation: ConversationRef | None = None,
-    ) -> AgentTurn:
-        """Invoke CommandTool and map its output into the frozen Agent contract."""
+    ) -> InteractionTurn:
+        """Invoke CommandTool and map its output into the frozen contract."""
         del message, conversation
         result = await self._runner.execute(self._tool, self._command)
-        return AgentTurn(
+        return InteractionTurn(
             Message.new(
                 result.stdout.decode().strip(),
                 role=MessageRole.ASSISTANT,
@@ -79,18 +79,18 @@ def _message(content: str) -> Message:
     return Message.new(content, role=MessageRole.USER, source=MessageSource("caller"))
 
 
-def test_runtime_agent_executes_real_command_tool_successfully() -> None:
-    """A real command executes through Runtime, Agent, ToolRunner, and Tool."""
+def test_runtime_interaction_executes_real_command_tool_successfully() -> None:
+    """A real command executes through Runtime, Interaction, ToolRunner, and Tool."""
 
     async def exercise() -> None:
-        agent = _CommandToolAgent(
+        interaction = _CommandToolInteraction(
             Command(sys.executable, ("-c", "print('nested tool')")),
         )
         session = Session.new()
 
         turn = await Runtime().send(
             session=session,
-            agent=agent,
+            interaction=interaction,
             message=_message("run command"),
         )
 
@@ -100,28 +100,28 @@ def test_runtime_agent_executes_real_command_tool_successfully() -> None:
     asyncio.run(exercise())
 
 
-def test_tool_failure_remains_outer_agent_invocation_failure() -> None:
+def test_tool_failure_remains_outer_interaction_invocation_failure() -> None:
     """A CommandTool error leaves Runtime stage ownership unchanged."""
 
     async def exercise() -> None:
         sink = _Sink()
-        agent = _CommandToolAgent(Command("missing-command"))
+        interaction = _CommandToolInteraction(Command("missing-command"))
 
         with pytest.raises(CommandNotFoundError):
             await Runtime(evidence_sink=sink).send(
                 session=Session.new(),
-                agent=agent,
+                interaction=interaction,
                 message=_message("run command"),
             )
 
         outcome = sink.accepted[0].outcome
         assert isinstance(outcome, AttemptFailed)
-        assert outcome.stage is AttemptStage.AGENT_INVOCATION
+        assert outcome.stage is AttemptStage.INTERACTION_INVOCATION
 
     asyncio.run(exercise())
 
 
-def test_tool_cancellation_remains_outer_agent_invocation_cancellation(
+def test_tool_cancellation_remains_outer_interaction_invocation_cancellation(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     """CommandTool cancellation preserves Runtime's outer stage vocabulary."""
@@ -140,7 +140,7 @@ def test_tool_cancellation_remains_outer_agent_invocation_cancellation(
         task = asyncio.create_task(
             Runtime(evidence_sink=sink).send(
                 session=Session.new(),
-                agent=_CommandToolAgent(Command("blocking-command")),
+                interaction=_CommandToolInteraction(Command("blocking-command")),
                 message=_message("run command"),
             ),
         )
@@ -152,7 +152,7 @@ def test_tool_cancellation_remains_outer_agent_invocation_cancellation(
 
         outcome = sink.accepted[0].outcome
         assert isinstance(outcome, AttemptCancelled)
-        assert outcome.stage is AttemptStage.AGENT_INVOCATION
+        assert outcome.stage is AttemptStage.INTERACTION_INVOCATION
 
     asyncio.run(exercise())
 
@@ -161,11 +161,11 @@ def test_tool_cancellation_remains_outer_agent_invocation_cancellation(
 
 
 def test_tool_success_does_not_change_later_runtime_result_validation_stage() -> None:
-    """A later invalid AgentTurn remains Runtime's RESULT_VALIDATION failure."""
+    """A later invalid InteractionTurn remains Runtime's RESULT_VALIDATION failure."""
 
     async def exercise() -> None:
         sink = _Sink()
-        agent = _CommandToolAgent(
+        interaction = _CommandToolInteraction(
             Command(sys.executable, ("-c", "print('nested tool')")),
             return_source=MessageSource("wrong-source"),
         )
@@ -173,7 +173,7 @@ def test_tool_success_does_not_change_later_runtime_result_validation_stage() ->
         with pytest.raises(ValueError, match="source"):
             await Runtime(evidence_sink=sink).send(
                 session=Session.new(),
-                agent=agent,
+                interaction=interaction,
                 message=_message("run command"),
             )
 

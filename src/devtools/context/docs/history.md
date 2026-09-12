@@ -6,7 +6,7 @@
 [`Message`](overview.md#message) values. It answers only what messages occurred
 and in what retained order.
 
-It is not an Agent invocation record, provider event log, persistence model, or
+It is not an Interaction invocation record, provider event log, persistence model, or
 context-selection mechanism.
 
 ## Public API
@@ -48,11 +48,12 @@ History is a read-only `Sequence[Message]`.
 
 ```python
 len(history)
-for message in history: ...
+for message in history:
+    ...
 message in history
 
-history[0]       # Message
-history[-1]      # Message
+history[0]  # Message
+history[-1]  # Message
 ```
 
 Membership uses Message value equality. Integer indices use normal Python
@@ -64,7 +65,7 @@ semantics:
 ```python
 history.index(message)  # first equal position; ValueError if absent
 history.count(message)  # number of equal Messages
-reversed(history)       # reverse iterator
+reversed(history)  # reverse iterator
 ```
 
 They are standard collection behavior, not a History query language.
@@ -74,9 +75,9 @@ They are standard collection behavior, not a History query language.
 History preserves its domain when sliced:
 
 ```python
-history[1:4]   # History
+history[1:4]  # History
 history[-10:]  # History
-history[::2]   # History
+history[::2]  # History
 history[::-1]  # History
 ```
 
@@ -132,7 +133,7 @@ History stores no `ConversationRef`:
 
 ```text
 History         what Messages happened
-ConversationRef how an external Agent conversation can continue
+ConversationRef how an external Interaction conversation can continue
 future Session  expected owner of both retained state kinds
 ```
 

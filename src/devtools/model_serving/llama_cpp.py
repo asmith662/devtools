@@ -288,7 +288,11 @@ def _build_launch_command(
             "--name",
             container_name,
             *(("--label", f"{_MANAGED_LABEL}={_MANAGED_VALUE}") if managed else ()),
-            *(label_argument for label in labels for label_argument in ("--label", f"{label[0]}={label[1]}")),
+            *(
+                label_argument
+                for label in labels
+                for label_argument in ("--label", f"{label[0]}={label[1]}")
+            ),
             "--gpus",
             "all",
             "--mount",

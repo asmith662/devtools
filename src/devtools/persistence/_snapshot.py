@@ -1,5 +1,6 @@
 # Copyright (c) 2026
 """Private Session semantic snapshot capture and reconstruction helpers."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -11,9 +12,9 @@ from devtools.context.session import Session
 from devtools.persistence.errors import PersistenceConflictError
 
 if TYPE_CHECKING:
-    from devtools.agents import ConversationRef
     from devtools.context.message import MessageId, MessageRole, MessageSource
     from devtools.context.session import SessionId
+    from devtools.interactions import ConversationRef
     from devtools.time import Timestamp
 
 

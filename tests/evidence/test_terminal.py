@@ -119,7 +119,7 @@ def test_attempt_stage_has_exact_stable_members() -> None:
     assert tuple(AttemptStage) == (
         AttemptStage.ADMISSION,
         AttemptStage.CONTINUATION_LOOKUP,
-        AttemptStage.AGENT_INVOCATION,
+        AttemptStage.INTERACTION_INVOCATION,
         AttemptStage.RESULT_VALIDATION,
         AttemptStage.OUTPUT_RETENTION,
         AttemptStage.CONTINUATION_REPLACEMENT,
@@ -127,7 +127,7 @@ def test_attempt_stage_has_exact_stable_members() -> None:
     assert [stage.value for stage in AttemptStage] == [
         "admission",
         "continuation_lookup",
-        "agent_invocation",
+        "interaction_invocation",
         "result_validation",
         "output_retention",
         "continuation_replacement",
@@ -137,7 +137,7 @@ def test_attempt_stage_has_exact_stable_members() -> None:
 def test_terminal_outcomes_are_immutable_hashable_typed_values() -> None:
     """Success, failure, and cancellation remain minimal typed outcome values."""
     succeeded = AttemptSucceeded()
-    failed = AttemptFailed(AttemptStage.AGENT_INVOCATION)
+    failed = AttemptFailed(AttemptStage.INTERACTION_INVOCATION)
     cancelled = AttemptCancelled(AttemptStage.RESULT_VALIDATION)
     outcomes: tuple[AttemptTerminalOutcome, ...] = (
         succeeded,
@@ -147,7 +147,7 @@ def test_terminal_outcomes_are_immutable_hashable_typed_values() -> None:
 
     assert outcomes == (
         AttemptSucceeded(),
-        AttemptFailed(AttemptStage.AGENT_INVOCATION),
+        AttemptFailed(AttemptStage.INTERACTION_INVOCATION),
         AttemptCancelled(AttemptStage.RESULT_VALIDATION),
     )
     assert all(hash(outcome) == hash(outcome) for outcome in outcomes)
@@ -219,7 +219,7 @@ def test_terminal_evidence_new_owns_identity_and_observation_time() -> None:
     """The factory preserves supplied facts while allocating record facts."""
     attempt_id = AttemptId.parse("20000000-0000-4000-8000-000000000001")
     occurred_at = _timestamp()
-    outcome = AttemptCancelled(AttemptStage.AGENT_INVOCATION)
+    outcome = AttemptCancelled(AttemptStage.INTERACTION_INVOCATION)
 
     first = AttemptTerminalEvidence.new(
         attempt_id=attempt_id,

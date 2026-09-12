@@ -11,10 +11,10 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from devtools.codex import CodexAgent
 from devtools.commands import Command, CommandExecutor
 from devtools.context import Message, MessageRole, MessageSource, Session, SessionId
 from devtools.evidence import Attempt, AttemptState
+from devtools.interactions.providers.codex import CodexAgent
 from devtools.paths import ResolvedPath
 from devtools.runtime import Runtime
 
@@ -83,7 +83,7 @@ def test_runtime_coordinates_a_read_only_codex_continuation(tmp_path: Path) -> N
         )
         first_turn = await runtime.send(
             session=session,
-            agent=codex,
+            interaction=codex,
             message=first_user,
         )
         assert first_turn.message.content.strip() == "stored"
@@ -103,7 +103,7 @@ def test_runtime_coordinates_a_read_only_codex_continuation(tmp_path: Path) -> N
         )
         second_turn = await runtime.send(
             session=session,
-            agent=codex,
+            interaction=codex,
             message=second_user,
         )
         assert second_turn.conversation is not None
@@ -161,7 +161,7 @@ def test_runtime_observes_a_read_only_codex_attempt(tmp_path: Path) -> None:
             source=MessageSource("live-test"),
         )
 
-        turn = await runtime.send(session=session, agent=codex, message=message)
+        turn = await runtime.send(session=session, interaction=codex, message=message)
 
         assert len(observer.started) == len(observer.finished) == 1
         return session, message, observer.started[0], observer.finished[0], turn.message
@@ -170,7 +170,7 @@ def test_runtime_observes_a_read_only_codex_attempt(tmp_path: Path) -> None:
     assert started is finished
     assert started.session_id == session.id
     assert started.message_id == message.id
-    assert started.agent_source == MessageSource("codex")
+    assert started.interaction_source == MessageSource("codex")
     assert started.state is AttemptState.SUCCEEDED
     assert started.completed_at is not None
     assert session.history.messages == (message, response)

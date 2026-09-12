@@ -9,7 +9,7 @@ easier configuration. The completed CPU FFN placement comparison selected
 `n_cpu_ffn = 0`; placing four FFN layers on CPU is no longer the preferred
 profile.
 
-The tracked value in `scripts/model_benchmarks/qwen38_llama_cpp_profile.py`
+The tracked value in `scripts/qwen/llama_cpp_profile.py`
 freezes repository, commit, filename, expected published SHA-256, quant,
 context, GPU-layer setting, FFN placement, cache types, Flash Attention,
 parallelism, and the runnable llama.cpp image identity. The image is
@@ -31,9 +31,9 @@ For repeated local Qwen development, use the repository-owned persistent
 service command rather than reconstructing a `docker run` invocation:
 
 ```text
-uv run python scripts/model_benchmarks/qwen38_llama_cpp_service.py start --cache-root <local-hugging-face-cache>
-uv run python scripts/model_benchmarks/qwen38_llama_cpp_service.py status
-uv run python scripts/model_benchmarks/qwen38_llama_cpp_service.py stop
+uv run python scripts/qwen/llama_cpp_service.py start --cache-root <local-hugging-face-cache>
+uv run python scripts/qwen/llama_cpp_service.py status
+uv run python scripts/qwen/llama_cpp_service.py stop
 ```
 
 `start` resolves or reuses the pinned semantic GGUF artifact from the explicit
@@ -43,7 +43,7 @@ on `http://127.0.0.1:8080` with served-model alias `qwen38-local`. A local
 must use different ports. The command reports `ABSENT`, `STOPPED`,
 `RUNNING_LOADING`, `READY`, `CONFLICT`, or profile/port mismatch state. It
 derives its image and serving flags from
-`scripts/model_benchmarks/qwen38_llama_cpp_profile.py`; that profile remains
+`scripts/qwen/llama_cpp_profile.py`; that profile remains
 the only source of selected Qwen serving configuration.
 
 The service does not restart automatically after a host reboot. Start Docker

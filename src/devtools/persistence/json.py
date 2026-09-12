@@ -1,13 +1,14 @@
 # Copyright (c) 2026
 """Strict portable JSON Session serialization."""
+
 from __future__ import annotations
 
 import json
 from typing import TYPE_CHECKING, NoReturn
 
-from devtools.agents import ConversationRef
 from devtools.context.message import MessageId, MessageRole, MessageSource
 from devtools.context.session import SessionId
+from devtools.interactions import ConversationRef
 from devtools.persistence._snapshot import (
     _MessageSnapshot,
     capture_session,
@@ -95,8 +96,7 @@ def decode_session_json(text: str) -> Session:
         )
         history_value = _require_list(root["history"], "history")
         messages = tuple(
-            _decode_message(value, index)
-            for index, value in enumerate(history_value)
+            _decode_message(value, index) for index, value in enumerate(history_value)
         )
         conversations_value = _require_list(root["conversations"], "conversations")
         conversations = tuple(

@@ -25,7 +25,7 @@ current `ConversationRef` values. Each Message occurrence retains Message ID,
 creation time, content, role, and source.
 
 It does not store Session turn-lock state or event-loop binding, Runtime,
-Agents, Codex configuration or process state, working-directory/sandbox/model
+Interactions, Codex configuration or process state, working-directory/sandbox/model
 configuration, credentials, or provider state beyond opaque ConversationRefs.
 
 Decoding or loading creates a new Session with equal semantic state and fresh
@@ -43,10 +43,10 @@ JSON is portable strict text serialization; it performs no file I/O.
 SQLite is a normalized, queryable current-snapshot representation; its public
 store operations are only `save()` and `load()`.
 
-Persistence depends on generic Context, Agent continuation, Time, and path
+Persistence depends on generic Context, Interaction continuation, Time, and path
 contracts. It does not depend on Runtime, Codex, or Filesystem in production.
 Runtime can immediately use a loaded Session, but Persistence does not invoke
-Agents or coordinate Runtime turns.
+Interactions or coordinate Runtime turns.
 
 The opt-in SQLite acceptance reconstructs a Session after a real Codex turn,
 then proves Runtime resumes the same thread from the restored continuation in

@@ -16,8 +16,8 @@ from devtools.time import Timestamp
 if TYPE_CHECKING:
     from collections.abc import AsyncIterator, Iterable, Mapping
 
-    from devtools.agents import ConversationRef
     from devtools.context.message import Message, MessageSource
+    from devtools.interactions import ConversationRef
 
 
 _EMPTY_HISTORY = History()

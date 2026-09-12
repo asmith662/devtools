@@ -1,12 +1,13 @@
 # Copyright (c) 2026
 """Normalized SQLite current-snapshot Session store."""
+
 from __future__ import annotations
 
 import sqlite3
 from typing import TYPE_CHECKING
 
-from devtools.agents import ConversationRef
 from devtools.context.message import MessageId, MessageRole, MessageSource
+from devtools.interactions import ConversationRef
 from devtools.persistence._snapshot import (
     _MessageSnapshot,
     _SessionSnapshot,
@@ -269,10 +270,7 @@ class SqliteSessionStore:
             "WHERE session_id = ? ORDER BY source",
             (str(session_id),),
         ).fetchall()
-        return tuple(
-            ConversationRef(MessageSource(row[0]), row[1])
-            for row in rows
-        )
+        return tuple(ConversationRef(MessageSource(row[0]), row[1]) for row in rows)
 
 
 def _user_tables(connection: sqlite3.Connection) -> set[str]:

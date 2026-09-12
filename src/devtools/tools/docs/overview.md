@@ -3,13 +3,13 @@
 ## Experimental status
 
 `devtools.tools` is an **experimental provider-neutral Tool foundation**. Its
-API and behavior may change as real Tool-using Agent workflows are exercised.
+API and behavior may change as real Tool-using Interaction workflows are exercised.
 It is not frozen, persistent, instrumented, or a Runtime extension.
 
 ## Purpose
 
 A `Tool` is a named asynchronous capability that accepts Tool-defined semantic
-input and returns a Tool-defined result. A Tool is not a Command, Agent,
+input and returns a Tool-defined result. A Tool is not a Command, Interaction,
 Runtime Attempt, model invocation, provider schema, transport endpoint, or MCP
 request.
 
@@ -79,9 +79,9 @@ retry, Tool identity, result wrapper, registry, persistence, or instrumentation.
 
 ## Boundaries
 
-Tools do not change Context, Agent, Runtime, Attempt, Evidence, Persistence, or
-Commands. A Tool used inside an Agent remains inside Runtime's existing
-`AGENT_INVOCATION` boundary; it creates no child Attempt, Tool Evidence, Tool
+Tools do not change Context, Interaction, Runtime, Attempt, Evidence, Persistence, or
+Commands. A Tool used inside an Interaction remains inside Runtime's existing
+`INTERACTION_INVOCATION` boundary; it creates no child Attempt, Tool Evidence, Tool
 Message, or Tool-specific Runtime stage.
 
 Not implemented: registry/catalog lookup, ToolId or invocation identity,

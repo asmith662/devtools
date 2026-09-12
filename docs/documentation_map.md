@@ -27,7 +27,9 @@ The ledger records history; it does not authorize future architecture.
 ## Package documentation
 
 - [identity overview](../src/devtools/identity/docs/overview.md)
-- [agents overview](../src/devtools/agents/docs/overview.md)
+- [interactions overview](../src/devtools/interactions/docs/overview.md)
+- [Codex Interaction provider](../src/devtools/interactions/providers/codex/docs/overview.md)
+  and [CLI behavior](../src/devtools/interactions/providers/codex/docs/cli.md)
 - [context overview](../src/devtools/context/docs/overview.md) — Context domain
   ownership and boundaries for Message, History, and Session
 - [History](../src/devtools/context/docs/history.md) — exact immutable
@@ -35,7 +37,7 @@ The ledger records history; it does not authorize future architecture.
 - [Session](../src/devtools/context/docs/session.md) — exact SessionId,
   mutable lifecycle, and continuation-state contract
 - [Runtime overview](../src/devtools/runtime/docs/overview.md) -
-  configuration-bearing, interaction-stateless Agent/Session coordination and
+  configuration-bearing, interaction-stateless Interaction/Session coordination and
   optional Attempt observation plus immutable terminal Evidence
   production/delivery contract
 - [Persistence overview](../src/devtools/persistence/docs/overview.md) - durable
@@ -57,10 +59,6 @@ The ledger records history; it does not authorize future architecture.
   [command values](../src/devtools/commands/docs/command.md),
   [execution](../src/devtools/commands/docs/execution.md), and
   [events](../src/devtools/commands/docs/events.md)
-- [Codex overview](../src/devtools/codex/docs/overview.md) and
-  [CLI behavior](../src/devtools/codex/docs/cli.md)
-- [Qwen overview](../src/devtools/qwen/docs/overview.md) â€” experimental
-  llama.cpp/Qwen Agent adaptation and bounded repository-read experiment
 - [regex overview](../src/devtools/regex/docs/overview.md)
 - [conversion overview](../src/devtools/conversion/docs/overview.md)
 - [filesystem overview](../src/devtools/filesystem/docs/overview.md),
@@ -71,6 +69,17 @@ The ledger records history; it does not authorize future architecture.
   [Markdown](../src/devtools/filesystem/docs/markdown.md),
   [CSV](../src/devtools/filesystem/docs/csv.md), and
   [filesystem future work](../src/devtools/filesystem/docs/roadmap.md)
+
+## Experiments and operational scenarios
+
+`experiments/` is repository-owned, non-installable scaffolding. It may depend
+on `devtools`; reusable framework source does not import it.
+
+- [Qwen bounded read experiment](../experiments/qwen/docs/overview.md)
+- [Qwen llama.cpp operational profile and lifecycle report](experiments/qwen38_llama_cpp.md)
+
+Qwen lifecycle and acceptance commands live in `scripts/qwen/`. Benchmark-only
+scripts remain in `scripts/model_benchmarks/`.
 
 ## Updating documentation
 

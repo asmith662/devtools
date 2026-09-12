@@ -42,13 +42,19 @@ an API reference or a backlog; see package-local documentation and the
 - Declared the collective foundational tooling and Message milestones complete
   and frozen.
 
-## Agent integration milestone
+## Agent integration milestone (historical terminology)
+
+This historical milestone used the former `devtools.agents.Agent` terminology.
+The current implementation supersedes that boundary with
+`devtools.interactions.Interaction` and `InteractionTurn`; the old package and
+compatibility aliases were removed. The entries below describe the state at the
+time of that milestone rather than the current public API.
 
 - Implemented `devtools.agents` as the provider-neutral structural Agent
   contract: async `Agent`, immutable `AgentTurn`, and opaque
   source-owned `ConversationRef` values with source ownership invariants and
   stateless-turn support. Its only production dependency is `context.message`.
-- Implemented and froze `devtools.codex` as the first concrete Agent adapter:
+- Implemented and froze `devtools.interactions.providers.codex` as the first concrete Agent adapter:
   Codex CLI command construction through `CommandExecutor`, focused JSONL
   parsing, Codex thread-to-`ConversationRef` mapping, and final output-to-
   `Message` mapping.

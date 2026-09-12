@@ -44,15 +44,15 @@ for the record.
 
 ## Codex integration — Complete
 
-`devtools.codex` is the first concrete `Agent` implementation. Its frozen
+`devtools.interactions.providers.codex` is the first concrete `Interaction` implementation. Its frozen
 milestone includes real Codex CLI execution through `CommandExecutor`, JSONL
 final-turn parsing, provider thread continuation through `ConversationRef`,
 read-only fresh and resumed invocations, and a real two-turn continuity
 acceptance test.
 
-`devtools.agents` is also implemented, documented, and frozen as the
-provider-neutral structural contract consumed by Codex. It provides `Agent`,
-`AgentTurn`, and `ConversationRef` without provider transport or session state.
+`devtools.interactions` is also implemented, documented, and frozen as the
+provider-neutral structural contract consumed by Codex. It provides `Interaction`,
+`InteractionTurn`, and `ConversationRef` without provider transport or session state.
 
 ## Context establishment / Message migration — Complete
 
@@ -77,13 +77,13 @@ revised private per-object asynchronous turn context that serializes complete
 same-Session turns while allowing different Sessions to proceed concurrently.
 
 The current one-ref-per-`MessageSource` policy is sufficient for one logical
-Agent per source. Multiple logical same-source Agents require a separate
-participant/Agent-instance identity design before that topology is supported.
+Interaction per source. Multiple logical same-source Interactions require a separate
+participant/Interaction-instance identity design before that topology is supported.
 
 ## Runtime â€” Complete
 
 `devtools.runtime` is documented and frozen as a configuration-bearing but
-interaction-stateless coordinator of one caller-selected Agent interaction with
+interaction-stateless coordinator of one caller-selected Interaction interaction with
 one Session. Its keyword-only `send()` holds Session complete-turn coordination,
 records input/output in order, validates returned source, updates non-None
 continuations, and preserves forward-only failure/cancellation semantics.

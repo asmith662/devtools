@@ -4,18 +4,19 @@
 
 `Session` is the application-owned, identified mutable lifecycle for one
 retained interaction. It owns the current immutable `History` and the current
-external continuation references needed to continue participating Agents. It
-does not invoke Agents.
+external continuation references needed to continue participating
+Interactions. It does not invoke Interactions.
 
 ```text
 Message          one contextual utterance
 History          immutable ordered transcript
-ConversationRef  opaque external Agent continuation identity
+ConversationRef  opaque external Interaction continuation identity
 Session          mutable retained interaction lifecycle
-Runtime          stateless coordinator that invokes Agents and updates Session
+Runtime          stateless coordinator that invokes Interactions and updates Session
 ```
 
-The first real consumer proof uses the [Codex adapter](../../codex/docs/overview.md),
+The first real consumer proof uses the
+[Codex adapter](../../interactions/providers/codex/docs/overview.md),
 but Session is generic and does not depend on Codex behavior.
 
 ## Public API
@@ -36,7 +37,7 @@ class SessionId:
 ```
 
 `SessionId` identifies our retained application Session. It is not a
-`MessageId`, `ConversationRef`, provider thread ID, `MessageSource`, Agent
+`MessageId`, `ConversationRef`, provider thread ID, `MessageSource`, Interaction
 identity, or execution identity.
 
 ```python
@@ -116,8 +117,9 @@ the appended Message.
 
 ## Current conversations
 
-`ConversationRef` remains owned by [`devtools.agents`](../../agents/docs/overview.md):
-it is opaque continuation state returned by an Agent. Session stores those
+`ConversationRef` remains owned by
+[`devtools.interactions`](../../interactions/docs/overview.md):
+it is opaque continuation state returned by an Interaction. Session stores those
 values because retained continuation state is needed to reconstruct and
 continue an interaction.
 
@@ -143,7 +145,7 @@ for that source.
 Constructor reconstruction accepts an `Iterable[ConversationRef]`. Two refs
 with equal sources are ambiguous and raise `ValueError`. After construction,
 setting a newer ref for the same source replaces the active ref; Session keeps
-no reference history. Different sources coexist. A stateless Agent returning
+no reference history. Different sources coexist. A stateless Interaction returning
 `conversation=None` requires no Session continuation-state mutation.
 
 ### Source-keyed limitation
@@ -155,7 +157,7 @@ Codex implementer and reviewer using source `codex` cannot simultaneously hold
 different provider threads here.
 
 Future design must answer: what stable identity distinguishes logical
-participants or Agent instances that share one `MessageSource` while retaining
+participants or Interaction instances that share one `MessageSource` while retaining
 independent `ConversationRef` values inside one Session? This document does not
 choose or introduce that identity.
 
@@ -168,17 +170,17 @@ when semantic Session identity matters.
 Session is explicitly unhashable. Do not use mutable Session objects as set
 members or dictionary keys; use `SessionId` for stable identity values.
 
-## Runtime, Agent, and provider boundaries
+## Runtime, Interaction, and provider boundaries
 
-Session stores retained state, not services. It stores no Agent or CodexAgent
+Session stores retained state, not services. It stores no Interaction or CodexAgent
 instances and has no `apply(turn)` operation. The implemented
 [`Runtime`](../../runtime/docs/overview.md) composes the existing APIs inside
 `session.turn()`:
 
 ```python
 session.add(user_message)
-conversation = session.conversation_for(agent.source)
-turn = await agent.send(user_message, conversation=conversation)
+conversation = session.conversation_for(Interaction.source)
+turn = await Interaction.send(user_message, conversation=conversation)
 session.add(turn.message)
 if turn.conversation is not None:
     session.set_conversation(turn.conversation)
@@ -193,7 +195,7 @@ filesystem, command, artifact, or context compiler state.
 ```python
 async with session.turn() as value:
     assert value is None
-    # Retain input, retrieve the current ref, await an Agent, and retain output.
+    # Retain input, retrieve the current ref, await an Interaction, and retain output.
 ```
 
 `turn()` acquires exclusive asynchronous coordination for one complete logical
@@ -201,7 +203,7 @@ turn against this Session object. It yields no additional value. Session
 mutation methods remain synchronous; `turn()` coordinates their multi-step
 composition rather than making each individual method lock itself.
 
-The context must cover input retention, continuation lookup, an awaited Agent
+The context must cover input retention, continuation lookup, an awaited Interaction
 call, returned-message retention, and continuation replacement. Without that
 scope, overlapping callers could retain interleaved input, read the same stale
 `ConversationRef`, invoke one provider continuation concurrently, overwrite
@@ -258,11 +260,11 @@ context.session -> context.message
 context.session -> context.history
 context.session -> identity
 context.session -> time
-context.session -> agents
+context.session -> interactions
 ```
 
-`agents -> context.message`, and Agents do not depend on `context.session`, so
-the graph is acyclic.
+`interactions -> context.message`, and Interactions do not depend on
+`context.session`, so the graph is acyclic.
 
 ## Live Codex acceptance
 
@@ -276,7 +278,7 @@ stable `SessionId` and `created_at`, plus read-only resumed Codex execution
 through a denied disposable write attempt.
 
 This is evidence that generic Session continuation storage works with one real
-Agent implementation; it is not a Codex requirement of Session.
+Interaction implementation; it is not a Codex requirement of Session.
 
 ## Constrained future evolution
 
@@ -288,6 +290,6 @@ topologies become real requirements.
 Speculative conveniences include clearing refs, `updated_at`, status, title,
 metadata, and Session copy/snapshot behavior.
 
-Keep out of Session: `AgentTurn.apply()`, sequence proxies, provider execution
+Keep out of Session: `InteractionTurn.apply()`, sequence proxies, provider execution
 or configuration, continuation-reference history, context compilation, and
 repository/filesystem ownership.

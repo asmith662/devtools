@@ -30,15 +30,15 @@ supported convenience API for the currently implemented Context values.
 
 [`History`](history.md) is the immutable insertion-ordered Message transcript
 primitive. It retains what messages occurred without deciding which Messages to
-send to an Agent or storing provider continuation state.
+send to an Interaction or storing provider continuation state.
 
 ## Session
 
 [`Session`](session.md) is the application-owned mutable lifecycle for one
 retained interaction. It owns one current immutable History and current
-external Agent continuation references, plus local asynchronous complete-turn
+external Interaction continuation references, plus local asynchronous complete-turn
 coordination for that mutable state. Session retains state; it does not invoke
-Agents, select model context, persist itself, or own provider configuration.
+Interactions, select model context, persist itself, or own provider configuration.
 
 ## `MessageId`
 
@@ -131,12 +131,12 @@ context.session -> context.message
 context.session -> context.history
 context.session -> identity
 context.session -> time
-context.session -> agents
+context.session -> interactions
 ```
 
-`agents -> context.message` and `context.session -> agents` remain acyclic:
-Agents consume only the narrow Message submodule, while Session stores the
-Agent-owned `ConversationRef` value.
+`interactions -> context.message` and `context.session -> interactions` remain
+acyclic: Interactions consume only the narrow Message submodule, while Session stores the
+Interaction-owned `ConversationRef` value.
 
 Messages contain no session ID, sequence number, parent/reply relationship,
 provider thread identity, conversation state, storage location, token usage, or
@@ -148,9 +148,9 @@ Malformed `MessageId` text preserves the Identity/UUID `ValueError`; invalid
 source values raise `ValueError`. Context defines no message-specific error
 hierarchy, serialization format, or storage schema.
 
-`devtools.codex` is the first concrete downstream Message consumer: it maps final
+`devtools.interactions.providers.codex` is the first concrete downstream Message consumer: it maps final
 provider output to an assistant `Message`, while its provider thread remains an
-`agents.ConversationRef`. This does not make Context own Agent behavior.
+`interactions.ConversationRef`. This does not make Context own Interaction behavior.
 
 ## Current limitations
 

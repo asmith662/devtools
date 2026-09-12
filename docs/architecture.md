@@ -17,12 +17,12 @@ The completed foundational tooling milestone consists of independent domains:
   Session);
 - execution infrastructure: `commands`;
 - content and filesystem infrastructure: `filesystem`.
-- generic agent contract: `agents`;
+- generic Interaction contract: `interactions`;
 - stateless interaction coordination: `runtime`;
 - durable Session reconstruction: `persistence`;
 - factual execution evidence: `evidence`, with live Attempt lifecycle and
   immutable terminal observations;
-- provider/agent integration: `codex`, the first concrete `Agent` adapter.
+- provider adapters under `interactions.providers`, including Codex and llama.cpp.
 
 This grouping describes the current milestone. It does not imply a
 `core`, `common`, `shared`, or `foundation` source package.
@@ -32,7 +32,7 @@ This grouping describes the current milestone. It does not imply a
 | Package | Cross-package responsibility |
 |---|---|
 | `identity` | Canonical opaque UUID identity generation, parsing, and immutable representation; semantic IDs are owned by their respective domains. |
-| `context` | Retained interaction context: immutable Message communication values, immutable insertion-ordered Message History, and mutable identified Session lifecycle state retaining History plus current Agent continuation refs; not repository context, filesystem state, command results, agent execution, or runtime orchestration. |
+| `context` | Retained interaction context: immutable Message communication values, immutable insertion-ordered Message History, and mutable identified Session lifecycle state retaining History plus current Interaction continuation refs; not repository context, filesystem state, command results, Interaction execution, or runtime orchestration. |
 | `system` | Coarse operating-system-family detection, not general environment or machine inventory. |
 | `paths` | Path representation, parsing, dot-path conversion, absolute resolution, and known-location construction; not filesystem content I/O or sandbox authorization. |
 | `time` | UTC timestamps, non-negative durations, bounded timestamp parsing, and monotonic elapsed timing; not scheduling. |
@@ -40,14 +40,21 @@ This grouping describes the current milestone. It does not imply a
 | `regex` | Reusable regex compilation, search, iteration, replacement, and immutable match values; not document or file search policy. |
 | `conversion` | Explicit callable conversion and stable failure normalization; not automatic target-type construction or serialization. |
 | `filesystem` | File models, format-native structure, codecs, format resolution, bounded generic reads, and atomic generic writes. Text, JSON, Markdown, and CSV are codec-backed; binary is model-only. |
-| `agents` | Provider-neutral asynchronous message invocation and opaque continuation contract; not provider transport, session history, or runtime routing. |
-| `runtime` | Configuration-bearing but interaction-stateless coordination of one caller-selected Agent interaction with one Session, live Attempt observation, and immutable terminal Evidence production/delivery; not Agent routing, provider transport, persistence, or retained turn state. |
+| `interactions` | Provider-neutral asynchronous message invocation and opaque continuation contract; not provider transport, session history, or runtime routing. |
+| `runtime` | Configuration-bearing but interaction-stateless coordination of one caller-selected Interaction interaction with one Session, live Attempt observation, and immutable terminal Evidence production/delivery; not Interaction routing, provider transport, persistence, or retained turn state. |
 | `persistence` | Strict portable JSON and normalized SQLite durable reconstruction of semantic Session state; not Context storage ownership, Runtime coordination, provider execution, or filesystem I/O policy. |
 | `evidence` | Factual execution evidence: mutable identified Attempt lifecycle plus immutable terminal observations with distinct record identity and typed outcome/stage values; not a provider payload, Runtime coordinator, or persistence store. |
-| `codex` | Codex CLI adaptation, JSONL final-turn parsing, thread continuation, and a concrete Agent implementation; not generic command execution, provider discovery, or session state. |
+| `interactions.providers` | Concrete provider adapters: llama.cpp HTTP interaction and the external Codex agent system; not provider discovery, routing, or serving lifecycle. |
 
 Detailed format and lifecycle mechanics belong in the relevant package-local
 documentation, especially [`devtools.filesystem`'s docs](../src/devtools/filesystem/docs/overview.md).
+
+## Repository experiments
+
+`experiments/` contains repository-owned architecture probes and acceptance
+composition. It is not part of the installed `devtools` package: experiments
+may import supported `devtools` capabilities, while reusable source must not
+import experiments. The current Qwen bounded-read experiment is one such probe.
 
 ## Dependency graph
 
@@ -60,7 +67,7 @@ graph TD
     context_session --> context_history
     context_session --> identity
     context_session --> time
-    context_session --> agents
+    context_session --> interactions
 
     commands --> paths
     commands --> time
@@ -69,12 +76,12 @@ graph TD
     filesystem --> regex
     filesystem --> conversion
 
-    agents --> context_message
-    runtime --> agents
+    interactions --> context_message
+    runtime --> interactions
     runtime --> context_message
     runtime --> context_session
 
-    persistence --> agents
+    persistence --> interactions
     persistence --> context_message
     persistence --> context_history
     persistence --> context_session
@@ -88,10 +95,10 @@ graph TD
 
     runtime --> evidence
 
-    codex --> agents
-    codex --> context_message
-    codex --> commands
-    codex --> paths
+    interaction_providers --> interactions
+    interaction_providers --> context_message
+    interaction_providers --> commands
+    interaction_providers --> paths
 
     identity
     system
@@ -107,7 +114,7 @@ context.session -> context.message
 context.session -> context.history
 context.session -> identity
 context.session -> time
-context.session -> agents
+context.session -> interactions
 
 commands   -> paths
 commands   -> time
@@ -116,12 +123,12 @@ filesystem -> paths
 filesystem -> regex
 filesystem -> conversion
 
-agents     -> context.message
-runtime    -> agents
+interactions -> context.message
+runtime    -> interactions
 runtime    -> context.message
 runtime    -> context.session
 
-persistence -> agents
+persistence -> interactions
 persistence -> context.message
 persistence -> context.history
 persistence -> context.session
@@ -135,10 +142,10 @@ evidence -> context.session
 
 runtime    -> evidence
 
-codex      -> agents
-codex      -> context.message
-codex      -> commands
-codex      -> paths
+interactions.providers -> interactions
+interactions.providers -> context.message
+interactions.providers -> commands
+interactions.providers -> paths
 ```
 
 `identity`, `system`, `paths`, `time`, `regex`, and `conversion` have no
@@ -192,7 +199,7 @@ meaningful context.
 ### Higher-layer orchestration
 
 Foundational packages provide primitives. Runtime composes the established
-Session, Agent, and optional Evidence observation contracts without embedding
+Session, Interaction, and optional Evidence observation contracts without embedding
 provider execution in either.
 
 ## Cross-package boundaries
@@ -202,13 +209,14 @@ codecs, and I/O. `regex` supplies generic regex mechanics that filesystem text
 models adapt. `conversion` remains independent while JSON and CSV models use
 thin conversion adapters. `commands` consumes path and time primitives but
 does not depend on filesystem. `context` owns retained interaction values;
-`agents` supplies the generic contract; `codex` is a concrete integration above
-them and composes existing context-message, command, and path primitives.
-Context Session retains current Agent continuation references without invoking
-Agents and owns in-memory complete-turn serialization for its mutable History
+`interactions` supplies the generic contract; its providers compose existing
+context-message, command, and path primitives. Codex remains an external
+agentic system exposed through an Interaction provider adapter.
+Context Session retains current Interaction continuation references without invoking
+Interactions and owns in-memory complete-turn serialization for its mutable History
 and continuation state. Runtime is the configuration-bearing but
-interaction-stateless one-Agent-interaction coordinator: it holds Session-owned
-complete-turn serialization while awaiting an Agent, so different Sessions may
+interaction-stateless one-Interaction-interaction coordinator: it holds Session-owned
+complete-turn serialization while awaiting an Interaction, so different Sessions may
 proceed concurrently while a Session's continuation handoff remains ordered.
 Its optional fixed AttemptObserver records live Attempt lifecycle observation,
 and its optional fixed EvidenceSink accepts immutable terminal Evidence,
@@ -222,7 +230,7 @@ unsuppressed. Evidence supplies Attempt, AttemptObserver, terminal values, and
 EvidenceSink but has no Runtime dependency. Session coordination is object-local
 and in-process; persistent or distributed coordination remains outside the
 current architecture. Runtime does not depend on Codex; Codex is one concrete
-Agent.
+Interaction.
 Persistence durably serializes and reconstructs semantic Session state without
 making Context storage-aware. It offers strict portable JSON and normalized
 queryable SQLite formats; a loaded Session can then be coordinated by Runtime.
@@ -238,7 +246,7 @@ telemetry projection, and durable execution remain separate future work.
 
 Session indexes current external continuation state by `MessageSource`.
 Supporting multiple logical participants sharing one source requires a stronger
-participant or Agent-instance identity before Runtime coordinates that topology.
+participant or Interaction-instance identity before Runtime coordinates that topology.
 
 ## Documentation authority
 
@@ -266,7 +274,7 @@ document.
 
 The `identity`, `system`, `paths`, `time`, `commands`, `regex`, `conversion`,
 `filesystem`, `context.message`, `context.history`, `context.session`,
-`agents`, `runtime`, `persistence`, `evidence`, and `codex` milestones are
+`interactions`, `runtime`, `persistence`, and `evidence` milestones are
 documented and frozen.
 
 Frozen means the current milestone contract is documented and verified; it does
@@ -274,7 +282,7 @@ not prevent future, deliberately approved evolution.
 
 ## Next architectural boundary
 
-The foundation, generic Agent contract, first Codex integration, Context
+The foundation, generic Interaction contract, first Codex integration, Context
 Message/History/Session, Runtime, Persistence, Evidence Attempt, immutable
 terminal Evidence value model, Runtime-to-Attempt observation, and
 Runtime-to-terminal-Evidence production/delivery milestones are complete and

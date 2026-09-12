@@ -1,5 +1,6 @@
 # Copyright (c) 2026
 """Opt-in SQLite reconstruction through Runtime and real Codex acceptance."""
+
 from __future__ import annotations
 
 import asyncio
@@ -10,9 +11,9 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from devtools.codex import CodexAgent
 from devtools.commands import Command, CommandExecutor
 from devtools.context import Message, MessageRole, MessageSource, Session, SessionId
+from devtools.interactions.providers.codex import CodexAgent
 from devtools.paths import ResolvedPath
 from devtools.persistence import SqliteSessionStore
 from devtools.runtime import Runtime
@@ -66,7 +67,7 @@ def test_sqlite_restores_session_for_runtime_codex_continuation(tmp_path: Path) 
         )
         first_turn = await runtime.send(
             session=original,
-            agent=codex,
+            interaction=codex,
             message=first_user,
         )
         assert first_turn.message.content.strip() == "stored"
@@ -91,7 +92,7 @@ def test_sqlite_restores_session_for_runtime_codex_continuation(tmp_path: Path) 
         )
         second_turn = await runtime.send(
             session=loaded,
-            agent=codex,
+            interaction=codex,
             message=second_user,
         )
         assert second_turn.conversation is not None

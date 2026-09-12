@@ -11,9 +11,9 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from devtools.codex import CodexAgent
 from devtools.commands import Command, CommandExecutor
 from devtools.context import Message, MessageRole, MessageSource, Session, SessionId
+from devtools.interactions.providers.codex import CodexAgent
 from devtools.paths import ResolvedPath
 
 if TYPE_CHECKING:

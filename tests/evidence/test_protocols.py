@@ -58,7 +58,7 @@ def test_attempt_observer_is_a_structural_root_public_protocol() -> None:
         id=AttemptId.new(),
         session_id=SessionId.new(),
         message_id=MessageId.new(),
-        agent_source=MessageSource("agent"),
+        interaction_source=MessageSource("agent"),
         started_at=Timestamp.now(),
         state=AttemptState.RUNNING,
         completed_at=None,

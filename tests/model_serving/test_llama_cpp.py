@@ -169,8 +169,7 @@ def test_launch_argv_mounts_snapshot_backing_file_with_gguf_target(
         in command.arguments
     )
     assert (
-        f"type=bind,src={snapshot.parent},dst=/models,readonly"
-        not in command.arguments
+        f"type=bind,src={snapshot.parent},dst=/models,readonly" not in command.arguments
     )
     assert (
         command.arguments[command.arguments.index("--model") + 1]

@@ -1,5 +1,6 @@
 # Copyright (c) 2026
 """Tests for application-level processing attempts."""
+
 from __future__ import annotations
 
 from dataclasses import FrozenInstanceError
@@ -32,26 +33,21 @@ def _attempt(  # noqa: PLR0913
     id: AttemptId | None = None,  # noqa: A002
     session_id: SessionId | None = None,
     message_id: MessageId | None = None,
-    agent_source: MessageSource | None = None,
+    interaction_source: MessageSource | None = None,
     started_at: Timestamp | None = None,
     state: AttemptState = AttemptState.RUNNING,
     completed_at: Timestamp | None = None,
 ) -> Attempt:
     """Build one deterministic Attempt with configurable reconstruction state."""
     return Attempt(
-        id=(
-            id
-            or AttemptId.parse("10000000-0000-4000-8000-000000000001")
-        ),
+        id=(id or AttemptId.parse("10000000-0000-4000-8000-000000000001")),
         session_id=(
-            session_id
-            or SessionId.parse("20000000-0000-4000-8000-000000000001")
+            session_id or SessionId.parse("20000000-0000-4000-8000-000000000001")
         ),
         message_id=(
-            message_id
-            or MessageId.parse("30000000-0000-4000-8000-000000000001")
+            message_id or MessageId.parse("30000000-0000-4000-8000-000000000001")
         ),
-        agent_source=agent_source or MessageSource("codex"),
+        interaction_source=interaction_source or MessageSource("codex"),
         started_at=started_at or _timestamp(),
         state=state,
         completed_at=completed_at,
@@ -133,13 +129,13 @@ def test_attempt_new_creates_running_lifecycle_with_exact_attribution() -> None:
     attempt = Attempt.new(
         session_id=session_id,
         message_id=message_id,
-        agent_source=source,
+        interaction_source=source,
     )
 
     assert isinstance(attempt.id, AttemptId)
     assert attempt.session_id is session_id
     assert attempt.message_id is message_id
-    assert attempt.agent_source is source
+    assert attempt.interaction_source is source
     assert isinstance(attempt.started_at, Timestamp)
     assert attempt.state is AttemptState.RUNNING
     assert attempt.completed_at is None
@@ -156,7 +152,7 @@ def test_attempt_properties_are_read_only() -> None:
     with pytest.raises(AttributeError):
         attempt.message_id = MessageId.new()  # type: ignore[misc]
     with pytest.raises(AttributeError):
-        attempt.agent_source = MessageSource("qwen")  # type: ignore[misc]
+        attempt.interaction_source = MessageSource("qwen")  # type: ignore[misc]
     with pytest.raises(AttributeError):
         attempt.started_at = Timestamp.now()  # type: ignore[misc]
     with pytest.raises(AttributeError):
@@ -183,7 +179,7 @@ def test_attempt_terminal_methods_complete_running_lifecycle(
         attempt.id,
         attempt.session_id,
         attempt.message_id,
-        attempt.agent_source,
+        attempt.interaction_source,
         attempt.started_at,
     )
     method: Callable[[], None] = getattr(attempt, method_name)
@@ -195,7 +191,7 @@ def test_attempt_terminal_methods_complete_running_lifecycle(
         attempt.id,
         attempt.session_id,
         attempt.message_id,
-        attempt.agent_source,
+        attempt.interaction_source,
         attempt.started_at,
     ) == attribution
 
@@ -209,7 +205,7 @@ def test_attempt_completion_timestamp_failure_preserves_running_lifecycle(
         attempt.id,
         attempt.session_id,
         attempt.message_id,
-        attempt.agent_source,
+        attempt.interaction_source,
         attempt.started_at,
     )
     error = RuntimeError("timestamp unavailable")
@@ -232,7 +228,7 @@ def test_attempt_completion_timestamp_failure_preserves_running_lifecycle(
         attempt.id,
         attempt.session_id,
         attempt.message_id,
-        attempt.agent_source,
+        attempt.interaction_source,
         attempt.started_at,
     ) == attribution
 
@@ -277,7 +273,7 @@ def test_attempt_reconstruction_preserves_valid_lifecycle_state(
         id=identifier,
         session_id=session_id,
         message_id=message_id,
-        agent_source=source,
+        interaction_source=source,
         started_at=started_at,
         state=state,
         completed_at=completed_at,
@@ -286,7 +282,7 @@ def test_attempt_reconstruction_preserves_valid_lifecycle_state(
     assert attempt.id is identifier
     assert attempt.session_id is session_id
     assert attempt.message_id is message_id
-    assert attempt.agent_source is source
+    assert attempt.interaction_source is source
     assert attempt.started_at is started_at
     assert attempt.state is state
     assert attempt.completed_at is completed_at
@@ -348,21 +344,25 @@ def test_repeated_message_and_cross_session_attempts_are_valid() -> None:
     first = Attempt.new(
         session_id=first_session,
         message_id=message_id,
-        agent_source=source,
+        interaction_source=source,
     )
     repeated = Attempt.new(
         session_id=first_session,
         message_id=message_id,
-        agent_source=source,
+        interaction_source=source,
     )
     cross_session = Attempt.new(
         session_id=second_session,
         message_id=message_id,
-        agent_source=source,
+        interaction_source=source,
     )
 
     assert first.id != repeated.id
     assert first.message_id is repeated.message_id is cross_session.message_id
     assert first.session_id is repeated.session_id
     assert cross_session.session_id is second_session
-    assert first.agent_source is repeated.agent_source is cross_session.agent_source
+    assert (
+        first.interaction_source
+        is repeated.interaction_source
+        is cross_session.interaction_source
+    )

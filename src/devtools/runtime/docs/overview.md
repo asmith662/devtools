@@ -3,20 +3,20 @@
 ## Purpose
 
 `Runtime` is a configuration-bearing but interaction-stateless coordination
-service that applies one caller-selected `Agent` interaction to one mutable
+service that applies one caller-selected `Interaction` interaction to one mutable
 `Session`. Its only retained configuration is an optional fixed
 `AttemptObserver` and optional fixed `EvidenceSink`; it owns no retained
 interaction or provider state. `Session` owns retained `History` and current
-continuation references, while an `Agent` owns response and provider behavior.
+continuation references, while an `Interaction` owns response and provider behavior.
 
 ```text
 Message          one contextual utterance
 Session          retained mutable interaction state
-Agent            asynchronous responder contract
+Interaction      asynchronous responder contract
 Runtime          one-interaction coordinator
 ```
 
-Runtime is provider-neutral. [Codex](../../codex/docs/overview.md) is a real
+Runtime is provider-neutral. [Codex](../../interactions/providers/codex/docs/overview.md) is a real
 acceptance implementation, not a Runtime dependency.
 
 ## Public API
@@ -28,7 +28,7 @@ runtime = Runtime()
 # Or: runtime = Runtime(observer=observer, evidence_sink=evidence_sink)
 turn = await runtime.send(
     session=session,
-    agent=agent,
+    interaction=interaction,
     message=message,
 )
 ```
@@ -37,26 +37,26 @@ turn = await runtime.send(
 `runtime.evidence_sink` are readable fixed configuration with types
 `AttemptObserver | None` and `EvidenceSink | None`; no replacement or per-send
 override API exists. Runtime has no identity, lifecycle, lock, retained Session,
-retained Agent, continuation, last result, current Attempt, current Evidence,
+retained Interaction, continuation, last result, current Attempt, current Evidence,
 or other interaction state.
 
 ## Coordination algorithm
 
-`Runtime.send()` performs one `Agent.send()` invocation in this order:
+`Runtime.send()` performs one `Interaction.send()` invocation in this order:
 
 1. Acquire `session.turn()`.
 2. Record the supplied input `Message` once.
 3. Retrieve the current continuation with
-   `session.conversation_for(agent.source)`.
-4. Invoke `Agent.send()` exactly once.
-5. Validate that the returned Message source equals `agent.source`.
+   `session.conversation_for(interaction.source)`.
+4. Invoke `Interaction.send()` exactly once.
+5. Validate that the returned Message source equals `interaction.source`.
 6. Record the returned Message.
 7. Store the returned continuation when it is non-`None`.
-8. Return the original `AgentTurn`.
+8. Return the original `InteractionTurn`.
 9. Release `session.turn()`.
 
 The complete operation is held inside `session.turn()`, including the awaited
-Agent call. Runtime never directly constructs History or mutates the public
+Interaction call. Runtime never directly constructs History or mutates the public
 conversation mapping.
 
 ## Optional Attempt observation and terminal Evidence
@@ -74,13 +74,13 @@ Attempt creation remains after Session turn acquisition and successful input
 retention. Waiting cancellation and input-retention failure therefore create no
 Attempt, terminal Evidence, callback, or sink delivery. `attempt_started()` is
 the conditional `ADMISSION` boundary before primary processing. An Attempt
-spans continuation lookup, Agent invocation, returned-source validation, output
+spans continuation lookup, Interaction invocation, returned-source validation, output
 retention, and replacement of a returned non-None continuation.
 
 Runtime owns terminal Evidence stage attribution. It sets the frozen stages
 immediately before their named operations: `ADMISSION` before start observation
 when an observer exists, `CONTINUATION_LOOKUP` before lookup,
-`AGENT_INVOCATION` before `Agent.send()`, `RESULT_VALIDATION` before Runtime
+`INTERACTION_INVOCATION` before `Interaction.send()`, `RESULT_VALIDATION` before Runtime
 validation, `OUTPUT_RETENTION` before output retention, and
 `CONTINUATION_REPLACEMENT` before replacement. Stages record where processing
 stopped or was interrupted, not why; admission and replacement are conditional,
@@ -123,14 +123,14 @@ persistence, durability, fsync, replication, recoverability, queryability, or
 remote export. A policy requiring durable Evidence as a condition of operation
 success requires separate future architecture.
 
-## Messages and Agent selection
+## Messages and Interaction selection
 
-The caller explicitly supplies the Agent. Runtime does not route, discover,
-rank, substitute, or fall back between Agents.
+The caller explicitly supplies the Interaction. Runtime does not route, discover,
+rank, substitute, or fall back between Interactions.
 
 Any valid `Message` may be submitted to any Session. Runtime is role-neutral:
 it does not require a USER input or an ASSISTANT output. Input source identifies
-the producer of the Message and need not equal the selected Agent source.
+the producer of the Message and need not equal the selected Interaction source.
 
 Runtime records the supplied Message exactly once after turn acquisition. The
 same exact Message may be submitted again; each invocation records another
@@ -141,15 +141,15 @@ replay model.
 ## Continuations and validation
 
 Runtime retrieves continuations only through Session's source-keyed API and
-trusts Session's continuation/source invariant. It also trusts AgentTurn's
+trusts Session's continuation/source invariant. It also trusts InteractionTurn's
 continuation/message-source invariant and provider-specific continuation
 syntax.
 
-Runtime uniquely knows both the selected Agent and returned AgentTurn, so it
+Runtime uniquely knows both the selected Interaction and returned InteractionTurn, so it
 validates:
 
 ```python
-turn.message.source == agent.source
+turn.message.source == interaction.source
 ```
 
 On mismatch, Runtime raises `ValueError` before recording returned state. The
@@ -160,7 +160,7 @@ On success, Runtime records the returned Message before replacing continuation
 state. Continuation state therefore cannot advance beyond the History entry
 that produced it. A returned `conversation=None` performs no update and does
 not clear an existing Session continuation. Runtime returns the original
-`AgentTurn`; it defines no Runtime-specific result model.
+`InteractionTurn`; it defines no Runtime-specific result model.
 
 ## Concurrency
 
@@ -171,12 +171,12 @@ same Session object       complete Runtime turns serialize
 different Session objects Runtime operations may proceed concurrently
 ```
 
-This scope covers the awaited Agent call. For the same source, if turn A reads
+This scope covers the awaited Interaction call. For the same source, if turn A reads
 ref A and returns ref B, a turn B queued while A is in flight receives ref B
-when it eventually invokes its Agent. This prevents stale continuation use.
+when it eventually invokes its Interaction. This prevents stale continuation use.
 
-Runtime owns no global lock and imposes no generic lock on a shared Agent
-instance; concrete Agents own their own concurrency guarantees. Runtime
+Runtime owns no global lock and imposes no generic lock on a shared Interaction
+instance; concrete Interactions own their own concurrency guarantees. Runtime
 inherits Session coordination boundaries: they are object-local,
 single-event-loop, and in-process. They do not synchronize event loops,
 threads, separately reconstructed objects with equal Session IDs, processes,
@@ -184,17 +184,17 @@ or distributed workers.
 
 ## Failures and cancellation
 
-If `Agent.send()` raises, Runtime retains the already-recorded input, records
+If `Interaction.send()` raises, Runtime retains the already-recorded input, records
 no output, leaves the current continuation unchanged, releases Session
 coordination, and propagates the original exception unchanged. Runtime does not
 distinguish transport, provider, or parsing failure phases and creates no error,
 status, or informational Messages.
 
 Cancellation while waiting to acquire `session.turn()` leaves Session unchanged:
-input is not recorded and Agent is not called. Cancellation while the Agent is
+input is not recorded and Interaction is not called. Cancellation while the Interaction is
 in flight leaves the retained input, commits no output or continuation update,
-releases Session coordination, and propagates cancellation. Agent transport
-cleanup belongs to the concrete Agent.
+releases Session coordination, and propagates cancellation. Interaction transport
+cleanup belongs to the concrete Interaction.
 
 Runtime coordination is forward-only, not transactional. It does not roll back
 an earlier Session mutation if a later local operation unexpectedly fails.
@@ -208,11 +208,11 @@ or replay safe or idempotent.
 ## Boundaries
 
 Runtime has no retry, replay, fallback, timeout, deadline, persistence, context
-compiler, routing, or Agent-selection policy. One Runtime call invokes one
-supplied Agent once. It does not persist Attempts or Evidence, export telemetry,
+compiler, routing, or Interaction-selection policy. One Runtime call invokes one
+supplied Interaction once. It does not persist Attempts or Evidence, export telemetry,
 or integrate Dapr/durable workflows. Failure/cancellation stages make no
 provider-side-effect, retry-safety, idempotency, or replayability claim.
-Timeout policy belongs to the concrete Agent or transport.
+Timeout policy belongs to the concrete Interaction or transport.
 
 Runtime inherits Session's current limitation of one current `ConversationRef`
 per `MessageSource`. It does not solve independent continuations for multiple
@@ -221,7 +221,7 @@ logical participants sharing a source.
 ## Dependencies
 
 ```text
-runtime -> agents
+runtime -> interactions
 runtime -> context.message
 runtime -> context.session
 runtime -> evidence
@@ -245,5 +245,5 @@ is acceptance evidence, not a Runtime dependency on Codex.
 mandatory durability policy, async sinks, secondary-error reporting, retry,
 replay, idempotent delivery, provenance, telemetry adapters, and durable
 workflow infrastructure require separate designs. Session persistence, context
-compilation, provider configuration, ConversationRef parsing, and Agent
+compilation, provider configuration, ConversationRef parsing, and Interaction
 transport behavior remain outside Runtime ownership.

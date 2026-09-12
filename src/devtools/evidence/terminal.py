@@ -51,7 +51,7 @@ class AttemptStage(StrEnum):
 
     ADMISSION = "admission"
     CONTINUATION_LOOKUP = "continuation_lookup"
-    AGENT_INVOCATION = "agent_invocation"
+    INTERACTION_INVOCATION = "interaction_invocation"
     RESULT_VALIDATION = "result_validation"
     OUTPUT_RETENTION = "output_retention"
     CONTINUATION_REPLACEMENT = "continuation_replacement"

@@ -1,5 +1,6 @@
 # Copyright (c) 2026
 """Application-level processing attempt lifecycle values."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -62,9 +63,9 @@ class Attempt:
     """Represent one mutable application-level processing attempt."""
 
     __slots__ = (
-        "_agent_source",
         "_completed_at",
         "_id",
+        "_interaction_source",
         "_message_id",
         "_session_id",
         "_started_at",
@@ -79,7 +80,7 @@ class Attempt:
         id: AttemptId,  # noqa: A002
         session_id: SessionId,
         message_id: MessageId,
-        agent_source: MessageSource,
+        interaction_source: MessageSource,
         started_at: Timestamp,
         state: AttemptState,
         completed_at: Timestamp | None,
@@ -89,7 +90,7 @@ class Attempt:
         :param id: Stable application-owned attempt identity.
         :param session_id: Session owning the attempted input processing.
         :param message_id: Input Message selected for processing.
-        :param agent_source: Source attribution for the selected Agent.
+        :param interaction_source: Source attribution for the selected Interaction.
         :param started_at: Observed wall-clock start time.
         :param state: Current or final lifecycle state.
         :param completed_at: Observed terminal time, if the attempt is terminal.
@@ -106,7 +107,7 @@ class Attempt:
         self._id = id
         self._session_id = session_id
         self._message_id = message_id
-        self._agent_source = agent_source
+        self._interaction_source = interaction_source
         self._started_at = started_at
         self._state = state
         self._completed_at = completed_at
@@ -117,20 +118,20 @@ class Attempt:
         *,
         session_id: SessionId,
         message_id: MessageId,
-        agent_source: MessageSource,
+        interaction_source: MessageSource,
     ) -> Attempt:
         """Create a newly running processing attempt.
 
         :param session_id: Session owning the attempted input processing.
         :param message_id: Input Message selected for processing.
-        :param agent_source: Source attribution for the selected Agent.
+        :param interaction_source: Source attribution for the selected Interaction.
         :returns: Newly running Attempt with fresh identity and start time.
         """
         return cls(
             id=AttemptId.new(),
             session_id=session_id,
             message_id=message_id,
-            agent_source=agent_source,
+            interaction_source=interaction_source,
             started_at=Timestamp.now(),
             state=AttemptState.RUNNING,
             completed_at=None,
@@ -152,9 +153,9 @@ class Attempt:
         return self._message_id
 
     @property
-    def agent_source(self) -> MessageSource:
-        """Return the selected Agent source attribution for this attempt."""
-        return self._agent_source
+    def interaction_source(self) -> MessageSource:
+        """Return the selected Interaction source attribution for this attempt."""
+        return self._interaction_source
 
     @property
     def started_at(self) -> Timestamp:

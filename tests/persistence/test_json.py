@@ -1,5 +1,6 @@
 # Copyright (c) 2026
 """Strict portable JSON Session persistence tests."""
+
 from __future__ import annotations
 
 import asyncio
@@ -8,7 +9,6 @@ from datetime import UTC, datetime
 
 import pytest
 
-from devtools.agents import ConversationRef
 from devtools.context import (
     History,
     Message,
@@ -18,6 +18,7 @@ from devtools.context import (
     Session,
     SessionId,
 )
+from devtools.interactions import ConversationRef
 from devtools.persistence import (
     PersistenceConflictError,
     PersistenceFormatError,
