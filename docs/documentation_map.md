@@ -59,6 +59,8 @@ The ledger records history; it does not authorize future architecture.
   [events](../src/devtools/commands/docs/events.md)
 - [Codex overview](../src/devtools/codex/docs/overview.md) and
   [CLI behavior](../src/devtools/codex/docs/cli.md)
+- [Qwen overview](../src/devtools/qwen/docs/overview.md) â€” experimental
+  llama.cpp/Qwen Agent adaptation and bounded repository-read experiment
 - [regex overview](../src/devtools/regex/docs/overview.md)
 - [conversion overview](../src/devtools/conversion/docs/overview.md)
 - [filesystem overview](../src/devtools/filesystem/docs/overview.md),

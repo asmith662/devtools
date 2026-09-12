@@ -135,6 +135,17 @@ def test_launch_argv_is_exact_and_safe(tmp_path: Path) -> None:
         == "4"
     )
 
+    persistent_command = llama_cpp._build_launch_command(
+        config,
+        "devtools-qwen38-llama-cpp",
+        managed=False,
+        labels=(("devtools.qwen.persistent-service", "qwen38-llama-cpp"),),
+    )
+    assert "devtools.model_serving.managed=true" not in persistent_command.arguments
+    assert "devtools.qwen.persistent-service=qwen38-llama-cpp" in (
+        persistent_command.arguments
+    )
+
 
 def test_launch_argv_mounts_snapshot_backing_file_with_gguf_target(
     tmp_path: Path,

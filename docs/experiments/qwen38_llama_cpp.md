@@ -5,8 +5,9 @@ default. It selects Qwen3.8-27B because it is the first evidence-backed local
 coding-worker candidate for the RTX 4090 Laptop 16 GB / 32 GB RAM system. The
 Unsloth Dynamic IQ4_XS artifact is the selected 14.3 GB compromise. A 32K
 context is frozen to test the intended coding workload rather than a smaller,
-easier configuration. Four FFN layers are placed on CPU to relieve VRAM
-pressure; this is an experiment premise, not an automatic tuning setting.
+easier configuration. The completed CPU FFN placement comparison selected
+`n_cpu_ffn = 0`; placing four FFN layers on CPU is no longer the preferred
+profile.
 
 The tracked value in `scripts/model_benchmarks/qwen38_llama_cpp_profile.py`
 freezes repository, commit, filename, expected published SHA-256, quant,
@@ -24,16 +25,55 @@ pins repository, revision, and filename but does not verify a digest. Digest
 verification is deferred for an explicit acquisition-boundary review rather
 than silently changing that committed capability.
 
-## Controlled sequence
+## Persistent Local Development Service
 
-1. **Serve and sustain:** Can this exact model/profile remain stable at 32K?
-2. **CPU FFN placement A/B:** Compare only `n_cpu_ffn = 0` with
-   `n_cpu_ffn = 4`.
-3. **Worker acceptance:** Run 12 frozen stories: 4 × D1, 4 × D2, and 4 × D3,
+For repeated local Qwen development, use the repository-owned persistent
+service command rather than reconstructing a `docker run` invocation:
+
+```text
+uv run python scripts/model_benchmarks/qwen38_llama_cpp_service.py start --cache-root <local-hugging-face-cache>
+uv run python scripts/model_benchmarks/qwen38_llama_cpp_service.py status
+uv run python scripts/model_benchmarks/qwen38_llama_cpp_service.py stop
+```
+
+`start` resolves or reuses the pinned semantic GGUF artifact from the explicit
+local cache root, then starts the stable `devtools-qwen38-llama-cpp` container
+on `http://127.0.0.1:8080` with served-model alias `qwen38-local`. A local
+`--port` override is available for `start`; persistent and ephemeral servers
+must use different ports. The command reports `ABSENT`, `STOPPED`,
+`RUNNING_LOADING`, `READY`, `CONFLICT`, or profile/port mismatch state. It
+derives its image and serving flags from
+`scripts/model_benchmarks/qwen38_llama_cpp_profile.py`; that profile remains
+the only source of selected Qwen serving configuration.
+
+The service does not restart automatically after a host reboot. Start Docker
+Desktop, then invoke the repository-owned `start` command. `stop` removes only
+the label-verified persistent Qwen container and preserves the Docker image and
+local model cache. A future Codex task should require `READY` with the expected
+profile before using the reported endpoint and must not stop the service unless
+explicitly authorized.
+
+This operator-owned service is for repeated development. `LlamaCppServer`
+remains the separate test-owned ephemeral lifecycle for isolated acceptance
+work.
+
+## Completed CPU FFN placement comparison
+
+The completed comparison evaluated `n_cpu_ffn = 0` against
+`n_cpu_ffn = 4` and selected `n_cpu_ffn = 0` for this profile. This is a
+serving performance/resource-placement decision, not a model or harness
+semantic decision. The successful framework-mediated nonce/read acceptance run
+using the previous `n_cpu_ffn = 4` setting does not need to be repeated solely
+because this selected serving profile changed.
+
+## Remaining controlled sequence
+
+1. **Serve and sustain:** Can this exact selected profile remain stable at 32K?
+2. **Worker acceptance:** Run 12 frozen stories: 4 × D1, 4 × D2, and 4 × D3,
    with blind supervisor review.
 
-Do not test `n_cpu_ffn = 1,2,3,5,6,7,8` unless the controlled 0-versus-4
-experiment produces new evidence requiring it. This prevents a tuning ladder.
+Do not test `n_cpu_ffn = 1,2,3,5,6,7,8` unless new serving evidence requires
+it. This prevents a tuning ladder.
 
 Speculative decoding, vision/mmproj, and a second local worker are disabled or
 out of scope. Native Windows llama.cpp is deferred: the existing audited

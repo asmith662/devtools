@@ -274,6 +274,9 @@ class LlamaCppServer:
 def _build_launch_command(
     config: LlamaCppServingConfig,
     container_name: str,
+    *,
+    managed: bool = True,
+    labels: tuple[tuple[str, str], ...] = (),
 ) -> Command:
     container_model = f"{_MODEL_DIRECTORY}/{config.model.path.name}"
     host_model = config.model.path.value.resolve()
@@ -284,8 +287,8 @@ def _build_launch_command(
             "--detach",
             "--name",
             container_name,
-            "--label",
-            f"{_MANAGED_LABEL}={_MANAGED_VALUE}",
+            *(("--label", f"{_MANAGED_LABEL}={_MANAGED_VALUE}") if managed else ()),
+            *(label_argument for label in labels for label_argument in ("--label", f"{label[0]}={label[1]}")),
             "--gpus",
             "all",
             "--mount",

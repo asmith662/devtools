@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 _PROFILE_PATH = Path("scripts/model_benchmarks/qwen38_llama_cpp_profile.py")
 _CONTEXT_SIZE = 32_768
-_CPU_FFN_LAYERS = 4
+_CPU_FFN_LAYERS = 0
 _IMAGE_BUILD_IDENTITY = (
     "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@"
     "sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e"

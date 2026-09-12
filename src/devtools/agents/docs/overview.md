@@ -122,8 +122,9 @@ to `ConversationRef`, and maps final provider output to `Message`. This is
 evidence that the protocol is a real composition seam, not a hypothetical
 abstraction; `agents` does not depend on Codex.
 
-A future stateless adapter, including a possible Qwen integration, may return
-an `AgentTurn` with no conversation reference. No Qwen adapter exists today.
+Stateless adapters may return an `AgentTurn` with no conversation reference.
+[`devtools.qwen`](../../qwen/docs/overview.md) is one provider-specific example;
+its HTTP and llama.cpp mechanics remain local to that adapter.
 
 ## Package boundaries
 
