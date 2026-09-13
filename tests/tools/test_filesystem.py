@@ -18,6 +18,8 @@ from devtools.resources.filesystem import (
     FilesystemPermissionError,
     MarkdownFile,
     NotAFileError,
+    TextDecodingError,
+    TextFile,
 )
 from devtools.tools import Tool, ToolInputError, ToolRunner, filesystem
 from devtools.tools.filesystem import (
@@ -186,14 +188,73 @@ def test_read_repository_file_tool_admits_root_then_filesystem_rejects_directory
     asyncio.run(exercise())
 
 
-def test_read_repository_file_tool_preserves_filesystem_format_errors(
+def test_read_repository_file_tool_reads_unknown_text_extension_as_text(
     tmp_path: Path,
 ) -> None:
-    """An admitted unsupported file remains a Filesystem format failure."""
+    """An unclassified repository extension uses the Filesystem text decoder."""
     root = tmp_path / "repository"
     source = root / "notes.unknown"
     source.parent.mkdir()
     source.write_text("notes", encoding="utf-8")
+
+    async def exercise() -> None:
+        result = await ToolRunner().execute(
+            ReadRepositoryFileTool(_resolved(root)),
+            _resolved(source),
+        )
+
+        assert isinstance(result, TextFile)
+        assert result.content == "notes"
+
+    asyncio.run(exercise())
+
+
+def test_read_repository_file_tool_reads_python_source_as_text(tmp_path: Path) -> None:
+    """A coding-oriented Tool reads Python source through the Filesystem boundary."""
+    root = tmp_path / "repository"
+    source = root / "src" / "reader.py"
+    source.parent.mkdir(parents=True)
+    source.write_text("MARKER = 'source-text'\n", encoding="utf-8")
+
+    async def exercise() -> None:
+        result = await ToolRunner().execute(
+            ReadRepositoryFileTool(_resolved(root)),
+            _resolved(source),
+        )
+
+        assert isinstance(result, TextFile)
+        assert result.content.splitlines() == ["MARKER = 'source-text'"]
+
+    asyncio.run(exercise())
+
+
+def test_read_repository_file_tool_preserves_text_decoding_failure(
+    tmp_path: Path,
+) -> None:
+    """An unclassified binary payload remains an honest text-decoding failure."""
+    root = tmp_path / "repository"
+    source = root / "src" / "binary.py"
+    source.parent.mkdir(parents=True)
+    source.write_bytes(b"\xff")
+
+    async def exercise() -> None:
+        with pytest.raises(TextDecodingError):
+            await ToolRunner().execute(
+                ReadRepositoryFileTool(_resolved(root)),
+                _resolved(source),
+            )
+
+    asyncio.run(exercise())
+
+
+def test_read_repository_file_tool_preserves_structured_format_failure(
+    tmp_path: Path,
+) -> None:
+    """A recognized structured suffix does not fall back to unstructured text."""
+    root = tmp_path / "repository"
+    source = root / "invalid.json"
+    source.parent.mkdir()
+    source.write_text("{not json", encoding="utf-8")
 
     async def exercise() -> None:
         with pytest.raises(FileFormatError):

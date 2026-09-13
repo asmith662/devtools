@@ -9,9 +9,12 @@ from typing import TYPE_CHECKING
 
 from devtools.core.paths import resolve_path
 from devtools.resources.filesystem import (
+    FileFormat,
+    FileFormatError,
     FilesystemNotFoundError,
     FilesystemPermissionError,
     read,
+    resolve_file_format,
 )
 from devtools.tools.errors import ToolInputError
 
@@ -23,10 +26,10 @@ if TYPE_CHECKING:
 
 
 class ReadRepositoryFileTool:
-    """Read supported files within one configured repository-root scope."""
+    """Read bounded textual repository files within one configured root scope."""
 
     _NAME = "read_repository_file"
-    _DESCRIPTION = "Read one supported file below the configured repository root."
+    _DESCRIPTION = "Read one bounded textual file below the configured repository root."
 
     def __init__(self, root: ResolvedPath) -> None:
         """Create a read-only Tool scoped to one repository root."""
@@ -53,8 +56,13 @@ class ReadRepositoryFileTool:
         raise ToolInputError(msg)
 
     async def execute(self, arguments: ResolvedPath) -> File:
-        """Read one admitted path through the existing synchronous Filesystem API."""
-        return read(_normalize(arguments))
+        """Read inferred structured formats or arbitrary decodable repository text."""
+        path = _normalize(arguments)
+        try:
+            resolve_file_format(path)
+        except FileFormatError:
+            return read(path, file_format=FileFormat.TEXT)
+        return read(path)
 
 
 class RepositoryDirectoryEntryKind(StrEnum):

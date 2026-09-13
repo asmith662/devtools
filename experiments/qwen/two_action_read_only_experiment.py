@@ -36,7 +36,7 @@ _READ_ACTION = "read_repository_file"
 _ACTIONS = {_LIST_ACTION, _READ_ACTION}
 _CONTROLLER_SOURCE = InteractionSource("runtime")
 _DEFAULT_MAX_PROJECTION_CHARACTERS = 4_096
-_MAX_ACTIONS = 2
+_DEFAULT_MAXIMUM_ACTIONS = 2
 _LIST_PROPOSAL_FORM = (
     '{"action":"list_repository_directory","path":"<repository-relative-path>"}'
 )
@@ -106,7 +106,7 @@ class _PromptCycle:
 
 
 class QwenTwoActionReadOnlyExperiment:
-    """Coordinate at most two permitted read-only actions between ordinary turns."""
+    """Coordinate a configured bounded sequence of two read-only action kinds."""
 
     def __init__(  # noqa: PLR0913 - explicit collaborators keep this probe local.
         self,
@@ -116,24 +116,29 @@ class QwenTwoActionReadOnlyExperiment:
         interaction: ModelInteraction,
         repository_root: ResolvedPath,
         max_projection_characters: int = _DEFAULT_MAX_PROJECTION_CHARACTERS,
+        maximum_actions: int = _DEFAULT_MAXIMUM_ACTIONS,
         on_cycle_completed: Callable[[QwenReadOnlyCycle], None] | None = None,
     ) -> None:
         """Configure explicit collaborators for this narrow local experiment."""
         if max_projection_characters <= 0:
             msg = "Projection character limit must be positive."
             raise ValueError(msg)
+        if maximum_actions <= 0:
+            msg = "Maximum read-only actions must be positive."
+            raise ValueError(msg)
         self._runtime = runtime
         self._conversation = conversation
         self._interaction = interaction
         self._root = resolve_path(repository_root.value)
         self._max_projection_characters = max_projection_characters
+        self._maximum_actions = maximum_actions
         self._on_cycle_completed = on_cycle_completed
 
     async def run(
         self,
         task: ConversationMessage,
     ) -> QwenTwoActionReadOnlyExperimentResult:
-        """Run ordinary Runtime turns around at most two permitted actions."""
+        """Run ordinary Runtime turns around configured bounded actions."""
         turn = await self._runtime.send(
             conversation=self._conversation,
             interaction=self._interaction,
@@ -149,8 +154,16 @@ class QwenTwoActionReadOnlyExperiment:
                     tuple(cycles),
                     response_message,
                 )
-            if len(cycles) >= _MAX_ACTIONS:
-                msg = "This experiment permits at most two read-only actions."
+            if len(cycles) >= self._maximum_actions:
+                limit = (
+                    "two"
+                    if self._maximum_actions == _DEFAULT_MAXIMUM_ACTIONS
+                    else str(self._maximum_actions)
+                )
+                msg = (
+                    "This experiment permits at most "
+                    f"{limit} read-only actions."
+                )
                 raise ReadOnlyProposalError(msg)
 
             resolved_path = _materialize_relative_path(
@@ -200,6 +213,7 @@ class QwenTwoActionReadOnlyExperiment:
             follow_up = _follow_up_message(
                 task,
                 (*_prompt_cycles(cycles), prompt_cycle),
+                maximum_actions=self._maximum_actions,
             )
             return QwenListDirectoryCycle(
                 proposal_message,
@@ -227,6 +241,7 @@ class QwenTwoActionReadOnlyExperiment:
             follow_up = _follow_up_message(
                 task,
                 (*_prompt_cycles(cycles), prompt_cycle),
+                maximum_actions=self._maximum_actions,
             )
             return QwenReadRepositoryFileCycle(
                 proposal_message,
@@ -356,6 +371,8 @@ def _project_text_result(
 def _follow_up_message(
     task: ConversationMessage,
     cycles: tuple[_PromptCycle, ...],
+    *,
+    maximum_actions: int,
 ) -> ConversationMessage:
     """Construct one stateless controller prompt from ordered local action results."""
     results = "\n\n".join(
@@ -372,7 +389,7 @@ def _follow_up_message(
         f"{_LIST_PROPOSAL_FORM}\n"
         "read_repository_file: Read one repository-relative supported text file.\n"
         f"{_READ_PROPOSAL_FORM}"
-        if len(cycles) < _MAX_ACTIONS
+        if len(cycles) < maximum_actions
         else "Provide the final plain-text answer. Do not propose another action."
     )
     return ConversationMessage.new(

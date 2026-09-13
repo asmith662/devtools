@@ -97,6 +97,16 @@ def _task() -> ConversationMessage:
     )
 
 
+def _root_navigation_task() -> ConversationMessage:
+    """Construct a task that names neither a target nor an initial directory."""
+    return ConversationMessage.new(
+        "Find the repository implementation responsible for reading files and report "
+        "the marker it defines.",
+        role=ConversationMessageRole.USER,
+        source=InteractionSource("test-caller"),
+    )
+
+
 def _write(root: Path, relative_path: str, content: str) -> Path:
     path = root / relative_path
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -104,10 +114,26 @@ def _write(root: Path, relative_path: str, content: str) -> Path:
     return path
 
 
+def _root_navigation_fixture(root: Path) -> tuple[Path, str]:
+    """Create one repository whose source target is reached only by direct listings."""
+    _write(root, "docs/decoy.md", "documentation decoy")
+    _write(root, "src/unrelated/reader.py", "MARKER = 'DECOY'")
+    _write(root, "tests/decoy_test.py", "MARKER = 'TEST-DECOY'")
+    marker = "ROOT-NAVIGATION-TARGET"
+    target = _write(
+        root,
+        "src/devtools/resources/filesystem/reading.py",
+        f"MARKER = {marker!r}\n",
+    )
+    return target, marker
+
+
 def _experiment(
     root: Path,
     interaction: ModelInteraction,
     on_cycle_completed: Callable[[QwenReadOnlyCycle], None] | None = None,
+    *,
+    maximum_actions: int = 2,
 ) -> tuple[QwenTwoActionReadOnlyExperiment, Conversation]:
     session = Conversation.new()
     return (
@@ -116,10 +142,155 @@ def _experiment(
             conversation=session,
             interaction=interaction,
             repository_root=ResolvedPath(root.resolve()),
+            maximum_actions=maximum_actions,
             on_cycle_completed=on_cycle_completed,
         ),
         session,
     )
+
+
+def test_root_origin_navigation_reaches_unknown_python_source_without_path_leakage(
+    tmp_path: Path,
+) -> None:
+    """Direct listings navigate from root to a source file named only by its parent."""
+    root = tmp_path / "repository"
+    target, marker = _root_navigation_fixture(root)
+    paths = (
+        ".",
+        "src",
+        "src/devtools",
+        "src/devtools/resources",
+        "src/devtools/resources/filesystem",
+        "src/devtools/resources/filesystem/reading.py",
+    )
+    interaction = _ScriptedInteraction(
+        [
+            *(_proposal("list_repository_directory", path) for path in paths[:-1]),
+            _proposal("read_repository_file", paths[-1]),
+            marker,
+        ],
+    )
+    task = _root_navigation_task()
+    tested, _ = _experiment(root, interaction, maximum_actions=len(paths))
+
+    result = asyncio.run(tested.run(task))
+
+    assert "reading.py" not in task.content
+    assert "filesystem" not in task.content
+    assert "src/" not in task.content
+    assert [cycle.relative_path for cycle in result.cycles] == list(paths)
+    assert all(
+        cycle.resolved_path.value.is_relative_to(root.resolve())
+        for cycle in result.cycles
+    )
+    assert [type(cycle) for cycle in result.cycles] == [
+        QwenListDirectoryCycle,
+        QwenListDirectoryCycle,
+        QwenListDirectoryCycle,
+        QwenListDirectoryCycle,
+        QwenListDirectoryCycle,
+        QwenReadRepositoryFileCycle,
+    ]
+    listings = [
+        cycle
+        for cycle in result.cycles
+        if isinstance(cycle, QwenListDirectoryCycle)
+    ]
+    assert [
+        next(entry.name for entry in cycle.listing.entries if entry.name == expected)
+        for cycle, expected in zip(
+            listings,
+            ("src", "devtools", "resources", "filesystem", "reading.py"),
+            strict=True,
+        )
+    ] == ["src", "devtools", "resources", "filesystem", "reading.py"]
+    reads = [
+        cycle
+        for cycle in result.cycles
+        if isinstance(cycle, QwenReadRepositoryFileCycle)
+    ]
+    assert len(reads) == 1
+    assert reads[0].resolved_path == ResolvedPath(target.resolve())
+    assert marker in reads[0].result_projection
+    assert all(
+        str(root.resolve()) not in cycle.result_projection
+        and str(root.resolve()) not in cycle.follow_up.content
+        for cycle in result.cycles
+    )
+    assert result.final_message.content == marker
+
+
+def test_root_navigation_action_limit_blocks_seventh_tool_execution(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The configured root-navigation cap rejects another proposal before execution."""
+    root = tmp_path / "repository"
+    _root_navigation_fixture(root)
+    paths = (
+        ".",
+        "src",
+        "src/devtools",
+        "src/devtools/resources",
+        "src/devtools/resources/filesystem",
+        "src/devtools/resources/filesystem/reading.py",
+    )
+    interaction = _ScriptedInteraction(
+        [
+            *(_proposal("list_repository_directory", path) for path in paths[:-1]),
+            _proposal("read_repository_file", paths[-1]),
+            _proposal("list_repository_directory", "."),
+        ],
+    )
+    executed: list[str] = []
+    original_list = ListRepositoryDirectoryTool.execute
+    original_read = ReadRepositoryFileTool.execute
+
+    async def counted_list(
+        tool: ListRepositoryDirectoryTool,
+        path: ResolvedPath,
+    ) -> object:
+        executed.append("list_repository_directory")
+        return await original_list(tool, path)
+
+    async def counted_read(
+        tool: ReadRepositoryFileTool,
+        path: ResolvedPath,
+    ) -> object:
+        executed.append("read_repository_file")
+        return await original_read(tool, path)
+
+    monkeypatch.setattr(ListRepositoryDirectoryTool, "execute", counted_list)
+    monkeypatch.setattr(ReadRepositoryFileTool, "execute", counted_read)
+    tested, _ = _experiment(root, interaction, maximum_actions=len(paths))
+
+    with pytest.raises(ReadOnlyProposalError, match="at most 6"):
+        asyncio.run(tested.run(_root_navigation_task()))
+
+    assert executed == [
+        "list_repository_directory",
+        "list_repository_directory",
+        "list_repository_directory",
+        "list_repository_directory",
+        "list_repository_directory",
+        "read_repository_file",
+    ]
+
+
+@pytest.mark.parametrize("maximum_actions", [0, -1])
+def test_experiment_rejects_nonpositive_action_bound(
+    tmp_path: Path,
+    maximum_actions: int,
+) -> None:
+    """A configured action budget cannot be silently disabled."""
+    with pytest.raises(ValueError, match="Maximum read-only actions"):
+        QwenTwoActionReadOnlyExperiment(
+            runtime=Runtime(),
+            conversation=Conversation.new(),
+            interaction=_ScriptedInteraction([]),
+            repository_root=ResolvedPath(tmp_path.resolve()),
+            maximum_actions=maximum_actions,
+        )
 
 
 def test_list_then_read_retains_heterogeneous_cycles_and_stateless_prompts(
