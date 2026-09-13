@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: E501, PLR2004
+# ruff: noqa: PLR2004
 """Deterministic tests for the bounded heterogeneous read-only Qwen experiment."""
 
 from __future__ import annotations
@@ -10,11 +10,16 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from devtools.context import Message, MessageRole, MessageSource, Session
-from devtools.filesystem import FilesystemNotFoundError
-from devtools.interactions import ConversationRef, InteractionTurn
-from devtools.paths import ResolvedPath
-from devtools.runtime import Runtime
+from devtools.agents.conversation import (
+    Conversation,
+    ConversationMessage,
+    ConversationMessageRole,
+    InteractionSource,
+)
+from devtools.core.paths import ResolvedPath
+from devtools.execution import Runtime
+from devtools.models.interaction import ConversationRef, ModelResponse, Prompt
+from devtools.resources.filesystem import FilesystemNotFoundError
 from devtools.tools.filesystem import (
     ListRepositoryDirectoryTool,
     ReadRepositoryFileTool,
@@ -32,7 +37,7 @@ if TYPE_CHECKING:
     from collections.abc import Callable
     from pathlib import Path
 
-    from devtools.interactions import Interaction
+    from devtools.models.interaction import ModelInteraction
 
 
 @dataclass(slots=True)
@@ -40,50 +45,41 @@ class _ScriptedInteraction:
     """Return exact planned assistant content and retain each controller input."""
 
     responses: list[str]
-    calls: list[Message] = field(default_factory=list)
-    source: MessageSource = field(default_factory=lambda: MessageSource("qwen"))
+    calls: list[Prompt] = field(default_factory=list)
+    source: InteractionSource = field(default_factory=lambda: InteractionSource("qwen"))
 
     async def send(
         self,
-        message: Message,
+        prompt: Prompt,
         *,
         conversation: ConversationRef | None = None,
-    ) -> InteractionTurn:
-        """Return the next planned final assistant Message."""
+    ) -> ModelResponse:
+        """Return the next planned final assistant ConversationMessage."""
         assert conversation is None
-        self.calls.append(message)
-        return InteractionTurn(
-            Message.new(
-                self.responses.pop(0),
-                role=MessageRole.ASSISTANT,
-                source=self.source,
-            ),
-        )
+        self.calls.append(prompt)
+        return ModelResponse(content=self.responses.pop(0), source=self.source)
 
 
 @dataclass(slots=True)
 class _FailingLaterInteraction:
     """Return one proposal, then preserve a provider-like later-turn failure."""
 
-    source: MessageSource = field(default_factory=lambda: MessageSource("qwen"))
-    calls: list[Message] = field(default_factory=list)
+    source: InteractionSource = field(default_factory=lambda: InteractionSource("qwen"))
+    calls: list[Prompt] = field(default_factory=list)
 
     async def send(
         self,
-        message: Message,
+        prompt: Prompt,
         *,
         conversation: ConversationRef | None = None,
-    ) -> InteractionTurn:
+    ) -> ModelResponse:
         """Produce a first proposal only, then propagate a later failure."""
         assert conversation is None
-        self.calls.append(message)
+        self.calls.append(prompt)
         if len(self.calls) == 1:
-            return InteractionTurn(
-                Message.new(
-                    _proposal("list_repository_directory", "facts"),
-                    role=MessageRole.ASSISTANT,
-                    source=self.source,
-                ),
+            return ModelResponse(
+                content=_proposal("list_repository_directory", "facts"),
+                source=self.source,
             )
         msg = "provider unavailable"
         raise RuntimeError(msg)
@@ -93,11 +89,11 @@ def _proposal(action: str, path: str) -> str:
     return f'{{"action":"{action}","path":"{path}"}}'
 
 
-def _task() -> Message:
-    return Message.new(
+def _task() -> ConversationMessage:
+    return ConversationMessage.new(
         "Find the target using only the permitted exact read-only proposals.",
-        role=MessageRole.USER,
-        source=MessageSource("test-caller"),
+        role=ConversationMessageRole.USER,
+        source=InteractionSource("test-caller"),
     )
 
 
@@ -110,14 +106,14 @@ def _write(root: Path, relative_path: str, content: str) -> Path:
 
 def _experiment(
     root: Path,
-    interaction: Interaction,
+    interaction: ModelInteraction,
     on_cycle_completed: Callable[[QwenReadOnlyCycle], None] | None = None,
-) -> tuple[QwenTwoActionReadOnlyExperiment, Session]:
-    session = Session.new()
+) -> tuple[QwenTwoActionReadOnlyExperiment, Conversation]:
+    session = Conversation.new()
     return (
         QwenTwoActionReadOnlyExperiment(
             runtime=Runtime(),
-            session=session,
+            conversation=session,
             interaction=interaction,
             repository_root=ResolvedPath(root.resolve()),
             on_cycle_completed=on_cycle_completed,
@@ -159,12 +155,12 @@ def test_list_then_read_retains_heterogeneous_cycles_and_stateless_prompts(
     assert "Do not propose another action." in result.cycles[1].follow_up.content
     assert result.final_message.content == "NONCE-TARGET"
     assert [message.role for message in session.history] == [
-        MessageRole.USER,
-        MessageRole.ASSISTANT,
-        MessageRole.SYSTEM,
-        MessageRole.ASSISTANT,
-        MessageRole.SYSTEM,
-        MessageRole.ASSISTANT,
+        ConversationMessageRole.USER,
+        ConversationMessageRole.ASSISTANT,
+        ConversationMessageRole.SYSTEM,
+        ConversationMessageRole.ASSISTANT,
+        ConversationMessageRole.SYSTEM,
+        ConversationMessageRole.ASSISTANT,
     ]
 
 
@@ -204,7 +200,9 @@ def test_strategy_neutral_valid_action_orders_are_structurally_permitted(
     assert result.final_message.content == "final"
 
 
-def test_immediate_and_one_action_final_answers_terminate_normally(tmp_path: Path) -> None:
+def test_immediate_and_one_action_final_answers_terminate_normally(
+    tmp_path: Path,
+) -> None:
     """Two accepted actions are a cap rather than a requirement."""
     root = tmp_path / "repository"
     _write(root, "facts/first.txt", "first")
@@ -366,9 +364,9 @@ def test_later_interaction_failure_propagates_after_a_completed_listing(
     assert len(completed_cycles) == 1
     assert isinstance(completed_cycles[0], QwenListDirectoryCycle)
     assert [message.role for message in session.history] == [
-        MessageRole.USER,
-        MessageRole.ASSISTANT,
-        MessageRole.SYSTEM,
+        ConversationMessageRole.USER,
+        ConversationMessageRole.ASSISTANT,
+        ConversationMessageRole.SYSTEM,
     ]
 
 

@@ -15,9 +15,15 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from devtools.context import Message, MessageRole, MessageSource
-from devtools.interactions import ConversationRef, InteractionTurn
-from devtools.interactions.providers.llama_cpp_errors import LlamaCppTransportError
+from devtools.agents.conversation import (
+    ConversationMessage,
+    ConversationMessageRole,
+    InteractionSource,
+)
+from devtools.models.interaction import ConversationRef, ModelResponse
+from devtools.models.interaction.providers.llama_cpp_errors import (
+    LlamaCppTransportError,
+)
 
 if TYPE_CHECKING:
     from collections.abc import Iterator
@@ -49,33 +55,27 @@ def acceptance() -> Iterator[ModuleType]:
 
 @dataclass(slots=True)
 class _ScriptedInteraction:
-    """Return planned assistant text or a provider failure through Interaction semantics."""
+    """Return planned assistant text or a provider failure through ModelInteraction semantics."""
 
     responses: list[str]
     fail_on_call: int | None = None
     failure: Exception | None = None
-    calls: list[Message] = field(default_factory=list)
-    source: MessageSource = field(default_factory=lambda: MessageSource("qwen"))
+    calls: list[ConversationMessage] = field(default_factory=list)
+    source: InteractionSource = field(default_factory=lambda: InteractionSource("qwen"))
 
     async def send(
         self,
-        message: Message,
+        message: ConversationMessage,
         *,
         conversation: ConversationRef | None = None,
-    ) -> InteractionTurn:
+    ) -> ModelResponse:
         """Retain each input and return the next exact assistant result."""
         assert conversation is None
         self.calls.append(message)
         if self.fail_on_call == len(self.calls):
             assert self.failure is not None
             raise self.failure
-        return InteractionTurn(
-            Message.new(
-                self.responses.pop(0),
-                role=MessageRole.ASSISTANT,
-                source=self.source,
-            ),
-        )
+        return ModelResponse(content=self.responses.pop(0), source=self.source)
 
 
 @dataclass(frozen=True, slots=True)
@@ -156,8 +156,8 @@ def test_first_malformed_proposal_retains_exact_assistant_and_session(
     assert report.tool_execution_count == 0
     assert report.tool_execution_paths == ()
     assert [(message.role, message.source) for message in report.history] == [
-        (MessageRole.USER, MessageSource("qwen-two-read-acceptance")),
-        (MessageRole.ASSISTANT, MessageSource("qwen")),
+        (ConversationMessageRole.USER, InteractionSource("qwen-two-read-acceptance")),
+        (ConversationMessageRole.ASSISTANT, InteractionSource("qwen")),
     ]
 
 
@@ -194,10 +194,10 @@ def test_later_malformed_proposal_retains_history_and_completed_read(
     assert report.tool_execution_count == 1
     assert len(report.tool_execution_paths) == 1
     assert [message.role for message in report.history] == [
-        MessageRole.USER,
-        MessageRole.ASSISTANT,
-        MessageRole.SYSTEM,
-        MessageRole.ASSISTANT,
+        ConversationMessageRole.USER,
+        ConversationMessageRole.ASSISTANT,
+        ConversationMessageRole.SYSTEM,
+        ConversationMessageRole.ASSISTANT,
     ]
 
 
@@ -205,7 +205,7 @@ def test_provider_failure_does_not_invent_assistant_content(
     acceptance: ModuleType,
     tmp_path: Path,
 ) -> None:
-    """A provider failure before a result leaves no fabricated assistant Message."""
+    """A provider failure before a result leaves no fabricated assistant ConversationMessage."""
     fixture = _fixture(acceptance, tmp_path)
     agent = _ScriptedInteraction([], fail_on_call=1, failure=LlamaCppTransportError())
     try:
@@ -224,7 +224,9 @@ def test_provider_failure_does_not_invent_assistant_content(
     assert report.latest_assistant is None
     assert report.tool_execution_count == 0
     assert report.tool_execution_paths == ()
-    assert [message.role for message in report.history] == [MessageRole.USER]
+    assert [message.role for message in report.history] == [
+        ConversationMessageRole.USER,
+    ]
 
 
 def test_temporary_fixture_is_removed_after_manual_cleanup(

@@ -12,10 +12,10 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from devtools.commands import Command, CommandResult
-from devtools.model_serving.huggingface import AcquiredGGUF
-from devtools.paths import ResolvedPath
-from devtools.time import Duration
+from devtools.core.paths import ResolvedPath
+from devtools.core.time import Duration
+from devtools.models.serving.huggingface import AcquiredGGUF
+from devtools.resources.commands import Command, CommandResult
 
 if TYPE_CHECKING:
     from collections.abc import Iterator

@@ -10,11 +10,16 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from devtools.context import Message, MessageRole, MessageSource, Session
-from devtools.filesystem import FilesystemNotFoundError, TextFile
-from devtools.interactions import ConversationRef, InteractionTurn
-from devtools.paths import ResolvedPath
-from devtools.runtime import Runtime
+from devtools.agents.conversation import (
+    Conversation,
+    ConversationMessage,
+    ConversationMessageRole,
+    InteractionSource,
+)
+from devtools.core.paths import ResolvedPath
+from devtools.execution import Runtime
+from devtools.models.interaction import ConversationRef, ModelResponse, Prompt
+from devtools.resources.filesystem import FilesystemNotFoundError, TextFile
 from devtools.tools import ToolInputError
 from devtools.tools.filesystem import ReadRepositoryFileTool
 from experiments.qwen import read_experiment as experiment
@@ -33,28 +38,22 @@ _PROVIDER_FAILURE = "provider failed"
 
 @dataclass(slots=True)
 class _ScriptedInteraction:
-    """Return planned assistant text and retain each ordinary Interaction input."""
+    """Return planned assistant text and retain each ordinary ModelInteraction input."""
 
     responses: list[str]
-    calls: list[Message] = field(default_factory=list)
-    source: MessageSource = field(default_factory=lambda: MessageSource("qwen"))
+    calls: list[Prompt] = field(default_factory=list)
+    source: InteractionSource = field(default_factory=lambda: InteractionSource("qwen"))
 
     async def send(
         self,
-        message: Message,
+        prompt: Prompt,
         *,
         conversation: ConversationRef | None = None,
-    ) -> InteractionTurn:
+    ) -> ModelResponse:
         """Return the next planned final assistant message."""
         assert conversation is None
-        self.calls.append(message)
-        return InteractionTurn(
-            Message.new(
-                self.responses.pop(0),
-                role=MessageRole.ASSISTANT,
-                source=self.source,
-            ),
-        )
+        self.calls.append(prompt)
+        return ModelResponse(content=self.responses.pop(0), source=self.source)
 
 
 @dataclass(slots=True)
@@ -65,37 +64,37 @@ class _FailingInteraction(_ScriptedInteraction):
 
     async def send(
         self,
-        message: Message,
+        prompt: Prompt,
         *,
         conversation: ConversationRef | None = None,
-    ) -> InteractionTurn:
+    ) -> ModelResponse:
         """Retain the attempted input before the configured provider failure."""
         if len(self.calls) + 1 == self.fail_on_call:
-            self.calls.append(message)
+            self.calls.append(prompt)
             raise LookupError(_PROVIDER_FAILURE)
-        return await super().send(message, conversation=conversation)
+        return await super().send(prompt, conversation=conversation)
 
 
 def _proposal(path: str) -> str:
     return f'{{"action":"read_repository_file","path":"{path}"}}'
 
 
-def _task() -> Message:
-    return Message.new(
+def _task() -> ConversationMessage:
+    return ConversationMessage.new(
         "Return the requested facts using the permitted exact read proposal.",
-        role=MessageRole.USER,
-        source=MessageSource("test-caller"),
+        role=ConversationMessageRole.USER,
+        source=InteractionSource("test-caller"),
     )
 
 
 def _experiment(
     root: Path, interaction: _ScriptedInteraction
-) -> tuple[QwenReadExperiment, Session]:
-    session = Session.new()
+) -> tuple[QwenReadExperiment, Conversation]:
+    session = Conversation.new()
     return (
         QwenReadExperiment(
             runtime=Runtime(),
-            session=session,
+            conversation=session,
             interaction=interaction,
             repository_root=ResolvedPath(root.resolve()),
         ),
@@ -150,17 +149,17 @@ def test_two_valid_reads_retain_ordered_cycles_prompts_and_session(
     assert "Do not propose another action." in result.cycles[1].follow_up.content
     assert result.final_message.content == "A:B"
     assert [message.role for message in interaction.calls] == [
-        MessageRole.USER,
-        MessageRole.SYSTEM,
-        MessageRole.SYSTEM,
+        ConversationMessageRole.USER,
+        ConversationMessageRole.SYSTEM,
+        ConversationMessageRole.SYSTEM,
     ]
     assert [message.role for message in session.history] == [
-        MessageRole.USER,
-        MessageRole.ASSISTANT,
-        MessageRole.SYSTEM,
-        MessageRole.ASSISTANT,
-        MessageRole.SYSTEM,
-        MessageRole.ASSISTANT,
+        ConversationMessageRole.USER,
+        ConversationMessageRole.ASSISTANT,
+        ConversationMessageRole.SYSTEM,
+        ConversationMessageRole.ASSISTANT,
+        ConversationMessageRole.SYSTEM,
+        ConversationMessageRole.ASSISTANT,
     ]
 
 
@@ -442,7 +441,7 @@ def test_experiment_rejects_nonpositive_projection_limit(
     with pytest.raises(ValueError, match="limit"):
         QwenReadExperiment(
             runtime=Runtime(),
-            session=Session.new(),
+            conversation=Conversation.new(),
             interaction=_ScriptedInteraction([]),
             repository_root=ResolvedPath(tmp_path.resolve()),
             max_projection_characters=limit,

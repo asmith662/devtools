@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-"""Normalized SQLite Session persistence tests."""
+"""Normalized SQLite Conversation persistence tests."""
 
 from __future__ import annotations
 
@@ -10,52 +10,57 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from devtools.context import (
+from devtools.agents.conversation import (
+    Conversation,
+    ConversationId,
+    ConversationMessage,
+    ConversationMessageRole,
     History,
-    Message,
+    InteractionSource,
     MessageId,
-    MessageRole,
-    MessageSource,
-    Session,
-    SessionId,
 )
-from devtools.interactions import ConversationRef, Interaction, InteractionTurn
-from devtools.paths import ResolvedPath
+from devtools.core.paths import ResolvedPath
+from devtools.core.time import Timestamp
+from devtools.execution import Runtime
+from devtools.models.interaction import (
+    ConversationRef,
+    ModelInteraction,
+    ModelResponse,
+    Prompt,
+)
 from devtools.persistence import (
     PersistenceConflictError,
     PersistenceFormatError,
     PersistenceVersionError,
-    SqliteSessionStore,
+    SqliteConversationStore,
 )
-from devtools.runtime import Runtime
-from devtools.time import Timestamp
 
 if TYPE_CHECKING:
     from pathlib import Path
 
 
 class FakeInteraction:
-    """A structural Interaction fake that records its received continuation."""
+    """A structural ModelInteraction fake that records its received continuation."""
 
-    def __init__(self, source: MessageSource, turn: InteractionTurn) -> None:
-        """Configure one deterministic Interaction turn."""
+    def __init__(self, source: InteractionSource, turn: ModelResponse) -> None:
+        """Configure one deterministic ModelInteraction turn."""
         self._source = source
         self._turn = turn
-        self.calls: list[tuple[Message, ConversationRef | None]] = []
+        self.calls: list[tuple[Prompt, ConversationRef | None]] = []
 
     @property
-    def source(self) -> MessageSource:
-        """Return the Interaction source."""
+    def source(self) -> InteractionSource:
+        """Return the ModelInteraction source."""
         return self._source
 
     async def send(
         self,
-        message: Message,
+        prompt: Prompt,
         *,
         conversation: ConversationRef | None = None,
-    ) -> InteractionTurn:
+    ) -> ModelResponse:
         """Record and return the configured turn."""
-        self.calls.append((message, conversation))
+        self.calls.append((prompt, conversation))
         return self._turn
 
 
@@ -69,33 +74,33 @@ def _message(
     number: int,
     *,
     content: str = "content",
-    role: MessageRole = MessageRole.USER,
+    role: ConversationMessageRole = ConversationMessageRole.USER,
     source: str = "user",
-) -> Message:
-    """Build one deterministic immutable Message."""
-    return Message(
+) -> ConversationMessage:
+    """Build one deterministic immutable ConversationMessage."""
+    return ConversationMessage(
         id=MessageId.parse(f"00000000-0000-4000-8000-{number:012d}"),
         created_at=_timestamp(number),
         content=content,
         role=role,
-        source=MessageSource(source),
+        source=InteractionSource(source),
     )
 
 
-def _store(tmp_path: Path) -> SqliteSessionStore:
+def _store(tmp_path: Path) -> SqliteConversationStore:
     """Create a store backed by one temporary absolute database path."""
-    return SqliteSessionStore(database=ResolvedPath(tmp_path / "sessions.sqlite"))
+    return SqliteConversationStore(database=ResolvedPath(tmp_path / "sessions.sqlite"))
 
 
-def _session(*, messages: tuple[Message, ...] = ()) -> Session:
-    """Build a deterministic Session fixture."""
-    return Session(
-        id=SessionId.parse("10000000-0000-4000-8000-000000000010"),
+def _session(*, messages: tuple[ConversationMessage, ...] = ()) -> Conversation:
+    """Build a deterministic Conversation fixture."""
+    return Conversation(
+        id=ConversationId.parse("10000000-0000-4000-8000-000000000010"),
         created_at=_timestamp(),
         history=History(messages=messages),
         conversations=(
-            ConversationRef(MessageSource("codex"), "thread-codex"),
-            ConversationRef(MessageSource("qwen"), "thread-qwen"),
+            ConversationRef(InteractionSource("codex"), "thread-codex"),
+            ConversationRef(InteractionSource("qwen"), "thread-qwen"),
         ),
     )
 
@@ -103,10 +108,10 @@ def _session(*, messages: tuple[Message, ...] = ()) -> Session:
 def test_sqlite_initializes_normalized_schema_and_round_trips_empty_session(
     tmp_path: Path,
 ) -> None:
-    """A new database initializes lazily and restores an empty Session."""
+    """A new database initializes lazily and restores an empty Conversation."""
     store = _store(tmp_path)
-    session = Session(
-        id=SessionId.parse("10000000-0000-4000-8000-000000000010"),
+    session = Conversation(
+        id=ConversationId.parse("10000000-0000-4000-8000-000000000010"),
         created_at=_timestamp(),
     )
 
@@ -141,8 +146,13 @@ def test_sqlite_initializes_normalized_schema_and_round_trips_empty_session(
 def test_sqlite_round_trips_duplicates_order_and_fresh_turn(tmp_path: Path) -> None:
     """Normalized rows preserve duplicate occurrences and ordered History."""
     first = _message(1, content="雪\n  ", source="caller")
-    second = _message(2, role=MessageRole.ASSISTANT, source="agent")
-    third = _message(3, content="", role=MessageRole.SYSTEM, source="system")
+    second = _message(2, role=ConversationMessageRole.ASSISTANT, source="agent")
+    third = _message(
+        3,
+        content="",
+        role=ConversationMessageRole.SYSTEM,
+        source="system",
+    )
     session = _session(messages=(first, second, first, third))
     store = _store(tmp_path)
 
@@ -173,12 +183,12 @@ def test_sqlite_round_trips_duplicates_order_and_fresh_turn(tmp_path: Path) -> N
 def test_sqlite_replaces_snapshot_history_and_conversations(tmp_path: Path) -> None:
     """Repeated save replaces stale occurrence rows and current refs exactly."""
     first = _message(1)
-    second = _message(2, role=MessageRole.ASSISTANT, source="agent")
+    second = _message(2, role=ConversationMessageRole.ASSISTANT, source="agent")
     session = _session(messages=(first, second))
     store = _store(tmp_path)
     store.save(session)
-    session.add(_message(3, role=MessageRole.SYSTEM, source="system"))
-    replacement = ConversationRef(MessageSource("codex"), "thread-new")
+    session.add(_message(3, role=ConversationMessageRole.SYSTEM, source="system"))
+    replacement = ConversationRef(InteractionSource("codex"), "thread-new")
     session.set_conversation(replacement)
     store.save(session)
 
@@ -186,10 +196,10 @@ def test_sqlite_replaces_snapshot_history_and_conversations(tmp_path: Path) -> N
 
     assert loaded is not None
     assert loaded.history == session.history
-    assert loaded.conversation_for(MessageSource("codex")) is not None
-    assert loaded.conversation_for(MessageSource("codex")) == replacement
+    assert loaded.conversation_for(InteractionSource("codex")) is not None
+    assert loaded.conversation_for(InteractionSource("codex")) == replacement
 
-    shorter = Session(
+    shorter = Conversation(
         id=session.id,
         created_at=session.created_at,
         history=History(messages=(first,)),
@@ -199,15 +209,15 @@ def test_sqlite_replaces_snapshot_history_and_conversations(tmp_path: Path) -> N
     shrunken = store.load(session.id)
     assert shrunken is not None
     assert shrunken.history.messages == (first,)
-    assert dict(shrunken.conversations) == {MessageSource("codex"): replacement}
+    assert dict(shrunken.conversations) == {InteractionSource("codex"): replacement}
 
 
 def test_sqlite_reuses_global_message_row_across_sessions(tmp_path: Path) -> None:
-    """One MessageId can be associated with multiple current Session snapshots."""
+    """One MessageId can be associated with multiple current Conversation snapshots."""
     shared = _message(1)
     first = _session(messages=(shared, shared))
-    second = Session(
-        id=SessionId.parse("10000000-0000-4000-8000-000000000011"),
+    second = Conversation(
+        id=ConversationId.parse("10000000-0000-4000-8000-000000000011"),
         created_at=_timestamp(1),
         history=History(messages=(shared,)),
     )
@@ -237,15 +247,15 @@ def test_sqlite_rejects_message_and_session_identity_conflicts_atomically(
     original = _session(messages=(original_message,))
     store = _store(tmp_path)
     store.save(original)
-    conflicting_message = Message(
+    conflicting_message = ConversationMessage(
         id=original_message.id,
         created_at=original_message.created_at,
         content="changed",
         role=original_message.role,
         source=original_message.source,
     )
-    conflicting = Session(
-        id=SessionId.parse("10000000-0000-4000-8000-000000000012"),
+    conflicting = Conversation(
+        id=ConversationId.parse("10000000-0000-4000-8000-000000000012"),
         created_at=_timestamp(2),
         history=History(messages=(_message(2), conflicting_message)),
     )
@@ -272,7 +282,7 @@ def test_sqlite_rejects_message_and_session_identity_conflicts_atomically(
     finally:
         connection.close()
 
-    changed_created_at = Session(
+    changed_created_at = Conversation(
         id=original.id,
         created_at=_timestamp(10),
         history=original.history,
@@ -291,9 +301,9 @@ def test_sqlite_rejects_unsupported_and_unrelated_databases(tmp_path: Path) -> N
         connection.commit()
     finally:
         connection.close()
-    store = SqliteSessionStore(database=ResolvedPath(database))
+    store = SqliteConversationStore(database=ResolvedPath(database))
     with pytest.raises(PersistenceVersionError):
-        store.load(SessionId.parse("10000000-0000-4000-8000-000000000010"))
+        store.load(ConversationId.parse("10000000-0000-4000-8000-000000000010"))
 
     unrelated = tmp_path / "unrelated.sqlite"
     connection = sqlite3.connect(unrelated)
@@ -303,15 +313,15 @@ def test_sqlite_rejects_unsupported_and_unrelated_databases(tmp_path: Path) -> N
     finally:
         connection.close()
     with pytest.raises(PersistenceFormatError):
-        SqliteSessionStore(database=ResolvedPath(unrelated)).load(
-            SessionId.parse("10000000-0000-4000-8000-000000000010"),
+        SqliteConversationStore(database=ResolvedPath(unrelated)).load(
+            ConversationId.parse("10000000-0000-4000-8000-000000000010"),
         )
 
 
 def test_sqlite_rejects_missing_required_tables_and_invalid_positions(
     tmp_path: Path,
 ) -> None:
-    """Known schema corruption cannot silently reconstruct a Session."""
+    """Known schema corruption cannot silently reconstruct a Conversation."""
     store = _store(tmp_path)
     session = _session(messages=(_message(1),))
     store.save(session)
@@ -331,13 +341,13 @@ def test_sqlite_rejects_missing_required_tables_and_invalid_positions(
     malformed = tmp_path / "malformed.sqlite"
     connection = sqlite3.connect(malformed)
     try:
-        connection.execute("CREATE TABLE sessions(session_id TEXT)")
+        connection.execute("CREATE TABLE sessions(conversation_id TEXT)")
         connection.execute("PRAGMA user_version = 1")
         connection.commit()
     finally:
         connection.close()
     with pytest.raises(PersistenceFormatError):
-        SqliteSessionStore(database=ResolvedPath(malformed)).load(session.id)
+        SqliteConversationStore(database=ResolvedPath(malformed)).load(session.id)
 
 
 def test_sqlite_rejects_version_one_schema_missing_required_column(
@@ -349,7 +359,7 @@ def test_sqlite_rejects_version_one_schema_missing_required_column(
     try:
         connection.executescript(
             """
-            CREATE TABLE sessions(session_id TEXT, created_at TEXT);
+            CREATE TABLE sessions(conversation_id TEXT, created_at TEXT);
             CREATE TABLE messages(
                 message_id TEXT,
                 created_at TEXT,
@@ -357,11 +367,11 @@ def test_sqlite_rejects_version_one_schema_missing_required_column(
                 source TEXT
             );
             CREATE TABLE session_messages(
-                session_id TEXT,
+                conversation_id TEXT,
                 position INTEGER,
                 message_id TEXT
             );
-            CREATE TABLE conversations(session_id TEXT, source TEXT, value TEXT);
+            CREATE TABLE conversations(conversation_id TEXT, source TEXT, value TEXT);
             PRAGMA user_version = 1;
             """,
         )
@@ -370,8 +380,8 @@ def test_sqlite_rejects_version_one_schema_missing_required_column(
         connection.close()
 
     with pytest.raises(PersistenceFormatError):
-        SqliteSessionStore(database=ResolvedPath(database)).load(
-            SessionId.parse("10000000-0000-4000-8000-000000000010"),
+        SqliteConversationStore(database=ResolvedPath(database)).load(
+            ConversationId.parse("10000000-0000-4000-8000-000000000010"),
         )
 
 
@@ -397,7 +407,7 @@ def test_sqlite_normalizes_corrupt_timestamp_rows(tmp_path: Path) -> None:
 def test_sqlite_rejects_missing_final_referenced_message_row(tmp_path: Path) -> None:
     """A damaged final occurrence cannot silently truncate persisted History."""
     first = _message(1)
-    final = _message(2, role=MessageRole.ASSISTANT, source="agent")
+    final = _message(2, role=ConversationMessageRole.ASSISTANT, source="agent")
     session = _session(messages=(first, final))
     store = _store(tmp_path)
     store.save(session)
@@ -417,10 +427,10 @@ def test_sqlite_rejects_missing_final_referenced_message_row(tmp_path: Path) -> 
 
 
 def test_sqlite_loaded_session_works_directly_with_runtime(tmp_path: Path) -> None:
-    """A restored Session supplies its persisted continuation to Runtime."""
-    existing = ConversationRef(MessageSource("agent"), "thread-a")
-    session = Session(
-        id=SessionId.parse("10000000-0000-4000-8000-000000000020"),
+    """A restored Conversation supplies its persisted continuation to Runtime."""
+    existing = ConversationRef(InteractionSource("agent"), "thread-a")
+    session = Conversation(
+        id=ConversationId.parse("10000000-0000-4000-8000-000000000020"),
         created_at=_timestamp(),
         conversations=(existing,),
     )
@@ -428,21 +438,25 @@ def test_sqlite_loaded_session_works_directly_with_runtime(tmp_path: Path) -> No
     store.save(session)
     loaded = store.load(session.id)
     assert loaded is not None
-    response = _message(2, role=MessageRole.ASSISTANT, source="agent")
-    replacement = ConversationRef(MessageSource("agent"), "thread-b")
-    fake: Interaction = FakeInteraction(
-        MessageSource("agent"), InteractionTurn(response, replacement),
+    replacement = ConversationRef(InteractionSource("agent"), "thread-b")
+    fake: ModelInteraction = FakeInteraction(
+        InteractionSource("agent"),
+        ModelResponse(
+            content="response",
+            source=InteractionSource("agent"),
+            conversation=replacement,
+        ),
     )
 
     async def exercise() -> None:
         turn = await Runtime().send(
-            session=loaded,
+            conversation=loaded,
             interaction=fake,
             message=_message(1),
         )
-        assert turn.message is response
+        assert turn.content == "response"
 
     asyncio.run(exercise())
     assert isinstance(fake, FakeInteraction)
     assert fake.calls[0][1] == existing
-    assert loaded.conversation_for(MessageSource("agent")) == replacement
+    assert loaded.conversation_for(InteractionSource("agent")) == replacement

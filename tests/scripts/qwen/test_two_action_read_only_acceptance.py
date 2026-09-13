@@ -15,9 +15,12 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from devtools.context import Message, MessageRole, MessageSource
-from devtools.filesystem import FilesystemNotFoundError
-from devtools.interactions import ConversationRef, InteractionTurn
+from devtools.agents.conversation import (
+    ConversationMessage,
+    InteractionSource,
+)
+from devtools.models.interaction import ConversationRef, ModelResponse
+from devtools.resources.filesystem import FilesystemNotFoundError
 
 if TYPE_CHECKING:
     from collections.abc import Iterator
@@ -47,28 +50,22 @@ def acceptance() -> Iterator[ModuleType]:
 
 @dataclass(slots=True)
 class _ScriptedInteraction:
-    """Return exact planned assistant results through the Interaction contract."""
+    """Return exact planned assistant results through the ModelInteraction contract."""
 
     responses: list[str]
-    calls: list[Message] = field(default_factory=list)
-    source: MessageSource = field(default_factory=lambda: MessageSource("qwen"))
+    calls: list[ConversationMessage] = field(default_factory=list)
+    source: InteractionSource = field(default_factory=lambda: InteractionSource("qwen"))
 
     async def send(
         self,
-        message: Message,
+        message: ConversationMessage,
         *,
         conversation: ConversationRef | None = None,
-    ) -> InteractionTurn:
-        """Retain one caller message and produce the next assistant Message."""
+    ) -> ModelResponse:
+        """Retain one caller message and produce the next assistant ConversationMessage."""
         assert conversation is None
         self.calls.append(message)
-        return InteractionTurn(
-            Message.new(
-                self.responses.pop(0),
-                role=MessageRole.ASSISTANT,
-                source=self.source,
-            ),
-        )
+        return ModelResponse(content=self.responses.pop(0), source=self.source)
 
 
 def test_malformed_first_proposal_retains_raw_assistant_without_execution(

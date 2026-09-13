@@ -20,14 +20,19 @@ _REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 if str(_REPOSITORY_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPOSITORY_ROOT))
 
-from devtools.commands import Command, CommandExecutor
-from devtools.context import Message, MessageRole, MessageSource, Session
-from devtools.interactions.providers import (
+from devtools.agents.conversation import (
+    Conversation,
+    ConversationMessage,
+    ConversationMessageRole,
+    InteractionSource,
+)
+from devtools.core.paths import ResolvedPath
+from devtools.execution import Runtime
+from devtools.models.interaction.providers import (
     LlamaCppInteraction,
     LlamaCppInteractionError,
 )
-from devtools.paths import ResolvedPath
-from devtools.runtime import Runtime
+from devtools.resources.commands import Command, CommandExecutor
 from devtools.tools.filesystem import (
     ListRepositoryDirectoryTool,
     ReadRepositoryFileTool,
@@ -44,12 +49,12 @@ from experiments.qwen.two_action_read_only_experiment import (
 if TYPE_CHECKING:
     from collections.abc import Sequence
 
-    from devtools.interactions import Interaction
+    from devtools.models.interaction import ModelInteraction
 
 
 _DEFAULT_ENDPOINT = "http://127.0.0.1:8080"
 _DEFAULT_MODEL = "qwen38-local"
-_CALLER_SOURCE = MessageSource("qwen-two-action-read-only-acceptance")
+_CALLER_SOURCE = InteractionSource("qwen-two-action-read-only-acceptance")
 _SERVICE_SCRIPT = Path(__file__).with_name("llama_cpp_service.py")
 _REPORT_SCHEMA = "qwen-two-action-read-only-acceptance/1"
 _REQUIRED_ACTIONS = 2
@@ -68,8 +73,8 @@ class QwenTwoActionReadOnlyFixture:
 class QwenTwoActionReadOnlyReport:
     """Retain bounded live acceptance diagnostics without framework tracing."""
 
-    task: Message
-    history: tuple[Message, ...]
+    task: ConversationMessage
+    history: tuple[ConversationMessage, ...]
     execution_actions: tuple[str, ...]
     execution_paths: tuple[str, ...]
     cycles: tuple[QwenReadOnlyCycle, ...]
@@ -77,7 +82,7 @@ class QwenTwoActionReadOnlyReport:
     failure_category: str | None
     error_type: str | None
     error_message: str | None
-    latest_assistant: Message | None
+    latest_assistant: ConversationMessage | None
 
 
 @dataclass(frozen=True, slots=True)
@@ -106,7 +111,7 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
     return parser.parse_args(arguments)
 
 
-def initial_task() -> Message:
+def initial_task() -> ConversationMessage:
     """Construct the fixed model-facing task without target-file or nonce leakage."""
     content = """Find the only direct file in facts whose basename begins target-, read it, and return its exact contents.
 
@@ -119,7 +124,11 @@ read_repository_file: Read one repository-relative supported text file.
 {"action":"read_repository_file","path":"<repository-relative-path>"}
 
 If requesting an action, your entire response must be exactly one bare JSON object and nothing else. Do not use Markdown or prose around a proposal. When you have enough information, provide the final answer as plain text."""
-    return Message.new(content, role=MessageRole.USER, source=_CALLER_SOURCE)
+    return ConversationMessage.new(
+        content,
+        role=ConversationMessageRole.USER,
+        source=_CALLER_SOURCE,
+    )
 
 
 def create_fixture(parent: Path) -> QwenTwoActionReadOnlyFixture:
@@ -136,16 +145,16 @@ def create_fixture(parent: Path) -> QwenTwoActionReadOnlyFixture:
 
 async def run_acceptance(
     *,
-    task: Message,
+    task: ConversationMessage,
     repository_root: Path,
-    interaction: Interaction,
+    interaction: ModelInteraction,
 ) -> QwenTwoActionReadOnlyReport:
     """Run production experiment code while retaining bounded failure diagnostics."""
-    session = Session.new()
+    session = Conversation.new()
     completed_cycles: list[QwenReadOnlyCycle] = []
     experiment = QwenTwoActionReadOnlyExperiment(
         runtime=Runtime(),
-        session=session,
+        conversation=session,
         interaction=interaction,
         repository_root=ResolvedPath(repository_root),
         on_cycle_completed=completed_cycles.append,
@@ -155,7 +164,10 @@ async def run_acceptance(
     original_list = ListRepositoryDirectoryTool.execute
     original_read = ReadRepositoryFileTool.execute
 
-    async def counted_list(tool: ListRepositoryDirectoryTool, path: ResolvedPath) -> object:
+    async def counted_list(
+        tool: ListRepositoryDirectoryTool,
+        path: ResolvedPath,
+    ) -> object:
         actions.append("list_repository_directory")
         paths.append(str(path))
         return await original_list(tool, path)
@@ -203,15 +215,16 @@ async def run_acceptance(
 
 
 def _latest_assistant(
-    history: tuple[Message, ...],
-    interaction_source: MessageSource,
-) -> Message | None:
-    """Return the latest exact retained assistant Message from the selected source."""
+    history: tuple[ConversationMessage, ...],
+    interaction_source: InteractionSource,
+) -> ConversationMessage | None:
+    """Return the latest exact retained assistant ConversationMessage from the selected source."""
     return next(
         (
             message
             for message in reversed(history)
-            if message.role is MessageRole.ASSISTANT and message.source == interaction_source
+            if message.role is ConversationMessageRole.ASSISTANT
+            and message.source == interaction_source
         ),
         None,
     )
@@ -249,12 +262,18 @@ def _verdict(outcome: QwenTwoActionReadOnlyOutcome) -> str:
     return "PASS"
 
 
-def _message_payload(message: Message) -> dict[str, str]:
-    """Serialize only safe retained Message facts for this script-local artifact."""
-    return {"role": message.role.value, "source": message.source.value, "content": message.content}
+def _message_payload(message: ConversationMessage) -> dict[str, str]:
+    """Serialize only safe retained ConversationMessage facts for this script-local artifact."""
+    return {
+        "role": message.role.value,
+        "source": message.source.value,
+        "content": message.content,
+    }
 
 
-def _cycle_payload(cycle: QwenListDirectoryCycle | QwenReadRepositoryFileCycle) -> dict[str, object]:
+def _cycle_payload(
+    cycle: QwenListDirectoryCycle | QwenReadRepositoryFileCycle,
+) -> dict[str, object]:
     """Serialize heterogeneous experiment-local cycles without a generic event model."""
     payload: dict[str, object] = {
         "proposal": _message_payload(cycle.proposal),
@@ -290,12 +309,25 @@ def _report_payload(outcome: QwenTwoActionReadOnlyOutcome) -> dict[str, object]:
         },
         "task": _message_payload(report.task),
         "history": [_message_payload(message) for message in report.history],
-        "latest_assistant": _message_payload(report.latest_assistant) if report.latest_assistant else None,
-        "tool_executions": {"actions": list(report.execution_actions), "resolved_paths": list(report.execution_paths)},
+        "latest_assistant": _message_payload(report.latest_assistant)
+        if report.latest_assistant
+        else None,
+        "tool_executions": {
+            "actions": list(report.execution_actions),
+            "resolved_paths": list(report.execution_paths),
+        },
         "cycles": [_cycle_payload(cycle) for cycle in report.cycles],
         "final_answer": report.result.final_message.content if report.result else None,
-        "failure": {"category": report.failure_category, "error_type": report.error_type, "error_message": report.error_message},
-        "persistent_service": {"status": outcome.persistent_service_status, "error_type": outcome.persistent_service_error_type, "error_message": outcome.persistent_service_error_message},
+        "failure": {
+            "category": report.failure_category,
+            "error_type": report.error_type,
+            "error_message": report.error_message,
+        },
+        "persistent_service": {
+            "status": outcome.persistent_service_status,
+            "error_type": outcome.persistent_service_error_type,
+            "error_message": outcome.persistent_service_error_message,
+        },
     }
 
 
@@ -338,7 +370,7 @@ async def run(arguments: argparse.Namespace) -> QwenTwoActionReadOnlyOutcome:
                 interaction=LlamaCppInteraction(
                     endpoint=arguments.endpoint,
                     model=arguments.model,
-                    source=MessageSource("qwen"),
+                    source=InteractionSource("qwen"),
                 ),
             )
             try:
@@ -368,10 +400,14 @@ def _print_outcome(outcome: QwenTwoActionReadOnlyOutcome) -> None:
     print(f"acceptance verdict: {_verdict(outcome)}")
     print(f"tool actions: {', '.join(outcome.report.execution_actions) or 'none'}")
     print(f"tool paths: {', '.join(outcome.report.execution_paths) or 'none'}")
-    print(f"final answer: {outcome.report.result.final_message.content if outcome.report.result else 'unavailable'}")
+    print(
+        f"final answer: {outcome.report.result.final_message.content if outcome.report.result else 'unavailable'}",
+    )
     print(f"target filename: {outcome.target_filename}")
     print(f"nonce: {outcome.nonce}")
-    print(f"persistent service status: {outcome.persistent_service_status or outcome.persistent_service_error_message}")
+    print(
+        f"persistent service status: {outcome.persistent_service_status or outcome.persistent_service_error_message}",
+    )
 
 
 def main(arguments: Sequence[str] | None = None) -> None:

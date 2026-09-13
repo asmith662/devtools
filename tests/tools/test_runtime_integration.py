@@ -1,194 +1,183 @@
 # Copyright (c) 2026
-"""Runtime integration tests for nested experimental CommandTool execution."""
+# ruff: noqa: E501
+"""Runtime integration tests for the command-backed Tool adapter."""
 
 from __future__ import annotations
 
 import asyncio
 import sys
-from typing import TYPE_CHECKING
 
 import pytest
 
-from devtools.commands import Command, CommandExecutor, CommandNotFoundError
-from devtools.context import Message, MessageRole, MessageSource, Session
-from devtools.evidence import AttemptCancelled, AttemptFailed, AttemptStage
-from devtools.interactions import ConversationRef, InteractionTurn
-from devtools.runtime import Runtime
+from devtools.agents.conversation import (
+    Conversation,
+    ConversationMessage,
+    ConversationMessageRole,
+)
+from devtools.execution import (
+    InteractionAttemptCancelled,
+    InteractionAttemptFailed,
+    InteractionAttemptStage,
+    Runtime,
+)
+from devtools.models.interaction import (
+    ConversationRef,
+    InteractionSource,
+    ModelResponse,
+    Prompt,
+)
+from devtools.observability.evidence import ExecutionInspector
+from devtools.resources.commands import Command, CommandExecutor, CommandNotFoundError
 from devtools.tools import ToolRunner
 from devtools.tools.command import CommandTool
 
-if TYPE_CHECKING:
-    from devtools.evidence import AttemptTerminalEvidence
-
-
-_EXPECTED_HISTORY_MESSAGES = 2
-
 
 class _CommandToolInteraction:
-    """Map one CommandTool result into an InteractionTurn in a realistic fake."""
+    """Adapt one real CommandTool execution into model-boundary output for tests."""
 
     def __init__(
         self,
         command: Command,
         *,
-        return_source: MessageSource | None = None,
+        return_source: InteractionSource | None = None,
     ) -> None:
-        """Configure one nested CommandTool invocation."""
+        """Configure one nested Tool invocation."""
         self._command = command
         self._return_source = return_source or self.source
         self._runner = ToolRunner()
         self._tool = CommandTool(CommandExecutor())
 
     @property
-    def source(self) -> MessageSource:
-        """Return the source represented by this concrete test Interaction."""
-        return MessageSource("command-tool-interaction")
+    def source(self) -> InteractionSource:
+        """Return the source represented by this test ModelInteraction."""
+        return InteractionSource("command-tool-interaction")
 
     async def send(
         self,
-        message: Message,
+        prompt: Prompt,
         *,
         conversation: ConversationRef | None = None,
-    ) -> InteractionTurn:
-        """Invoke CommandTool and map its output into the frozen contract."""
-        del message, conversation
+    ) -> ModelResponse:
+        """Execute the Tool and return model output without conversation identity."""
+        del prompt, conversation
         result = await self._runner.execute(self._tool, self._command)
-        return InteractionTurn(
-            Message.new(
-                result.stdout.decode().strip(),
-                role=MessageRole.ASSISTANT,
-                source=self._return_source,
-            ),
+        return ModelResponse(
+            content=result.stdout.decode().strip(),
+            source=self._return_source,
         )
 
 
-class _Sink:
-    """Retain terminal Evidence through the frozen structural sink seam."""
-
-    def __init__(self) -> None:
-        """Create an empty Evidence collector."""
-        self.accepted: list[AttemptTerminalEvidence] = []
-
-    def accept(self, evidence: AttemptTerminalEvidence) -> None:
-        """Retain one terminal Evidence value."""
-        self.accepted.append(evidence)
-
-
-def _message(content: str) -> Message:
-    """Create one caller-owned Runtime input Message."""
-    return Message.new(content, role=MessageRole.USER, source=MessageSource("caller"))
+def _message(content: str) -> ConversationMessage:
+    """Create one caller-owned Runtime input ConversationMessage."""
+    return ConversationMessage.new(
+        content,
+        role=ConversationMessageRole.USER,
+        source=InteractionSource("caller"),
+    )
 
 
 def test_runtime_interaction_executes_real_command_tool_successfully() -> None:
-    """A real command executes through Runtime, Interaction, ToolRunner, and Tool."""
+    """A Tool result crosses the ModelResponse then conversation materialization boundary."""
 
     async def exercise() -> None:
-        interaction = _CommandToolInteraction(
-            Command(sys.executable, ("-c", "print('nested tool')")),
-        )
-        session = Session.new()
-
-        turn = await Runtime().send(
-            session=session,
-            interaction=interaction,
+        conversation = Conversation.new()
+        response = await Runtime().send(
+            conversation=conversation,
+            interaction=_CommandToolInteraction(
+                Command(sys.executable, ("-c", "print('nested tool')")),
+            ),
             message=_message("run command"),
         )
-
-        assert turn.message.content == "nested tool"
-        assert len(session.history) == _EXPECTED_HISTORY_MESSAGES
+        assert response.content == "nested tool"
+        assert [message.content for message in conversation.history] == [
+            "run command",
+            "nested tool",
+        ]
 
     asyncio.run(exercise())
 
 
-def test_tool_failure_remains_outer_interaction_invocation_failure() -> None:
-    """A CommandTool error leaves Runtime stage ownership unchanged."""
+def test_tool_failure_is_observed_as_interaction_invocation_failure() -> None:
+    """Runtime owns lifecycle facts while observability constructs terminal Evidence."""
 
     async def exercise() -> None:
-        sink = _Sink()
-        interaction = _CommandToolInteraction(Command("missing-command"))
-
+        inspector = ExecutionInspector()
         with pytest.raises(CommandNotFoundError):
-            await Runtime(evidence_sink=sink).send(
-                session=Session.new(),
-                interaction=interaction,
+            await Runtime(observer=inspector).send(
+                conversation=Conversation.new(),
+                interaction=_CommandToolInteraction(Command("missing-command")),
                 message=_message("run command"),
             )
-
-        outcome = sink.accepted[0].outcome
-        assert isinstance(outcome, AttemptFailed)
-        assert outcome.stage is AttemptStage.INTERACTION_INVOCATION
+        attempt_id = inspector.attempt_ids()[0]
+        evidence = inspector.get_evidence_for_attempt(attempt_id)[0]
+        assert isinstance(evidence.outcome, InteractionAttemptFailed)
+        assert evidence.outcome.stage is InteractionAttemptStage.INTERACTION_INVOCATION
 
     asyncio.run(exercise())
 
 
-def test_tool_cancellation_remains_outer_interaction_invocation_cancellation(
+def test_tool_result_with_wrong_model_source_fails_response_validation() -> None:
+    """Tool success does not bypass Runtime's model-response source validation."""
+
+    async def exercise() -> None:
+        inspector = ExecutionInspector()
+        with pytest.raises(ValueError, match="source"):
+            await Runtime(observer=inspector).send(
+                conversation=Conversation.new(),
+                interaction=_CommandToolInteraction(
+                    Command(sys.executable, ("-c", "print('nested tool')")),
+                    return_source=InteractionSource("wrong-source"),
+                ),
+                message=_message("run command"),
+            )
+        evidence = inspector.get_evidence_for_attempt(inspector.attempt_ids()[0])[0]
+        assert isinstance(evidence.outcome, InteractionAttemptFailed)
+        assert evidence.outcome.stage is InteractionAttemptStage.RESULT_VALIDATION
+
+    asyncio.run(exercise())
+
+
+def test_cancelled_command_tool_is_observed_as_invocation_cancellation(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    """CommandTool cancellation preserves Runtime's outer stage vocabulary."""
+    """Nested Tool cancellation preserves the outer specialized attempt stage."""
     process = _BlockingProcess()
 
     async def create_process(*_args: object, **_kwargs: object) -> _BlockingProcess:
         return process
 
     monkeypatch.setattr(
-        "devtools.commands.execution.asyncio.create_subprocess_exec",
+        "devtools.resources.commands.execution.asyncio.create_subprocess_exec",
         create_process,
     )
 
     async def exercise() -> None:
-        sink = _Sink()
+        inspector = ExecutionInspector()
         task = asyncio.create_task(
-            Runtime(evidence_sink=sink).send(
-                session=Session.new(),
+            Runtime(observer=inspector).send(
+                conversation=Conversation.new(),
                 interaction=_CommandToolInteraction(Command("blocking-command")),
                 message=_message("run command"),
             ),
         )
         await process.read_started.wait()
         task.cancel()
-
         with pytest.raises(asyncio.CancelledError):
             await task
-
-        outcome = sink.accepted[0].outcome
-        assert isinstance(outcome, AttemptCancelled)
-        assert outcome.stage is AttemptStage.INTERACTION_INVOCATION
+        evidence = inspector.get_evidence_for_attempt(inspector.attempt_ids()[0])[0]
+        assert isinstance(evidence.outcome, InteractionAttemptCancelled)
+        assert evidence.outcome.stage is InteractionAttemptStage.INTERACTION_INVOCATION
 
     asyncio.run(exercise())
-
     assert process.killed is True
     assert process.waited is True
-
-
-def test_tool_success_does_not_change_later_runtime_result_validation_stage() -> None:
-    """A later invalid InteractionTurn remains Runtime's RESULT_VALIDATION failure."""
-
-    async def exercise() -> None:
-        sink = _Sink()
-        interaction = _CommandToolInteraction(
-            Command(sys.executable, ("-c", "print('nested tool')")),
-            return_source=MessageSource("wrong-source"),
-        )
-
-        with pytest.raises(ValueError, match="source"):
-            await Runtime(evidence_sink=sink).send(
-                session=Session.new(),
-                interaction=interaction,
-                message=_message("run command"),
-            )
-
-        outcome = sink.accepted[0].outcome
-        assert isinstance(outcome, AttemptFailed)
-        assert outcome.stage is AttemptStage.RESULT_VALIDATION
-
-    asyncio.run(exercise())
 
 
 class _BlockingProcess:
     """Minimal command process fake for deterministic nested cancellation."""
 
     def __init__(self) -> None:
-        """Initialize streams and immediate-child cleanup observations."""
+        """Initialize stream and cleanup observations."""
         self.killed = False
         self.read_started = asyncio.Event()
         self.returncode: int | None = None
@@ -209,7 +198,7 @@ class _BlockingStream:
     """Stream fake whose read waits for cancellation."""
 
     def __init__(self, read_started: asyncio.Event) -> None:
-        """Store the common stream-start event."""
+        """Store common stream-start observation."""
         self._read_started = read_started
         self._release = asyncio.Event()
 

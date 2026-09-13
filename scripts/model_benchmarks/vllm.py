@@ -10,18 +10,18 @@ import sys
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from devtools.commands import CommandExecutor
-from devtools.model_benchmarks.models import BenchmarkCase, ModelBenchmarkResult
-from devtools.model_benchmarks.runner import run_vllm_benchmark
-from devtools.model_benchmarks.storage import save_benchmark_result
-from devtools.model_serving.huggingface import HuggingFaceModelRef
-from devtools.model_serving.vllm import (
+from devtools.core.paths import ResolvedPath, resolve_path
+from devtools.core.time import Duration
+from devtools.models.benchmarks.models import BenchmarkCase, ModelBenchmarkResult
+from devtools.models.benchmarks.runner import run_vllm_benchmark
+from devtools.models.benchmarks.storage import save_benchmark_result
+from devtools.models.serving.huggingface import HuggingFaceModelRef
+from devtools.models.serving.vllm import (
     DEFAULT_READINESS_TIMEOUT,
     VLLMServer,
     VLLMServingConfig,
 )
-from devtools.paths import ResolvedPath, resolve_path
-from devtools.time import Duration
+from devtools.resources.commands import CommandExecutor
 
 if TYPE_CHECKING:
     from collections.abc import Sequence

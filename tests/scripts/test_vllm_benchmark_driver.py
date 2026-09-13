@@ -13,15 +13,15 @@ from typing import TYPE_CHECKING, Literal
 
 import pytest
 
-from devtools.model_benchmarks.models import (
+from devtools.core.paths import ResolvedPath
+from devtools.core.time import Duration, Timestamp
+from devtools.models.benchmarks.models import (
     BenchmarkCase,
     ModelBenchmarkResult,
     VLLMBenchmarkServingSnapshot,
 )
-from devtools.model_serving.huggingface import HuggingFaceModelRef
-from devtools.model_serving.vllm import VLLMServingConfig
-from devtools.paths import ResolvedPath
-from devtools.time import Duration, Timestamp
+from devtools.models.serving.huggingface import HuggingFaceModelRef
+from devtools.models.serving.vllm import VLLMServingConfig
 
 if TYPE_CHECKING:
     from types import ModuleType

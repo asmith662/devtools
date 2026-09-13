@@ -1,36 +1,39 @@
 # Copyright (c) 2026
-"""Private Session semantic snapshot capture and reconstruction helpers."""
+"""Private Conversation semantic snapshot capture and reconstruction helpers."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from devtools.context.history import History
-from devtools.context.message import Message
-from devtools.context.session import Session
+from devtools.agents.conversation.conversation import Conversation
+from devtools.agents.conversation.history import History
+from devtools.agents.conversation.message import ConversationMessage
 from devtools.persistence.errors import PersistenceConflictError
 
 if TYPE_CHECKING:
-    from devtools.context.message import MessageId, MessageRole, MessageSource
-    from devtools.context.session import SessionId
-    from devtools.interactions import ConversationRef
-    from devtools.time import Timestamp
+    from devtools.agents.conversation.conversation import ConversationId
+    from devtools.agents.conversation.message import (
+        ConversationMessageRole,
+        MessageId,
+    )
+    from devtools.core.time import Timestamp
+    from devtools.models.interaction import ConversationRef, InteractionSource
 
 
 @dataclass(frozen=True, slots=True)
 class _MessageSnapshot:
-    """Represent immutable Message state for private persistence use."""
+    """Represent immutable ConversationMessage state for private persistence use."""
 
     id: MessageId
     created_at: Timestamp
     content: str
-    role: MessageRole
-    source: MessageSource
+    role: ConversationMessageRole
+    source: InteractionSource
 
     @classmethod
-    def from_message(cls, message: Message) -> _MessageSnapshot:
-        """Capture immutable Message state."""
+    def from_message(cls, message: ConversationMessage) -> _MessageSnapshot:
+        """Capture immutable ConversationMessage state."""
         return cls(
             id=message.id,
             created_at=message.created_at,
@@ -39,9 +42,9 @@ class _MessageSnapshot:
             source=message.source,
         )
 
-    def to_message(self) -> Message:
-        """Restore one immutable Message value."""
-        return Message(
+    def to_message(self) -> ConversationMessage:
+        """Restore one immutable ConversationMessage value."""
+        return ConversationMessage(
             id=self.id,
             created_at=self.created_at,
             content=self.content,
@@ -51,59 +54,59 @@ class _MessageSnapshot:
 
 
 @dataclass(frozen=True, slots=True)
-class _SessionSnapshot:
-    """Represent private semantic Session state shared by persistence formats."""
+class _ConversationSnapshot:
+    """Represent private semantic Conversation state shared by persistence formats."""
 
-    id: SessionId
+    id: ConversationId
     created_at: Timestamp
     messages: tuple[_MessageSnapshot, ...]
     conversations: tuple[ConversationRef, ...]
 
 
-def capture_session(session: Session) -> _SessionSnapshot:
-    """Capture the current semantic state of a Session.
+def capture_conversation(conversation: Conversation) -> _ConversationSnapshot:
+    """Capture the current semantic state of a Conversation.
 
-    Callers coordinating with active Runtime work must hold ``session.turn()``
+    Callers coordinating with active Runtime work must hold ``conversation.turn()``
     before invoking a synchronous persistence operation.
     """
     return snapshot_from_values(
-        session_id=session.id,
-        created_at=session.created_at,
+        conversation_id=conversation.id,
+        created_at=conversation.created_at,
         messages=tuple(
-            _MessageSnapshot.from_message(message) for message in session.history
+            _MessageSnapshot.from_message(message) for message in conversation.history
         ),
-        conversations=tuple(session.conversations.values()),
+        conversations=tuple(conversation.conversations.values()),
     )
 
 
 def snapshot_from_values(
     *,
-    session_id: SessionId,
+    conversation_id: ConversationId,
     created_at: Timestamp,
     messages: tuple[_MessageSnapshot, ...],
     conversations: tuple[ConversationRef, ...],
-) -> _SessionSnapshot:
-    """Validate and assemble private semantic Session state."""
+) -> _ConversationSnapshot:
+    """Validate and assemble private semantic Conversation state."""
     _validate_message_ids(messages)
-    return _SessionSnapshot(
-        id=session_id,
+    return _ConversationSnapshot(
+        id=conversation_id,
         created_at=created_at,
         messages=messages,
         conversations=tuple(sorted(conversations, key=lambda item: str(item.source))),
     )
 
 
-def restore_session(snapshot: _SessionSnapshot) -> Session:
-    """Reconstruct a new Session with fresh local coordination state."""
-    restored_messages: dict[MessageId, Message] = {}
-    messages: list[Message] = []
+def restore_conversation(snapshot: _ConversationSnapshot) -> Conversation:
+    """Reconstruct a new Conversation with fresh local coordination state."""
+    restored_messages: dict[MessageId, ConversationMessage] = {}
+    messages: list[ConversationMessage] = []
     for message_snapshot in snapshot.messages:
         message = restored_messages.get(message_snapshot.id)
         if message is None:
             message = message_snapshot.to_message()
             restored_messages[message_snapshot.id] = message
         messages.append(message)
-    return Session(
+    return Conversation(
         id=snapshot.id,
         created_at=snapshot.created_at,
         history=History(messages=tuple(messages)),

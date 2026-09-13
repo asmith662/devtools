@@ -8,21 +8,25 @@ from dataclasses import dataclass
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import TYPE_CHECKING
 
-from devtools.context import Message, MessageRole, MessageSource
-from devtools.filesystem import TextFile
-from devtools.paths import resolve_path
+from devtools.agents.conversation import (
+    ConversationMessage,
+    ConversationMessageRole,
+    InteractionSource,
+)
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import TextFile
 from devtools.tools import ToolRunner
 from devtools.tools.filesystem import ReadRepositoryFileTool
 
 if TYPE_CHECKING:
-    from devtools.context import Session
-    from devtools.interactions import Interaction
-    from devtools.paths import ResolvedPath
-    from devtools.runtime import Runtime
+    from devtools.agents.conversation import Conversation
+    from devtools.core.paths import ResolvedPath
+    from devtools.execution import Runtime
+    from devtools.models.interaction import ModelInteraction
 
 
 _ACTION = "read_repository_file"
-_CONTROLLER_SOURCE = MessageSource("runtime")
+_CONTROLLER_SOURCE = InteractionSource("runtime")
 _DEFAULT_MAX_PROJECTION_CHARACTERS = 4_096
 _MAX_READS = 2
 _READ_PROPOSAL_FORM = (
@@ -42,20 +46,20 @@ class ResultProjectionError(ValueError):
 class QwenReadCycle:
     """Retain one accepted experimental read and its controller continuation."""
 
-    proposal: Message
+    proposal: ConversationMessage
     relative_path: str
     resolved_path: ResolvedPath
     result_projection: str
-    follow_up: Message
+    follow_up: ConversationMessage
 
 
 @dataclass(frozen=True, slots=True)
 class QwenReadExperimentResult:
     """Retain minimal ordered causal facts from the bounded read experiment."""
 
-    task: Message
+    task: ConversationMessage
     cycles: tuple[QwenReadCycle, ...]
-    final_message: Message
+    final_message: ConversationMessage
 
 
 class QwenReadExperiment:
@@ -65,8 +69,8 @@ class QwenReadExperiment:
         self,
         *,
         runtime: Runtime,
-        session: Session,
-        interaction: Interaction,
+        conversation: Conversation,
+        interaction: ModelInteraction,
         repository_root: ResolvedPath,
         max_projection_characters: int = _DEFAULT_MAX_PROJECTION_CHARACTERS,
     ) -> None:
@@ -75,23 +79,24 @@ class QwenReadExperiment:
             msg = "Projection character limit must be positive."
             raise ValueError(msg)
         self._runtime = runtime
-        self._session = session
+        self._conversation = conversation
         self._interaction = interaction
         self._root = resolve_path(repository_root.value)
         self._max_projection_characters = max_projection_characters
 
-    async def run(self, task: Message) -> QwenReadExperimentResult:
+    async def run(self, task: ConversationMessage) -> QwenReadExperimentResult:
         """Run ordinary Runtime turns around at most two repository reads."""
         turn = await self._runtime.send(
-            session=self._session,
+            conversation=self._conversation,
             interaction=self._interaction,
             message=task,
         )
         cycles: list[QwenReadCycle] = []
         while True:
-            relative_path = _classify_response(turn.message.content)
+            response_message = self._conversation.history[-1]
+            relative_path = _classify_response(turn.content)
             if relative_path is None:
-                return QwenReadExperimentResult(task, tuple(cycles), turn.message)
+                return QwenReadExperimentResult(task, tuple(cycles), response_message)
             if len(cycles) >= _MAX_READS:
                 msg = "This experiment permits at most two repository reads."
                 raise ReadProposalError(msg)
@@ -112,7 +117,7 @@ class QwenReadExperiment:
             )
             cycles.append(
                 QwenReadCycle(
-                    proposal=turn.message,
+                    proposal=response_message,
                     relative_path=relative_path,
                     resolved_path=resolved_path,
                     result_projection=projection,
@@ -120,7 +125,7 @@ class QwenReadExperiment:
                 ),
             )
             turn = await self._runtime.send(
-                session=self._session,
+                conversation=self._conversation,
                 interaction=self._interaction,
                 message=follow_up,
             )
@@ -223,9 +228,9 @@ def _project_text_result(
 
 
 def _follow_up_message(
-    task: Message,
+    task: ConversationMessage,
     cycles: tuple[QwenReadCycle | _PromptCycle, ...],
-) -> Message:
+) -> ConversationMessage:
     """Construct a controller-authored SYSTEM prompt from ordered read results."""
     results = "\n\n".join(
         f"Accepted action {index}:\n{_ACTION} path={cycle.relative_path}\n\n"
@@ -241,11 +246,11 @@ def _follow_up_message(
         if len(cycles) < _MAX_READS
         else "Provide the final plain-text answer. Do not propose another action."
     )
-    return Message.new(
+    return ConversationMessage.new(
         "Continue the original task using the bounded framework action results.\n\n"
         f"Original task:\n{task.content}\n\n"
         f"{results}\n\n"
         f"{instruction}",
-        role=MessageRole.SYSTEM,
+        role=ConversationMessageRole.SYSTEM,
         source=_CONTROLLER_SOURCE,
     )

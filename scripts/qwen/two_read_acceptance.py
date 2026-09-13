@@ -21,14 +21,19 @@ _REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 if str(_REPOSITORY_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPOSITORY_ROOT))
 
-from devtools.commands import Command, CommandExecutor
-from devtools.context import Message, MessageRole, MessageSource, Session
-from devtools.interactions.providers import (
+from devtools.agents.conversation import (
+    Conversation,
+    ConversationMessage,
+    ConversationMessageRole,
+    InteractionSource,
+)
+from devtools.core.paths import ResolvedPath
+from devtools.execution import Runtime
+from devtools.models.interaction.providers import (
     LlamaCppInteraction,
     LlamaCppInteractionError,
 )
-from devtools.paths import ResolvedPath
-from devtools.runtime import Runtime
+from devtools.resources.commands import Command, CommandExecutor
 from devtools.tools.filesystem import ReadRepositoryFileTool
 from experiments.qwen.read_experiment import (
     QwenReadExperiment,
@@ -39,12 +44,12 @@ from experiments.qwen.read_experiment import (
 if TYPE_CHECKING:
     from collections.abc import Sequence
 
-    from devtools.interactions import Interaction
+    from devtools.models.interaction import ModelInteraction
 
 
 _DEFAULT_ENDPOINT = "http://127.0.0.1:8080"
 _DEFAULT_MODEL = "qwen38-local"
-_CALLER_SOURCE = MessageSource("qwen-two-read-acceptance")
+_CALLER_SOURCE = InteractionSource("qwen-two-read-acceptance")
 _SERVICE_SCRIPT = Path(__file__).with_name("llama_cpp_service.py")
 _REPORT_SCHEMA = "qwen-two-read-acceptance/1"
 _REQUIRED_READS = 2
@@ -68,15 +73,15 @@ class QwenTwoReadAcceptanceVerdict(StrEnum):
 class QwenTwoReadAcceptanceReport:
     """Retain bounded live-acceptance facts without defining framework tracing."""
 
-    task: Message
-    history: tuple[Message, ...]
+    task: ConversationMessage
+    history: tuple[ConversationMessage, ...]
     tool_execution_count: int
     tool_execution_paths: tuple[str, ...]
     result: QwenReadExperimentResult | None
     failure_category: QwenTwoReadFailureCategory | None
     error_type: str | None
     error_message: str | None
-    latest_assistant: Message | None
+    latest_assistant: ConversationMessage | None
 
 
 @dataclass(frozen=True, slots=True)
@@ -117,7 +122,7 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
     return parser.parse_args(arguments)
 
 
-def initial_task() -> Message:
+def initial_task() -> ConversationMessage:
     """Construct the unchanged model-facing task used by the failed first run."""
     content = """Return the exact value from facts/first.txt, followed by a colon, followed by the exact value from facts/second.txt.
 
@@ -127,7 +132,11 @@ If you need a read, your entire response must be exactly one bare JSON object an
 {"action":"read_repository_file","path":"<repository-relative-path>"}
 
 Do not use Markdown or prose around a proposal. When you have enough information, provide the final answer as plain text."""
-    return Message.new(content, role=MessageRole.USER, source=_CALLER_SOURCE)
+    return ConversationMessage.new(
+        content,
+        role=ConversationMessageRole.USER,
+        source=_CALLER_SOURCE,
+    )
 
 
 def create_fixture(parent: Path) -> QwenTwoReadFixture:
@@ -144,15 +153,15 @@ def create_fixture(parent: Path) -> QwenTwoReadFixture:
 
 async def run_acceptance(
     *,
-    task: Message,
+    task: ConversationMessage,
     repository_root: Path,
-    interaction: Interaction,
+    interaction: ModelInteraction,
 ) -> QwenTwoReadAcceptanceReport:
     """Run the production experiment while retaining bounded failure diagnostics."""
-    session = Session.new()
+    session = Conversation.new()
     experiment = QwenReadExperiment(
         runtime=Runtime(),
-        session=session,
+        conversation=session,
         interaction=interaction,
         repository_root=ResolvedPath(repository_root),
     )
@@ -204,15 +213,15 @@ async def run_acceptance(
 
 
 def _latest_assistant(
-    history: tuple[Message, ...],
-    interaction_source: MessageSource,
-) -> Message | None:
-    """Return the latest exact assistant Message retained by the selected interaction."""
+    history: tuple[ConversationMessage, ...],
+    interaction_source: InteractionSource,
+) -> ConversationMessage | None:
+    """Return the latest exact assistant ConversationMessage retained by the selected interaction."""
     return next(
         (
             message
             for message in reversed(history)
-            if message.role is MessageRole.ASSISTANT
+            if message.role is ConversationMessageRole.ASSISTANT
             and message.source == interaction_source
         ),
         None,
@@ -282,8 +291,8 @@ def _verdict(outcome: QwenTwoReadAcceptanceOutcome) -> str:
     return QwenTwoReadAcceptanceVerdict.PASS
 
 
-def _message_payload(message: Message) -> dict[str, str]:
-    """Serialize only the bounded Message facts needed by this acceptance artifact."""
+def _message_payload(message: ConversationMessage) -> dict[str, str]:
+    """Serialize only the bounded ConversationMessage facts needed by this acceptance artifact."""
     return {
         "role": message.role.value,
         "source": message.source.value,
@@ -313,9 +322,7 @@ def _report_payload(outcome: QwenTwoReadAcceptanceOutcome) -> dict[str, object]:
         "fixture": {
             "first_nonce": outcome.first_nonce,
             "second_nonce": outcome.second_nonce,
-            "cleanup": "completed"
-            if outcome.fixture_cleanup_succeeded
-            else "failed",
+            "cleanup": "completed" if outcome.fixture_cleanup_succeeded else "failed",
         },
         "task": _message_payload(report.task),
         "history": [_message_payload(message) for message in report.history],
@@ -329,9 +336,7 @@ def _report_payload(outcome: QwenTwoReadAcceptanceOutcome) -> dict[str, object]:
             "resolved_paths": list(report.tool_execution_paths),
         },
         "cycles": cycles,
-        "final_answer": (
-            result.final_message.content if result is not None else None
-        ),
+        "final_answer": (result.final_message.content if result is not None else None),
         "failure": {
             "category": (
                 report.failure_category.value
@@ -397,7 +402,7 @@ async def run(arguments: argparse.Namespace) -> QwenTwoReadAcceptanceOutcome:
                 interaction=LlamaCppInteraction(
                     endpoint=arguments.endpoint,
                     model=arguments.model,
-                    source=MessageSource("qwen"),
+                    source=InteractionSource("qwen"),
                 ),
             )
             try:

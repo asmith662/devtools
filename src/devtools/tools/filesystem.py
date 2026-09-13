@@ -7,19 +7,19 @@ from dataclasses import dataclass
 from enum import StrEnum
 from typing import TYPE_CHECKING
 
-from devtools.filesystem import (
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import (
     FilesystemNotFoundError,
     FilesystemPermissionError,
     read,
 )
-from devtools.paths import resolve_path
 from devtools.tools.errors import ToolInputError
 
 if TYPE_CHECKING:
     from pathlib import Path
 
-    from devtools.filesystem import File
-    from devtools.paths import ResolvedPath
+    from devtools.core.paths import ResolvedPath
+    from devtools.resources.filesystem import File
 
 
 class ReadRepositoryFileTool:

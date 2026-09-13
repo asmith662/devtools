@@ -14,18 +14,18 @@ from enum import StrEnum
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from devtools.commands import Command, CommandExecutor
-from devtools.model_serving import llama_cpp
-from devtools.model_serving.huggingface import acquire_huggingface_gguf
-from devtools.model_serving.llama_cpp import GGUFModel, LlamaCppServingConfig
-from devtools.paths import ResolvedPath, resolve_path
-from devtools.time import Duration
+from devtools.resources.commands import Command, CommandExecutor
+from devtools.models.serving import llama_cpp
+from devtools.models.serving.huggingface import acquire_huggingface_gguf
+from devtools.models.serving.llama_cpp import GGUFModel, LlamaCppServingConfig
+from devtools.core.paths import ResolvedPath, resolve_path
+from devtools.core.time import Duration
 
 from llama_cpp_profile import QWEN38_27B_UD_IQ4_XS
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
-    from devtools.commands import CommandExecutor as CommandExecutorType
+    from devtools.resources.commands import CommandExecutor as CommandExecutorType
 
 
 _CONTAINER_NAME = "devtools-qwen38-llama-cpp"

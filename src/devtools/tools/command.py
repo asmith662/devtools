@@ -6,7 +6,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from devtools.commands import Command, CommandExecutor, CommandResult
+    from devtools.resources.commands import Command, CommandExecutor, CommandResult
 
 
 class CommandTool:

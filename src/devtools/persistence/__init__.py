@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-"""Durable Session persistence public API."""
+"""Durable Conversation persistence public API."""
 
 from devtools.persistence.errors import (
     PersistenceConflictError,
@@ -7,15 +7,15 @@ from devtools.persistence.errors import (
     PersistenceFormatError,
     PersistenceVersionError,
 )
-from devtools.persistence.json import decode_session_json, encode_session_json
-from devtools.persistence.sqlite import SqliteSessionStore
+from devtools.persistence.json import decode_conversation_json, encode_conversation_json
+from devtools.persistence.sqlite import SqliteConversationStore
 
 __all__ = [
     "PersistenceConflictError",
     "PersistenceError",
     "PersistenceFormatError",
     "PersistenceVersionError",
-    "SqliteSessionStore",
-    "decode_session_json",
-    "encode_session_json",
+    "SqliteConversationStore",
+    "decode_conversation_json",
+    "encode_conversation_json",
 ]

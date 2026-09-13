@@ -10,7 +10,8 @@ from typing import cast
 
 import pytest
 
-from devtools.filesystem import (
+from devtools.core.paths import ResolvedPath
+from devtools.resources.filesystem import (
     File,
     FileFormatError,
     FilesystemNotFoundError,
@@ -18,7 +19,6 @@ from devtools.filesystem import (
     MarkdownFile,
     NotAFileError,
 )
-from devtools.paths import ResolvedPath
 from devtools.tools import Tool, ToolInputError, ToolRunner, filesystem
 from devtools.tools.filesystem import (
     ListRepositoryDirectoryTool,

@@ -1,29 +1,32 @@
 # Copyright (c) 2026
-"""Normalized SQLite current-snapshot Session store."""
+"""Normalized SQLite current-snapshot Conversation store."""
 
 from __future__ import annotations
 
 import sqlite3
 from typing import TYPE_CHECKING
 
-from devtools.context.message import MessageId, MessageRole, MessageSource
-from devtools.interactions import ConversationRef
+from devtools.agents.conversation.message import (
+    ConversationMessageRole,
+    MessageId,
+)
+from devtools.core.time import TimeError, Timestamp
+from devtools.models.interaction import ConversationRef, InteractionSource
 from devtools.persistence._snapshot import (
+    _ConversationSnapshot,
     _MessageSnapshot,
-    _SessionSnapshot,
-    capture_session,
-    restore_session,
+    capture_conversation,
+    restore_conversation,
 )
 from devtools.persistence.errors import (
     PersistenceConflictError,
     PersistenceFormatError,
     PersistenceVersionError,
 )
-from devtools.time import TimeError, Timestamp
 
 if TYPE_CHECKING:
-    from devtools.context.session import Session, SessionId
-    from devtools.paths import ResolvedPath
+    from devtools.agents.conversation.conversation import Conversation, ConversationId
+    from devtools.core.paths import ResolvedPath
 
 
 _SCHEMA_VERSION = 1
@@ -67,8 +70,8 @@ CREATE INDEX idx_conversations_source ON conversations(source);
 """
 
 
-class SqliteSessionStore:
-    """Persist current Session snapshots in a normalized SQLite database."""
+class SqliteConversationStore:
+    """Persist current Conversation snapshots in a normalized SQLite database."""
 
     __slots__ = ("_database",)
 
@@ -76,9 +79,9 @@ class SqliteSessionStore:
         """Configure a store for one absolute SQLite database path."""
         self._database = database
 
-    def save(self, session: Session) -> None:
-        """Atomically replace the persisted semantic snapshot for one Session."""
-        snapshot = capture_session(session)
+    def save(self, conversation: Conversation) -> None:
+        """Atomically replace the persisted semantic snapshot for one Conversation."""
+        snapshot = capture_conversation(conversation)
         connection = self._open_connection()
         try:
             with connection:
@@ -86,26 +89,29 @@ class SqliteSessionStore:
         finally:
             connection.close()
 
-    def load(self, session_id: SessionId) -> Session | None:
-        """Load one persisted Session into a new Session object, if present."""
+    def load(self, conversation_id: ConversationId) -> Conversation | None:
+        """Load one persisted Conversation object, if present."""
         connection = self._open_connection()
         try:
             row = connection.execute(
                 "SELECT created_at FROM sessions WHERE session_id = ?",
-                (str(session_id),),
+                (str(conversation_id),),
             ).fetchone()
             if row is None:
                 return None
             try:
-                snapshot = _SessionSnapshot(
-                    id=session_id,
+                snapshot = _ConversationSnapshot(
+                    id=conversation_id,
                     created_at=Timestamp.from_isoformat(row[0]),
-                    messages=self._load_messages(connection, session_id),
-                    conversations=self._load_conversations(connection, session_id),
+                    messages=self._load_messages(connection, conversation_id),
+                    conversations=self._load_conversations(connection, conversation_id),
                 )
-                return restore_session(snapshot)
+                return restore_conversation(snapshot)
             except (TimeError, TypeError, ValueError) as error:
-                msg = f"Invalid persisted Session state for SessionId {session_id}."
+                msg = (
+                    "Invalid persisted Conversation state for ConversationId "
+                    f"{conversation_id}."
+                )
                 raise PersistenceFormatError(msg) from error
         finally:
             connection.close()
@@ -145,22 +151,22 @@ class SqliteSessionStore:
     def _save_snapshot(
         self,
         connection: sqlite3.Connection,
-        snapshot: _SessionSnapshot,
+        snapshot: _ConversationSnapshot,
     ) -> None:
         """Save one validated snapshot inside the caller's transaction."""
-        session_id = str(snapshot.id)
+        conversation_id = str(snapshot.id)
         created_at = snapshot.created_at.isoformat()
         existing = connection.execute(
             "SELECT created_at FROM sessions WHERE session_id = ?",
-            (session_id,),
+            (conversation_id,),
         ).fetchone()
         if existing is None:
             connection.execute(
                 "INSERT INTO sessions(session_id, created_at) VALUES (?, ?)",
-                (session_id, created_at),
+                (conversation_id, created_at),
             )
         elif existing[0] != created_at:
-            msg = f"Conflicting created_at for SessionId {snapshot.id}."
+            msg = f"Conflicting created_at for ConversationId {snapshot.id}."
             raise PersistenceConflictError(msg)
 
         for message in snapshot.messages:
@@ -168,24 +174,24 @@ class SqliteSessionStore:
 
         connection.execute(
             "DELETE FROM session_messages WHERE session_id = ?",
-            (session_id,),
+            (conversation_id,),
         )
         connection.execute(
             "DELETE FROM conversations WHERE session_id = ?",
-            (session_id,),
+            (conversation_id,),
         )
         connection.executemany(
             "INSERT INTO session_messages(session_id, position, message_id) "
             "VALUES (?, ?, ?)",
             [
-                (session_id, position, str(message.id))
+                (conversation_id, position, str(message.id))
                 for position, message in enumerate(snapshot.messages)
             ],
         )
         connection.executemany(
             "INSERT INTO conversations(session_id, source, value) VALUES (?, ?, ?)",
             [
-                (session_id, str(conversation.source), conversation.value)
+                (conversation_id, str(conversation.source), conversation.value)
                 for conversation in snapshot.conversations
             ],
         )
@@ -195,7 +201,7 @@ class SqliteSessionStore:
         connection: sqlite3.Connection,
         message: _MessageSnapshot,
     ) -> None:
-        """Insert one immutable Message or validate its existing row."""
+        """Insert one immutable ConversationMessage or validate its existing row."""
         message_id = str(message.id)
         values = (
             message.created_at.isoformat(),
@@ -222,9 +228,9 @@ class SqliteSessionStore:
     def _load_messages(
         self,
         connection: sqlite3.Connection,
-        session_id: SessionId,
+        conversation_id: ConversationId,
     ) -> tuple[_MessageSnapshot, ...]:
-        """Load ordered Message occurrences and validate contiguous positions."""
+        """Load ordered messages and validate contiguous positions."""
         rows = connection.execute(
             "SELECT session_messages.position, session_messages.message_id, "
             "messages.message_id, "
@@ -234,27 +240,31 @@ class SqliteSessionStore:
             "ON messages.message_id = session_messages.message_id "
             "WHERE session_messages.session_id = ? "
             "ORDER BY session_messages.position",
-            (str(session_id),),
+            (str(conversation_id),),
         ).fetchall()
         for row in rows:
             if row[2] is None:
                 msg = (
-                    "Persisted History references a missing Message row for "
-                    f"SessionId {session_id} at position {row[0]} "
+                    "Persisted History references a missing ConversationMessage row "
+                    "for "
+                    f"ConversationId {conversation_id} at position {row[0]} "
                     f"with MessageId {row[1]}."
                 )
                 raise PersistenceFormatError(msg)
         positions = [row[0] for row in rows]
         if positions != list(range(len(rows))):
-            msg = f"Persisted History positions are invalid for SessionId {session_id}."
+            msg = (
+                "Persisted History positions are invalid for ConversationId "
+                f"{conversation_id}."
+            )
             raise PersistenceFormatError(msg)
         return tuple(
             _MessageSnapshot(
                 id=MessageId.parse(row[2]),
                 created_at=Timestamp.from_isoformat(row[3]),
                 content=row[4],
-                role=MessageRole(row[5]),
-                source=MessageSource(row[6]),
+                role=ConversationMessageRole(row[5]),
+                source=InteractionSource(row[6]),
             )
             for row in rows
         )
@@ -262,15 +272,15 @@ class SqliteSessionStore:
     def _load_conversations(
         self,
         connection: sqlite3.Connection,
-        session_id: SessionId,
+        conversation_id: ConversationId,
     ) -> tuple[ConversationRef, ...]:
         """Load current source-keyed opaque conversation references."""
         rows = connection.execute(
             "SELECT source, value FROM conversations "
             "WHERE session_id = ? ORDER BY source",
-            (str(session_id),),
+            (str(conversation_id),),
         ).fetchall()
-        return tuple(ConversationRef(MessageSource(row[0]), row[1]) for row in rows)
+        return tuple(ConversationRef(InteractionSource(row[0]), row[1]) for row in rows)
 
 
 def _user_tables(connection: sqlite3.Connection) -> set[str]:

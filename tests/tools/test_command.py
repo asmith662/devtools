@@ -8,14 +8,14 @@ import sys
 
 import pytest
 
-from devtools.commands import (
+from devtools.core.time import Duration
+from devtools.resources.commands import (
     Command,
     CommandExecutor,
     CommandNotFoundError,
     CommandResult,
     CommandTimeoutError,
 )
-from devtools.time import Duration
 from devtools.tools import Tool, ToolRunner
 from devtools.tools.command import CommandTool
 
@@ -65,7 +65,7 @@ def test_command_tool_propagates_missing_command_error(
         raise FileNotFoundError
 
     monkeypatch.setattr(
-        "devtools.commands.execution.asyncio.create_subprocess_exec",
+        "devtools.resources.commands.execution.asyncio.create_subprocess_exec",
         raise_not_found,
     )
 
@@ -97,7 +97,7 @@ def test_command_tool_cancellation_preserves_command_cleanup(
         return process
 
     monkeypatch.setattr(
-        "devtools.commands.execution.asyncio.create_subprocess_exec",
+        "devtools.resources.commands.execution.asyncio.create_subprocess_exec",
         create_process,
     )
 

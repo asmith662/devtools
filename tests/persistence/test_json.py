@@ -1,5 +1,6 @@
 # Copyright (c) 2026
-"""Strict portable JSON Session persistence tests."""
+# ruff: noqa: E501
+"""Strict portable JSON Conversation persistence tests."""
 
 from __future__ import annotations
 
@@ -9,24 +10,24 @@ from datetime import UTC, datetime
 
 import pytest
 
-from devtools.context import (
+from devtools.agents.conversation import (
+    Conversation,
+    ConversationId,
+    ConversationMessage,
+    ConversationMessageRole,
     History,
-    Message,
+    InteractionSource,
     MessageId,
-    MessageRole,
-    MessageSource,
-    Session,
-    SessionId,
 )
-from devtools.interactions import ConversationRef
+from devtools.core.time import Timestamp
+from devtools.models.interaction import ConversationRef
 from devtools.persistence import (
     PersistenceConflictError,
     PersistenceFormatError,
     PersistenceVersionError,
-    decode_session_json,
-    encode_session_json,
+    decode_conversation_json,
+    encode_conversation_json,
 )
-from devtools.time import Timestamp
 
 
 def _timestamp() -> Timestamp:
@@ -38,47 +39,52 @@ def _message(
     number: int,
     *,
     content: str = "content",
-    role: MessageRole = MessageRole.USER,
+    role: ConversationMessageRole = ConversationMessageRole.USER,
     source: str = "user",
-) -> Message:
-    """Build one deterministic Message."""
-    return Message(
+) -> ConversationMessage:
+    """Build one deterministic ConversationMessage."""
+    return ConversationMessage(
         id=MessageId.parse(f"00000000-0000-4000-8000-{number:012d}"),
         created_at=_timestamp(),
         content=content,
         role=role,
-        source=MessageSource(source),
+        source=InteractionSource(source),
     )
 
 
-def _session() -> Session:
-    """Build a populated deterministic Session with duplicate occurrence."""
+def _session() -> Conversation:
+    """Build a populated deterministic Conversation with duplicate occurrence."""
     first = _message(1, content="  whitespace\n雪\n", source="caller")
-    second = _message(2, role=MessageRole.ASSISTANT, source="agent")
-    third = _message(3, content="", role=MessageRole.SYSTEM, source="system")
-    return Session(
-        id=SessionId.parse("10000000-0000-4000-8000-000000000001"),
+    second = _message(2, role=ConversationMessageRole.ASSISTANT, source="agent")
+    third = _message(
+        3,
+        content="",
+        role=ConversationMessageRole.SYSTEM,
+        source="system",
+    )
+    return Conversation(
+        id=ConversationId.parse("10000000-0000-4000-8000-000000000001"),
         created_at=_timestamp(),
         history=History(messages=(first, second, first, third)),
         conversations=(
-            ConversationRef(MessageSource("zeta"), "thread-z"),
-            ConversationRef(MessageSource("agent"), "thread-a"),
+            ConversationRef(InteractionSource("zeta"), "thread-z"),
+            ConversationRef(InteractionSource("agent"), "thread-a"),
         ),
     )
 
 
 def _value() -> dict[str, object]:
     """Return a mutable decoded valid persistence value."""
-    value = json.loads(encode_session_json(_session()))
+    value = json.loads(encode_conversation_json(_session()))
     assert isinstance(value, dict)
     return value
 
 
 def test_json_round_trip_preserves_semantic_session_state_and_fresh_turn() -> None:
-    """JSON restores ordered Message values and current conversations."""
+    """JSON restores ordered ConversationMessage values and current conversations."""
     original = _session()
-    text = encode_session_json(original)
-    restored = decode_session_json(text)
+    text = encode_conversation_json(original)
+    restored = decode_conversation_json(text)
 
     assert restored is not original
     assert restored.id == original.id
@@ -86,7 +92,7 @@ def test_json_round_trip_preserves_semantic_session_state_and_fresh_turn() -> No
     assert restored.history == original.history
     assert restored.history.messages[0] is restored.history.messages[2]
     assert restored.conversations == original.conversations
-    assert text == encode_session_json(original)
+    assert text == encode_conversation_json(original)
     value = json.loads(text)
     assert value["conversations"][0]["source"] == "agent"
     assert "雪" in text
@@ -99,13 +105,13 @@ def test_json_round_trip_preserves_semantic_session_state_and_fresh_turn() -> No
 
 
 def test_json_empty_session_round_trip() -> None:
-    """An empty Session has a portable strict JSON representation."""
-    original = Session(
-        id=SessionId.parse("10000000-0000-4000-8000-000000000002"),
+    """An empty Conversation has a portable strict JSON representation."""
+    original = Conversation(
+        id=ConversationId.parse("10000000-0000-4000-8000-000000000002"),
         created_at=_timestamp(),
     )
 
-    restored = decode_session_json(encode_session_json(original))
+    restored = decode_conversation_json(encode_conversation_json(original))
 
     assert restored.id == original.id
     assert restored.created_at == original.created_at
@@ -160,7 +166,7 @@ def test_json_rejects_invalid_schema_values(
     mutate(value)
 
     with pytest.raises(error):
-        decode_session_json(json.dumps(value))
+        decode_conversation_json(json.dumps(value))
 
 
 @pytest.mark.parametrize(
@@ -175,7 +181,7 @@ def test_json_rejects_invalid_schema_values(
 def test_json_rejects_invalid_json_syntax_keys_and_constants(text: str) -> None:
     """Strict parsing does not collapse malformed or non-standard values."""
     with pytest.raises(PersistenceFormatError):
-        decode_session_json(text)
+        decode_conversation_json(text)
 
 
 def test_json_rejects_duplicate_conversation_source() -> None:
@@ -186,11 +192,11 @@ def test_json_rejects_duplicate_conversation_source() -> None:
     conversations.append({"source": "agent", "value": "other"})
 
     with pytest.raises(PersistenceFormatError):
-        decode_session_json(json.dumps(value))
+        decode_conversation_json(json.dumps(value))
 
 
 def test_json_rejects_conflicting_repeated_message_id() -> None:
-    """One immutable MessageId cannot describe conflicting Message values."""
+    """One immutable MessageId cannot describe conflicting ConversationMessage values."""
     value = _value()
     history = value["history"]
     assert isinstance(history, list)
@@ -199,4 +205,4 @@ def test_json_rejects_conflicting_repeated_message_id() -> None:
     duplicate["content"] = "different"
 
     with pytest.raises(PersistenceConflictError):
-        decode_session_json(json.dumps(value))
+        decode_conversation_json(json.dumps(value))

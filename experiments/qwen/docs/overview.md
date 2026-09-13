@@ -4,7 +4,7 @@
 most two Qwen read cycles.
 
 The llama.cpp transport adapter lives in
-`devtools.interactions.providers` as `LlamaCppInteraction`. It is configured
+`devtools.models.interaction.providers` as `LlamaCppInteraction`. It is configured
 with endpoint, served model name, and source identity; it is not Qwen-specific.
 
 This repository artifact is intentionally outside the installable `devtools`

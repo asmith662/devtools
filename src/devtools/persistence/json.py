@@ -1,18 +1,22 @@
 # Copyright (c) 2026
-"""Strict portable JSON Session serialization."""
+"""Strict portable JSON Conversation serialization."""
 
 from __future__ import annotations
 
 import json
 from typing import TYPE_CHECKING, NoReturn
 
-from devtools.context.message import MessageId, MessageRole, MessageSource
-from devtools.context.session import SessionId
-from devtools.interactions import ConversationRef
+from devtools.agents.conversation.conversation import ConversationId
+from devtools.agents.conversation.message import (
+    ConversationMessageRole,
+    MessageId,
+)
+from devtools.core.time import TimeError, Timestamp
+from devtools.models.interaction import ConversationRef, InteractionSource
 from devtools.persistence._snapshot import (
     _MessageSnapshot,
-    capture_session,
-    restore_session,
+    capture_conversation,
+    restore_conversation,
     snapshot_from_values,
 )
 from devtools.persistence.errors import (
@@ -20,18 +24,17 @@ from devtools.persistence.errors import (
     PersistenceFormatError,
     PersistenceVersionError,
 )
-from devtools.time import TimeError, Timestamp
 
 if TYPE_CHECKING:
-    from devtools.context.session import Session
+    from devtools.agents.conversation.conversation import Conversation
 
 
 _SCHEMA_VERSION = 1
 
 
-def encode_session_json(session: Session) -> str:
-    """Encode one Session semantic snapshot as deterministic strict JSON text."""
-    snapshot = capture_session(session)
+def encode_conversation_json(conversation: Conversation) -> str:
+    """Encode one Conversation semantic snapshot as deterministic strict JSON text."""
+    snapshot = capture_conversation(conversation)
     value: dict[str, object] = {
         "schema_version": _SCHEMA_VERSION,
         "session": {
@@ -66,8 +69,8 @@ def encode_session_json(session: Session) -> str:
     return f"{serialized}\n"
 
 
-def decode_session_json(text: str) -> Session:
-    """Decode one strict JSON Session semantic snapshot."""
+def decode_conversation_json(text: str) -> Conversation:
+    """Decode one strict JSON Conversation semantic snapshot."""
     try:
         parsed: object = json.loads(
             text,
@@ -77,7 +80,7 @@ def decode_session_json(text: str) -> Session:
     except PersistenceFormatError:
         raise
     except (json.JSONDecodeError, ValueError) as error:
-        msg = "Invalid Session JSON representation."
+        msg = "Invalid Conversation JSON representation."
         raise PersistenceFormatError(msg) from error
 
     try:
@@ -90,7 +93,9 @@ def decode_session_json(text: str) -> Session:
         _validate_version(root["schema_version"])
         session_value = _require_object(root["session"], "session")
         _require_fields(session_value, {"id", "created_at"}, "session")
-        session_id = SessionId.parse(_require_string(session_value["id"], "session.id"))
+        conversation_id = ConversationId.parse(
+            _require_string(session_value["id"], "session.id"),
+        )
         created_at = Timestamp.from_isoformat(
             _require_string(session_value["created_at"], "session.created_at"),
         )
@@ -105,16 +110,16 @@ def decode_session_json(text: str) -> Session:
         )
         _validate_conversation_sources(conversations)
         snapshot = snapshot_from_values(
-            session_id=session_id,
+            conversation_id=conversation_id,
             created_at=created_at,
             messages=messages,
             conversations=conversations,
         )
-        return restore_session(snapshot)
+        return restore_conversation(snapshot)
     except (PersistenceConflictError, PersistenceFormatError, PersistenceVersionError):
         raise
     except (TimeError, TypeError, ValueError) as error:
-        msg = "Invalid Session JSON semantic value."
+        msg = "Invalid Conversation JSON semantic value."
         raise PersistenceFormatError(msg) from error
 
 
@@ -132,8 +137,10 @@ def _decode_message(value: object, index: int) -> _MessageSnapshot:
             _require_string(item["created_at"], f"history[{index}].created_at"),
         ),
         content=_require_string(item["content"], f"history[{index}].content"),
-        role=MessageRole(_require_string(item["role"], f"history[{index}].role")),
-        source=MessageSource(
+        role=ConversationMessageRole(
+            _require_string(item["role"], f"history[{index}].role"),
+        ),
+        source=InteractionSource(
             _require_string(item["source"], f"history[{index}].source"),
         ),
     )
@@ -144,7 +151,7 @@ def _decode_conversation(value: object, index: int) -> ConversationRef:
     item = _require_object(value, f"conversations[{index}]")
     _require_fields(item, {"source", "value"}, f"conversations[{index}]")
     return ConversationRef(
-        MessageSource(
+        InteractionSource(
             _require_string(item["source"], f"conversations[{index}].source"),
         ),
         _require_string(item["value"], f"conversations[{index}].value"),
@@ -154,7 +161,7 @@ def _decode_conversation(value: object, index: int) -> ConversationRef:
 def _require_object(value: object, field: str) -> dict[str, object]:
     """Return an object-shaped JSON value."""
     if not isinstance(value, dict):
-        msg = f"Session JSON field {field} must be an object."
+        msg = f"Conversation JSON field {field} must be an object."
         raise PersistenceFormatError(msg)
     return value
 
@@ -162,7 +169,7 @@ def _require_object(value: object, field: str) -> dict[str, object]:
 def _require_list(value: object, field: str) -> list[object]:
     """Return a list-shaped JSON value."""
     if not isinstance(value, list):
-        msg = f"Session JSON field {field} must be an array."
+        msg = f"Conversation JSON field {field} must be an array."
         raise PersistenceFormatError(msg)
     return value
 
@@ -170,7 +177,7 @@ def _require_list(value: object, field: str) -> list[object]:
 def _require_string(value: object, field: str) -> str:
     """Return a string-shaped JSON value."""
     if not isinstance(value, str):
-        msg = f"Session JSON field {field} must be a string."
+        msg = f"Conversation JSON field {field} must be a string."
         raise PersistenceFormatError(msg)
     return value
 
@@ -178,17 +185,17 @@ def _require_string(value: object, field: str) -> str:
 def _require_fields(value: dict[str, object], expected: set[str], field: str) -> None:
     """Require an exact object field set."""
     if set(value) != expected:
-        msg = f"Session JSON field {field} has an unsupported field set."
+        msg = f"Conversation JSON field {field} has an unsupported field set."
         raise PersistenceFormatError(msg)
 
 
 def _validate_version(value: object) -> None:
     """Validate the one supported JSON schema version."""
     if type(value) is not int:
-        msg = "Session JSON schema_version must be an integer."
+        msg = "Conversation JSON schema_version must be an integer."
         raise PersistenceFormatError(msg)
     if value != _SCHEMA_VERSION:
-        msg = f"Unsupported Session JSON schema version: {value}."
+        msg = f"Unsupported Conversation JSON schema version: {value}."
         raise PersistenceVersionError(msg)
 
 
@@ -197,7 +204,7 @@ def _reject_duplicate_keys(pairs: list[tuple[str, object]]) -> dict[str, object]
     value: dict[str, object] = {}
     for key, item in pairs:
         if key in value:
-            msg = f"Duplicate Session JSON object key: {key}."
+            msg = f"Duplicate Conversation JSON object key: {key}."
             raise PersistenceFormatError(msg)
         value[key] = item
     return value
@@ -205,7 +212,7 @@ def _reject_duplicate_keys(pairs: list[tuple[str, object]]) -> dict[str, object]
 
 def _reject_nonstandard_constant(value: str) -> NoReturn:
     """Reject JSON constants outside the standard JSON grammar."""
-    msg = f"Invalid Session JSON constant: {value}."
+    msg = f"Invalid Conversation JSON constant: {value}."
     raise PersistenceFormatError(msg)
 
 
@@ -213,5 +220,5 @@ def _validate_conversation_sources(conversations: tuple[ConversationRef, ...]) -
     """Reject ambiguous current continuation sources."""
     sources = {conversation.source for conversation in conversations}
     if len(sources) != len(conversations):
-        msg = "Session JSON cannot contain multiple conversations for one source."
+        msg = "Conversation JSON cannot contain multiple conversations for one source."
         raise PersistenceFormatError(msg)

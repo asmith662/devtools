@@ -10,7 +10,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Literal
 
-from devtools.model_serving.huggingface import HuggingFaceGGUFRef
+from devtools.models.serving.huggingface import HuggingFaceGGUFRef
 
 
 @dataclass(frozen=True, slots=True)
