@@ -13,6 +13,8 @@
   incomplete.
 - Backlog and implementation-ledger records are historical or unresolved
   architectural evidence; they do not independently authorize implementation.
+- [Roadmap](roadmap.md) records selected current sequencing and links to the
+  canonical backlog; it does not supersede the taxonomy or architecture.
 
 ## Package documentation
 
@@ -45,6 +47,12 @@ reusable implementation API.
 reusable source must not import it. [Qwen experiment documentation](../experiments/qwen/docs/overview.md)
 describes the bounded read-only experiments. Operational entry points remain
 under `scripts/`.
+
+## Backlog navigation
+
+[Backlog overview](backlog/overview.md) is the canonical record index, grouped
+by stable ID, lifecycle status, and primary domain. [Backlog metadata](backlog/metadata.md)
+defines ownership, split-lineage, dependency, and promotion terminology.
 
 ## Update workflow
 

@@ -7,50 +7,20 @@
 - architectural_significance: FOUNDATIONAL
 - urgency: DEFERRED
 - evidence_basis: RESEARCH
-- scope: authority, grant, authorization, and approval semantics
+- scope: authority possession, policy, authorization, and approval conditions
+- primary_domain: governance
+- supporting_domains: observability, persistence, orchestration
 - parent: B-0005
 
 ## Problem / value
 
-Determine principals, grants, scopes, delegation, revocation, approval
-conditions, escalation, and enforcement points only when a governed mutation
-needs them.
+Determine principals, grants, restrictions, authorization, approval conditions,
+delegation, revocation, and freshness only when a governed mutation needs them.
+Approval is not authority; historical authorization evidence is not current
+authority.
 
-Questions include positive authority possession; authority provenance and
-materialization; restrictions on otherwise-existing authority; approvals as
-additional conditions rather than automatic authority grants; delegation without
-collapsing Agent and Principal; and freshness/revalidation for queued, delayed,
-persisted, resumed, detached, or changed-policy/resource/binding work.
-Restrictions must not silently manufacture positive authority.
-
-Keep distinct positive authority, its representation, source/materialization
-and provenance; restrictive policy; approval requirements and approval
-evidence; delegation; revocation; freshness/revalidation; and ephemeral
-authorization results versus durable or transferable evidence. Approval evidence
-is not the workflow that obtains approval, and historical authorization evidence
-is not automatically current authority.
-
-## Established invariant / validation expectation
-
-Approval is not authorization. A meaningful future live validation is:
-
-    harness requests forbidden operation
-    -> framework denies it
-    -> effect does not occur
-    -> denial is observable
-
-## Dependencies / risks / validation
-
-- hard_dependencies: B-0012 when mutating effects are governed
-- pressure_dependencies: B-0014, B-0020, B-0021, B-0022, B-0024
-- operational_dependencies: discoverable but forbidden harness capability
-- consumers: future governed mutation harnesses
-- unresolved_semantics: authority possession/representation/provenance, restrictions, principals, grants, scopes, approval requirements/evidence, revocation, delegation, freshness/revalidation, and ephemeral versus durable authorization evidence
-- risk_if_deferred: none before reusable governed mutation
-- risk_if_implemented_early: policy engine without enforcement boundary
-- promotion_trigger: real harness needs exposure plus denial
+- hard_dependencies: B-0012
+- pressure_dependencies: B-0024
+- operational_dependencies: discoverable but forbidden governed capability
+- promotion_trigger: real harness needs capability exposure plus execution denial
 - validation_level: NONE
-- live_validation_trigger: forbidden operation reaches real harness boundary
-- first_harness_consumer: Local coding worker / Qwen
-- second_harness_trigger: second harness exercises same denial
-- related: B-0005, B-0012, B-0014, B-0016, B-0020, B-0021, B-0022, B-0024

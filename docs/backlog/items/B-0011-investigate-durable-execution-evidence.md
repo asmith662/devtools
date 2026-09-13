@@ -7,38 +7,21 @@
 - architectural_significance: STRUCTURAL
 - urgency: DEFERRED
 - evidence_basis: REPOSITORY
-- scope: durable evidence beyond in-process session persistence
+- scope: durable evidence and recovery beyond process-local terminal Evidence
+- primary_domain: observability
+- supporting_domains: persistence, execution, governance
 - parent: B-0004
 
 ## Problem / value
 
-Determine whether Attempt/Evidence must survive process loss, recovery, or audit.
+Current terminal Evidence is immutable, in-process observability about an
+InteractionAttempt. `ExecutionInspector` is process-local. Determine whether a
+real recovery, resume, or audit consumer requires durable Evidence without
+making Persistence own Evidence semantics or reintroducing execution ownership
+of Evidence.
 
-## Evidence / invariants
-
-Session persistence is semantic Session reconstruction, not execution
-persistence. ExecutionInspector is process-local diagnostic state.
-
-Runtime representations are not automatically durable persistence or wire
-contracts. If execution state becomes durable, schema identity/versioning,
-compatibility, unsupported-version behavior, evolution/migration, and atomic
-persistence where appropriate require separate investigation.
-
-Pressure also includes evolving executable-contract references,
-replay/reconstruction, and whether durable authorization evidence or permits
-are required. This item records durable Evidence needs; it does not own generic
-serialization or persistence mechanics.
-
-## Dependencies / risks / validation
-
-- hard_dependencies: B-0010
-- pressure_dependencies: B-0016, B-0024, B-0027, B-0028
-- operational_dependencies: durable recovery/audit consumer
-- consumers: future recovery and audit needs
-- unresolved_semantics: storage, delivery, retention, replay/reconstruction, executable-contract references, schema identity/versioning, compatibility, evolution, and durable authorization-evidence boundaries
-- risk_if_deferred: evidence is unavailable beyond process lifetime when required
-- risk_if_implemented_early: generic event store without stable identity semantics
-- promotion_trigger: real recovery, resume, or audit need
+- hard_dependencies: none
+- pressure_dependencies: B-0027, B-0031
+- operational_dependencies: durable recovery or audit consumer
+- promotion_trigger: recovery, resume, or external audit requires durable evidence
 - validation_level: NONE
-- live_validation_trigger: recovery, resume, or external audit is meaningful
-- related: B-0004, B-0010, B-0016, B-0024, B-0027, B-0028

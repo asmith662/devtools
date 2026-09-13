@@ -1,30 +1,24 @@
 # B-0004 — Governed Execution Evolution
 
 - type: EPIC
-- status: DEFERRED
-- decision_maturity: DISCOVERED
+- status: SUPERSEDED
+- decision_maturity: READY_FOR_DESIGN
 - necessity: FUTURE_REQUIRED
 - architectural_significance: FOUNDATIONAL
 - urgency: DEFERRED
 - evidence_basis: MULTIPLE
-- scope: future work, execution, attempt, and evidence semantics
+- scope: historical parent for separated execution lifecycle and durable observation pressure
+- primary_domain: execution
+- supporting_domains: observability, persistence, governance
+- split_children: B-0031
 
-## Problem / value
+## Split record
 
-Preserve pressure to evolve beyond Runtime, Attempt, and terminal Evidence only
-when real multi-attempt, durable, or causal work requires it.
+The former epic incorrectly grouped generic execution lifecycle, specialized
+InteractionAttempt, terminal Evidence, and durability. Execution now owns the
+specialized lifecycle; observability owns Evidence; Persistence owns storage
+mechanics.
 
-## Evidence / invariants / dependencies
-
-Existing Attempt/Evidence semantics are evidence, not disposable scaffolding.
-
-- hard_dependencies: none
-- pressure_dependencies: B-0005
-- operational_dependencies: none
-- children: B-0010, B-0011
-- unresolved_semantics: work/execution/attempt hierarchy
-- risk_if_implemented_early: invented hierarchy becomes infrastructure
-- risk_if_deferred: none until current identities are insufficient
-- promotion_trigger: user-visible work spans attempts, repairs, or takeover
-- validation_level: NONE
-- live_validation_trigger: unknown until a consumer exposes identity pressure
+Future generic lifecycle promotion is B-0031. Durable evidence and recovery
+remain separately represented by B-0011 and B-0028. This record preserves
+lineage and does not authorize implementation.

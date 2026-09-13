@@ -7,29 +7,23 @@
 - architectural_significance: STRUCTURAL
 - urgency: SOON
 - evidence_basis: MULTIPLE
-- scope: coding-oriented repository discovery and context selection
+- scope: coding-oriented selection and assembly of relevant repository information
+- primary_domain: context
+- supporting_domains: resources, tools, agents, models, experiments
 
 ## Problem / value
 
-Investigate repository discovery and context selection for coding harnesses
-without declaring it universal agent memory.
+Investigate the smallest coding-oriented Context boundary required by a bounded
+worker. Context is information selected and assembled as relevant to a current
+purpose; it is not Conversation state, repository storage, or Memory.
 
-## Evidence / consumers / invariants
-
-Paths, bounded filesystem reads, regex, and Markdown structure exist; inventory,
-symbols, imports, selection provenance, and budgeting do not. The first consumer
-is the local coding worker; this is not presumed foundational to every agent.
-
-## Dependencies / risks / validation
+Resources provide access and Tools may adapt bounded access. Neither existing
+filesystem reads nor Qwen action results establish reusable selection,
+retrieval, ranking, provenance, budgeting, or compilation semantics.
 
 - hard_dependencies: none
-- pressure_dependencies: B-0003
-- operational_dependencies: paths, filesystem, regex
+- pressure_dependencies: none
+- operational_dependencies: resources filesystem, core paths, core regex
 - children: B-0008
-- unresolved_semantics: scope and reusable versus coding-specific boundary
-- risk_if_deferred: discovery becomes harness-specific improvisation
-- risk_if_implemented_early: generic Context or Memory architecture
-- promotion_trigger: B-0008 identifies a bounded first use case
+- promotion_trigger: B-0008 identifies minimum selected information for one frozen coding-worker story
 - validation_level: NONE
-- live_validation_trigger: a meaningful coding-harness context path exists
-- related: B-0008, B-0009

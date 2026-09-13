@@ -7,57 +7,24 @@
 - architectural_significance: HARNESS_LOCAL
 - urgency: SOON
 - evidence_basis: REAL_USE
-- scope: first bounded local Qwen coding-worker harness
+- scope: experimental Qwen coding-worker vertical slice
+- primary_domain: experiments
+- supporting_domains: agents, context, tools, models, execution, evaluation
 - parent: B-0003
 
 ## Problem / value
 
-Create the first bounded Qwen coding-worker harness after its minimum
-repository-context boundary is known.
+Build one bounded experimental coding worker after B-0008 defines the required
+Context. It may exercise ModelInteraction, selected Context, bounded Tool use,
+execution, and task-specific acceptance without promoting a generic Agent,
+Action, authorization, or orchestration framework.
 
-## Evidence / invariants
-
-Qwen serving is validated. The harness must create real pressure for framework
-acceptance but must not predefine a universal tool loop, execution envelope, or
-effect model.
-
-Model/provider output resembling a tool call is only an action proposal, not a
-trusted executable request or execution authority. Investigation must determine
-how proposals may become identity-resolved, contract-validated canonical
-framework requests before governance and execution, without freezing stages,
-names, types, or ordering.
-
-A model-generated plan or sequence of intended actions is proposed intent, not
-preauthorization. The first bounded Qwen worker should prove reusable
-boundaries without promoting Qwen-specific behavior or protocol details into
-generic semantics. A useful vertical slice may require minimal accepted
-semantics from coding context (B-0008), model interaction (B-0030),
-model-facing actions (B-0020), and active orchestration (B-0029); it need not
-wait for those investigations to be complete.
-
-## Future effectiveness evidence
-
-When the harness is evaluated, retain enough evidence to determine whether the
-local worker reduces strong-model or Codex effort needed for an accepted result.
-Useful future evidence may include first-pass acceptance, supervisor or Codex
-correction turns, observable supervisor prompt/completion use, takeover, and
-review/correction effort. This preserves an evaluation question; it does not
-define a metric, benchmark schema, or token-accounting policy.
-
-## Dependencies / risks / validation
+Qwen read-only experiments are predecessor evidence only; no coding/editing
+worker exists.
 
 - hard_dependencies: B-0008
-- pressure_dependencies: B-0012, B-0016, B-0020, B-0029, B-0030
+- pressure_dependencies: B-0012, B-0016, B-0035, B-0036, B-0043, B-0044
 - operational_dependencies: pinned Qwen serving profile
-- blocked_by: sufficient B-0008 resolution
-- consumers: Local coding worker / Qwen
-- established_invariants: model-generated action proposals do not create execution authority merely by being syntactically valid
-- unresolved_semantics: exact tool/effect loop; proposal-to-canonical-request boundary; minimum vertical slice across context, model, action, and orchestration boundaries
-- risk_if_deferred: no live coding-harness consumer
-- risk_if_implemented_early: context/effect semantics become fixed
-- promotion_trigger: bounded repository-context requirements are designed
+- blocked_by: minimum Context requirements for the selected story
+- promotion_trigger: bounded coding context is designed
 - validation_level: LIVE_SINGLE_HARNESS
-- live_validation_trigger: harness can inspect, request an operation, and return evidence
-- first_harness_consumer: Local coding worker / Qwen
-- second_harness_trigger: Codex uses unchanged core semantics
-- related: B-0003, B-0008, B-0012, B-0016, B-0020, B-0029, B-0030

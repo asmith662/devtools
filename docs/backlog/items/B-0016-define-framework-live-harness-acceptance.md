@@ -7,52 +7,23 @@
 - architectural_significance: STRUCTURAL
 - urgency: SOON
 - evidence_basis: MULTIPLE
-- scope: progressive real-harness framework validation methodology
+- scope: task-specific live evaluation of reusable framework boundaries
+- primary_domain: evaluation
+- supporting_domains: observability, experiments, governance
 - parent: B-0015
 
 ## Problem / value
 
-Define how structural framework primitives graduate from deterministic tests to
-meaningful real-harness validation without creating a generic live-test runner.
+Determine how deterministic framework evidence is extended by meaningful,
+bounded live acceptance without a generic live-test runner. Live acceptance
+tests framework enforcement and causal evidence, not voluntary model obedience.
 
-## Validation pressures
-
-Observability: real model conversation, tool request, tool execution, result,
-continuation, and completion should yield an accurate causal observation.
-
-Authority: test framework denial when a model requests forbidden operation, not
-whether the model voluntarily obeys.
-
-Cancellation: interrupt a real model/tool path, clean owned resources, preserve
-cancellation identity/outcome, and capture observation.
-
-Multi-harness: after Qwen validates a primitive, Codex or another harness uses
-equivalent semantics without changing the core contract.
-
-Final semantic results may not prove the required runtime path occurred. Future
-acceptance may need causal occurrence evidence, for example model interaction
-to proposal/materialization to authorization denial and absence of execution,
-or context retrieval/compilation to tool execution, returned result, and model
-continuation. These are examples, not an event schema.
-
-Reusable boundaries should be exercised through the earliest bounded real
-consumer capable of validating them, while preventing that first consumer's
-provider or application semantics from becoming generic framework semantics.
-The bounded Qwen coding worker is the expected first major consumer, not a
-reason to begin its implementation here.
-
-## Dependencies / risks / validation
+Qwen durable reports establish one task-specific example: completed cycles,
+model output, Conversation state, Tool facts, and failure diagnostics can be
+retained. This does not establish reusable acceptance infrastructure.
 
 - hard_dependencies: none
-- pressure_dependencies: B-0003, B-0011, B-0012, B-0017, B-0023
+- pressure_dependencies: B-0011, B-0023
 - operational_dependencies: meaningful specialized harness path
-- consumers: future structural framework primitives
-- unresolved_semantics: occurrence evidence, causal boundaries, evidence sufficiency, nondeterminism, provider/framework failures, CI boundaries, and first-consumer restraint
-- risk_if_deferred: framework semantics may be accepted from mocks alone
-- risk_if_implemented_early: generic test framework before scenarios stabilize
-- promotion_trigger: primitive has unit/integration coverage and a live path
+- promotion_trigger: a reusable primitive has deterministic evidence and a meaningful live path
 - validation_level: INTEGRATION
-- live_validation_trigger: a primitive has unit/integration coverage and a live path
-- first_harness_consumer: Local coding worker / Qwen
-- second_harness_trigger: Codex or another harness uses unchanged semantics
-- related: B-0015, B-0009, B-0012, B-0013, B-0017, B-0023

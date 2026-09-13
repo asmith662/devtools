@@ -7,26 +7,23 @@
 - architectural_significance: STRUCTURAL
 - urgency: SOON
 - evidence_basis: MULTIPLE
-- scope: cross-cutting framework acceptance methodology
+- scope: progressive evaluation of reusable boundaries through specialized harnesses
+- primary_domain: evaluation
+- supporting_domains: observability, experiments, models, agents
 
 ## Problem / value
 
-Ensure shared framework semantics graduate from deterministic tests to real
-specialized-harness validation when a meaningful end-to-end path exists.
+Ensure reusable framework semantics graduate from deterministic evidence to
+task-specific live acceptance when a meaningful path exists. Evaluation judges
+behavior; observability supplies factual evidence; neither authorizes a generic
+live-test framework.
 
-## Invariants / dependencies / validation
-
-Unit coverage is necessary but insufficient for agent-facing semantics. Live
-tests validate framework enforcement against a model request, not voluntary
-model obedience.
+The durable Qwen acceptance reports are one bounded example. They do not make
+Qwen semantics reusable or establish a universal acceptance harness.
 
 - hard_dependencies: none
-- pressure_dependencies: B-0003, B-0005
-- operational_dependencies: a meaningful first harness path
+- pressure_dependencies: none
+- operational_dependencies: meaningful specialized harness path
 - children: B-0016
-- unresolved_semantics: live evidence sufficiency and nondeterminism handling
-- risk_if_implemented_early: generic live-test framework
-- risk_if_deferred: semantics are accepted from mocks alone
-- promotion_trigger: structural primitive has deterministic coverage and a live path
+- promotion_trigger: structural primitive has deterministic coverage and a meaningful live path
 - validation_level: INTEGRATION
-- live_validation_trigger: a structural primitive has a meaningful live path

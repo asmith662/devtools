@@ -7,22 +7,22 @@
 - architectural_significance: FOUNDATIONAL
 - urgency: DEFERRED
 - evidence_basis: MULTIPLE
-- scope: governance of externally meaningful operations
+- scope: authority for externally meaningful operations
+- primary_domain: governance
+- supporting_domains: execution, tools, agents, orchestration, observability, persistence
 
 ## Problem / value
 
-Preserve future pressure around operations causing effects and their governance.
-Tool discovery or admission is not authorization.
+Preserve pressure for authority, policy, approval, delegation, and safe
+handling of externally meaningful effects. Model proposal, capability exposure,
+and Tool validation do not create authorization.
 
-## Dependencies / risks / validation
+Read-only Qwen experiments do not prove mutation governance. Bounded local
+effects remain explicit until a reusable mutating boundary needs governance.
 
 - hard_dependencies: none
-- pressure_dependencies: B-0004
-- operational_dependencies: a mutating harness capability
-- children: B-0012, B-0013, B-0014
-- unresolved_semantics: effect identity, outcome, policy, authority
-- risk_if_implemented_early: universal Tool, Effect, or Capability model
-- risk_if_deferred: bounded harnesses remain explicit/local
-- promotion_trigger: a mutation crosses a reusable harness boundary
+- pressure_dependencies: B-0031
+- operational_dependencies: mutating harness capability
+- children: B-0012, B-0013, B-0034, B-0037, B-0039
+- promotion_trigger: a mutation crosses a reusable boundary
 - validation_level: NONE
-- live_validation_trigger: a real harness reaches a governed mutating boundary

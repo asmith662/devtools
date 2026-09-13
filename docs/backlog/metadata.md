@@ -18,6 +18,42 @@ must be written as explicit uncertainty, not guessed.
 Status describes lifecycle selection; decision_maturity describes how well the
 semantics are understood. They are intentionally independent.
 
+## Architectural ownership
+
+Each canonical record also identifies one `primary_domain` and, when needed,
+`supporting_domains`.
+
+- **Primary domain** owns the architectural pressure and is accountable for
+  its eventual semantic boundary.
+- **Supporting domains** participate in the concern without taking ownership
+  of that boundary.
+- Use `supporting_domains: none` when no secondary domain participates.
+- `experiments` is permitted as a primary domain only for non-reusable
+  composition whose semantics have not been promoted into `src/devtools/`.
+
+Allowed reusable domains are `core`, `resources`, `models`, `agents`,
+`context`, `tools`, `execution`, `orchestration`, `governance`,
+`observability`, `persistence`, and `evaluation`.
+
+`documentation` is a narrow non-reusable administrative owner for records
+about the repository's authoritative documentation itself. It is not a
+thirteenth framework domain. `experiments` is the corresponding non-reusable
+owner for unpromoted composition.
+
+Cross-domain participation never removes the need for a primary owner. The
+field describes architectural ownership, not current Python package location.
+
+## Split lineage and semantic decisions
+
+When a record is decomposed, the original record remains canonical historical
+lineage. It uses `status: SUPERSEDED`, names `split_children`, and explains the
+scope that was separated. Each surviving child uses `split_from: B-XXXX`.
+
+`semantic_decision: RESOLVED` records that an investigation's terminology or
+ownership question is answered by authoritative architecture. It does not
+authorize implementation. A resolved decision can therefore remain
+`status: DEFERRED` while its reusable implementation lacks a consumer.
+
 ## Evidence, scope, dependencies, and risk
 
 Records preserve these independent dimensions when meaningful. Unknown values
@@ -43,6 +79,15 @@ template:
 
 Evidence basis may name RESEARCH, REPOSITORY, REAL_USE, or MULTIPLE; it is
 descriptive rather than a score.
+
+## Promotion discipline
+
+Promotion requires sufficient evidence that a semantic boundary is stable
+independently of an experimental or local implementation. Useful evidence may
+include independent consumers, heterogeneous repeated use, multiple
+architectural pressures converging on the same boundary, demonstrated reuse
+without experiment-specific assumptions, or requirements that cannot remain
+cleanly local. No universal consumer count automatically authorizes promotion.
 
 Dependency meanings are distinct:
 
