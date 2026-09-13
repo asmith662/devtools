@@ -77,6 +77,28 @@ synchronous bounded Filesystem read beneath its async method; it does not
 promise non-blocking execution or in-flight cancellation. It adds no timeout,
 retry, Tool identity, result wrapper, registry, persistence, or instrumentation.
 
+## ListRepositoryDirectoryTool
+
+The bounded directory-enumeration capability is also available only from its
+submodule:
+
+```python
+from devtools.tools.filesystem import ListRepositoryDirectoryTool
+```
+
+`ListRepositoryDirectoryTool(root)` accepts an existing `ResolvedPath`, admits
+only paths at or below its configured root, and returns ordered direct-entry
+names and kinds in a `RepositoryDirectoryListing`. It is non-recursive and
+returns at most 64 entries by default; `truncated` explicitly records omitted
+entries. It rejects paths outside its configured scope with `ToolInputError`.
+Missing paths, non-directories, permission failures, and filesystem behavior
+otherwise remain Filesystem-domain behavior.
+
+Like `ReadRepositoryFileTool`, its root is scope rather than a hardened
+sandbox: it does not claim symlink confinement or TOCTOU protection. It adds
+no repository inventory, search, ranking, registry, persistence, or Tool
+instrumentation.
+
 ## Boundaries
 
 Tools do not change Context, Interaction, Runtime, Attempt, Evidence, Persistence, or

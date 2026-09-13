@@ -1,0 +1,443 @@
+# Copyright (c) 2026
+# ruff: noqa: E501, PLR2004
+"""Deterministic tests for the bounded heterogeneous read-only Qwen experiment."""
+
+from __future__ import annotations
+
+import asyncio
+from dataclasses import dataclass, field
+from typing import TYPE_CHECKING
+
+import pytest
+
+from devtools.context import Message, MessageRole, MessageSource, Session
+from devtools.filesystem import FilesystemNotFoundError
+from devtools.interactions import ConversationRef, InteractionTurn
+from devtools.paths import ResolvedPath
+from devtools.runtime import Runtime
+from devtools.tools.filesystem import (
+    ListRepositoryDirectoryTool,
+    ReadRepositoryFileTool,
+)
+from experiments.qwen import two_action_read_only_experiment as experiment
+from experiments.qwen.two_action_read_only_experiment import (
+    QwenListDirectoryCycle,
+    QwenReadOnlyCycle,
+    QwenReadRepositoryFileCycle,
+    QwenTwoActionReadOnlyExperiment,
+    ReadOnlyProposalError,
+)
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
+    from pathlib import Path
+
+    from devtools.interactions import Interaction
+
+
+@dataclass(slots=True)
+class _ScriptedInteraction:
+    """Return exact planned assistant content and retain each controller input."""
+
+    responses: list[str]
+    calls: list[Message] = field(default_factory=list)
+    source: MessageSource = field(default_factory=lambda: MessageSource("qwen"))
+
+    async def send(
+        self,
+        message: Message,
+        *,
+        conversation: ConversationRef | None = None,
+    ) -> InteractionTurn:
+        """Return the next planned final assistant Message."""
+        assert conversation is None
+        self.calls.append(message)
+        return InteractionTurn(
+            Message.new(
+                self.responses.pop(0),
+                role=MessageRole.ASSISTANT,
+                source=self.source,
+            ),
+        )
+
+
+@dataclass(slots=True)
+class _FailingLaterInteraction:
+    """Return one proposal, then preserve a provider-like later-turn failure."""
+
+    source: MessageSource = field(default_factory=lambda: MessageSource("qwen"))
+    calls: list[Message] = field(default_factory=list)
+
+    async def send(
+        self,
+        message: Message,
+        *,
+        conversation: ConversationRef | None = None,
+    ) -> InteractionTurn:
+        """Produce a first proposal only, then propagate a later failure."""
+        assert conversation is None
+        self.calls.append(message)
+        if len(self.calls) == 1:
+            return InteractionTurn(
+                Message.new(
+                    _proposal("list_repository_directory", "facts"),
+                    role=MessageRole.ASSISTANT,
+                    source=self.source,
+                ),
+            )
+        msg = "provider unavailable"
+        raise RuntimeError(msg)
+
+
+def _proposal(action: str, path: str) -> str:
+    return f'{{"action":"{action}","path":"{path}"}}'
+
+
+def _task() -> Message:
+    return Message.new(
+        "Find the target using only the permitted exact read-only proposals.",
+        role=MessageRole.USER,
+        source=MessageSource("test-caller"),
+    )
+
+
+def _write(root: Path, relative_path: str, content: str) -> Path:
+    path = root / relative_path
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    return path
+
+
+def _experiment(
+    root: Path,
+    interaction: Interaction,
+    on_cycle_completed: Callable[[QwenReadOnlyCycle], None] | None = None,
+) -> tuple[QwenTwoActionReadOnlyExperiment, Session]:
+    session = Session.new()
+    return (
+        QwenTwoActionReadOnlyExperiment(
+            runtime=Runtime(),
+            session=session,
+            interaction=interaction,
+            repository_root=ResolvedPath(root.resolve()),
+            on_cycle_completed=on_cycle_completed,
+        ),
+        session,
+    )
+
+
+def test_list_then_read_retains_heterogeneous_cycles_and_stateless_prompts(
+    tmp_path: Path,
+) -> None:
+    """A list result makes a discovered file name available for the later read turn."""
+    root = tmp_path / "repository"
+    _write(root, "facts/decoy.txt", "decoy")
+    target = _write(root, "facts/target-random.txt", "NONCE-TARGET")
+    interaction = _ScriptedInteraction(
+        [
+            _proposal("list_repository_directory", "facts"),
+            _proposal("read_repository_file", "facts/target-random.txt"),
+            "NONCE-TARGET",
+        ],
+    )
+    completed_cycles: list[QwenReadOnlyCycle] = []
+    tested, session = _experiment(root, interaction, completed_cycles.append)
+
+    result = asyncio.run(tested.run(_task()))
+
+    assert tuple(completed_cycles) == result.cycles
+    assert isinstance(result.cycles[0], QwenListDirectoryCycle)
+    assert isinstance(result.cycles[1], QwenReadRepositoryFileCycle)
+    assert result.cycles[0].relative_path == "facts"
+    assert result.cycles[1].resolved_path == ResolvedPath(target.resolve())
+    assert "target-random.txt [file]" in result.cycles[0].result_projection
+    assert str(root.resolve()) not in result.cycles[0].result_projection
+    assert "NONCE-TARGET" in result.cycles[1].result_projection
+    assert '"action":"list_repository_directory"' in result.cycles[0].follow_up.content
+    assert '"action":"read_repository_file"' in result.cycles[0].follow_up.content
+    assert "one remaining read-only action" in result.cycles[0].follow_up.content
+    assert "Do not propose another action." in result.cycles[1].follow_up.content
+    assert result.final_message.content == "NONCE-TARGET"
+    assert [message.role for message in session.history] == [
+        MessageRole.USER,
+        MessageRole.ASSISTANT,
+        MessageRole.SYSTEM,
+        MessageRole.ASSISTANT,
+        MessageRole.SYSTEM,
+        MessageRole.ASSISTANT,
+    ]
+
+
+@pytest.mark.parametrize(
+    "responses",
+    [
+        [
+            _proposal("read_repository_file", "facts/first.txt"),
+            _proposal("list_repository_directory", "facts"),
+            "final",
+        ],
+        [
+            _proposal("list_repository_directory", "facts"),
+            _proposal("list_repository_directory", "facts"),
+            "final",
+        ],
+        [
+            _proposal("read_repository_file", "facts/first.txt"),
+            _proposal("read_repository_file", "facts/first.txt"),
+            "final",
+        ],
+    ],
+)
+def test_strategy_neutral_valid_action_orders_are_structurally_permitted(
+    tmp_path: Path,
+    responses: list[str],
+) -> None:
+    """The controller permits valid actions without encoding task strategy."""
+    root = tmp_path / "repository"
+    _write(root, "facts/first.txt", "first")
+    interaction = _ScriptedInteraction(responses)
+    tested, _ = _experiment(root, interaction)
+
+    result = asyncio.run(tested.run(_task()))
+
+    assert len(result.cycles) == 2
+    assert result.final_message.content == "final"
+
+
+def test_immediate_and_one_action_final_answers_terminate_normally(tmp_path: Path) -> None:
+    """Two accepted actions are a cap rather than a requirement."""
+    root = tmp_path / "repository"
+    _write(root, "facts/first.txt", "first")
+    immediate, _ = _experiment(root, _ScriptedInteraction(["final immediately"]))
+    after_one, _ = _experiment(
+        root,
+        _ScriptedInteraction(
+            [_proposal("read_repository_file", "facts/first.txt"), "final after one"],
+        ),
+    )
+
+    immediate_result = asyncio.run(immediate.run(_task()))
+    after_one_result = asyncio.run(after_one.run(_task()))
+
+    assert immediate_result.cycles == ()
+    assert after_one_result.final_message.content == "final after one"
+    assert len(after_one_result.cycles) == 1
+
+
+def test_third_valid_proposal_is_rejected_before_a_third_tool_execution(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The two-action cap rejects a third proposal without requesting a fourth turn."""
+    root = tmp_path / "repository"
+    _write(root, "facts/first.txt", "first")
+    interaction = _ScriptedInteraction(
+        [
+            _proposal("list_repository_directory", "facts"),
+            _proposal("read_repository_file", "facts/first.txt"),
+            _proposal("list_repository_directory", "facts"),
+        ],
+    )
+    tested, _ = _experiment(root, interaction)
+    executed_actions: list[str] = []
+    original_list = ListRepositoryDirectoryTool.execute
+    original_read = ReadRepositoryFileTool.execute
+
+    async def counted_list(
+        tool: ListRepositoryDirectoryTool,
+        path: ResolvedPath,
+    ) -> object:
+        executed_actions.append("list_repository_directory")
+        return await original_list(tool, path)
+
+    async def counted_read(
+        tool: ReadRepositoryFileTool,
+        path: ResolvedPath,
+    ) -> object:
+        executed_actions.append("read_repository_file")
+        return await original_read(tool, path)
+
+    monkeypatch.setattr(ListRepositoryDirectoryTool, "execute", counted_list)
+    monkeypatch.setattr(ReadRepositoryFileTool, "execute", counted_read)
+
+    with pytest.raises(ReadOnlyProposalError, match="at most two"):
+        asyncio.run(tested.run(_task()))
+    assert len(interaction.calls) == 3
+    assert executed_actions == [
+        "list_repository_directory",
+        "read_repository_file",
+    ]
+
+
+@pytest.mark.parametrize(
+    "content",
+    [
+        '{"action":"unknown","path":"facts"}',
+        '{"action":"list_repository_directory","path":" facts"}',
+        '{"action":"list_repository_directory","path":"facts","extra":1}',
+        '{"action":"list_repository_directory","path":"facts","path":"other"}',
+        '{"action":"list_repository_directory","action":"read_repository_file","path":"facts"}',
+        '{"action":"list_repository_directory","path":123}',
+        '{"action":"read_repository_file","path":null}',
+        '{"action":"list_repository_directory","path":"facts"} and then inspect it',
+        "{not json",
+        '["list_repository_directory"]',
+        '```json\n{"action":"list_repository_directory","path":"facts"}\n```',
+    ],
+)
+def test_action_like_invalid_responses_are_rejected(content: str) -> None:
+    """Protocol-shaped malformed output cannot silently become final text."""
+    with pytest.raises(ReadOnlyProposalError):
+        experiment._classify_response(content)  # noqa: SLF001
+
+
+@pytest.mark.parametrize(
+    "content",
+    [
+        "The action completed.",
+        "read facts carefully",
+        "list_repository_directory was unnecessary",
+        'I think use {"action":"list_repository_directory","path":"facts"}',
+    ],
+)
+def test_ordinary_and_embedded_protocol_prose_remain_final_text(content: str) -> None:
+    """The classifier does not scan ordinary prose for embedded proposals."""
+    assert experiment._classify_response(content) is None  # noqa: SLF001
+
+
+def test_absolute_path_proposal_is_rejected() -> None:
+    """Proposal admission remains host-independent about absolute path syntax."""
+    with pytest.raises(ReadOnlyProposalError, match="repository-relative"):
+        experiment._classify_response(  # noqa: SLF001
+            _proposal("list_repository_directory", "C:\\\\facts"),
+        )
+
+
+@pytest.mark.parametrize(
+    ("first_action", "failing_tool"),
+    [
+        ("list_repository_directory", ListRepositoryDirectoryTool),
+        ("read_repository_file", ReadRepositoryFileTool),
+    ],
+)
+def test_tool_failures_propagate_after_either_action_shape(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    first_action: str,
+    failing_tool: type[ListRepositoryDirectoryTool | ReadRepositoryFileTool],
+) -> None:
+    """The experiment preserves Tool failures without inventing a shared wrapper."""
+    root = tmp_path / "repository"
+    _write(root, "facts/first.txt", "first")
+    path = "facts" if first_action == "list_repository_directory" else "facts/first.txt"
+    completed_cycles: list[QwenReadOnlyCycle] = []
+    tested, _ = _experiment(
+        root,
+        _ScriptedInteraction([_proposal(first_action, path)]),
+        completed_cycles.append,
+    )
+
+    async def failed_execute(_tool: object, _path: ResolvedPath) -> object:
+        msg = "fixture tool failure"
+        raise FilesystemNotFoundError(msg)
+
+    monkeypatch.setattr(failing_tool, "execute", failed_execute)
+
+    with pytest.raises(FilesystemNotFoundError, match="fixture tool failure"):
+        asyncio.run(tested.run(_task()))
+
+    assert completed_cycles == []
+
+
+def test_later_interaction_failure_propagates_after_a_completed_listing(
+    tmp_path: Path,
+) -> None:
+    """The local loop does not convert a later provider failure into a final answer."""
+    root = tmp_path / "repository"
+    _write(root, "facts/first.txt", "first")
+    interaction = _FailingLaterInteraction()
+    completed_cycles: list[QwenReadOnlyCycle] = []
+    tested, session = _experiment(root, interaction, completed_cycles.append)
+
+    with pytest.raises(RuntimeError, match="provider unavailable"):
+        asyncio.run(tested.run(_task()))
+
+    assert len(interaction.calls) == 2
+    assert len(completed_cycles) == 1
+    assert isinstance(completed_cycles[0], QwenListDirectoryCycle)
+    assert [message.role for message in session.history] == [
+        MessageRole.USER,
+        MessageRole.ASSISTANT,
+        MessageRole.SYSTEM,
+    ]
+
+
+def test_later_malformed_proposal_retains_only_the_completed_list_cycle(
+    tmp_path: Path,
+) -> None:
+    """A completed list is published before strict parsing rejects the next turn."""
+    root = tmp_path / "repository"
+    _write(root, "facts/first.txt", "first")
+    completed_cycles: list[QwenReadOnlyCycle] = []
+    tested, _ = _experiment(
+        root,
+        _ScriptedInteraction(
+            [_proposal("list_repository_directory", "facts"), "{not json"],
+        ),
+        completed_cycles.append,
+    )
+
+    with pytest.raises(ReadOnlyProposalError):
+        asyncio.run(tested.run(_task()))
+
+    assert len(completed_cycles) == 1
+    assert isinstance(completed_cycles[0], QwenListDirectoryCycle)
+
+
+def test_malformed_first_proposal_publishes_no_completed_cycles(tmp_path: Path) -> None:
+    """Strict first-turn rejection occurs before any cycle has completed."""
+    root = tmp_path / "repository"
+    root.mkdir()
+    completed_cycles: list[QwenReadOnlyCycle] = []
+    tested, _ = _experiment(
+        root,
+        _ScriptedInteraction(["{not json"]),
+        completed_cycles.append,
+    )
+
+    with pytest.raises(ReadOnlyProposalError):
+        asyncio.run(tested.run(_task()))
+
+    assert completed_cycles == []
+
+
+def test_second_tool_failure_retains_only_the_first_completed_cycle(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A failed second read is not published as a completed experimental cycle."""
+    root = tmp_path / "repository"
+    _write(root, "facts/first.txt", "first")
+    completed_cycles: list[QwenReadOnlyCycle] = []
+    tested, _ = _experiment(
+        root,
+        _ScriptedInteraction(
+            [
+                _proposal("list_repository_directory", "facts"),
+                _proposal("read_repository_file", "facts/first.txt"),
+            ],
+        ),
+        completed_cycles.append,
+    )
+
+    async def failed_read(_tool: object, _path: ResolvedPath) -> object:
+        msg = "fixture second-tool failure"
+        raise FilesystemNotFoundError(msg)
+
+    monkeypatch.setattr(ReadRepositoryFileTool, "execute", failed_read)
+
+    with pytest.raises(FilesystemNotFoundError, match="fixture second-tool failure"):
+        asyncio.run(tested.run(_task()))
+
+    assert len(completed_cycles) == 1
+    assert isinstance(completed_cycles[0], QwenListDirectoryCycle)

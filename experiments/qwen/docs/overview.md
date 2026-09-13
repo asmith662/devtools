@@ -19,3 +19,11 @@ compilation, or action infrastructure.
 The package does not implement streaming, native tool calls, usage accounting,
 provider-neutral model semantics, provider continuation, generic proposals,
 or a coding worker.
+
+`two_action_read_only_experiment.py` is a separate bounded successor probe. It
+permits exactly two concrete read-only operations—non-recursive directory
+listing and text-file reading—within a maximum of two accepted actions. Its
+controller remains experiment-local: it uses explicit dispatch, action-specific
+path materialization, bounded projections, and stateless SYSTEM reconstruction.
+It is evidence about heterogeneous action selection, not generic action,
+authorization, orchestration, context, or acceptance infrastructure.

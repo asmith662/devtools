@@ -21,13 +21,13 @@ from devtools.regex import (
 )
 ```
 
-| Group | API |
-|---|---|
-| Types | `RegexPattern`, `RegexMatch` |
-| Compilation | `compile_regex()` |
-| Search | `search_regex()` |
-| Iteration | `iter_regex()`, `find_all_regex()` |
-| Replacement | `replace_regex()` |
+| Group       | API                                |
+|-------------|------------------------------------|
+| Types       | `RegexPattern`, `RegexMatch`       |
+| Compilation | `compile_regex()`                  |
+| Search      | `search_regex()`                   |
+| Iteration   | `iter_regex()`, `find_all_regex()` |
+| Replacement | `replace_regex()`                  |
 
 ## Pattern handling
 
