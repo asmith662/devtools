@@ -30,6 +30,11 @@ requests no cap. This request constraint is distinct from provider-reported
 `ModelUsage`, model context-window capacity, and any future Context or run
 budget. An adapter must honor a supplied limit or reject it explicitly.
 
+One request may also optionally specify `thinking_enabled`: `None` preserves
+provider defaults, while `True` or `False` explicitly requests thinking on or
+off. An adapter must honor an explicit value or reject it; it must not silently
+ignore the request.
+
 The configurable llama.cpp implementation is under `providers/`; it communicates
 with an already-running model endpoint. Endpoint lifecycle is separately owned
 by `devtools.models.serving`.

@@ -118,6 +118,7 @@ class QwenTwoActionReadOnlyExperiment:
         max_projection_characters: int = _DEFAULT_MAX_PROJECTION_CHARACTERS,
         maximum_actions: int = _DEFAULT_MAXIMUM_ACTIONS,
         maximum_output_tokens: int | None = None,
+        thinking_enabled: bool | None = None,
         on_cycle_completed: Callable[[QwenReadOnlyCycle], None] | None = None,
         on_model_response: Callable[[ModelResponse], None] | None = None,
         on_final_response: (
@@ -142,6 +143,7 @@ class QwenTwoActionReadOnlyExperiment:
         self._max_projection_characters = max_projection_characters
         self._maximum_actions = maximum_actions
         self._maximum_output_tokens = maximum_output_tokens
+        self._thinking_enabled = thinking_enabled
         self._on_cycle_completed = on_cycle_completed
         self._on_model_response = on_model_response
         self._on_final_response = on_final_response
@@ -156,6 +158,7 @@ class QwenTwoActionReadOnlyExperiment:
             interaction=self._interaction,
             message=task,
             maximum_output_tokens=self._maximum_output_tokens,
+            thinking_enabled=self._thinking_enabled,
         )
         self._publish_model_response(turn)
         cycles: list[QwenReadOnlyCycle] = []
@@ -170,6 +173,7 @@ class QwenTwoActionReadOnlyExperiment:
                         interaction=self._interaction,
                         message=follow_up,
                         maximum_output_tokens=self._maximum_output_tokens,
+                        thinking_enabled=self._thinking_enabled,
                     )
                     self._publish_model_response(turn)
                     continue
@@ -208,6 +212,7 @@ class QwenTwoActionReadOnlyExperiment:
                 interaction=self._interaction,
                 message=cycle.follow_up,
                 maximum_output_tokens=self._maximum_output_tokens,
+                thinking_enabled=self._thinking_enabled,
             )
             self._publish_model_response(turn)
 

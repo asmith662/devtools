@@ -5,6 +5,7 @@ from devtools.models.interaction.models import (
     ConversationRef,
     InteractionSource,
     validate_maximum_output_tokens,
+    validate_thinking_enabled,
 )
 from devtools.models.interaction.prompt import Prompt
 from devtools.models.interaction.protocols import ModelInteraction
@@ -21,4 +22,5 @@ __all__ = [
     "ModelUsage",
     "Prompt",
     "validate_maximum_output_tokens",
+    "validate_thinking_enabled",
 ]

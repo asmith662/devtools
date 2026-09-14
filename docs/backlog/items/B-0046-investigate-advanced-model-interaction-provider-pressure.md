@@ -53,7 +53,7 @@ For llama.cpp's pinned OpenAI-compatible chat route,
 the existing request payload unchanged. Provider-reported usage remains factual
 post-hoc data and is not clamped, derived, or reconciled to the requested cap.
 The B-0009 runner may select a cap as experiment-local policy and records that
-choice in its existing schema `/3` fixture data.
+choice in its schema `/4` fixture data.
 
 ## Established subset: provider-reported termination
 
@@ -70,7 +70,7 @@ For llama.cpp image build `b10868`, commit
 [`304665fe7`](https://github.com/ggml-org/llama.cpp/blob/304665fe7/tools/server/server-task.cpp),
 `choices[0].finish_reason` maps `stop`, `length`, and `tool_calls` to those
 three values. Missing or null values remain absent; malformed or unrecognized
-values remain provider-response errors. The B-0009 schema `/3` artifact retains
+values remain provider-response errors. The B-0009 schema `/4` artifact retains
 the optional termination for each model turn without retaining raw provider
 payloads.
 
@@ -89,11 +89,29 @@ For llama.cpp image build `b10868`, commit
 [`304665fe7`](https://github.com/ggml-org/llama.cpp/blob/304665fe7/common/chat.cpp),
 `choices[0].message.reasoning_content` maps directly to that field. It remains
 independent of `ModelUsage`, `ModelTermination`, and request-side output limits.
-The B-0009 schema `/3` artifact retains optional reasoning by model turn for
+The B-0009 schema `/4` artifact retains optional reasoning by model turn for
 this narrow diagnostic purpose, without printing, persisting to Conversation,
 or retaining raw provider response payloads.
 
-Thinking controls, reasoning budgets, reasoning parsing, and raw
+## Established subset: per-request thinking control
+
+A direct bounded diagnostic established that the exact pinned Qwen profile
+honors per-request thinking disable: `chat_template_kwargs.enable_thinking`
+set to `false` returned visible `OK`, no reasoning content, `stop`, and two
+completion tokens, while the unchanged default consumed the 128-token cap in
+reasoning. The smallest reusable request semantic is optional
+`thinking_enabled: bool | None` on one `ModelInteraction` invocation. `None`
+preserves provider defaults; explicit `True` or `False` must be honored or
+rejected rather than silently ignored.
+
+For llama.cpp, explicit values map only to
+`chat_template_kwargs.enable_thinking`; `None` introduces no such field. This
+request fact remains independent of `maximum_output_tokens`,
+`reasoning_content`, `ModelUsage`, and `ModelTermination`. It does not create a
+reusable thinking policy or default, and the Qwen acceptance runner records its
+explicit experiment choice in schema `/4`.
+
+Reasoning budgets, reasoning parsing, generic chat-template kwargs, and raw
 provider-response retention remain deferred pressure.
 
 - hard_dependencies: B-0045

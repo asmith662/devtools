@@ -61,9 +61,12 @@ class _ScriptedInteraction:
         message: ConversationMessage,
         *,
         conversation: ConversationRef | None = None,
+        maximum_output_tokens: int | None = None,
+        thinking_enabled: bool | None = None,
     ) -> ModelResponse:
         """Retain one caller message and produce the next assistant ConversationMessage."""
         assert conversation is None
+        del maximum_output_tokens, thinking_enabled
         self.calls.append(message)
         return ModelResponse(content=self.responses.pop(0), source=self.source)
 

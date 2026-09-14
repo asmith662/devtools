@@ -27,9 +27,10 @@ class FakeInteraction:
         *,
         conversation: ConversationRef | None = None,
         maximum_output_tokens: int | None = None,
+        thinking_enabled: bool | None = None,
     ) -> ModelResponse:
         """Return same-source output and preserve provider continuation."""
-        del maximum_output_tokens
+        del maximum_output_tokens, thinking_enabled
         return ModelResponse(
             content=f"Reply to: {prompt.content}",
             source=self.source,

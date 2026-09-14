@@ -68,6 +68,7 @@ class _ScriptedInteraction:
     responses: list[str]
     calls: list[Prompt] = field(default_factory=list)
     requested_output_tokens: list[int | None] = field(default_factory=list)
+    requested_thinking: list[bool | None] = field(default_factory=list)
     reasoning_contents: list[str | None] | None = None
     terminations: list[ModelTermination | None] | None = None
     usages: list[ModelUsage | None] | None = None
@@ -79,11 +80,13 @@ class _ScriptedInteraction:
         *,
         conversation: ConversationRef | None = None,
         maximum_output_tokens: int | None = None,
+        thinking_enabled: bool | None = None,
     ) -> ModelResponse:
         """Return one exact response without contacting a provider."""
         assert conversation is None
         self.calls.append(prompt)
         self.requested_output_tokens.append(maximum_output_tokens)
+        self.requested_thinking.append(thinking_enabled)
         reasoning_content = (
             self.reasoning_contents.pop(0)
             if self.reasoning_contents is not None
@@ -117,6 +120,8 @@ def test_runner_parses_explicit_fixture_selection(acceptance: ModuleType) -> Non
     assert stress.fixture == "selection-stress"
     assert baseline.maximum_output_tokens is None
     assert stress.maximum_output_tokens is None
+    assert baseline.thinking == "default"
+    assert acceptance._thinking_value(baseline.thinking) is None
 
 
 def test_runner_parses_explicit_experiment_output_bound(acceptance: ModuleType) -> None:
@@ -131,6 +136,23 @@ def test_runner_parses_explicit_experiment_output_bound(acceptance: ModuleType) 
     )
 
     assert arguments.maximum_output_tokens == _MAXIMUM_OUTPUT_TOKENS
+
+
+@pytest.mark.parametrize(
+    ("choice", "expected"),
+    [("default", None), ("enabled", True), ("disabled", False)],
+)
+def test_runner_maps_explicit_thinking_choice(
+    acceptance: ModuleType,
+    choice: str,
+    *,
+    expected: bool | None,
+) -> None:
+    """The CLI exposes explicit experiment-local thinking choices."""
+    arguments = acceptance.parse_arguments(
+        ["--thinking", choice, "--report-path", "report.json"],
+    )
+    assert acceptance._thinking_value(arguments.thinking) is expected
 
 
 def test_runner_rejects_unknown_fixture_selection(acceptance: ModuleType) -> None:
@@ -284,7 +306,7 @@ def test_runner_reports_per_turn_and_complete_cumulative_model_usage(
     payload = acceptance._report_payload(outcome)
     measurements = payload["measurements"]
 
-    assert payload["schema"] == "qwen-b0009-live-acceptance/3"
+    assert payload["schema"] == "qwen-b0009-live-acceptance/4"
     assert measurements["model_turn_count"] == _MODEL_TURN_COUNT
     assert measurements["model_usage_by_turn"][0] == {
         "input_tokens": 10,
@@ -301,6 +323,7 @@ def test_runner_reports_per_turn_and_complete_cumulative_model_usage(
         None,
         None,
     ]
+    assert payload["fixture"]["thinking_enabled"] is None
     assert measurements["cumulative_reported_model_usage"] == {
         "input_tokens": 75,
         "input_tokens_reported_turns": _MODEL_TURN_COUNT,
@@ -341,6 +364,7 @@ def test_runner_retains_and_forwards_its_experiment_local_output_bound(
             repository_root=create_patch_proposal_fixture(tmp_path),
             interaction=interaction,
             maximum_output_tokens=_MAXIMUM_OUTPUT_TOKENS,
+            thinking_enabled=False,
         ),
     )
     outcome = acceptance.B0009LiveOutcome(
@@ -358,6 +382,8 @@ def test_runner_retains_and_forwards_its_experiment_local_output_bound(
         acceptance._report_payload(outcome)["fixture"]["maximum_output_tokens"]
         == _MAXIMUM_OUTPUT_TOKENS
     )
+    assert interaction.requested_thinking == [False] * len(interaction.calls)
+    assert acceptance._report_payload(outcome)["fixture"]["thinking_enabled"] is False
 
 
 def test_runner_reports_selection_stress_measurements_and_context_utilization(

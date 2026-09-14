@@ -68,9 +68,12 @@ class _ScriptedInteraction:
         message: ConversationMessage,
         *,
         conversation: ConversationRef | None = None,
+        maximum_output_tokens: int | None = None,
+        thinking_enabled: bool | None = None,
     ) -> ModelResponse:
         """Retain each input and return the next exact assistant result."""
         assert conversation is None
+        del maximum_output_tokens, thinking_enabled
         self.calls.append(message)
         if self.fail_on_call == len(self.calls):
             assert self.failure is not None

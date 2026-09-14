@@ -185,6 +185,103 @@ def test_interaction_maps_requested_output_bound_to_pinned_llama_cpp_max_tokens(
     assert turn.content == "reply"
 
 
+@pytest.mark.parametrize("thinking_enabled", [True, False])
+def test_interaction_maps_explicit_thinking_control_to_chat_template_kwargs(
+    monkeypatch: pytest.MonkeyPatch,
+    *,
+    thinking_enabled: bool,
+) -> None:
+    """Explicit thinking modes map to the pinned template keyword exactly."""
+    writer = _Writer()
+
+    async def connection(
+        _host: str,
+        _port: int,
+    ) -> tuple[asyncio.StreamReader, _Writer]:
+        return (
+            _reader(
+                _response(
+                    200,
+                    {
+                        "choices": [
+                            {"message": {"role": "assistant", "content": "reply"}},
+                        ],
+                    },
+                ),
+            ),
+            writer,
+        )
+
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+
+    asyncio.run(
+        _interaction().send(
+            _message(ConversationMessageRole.USER),
+            thinking_enabled=thinking_enabled,
+        ),
+    )
+
+    _, _, body = writer.request.partition(b"\r\n\r\n")
+    request = json.loads(body)
+    assert request["chat_template_kwargs"] == {"enable_thinking": thinking_enabled}
+    assert "max_tokens" not in request
+
+
+def test_interaction_combines_thinking_control_and_output_bound_without_other_fields(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Independent request controls coexist without changing the payload shape."""
+    writer = _Writer()
+
+    async def connection(
+        _host: str,
+        _port: int,
+    ) -> tuple[asyncio.StreamReader, _Writer]:
+        return (
+            _reader(
+                _response(
+                    200,
+                    {
+                        "choices": [
+                            {"message": {"role": "assistant", "content": "reply"}},
+                        ],
+                    },
+                ),
+            ),
+            writer,
+        )
+
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+
+    asyncio.run(
+        _interaction().send(
+            _message(ConversationMessageRole.USER),
+            maximum_output_tokens=_MAXIMUM_OUTPUT_TOKENS,
+            thinking_enabled=False,
+        ),
+    )
+
+    _, _, body = writer.request.partition(b"\r\n\r\n")
+    request = json.loads(body)
+    assert request["max_tokens"] == _MAXIMUM_OUTPUT_TOKENS
+    assert request["chat_template_kwargs"] == {"enable_thinking": False}
+    assert request["stream"] is False
+
+
+@pytest.mark.parametrize("value", [0, 1, "true", "false", 1.0, [], {}])
+def test_interaction_rejects_malformed_thinking_control_before_provider_request(
+    value: object,
+) -> None:
+    """Malformed thinking controls fail at the provider request boundary."""
+    with pytest.raises(TypeError, match="boolean"):
+        asyncio.run(
+            _interaction().send(
+                _message(ConversationMessageRole.USER),
+                thinking_enabled=value,  # type: ignore[arg-type]
+            ),
+        )
+
+
 @pytest.mark.parametrize("value", [0, -1, True, False, "8", 8.0])
 def test_interaction_rejects_invalid_output_bound_before_provider_request(
     value: object,

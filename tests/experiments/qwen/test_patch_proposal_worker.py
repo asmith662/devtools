@@ -59,6 +59,7 @@ class _ScriptedInteraction:
     responses: list[str]
     calls: list[Prompt] = field(default_factory=list)
     requested_output_tokens: list[int | None] = field(default_factory=list)
+    requested_thinking: list[bool | None] = field(default_factory=list)
     source: InteractionSource = field(default_factory=lambda: InteractionSource("qwen"))
 
     async def send(
@@ -67,11 +68,13 @@ class _ScriptedInteraction:
         *,
         conversation: ConversationRef | None = None,
         maximum_output_tokens: int | None = None,
+        thinking_enabled: bool | None = None,
     ) -> ModelResponse:
         """Return one deterministic response without contacting a model service."""
         assert conversation is None
         self.calls.append(prompt)
         self.requested_output_tokens.append(maximum_output_tokens)
+        self.requested_thinking.append(thinking_enabled)
         return ModelResponse(content=self.responses.pop(0), source=self.source)
 
 
@@ -81,6 +84,7 @@ def _worker(
     *,
     maximum_actions: int = 5,
     maximum_output_tokens: int | None = None,
+    thinking_enabled: bool | None = None,
 ) -> tuple[QwenPatchProposalWorker, _ScriptedInteraction]:
     interaction = _ScriptedInteraction(responses)
     return (
@@ -91,6 +95,7 @@ def _worker(
             repository_root=create_patch_proposal_fixture(root),
             maximum_actions=maximum_actions,
             maximum_output_tokens=maximum_output_tokens,
+            thinking_enabled=thinking_enabled,
         ),
         interaction,
     )
@@ -102,6 +107,7 @@ def _selection_worker(
     *,
     maximum_actions: int = 7,
     maximum_output_tokens: int | None = None,
+    thinking_enabled: bool | None = None,
 ) -> tuple[QwenPatchProposalWorker, _ScriptedInteraction]:
     """Create the fixed seven-action selection-stress worker."""
     interaction = _ScriptedInteraction(responses)
@@ -113,6 +119,7 @@ def _selection_worker(
             repository_root=create_selection_stress_fixture(root),
             maximum_actions=maximum_actions,
             maximum_output_tokens=maximum_output_tokens,
+            thinking_enabled=thinking_enabled,
             fixture=_SELECTION_STRESS_FIXTURE,
         ),
         interaction,
@@ -213,6 +220,24 @@ def test_worker_forwards_one_experiment_local_output_bound_to_every_turn(
     asyncio.run(worker.run(coding_worker_task()))
 
     assert interaction.requested_output_tokens == [64] * len(interaction.calls)
+
+
+@pytest.mark.parametrize("thinking_enabled", [True, False])
+def test_worker_forwards_explicit_thinking_mode_to_every_turn(
+    tmp_path: Path,
+    *,
+    thinking_enabled: bool,
+) -> None:
+    """The worker preserves one explicit thinking choice across all turns."""
+    worker, interaction = _worker(
+        tmp_path,
+        [*_required_reads(), _EXPECTED_PATCH],
+        thinking_enabled=thinking_enabled,
+    )
+
+    asyncio.run(worker.run(coding_worker_task()))
+
+    assert interaction.requested_thinking == [thinking_enabled] * len(interaction.calls)
 
 
 def test_selection_stress_worker_measures_an_optimal_grounded_run(
@@ -357,6 +382,7 @@ def test_worker_corrects_one_premature_patch_then_recovers_after_required_reads(
         tmp_path,
         [_EXPECTED_PATCH, *_required_reads(), _EXPECTED_PATCH],
         maximum_output_tokens=64,
+        thinking_enabled=True,
     )
 
     result = asyncio.run(worker.run(coding_worker_task()))
@@ -369,6 +395,7 @@ def test_worker_corrects_one_premature_patch_then_recovers_after_required_reads(
     assert "test_label.py" not in correction.follow_up.content
     assert len(interaction.calls) == 7
     assert interaction.requested_output_tokens == [64] * len(interaction.calls)
+    assert interaction.requested_thinking == [True] * len(interaction.calls)
     assert result.behavior_validated is True
 
 

@@ -17,6 +17,7 @@ from devtools.models.interaction import (
     ModelUsage,
     Prompt,
     validate_maximum_output_tokens,
+    validate_thinking_enabled,
 )
 from devtools.models.interaction.providers.llama_cpp_errors import (
     LlamaCppHttpError,
@@ -61,6 +62,7 @@ class LlamaCppInteraction:
         *,
         conversation: ConversationRef | None = None,
         maximum_output_tokens: int | None = None,
+        thinking_enabled: bool | None = None,
     ) -> ModelResponse:
         """Send one Prompt through llama.cpp and return final assistant text."""
         if conversation is not None:
@@ -80,6 +82,9 @@ class LlamaCppInteraction:
         if maximum_output_tokens is not None:
             validate_maximum_output_tokens(maximum_output_tokens)
             payload["max_tokens"] = maximum_output_tokens
+        if thinking_enabled is not None:
+            validate_thinking_enabled(thinking_enabled)
+            payload["chat_template_kwargs"] = {"enable_thinking": thinking_enabled}
         response = await _post_chat_completion(self._endpoint, payload)
         content = _final_assistant_content(response)
         return ModelResponse(

@@ -15,6 +15,7 @@ from devtools.models.interaction import (
     ModelUsage,
     Prompt,
     validate_maximum_output_tokens,
+    validate_thinking_enabled,
 )
 
 _INPUT_TOKENS = 8
@@ -40,6 +41,21 @@ def test_maximum_output_tokens_rejects_nonpositive_or_noninteger_values(
 def test_maximum_output_tokens_allows_absence() -> None:
     """Absent output limits preserve an unbounded provider request."""
     validate_maximum_output_tokens(None)
+
+
+@pytest.mark.parametrize("value", [None, True, False])
+def test_thinking_enabled_accepts_strict_optional_boolean(
+    *, value: bool | None,
+) -> None:
+    """The thinking request control accepts only its typed values."""
+    validate_thinking_enabled(value)
+
+
+@pytest.mark.parametrize("value", [0, 1, "true", "false", 1.0, [], {}])
+def test_thinking_enabled_rejects_non_boolean_values(*, value: object) -> None:
+    """Integer and truthy values cannot bypass the request boundary."""
+    with pytest.raises(TypeError, match="boolean"):
+        validate_thinking_enabled(value)
 
 
 def test_prompt_is_an_immutable_model_input_without_conversation_identity() -> None:

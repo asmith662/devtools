@@ -26,7 +26,7 @@ reasoning per turn for this focused provider diagnostic, without putting it in
 Conversation, later prompts, console output, or generic telemetry. It does not
 estimate tokens, attribute Prompt components, budget Context, or define a
 metrics framework. That expanded artifact is schema
-`qwen-b0009-live-acceptance/3`; `/1` and `/2` artifacts remain historical
+`qwen-b0009-live-acceptance/4`; `/1`, `/2`, and `/3` artifacts remain historical
 acceptance evidence without the newer selection-stress measurements.
 
 `two_action_read_only_experiment.py` is a separate bounded successor probe. It
@@ -71,7 +71,7 @@ The same module also owns one deterministic repository-selection stress
 fixture. It retains the one-line label-matching change while placing adjacent
 display-label, label-slug, test, and documentation candidates beside the
 required implementation and focused test. Its seven-action cap makes one
-exploratory detour observable. The schema `/3` report retains fixture-local
+exploratory detour observable. The schema `/4` report retains fixture-local
 required-read coverage and acquisition precision, plus optional per-turn input
 context utilization against the fixed Qwen experimental profile's 32,768-token
 capacity. These are experiment measurements, not Context selection, budgeting,
@@ -81,8 +81,13 @@ acceptance has succeeded yet.
 The existing patch-proposal acceptance runner defaults to the baseline fixture.
 Use `--fixture selection-stress` with its caller-selected `--report-path` to
 run the committed seven-action stress fixture; `--fixture baseline` explicitly
-selects the unchanged five-action baseline. The schema `/3` artifact records
+selects the unchanged five-action baseline. The schema `/4` artifact records
 the selected fixture identity. An optional `--maximum-output-tokens` value is
 an experiment-local cap forwarded to every ModelInteraction turn; it has no
 framework default and is distinct from the Tool-action cap or Context budget.
 This is fixture-selection and measurement plumbing only.
+
+The acceptance runner may explicitly pass `--thinking default`, `--thinking
+enabled`, or `--thinking disabled`. The selected value is forwarded to every
+model turn and recorded in the schema `/4` report; no thinking mode is selected
+by default.

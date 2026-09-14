@@ -53,6 +53,7 @@ class FakeInteraction:
     error: BaseException | None = None
     prompts: list[tuple[Prompt, ConversationRef | None]] = field(default_factory=list)
     requested_output_tokens: list[int | None] = field(default_factory=list)
+    requested_thinking: list[bool | None] = field(default_factory=list)
 
     async def send(
         self,
@@ -60,9 +61,11 @@ class FakeInteraction:
         *,
         conversation: ConversationRef | None = None,
         maximum_output_tokens: int | None = None,
+        thinking_enabled: bool | None = None,
     ) -> ModelResponse:
         """Record the materialized input and return one scripted result."""
         self.requested_output_tokens.append(maximum_output_tokens)
+        self.requested_thinking.append(thinking_enabled)
         self.prompts.append((prompt, conversation))
         if self.error is not None:
             raise self.error
@@ -154,6 +157,46 @@ def test_runtime_rejects_an_invalid_output_bound_before_interaction() -> None:
         assert interaction.requested_output_tokens == []
 
     asyncio.run(exercise())
+
+
+@pytest.mark.parametrize("thinking_enabled", [True, False])
+def test_runtime_forwards_explicit_thinking_control(
+    *,
+    thinking_enabled: bool,
+) -> None:
+    """Runtime forwards explicit thinking mode without selecting a policy."""
+
+    async def exercise() -> None:
+        interaction = FakeInteraction(
+            responses=[ModelResponse(content="answer", source=_MODEL)],
+        )
+        await Runtime().send(
+            conversation=Conversation.new(),
+            interaction=interaction,
+            message=_message(),
+            thinking_enabled=thinking_enabled,
+        )
+        assert interaction.requested_thinking == [thinking_enabled]
+        assert interaction.requested_output_tokens == [None]
+
+    asyncio.run(exercise())
+
+
+def test_runtime_rejects_malformed_thinking_control_before_interaction() -> None:
+    """Runtime rejects malformed thinking values before invoking a provider."""
+    interaction = FakeInteraction(
+        responses=[ModelResponse(content="answer", source=_MODEL)],
+    )
+    with pytest.raises(TypeError, match="boolean"):
+        asyncio.run(
+            Runtime().send(
+                conversation=Conversation.new(),
+                interaction=interaction,
+                message=_message(),
+                thinking_enabled=1,  # type: ignore[arg-type]
+            ),
+        )
+    assert interaction.requested_thinking == []
 
 
 def test_runtime_hands_forward_and_replaces_provider_continuation() -> None:
@@ -457,8 +500,9 @@ def test_runtime_serializes_turns_for_one_conversation() -> None:
             *,
             conversation: ConversationRef | None = None,
             maximum_output_tokens: int | None = None,
+            thinking_enabled: bool | None = None,
         ) -> ModelResponse:
-            del maximum_output_tokens
+            del maximum_output_tokens, thinking_enabled
             self.prompts.append((prompt, conversation))
             if len(self.prompts) == 1:
                 entered.set()

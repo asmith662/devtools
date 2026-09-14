@@ -74,7 +74,7 @@ if TYPE_CHECKING:
 
 _DEFAULT_ENDPOINT = "http://127.0.0.1:8080"
 _DEFAULT_MODEL = "qwen38-local"
-_REPORT_SCHEMA = "qwen-b0009-live-acceptance/3"
+_REPORT_SCHEMA = "qwen-b0009-live-acceptance/4"
 _SERVICE_SCRIPT = Path(__file__).with_name("llama_cpp_service.py")
 _CALLER_SOURCE = InteractionSource("qwen-b0009-live-acceptance")
 _MAXIMUM_ACTIONS = 5
@@ -100,6 +100,7 @@ class B0009LiveReport:
     fixture_id: str
     maximum_actions: int
     maximum_output_tokens: int | None
+    thinking_enabled: bool | None
     selection_measurements: QwenSelectionMeasurements | None
     result: QwenPatchProposalWorkerResult | None
     failure_category: str | None
@@ -127,8 +128,18 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
     parser.add_argument("--model", default=_DEFAULT_MODEL)
     parser.add_argument("--fixture", choices=_FIXTURE_CHOICES, default="baseline")
     parser.add_argument("--maximum-output-tokens", type=int)
+    parser.add_argument(
+        "--thinking",
+        choices=("default", "enabled", "disabled"),
+        default="default",
+    )
     parser.add_argument("--report-path", required=True, type=Path)
     return parser.parse_args(arguments)
+
+
+def _thinking_value(value: str) -> bool | None:
+    """Translate the explicit experiment CLI choice to the request semantic."""
+    return {"default": None, "enabled": True, "disabled": False}[value]
 
 
 async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local collaborators.
@@ -140,6 +151,7 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
     fixture_id: str | None = None,
     maximum_actions: int = _MAXIMUM_ACTIONS,
     maximum_output_tokens: int | None = None,
+    thinking_enabled: bool | None = None,
 ) -> B0009LiveReport:
     """Run the committed experiment once while retaining script-local diagnostics."""
     conversation = Conversation.new()
@@ -180,6 +192,7 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
             fixture=fixture,
             maximum_actions=maximum_actions,
             maximum_output_tokens=maximum_output_tokens,
+            thinking_enabled=thinking_enabled,
             on_cycle_completed=cycles.append,
             on_model_response=recorded_model_response,
             on_grounding_correction=grounding_corrections.append,
@@ -201,6 +214,7 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
             report_fixture_id,
             maximum_actions,
             maximum_output_tokens,
+            thinking_enabled,
             _selection_measurements(fixture, tuple(cycles)),
             None,
             _failure_category(error),
@@ -225,6 +239,7 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
         report_fixture_id,
         maximum_actions,
         maximum_output_tokens,
+        thinking_enabled,
         _selection_measurements(fixture, tuple(cycles)),
         result,
         None,
@@ -323,6 +338,7 @@ async def run(arguments: argparse.Namespace) -> B0009LiveOutcome:
                 fixture_id=arguments.fixture,
                 maximum_actions=maximum_actions,
                 maximum_output_tokens=arguments.maximum_output_tokens,
+                thinking_enabled=_thinking_value(arguments.thinking),
             )
             try:
                 status = await _persistent_status()
@@ -527,6 +543,7 @@ def _report_payload(outcome: B0009LiveOutcome) -> dict[str, object]:
         "fixture": {
             "id": report.fixture_id,
             "maximum_output_tokens": report.maximum_output_tokens,
+            "thinking_enabled": report.thinking_enabled,
             "logical_structure": [path for path, _ in report.fixture.files],
             "cleanup": "completed" if outcome.fixture_cleanup_succeeded else "failed",
         },

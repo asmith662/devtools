@@ -15,6 +15,15 @@ def validate_maximum_output_tokens(value: int | None) -> None:
         raise ValueError(msg)
 
 
+def validate_thinking_enabled(value: object) -> None:
+    """Validate one optional request-side thinking-mode control."""
+    if value is None:
+        return
+    if not isinstance(value, bool):
+        msg = "Thinking enabled must be a boolean or None."
+        raise TypeError(msg)
+
+
 @dataclass(frozen=True, slots=True)
 class InteractionSource:
     """Identify the model interaction that owns provider continuation state."""

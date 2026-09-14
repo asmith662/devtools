@@ -59,9 +59,10 @@ class FakeInteraction:
         *,
         conversation: ConversationRef | None = None,
         maximum_output_tokens: int | None = None,
+        thinking_enabled: bool | None = None,
     ) -> ModelResponse:
         """Record and return the configured turn."""
-        del maximum_output_tokens
+        del maximum_output_tokens, thinking_enabled
         self.calls.append((prompt, conversation))
         return self._turn
 
