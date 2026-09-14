@@ -13,6 +13,7 @@ from devtools.models.interaction import (
     ConversationRef,
     InteractionSource,
     ModelResponse,
+    ModelTermination,
     ModelUsage,
     Prompt,
     validate_maximum_output_tokens,
@@ -84,6 +85,7 @@ class LlamaCppInteraction:
         return ModelResponse(
             content=content,
             source=self.source,
+            termination=_model_termination(response),
             usage=_model_usage(response),
         )
 
@@ -334,6 +336,33 @@ def _model_usage(response: dict[str, object]) -> ModelUsage | None:
         value is not None
         for value in (usage.input_tokens, usage.output_tokens, usage.total_tokens)
     ) else None
+
+
+def _model_termination(response: dict[str, object]) -> ModelTermination | None:
+    """Map the pinned llama.cpp completion reason without retaining provider data."""
+    choices = response.get("choices")
+    if not isinstance(choices, list) or not choices:
+        msg = "llama.cpp successful response must contain a nonempty choices list."
+        raise LlamaCppResponseError(msg)
+    choice = choices[0]
+    if not isinstance(choice, dict):
+        msg = "llama.cpp successful response choice must be an object."
+        raise LlamaCppResponseError(msg)
+    finish_reason = choice.get("finish_reason")
+    if finish_reason is None:
+        return None
+    if not isinstance(finish_reason, str):
+        msg = "llama.cpp successful response finish_reason must be text."
+        raise LlamaCppResponseError(msg)
+    try:
+        return {
+            "stop": ModelTermination.NORMAL_STOP,
+            "length": ModelTermination.OUTPUT_LIMIT,
+            "tool_calls": ModelTermination.TOOL_CALL,
+        }[finish_reason]
+    except KeyError as error:
+        msg = "llama.cpp successful response finish_reason is not supported."
+        raise LlamaCppResponseError(msg) from error
 
 
 def _usage_token_count(usage: dict[object, object], field: str) -> int | None:

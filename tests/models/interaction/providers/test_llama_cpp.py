@@ -10,7 +10,13 @@ from urllib.parse import urlsplit
 import pytest
 
 from devtools.agents.conversation import ConversationMessageRole
-from devtools.models.interaction import ConversationRef, InteractionSource, Prompt
+from devtools.models.interaction import (
+    ConversationRef,
+    InteractionSource,
+    ModelTermination,
+    ModelUsage,
+    Prompt,
+)
 from devtools.models.interaction.providers import (
     LlamaCppHttpError,
     LlamaCppInteraction,
@@ -134,6 +140,7 @@ def test_interaction_maps_existing_message_roles_to_non_streaming_llama_request(
     assert turn.source == InteractionSource("qwen")
     assert turn.conversation is None
     assert turn.usage is None
+    assert turn.termination is ModelTermination.NORMAL_STOP
     assert writer.closed is True
 
 
@@ -236,6 +243,121 @@ def test_interaction_preserves_pinned_llama_cpp_standard_usage(
     assert turn.usage.input_tokens == _INPUT_TOKENS
     assert turn.usage.output_tokens == _OUTPUT_TOKENS
     assert turn.usage.total_tokens == _PROVIDER_TOTAL_TOKENS
+    assert turn.termination is None
+
+
+@pytest.mark.parametrize(
+    ("finish_reason", "expected"),
+    [
+        ("stop", ModelTermination.NORMAL_STOP),
+        ("length", ModelTermination.OUTPUT_LIMIT),
+        ("tool_calls", ModelTermination.TOOL_CALL),
+    ],
+)
+def test_interaction_maps_pinned_llama_cpp_finish_reasons(
+    monkeypatch: pytest.MonkeyPatch,
+    finish_reason: str,
+    expected: ModelTermination,
+) -> None:
+    """Pinned llama.cpp finish reasons become provider-neutral termination facts."""
+
+    async def connection(
+        _host: str,
+        _port: int,
+    ) -> tuple[asyncio.StreamReader, _Writer]:
+        return (
+            _reader(
+                _response(
+                    200,
+                    {
+                        "choices": [
+                            {
+                                "finish_reason": finish_reason,
+                                "message": {"role": "assistant", "content": "reply"},
+                            },
+                        ],
+                        "usage": {
+                            "prompt_tokens": _INPUT_TOKENS,
+                            "completion_tokens": _OUTPUT_TOKENS,
+                            "total_tokens": _PROVIDER_TOTAL_TOKENS,
+                        },
+                    },
+                ),
+            ),
+            _Writer(),
+        )
+
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+
+    turn = asyncio.run(
+        _interaction().send(
+            _message(ConversationMessageRole.USER),
+            maximum_output_tokens=_MAXIMUM_OUTPUT_TOKENS,
+        ),
+    )
+
+    assert turn.content == "reply"
+    assert turn.source == InteractionSource("qwen")
+    assert turn.usage == ModelUsage(
+        input_tokens=_INPUT_TOKENS,
+        output_tokens=_OUTPUT_TOKENS,
+        total_tokens=_PROVIDER_TOTAL_TOKENS,
+    )
+    assert turn.termination is expected
+
+
+@pytest.mark.parametrize(
+    "response",
+    [
+        {"choices": [{"message": {"role": "assistant", "content": "reply"}}]},
+        {
+            "choices": [
+                {
+                    "finish_reason": None,
+                    "message": {"role": "assistant", "content": "reply"},
+                },
+            ],
+        },
+    ],
+)
+def test_interaction_allows_missing_or_null_pinned_finish_reason(
+    response: dict[str, object],
+) -> None:
+    """Absent termination remains unknown rather than being inferred from usage."""
+    assert llama_cpp._model_termination(response) is None  # noqa: SLF001
+
+
+@pytest.mark.parametrize("finish_reason", ["other", 1, True])
+def test_interaction_rejects_unknown_or_malformed_pinned_finish_reason(
+    finish_reason: object,
+) -> None:
+    """Unexpected provider completion reasons cannot be silently misclassified."""
+    response: dict[str, object] = {
+        "choices": [
+            {
+                "finish_reason": finish_reason,
+                "message": {"role": "assistant", "content": "reply"},
+            },
+        ],
+    }
+
+    with pytest.raises(LlamaCppResponseError, match="finish_reason"):
+        llama_cpp._model_termination(response)  # noqa: SLF001
+
+
+@pytest.mark.parametrize(
+    "response",
+    [
+        {"choices": []},
+        {"choices": [None]},
+    ],
+)
+def test_interaction_rejects_invalid_choice_shape_for_termination(
+    response: dict[str, object],
+) -> None:
+    """Termination retains the adapter's existing validated choice boundary."""
+    with pytest.raises(LlamaCppResponseError, match="choice"):
+        llama_cpp._model_termination(response)  # noqa: SLF001
 
 
 def test_interaction_allows_partial_pinned_usage_without_estimation() -> None:

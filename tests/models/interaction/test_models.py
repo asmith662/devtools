@@ -11,6 +11,7 @@ from devtools.models.interaction import (
     ConversationRef,
     InteractionSource,
     ModelResponse,
+    ModelTermination,
     ModelUsage,
     Prompt,
     validate_maximum_output_tokens,
@@ -59,7 +60,7 @@ def test_interaction_source_rejects_blank_or_padded_values() -> None:
 
 
 def test_response_carries_model_output_not_a_conversation_message() -> None:
-    """A response has content, source, optional continuation, and optional usage."""
+    """A response has content, source, and optional provider facts."""
     source = InteractionSource("llama.cpp")
     continuation = ConversationRef(source, "opaque-thread")
     response = ModelResponse(
@@ -71,6 +72,7 @@ def test_response_carries_model_output_not_a_conversation_message() -> None:
     assert response.source is source
     assert response.conversation is continuation
     assert response.usage is None
+    assert response.termination is None
     assert not hasattr(response, "id")
     with pytest.raises(FrozenInstanceError):
         response.content = "other"  # type: ignore[misc]
@@ -101,6 +103,26 @@ def test_model_usage_retains_reported_counts_without_deriving_a_total() -> None:
 
     assert response.usage == usage
     assert response.usage.total_tokens == _PROVIDER_TOTAL_TOKENS
+
+
+def test_model_response_retains_termination_separately_from_usage() -> None:
+    """Termination remains an optional response fact independent of token accounting."""
+    response = ModelResponse(
+        content="reply",
+        source=InteractionSource("llama.cpp"),
+        usage=ModelUsage(output_tokens=_OUTPUT_TOKENS),
+        termination=ModelTermination.OUTPUT_LIMIT,
+    )
+
+    assert response.termination is ModelTermination.OUTPUT_LIMIT
+    assert response.usage == ModelUsage(output_tokens=_OUTPUT_TOKENS)
+
+
+def test_model_termination_uses_provider_neutral_immutable_values() -> None:
+    """Termination values describe semantics rather than provider response strings."""
+    assert ModelTermination.NORMAL_STOP.value == "normal_stop"
+    assert ModelTermination.OUTPUT_LIMIT.value == "output_limit"
+    assert ModelTermination.TOOL_CALL.value == "tool_call"
 
 
 def test_model_usage_allows_partial_provider_counts() -> None:

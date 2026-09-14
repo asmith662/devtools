@@ -55,8 +55,28 @@ post-hoc data and is not clamped, derived, or reconciled to the requested cap.
 The B-0009 runner may select a cap as experiment-local policy and records that
 choice in its existing schema `/3` fixture data.
 
-Finish reasons and separated reasoning content remain deferred diagnostic
-pressure. They are not part of this established output-bound semantic.
+## Established subset: provider-reported termination
+
+The bounded selection-stress acceptance established a separate response-side
+diagnostic pressure: a requested output cap can be reached while visible
+assistant content remains empty. The smallest reusable response is optional
+immutable `ModelTermination` on `ModelResponse`. It preserves only the
+provider-reported semantic end of a successful response: normal stop,
+output/length limit, or tool-call termination. It is independent of
+`maximum_output_tokens` (a request constraint) and `ModelUsage` (post-hoc
+provider accounting), and neither is inferred from the other.
+
+For llama.cpp image build `b10868`, commit
+[`304665fe7`](https://github.com/ggml-org/llama.cpp/blob/304665fe7/tools/server/server-task.cpp),
+`choices[0].finish_reason` maps `stop`, `length`, and `tool_calls` to those
+three values. Missing or null values remain absent; malformed or unrecognized
+values remain provider-response errors. The B-0009 schema `/3` artifact retains
+the optional termination for each model turn without retaining raw provider
+payloads.
+
+Separated reasoning content and raw provider-response retention remain deferred
+diagnostic pressure. They are not part of the established output-bound or
+termination semantics.
 
 - hard_dependencies: B-0045
 - pressure_dependencies: B-0035, B-0036, B-0027

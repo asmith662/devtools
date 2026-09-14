@@ -26,7 +26,12 @@ if TYPE_CHECKING:
     from devtools.agents.conversation import Conversation
     from devtools.core.paths import ResolvedPath
     from devtools.execution import Runtime
-    from devtools.models.interaction import ModelInteraction, ModelResponse, ModelUsage
+    from devtools.models.interaction import (
+        ModelInteraction,
+        ModelResponse,
+        ModelTermination,
+        ModelUsage,
+    )
 
 
 _DEFAULT_MAXIMUM_ACTIONS = 5
@@ -201,6 +206,7 @@ class QwenPatchProposalWorkerResult:
     canonical_patch: str
     terminal_newline_canonicalized: bool
     behavior_validated: bool
+    model_terminations: tuple[ModelTermination | None, ...]
     model_usages: tuple[ModelUsage | None, ...]
 
 
@@ -321,9 +327,11 @@ class QwenPatchProposalWorker:
     ) -> None:
         """Configure the existing read-only controller and fixture root."""
         corrections: list[QwenGroundingCorrection] = []
+        model_terminations: list[ModelTermination | None] = []
         model_usages: list[ModelUsage | None] = []
 
         def record_model_response(response: ModelResponse) -> None:
+            model_terminations.append(response.termination)
             model_usages.append(response.usage)
             if on_model_response is not None:
                 on_model_response(response)
@@ -353,6 +361,7 @@ class QwenPatchProposalWorker:
         self._root = resolve_path(repository_root.value)
         self._fixture = fixture
         self._corrections = corrections
+        self._model_terminations = model_terminations
         self._model_usages = model_usages
         self._task: ConversationMessage | None = None
 
@@ -371,6 +380,7 @@ class QwenPatchProposalWorker:
             canonical_patch=canonical_patch,
             terminal_newline_canonicalized=canonical_patch != final_patch,
             behavior_validated=True,
+            model_terminations=tuple(self._model_terminations),
             model_usages=tuple(self._model_usages),
         )
 

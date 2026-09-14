@@ -9,6 +9,7 @@ from devtools.models.interaction.models import (
 from devtools.models.interaction.prompt import Prompt
 from devtools.models.interaction.protocols import ModelInteraction
 from devtools.models.interaction.response import ModelResponse
+from devtools.models.interaction.termination import ModelTermination
 from devtools.models.interaction.usage import ModelUsage
 
 __all__ = [
@@ -16,6 +17,7 @@ __all__ = [
     "InteractionSource",
     "ModelInteraction",
     "ModelResponse",
+    "ModelTermination",
     "ModelUsage",
     "Prompt",
     "validate_maximum_output_tokens",

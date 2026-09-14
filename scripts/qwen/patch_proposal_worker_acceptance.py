@@ -64,7 +64,12 @@ if TYPE_CHECKING:
     from collections.abc import Callable, Sequence
 
     from devtools.core.paths import ResolvedPath
-    from devtools.models.interaction import ModelInteraction, ModelResponse, ModelUsage
+    from devtools.models.interaction import (
+        ModelInteraction,
+        ModelResponse,
+        ModelTermination,
+        ModelUsage,
+    )
 
 
 _DEFAULT_ENDPOINT = "http://127.0.0.1:8080"
@@ -88,6 +93,7 @@ class B0009LiveReport:
     execution_actions: tuple[str, ...]
     execution_paths: tuple[str, ...]
     grounding_corrections: tuple[QwenGroundingCorrection, ...]
+    model_terminations: tuple[ModelTermination | None, ...]
     model_usages: tuple[ModelUsage | None, ...]
     fixture: _PatchProposalFixture
     fixture_id: str
@@ -140,6 +146,7 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
     actions: list[str] = []
     paths: list[str] = []
     grounding_corrections: list[QwenGroundingCorrection] = []
+    model_terminations: list[ModelTermination | None] = []
     model_usages: list[ModelUsage | None] = []
     report_fixture_id = fixture_id or _fixture_id(fixture)
     original_list = ListRepositoryDirectoryTool.execute
@@ -156,6 +163,7 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
         return await original_read(tool, path)
 
     def recorded_model_response(response: ModelResponse) -> None:
+        model_terminations.append(response.termination)
         model_usages.append(response.usage)
 
     ListRepositoryDirectoryTool.execute = counted_list
@@ -183,6 +191,7 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
             tuple(actions),
             tuple(paths),
             tuple(grounding_corrections),
+            tuple(model_terminations),
             tuple(model_usages),
             fixture,
             report_fixture_id,
@@ -205,6 +214,7 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
         tuple(actions),
         tuple(paths),
         tuple(grounding_corrections),
+        tuple(model_terminations),
         tuple(model_usages),
         fixture,
         report_fixture_id,
@@ -417,6 +427,11 @@ def _usage_payload(usage: ModelUsage | None) -> dict[str, float | int | None] | 
     }
 
 
+def _termination_payload(termination: ModelTermination | None) -> str | None:
+    """Serialize one optional provider-neutral ModelTermination."""
+    return termination.value if termination is not None else None
+
+
 def _selection_measurements(
     fixture: _PatchProposalFixture,
     cycles: tuple[QwenReadOnlyCycle, ...],
@@ -548,7 +563,11 @@ def _report_payload(outcome: B0009LiveOutcome) -> dict[str, object]:
             "relative_paths": list(report.execution_paths),
         },
         "measurements": {
-            "model_turn_count": len(report.model_usages),
+            "model_turn_count": len(report.model_terminations),
+            "model_termination_by_turn": [
+                _termination_payload(termination)
+                for termination in report.model_terminations
+            ],
             "model_usage_by_turn": [
                 _usage_payload(usage) for usage in report.model_usages
             ],

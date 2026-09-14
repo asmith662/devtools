@@ -18,10 +18,12 @@ authorization, Context compilation, or Action infrastructure.
 The package does not implement streaming, native tool calls, generic usage
 accounting, provider continuation, generic proposals, or a reusable
 coding-worker framework. `ModelResponse` may carry optional provider-reported
-usage; the B-0009 acceptance report retains those per-turn facts and exact
-cumulative totals only when every turn reported a count. It does not estimate
-tokens, attribute Prompt components, budget Context, or define a metrics
-framework. That expanded artifact is schema
+usage and termination; the B-0009 acceptance report retains those per-turn
+facts and exact cumulative usage totals only when every turn reported a count.
+Termination records only the provider-reported semantic end (normal stop,
+output limit, or tool call); it does not retain reasoning content or raw provider
+payloads. The report does not estimate tokens, attribute Prompt components,
+budget Context, or define a metrics framework. That expanded artifact is schema
 `qwen-b0009-live-acceptance/3`; `/1` and `/2` artifacts remain historical
 acceptance evidence without the newer selection-stress measurements.
 
@@ -71,8 +73,8 @@ exploratory detour observable. The schema `/3` report retains fixture-local
 required-read coverage and acquisition precision, plus optional per-turn input
 context utilization against the fixed Qwen experimental profile's 32,768-token
 capacity. These are experiment measurements, not Context selection, budgeting,
-ranking, search, or a reusable metrics framework. No live stress-fixture result
-exists yet.
+ranking, search, or a reusable metrics framework. No live stress-fixture
+acceptance has succeeded yet.
 
 The existing patch-proposal acceptance runner defaults to the baseline fixture.
 Use `--fixture selection-stress` with its caller-selected `--report-path` to

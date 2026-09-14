@@ -16,6 +16,7 @@ from devtools.agents.conversation import InteractionSource
 from devtools.models.interaction import (
     ConversationRef,
     ModelResponse,
+    ModelTermination,
     ModelUsage,
     Prompt,
 )
@@ -67,6 +68,7 @@ class _ScriptedInteraction:
     responses: list[str]
     calls: list[Prompt] = field(default_factory=list)
     requested_output_tokens: list[int | None] = field(default_factory=list)
+    terminations: list[ModelTermination | None] | None = None
     usages: list[ModelUsage | None] | None = None
     source: InteractionSource = field(default_factory=lambda: InteractionSource("qwen"))
 
@@ -81,10 +83,14 @@ class _ScriptedInteraction:
         assert conversation is None
         self.calls.append(prompt)
         self.requested_output_tokens.append(maximum_output_tokens)
+        termination = (
+            self.terminations.pop(0) if self.terminations is not None else None
+        )
         usage = self.usages.pop(0) if self.usages is not None else None
         return ModelResponse(
             content=self.responses.pop(0),
             source=self.source,
+            termination=termination,
             usage=usage,
         )
 
@@ -225,6 +231,14 @@ def test_runner_reports_per_turn_and_complete_cumulative_model_usage(
         ModelUsage(input_tokens=14, output_tokens=6, total_tokens=20),
         ModelUsage(input_tokens=15, output_tokens=7, total_tokens=22),
     ]
+    terminations: list[ModelTermination | None] = [
+        ModelTermination.NORMAL_STOP,
+        ModelTermination.NORMAL_STOP,
+        ModelTermination.NORMAL_STOP,
+        ModelTermination.NORMAL_STOP,
+        ModelTermination.NORMAL_STOP,
+        ModelTermination.NORMAL_STOP,
+    ]
     report = asyncio.run(
         acceptance.run_acceptance(
             task=acceptance._live_task(),
@@ -238,6 +252,7 @@ def test_runner_reports_per_turn_and_complete_cumulative_model_usage(
                     _proposal("read_repository_file", "tests/test_label.py"),
                     _EXPECTED_PATCH,
                 ],
+                terminations=terminations,
                 usages=usages,
             ),
         ),
@@ -261,6 +276,7 @@ def test_runner_reports_per_turn_and_complete_cumulative_model_usage(
         "total_tokens": 12,
         "input_context_utilization": 10 / 32768,
     }
+    assert measurements["model_termination_by_turn"] == ["normal_stop"] * 6
     assert measurements["cumulative_reported_model_usage"] == {
         "input_tokens": 75,
         "input_tokens_reported_turns": _MODEL_TURN_COUNT,
