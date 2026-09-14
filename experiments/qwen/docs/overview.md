@@ -22,8 +22,8 @@ usage; the B-0009 acceptance report retains those per-turn facts and exact
 cumulative totals only when every turn reported a count. It does not estimate
 tokens, attribute Prompt components, budget Context, or define a metrics
 framework. That expanded artifact is schema
-`qwen-b0009-live-acceptance/2`; earlier `/1` artifacts remain historical
-acceptance evidence without usage measurements.
+`qwen-b0009-live-acceptance/3`; `/1` and `/2` artifacts remain historical
+acceptance evidence without the newer selection-stress measurements.
 
 `two_action_read_only_experiment.py` is a separate bounded successor probe. It
 permits two concrete read-only operations—non-recursive directory listing and
@@ -62,3 +62,14 @@ fixture patch before application. Extra output, whitespace, or patch syntax is
 not normalized. A model may hypothesize a confined repository-relative filename,
 but final-patch grounding still requires successful reads of both required
 fixture artifacts.
+
+The same module also owns one deterministic repository-selection stress
+fixture. It retains the one-line label-matching change while placing adjacent
+display-label, label-slug, test, and documentation candidates beside the
+required implementation and focused test. Its seven-action cap makes one
+exploratory detour observable. The schema `/3` report retains fixture-local
+required-read coverage and acquisition precision, plus optional per-turn input
+context utilization against the fixed Qwen experimental profile's 32,768-token
+capacity. These are experiment measurements, not Context selection, budgeting,
+ranking, search, or a reusable metrics framework. No live stress-fixture result
+exists yet.

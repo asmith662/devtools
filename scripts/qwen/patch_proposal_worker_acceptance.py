@@ -37,13 +37,18 @@ from devtools.tools.filesystem import (
     ReadRepositoryFileTool,
 )
 from experiments.qwen.patch_proposal_worker import (
+    _BASELINE_FIXTURE,
+    _SELECTION_STRESS_FIXTURE,
     PatchProposalError,
     QwenGroundingCorrection,
     QwenPatchProposalWorker,
     QwenPatchProposalWorkerResult,
+    QwenSelectionMeasurements,
     UngroundedFinalResponseError,
+    _PatchProposalFixture,
     coding_worker_task,
     create_patch_proposal_fixture,
+    selection_stress_measurements,
 )
 from experiments.qwen.two_action_read_only_experiment import (
     QwenListDirectoryCycle,
@@ -51,6 +56,7 @@ from experiments.qwen.two_action_read_only_experiment import (
     QwenReadRepositoryFileCycle,
     ReadOnlyProposalError,
 )
+from scripts.qwen.llama_cpp_profile import QWEN38_27B_UD_IQ4_XS
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
@@ -61,17 +67,12 @@ if TYPE_CHECKING:
 
 _DEFAULT_ENDPOINT = "http://127.0.0.1:8080"
 _DEFAULT_MODEL = "qwen38-local"
-_REPORT_SCHEMA = "qwen-b0009-live-acceptance/2"
+_REPORT_SCHEMA = "qwen-b0009-live-acceptance/3"
 _SERVICE_SCRIPT = Path(__file__).with_name("llama_cpp_service.py")
 _CALLER_SOURCE = InteractionSource("qwen-b0009-live-acceptance")
-_REQUIRED_READS = {"src/label.py", "tests/test_label.py"}
-_FIXTURE_STRUCTURE = (
-    "docs/decoy.md",
-    "src/label.py",
-    "src/unrelated.py",
-    "tests/test_label.py",
-)
 _MAXIMUM_ACTIONS = 5
+_SELECTION_STRESS_MAXIMUM_ACTIONS = 7
+_MODEL_CONTEXT_CAPACITY_TOKENS = QWEN38_27B_UD_IQ4_XS.context_size
 
 
 @dataclass(frozen=True, slots=True)
@@ -85,6 +86,9 @@ class B0009LiveReport:
     execution_paths: tuple[str, ...]
     grounding_corrections: tuple[QwenGroundingCorrection, ...]
     model_usages: tuple[ModelUsage | None, ...]
+    fixture: _PatchProposalFixture
+    maximum_actions: int
+    selection_measurements: QwenSelectionMeasurements | None
     result: QwenPatchProposalWorkerResult | None
     failure_category: str | None
     error_type: str | None
@@ -118,6 +122,8 @@ async def run_acceptance(
     task: ConversationMessage,
     repository_root: ResolvedPath,
     interaction: ModelInteraction,
+    fixture: _PatchProposalFixture = _BASELINE_FIXTURE,
+    maximum_actions: int = _MAXIMUM_ACTIONS,
 ) -> B0009LiveReport:
     """Run the committed experiment once while retaining script-local diagnostics."""
     conversation = Conversation.new()
@@ -150,6 +156,8 @@ async def run_acceptance(
             conversation=conversation,
             interaction=interaction,
             repository_root=repository_root,
+            fixture=fixture,
+            maximum_actions=maximum_actions,
             on_cycle_completed=cycles.append,
             on_model_response=recorded_model_response,
             on_grounding_correction=grounding_corrections.append,
@@ -165,6 +173,9 @@ async def run_acceptance(
             tuple(paths),
             tuple(grounding_corrections),
             tuple(model_usages),
+            fixture,
+            maximum_actions,
+            _selection_measurements(fixture, tuple(cycles)),
             None,
             _failure_category(error),
             type(error).__name__,
@@ -182,6 +193,9 @@ async def run_acceptance(
         tuple(paths),
         tuple(grounding_corrections),
         tuple(model_usages),
+        fixture,
+        maximum_actions,
+        _selection_measurements(fixture, tuple(cycles)),
         result,
         None,
         None,
@@ -333,14 +347,49 @@ def _cycle_payload(cycle: QwenReadOnlyCycle) -> dict[str, object]:
     return payload
 
 
-def _usage_payload(usage: ModelUsage | None) -> dict[str, int | None] | None:
+def _usage_payload(usage: ModelUsage | None) -> dict[str, float | int | None] | None:
     """Serialize one optional provider-reported ModelUsage without estimation."""
     if usage is None:
         return None
+    input_tokens = usage.input_tokens
     return {
         "input_tokens": usage.input_tokens,
         "output_tokens": usage.output_tokens,
         "total_tokens": usage.total_tokens,
+        "input_context_utilization": (
+            input_tokens / _MODEL_CONTEXT_CAPACITY_TOKENS
+            if input_tokens is not None
+            else None
+        ),
+    }
+
+
+def _selection_measurements(
+    fixture: _PatchProposalFixture,
+    cycles: tuple[QwenReadOnlyCycle, ...],
+) -> QwenSelectionMeasurements | None:
+    """Retain relevance facts only for the fixed selection-stress fixture."""
+    if fixture is _SELECTION_STRESS_FIXTURE:
+        return selection_stress_measurements(cycles)
+    return None
+
+
+def _selection_payload(
+    measurements: QwenSelectionMeasurements | None,
+) -> dict[str, float | list[str] | None] | None:
+    """Serialize fixed-fixture relevance facts without creating generic metrics."""
+    if measurements is None:
+        return None
+    return {
+        "required_files_read": list(measurements.required_files_read),
+        "plausible_unnecessary_files_read": list(
+            measurements.plausible_unnecessary_files_read,
+        ),
+        "clearly_irrelevant_files_read": list(
+            measurements.clearly_irrelevant_files_read,
+        ),
+        "required_read_coverage": measurements.required_read_coverage,
+        "acquisition_precision": measurements.acquisition_precision,
     }
 
 
@@ -390,7 +439,7 @@ def _verdict(outcome: B0009LiveOutcome) -> str:
         for cycle in report.cycles
         if isinstance(cycle, QwenReadRepositoryFileCycle)
     }
-    if not _REQUIRED_READS.issubset(read_paths):
+    if not outcome.report.fixture.required_evidence_paths.issubset(read_paths):
         return "FAIL — RELEVANCE_SELECTION"
     return "PASS"
 
@@ -403,15 +452,17 @@ def _report_payload(outcome: B0009LiveOutcome) -> dict[str, object]:
         "schema": _REPORT_SCHEMA,
         "verdict": _verdict(outcome),
         "fixture": {
-            "logical_structure": list(_FIXTURE_STRUCTURE),
+            "logical_structure": [path for path, _ in report.fixture.files],
             "cleanup": "completed" if outcome.fixture_cleanup_succeeded else "failed",
         },
         "initial_task": _message_payload(report.task),
         "initial_task_secrecy": {
-            "contains_src": "src" in task_content,
-            "contains_tests": "tests" in task_content,
-            "contains_label_filename": "label.py" in task_content,
-            "contains_test_filename": "test_label.py" in task_content,
+            "contains_target_path": report.fixture.target_path in task_content,
+            "contains_test_path": report.fixture.test_path in task_content,
+            "contains_target_filename": Path(report.fixture.target_path).name
+            in task_content,
+            "contains_test_filename": Path(report.fixture.test_path).name
+            in task_content,
         },
         "model_responses": [
             _message_payload(message)
@@ -421,7 +472,7 @@ def _report_payload(outcome: B0009LiveOutcome) -> dict[str, object]:
         "history": [_message_payload(message) for message in report.history],
         "accepted_tool_cycles": [_cycle_payload(cycle) for cycle in report.cycles],
         "grounding": {
-            "required_read_paths": sorted(_REQUIRED_READS),
+            "required_read_paths": sorted(report.fixture.required_evidence_paths),
             "acquired_read_paths": [
                 cycle.relative_path
                 for cycle in report.cycles
@@ -449,7 +500,8 @@ def _report_payload(outcome: B0009LiveOutcome) -> dict[str, object]:
             "cumulative_reported_model_usage": _cumulative_usage_payload(
                 report.model_usages,
             ),
-            "tool_action_budget": _MAXIMUM_ACTIONS,
+            "model_context_capacity_tokens": _MODEL_CONTEXT_CAPACITY_TOKENS,
+            "tool_action_budget": report.maximum_actions,
             "tool_action_budget_used": len(report.execution_actions),
             "directory_listing_count": sum(
                 isinstance(cycle, QwenListDirectoryCycle) for cycle in report.cycles
@@ -465,6 +517,7 @@ def _report_payload(outcome: B0009LiveOutcome) -> dict[str, object]:
                 len(cycle.result_projection) for cycle in report.cycles
             ),
             "run_duration_seconds": outcome.duration.total_seconds,
+            "selection": _selection_payload(report.selection_measurements),
         },
         "final_model_response": (
             report.result.final_patch

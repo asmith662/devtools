@@ -21,7 +21,11 @@ from devtools.models.interaction import (
 )
 from experiments.qwen.patch_proposal_worker import (
     _EXPECTED_PATCH,
+    _SELECTION_STRESS_EXPECTED_PATCH,
+    _SELECTION_STRESS_FIXTURE,
     create_patch_proposal_fixture,
+    create_selection_stress_fixture,
+    selection_stress_task,
 )
 
 if TYPE_CHECKING:
@@ -34,6 +38,11 @@ _TOOL_ACTION_COUNT = 5
 _DIRECTORY_LISTING_COUNT = 3
 _FILE_READ_COUNT = 2
 _UNIQUE_PATH_COUNT = 5
+_CONTEXT_CAPACITY_TOKENS = 32768
+_STRESS_ACTION_COUNT = 7
+_STRESS_DIRECTORY_LISTING_COUNT = 3
+_STRESS_FILE_READ_COUNT = 4
+_STRESS_UNIQUE_PATH_COUNT = 6
 
 
 @pytest.fixture
@@ -191,12 +200,13 @@ def test_runner_reports_per_turn_and_complete_cumulative_model_usage(
     payload = acceptance._report_payload(outcome)
     measurements = payload["measurements"]
 
-    assert payload["schema"] == "qwen-b0009-live-acceptance/2"
+    assert payload["schema"] == "qwen-b0009-live-acceptance/3"
     assert measurements["model_turn_count"] == _MODEL_TURN_COUNT
     assert measurements["model_usage_by_turn"][0] == {
         "input_tokens": 10,
         "output_tokens": 2,
         "total_tokens": 12,
+        "input_context_utilization": 10 / 32768,
     }
     assert measurements["cumulative_reported_model_usage"] == {
         "input_tokens": 75,
@@ -214,6 +224,73 @@ def test_runner_reports_per_turn_and_complete_cumulative_model_usage(
     assert measurements["repeated_path_count"] == 0
     assert measurements["repository_projection_characters"] > 0
     assert measurements["run_duration_seconds"] == 0
+    assert measurements["selection"] is None
+
+
+def test_runner_reports_selection_stress_measurements_and_context_utilization(
+    acceptance: ModuleType,
+    tmp_path: Path,
+) -> None:
+    """The stress artifact retains local relevance facts without generic metrics."""
+    root = create_selection_stress_fixture(tmp_path)
+    usages: list[ModelUsage | None] = [
+        ModelUsage(input_tokens=32768, output_tokens=1, total_tokens=32769),
+        None,
+        None,
+        None,
+        None,
+        None,
+        None,
+        None,
+    ]
+    report = asyncio.run(
+        acceptance.run_acceptance(
+            task=selection_stress_task(),
+            repository_root=root,
+            interaction=_ScriptedInteraction(
+                [
+                    _proposal("list_repository_directory", "."),
+                    _proposal("list_repository_directory", "src"),
+                    _proposal("read_repository_file", "src/display_labels.py"),
+                    _proposal("read_repository_file", "src/labels.py"),
+                    _proposal("list_repository_directory", "tests"),
+                    _proposal("read_repository_file", "src/labels.py"),
+                    _proposal("read_repository_file", "tests/test_labels.py"),
+                    _SELECTION_STRESS_EXPECTED_PATCH,
+                ],
+                usages=usages,
+            ),
+            fixture=_SELECTION_STRESS_FIXTURE,
+            maximum_actions=7,
+        ),
+    )
+    outcome = acceptance.B0009LiveOutcome(
+        report=report,
+        persistent_service_status="READY",
+        persistent_service_error_type=None,
+        persistent_service_error_message=None,
+        fixture_cleanup_succeeded=True,
+    )
+
+    measurements = acceptance._report_payload(outcome)["measurements"]
+
+    assert measurements["model_context_capacity_tokens"] == _CONTEXT_CAPACITY_TOKENS
+    assert measurements["model_usage_by_turn"][0]["input_context_utilization"] == 1
+    assert measurements["model_usage_by_turn"][1] is None
+    assert measurements["cumulative_reported_model_usage"]["input_tokens"] is None
+    assert measurements["tool_action_budget"] == _STRESS_ACTION_COUNT
+    assert measurements["tool_action_budget_used"] == _STRESS_ACTION_COUNT
+    assert measurements["directory_listing_count"] == _STRESS_DIRECTORY_LISTING_COUNT
+    assert measurements["file_read_count"] == _STRESS_FILE_READ_COUNT
+    assert measurements["unique_path_count"] == _STRESS_UNIQUE_PATH_COUNT
+    assert measurements["repeated_path_count"] == 1
+    assert measurements["selection"] == {
+        "required_files_read": ["src/labels.py", "tests/test_labels.py"],
+        "plausible_unnecessary_files_read": ["src/display_labels.py"],
+        "clearly_irrelevant_files_read": [],
+        "required_read_coverage": 1,
+        "acquisition_precision": 3 / 4,
+    }
 
 
 def test_runner_leaves_incomplete_reported_usage_unknown(

@@ -26,12 +26,18 @@ from devtools.tools.filesystem import ListRepositoryDirectoryTool
 from experiments.qwen.patch_proposal_worker import (
     _EXPECTED_PATCH,
     _ORIGINAL_SOURCE,
+    _SELECTION_STRESS_EXPECTED_PATCH,
+    _SELECTION_STRESS_FIXTURE,
     _TARGET_PATH,
+    _UNRELATED_SOURCE,
     PatchProposalError,
     QwenPatchProposalWorker,
     UngroundedFinalResponseError,
     coding_worker_task,
     create_patch_proposal_fixture,
+    create_selection_stress_fixture,
+    selection_stress_measurements,
+    selection_stress_task,
 )
 from experiments.qwen.two_action_read_only_experiment import (
     QwenListDirectoryCycle,
@@ -85,6 +91,27 @@ def _worker(
     )
 
 
+def _selection_worker(
+    root: Path,
+    responses: list[str],
+    *,
+    maximum_actions: int = 7,
+) -> tuple[QwenPatchProposalWorker, _ScriptedInteraction]:
+    """Create the fixed seven-action selection-stress worker."""
+    interaction = _ScriptedInteraction(responses)
+    return (
+        QwenPatchProposalWorker(
+            runtime=Runtime(),
+            conversation=Conversation.new(),
+            interaction=interaction,
+            repository_root=create_selection_stress_fixture(root),
+            maximum_actions=maximum_actions,
+            fixture=_SELECTION_STRESS_FIXTURE,
+        ),
+        interaction,
+    )
+
+
 def _required_reads() -> list[str]:
     """Return one deterministic navigation path that acquires both required facts."""
     return [
@@ -93,6 +120,17 @@ def _required_reads() -> list[str]:
         _proposal("read_repository_file", "src/label.py"),
         _proposal("list_repository_directory", "tests"),
         _proposal("read_repository_file", "tests/test_label.py"),
+    ]
+
+
+def _selection_required_reads() -> list[str]:
+    """Return the optimal fixed path through the selection-stress fixture."""
+    return [
+        _proposal("list_repository_directory", "."),
+        _proposal("list_repository_directory", "src"),
+        _proposal("read_repository_file", "src/labels.py"),
+        _proposal("list_repository_directory", "tests"),
+        _proposal("read_repository_file", "tests/test_labels.py"),
     ]
 
 
@@ -151,6 +189,125 @@ def test_worker_discovers_source_and_test_then_applies_one_valid_patch(
     assert _read_text(_resolved(root, "src/unrelated.py")).content == (
         'def unrelated_label() -> str:\n    return "unchanged"\n'
     )
+
+
+def test_selection_stress_worker_measures_an_optimal_grounded_run(
+    tmp_path: Path,
+) -> None:
+    """The larger fixture remains solvable without reading any decoy files."""
+    worker, interaction = _selection_worker(
+        tmp_path,
+        [*_selection_required_reads(), _SELECTION_STRESS_EXPECTED_PATCH],
+    )
+    task = selection_stress_task()
+
+    result = asyncio.run(worker.run(task))
+    measurements = selection_stress_measurements(result.cycles)
+
+    assert "labels.py" not in task.content
+    assert "test_labels.py" not in task.content
+    assert "src" not in task.content
+    assert "tests" not in task.content
+    assert [cycle.relative_path for cycle in result.cycles] == [
+        ".",
+        "src",
+        "src/labels.py",
+        "tests",
+        "tests/test_labels.py",
+    ]
+    assert result.final_patch == _SELECTION_STRESS_EXPECTED_PATCH
+    assert result.behavior_validated is True
+    assert len(interaction.calls) == 6
+    assert measurements.required_files_read == (
+        "src/labels.py",
+        "tests/test_labels.py",
+    )
+    assert measurements.plausible_unnecessary_files_read == ()
+    assert measurements.clearly_irrelevant_files_read == ()
+    assert measurements.required_read_coverage == 1
+    assert measurements.acquisition_precision == 1
+    root = tmp_path / "repository"
+    labels = _read_text(_resolved(root, "src/labels.py"))
+    assert labels.content == _ORIGINAL_SOURCE.replace(
+        ".strip()",
+        ".strip().lower()",
+    )
+    assert _read_text(_resolved(root, "src/display_labels.py")).content == (
+        "def normalize_display_label(value: str) -> str:\n    return value.strip()\n"
+    )
+    assert _read_text(_resolved(root, "src/label_slug.py")).content == (
+        "def normalize_label_slug(value: str) -> str:\n"
+        '    return value.strip().lower().replace(" ", "-")\n'
+    )
+    assert _read_text(_resolved(root, "src/unrelated.py")).content == _UNRELATED_SOURCE
+
+
+@pytest.mark.parametrize(
+    ("extra_read", "expected_plausible", "expected_irrelevant", "precision"),
+    [
+        ("src/display_labels.py", ("src/display_labels.py",), (), 2 / 3),
+        ("src/unrelated.py", (), ("src/unrelated.py",), 2 / 3),
+    ],
+)
+def test_selection_stress_measurements_classify_nonrequired_reads(
+    tmp_path: Path,
+    extra_read: str,
+    expected_plausible: tuple[str, ...],
+    expected_irrelevant: tuple[str, ...],
+    precision: float,
+) -> None:
+    """Fixture-local relevance records distinguish plausible and irrelevant reads."""
+    worker, _ = _selection_worker(
+        tmp_path,
+        [
+            _proposal("list_repository_directory", "."),
+            _proposal("list_repository_directory", "src"),
+            _proposal("read_repository_file", extra_read),
+            _proposal("read_repository_file", "src/labels.py"),
+            _proposal("list_repository_directory", "tests"),
+            _proposal("read_repository_file", "tests/test_labels.py"),
+            _SELECTION_STRESS_EXPECTED_PATCH,
+        ],
+    )
+
+    result = asyncio.run(worker.run(selection_stress_task()))
+    measurements = selection_stress_measurements(result.cycles)
+
+    assert measurements.plausible_unnecessary_files_read == expected_plausible
+    assert measurements.clearly_irrelevant_files_read == expected_irrelevant
+    assert measurements.required_read_coverage == 1
+    assert measurements.acquisition_precision == precision
+
+
+def test_selection_stress_measurements_handles_zero_reads() -> None:
+    """No successful read leaves precision unknown instead of dividing by zero."""
+    measurements = selection_stress_measurements(())
+
+    assert measurements.required_files_read == ()
+    assert measurements.required_read_coverage == 0
+    assert measurements.acquisition_precision is None
+
+
+def test_selection_stress_action_bound_rejects_eighth_proposal(tmp_path: Path) -> None:
+    """The stress fixture preserves a visible seven-action local bound."""
+    worker, interaction = _selection_worker(
+        tmp_path,
+        [
+            _proposal("list_repository_directory", "."),
+            _proposal("list_repository_directory", "src"),
+            _proposal("read_repository_file", "src/display_labels.py"),
+            _proposal("read_repository_file", "src/labels.py"),
+            _proposal("list_repository_directory", "tests"),
+            _proposal("read_repository_file", "tests/test_labels.py"),
+            _proposal("list_repository_directory", "docs"),
+            _proposal("read_repository_file", "docs/label-conventions.md"),
+        ],
+    )
+
+    with pytest.raises(ValueError, match="at most 7"):
+        asyncio.run(worker.run(selection_stress_task()))
+
+    assert len(interaction.calls) == 8
 
 
 def test_worker_accepts_eof_terminated_patch_without_mutating_raw_response(

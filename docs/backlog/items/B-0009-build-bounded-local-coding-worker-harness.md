@@ -41,6 +41,14 @@ totals in the acceptance artifact when every turn supplies a count. This is
 measurement evidence only, not a reusable Context, Agent, Action, governance,
 or orchestration promotion.
 
+A second deterministic repository-selection stress fixture now retains the
+same small one-line label-matching change while adding plausible source, test,
+and documentation alternatives. It uses seven bounded list/read actions and
+records fixture-local required, plausible-unnecessary, and clearly-irrelevant
+file-read facts alongside ModelUsage, projections, and duration. It is the
+first measured selection-stress reference; no live result exists for it yet,
+and scripted success does not establish Context pressure.
+
 - hard_dependencies: B-0008
 - pressure_dependencies: B-0012, B-0016, B-0035, B-0036, B-0043, B-0044
 - operational_dependencies: pinned Qwen serving profile
