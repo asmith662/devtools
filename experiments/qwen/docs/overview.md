@@ -73,3 +73,9 @@ context utilization against the fixed Qwen experimental profile's 32,768-token
 capacity. These are experiment measurements, not Context selection, budgeting,
 ranking, search, or a reusable metrics framework. No live stress-fixture result
 exists yet.
+
+The existing patch-proposal acceptance runner defaults to the baseline fixture.
+Use `--fixture selection-stress` with its caller-selected `--report-path` to
+run the committed seven-action stress fixture; `--fixture baseline` explicitly
+selects the unchanged five-action baseline. The schema `/3` artifact records
+the selected fixture identity. This is fixture-selection plumbing only.

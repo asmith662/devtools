@@ -48,7 +48,9 @@ from experiments.qwen.patch_proposal_worker import (
     _PatchProposalFixture,
     coding_worker_task,
     create_patch_proposal_fixture,
+    create_selection_stress_fixture,
     selection_stress_measurements,
+    selection_stress_task,
 )
 from experiments.qwen.two_action_read_only_experiment import (
     QwenListDirectoryCycle,
@@ -59,7 +61,7 @@ from experiments.qwen.two_action_read_only_experiment import (
 from scripts.qwen.llama_cpp_profile import QWEN38_27B_UD_IQ4_XS
 
 if TYPE_CHECKING:
-    from collections.abc import Sequence
+    from collections.abc import Callable, Sequence
 
     from devtools.core.paths import ResolvedPath
     from devtools.models.interaction import ModelInteraction, ModelResponse, ModelUsage
@@ -73,6 +75,7 @@ _CALLER_SOURCE = InteractionSource("qwen-b0009-live-acceptance")
 _MAXIMUM_ACTIONS = 5
 _SELECTION_STRESS_MAXIMUM_ACTIONS = 7
 _MODEL_CONTEXT_CAPACITY_TOKENS = QWEN38_27B_UD_IQ4_XS.context_size
+_FIXTURE_CHOICES = ("baseline", "selection-stress")
 
 
 @dataclass(frozen=True, slots=True)
@@ -87,6 +90,7 @@ class B0009LiveReport:
     grounding_corrections: tuple[QwenGroundingCorrection, ...]
     model_usages: tuple[ModelUsage | None, ...]
     fixture: _PatchProposalFixture
+    fixture_id: str
     maximum_actions: int
     selection_measurements: QwenSelectionMeasurements | None
     result: QwenPatchProposalWorkerResult | None
@@ -113,16 +117,18 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--endpoint", default=_DEFAULT_ENDPOINT)
     parser.add_argument("--model", default=_DEFAULT_MODEL)
+    parser.add_argument("--fixture", choices=_FIXTURE_CHOICES, default="baseline")
     parser.add_argument("--report-path", required=True, type=Path)
     return parser.parse_args(arguments)
 
 
-async def run_acceptance(
+async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local collaborators.
     *,
     task: ConversationMessage,
     repository_root: ResolvedPath,
     interaction: ModelInteraction,
     fixture: _PatchProposalFixture = _BASELINE_FIXTURE,
+    fixture_id: str | None = None,
     maximum_actions: int = _MAXIMUM_ACTIONS,
 ) -> B0009LiveReport:
     """Run the committed experiment once while retaining script-local diagnostics."""
@@ -132,6 +138,7 @@ async def run_acceptance(
     paths: list[str] = []
     grounding_corrections: list[QwenGroundingCorrection] = []
     model_usages: list[ModelUsage | None] = []
+    report_fixture_id = fixture_id or _fixture_id(fixture)
     original_list = ListRepositoryDirectoryTool.execute
     original_read = ReadRepositoryFileTool.execute
 
@@ -174,6 +181,7 @@ async def run_acceptance(
             tuple(grounding_corrections),
             tuple(model_usages),
             fixture,
+            report_fixture_id,
             maximum_actions,
             _selection_measurements(fixture, tuple(cycles)),
             None,
@@ -194,6 +202,7 @@ async def run_acceptance(
         tuple(grounding_corrections),
         tuple(model_usages),
         fixture,
+        report_fixture_id,
         maximum_actions,
         _selection_measurements(fixture, tuple(cycles)),
         result,
@@ -271,21 +280,27 @@ async def _persistent_status() -> str:
 
 async def run(arguments: argparse.Namespace) -> B0009LiveOutcome:
     """Run exactly one fixture-local attempt without owning service lifecycle."""
+    fixture, fixture_factory, task_factory, maximum_actions = _fixture_configuration(
+        arguments.fixture,
+    )
     stopwatch = Stopwatch()
     with tempfile.TemporaryDirectory(prefix="devtools-qwen-b0009-") as directory:
-        root = create_patch_proposal_fixture(Path(directory))
+        root = fixture_factory(Path(directory))
         status: str | None = None
         status_error: Exception | None = None
         cleanup_succeeded = False
         try:
             report = await run_acceptance(
-                task=_live_task(),
+                task=_live_task(task_factory),
                 repository_root=root,
                 interaction=LlamaCppInteraction(
                     endpoint=arguments.endpoint,
                     model=arguments.model,
                     source=InteractionSource("qwen"),
                 ),
+                fixture=fixture,
+                fixture_id=arguments.fixture,
+                maximum_actions=maximum_actions,
             )
             try:
                 status = await _persistent_status()
@@ -308,9 +323,40 @@ async def run(arguments: argparse.Namespace) -> B0009LiveOutcome:
         )
 
 
-def _live_task() -> ConversationMessage:
+def _fixture_configuration(
+    fixture_id: str,
+) -> tuple[
+    _PatchProposalFixture,
+    Callable[[Path], ResolvedPath],
+    Callable[[], ConversationMessage],
+    int,
+]:
+    """Select one of the two committed experiment fixtures without a registry."""
+    if fixture_id == "selection-stress":
+        return (
+            _SELECTION_STRESS_FIXTURE,
+            create_selection_stress_fixture,
+            selection_stress_task,
+            _SELECTION_STRESS_MAXIMUM_ACTIONS,
+        )
+    return (
+        _BASELINE_FIXTURE,
+        create_patch_proposal_fixture,
+        coding_worker_task,
+        _MAXIMUM_ACTIONS,
+    )
+
+
+def _fixture_id(fixture: _PatchProposalFixture) -> str:
+    """Name the only non-default fixture while preserving baseline compatibility."""
+    return "selection-stress" if fixture is _SELECTION_STRESS_FIXTURE else "baseline"
+
+
+def _live_task(
+    task_factory: Callable[[], ConversationMessage] = coding_worker_task,
+) -> ConversationMessage:
     """Create the committed task with an acceptance-specific caller provenance."""
-    task = coding_worker_task()
+    task = task_factory()
     return ConversationMessage.new(
         task.content,
         role=task.role,
@@ -452,6 +498,7 @@ def _report_payload(outcome: B0009LiveOutcome) -> dict[str, object]:
         "schema": _REPORT_SCHEMA,
         "verdict": _verdict(outcome),
         "fixture": {
+            "id": report.fixture_id,
             "logical_structure": [path for path, _ in report.fixture.files],
             "cleanup": "completed" if outcome.fixture_cleanup_succeeded else "failed",
         },

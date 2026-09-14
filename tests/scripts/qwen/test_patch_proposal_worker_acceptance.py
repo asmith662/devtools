@@ -89,6 +89,38 @@ def _proposal(action: str, path: str) -> str:
     return f'{{"action":"{action}","path":"{path}"}}'
 
 
+def test_runner_parses_explicit_fixture_selection(acceptance: ModuleType) -> None:
+    """The baseline remains default while the stress fixture is opt-in."""
+    baseline = acceptance.parse_arguments(["--report-path", "baseline.json"])
+    stress = acceptance.parse_arguments(
+        ["--fixture", "selection-stress", "--report-path", "stress.json"],
+    )
+
+    assert baseline.fixture == "baseline"
+    assert stress.fixture == "selection-stress"
+
+
+def test_runner_rejects_unknown_fixture_selection(acceptance: ModuleType) -> None:
+    """Only the two committed fixture choices are admitted by the CLI."""
+    with pytest.raises(SystemExit):
+        acceptance.parse_arguments(
+            ["--fixture", "other", "--report-path", "report.json"],
+        )
+
+
+def test_runner_selects_committed_fixture_configuration(acceptance: ModuleType) -> None:
+    """Selection composes existing fixture factories without duplicated definitions."""
+    baseline = acceptance._fixture_configuration("baseline")
+    stress = acceptance._fixture_configuration("selection-stress")
+
+    assert baseline[0] is acceptance._BASELINE_FIXTURE
+    assert baseline[2]().content == acceptance.coding_worker_task().content
+    assert baseline[3] == _TOOL_ACTION_COUNT
+    assert stress[0] is acceptance._SELECTION_STRESS_FIXTURE
+    assert stress[2]().content == selection_stress_task().content
+    assert stress[3] == _STRESS_ACTION_COUNT
+
+
 def test_runner_reports_grounding_correction_and_repeated_refusal(
     acceptance: ModuleType,
     tmp_path: Path,
@@ -116,6 +148,7 @@ def test_runner_reports_grounding_correction_and_repeated_refusal(
     assert report.execution_actions == ()
     assert len(report.grounding_corrections) == 1
     assert payload["grounding"]["acquired_read_paths"] == []
+    assert payload["fixture"]["id"] == "baseline"
     assert payload["grounding"]["corrections"][0]["acquired_paths"] == []
     assert payload["failure"]["category"] == "UNGROUNDED_FINAL_RESPONSE"
 
@@ -291,6 +324,7 @@ def test_runner_reports_selection_stress_measurements_and_context_utilization(
         "required_read_coverage": 1,
         "acquisition_precision": 3 / 4,
     }
+    assert acceptance._report_payload(outcome)["fixture"]["id"] == "selection-stress"
 
 
 def test_runner_leaves_incomplete_reported_usage_unknown(
