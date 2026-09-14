@@ -180,6 +180,7 @@ async def run_acceptance(
             "permitted_target": True,
             "applied": True,
             "behavior_valid": True,
+            "terminal_newline_canonicalized": result.terminal_newline_canonicalized,
             "reason": "accepted",
         },
     )
@@ -220,6 +221,7 @@ def _patch_evaluation(error: Exception) -> dict[str, bool | str | None]:
             "permitted_target": None,
             "applied": None,
             "behavior_valid": None,
+            "terminal_newline_canonicalized": None,
             "reason": "not reached",
         }
     category = _failure_category(error)
@@ -228,6 +230,7 @@ def _patch_evaluation(error: Exception) -> dict[str, bool | str | None]:
         "permitted_target": category != "PATCH_CONFORMANCE",
         "applied": category not in {"PATCH_CONFORMANCE", "PATCH_APPLICATION"},
         "behavior_valid": False if category == "BEHAVIORAL_VALIDATION" else None,
+        "terminal_newline_canonicalized": None,
         "reason": str(error),
     }
 
@@ -384,6 +387,9 @@ def _report_payload(outcome: B0009LiveOutcome) -> dict[str, object]:
             report.result.final_patch
             if report.result is not None
             else _latest_assistant_content(report.history)
+        ),
+        "canonical_accepted_patch": (
+            report.result.canonical_patch if report.result is not None else None
         ),
         "patch_evaluation": report.patch_evaluation,
         "failure": {

@@ -93,3 +93,41 @@ def test_runner_reports_grounding_correction_and_repeated_refusal(
     assert payload["grounding"]["acquired_read_paths"] == []
     assert payload["grounding"]["corrections"][0]["acquired_paths"] == []
     assert payload["failure"]["category"] == "UNGROUNDED_FINAL_RESPONSE"
+
+
+def test_runner_distinguishes_raw_eof_patch_from_canonical_fixture_patch(
+    acceptance: ModuleType,
+    tmp_path: Path,
+) -> None:
+    """Reporting retains raw model text while exposing accepted canonicalization."""
+    root = create_patch_proposal_fixture(tmp_path)
+    raw_patch = _EXPECTED_PATCH.removesuffix("\n")
+    report = asyncio.run(
+        acceptance.run_acceptance(
+            task=acceptance._live_task(),
+            repository_root=root,
+            interaction=_ScriptedInteraction(
+                [
+                    _proposal("list_repository_directory", "."),
+                    _proposal("list_repository_directory", "src"),
+                    _proposal("read_repository_file", "src/label.py"),
+                    _proposal("list_repository_directory", "tests"),
+                    _proposal("read_repository_file", "tests/test_label.py"),
+                    raw_patch,
+                ],
+            ),
+        ),
+    )
+    outcome = acceptance.B0009LiveOutcome(
+        report=report,
+        persistent_service_status="READY",
+        persistent_service_error_type=None,
+        persistent_service_error_message=None,
+        fixture_cleanup_succeeded=True,
+    )
+    payload = acceptance._report_payload(outcome)
+
+    assert report.result is not None
+    assert payload["final_model_response"] == raw_patch
+    assert payload["canonical_accepted_patch"] == _EXPECTED_PATCH
+    assert payload["patch_evaluation"]["terminal_newline_canonicalized"] is True

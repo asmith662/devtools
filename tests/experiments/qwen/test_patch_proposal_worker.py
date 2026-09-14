@@ -135,6 +135,8 @@ def test_worker_discovers_source_and_test_then_applies_one_valid_patch(
         for cycle, expected in zip(listings, expected_listed_names, strict=True)
     ] == list(expected_listed_names)
     assert result.final_patch == _EXPECTED_PATCH
+    assert result.canonical_patch == _EXPECTED_PATCH
+    assert result.terminal_newline_canonicalized is False
     assert result.behavior_validated is True
     assert len(interaction.calls) == 6
     assert all(
@@ -149,6 +151,21 @@ def test_worker_discovers_source_and_test_then_applies_one_valid_patch(
     assert _read_text(_resolved(root, "src/unrelated.py")).content == (
         'def unrelated_label() -> str:\n    return "unchanged"\n'
     )
+
+
+def test_worker_accepts_eof_terminated_patch_without_mutating_raw_response(
+    tmp_path: Path,
+) -> None:
+    """EOF after the final permitted diff line canonicalizes only fixture input."""
+    raw_patch = _EXPECTED_PATCH.removesuffix("\n")
+    worker, _ = _worker(tmp_path, [*_required_reads(), raw_patch])
+
+    result = asyncio.run(worker.run(coding_worker_task()))
+
+    assert result.final_patch == raw_patch
+    assert result.canonical_patch == _EXPECTED_PATCH
+    assert result.terminal_newline_canonicalized is True
+    assert result.behavior_validated is True
 
 
 def test_worker_corrects_one_premature_patch_then_recovers_after_required_reads(
@@ -265,6 +282,29 @@ def test_worker_rejects_nonpermitted_final_diff_before_mutating_fixture(
     worker, _ = _worker(tmp_path, [*_required_reads(), patch])
 
     with pytest.raises((PatchProposalError, ReadOnlyProposalError)):
+        asyncio.run(worker.run(coding_worker_task()))
+
+    assert _read_text(_resolved(tmp_path / "repository", _TARGET_PATH)).content == (
+        _ORIGINAL_SOURCE
+    )
+
+
+@pytest.mark.parametrize(
+    "patch",
+    [
+        _EXPECTED_PATCH.removesuffix("\n") + " ",
+        _EXPECTED_PATCH + "\n",
+        _EXPECTED_PATCH.removesuffix("\n") + "\nextra",
+    ],
+)
+def test_worker_rejects_trailing_patch_material_before_mutating_fixture(
+    tmp_path: Path,
+    patch: str,
+) -> None:
+    """Only one terminal newline or EOF is admitted; extra material is not repaired."""
+    worker, _ = _worker(tmp_path, [*_required_reads(), patch])
+
+    with pytest.raises(PatchProposalError):
         asyncio.run(worker.run(coding_worker_task()))
 
     assert _read_text(_resolved(tmp_path / "repository", _TARGET_PATH)).content == (

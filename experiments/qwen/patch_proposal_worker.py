@@ -79,6 +79,8 @@ class QwenPatchProposalWorkerResult:
     cycles: tuple[QwenReadOnlyCycle, ...]
     grounding_corrections: tuple[QwenGroundingCorrection, ...]
     final_patch: str
+    canonical_patch: str
+    terminal_newline_canonicalized: bool
     behavior_validated: bool
 
 
@@ -165,13 +167,15 @@ class QwenPatchProposalWorker:
         self._task = task
         read_only_result = await self._read_only.run(task)
         final_patch = read_only_result.final_message.content
-        _apply_patch(self._root, final_patch)
+        canonical_patch = _apply_patch(self._root, final_patch)
         _validate_fixture_behavior(self._root)
         return QwenPatchProposalWorkerResult(
             task=read_only_result.task,
             cycles=read_only_result.cycles,
             grounding_corrections=tuple(self._corrections),
             final_patch=final_patch,
+            canonical_patch=canonical_patch,
+            terminal_newline_canonicalized=canonical_patch != final_patch,
             behavior_validated=True,
         )
 
@@ -212,9 +216,9 @@ class QwenPatchProposalWorker:
         return follow_up
 
 
-def _apply_patch(root: ResolvedPath, patch: str) -> None:
+def _apply_patch(root: ResolvedPath, patch: str) -> str:
     """Apply one admitted fixture diff through the canonical filesystem Resource."""
-    replacement = _parse_patch(patch)
+    canonical_patch, replacement = _parse_patch(patch)
     target = resolve_path(_TARGET_PATH, base_directory=root.value)
     current = _read_text(target)
     current_text = current.content
@@ -228,14 +232,13 @@ def _apply_patch(root: ResolvedPath, patch: str) -> None:
             encoding=current.encoding,
         ),
     )
+    return canonical_patch
 
 
-def _parse_patch(patch: str) -> str:
+def _parse_patch(patch: str) -> tuple[str, str]:
     """Admit only the one-file, one-line diff grammar used by this fixture."""
-    if not patch.endswith("\n"):
-        msg = "Final response must be exactly one newline-terminated unified diff."
-        raise PatchProposalError(msg)
-    lines = patch.splitlines()
+    content = patch.removesuffix("\n")
+    lines = content.split("\n")
     if tuple(lines[:5]) != _PATCH_PREFIX or len(lines) != _PATCH_LINE_COUNT:
         msg = "Final diff must modify only the permitted fixture source hunk."
         raise PatchProposalError(msg)
@@ -243,7 +246,7 @@ def _parse_patch(patch: str) -> str:
     if replacement not in _PERMITTED_REPLACEMENTS:
         msg = "Final diff replacement is not permitted by this fixture contract."
         raise PatchProposalError(msg)
-    return replacement[1:]
+    return f"{content}\n", replacement[1:]
 
 
 def _validate_fixture_behavior(root: ResolvedPath) -> None:

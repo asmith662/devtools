@@ -40,6 +40,15 @@ revealing repository locations; a repeated ungrounded final response fails.
 This is local worker-contract evidence, not a reusable Context, Agent, Action,
 or governance promotion. A second live attempt remains pending.
 
+The second live attempt used repository Tools, read both required artifacts,
+and proposed the correct semantic change. It failed before fixture application
+only because the otherwise permitted unified diff ended at EOF rather than
+with a terminal newline. The fixture-local patch contract now treats those
+representations equivalently while retaining raw model output separately from
+the canonical patch applied to the disposable fixture. This does not promote a
+reusable response-normalization or patch framework; a final live acceptance
+remains pending.
+
 - hard_dependencies: B-0008
 - pressure_dependencies: B-0012, B-0016, B-0035, B-0036, B-0043, B-0044
 - operational_dependencies: pinned Qwen serving profile

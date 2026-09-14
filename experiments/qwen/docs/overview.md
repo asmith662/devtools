@@ -48,3 +48,11 @@ response receives a controller-authored inspection correction without target
 path disclosure; a second ungrounded final response fails the bounded probe.
 This is an epistemic readiness condition for this fixture, not reusable Context
 selection or authorization.
+
+The patch contract retains raw model text for evidence. Once the strict fixture
+grammar is satisfied, a final diff ending directly at EOF is equivalent to one
+with exactly one terminal newline; the host canonicalizes only the accepted
+fixture patch before application. Extra output, whitespace, or patch syntax is
+not normalized. A model may hypothesize a confined repository-relative filename,
+but final-patch grounding still requires successful reads of both required
+fixture artifacts.
