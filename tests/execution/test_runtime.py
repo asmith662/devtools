@@ -52,14 +52,17 @@ class FakeInteraction:
     responses: list[ModelResponse] = field(default_factory=list)
     error: BaseException | None = None
     prompts: list[tuple[Prompt, ConversationRef | None]] = field(default_factory=list)
+    requested_output_tokens: list[int | None] = field(default_factory=list)
 
     async def send(
         self,
         prompt: Prompt,
         *,
         conversation: ConversationRef | None = None,
+        maximum_output_tokens: int | None = None,
     ) -> ModelResponse:
         """Record the materialized input and return one scripted result."""
+        self.requested_output_tokens.append(maximum_output_tokens)
         self.prompts.append((prompt, conversation))
         if self.error is not None:
             raise self.error
@@ -109,6 +112,46 @@ def test_runtime_projects_conversation_message_and_materializes_response() -> No
         assert conversation.history[-1].role is ConversationMessageRole.ASSISTANT
         assert conversation.history[-1].source == _MODEL
         assert conversation.history[-1].id != conversation.history[0].id
+
+    asyncio.run(exercise())
+
+
+def test_runtime_forwards_an_explicit_output_bound_without_treating_it_as_budget() -> None:
+    """Runtime mechanically forwards the caller's one-interaction constraint."""
+
+    async def exercise() -> None:
+        conversation = Conversation.new()
+        interaction = FakeInteraction(
+            responses=[ModelResponse(content="answer", source=_MODEL)],
+        )
+
+        await Runtime().send(
+            conversation=conversation,
+            interaction=interaction,
+            message=_message(),
+            maximum_output_tokens=64,
+        )
+
+        assert interaction.requested_output_tokens == [64]
+
+    asyncio.run(exercise())
+
+
+def test_runtime_rejects_an_invalid_output_bound_before_interaction() -> None:
+    """Runtime does not delegate malformed shared request semantics to providers."""
+
+    async def exercise() -> None:
+        interaction = FakeInteraction(
+            responses=[ModelResponse(content="answer", source=_MODEL)],
+        )
+        with pytest.raises(ValueError, match="positive integer"):
+            await Runtime().send(
+                conversation=Conversation.new(),
+                interaction=interaction,
+                message=_message(),
+                maximum_output_tokens=0,
+            )
+        assert interaction.requested_output_tokens == []
 
     asyncio.run(exercise())
 
@@ -413,7 +456,9 @@ def test_runtime_serializes_turns_for_one_conversation() -> None:
             prompt: Prompt,
             *,
             conversation: ConversationRef | None = None,
+            maximum_output_tokens: int | None = None,
         ) -> ModelResponse:
+            del maximum_output_tokens
             self.prompts.append((prompt, conversation))
             if len(self.prompts) == 1:
                 entered.set()

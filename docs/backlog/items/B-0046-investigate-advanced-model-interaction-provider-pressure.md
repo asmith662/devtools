@@ -38,6 +38,26 @@ an exact cumulative field total only when every model turn supplied that field.
 This establishes no Context budgeting, tokenizer, prompt provenance, generic
 metrics, Telemetry, Trace, pricing, or provider-capability registry.
 
+## Established subset: bounded output request
+
+The measured selection-stress acceptance exposed a separate request-side
+pressure: without a completion cap, the pinned llama.cpp route may use the
+remaining context window for generation even when the prompt is small. The
+minimal reusable response is optional positive-integer `maximum_output_tokens`
+on one `ModelInteraction` request. It is a requested per-invocation output
+limit, not ModelUsage, context-window capacity, cumulative run budgeting, or
+Context budgeting. An adapter must honor a supplied value or reject it.
+
+For llama.cpp's pinned OpenAI-compatible chat route,
+`maximum_output_tokens` maps only to request `max_tokens`; absent values leave
+the existing request payload unchanged. Provider-reported usage remains factual
+post-hoc data and is not clamped, derived, or reconciled to the requested cap.
+The B-0009 runner may select a cap as experiment-local policy and records that
+choice in its existing schema `/3` fixture data.
+
+Finish reasons and separated reasoning content remain deferred diagnostic
+pressure. They are not part of this established output-bound semantic.
+
 - hard_dependencies: B-0045
 - pressure_dependencies: B-0035, B-0036, B-0027
 - operational_dependencies: model/provider path needing unavailable semantics

@@ -53,9 +53,11 @@ class _ScriptedInteraction:
         prompt: Prompt,
         *,
         conversation: ConversationRef | None = None,
+        maximum_output_tokens: int | None = None,
     ) -> ModelResponse:
         """Return the next planned final assistant ConversationMessage."""
         assert conversation is None
+        del maximum_output_tokens
         self.calls.append(prompt)
         return ModelResponse(content=self.responses.pop(0), source=self.source)
 
@@ -72,9 +74,11 @@ class _FailingLaterInteraction:
         prompt: Prompt,
         *,
         conversation: ConversationRef | None = None,
+        maximum_output_tokens: int | None = None,
     ) -> ModelResponse:
         """Produce a first proposal only, then propagate a later failure."""
         assert conversation is None
+        del maximum_output_tokens
         self.calls.append(prompt)
         if len(self.calls) == 1:
             return ModelResponse(

@@ -57,9 +57,10 @@ class _CommandToolInteraction:
         prompt: Prompt,
         *,
         conversation: ConversationRef | None = None,
+        maximum_output_tokens: int | None = None,
     ) -> ModelResponse:
         """Execute the Tool and return model output without conversation identity."""
-        del prompt, conversation
+        del prompt, conversation, maximum_output_tokens
         result = await self._runner.execute(self._tool, self._command)
         return ModelResponse(
             content=result.stdout.decode().strip(),

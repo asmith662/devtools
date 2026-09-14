@@ -23,5 +23,9 @@ class ModelInteraction(Protocol):
         prompt: Prompt,
         *,
         conversation: ConversationRef | None = None,
+        maximum_output_tokens: int | None = None,
     ) -> ModelResponse:
-        """Send one prompt and return the model response."""
+        """Send one prompt with an optional requested output-token limit.
+
+        Implementations must honor a supplied limit or reject it explicitly.
+        """

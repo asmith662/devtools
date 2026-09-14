@@ -78,4 +78,7 @@ The existing patch-proposal acceptance runner defaults to the baseline fixture.
 Use `--fixture selection-stress` with its caller-selected `--report-path` to
 run the committed seven-action stress fixture; `--fixture baseline` explicitly
 selects the unchanged five-action baseline. The schema `/3` artifact records
-the selected fixture identity. This is fixture-selection plumbing only.
+the selected fixture identity. An optional `--maximum-output-tokens` value is
+an experiment-local cap forwarded to every ModelInteraction turn; it has no
+framework default and is distinct from the Tool-action cap or Context budget.
+This is fixture-selection and measurement plumbing only.

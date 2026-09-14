@@ -43,6 +43,7 @@ _STRESS_ACTION_COUNT = 7
 _STRESS_DIRECTORY_LISTING_COUNT = 3
 _STRESS_FILE_READ_COUNT = 4
 _STRESS_UNIQUE_PATH_COUNT = 6
+_MAXIMUM_OUTPUT_TOKENS = 64
 
 
 @pytest.fixture
@@ -65,6 +66,7 @@ class _ScriptedInteraction:
 
     responses: list[str]
     calls: list[Prompt] = field(default_factory=list)
+    requested_output_tokens: list[int | None] = field(default_factory=list)
     usages: list[ModelUsage | None] | None = None
     source: InteractionSource = field(default_factory=lambda: InteractionSource("qwen"))
 
@@ -73,10 +75,12 @@ class _ScriptedInteraction:
         prompt: Prompt,
         *,
         conversation: ConversationRef | None = None,
+        maximum_output_tokens: int | None = None,
     ) -> ModelResponse:
         """Return one exact response without contacting a provider."""
         assert conversation is None
         self.calls.append(prompt)
+        self.requested_output_tokens.append(maximum_output_tokens)
         usage = self.usages.pop(0) if self.usages is not None else None
         return ModelResponse(
             content=self.responses.pop(0),
@@ -98,6 +102,22 @@ def test_runner_parses_explicit_fixture_selection(acceptance: ModuleType) -> Non
 
     assert baseline.fixture == "baseline"
     assert stress.fixture == "selection-stress"
+    assert baseline.maximum_output_tokens is None
+    assert stress.maximum_output_tokens is None
+
+
+def test_runner_parses_explicit_experiment_output_bound(acceptance: ModuleType) -> None:
+    """The live runner exposes an opt-in experiment-local output limit."""
+    arguments = acceptance.parse_arguments(
+        [
+            "--maximum-output-tokens",
+            str(_MAXIMUM_OUTPUT_TOKENS),
+            "--report-path",
+            "report.json",
+        ],
+    )
+
+    assert arguments.maximum_output_tokens == _MAXIMUM_OUTPUT_TOKENS
 
 
 def test_runner_rejects_unknown_fixture_selection(acceptance: ModuleType) -> None:
@@ -258,6 +278,46 @@ def test_runner_reports_per_turn_and_complete_cumulative_model_usage(
     assert measurements["repository_projection_characters"] > 0
     assert measurements["run_duration_seconds"] == 0
     assert measurements["selection"] is None
+
+
+def test_runner_retains_and_forwards_its_experiment_local_output_bound(
+    acceptance: ModuleType,
+    tmp_path: Path,
+) -> None:
+    """The runner reports a configured cap and sends it on every model turn."""
+    interaction = _ScriptedInteraction(
+        [
+            _proposal("list_repository_directory", "."),
+            _proposal("list_repository_directory", "src"),
+            _proposal("read_repository_file", "src/label.py"),
+            _proposal("list_repository_directory", "tests"),
+            _proposal("read_repository_file", "tests/test_label.py"),
+            _EXPECTED_PATCH,
+        ],
+    )
+    report = asyncio.run(
+        acceptance.run_acceptance(
+            task=acceptance._live_task(),
+            repository_root=create_patch_proposal_fixture(tmp_path),
+            interaction=interaction,
+            maximum_output_tokens=_MAXIMUM_OUTPUT_TOKENS,
+        ),
+    )
+    outcome = acceptance.B0009LiveOutcome(
+        report=report,
+        persistent_service_status="READY",
+        persistent_service_error_type=None,
+        persistent_service_error_message=None,
+        fixture_cleanup_succeeded=True,
+    )
+
+    assert interaction.requested_output_tokens == [_MAXIMUM_OUTPUT_TOKENS] * len(
+        interaction.calls,
+    )
+    assert (
+        acceptance._report_payload(outcome)["fixture"]["maximum_output_tokens"]
+        == _MAXIMUM_OUTPUT_TOKENS
+    )
 
 
 def test_runner_reports_selection_stress_measurements_and_context_utilization(

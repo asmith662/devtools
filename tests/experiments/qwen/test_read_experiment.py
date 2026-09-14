@@ -49,9 +49,11 @@ class _ScriptedInteraction:
         prompt: Prompt,
         *,
         conversation: ConversationRef | None = None,
+        maximum_output_tokens: int | None = None,
     ) -> ModelResponse:
         """Return the next planned final assistant message."""
         assert conversation is None
+        del maximum_output_tokens
         self.calls.append(prompt)
         return ModelResponse(content=self.responses.pop(0), source=self.source)
 
@@ -67,12 +69,17 @@ class _FailingInteraction(_ScriptedInteraction):
         prompt: Prompt,
         *,
         conversation: ConversationRef | None = None,
+        maximum_output_tokens: int | None = None,
     ) -> ModelResponse:
         """Retain the attempted input before the configured provider failure."""
         if len(self.calls) + 1 == self.fail_on_call:
             self.calls.append(prompt)
             raise LookupError(_PROVIDER_FAILURE)
-        return await super().send(prompt, conversation=conversation)
+        return await super().send(
+            prompt,
+            conversation=conversation,
+            maximum_output_tokens=maximum_output_tokens,
+        )
 
 
 def _proposal(path: str) -> str:

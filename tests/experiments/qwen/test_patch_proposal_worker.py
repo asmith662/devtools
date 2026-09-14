@@ -58,6 +58,7 @@ class _ScriptedInteraction:
 
     responses: list[str]
     calls: list[Prompt] = field(default_factory=list)
+    requested_output_tokens: list[int | None] = field(default_factory=list)
     source: InteractionSource = field(default_factory=lambda: InteractionSource("qwen"))
 
     async def send(
@@ -65,10 +66,12 @@ class _ScriptedInteraction:
         prompt: Prompt,
         *,
         conversation: ConversationRef | None = None,
+        maximum_output_tokens: int | None = None,
     ) -> ModelResponse:
         """Return one deterministic response without contacting a model service."""
         assert conversation is None
         self.calls.append(prompt)
+        self.requested_output_tokens.append(maximum_output_tokens)
         return ModelResponse(content=self.responses.pop(0), source=self.source)
 
 
@@ -77,6 +80,7 @@ def _worker(
     responses: list[str],
     *,
     maximum_actions: int = 5,
+    maximum_output_tokens: int | None = None,
 ) -> tuple[QwenPatchProposalWorker, _ScriptedInteraction]:
     interaction = _ScriptedInteraction(responses)
     return (
@@ -86,6 +90,7 @@ def _worker(
             interaction=interaction,
             repository_root=create_patch_proposal_fixture(root),
             maximum_actions=maximum_actions,
+            maximum_output_tokens=maximum_output_tokens,
         ),
         interaction,
     )
@@ -96,6 +101,7 @@ def _selection_worker(
     responses: list[str],
     *,
     maximum_actions: int = 7,
+    maximum_output_tokens: int | None = None,
 ) -> tuple[QwenPatchProposalWorker, _ScriptedInteraction]:
     """Create the fixed seven-action selection-stress worker."""
     interaction = _ScriptedInteraction(responses)
@@ -106,6 +112,7 @@ def _selection_worker(
             interaction=interaction,
             repository_root=create_selection_stress_fixture(root),
             maximum_actions=maximum_actions,
+            maximum_output_tokens=maximum_output_tokens,
             fixture=_SELECTION_STRESS_FIXTURE,
         ),
         interaction,
@@ -189,6 +196,21 @@ def test_worker_discovers_source_and_test_then_applies_one_valid_patch(
     assert _read_text(_resolved(root, "src/unrelated.py")).content == (
         'def unrelated_label() -> str:\n    return "unchanged"\n'
     )
+
+
+def test_worker_forwards_one_experiment_local_output_bound_to_every_turn(
+    tmp_path: Path,
+) -> None:
+    """The worker keeps its output cap as local experiment policy."""
+    worker, interaction = _worker(
+        tmp_path,
+        [*_required_reads(), _EXPECTED_PATCH],
+        maximum_output_tokens=64,
+    )
+
+    asyncio.run(worker.run(coding_worker_task()))
+
+    assert interaction.requested_output_tokens == [64] * len(interaction.calls)
 
 
 def test_selection_stress_worker_measures_an_optimal_grounded_run(
@@ -332,6 +354,7 @@ def test_worker_corrects_one_premature_patch_then_recovers_after_required_reads(
     worker, interaction = _worker(
         tmp_path,
         [_EXPECTED_PATCH, *_required_reads(), _EXPECTED_PATCH],
+        maximum_output_tokens=64,
     )
 
     result = asyncio.run(worker.run(coding_worker_task()))
@@ -343,6 +366,7 @@ def test_worker_corrects_one_premature_patch_then_recovers_after_required_reads(
     assert "label.py" not in correction.follow_up.content
     assert "test_label.py" not in correction.follow_up.content
     assert len(interaction.calls) == 7
+    assert interaction.requested_output_tokens == [64] * len(interaction.calls)
     assert result.behavior_validated is True
 
 

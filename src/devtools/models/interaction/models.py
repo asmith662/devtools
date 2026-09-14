@@ -6,6 +6,15 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
+def validate_maximum_output_tokens(value: int | None) -> None:
+    """Validate one optional request-side output-token constraint."""
+    if value is None:
+        return
+    if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
+        msg = "Maximum output tokens must be a positive integer."
+        raise ValueError(msg)
+
+
 @dataclass(frozen=True, slots=True)
 class InteractionSource:
     """Identify the model interaction that owns provider continuation state."""

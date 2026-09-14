@@ -24,6 +24,7 @@ _OFFLINE = "offline"
 _INPUT_TOKENS = 8
 _OUTPUT_TOKENS = 4
 _PROVIDER_TOTAL_TOKENS = 99
+_MAXIMUM_OUTPUT_TOKENS = 64
 
 
 def _reader(response: bytes) -> asyncio.StreamReader:
@@ -136,6 +137,61 @@ def test_interaction_maps_existing_message_roles_to_non_streaming_llama_request(
     assert writer.closed is True
 
 
+def test_interaction_maps_requested_output_bound_to_pinned_llama_cpp_max_tokens(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The provider receives only the established OpenAI-compatible cap field."""
+    writer = _Writer()
+
+    async def connection(
+        _host: str,
+        _port: int,
+    ) -> tuple[asyncio.StreamReader, _Writer]:
+        return (
+            _reader(
+                _response(
+                    200,
+                    {
+                        "choices": [
+                            {"message": {"role": "assistant", "content": "reply"}},
+                        ],
+                    },
+                ),
+            ),
+            writer,
+        )
+
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+
+    turn = asyncio.run(
+        _interaction().send(
+            _message(ConversationMessageRole.USER),
+            maximum_output_tokens=_MAXIMUM_OUTPUT_TOKENS,
+        ),
+    )
+
+    _, _, body = writer.request.partition(b"\r\n\r\n")
+    request = json.loads(body)
+    assert request["max_tokens"] == _MAXIMUM_OUTPUT_TOKENS
+    assert "max_completion_tokens" not in request
+    assert "n_predict" not in request
+    assert turn.content == "reply"
+
+
+@pytest.mark.parametrize("value", [0, -1, True, False, "8", 8.0])
+def test_interaction_rejects_invalid_output_bound_before_provider_request(
+    value: object,
+) -> None:
+    """Invalid shared request constraints never become provider HTTP failures."""
+    with pytest.raises(ValueError, match="positive integer"):
+        asyncio.run(
+            _interaction().send(
+                _message(ConversationMessageRole.USER),
+                maximum_output_tokens=value,  # type: ignore[arg-type]
+            ),
+        )
+
+
 def test_interaction_preserves_pinned_llama_cpp_standard_usage(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -168,7 +224,12 @@ def test_interaction_preserves_pinned_llama_cpp_standard_usage(
 
     monkeypatch.setattr(asyncio, "open_connection", connection)
 
-    turn = asyncio.run(_interaction().send(_message(ConversationMessageRole.USER)))
+    turn = asyncio.run(
+        _interaction().send(
+            _message(ConversationMessageRole.USER),
+            maximum_output_tokens=3,
+        ),
+    )
 
     assert turn.content == "reply"
     assert turn.usage is not None

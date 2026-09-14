@@ -15,6 +15,7 @@ from devtools.models.interaction import (
     ModelResponse,
     ModelUsage,
     Prompt,
+    validate_maximum_output_tokens,
 )
 from devtools.models.interaction.providers.llama_cpp_errors import (
     LlamaCppHttpError,
@@ -58,25 +59,27 @@ class LlamaCppInteraction:
         prompt: Prompt,
         *,
         conversation: ConversationRef | None = None,
+        maximum_output_tokens: int | None = None,
     ) -> ModelResponse:
         """Send one Prompt through llama.cpp and return final assistant text."""
         if conversation is not None:
             msg = "The stateless llama.cpp interaction does not support continuation."
             raise ValueError(msg)
 
-        response = await _post_chat_completion(
-            self._endpoint,
-            {
-                "model": self._model,
-                "messages": [
-                    {
-                        "role": _provider_role(prompt.role),
-                        "content": prompt.content,
-                    },
-                ],
-                "stream": False,
-            },
-        )
+        payload: dict[str, object] = {
+            "model": self._model,
+            "messages": [
+                {
+                    "role": _provider_role(prompt.role),
+                    "content": prompt.content,
+                },
+            ],
+            "stream": False,
+        }
+        if maximum_output_tokens is not None:
+            validate_maximum_output_tokens(maximum_output_tokens)
+            payload["max_tokens"] = maximum_output_tokens
+        response = await _post_chat_completion(self._endpoint, payload)
         content = _final_assistant_content(response)
         return ModelResponse(
             content=content,

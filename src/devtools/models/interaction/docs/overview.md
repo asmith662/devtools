@@ -19,6 +19,12 @@ history, goals, tools, authorization, Runtime orchestration, or model-serving
 lifecycle. `ConversationRef` and `InteractionSource` are narrow model-provider
 values used at this boundary.
 
+One request may optionally specify `maximum_output_tokens`: a positive,
+provider-neutral completion-token limit for that single invocation. Its absence
+requests no cap. This request constraint is distinct from provider-reported
+`ModelUsage`, model context-window capacity, and any future Context or run
+budget. An adapter must honor a supplied limit or reject it explicitly.
+
 The configurable llama.cpp implementation is under `providers/`; it communicates
 with an already-running model endpoint. Endpoint lifecycle is separately owned
 by `devtools.models.serving`.

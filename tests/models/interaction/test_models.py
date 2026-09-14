@@ -13,11 +13,32 @@ from devtools.models.interaction import (
     ModelResponse,
     ModelUsage,
     Prompt,
+    validate_maximum_output_tokens,
 )
 
 _INPUT_TOKENS = 8
 _OUTPUT_TOKENS = 4
 _PROVIDER_TOTAL_TOKENS = 99
+
+
+@pytest.mark.parametrize("value", [1, 8])
+def test_maximum_output_tokens_accepts_positive_integers(value: int) -> None:
+    """A request-side output limit is optional but positive when supplied."""
+    validate_maximum_output_tokens(value)
+
+
+@pytest.mark.parametrize("value", [0, -1, True, False, "8", 8.0])
+def test_maximum_output_tokens_rejects_nonpositive_or_noninteger_values(
+    value: object,
+) -> None:
+    """The provider-neutral request constraint rejects invalid values locally."""
+    with pytest.raises(ValueError, match="positive integer"):
+        validate_maximum_output_tokens(value)  # type: ignore[arg-type]
+
+
+def test_maximum_output_tokens_allows_absence() -> None:
+    """Absent output limits preserve an unbounded provider request."""
+    validate_maximum_output_tokens(None)
 
 
 def test_prompt_is_an_immutable_model_input_without_conversation_identity() -> None:

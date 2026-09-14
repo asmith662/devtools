@@ -19,7 +19,12 @@ from devtools.execution.interaction_attempt import (
     InteractionAttemptStage,
     InteractionAttemptSucceeded,
 )
-from devtools.models.interaction import ModelInteraction, ModelResponse, Prompt
+from devtools.models.interaction import (
+    ModelInteraction,
+    ModelResponse,
+    Prompt,
+    validate_maximum_output_tokens,
+)
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -47,6 +52,7 @@ class Runtime:
         conversation: Conversation,
         interaction: ModelInteraction,
         message: ConversationMessage,
+        maximum_output_tokens: int | None = None,
     ) -> ModelResponse:
         """Retain one message, invoke a model, and retain its response."""
         observer = self._observer
@@ -57,10 +63,16 @@ class Runtime:
             try:
                 continuation = conversation.conversation_for(interaction.source)
                 stage = InteractionAttemptStage.INTERACTION_INVOCATION
-                response = await interaction.send(
-                    Prompt(content=message.content, role=message.role.value),
-                    conversation=continuation,
-                )
+                prompt = Prompt(content=message.content, role=message.role.value)
+                if maximum_output_tokens is None:
+                    response = await interaction.send(prompt, conversation=continuation)
+                else:
+                    validate_maximum_output_tokens(maximum_output_tokens)
+                    response = await interaction.send(
+                        prompt,
+                        conversation=continuation,
+                        maximum_output_tokens=maximum_output_tokens,
+                    )
                 stage = InteractionAttemptStage.RESULT_VALIDATION
                 self._validate_response_source(response, interaction)
                 stage = InteractionAttemptStage.OUTPUT_RETENTION
