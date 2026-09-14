@@ -41,3 +41,10 @@ source file. Host-side experiment code validates and applies that diff only
 inside the fixture, then checks the requested behavior. The model receives no
 write or command capability. This is not reusable Context, Agent, Action,
 orchestration, governance, evaluation, search, or indexing infrastructure.
+
+Before admitting a final patch, this fixture-local worker requires accepted
+reads of its relevant implementation and focused test. One premature final
+response receives a controller-authored inspection correction without target
+path disclosure; a second ungrounded final response fails the bounded probe.
+This is an epistemic readiness condition for this fixture, not reusable Context
+selection or authorization.

@@ -118,6 +118,13 @@ class QwenTwoActionReadOnlyExperiment:
         max_projection_characters: int = _DEFAULT_MAX_PROJECTION_CHARACTERS,
         maximum_actions: int = _DEFAULT_MAXIMUM_ACTIONS,
         on_cycle_completed: Callable[[QwenReadOnlyCycle], None] | None = None,
+        on_final_response: (
+            Callable[
+                [ConversationMessage, tuple[QwenReadOnlyCycle, ...]],
+                ConversationMessage | None,
+            ]
+            | None
+        ) = None,
     ) -> None:
         """Configure explicit collaborators for this narrow local experiment."""
         if max_projection_characters <= 0:
@@ -133,6 +140,7 @@ class QwenTwoActionReadOnlyExperiment:
         self._max_projection_characters = max_projection_characters
         self._maximum_actions = maximum_actions
         self._on_cycle_completed = on_cycle_completed
+        self._on_final_response = on_final_response
 
     async def run(
         self,
@@ -149,6 +157,14 @@ class QwenTwoActionReadOnlyExperiment:
             response_message = self._conversation.history[-1]
             proposal = _classify_response(turn.content)
             if proposal is None:
+                follow_up = self._final_response_follow_up(response_message, cycles)
+                if follow_up is not None:
+                    turn = await self._runtime.send(
+                        conversation=self._conversation,
+                        interaction=self._interaction,
+                        message=follow_up,
+                    )
+                    continue
                 return QwenTwoActionReadOnlyExperimentResult(
                     task,
                     tuple(cycles),
@@ -184,6 +200,16 @@ class QwenTwoActionReadOnlyExperiment:
                 interaction=self._interaction,
                 message=cycle.follow_up,
             )
+
+    def _final_response_follow_up(
+        self,
+        response: ConversationMessage,
+        cycles: list[QwenReadOnlyCycle],
+    ) -> ConversationMessage | None:
+        """Allow a caller-local experiment policy to defer a terminal response."""
+        if self._on_final_response is None:
+            return None
+        return self._on_final_response(response, tuple(cycles))
 
     def _publish_completed_cycle(self, cycle: QwenReadOnlyCycle) -> None:
         """Publish one fully constructed local cycle to an optional local collector."""

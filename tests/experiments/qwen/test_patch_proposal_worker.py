@@ -29,6 +29,7 @@ from experiments.qwen.patch_proposal_worker import (
     _TARGET_PATH,
     PatchProposalError,
     QwenPatchProposalWorker,
+    UngroundedFinalResponseError,
     coding_worker_task,
     create_patch_proposal_fixture,
 )
@@ -84,6 +85,17 @@ def _worker(
     )
 
 
+def _required_reads() -> list[str]:
+    """Return one deterministic navigation path that acquires both required facts."""
+    return [
+        _proposal("list_repository_directory", "."),
+        _proposal("list_repository_directory", "src"),
+        _proposal("read_repository_file", "src/label.py"),
+        _proposal("list_repository_directory", "tests"),
+        _proposal("read_repository_file", "tests/test_label.py"),
+    ]
+
+
 def test_worker_discovers_source_and_test_then_applies_one_valid_patch(
     tmp_path: Path,
 ) -> None:
@@ -91,11 +103,7 @@ def test_worker_discovers_source_and_test_then_applies_one_valid_patch(
     worker, interaction = _worker(
         tmp_path,
         [
-            _proposal("list_repository_directory", "."),
-            _proposal("list_repository_directory", "src"),
-            _proposal("read_repository_file", "src/label.py"),
-            _proposal("list_repository_directory", "tests"),
-            _proposal("read_repository_file", "tests/test_label.py"),
+            *_required_reads(),
             _EXPECTED_PATCH,
         ],
     )
@@ -143,6 +151,98 @@ def test_worker_discovers_source_and_test_then_applies_one_valid_patch(
     )
 
 
+def test_worker_corrects_one_premature_patch_then_recovers_after_required_reads(
+    tmp_path: Path,
+) -> None:
+    """One ungrounded final response is retained and corrected without mutation."""
+    worker, interaction = _worker(
+        tmp_path,
+        [_EXPECTED_PATCH, *_required_reads(), _EXPECTED_PATCH],
+    )
+
+    result = asyncio.run(worker.run(coding_worker_task()))
+
+    assert len(result.grounding_corrections) == 1
+    correction = result.grounding_corrections[0]
+    assert correction.premature_response.content == _EXPECTED_PATCH
+    assert correction.acquired_paths == ()
+    assert "label.py" not in correction.follow_up.content
+    assert "test_label.py" not in correction.follow_up.content
+    assert len(interaction.calls) == 7
+    assert result.behavior_validated is True
+
+
+def test_worker_rejects_repeated_premature_final_response_without_mutating(
+    tmp_path: Path,
+) -> None:
+    """A second final response before either required read ends the bounded probe."""
+    worker, _ = _worker(tmp_path, [_EXPECTED_PATCH, _EXPECTED_PATCH])
+
+    with pytest.raises(UngroundedFinalResponseError, match="remained ungrounded"):
+        asyncio.run(worker.run(coding_worker_task()))
+
+    assert _read_text(_resolved(tmp_path / "repository", _TARGET_PATH)).content == (
+        _ORIGINAL_SOURCE
+    )
+
+
+@pytest.mark.parametrize(
+    "responses",
+    [
+        [
+            _EXPECTED_PATCH,
+            _proposal("list_repository_directory", "src"),
+            _proposal("read_repository_file", "src/label.py"),
+            _EXPECTED_PATCH,
+        ],
+        [
+            _EXPECTED_PATCH,
+            _proposal("list_repository_directory", "tests"),
+            _proposal("read_repository_file", "tests/test_label.py"),
+            _EXPECTED_PATCH,
+        ],
+    ],
+)
+def test_worker_rejects_final_patch_after_only_one_required_file(
+    tmp_path: Path,
+    responses: list[str],
+) -> None:
+    """Reading only an implementation or test does not admit a patch."""
+    worker, _ = _worker(tmp_path, responses)
+
+    with pytest.raises(UngroundedFinalResponseError):
+        asyncio.run(worker.run(coding_worker_task()))
+
+    assert _read_text(_resolved(tmp_path / "repository", _TARGET_PATH)).content == (
+        _ORIGINAL_SOURCE
+    )
+
+
+def test_worker_accepts_required_file_reads_in_either_order(tmp_path: Path) -> None:
+    """The grounding rule tracks evidence categories rather than a path sequence."""
+    worker, _ = _worker(
+        tmp_path,
+        [
+            _EXPECTED_PATCH,
+            _proposal("list_repository_directory", "tests"),
+            _proposal("read_repository_file", "tests/test_label.py"),
+            _proposal("list_repository_directory", "src"),
+            _proposal("read_repository_file", "src/label.py"),
+            _EXPECTED_PATCH,
+        ],
+    )
+
+    result = asyncio.run(worker.run(coding_worker_task()))
+
+    assert [cycle.relative_path for cycle in result.cycles] == [
+        "tests",
+        "tests/test_label.py",
+        "src",
+        "src/label.py",
+    ]
+    assert result.behavior_validated is True
+
+
 @pytest.mark.parametrize(
     "patch",
     [
@@ -162,7 +262,7 @@ def test_worker_rejects_nonpermitted_final_diff_before_mutating_fixture(
     patch: str,
 ) -> None:
     """Malformed, fenced, prose, multi-file, and traversal diffs never apply."""
-    worker, _ = _worker(tmp_path, [patch])
+    worker, _ = _worker(tmp_path, [*_required_reads(), patch])
 
     with pytest.raises((PatchProposalError, ReadOnlyProposalError)):
         asyncio.run(worker.run(coding_worker_task()))
@@ -176,7 +276,7 @@ def test_worker_rejects_patch_that_cannot_apply_to_changed_fixture(
     tmp_path: Path,
 ) -> None:
     """The host rejects a diff when its original hunk no longer fits."""
-    worker, _ = _worker(tmp_path, [_EXPECTED_PATCH])
+    worker, _ = _worker(tmp_path, [*_required_reads(), _EXPECTED_PATCH])
     target = _resolved(tmp_path / "repository", _TARGET_PATH)
     write(
         TextFile(
@@ -194,7 +294,7 @@ def test_worker_rejects_applicable_patch_that_fails_fixture_behavior(
 ) -> None:
     """Structural patch admission remains distinct from behavioral success."""
     upper_patch = _EXPECTED_PATCH.replace(".lower()", ".upper()")
-    worker, _ = _worker(tmp_path, [upper_patch])
+    worker, _ = _worker(tmp_path, [*_required_reads(), upper_patch])
 
     with pytest.raises(PatchProposalError, match="does not satisfy"):
         asyncio.run(worker.run(coding_worker_task()))

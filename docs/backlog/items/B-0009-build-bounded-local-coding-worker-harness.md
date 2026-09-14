@@ -31,6 +31,15 @@ This is deterministic framework-composition evidence, not evidence that Qwen
 can independently perform the worker task. The live single-harness validation
 remains the outstanding completion criterion.
 
+The first live attempt safely failed before mutation when Qwen submitted an
+ungrounded patch without using a repository Tool. The experiment now retains
+that raw response and requires fixture-specific evidence acquisition: accepted
+reads of the relevant implementation and focused test before a final patch is
+admissible. One controller-authored correction requests inspection without
+revealing repository locations; a repeated ungrounded final response fails.
+This is local worker-contract evidence, not a reusable Context, Agent, Action,
+or governance promotion. A second live attempt remains pending.
+
 - hard_dependencies: B-0008
 - pressure_dependencies: B-0012, B-0016, B-0035, B-0036, B-0043, B-0044
 - operational_dependencies: pinned Qwen serving profile
