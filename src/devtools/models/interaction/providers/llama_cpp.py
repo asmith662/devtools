@@ -84,6 +84,7 @@ class LlamaCppInteraction:
         content = _final_assistant_content(response)
         return ModelResponse(
             content=content,
+            reasoning_content=_model_reasoning_content(response),
             source=self.source,
             termination=_model_termination(response),
             usage=_model_usage(response),
@@ -363,6 +364,29 @@ def _model_termination(response: dict[str, object]) -> ModelTermination | None:
     except KeyError as error:
         msg = "llama.cpp successful response finish_reason is not supported."
         raise LlamaCppResponseError(msg) from error
+
+
+def _model_reasoning_content(response: dict[str, object]) -> str | None:
+    """Map separately returned llama.cpp reasoning without altering final content."""
+    choices = response.get("choices")
+    if not isinstance(choices, list) or not choices:
+        msg = "llama.cpp successful response must contain a nonempty choices list."
+        raise LlamaCppResponseError(msg)
+    choice = choices[0]
+    if not isinstance(choice, dict):
+        msg = "llama.cpp successful response choice must be an object."
+        raise LlamaCppResponseError(msg)
+    message = choice.get("message")
+    if not isinstance(message, dict):
+        msg = "llama.cpp successful response choice must contain a message object."
+        raise LlamaCppResponseError(msg)
+    reasoning_content = message.get("reasoning_content")
+    if reasoning_content is None:
+        return None
+    if not isinstance(reasoning_content, str):
+        msg = "llama.cpp successful response reasoning_content must be text."
+        raise LlamaCppResponseError(msg)
+    return reasoning_content
 
 
 def _usage_token_count(usage: dict[object, object], field: str) -> int | None:

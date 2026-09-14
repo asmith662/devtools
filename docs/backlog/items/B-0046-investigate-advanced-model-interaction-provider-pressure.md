@@ -74,9 +74,27 @@ values remain provider-response errors. The B-0009 schema `/3` artifact retains
 the optional termination for each model turn without retaining raw provider
 payloads.
 
-Separated reasoning content and raw provider-response retention remain deferred
-diagnostic pressure. They are not part of the established output-bound or
-termination semantics.
+## Established subset: separately returned reasoning content
+
+A direct bounded Qwen diagnostic established that the pinned llama.cpp route
+can return meaningful `message.reasoning_content` while visible
+`message.content` remains empty and the provider reports `length` termination.
+The minimal reusable response is optional immutable `reasoning_content` on
+`ModelResponse`. It preserves only separately returned textual model reasoning
+for the same interaction, without substituting, concatenating, or interpreting
+it as visible assistant content. Missing and null provider fields remain
+absent; a supplied empty string is preserved exactly.
+
+For llama.cpp image build `b10868`, commit
+[`304665fe7`](https://github.com/ggml-org/llama.cpp/blob/304665fe7/common/chat.cpp),
+`choices[0].message.reasoning_content` maps directly to that field. It remains
+independent of `ModelUsage`, `ModelTermination`, and request-side output limits.
+The B-0009 schema `/3` artifact retains optional reasoning by model turn for
+this narrow diagnostic purpose, without printing, persisting to Conversation,
+or retaining raw provider response payloads.
+
+Thinking controls, reasoning budgets, reasoning parsing, and raw
+provider-response retention remain deferred pressure.
 
 - hard_dependencies: B-0045
 - pressure_dependencies: B-0035, B-0036, B-0027

@@ -73,6 +73,7 @@ def test_response_carries_model_output_not_a_conversation_message() -> None:
     assert response.conversation is continuation
     assert response.usage is None
     assert response.termination is None
+    assert response.reasoning_content is None
     assert not hasattr(response, "id")
     with pytest.raises(FrozenInstanceError):
         response.content = "other"  # type: ignore[misc]
@@ -116,6 +117,34 @@ def test_model_response_retains_termination_separately_from_usage() -> None:
 
     assert response.termination is ModelTermination.OUTPUT_LIMIT
     assert response.usage == ModelUsage(output_tokens=_OUTPUT_TOKENS)
+
+
+def test_model_response_retains_reasoning_separately_from_visible_content() -> None:
+    """A provider's non-visible reasoning is not substituted for assistant content."""
+    response = ModelResponse(
+        content="",
+        source=InteractionSource("llama.cpp"),
+        reasoning_content="Thinking through the requested answer.",
+    )
+
+    assert response.content == ""
+    assert response.reasoning_content == "Thinking through the requested answer."
+
+
+def test_model_response_keeps_reasoning_usage_and_termination_independent() -> None:
+    """Provider response facts coexist without cross-field assumptions."""
+    response = ModelResponse(
+        content="final",
+        source=InteractionSource("llama.cpp"),
+        reasoning_content="reasoning",
+        usage=ModelUsage(input_tokens=_INPUT_TOKENS),
+        termination=ModelTermination.NORMAL_STOP,
+    )
+
+    assert response.content == "final"
+    assert response.reasoning_content == "reasoning"
+    assert response.usage == ModelUsage(input_tokens=_INPUT_TOKENS)
+    assert response.termination is ModelTermination.NORMAL_STOP
 
 
 def test_model_termination_uses_provider_neutral_immutable_values() -> None:

@@ -183,6 +183,7 @@ def test_worker_discovers_source_and_test_then_applies_one_valid_patch(
     assert result.canonical_patch == _EXPECTED_PATCH
     assert result.terminal_newline_canonicalized is False
     assert result.behavior_validated is True
+    assert result.model_reasoning_contents == (None,) * 6
     assert result.model_terminations == (None,) * 6
     assert len(interaction.calls) == 6
     assert all(

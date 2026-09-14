@@ -21,9 +21,11 @@ coding-worker framework. `ModelResponse` may carry optional provider-reported
 usage and termination; the B-0009 acceptance report retains those per-turn
 facts and exact cumulative usage totals only when every turn reported a count.
 Termination records only the provider-reported semantic end (normal stop,
-output limit, or tool call); it does not retain reasoning content or raw provider
-payloads. The report does not estimate tokens, attribute Prompt components,
-budget Context, or define a metrics framework. That expanded artifact is schema
+output limit, or tool call). The report also retains separately returned model
+reasoning per turn for this focused provider diagnostic, without putting it in
+Conversation, later prompts, console output, or generic telemetry. It does not
+estimate tokens, attribute Prompt components, budget Context, or define a
+metrics framework. That expanded artifact is schema
 `qwen-b0009-live-acceptance/3`; `/1` and `/2` artifacts remain historical
 acceptance evidence without the newer selection-stress measurements.
 

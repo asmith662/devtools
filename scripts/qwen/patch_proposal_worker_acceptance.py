@@ -93,6 +93,7 @@ class B0009LiveReport:
     execution_actions: tuple[str, ...]
     execution_paths: tuple[str, ...]
     grounding_corrections: tuple[QwenGroundingCorrection, ...]
+    model_reasoning_contents: tuple[str | None, ...]
     model_terminations: tuple[ModelTermination | None, ...]
     model_usages: tuple[ModelUsage | None, ...]
     fixture: _PatchProposalFixture
@@ -146,6 +147,7 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
     actions: list[str] = []
     paths: list[str] = []
     grounding_corrections: list[QwenGroundingCorrection] = []
+    model_reasoning_contents: list[str | None] = []
     model_terminations: list[ModelTermination | None] = []
     model_usages: list[ModelUsage | None] = []
     report_fixture_id = fixture_id or _fixture_id(fixture)
@@ -163,6 +165,7 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
         return await original_read(tool, path)
 
     def recorded_model_response(response: ModelResponse) -> None:
+        model_reasoning_contents.append(response.reasoning_content)
         model_terminations.append(response.termination)
         model_usages.append(response.usage)
 
@@ -191,6 +194,7 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
             tuple(actions),
             tuple(paths),
             tuple(grounding_corrections),
+            tuple(model_reasoning_contents),
             tuple(model_terminations),
             tuple(model_usages),
             fixture,
@@ -214,6 +218,7 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
         tuple(actions),
         tuple(paths),
         tuple(grounding_corrections),
+        tuple(model_reasoning_contents),
         tuple(model_terminations),
         tuple(model_usages),
         fixture,
@@ -539,6 +544,7 @@ def _report_payload(outcome: B0009LiveOutcome) -> dict[str, object]:
             for message in report.history
             if message.source == InteractionSource("qwen")
         ],
+        "model_reasoning_content_by_turn": list(report.model_reasoning_contents),
         "history": [_message_payload(message) for message in report.history],
         "accepted_tool_cycles": [_cycle_payload(cycle) for cycle in report.cycles],
         "grounding": {

@@ -10,10 +10,13 @@ Prompt -> ModelInteraction -> ModelResponse
 conversation-message identity or local conversation timestamp. `ModelResponse`
 contains model output, its source, optional provider continuation, optional
 provider-reported `ModelUsage`, and optional provider-reported
-`ModelTermination`. Usage retains only reported input, output, and total token
-counts; absent counts are not estimated. Termination retains only a normal stop,
-an output-limit end, or a tool-call end when the provider reports one. Neither is
-automatically retained as a `ConversationMessage` or treated as an Agent result.
+`ModelTermination`, plus optional separately returned textual reasoning. Usage
+retains only reported input, output, and total token counts; absent counts are
+not estimated. Termination retains only a normal stop, an output-limit end, or a
+tool-call end when the provider reports one. Reasoning remains distinct from
+visible response content and is never substituted or concatenated into it.
+None of these provider facts is automatically retained as a
+`ConversationMessage` or treated as an Agent result.
 
 `ModelInteraction` performs provider request/response translation and exposes
 provider-local failure and continuation behavior. It does not own conversation

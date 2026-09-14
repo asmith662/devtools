@@ -307,6 +307,129 @@ def test_interaction_maps_pinned_llama_cpp_finish_reasons(
 
 
 @pytest.mark.parametrize(
+    ("content", "reasoning_content"),
+    [
+        ("", "Thinking through the requested answer."),
+        ("OK", "Thinking before the final answer."),
+    ],
+)
+def test_interaction_preserves_pinned_llama_cpp_reasoning_separately(
+    monkeypatch: pytest.MonkeyPatch,
+    content: str,
+    reasoning_content: str,
+) -> None:
+    """Separate provider reasoning never changes visible assistant content."""
+
+    async def connection(
+        _host: str,
+        _port: int,
+    ) -> tuple[asyncio.StreamReader, _Writer]:
+        return (
+            _reader(
+                _response(
+                    200,
+                    {
+                        "choices": [
+                            {
+                                "finish_reason": "length",
+                                "message": {
+                                    "role": "assistant",
+                                    "content": content,
+                                    "reasoning_content": reasoning_content,
+                                },
+                            },
+                        ],
+                        "usage": {
+                            "prompt_tokens": _INPUT_TOKENS,
+                            "completion_tokens": _OUTPUT_TOKENS,
+                            "total_tokens": _PROVIDER_TOTAL_TOKENS,
+                        },
+                    },
+                ),
+            ),
+            _Writer(),
+        )
+
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+
+    turn = asyncio.run(
+        _interaction().send(
+            _message(ConversationMessageRole.USER),
+            maximum_output_tokens=_MAXIMUM_OUTPUT_TOKENS,
+        ),
+    )
+
+    assert turn.content == content
+    assert turn.reasoning_content == reasoning_content
+    assert turn.termination is ModelTermination.OUTPUT_LIMIT
+    assert turn.usage == ModelUsage(
+        input_tokens=_INPUT_TOKENS,
+        output_tokens=_OUTPUT_TOKENS,
+        total_tokens=_PROVIDER_TOTAL_TOKENS,
+    )
+
+
+@pytest.mark.parametrize(
+    ("field_mode", "reasoning_content", "expected"),
+    [
+        ("missing", None, None),
+        ("null", None, None),
+        ("present", "", ""),
+        ("present", "Thinking...", "Thinking..."),
+    ],
+)
+def test_interaction_preserves_missing_null_and_empty_pinned_reasoning(
+    field_mode: str,
+    reasoning_content: str | None,
+    expected: str | None,
+) -> None:
+    """Missing, null, and empty reasoning retain distinct provider semantics."""
+    message: dict[str, object] = {"role": "assistant", "content": "reply"}
+    if field_mode != "missing":
+        message["reasoning_content"] = reasoning_content
+    response: dict[str, object] = {"choices": [{"message": message}]}
+
+    assert llama_cpp._model_reasoning_content(response) == expected  # noqa: SLF001
+
+
+@pytest.mark.parametrize("reasoning_content", [1, True, []])
+def test_interaction_rejects_malformed_pinned_reasoning(
+    reasoning_content: object,
+) -> None:
+    """Non-text provider reasoning cannot become a ModelResponse value."""
+    response: dict[str, object] = {
+        "choices": [
+            {
+                "message": {
+                    "role": "assistant",
+                    "content": "reply",
+                    "reasoning_content": reasoning_content,
+                },
+            },
+        ],
+    }
+
+    with pytest.raises(LlamaCppResponseError, match="reasoning_content"):
+        llama_cpp._model_reasoning_content(response)  # noqa: SLF001
+
+
+@pytest.mark.parametrize(
+    "response",
+    [
+        {"choices": []},
+        {"choices": [None]},
+        {"choices": [{}]},
+    ],
+)
+def test_interaction_retains_provider_shape_validation_for_reasoning(
+    response: dict[str, object],
+) -> None:
+    """Reasoning extraction preserves the established successful-response boundary."""
+    with pytest.raises(LlamaCppResponseError):
+        llama_cpp._model_reasoning_content(response)  # noqa: SLF001
+
+
+@pytest.mark.parametrize(
     "response",
     [
         {"choices": [{"message": {"role": "assistant", "content": "reply"}}]},

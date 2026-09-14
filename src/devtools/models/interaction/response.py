@@ -17,6 +17,7 @@ class ModelResponse:
     conversation: ConversationRef | None = None
     usage: ModelUsage | None = None
     termination: ModelTermination | None = None
+    reasoning_content: str | None = None
 
     def __post_init__(self) -> None:
         """Ensure returned continuation belongs to this response source."""
