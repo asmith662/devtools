@@ -1,7 +1,7 @@
 # B-0009 — Build the first bounded local coding-worker harness
 
 - type: STORY
-- status: ACTIVE
+- status: VALIDATED
 - decision_maturity: READY_FOR_IMPLEMENTATION
 - necessity: REQUIRED
 - architectural_significance: HARNESS_LOCAL
@@ -27,31 +27,23 @@ and validate it only inside a disposable fixture. It uses no model-directed
 mutation, reusable Context, Agent, Action, authorization, orchestration, or
 evaluation implementation.
 
-This is deterministic framework-composition evidence, not evidence that Qwen
-can independently perform the worker task. The live single-harness validation
-remains the outstanding completion criterion.
+The final bounded live single-harness acceptance succeeded: Qwen inspected the
+fixture, read both required artifacts, returned the permitted semantic patch,
+and the host applied it only inside the disposable fixture before behavioral
+validation passed. The durable live report remains temporary evidence rather
+than reusable framework state.
 
-The first live attempt safely failed before mutation when Qwen submitted an
-ungrounded patch without using a repository Tool. The experiment now retains
-that raw response and requires fixture-specific evidence acquisition: accepted
-reads of the relevant implementation and focused test before a final patch is
-admissible. One controller-authored correction requests inspection without
-revealing repository locations; a repeated ungrounded final response fails.
-This is local worker-contract evidence, not a reusable Context, Agent, Action,
-or governance promotion. A second live attempt remains pending.
-
-The second live attempt used repository Tools, read both required artifacts,
-and proposed the correct semantic change. It failed before fixture application
-only because the otherwise permitted unified diff ended at EOF rather than
-with a terminal newline. The fixture-local patch contract now treats those
-representations equivalently while retaining raw model output separately from
-the canonical patch applied to the disposable fixture. This does not promote a
-reusable response-normalization or patch framework; a final live acceptance
-remains pending.
+Earlier live attempts safely exposed and corrected fixture-local grounding and
+EOF-diff-admission issues before the final success. The worker retains raw
+responses separately from the canonical patch it applies. It now also records
+optional provider-reported ModelUsage per turn and complete cumulative reported
+totals in the acceptance artifact when every turn supplies a count. This is
+measurement evidence only, not a reusable Context, Agent, Action, governance,
+or orchestration promotion.
 
 - hard_dependencies: B-0008
 - pressure_dependencies: B-0012, B-0016, B-0035, B-0036, B-0043, B-0044
 - operational_dependencies: pinned Qwen serving profile
-- blocked_by: none; bounded live Qwen coding-worker acceptance remains pending
+- blocked_by: none
 - promotion_trigger: deterministic worker composition plus live task evidence
 - validation_level: LIVE_SINGLE_HARNESS

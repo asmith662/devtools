@@ -8,9 +8,10 @@ Prompt -> ModelInteraction -> ModelResponse
 
 `Prompt` is per-invocation model-facing input and deliberately has no durable
 conversation-message identity or local conversation timestamp. `ModelResponse`
-contains model output, its source, and optional provider continuation; it is
-not automatically retained as a `ConversationMessage` or treated as an Agent
-result.
+contains model output, its source, optional provider continuation, and optional
+provider-reported `ModelUsage`. Usage retains only reported input, output, and
+total token counts; absent counts are not estimated. It is not automatically
+retained as a `ConversationMessage` or treated as an Agent result.
 
 `ModelInteraction` performs provider request/response translation and exposes
 provider-local failure and continuation behavior. It does not own conversation

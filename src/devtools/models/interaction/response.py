@@ -4,15 +4,17 @@
 from dataclasses import dataclass
 
 from devtools.models.interaction.models import ConversationRef, InteractionSource
+from devtools.models.interaction.usage import ModelUsage
 
 
 @dataclass(frozen=True, slots=True)
 class ModelResponse:
-    """Represent text and optional continuation returned by a ModelInteraction."""
+    """Represent output, continuation, and optional usage from one interaction."""
 
     content: str
     source: InteractionSource
     conversation: ConversationRef | None = None
+    usage: ModelUsage | None = None
 
     def __post_init__(self) -> None:
         """Ensure returned continuation belongs to this response source."""

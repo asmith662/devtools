@@ -13,7 +13,12 @@ from typing import TYPE_CHECKING
 import pytest
 
 from devtools.agents.conversation import InteractionSource
-from devtools.models.interaction import ConversationRef, ModelResponse, Prompt
+from devtools.models.interaction import (
+    ConversationRef,
+    ModelResponse,
+    ModelUsage,
+    Prompt,
+)
 from experiments.qwen.patch_proposal_worker import (
     _EXPECTED_PATCH,
     create_patch_proposal_fixture,
@@ -24,6 +29,11 @@ if TYPE_CHECKING:
 
 
 _SCRIPT_PATH = Path("scripts/qwen/patch_proposal_worker_acceptance.py").resolve()
+_MODEL_TURN_COUNT = 6
+_TOOL_ACTION_COUNT = 5
+_DIRECTORY_LISTING_COUNT = 3
+_FILE_READ_COUNT = 2
+_UNIQUE_PATH_COUNT = 5
 
 
 @pytest.fixture
@@ -46,6 +56,7 @@ class _ScriptedInteraction:
 
     responses: list[str]
     calls: list[Prompt] = field(default_factory=list)
+    usages: list[ModelUsage | None] | None = None
     source: InteractionSource = field(default_factory=lambda: InteractionSource("qwen"))
 
     async def send(
@@ -57,7 +68,12 @@ class _ScriptedInteraction:
         """Return one exact response without contacting a provider."""
         assert conversation is None
         self.calls.append(prompt)
-        return ModelResponse(content=self.responses.pop(0), source=self.source)
+        usage = self.usages.pop(0) if self.usages is not None else None
+        return ModelResponse(
+            content=self.responses.pop(0),
+            source=self.source,
+            usage=usage,
+        )
 
 
 def _proposal(action: str, path: str) -> str:
@@ -131,3 +147,88 @@ def test_runner_distinguishes_raw_eof_patch_from_canonical_fixture_patch(
     assert payload["final_model_response"] == raw_patch
     assert payload["canonical_accepted_patch"] == _EXPECTED_PATCH
     assert payload["patch_evaluation"]["terminal_newline_canonicalized"] is True
+
+
+def test_runner_reports_per_turn_and_complete_cumulative_model_usage(
+    acceptance: ModuleType,
+    tmp_path: Path,
+) -> None:
+    """Reported usage is retained per turn and summed only when complete."""
+    root = create_patch_proposal_fixture(tmp_path)
+    usages: list[ModelUsage | None] = [
+        ModelUsage(input_tokens=10, output_tokens=2, total_tokens=12),
+        ModelUsage(input_tokens=11, output_tokens=3, total_tokens=20),
+        ModelUsage(input_tokens=12, output_tokens=4, total_tokens=16),
+        ModelUsage(input_tokens=13, output_tokens=5, total_tokens=18),
+        ModelUsage(input_tokens=14, output_tokens=6, total_tokens=20),
+        ModelUsage(input_tokens=15, output_tokens=7, total_tokens=22),
+    ]
+    report = asyncio.run(
+        acceptance.run_acceptance(
+            task=acceptance._live_task(),
+            repository_root=root,
+            interaction=_ScriptedInteraction(
+                [
+                    _proposal("list_repository_directory", "."),
+                    _proposal("list_repository_directory", "src"),
+                    _proposal("read_repository_file", "src/label.py"),
+                    _proposal("list_repository_directory", "tests"),
+                    _proposal("read_repository_file", "tests/test_label.py"),
+                    _EXPECTED_PATCH,
+                ],
+                usages=usages,
+            ),
+        ),
+    )
+    outcome = acceptance.B0009LiveOutcome(
+        report=report,
+        persistent_service_status="READY",
+        persistent_service_error_type=None,
+        persistent_service_error_message=None,
+        fixture_cleanup_succeeded=True,
+    )
+
+    payload = acceptance._report_payload(outcome)
+    measurements = payload["measurements"]
+
+    assert payload["schema"] == "qwen-b0009-live-acceptance/2"
+    assert measurements["model_turn_count"] == _MODEL_TURN_COUNT
+    assert measurements["model_usage_by_turn"][0] == {
+        "input_tokens": 10,
+        "output_tokens": 2,
+        "total_tokens": 12,
+    }
+    assert measurements["cumulative_reported_model_usage"] == {
+        "input_tokens": 75,
+        "input_tokens_reported_turns": _MODEL_TURN_COUNT,
+        "output_tokens": 27,
+        "output_tokens_reported_turns": _MODEL_TURN_COUNT,
+        "total_tokens": 108,
+        "total_tokens_reported_turns": _MODEL_TURN_COUNT,
+    }
+    assert measurements["tool_action_budget"] == _TOOL_ACTION_COUNT
+    assert measurements["tool_action_budget_used"] == _TOOL_ACTION_COUNT
+    assert measurements["directory_listing_count"] == _DIRECTORY_LISTING_COUNT
+    assert measurements["file_read_count"] == _FILE_READ_COUNT
+    assert measurements["unique_path_count"] == _UNIQUE_PATH_COUNT
+    assert measurements["repeated_path_count"] == 0
+    assert measurements["repository_projection_characters"] > 0
+    assert measurements["run_duration_seconds"] == 0
+
+
+def test_runner_leaves_incomplete_reported_usage_unknown(
+    acceptance: ModuleType,
+) -> None:
+    """A missing turn count prevents a fabricated cumulative model total."""
+    payload = acceptance._cumulative_usage_payload(
+        (ModelUsage(input_tokens=8, output_tokens=4, total_tokens=12), None),
+    )
+
+    assert payload == {
+        "input_tokens": None,
+        "input_tokens_reported_turns": 1,
+        "output_tokens": None,
+        "output_tokens_reported_turns": 1,
+        "total_tokens": None,
+        "total_tokens_reported_turns": 1,
+    }

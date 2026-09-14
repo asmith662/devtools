@@ -11,7 +11,7 @@ import os
 import shutil
 import sys
 import tempfile
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import TYPE_CHECKING
 from uuid import uuid4
@@ -25,6 +25,7 @@ from devtools.agents.conversation import (
     ConversationMessage,
     InteractionSource,
 )
+from devtools.core.time import Duration, Stopwatch
 from devtools.execution import Runtime
 from devtools.models.interaction.providers import (
     LlamaCppInteraction,
@@ -55,12 +56,12 @@ if TYPE_CHECKING:
     from collections.abc import Sequence
 
     from devtools.core.paths import ResolvedPath
-    from devtools.models.interaction import ModelInteraction
+    from devtools.models.interaction import ModelInteraction, ModelResponse, ModelUsage
 
 
 _DEFAULT_ENDPOINT = "http://127.0.0.1:8080"
 _DEFAULT_MODEL = "qwen38-local"
-_REPORT_SCHEMA = "qwen-b0009-live-acceptance/1"
+_REPORT_SCHEMA = "qwen-b0009-live-acceptance/2"
 _SERVICE_SCRIPT = Path(__file__).with_name("llama_cpp_service.py")
 _CALLER_SOURCE = InteractionSource("qwen-b0009-live-acceptance")
 _REQUIRED_READS = {"src/label.py", "tests/test_label.py"}
@@ -70,6 +71,7 @@ _FIXTURE_STRUCTURE = (
     "src/unrelated.py",
     "tests/test_label.py",
 )
+_MAXIMUM_ACTIONS = 5
 
 
 @dataclass(frozen=True, slots=True)
@@ -82,6 +84,7 @@ class B0009LiveReport:
     execution_actions: tuple[str, ...]
     execution_paths: tuple[str, ...]
     grounding_corrections: tuple[QwenGroundingCorrection, ...]
+    model_usages: tuple[ModelUsage | None, ...]
     result: QwenPatchProposalWorkerResult | None
     failure_category: str | None
     error_type: str | None
@@ -98,6 +101,7 @@ class B0009LiveOutcome:
     persistent_service_error_type: str | None
     persistent_service_error_message: str | None
     fixture_cleanup_succeeded: bool
+    duration: Duration = field(default_factory=lambda: Duration.seconds(0))
 
 
 def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespace:
@@ -121,6 +125,7 @@ async def run_acceptance(
     actions: list[str] = []
     paths: list[str] = []
     grounding_corrections: list[QwenGroundingCorrection] = []
+    model_usages: list[ModelUsage | None] = []
     original_list = ListRepositoryDirectoryTool.execute
     original_read = ReadRepositoryFileTool.execute
 
@@ -134,6 +139,9 @@ async def run_acceptance(
         paths.append(_relative_path(path, repository_root))
         return await original_read(tool, path)
 
+    def recorded_model_response(response: ModelResponse) -> None:
+        model_usages.append(response.usage)
+
     ListRepositoryDirectoryTool.execute = counted_list
     ReadRepositoryFileTool.execute = counted_read
     try:
@@ -143,6 +151,7 @@ async def run_acceptance(
             interaction=interaction,
             repository_root=repository_root,
             on_cycle_completed=cycles.append,
+            on_model_response=recorded_model_response,
             on_grounding_correction=grounding_corrections.append,
         ).run(task)
     except asyncio.CancelledError:
@@ -155,6 +164,7 @@ async def run_acceptance(
             tuple(actions),
             tuple(paths),
             tuple(grounding_corrections),
+            tuple(model_usages),
             None,
             _failure_category(error),
             type(error).__name__,
@@ -171,6 +181,7 @@ async def run_acceptance(
         tuple(actions),
         tuple(paths),
         tuple(grounding_corrections),
+        tuple(model_usages),
         result,
         None,
         None,
@@ -246,6 +257,7 @@ async def _persistent_status() -> str:
 
 async def run(arguments: argparse.Namespace) -> B0009LiveOutcome:
     """Run exactly one fixture-local attempt without owning service lifecycle."""
+    stopwatch = Stopwatch()
     with tempfile.TemporaryDirectory(prefix="devtools-qwen-b0009-") as directory:
         root = create_patch_proposal_fixture(Path(directory))
         status: str | None = None
@@ -278,6 +290,7 @@ async def run(arguments: argparse.Namespace) -> B0009LiveOutcome:
             type(status_error).__name__ if status_error else None,
             str(status_error) if status_error else None,
             cleanup_succeeded,
+            stopwatch.stop(),
         )
 
 
@@ -318,6 +331,51 @@ def _cycle_payload(cycle: QwenReadOnlyCycle) -> dict[str, object]:
         payload["action"] = "read_repository_file"
         payload["tool_type"] = "ReadRepositoryFileTool"
     return payload
+
+
+def _usage_payload(usage: ModelUsage | None) -> dict[str, int | None] | None:
+    """Serialize one optional provider-reported ModelUsage without estimation."""
+    if usage is None:
+        return None
+    return {
+        "input_tokens": usage.input_tokens,
+        "output_tokens": usage.output_tokens,
+        "total_tokens": usage.total_tokens,
+    }
+
+
+def _cumulative_usage_payload(
+    usages: tuple[ModelUsage | None, ...],
+) -> dict[str, int | None]:
+    """Sum a token field only when every model turn reported that field."""
+    return {
+        "input_tokens": _complete_usage_total(usages, "input_tokens"),
+        "input_tokens_reported_turns": _reported_usage_turns(usages, "input_tokens"),
+        "output_tokens": _complete_usage_total(usages, "output_tokens"),
+        "output_tokens_reported_turns": _reported_usage_turns(usages, "output_tokens"),
+        "total_tokens": _complete_usage_total(usages, "total_tokens"),
+        "total_tokens_reported_turns": _reported_usage_turns(usages, "total_tokens"),
+    }
+
+
+def _complete_usage_total(
+    usages: tuple[ModelUsage | None, ...],
+    field: str,
+) -> int | None:
+    """Return an exact total only when no turn left the requested count unknown."""
+    values = [
+        value
+        for usage in usages
+        if usage is not None and (value := getattr(usage, field)) is not None
+    ]
+    return sum(values) if usages and len(values) == len(usages) else None
+
+
+def _reported_usage_turns(usages: tuple[ModelUsage | None, ...], field: str) -> int:
+    """Count turns that supplied one specific provider-reported token field."""
+    return sum(
+        usage is not None and getattr(usage, field) is not None for usage in usages
+    )
 
 
 def _verdict(outcome: B0009LiveOutcome) -> str:
@@ -382,6 +440,31 @@ def _report_payload(outcome: B0009LiveOutcome) -> dict[str, object]:
             "count": len(report.execution_actions),
             "actions": list(report.execution_actions),
             "relative_paths": list(report.execution_paths),
+        },
+        "measurements": {
+            "model_turn_count": len(report.model_usages),
+            "model_usage_by_turn": [
+                _usage_payload(usage) for usage in report.model_usages
+            ],
+            "cumulative_reported_model_usage": _cumulative_usage_payload(
+                report.model_usages,
+            ),
+            "tool_action_budget": _MAXIMUM_ACTIONS,
+            "tool_action_budget_used": len(report.execution_actions),
+            "directory_listing_count": sum(
+                isinstance(cycle, QwenListDirectoryCycle) for cycle in report.cycles
+            ),
+            "file_read_count": sum(
+                isinstance(cycle, QwenReadRepositoryFileCycle)
+                for cycle in report.cycles
+            ),
+            "unique_path_count": len(set(report.execution_paths)),
+            "repeated_path_count": len(report.execution_paths)
+            - len(set(report.execution_paths)),
+            "repository_projection_characters": sum(
+                len(cycle.result_projection) for cycle in report.cycles
+            ),
+            "run_duration_seconds": outcome.duration.total_seconds,
         },
         "final_model_response": (
             report.result.final_patch

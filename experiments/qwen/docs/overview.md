@@ -15,9 +15,15 @@ through controller-authored SYSTEM Messages. It permits only two reads before
 requiring a final plain-text answer. It is not generic orchestration,
 authorization, Context compilation, or Action infrastructure.
 
-The package does not implement streaming, native tool calls, usage accounting,
-provider-neutral model semantics, provider continuation, generic proposals, or
-a reusable coding-worker framework.
+The package does not implement streaming, native tool calls, generic usage
+accounting, provider continuation, generic proposals, or a reusable
+coding-worker framework. `ModelResponse` may carry optional provider-reported
+usage; the B-0009 acceptance report retains those per-turn facts and exact
+cumulative totals only when every turn reported a count. It does not estimate
+tokens, attribute Prompt components, budget Context, or define a metrics
+framework. That expanded artifact is schema
+`qwen-b0009-live-acceptance/2`; earlier `/1` artifacts remain historical
+acceptance evidence without usage measurements.
 
 `two_action_read_only_experiment.py` is a separate bounded successor probe. It
 permits two concrete read-only operations—non-recursive directory listing and

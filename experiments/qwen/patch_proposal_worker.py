@@ -26,7 +26,7 @@ if TYPE_CHECKING:
     from devtools.agents.conversation import Conversation
     from devtools.core.paths import ResolvedPath
     from devtools.execution import Runtime
-    from devtools.models.interaction import ModelInteraction
+    from devtools.models.interaction import ModelInteraction, ModelResponse, ModelUsage
 
 
 _DEFAULT_MAXIMUM_ACTIONS = 5
@@ -82,6 +82,7 @@ class QwenPatchProposalWorkerResult:
     canonical_patch: str
     terminal_newline_canonicalized: bool
     behavior_validated: bool
+    model_usages: tuple[ModelUsage | None, ...]
 
 
 def coding_worker_task() -> ConversationMessage:
@@ -131,12 +132,19 @@ class QwenPatchProposalWorker:
         repository_root: ResolvedPath,
         maximum_actions: int = _DEFAULT_MAXIMUM_ACTIONS,
         on_cycle_completed: Callable[[QwenReadOnlyCycle], None] | None = None,
+        on_model_response: Callable[[ModelResponse], None] | None = None,
         on_grounding_correction: (
             Callable[[QwenGroundingCorrection], None] | None
         ) = None,
     ) -> None:
         """Configure the existing read-only controller and fixture root."""
         corrections: list[QwenGroundingCorrection] = []
+        model_usages: list[ModelUsage | None] = []
+
+        def record_model_response(response: ModelResponse) -> None:
+            model_usages.append(response.usage)
+            if on_model_response is not None:
+                on_model_response(response)
 
         def on_final_response(
             response: ConversationMessage,
@@ -156,10 +164,12 @@ class QwenPatchProposalWorker:
             repository_root=repository_root,
             maximum_actions=maximum_actions,
             on_cycle_completed=on_cycle_completed,
+            on_model_response=record_model_response,
             on_final_response=on_final_response,
         )
         self._root = resolve_path(repository_root.value)
         self._corrections = corrections
+        self._model_usages = model_usages
         self._task: ConversationMessage | None = None
 
     async def run(self, task: ConversationMessage) -> QwenPatchProposalWorkerResult:
@@ -177,6 +187,7 @@ class QwenPatchProposalWorker:
             canonical_patch=canonical_patch,
             terminal_newline_canonicalized=canonical_patch != final_patch,
             behavior_validated=True,
+            model_usages=tuple(self._model_usages),
         )
 
     def _ground_final_response(

@@ -21,6 +21,9 @@ from devtools.models.interaction.providers import (
 
 _HTTP_BAD_REQUEST = 400
 _OFFLINE = "offline"
+_INPUT_TOKENS = 8
+_OUTPUT_TOKENS = 4
+_PROVIDER_TOTAL_TOKENS = 99
 
 
 def _reader(response: bytes) -> asyncio.StreamReader:
@@ -129,7 +132,99 @@ def test_interaction_maps_existing_message_roles_to_non_streaming_llama_request(
     assert turn.content == "Qwen reply"
     assert turn.source == InteractionSource("qwen")
     assert turn.conversation is None
+    assert turn.usage is None
     assert writer.closed is True
+
+
+def test_interaction_preserves_pinned_llama_cpp_standard_usage(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The pinned provider's three standard counts form ModelUsage unchanged."""
+
+    async def connection(
+        _host: str,
+        _port: int,
+    ) -> tuple[asyncio.StreamReader, _Writer]:
+        return (
+            _reader(
+                _response(
+                    200,
+                    {
+                        "choices": [
+                            {"message": {"role": "assistant", "content": "reply"}},
+                        ],
+                        "usage": {
+                            "prompt_tokens": _INPUT_TOKENS,
+                            "completion_tokens": _OUTPUT_TOKENS,
+                            "total_tokens": _PROVIDER_TOTAL_TOKENS,
+                            "prompt_tokens_details": {"cached_tokens": 3},
+                        },
+                        "timings": {"prompt_n": 8, "predicted_n": 4},
+                    },
+                ),
+            ),
+            _Writer(),
+        )
+
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+
+    turn = asyncio.run(_interaction().send(_message(ConversationMessageRole.USER)))
+
+    assert turn.content == "reply"
+    assert turn.usage is not None
+    assert turn.usage.input_tokens == _INPUT_TOKENS
+    assert turn.usage.output_tokens == _OUTPUT_TOKENS
+    assert turn.usage.total_tokens == _PROVIDER_TOTAL_TOKENS
+
+
+def test_interaction_allows_partial_pinned_usage_without_estimation() -> None:
+    """Absent provider counts remain absent rather than becoming derived values."""
+    usage = llama_cpp._model_usage(  # noqa: SLF001
+        {"usage": {"prompt_tokens": _INPUT_TOKENS}},
+    )
+
+    assert usage is not None
+    assert usage.input_tokens == _INPUT_TOKENS
+    assert usage.output_tokens is None
+    assert usage.total_tokens is None
+
+
+@pytest.mark.parametrize(
+    "response",
+    [
+        {"usage": None},
+        {"usage": {}},
+        {"usage": {"prompt_tokens": 0}},
+    ],
+)
+def test_interaction_keeps_absent_or_zero_usage_honest(
+    response: dict[str, object],
+) -> None:
+    """Missing usage remains absent while a reported zero stays a reported count."""
+    usage = llama_cpp._model_usage(response)  # noqa: SLF001
+
+    if response["usage"] == {"prompt_tokens": 0}:
+        assert usage is not None
+        assert usage.input_tokens == 0
+    else:
+        assert usage is None
+
+
+@pytest.mark.parametrize(
+    "response",
+    [
+        {"usage": []},
+        {"usage": {"prompt_tokens": -1}},
+        {"usage": {"completion_tokens": True}},
+        {"usage": {"total_tokens": "12"}},
+    ],
+)
+def test_interaction_rejects_malformed_usage(
+    response: dict[str, object],
+) -> None:
+    """Malformed provider usage is a provider-local successful-response error."""
+    with pytest.raises(LlamaCppResponseError, match="usage"):
+        llama_cpp._model_usage(response)  # noqa: SLF001
 
 
 def test_interaction_rejects_malformed_successful_response(

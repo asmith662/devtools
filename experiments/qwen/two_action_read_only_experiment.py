@@ -28,7 +28,7 @@ if TYPE_CHECKING:
     from devtools.agents.conversation import Conversation
     from devtools.core.paths import ResolvedPath
     from devtools.execution import Runtime
-    from devtools.models.interaction import ModelInteraction
+    from devtools.models.interaction import ModelInteraction, ModelResponse
 
 
 _LIST_ACTION = "list_repository_directory"
@@ -118,6 +118,7 @@ class QwenTwoActionReadOnlyExperiment:
         max_projection_characters: int = _DEFAULT_MAX_PROJECTION_CHARACTERS,
         maximum_actions: int = _DEFAULT_MAXIMUM_ACTIONS,
         on_cycle_completed: Callable[[QwenReadOnlyCycle], None] | None = None,
+        on_model_response: Callable[[ModelResponse], None] | None = None,
         on_final_response: (
             Callable[
                 [ConversationMessage, tuple[QwenReadOnlyCycle, ...]],
@@ -140,6 +141,7 @@ class QwenTwoActionReadOnlyExperiment:
         self._max_projection_characters = max_projection_characters
         self._maximum_actions = maximum_actions
         self._on_cycle_completed = on_cycle_completed
+        self._on_model_response = on_model_response
         self._on_final_response = on_final_response
 
     async def run(
@@ -152,6 +154,7 @@ class QwenTwoActionReadOnlyExperiment:
             interaction=self._interaction,
             message=task,
         )
+        self._publish_model_response(turn)
         cycles: list[QwenReadOnlyCycle] = []
         while True:
             response_message = self._conversation.history[-1]
@@ -164,6 +167,7 @@ class QwenTwoActionReadOnlyExperiment:
                         interaction=self._interaction,
                         message=follow_up,
                     )
+                    self._publish_model_response(turn)
                     continue
                 return QwenTwoActionReadOnlyExperimentResult(
                     task,
@@ -200,6 +204,7 @@ class QwenTwoActionReadOnlyExperiment:
                 interaction=self._interaction,
                 message=cycle.follow_up,
             )
+            self._publish_model_response(turn)
 
     def _final_response_follow_up(
         self,
@@ -215,6 +220,11 @@ class QwenTwoActionReadOnlyExperiment:
         """Publish one fully constructed local cycle to an optional local collector."""
         if self._on_cycle_completed is not None:
             self._on_cycle_completed(cycle)
+
+    def _publish_model_response(self, response: ModelResponse) -> None:
+        """Publish one model response to an optional experiment-local observer."""
+        if self._on_model_response is not None:
+            self._on_model_response(response)
 
     async def _execute_cycle(
         self,

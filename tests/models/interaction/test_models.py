@@ -11,8 +11,13 @@ from devtools.models.interaction import (
     ConversationRef,
     InteractionSource,
     ModelResponse,
+    ModelUsage,
     Prompt,
 )
+
+_INPUT_TOKENS = 8
+_OUTPUT_TOKENS = 4
+_PROVIDER_TOTAL_TOKENS = 99
 
 
 def test_prompt_is_an_immutable_model_input_without_conversation_identity() -> None:
@@ -33,7 +38,7 @@ def test_interaction_source_rejects_blank_or_padded_values() -> None:
 
 
 def test_response_carries_model_output_not_a_conversation_message() -> None:
-    """A response has content, source, and optional provider continuation only."""
+    """A response has content, source, optional continuation, and optional usage."""
     source = InteractionSource("llama.cpp")
     continuation = ConversationRef(source, "opaque-thread")
     response = ModelResponse(
@@ -44,6 +49,7 @@ def test_response_carries_model_output_not_a_conversation_message() -> None:
     assert response.content == "A final response"
     assert response.source is source
     assert response.conversation is continuation
+    assert response.usage is None
     assert not hasattr(response, "id")
     with pytest.raises(FrozenInstanceError):
         response.content = "other"  # type: ignore[misc]
@@ -57,6 +63,42 @@ def test_response_rejects_continuation_from_another_source() -> None:
             source=InteractionSource("llama.cpp"),
             conversation=ConversationRef(InteractionSource("other"), "thread"),
         )
+
+
+def test_model_usage_retains_reported_counts_without_deriving_a_total() -> None:
+    """Usage keeps provider totals even when they differ from component counts."""
+    usage = ModelUsage(
+        input_tokens=_INPUT_TOKENS,
+        output_tokens=_OUTPUT_TOKENS,
+        total_tokens=_PROVIDER_TOTAL_TOKENS,
+    )
+    response = ModelResponse(
+        content="reply",
+        source=InteractionSource("llama.cpp"),
+        usage=usage,
+    )
+
+    assert response.usage == usage
+    assert response.usage.total_tokens == _PROVIDER_TOTAL_TOKENS
+
+
+def test_model_usage_allows_partial_provider_counts() -> None:
+    """Providers can report one count without local estimation of the others."""
+    usage = ModelUsage(input_tokens=_INPUT_TOKENS)
+
+    assert usage.input_tokens == _INPUT_TOKENS
+    assert usage.output_tokens is None
+    assert usage.total_tokens is None
+
+
+@pytest.mark.parametrize(
+    "value",
+    [-1, True, "8"],
+)
+def test_model_usage_rejects_invalid_provider_counts(value: object) -> None:
+    """Reported token counts must be non-negative integers rather than estimates."""
+    with pytest.raises((TypeError, ValueError), match="token"):
+        ModelUsage(input_tokens=value)  # type: ignore[arg-type]
 
 
 def test_conversation_ref_is_opaque_and_immutable() -> None:

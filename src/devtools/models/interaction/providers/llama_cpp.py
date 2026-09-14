@@ -13,6 +13,7 @@ from devtools.models.interaction import (
     ConversationRef,
     InteractionSource,
     ModelResponse,
+    ModelUsage,
     Prompt,
 )
 from devtools.models.interaction.providers.llama_cpp_errors import (
@@ -77,7 +78,11 @@ class LlamaCppInteraction:
             },
         )
         content = _final_assistant_content(response)
-        return ModelResponse(content=content, source=self.source)
+        return ModelResponse(
+            content=content,
+            source=self.source,
+            usage=_model_usage(response),
+        )
 
 
 def _parse_endpoint(endpoint: str) -> SplitResult:
@@ -307,3 +312,36 @@ def _final_assistant_content(response: dict[str, object]) -> str:
         msg = "llama.cpp successful response assistant content must be text."
         raise LlamaCppResponseError(msg)
     return content
+
+
+def _model_usage(response: dict[str, object]) -> ModelUsage | None:
+    """Map the pinned llama.cpp ``usage`` object without retaining raw payloads."""
+    raw_usage = response.get("usage")
+    if raw_usage is None:
+        return None
+    if not isinstance(raw_usage, dict):
+        msg = "llama.cpp successful response usage must be an object."
+        raise LlamaCppResponseError(msg)
+    usage = ModelUsage(
+        input_tokens=_usage_token_count(raw_usage, "prompt_tokens"),
+        output_tokens=_usage_token_count(raw_usage, "completion_tokens"),
+        total_tokens=_usage_token_count(raw_usage, "total_tokens"),
+    )
+    return usage if any(
+        value is not None
+        for value in (usage.input_tokens, usage.output_tokens, usage.total_tokens)
+    ) else None
+
+
+def _usage_token_count(usage: dict[object, object], field: str) -> int | None:
+    """Validate one optional integer count from llama.cpp's standard usage object."""
+    value = usage.get(field)
+    if value is None:
+        return None
+    if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+        msg = (
+            "llama.cpp successful response usage "
+            f"{field} must be non-negative integer."
+        )
+        raise LlamaCppResponseError(msg)
+    return value
