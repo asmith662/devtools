@@ -1,8 +1,8 @@
 # B-0009 — Build the first bounded local coding-worker harness
 
 - type: STORY
-- status: BLOCKED
-- decision_maturity: SEMANTICS_PARTIAL
+- status: ACTIVE
+- decision_maturity: READY_FOR_IMPLEMENTATION
 - necessity: REQUIRED
 - architectural_significance: HARNESS_LOCAL
 - urgency: SOON
@@ -14,17 +14,26 @@
 
 ## Problem / value
 
-Build one bounded experimental coding worker after B-0008 defines the required
-Context. It may exercise ModelInteraction, selected Context, bounded Tool use,
-execution, and task-specific acceptance without promoting a generic Agent,
-Action, authorization, or orchestration framework.
+Build one bounded experimental coding worker after B-0008 establishes the
+minimum repository fact-acquisition boundary. It may exercise
+ModelInteraction, experiment-local relevance choice, bounded Tool use,
+execution, and task-specific acceptance without promoting a generic Context,
+Agent, Action, authorization, or orchestration framework.
 
-Qwen read-only experiments are predecessor evidence only; no coding/editing
-worker exists.
+The deterministic fixture now proves a bounded patch-proposal worker can start
+without source or test paths, acquire both through existing bounded list/read
+Tools, return one permitted diff, and have host-side experimental code apply
+and validate it only inside a disposable fixture. It uses no model-directed
+mutation, reusable Context, Agent, Action, authorization, orchestration, or
+evaluation implementation.
+
+This is deterministic framework-composition evidence, not evidence that Qwen
+can independently perform the worker task. The live single-harness validation
+remains the outstanding completion criterion.
 
 - hard_dependencies: B-0008
 - pressure_dependencies: B-0012, B-0016, B-0035, B-0036, B-0043, B-0044
 - operational_dependencies: pinned Qwen serving profile
-- blocked_by: minimum Context requirements for the selected story
-- promotion_trigger: bounded coding context is designed
+- blocked_by: none; bounded live Qwen coding-worker acceptance remains pending
+- promotion_trigger: deterministic worker composition plus live task evidence
 - validation_level: LIVE_SINGLE_HARNESS

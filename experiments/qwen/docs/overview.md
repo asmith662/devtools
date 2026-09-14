@@ -16,8 +16,8 @@ requiring a final plain-text answer. It is not generic orchestration,
 authorization, Context compilation, or Action infrastructure.
 
 The package does not implement streaming, native tool calls, usage accounting,
-provider-neutral model semantics, provider continuation, generic proposals,
-or a coding worker.
+provider-neutral model semantics, provider continuation, generic proposals, or
+a reusable coding-worker framework.
 
 `two_action_read_only_experiment.py` is a separate bounded successor probe. It
 permits two concrete read-only operations—non-recursive directory listing and
@@ -32,3 +32,12 @@ listings, and reads a discovered Python source file. This is repository fact
 acquisition and controller-directed navigation, not reusable Context,
 repository discovery/indexing, generic Action, authorization, orchestration,
 or acceptance infrastructure.
+
+`patch_proposal_worker.py` is a further disposable-fixture B-0009 probe. It
+uses the same list/read controller with five explicit local actions to discover
+one implementation file and one focused test without receiving their paths in
+the task. Its final model text must be one bounded unified diff for the fixture
+source file. Host-side experiment code validates and applies that diff only
+inside the fixture, then checks the requested behavior. The model receives no
+write or command capability. This is not reusable Context, Agent, Action,
+orchestration, governance, evaluation, search, or indexing infrastructure.
