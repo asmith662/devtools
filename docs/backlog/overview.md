@@ -10,9 +10,10 @@ Backlog presence does not authorize design or implementation. Package-local
 documentation remains authoritative for implemented package behavior;
 [architecture](../architecture.md) owns current cross-package architecture;
 [roadmap](../roadmap.md) records deliberately selected near-term sequencing;
-and the implementation ledger records historical fact. The repository currently
-has no separate ADR process. If one is later adopted, accepted decisions belong
-there, not in unresolved backlog records.
+and the implementation ledger records historical fact. Accepted decisions live
+under [architecture decisions](../architecture/decisions/); unresolved pressure
+remains in this backlog. An ADR does not by itself mark implementation work
+complete.
 
 ## Structure
 
@@ -122,6 +123,6 @@ provide dependency navigation without duplicating a second dependency graph.
 | [B-0043](items/B-0043-investigate-reusable-agent-semantics.md) | Investigate reusable Agent semantics | DEFERRED | agents |
 | [B-0044](items/B-0044-investigate-orchestration-control-loops.md) | Investigate orchestration control loops | DEFERRED | orchestration |
 | [B-0045](items/B-0045-establish-minimal-model-interaction-core.md) | Establish minimal ModelInteraction core | IMPLEMENTED | models |
-| [B-0046](items/B-0046-investigate-advanced-model-interaction-provider-pressure.md) | Investigate advanced model-interaction/provider pressure | DEFERRED | models |
+| [B-0046](items/B-0046-investigate-advanced-model-interaction-provider-pressure.md) | Investigate advanced model-interaction/provider pressure | BACKLOG | models |
 
 See [metadata.md](metadata.md) for record semantics and promotion discipline.

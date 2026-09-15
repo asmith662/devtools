@@ -6,6 +6,10 @@
   non-equivalence.
 - [Architecture](architecture.md) defines current cross-package ownership and
   dependency direction.
+- [Accepted architecture decisions](architecture/decisions/) freeze approved
+  future cross-package decisions; they do not claim an unimplemented API is
+  current behavior. [ADR-0001](architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
+  defines the approved ModelInteraction redesign.
 - [AGENTS.md](../AGENTS.md) defines repository-operating rules.
 - Package-local documentation defines implemented public APIs, behavior, and
   limitations.
@@ -58,5 +62,6 @@ defines ownership, split-lineage, dependency, and promotion terminology.
 
 For an implemented behavior change, update package documentation first, then
 this map and architecture documentation when navigation or cross-package
-ownership changes. Preserve historical records as history rather than rewriting
+ownership changes. Update an accepted ADR when an approved cross-package
+decision changes. Preserve historical records as history rather than rewriting
 them to conceal a former architecture.

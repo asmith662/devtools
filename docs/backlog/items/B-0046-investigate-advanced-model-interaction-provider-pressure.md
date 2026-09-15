@@ -1,11 +1,11 @@
 # B-0046 — Investigate advanced model-interaction/provider pressure
 
 - type: INVESTIGATION
-- status: DEFERRED
-- decision_maturity: SEMANTICS_PARTIAL
+- status: BACKLOG
+- decision_maturity: READY_FOR_IMPLEMENTATION
 - necessity: FUTURE_REQUIRED
 - architectural_significance: STRUCTURAL
-- urgency: DEFERRED
+- urgency: SOON
 - evidence_basis: MULTIPLE
 - scope: advanced model interaction and provider adaptation beyond established core
 - primary_domain: models
@@ -18,6 +18,19 @@ Preserve pressure for streaming, richer structured responses, model-native
 action payloads, reasoning or usage metadata, provider capability discovery,
 additional provider adapters, and later routing/model selection only when a
 consumer needs them. Codex is an external Agent, not a model-provider consumer.
+
+## Approved cohesive boundary
+
+[ADR-0001](../../architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
+freezes the next cohesive implementation boundary. It replaces further
+field-by-field request growth with immutable `ModelRequest` and
+`ModelSettings`, typed provider request extensions, normalized model-native
+Tool definitions/calls, capture-controlled model interaction Evidence, and
+serving-profile provenance. The approved phases are request migration,
+interaction Evidence/provenance, then model-native Tools. The ADR does not
+implement deferred structured output, capabilities, generic generation
+configuration, provider registry, Context, Action, governance, Trace, or
+Telemetry.
 
 ## Established subset: provider-reported usage
 

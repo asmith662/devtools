@@ -23,6 +23,14 @@ The Qwen probes demonstrate local descriptions, bounded projections, and
 action-specific materialization only. They do not establish a reusable schema
 or registry.
 
+[ADR-0001](../../architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
+now approves the narrow future seam: a model-agnostic bounded Tool descriptor
+and invocation materialization surface, projected by composition into a
+model-facing Tool definition. JSON Schema is the intended provider-independent
+vocabulary, without freezing an internal representation or authorizing a
+registry. This record retains the implementation and independent-consumer
+pressure; it does not make a Tool automatically model-visible.
+
 - hard_dependencies: none
 - pressure_dependencies: B-0008
 - operational_dependencies: stable model-facing Tool consumer

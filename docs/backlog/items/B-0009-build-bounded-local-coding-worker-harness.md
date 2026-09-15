@@ -46,8 +46,8 @@ same small one-line label-matching change while adding plausible source, test,
 and documentation alternatives. It uses seven bounded list/read actions and
 records fixture-local required, plausible-unnecessary, and clearly-irrelevant
 file-read facts alongside ModelUsage, projections, and duration. It is the
-first measured selection-stress reference; no live result exists for it yet,
-and scripted success does not establish Context pressure.
+first measured selection-stress reference; no successful live result exists
+for it yet, and scripted success does not establish Context pressure.
 
 - hard_dependencies: B-0008
 - pressure_dependencies: B-0012, B-0016, B-0035, B-0036, B-0043, B-0044

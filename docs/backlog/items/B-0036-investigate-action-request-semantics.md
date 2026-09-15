@@ -22,6 +22,12 @@ Promotion requires sufficient evidence that the boundary is stable independent
 of experiment-local control flow. An independent consumer is strong evidence,
 not a universal numerical rule.
 
+[ADR-0001](../../architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
+distinguishes a future normalized `ModelToolCall` from an Action. A model Tool
+call remains an untrusted requested callable invocation; it is not typed Tool
+input, authority, or execution. Reusable Action materialization and governance
+remain deferred under this record.
+
 - hard_dependencies: none
 - pressure_dependencies: B-0035, B-0012
 - operational_dependencies: another stable Action-like consumer

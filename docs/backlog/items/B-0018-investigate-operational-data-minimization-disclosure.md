@@ -20,6 +20,12 @@ durable records. Prefer minimizing collection before downstream redaction.
 An occurrence may be reportable without authority to disclose its payload.
 Current terminal Evidence minimizes payload but does not resolve this pressure.
 
+[ADR-0001](../../architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
+establishes the ModelInteraction capture rule: capture policy and a manifest
+must distinguish unavailable, omitted, and redacted provider facts, while
+credentials and equivalent sensitive transport state are never generically
+captured. Retention, export, and broader disclosure policy remain deferred.
+
 - hard_dependencies: none
 - pressure_dependencies: B-0008, B-0013, B-0023, B-0024
 - operational_dependencies: sensitive diagnostic or evidence payload

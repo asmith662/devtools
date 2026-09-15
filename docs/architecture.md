@@ -3,6 +3,9 @@
 `devtools` is organized by responsibility. Package-local documentation defines
 exact APIs; [the taxonomy](architecture/taxonomy.md) defines semantic terms.
 This document records the current cross-package ownership and dependency rules.
+Accepted future changes are recorded separately in
+[architecture decisions](architecture/decisions/); they do not redefine an
+unimplemented API as current behavior.
 
 ## Domains
 
@@ -82,5 +85,20 @@ orchestration.
 - Cancellation is not rollback, and communication failure does not prove an
   external effect did not occur.
 
+## Accepted future ModelInteraction boundary
+
+[ADR-0001](architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
+approves a cohesive future ModelInteraction boundary: immutable semantic
+requests and settings, typed provider-only request extensions, normalized
+model-native Tool calls, capture-controlled model interaction Evidence, and
+serving-profile provenance. Its phased implementation preserves that models
+never execute Tools, Tools do not depend on model providers, Runtime remains
+narrow, and raw provider exchange data stays outside `ModelResponse`.
+
+Until a phase is implemented, package documentation and source remain
+authoritative for the current API.
+
 See [documentation_map.md](documentation_map.md) for current package
-documentation and [taxonomy.md](architecture/taxonomy.md) for definitions.
+documentation, [taxonomy.md](architecture/taxonomy.md) for definitions, and
+[ADR-0001](architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
+for the approved future boundary.

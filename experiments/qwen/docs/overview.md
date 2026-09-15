@@ -26,8 +26,9 @@ reasoning per turn for this focused provider diagnostic, without putting it in
 Conversation, later prompts, console output, or generic telemetry. It does not
 estimate tokens, attribute Prompt components, budget Context, or define a
 metrics framework. That expanded artifact is schema
-`qwen-b0009-live-acceptance/4`; `/1`, `/2`, and `/3` artifacts remain historical
-acceptance evidence without the newer selection-stress measurements.
+`qwen-b0009-live-acceptance/4`; `/1` and `/2` predate selection-stress
+measurements, while `/3` remains historical selection-stress evidence without
+the later termination, reasoning, and thinking-choice fields.
 
 `two_action_read_only_experiment.py` is a separate bounded successor probe. It
 permits two concrete read-only operations—non-recursive directory listing and

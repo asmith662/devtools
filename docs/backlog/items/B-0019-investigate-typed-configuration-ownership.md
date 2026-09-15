@@ -17,6 +17,13 @@ Existing configuration remains owned locally by providers and packages. Determin
 whether repeated consumers need a shared typed configuration semantic without a
 global bag, loader, service locator, or dependency-injection container.
 
+[ADR-0001](../../architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
+resolves the ModelInteraction portion: immutable portable per-invocation
+`ModelSettings` and typed provider request extensions replace interaction
+keyword growth and untyped provider options. Adapter construction, serving
+configuration, and caller policy remain distinct. This record remains deferred
+for configuration pressure outside that approved boundary.
+
 Configuration is distinct from Conversation, execution state, Memory,
 observability, and governance applicability for one occurrence.
 
