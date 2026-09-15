@@ -17,9 +17,10 @@ import pytest
 
 from devtools.agents.conversation import (
     ConversationMessage,
+    ConversationMessageRole,
     InteractionSource,
 )
-from devtools.models.interaction import ConversationRef, ModelResponse
+from devtools.models.interaction import ModelRequest, ModelResponse
 from devtools.resources.filesystem import FilesystemNotFoundError
 
 if TYPE_CHECKING:
@@ -58,16 +59,17 @@ class _ScriptedInteraction:
 
     async def send(
         self,
-        message: ConversationMessage,
-        *,
-        conversation: ConversationRef | None = None,
-        maximum_output_tokens: int | None = None,
-        thinking_enabled: bool | None = None,
+        request: ModelRequest,
     ) -> ModelResponse:
         """Retain one caller message and produce the next assistant ConversationMessage."""
-        assert conversation is None
-        del maximum_output_tokens, thinking_enabled
-        self.calls.append(message)
+        assert request.conversation is None
+        self.calls.append(
+            ConversationMessage.new(
+                request.prompt.content,
+                role=ConversationMessageRole(request.prompt.role),
+                source=InteractionSource("runtime"),
+            ),
+        )
         return ModelResponse(content=self.responses.pop(0), source=self.source)
 
 

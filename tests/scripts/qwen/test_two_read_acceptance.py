@@ -20,7 +20,7 @@ from devtools.agents.conversation import (
     ConversationMessageRole,
     InteractionSource,
 )
-from devtools.models.interaction import ConversationRef, ModelResponse
+from devtools.models.interaction import ModelRequest, ModelResponse
 from devtools.models.interaction.providers.llama_cpp_errors import (
     LlamaCppTransportError,
 )
@@ -65,16 +65,17 @@ class _ScriptedInteraction:
 
     async def send(
         self,
-        message: ConversationMessage,
-        *,
-        conversation: ConversationRef | None = None,
-        maximum_output_tokens: int | None = None,
-        thinking_enabled: bool | None = None,
+        request: ModelRequest,
     ) -> ModelResponse:
         """Retain each input and return the next exact assistant result."""
-        assert conversation is None
-        del maximum_output_tokens, thinking_enabled
-        self.calls.append(message)
+        assert request.conversation is None
+        self.calls.append(
+            ConversationMessage.new(
+                request.prompt.content,
+                role=ConversationMessageRole(request.prompt.role),
+                source=InteractionSource("runtime"),
+            ),
+        )
         if self.fail_on_call == len(self.calls):
             assert self.failure is not None
             raise self.failure

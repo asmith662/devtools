@@ -18,7 +18,7 @@ from devtools.agents.conversation import (
 )
 from devtools.core.paths import ResolvedPath
 from devtools.execution import Runtime
-from devtools.models.interaction import ConversationRef, ModelResponse, Prompt
+from devtools.models.interaction import ModelRequest, ModelResponse, Prompt
 from devtools.resources.filesystem import FilesystemNotFoundError
 from devtools.tools.filesystem import (
     ListRepositoryDirectoryTool,
@@ -50,16 +50,11 @@ class _ScriptedInteraction:
 
     async def send(
         self,
-        prompt: Prompt,
-        *,
-        conversation: ConversationRef | None = None,
-        maximum_output_tokens: int | None = None,
-        thinking_enabled: bool | None = None,
+        request: ModelRequest,
     ) -> ModelResponse:
         """Return the next planned final assistant ConversationMessage."""
-        assert conversation is None
-        del maximum_output_tokens, thinking_enabled
-        self.calls.append(prompt)
+        assert request.conversation is None
+        self.calls.append(request.prompt)
         return ModelResponse(content=self.responses.pop(0), source=self.source)
 
 
@@ -72,16 +67,11 @@ class _FailingLaterInteraction:
 
     async def send(
         self,
-        prompt: Prompt,
-        *,
-        conversation: ConversationRef | None = None,
-        maximum_output_tokens: int | None = None,
-        thinking_enabled: bool | None = None,
+        request: ModelRequest,
     ) -> ModelResponse:
         """Produce a first proposal only, then propagate a later failure."""
-        assert conversation is None
-        del maximum_output_tokens, thinking_enabled
-        self.calls.append(prompt)
+        assert request.conversation is None
+        self.calls.append(request.prompt)
         if len(self.calls) == 1:
             return ModelResponse(
                 content=_proposal("list_repository_directory", "facts"),

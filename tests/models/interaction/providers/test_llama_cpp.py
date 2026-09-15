@@ -13,13 +13,17 @@ from devtools.agents.conversation import ConversationMessageRole
 from devtools.models.interaction import (
     ConversationRef,
     InteractionSource,
+    ModelRequest,
+    ModelSettings,
     ModelTermination,
     ModelUsage,
     Prompt,
+    ProviderRequestSettings,
 )
 from devtools.models.interaction.providers import (
     LlamaCppHttpError,
     LlamaCppInteraction,
+    LlamaCppRequestSettings,
     LlamaCppResponseError,
     LlamaCppTransportError,
     llama_cpp,
@@ -77,8 +81,19 @@ def _response(status: int, body: object, *, content_length: bool = False) -> byt
 def _message(
     role: ConversationMessageRole,
     content: str = "Inspect the fixture.",
-) -> Prompt:
-    return Prompt(content=content, role=role.value)
+    *,
+    maximum_output_tokens: int | None = None,
+    thinking_enabled: bool | None = None,
+    conversation: ConversationRef | None = None,
+) -> ModelRequest:
+    return ModelRequest(
+        prompt=Prompt(content=content, role=role.value),
+        settings=ModelSettings(
+            maximum_output_tokens=maximum_output_tokens,
+            thinking_enabled=thinking_enabled,
+        ),
+        conversation=conversation,
+    )
 
 
 def _interaction() -> LlamaCppInteraction:
@@ -172,8 +187,10 @@ def test_interaction_maps_requested_output_bound_to_pinned_llama_cpp_max_tokens(
 
     turn = asyncio.run(
         _interaction().send(
-            _message(ConversationMessageRole.USER),
-            maximum_output_tokens=_MAXIMUM_OUTPUT_TOKENS,
+            _message(
+                ConversationMessageRole.USER,
+                maximum_output_tokens=_MAXIMUM_OUTPUT_TOKENS,
+            ),
         ),
     )
 
@@ -216,8 +233,7 @@ def test_interaction_maps_explicit_thinking_control_to_chat_template_kwargs(
 
     asyncio.run(
         _interaction().send(
-            _message(ConversationMessageRole.USER),
-            thinking_enabled=thinking_enabled,
+            _message(ConversationMessageRole.USER, thinking_enabled=thinking_enabled),
         ),
     )
 
@@ -255,9 +271,11 @@ def test_interaction_combines_thinking_control_and_output_bound_without_other_fi
 
     asyncio.run(
         _interaction().send(
-            _message(ConversationMessageRole.USER),
-            maximum_output_tokens=_MAXIMUM_OUTPUT_TOKENS,
-            thinking_enabled=False,
+            _message(
+                ConversationMessageRole.USER,
+                maximum_output_tokens=_MAXIMUM_OUTPUT_TOKENS,
+                thinking_enabled=False,
+            ),
         ),
     )
 
@@ -274,12 +292,10 @@ def test_interaction_rejects_malformed_thinking_control_before_provider_request(
 ) -> None:
     """Malformed thinking controls fail at the provider request boundary."""
     with pytest.raises(TypeError, match="boolean"):
-        asyncio.run(
-            _interaction().send(
-                _message(ConversationMessageRole.USER),
+            _message(
+                ConversationMessageRole.USER,
                 thinking_enabled=value,  # type: ignore[arg-type]
-            ),
-        )
+            )
 
 
 @pytest.mark.parametrize("value", [0, -1, True, False, "8", 8.0])
@@ -288,12 +304,10 @@ def test_interaction_rejects_invalid_output_bound_before_provider_request(
 ) -> None:
     """Invalid shared request constraints never become provider HTTP failures."""
     with pytest.raises(ValueError, match="positive integer"):
-        asyncio.run(
-            _interaction().send(
-                _message(ConversationMessageRole.USER),
+            _message(
+                ConversationMessageRole.USER,
                 maximum_output_tokens=value,  # type: ignore[arg-type]
-            ),
-        )
+            )
 
 
 def test_interaction_preserves_pinned_llama_cpp_standard_usage(
@@ -330,8 +344,7 @@ def test_interaction_preserves_pinned_llama_cpp_standard_usage(
 
     turn = asyncio.run(
         _interaction().send(
-            _message(ConversationMessageRole.USER),
-            maximum_output_tokens=3,
+            _message(ConversationMessageRole.USER, maximum_output_tokens=3),
         ),
     )
 
@@ -388,8 +401,10 @@ def test_interaction_maps_pinned_llama_cpp_finish_reasons(
 
     turn = asyncio.run(
         _interaction().send(
-            _message(ConversationMessageRole.USER),
-            maximum_output_tokens=_MAXIMUM_OUTPUT_TOKENS,
+            _message(
+                ConversationMessageRole.USER,
+                maximum_output_tokens=_MAXIMUM_OUTPUT_TOKENS,
+            ),
         ),
     )
 
@@ -451,8 +466,10 @@ def test_interaction_preserves_pinned_llama_cpp_reasoning_separately(
 
     turn = asyncio.run(
         _interaction().send(
-            _message(ConversationMessageRole.USER),
-            maximum_output_tokens=_MAXIMUM_OUTPUT_TOKENS,
+            _message(
+                ConversationMessageRole.USER,
+                maximum_output_tokens=_MAXIMUM_OUTPUT_TOKENS,
+            ),
         ),
     )
 
@@ -675,10 +692,30 @@ def test_interaction_rejects_continuation_for_stateless_provider() -> None:
     with pytest.raises(ValueError, match="does not support continuation"):
         asyncio.run(
             _interaction().send(
-                _message(ConversationMessageRole.USER),
-                conversation=ConversationRef(InteractionSource("qwen"), "thread"),
+                _message(
+                    ConversationMessageRole.USER,
+                    conversation=ConversationRef(InteractionSource("qwen"), "thread"),
+                ),
             ),
         )
+
+
+def test_interaction_rejects_other_provider_settings_before_a_provider_request() -> (
+    None
+):
+    """Typed extension settings cannot be silently ignored by llama.cpp."""
+    request = ModelRequest(
+        prompt=Prompt(content="question", role="user"),
+        provider_settings=ProviderRequestSettings("other"),
+    )
+    with pytest.raises(ValueError, match="another provider"):
+        asyncio.run(_interaction().send(request))
+
+
+def test_interaction_accepts_its_empty_typed_extension() -> None:
+    """The empty Phase 1 llama.cpp extension preserves the provider seam."""
+    settings = LlamaCppRequestSettings()
+    assert settings.provider == "llama.cpp"
 
 
 @pytest.mark.parametrize(

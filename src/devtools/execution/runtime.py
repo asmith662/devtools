@@ -21,10 +21,11 @@ from devtools.execution.interaction_attempt import (
 )
 from devtools.models.interaction import (
     ModelInteraction,
+    ModelRequest,
     ModelResponse,
+    ModelSettings,
     Prompt,
-    validate_maximum_output_tokens,
-    validate_thinking_enabled,
+    ProviderRequestSettings,
 )
 
 if TYPE_CHECKING:
@@ -53,8 +54,8 @@ class Runtime:
         conversation: Conversation,
         interaction: ModelInteraction,
         message: ConversationMessage,
-        maximum_output_tokens: int | None = None,
-        thinking_enabled: bool | None = None,
+        settings: ModelSettings | None = None,
+        provider_settings: ProviderRequestSettings | None = None,
     ) -> ModelResponse:
         """Retain one message, invoke a model, and retain its response."""
         observer = self._observer
@@ -66,30 +67,13 @@ class Runtime:
                 continuation = conversation.conversation_for(interaction.source)
                 stage = InteractionAttemptStage.INTERACTION_INVOCATION
                 prompt = Prompt(content=message.content, role=message.role.value)
-                validate_thinking_enabled(thinking_enabled)
-                if maximum_output_tokens is None and thinking_enabled is None:
-                    response = await interaction.send(prompt, conversation=continuation)
-                elif maximum_output_tokens is None:
-                    response = await interaction.send(
-                        prompt,
-                        conversation=continuation,
-                        thinking_enabled=thinking_enabled,
-                    )
-                elif thinking_enabled is None:
-                    validate_maximum_output_tokens(maximum_output_tokens)
-                    response = await interaction.send(
-                        prompt,
-                        conversation=continuation,
-                        maximum_output_tokens=maximum_output_tokens,
-                    )
-                else:
-                    validate_maximum_output_tokens(maximum_output_tokens)
-                    response = await interaction.send(
-                        prompt,
-                        conversation=continuation,
-                        maximum_output_tokens=maximum_output_tokens,
-                        thinking_enabled=thinking_enabled,
-                    )
+                request = ModelRequest(
+                    prompt=prompt,
+                    settings=settings or ModelSettings(),
+                    conversation=continuation,
+                    provider_settings=provider_settings,
+                )
+                response = await interaction.send(request)
                 stage = InteractionAttemptStage.RESULT_VALIDATION
                 self._validate_response_source(response, interaction)
                 stage = InteractionAttemptStage.OUTPUT_RETENTION

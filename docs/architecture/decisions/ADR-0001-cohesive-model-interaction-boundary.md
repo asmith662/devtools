@@ -2,8 +2,8 @@
 
 - Status: Accepted
 - Date: 2026-09-15
-- Scope: future reusable model-interaction boundary; no implementation is
-  implied by this decision alone.
+- Scope: reusable model-interaction boundary. Phase 1 is implemented; later
+  phases remain approved architecture rather than current APIs.
 
 ## Context
 
@@ -177,8 +177,8 @@ Introduce immutable `ModelRequest`, `ModelSettings`, and typed provider request
 extensions. Atomically migrate established output and thinking controls,
 `ModelInteraction` implementations/fakes, Runtime mechanically, and direct
 experiment callers; remove the old duplicated keyword request API. Prove
-validation and provider serialization deterministically. No live model is
-required.
+validation and provider serialization deterministically. This phase is
+implemented and validated deterministically; no live model was required.
 
 ### Phase 2 — Interaction Evidence and serving provenance
 

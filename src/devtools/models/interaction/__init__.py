@@ -4,6 +4,9 @@
 from devtools.models.interaction.models import (
     ConversationRef,
     InteractionSource,
+    ModelRequest,
+    ModelSettings,
+    ProviderRequestSettings,
     validate_maximum_output_tokens,
     validate_thinking_enabled,
 )
@@ -17,10 +20,13 @@ __all__ = [
     "ConversationRef",
     "InteractionSource",
     "ModelInteraction",
+    "ModelRequest",
     "ModelResponse",
+    "ModelSettings",
     "ModelTermination",
     "ModelUsage",
     "Prompt",
+    "ProviderRequestSettings",
     "validate_maximum_output_tokens",
     "validate_thinking_enabled",
 ]

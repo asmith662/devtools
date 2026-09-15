@@ -21,10 +21,9 @@ from devtools.execution import (
     Runtime,
 )
 from devtools.models.interaction import (
-    ConversationRef,
     InteractionSource,
+    ModelRequest,
     ModelResponse,
-    Prompt,
 )
 from devtools.observability.evidence import ExecutionInspector
 from devtools.resources.commands import Command, CommandExecutor, CommandNotFoundError
@@ -54,14 +53,10 @@ class _CommandToolInteraction:
 
     async def send(
         self,
-        prompt: Prompt,
-        *,
-        conversation: ConversationRef | None = None,
-        maximum_output_tokens: int | None = None,
-        thinking_enabled: bool | None = None,
+        request: ModelRequest,
     ) -> ModelResponse:
         """Execute the Tool and return model output without conversation identity."""
-        del prompt, conversation, maximum_output_tokens, thinking_enabled
+        del request
         result = await self._runner.execute(self._tool, self._command)
         return ModelResponse(
             content=result.stdout.decode().strip(),

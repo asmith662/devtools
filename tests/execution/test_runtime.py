@@ -26,7 +26,9 @@ from devtools.execution import (
 from devtools.models.interaction import (
     ConversationRef,
     InteractionSource,
+    ModelRequest,
     ModelResponse,
+    ModelSettings,
     Prompt,
 )
 from devtools.observability.evidence import ExecutionInspector
@@ -57,16 +59,12 @@ class FakeInteraction:
 
     async def send(
         self,
-        prompt: Prompt,
-        *,
-        conversation: ConversationRef | None = None,
-        maximum_output_tokens: int | None = None,
-        thinking_enabled: bool | None = None,
+        request: ModelRequest,
     ) -> ModelResponse:
         """Record the materialized input and return one scripted result."""
-        self.requested_output_tokens.append(maximum_output_tokens)
-        self.requested_thinking.append(thinking_enabled)
-        self.prompts.append((prompt, conversation))
+        self.requested_output_tokens.append(request.settings.maximum_output_tokens)
+        self.requested_thinking.append(request.settings.thinking_enabled)
+        self.prompts.append((request.prompt, request.conversation))
         if self.error is not None:
             raise self.error
         return self.responses.pop(0)
@@ -132,7 +130,7 @@ def test_runtime_forwards_an_explicit_output_bound_without_treating_it_as_budget
             conversation=conversation,
             interaction=interaction,
             message=_message(),
-            maximum_output_tokens=64,
+            settings=ModelSettings(maximum_output_tokens=64),
         )
 
         assert interaction.requested_output_tokens == [64]
@@ -148,12 +146,7 @@ def test_runtime_rejects_an_invalid_output_bound_before_interaction() -> None:
             responses=[ModelResponse(content="answer", source=_MODEL)],
         )
         with pytest.raises(ValueError, match="positive integer"):
-            await Runtime().send(
-                conversation=Conversation.new(),
-                interaction=interaction,
-                message=_message(),
-                maximum_output_tokens=0,
-            )
+            ModelSettings(maximum_output_tokens=0)
         assert interaction.requested_output_tokens == []
 
     asyncio.run(exercise())
@@ -174,7 +167,7 @@ def test_runtime_forwards_explicit_thinking_control(
             conversation=Conversation.new(),
             interaction=interaction,
             message=_message(),
-            thinking_enabled=thinking_enabled,
+            settings=ModelSettings(thinking_enabled=thinking_enabled),
         )
         assert interaction.requested_thinking == [thinking_enabled]
         assert interaction.requested_output_tokens == [None]
@@ -188,14 +181,7 @@ def test_runtime_rejects_malformed_thinking_control_before_interaction() -> None
         responses=[ModelResponse(content="answer", source=_MODEL)],
     )
     with pytest.raises(TypeError, match="boolean"):
-        asyncio.run(
-            Runtime().send(
-                conversation=Conversation.new(),
-                interaction=interaction,
-                message=_message(),
-                thinking_enabled=1,  # type: ignore[arg-type]
-            ),
-        )
+        ModelSettings(thinking_enabled=1)  # type: ignore[arg-type]
     assert interaction.requested_thinking == []
 
 
@@ -496,14 +482,9 @@ def test_runtime_serializes_turns_for_one_conversation() -> None:
     class BlockingInteraction(FakeInteraction):
         async def send(
             self,
-            prompt: Prompt,
-            *,
-            conversation: ConversationRef | None = None,
-            maximum_output_tokens: int | None = None,
-            thinking_enabled: bool | None = None,
+            request: ModelRequest,
         ) -> ModelResponse:
-            del maximum_output_tokens, thinking_enabled
-            self.prompts.append((prompt, conversation))
+            self.prompts.append((request.prompt, request.conversation))
             if len(self.prompts) == 1:
                 entered.set()
                 await release.wait()

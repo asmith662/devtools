@@ -18,7 +18,7 @@ from devtools.agents.conversation import (
 )
 from devtools.core.paths import ResolvedPath
 from devtools.execution import Runtime
-from devtools.models.interaction import ConversationRef, ModelResponse, Prompt
+from devtools.models.interaction import ModelRequest, ModelResponse, Prompt
 from devtools.resources.filesystem import FilesystemNotFoundError, TextFile
 from devtools.tools import ToolInputError
 from devtools.tools.filesystem import ReadRepositoryFileTool
@@ -46,16 +46,11 @@ class _ScriptedInteraction:
 
     async def send(
         self,
-        prompt: Prompt,
-        *,
-        conversation: ConversationRef | None = None,
-        maximum_output_tokens: int | None = None,
-        thinking_enabled: bool | None = None,
+        request: ModelRequest,
     ) -> ModelResponse:
         """Return the next planned final assistant message."""
-        assert conversation is None
-        del maximum_output_tokens, thinking_enabled
-        self.calls.append(prompt)
+        assert request.conversation is None
+        self.calls.append(request.prompt)
         return ModelResponse(content=self.responses.pop(0), source=self.source)
 
 
@@ -67,22 +62,13 @@ class _FailingInteraction(_ScriptedInteraction):
 
     async def send(
         self,
-        prompt: Prompt,
-        *,
-        conversation: ConversationRef | None = None,
-        maximum_output_tokens: int | None = None,
-        thinking_enabled: bool | None = None,
+        request: ModelRequest,
     ) -> ModelResponse:
         """Retain the attempted input before the configured provider failure."""
         if len(self.calls) + 1 == self.fail_on_call:
-            self.calls.append(prompt)
+            self.calls.append(request.prompt)
             raise LookupError(_PROVIDER_FAILURE)
-        return await super().send(
-            prompt,
-            conversation=conversation,
-            maximum_output_tokens=maximum_output_tokens,
-            thinking_enabled=thinking_enabled,
-        )
+        return await super().send(request)
 
 
 def _proposal(path: str) -> str:

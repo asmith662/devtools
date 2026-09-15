@@ -6,8 +6,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Protocol
 
 if TYPE_CHECKING:
-    from devtools.models.interaction.models import ConversationRef, InteractionSource
-    from devtools.models.interaction.prompt import Prompt
+    from devtools.models.interaction.models import InteractionSource, ModelRequest
     from devtools.models.interaction.response import ModelResponse
 
 
@@ -20,14 +19,9 @@ class ModelInteraction(Protocol):
 
     async def send(
         self,
-        prompt: Prompt,
-        *,
-        conversation: ConversationRef | None = None,
-        maximum_output_tokens: int | None = None,
-        thinking_enabled: bool | None = None,
+        request: ModelRequest,
     ) -> ModelResponse:
-        """Send one prompt with an optional requested output-token limit.
+        """Send one immutable semantic model request.
 
-        Implementations must honor supplied request controls or reject them
-        explicitly.
+        Implementations must honor supplied request settings or reject them.
         """

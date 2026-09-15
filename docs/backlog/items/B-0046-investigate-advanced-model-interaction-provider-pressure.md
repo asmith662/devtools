@@ -32,6 +32,19 @@ implement deferred structured output, capabilities, generic generation
 configuration, provider registry, Context, Action, governance, Trace, or
 Telemetry.
 
+## Implemented Phase 1: cohesive request boundary
+
+Phase 1 now provides immutable `ModelRequest` and `ModelSettings`, typed
+`ProviderRequestSettings`, and the empty typed `LlamaCppRequestSettings`
+extension seam. `ModelInteraction.send()` accepts exactly one `ModelRequest`;
+the previous request keyword API has been removed. `maximum_output_tokens` and
+`thinking_enabled` retain their established semantics as portable
+`ModelSettings` fields. Runtime and the Qwen experiments mechanically forward
+those immutable settings; llama.cpp maps them to `max_tokens` and
+`chat_template_kwargs.enable_thinking` respectively. No default policy,
+provider options bag, Evidence, serving provenance, or model-native Tool
+behavior was introduced.
+
 ## Established subset: provider-reported usage
 
 The B-0009 coding-worker acceptance consumer established the smallest reusable
@@ -57,7 +70,7 @@ The measured selection-stress acceptance exposed a separate request-side
 pressure: without a completion cap, the pinned llama.cpp route may use the
 remaining context window for generation even when the prompt is small. The
 minimal reusable response is optional positive-integer `maximum_output_tokens`
-on one `ModelInteraction` request. It is a requested per-invocation output
+in `ModelSettings` on one `ModelInteraction` request. It is a requested per-invocation output
 limit, not ModelUsage, context-window capacity, cumulative run budgeting, or
 Context budgeting. An adapter must honor a supplied value or reject it.
 
@@ -113,7 +126,7 @@ honors per-request thinking disable: `chat_template_kwargs.enable_thinking`
 set to `false` returned visible `OK`, no reasoning content, `stop`, and two
 completion tokens, while the unchanged default consumed the 128-token cap in
 reasoning. The smallest reusable request semantic is optional
-`thinking_enabled: bool | None` on one `ModelInteraction` invocation. `None`
+`thinking_enabled: bool | None` in `ModelSettings` for one `ModelInteraction` invocation. `None`
 preserves provider defaults; explicit `True` or `False` must be honored or
 rejected rather than silently ignored.
 

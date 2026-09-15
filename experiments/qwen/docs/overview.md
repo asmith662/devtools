@@ -90,5 +90,8 @@ This is fixture-selection and measurement plumbing only.
 
 The acceptance runner may explicitly pass `--thinking default`, `--thinking
 enabled`, or `--thinking disabled`. The selected value is forwarded to every
-model turn and recorded in the schema `/4` report; no thinking mode is selected
-by default.
+model turn through immutable `ModelSettings` and recorded in the schema `/4`
+report; no thinking mode is selected by default. The optional
+`--maximum-output-tokens` value follows the same experiment-local path. This
+uses ADR-0001 Phase 1 request values only; it does not add model interaction
+Evidence, serving provenance, native Tool calls, or model-side Tool execution.

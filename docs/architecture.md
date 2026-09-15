@@ -95,8 +95,9 @@ serving-profile provenance. Its phased implementation preserves that models
 never execute Tools, Tools do not depend on model providers, Runtime remains
 narrow, and raw provider exchange data stays outside `ModelResponse`.
 
-Until a phase is implemented, package documentation and source remain
-authoritative for the current API.
+Phase 1 (immutable request/settings and typed provider request extensions) is
+implemented. Evidence/provenance and model-native Tool phases remain future;
+package documentation and source remain authoritative for the current API.
 
 See [documentation_map.md](documentation_map.md) for current package
 documentation, [taxonomy.md](architecture/taxonomy.md) for definitions, and

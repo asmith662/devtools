@@ -8,11 +8,15 @@ from devtools.models.interaction.providers.llama_cpp_errors import (
     LlamaCppResponseError,
     LlamaCppTransportError,
 )
+from devtools.models.interaction.providers.llama_cpp_request_settings import (
+    LlamaCppRequestSettings,
+)
 
 __all__ = [
     "LlamaCppHttpError",
     "LlamaCppInteraction",
     "LlamaCppInteractionError",
+    "LlamaCppRequestSettings",
     "LlamaCppResponseError",
     "LlamaCppTransportError",
 ]

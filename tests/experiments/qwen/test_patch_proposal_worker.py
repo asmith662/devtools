@@ -13,7 +13,12 @@ import pytest
 from devtools.agents.conversation import Conversation, InteractionSource
 from devtools.core.paths import ResolvedPath, resolve_path
 from devtools.execution import Runtime
-from devtools.models.interaction import ConversationRef, ModelResponse, Prompt
+from devtools.models.interaction import (
+    ModelRequest,
+    ModelResponse,
+    ModelSettings,
+    Prompt,
+)
 from devtools.resources.filesystem import (
     FileFormat,
     FilesystemNotFoundError,
@@ -64,17 +69,13 @@ class _ScriptedInteraction:
 
     async def send(
         self,
-        prompt: Prompt,
-        *,
-        conversation: ConversationRef | None = None,
-        maximum_output_tokens: int | None = None,
-        thinking_enabled: bool | None = None,
+        request: ModelRequest,
     ) -> ModelResponse:
         """Return one deterministic response without contacting a model service."""
-        assert conversation is None
-        self.calls.append(prompt)
-        self.requested_output_tokens.append(maximum_output_tokens)
-        self.requested_thinking.append(thinking_enabled)
+        assert request.conversation is None
+        self.calls.append(request.prompt)
+        self.requested_output_tokens.append(request.settings.maximum_output_tokens)
+        self.requested_thinking.append(request.settings.thinking_enabled)
         return ModelResponse(content=self.responses.pop(0), source=self.source)
 
 
@@ -94,8 +95,10 @@ def _worker(
             interaction=interaction,
             repository_root=create_patch_proposal_fixture(root),
             maximum_actions=maximum_actions,
-            maximum_output_tokens=maximum_output_tokens,
-            thinking_enabled=thinking_enabled,
+            settings=ModelSettings(
+                maximum_output_tokens=maximum_output_tokens,
+                thinking_enabled=thinking_enabled,
+            ),
         ),
         interaction,
     )
@@ -118,8 +121,10 @@ def _selection_worker(
             interaction=interaction,
             repository_root=create_selection_stress_fixture(root),
             maximum_actions=maximum_actions,
-            maximum_output_tokens=maximum_output_tokens,
-            thinking_enabled=thinking_enabled,
+            settings=ModelSettings(
+                maximum_output_tokens=maximum_output_tokens,
+                thinking_enabled=thinking_enabled,
+            ),
             fixture=_SELECTION_STRESS_FIXTURE,
         ),
         interaction,

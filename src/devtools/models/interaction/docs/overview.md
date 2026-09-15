@@ -3,11 +3,14 @@
 This package owns one bounded model invocation boundary:
 
 ```text
-Prompt -> ModelInteraction -> ModelResponse
+ModelRequest -> ModelInteraction -> ModelResponse
 ```
 
-`Prompt` is per-invocation model-facing input and deliberately has no durable
-conversation-message identity or local conversation timestamp. `ModelResponse`
+`ModelRequest` is an immutable semantic invocation value containing a `Prompt`,
+immutable portable `ModelSettings`, an optional provider continuation, and an
+optional typed provider request extension. `Prompt` is per-invocation
+model-facing input and deliberately has no durable conversation-message
+identity or local conversation timestamp. `ModelResponse`
 contains model output, its source, optional provider continuation, optional
 provider-reported `ModelUsage`, and optional provider-reported
 `ModelTermination`, plus optional separately returned textual reasoning. Usage
@@ -24,16 +27,27 @@ history, goals, tools, authorization, Runtime orchestration, or model-serving
 lifecycle. `ConversationRef` and `InteractionSource` are narrow model-provider
 values used at this boundary.
 
-One request may optionally specify `maximum_output_tokens`: a positive,
+`ModelSettings.maximum_output_tokens` is an optional positive,
 provider-neutral completion-token limit for that single invocation. Its absence
 requests no cap. This request constraint is distinct from provider-reported
 `ModelUsage`, model context-window capacity, and any future Context or run
 budget. An adapter must honor a supplied limit or reject it explicitly.
 
-One request may also optionally specify `thinking_enabled`: `None` preserves
-provider defaults, while `True` or `False` explicitly requests thinking on or
-off. An adapter must honor an explicit value or reject it; it must not silently
-ignore the request.
+`ModelSettings.thinking_enabled` is optional: `None` preserves provider
+defaults, while `True` or `False` explicitly requests thinking on or off. An
+adapter must honor an explicit value or reject it; it must not silently ignore
+the request.
+
+`ProviderRequestSettings` is an immutable typed extension seam for one
+provider's per-request settings. Portable core does not import provider types;
+an adapter rejects another provider's extension instead of silently ignoring
+it. `LlamaCppRequestSettings` currently has no extra field because the two
+established llama.cpp controls are portable settings. It reserves a typed
+provider-owned seam rather than an untyped options dictionary.
+
+This is Phase 1 of [ADR-0001](../../../../../docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md).
+Model interaction Evidence, serving provenance, model-native Tool calls,
+structured output, and capabilities remain unimplemented.
 
 The configurable llama.cpp implementation is under `providers/`; it communicates
 with an already-running model endpoint. Endpoint lifecycle is separately owned

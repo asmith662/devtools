@@ -10,19 +10,19 @@ from typing import TYPE_CHECKING
 from urllib.parse import urlsplit
 
 from devtools.models.interaction import (
-    ConversationRef,
     InteractionSource,
+    ModelRequest,
     ModelResponse,
     ModelTermination,
     ModelUsage,
-    Prompt,
-    validate_maximum_output_tokens,
-    validate_thinking_enabled,
 )
 from devtools.models.interaction.providers.llama_cpp_errors import (
     LlamaCppHttpError,
     LlamaCppResponseError,
     LlamaCppTransportError,
+)
+from devtools.models.interaction.providers.llama_cpp_request_settings import (
+    LlamaCppRequestSettings,
 )
 
 if TYPE_CHECKING:
@@ -58,33 +58,36 @@ class LlamaCppInteraction:
 
     async def send(
         self,
-        prompt: Prompt,
-        *,
-        conversation: ConversationRef | None = None,
-        maximum_output_tokens: int | None = None,
-        thinking_enabled: bool | None = None,
+        request: ModelRequest,
     ) -> ModelResponse:
         """Send one Prompt through llama.cpp and return final assistant text."""
-        if conversation is not None:
+        if request.conversation is not None:
             msg = "The stateless llama.cpp interaction does not support continuation."
+            raise ValueError(msg)
+        provider_settings = request.provider_settings
+        if provider_settings is not None and not isinstance(
+            provider_settings,
+            LlamaCppRequestSettings,
+        ):
+            msg = "llama.cpp interaction received settings for another provider."
             raise ValueError(msg)
 
         payload: dict[str, object] = {
             "model": self._model,
             "messages": [
                 {
-                    "role": _provider_role(prompt.role),
-                    "content": prompt.content,
+                    "role": _provider_role(request.prompt.role),
+                    "content": request.prompt.content,
                 },
             ],
             "stream": False,
         }
-        if maximum_output_tokens is not None:
-            validate_maximum_output_tokens(maximum_output_tokens)
-            payload["max_tokens"] = maximum_output_tokens
-        if thinking_enabled is not None:
-            validate_thinking_enabled(thinking_enabled)
-            payload["chat_template_kwargs"] = {"enable_thinking": thinking_enabled}
+        if request.settings.maximum_output_tokens is not None:
+            payload["max_tokens"] = request.settings.maximum_output_tokens
+        if request.settings.thinking_enabled is not None:
+            payload["chat_template_kwargs"] = {
+                "enable_thinking": request.settings.thinking_enabled,
+            }
         response = await _post_chat_completion(self._endpoint, payload)
         content = _final_assistant_content(response)
         return ModelResponse(

@@ -4,16 +4,20 @@
 from __future__ import annotations
 
 from dataclasses import FrozenInstanceError
+from typing import cast
 
 import pytest
 
 from devtools.models.interaction import (
     ConversationRef,
     InteractionSource,
+    ModelRequest,
     ModelResponse,
+    ModelSettings,
     ModelTermination,
     ModelUsage,
     Prompt,
+    ProviderRequestSettings,
     validate_maximum_output_tokens,
     validate_thinking_enabled,
 )
@@ -21,6 +25,7 @@ from devtools.models.interaction import (
 _INPUT_TOKENS = 8
 _OUTPUT_TOKENS = 4
 _PROVIDER_TOTAL_TOKENS = 99
+_REQUEST_OUTPUT_TOKENS = 8
 
 
 @pytest.mark.parametrize("value", [1, 8])
@@ -56,6 +61,100 @@ def test_thinking_enabled_rejects_non_boolean_values(*, value: object) -> None:
     """Integer and truthy values cannot bypass the request boundary."""
     with pytest.raises(TypeError, match="boolean"):
         validate_thinking_enabled(value)
+
+
+def test_model_settings_retains_only_established_immutable_request_controls() -> None:
+    """Portable request controls are immutable and coexist without derivation."""
+    settings = ModelSettings(
+        maximum_output_tokens=_REQUEST_OUTPUT_TOKENS,
+        thinking_enabled=False,
+    )
+    assert settings.maximum_output_tokens == _REQUEST_OUTPUT_TOKENS
+    assert settings.thinking_enabled is False
+    with pytest.raises(FrozenInstanceError):
+        settings.maximum_output_tokens = 9  # type: ignore[misc]
+
+
+@pytest.mark.parametrize("maximum_output_tokens", [0, -1, True, "8"])
+def test_model_settings_rejects_invalid_output_control(
+    maximum_output_tokens: object,
+) -> None:
+    """ModelSettings owns output-limit admission, not a provider adapter."""
+    with pytest.raises(ValueError, match="positive integer"):
+        ModelSettings(maximum_output_tokens=maximum_output_tokens)  # type: ignore[arg-type]
+
+
+@pytest.mark.parametrize("thinking_enabled", [0, 1, "false"])
+def test_model_settings_rejects_invalid_thinking_control(
+    thinking_enabled: object,
+) -> None:
+    """ModelSettings admits only optional actual booleans for thinking control."""
+    with pytest.raises(TypeError, match="boolean"):
+        ModelSettings(thinking_enabled=thinking_enabled)  # type: ignore[arg-type]
+
+
+def test_model_request_is_immutable_and_separates_input_from_settings() -> None:
+    """One request contains semantic input, portable settings, and continuation."""
+    source = InteractionSource("llama.cpp")
+    request = ModelRequest(
+        prompt=Prompt(content="question", role="user"),
+        settings=ModelSettings(maximum_output_tokens=_REQUEST_OUTPUT_TOKENS),
+        conversation=ConversationRef(source, "thread"),
+    )
+    assert request.prompt.content == "question"
+    assert request.settings.maximum_output_tokens == _REQUEST_OUTPUT_TOKENS
+    assert request.conversation == ConversationRef(source, "thread")
+    with pytest.raises(FrozenInstanceError):
+        request.settings = ModelSettings()  # type: ignore[misc]
+
+
+def test_model_request_rejects_untyped_provider_settings() -> None:
+    """Provider settings cannot become an arbitrary request options bag."""
+    with pytest.raises(TypeError, match="provider extension"):
+        ModelRequest(
+            prompt=Prompt(content="question", role="user"),
+            provider_settings=cast(
+                "ProviderRequestSettings",
+                {"provider": "llama.cpp"},
+            ),
+        )
+
+
+def test_provider_request_settings_is_immutable_and_identified() -> None:
+    """The portable extension boundary carries an explicit provider discriminator."""
+    settings = ProviderRequestSettings("test-provider")
+    assert settings.provider == "test-provider"
+    with pytest.raises(FrozenInstanceError):
+        settings.provider = "other"  # type: ignore[misc]
+
+
+@pytest.mark.parametrize("provider", ["", " ", " llama.cpp", "llama.cpp "])
+def test_provider_request_settings_rejects_blank_or_padded_discriminators(
+    provider: str,
+) -> None:
+    """A provider extension cannot obscure its adapter ownership."""
+    with pytest.raises(ValueError, match="provider"):
+        ProviderRequestSettings(provider)
+
+
+@pytest.mark.parametrize(
+    ("field", "value", "message"),
+    [
+        ("prompt", "not-a-prompt", "prompt"),
+        ("settings", "not-settings", "settings"),
+        ("conversation", "not-a-continuation", "conversation"),
+    ],
+)
+def test_model_request_rejects_nonsemantic_boundary_values(
+    field: str,
+    value: str,
+    message: str,
+) -> None:
+    """The request remains a typed value rather than a loose provider payload."""
+    arguments: dict[str, object] = {"prompt": Prompt(content="question", role="user")}
+    arguments[field] = value
+    with pytest.raises(TypeError, match=message):
+        ModelRequest(**arguments)  # type: ignore[arg-type]
 
 
 def test_prompt_is_an_immutable_model_input_without_conversation_identity() -> None:

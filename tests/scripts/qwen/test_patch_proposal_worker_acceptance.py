@@ -14,8 +14,9 @@ import pytest
 
 from devtools.agents.conversation import InteractionSource
 from devtools.models.interaction import (
-    ConversationRef,
+    ModelRequest,
     ModelResponse,
+    ModelSettings,
     ModelTermination,
     ModelUsage,
     Prompt,
@@ -76,17 +77,13 @@ class _ScriptedInteraction:
 
     async def send(
         self,
-        prompt: Prompt,
-        *,
-        conversation: ConversationRef | None = None,
-        maximum_output_tokens: int | None = None,
-        thinking_enabled: bool | None = None,
+        request: ModelRequest,
     ) -> ModelResponse:
         """Return one exact response without contacting a provider."""
-        assert conversation is None
-        self.calls.append(prompt)
-        self.requested_output_tokens.append(maximum_output_tokens)
-        self.requested_thinking.append(thinking_enabled)
+        assert request.conversation is None
+        self.calls.append(request.prompt)
+        self.requested_output_tokens.append(request.settings.maximum_output_tokens)
+        self.requested_thinking.append(request.settings.thinking_enabled)
         reasoning_content = (
             self.reasoning_contents.pop(0)
             if self.reasoning_contents is not None
@@ -363,8 +360,10 @@ def test_runner_retains_and_forwards_its_experiment_local_output_bound(
             task=acceptance._live_task(),
             repository_root=create_patch_proposal_fixture(tmp_path),
             interaction=interaction,
-            maximum_output_tokens=_MAXIMUM_OUTPUT_TOKENS,
-            thinking_enabled=False,
+            settings=ModelSettings(
+                maximum_output_tokens=_MAXIMUM_OUTPUT_TOKENS,
+                thinking_enabled=False,
+            ),
         ),
     )
     outcome = acceptance.B0009LiveOutcome(

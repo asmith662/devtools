@@ -27,6 +27,7 @@ from devtools.agents.conversation import (
 )
 from devtools.core.time import Duration, Stopwatch
 from devtools.execution import Runtime
+from devtools.models.interaction import ModelSettings
 from devtools.models.interaction.providers import (
     LlamaCppInteraction,
     LlamaCppInteractionError,
@@ -150,8 +151,7 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
     fixture: _PatchProposalFixture = _BASELINE_FIXTURE,
     fixture_id: str | None = None,
     maximum_actions: int = _MAXIMUM_ACTIONS,
-    maximum_output_tokens: int | None = None,
-    thinking_enabled: bool | None = None,
+    settings: ModelSettings | None = None,
 ) -> B0009LiveReport:
     """Run the committed experiment once while retaining script-local diagnostics."""
     conversation = Conversation.new()
@@ -162,6 +162,7 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
     model_reasoning_contents: list[str | None] = []
     model_terminations: list[ModelTermination | None] = []
     model_usages: list[ModelUsage | None] = []
+    request_settings = settings or ModelSettings()
     report_fixture_id = fixture_id or _fixture_id(fixture)
     original_list = ListRepositoryDirectoryTool.execute
     original_read = ReadRepositoryFileTool.execute
@@ -191,8 +192,7 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
             repository_root=repository_root,
             fixture=fixture,
             maximum_actions=maximum_actions,
-            maximum_output_tokens=maximum_output_tokens,
-            thinking_enabled=thinking_enabled,
+            settings=request_settings,
             on_cycle_completed=cycles.append,
             on_model_response=recorded_model_response,
             on_grounding_correction=grounding_corrections.append,
@@ -213,8 +213,8 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
             fixture,
             report_fixture_id,
             maximum_actions,
-            maximum_output_tokens,
-            thinking_enabled,
+            request_settings.maximum_output_tokens,
+            request_settings.thinking_enabled,
             _selection_measurements(fixture, tuple(cycles)),
             None,
             _failure_category(error),
@@ -238,8 +238,8 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
         fixture,
         report_fixture_id,
         maximum_actions,
-        maximum_output_tokens,
-        thinking_enabled,
+        request_settings.maximum_output_tokens,
+        request_settings.thinking_enabled,
         _selection_measurements(fixture, tuple(cycles)),
         result,
         None,
@@ -337,8 +337,10 @@ async def run(arguments: argparse.Namespace) -> B0009LiveOutcome:
                 fixture=fixture,
                 fixture_id=arguments.fixture,
                 maximum_actions=maximum_actions,
-                maximum_output_tokens=arguments.maximum_output_tokens,
-                thinking_enabled=_thinking_value(arguments.thinking),
+                settings=ModelSettings(
+                    maximum_output_tokens=arguments.maximum_output_tokens,
+                    thinking_enabled=_thinking_value(arguments.thinking),
+                ),
             )
             try:
                 status = await _persistent_status()

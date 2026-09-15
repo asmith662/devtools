@@ -29,6 +29,7 @@ if TYPE_CHECKING:
     from devtools.models.interaction import (
         ModelInteraction,
         ModelResponse,
+        ModelSettings,
         ModelTermination,
         ModelUsage,
     )
@@ -318,8 +319,7 @@ class QwenPatchProposalWorker:
         interaction: ModelInteraction,
         repository_root: ResolvedPath,
         maximum_actions: int = _DEFAULT_MAXIMUM_ACTIONS,
-        maximum_output_tokens: int | None = None,
-        thinking_enabled: bool | None = None,
+        settings: ModelSettings | None = None,
         fixture: _PatchProposalFixture = _BASELINE_FIXTURE,
         on_cycle_completed: Callable[[QwenReadOnlyCycle], None] | None = None,
         on_model_response: Callable[[ModelResponse], None] | None = None,
@@ -357,8 +357,7 @@ class QwenPatchProposalWorker:
             interaction=interaction,
             repository_root=repository_root,
             maximum_actions=maximum_actions,
-            maximum_output_tokens=maximum_output_tokens,
-            thinking_enabled=thinking_enabled,
+            settings=settings,
             on_cycle_completed=on_cycle_completed,
             on_model_response=record_model_response,
             on_final_response=on_final_response,
