@@ -19,3 +19,9 @@ content still fails through the Filesystem text-decoding boundary.
 
 ToolRunner's scope is one Tool execution, not generic execution lifecycle,
 orchestration, observability, governance, or persistence.
+
+`ToolDescriptor` is an explicit disclosure value. The Qwen composition seam
+`experiments.qwen.model_tool_composition.normalize_tool_descriptor` crosses
+from this tools-owned representation into the models-owned
+`ModelToolDefinition`; disclosure does not execute, validate, authorize, or
+implicitly expose a Tool.

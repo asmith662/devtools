@@ -18,6 +18,8 @@ from devtools.models.interaction import (
     ModelResponse,
     ModelSettings,
     ModelTermination,
+    ModelToolCall,
+    ModelToolDefinition,
     ModelUsage,
     Prompt,
 )
@@ -31,6 +33,7 @@ from devtools.observability.evidence import (
     ModelInteractionCapturePolicy,
     ModelInteractionEvidence,
     ModelInteractionInspector,
+    model_interaction,
 )
 
 
@@ -112,6 +115,189 @@ def test_capture_enabled_preserves_structural_and_approved_payload_facts() -> No
     assert evidence.provider_exchange.response_id.value == "chatcmpl-1"
     assert evidence.serving_profile == _profile()
     assert evidence.duration.total_seconds == 1
+
+
+def test_evidence_captures_disclosed_tools_and_returned_calls_without_tools() -> None:
+    """Phase 3 facts are snapshots, not executable Tool references or authority."""
+    observation = _observation()
+    definition = ModelToolDefinition(
+        "read_repository_file",
+        "Read one file.",
+        '{"type":"object","properties":{"path":{"type":"string"}}}',
+    )
+    call = ModelToolCall("read_repository_file", '{"path":"src/labels.py"}')
+    observation = ModelInteractionObservation(
+        interaction_id=observation.interaction_id,
+        provider=observation.provider,
+        source=observation.source,
+        request=ModelRequest(
+            prompt=observation.request.prompt,
+            settings=observation.request.settings,
+            tools=(definition,),
+        ),
+        response=ModelResponse(
+            content=observation.response.content,
+            source=observation.source,
+            tool_calls=(call,),
+        ),
+        started_at=observation.started_at,
+        completed_at=observation.completed_at,
+    )
+    evidence = ModelInteractionEvidence.from_observation(
+        observation,
+        policy=ModelInteractionCapturePolicy(
+            tool_schemas=CaptureAction.CAPTURE,
+            tool_call_arguments=CaptureAction.REDACT,
+        ),
+        serving_profile=None,
+    )
+    assert evidence.request.tools[0].name == "read_repository_file"
+    assert evidence.request.tools[0].input_schema.value is not None
+    assert evidence.response.tool_calls[0].arguments.value == "[REDACTED]"
+    assert evidence.capture_manifest.tool_call_arguments is CaptureState.REDACTED
+
+
+@pytest.mark.parametrize(
+    ("values", "expected"),
+    [
+        (
+            (CapturedText(CaptureState.CAPTURED, "x"),) * 2,
+            CaptureState.CAPTURED,
+        ),
+        (
+            (CapturedText(CaptureState.OMITTED, None),) * 2,
+            CaptureState.OMITTED,
+        ),
+        (
+            (CapturedText(CaptureState.REDACTED, "[REDACTED]"),) * 2,
+            CaptureState.REDACTED,
+        ),
+        (
+            (CapturedText(CaptureState.UNAVAILABLE, None),) * 2,
+            CaptureState.UNAVAILABLE,
+        ),
+        (
+            (
+                CapturedText(CaptureState.CAPTURED, "x"),
+                CapturedText(CaptureState.OMITTED, None),
+            ),
+            CaptureState.PARTIAL,
+        ),
+        (
+            (
+                CapturedText(CaptureState.CAPTURED, "x"),
+                CapturedText(CaptureState.REDACTED, "[REDACTED]"),
+            ),
+            CaptureState.PARTIAL,
+        ),
+        (
+            (
+                CapturedText(CaptureState.OMITTED, None),
+                CapturedText(CaptureState.REDACTED, "[REDACTED]"),
+            ),
+            CaptureState.PARTIAL,
+        ),
+        (
+            (
+                CapturedText(CaptureState.CAPTURED, "x"),
+                CapturedText(CaptureState.UNAVAILABLE, None),
+            ),
+            CaptureState.PARTIAL,
+        ),
+    ],
+)
+def test_tool_call_collection_manifest_reports_each_retention_combination(
+    values: tuple[CapturedText, ...],
+    expected: CaptureState,
+) -> None:
+    """Collection aggregates never misstate partial capture as whole omission."""
+    assert model_interaction._aggregate_capture_state(values) is expected  # noqa: SLF001
+
+
+def test_retained_tool_call_evidence_is_independent_of_mutable_provider_json(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Scenario W snapshots native Tool-call JSON through provider and Evidence."""
+    provider_response: dict[str, object] = {
+        "id": "chatcmpl-tools",
+        "model": "qwen-tools",
+        "choices": [
+            {
+                "finish_reason": "tool_calls",
+                "message": {
+                    "role": "assistant",
+                    "content": "",
+                    "tool_calls": [
+                        {
+                            "id": "call-original",
+                            "type": "function",
+                            "function": {
+                                "name": "read_original",
+                                "arguments": '{"path":"original.py"}',
+                            },
+                        },
+                    ],
+                },
+            },
+        ],
+    }
+
+    async def post_chat_completion(
+        _endpoint: object,
+        _payload: dict[str, object],
+    ) -> dict[str, object]:
+        return provider_response
+
+    monkeypatch.setattr(llama_cpp, "_post_chat_completion", post_chat_completion)
+    inspector = ModelInteractionInspector(
+        policy=ModelInteractionCapturePolicy(
+            tool_call_arguments=CaptureAction.CAPTURE,
+        ),
+    )
+    interaction = LlamaCppInteraction(
+        endpoint="http://127.0.0.1:8080",
+        model="qwen-tools",
+        source=InteractionSource("qwen"),
+        observer=inspector,
+    )
+    asyncio.run(
+        interaction.send(
+            ModelRequest(
+                prompt=Prompt("Use the disclosed Tool.", "user"),
+                provider_settings=LlamaCppRequestSettings(),
+            ),
+        ),
+    )
+
+    evidence = inspector.get_evidence(inspector.evidence_ids()[0])
+    assert evidence is not None
+    retained_call = evidence.response.tool_calls[0]
+    assert retained_call.name == "read_original"
+    assert retained_call.provider_call_id == "call-original"
+    assert retained_call.arguments.value == '{"path":"original.py"}'
+    assert evidence.capture_manifest.tool_call_arguments is CaptureState.CAPTURED
+
+    choices = provider_response["choices"]
+    assert isinstance(choices, list)
+    message = choices[0]["message"]
+    assert isinstance(message, dict)
+    calls = message["tool_calls"]
+    assert isinstance(calls, list)
+    call = calls[0]
+    assert isinstance(call, dict)
+    function = call["function"]
+    assert isinstance(function, dict)
+    function["name"] = "read_mutated"
+    function["arguments"] = '{"path":"mutated.py"}'
+    call["id"] = "call-mutated"
+
+    assert function["name"] == "read_mutated"
+    assert function["arguments"] == '{"path":"mutated.py"}'
+    assert call["id"] == "call-mutated"
+    assert retained_call.name == "read_original"
+    assert retained_call.provider_call_id == "call-original"
+    assert retained_call.arguments.value == '{"path":"original.py"}'
+    assert evidence.capture_manifest.tool_call_arguments is CaptureState.CAPTURED
 
 
 def test_omission_unavailability_and_redaction_are_distinct_and_nonleaking() -> None:

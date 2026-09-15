@@ -26,8 +26,17 @@ Payload manifests distinguish captured, omitted, redacted, and unavailable;
 credentials, transport headers, and equivalent sensitive transport state have
 no generic capture path.
 
+For collections of Tool schemas or arguments, a `partial` manifest state means
+the occurrences have differing retention states. It never claims that a
+collection was wholly captured, omitted, redacted, or unavailable.
+
 Structural request settings, normalized usage and termination, serving-profile
 provenance, and bounded provider exchange facts remain inspectable. Prompt,
 visible content, reasoning, and selected provider identity strings are retained
 only under explicit capture policy. This package does not own Trace, Telemetry,
 persistence, request policy, or model execution.
+
+When present, disclosed normalized Tool names/descriptions are structural
+Evidence. Tool schemas and returned untrusted call arguments are capture
+controlled. Evidence never retains executable Tool objects, ToolRunner state,
+authorization, or execution outcomes.

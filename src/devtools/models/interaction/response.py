@@ -5,6 +5,7 @@ from dataclasses import dataclass
 
 from devtools.models.interaction.models import ConversationRef, InteractionSource
 from devtools.models.interaction.termination import ModelTermination
+from devtools.models.interaction.tools import ModelToolCall
 from devtools.models.interaction.usage import ModelUsage
 
 
@@ -18,9 +19,15 @@ class ModelResponse:
     usage: ModelUsage | None = None
     termination: ModelTermination | None = None
     reasoning_content: str | None = None
+    tool_calls: tuple[ModelToolCall, ...] = ()
 
     def __post_init__(self) -> None:
         """Ensure returned continuation belongs to this response source."""
         if self.conversation is not None and self.conversation.source != self.source:
             msg = "Conversation reference source must match the response source."
             raise ValueError(msg)
+        if not isinstance(self.tool_calls, tuple) or not all(
+            isinstance(call, ModelToolCall) for call in self.tool_calls
+        ):
+            msg = "Model response Tool calls must be a tuple of ModelToolCall values."
+            raise TypeError(msg)

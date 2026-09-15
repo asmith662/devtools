@@ -17,6 +17,8 @@ from devtools.models.interaction import (
     ModelRequest,
     ModelResponse,
     ModelTermination,
+    ModelToolCall,
+    ModelToolDefinition,
     ModelUsage,
 )
 from devtools.models.interaction.providers.llama_cpp_errors import (
@@ -103,6 +105,10 @@ class LlamaCppInteraction:
             payload["chat_template_kwargs"] = {
                 "enable_thinking": request.settings.thinking_enabled,
             }
+        if request.tools:
+            payload["tools"] = [
+                _provider_tool_definition(tool) for tool in request.tools
+            ]
         response = await _post_chat_completion(self._endpoint, payload)
         content = _final_assistant_content(response)
         model_response = ModelResponse(
@@ -111,6 +117,7 @@ class LlamaCppInteraction:
             source=self.source,
             termination=_model_termination(response),
             usage=_model_usage(response),
+            tool_calls=_model_tool_calls(response),
         )
         observer = self._observer
         if observer is not None:
@@ -339,6 +346,80 @@ def _optional_provider_text(response: dict[str, object], field: str) -> str | No
     """Read optional provider identity text without retaining raw response data."""
     value = response.get(field)
     return value if isinstance(value, str) else None
+
+
+def _provider_tool_definition(tool: ModelToolDefinition) -> dict[str, object]:
+    """Translate one normalized Tool definition at the llama.cpp boundary."""
+    parameters = json.loads(tool.input_schema_json)
+    return {
+        "type": "function",
+        "function": {
+            "name": tool.name,
+            "description": tool.description,
+            "parameters": parameters,
+        },
+    }
+
+
+def _model_tool_calls(response: dict[str, object]) -> tuple[ModelToolCall, ...]:
+    """Map pinned native function calls without admitting or executing them."""
+    choice = _first_choice(response)
+    message = choice.get("message")
+    if not isinstance(message, dict):
+        msg = "llama.cpp successful response choice must contain a message object."
+        raise LlamaCppResponseError(msg)
+    raw_calls = message.get("tool_calls")
+    if raw_calls is None:
+        return ()
+    if not isinstance(raw_calls, list):
+        msg = "llama.cpp successful response tool_calls must be a list."
+        raise LlamaCppResponseError(msg)
+    return tuple(_model_tool_call(raw_call) for raw_call in raw_calls)
+
+
+def _model_tool_call(raw_call: object) -> ModelToolCall:
+    """Map one pinned llama.cpp native function-call object honestly."""
+    if not isinstance(raw_call, dict):
+        msg = "llama.cpp successful response Tool call must be an object."
+        raise LlamaCppResponseError(msg)
+    call_type = raw_call.get("type")
+    if call_type != "function":
+        msg = "llama.cpp successful response Tool call type must be function."
+        raise LlamaCppResponseError(msg)
+    function = raw_call.get("function")
+    if not isinstance(function, dict):
+        msg = "llama.cpp successful response Tool call must contain a function object."
+        raise LlamaCppResponseError(msg)
+    name = function.get("name")
+    arguments = function.get("arguments")
+    if not isinstance(name, str) or not isinstance(arguments, str):
+        msg = "llama.cpp successful response Tool call name and arguments must be text."
+        raise LlamaCppResponseError(msg)
+    call_id = raw_call.get("id")
+    if call_id is not None and not isinstance(call_id, str):
+        msg = "llama.cpp successful response Tool call ID must be text."
+        raise LlamaCppResponseError(msg)
+    try:
+        return ModelToolCall(
+            name=name,
+            arguments_json=arguments,
+            provider_call_id=call_id,
+        )
+    except (TypeError, ValueError) as error:
+        raise LlamaCppResponseError(str(error)) from error
+
+
+def _first_choice(response: dict[str, object]) -> dict[str, object]:
+    """Return the validated selected provider choice shared by response fields."""
+    choices = response.get("choices")
+    if not isinstance(choices, list) or not choices:
+        msg = "llama.cpp successful response must contain a nonempty choices list."
+        raise LlamaCppResponseError(msg)
+    choice = choices[0]
+    if not isinstance(choice, dict):
+        msg = "llama.cpp successful response choice must be an object."
+        raise LlamaCppResponseError(msg)
+    return choice
 
 
 def _final_assistant_content(response: dict[str, object]) -> str:

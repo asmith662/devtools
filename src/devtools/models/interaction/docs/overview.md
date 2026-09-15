@@ -50,8 +50,15 @@ are implemented. A provider may emit a completed `ModelInteractionObservation`
 to an optional `ModelInteractionObserver`; that transient seam does not change
 `send()` or `ModelResponse`, and it does not import observability.
 Observability may use it to construct immutable Evidence, while an interaction
-remains usable without an observer. Model-native Tool calls, structured output,
-and capabilities remain unimplemented.
+remains usable without an observer.
+
+`ModelRequest.tools` contains an ordered immutable tuple of normalized
+`ModelToolDefinition` values. `ModelResponse.tool_calls` contains normalized
+`ModelToolCall` requests returned by a provider. Neither references executable
+Tools, ToolRunner, authorization, or conversation history. A call is descriptive
+model output, not execution. The composition seam that converts a tools-owned
+`ToolDescriptor` into this normalized model value is outside both packages.
+Structured output and capabilities remain unimplemented.
 
 The configurable llama.cpp implementation is under `providers/`; it communicates
 with an already-running model endpoint. Endpoint lifecycle is separately owned

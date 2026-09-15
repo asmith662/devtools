@@ -19,6 +19,7 @@ from devtools.models.interaction.prompt import Prompt
 from devtools.models.interaction.protocols import ModelInteraction
 from devtools.models.interaction.response import ModelResponse
 from devtools.models.interaction.termination import ModelTermination
+from devtools.models.interaction.tools import ModelToolCall, ModelToolDefinition
 from devtools.models.interaction.usage import ModelUsage
 
 __all__ = [
@@ -32,6 +33,8 @@ __all__ = [
     "ModelResponse",
     "ModelSettings",
     "ModelTermination",
+    "ModelToolCall",
+    "ModelToolDefinition",
     "ModelUsage",
     "Prompt",
     "ProviderRequestSettings",

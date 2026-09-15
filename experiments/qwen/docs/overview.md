@@ -97,3 +97,6 @@ uses ADR-0001 Phase 1 request values. Phase 2 now supplies optional reusable
 interaction Evidence and serving provenance through external composition; the
 acceptance report remains experiment-specific and is not rewritten as reusable
 Evidence. Native Tool calls and model-side Tool execution remain unimplemented.
+The reusable Phase 3 native Tool boundary remains separate from this experiment:
+its textual list/read proposal grammar is retained as historical control
+evidence and is not automatically migrated or executed through ToolRunner.

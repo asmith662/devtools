@@ -6,6 +6,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from devtools.models.interaction.prompt import Prompt
+from devtools.models.interaction.tools import ModelToolDefinition
 
 
 def validate_maximum_output_tokens(value: int | None) -> None:
@@ -102,6 +103,7 @@ class ModelRequest:
     settings: ModelSettings = field(default_factory=ModelSettings)
     conversation: ConversationRef | None = None
     provider_settings: ProviderRequestSettings | None = None
+    tools: tuple[ModelToolDefinition, ...] = ()
 
     def __post_init__(self) -> None:
         """Reject values outside the narrow portable request contract."""
@@ -126,3 +128,11 @@ class ModelRequest:
                 "or None."
             )
             raise TypeError(msg)
+        if not isinstance(self.tools, tuple) or not all(
+            isinstance(tool, ModelToolDefinition) for tool in self.tools
+        ):
+            msg = "Model request tools must be a tuple of ModelToolDefinition values."
+            raise TypeError(msg)
+        if len({tool.name for tool in self.tools}) != len(self.tools):
+            msg = "Model request Tool definition names must be unique."
+            raise ValueError(msg)

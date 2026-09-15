@@ -57,6 +57,21 @@ unavailable. Runtime and models do not depend on observability, and raw
 transport payloads, Trace, Telemetry, persistence, and model-native Tool
 semantics remain deferred.
 
+For multiple disclosed schemas or returned Tool-call argument values, the
+Phase 3 capture manifest uses `PARTIAL` when occurrence retention states differ;
+it does not mislabel a collection containing captured payload as wholly omitted
+or redacted.
+
+## Implemented Phase 3: model-native Tool boundary
+
+Phase 3 now provides explicit model-agnostic `ToolDescriptor` and
+`ToolInvocation` seams, normalized immutable `ModelToolDefinition` and
+`ModelToolCall` values, llama.cpp native Tool serialization/parsing, and
+capture-controlled Tool schema/argument Evidence. Model Tool calls are only
+descriptive requests: no Tool lookup, validation, authorization, Action, or
+execution occurs. B-0009's textual proposal grammar remains experiment-local
+historical/control evidence.
+
 ## Established subset: provider-reported usage
 
 The B-0009 coding-worker acceptance consumer established the smallest reusable

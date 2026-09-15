@@ -17,6 +17,7 @@ from devtools.models.interaction import (
     ModelRequest,
     ModelSettings,
     ModelTermination,
+    ModelToolDefinition,
     ModelUsage,
     Prompt,
     ProviderRequestSettings,
@@ -1148,3 +1149,279 @@ def test_private_http_reader_rejects_incomplete_chunk_line() -> None:
     """Premature EOF in chunk framing cannot become a provider body."""
     with pytest.raises(LlamaCppResponseError, match="ended during HTTP chunk trailer"):
         asyncio.run(_read_incomplete_http_line())
+
+
+def test_interaction_serializes_and_parses_native_tools_without_execution(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Native Tool protocol remains provider translation, never Tool execution."""
+    writer = _Writer()
+    definition = ModelToolDefinition(
+        "read_repository_file",
+        "Read one repository file.",
+        '{"type":"object","properties":{"path":{"type":"string"}}}',
+    )
+
+    async def connection(
+        _host: str,
+        _port: int,
+    ) -> tuple[asyncio.StreamReader, _Writer]:
+        return (
+            _reader(
+                _response(
+                    200,
+                    {
+                        "choices": [
+                            {
+                                "finish_reason": "tool_calls",
+                                "message": {
+                                    "role": "assistant",
+                                    "content": "",
+                                    "tool_calls": [
+                                        {
+                                            "id": "call-1",
+                                            "type": "function",
+                                            "function": {
+                                                "name": "read_repository_file",
+                                                "arguments": '{"path":"src/labels.py"}',
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                    },
+                ),
+            ),
+            writer,
+        )
+
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+    base = _message(ConversationMessageRole.USER)
+    response = asyncio.run(
+        _interaction().send(
+            ModelRequest(
+                prompt=base.prompt,
+                settings=base.settings,
+                tools=(definition,),
+            ),
+        ),
+    )
+
+    _, _, body = writer.request.partition(b"\r\n\r\n")
+    assert json.loads(body)["tools"][0]["function"]["name"] == "read_repository_file"
+    assert response.termination is ModelTermination.TOOL_CALL
+    assert response.tool_calls[0].provider_call_id == "call-1"
+    assert response.tool_calls[0].arguments_json == '{"path":"src/labels.py"}'
+
+
+def test_interaction_serializes_multiple_native_tools_in_request_order(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Each disclosed Tool retains its complete position and semantics."""
+    writer = _Writer()
+    first = ModelToolDefinition(
+        "read_repository_file",
+        "Read one repository file.",
+        '{"type":"object","properties":{"path":{"type":"string"}}}',
+    )
+    second = ModelToolDefinition(
+        "list_repository_directory",
+        "List one repository directory.",
+        '{"type":"object","properties":{"directory":{"type":"string"}}}',
+    )
+
+    async def connection(
+        _host: str,
+        _port: int,
+    ) -> tuple[asyncio.StreamReader, _Writer]:
+        return (
+            _reader(
+                _response(
+                    200,
+                    {
+                        "choices": [
+                            {
+                                "finish_reason": "stop",
+                                "message": {"role": "assistant", "content": "OK"},
+                            },
+                        ],
+                    },
+                ),
+            ),
+            writer,
+        )
+
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+    base = _message(ConversationMessageRole.USER)
+    asyncio.run(
+        _interaction().send(
+            ModelRequest(
+                prompt=base.prompt,
+                settings=base.settings,
+                tools=(first, second),
+            ),
+        ),
+    )
+
+    _, _, body = writer.request.partition(b"\r\n\r\n")
+    assert json.loads(body)["tools"] == [
+        {
+            "type": "function",
+            "function": {
+                "name": "read_repository_file",
+                "description": "Read one repository file.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {"path": {"type": "string"}},
+                },
+            },
+        },
+        {
+            "type": "function",
+            "function": {
+                "name": "list_repository_directory",
+                "description": "List one repository directory.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {"directory": {"type": "string"}},
+                },
+            },
+        },
+    ]
+
+
+def test_interaction_parses_multiple_native_tool_calls_in_provider_order(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Each provider-returned Tool call retains its complete position and text."""
+    writer = _Writer()
+
+    async def connection(
+        _host: str,
+        _port: int,
+    ) -> tuple[asyncio.StreamReader, _Writer]:
+        return (
+            _reader(
+                _response(
+                    200,
+                    {
+                        "choices": [
+                            {
+                                "finish_reason": "tool_calls",
+                                "message": {
+                                    "role": "assistant",
+                                    "content": "",
+                                    "tool_calls": [
+                                        {
+                                            "id": "call-read",
+                                            "type": "function",
+                                            "function": {
+                                                "name": "read_repository_file",
+                                                "arguments": '{"path":"src/labels.py"}',
+                                            },
+                                        },
+                                        {
+                                            "id": "call-list",
+                                            "type": "function",
+                                            "function": {
+                                                "name": "list_repository_directory",
+                                                "arguments": '{"path":"tests"}',
+                                            },
+                                        },
+                                    ],
+                                },
+                            },
+                        ],
+                    },
+                ),
+            ),
+            writer,
+        )
+
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+    response = asyncio.run(_interaction().send(_message(ConversationMessageRole.USER)))
+
+    expected_call_count = 2
+    assert len(response.tool_calls) == expected_call_count
+    assert response.tool_calls[0].name == "read_repository_file"
+    assert response.tool_calls[0].provider_call_id == "call-read"
+    assert response.tool_calls[0].arguments_json == '{"path":"src/labels.py"}'
+    assert response.tool_calls[1].name == "list_repository_directory"
+    assert response.tool_calls[1].provider_call_id == "call-list"
+    assert response.tool_calls[1].arguments_json == '{"path":"tests"}'
+
+
+@pytest.mark.parametrize(
+    "response",
+    [
+        {"choices": [{}]},
+        {"choices": [{"message": {"tool_calls": {}}}]},
+        {"choices": [{"message": {"tool_calls": ["bad"]}}]},
+        {"choices": [{"message": {"tool_calls": [{"type": "other"}]}}]},
+        {
+            "choices": [
+                {"message": {"tool_calls": [{"type": "function", "function": []}]}},
+            ],
+        },
+        {
+            "choices": [
+                {
+                    "message": {
+                        "tool_calls": [{"type": "function", "function": {}}],
+                    },
+                },
+            ],
+        },
+        {
+            "choices": [
+                {
+                    "message": {
+                        "tool_calls": [
+                            {
+                                "id": 1,
+                                "type": "function",
+                                "function": {"name": "x", "arguments": "{}"},
+                            },
+                        ],
+                    },
+                },
+            ],
+        },
+        {"choices": []},
+        {"choices": ["bad"]},
+    ],
+)
+def test_native_tool_call_parser_rejects_malformed_provider_shapes(
+    response: dict[str, object],
+) -> None:
+    """Provider call parsing fails before any Tool materialization or execution."""
+    with pytest.raises(LlamaCppResponseError):
+        llama_cpp._model_tool_calls(response)  # noqa: SLF001
+
+
+@pytest.mark.parametrize(
+    "arguments",
+    ["bad", "[]", "null", "1", '"string"', "true"],
+)
+def test_native_tool_call_parser_rejects_non_object_arguments(
+    arguments: str,
+) -> None:
+    """Provider argument text must be valid JSON representing one object."""
+    with pytest.raises(LlamaCppResponseError):
+        llama_cpp._model_tool_calls(  # noqa: SLF001
+            {
+                "choices": [
+                    {
+                        "message": {
+                            "tool_calls": [
+                                {
+                                    "type": "function",
+                                    "function": {"name": "x", "arguments": arguments},
+                                },
+                            ],
+                        },
+                    },
+                ],
+            },
+        )

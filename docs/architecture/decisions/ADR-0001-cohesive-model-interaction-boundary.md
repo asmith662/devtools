@@ -2,8 +2,8 @@
 
 - Status: Accepted
 - Date: 2026-09-15
-- Scope: reusable model-interaction boundary. Phases 1 and 2 are implemented;
-  Phase 3 remains approved architecture rather than a current API.
+- Scope: reusable model-interaction boundary. Phases 1, 2, and 3 are
+  implemented and deterministically validated.
 
 ## Context
 
@@ -92,7 +92,10 @@ variables, and equivalent sensitive transport state are never generically
 captured. `ProviderExchange` exists only inside capture-controlled interaction
 Evidence; it holds typed selected provider request/response facts, response
 identity/model identity, and provider diagnostics. It is not a metadata map or
-an unconditional raw transport dump.
+an unconditional raw transport dump. When a payload class has multiple
+occurrences with different retention states, its collection manifest uses
+`PARTIAL` rather than falsely claiming whole capture, omission, redaction, or
+unavailability.
 
 ### Serving provenance
 
@@ -203,6 +206,15 @@ Introduce model-agnostic Tool descriptor/invocation surfaces,
 parsing, with a strict no-execution invariant. Retain B-0009's textual grammar
 as historical/control evidence initially. Prove deterministically before one
 separately authorized bounded native-Tool conformance run.
+
+This phase is implemented and deterministically validated. `ToolDescriptor`
+and `ToolInvocation` remain model-agnostic tools-side disclosure and candidate
+input materialization seams. `ModelToolDefinition` and `ModelToolCall` are
+immutable normalized invocation input/output. llama.cpp translates only those
+values at its provider boundary. The experiment composition seam
+`normalize_tool_descriptor` performs the explicit descriptor-to-definition
+ownership and representation transition. No returned call is looked up, validated,
+authorized, or executed; `Tool.validate()` remains execution admission.
 
 ## Consequences
 

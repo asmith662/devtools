@@ -16,6 +16,8 @@ if TYPE_CHECKING:
         ModelInteractionObservation,
         ModelSettings,
         ModelTermination,
+        ModelToolCall,
+        ModelToolDefinition,
         ModelUsage,
         ProviderRequestSettings,
     )
@@ -38,6 +40,7 @@ class CaptureState(StrEnum):
     OMITTED = "omitted"
     REDACTED = "redacted"
     UNAVAILABLE = "unavailable"
+    PARTIAL = "partial"
 
 
 @dataclass(frozen=True, slots=True)
@@ -49,6 +52,8 @@ class ModelInteractionCapturePolicy:
     reasoning_content: CaptureAction = CaptureAction.OMIT
     provider_response_id: CaptureAction = CaptureAction.OMIT
     provider_model: CaptureAction = CaptureAction.OMIT
+    tool_schemas: CaptureAction = CaptureAction.OMIT
+    tool_call_arguments: CaptureAction = CaptureAction.OMIT
 
 
 @dataclass(frozen=True, slots=True)
@@ -60,6 +65,8 @@ class ModelInteractionCaptureManifest:
     reasoning_content: CaptureState
     provider_response_id: CaptureState
     provider_model: CaptureState
+    tool_schemas: CaptureState
+    tool_call_arguments: CaptureState
 
 
 @dataclass(frozen=True, slots=True)
@@ -89,6 +96,7 @@ class CapturedModelRequest:
     settings: ModelSettings
     conversation_present: bool
     provider_settings_type: str | None
+    tools: tuple[CapturedModelToolDefinition, ...]
 
 
 @dataclass(frozen=True, slots=True)
@@ -101,6 +109,25 @@ class CapturedModelResponse:
     usage: ModelUsage | None
     termination: ModelTermination | None
     conversation_present: bool
+    tool_calls: tuple[CapturedModelToolCall, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class CapturedModelToolDefinition:
+    """Record one disclosed normalized Tool without executable capability."""
+
+    name: str
+    description: str
+    input_schema: CapturedText
+
+
+@dataclass(frozen=True, slots=True)
+class CapturedModelToolCall:
+    """Record one returned normalized Tool request without authority."""
+
+    name: str
+    provider_call_id: str | None
+    arguments: CapturedText
 
 
 @dataclass(frozen=True, slots=True)
@@ -147,12 +174,26 @@ class ModelInteractionEvidence:
             policy.provider_response_id,
         )
         provider_model = _capture(observation.provider_model, policy.provider_model)
+        tools = tuple(
+            _captured_tool_definition(tool, policy.tool_schemas)
+            for tool in observation.request.tools
+        )
+        tool_calls = tuple(
+            _captured_tool_call(call, policy.tool_call_arguments)
+            for call in observation.response.tool_calls
+        )
         manifest = ModelInteractionCaptureManifest(
             prompt=prompt.state,
             visible_content=visible.state,
             reasoning_content=reasoning.state,
             provider_response_id=response_id.state,
             provider_model=provider_model.state,
+            tool_schemas=_aggregate_capture_state(
+                tuple(tool.input_schema for tool in tools),
+            ),
+            tool_call_arguments=_aggregate_capture_state(
+                tuple(call.arguments for call in tool_calls),
+            ),
         )
         return cls(
             id=EvidenceId.new(),
@@ -171,6 +212,7 @@ class ModelInteractionEvidence:
                 provider_settings_type=_provider_settings_type(
                     observation.request.provider_settings,
                 ),
+                tools=tools,
             ),
             response=CapturedModelResponse(
                 source=observation.response.source,
@@ -179,6 +221,7 @@ class ModelInteractionEvidence:
                 usage=observation.response.usage,
                 termination=observation.response.termination,
                 conversation_present=observation.response.conversation is not None,
+                tool_calls=tool_calls,
             ),
             serving_profile=serving_profile,
             capture_manifest=manifest,
@@ -266,3 +309,37 @@ def _capture(value: str | None, action: CaptureAction) -> CapturedText:
 def _provider_settings_type(value: ProviderRequestSettings | None) -> str | None:
     """Retain extension presence structurally without serializing its values."""
     return type(value).__name__ if value is not None else None
+
+
+def _captured_tool_definition(
+    tool: ModelToolDefinition,
+    action: CaptureAction,
+) -> CapturedModelToolDefinition:
+    """Capture a disclosed schema without retaining an executable Tool."""
+    return CapturedModelToolDefinition(
+        name=tool.name,
+        description=tool.description,
+        input_schema=_capture(tool.input_schema_json, action),
+    )
+
+
+def _captured_tool_call(
+    call: ModelToolCall,
+    action: CaptureAction,
+) -> CapturedModelToolCall:
+    """Capture untrusted returned arguments without materializing input."""
+    return CapturedModelToolCall(
+        name=call.name,
+        provider_call_id=call.provider_call_id,
+        arguments=_capture(call.arguments_json, action),
+    )
+
+
+def _aggregate_capture_state(values: tuple[CapturedText, ...]) -> CaptureState:
+    """Summarize collection retention without hiding partially captured values."""
+    if not values:
+        return CaptureState.UNAVAILABLE
+    states = {value.state for value in values}
+    if len(states) == 1:
+        return values[0].state
+    return CaptureState.PARTIAL
