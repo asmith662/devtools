@@ -14,6 +14,12 @@ readiness, and safe owned-container lifecycle.
 It does not define model invocation, chat, Agents, Runtime behavior, tools,
 benchmarks, Evidence, or evaluation.
 
+`ServingProfileIdentity` is an immutable reproducibility snapshot that may be
+attached to model-interaction Evidence by observability composition. It is
+distinct from launch/lifecycle configuration: ports, container IDs, readiness,
+and uptime are operational facts, not serving identity. Per-request model
+settings remain owned by `models.interaction`.
+
 ## Current scope
 
 The experimental `llama_cpp` module is the second concrete provider. Slice 2A

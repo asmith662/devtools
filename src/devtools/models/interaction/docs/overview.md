@@ -45,9 +45,13 @@ it. `LlamaCppRequestSettings` currently has no extra field because the two
 established llama.cpp controls are portable settings. It reserves a typed
 provider-owned seam rather than an untyped options dictionary.
 
-This is Phase 1 of [ADR-0001](../../../../../docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md).
-Model interaction Evidence, serving provenance, model-native Tool calls,
-structured output, and capabilities remain unimplemented.
+Phases 1 and 2 of [ADR-0001](../../../../../docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
+are implemented. A provider may emit a completed `ModelInteractionObservation`
+to an optional `ModelInteractionObserver`; that transient seam does not change
+`send()` or `ModelResponse`, and it does not import observability.
+Observability may use it to construct immutable Evidence, while an interaction
+remains usable without an observer. Model-native Tool calls, structured output,
+and capabilities remain unimplemented.
 
 The configurable llama.cpp implementation is under `providers/`; it communicates
 with an already-running model endpoint. Endpoint lifecycle is separately owned

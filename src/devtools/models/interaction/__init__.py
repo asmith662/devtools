@@ -10,6 +10,11 @@ from devtools.models.interaction.models import (
     validate_maximum_output_tokens,
     validate_thinking_enabled,
 )
+from devtools.models.interaction.observation import (
+    ModelInteractionId,
+    ModelInteractionObservation,
+    ModelInteractionObserver,
+)
 from devtools.models.interaction.prompt import Prompt
 from devtools.models.interaction.protocols import ModelInteraction
 from devtools.models.interaction.response import ModelResponse
@@ -20,6 +25,9 @@ __all__ = [
     "ConversationRef",
     "InteractionSource",
     "ModelInteraction",
+    "ModelInteractionId",
+    "ModelInteractionObservation",
+    "ModelInteractionObserver",
     "ModelRequest",
     "ModelResponse",
     "ModelSettings",

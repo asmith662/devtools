@@ -5,4 +5,9 @@ This package owns provider launch and lifecycle only.  It does not define
 model invocation, ModelInteraction, or Runtime semantics.
 """
 
-__all__: list[str] = []
+from devtools.models.serving.identity import (
+    ServingProfileFingerprint,
+    ServingProfileIdentity,
+)
+
+__all__ = ["ServingProfileFingerprint", "ServingProfileIdentity"]

@@ -45,6 +45,18 @@ those immutable settings; llama.cpp maps them to `max_tokens` and
 provider options bag, Evidence, serving provenance, or model-native Tool
 behavior was introduced.
 
+## Implemented Phase 2: interaction Evidence and serving provenance
+
+Phase 2 now provides `ModelInteractionId`, an optional completed-interaction
+observation seam, capture-controlled immutable `ModelInteractionEvidence`, a
+typed capture policy and manifest, bounded provider exchange facts,
+process-local inspection, and `ServingProfileIdentity`. Structural request and
+response facts remain inspectable while prompts, visible text, reasoning, and
+selected provider identifiers are explicitly captured, omitted, redacted, or
+unavailable. Runtime and models do not depend on observability, and raw
+transport payloads, Trace, Telemetry, persistence, and model-native Tool
+semantics remain deferred.
+
 ## Established subset: provider-reported usage
 
 The B-0009 coding-worker acceptance consumer established the smallest reusable

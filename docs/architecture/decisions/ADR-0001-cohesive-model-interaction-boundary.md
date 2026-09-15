@@ -2,8 +2,8 @@
 
 - Status: Accepted
 - Date: 2026-09-15
-- Scope: reusable model-interaction boundary. Phase 1 is implemented; later
-  phases remain approved architecture rather than current APIs.
+- Scope: reusable model-interaction boundary. Phases 1 and 2 are implemented;
+  Phase 3 remains approved architecture rather than a current API.
 
 ## Context
 
@@ -187,6 +187,14 @@ Introduce `ModelInteractionId`, capture policy/manifest, `ProviderExchange`,
 B-0009 model-interaction diagnostics. Prove capture, omission, redaction, and
 provenance deterministically. A separately authorized tiny live diagnostic may
 follow.
+
+This phase is implemented and deterministically validated. It provides a
+portable completed-interaction observation seam, immutable interaction
+identity, explicit capture policy and manifest states, bounded
+`ProviderExchange`, `ModelInteractionEvidence`, process-local inspection, and
+`ServingProfileIdentity`. It does not retain raw transport payloads, implement
+Trace or Telemetry, or require Runtime or a model interaction to import
+observability.
 
 ### Phase 3 — Model-native Tool boundary
 

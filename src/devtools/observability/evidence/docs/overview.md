@@ -17,3 +17,17 @@ execution -> InteractionAttemptObserver -> observability/evidence
 
 Evidence is historical observation, not authorization, tracing, telemetry, or
 current authority.
+
+`ModelInteractionEvidence` is a separate Evidence form for one completed model
+invocation. `ModelInteractionInspector` is optional process-local observation:
+models and Runtime work normally when it is absent. The inspector owns capture
+policy, evidence construction, capture manifests, collection, and inspection.
+Payload manifests distinguish captured, omitted, redacted, and unavailable;
+credentials, transport headers, and equivalent sensitive transport state have
+no generic capture path.
+
+Structural request settings, normalized usage and termination, serving-profile
+provenance, and bounded provider exchange facts remain inspectable. Prompt,
+visible content, reasoning, and selected provider identity strings are retained
+only under explicit capture policy. This package does not own Trace, Telemetry,
+persistence, request policy, or model execution.

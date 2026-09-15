@@ -13,6 +13,7 @@ from devtools.agents.conversation import ConversationMessageRole
 from devtools.models.interaction import (
     ConversationRef,
     InteractionSource,
+    ModelInteractionObservation,
     ModelRequest,
     ModelSettings,
     ModelTermination,
@@ -66,6 +67,16 @@ class _Writer:
 
     async def wait_closed(self) -> None:
         """Model successful closure."""
+
+
+class _Observer:
+    """Collect one optional interaction observation without observability imports."""
+
+    def __init__(self) -> None:
+        self.observations: list[ModelInteractionObservation] = []
+
+    def interaction_completed(self, observation: ModelInteractionObservation) -> None:
+        self.observations.append(observation)
 
 
 def _response(status: int, body: object, *, content_length: bool = False) -> bytes:
@@ -157,6 +168,53 @@ def test_interaction_maps_existing_message_roles_to_non_streaming_llama_request(
     assert turn.usage is None
     assert turn.termination is ModelTermination.NORMAL_STOP
     assert writer.closed is True
+
+
+def test_interaction_emits_optional_bounded_observation_after_response(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The provider remains functional without importing an observability collector."""
+    writer = _Writer()
+    observer = _Observer()
+
+    async def connection(
+        _host: str,
+        _port: int,
+    ) -> tuple[asyncio.StreamReader, _Writer]:
+        return (
+            _reader(
+                _response(
+                    200,
+                    {
+                        "id": "chatcmpl-1",
+                        "model": "qwen-local",
+                        "choices": [
+                            {
+                                "finish_reason": "stop",
+                                "message": {"role": "assistant", "content": "OK"},
+                            },
+                        ],
+                    },
+                ),
+            ),
+            writer,
+        )
+
+    monkeypatch.setattr(asyncio, "open_connection", connection)
+    response = asyncio.run(
+        LlamaCppInteraction(
+            endpoint="http://127.0.0.1:8080",
+            model="qwen-local",
+            source=InteractionSource("qwen"),
+            observer=observer,
+        ).send(_message(ConversationMessageRole.USER)),
+    )
+
+    assert response.content == "OK"
+    assert len(observer.observations) == 1
+    observation = observer.observations[0]
+    assert observation.provider_response_id == "chatcmpl-1"
+    assert observation.provider_model == "qwen-local"
 
 
 def test_interaction_maps_requested_output_bound_to_pinned_llama_cpp_max_tokens(

@@ -93,5 +93,7 @@ enabled`, or `--thinking disabled`. The selected value is forwarded to every
 model turn through immutable `ModelSettings` and recorded in the schema `/4`
 report; no thinking mode is selected by default. The optional
 `--maximum-output-tokens` value follows the same experiment-local path. This
-uses ADR-0001 Phase 1 request values only; it does not add model interaction
-Evidence, serving provenance, native Tool calls, or model-side Tool execution.
+uses ADR-0001 Phase 1 request values. Phase 2 now supplies optional reusable
+interaction Evidence and serving provenance through external composition; the
+acceptance report remains experiment-specific and is not rewritten as reusable
+Evidence. Native Tool calls and model-side Tool execution remain unimplemented.

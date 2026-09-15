@@ -9,8 +9,11 @@ from contextlib import suppress
 from typing import TYPE_CHECKING
 from urllib.parse import urlsplit
 
+from devtools.core.time import Timestamp
 from devtools.models.interaction import (
     InteractionSource,
+    ModelInteractionId,
+    ModelInteractionObservation,
     ModelRequest,
     ModelResponse,
     ModelTermination,
@@ -28,6 +31,8 @@ from devtools.models.interaction.providers.llama_cpp_request_settings import (
 if TYPE_CHECKING:
     from urllib.parse import SplitResult
 
+    from devtools.models.interaction import ModelInteractionObserver
+
 
 _CHAT_COMPLETIONS_PATH = "/v1/chat/completions"
 _MAX_ERROR_DETAIL_BYTES = 1_024
@@ -42,7 +47,14 @@ _CHUNKED_TRANSFER_ENCODING = "chunked"
 class LlamaCppInteraction:
     """Adapt one non-streaming llama.cpp chat interaction to ModelInteraction."""
 
-    def __init__(self, *, endpoint: str, model: str, source: InteractionSource) -> None:
+    def __init__(
+        self,
+        *,
+        endpoint: str,
+        model: str,
+        source: InteractionSource,
+        observer: ModelInteractionObserver | None = None,
+    ) -> None:
         """Configure one endpoint, served model name, and output source."""
         self._endpoint = _parse_endpoint(endpoint)
         if not model.strip():
@@ -50,6 +62,7 @@ class LlamaCppInteraction:
             raise ValueError(msg)
         self._model = model
         self._source = source
+        self._observer = observer
 
     @property
     def source(self) -> InteractionSource:
@@ -61,6 +74,8 @@ class LlamaCppInteraction:
         request: ModelRequest,
     ) -> ModelResponse:
         """Send one Prompt through llama.cpp and return final assistant text."""
+        started_at = Timestamp.now()
+        interaction_id = ModelInteractionId.new()
         if request.conversation is not None:
             msg = "The stateless llama.cpp interaction does not support continuation."
             raise ValueError(msg)
@@ -90,13 +105,29 @@ class LlamaCppInteraction:
             }
         response = await _post_chat_completion(self._endpoint, payload)
         content = _final_assistant_content(response)
-        return ModelResponse(
+        model_response = ModelResponse(
             content=content,
             reasoning_content=_model_reasoning_content(response),
             source=self.source,
             termination=_model_termination(response),
             usage=_model_usage(response),
         )
+        observer = self._observer
+        if observer is not None:
+            observer.interaction_completed(
+                ModelInteractionObservation(
+                    interaction_id=interaction_id,
+                    provider="llama.cpp",
+                    source=self.source,
+                    request=request,
+                    response=model_response,
+                    started_at=started_at,
+                    completed_at=Timestamp.now(),
+                    provider_response_id=_optional_provider_text(response, "id"),
+                    provider_model=_optional_provider_text(response, "model"),
+                ),
+            )
+        return model_response
 
 
 def _parse_endpoint(endpoint: str) -> SplitResult:
@@ -302,6 +333,12 @@ def _error_detail(body: bytes) -> str:
             if isinstance(message, str):
                 return message
     return bounded.decode(errors="replace").strip() or "no provider detail"
+
+
+def _optional_provider_text(response: dict[str, object], field: str) -> str | None:
+    """Read optional provider identity text without retaining raw response data."""
+    value = response.get(field)
+    return value if isinstance(value, str) else None
 
 
 def _final_assistant_content(response: dict[str, object]) -> str:
