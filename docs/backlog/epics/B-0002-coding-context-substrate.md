@@ -22,6 +22,12 @@ relationships are distinct from derivation dependencies. Context remains
 purpose-relative selection and disclosure, not Conversation state, repository
 storage, Memory, or repository truth.
 
+[ADR-0003](../../architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md)
+now settles the next semantic layer: InformationNeed; bounded retrieval
+planning/applications; ContextCandidates; provenance-bearing RelevanceEvidence;
+and ranking distinct from final Context selection. It does not implement a
+retrieval system or Context compiler.
+
 This epic preserves the unimplemented pressure enabled by that decision:
 snapshot policy and acquisition, deterministic repository knowledge,
 relationship views, retrieval/relevance evidence, ranking distinct from final
@@ -33,7 +39,7 @@ or Context compilation.
 - hard_dependencies: none
 - pressure_dependencies: none
 - operational_dependencies: resources filesystem, core paths, core regex
-- related: ADR-0002; B-0008 (superseded historical investigation)
+- related: ADR-0002; ADR-0003; B-0008 (superseded historical investigation)
 - promotion_trigger: an independently useful, bounded semantic slice is ready
   for design without collapsing Repository intelligence, Context, Tool,
   Runtime, Agent, or orchestration ownership

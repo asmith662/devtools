@@ -11,6 +11,8 @@
   current behavior. [ADR-0001](architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
   defines the approved ModelInteraction redesign. [ADR-0002](architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md)
   defines accepted future repository-intelligence and coding-Context semantics.
+  [ADR-0003](architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md)
+  defines accepted future InformationNeed, retrieval-evidence, and ranking semantics.
 - [AGENTS.md](../AGENTS.md) defines repository-operating rules.
 - Package-local documentation defines implemented public APIs, behavior, and
   limitations.

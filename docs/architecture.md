@@ -112,6 +112,17 @@ ranking, Context compilation, progressive disclosure, storage, and evaluation
 remain unimplemented future responsibilities; Runtime remains narrow and model
 requests remain non-authoritative.
 
+## Accepted retrieval and ranking semantics
+
+[ADR-0003](architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md)
+accepts InformationNeed, bounded retrieval planning/applications,
+ContextCandidate, provenance-bearing RelevanceEvidence, and ranking semantics.
+It preserves retrieval as multi-strategy evidence discovery; ranking as evidence
+interpretation; and Context selection/compilation as a later, distinct concern.
+It also preserves concurrent dependency-aware retrieval, staged expansion,
+progressive disclosure, and future evaluation pressure without assigning them
+to Runtime, Tool execution, authorization, or an Agent loop.
+
 See [documentation_map.md](documentation_map.md) for current package
 documentation, [taxonomy.md](architecture/taxonomy.md) for definitions, and
 [ADR-0001](architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)

@@ -249,3 +249,9 @@ prerequisites for a future architectural domain.
   production API was implemented. It supersedes B-0008's earlier narrow
   repository-navigation investigation while B-0002 retains unimplemented
   architectural pressure.
+- Accepted ADR-0003 for the next semantic layer: immutable purpose-relative
+  InformationNeed; bounded, dependency-aware multi-strategy retrieval planning;
+  ContextCandidates; provenance-bearing RelevanceEvidence; and ranking distinct
+  from Context selection/compilation. It preserves progressive disclosure and
+  evaluation seams without implementing retrieval, ranking, Context compilation,
+  planning, concurrency, persistence, or an Agent/Runtime loop.

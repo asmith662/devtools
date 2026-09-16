@@ -41,8 +41,10 @@ and Evidence ownership terminology, remain in the
 
 - [ADR-0002](architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md)
   establishes semantic architecture for Repository identity, snapshots,
-  Derivations, DerivedKnowledge, and Context boundaries. [B-0002](backlog/epics/B-0002-coding-context-substrate.md)
-  retains the unimplemented design pressure. This decision is not authorization
+  Derivations, DerivedKnowledge, and Context boundaries. [ADR-0003](architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md)
+  establishes InformationNeed, retrieval evidence/planning, and ranking
+  semantics. [B-0002](backlog/epics/B-0002-coding-context-substrate.md)
+  retains the unimplemented design pressure. These decisions are not authorization
   for a Context compiler, index, parser, graph store, retrieval system, Memory,
   Agent loop, or orchestration system. [B-0008](backlog/items/B-0008-investigate-repository-context-discovery.md)
   remains superseded historical navigation evidence.

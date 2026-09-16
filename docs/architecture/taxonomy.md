@@ -335,6 +335,44 @@ DerivedKnowledge values; no universal graph, graph database, or storage model
 is implied. Exact identity representation, snapshot policy, storage, parser,
 retrieval, ranking, and evaluation mechanisms remain unimplemented.
 
+### InformationNeed, retrieval, and ranking
+
+**Status: EMERGING.**
+
+An InformationNeed is immutable, purpose-relative knowledge required by a
+consumer to reduce uncertainty. It is not a Task, query, retrieval operation or
+strategy, Prompt, Context, token budget, or mutable satisfaction state. It may
+retain purpose, description, typed known anchors, desired characteristics,
+constraints, and provenance. Constraints describe acceptable information, not
+retrieval instructions; origin and prior disclosure are provenance/consumer
+facts rather than intrinsic need semantics. Changed uncertainty creates a new
+need. Exact addressed acquisition remains distinct from relevance discovery.
+
+A ContextCandidate is an addressable repository subject that might help satisfy
+a need, not its eventual model-visible representation. Candidate equivalence
+follows the underlying subject, enabling independent observations to accumulate;
+overlapping file, symbol, and region candidates remain distinct until later
+Context selection handles overlap. RelevanceEvidence is typed,
+provenance-bearing, purpose-relative evidence for or against candidate
+usefulness. Its native observation semantics, confidence, and ranking influence
+are distinct. Missing support is not negative evidence merely because a
+retriever did not discover a candidate.
+
+Retrieval planning selects bounded applications of capabilities using
+purpose-derived inputs. It is neither InformationNeed nor retrieval execution.
+Independent applications may execute concurrently; dependency relationships and
+conditional waves can require ordering. Retrieval bounds constrain discovery;
+Context budgets constrain disclosure. Multiple exact, lexical, structural,
+relationship, semantic, historical, and future mechanisms may contribute
+independent evidence; no mechanism or graph owns repository relevance.
+
+Ranking interprets a need, candidate, accumulated evidence, and identified
+ranking semantics. It does not overwrite evidence and is distinct from final
+Context selection, representation, deduplication, diversity, ordering, and
+budgeting. Deterministic and future learned/task-conditioned interpretations
+are enabled without selecting formulas, models, or execution technology. See
+[ADR-0003](decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md).
+
 ### Resource
 
 **Status: EMERGING.**
