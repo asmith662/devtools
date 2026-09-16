@@ -85,7 +85,7 @@ provide dependency navigation without duplicating a second dependency graph.
 | [B-0005](epics/B-0005-effect-governance.md) | Effect Governance | DEFERRED | governance |
 | [B-0006](items/B-0006-reconcile-authoritative-architecture-documentation.md) | Reconcile authoritative architecture documentation | ACTIVE | documentation |
 | [B-0007](items/B-0007-correct-model-serving-documentation-drift.md) | Correct model-serving documentation drift | IMPLEMENTED | models |
-| [B-0008](items/B-0008-investigate-repository-context-discovery.md) | Investigate repository-context discovery | BACKLOG | context |
+| [B-0008](items/B-0008-investigate-repository-context-discovery.md) | Investigate repository-context discovery | SUPERSEDED | context |
 | [B-0009](items/B-0009-build-bounded-local-coding-worker-harness.md) | Build bounded local coding-worker harness | VALIDATED | experiments |
 | [B-0010](items/B-0010-investigate-work-execution-attempt-semantics.md) | Record resolved Run/Step/Attempt semantics | DEFERRED | execution |
 | [B-0011](items/B-0011-investigate-durable-execution-evidence.md) | Investigate durable execution Evidence | DEFERRED | observability |

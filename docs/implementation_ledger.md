@@ -236,3 +236,16 @@ include path containment, additional filesystem codecs or streaming, richer
 Markdown source fidelity, command process-tree management, and conversion
 extensions. These are not active repository-level milestones unless they become
 prerequisites for a future architectural domain.
+
+## Architecture decision checkpoints
+
+- Accepted ADR-0002 for future repository intelligence and coding Context:
+  nominal Repository identity; content-derived RepositorySnapshots; contextual
+  resource occurrences and reusable content identity; derivation-aware
+  DerivedKnowledge validity and incremental reuse; distinct derivation and
+  repository-relationship graph semantics; and purpose-relative, untrusted
+  Context disclosure. This is a documentation-only architectural decision; no
+  repository intelligence, Context compiler, storage, retrieval, graph, or
+  production API was implemented. It supersedes B-0008's earlier narrow
+  repository-navigation investigation while B-0002 retains unimplemented
+  architectural pressure.

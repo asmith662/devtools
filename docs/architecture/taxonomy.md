@@ -295,6 +295,46 @@ Memory, Tool results, Evidence, documentation, or current Run state.
 Context does not own those resources. It means relevance for the current
 purpose, not simply all available information.
 
+Repository intelligence is distinct from Context. It establishes deterministic
+knowledge about a Repository and its snapshots independently of an LLM;
+Context selects, represents, and discloses relevant knowledge or source
+material for a purpose. Retrieval provides relevance evidence, ranking is not
+repository truth, and final Context selection/compilation remains separate.
+Repository-derived material is untrusted data, not policy, instruction, or
+execution authority. See [ADR-0002](decisions/ADR-0002-repository-intelligence-identity-and-derivation.md)
+for the accepted future repository-intelligence semantics.
+
+### Repository intelligence
+
+**Status: EMERGING.**
+
+Repository intelligence is deterministic knowledge about Repository state,
+resources, entities, and typed relationships, useful independently of a Model.
+It does not own filesystem access, Context compilation, model prompting,
+authorization, Tool execution, Agent loops, or graph storage technology.
+
+`Repository` has nominal identity across changing states. A
+`RepositorySnapshot` is an immutable content-derived complete included state
+under snapshot semantics; neither a filesystem path nor a Git commit defines
+either identity. A resource occurrence is contextual to snapshot plus
+repository-relative address and independently refers to content identity.
+Entity continuity and move/rename/copy claims across snapshots are derived
+knowledge, not foundational identity.
+
+`Derivation` identifies knowledge-producing semantics, including relevant
+implementation revision and configuration. `DerivedKnowledge` is knowledge
+with derivation, explicit dependencies, value, and provenance. Its validity
+depends on satisfying those dependencies under equivalent derivation semantics,
+not merely on the snapshot where it was first produced. DerivedKnowledge may
+depend on other DerivedKnowledge, enabling targeted invalidation and reuse.
+
+The derivation dependency graph (validity/provenance/recomputation) is distinct
+from repository semantic relationship views (for example defines, references,
+imports, calls, tests, documents, and governs). Typed relationships are
+DerivedKnowledge values; no universal graph, graph database, or storage model
+is implied. Exact identity representation, snapshot policy, storage, parser,
+retrieval, ranking, and evaluation mechanisms remain unimplemented.
+
 ### Resource
 
 **Status: EMERGING.**

@@ -2,28 +2,39 @@
 
 - type: EPIC
 - status: BACKLOG
-- decision_maturity: NEEDS_INVESTIGATION
+- decision_maturity: READY_FOR_DESIGN
 - necessity: REQUIRED
 - architectural_significance: STRUCTURAL
 - urgency: SOON
 - evidence_basis: MULTIPLE
-- scope: coding-oriented selection and assembly of relevant repository information
+- scope: unimplemented repository intelligence and coding-Context capabilities
 - primary_domain: context
 - supporting_domains: resources, tools, agents, models, experiments
 
 ## Problem / value
 
-Investigate the smallest coding-oriented Context boundary required by a bounded
-worker. Context is information selected and assembled as relevant to a current
-purpose; it is not Conversation state, repository storage, or Memory.
+[ADR-0002](../../architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md)
+now settles the semantic foundation that this epic originally investigated:
+Repository identity is distinct from location and Git identity; snapshots are
+content-derived under explicit policy; deterministic knowledge is produced by
+identified Derivations over explicit dependencies; and repository semantic
+relationships are distinct from derivation dependencies. Context remains
+purpose-relative selection and disclosure, not Conversation state, repository
+storage, Memory, or repository truth.
 
-Resources provide access and Tools may adapt bounded access. Neither existing
-filesystem reads nor Qwen action results establish reusable selection,
-retrieval, ranking, provenance, budgeting, or compilation semantics.
+This epic preserves the unimplemented pressure enabled by that decision:
+snapshot policy and acquisition, deterministic repository knowledge,
+relationship views, retrieval/relevance evidence, ranking distinct from final
+selection, representation and compilation, provenance/disclosure, budgeting,
+progressive acquisition, reuse, and evaluation. Resources provide access and
+Tools may adapt bounded access, but neither constitutes repository intelligence
+or Context compilation.
 
 - hard_dependencies: none
 - pressure_dependencies: none
 - operational_dependencies: resources filesystem, core paths, core regex
-- children: B-0008
-- promotion_trigger: B-0008 identifies minimum selected information for one frozen coding-worker story
+- related: ADR-0002; B-0008 (superseded historical investigation)
+- promotion_trigger: an independently useful, bounded semantic slice is ready
+  for design without collapsing Repository intelligence, Context, Tool,
+  Runtime, Agent, or orchestration ownership
 - validation_level: NONE

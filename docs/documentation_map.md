@@ -9,7 +9,8 @@
 - [Accepted architecture decisions](architecture/decisions/) freeze approved
   future cross-package decisions; they do not claim an unimplemented API is
   current behavior. [ADR-0001](architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
-  defines the approved ModelInteraction redesign.
+  defines the approved ModelInteraction redesign. [ADR-0002](architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md)
+  defines accepted future repository-intelligence and coding-Context semantics.
 - [AGENTS.md](../AGENTS.md) defines repository-operating rules.
 - Package-local documentation defines implemented public APIs, behavior, and
   limitations.

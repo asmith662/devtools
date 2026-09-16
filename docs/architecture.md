@@ -14,7 +14,7 @@ core/           foundational values and transformations
 resources/      reusable filesystem and process access
 models/         model interaction, serving, and benchmarks
 agents/         durable conversation and external agent integrations
-context/        reserved for relevance selection and compilation
+context/        future repository intelligence and purpose-relative Context
 tools/          typed controlled capability boundaries
 execution/      narrow Runtime and specialized InteractionAttempt lifecycle
 orchestration/  reserved workflow coordination
@@ -85,7 +85,7 @@ orchestration.
 - Cancellation is not rollback, and communication failure does not prove an
   external effect did not occur.
 
-## Accepted future ModelInteraction boundary
+## Accepted ModelInteraction boundary
 
 [ADR-0001](architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
 approves a cohesive future ModelInteraction boundary: immutable semantic
@@ -95,9 +95,22 @@ serving-profile provenance. Its phased implementation preserves that models
 never execute Tools, Tools do not depend on model providers, Runtime remains
 narrow, and raw provider exchange data stays outside `ModelResponse`.
 
-Phase 1 (immutable request/settings and typed provider request extensions) is
-implemented. Evidence/provenance and model-native Tool phases remain future;
-package documentation and source remain authoritative for the current API.
+All three ADR-0001 phases are implemented; package documentation and source
+remain authoritative for exact current APIs.
+
+## Accepted repository-intelligence semantics
+
+[ADR-0002](architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md)
+accepts future semantic architecture for Repository identity, content-derived
+RepositorySnapshots, derivation-aware DerivedKnowledge, and distinct derivation
+and repository-relationship graph families. It also preserves Context as
+purpose-relative selection and disclosure rather than repository truth.
+
+This architecture does not imply a current `context` implementation. Filesystem
+Resources remain access mechanisms, not Repository identity. Retrieval,
+ranking, Context compilation, progressive disclosure, storage, and evaluation
+remain unimplemented future responsibilities; Runtime remains narrow and model
+requests remain non-authoritative.
 
 See [documentation_map.md](documentation_map.md) for current package
 documentation, [taxonomy.md](architecture/taxonomy.md) for definitions, and

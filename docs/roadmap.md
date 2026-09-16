@@ -37,13 +37,15 @@ and Evidence ownership terminology, remain in the
   keep current documentation, roadmap sequencing, and backlog pressure aligned
   with the established architecture.
 
-### Next candidate — bounded coding context investigation
+### Next candidate — repository intelligence and coding-Context design
 
-- [B-0002](backlog/epics/B-0002-coding-context-substrate.md) and
-  [B-0008](backlog/items/B-0008-investigate-repository-context-discovery.md)
-  may identify the minimum selected repository information required by one
-  bounded coding-worker story. This is an investigation, not authorization for
-  a Context compiler, Memory, or generic retrieval system.
+- [ADR-0002](architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md)
+  establishes semantic architecture for Repository identity, snapshots,
+  Derivations, DerivedKnowledge, and Context boundaries. [B-0002](backlog/epics/B-0002-coding-context-substrate.md)
+  retains the unimplemented design pressure. This decision is not authorization
+  for a Context compiler, index, parser, graph store, retrieval system, Memory,
+  Agent loop, or orchestration system. [B-0008](backlog/items/B-0008-investigate-repository-context-discovery.md)
+  remains superseded historical navigation evidence.
 
 ### Later — promotion only when evidence is sufficient
 
