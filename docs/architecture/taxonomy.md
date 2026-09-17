@@ -463,14 +463,18 @@ retrieval, ranking, and evaluation mechanisms remain unimplemented.
 
 **Status: EMERGING.**
 
-An InformationNeed is immutable, purpose-relative knowledge required by a
-consumer to reduce uncertainty. It is not a Task, query, retrieval operation or
-strategy, Prompt, Context, token budget, or mutable satisfaction state. It may
-retain purpose, description, typed known anchors, desired characteristics,
-constraints, and provenance. Constraints describe acceptable information, not
-retrieval instructions; origin and prior disclosure are provenance/consumer
-facts rather than intrinsic need semantics. Changed uncertainty creates a new
-need. Exact addressed acquisition remains distinct from relevance discovery.
+InformationNeed is the conceptual, purpose-relative distinction for information
+desired by a consumer to reduce uncertainty. It is not a Task, query, retrieval
+operation or strategy, Prompt, Context, token budget, or satisfaction. It does
+not by itself require an independently identified, durable, immutable runtime
+artifact, standalone lifecycle, persistent need graph, or persistence. A future
+implementation may establish that an explicit identified model is useful.
+Purpose, typed known anchors, desired characteristics, constraints, and causal
+provenance may be carried or referenced by planning/acquisition structures;
+constraints describe acceptable information, not retrieval instructions, and
+purpose remains distinct from mechanism-specific query material. Changed
+uncertainty or acquired information can justify a later purpose. Exact addressed
+acquisition remains distinct from relevance discovery.
 
 A ContextCandidate is an addressable repository-intelligence referent that
 might help satisfy a need, not its eventual model-visible representation. The
@@ -487,7 +491,8 @@ are distinct. Missing support is not negative evidence merely because a
 retriever did not discover a candidate.
 
 Retrieval planning selects bounded applications of capabilities using
-purpose-derived inputs. It is neither InformationNeed nor retrieval execution.
+purpose-derived inputs. It is neither information purpose nor retrieval
+execution.
 Independent applications may execute concurrently; dependency relationships and
 conditional waves can require ordering. Retrieval bounds constrain discovery;
 Context budgets constrain disclosure. Multiple exact, lexical, structural,
@@ -540,8 +545,9 @@ assembly determines how selected information is serialized, ordered, and placed
 for a particular model interaction. Presentation effects are empirical
 consumer-behavior evidence, not repository relevance or coverage truth. Budget
 is a ceiling, not a target, and is distinct from discovery bounds. Optional
-InformationNeed decomposition may derive child needs without discarding their
-parent; child satisfaction does not prove parent satisfaction. See
+Information-purpose decomposition may lead to subordinate purpose/acquisition
+work without discarding the broader purpose or requiring persistent child
+artifacts; child satisfaction does not prove parent sufficiency. See
 [ADR-0004](decisions/ADR-0004-context-disclosure-planning-and-assembly.md).
 
 Coherence is intelligibility of information presented together and the avoided

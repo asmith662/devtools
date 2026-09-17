@@ -42,10 +42,12 @@ purpose-relative selection and disclosure, not Conversation state, repository
 storage, Memory, or repository truth.
 
 [ADR-0003](../../architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md)
-now settles the next semantic layer: InformationNeed; bounded retrieval
-planning/applications; ContextCandidates; provenance-bearing RelevanceEvidence;
-and ranking distinct from final Context selection. It does not implement a
-retrieval system or Context compiler.
+now settles the next semantic layer: InformationNeed as purpose-relative
+desired-information semantics, without requiring a durable independently
+identified runtime artifact; bounded retrieval planning/applications;
+ContextCandidates; provenance-bearing RelevanceEvidence; and ranking distinct
+from final Context selection. It does not implement a retrieval system or
+Context compiler.
 
 [ADR-0004](../../architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)
 now settles post-ranking Context/disclosure semantics: conditional composition,
@@ -76,6 +78,13 @@ dependency-role and provenance schemas, compatibility/versioning, applicability
 assessment, result grouping/coverage, partial-result publication, execution/
 Evidence integration, capability bindings, dependency indexes, schedulers, and
 evaluation infrastructure remain unresolved implementation/design pressure.
+
+Concrete information-purpose/InformationNeed representation, whether explicit
+need identity proves useful, anchors and constraints, decomposition/refinement
+and causal provenance, satisfaction/sufficiency assessment, progressive
+acquisition, planning/application models, evaluation-case identity,
+persistence/replay, and controlled metrics/experiments remain unresolved
+implementation/evaluation pressure.
 
 Concrete capability/binding representations, catalogs/registration/discovery,
 selection/lifecycle, bounded dependency-acquisition and execution-context APIs,

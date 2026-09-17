@@ -194,10 +194,10 @@ admission, evidence, scheduling, and package APIs remain open.
 
 Analyzer-established structural decomposition may establish subjects. Further
 repository-semantic decomposition (for example a failure path or responsibility)
-is DerivedKnowledge by default. Purpose-relative InformationNeed decomposition
-and purpose-relative composite disclosure are downstream concerns under
-ADR-0003/ADR-0004; neither makes its resulting demands or disclosure units into
-RepositorySubjects.
+is DerivedKnowledge by default. Purpose-relative information-purpose
+decomposition and purpose-relative composite disclosure are downstream concerns
+under ADR-0003/ADR-0004; neither makes resulting demands or disclosure units
+into RepositorySubjects.
 
 This architecture does not imply a current `context` implementation. Filesystem
 Resources remain access mechanisms, not Repository identity. Retrieval,
@@ -211,13 +211,14 @@ are distinct referential domains; graph views are optional reusable
 DerivedKnowledge projections; and directly addressed information can be
 acquired without relevance discovery. Retrieval strategies may independently
 query different intelligence views, while synthesis can explicitly establish
-new DerivedKnowledge and progressive disclosure can create another
-InformationNeed. A request need not traverse every concept or view.
+new DerivedKnowledge and progressive disclosure can justify another information
+purpose/acquisition episode. A request need not traverse every concept or view.
 
 ## Accepted retrieval and ranking semantics
 
 [ADR-0003](architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md)
-accepts InformationNeed, bounded retrieval planning/applications,
+accepts InformationNeed as purpose-relative desired-information semantics,
+bounded retrieval planning/applications,
 ContextCandidate, provenance-bearing RelevanceEvidence, and ranking semantics.
 ContextCandidate addresses a repository-intelligence referent—such as a
 RepositorySubject, ResourceOccurrence, SourceOccurrence, DerivedKnowledge, or

@@ -26,37 +26,51 @@ comparison, and task-sensitive evolution.
 
 ### InformationNeed
 
-An **InformationNeed** is an immutable, purpose-relative description of
-knowledge required by a consumer to reduce uncertainty. It is distinct from its
+An **InformationNeed** is the conceptual, purpose-relative distinction for
+knowledge desired by a consumer to reduce uncertainty. It is distinct from its
 originating Task, a search query, retrieval operation or strategy, model Prompt,
-Context, token budget, and mutable satisfaction state. A Task may yield zero,
-one, or many InformationNeeds over time. Human, deterministic workflow,
-planner, coding-worker/model, evaluation-fixture, and future-Agent origins are
-provenance, not different InformationNeed semantics.
+Context, token budget, and satisfaction. A Task or current reasoning state can
+give rise to zero, one, or many information purposes over time. Human,
+deterministic-workflow, planner, coding-worker/model, evaluation-fixture, and
+future-Agent origins are provenance, not different InformationNeed semantics.
 
-An InformationNeed may conceptually express a semantic description/question,
-purpose, typed known anchors, desired information characteristics, constraints
-on satisfying information, and provenance. This does not freeze a Python model
-or exhaustive enum. Anchors preserve known clues as strongly typed references
+This semantic distinction does not require an independently identified,
+durable, immutable runtime artifact, standalone lifecycle, persistent need
+graph, or persistence outside a planning/acquisition episode. A future
+implementation may establish that an explicit identified InformationNeed model
+is useful, but its identity and lifecycle must earn that cost through evidence.
+This supersedes the stronger assumption that reproducibility, decomposition,
+progressive acquisition, or retrieval evaluation require every purpose-relative
+information demand to be an independently identified immutable artifact.
+
+An information purpose may conceptually involve a semantic description/question,
+typed known anchors, desired information characteristics, constraints on
+satisfying information, and causal provenance. Planning/application structures
+may eventually carry or reference those facts along with planner-derived query
+material, bounds, strategy, and refinement/decomposition provenance; this does
+not assign every fact to one model or freeze a Python representation. Anchors
+preserve known clues as strongly typed references
 when available—such as identifiers, repository entities/symbols, paths/resources,
 documents, existing knowledge, or changes—and as plain text only when nothing
 stronger is known. Exact anchor taxonomy remains open. An anchor does not select
 a retriever: an identifier anchor does not require a SymbolRetriever.
 
-InformationNeed constraints describe acceptable information, for example current
-repository state, required tests, governing architecture, or production rather
-than generated fixtures. They must not prescribe mechanisms such as BM25,
-semantic search, PageRank, or a particular retriever. Mechanism choice belongs
-to retrieval planning.
+Information-purpose constraints describe acceptable information, for example
+current repository state, required tests, governing architecture, or production
+rather than generated fixtures. They must not prescribe mechanisms such as
+BM25, semantic search, PageRank, or a particular retriever. Mechanism choice
+belongs to retrieval planning, and purpose remains distinguishable from
+mechanism-specific query material.
 
-Needs never mutate. Changed uncertainty creates another need, with future
-causal relationships such as decomposition, refinement after learning, or
-arising from prior disclosure. A persistent NeedGraph is not required. Prior
-disclosure and Context/model token budgets are not intrinsic to a need: the
-same need can be satisfied differently for consumers with different prior
-disclosure. Satisfaction is a separate assessment against available/disclosed
+Changed uncertainty, acquired information, or prior disclosure can justify a
+later purpose, refinement, or decomposition. Causal/provenance relationships
+should remain available where needed without requiring mutable evolution of one
+need artifact or a persistent tree of child artifacts. Prior disclosure and
+Context/model token budgets are not intrinsic purpose semantics: the same
+purpose can be approached differently for consumers with different available
+information. Satisfaction is a separate assessment against available/disclosed
 information; it may be deterministic, model/workflow/human judged, or evaluated
-later. No satisfaction enum is selected.
+later. No satisfaction representation or assessor is selected.
 
 Semantic discovery is distinct from exact addressed acquisition. When a known
 resource, region, symbol, or knowledge artifact is already exactly addressed,
@@ -109,10 +123,10 @@ evidence, confidence, and polarity representations remain open.
 
 ### Retrieval planning and bounded applications
 
-Retrieval planning is distinct from InformationNeed and execution. It answers:
+Retrieval planning is distinct from information purpose and execution. It answers:
 
 > Which retrieval capabilities should be applied, with what bounded
-> purpose-derived inputs, to investigate this InformationNeed?
+> purpose-derived inputs, to investigate this information purpose?
 
 A plan selects **applications** of capabilities, not merely retriever names.
 For example, relationship retrieval can start from an established anchor with
@@ -153,7 +167,7 @@ or overwrite other evidence.
 
 ### Ranking and Context boundary
 
-**Ranking** is a distinct semantic stage that interprets an InformationNeed,
+**Ranking** is a distinct semantic stage that interprets an information purpose,
 ContextCandidate, accumulated RelevanceEvidence, and identified ranking
 semantics/policy to produce comparative relevance or ordering. It does not
 destroy, overwrite, or replace evidence. Different deterministic or learned,
@@ -177,11 +191,15 @@ rankers rather than prematurely fixing universal normalization.
 ### Evaluation, progressive disclosure, and authority
 
 Future evaluation must be able to reproduce and correlate RepositorySnapshot,
-InformationNeed, planning semantics/applications, derivations, candidates,
-evidence, ranking, later selection/representation/disclosure, and model/task
-outcome. This permits controlled comparisons of rankers over fixed evidence,
-retrieval portfolios under fixed ranking, or Context compilers over fixed ranked
-candidates, without selecting storage or experiment infrastructure.
+fixed evaluation cases, acquisition/information purpose, planning
+semantics/applications, derivations, candidates, evidence, ranking, later
+selection/representation/disclosure, and model/task outcome. Evaluation-case
+identity can therefore hold a Task, purpose, anchors, constraints, judgments,
+and treatment identity stable for comparison without requiring runtime
+InformationNeed identity. This permits controlled comparisons of rankers over
+fixed evidence, retrieval portfolios under fixed ranking, or Context compilers
+over fixed ranked candidates, without selecting storage or experiment
+infrastructure.
 
 Provenance/observability must eventually distinguish retrieval failure (useful
 information never a candidate), ranking failure (candidate ranked too poorly),
@@ -195,8 +213,9 @@ identifiable, replaceable, evaluable, governable adaptive planning; it does not
 authorize uncontrolled self-modification.
 
 Initial Context need not achieve perfect recall. A consumer may receive
-high-value initial disclosure, expose remaining uncertainty, and create/refine
-another InformationNeed for targeted discovery. This does not excuse poor
+high-value initial disclosure, expose remaining uncertainty, and justify a
+later/refined information purpose or acquisition episode for targeted discovery.
+This does not excuse poor
 initial retrieval; initial and eventual acquisition quality remain separately
 measurable. Orchestration of repeated acquisition stays above deterministic
 retrieval and Context compilation; retrieval is not an autonomous Agent.
@@ -208,12 +227,15 @@ does not grant capability or collapse into Tool authorization or execution.
 
 ## Deferred and open pressure
 
-This ADR does not select concrete InformationNeed, anchor, addressed-request,
-Retriever, CandidateProducer/EvidenceProducer, planner, plan-identity or
+This ADR does not select concrete purpose/InformationNeed representation or
+whether explicit need identity proves useful; anchor, addressed-request,
+decomposition/refinement or causal-provenance representation; Retriever,
+CandidateProducer/EvidenceProducer, planner, plan-identity or
 persistence, application-DAG, scheduler, bound, lexical, graph, semantic,
 embedding, historical-retrieval, evidence, confidence, polarity, normalization,
 deterministic-ranking, learned-ranking, task-classification, wave-policy,
-evidence-cache/persistence, evaluation-storage, or metric implementations.
+evidence-cache/persistence, evaluation-case identity, evaluation-storage, or
+metric implementations.
 
 ## Status and implementation boundary
 

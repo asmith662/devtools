@@ -96,7 +96,7 @@ remains evaluation evidence, not an authoritative ModelKnowledgeState.
 
 Coverage says which information/aspects are represented. Satisfaction/sufficiency
 assesses whether available information is adequate for the purpose and consumer;
-it remains separate from mutable InformationNeed state. It may eventually weigh
+it is not state intrinsic to an InformationNeed representation. It may eventually weigh
 coverage, fidelity, authority, uncertainty, consumer requirements, and other
 evidence. No satisfaction enum or assessor is selected.
 
@@ -198,19 +198,21 @@ abstraction or policy is implemented.
 
 ### InformationNeed decomposition
 
-InformationNeed decomposition is optional. A broad/multifaceted need may derive
-smaller purpose-relative needs when that improves acquisition, precision,
-concurrency, coverage reasoning, or efficiency; focused needs can proceed
-directly to retrieval. The parent remains meaningful, and child relationships
-must retain parent provenance rather than replace/discard it. Decomposition may
-be progressive as acquired knowledge reveals dimensions, and should itself be
-an identifiable derivation with replay/evaluation provenance.
+Information-purpose decomposition is optional. A broad/multifaceted purpose may
+lead to subordinate purpose/acquisition work when that improves acquisition,
+precision, concurrency, coverage reasoning, or efficiency; focused purposes can
+proceed directly to retrieval. The broader purpose remains meaningful, and
+causal/provenance relationships should remain available where needed rather
+than replacing or discarding it. Decomposition may be progressive as acquired
+knowledge reveals dimensions, without requiring a persistent tree of
+independently identified InformationNeed artifacts.
 
-Independent child needs can enable concurrent planning/retrieval where no
-dependency requires ordering. Decomposition can omit a material parent
-dimension: coverage or satisfaction of all children therefore does not prove
-parent satisfaction. Parent-level sufficiency remains independently assessable,
-and decomposition failure is a future distinguishable evaluation category.
+Independent subordinate work can enable concurrent planning/retrieval where no
+dependency requires ordering. Decomposition can omit a material broader-purpose
+dimension: coverage or satisfaction of all subordinate work therefore does not
+prove broader-purpose sufficiency. Decomposition failure is a future
+distinguishable evaluation category; its concrete representation and replay
+mechanism remain open.
 Deterministic, structural/repository-aware, model-assisted, learned, and hybrid
 decomposition remain replaceable future mechanisms.
 

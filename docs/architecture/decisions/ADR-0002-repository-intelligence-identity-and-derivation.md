@@ -195,10 +195,10 @@ not automatically foundational subjects; a future analyzer can establish a
 semantic subject only with a justified independent identity model.
 
 **Purpose-relative decomposition** is downstream: ADR-0003/ADR-0004 allow an
-InformationNeed to derive information demands such as timeout configuration,
-enforcement, handling, evidence, and tests. Those demands are not
-RepositorySubjects merely because a need was decomposed. Similarly, a coherent
-Context disclosure can combine a signature, source region, exception type,
+information purpose to lead to subordinate demands such as timeout
+configuration, enforcement, handling, evidence, and tests. Those demands are
+not RepositorySubjects merely because acquisition was decomposed. Similarly, a
+coherent Context disclosure can combine a signature, source region, exception type,
 tests, and a knowledge projection without making that purpose-relative
 composition a RepositorySubject.
 
