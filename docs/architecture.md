@@ -169,6 +169,14 @@ dependencies need not flatten transitive closure. Dependencies differ from
 provenance: shared derivation provenance and result-specific support may both
 matter.
 
+These are distinct semantic roles, not a requirement for four heavyweight
+subsystems or one production class per role. DerivedKnowledge does not include
+every temporary/intermediate computation value, and dependency/provenance
+records need not capture every implementation access or duplicate shared support
+per result. Granularity must preserve correct applicability; finer tracking is
+an optimization justified by reuse gained versus bookkeeping, maintenance, and
+provenance cost.
+
 DerivedKnowledge is not snapshot-owned and has heterogeneous value shape.
 Applicability is an external assessment, not mutable knowledge state. Zero
 results do not prove absence, positive results do not prove exhaustive coverage,
@@ -190,7 +198,9 @@ individual capability.
 Capabilities receive bounded repository-state and dependency access capable of
 accounting for semantically consumed inputs. Dynamic discovery is permitted,
 but finalized dependencies must make consumed semantic state explicit for replay
-and applicability. Foundational repository intelligence is deterministic,
+and applicability. “Consumed” denotes semantic support rather than an
+instrumentation trace of every operational access. Foundational repository
+intelligence is deterministic,
 LLM-independent, and observational with respect to the analyzed repository;
 it is not Tool, Agent, retrieval, Context compiler, or generic Runtime
 semantics. Internal admission for bounded deterministic work differs from

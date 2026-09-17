@@ -234,6 +234,12 @@ terminology, not a new repository-specific Attempt model. Existing specialized
 ownership. Future derivation execution must use compatible execution/evidence
 semantics rather than making execution records repository truth.
 
+The same semantic separation can be realized simply as computation semantics,
+semantic computation key, execution record, and semantic result(s), respectively.
+It does not require four services, repositories, lifecycle managers, or one
+production class per concept. Concrete model, API, storage, and sharing forms
+remain open.
+
 Any change capable of changing results—such as parser behavior, analysis
 configuration, embedding model, or relationship-resolution semantics—must be
 reflected in definition compatibility, derivation identity, or applicability.
@@ -270,6 +276,16 @@ the result set exhaustive. A derivation capable of establishing exhaustive
 coverage must represent that claim/evidence explicitly. Concrete grouping,
 coverage, and cardinality APIs remain open.
 
+Not every internal computation output, temporary value, parse node, traversal
+datum, score, intermediate structure, or implementation artifact automatically
+becomes DerivedKnowledge. DerivedKnowledge is semantic knowledge worth
+establishing and referencing under repository-intelligence semantics. One
+derivation can establish one result, many independently referable results, a
+meaningful grouped result, or a combination with shared structure/provenance.
+The appropriate result granularity depends on semantic referential needs,
+applicability/reuse and downstream dependency needs, and operational cost; it
+does not require maximum fragmentation or one monolithic result set.
+
 A Derivation records **direct semantic dependencies**, whose role in the
 computation is preserved conceptually. Content X can be source content;
 namespace knowledge can be resolution namespace; configuration can be
@@ -285,6 +301,20 @@ grammar semantics, namespace, and resolution configuration can be semantic;
 worker count, trace ID, temporary directory, logging configuration, execution
 timestamp, and scheduling choice do not automatically become semantic merely
 because execution consumed them. Actual derivation semantics are authoritative.
+Semantic consumption is therefore not an instrumentation-level trace of every
+byte, AST node, temporary path, log field, worker setting, or operational object
+touched during realization. The finalized record captures the semantic
+support/applicability boundary established by derivation semantics, not every
+implementation access.
+
+Dependency granularity must be sufficient for correct semantic applicability.
+Finer granularity is an incremental-maintenance optimization, justified only
+when its reuse or avoided recomputation outweighs additional dependency-record,
+reverse-index, comparison, persistence, maintenance, and analyzer complexity.
+Whole-snapshot, resource/content, subject/region, and finer structural scopes
+are all possible where their semantics justify them. Maximum theoretical
+precision is not an architectural objective, and no universal granularity is
+selected.
 
 The applicability rule is:
 
@@ -308,7 +338,12 @@ result was established and what supports it. They can overlap without being the
 same record. Derivation-level provenance can explain shared computation and
 dependencies, while knowledge-specific provenance can identify SourceOccurrences
 or other support for one resulting assertion. Neither physical duplication nor a
-provenance schema is required here.
+provenance schema is required here. Common definition, broad dependency,
+analyzer-semantics, or execution-lineage information need not be duplicated for
+every result merely because result-specific support may be narrower. Structural
+sharing, compact references, bounded support, lazy traversal, and selective
+persistence remain future representation choices, not weaker provenance
+semantics.
 
 Applicability, invalidation discovery, rederivation, and caching/reuse lookup
 are distinct. Applicability is the semantic question whether knowledge applies;
@@ -397,7 +432,10 @@ the architecture does not require RPC or a Tool call for every read. Semantic
 dependencies can be discovered dynamically during realization, but every
 semantically relevant dependency actually consumed must become explicit in the
 finalized dependency/provenance record. Expected dependencies alone do not
-govern replay or applicability.
+govern replay or applicability. “Consumed” is semantic rather than a demand for
+an undifferentiated access trace: dynamically discovered support must be
+captured when it affects semantic applicability, not merely because an
+implementation touched it operationally.
 
 Repository intelligence is deterministic and LLM-independent foundationally,
 and observational with respect to the repository state it analyzes. A capability
@@ -448,9 +486,10 @@ on one resource. DerivedKnowledge may depend on other DerivedKnowledge.
 
 Thus a B-content change can make B parsing inapplicable to a later state, then
 affect B symbol knowledge and cross-resource relationships depending on it,
-while unrelated A knowledge remains applicable. Dependency granularity may grow
-from resource/content to subjects, source occurrences, facts, graph regions, or
-other structural units without replacing foundational semantics. Incremental
+while unrelated A knowledge remains applicable. Dependency granularity may be
+refined from resource/content to subjects, source occurrences, facts, graph
+regions, or other structural units where its cost is justified by useful reuse
+or avoided recomputation; coarser correct scopes remain valid. Incremental
 parser edit history is likewise an optimization: its result remains attributable
 to new content/state and identified derivation semantics, never snapshot
 identity.

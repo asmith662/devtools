@@ -65,8 +65,8 @@ caching, authorization integration, and evaluation implementations unresolved.
 This epic preserves the unimplemented pressure enabled by that decision:
 snapshot policy and acquisition, deterministic repository knowledge,
 analyzer-established subjects/source occurrences, relationship views, graph
-views, incremental observation/consistency, SnapshotDelta, increasingly fine-
-grained dependency scopes, applicability/reuse, invalidation discovery,
+views, incremental observation/consistency, SnapshotDelta, appropriate
+dependency granularity, applicability/reuse, invalidation discovery,
 rederivation, caching, historical/replay support, retrieval/relevance evidence,
 ranking distinct from final selection, representation and compilation,
 provenance/disclosure, budgeting, progressive acquisition, and evaluation.
@@ -79,6 +79,14 @@ dependency-role and provenance schemas, compatibility/versioning, applicability
 assessment, result grouping/coverage, partial-result publication, execution/
 Evidence integration, capability bindings, dependency indexes, schedulers, and
 evaluation infrastructure remain unresolved implementation/design pressure.
+
+Concrete semantic dependency granularity, dynamic dependency accounting,
+provenance schema and structural sharing/compact representation, result grouping
+and referential granularity, reverse dependency indexes, invalidation discovery,
+cache/persistence strategy, incremental scheduling, eager/lazy maintenance,
+parser/analyzer incremental capability, and evaluation of reuse gained versus
+dependency/provenance bookkeeping and recomputation cost remain unresolved
+implementation/evaluation pressure.
 
 Concrete information-purpose/InformationNeed representation, whether explicit
 need identity proves useful, anchors and constraints, decomposition/refinement

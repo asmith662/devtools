@@ -388,8 +388,12 @@ Dependencies are heterogeneous and role-bearing semantic inputs, not a fixed
 path/content pair or incidental execution settings. They differ from provenance:
 dependencies govern applicability, while shared derivation provenance and
 result-specific provenance explain computation and support. Direct dependencies
-need not flatten transitive closure. Definition, derivation, execution, and
-knowledge identities remain distinct and their concrete construction is open.
+need not flatten transitive closure. Semantic consumption is not an
+instrumentation trace of every operational access. Dependency granularity need
+only preserve correct applicability; finer tracking is an optimization whose
+reuse benefit must justify bookkeeping, maintenance, and provenance cost.
+Definition, derivation, execution, and knowledge identities remain distinct and
+their concrete construction is open.
 
 DerivationDefinition compatibility concerns semantic behavior, including
 relevant revision and configuration, rather than merely implementation source or
@@ -412,7 +416,10 @@ more artifacts by one Derivation. Zero artifacts do not prove absence, and
 positive artifacts do not prove exhaustive coverage unless derivation semantics
 explicitly establish it. Execution failure is Evidence about execution, not
 automatically semantic knowledge; partial execution can leave independently
-supported knowledge applicable without proving a complete result set.
+supported knowledge applicable without proving a complete result set. Internal
+temporary values, parse nodes, traversal data, and implementation artifacts are
+not automatically DerivedKnowledge; result grouping and referential granularity
+remain open.
 
 Determinism is distinct from correctness and certainty; confidence is distinct
 from completeness and is not a universal knowledge field. Where uncertainty or
