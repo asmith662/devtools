@@ -9,6 +9,16 @@ documentation defines exact implemented APIs; and
 historical evolution. Accepted architecture is summarized here as well as in
 its ADR, while accepted-but-unimplemented semantics never claim a current API.
 
+## Reading architectural and implementation status
+
+An architectural domain can be recognized while its reusable implementation is
+sparse; accepted ADR semantics can exist before a production API. Conversely,
+implemented package behavior can remain experimental or unfrozen without making
+the domain boundary unsettled. ADR acceptance is not implementation completion.
+For exact current APIs and their maturity, follow package documentation and
+source/tests; use the taxonomy's status labels for semantic vocabulary rather
+than as a single implementation-lifecycle scale.
+
 ## Domains
 
 ```text
@@ -90,7 +100,7 @@ orchestration.
 ## Accepted ModelInteraction boundary
 
 [ADR-0001](architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
-approves a cohesive future ModelInteraction boundary: immutable semantic
+approves a cohesive ModelInteraction boundary: immutable semantic
 requests and settings, typed provider-only request extensions, normalized
 model-native Tool calls, capture-controlled model interaction Evidence, and
 serving-profile provenance. Its phased implementation preserves that models
@@ -195,11 +205,24 @@ ranking, Context compilation, progressive disclosure, storage, and evaluation
 remain unimplemented future responsibilities; Runtime remains narrow and model
 requests remain non-authoritative.
 
+These concepts describe reusable semantic relationships, not a mandatory
+runtime pipeline. ResourceOccurrence, SourceOccurrence, and RepositorySubject
+are distinct referential domains; graph views are optional reusable
+DerivedKnowledge projections; and directly addressed information can be
+acquired without relevance discovery. Retrieval strategies may independently
+query different intelligence views, while synthesis can explicitly establish
+new DerivedKnowledge and progressive disclosure can create another
+InformationNeed. A request need not traverse every concept or view.
+
 ## Accepted retrieval and ranking semantics
 
 [ADR-0003](architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md)
 accepts InformationNeed, bounded retrieval planning/applications,
 ContextCandidate, provenance-bearing RelevanceEvidence, and ranking semantics.
+ContextCandidate addresses a repository-intelligence referent—such as a
+RepositorySubject, ResourceOccurrence, SourceOccurrence, DerivedKnowledge, or
+relationship knowledge—not RepositorySubject alone; representation remains a
+later disclosure concern.
 It preserves retrieval as multi-strategy evidence discovery; ranking as evidence
 interpretation; and Context selection/compilation as a later, distinct concern.
 It also preserves concurrent dependency-aware retrieval, staged expansion,

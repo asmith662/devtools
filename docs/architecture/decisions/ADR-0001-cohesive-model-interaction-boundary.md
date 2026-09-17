@@ -222,4 +222,6 @@ Future provider behavior has a defined home: portable request semantics in
 `ModelSettings`, typed provider-only semantics in provider extensions,
 normalized output in `ModelResponse`, and capture-controlled wire diagnostics
 in interaction Evidence. The decision freezes responsibility and dependency
-direction; it does not claim the described types are implemented today.
+direction. All three scoped phases are implemented and deterministically
+validated; this does not claim that broader reusable Agent Tool orchestration,
+Tool authorization, Action semantics, or a complete Tool ecosystem exists.

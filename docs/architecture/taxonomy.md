@@ -26,6 +26,13 @@ explicitly says they are equivalent.
 | **PROVISIONAL** | A useful working definition that needs additional evidence before a stronger freeze. |
 | **FUTURE** | A known responsibility whose reusable semantics are intentionally unimplemented. |
 
+These labels describe the maturity of a semantic responsibility, not one
+implementation lifecycle. A domain can be recognized while sparse, accepted ADR
+semantics can precede a production API, and an implemented package mechanism
+can remain experimental or unfrozen. Conversely, an accepted ADR is not by
+itself implementation completion. Package documentation and source/tests remain
+the authority for exact implemented behavior and API maturity.
+
 ## Relationship overview
 
 ### Conversation and execution
@@ -168,6 +175,10 @@ within a Run.
 ModelServing owns the operational lifecycle needed to make a local or managed
 Model endpoint available: artifact acquisition, process/container startup,
 hardware/runtime configuration, readiness, shutdown, and endpoint exposure.
+
+This established responsibility does not freeze the current serving-provider
+APIs or implementations. The package-local serving slices remain experimental
+and unfrozen; their maturity is separate from the recognized lifecycle boundary.
 
 ```text
 ModelServing       makes an endpoint available
@@ -417,6 +428,12 @@ historical Derivation/DerivedKnowledge meaning. Multiple bindings may realize
 compatible semantics; separate production objects are not required solely to
 mirror those responsibilities.
 
+Here “repository-intelligence capability” is a qualified conceptual phrase, not
+an assertion that it is the generic `Capability` taxonomy concept or a selected
+production class. Its availability concerns deterministic derivation
+realization, while generic capability availability and authorization retain
+their own meanings.
+
 Maintenance/planning determines required semantic work; capabilities realize
 admitted bounded work; execution performs selected realization. A capability
 does not own global reuse, prerequisites, caller needs, scheduling, retrieval,
@@ -455,9 +472,13 @@ retrieval instructions; origin and prior disclosure are provenance/consumer
 facts rather than intrinsic need semantics. Changed uncertainty creates a new
 need. Exact addressed acquisition remains distinct from relevance discovery.
 
-A ContextCandidate is an addressable repository subject that might help satisfy
-a need, not its eventual model-visible representation. Candidate equivalence
-follows the underlying subject, enabling independent observations to accumulate;
+A ContextCandidate is an addressable repository-intelligence referent that
+might help satisfy a need, not its eventual model-visible representation. The
+referent can be a RepositorySubject, ResourceOccurrence, SourceOccurrence,
+DerivedKnowledge, relationship knowledge, or another future addressable
+repository-intelligence referent; this wording does not introduce a universal
+referent class or closed candidate taxonomy. Candidate equivalence follows the
+underlying addressed identity, enabling independent observations to accumulate;
 overlapping file, symbol, and region candidates remain distinct until later
 Context selection handles overlap. RelevanceEvidence is typed,
 provenance-bearing, purpose-relative evidence for or against candidate
@@ -555,6 +576,11 @@ may use command-backed Tools.
 A Tool is a typed reusable capability with bounded validation and execution
 semantics. Current Tools have local names, descriptions, semantic input
 validation, and asynchronous execution through `ToolRunner`.
+
+This established boundary includes implemented narrow Tool behavior, while the
+current protocol, runner, and adapters remain experimental and unfrozen
+mechanisms. It does not imply a reusable Agent Tool loop, general Tool
+authorization, Action framework, or complete Tool ecosystem.
 
 Tool does not itself imply model visibility, permission, authorization,
 approval, action parsing, dispatch, or projection of its result into model

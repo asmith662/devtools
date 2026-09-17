@@ -1,5 +1,12 @@
 # `devtools.tools`
 
+## Status
+
+The current Tool protocol, `ToolRunner`, and adapters are implemented but
+experimental and unfrozen mechanisms. They implement the established narrow
+Tool boundary; they do not establish a reusable Agent Tool loop, authorization
+system, Action framework, or general orchestration.
+
 This package owns typed reusable capability boundaries. A `Tool` defines a
 name, description, typed input validation, and asynchronous execution;
 `ToolRunner` validates and executes one Tool. The package currently includes
