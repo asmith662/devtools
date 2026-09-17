@@ -255,3 +255,10 @@ prerequisites for a future architectural domain.
   from Context selection/compilation. It preserves progressive disclosure and
   evaluation seams without implementing retrieval, ranking, Context compilation,
   planning, concurrency, persistence, or an Agent/Runtime loop.
+- Accepted ADR-0004 for post-ranking Context semantics: conditional disclosure
+  planning; coupled subject/representation choices; coverage, marginal value,
+  complementarity, applicability, sufficiency, budgets, and ContextDisclosure;
+  distinct repository/disclosure/Conversation histories; and model-input
+  assembly separate from disclosure planning. This documentation-only decision
+  preserves unresolved compiler, representation, authority, coherence, and
+  evaluation work without implementing any Context infrastructure.

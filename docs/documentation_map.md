@@ -1,27 +1,33 @@
 # Documentation Map
 
-## Authority
+## Authority and ownership
 
-- [Architecture taxonomy](architecture/taxonomy.md) defines semantic terms and
-  non-equivalence.
-- [Architecture](architecture.md) defines current cross-package ownership and
-  dependency direction.
-- [Accepted architecture decisions](architecture/decisions/) freeze approved
-  future cross-package decisions; they do not claim an unimplemented API is
-  current behavior. [ADR-0001](architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
-  defines the approved ModelInteraction redesign. [ADR-0002](architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md)
-  defines accepted future repository-intelligence and coding-Context semantics.
-  [ADR-0003](architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md)
-  defines accepted future InformationNeed, retrieval-evidence, and ranking semantics.
+- [Central architecture](architecture.md) is the canonical current and accepted
+  system-architecture overview: domains, boundaries, dependency direction,
+  cross-domain composition, and whether architecture is implemented/current or
+  accepted but not implemented. It must be understandable without replaying all
+  ADRs.
+- [Architecture taxonomy](architecture/taxonomy.md) defines semantic vocabulary
+  and non-equivalence. It does not replace the architecture overview.
+- [Accepted architecture decisions](architecture/decisions/) preserve decision
+  rationale, alternatives, consequences, and historical evolution. They explain
+  why architecture was chosen; they are not the sole current-state specification.
+  ADR-0001 defines ModelInteraction/Tool semantics; ADR-0002 repository identity
+  and derivation semantics; ADR-0003 InformationNeed/retrieval/ranking; and
+  [ADR-0004](architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)
+  Context/disclosure planning and model-input assembly semantics.
 - [AGENTS.md](../AGENTS.md) defines repository-operating rules.
-- Package-local documentation defines implemented public APIs, behavior, and
-  limitations.
+- Package-local documentation defines detailed implemented public APIs, package
+  design, lifecycle/operational behavior, and usage. Central architecture
+  summarizes system-level ownership and links outward; it does not duplicate
+  every package contract.
 - Source and tests define the final implemented behavior where documentation is
   incomplete.
-- Backlog and implementation-ledger records are historical or unresolved
-  architectural evidence; they do not independently authorize implementation.
-- [Roadmap](roadmap.md) records selected current sequencing and links to the
-  canonical backlog; it does not supersede the taxonomy or architecture.
+- Backlog records unresolved/future pressure; [roadmap](roadmap.md) records
+  sequencing; the implementation ledger records implementation/history; and
+  experiments are evidence. None is canonical current architecture or
+  independently authorizes implementation. Historical terminology remains
+  historical unless a clarification is needed to prevent a current-state error.
 
 ## Package documentation
 
@@ -46,7 +52,9 @@
 
 The `context`, `orchestration`, `governance`, and `evaluation` domains are
 recognized sparse namespaces. They intentionally do not yet document a
-reusable implementation API.
+reusable implementation API. In particular, current durable conversation
+semantics live in `agents.conversation`; the sparse `context` namespace does
+not own former Message/History/Session semantics or a Context compiler.
 
 ## Experiments and scripts
 

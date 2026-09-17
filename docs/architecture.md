@@ -1,11 +1,13 @@
 # Architecture
 
-`devtools` is organized by responsibility. Package-local documentation defines
-exact APIs; [the taxonomy](architecture/taxonomy.md) defines semantic terms.
-This document records the current cross-package ownership and dependency rules.
-Accepted future changes are recorded separately in
-[architecture decisions](architecture/decisions/); they do not redefine an
-unimplemented API as current behavior.
+`devtools` is organized by responsibility. This document is the canonical
+overview of current and accepted system architecture: it records domains,
+cross-package ownership, dependency direction, and cross-domain composition.
+[The taxonomy](architecture/taxonomy.md) defines semantic terms; package-local
+documentation defines exact implemented APIs; and
+[architecture decisions](architecture/decisions/) preserve rationale and
+historical evolution. Accepted architecture is summarized here as well as in
+its ADR, while accepted-but-unimplemented semantics never claim a current API.
 
 ## Domains
 
@@ -122,6 +124,27 @@ interpretation; and Context selection/compilation as a later, distinct concern.
 It also preserves concurrent dependency-aware retrieval, staged expansion,
 progressive disclosure, and future evaluation pressure without assigning them
 to Runtime, Tool execution, authorization, or an Agent loop.
+
+## Accepted Context and disclosure semantics
+
+[ADR-0004](architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)
+accepts the post-ranking Context layer. Context compilation is conditional
+information composition, not top-K retrieval or automatic budget filling.
+Disclosure planning couples candidate and representation choice and reasons
+about coverage, marginal contribution, complementarity, representation-relative
+overlap, prior currently available information, applicability, sufficiency,
+authority, and multidimensional cost. A provenance-bearing ContextDisclosure is
+the future account of what was selected for a purpose; it is neither repository
+state nor Conversation history.
+
+This architecture distinguishes repository history, disclosure history, and
+Conversation history. Current Conversation ownership remains
+`agents.conversation`; the sparse `context` namespace does not own a current
+compiler or former Session semantics. Model-input assembly is a separate future
+concern: it determines how a selected disclosure is realized for a model, while
+disclosure planning determines what information should be available. Context
+budgets are ceilings rather than targets, and repeated acquisition remains above
+deterministic retrieval/compilation rather than inside Runtime.
 
 See [documentation_map.md](documentation_map.md) for current package
 documentation, [taxonomy.md](architecture/taxonomy.md) for definitions, and

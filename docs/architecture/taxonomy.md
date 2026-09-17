@@ -373,6 +373,35 @@ budgeting. Deterministic and future learned/task-conditioned interpretations
 are enabled without selecting formulas, models, or execution technology. See
 [ADR-0003](decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md).
 
+### Context disclosure and assembly
+
+**Status: EMERGING.**
+
+Context compilation conditionally composes information for a consumer; it is
+not top-K retrieval or budget filling. Ranking remains an input, while
+disclosure planning couples candidate and representation choice and can reason
+about coverage, marginal contribution, complementarity, representation-relative
+overlap, prior currently available information, applicability, sufficiency,
+authority, coherence, and multidimensional cost. A ContextCandidate can support
+multiple representations without selecting a fixed `DisclosureOption` type.
+
+A ContextDisclosure is a future identifiable, provenance-bearing account of
+purpose-selected represented information. It is distinct from Repository state,
+Conversation history, and a model request. Repository, disclosure, and
+Conversation histories may reference one another but retain separate identities
+and lifecycles. Previously disclosed information need not remain currently
+available or applicable, and tracking disclosure/availability must not claim
+model comprehension or create a ModelKnowledgeState.
+
+Disclosure planning determines what information becomes available; model-input
+assembly determines how selected information is serialized, ordered, and placed
+for a particular model interaction. Presentation effects are empirical
+consumer-behavior evidence, not repository relevance or coverage truth. Budget
+is a ceiling, not a target, and is distinct from discovery bounds. Optional
+InformationNeed decomposition may derive child needs without discarding their
+parent; child satisfaction does not prove parent satisfaction. See
+[ADR-0004](decisions/ADR-0004-context-disclosure-planning-and-assembly.md).
+
 ### Resource
 
 **Status: EMERGING.**
