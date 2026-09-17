@@ -31,6 +31,12 @@ and immutable DerivedKnowledge; role-bearing direct semantic dependencies from
 incidental execution inputs; and dependencies from shared/result-specific
 provenance. Execution failure and incomplete coverage remain separate from
 repository facts.
+ADR-0002 now also settles the repository-intelligence capability boundary:
+available semantic realization is distinct from DerivationDefinition and
+implementation binding; bounded dependency access and finalized dynamic
+dependency accounting preserve replay/applicability; and internal admission,
+execution evidence, scheduling, retrieval, Tool authorization, Context, Agent,
+and Runtime ownership remain separate.
 Context remains
 purpose-relative selection and disclosure, not Conversation state, repository
 storage, Memory, or repository truth.
@@ -70,6 +76,13 @@ dependency-role and provenance schemas, compatibility/versioning, applicability
 assessment, result grouping/coverage, partial-result publication, execution/
 Evidence integration, capability bindings, dependency indexes, schedulers, and
 evaluation infrastructure remain unresolved implementation/design pressure.
+
+Concrete capability/binding representations, catalogs/registration/discovery,
+selection/lifecycle, bounded dependency-acquisition and execution-context APIs,
+dynamic tracking algorithms, admission/governance integration, execution
+evidence schema, scheduler/concurrency, analyzer/parser interfaces, result
+publication, persistence/caching, replay/evaluation, and package/API design
+remain unresolved implementation/design pressure.
 
 - hard_dependencies: none
 - pressure_dependencies: none

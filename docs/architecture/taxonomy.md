@@ -407,6 +407,28 @@ Determinism is distinct from correctness and certainty; confidence is distinct
 from completeness and is not a universal knowledge field. Where uncertainty or
 alternatives matter, derivation- or knowledge-specific semantics own them.
 
+#### Repository-intelligence capability
+
+A repository-intelligence **capability** is currently available semantic ability
+to realize compatible DerivationDefinition semantics. It is distinct from the
+definition itself and from a particular implementation binding. Registration or
+discovery can expose availability without defining semantics or changing
+historical Derivation/DerivedKnowledge meaning. Multiple bindings may realize
+compatible semantics; separate production objects are not required solely to
+mirror those responsibilities.
+
+Maintenance/planning determines required semantic work; capabilities realize
+admitted bounded work; execution performs selected realization. A capability
+does not own global reuse, prerequisites, caller needs, scheduling, retrieval,
+Context compilation, Agent behavior, model Tool semantics, or narrow Runtime.
+It receives bounded access to repository state and dependencies, may discover
+semantic dependencies dynamically, and must expose consumed semantic inputs in
+the finalized dependency/provenance record. Foundational capability realization
+is deterministic, LLM-independent, and observational with respect to the
+analyzed repository. Internal derivation admission differs from model Tool
+authorization. Concrete capability, binding, registry, admission, evidence,
+scheduler, and package designs remain open.
+
 The derivation dependency graph (applicability/provenance/rederivation) is distinct
 from repository semantic relationship views (for example defines, references,
 imports, calls, tests, documents, and governs). Typed relationships are

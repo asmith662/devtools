@@ -43,7 +43,8 @@ and Evidence ownership terminology, remain in the
   establishes semantic architecture for Repository identity, snapshots,
   RepositorySubjects/SourceOccurrences, Derivations, DerivedKnowledge, graph
   semantics, snapshot observation/delta/incremental-maintenance, minimum
-  derivation/knowledge semantics, and Context boundaries.
+  derivation/knowledge semantics, capability-realization boundary, and Context
+  boundaries.
   [ADR-0003](architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md)
   establishes InformationNeed, retrieval evidence/planning, and ranking
   semantics. [ADR-0004](architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)
@@ -55,6 +56,16 @@ and Evidence ownership terminology, remain in the
   for a Context compiler, disclosure model, index, parser, graph store, retrieval system, Memory,
   Agent loop, or orchestration system. [B-0008](backlog/items/B-0008-investigate-repository-context-discovery.md)
   remains superseded historical navigation evidence.
+
+### Architecture review gate — before implementation design
+
+The four planned repository-intelligence architecture items are documented:
+subject/identity semantics, snapshot/maintenance semantics, derivation/knowledge
+semantics, and capability-realization boundary. Before implementation design,
+the planned gate is architecture reconstruction/archaeology, rationale
+steelman, adversarial external-research review, and finding-by-finding
+reconciliation. This is a review sequence, not implementation authorization or
+an already-completed review.
 
 ### Later — promotion only when evidence is sufficient
 

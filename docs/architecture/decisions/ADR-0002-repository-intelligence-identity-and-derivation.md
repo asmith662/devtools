@@ -351,6 +351,91 @@ result. Confidence, alternatives, ambiguity, and uncertainty belong to
 derivation- or knowledge-specific semantics where meaningful; no universal
 confidence field is required for every DerivedKnowledge artifact.
 
+### Repository-intelligence capability boundary
+
+A repository-intelligence **capability** is defined first by the compatible
+DerivationDefinition semantics it can realize, not by an arbitrary operation it
+exposes. A DerivationDefinition can be known even where no current environment
+can realize it. The architecture therefore distinguishes known semantic
+computation, supported semantics, currently available realization, and an
+execution's outcome.
+
+Semantic capability and implementation binding are distinct responsibilities.
+Multiple bindings can realize compatible definition semantics, and future
+selection can consider availability, incremental state, platform, performance,
+cost, and language/toolchain support without changing the requested knowledge.
+One concrete object may later combine capability and binding representations;
+that operational choice must not collapse semantic definition identity,
+implementation identity, availability, or historical knowledge meaning.
+Registration/discovery can expose available realizations, but its runtime or
+configuration contents do not create DerivationDefinition meaning. Historical
+Derivations and DerivedKnowledge retain their meaning when an implementation is
+unregistered, replaced, or unavailable.
+
+The boundary is:
+
+```text
+required semantic derivation
+    -> maintenance / realization planning
+    -> available semantic capability
+    -> implementation realization
+    -> execution
+    -> DerivedKnowledge
+```
+
+Maintenance/planning determines what semantic work is required; the capability
+boundary determines whether/how admitted work can be realized; execution
+performs a selected realization. An individual capability does not own global
+reuse/cache decisions, prerequisite derivation planning, caller information
+needs, eager/lazy maintenance policy, or global scheduling.
+
+Capability realization receives bounded access to declared repository state and
+semantic inputs through an execution boundary capable of accounting for what it
+consumes. Unrestricted ambient `analyze(repo_root)` access to a live filesystem
+is not the foundational model. Efficient in-process access remains permitted;
+the architecture does not require RPC or a Tool call for every read. Semantic
+dependencies can be discovered dynamically during realization, but every
+semantically relevant dependency actually consumed must become explicit in the
+finalized dependency/provenance record. Expected dependencies alone do not
+govern replay or applicability.
+
+Repository intelligence is deterministic and LLM-independent foundationally,
+and observational with respect to the repository state it analyzes. A capability
+must not silently gain Agent authority, invoke arbitrary model-visible Tools,
+send model requests, expand its authority, or mutate the analyzed repository.
+Operational side effects outside that stateâ€”for example cache/index writes,
+temporary files, persistence, or execution evidenceâ€”remain possible but are
+not selected mechanisms. LLM-assisted or nondeterministic analysis requires
+explicitly different derivation, evidence, and governance semantics rather than
+masquerading as this substrate.
+
+Repository-intelligence admission differs from ADR-0001 model Tool
+authorization. The former may constrain repository/snapshot, resources,
+configured realizations, and bounded time/memory for internal deterministic
+work; the latter governs untrusted model-proposed actions. Common governance or
+execution primitives may later be reused without merging responsibilities.
+
+Retrieval consumes repository intelligence and must not silently own arbitrary
+derivation merely because knowledge is absent. Additional knowledge acquisition
+crosses an explicit repository-intelligence maintenance/realization boundary so
+cost, latency, provenance, concurrency, replay, and incremental work remain
+observable. Repository Intelligence is neither Tool, Agent, retrieval, Context
+compiler, nor generic Runtime ownership.
+
+Capability execution must eventually correlate requested semantic work,
+DerivationDefinition, actual consumed dependencies, produced knowledge,
+partial/exhaustive completeness where relevant, diagnostics, and terminal
+outcome. This is execution evidence, not applicability authority. Unknown
+semantics, known-but-unsupported semantics, supported-but-unavailable
+realization, admission denial, execution failure, successful zero result,
+successful partial result, and successful exhaustive result remain distinct
+future outcomes; no error hierarchy or evidence schema is selected.
+
+Independent derivations may realize concurrently, but individual capabilities
+do not own global dependency scheduling or concurrency policy. Future
+maintenance/planning and scheduler mechanisms can order actual dependencies and
+exploit independence without becoming capability semantics.
+
 Dependency scope is separate from knowledge value shape. Syntax trees, lexical
 tokens, and locally declared symbols often have narrow content-scoped
 dependencies; resolved imports, cross-file references, calls, inheritance,
@@ -529,7 +614,11 @@ dependency-role/referent and provenance schemas, definition compatibility/
 versioning, applicability algorithms/APIs, result grouping/cardinality and
 exhaustive-coverage representation, partial-result publication, execution/
 Attempt/Evidence integration, implementation bindings, capability registration,
-and package ownership; confidence/evidence
+catalog/discovery, selection, lifecycle, admission, dependency-provider and
+execution-context APIs, dynamic dependency tracking, static declaration format,
+process/subprocess/native execution, governance reuse, evidence schema, result
+publication, partial-result transaction semantics, and package ownership;
+confidence/evidence
 for heuristic knowledge; lexical choices such as grep/BM25/trigram; embeddings,
 vector storage, graph algorithms, learned ranking, task-sensitive strategy
 selection, call graphs, historical co-change, change impact, test/code,
@@ -542,7 +631,8 @@ infrastructure and exact metrics.
 This decision settles semantic architecture only. It does not claim that any
 new production types, protocols, RepositorySubject/SourceOccurrence models,
 DerivationDefinition/Derivation/DerivedKnowledge models, execution bindings,
-indexes, parsers, graph views, persistence,
+capability protocols/registries/schedulers/dependency providers, indexes,
+parsers, graph views, persistence,
 retrieval, ranking, Context compiler, Tool, Agent, Runtime loop, or evaluation
 system exists. B-0002 retains the unimplemented repository-intelligence and
 coding-Context pressure. B-0008 is superseded as the earlier narrow

@@ -162,6 +162,26 @@ established knowledge. Definition, derivation, execution, and knowledge
 identities remain distinct; concrete models, compatibility/versioning,
 provenance, execution integration, and coverage mechanisms remain open.
 
+Repository-intelligence capability is semantic-capability-first: it is the
+currently available ability to realize compatible DerivationDefinition
+semantics, distinct from that definition and from a particular implementation
+binding. Registration/discovery exposes available realizations; it does not
+create semantic definitions or alter historical knowledge. Maintenance planning
+determines required semantic work, capabilities realize admitted bounded work,
+and execution performs the chosen realization. This does not assign cache/reuse,
+prerequisite planning, global scheduling, or caller information needs to an
+individual capability.
+
+Capabilities receive bounded repository-state and dependency access capable of
+accounting for semantically consumed inputs. Dynamic discovery is permitted,
+but finalized dependencies must make consumed semantic state explicit for replay
+and applicability. Foundational repository intelligence is deterministic,
+LLM-independent, and observational with respect to the analyzed repository;
+it is not Tool, Agent, retrieval, Context compiler, or generic Runtime
+semantics. Internal admission for bounded deterministic work differs from
+ADR-0001 model Tool authorization. Concrete bindings, registries, selection,
+admission, evidence, scheduling, and package APIs remain open.
+
 Analyzer-established structural decomposition may establish subjects. Further
 repository-semantic decomposition (for example a failure path or responsibility)
 is DerivedKnowledge by default. Purpose-relative InformationNeed decomposition

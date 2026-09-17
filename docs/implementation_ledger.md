@@ -268,6 +268,11 @@ prerequisites for a future architectural domain.
   applicability/provenance/coverage/execution evidence remain distinct. This
   documentation-only refinement defers concrete models, identity, capability,
   execution, maintenance, and storage mechanisms.
+- Further amended ADR-0002 within the same boundary: repository-intelligence
+  capability is available semantic realization, distinct from definition and
+  implementation binding; bounded dependency accounting, internal admission,
+  execution evidence, and scheduling remain separate from Tools, retrieval,
+  Context, Agent, and Runtime ownership. Concrete mechanisms remain deferred.
 - Accepted ADR-0003 for the next semantic layer: immutable purpose-relative
   InformationNeed; bounded, dependency-aware multi-strategy retrieval planning;
   ContextCandidates; provenance-bearing RelevanceEvidence; and ranking distinct
