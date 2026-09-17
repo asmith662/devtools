@@ -44,7 +44,9 @@ and Evidence ownership terminology, remain in the
   Derivations, DerivedKnowledge, and Context boundaries. [ADR-0003](architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md)
   establishes InformationNeed, retrieval evidence/planning, and ranking
   semantics. [ADR-0004](architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)
-  establishes Context/disclosure-planning and model-input-assembly semantics.
+  establishes Context/disclosure planning, materialization, provenance-bearing
+  disclosure artifacts, representation origins, and model-input assembly
+  semantics.
   [B-0002](backlog/epics/B-0002-coding-context-substrate.md)
   retains the unimplemented design pressure. These decisions are not authorization
   for a Context compiler, disclosure model, index, parser, graph store, retrieval system, Memory,

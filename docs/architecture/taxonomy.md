@@ -386,12 +386,26 @@ authority, coherence, and multidimensional cost. A ContextCandidate can support
 multiple representations without selecting a fixed `DisclosureOption` type.
 
 A ContextDisclosure is a future identifiable, provenance-bearing account of
-purpose-selected represented information. It is distinct from Repository state,
-Conversation history, and a model request. Repository, disclosure, and
-Conversation histories may reference one another but retain separate identities
-and lifecycles. Previously disclosed information need not remain currently
-available or applicable, and tracking disclosure/availability must not claim
-model comprehension or create a ModelKnowledgeState.
+purpose-selected represented information. A DisclosurePlan is the distinct
+identified decision about what should be made available; a ContextDisclosure is
+what was actually realized with reference to that plan. Both are immutable
+artifact directions, neither is a ModelRequest, and materialization between
+them must not silently make a materially different plan. Repository, disclosure,
+and Conversation histories may reference one another but retain separate
+identities and lifecycles. Previously disclosed information need not remain
+currently available or applicable, and tracking disclosure/availability must
+not claim model comprehension or create a ModelKnowledgeState.
+
+Disclosure selects information rather than arbitrary prompt strings. A
+DisclosureOption is a conceptual purpose-relative possibility for making
+identified information about one or more subjects available through a
+representation. Origin, form, fidelity, and cost are separate concerns.
+Source-preserving representations select/transform identified source without
+new semantic assertions; knowledge projections expose existing DerivedKnowledge;
+synthesized representations introduce new semantic assertions and therefore
+must remain explicit provenance-bearing derivation work. Determinism does not
+by itself establish semantic certainty. Composite representations may preserve
+multiple constituent origins.
 
 Disclosure planning determines what information becomes available; model-input
 assembly determines how selected information is serialized, ordered, and placed
@@ -401,6 +415,13 @@ is a ceiling, not a target, and is distinct from discovery bounds. Optional
 InformationNeed decomposition may derive child needs without discarding their
 parent; child satisfaction does not prove parent satisfaction. See
 [ADR-0004](decisions/ADR-0004-context-disclosure-planning-and-assembly.md).
+
+Coherence is intelligibility of information presented together and the avoided
+consumer reconstruction burden, not physical contiguity. Authority is
+claim-/purpose-relative evidence, not a universal source ordering, and remains
+distinct from relevance, confidence, coverage, and ranking influence. Material
+conflicts and absence discipline remain preservable: disclosure planning does
+not generally resolve truth, and missing evidence does not prove its opposite.
 
 ### Resource
 

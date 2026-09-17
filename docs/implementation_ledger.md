@@ -262,3 +262,10 @@ prerequisites for a future architectural domain.
   assembly separate from disclosure planning. This documentation-only decision
   preserves unresolved compiler, representation, authority, coherence, and
   evaluation work without implementing any Context infrastructure.
+- Amended ADR-0004 within its accepted disclosure-planning boundary: disclosure
+  selects information rather than prompt strings; DisclosureOption,
+  DisclosurePlan, ContextDisclosure, and ModelRequest are distinct; source,
+  knowledge-projection, and synthesized origins have different provenance
+  semantics; new assertions remain explicit DerivedKnowledge; and coherence,
+  authority, conflict, applicability-at-realization, and materialization
+  boundaries are semantically settled while their mechanisms remain deferred.

@@ -32,8 +32,13 @@ retrieval system or Context compiler.
 now settles post-ranking Context/disclosure semantics: conditional composition,
 representation-coupled selection, coverage, applicability, prior availability,
 sufficiency, budgeting, ContextDisclosure, and separation from model-input
-assembly. It leaves compiler, disclosure, representation, coverage, authority,
-coherence, assembly, and evaluation implementations unresolved.
+assembly. Its refinement further settles information-not-string disclosure,
+DisclosureOption/DisclosurePlan/ContextDisclosure distinctions, representation
+origin/form/fidelity/cost, explicit derived synthesis, coherence, authority,
+conflict preservation, and no-silent-replanning materialization. It leaves
+compiler, concrete artifacts, representation/coverage/authority/conflict/
+coherence mechanisms, derivation orchestration, materialization, assembly,
+caching, authorization integration, and evaluation implementations unresolved.
 
 This epic preserves the unimplemented pressure enabled by that decision:
 snapshot policy and acquisition, deterministic repository knowledge,

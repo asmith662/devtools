@@ -133,9 +133,26 @@ information composition, not top-K retrieval or automatic budget filling.
 Disclosure planning couples candidate and representation choice and reasons
 about coverage, marginal contribution, complementarity, representation-relative
 overlap, prior currently available information, applicability, sufficiency,
-authority, and multidimensional cost. A provenance-bearing ContextDisclosure is
-the future account of what was selected for a purpose; it is neither repository
-state nor Conversation history.
+authority, and multidimensional cost. It selects information rather than prompt
+strings. A DisclosureOption is a future purpose-relative information-and-
+representation possibility, with origin, form, fidelity, cost, and provenance
+kept semantically distinct. Source-preserving material, existing knowledge
+projections, and synthesized semantic assertions are distinct origins; new
+assertions remain explicit ADR-0002 DerivedKnowledge rather than opaque compiler
+text. Composite provenance-preserving representations are permitted.
+
+DisclosurePlan, ContextDisclosure, and ModelRequest remain distinct:
+
+```text
+InformationNeed -> DisclosurePlan -> materialization -> ContextDisclosure
+    -> model-input assembly -> ModelRequest
+```
+
+The Plan is an immutable selected-information decision; the Disclosure is an
+immutable realized information artifact under/reference to that plan; the
+ModelRequest is a consumer-specific presentation. Materialization cannot silently
+re-plan or present inapplicable information as current. Planning and possession
+of a disclosure are not disclosure/presentation authority.
 
 This architecture distinguishes repository history, disclosure history, and
 Conversation history. Current Conversation ownership remains
@@ -145,6 +162,13 @@ concern: it determines how a selected disclosure is realized for a model, while
 disclosure planning determines what information should be available. Context
 budgets are ceilings rather than targets, and repeated acquisition remains above
 deterministic retrieval/compilation rather than inside Runtime.
+
+Coherence concerns intelligible meaningful units and consumer reconstruction
+burden, not source contiguity. Authority is claim-/purpose-relative evidence,
+not a universal source hierarchy; relevant applicable conflicts remain
+preservable rather than being silently arbitrated. Concrete coverage, fidelity,
+authority, conflict, coherence, synthesis, materialization, cache, assembly,
+and evaluation mechanisms remain unimplemented.
 
 See [documentation_map.md](documentation_map.md) for current package
 documentation, [taxonomy.md](architecture/taxonomy.md) for definitions, and
