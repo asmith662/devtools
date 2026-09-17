@@ -22,6 +22,10 @@ relationships are distinct from derivation dependencies. It also settles
 snapshot-local RepositorySubjects, distinct SourceOccurrences, and their
 orthogonality to DerivedKnowledge: analysis may establish subjects, while
 subject continuity, hierarchy, and relationships remain derived knowledge.
+RepositorySnapshots are logically complete successfully observed states under
+explicit semantics; SnapshotDelta and IncrementalMaintenance remain separate;
+and dependency-scoped applicability permits reuse without making state change
+or cache/invalidation mechanisms into repository truth.
 Context remains
 purpose-relative selection and disclosure, not Conversation state, repository
 storage, Memory, or repository truth.
@@ -47,9 +51,12 @@ caching, authorization integration, and evaluation implementations unresolved.
 This epic preserves the unimplemented pressure enabled by that decision:
 snapshot policy and acquisition, deterministic repository knowledge,
 analyzer-established subjects/source occurrences, relationship views, graph
-views, incremental maintenance, retrieval/relevance evidence, ranking distinct
-from final selection, representation and compilation, provenance/disclosure, budgeting,
-progressive acquisition, reuse, and evaluation. Resources provide access and
+views, incremental observation/consistency, SnapshotDelta, increasingly fine-
+grained dependency scopes, applicability/reuse, invalidation discovery,
+rederivation, caching, historical/replay support, retrieval/relevance evidence,
+ranking distinct from final selection, representation and compilation,
+provenance/disclosure, budgeting, progressive acquisition, and evaluation.
+Resources provide access and
 Tools may adapt bounded access, but neither constitutes repository intelligence
 or Context compilation.
 

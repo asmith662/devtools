@@ -42,7 +42,8 @@ and Evidence ownership terminology, remain in the
 - [ADR-0002](architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md)
   establishes semantic architecture for Repository identity, snapshots,
   RepositorySubjects/SourceOccurrences, Derivations, DerivedKnowledge, graph
-  semantics, and Context boundaries. [ADR-0003](architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md)
+  semantics, snapshot observation/delta/incremental-maintenance, and Context
+  boundaries. [ADR-0003](architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md)
   establishes InformationNeed, retrieval evidence/planning, and ranking
   semantics. [ADR-0004](architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)
   establishes Context/disclosure planning, materialization, provenance-bearing

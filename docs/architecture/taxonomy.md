@@ -321,6 +321,24 @@ repository-relative address and independently refers to content identity.
 Entity continuity and move/rename/copy claims across snapshots are derived
 knowledge, not foundational identity.
 
+#### RepositorySnapshot, SnapshotDelta, and IncrementalMaintenance
+
+A **RepositorySnapshot** is an immutable, logically complete description of
+successfully observed state under explicit snapshot and observation semantics.
+Its declared inclusion and consistency contract defines completeness; a valid
+snapshot does not imply complete repository intelligence, physical copying, or
+full recomputation. Observation cannot claim stronger consistency than its
+mechanism establishes, and watcher events are hints rather than repository
+truth.
+
+A **SnapshotDelta** is a difference relationship between identified snapshots,
+not state, identity, watcher output, or an ordered mutation history. An
+**IncrementalMaintenance** process efficiently establishes knowledge applicable
+to a state; it does not define that state. Immutable snapshots can share
+physical representation and applicable knowledge. The exact snapshot policy,
+observation protocol, identity construction, delta model, and maintenance
+mechanism remain open.
+
 #### RepositorySubject and SourceOccurrence
 
 A **RepositorySubject** is a snapshot-local identifiable structural or
@@ -346,10 +364,18 @@ those latter decompositions automatically creates a RepositorySubject.
 
 `Derivation` identifies knowledge-producing semantics, including relevant
 implementation revision and configuration. `DerivedKnowledge` is knowledge
-with derivation, explicit dependencies, value, and provenance. Its validity
+with derivation, explicit dependencies, value, and provenance. Its applicability
 depends on satisfying those dependencies under equivalent derivation semantics,
 not merely on the snapshot where it was first produced. DerivedKnowledge may
 depend on other DerivedKnowledge, enabling targeted invalidation and reuse.
+
+Applicability follows actual semantic dependencies: content, occurrences,
+subjects, source occurrences, other knowledge, snapshot facts, and consumed
+derivation/language/toolchain semantics are possible inputs. It is not a fixed
+path/content dependency convention. One immutable knowledge artifact can apply
+to multiple snapshots without rebinding; failure to apply to a later state does
+not alter its historical derivation result or provenance. Applicability, invalidation discovery,
+rederivation, and cache lookup are separate concerns.
 
 The derivation dependency graph (validity/provenance/recomputation) is distinct
 from repository semantic relationship views (for example defines, references,

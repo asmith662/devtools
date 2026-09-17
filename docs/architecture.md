@@ -122,6 +122,27 @@ repository hierarchy, graph, graph store, or foundational Chunk. This also
 preserves Context as purpose-relative selection and disclosure rather than
 repository truth.
 
+A RepositorySnapshot is an immutable, logically complete successfully observed
+state under explicit snapshot/observation semantics. Completeness is relative
+to declared inclusion and consistency guarantees, not physical copying, a full
+rescan, or repository-intelligence completeness. Observation must not claim a
+stronger simultaneous-state guarantee than its mechanism establishes; watcher
+events are only future triggers/hints. Snapshot identity is deterministic and
+content-derived, but digest construction, policy-to-state-identity treatment,
+and observation mechanisms remain open. ContentIdentity is address-independent
+and reusable; ResourceOccurrences remain snapshot-local.
+
+SnapshotDelta is a difference relationship between states, and
+IncrementalMaintenance is the process of efficiently establishing applicable
+knowledge. Neither defines repository state or identity. Immutable logical
+snapshots and reuse are complementary: applicable DerivedKnowledge can serve
+multiple snapshots without copying or rebinding, while missing/inapplicable
+knowledge is rederived as required. Applicability follows actual semantic
+dependencies, which may include content, occurrences, subjects, source anchors,
+other knowledge, snapshot facts, or derivation semanticsâ€”not a fixed
+path/content pair or local-versus-relational category. Applicability,
+invalidation discovery, rederivation, and cache lookup remain separate.
+
 Analyzer-established structural decomposition may establish subjects. Further
 repository-semantic decomposition (for example a failure path or responsibility)
 is DerivedKnowledge by default. Purpose-relative InformationNeed decomposition

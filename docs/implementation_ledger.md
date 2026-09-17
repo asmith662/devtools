@@ -256,6 +256,12 @@ prerequisites for a future architectural domain.
   not universal subject identity. This documentation-only refinement preserves
   analyzer, graph, identity, incremental-maintenance, retrieval, and Context
   implementation mechanisms as deferred.
+- Further amended ADR-0002 within the same boundary: RepositorySnapshot is a
+  logically complete successfully observed state under explicit semantics;
+  SnapshotDelta and IncrementalMaintenance are distinct from state; and
+  dependency-scoped DerivedKnowledge applicability, invalidation discovery,
+  rederivation, and cache lookup remain separate. Observation, identity,
+  storage, and maintenance mechanisms remain deferred.
 - Accepted ADR-0003 for the next semantic layer: immutable purpose-relative
   InformationNeed; bounded, dependency-aware multi-strategy retrieval planning;
   ContextCandidates; provenance-bearing RelevanceEvidence; and ranking distinct

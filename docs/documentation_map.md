@@ -13,7 +13,8 @@
   rationale, alternatives, consequences, and historical evolution. They explain
   why architecture was chosen; they are not the sole current-state specification.
   ADR-0001 defines ModelInteraction/Tool semantics; ADR-0002 repository identity,
-  subjects/source occurrences, derivation, and graph semantics; ADR-0003
+  snapshot observation/delta/maintenance, subjects/source occurrences,
+  derivation, and graph semantics; ADR-0003
   InformationNeed/retrieval/ranking; and
   [ADR-0004](architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)
   Context/disclosure planning, materialization, representation-origin, and
