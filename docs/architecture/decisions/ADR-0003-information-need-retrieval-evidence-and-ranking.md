@@ -65,18 +65,22 @@ forcing relevance discovery. Exact naming and API remain open.
 
 ### Candidates and relevance evidence
 
-A **ContextCandidate** identifies an addressable repository subject that may
-help satisfy an InformationNeed. It does not prescribe final model-visible
-representation. Discovering a symbol does not decide whether later Context
+A **ContextCandidate** identifies an addressable repository-intelligence
+referent that may help satisfy an InformationNeed. The referent can be a
+RepositorySubject, ResourceOccurrence, SourceOccurrence, DerivedKnowledge, or
+another future addressable referent under ADR-0002 semantics. It does not
+prescribe final model-visible representation. Discovering a symbol does not
+decide whether later Context
 discloses its name, signature, documentation, body, containing class, source
 region, summary, or relationship neighborhood.
 
-Candidates may address resource occurrences, source regions, symbols/entities,
-document sections, relationships, DerivedKnowledge, and other future subjects.
-Their equivalence follows underlying subject identity rather than arbitrary
-retrieval-result UUIDs, so independent discoveries of the same subject can
-accumulate evidence. Different granularities remain distinct candidates: a
-file, contained symbol, and source region do not automatically collapse.
+Candidates may address resource occurrences, source occurrences/regions,
+RepositorySubjects, relationships, DerivedKnowledge, and other future
+referents. Their equivalence follows the underlying addressed identity rather
+than arbitrary retrieval-result UUIDs, so independent discoveries of the same
+referent can accumulate evidence. Different granularities remain distinct
+candidates: a file, contained symbol, and source region do not automatically
+collapse.
 Overlap/deduplication is Context selection/compilation work, not retrieval.
 
 **RelevanceEvidence** is typed, provenance-bearing, purpose-relative evidence

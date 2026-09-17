@@ -3,8 +3,9 @@
 - Status: Accepted
 - Date: 2026-09-16
 - Scope: semantic architecture for future repository intelligence and coding
-  Context. This decision authorizes no production implementation, storage,
-  parser, graph, retrieval system, or Context compiler.
+  Context, including repository subject, source-occurrence, derivation, and
+  graph semantics. This decision authorizes no production implementation,
+  storage, parser, graph, retrieval system, or Context compiler.
 
 ## Context
 
@@ -65,6 +66,76 @@ and other repository entities may have structural identity only within the
 source/knowledge state establishing them. Cross-snapshot entity continuity is
 future derived knowledge with evidence, never hidden inside an identity
 primitive.
+
+### Repository subjects and source occurrences
+
+**Subjecthood** and **derivation** are orthogonal. A **RepositorySubject** is
+an identifiable thing within a repository state about which repository
+intelligence can make assertions. **DerivedKnowledge** instead answers what is
+known about repository things, from which dependencies, through which
+derivation, and with what provenance/applicability. Analysis can establish a
+RepositorySubject without making subjecthood a pre-existing filesystem fact:
+parsing may establish that an identifiable Python method exists, and later
+analysis may derive knowledge about that method. Thus being derived through
+analysis does not make a thing ineligible to be a subject.
+
+RepositorySubject deliberately covers heterogeneous repository artifacts, not
+only code. An analyzer may establish a Python module, class, function, method,
+or nested function; a Markdown document or section; a configuration table or
+entry; or a workflow, job, or step. This is not a closed kind taxonomy.
+Independent referential identity is justified when a repository-intelligence
+domain needs to attach knowledge, relationships, queries, or dependencies to a
+thing independently. Statements, expressions, parameters, and blocks are
+therefore neither universally subjects nor universally excluded.
+
+A **SourceOccurrence** is an identifiable/addressable source span or anchor
+within a ResourceOccurrence: for example a declaration, reference/use, call
+site, import occurrence, literal, or another source anchor. It can participate
+in provenance and relationships without becoming a RepositorySubject, and is
+only snapshot-locally addressable/identifiable. A source occurrence can
+declare, define, or reference a subject, but source location is not semantic
+subject identity. A snapshot, path, and range can locate a method; harmless
+line insertion can change that locator without changing the subject an analyzer
+recognizes. Concrete subject identifiers, locators, fingerprints, and matching
+algorithms remain open.
+
+RepositorySubject identity is snapshot-local. There is no foundational global
+semantic entity intended to survive arbitrary repository evolution. Same
+logical entity, rename/move/copy, evolution, split, and merge claims between
+subjects in different snapshots are DerivedKnowledge with future evidence,
+confidence, or ambiguity where appropriate.
+
+AST and parser nodes are analysis artifacts by default, not subjects merely
+because they appear in a parse tree. A `FunctionDef`-like node can establish a
+function subject; a parser-internal node without independent repository-
+intelligence identity need not. Conversely, a future analyzer may establish a
+fine-grained subject when it has a justified identity model.
+
+Names and qualified names are not foundational RepositorySubject identity.
+Declared name, containment, qualified-name, and name-resolution facts are
+DerivedKnowledge. A resolved semantic entity may itself be a RepositorySubject,
+but this architecture neither requires a separate foundational `Symbol`
+abstraction nor prevents a future analyzer from adding justified symbol-specific
+semantics.
+
+### Distinct decomposition semantics
+
+Three non-equivalent decompositions must remain separate. **Analyzer-established
+structural decomposition** analyzes repository material into identifiable
+structural subjects, such as a module, class, method, or nested function. It is
+reusable repository intelligence. **Repository-semantic decomposition** may
+derive timeout branches, failure paths, lifecycles, authorization interactions,
+behavioral regions, or responsibilities. These are DerivedKnowledge by default,
+not automatically foundational subjects; a future analyzer can establish a
+semantic subject only with a justified independent identity model.
+
+**Purpose-relative decomposition** is downstream: ADR-0003/ADR-0004 allow an
+InformationNeed to derive information demands such as timeout configuration,
+enforcement, handling, evidence, and tests. Those demands are not
+RepositorySubjects merely because a need was decomposed. Similarly, a coherent
+Context disclosure can combine a signature, source region, exception type,
+tests, and a knowledge projection without making that purpose-relative
+composition a RepositorySubject.
 
 ### Derivation and DerivedKnowledge
 
@@ -129,7 +200,7 @@ content -> parse knowledge -> symbol knowledge -> resolved-reference knowledge
 ```
 
 The **repository semantic/knowledge relationship graph** answers how resources,
-entities, and concepts relate. Eventual typed relationships may include
+subjects, source occurrences, and concepts relate. Eventual typed relationships may include
 `DEFINES`, `REFERENCES`, `IMPORTS`, `CALLS`, `INHERITS`, `TESTS`/`EXERCISES`,
 `DOCUMENTS`, `GOVERNS`, and change relationships. It supports repository
 understanding, traversal, structural retrieval, impact analysis, and Context
@@ -147,6 +218,40 @@ and relevant evidence/metadata. They do not need a separate foundational
 `RelationshipId`; their derivation, dependencies, provenance, and reproducible
 knowledge identity provide lineage. One universal canonical repository graph is
 not accepted.
+
+Graph node identity is not RepositorySubject identity by definition. Each graph
+view chooses the node domain appropriate to its semantics. Views should reuse
+RepositorySubject or SourceOccurrence identity when those are the represented
+things: a containment graph can connect subjects, a reference graph can connect
+a SourceOccurrence to a RepositorySubject, and a call graph can connect
+function/method subjects. A control- or data-flow graph may instead require
+derivation-local basic-block, statement, or instruction nodes without promoting
+them to global repository subjects. Containment is likewise typed relationship
+knowledge, not a universal hierarchy encoded into subject identity; this admits
+module/function, module/class/method, document/section, and workflow/job/step
+structures without imposing one repository tree.
+
+Repository intelligence defines no foundational universal `Chunk`. Fixed token
+windows, arbitrary line chunks, syntax-aware slices, graph neighborhoods,
+subject combinations, and other bounded units can be useful downstream for
+retrieval or disclosure, but do not define repository identity. They may be
+constructed dynamically without becoming subjects.
+
+The resulting boundary is conceptual rather than a required class diagram:
+
+```text
+Repository -> RepositorySnapshot -> ResourceOccurrence -> SourceOccurrence
+ResourceOccurrence -> ContentIdentity
+analysis/derivation may establish RepositorySubject
+
+identified dependencies -> Derivation -> DerivedKnowledge
+```
+
+Subjects and source occurrences can be dependencies, referents, provenance
+anchors, or values in DerivedKnowledge. Repository intelligence supplies those
+reusable facts downstream; ADR-0003 owns purpose-relative discovery and
+RelevanceEvidence, while ADR-0004 owns purpose-relative disclosure composition
+and representation. This is not a containment pipeline.
 
 ### Repository intelligence and Context
 
@@ -188,7 +293,8 @@ roles. No metric, harness, model policy, or worker loop is selected here.
 | RepositorySnapshot | Immutable content-derived complete included state under snapshot semantics. |
 | Resource occurrence | Contextual snapshot plus repository-relative address. |
 | Content | Content-derived identity reusable for identical content. |
-| Repository entity | Structural identity in relevant source/knowledge state; no assumed permanent continuity. |
+| Source occurrence | Snapshot-local source anchor/address within a ResourceOccurrence; not automatically a subject. |
+| RepositorySubject | Snapshot-local structural/semantic referent about which repository intelligence can make assertions. |
 | Derivation | Semantic identity of a knowledge-producing transformation. |
 | DerivedKnowledge | Reproducible identity tied to derivation/dependencies/result semantics. |
 | Relationship | DerivedKnowledge value shape, not an independent foundational identity. |
@@ -208,12 +314,14 @@ roles. No metric, harness, model policy, or worker loop is selected here.
 
 ## Deferred and open pressure
 
-This ADR intentionally leaves open: hash/digest and Merkle representation;
+This ADR intentionally leaves open: SubjectId and SubjectKind representation;
+subject locators, fingerprints, matching, and cross-snapshot continuity
+algorithms; hash/digest and Merkle representation;
 snapshot inclusion policy; ignored/generated files, binaries, symlinks,
 submodules, multiple roots, and filesystem race/atomicity semantics;
 persistence, cache, serialization, derivation-dependency storage, graph
 storage, cross-repository content reuse, and external/environment-dependent
-derivations; parser/analyzer technology and entity locators; confidence/evidence
+derivations; parser/analyzer technology and analyzer/plugin APIs; confidence/evidence
 for heuristic knowledge; lexical choices such as grep/BM25/trigram; embeddings,
 vector storage, graph algorithms, learned ranking, task-sensitive strategy
 selection, call graphs, historical co-change, change impact, test/code,
@@ -224,7 +332,8 @@ infrastructure and exact metrics.
 ## Status and implementation boundary
 
 This decision settles semantic architecture only. It does not claim that any
-new production types, protocols, indexes, parsers, graph views, persistence,
+new production types, protocols, RepositorySubject/SourceOccurrence models,
+indexes, parsers, graph views, persistence,
 retrieval, ranking, Context compiler, Tool, Agent, Runtime loop, or evaluation
 system exists. B-0002 retains the unimplemented repository-intelligence and
 coding-Context pressure. B-0008 is superseded as the earlier narrow

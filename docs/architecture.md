@@ -105,8 +105,29 @@ remain authoritative for exact current APIs.
 [ADR-0002](architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md)
 accepts future semantic architecture for Repository identity, content-derived
 RepositorySnapshots, derivation-aware DerivedKnowledge, and distinct derivation
-and repository-relationship graph families. It also preserves Context as
-purpose-relative selection and disclosure rather than repository truth.
+and repository-relationship graph families. RepositorySubject is the
+snapshot-local identifiable repository thing about which intelligence may make
+assertions; SourceOccurrence is a snapshot-local source anchor within a
+ResourceOccurrence and is not automatically a subject. Subjecthood and
+DerivedKnowledge are orthogonal: analysis may establish a subject, while
+Derivations establish knowledge about subjects, source occurrences, resources,
+and other dependencies. Subject identity is not a path/range, name, qualified
+name, AST node, or cross-snapshot continuity claim.
+
+Typed containment, declaration, reference, call, import, inheritance, and
+other relationships remain DerivedKnowledge. Graph views choose suitable node
+domains: they may reuse subjects and source occurrences, or use local derived
+nodes without making every graph node a RepositorySubject. There is no universal
+repository hierarchy, graph, graph store, or foundational Chunk. This also
+preserves Context as purpose-relative selection and disclosure rather than
+repository truth.
+
+Analyzer-established structural decomposition may establish subjects. Further
+repository-semantic decomposition (for example a failure path or responsibility)
+is DerivedKnowledge by default. Purpose-relative InformationNeed decomposition
+and purpose-relative composite disclosure are downstream concerns under
+ADR-0003/ADR-0004; neither makes its resulting demands or disclosure units into
+RepositorySubjects.
 
 This architecture does not imply a current `context` implementation. Filesystem
 Resources remain access mechanisms, not Repository identity. Retrieval,

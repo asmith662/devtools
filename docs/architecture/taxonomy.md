@@ -321,6 +321,29 @@ repository-relative address and independently refers to content identity.
 Entity continuity and move/rename/copy claims across snapshots are derived
 knowledge, not foundational identity.
 
+#### RepositorySubject and SourceOccurrence
+
+A **RepositorySubject** is a snapshot-local identifiable structural or
+semantic thing about which repository intelligence can make assertions. It can
+be established by analysis; subjecthood and DerivedKnowledge are orthogonal.
+For example, a parser can establish a method subject and a later derivation can
+produce facts about it. Subject kinds remain open and heterogeneous: code,
+documents, configuration, and workflows can establish subjects when independent
+referential identity is justified. A **SourceOccurrence** is instead a
+snapshot-local source span or anchor within a ResourceOccurrence, such as a
+declaration, reference, call, or import. It can support provenance or relate to
+a subject without becoming one.
+
+Subject identity is not a source path/range, declared or qualified name, parse
+node, or a global entity surviving arbitrary edits. Source addresses locate;
+they do not automatically identify the semantic subject. Cross-snapshot
+continuity is DerivedKnowledge with evidence, not foundational identity.
+
+Structural analyzer decomposition may establish subjects. Repository-semantic
+decomposition is DerivedKnowledge by default, while InformationNeed and
+disclosure decomposition are purpose-relative downstream semantics. None of
+those latter decompositions automatically creates a RepositorySubject.
+
 `Derivation` identifies knowledge-producing semantics, including relevant
 implementation revision and configuration. `DerivedKnowledge` is knowledge
 with derivation, explicit dependencies, value, and provenance. Its validity
@@ -332,7 +355,13 @@ The derivation dependency graph (validity/provenance/recomputation) is distinct
 from repository semantic relationship views (for example defines, references,
 imports, calls, tests, documents, and governs). Typed relationships are
 DerivedKnowledge values; no universal graph, graph database, or storage model
-is implied. Exact identity representation, snapshot policy, storage, parser,
+is implied. A graph node is not necessarily a RepositorySubject: graph views
+use the node domain their semantics require and can include local derived nodes.
+Containment is relationship knowledge rather than a universal subject-ID tree.
+Repository intelligence also has no foundational universal Chunk; downstream
+retrieval/disclosure may construct bounded regions, neighborhoods, or subject
+sets without defining repository identity. Exact identity representation,
+snapshot policy, storage, parser,
 retrieval, ranking, and evaluation mechanisms remain unimplemented.
 
 ### InformationNeed, retrieval, and ranking

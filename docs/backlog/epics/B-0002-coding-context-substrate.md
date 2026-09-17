@@ -18,7 +18,11 @@ now settles the semantic foundation that this epic originally investigated:
 Repository identity is distinct from location and Git identity; snapshots are
 content-derived under explicit policy; deterministic knowledge is produced by
 identified Derivations over explicit dependencies; and repository semantic
-relationships are distinct from derivation dependencies. Context remains
+relationships are distinct from derivation dependencies. It also settles
+snapshot-local RepositorySubjects, distinct SourceOccurrences, and their
+orthogonality to DerivedKnowledge: analysis may establish subjects, while
+subject continuity, hierarchy, and relationships remain derived knowledge.
+Context remains
 purpose-relative selection and disclosure, not Conversation state, repository
 storage, Memory, or repository truth.
 
@@ -42,8 +46,9 @@ caching, authorization integration, and evaluation implementations unresolved.
 
 This epic preserves the unimplemented pressure enabled by that decision:
 snapshot policy and acquisition, deterministic repository knowledge,
-relationship views, retrieval/relevance evidence, ranking distinct from final
-selection, representation and compilation, provenance/disclosure, budgeting,
+analyzer-established subjects/source occurrences, relationship views, graph
+views, incremental maintenance, retrieval/relevance evidence, ranking distinct
+from final selection, representation and compilation, provenance/disclosure, budgeting,
 progressive acquisition, reuse, and evaluation. Resources provide access and
 Tools may adapt bounded access, but neither constitutes repository intelligence
 or Context compilation.

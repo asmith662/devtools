@@ -249,6 +249,13 @@ prerequisites for a future architectural domain.
   production API was implemented. It supersedes B-0008's earlier narrow
   repository-navigation investigation while B-0002 retains unimplemented
   architectural pressure.
+- Amended ADR-0002 within its accepted repository-intelligence boundary:
+  RepositorySubject and SourceOccurrence are distinct snapshot-local referents;
+  subjecthood is orthogonal to DerivedKnowledge; source location, names, AST
+  nodes, graph nodes, chunks, containment, and cross-snapshot continuity are
+  not universal subject identity. This documentation-only refinement preserves
+  analyzer, graph, identity, incremental-maintenance, retrieval, and Context
+  implementation mechanisms as deferred.
 - Accepted ADR-0003 for the next semantic layer: immutable purpose-relative
   InformationNeed; bounded, dependency-aware multi-strategy retrieval planning;
   ContextCandidates; provenance-bearing RelevanceEvidence; and ranking distinct
