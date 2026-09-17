@@ -97,29 +97,54 @@ candidates: a file, contained symbol, and source region do not automatically
 collapse.
 Overlap/deduplication is Context selection/compilation work, not retrieval.
 
-**RelevanceEvidence** is typed, provenance-bearing, purpose-relative evidence
-explaining why a ContextCandidate may or may not help satisfy an InformationNeed.
-It must not be reduced during retrieval to `candidate + universal score`.
-Potential observations include exact/identifier or lexical matches, definition
-or reference observations, import/call/graph proximity, test,
-documentation/governance, semantic-similarity, and change/history evidence;
-these examples are not an exhaustive hierarchy.
+**RelevanceEvidence** is the semantic concept for typed, provenance-bearing
+retrieval observations relevant to assessing why a ContextCandidate may or may
+not help satisfy an information purpose. It is neither universal relevance
+truth, a universal normalized score, a ranking decision, nor final
+Context-selection utility. Potential observations include exact/identifier or
+lexical matches, definition or reference observations, import/call/graph
+proximity, test, documentation/governance, semantic-similarity, and
+change/history evidence; these examples are not an exhaustive hierarchy.
+
+This semantic distinction does not require every observation to have independent
+global identity, a standalone lifecycle or persistence, repository-snapshot
+ownership, repository-level applicability, a dedicated cache abstraction, or a
+mandatory immutable artifact representation. Evidence can be represented within
+or alongside retrieval execution/results when that preserves the required
+semantics. A future representation may earn independent identity, persistence,
+or reuse through evidence; none is required now.
 
 Retriever-native measurements retain native meaning rather than becoming a
 universal relevance score during retrieval: BM25, semantic similarity, graph
 distance, exact-match truth, and reference count are not inherently comparable.
-Retrieval preserves observations; an identified ranker later interprets them.
-Evidence can support or oppose usefulness. Absence of supporting evidence is
-not opposing evidence: a failed discovery can reflect incomplete retrieval or
-index knowledge and must not silently claim irrelevance unless the operation's
-semantics justify it. Epistemic confidence that an observation is correct is
-separate from its task-specific ranking influence.
+Multiple independent retrieval applications may contribute observations for the
+same candidate; composition must preserve evidence type, originating mechanism/
+application, native measurement semantics, provenance, and relevant qualifiers
+rather than averaging them into one truth score. An ephemeral candidate-centered
+grouping is permitted; a persistent independently identified aggregate is not
+required. An identified ranker later interprets the preserved observations.
 
-RelevanceEvidence obeys ADR-0002 provenance, dependency, and reproducibility
-principles and may ultimately be a purpose-relative form of DerivedKnowledge.
-This does not require literal Python inheritance. Reproducibility enables replay,
-caching, debugging, comparison, evaluation, and controlled evolution; concrete
-evidence, confidence, and polarity representations remain open.
+Evidence can support or oppose usefulness when the observation semantics justify
+that polarity. Absence of supporting evidence is not opposing evidence: a failed
+discovery can reflect incomplete retrieval or index knowledge and must not
+silently claim irrelevance. Likewise, a low measurement is opposing evidence
+only when its own semantics support that conclusion. Measurement certainty or
+confidence, evidence strength, task-specific ranking influence, and relevance
+truth remain distinct; no universal confidence, polarity, or ranking-policy
+representation is selected.
+
+Repository facts used by retrieval can be ADR-0002 DerivedKnowledge, while a
+purpose-relative traversal, hit, score, or candidate observation is not
+automatically repository DerivedKnowledge merely because it is deterministic,
+provenance-bearing, or reproducible. Such observations may depend on, cite, or
+be supported by DerivedKnowledge without sharing its identity, applicability,
+or persistence semantics. This preserves a future evidence type with genuinely
+reusable derived semantics without making DerivedKnowledge a universal container
+for retrieval data. Recordability and replayability likewise do not require
+standalone evidence identity: evidence may be ephemeral or retained within an
+execution/evaluation record when useful. Concrete evidence, aggregation,
+confidence, polarity, persistence, replay, and caching representations remain
+open.
 
 ### Retrieval planning and bounded applications
 
@@ -197,9 +222,12 @@ selection/representation/disclosure, and model/task outcome. Evaluation-case
 identity can therefore hold a Task, purpose, anchors, constraints, judgments,
 and treatment identity stable for comparison without requiring runtime
 InformationNeed identity. This permits controlled comparisons of rankers over
-fixed evidence, retrieval portfolios under fixed ranking, or Context compilers
-over fixed ranked candidates, without selecting storage or experiment
-infrastructure.
+fixed retrieval observations, retrieval portfolios under fixed ranking, or
+Context compilers over fixed ranked candidates, without selecting storage or
+experiment infrastructure. Recordable observations can support replay,
+debugging, controlled comparison, provenance inspection, and retriever
+marginal-contribution analysis without requiring standalone evidence identity or
+mandatory persistence.
 
 Provenance/observability must eventually distinguish retrieval failure (useful
 information never a candidate), ranking failure (candidate ranked too poorly),
@@ -234,8 +262,9 @@ CandidateProducer/EvidenceProducer, planner, plan-identity or
 persistence, application-DAG, scheduler, bound, lexical, graph, semantic,
 embedding, historical-retrieval, evidence, confidence, polarity, normalization,
 deterministic-ranking, learned-ranking, task-classification, wave-policy,
-evidence-cache/persistence, evaluation-case identity, evaluation-storage, or
-metric implementations.
+candidate/evidence association, measurement taxonomy, cross-retriever
+aggregation, evidence-cache/persistence, evaluation-case or execution-record
+identity, evaluation-storage, or metric implementations.
 
 ## Status and implementation boundary
 

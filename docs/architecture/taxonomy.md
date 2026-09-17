@@ -485,10 +485,14 @@ referent class or closed candidate taxonomy. Candidate equivalence follows the
 underlying addressed identity, enabling independent observations to accumulate;
 overlapping file, symbol, and region candidates remain distinct until later
 Context selection handles overlap. RelevanceEvidence is typed,
-provenance-bearing, purpose-relative evidence for or against candidate
-usefulness. Its native observation semantics, confidence, and ranking influence
-are distinct. Missing support is not negative evidence merely because a
-retriever did not discover a candidate.
+provenance-bearing, purpose-relative retrieval observation for or against
+candidate usefulness where its semantics justify that polarity. It is not
+universal relevance truth, a normalized score, ranking, or selection utility,
+and does not by itself require independent identity, persistence, or
+DerivedKnowledge status. Multiple retrievers can contribute native observations
+for one candidate; their measurement semantics, confidence/certainty, evidence
+strength, and ranking influence remain distinct. Missing support is not negative
+evidence merely because a retriever did not discover a candidate.
 
 Retrieval planning selects bounded applications of capabilities using
 purpose-derived inputs. It is neither information purpose nor retrieval

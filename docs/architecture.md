@@ -9,6 +9,11 @@ documentation defines exact implemented APIs; and
 historical evolution. Accepted architecture is summarized here as well as in
 its ADR, while accepted-but-unimplemented semantics never claim a current API.
 
+A first-class semantic distinction does not by itself require a separately
+identified, persistent production artifact. Concrete artifacts remain permitted
+when independent lifecycle, replay, persistence, reuse, authority, or other
+evidence establishes their value.
+
 ## Reading architectural and implementation status
 
 An architectural domain can be recognized while its reusable implementation is
@@ -224,7 +229,10 @@ ContextCandidate addresses a repository-intelligence referent—such as a
 RepositorySubject, ResourceOccurrence, SourceOccurrence, DerivedKnowledge, or
 relationship knowledge—not RepositorySubject alone; representation remains a
 later disclosure concern.
-It preserves retrieval as multi-strategy evidence discovery; ranking as evidence
+RelevanceEvidence preserves typed, provenance-bearing purpose-relative
+retrieval observations and retriever-native measurements without requiring a
+standalone artifact or repository DerivedKnowledge status. It preserves
+retrieval as multi-strategy evidence discovery; ranking as evidence
 interpretation; and Context selection/compilation as a later, distinct concern.
 It also preserves concurrent dependency-aware retrieval, staged expansion,
 progressive disclosure, and future evaluation pressure without assigning them
