@@ -143,6 +143,25 @@ other knowledge, snapshot facts, or derivation semanticsâ€”not a fixed
 path/content pair or local-versus-relational category. Applicability,
 invalidation discovery, rederivation, and cache lookup remain separate.
 
+Repository intelligence distinguishes an identified **DerivationDefinition**
+(reusable semantic computation), a **Derivation** (that definition applied to
+explicit direct semantic dependencies), a particular execution/Attempt that may
+realize it, and the zero-or-more immutable **DerivedKnowledge** artifacts it
+may establish. Definitions are not necessarily executable bindings; executions
+and their Evidence are not repository truth. Dependencies are role-bearing
+semantic inputs rather than incidental execution settings, and direct
+dependencies need not flatten transitive closure. Dependencies differ from
+provenance: shared derivation provenance and result-specific support may both
+matter.
+
+DerivedKnowledge is not snapshot-owned and has heterogeneous value shape.
+Applicability is an external assessment, not mutable knowledge state. Zero
+results do not prove absence, positive results do not prove exhaustive coverage,
+and failed or partial execution does not automatically negate independently
+established knowledge. Definition, derivation, execution, and knowledge
+identities remain distinct; concrete models, compatibility/versioning,
+provenance, execution integration, and coverage mechanisms remain open.
+
 Analyzer-established structural decomposition may establish subjects. Further
 repository-semantic decomposition (for example a failure path or responsibility)
 is DerivedKnowledge by default. Purpose-relative InformationNeed decomposition

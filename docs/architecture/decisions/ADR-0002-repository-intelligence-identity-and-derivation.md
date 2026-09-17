@@ -202,20 +202,43 @@ Context disclosure can combine a signature, source region, exception type,
 tests, and a knowledge projection without making that purpose-relative
 composition a RepositorySubject.
 
-### Derivation and DerivedKnowledge
+### DerivationDefinition, Derivation, execution, and DerivedKnowledge
 
-A **Derivation** represents the semantics of a knowledge-producing
-transformation. Its effective identity accounts for analyzer/derivation kind,
-implementation or semantic revision, and relevant configuration. The concrete
-representation is open. The invariant is:
+**DerivationDefinition** is the identified reusable semantic computation: for
+example Python structural analysis under grammar semantics, import resolution,
+call analysis, or continuity analysis. It answers what semantic computation
+exists. It is not necessarily a callable, class, plugin, Tool, package,
+executable, worker, or source-code digest. Implementation binding belongs to
+later capability/execution design.
+
+A **Derivation** is the identified semantic application of a
+DerivationDefinition to explicit direct semantic dependencies. It is not its
+execution attempt. A parse derivation can therefore mean PythonParse applied to
+ContentIdentity X; a changed dependency or incompatible definition semantics
+can establish a different derivation. The concrete identity construction is
+open. The invariant is:
 
 > Equal derivation identities imply equivalent derivation semantics for
 > identical relevant inputs.
 
+Definition identity/compatibility concerns semantic behavior, not merely
+implementation source/build identity. A compatible refactor need not establish
+incompatible definition semantics, while a small implementation change can.
+Semantic-versioning, compatibility declarations, implementation digests, and
+other mechanisms remain open.
+
+A **DerivationExecution** is a particular attempt to realize a Derivation; it
+may establish zero or more DerivedKnowledge artifacts. This is conceptual
+terminology, not a new repository-specific Attempt model. Existing specialized
+`InteractionAttempt` and terminal Evidence retain their execution/observation
+ownership. Future derivation execution must use compatible execution/evidence
+semantics rather than making execution records repository truth.
+
 Any change capable of changing results—such as parser behavior, analysis
 configuration, embedding model, or relationship-resolution semantics—must be
-reflected in derivation identity or validity. A downstream ranking-policy
-change must not invalidate repository knowledge that does not depend on it.
+reflected in definition compatibility, derivation identity, or applicability.
+A downstream ranking-policy change must not affect repository knowledge that
+does not depend on it.
 
 Grammar/language version, toolchain semantics, feature flags, and environment
 state likewise participate only where actually consumed. Unchanged repository
@@ -228,6 +251,40 @@ be reproducibly associated with derivation, dependencies, and result semantics,
 not merely an arbitrary UUID. Exact digest construction is open, including
 whether result participates directly when determinism permits derivation plus
 dependencies to determine it.
+
+DerivedKnowledge is immutable and not foundationally snapshot-owned. It
+retains derivation, direct dependencies, value, provenance, and stable identity
+sufficient for reference, replay, evaluation, and reuse; applicability to a
+state is assessed separately. Values remain heterogeneousâ€”structural facts,
+relationships, diagnostics, collections, projections, assertions, and other
+resultsâ€”rather than a universal key-to-scalar shape. RepositorySubjects remain
+distinct from knowledge about subjects, and relationships remain typed
+DerivedKnowledge values.
+
+One Derivation may establish zero or more separately referable knowledge
+artifacts. Execution, derivation, and result granularity are distinct and may
+be refined without requiring one monolithic result or maximal atomization. Zero
+produced knowledge is not proof of semantic absence unless derivation semantics
+explicitly establish exhaustive coverage; positive facts likewise do not prove
+the result set exhaustive. A derivation capable of establishing exhaustive
+coverage must represent that claim/evidence explicitly. Concrete grouping,
+coverage, and cardinality APIs remain open.
+
+A Derivation records **direct semantic dependencies**, whose role in the
+computation is preserved conceptually. Content X can be source content;
+namespace knowledge can be resolution namespace; configuration can be
+resolution configuration. Dependency identity alone is not always enough when
+role changes the computation. Direct dependencies need not flatten transitive
+closure: a derivation consuming K2 need not claim direct consumption of Content
+X merely because K2 depends on it. Transitive applicability follows the
+dependency structure; closures, reverse indexes, and dirty sets are maintenance
+optimizations.
+
+Semantic dependencies are not incidental execution inputs. Source content,
+grammar semantics, namespace, and resolution configuration can be semantic;
+worker count, trace ID, temporary directory, logging configuration, execution
+timestamp, and scheduling choice do not automatically become semantic merely
+because execution consumed them. Actual derivation semantics are authoritative.
 
 The applicability rule is:
 
@@ -244,6 +301,14 @@ RepositorySubject, SourceOccurrence, other DerivedKnowledge, snapshot-scoped
 facts, derivation configuration, language/toolchain semantics, or another
 explicitly identified semantic input. Actual consumed dependency scope, rather
 than a fixed local/relational category, is authoritative.
+
+Dependencies and provenance differ. A dependency identifies semantic input
+whose satisfaction affects derivation/applicability; provenance explains how a
+result was established and what supports it. They can overlap without being the
+same record. Derivation-level provenance can explain shared computation and
+dependencies, while knowledge-specific provenance can identify SourceOccurrences
+or other support for one resulting assertion. Neither physical duplication nor a
+provenance schema is required here.
 
 Applicability, invalidation discovery, rederivation, and caching/reuse lookup
 are distinct. Applicability is the semantic question whether knowledge applies;
@@ -262,6 +327,29 @@ derivation result and provenance remain unchanged rather than becoming
 universally invalid. This preserves targeted reuse, caching, persistence, replay,
 provenance, and potentially distributed derivation without claiming universal
 cross-snapshot continuity.
+
+Applicability is external to immutable knowledge state: conceptually it is an
+assessment over knowledge dependencies, derivation semantics, and relevant
+state/environment, not a mutable `currently_valid` flag inside knowledge. The
+assessment may later be provenance-bearing and evaluable without selecting that
+model now.
+
+A failed DerivationExecution is execution evidence, not automatically
+DerivedKnowledge or a semantic negative fact. A separate successful analyzer
+can derive a diagnostic such as a syntax error, but a parser crash does not do
+so by itself. Likewise, partial execution does not make independently
+established artifacts false or historically invalid: supported call facts
+produced before another region fails can remain knowledge when their own
+derivation/provenance semantics support them. They do not establish a complete
+call graph. Transactional publication, buffering, and partial-result APIs are
+open. Execution timestamp, worker/machine identity, cache location, mutable
+Attempt record, or success flag do not by themselves govern applicability.
+
+Determinism is not correctness or certainty, and confidence is not completeness.
+A deterministic derivation can consistently produce an incorrect or heuristic
+result. Confidence, alternatives, ambiguity, and uncertainty belong to
+derivation- or knowledge-specific semantics where meaningful; no universal
+confidence field is required for every DerivedKnowledge artifact.
 
 Dependency scope is separate from knowledge value shape. Syntax trees, lexical
 tokens, and locally declared symbols often have narrow content-scoped
@@ -287,12 +375,16 @@ identity.
 The architecture distinguishes two non-equivalent graph families.
 
 The **derivation dependency graph** answers what knowledge depends on which
-inputs or prior knowledge. It supports provenance, validity, invalidation,
-recomputation, and reuse:
+inputs or prior knowledge. It supports provenance, applicability assessment,
+invalidation discovery, rederivation, and reuse:
 
 ```text
 content -> parse knowledge -> symbol knowledge -> resolved-reference knowledge
 ```
+
+This structure explains how knowledge was produced and its direct/transitive
+semantic dependencies; it is not the repository semantic graph or a required
+graph-store abstraction.
 
 The **repository semantic/knowledge relationship graph** answers how resources,
 subjects, source occurrences, and concepts relate. Eventual typed relationships may include
@@ -398,7 +490,9 @@ roles. No metric, harness, model policy, or worker loop is selected here.
 | Content | Content-derived identity reusable for identical content. |
 | Source occurrence | Snapshot-local source anchor/address within a ResourceOccurrence; not automatically a subject. |
 | RepositorySubject | Snapshot-local structural/semantic referent about which repository intelligence can make assertions. |
-| Derivation | Semantic identity of a knowledge-producing transformation. |
+| DerivationDefinition | Semantic identity of reusable computation, not necessarily implementation binding. |
+| Derivation | Semantic application of a definition to direct semantic dependencies. |
+| DerivationExecution | Particular realization attempt, distinct from derivation and knowledge. |
 | DerivedKnowledge | Reproducible identity tied to derivation/dependencies/result semantics. |
 | Relationship | DerivedKnowledge value shape, not an independent foundational identity. |
 
@@ -411,9 +505,9 @@ roles. No metric, harness, model policy, or worker loop is selected here.
 | Copy unchanged content | Distinct occurrences may refer to one content identity. |
 | Delete | The new snapshot lacks the occurrence; globally retained knowledge of its content need not be destroyed. |
 | Git branch/checkout change | New snapshot; unchanged content knowledge may still be reusable. |
-| Parser/analyzer upgrade | Snapshot can remain identical; changed Derivation identity requires affected knowledge recomputation. |
-| Ranking-policy change | Repository knowledge remains valid unless it explicitly depends on ranking. |
-| Cross-resource resolution | A B change need not invalidate A local parse/symbol knowledge, but can invalidate relationship knowledge depending on B. |
+| Parser/analyzer semantic upgrade | Snapshot can remain identical; incompatible definition/derivation semantics make affected knowledge inapplicable until rederived. |
+| Ranking-policy change | Repository knowledge remains applicable unless it explicitly depends on ranking. |
+| Cross-resource resolution | A B change need not affect A local parse/symbol applicability, but can affect relationship knowledge depending on B. |
 
 ## Deferred and open pressure
 
@@ -429,7 +523,13 @@ eviction, persistence, cache, serialization, derivation-dependency storage,
 reverse dependency indexes, invalidation algorithms, maintenance engine/
 scheduler, eager-versus-lazy maintenance, graph storage, cross-repository
 content reuse, and external/environment-dependent derivations; parser/analyzer
-technology, incremental parsing, and analyzer/plugin APIs; confidence/evidence
+technology, incremental parsing, and analyzer/plugin APIs; concrete
+DerivationDefinition/Derivation/DerivedKnowledge models and identities,
+dependency-role/referent and provenance schemas, definition compatibility/
+versioning, applicability algorithms/APIs, result grouping/cardinality and
+exhaustive-coverage representation, partial-result publication, execution/
+Attempt/Evidence integration, implementation bindings, capability registration,
+and package ownership; confidence/evidence
 for heuristic knowledge; lexical choices such as grep/BM25/trigram; embeddings,
 vector storage, graph algorithms, learned ranking, task-sensitive strategy
 selection, call graphs, historical co-change, change impact, test/code,
@@ -441,6 +541,7 @@ infrastructure and exact metrics.
 
 This decision settles semantic architecture only. It does not claim that any
 new production types, protocols, RepositorySubject/SourceOccurrence models,
+DerivationDefinition/Derivation/DerivedKnowledge models, execution bindings,
 indexes, parsers, graph views, persistence,
 retrieval, ranking, Context compiler, Tool, Agent, Runtime loop, or evaluation
 system exists. B-0002 retains the unimplemented repository-intelligence and

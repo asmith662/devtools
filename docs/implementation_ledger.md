@@ -262,6 +262,12 @@ prerequisites for a future architectural domain.
   dependency-scoped DerivedKnowledge applicability, invalidation discovery,
   rederivation, and cache lookup remain separate. Observation, identity,
   storage, and maintenance mechanisms remain deferred.
+- Further amended ADR-0002 within the same boundary: DerivationDefinition,
+  Derivation, execution, and DerivedKnowledge are distinct; dependencies are
+  direct, role-bearing semantic inputs rather than execution incidental inputs;
+  applicability/provenance/coverage/execution evidence remain distinct. This
+  documentation-only refinement defers concrete models, identity, capability,
+  execution, maintenance, and storage mechanisms.
 - Accepted ADR-0003 for the next semantic layer: immutable purpose-relative
   InformationNeed; bounded, dependency-aware multi-strategy retrieval planning;
   ContextCandidates; provenance-bearing RelevanceEvidence; and ranking distinct

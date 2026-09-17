@@ -26,6 +26,11 @@ RepositorySnapshots are logically complete successfully observed states under
 explicit semantics; SnapshotDelta and IncrementalMaintenance remain separate;
 and dependency-scoped applicability permits reuse without making state change
 or cache/invalidation mechanisms into repository truth.
+ADR-0002 further distinguishes DerivationDefinition, Derivation, execution,
+and immutable DerivedKnowledge; role-bearing direct semantic dependencies from
+incidental execution inputs; and dependencies from shared/result-specific
+provenance. Execution failure and incomplete coverage remain separate from
+repository facts.
 Context remains
 purpose-relative selection and disclosure, not Conversation state, repository
 storage, Memory, or repository truth.
@@ -59,6 +64,12 @@ provenance/disclosure, budgeting, progressive acquisition, and evaluation.
 Resources provide access and
 Tools may adapt bounded access, but neither constitutes repository intelligence
 or Context compilation.
+
+Concrete DerivationDefinition/Derivation/DerivedKnowledge models and identities,
+dependency-role and provenance schemas, compatibility/versioning, applicability
+assessment, result grouping/coverage, partial-result publication, execution/
+Evidence integration, capability bindings, dependency indexes, schedulers, and
+evaluation infrastructure remain unresolved implementation/design pressure.
 
 - hard_dependencies: none
 - pressure_dependencies: none

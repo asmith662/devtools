@@ -362,12 +362,31 @@ decomposition is DerivedKnowledge by default, while InformationNeed and
 disclosure decomposition are purpose-relative downstream semantics. None of
 those latter decompositions automatically creates a RepositorySubject.
 
-`Derivation` identifies knowledge-producing semantics, including relevant
-implementation revision and configuration. `DerivedKnowledge` is knowledge
-with derivation, explicit dependencies, value, and provenance. Its applicability
-depends on satisfying those dependencies under equivalent derivation semantics,
-not merely on the snapshot where it was first produced. DerivedKnowledge may
-depend on other DerivedKnowledge, enabling targeted invalidation and reuse.
+#### DerivationDefinition, Derivation, execution, and DerivedKnowledge
+
+A **DerivationDefinition** identifies reusable semantic computation, not
+necessarily a callable, plugin, Tool, package, executable, or implementation
+binding. A **Derivation** is one semantic application of that definition to
+explicit direct semantic dependencies. A future derivation execution is a
+particular realization attempt; it is distinct from both Derivation and the
+zero-or-more immutable **DerivedKnowledge** artifacts it may establish. Current
+`InteractionAttempt` remains a specialized execution lifecycle, not this
+unimplemented repository-intelligence concept.
+
+Dependencies are heterogeneous and role-bearing semantic inputs, not a fixed
+path/content pair or incidental execution settings. They differ from provenance:
+dependencies govern applicability, while shared derivation provenance and
+result-specific provenance explain computation and support. Direct dependencies
+need not flatten transitive closure. Definition, derivation, execution, and
+knowledge identities remain distinct and their concrete construction is open.
+
+DerivationDefinition compatibility concerns semantic behavior, including
+relevant revision and configuration, rather than merely implementation source or
+build identity. `DerivedKnowledge` is knowledge with derivation, explicit
+dependencies, value, and provenance. Its applicability depends on satisfying
+those dependencies under equivalent derivation semantics, not merely on the
+snapshot where it was first produced. DerivedKnowledge may depend on other
+DerivedKnowledge, enabling targeted invalidation and reuse.
 
 Applicability follows actual semantic dependencies: content, occurrences,
 subjects, source occurrences, other knowledge, snapshot facts, and consumed
@@ -377,7 +396,18 @@ to multiple snapshots without rebinding; failure to apply to a later state does
 not alter its historical derivation result or provenance. Applicability, invalidation discovery,
 rederivation, and cache lookup are separate concerns.
 
-The derivation dependency graph (validity/provenance/recomputation) is distinct
+DerivedKnowledge has heterogeneous value shape and may be produced in zero or
+more artifacts by one Derivation. Zero artifacts do not prove absence, and
+positive artifacts do not prove exhaustive coverage unless derivation semantics
+explicitly establish it. Execution failure is Evidence about execution, not
+automatically semantic knowledge; partial execution can leave independently
+supported knowledge applicable without proving a complete result set.
+
+Determinism is distinct from correctness and certainty; confidence is distinct
+from completeness and is not a universal knowledge field. Where uncertainty or
+alternatives matter, derivation- or knowledge-specific semantics own them.
+
+The derivation dependency graph (applicability/provenance/rederivation) is distinct
 from repository semantic relationship views (for example defines, references,
 imports, calls, tests, documents, and governs). Typed relationships are
 DerivedKnowledge values; no universal graph, graph database, or storage model
