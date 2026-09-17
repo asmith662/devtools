@@ -74,6 +74,14 @@ Resources provide access and
 Tools may adapt bounded access, but neither constitutes repository intelligence
 or Context compilation.
 
+Concrete graph-view representation/identity, typed node and relationship
+references, compatible cross-view composition and bounded traversal, projection
+and adjacency/index structures, eager/lazy materialization, incremental graph
+maintenance, cache/persistence/storage, graph-database evaluation, specialized
+CFG/DFG and historical/change views, retrieval integration/evidence, initial
+high-value views, and graph quality/performance/cost evaluation remain
+unresolved implementation/evaluation pressure.
+
 Concrete DerivationDefinition/Derivation/DerivedKnowledge models and identities,
 dependency-role and provenance schemas, compatibility/versioning, applicability
 assessment, result grouping/coverage, partial-result publication, execution/

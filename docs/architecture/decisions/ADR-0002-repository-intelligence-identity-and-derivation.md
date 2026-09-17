@@ -517,12 +517,11 @@ subjects, source occurrences, and concepts relate. Eventual typed relationships 
 understanding, traversal, structural retrieval, impact analysis, and Context
 discovery.
 
-These graphs are not one graph merely because both use edges. Neither must be
-globally materialized, share storage, or use a graph database. Semantic graph
-architecture is independent of physical storage. Different task-specific views
-may eventually include file-dependency, symbol-reference, call, inheritance,
-test, documentation, and governance graphs; multiple views may contribute
-independent relevance evidence concurrently.
+These graphs are not one graph merely because both use edges. The derivation
+dependency graph is not the repository semantic graph, and no universal
+semantic repository graph is accepted. Neither family must share storage or use
+a graph database. Semantic graph architecture is independent of physical
+storage.
 
 Relationships are DerivedKnowledge values: subject, typed predicate, object,
 and relevant evidence/metadata. They do not need a separate foundational
@@ -530,8 +529,28 @@ and relevant evidence/metadata. They do not need a separate foundational
 knowledge identity provide lineage. One universal canonical repository graph is
 not accepted.
 
-Graph node identity is not RepositorySubject identity by definition. Each graph
-view chooses the node domain appropriate to its semantics. Views should reuse
+Multiple **typed graph views** are a first-class repository-intelligence
+capability. A view is a reusable relational projection over selected node
+identities and relationship semantics, not the semantic authority for those
+relationships. Conceptual views can include containment, definition/reference,
+import, call, inheritance, test, documentation, governance, or change
+relationships; this is not a closed taxonomy or mandatory implementation list.
+Graph views support deterministic repository navigation, multi-hop reasoning
+outside the LLM, structural retrieval, change-impact reasoning, Context
+efficiency, and future coding-agent repository understanding.
+
+Graph infrastructure is distinct from relationship knowledge and graph-view
+semantics. Where identities and relationship meanings are compatible, shared
+mechanics may compose typed views for such work as adjacency lookup, bounded
+traversal, reachability, or subgraph projection. It does not define what
+`CALLS`, `IMPORTS`, `TESTS`, or another relationship means, require every view
+to compose with every other, create a universal node ontology, or select a graph
+API/query language. Cross-view traversal remains typed and bounded by allowed
+relationship families, node compatibility, direction, depth, result/work limits,
+and other purpose-derived constraints.
+
+`GraphNode` is not RepositorySubject by definition. Each graph view chooses the
+node domain appropriate to its semantics. Views should reuse
 RepositorySubject or SourceOccurrence identity when those are the represented
 things: a containment graph can connect subjects, a reference graph can connect
 a SourceOccurrence to a RepositorySubject, and a call graph can connect
@@ -545,8 +564,18 @@ structures without imposing one repository tree.
 Graph maintenance follows the same DerivedKnowledge semantics and actual
 dependencies. Applicable graph facts may be reused, other facts selectively
 rederived, and analyzer-specific projections maintained without rebuilding every
-graph after every repository change. This does not promise trivial edge patches
-for every algorithm or select graph storage/database technology.
+graph after every repository change. Some broadly useful views may justify
+reusable materialization or incrementally maintained adjacency/index structures;
+specialized or expensive analyses can remain lazy, task-triggered, selectively
+materialized, cached, or incrementally maintained where worthwhile. No eager/
+lazy policy, initial view sequence, graph algorithm, storage/database
+technology, or materialization representation is selected.
+
+A graph view can be an on-demand projection over relationship knowledge, a
+reusable index/adjacency structure, or a persisted representation. These are
+physical realization choices, not semantic authority: graph indexes, cached
+neighborhoods, and materialized projections remain rebuildable views over
+applicable relationship knowledge rather than an independent source of truth.
 
 Repository intelligence defines no foundational universal `Chunk`. Fixed token
 windows, arbitrary line chunks, syntax-aware slices, graph neighborhoods,

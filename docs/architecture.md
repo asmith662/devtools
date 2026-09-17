@@ -130,12 +130,16 @@ and other dependencies. Subject identity is not a path/range, name, qualified
 name, AST node, or cross-snapshot continuity claim.
 
 Typed containment, declaration, reference, call, import, inheritance, and
-other relationships remain DerivedKnowledge. Graph views choose suitable node
-domains: they may reuse subjects and source occurrences, or use local derived
-nodes without making every graph node a RepositorySubject. There is no universal
-repository hierarchy, graph, graph store, or foundational Chunk. This also
-preserves Context as purpose-relative selection and disclosure rather than
-repository truth.
+other relationships remain DerivedKnowledge. Composable typed graph views are a
+first-class repository-intelligence capability for reusable relational
+navigation, multi-hop reasoning, retrieval, change impact, and Context
+efficiency. Graph views choose suitable node domains: they may reuse subjects
+and source occurrences, or use local derived nodes without making every graph
+node a RepositorySubject. Shared graph/query mechanics may compose compatible
+typed views, but do not define relationship semantics or create universal node
+identity. There is no universal repository hierarchy, semantic graph, graph
+store, graph database, or foundational Chunk. This also preserves Context as
+purpose-relative selection and disclosure rather than repository truth.
 
 A RepositorySnapshot is an immutable, logically complete successfully observed
 state under explicit snapshot/observation semantics. Completeness is relative
@@ -222,8 +226,9 @@ requests remain non-authoritative.
 
 These concepts describe reusable semantic relationships, not a mandatory
 runtime pipeline. ResourceOccurrence, SourceOccurrence, and RepositorySubject
-are distinct referential domains; graph views are optional reusable
-DerivedKnowledge projections; and directly addressed information can be
+are distinct referential domains; graph views are first-class reusable typed
+projections over relationship knowledge rather than a mandatory stage; and
+directly addressed information can be
 acquired without relevance discovery. Retrieval strategies may independently
 query different intelligence views, while synthesis can explicitly establish
 new DerivedKnowledge and progressive disclosure can justify another information

@@ -455,11 +455,16 @@ scheduler, and package designs remain open.
 
 The derivation dependency graph (applicability/provenance/rederivation) is distinct
 from repository semantic relationship views (for example defines, references,
-imports, calls, tests, documents, and governs). Typed relationships are
-DerivedKnowledge values; no universal graph, graph database, or storage model
-is implied. A graph node is not necessarily a RepositorySubject: graph views
-use the node domain their semantics require and can include local derived nodes.
-Containment is relationship knowledge rather than a universal subject-ID tree.
+imports, calls, tests, documents, and governs). Typed relationship knowledge is
+DerivedKnowledge; composable typed graph views are a first-class
+repository-intelligence capability for exposing compatible relational
+projections. Shared graph mechanics may support bounded typed traversal or
+compatible cross-view composition, but do not determine relationship meaning,
+universal node identity, a graph API, or storage. No universal graph, graph
+database, or storage model is implied. A graph node is not necessarily a
+RepositorySubject: graph views use the node domain their semantics require and
+can include local derived nodes. Containment is relationship knowledge rather
+than a universal subject-ID tree.
 Repository intelligence also has no foundational universal Chunk; downstream
 retrieval/disclosure may construct bounded regions, neighborhoods, or subject
 sets without defining repository identity. Exact identity representation,

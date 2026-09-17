@@ -161,6 +161,12 @@ planner-produced query material—terms, anchors, families, query forms, and
 scopes—retains provenance through a planning derivation. It is hypothesis/query
 material, not repository fact when it proposes an unestablished entity.
 
+Graph retrieval consumes ADR-0002 typed graph views and shared graph mechanics
+as repository intelligence. A purpose-relative traversal selects compatible
+relationship families and bounded traversal constraints; its reached candidates,
+path, distance, and relationship observations remain RelevanceEvidence rather
+than automatically becoming repository DerivedKnowledge.
+
 Planning may later be deterministic, learned, model-assisted, or hybrid. This
 ADR freezes none of `Retriever`, `RetrievalPlan`, `RetrievalApplication`, or a
 planner implementation shape.
