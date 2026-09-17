@@ -38,11 +38,12 @@ Disclosure planning selects information to make available to a consumer, not
 arbitrary strings or prompt chunks. Model-visible text/serialization is a later
 realization and assembly concern. A DisclosureOption is a purpose-relative
 possibility for making identified information about one or more repository-
-intelligence subjects available through a particular representation. It is not
-rendered prompt content, need not map one-to-one to a file/symbol/candidate, and
-may have origin, form, fidelity, provenance/dependencies, applicability,
-expected cost, and information-contribution characteristics. These are semantic
-dimensions, not required fields or a type hierarchy.
+intelligence subjects available through a particular representation or
+explicitly characterized transformation. It is not rendered prompt content,
+need not map one-to-one to a file/symbol/candidate, and may have origin, form,
+fidelity, provenance/dependencies, applicability, expected cost, and
+information-contribution characteristics. These are semantic dimensions, not
+required fields or a type hierarchy.
 
 Selection and representation are coupled. One ContextCandidate can have
 different useful representations—identity/name, signature, documentation,
@@ -125,14 +126,15 @@ fidelity, authority, token efficiency, latency, and cost. They must not be
 collapsed into one undifferentiated score.
 
 A **DisclosurePlan** is the identified decision about what information should be
-made available, through selected disclosure possibilities/representations under
-its purpose, evidence, constraints, and planning semantics. A
-**ContextDisclosure** is the identifiable, provenance-bearing information
-artifact actually realized with reference to a DisclosurePlan. Neither is a
-ModelRequest. Concrete models, identities, and cardinality are open: a plan can
-fail to produce a disclosure, revision creates a new plan, and future semantics
-may permit more than one realized disclosure from a plan. Once established as
-identified planning/evidence artifacts, plans and disclosures are immutable.
+made available, through selected disclosure possibilities, representations, or
+transformations under its purpose, evidence, constraints, and planning
+semantics. A **ContextDisclosure** is the identifiable, provenance-bearing
+information artifact actually realized with reference to a DisclosurePlan.
+Neither is a ModelRequest. Concrete models, identities, and cardinality are
+open: a plan can fail to produce a disclosure, revision creates a new plan, and
+future semantics may permit more than one realized disclosure from a plan. Once
+established as identified planning/evidence artifacts, plans and disclosures
+are immutable.
 
 The materialization boundary is:
 
@@ -140,15 +142,25 @@ The materialization boundary is:
 DisclosurePlan -> materialization -> ContextDisclosure -> model-input assembly -> ModelRequest
 ```
 
-Materialization resolves applicable source, extracts source-preserving material,
-projects existing DerivedKnowledge, realizes already-derived synthesis, and
-formats/structures information without new semantic assertions. It must not
-silently substitute a materially different decision when faithful realization is
-impossible. Changed dependencies, inapplicable knowledge, unresolved source,
-unavailable knowledge, failed derivation, cost violation, or disclosure policy
-may make that discrepancy observable and require later re-planning/acquisition.
-If a selected representation requires new semantic knowledge, that derivation
-remains explicit rather than hidden in materialization.
+Materialization faithfully realizes the disclosure decision selected by the
+DisclosurePlan. It can resolve applicable source, extract source-preserving
+material, project existing DerivedKnowledge, format or structurally transform
+information, and perform a semantic transformation or lossy synthesis when that
+transformation was explicitly selected by the plan. For example, a plan may
+select a bounded task-focused summary of identified supporting information.
+Materialization does not thereby promote that purpose-relative synthesis to
+repository DerivedKnowledge.
+
+Materialization must not silently invent a materially different synthesis or
+substitute a materially different disclosure decision under the guise of
+formatting or faithful realization. When material to correct interpretation,
+the realized information preserves its origin, support, assumptions,
+uncertainty, conflicts, and purpose-relative nature. Changed dependencies,
+inapplicable knowledge, unresolved source, unavailable knowledge, failed
+transformation, cost violation, or disclosure policy can make faithful
+realization impossible and require an observable failure or later re-planning/
+acquisition. No mandatory independent global identity, persistent synthesis
+artifact, or synthesis store follows from performing the selected work.
 
 Planning-time applicability does not guarantee applicability when realization
 occurs: repository dependencies may change. Materialization must not silently
@@ -190,6 +202,12 @@ model-specific evidence, not universal rules. Future assembly policy can depend
 on identified hard capabilities and versioned empirical behavior profiles without
 changing repository relevance evidence. Neither `ModelCapabilities` nor
 `ModelBehaviorProfile` is selected as a model.
+
+Assembly arranges and serializes already-realized disclosure. It must not
+silently introduce a new semantic assertion through placement, formatting,
+truncation, or token-budget handling. If a semantic compression or synthesis is
+needed to fit a consumer constraint, disclosure planning must select it and
+materialization must realize it before assembly presents it.
 
 The same ContextDisclosure may be assembled by different identified policies
 into different ModelRequests. This permits presentation/input experiments while
@@ -236,28 +254,60 @@ or structural views. Synthesized representations contain new semantic assertions
 or explanations derived from supporting information, such as an implementation
 summary, lifecycle explanation, behavioral synopsis, or change-impact narrative.
 
-Transformative realization changes extraction, formatting, organization, or
-serialization without materially new semantic claims. Interpretive work adds
-semantic assertions, for example explaining why behavior occurs, inferring
-responsibility, or composing a multi-source narrative. This is semantic rather
-than LLM-versus-deterministic classification: determinism provides
-reproducibility, not semantic certainty.
+A **representational transformation** changes how already available information
+is exposed without intentionally establishing a materially new semantic
+assertion. It can include source-preserving extraction, selecting a method
+signature, formatting, lossless structural representation, or a deterministic
+projection whose stated meaning remains the projected information. Computation,
+omission, or reorganization alone does not make the result DerivedKnowledge or
+synthesis.
 
-When preparation requires new semantic assertions, those assertions should be
-explicit provenance-bearing DerivedKnowledge under ADR-0002 rather than opaque
-ephemeral compiler text:
+An **epistemic derivation** establishes a materially new semantic assertion,
+for example explaining why behavior occurs, deriving a call relationship or
+transitive reachability, inferring responsibility, or composing a multi-source
+narrative. Lossy semantic compression can be epistemic because a summary can
+implicitly assert an interpretation. This is a semantic rather than
+LLM-versus-deterministic classification: determinism provides reproducibility,
+not semantic certainty. The distinction is conceptual and does not authorize a
+class, protocol, enum, mandatory artifact, or complete representation taxonomy.
+
+Some epistemic derivations establish reusable repository-relative semantic
+intelligence under ADR-0002:
 
 ```text
-supporting information -> identified derivation -> DerivedKnowledge -> disclosure possibility/materialization
+repository support -> identified repository Derivation -> DerivedKnowledge
+    -> knowledge projection/materialization
 ```
 
-This does not require every formatting operation to derive knowledge. It keeps
-existing knowledge distinct from a selected representation requiring new
-derivation work, whose cost, latency, failure modes, provenance,
-reproducibility, uncertainty, and authority implications can differ. Composite
-representations may combine multiple provenance-preserving forms, such as a
-structural orientation plus exact supporting source, without flattening their
-constituent origins.
+Other epistemic work establishes purpose-relative synthesized information for
+Context disclosure:
+
+```text
+supporting information -> explicitly selected Context synthesis
+    -> purpose-relative represented information -> ContextDisclosure
+```
+
+The second flow is not automatically repository DerivedKnowledge. It must not
+silently present synthesis as source truth or reusable repository intelligence.
+Its origin and support remain explicit, and assumptions, uncertainty,
+conflicts, completeness limitations, and purpose-relative nature remain
+preservable where material. Such information may remain ephemeral or be retained
+within future execution/evaluation records; independent identity, persistence,
+querying, caching, reuse, and validation mechanisms remain unresolved.
+
+Composite representations may combine multiple provenance-preserving forms,
+such as a structural orientation, purpose-relative synthesis, and exact
+supporting source, without flattening their constituent origins. Provenance
+explains origin and support; it does not by itself establish authority,
+certainty, correctness, or truth.
+
+Model-generated synthesis does not become DerivedKnowledge merely because
+temperature is zero, its output is reproducible, provenance is recorded,
+multiple models agree, a human agrees, or the model expresses confidence. A
+later repository Derivation can independently establish relevant repository
+semantics. This ADR selects no generic promotion workflow and neither prohibits
+nor accepts future learned analyzers under ADR-0002's separately governed
+repository-intelligence boundary.
 
 Coherence concerns whether information presented together forms an intelligible
 meaningful unit whose relationships and purpose can be understood without
@@ -306,13 +356,17 @@ behavior, evidence behavior, or coherent source region—rather than arbitrary
 line/token slices. This ADR does not select its name, derivation method,
 summary policy, persistence, identity, or representation policy.
 
-Concrete representation-form, fidelity, source-role, authority-evidence,
-conflict, coherence, reconstruction-burden, synthesis/validation, derivation-
-orchestration, materializer, materialization-evidence, applicability-race/cost-
-estimator, cache/reuse, disclosure-authorization, assembly, package, and
-evaluation mechanisms remain open. Derived/synthesized representations retain
-the provenance/dependency requirement above without selecting when or how they
-are produced.
+Concrete representation-form/taxonomy, fidelity, source-role, authority-
+evidence, uncertainty, confidence, completeness, conflict, coherence,
+reconstruction-burden, semantic-transformation and synthesis representation,
+synthesis validation/fidelity evaluation, provenance/support, model-generated
+information treatment, derivation-orchestration, materializer,
+materialization-evidence, applicability-race/cost-estimator, cache/reuse,
+disclosure-authorization, assembly, package/API ownership, and evaluation
+mechanisms remain open. So do synthesis identity, persistence, querying,
+caching, reuse, conflict-preserving mechanisms, and any promotion of
+interpretive knowledge. Derived and synthesized representations retain the
+origin/support discipline above without selecting when or how they are produced.
 
 ## Status and implementation boundary
 
@@ -321,7 +375,8 @@ a compiler, DisclosureOption, DisclosurePlan, ContextDisclosure,
 representation/coverage/satisfaction model, decomposition mechanism,
 utility/stopping/budget policy, availability/history store, applicability cache,
 capability/behavior profile, assembly layer, tokenizer integration, derived
-representation, persistence, or evaluation infrastructure. B-0002 retains this
+representation, semantic-transformation or synthesis mechanism, synthesis
+store, persistence, or evaluation infrastructure. B-0002 retains this
 unimplemented design pressure.
 ADR-0001 remains the model-native Tool boundary; ADR-0002 remains repository
 identity/derivation/graph architecture; ADR-0003 remains InformationNeed,

@@ -293,3 +293,15 @@ prerequisites for a future architectural domain.
   semantics; new assertions remain explicit DerivedKnowledge; and coherence,
   authority, conflict, applicability-at-realization, and materialization
   boundaries are semantically settled while their mechanisms remain deferred.
+- Reconciled ADR-0002 and ADR-0004 after adversarial review within their existing
+  ownership boundaries. DerivedKnowledge now explicitly owns repository-relative
+  semantic intelligence rather than every semantic assertion; representational
+  transformation is distinct from epistemic derivation; and purpose-relative
+  Context synthesis can remain provenance-bearing without automatic repository-
+  knowledge promotion. Materialization can perform semantic transformation when
+  explicitly selected by the DisclosurePlan, while assembly remains non-
+  semantic. Provenance does not itself establish authority, certainty,
+  correctness, or truth. This documentation-only amendment supersedes the prior
+  universal-promotion assumption without implementing Context infrastructure or
+  resolving synthesis, uncertainty, completeness, authority, or conflict
+  mechanisms.

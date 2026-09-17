@@ -56,8 +56,10 @@ representation-coupled selection, coverage, applicability, prior availability,
 sufficiency, budgeting, ContextDisclosure, and separation from model-input
 assembly. Its refinement further settles information-not-string disclosure,
 DisclosureOption/DisclosurePlan/ContextDisclosure distinctions, representation
-origin/form/fidelity/cost, explicit derived synthesis, coherence, authority,
-conflict preservation, and no-silent-replanning materialization. It leaves
+origin/form/fidelity/cost, repository-relative DerivedKnowledge distinct from
+purpose-relative synthesis, representational transformation distinct from
+epistemic derivation, coherence, authority, conflict preservation, and faithful
+materialization of explicitly planned semantic transformation. It leaves
 compiler, concrete artifacts, representation/coverage/authority/conflict/
 coherence mechanisms, derivation orchestration, materialization, assembly,
 caching, authorization integration, and evaluation implementations unresolved.
@@ -110,6 +112,16 @@ design, marginal-contribution measurement, ranking features/policies,
 learned/task-conditioned ranking, evidence caching if justified, and interaction
 with repository DerivedKnowledge remain unresolved implementation/evaluation
 pressure.
+
+Concrete representation taxonomy, semantic-transformation and purpose-relative
+synthesis representation, synthesis validation and fidelity evaluation,
+uncertainty and completeness semantics, claim-/purpose-relative authority,
+source roles, conflict preservation, provenance/support representation,
+model-generated information treatment, explicitly planned materialization,
+synthesis identity/persistence/querying/caching/reuse if justified, and package/
+API ownership remain unresolved implementation/design/evaluation pressure. No
+generic promotion of interpretive or model-generated information to repository
+DerivedKnowledge is selected.
 
 Concrete capability/binding representations, catalogs/registration/discovery,
 selection/lifecycle, bounded dependency-acquisition and execution-context APIs,

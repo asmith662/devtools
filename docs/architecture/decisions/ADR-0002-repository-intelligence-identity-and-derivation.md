@@ -250,13 +250,16 @@ Grammar/language version, toolchain semantics, feature flags, and environment
 state likewise participate only where actually consumed. Unchanged repository
 content alone never justifies reuse when relevant derivation semantics changed.
 
-**DerivedKnowledge** is a foundational semantic concept, not a required Python
-base class. It is knowledge produced by an identified Derivation over explicit
-identified dependencies, with result/value and provenance. Its identity should
-be reproducibly associated with derivation, dependencies, and result semantics,
-not merely an arbitrary UUID. Exact digest construction is open, including
-whether result participates directly when determinism permits derivation plus
-dependencies to determine it.
+**DerivedKnowledge** is a foundational repository-intelligence concept, not a
+required Python base class or a universal container for semantic assertions. It
+is semantic repository intelligence established by an identified Derivation
+over explicit identified dependencies, with result/value and provenance. Its
+meaning is the meaning established by that DerivationDefinition, including any
+relevant assumptions, approximation, ambiguity, uncertainty, scope, or
+completeness semantics. Its identity should be reproducibly associated with
+derivation, dependencies, and result semantics, not merely an arbitrary UUID.
+Exact digest construction is open, including whether result participates
+directly when determinism permits derivation plus dependencies to determine it.
 
 DerivedKnowledge is immutable and not foundationally snapshot-owned. It
 retains derivation, direct dependencies, value, provenance, and stable identity
@@ -285,6 +288,39 @@ meaningful grouped result, or a combination with shared structure/provenance.
 The appropriate result granularity depends on semantic referential needs,
 applicability/reuse and downstream dependency needs, and operational cost; it
 does not require maximum fragmentation or one monolithic result set.
+
+Nor does every semantic assertion elsewhere in the system automatically become
+DerivedKnowledge. Provenance-bearing information is not automatically
+repository intelligence. ADR-0003 RelevanceEvidence and ADR-0004
+purpose-relative Context synthesis can be semantic, deterministic,
+reproducible, and provenance-bearing without acquiring DerivedKnowledge
+identity, applicability, persistence, or reuse semantics. Repository-relative
+declarations, definitions, references, imports, call/inheritance/override/
+implementation/test relationships, cycles, reachability, and other reusable
+structural or semantic assertions remain characteristic DerivedKnowledge when
+an identified repository Derivation establishes their stated meaning. This is a
+jurisdiction boundary, not a restriction to only certain or infallible facts.
+
+#### Epistemic derivation and representational transformation
+
+A **representational transformation** changes how already available information
+is exposed without intentionally establishing a materially new semantic
+assertion. Source extraction, selecting a method signature, formatting,
+source-preserving projection, and lossless structural packaging can require
+computation without thereby producing DerivedKnowledge.
+
+An **epistemic derivation** establishes a materially new semantic assertion. A
+repository derivation that establishes a possible call, resolved reference,
+dependency cycle, transitive reachability result, or another explicitly defined
+repository semantic can establish DerivedKnowledge. Lossy compression or a
+summary can also cross this semantic boundary when it asserts an interpretation
+rather than merely representing existing information.
+
+The distinction is semantic, not a class, protocol, enum, or mandatory artifact
+taxonomy. Not every epistemic derivation belongs to repository intelligence:
+ADR-0004 may establish purpose-relative synthesized information for disclosure
+without promoting it to DerivedKnowledge. Whether such synthesis later merits
+independent identity, persistence, caching, querying, or reuse remains open.
 
 A Derivation records **direct semantic dependencies**, whose role in the
 computation is preserved conceptually. Content X can be source content;
@@ -345,6 +381,12 @@ sharing, compact references, bounded support, lazy traversal, and selective
 persistence remain future representation choices, not weaker provenance
 semantics.
 
+Provenance explains origin and support. It does not by itself establish
+authority, semantic certainty, correctness, or truth. Those concerns can depend
+on the claim, purpose, derivation semantics, source role, uncertainty,
+completeness, conflict, and other future assessment semantics; no universal
+authority or truth score is selected here.
+
 Applicability, invalidation discovery, rederivation, and caching/reuse lookup
 are distinct. Applicability is the semantic question whether knowledge applies;
 invalidation discovery is how maintenance efficiently detects lost
@@ -382,9 +424,14 @@ Attempt record, or success flag do not by themselves govern applicability.
 
 Determinism is not correctness or certainty, and confidence is not completeness.
 A deterministic derivation can consistently produce an incorrect or heuristic
-result. Confidence, alternatives, ambiguity, and uncertainty belong to
-derivation- or knowledge-specific semantics where meaningful; no universal
-confidence field is required for every DerivedKnowledge artifact.
+result. It can also establish precisely qualified repository intelligence such
+as a possible call, may-alias relation, unresolved reference, conservative
+reachability result, or analysis under explicit assumptions. Those are not
+downgraded versions of an unqualified fact: their qualification is part of the
+DerivationDefinition and result semantics. Confidence, alternatives, ambiguity,
+uncertainty, scope, and completeness belong to derivation- or knowledge-specific
+semantics where meaningful; no universal confidence field or epistemic-status
+enum is required for every DerivedKnowledge artifact.
 
 ### Repository-intelligence capability boundary
 
@@ -446,6 +493,15 @@ temporary files, persistence, or execution evidenceâ€”remain possible but a
 not selected mechanisms. LLM-assisted or nondeterministic analysis requires
 explicitly different derivation, evidence, and governance semantics rather than
 masquerading as this substrate.
+
+Model output does not become DerivedKnowledge merely because temperature is
+zero, execution is reproducible, provenance is recorded, multiple models agree,
+a human agrees, or a model reports high confidence. A later repository
+Derivation can independently establish the corresponding repository semantics.
+Whether learned, model-assisted, or validated interpretive analysis can become
+reusable repository intelligence remains unresolved; this does not prohibit a
+future learned analyzer with explicitly accepted derivation, evidence, and
+governance semantics.
 
 Repository-intelligence admission differs from ADR-0001 model Tool
 authorization. The former may constrain repository/snapshot, resources,
@@ -607,6 +663,14 @@ and model/task disclosure of relevant information. Retrieval produces evidence
 for possible relevance; ranking is not repository truth and remains distinct
 from final selection; Context compilation remains distinct from retrieval.
 
+Context preparation can perform a purpose-relative epistemic synthesis without
+making the result repository DerivedKnowledge. Such synthesis remains explicit
+about origin and support and preserves assumptions, uncertainty, conflicts, and
+purpose-relative status where material to correct interpretation. ADR-0004 owns
+its planning, realization, and disclosure semantics. Repository intelligence
+continues to own reusable repository-relative assertions established by
+identified Derivations.
+
 Future mechanisms may combine exact/identifier, lexical, structural,
 relationship/graph, optional semantic, and historical/change-based retrieval.
 They may preserve multiple relevance signals, use task-sensitive deterministic
@@ -693,6 +757,13 @@ selection, call graphs, historical co-change, change impact, test/code,
 documentation/code, and ADR/governance relationships; disclosure-history and
 Context caching ownership; progressive-acquisition orchestration; and evaluation
 infrastructure and exact metrics.
+
+It also leaves open whether and under what evidence learned, model-assisted, or
+validated interpretive assertions can become reusable repository intelligence;
+their validation, qualification, promotion, identity, persistence, caching, and
+governance semantics; and any future representation of uncertainty,
+completeness, conflict, source role, or authority beyond the distinctions
+accepted here.
 
 ## Status and implementation boundary
 

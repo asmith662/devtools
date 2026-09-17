@@ -14,12 +14,15 @@
   why architecture was chosen; they are not the sole current-state specification.
   ADR-0001 defines ModelInteraction/Tool semantics; ADR-0002 repository identity,
   snapshot observation/delta/maintenance, subjects/source occurrences,
-  derivation/knowledge and capability-realization contract, and graph semantics;
+  repository DerivedKnowledge jurisdiction, epistemic-derivation/
+  representational-transformation boundary, capability-realization contract,
+  and graph semantics;
   ADR-0003
   InformationNeed/retrieval/ranking; and
   [ADR-0004](architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)
-  Context/disclosure planning, materialization, representation-origin, and
-  model-input assembly semantics.
+  Context/disclosure planning, purpose-relative synthesis, materialization of
+  explicitly planned transformations, representation-origin, and model-input
+  assembly semantics.
 - [AGENTS.md](../AGENTS.md) defines repository-operating rules.
 - Package-local documentation defines detailed implemented public APIs, package
   design, lifecycle/operational behavior, and usage. Central architecture

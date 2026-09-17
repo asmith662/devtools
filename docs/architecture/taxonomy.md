@@ -323,6 +323,8 @@ Repository intelligence is deterministic knowledge about Repository state,
 resources, entities, and typed relationships, useful independently of a Model.
 It does not own filesystem access, Context compilation, model prompting,
 authorization, Tool execution, Agent loops, or graph storage technology.
+Here deterministic means reproducible under identified semantics, not certain,
+correct, exhaustive, or free of explicitly modeled approximation/uncertainty.
 
 `Repository` has nominal identity across changing states. A
 `RepositorySnapshot` is an immutable content-derived complete included state
@@ -397,11 +399,21 @@ their concrete construction is open.
 
 DerivationDefinition compatibility concerns semantic behavior, including
 relevant revision and configuration, rather than merely implementation source or
-build identity. `DerivedKnowledge` is knowledge with derivation, explicit
-dependencies, value, and provenance. Its applicability depends on satisfying
-those dependencies under equivalent derivation semantics, not merely on the
-snapshot where it was first produced. DerivedKnowledge may depend on other
-DerivedKnowledge, enabling targeted invalidation and reuse.
+build identity. `DerivedKnowledge` is repository-relative semantic intelligence
+established by a Derivation, with explicit dependencies, value, and provenance.
+Its semantics can express assumptions, approximation, ambiguity, uncertainty,
+scope, and completeness where the DerivationDefinition requires them. Its
+applicability depends on satisfying those dependencies under equivalent
+derivation semantics, not merely on the snapshot where it was first produced.
+DerivedKnowledge may depend on other DerivedKnowledge, enabling targeted
+invalidation and reuse.
+
+DerivedKnowledge is not a universal container for every semantic assertion,
+interpretation, summary, retrieval observation, or purpose-relative Context
+synthesis. Provenance-bearing information is not automatically repository
+intelligence. RelevanceEvidence and Context synthesis can preserve provenance,
+determinism, and reproducibility without acquiring DerivedKnowledge identity,
+applicability, persistence, or reuse semantics.
 
 Applicability follows actual semantic dependencies: content, occurrences,
 subjects, source occurrences, other knowledge, snapshot facts, and consumed
@@ -423,7 +435,10 @@ remain open.
 
 Determinism is distinct from correctness and certainty; confidence is distinct
 from completeness and is not a universal knowledge field. Where uncertainty or
-alternatives matter, derivation- or knowledge-specific semantics own them.
+alternatives matter, derivation- or knowledge-specific semantics own them. A
+possible call, may-alias relation, unresolved reference, or conservative result
+can be legitimate DerivedKnowledge when its qualification is part of the stated
+derivation semantics.
 
 #### Repository-intelligence capability
 
@@ -548,13 +563,31 @@ not claim model comprehension or create a ModelKnowledgeState.
 Disclosure selects information rather than arbitrary prompt strings. A
 DisclosureOption is a conceptual purpose-relative possibility for making
 identified information about one or more subjects available through a
-representation. Origin, form, fidelity, and cost are separate concerns.
+representation or explicitly characterized transformation. Origin, form,
+fidelity, and cost are separate concerns.
 Source-preserving representations select/transform identified source without
 new semantic assertions; knowledge projections expose existing DerivedKnowledge;
 synthesized representations introduce new semantic assertions and therefore
-must remain explicit provenance-bearing derivation work. Determinism does not
-by itself establish semantic certainty. Composite representations may preserve
-multiple constituent origins.
+must preserve explicit origin and support without automatically becoming
+repository DerivedKnowledge. Determinism does not by itself establish semantic
+certainty. Composite representations may preserve multiple constituent origins.
+
+A representational transformation changes how available information is exposed
+without intentionally establishing a materially new semantic assertion. An
+epistemic derivation establishes such an assertion. Repository-relative
+epistemic derivation can establish DerivedKnowledge under ADR-0002; purpose-
+relative Context synthesis remains owned by ADR-0004 and can remain ephemeral.
+Lossy compression can cross the epistemic boundary when it implicitly asserts
+an interpretation. This conceptual distinction does not require production
+classes, enums, independent identity, persistence, or a complete representation
+taxonomy.
+
+Materialization faithfully realizes the representation or transformation
+selected by a DisclosurePlan. It may perform explicitly planned semantic
+transformation or lossy synthesis, but it must not silently invent a materially
+different synthesis or disclosure decision. Model-input assembly arranges and
+serializes already-realized disclosure; formatting, placement, truncation, and
+budget handling must not silently introduce new semantic assertions.
 
 Disclosure planning determines what information becomes available; model-input
 assembly determines how selected information is serialized, ordered, and placed
@@ -572,6 +605,9 @@ claim-/purpose-relative evidence, not a universal source ordering, and remains
 distinct from relevance, confidence, coverage, and ranking influence. Material
 conflicts and absence discipline remain preservable: disclosure planning does
 not generally resolve truth, and missing evidence does not prove its opposite.
+Provenance explains origin and support; it does not by itself establish
+authority, certainty, correctness, or truth. No universal confidence,
+epistemic-status, authority, or truth field is selected.
 
 ### Resource
 
@@ -765,6 +801,10 @@ cancellation                   != rollback
 communication failure          != proof an external effect failed
 persistence                    != exactly-once external effects
 observation                    != permission to disclose payloads
+semantic assertion             != automatically DerivedKnowledge
+provenance-bearing information != automatically repository intelligence
+provenance                     != authority or truth
+deterministic computation      != semantic certainty
 ```
 
 ## Taxonomy does not authorize implementation

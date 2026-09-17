@@ -98,6 +98,8 @@ orchestration.
 - Conversation is not Run; generic Run, Step, and Attempt remain future work.
 - Context is not Memory or Persistence.
 - Evidence is not Trace, Telemetry, or present authority.
+- Provenance explains origin/support; it does not itself establish authority,
+  certainty, correctness, or truth.
 - Model proposal, Tool visibility, and Tool validation are not authorization.
 - Cancellation is not rollback, and communication failure does not prove an
   external effect did not occur.
@@ -181,6 +183,16 @@ per result. Granularity must preserve correct applicability; finer tracking is
 an optimization justified by reuse gained versus bookkeeping, maintenance, and
 provenance cost.
 
+DerivedKnowledge is repository-relative semantic intelligence established by an
+identified Derivation; it is not a universal container for every semantic
+assertion or provenance-bearing item in the system. Its meaning can include
+explicit assumptions, approximation, uncertainty, scope, and completeness.
+Deterministic computation does not imply semantic certainty. Representational
+transformation of already available information is distinct from epistemic
+derivation that establishes a materially new assertion, and not every epistemic
+derivation belongs to repository intelligence. These are semantic distinctions,
+not requirements for new production classes or artifacts.
+
 DerivedKnowledge is not snapshot-owned and has heterogeneous value shape.
 Applicability is an external assessment, not mutable knowledge state. Zero
 results do not prove absence, positive results do not prove exhaustive coverage,
@@ -230,9 +242,11 @@ are distinct referential domains; graph views are first-class reusable typed
 projections over relationship knowledge rather than a mandatory stage; and
 directly addressed information can be
 acquired without relevance discovery. Retrieval strategies may independently
-query different intelligence views, while synthesis can explicitly establish
-new DerivedKnowledge and progressive disclosure can justify another information
-purpose/acquisition episode. A request need not traverse every concept or view.
+query different intelligence views. Repository-relative derivation can establish
+new DerivedKnowledge, while purpose-relative Context synthesis can establish
+provenance-bearing information without automatically becoming repository
+intelligence. Progressive disclosure can justify another information purpose/
+acquisition episode. A request need not traverse every concept or view.
 
 ## Accepted retrieval and ranking semantics
 
@@ -262,12 +276,15 @@ Disclosure planning couples candidate and representation choice and reasons
 about coverage, marginal contribution, complementarity, representation-relative
 overlap, prior currently available information, applicability, sufficiency,
 authority, and multidimensional cost. It selects information rather than prompt
-strings. A DisclosureOption is a future purpose-relative information-and-
-representation possibility, with origin, form, fidelity, cost, and provenance
-kept semantically distinct. Source-preserving material, existing knowledge
-projections, and synthesized semantic assertions are distinct origins; new
-assertions remain explicit ADR-0002 DerivedKnowledge rather than opaque compiler
-text. Composite provenance-preserving representations are permitted.
+strings. A DisclosureOption is a future purpose-relative possibility for
+exposing information through a selected representation or transformation, with
+origin, form, fidelity, cost, and provenance kept semantically distinct.
+Source-preserving material, existing knowledge projections, and synthesized
+semantic assertions are distinct origins. A new
+repository-relative assertion can be ADR-0002 DerivedKnowledge; a purpose-
+relative Context synthesis remains explicit and provenance-bearing without
+automatic promotion to repository intelligence. Composite provenance-preserving
+representations are permitted.
 
 DisclosurePlan, ContextDisclosure, and ModelRequest remain distinct:
 
@@ -278,9 +295,14 @@ InformationNeed -> DisclosurePlan -> materialization -> ContextDisclosure
 
 The Plan is an immutable selected-information decision; the Disclosure is an
 immutable realized information artifact under/reference to that plan; the
-ModelRequest is a consumer-specific presentation. Materialization cannot silently
-re-plan or present inapplicable information as current. Planning and possession
-of a disclosure are not disclosure/presentation authority.
+ModelRequest is a consumer-specific presentation. Materialization faithfully
+realizes the selected representation and may perform an explicitly planned
+semantic transformation or lossy synthesis. It cannot silently re-plan, invent
+a materially different synthesis, or present inapplicable information as
+current. Assembly arranges already-realized disclosure and must not introduce
+new semantic assertions through formatting, placement, or budget handling.
+Planning and possession of a disclosure are not disclosure/presentation
+authority.
 
 This architecture distinguishes repository history, disclosure history, and
 Conversation history. Current Conversation ownership remains
@@ -295,8 +317,9 @@ Coherence concerns intelligible meaningful units and consumer reconstruction
 burden, not source contiguity. Authority is claim-/purpose-relative evidence,
 not a universal source hierarchy; relevant applicable conflicts remain
 preservable rather than being silently arbitrated. Concrete coverage, fidelity,
-authority, conflict, coherence, synthesis, materialization, cache, assembly,
-and evaluation mechanisms remain unimplemented.
+authority, uncertainty, completeness, conflict, coherence, semantic-
+transformation/synthesis validation, materialization, cache, assembly, and
+evaluation mechanisms remain unimplemented.
 
 See [documentation_map.md](documentation_map.md) for current package
 documentation, [taxonomy.md](architecture/taxonomy.md) for definitions, and
