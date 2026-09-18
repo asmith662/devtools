@@ -52,6 +52,15 @@ to an optional `ModelInteractionObserver`; that transient seam does not change
 Observability may use it to construct immutable Evidence, while an interaction
 remains usable without an observer.
 
+The current observation is completed-success-only: provider transport,
+provider-response parsing, or normalization failures do not emit an equivalent
+`ModelInteractionObservation`. An observer exception occurs after a normalized
+response exists and currently propagates from `send()`, so caller-visible
+invocation failure does not by itself prove provider/model failure. This seam
+does not automatically correlate `ModelInteractionId` with Runtime
+`InteractionAttemptId`, identify an Evaluation realization, or retain exact
+replay material.
+
 `ModelRequest.tools` contains an ordered immutable tuple of normalized
 `ModelToolDefinition` values. `ModelResponse.tool_calls` contains normalized
 `ModelToolCall` requests returned by a provider. Neither references executable

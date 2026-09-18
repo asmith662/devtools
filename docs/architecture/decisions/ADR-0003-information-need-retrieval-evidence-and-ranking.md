@@ -222,19 +222,26 @@ rankers rather than prematurely fixing universal normalization.
 
 ### Evaluation, progressive disclosure, and authority
 
-Future evaluation must be able to reproduce and correlate RepositorySnapshot,
-fixed evaluation cases, acquisition/information purpose, planning
-semantics/applications, derivations, candidates, evidence, ranking, later
-selection/representation/disclosure, and model/task outcome. Evaluation-case
-identity can therefore hold a Task, purpose, anchors, constraints, judgments,
-and treatment identity stable for comparison without requiring runtime
-InformationNeed identity. This permits controlled comparisons of rankers over
-fixed retrieval observations, retrieval portfolios under fixed ranking, or
-Context compilers over fixed ranked candidates, without selecting storage or
-experiment infrastructure. Recordable observations can support replay,
-debugging, controlled comparison, provenance inspection, and retriever
-marginal-contribution analysis without requiring standalone evidence identity or
-mandatory persistence.
+Future evaluation must be able to reproduce and correlate the assessment basis
+required by its claim: potentially RepositorySnapshot and relevant external or
+intelligence conditions, acquisition/information purpose, planning semantics/
+applications, derivations, candidates, evidence, ranking, later selection/
+representation/disclosure, and model/task outcome. Repeatable benchmark-style
+work can use a stable evaluation-case reference containing Task, purpose,
+anchors, constraints, or expected semantics, but neither a universal
+`EvaluationCase` nor runtime InformationNeed identity is required. Intended
+experimental condition remains distinct from base assessment basis,
+configuration, realization, and outcome; a scoped fixture/configuration can
+represent these distinctions without a universal `Treatment` entity.
+
+This permits controlled comparisons of rankers over fixed retrieval
+observations, retrieval portfolios under fixed ranking, or Context compilers
+over fixed ranked candidates, without selecting storage or experiment
+infrastructure. Recordable observations can support replay, debugging,
+controlled comparison, provenance inspection, and retriever marginal-
+contribution analysis without requiring standalone RelevanceEvidence identity
+or mandatory persistence. Retrieval observations and evaluator judgments
+retain their own semantics rather than becoming repository DerivedKnowledge.
 
 Provenance/observability must eventually distinguish retrieval failure (useful
 information never a candidate), ranking failure (candidate ranked too poorly),

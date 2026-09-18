@@ -367,7 +367,71 @@ authority, uncertainty, completeness, conflict, coherence, semantic-
 transformation/synthesis validation, materialization, cache, assembly, and
 evaluation mechanisms remain unimplemented.
 
-## Remaining preimplementation research and evidence constraints
+## Accepted Evaluation responsibility
+
+Evaluation is a distinct semantic responsibility for assessment and controlled
+comparison. It correlates layer-owned artifacts and factual Evidence without
+owning RepositorySnapshot, DerivedKnowledge, retrieval observations, Context
+artifacts, ModelRequest/ModelResponse, Tool execution, Runtime lifecycle, or
+generic Trace. Distributed ownership plus explicit correlation is preferred to
+one cross-domain experiment object.
+
+At the granularity required by a particular evaluation, the evaluation meaning
+must make referenceable the assessment/comparison basis, intended condition or
+intervention and relevant fixed factors, realized execution, applied evaluator/
+oracle/criterion, heterogeneous observations or outcomes, and any later
+comparison or inference. These are semantic distinctions, not mandatory
+classes, globally identified artifacts, persistent lifecycles, or a universal
+runtime pipeline. A fixture or scoped configuration can be sufficient for a
+bounded evaluation. Repeated realizations remain distinguishable when the
+claim depends on them, but an execution Attempt does not automatically become
+an evaluation realization.
+
+Evaluation outcomes retain their native meanings: correctness judgments,
+coverage, sets, categorical results, durations, token or call counts, costs,
+human assessments, and other observations do not collapse into a foundational
+scalar score. Policy-specific aggregation, Pareto comparison, or cost-
+effectiveness analysis may be layered later. Trace/observability can explain
+what occurred and its execution order; it does not establish intended
+intervention, controlled factors, oracle meaning, or comparison validity.
+
+Historical evaluation evidence remains truth about an assessment performed
+under identified conditions. Whether it predicts or transfers to current
+conditions is a later evaluation inference, not ADR-0002 DerivedKnowledge
+applicability. An evaluator can judge DerivedKnowledge without that judgment
+becoming repository intelligence. Evaluator-private answers, tests, labels,
+solutions, or treatment assignments must not become model-visible unless
+disclosure is deliberate and authorized; host-side oracle use that changes an
+adaptive interaction remains intervention/provenance even when the oracle is
+not directly disclosed.
+
+No universal `EvaluationCase`, `Treatment`, `EvaluationRun`,
+`EvaluationEpisode`, scalar quality model, causal DAG, trajectory ontology,
+oracle abstraction, metric system, trace platform, statistics subsystem, or
+evaluation store is accepted. RepositorySnapshot also does not identify the
+whole evaluated intelligence condition: knowledge/view availability,
+derivation or analyzer semantics, coverage, external semantic state, and reuse
+state can differ. Experiments retain the actual relevant basis without creating
+a universal `RepositoryIntelligenceSnapshot`, `KnowledgeClosure`, or
+`IntelligenceClosure`.
+
+Experimental causation is study-relative and is not either ADR-0002 graph
+family. Derivation dependencies explain semantic support/applicability, and
+repository graph views express repository relationships; neither makes a claim
+such as “graph retrieval improved task outcome” repository graph knowledge.
+Such a claim remains an evaluation hypothesis or inference supported by the
+particular design, correlations, observations, and analysis.
+
+Counterfactual claims remain bounded. A fixed candidate/evidence set can support
+a local ranker comparison, a fixed disclosure can support an assembly
+comparison, and an exact request can support repeated model realizations. When
+an earlier adaptive decision changes, recorded downstream purposes, retrieval,
+or model actions are not automatically a valid counterfactual continuation;
+the affected continuation may require a rerun. Progressive evaluation can
+retain experiment-local decision correlation without a foundational Episode or
+Trajectory model.
+
+## Implementation-start and remaining evidence constraints
 
 The focused external-semantic-state investigation has been reconciled within
 ADR-0002. Repository derivations may consume an open set of external semantic
@@ -403,10 +467,15 @@ external-state representation, observation, equivalence/compatibility,
 generated-resource, enforcement, retention, and replay mechanisms remain
 implementation design.
 
-The remaining focused preimplementation question concerns the minimum integrated
-**evaluation architecture and causal attribution**. Existing boundaries already
-require future evaluation to distinguish, where meaningful, repository
-observation correctness;
+The focused evaluation-architecture and causal-attribution investigation has
+completed its substantive analysis, and its accepted findings are reconciled
+above. The research dossier's producing process did not complete its final
+mechanical artifact-integrity verification; the later architectural review and
+this reconciliation therefore treat it as research evidence rather than as a
+verified decision artifact.
+
+Existing boundaries require future evaluation to distinguish, where meaningful,
+repository observation correctness;
 repository-intelligence semantic correctness and derivation-family-specific
 soundness, precision, or coverage; incremental-maintenance correctness and
 dependency-granularity economics; graph, retrieval, RelevanceEvidence, and
@@ -434,6 +503,27 @@ independent lifecycle, or universal storage. It creates no universal
 `ReplayRecord`, `Episode`, or Trace and does not collapse repository state,
 derivation, retrieval, disclosure, model interaction, and evaluation into one
 ownership domain.
+
+The implementation-start assessment is **SAFE WITH PRESERVED SEAMS**. A bounded
+repository-intelligence slice can enter concrete design without a generic
+Evaluation framework, provided it does not foreclose retention or correlation
+of the semantic basis its claims require. Depending on the slice, that includes
+deterministic fixture/state reference, RepositorySnapshot identity and
+observation semantics, consumed external semantic inputs, DerivationDefinition
+meaning and compatibility basis, direct dependencies, produced
+DerivedKnowledge and result-specific support, relevant qualification and
+semantic-result coverage, distinct success/zero/partial/exhaustive/failure
+semantics, analyzer/binding provenance, and correlation among requested work,
+realization, dependencies, results, diagnostics, and terminal outcome. This is
+neither implementation authorization nor a claim that Evaluation infrastructure
+exists.
+
+The external adversarial confirmation remains a confirmation/reopen gate, not
+an implementation-start gate. It can reopen architecture if it exposes a
+material defect. Initial design remains governed by B-0002 promotion and must
+preserve local semantic correctness separately from downstream/task utility,
+typed resource observations, and the intended factor/fixed-condition seams
+needed to assess marginal contribution or interaction effects later.
 
 Remaining choices such as snapshot digest/Merkle construction, observation
 mechanics, parser/analyzer technology, graph storage/indexes/algorithms,

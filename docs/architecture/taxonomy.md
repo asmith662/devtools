@@ -425,6 +425,14 @@ intelligence. RelevanceEvidence and Context synthesis can preserve provenance,
 determinism, and reproducibility without acquiring DerivedKnowledge identity,
 applicability, persistence, or reuse semantics.
 
+Evaluation judgments are also outside this jurisdiction. A repository
+relationship may be DerivedKnowledge; a judgment that an analyzer produced the
+correct relationship for an evaluation is evaluation information about that
+knowledge, not repository intelligence. Benchmark results, statistical
+estimates, human ratings, resource measurements, and execution failures do not
+become DerivedKnowledge merely because they are reproducible or
+provenance-bearing.
+
 No foundational Claim, Assertion, Proposition, Belief, or TruthRecord layer
 subsumes DerivedKnowledge, RelevanceEvidence, Context synthesis, or authority
 judgments. These responsibilities retain different identity, purpose,
@@ -805,13 +813,53 @@ neither Evidence nor Trace.
 
 **Status: EMERGING.**
 
-Evaluation measures quality, correctness, capability, or behavior of framework
-components or complete agentic systems. Future categories may include model
-evaluation, Agent task success, trajectory evaluation, Tool selection, workflow
-evaluation, and regression acceptance.
+Evaluation owns the meaning of assessment and controlled comparison for
+framework components or complete agentic systems. At the granularity a claim
+requires, it can make referenceable:
 
-Observability explains what happened; Evaluation judges how well or correctly
-it happened.
+- the assessment or comparison basis;
+- the intended condition/intervention and relevant fixed factors;
+- the realized execution or application;
+- the evaluator, oracle, criterion, or rubric applied;
+- heterogeneous observations, measurements, outcomes, or judgments; and
+- a later comparison or inference over those observations.
+
+These roles do not require universal production classes. An evaluation basis
+can be a fixture, property, benchmark case, fuzz input, task, or other scoped
+reference rather than a mandatory `EvaluationCase`. Configuration plus explicit
+experimental intent can represent a condition without a universal `Treatment`.
+Repeated realizations must remain distinguishable when the assessment depends
+on them, but an Attempt, ModelInteraction, or execution occurrence is not
+automatically an evaluation realization.
+
+Evaluation consumes and correlates layer-local artifacts and Evidence without
+owning or mutating their lifecycles. It does not own repository state,
+DerivedKnowledge, retrieval observations, Context artifacts, model
+requests/responses, Tool execution, Runtime, generic Trace, or persistence.
+Observability explains what happened; Evaluation establishes what is being
+assessed, under which intended comparison, and how the observation is judged.
+Trace can support correlation and execution order but cannot supply treatment,
+fixed-factor, oracle, or comparison-validity semantics.
+
+Outcomes retain native type, procedure, scope, unit, provenance, and
+missingness semantics where relevant. Correctness, coverage, sets, categorical
+verdicts, resource observations, human judgments, latency, tokens, and costs do
+not collapse into a universal scalar. Policy-specific aggregation is possible
+later without becoming foundational truth.
+
+Historical evaluation evidence remains a fact about an assessment under its
+identified conditions. Current predictive relevance or transferability is a
+separate inference, not repository DerivedKnowledge applicability. Local replay
+under fixed inputs can support bounded interventions; changing an earlier
+adaptive decision does not automatically validate reuse of its recorded later
+continuation.
+
+No universal `EvaluationCase`, `Treatment`, `EvaluationRun`,
+`EvaluationEpisode`, causal DAG, trajectory ontology, oracle abstraction,
+metric system, or evaluation store is established. Evaluator-private
+information must remain outside model-visible disclosure unless deliberately
+authorized; host-side oracle assistance that changes an interaction remains
+part of its experimental condition/provenance even when not shown directly.
 
 ## Memory and persistence
 

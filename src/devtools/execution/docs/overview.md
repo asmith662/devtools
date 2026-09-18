@@ -18,5 +18,12 @@ dispatcher, or Evidence owner. It optionally exposes its specialized
 is allocated when no observer is configured. `InteractionAttempt` is not the
 future generic Step Attempt.
 
+`InteractionAttemptId` identifies this Runtime-managed lifecycle only. Runtime
+does not automatically associate it with a provider adapter's
+`ModelInteractionId`, and neither identity automatically means an Evaluation
+realization. Runtime stage failure can include nested provider/model failure or
+observation failure; future evaluation/replay composition must preserve the
+boundary-specific outcome rather than infer it from the outer stage alone.
+
 Execution does not import observability. Observability observers may construct
 historical Evidence from lifecycle facts without changing Runtime ownership.

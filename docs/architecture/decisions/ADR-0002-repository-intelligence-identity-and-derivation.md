@@ -219,6 +219,13 @@ particular knowledge family defined them: a conservative possible target is not
 a definite call with lower confidence. Predicate names are illustrative rather
 than a universal repository ontology; a concrete family may use another
 representation, including qualified values, when its semantics remain explicit.
+The definition semantics must make proposition meaning, relevant semantic
+qualification, and any coverage/exhaustiveness obligations available wherever
+correct interpretation or evaluation requires them. A name such as `CALLS`
+alone is insufficient if it hides whether the result means definite,
+possible, conservative, unresolved, partial, or exhaustive. This requires an
+interpretable family contract, not one universal qualifier schema or evaluator
+API.
 
 A **Derivation** is the identified semantic application of a
 DerivationDefinition to explicit direct semantic dependencies. It is not its
@@ -315,6 +322,12 @@ implementation/test relationships, cycles, reachability, and other reusable
 structural or semantic assertions remain characteristic DerivedKnowledge when
 an identified repository Derivation establishes their stated meaning. This is a
 jurisdiction boundary, not a restriction to only certain or infallible facts.
+Evaluation judgments remain outside the boundary as well. An evaluator can
+assess a DerivedKnowledge result against a fixture or oracle without making
+“this analyzer result was correct for this evaluation” repository
+DerivedKnowledge. Benchmark outcomes, statistical estimates, human ratings,
+resource measurements, and execution failures retain their evaluation or
+execution semantics even when deterministic and provenance-bearing.
 
 The architecture does not introduce a universal Claim, Assertion, Proposition,
 Belief, or TruthRecord layer spanning repository intelligence, retrieval
@@ -919,6 +932,14 @@ iterations, elapsed time, and cost. The intended long-term outcome is reduced
 expensive-model repository archaeology, progressively reduced Codex dependence,
 and eventually local Qwen-family models capable of primary or sole coding-work
 roles. No metric, harness, model policy, or worker loop is selected here.
+
+RepositorySnapshot identity is not the whole identity of an evaluated
+repository-intelligence condition. Two evaluations can share repository state
+while differing in consumed external semantic inputs, derivation/analyzer
+semantics, available knowledge or graph views, semantic-result coverage, or
+maintenance/reuse state relevant to the experiment. Evaluation must retain the
+actual relevant basis for its claim. This does not introduce a universal
+`RepositoryIntelligenceSnapshot`, `KnowledgeClosure`, or `IntelligenceClosure`.
 
 ### Identity taxonomy
 

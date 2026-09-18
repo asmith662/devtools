@@ -336,3 +336,17 @@ prerequisites for a future architectural domain.
   resource model, retention system, applicability algorithm, or replay
   mechanism. Integrated evaluation architecture/causal attribution remains the
   final focused preimplementation research investigation.
+- Reconciled the focused evaluation-architecture/causal-attribution
+  investigation after subsequent architectural review. Evaluation is now
+  explicitly preserved as a distinct assessment/comparison responsibility that
+  correlates layer-local artifacts and Evidence without owning them. The
+  reconciliation retains assessment basis, intended condition, realization,
+  evaluator/criterion, heterogeneous outcome, and later inference distinctions;
+  rejects universal EvaluationCase/Treatment/Episode/score/causal-graph/
+  trajectory/knowledge-closure infrastructure; and records ADR-0001
+  observation/correlation conformance pressure. The investigation dossier's
+  producing process did not complete its final mechanical artifact-integrity
+  verification, so the dossier remains research evidence rather than an
+  accepted or mechanically verified decision artifact. The implementation-start
+  assessment is SAFE WITH PRESERVED SEAMS; later external confirmation remains
+  a reopen gate, and B-0002 remains backlog work.

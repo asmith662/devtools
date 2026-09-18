@@ -28,6 +28,23 @@ owns capture, manifests, construction, collection, and inspection; model and
 execution operation remains independent of observability. Generic Trace and
 Telemetry remain deferred.
 
+Current model-interaction observation covers successfully completed and
+normalized responses. Equivalent provider/model failure Evidence is absent; an
+observer callback can fail after a response exists; Runtime
+`InteractionAttemptId` and `ModelInteractionId` have no automatic association;
+and capture-controlled Evidence is not necessarily exact request/response or
+replay material. Future consumers must preserve model/provider outcome,
+observation failure, and outer orchestration outcome as distinct, correlate
+layer-local identities without redefining them, and state capture/replay
+strength honestly. These are implementation/conformance pressures, not grounds
+for a global observer, generic Event system, or broadened Runtime.
+
+Provider/model alias, requested settings, serving profile, exact revision,
+effective defaults, quantization/runtime, and measurement boundaries likewise
+carry only the identity or provenance strength actually observed. Unknown
+hosted-provider revisions remain unknown; latency measures with different
+boundaries are not interchangeable.
+
 - hard_dependencies: none
 - pressure_dependencies: B-0011
 - operational_dependencies: consumer needing causal or operational evidence beyond terminal result

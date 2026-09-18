@@ -61,7 +61,7 @@ and Evidence ownership terminology, remain in the
   Agent loop, or orchestration system. [B-0008](backlog/items/B-0008-investigate-repository-context-discovery.md)
   remains superseded historical navigation evidence.
 
-### Architecture review gate — final evaluation research remains
+### Architecture review gate — implementation may begin with preserved seams
 
 The broad repository-intelligence architecture investigation has occurred. The
 work included architecture reconstruction/archaeology, rationale steelmanning,
@@ -75,13 +75,29 @@ focused external-semantic-state/dependency-identity/applicability/replay Deep
 Research investigation has also completed and its accepted findings have been
 reconciled into ADR-0002 without selecting concrete mechanisms.
 
-The complete preimplementation architecture-review gate is not yet closed. One
-focused investigation remains: integrated evaluation architecture and causal
-attribution. Completion of that investigation and reconciliation of any accepted
-findings is the remaining architecture-review work before concrete
-implementation design becomes the primary activity. This sequencing does not
-authorize implementation, and implementation-shaped choices remain governed by
-B-0002 promotion.
+The focused integrated-evaluation/causal-attribution investigation has now
+completed its substantive analysis and its accepted findings have been
+reconciled into the canonical architecture. Evaluation is a distinct semantic
+responsibility, but no universal Evaluation framework, Episode, score, causal
+graph, trajectory, store, or lifecycle is accepted. The producing research
+process did not complete its dossier's final mechanical artifact-integrity
+verification; subsequent review and reconciliation treated the dossier as
+research evidence rather than an accepted or mechanically verified decision.
+
+The implementation-start assessment is **SAFE WITH PRESERVED SEAMS**. The core
+semantic architecture is sufficiently settled for a bounded repository-
+intelligence slice to enter concrete design once B-0002's promotion trigger and
+ordinary authorization are satisfied. Initial design must retain the semantic
+basis and correlation needed for later local-correctness, downstream-utility,
+resource, and marginal-contribution evaluation without first building generic
+Evaluation infrastructure.
+
+Later external adversarial/Deep Research confirmation remains a confirmation/
+reopen gate, not an implementation-start gate. It can reopen foundational
+architecture if it discovers a material contradiction or missing semantic
+capability. This roadmap state does not authorize implementation, mark B-0002
+complete, claim Evaluation infrastructure exists, or settle implementation-
+shaped choices.
 
 ### Later — promotion only when evidence is sufficient
 

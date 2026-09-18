@@ -62,7 +62,10 @@ The `context`, `orchestration`, `governance`, and `evaluation` domains are
 recognized sparse namespaces. They intentionally do not yet document a
 reusable implementation API. In particular, current durable conversation
 semantics live in `agents.conversation`; the sparse `context` namespace does
-not own former Message/History/Session semantics or a Context compiler.
+not own former Message/History/Session semantics or a Context compiler. Current
+accepted Evaluation responsibility and boundaries are summarized in the central
+architecture and taxonomy; no Evaluation ADR or reusable framework API is
+currently established.
 
 ## Experiments and scripts
 

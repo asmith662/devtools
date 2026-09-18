@@ -142,6 +142,15 @@ future semantics may permit more than one realized disclosure from a plan. Once
 established as identified planning/evidence artifacts, plans and disclosures
 are immutable.
 
+Representation or transformation choice is part of the disclosure decision.
+An evaluation that varies representation therefore cannot generally claim to
+hold the exact DisclosurePlan fixed: it can hold selected supporting
+information, purpose, budget, and relevant constraints fixed while comparing
+distinct plans, or compare conforming realizations of one selected
+transformation. Ordering can instead be an assembly intervention when the same
+realized ContextDisclosure is retained. The concrete experimental record is
+Evaluation responsibility, not a new disclosure artifact.
+
 The materialization boundary is:
 
 ```text
@@ -394,6 +403,15 @@ every ModelRequest. Materialization/assembly can remain subject to consumer-
 specific disclosure policy, provider constraints, governance/authorization,
 applicability, and interaction limits. This preserves the repository principle
 that planning/proposal does not confer authority.
+
+Evaluator-only informationâ€”for example hidden tests, expected answers, gold
+relevant resources, benchmark solutions, human labels, treatment assignments,
+or evaluator rationaleâ€”does not become model-visible merely because Evaluation
+can access it. Disclosure must be deliberate and authorized. Host-side use of
+such information to alter an adaptive interaction is part of the realized
+experimental condition/provenance even when the information is not shown
+directly to the model. This is a semantic and governance boundary, not a
+selected access-control mechanism.
 
 ### Remaining open pressure
 

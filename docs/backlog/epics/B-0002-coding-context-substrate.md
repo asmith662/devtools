@@ -77,11 +77,12 @@ definition, assumptions/scope, observation, provenance, and applicability
 semantics; relevant ambient state must not remain hidden. The research did not
 justify a universal external-state ontology, independent identity for every
 input, foundational `WorkspaceSnapshot`/`EnvironmentSnapshot`, identity-based
-applicability, hermetic execution, or mandatory operational replay. One focused
-preimplementation research question remains: a minimum integrated evaluation
-architecture must preserve causal attribution across the accepted layers
-without selecting metrics, benchmarks, datasets, storage, APIs, or scoring
-formulas prematurely.
+applicability, hermetic execution, or mandatory operational replay. The focused
+evaluation-architecture/causal-attribution investigation has now completed and
+its accepted semantic findings are reconciled. Evaluation remains a distinct
+assessment/comparison responsibility correlating layer-local artifacts and
+Evidence; it is not a universal framework or owner of those artifacts. Metrics,
+benchmarks, datasets, storage, APIs, and scoring formulas remain open.
 
 This epic preserves the unimplemented pressure enabled by that decision:
 snapshot policy and acquisition, deterministic repository knowledge,
@@ -114,6 +115,28 @@ and task success alone does not identify the causal layer. Controlled comparison
 and marginal or unique contribution of costly mechanisms should remain possible
 where practical without imposing a universal utility score or requiring every
 component to expose a score.
+
+Evaluation semantics preserve a referenceable assessment/comparison basis,
+intended condition and relevant fixed factors, distinguishable realizations,
+evaluator/oracle/criterion meaning, heterogeneous observations/outcomes, and
+later comparison/inference where the claim requires them. This does not require
+universal `EvaluationCase`, `Treatment`, `EvaluationRun`, `EvaluationEpisode`,
+Trace, causal-DAG, trajectory, oracle, metric, or scalar-quality abstractions.
+Historical evaluation truth, current predictive relevance/transferability, and
+ADR-0002 knowledge applicability remain distinct. Evaluator judgments and
+resource observations do not become repository DerivedKnowledge.
+
+The first bounded repository-intelligence design must preserve the semantic
+basis needed to evaluate its claims without implementing generic Evaluation:
+fixture/state and RepositorySnapshot observation basis; consumed external
+semantic inputs; DerivationDefinition meaning/compatibility; direct semantic
+dependencies; produced knowledge and result-specific support; applicable
+qualification and semantic-result coverage; success/zero/partial/exhaustive/
+failure distinctions; analyzer/binding provenance; and correlation among
+requested work, realization, dependencies, results, diagnostics, and terminal
+outcome. RepositorySnapshot alone is not the whole evaluated intelligence
+condition, but no universal `RepositoryIntelligenceSnapshot`,
+`KnowledgeClosure`, or `IntelligenceClosure` is accepted.
 
 Concrete external-state dependency representations, optional domain/composite
 identities, observation structures and guarantees, equality/equivalence/
@@ -153,8 +176,9 @@ implementation/evaluation pressure.
 Concrete information-purpose/InformationNeed representation, whether explicit
 need identity proves useful, anchors and constraints, decomposition/refinement
 and causal provenance, satisfaction/sufficiency assessment, progressive
-acquisition, planning/application models, evaluation-case identity,
-persistence/replay, and controlled metrics/experiments remain unresolved
+acquisition, planning/application models, assessment-basis/condition/
+realization correlation, persistence/replay, and controlled metrics/experiments
+remain unresolved
 implementation/evaluation pressure.
 
 Concrete relevance-observation/evidence representation, candidate/evidence

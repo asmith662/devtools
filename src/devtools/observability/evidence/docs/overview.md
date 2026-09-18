@@ -22,6 +22,12 @@ current authority.
 invocation. `ModelInteractionInspector` is optional process-local observation:
 models and Runtime work normally when it is absent. The inspector owns capture
 policy, evidence construction, capture manifests, collection, and inspection.
+It currently receives only successfully completed normalized interaction
+observations. Its capture-controlled request/response representation is not
+necessarily exact replay material, is not automatically correlated to a
+Runtime `InteractionAttempt`, and is not an Evaluation realization or judgment.
+Failed provider/model realizations and observer failures require distinct
+accounting by a future consumer that claims a complete evaluation population.
 Payload manifests distinguish captured, omitted, redacted, and unavailable;
 credentials, transport headers, and equivalent sensitive transport state have
 no generic capture path.

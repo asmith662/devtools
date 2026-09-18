@@ -2,8 +2,10 @@
 
 - Status: Accepted
 - Date: 2026-09-15
-- Scope: reusable model-interaction boundary. Phases 1, 2, and 3 are
-  implemented and deterministically validated.
+- Scope: reusable model-interaction boundary. Phases 1, 2, and 3 have
+  implemented, deterministically validated slices; current conformance limits
+  for failed interaction observation and cross-layer correlation are recorded
+  below.
 
 ## Context
 
@@ -97,6 +99,18 @@ occurrences with different retention states, its collection manifest uses
 `PARTIAL` rather than falsely claiming whole capture, omission, redaction, or
 unavailability.
 
+The present implementation emits `ModelInteractionObservation` only after a
+provider result has been successfully received and normalized. Provider,
+transport, or normalization failures therefore do not currently produce
+equivalent `ModelInteractionEvidence`, and an observer callback failure can
+surface after the provider response exists. Runtime `InteractionAttemptId` and
+`ModelInteractionId` are not automatically correlated. These are conformance
+and implementation pressure: model/provider outcome, evidence-observation
+outcome, and outer orchestration outcome remain distinct. Evaluation must not
+treat the current completed-Evidence population as all assigned model
+realizations, overload either identity as an evaluation realization, or assume
+capture-controlled Evidence is exact replay material.
+
 ### Serving provenance
 
 `ServingProfileIdentity` is a future immutable reproducibility/provenance
@@ -108,6 +122,11 @@ Ports, container IDs, readiness state, and startup timeouts are operational
 facts, not model identity. The current Qwen profile fingerprint is a precursor
 that must be assessed rather than assumed complete. Captured interaction
 Evidence carries the serving-profile fingerprint/provenance when available.
+A configured profile or provider model alias carries evidence only at the
+strength established by its source; it does not prove an unobservable hosted
+provider revision or unchanged provider defaults. Timing and resource
+measurements likewise retain their measurement boundary rather than becoming
+interchangeable generic cost facts.
 
 ### Model-facing Tools
 
