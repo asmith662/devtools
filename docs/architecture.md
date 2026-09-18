@@ -143,6 +143,15 @@ identity. There is no universal repository hierarchy, semantic graph, graph
 store, graph database, or foundational Chunk. This also preserves Context as
 purpose-relative selection and disclosure rather than repository truth.
 
+Relationship labels are illustrative, not universally unqualified Booleans;
+their knowledge-family semantics determine qualification. Repository-relative
+conflict/divergence knowledge can itself be DerivedKnowledge when a derivation
+defines semantic comparability and incompatibility under compatible
+assumptions/scope. Source/resource roles and governance or temporal status can
+likewise be derived knowledge useful to downstream authority assessment. No
+universal conflict engine, mandatory source-role field/taxonomy, or source
+precedence is accepted; purpose-relative trust remains an ADR-0004 concern.
+
 A RepositorySnapshot is an immutable, logically complete successfully observed
 state under explicit snapshot/observation semantics. Completeness is relative
 to declared inclusion and consistency guarantees, not physical copying, a full
@@ -193,6 +202,17 @@ derivation that establishes a materially new assertion, and not every epistemic
 derivation belongs to repository intelligence. These are semantic distinctions,
 not requirements for new production classes or artifacts.
 
+DerivedKnowledge does not mean hard or infallible fact. The identified
+DerivationDefinition/result vocabulary determines whether a result means
+definite, possible, necessary, conservative, ambiguous, unresolved, bounded,
+exhaustive, partial, or another explicitly qualified relationship,
+classification, semantic property, or result.
+Conceptual `MAY_CALL`, `MUST_CALL`, and `CANNOT_CALL` results would therefore be
+different propositions, not confidence levels on one generic `CALLS` fact; no
+universal predicates or qualifier encoding are selected. Nor is there a
+foundational Claim/Assertion/Proposition layer spanning repository intelligence,
+retrieval evidence, Context synthesis, and authority judgments.
+
 DerivedKnowledge is not snapshot-owned and has heterogeneous value shape.
 Applicability is an external assessment, not mutable knowledge state. Zero
 results do not prove absence, positive results do not prove exhaustive coverage,
@@ -200,6 +220,16 @@ and failed or partial execution does not automatically negate independently
 established knowledge. Definition, derivation, execution, and knowledge
 identities remain distinct; concrete models, compatibility/versioning,
 provenance, execution integration, and coverage mechanisms remain open.
+
+Semantic-result coverage describes which result space a derivation/result set
+accounted for under its scope, assumptions, and semantics; it is not ADR-0004
+purpose-relative disclosure coverage. Execution success is not completeness,
+partial analysis is not failure, unsupported territory is not negative
+knowledge, and absent knowledge normally means unknown/not established. Absence
+has negative force only when derivation semantics and sufficient coverage
+justify it. Assertion/result, dependencies, assumptions/scope, provenance,
+coverage, applicability, and execution Evidence remain distinct without
+requiring one production object per distinction.
 
 Repository-intelligence capability is semantic-capability-first: it is the
 currently available ability to realize compatible DerivationDefinition
@@ -222,6 +252,13 @@ it is not Tool, Agent, retrieval, Context compiler, or generic Runtime
 semantics. Internal admission for bounded deterministic work differs from
 ADR-0001 model Tool authorization. Concrete bindings, registries, selection,
 admission, evidence, scheduling, and package APIs remain open.
+
+This deterministic foundational preference concerns realization behavior, not
+semantic certainty. A future explicitly accepted learned/probabilistic analyzer
+could establish only the qualified prediction, classification, heuristic, or
+approximation its DerivationDefinition defines; it could not silently strengthen
+that output into an unqualified fact. No such analyzer or infrastructure is
+selected.
 
 Analyzer-established structural decomposition may establish subjects. Further
 repository-semantic decomposition (for example a failure path or responsibility)
@@ -303,6 +340,15 @@ current. Assembly arranges already-realized disclosure and must not introduce
 new semantic assertions through formatting, placement, or budget handling.
 Planning and possession of a disclosure are not disclosure/presentation
 authority.
+
+Every disclosure stage preserves semantic strength: representation selection,
+projection, synthesis, compression, materialization, disclosure realization,
+and assembly must not turn a possible result into a definite one, a partial set
+into an exhaustive set, an approximation into an exact assertion, or a
+preserved disagreement into one truth unless an identified semantically capable
+process establishes the stronger conclusion. Source semantics, support,
+assumptions/scope, conflict state, and semantic-result coverage bound what may
+be represented.
 
 This architecture distinguishes repository history, disclosure history, and
 Conversation history. Current Conversation ownership remains

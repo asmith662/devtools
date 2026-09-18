@@ -10,17 +10,17 @@
 ## Context
 
 ADR-0002 establishes Repository identity, snapshots, Derivations,
-DerivedKnowledge, validity, and repository-relationship graph semantics.
+DerivedKnowledge, applicability, and repository-relationship graph semantics.
 Those foundations permit deterministic repository intelligence, but do not say
 what a consumer needs to know, how independent discovery mechanisms compose,
 or how relevance is interpreted without conflating retrieval with Context
 compilation.
 
 Repository discovery must reduce costly model archaeology while preserving that
-repository facts, relevance observations, ranking, and model-visible Context
-are different semantic layers. A single universal relevance score or one
-mandatory retrieval graph would lose evidence needed for replay, debugging,
-comparison, and task-sensitive evolution.
+repository-intelligence results, relevance observations, ranking, and model-
+visible Context are different semantic layers. A single universal relevance
+score or one mandatory retrieval graph would lose evidence needed for replay,
+debugging, comparison, and task-sensitive evolution.
 
 ## Decision
 
@@ -133,7 +133,7 @@ confidence, evidence strength, task-specific ranking influence, and relevance
 truth remain distinct; no universal confidence, polarity, or ranking-policy
 representation is selected.
 
-Repository facts used by retrieval can be ADR-0002 DerivedKnowledge, while a
+Repository knowledge used by retrieval can be ADR-0002 DerivedKnowledge, while a
 purpose-relative traversal, hit, score, or candidate observation is not
 automatically repository DerivedKnowledge merely because it is deterministic,
 provenance-bearing, or reproducible. Such observations may depend on, cite, or
@@ -159,7 +159,8 @@ selected relationship families and bounded traversal; lexical retrieval can use
 purpose-derived terms; exact retrieval can use an identifier anchor. Future
 planner-produced query material—terms, anchors, families, query forms, and
 scopes—retains provenance through a planning derivation. It is hypothesis/query
-material, not repository fact when it proposes an unestablished entity.
+material, not established repository knowledge when it proposes an unestablished
+entity.
 
 Graph retrieval consumes ADR-0002 typed graph views and shared graph mechanics
 as repository intelligence. A purpose-relative traversal selects compatible
@@ -277,7 +278,7 @@ identity, evaluation-storage, or metric implementations.
 This decision settles semantic architecture only. B-0002 retains unimplemented
 repository-intelligence, retrieval, Context-selection/compilation, progressive-
 disclosure, and evaluation pressure. ADR-0002 remains responsible for identity,
-snapshots, derivation, DerivedKnowledge validity, and graph-semantic foundations.
-Nothing here creates a production API, retrieval system, planner, ranker,
-Context compiler, graph algorithm, persistence model, Agent loop, Runtime
+snapshots, derivation, DerivedKnowledge applicability, and graph-semantic
+foundations. Nothing here creates a production API, retrieval system, planner,
+ranker, Context compiler, graph algorithm, persistence model, Agent loop, Runtime
 responsibility, or test requirement.

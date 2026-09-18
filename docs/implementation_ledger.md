@@ -305,3 +305,13 @@ prerequisites for a future architectural domain.
   universal-promotion assumption without implementing Context infrastructure or
   resolving synthesis, uncertainty, completeness, authority, or conflict
   mechanisms.
+- Further reconciled ADR-0002 and ADR-0004 after repeated external reviews
+  exposed a plausible hard-fact reading of DerivedKnowledge. The documentation
+  now makes result-vocabulary semantics, qualified/approximate knowledge,
+  semantic-result coverage and absence discipline, assumption/scope boundaries,
+  repository conflict/source-role knowledge, and future learned-analyzer
+  compatibility explicit. ADR-0004 now requires semantic-strength preservation
+  through representation, synthesis, materialization, disclosure, and assembly.
+  This documentation-only refinement selects no universal Claim/confidence
+  model, coverage object, conflict engine, authority hierarchy, source-role
+  taxonomy, analyzer, storage, or API.

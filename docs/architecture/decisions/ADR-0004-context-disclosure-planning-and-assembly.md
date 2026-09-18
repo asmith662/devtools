@@ -60,6 +60,12 @@ ADR-0002 derivation, dependency, provenance, identity/versioning where
 appropriate, and reproducibility principles. Literal inheritance from
 DerivedKnowledge is not required.
 
+This disclosure coverage is distinct from ADR-0002 semantic-result coverage.
+Disclosure coverage asks what represented information contributes toward a
+purpose; semantic-result coverage asks what result space a repository derivation
+accounted for sufficiently to support completeness or absence reasoning. Neither
+substitutes for the other.
+
 Disclosure utility is non-additive. Highly relevant options can overlap so a
 second contributes little after the first; a lower-ranked option can add more
 coverage. Options can also be complementary: implementation plus test,
@@ -295,6 +301,30 @@ preservable where material. Such information may remain ephemeral or be retained
 within future execution/evaluation records; independent identity, persistence,
 querying, caching, reuse, and validation mechanisms remain unresolved.
 
+When Context synthesis establishes a genuinely reusable repository-relative
+semantic assertion, the work may cross the explicit ADR-0002 derivation boundary
+and establish DerivedKnowledge under those semantics. That does not make every
+textual summary a Derivation, every representation transformation knowledge, or
+every Context-specific judgment persistent repository intelligence.
+
+The semantic-strength invariant across disclosure is:
+
+> Representation selection, projection, synthesis, compression,
+> materialization, ContextDisclosure realization, and model-input assembly must
+> not silently strengthen an assertion beyond what its source semantics,
+> support, assumptions/scope, conflict state, and semantic-result coverage
+> justify.
+
+Thus a possible relationship must not become a definite one; a partial result
+that found B and C must not become a claim that B and C are the only results;
+an approximation must not become exact merely because shorter natural language
+is convenient; observed examples must not become an exhaustive set without
+coverage support; and source disagreement must not become one synthesized truth
+without an identified semantically capable resolution process. Preservation can
+require retaining qualification, scope, uncertainty, coverage limitations,
+conflict, and source role. This selects no prompt template, serialization, or
+phrasing mechanism.
+
 Composite representations may combine multiple provenance-preserving forms,
 such as a structural orientation, purpose-relative synthesis, and exact
 supporting source, without flattening their constituent origins. Provenance
@@ -331,6 +361,15 @@ provenance, agreement/conflict, and identified assessment semantics—not an
 intrinsic scalar attached permanently to a source. Relevance, authority,
 confidence, coverage, and ranking influence remain distinct.
 
+ADR-0002 repository intelligence may establish source/resource roles and
+related governance or temporal status as reusable repository-relative knowledge.
+Such roles are inputs to possible authority assessment, not authority by
+themselves. A source can have multiple roles at different granularities; roles
+can be ecosystem-specific, derived, or absent. This ADR selects neither a
+mandatory `source_role` field nor a closed role taxonomy, `source_priority`,
+`authority_score`, or universal precedence such as implementation over tests or
+documentation.
+
 Material disagreement among relevant applicable sources is itself preservable
 information. Disclosure planning does not generally arbitrate truth or silently
 choose a winner: disagreement can reveal defects, stale documentation/tests,
@@ -340,6 +379,14 @@ identified derivation is authorized and semantically capable of resolving it.
 Likewise, absence of found evidence is not evidence of absence unless
 acquisition semantics justify that conclusion; this preserves ADR-0003 absence
 discipline for authority, synthesis, conflict, coverage, and sufficiency.
+
+Repository-relative semantic conflict follows ADR-0002 vocabulary semantics:
+comparability and incompatibility under compatible assumptions/scope matter,
+not identical labels, arguments, or differing source strings alone. An ADR-0002
+Derivation may establish reusable conflict/divergence knowledge. Disclosure
+planning instead decides how purpose-relevant disagreement should be preserved
+or represented; it does not become a universal conflict detector or truth-
+arbitration engine.
 
 Planning selects informationally desirable disclosure but is not authority to
 disclose it. Nor does possession of a ContextDisclosure authorize every item in
@@ -359,8 +406,9 @@ summary policy, persistence, identity, or representation policy.
 Concrete representation-form/taxonomy, fidelity, source-role, authority-
 evidence, uncertainty, confidence, completeness, conflict, coherence,
 reconstruction-burden, semantic-transformation and synthesis representation,
-synthesis validation/fidelity evaluation, provenance/support, model-generated
-information treatment, derivation-orchestration, materializer,
+synthesis validation/fidelity and semantic-strength evaluation,
+provenance/support, model-generated information treatment, derivation-
+orchestration, materializer,
 materialization-evidence, applicability-race/cost-estimator, cache/reuse,
 disclosure-authorization, assembly, package/API ownership, and evaluation
 mechanisms remain open. So do synthesis identity, persistence, querying,

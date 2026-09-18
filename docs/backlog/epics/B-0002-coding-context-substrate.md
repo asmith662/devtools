@@ -30,7 +30,13 @@ ADR-0002 further distinguishes DerivationDefinition, Derivation, execution,
 and immutable DerivedKnowledge; role-bearing direct semantic dependencies from
 incidental execution inputs; and dependencies from shared/result-specific
 provenance. Execution failure and incomplete coverage remain separate from
-repository facts.
+repository semantics. DerivedKnowledge is not restricted to infallible facts:
+its DerivationDefinition/result vocabulary defines definite, possible,
+necessary, approximate, ambiguous, unresolved, exhaustive, partial, or other
+qualified propositions. Semantic-result coverage, assumptions/scope,
+provenance, applicability, and execution evidence remain distinct, and absence
+has negative force only where derivation semantics and sufficient coverage
+justify it.
 ADR-0002 now also settles the repository-intelligence capability boundary:
 available semantic realization is distinct from DerivationDefinition and
 implementation binding; bounded dependency access and finalized dynamic
@@ -59,7 +65,8 @@ DisclosureOption/DisclosurePlan/ContextDisclosure distinctions, representation
 origin/form/fidelity/cost, repository-relative DerivedKnowledge distinct from
 purpose-relative synthesis, representational transformation distinct from
 epistemic derivation, coherence, authority, conflict preservation, and faithful
-materialization of explicitly planned semantic transformation. It leaves
+materialization of explicitly planned semantic transformation without silent
+semantic strengthening. It leaves
 compiler, concrete artifacts, representation/coverage/authority/conflict/
 coherence mechanisms, derivation orchestration, materialization, assembly,
 caching, authorization integration, and evaluation implementations unresolved.
@@ -85,10 +92,12 @@ high-value views, and graph quality/performance/cost evaluation remain
 unresolved implementation/evaluation pressure.
 
 Concrete DerivationDefinition/Derivation/DerivedKnowledge models and identities,
+semantic vocabulary/qualification representation, assumptions/scope,
 dependency-role and provenance schemas, compatibility/versioning, applicability
-assessment, result grouping/coverage, partial-result publication, execution/
-Evidence integration, capability bindings, dependency indexes, schedulers, and
-evaluation infrastructure remain unresolved implementation/design pressure.
+assessment, semantic-result coverage/result grouping, partial-result and
+absence publication, execution/Evidence integration, capability bindings,
+dependency indexes, schedulers, and evaluation infrastructure remain unresolved
+implementation/design pressure.
 
 Concrete semantic dependency granularity, dynamic dependency accounting,
 provenance schema and structural sharing/compact representation, result grouping
@@ -122,6 +131,13 @@ synthesis identity/persistence/querying/caching/reuse if justified, and package/
 API ownership remain unresolved implementation/design/evaluation pressure. No
 generic promotion of interpretive or model-generated information to repository
 DerivedKnowledge is selected.
+
+Learned/probabilistic analyzer policy if ever justified, conflict/divergence
+detection mechanisms, source-role analyzers or ecosystem-specific taxonomies,
+semantic-strength-preserving materialization, and evaluation of qualification,
+coverage, absence, conflict, and synthesis fidelity remain unresolved. No
+universal confidence model, Claim layer, conflict engine, authority hierarchy,
+or mandatory source-role representation is selected.
 
 Concrete capability/binding representations, catalogs/registration/discovery,
 selection/lifecycle, bounded dependency-acquisition and execution-context APIs,

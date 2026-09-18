@@ -44,15 +44,17 @@ and Evidence ownership terminology, remain in the
   RepositorySubjects/SourceOccurrences, Derivations, DerivedKnowledge, graph
   semantics, snapshot observation/delta/incremental-maintenance, minimum
   derivation/knowledge semantics, repository DerivedKnowledge jurisdiction,
-  epistemic-derivation/representational-transformation distinction, capability-
-  realization boundary, and Context boundaries.
+  qualified epistemic semantics, semantic-result coverage/absence,
+  repository conflict/source-role knowledge, epistemic-derivation/
+  representational-transformation distinction, capability-realization boundary,
+  and Context boundaries.
   [ADR-0003](architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md)
   establishes InformationNeed, retrieval evidence/planning, and ranking
   semantics. [ADR-0004](architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)
   establishes Context/disclosure planning, materialization, provenance-bearing
   disclosure artifacts, representation origins, purpose-relative synthesis,
-  explicitly planned semantic transformation during materialization, and model-
-  input assembly semantics.
+  explicitly planned semantic transformation and semantic-strength preservation
+  during materialization/assembly, and model-input assembly semantics.
   [B-0002](backlog/epics/B-0002-coding-context-substrate.md)
   retains the unimplemented design pressure. These decisions are not authorization
   for a Context compiler, disclosure model, index, parser, graph store, retrieval system, Memory,

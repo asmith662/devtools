@@ -211,6 +211,15 @@ exists. It is not necessarily a callable, class, plugin, Tool, package,
 executable, worker, or source-code digest. Implementation binding belongs to
 later capability/execution design.
 
+The DerivationDefinition and its result vocabulary define what each result
+semantically asserts. DerivedKnowledge does not strengthen that meaning merely
+by being immutable or reusable. Conceptually, `MAY_CALL(A, B)`,
+`MUST_CALL(A, B)`, and `CANNOT_CALL(A, B)` would be different propositions if a
+particular knowledge family defined them: a conservative possible target is not
+a definite call with lower confidence. Predicate names are illustrative rather
+than a universal repository ontology; a concrete family may use another
+representation, including qualified values, when its semantics remain explicit.
+
 A **Derivation** is the identified semantic application of a
 DerivationDefinition to explicit direct semantic dependencies. It is not its
 execution attempt. A parse derivation can therefore mean PythonParse applied to
@@ -254,19 +263,25 @@ content alone never justifies reuse when relevant derivation semantics changed.
 required Python base class or a universal container for semantic assertions. It
 is semantic repository intelligence established by an identified Derivation
 over explicit identified dependencies, with result/value and provenance. Its
-meaning is the meaning established by that DerivationDefinition, including any
-relevant assumptions, approximation, ambiguity, uncertainty, scope, or
-completeness semantics. Its identity should be reproducibly associated with
-derivation, dependencies, and result semantics, not merely an arbitrary UUID.
-Exact digest construction is open, including whether result participates
-directly when determinism permits derivation plus dependencies to determine it.
+meaning is exactly the meaning established by that DerivationDefinition and
+result vocabulary, including any relevant assumptions, approximation,
+ambiguity, uncertainty, scope, or completeness semantics. DerivedKnowledge does
+not mean hard, infallible, Boolean-like fact. It can express definite, possible,
+necessary, conservative over-approximate, explicitly under-approximate,
+ambiguous, unresolved, bounded, exhaustive, partial, or other qualified
+repository-relative relationships, classifications, semantic properties, and
+results when the relevant derivation semantics define those propositions. Its
+identity should be reproducibly associated with derivation, dependencies, and
+result semantics, not merely an arbitrary UUID. Exact digest construction is
+open, including whether result participates directly when determinism permits
+derivation plus dependencies to determine it.
 
 DerivedKnowledge is immutable and not foundationally snapshot-owned. It
 retains derivation, direct dependencies, value, provenance, and stable identity
 sufficient for reference, replay, evaluation, and reuse; applicability to a
-state is assessed separately. Values remain heterogeneousâ€”structural facts,
+state is assessed separately. Values remain heterogeneous: structural results,
 relationships, diagnostics, collections, projections, assertions, and other
-resultsâ€”rather than a universal key-to-scalar shape. RepositorySubjects remain
+results rather than a universal key-to-scalar shape. RepositorySubjects remain
 distinct from knowledge about subjects, and relationships remain typed
 DerivedKnowledge values.
 
@@ -274,7 +289,7 @@ One Derivation may establish zero or more separately referable knowledge
 artifacts. Execution, derivation, and result granularity are distinct and may
 be refined without requiring one monolithic result or maximal atomization. Zero
 produced knowledge is not proof of semantic absence unless derivation semantics
-explicitly establish exhaustive coverage; positive facts likewise do not prove
+explicitly establish exhaustive coverage; positive results likewise do not prove
 the result set exhaustive. A derivation capable of establishing exhaustive
 coverage must represent that claim/evidence explicitly. Concrete grouping,
 coverage, and cardinality APIs remain open.
@@ -301,6 +316,14 @@ structural or semantic assertions remain characteristic DerivedKnowledge when
 an identified repository Derivation establishes their stated meaning. This is a
 jurisdiction boundary, not a restriction to only certain or infallible facts.
 
+The architecture does not introduce a universal Claim, Assertion, Proposition,
+Belief, or TruthRecord layer spanning repository intelligence, retrieval
+evidence, Context synthesis, and authority judgments. Those responsibilities
+have different identity, applicability, purpose, and lifecycle semantics. A
+future specialized subsystem may use claim-like structures when concrete
+requirements justify them without redefining DerivedKnowledge as a universal
+epistemic container.
+
 #### Epistemic derivation and representational transformation
 
 A **representational transformation** changes how already available information
@@ -321,6 +344,31 @@ taxonomy. Not every epistemic derivation belongs to repository intelligence:
 ADR-0004 may establish purpose-relative synthesized information for disclosure
 without promoting it to DerivedKnowledge. Whether such synthesis later merits
 independent identity, persistence, caching, querying, or reuse remains open.
+
+#### Semantic-result coverage, completeness, and absence
+
+**Semantic-result coverage** is the conceptual account of what result space an
+identified derivation or result set claims to have accounted for under stated
+scope, assumptions, and derivation semantics. It can vary by subject, region,
+relationship family, language feature, configuration, or another semantic
+domain within one execution. It is distinct from ADR-0004 purpose-relative
+disclosure coverage, which asks what information a proposed Context disclosure
+contributes toward an InformationNeed.
+
+Execution success is not semantic completeness and does not imply one global
+`complete: bool`. Zero results do not prove absence; positive results do not
+prove exhaustiveness; partial semantic analysis is not execution failure; and
+unsupported semantic territory is not negative knowledge. Absence of a
+knowledge artifact normally means unknown or not established. It acquires
+negative semantic force only when the identified derivation semantics and
+sufficient semantic-result coverage justify that inference. The architecture
+therefore selects no global open-world or closed-world policy.
+
+Semantic-result coverage is not provenance. Provenance explains origin and
+support; coverage states the accounted-for semantic result space. Coverage can
+itself require support and replayable semantics without requiring a standalone
+artifact, identity, persistence model, or production class. Concrete coverage,
+grouping, and publication representations remain open.
 
 A Derivation records **direct semantic dependencies**, whose role in the
 computation is preserved conceptually. Content X can be source content;
@@ -387,6 +435,26 @@ on the claim, purpose, derivation semantics, source role, uncertainty,
 completeness, conflict, and other future assessment semantics; no universal
 authority or truth score is selected here.
 
+The conceptual boundaries are therefore:
+
+- the semantic assertion/result is what repository-relative meaning was
+  established;
+- semantic dependencies are the direct inputs whose state bears on
+  applicability and replay;
+- assumptions and semantic scope qualify the conditions and interpretation
+  under which the result means what the DerivationDefinition says it means;
+- provenance explains production, origin, and support;
+- semantic-result coverage describes the accounted-for result space;
+- applicability asks whether immutable knowledge still applies under another
+  relevant state or condition; and
+- execution Evidence records what occurred while attempting realization.
+
+Language/toolchain semantics, configuration, supported feature sets,
+environment assumptions, and analysis scope can participate in assumptions,
+scope, dependencies, or definition semantics according to their actual role.
+The distinctions do not require one production object per concept or one
+universal metadata bag.
+
 Applicability, invalidation discovery, rederivation, and caching/reuse lookup
 are distinct. Applicability is the semantic question whether knowledge applies;
 invalidation discovery is how maintenance efficiently detects lost
@@ -415,8 +483,8 @@ A failed DerivationExecution is execution evidence, not automatically
 DerivedKnowledge or a semantic negative fact. A separate successful analyzer
 can derive a diagnostic such as a syntax error, but a parser crash does not do
 so by itself. Likewise, partial execution does not make independently
-established artifacts false or historically invalid: supported call facts
-produced before another region fails can remain knowledge when their own
+established artifacts false or historically invalid: supported qualified call
+results produced before another region fails can remain knowledge when their own
 derivation/provenance semantics support them. They do not establish a complete
 call graph. Transactional publication, buffering, and partial-result APIs are
 open. Execution timestamp, worker/machine identity, cache location, mutable
@@ -430,8 +498,13 @@ reachability result, or analysis under explicit assumptions. Those are not
 downgraded versions of an unqualified fact: their qualification is part of the
 DerivationDefinition and result semantics. Confidence, alternatives, ambiguity,
 uncertainty, scope, and completeness belong to derivation- or knowledge-specific
-semantics where meaningful; no universal confidence field or epistemic-status
-enum is required for every DerivedKnowledge artifact.
+semantics where meaningful. Possible, necessary, ambiguous, conservative,
+unsupported, unresolved, heuristic, and probabilistic results are not presumed
+to occupy one common certainty axis. No universal confidence/certainty field,
+`MAY | MUST | UNKNOWN` enum, probability, truth score, or epistemic scalar is
+required for every DerivedKnowledge artifact. A specialized derivation may
+produce a numeric probability only when its DerivationDefinition identifies the
+probabilistic quantity and its interpretation.
 
 ### Repository-intelligence capability boundary
 
@@ -494,6 +567,18 @@ not selected mechanisms. LLM-assisted or nondeterministic analysis requires
 explicitly different derivation, evidence, and governance semantics rather than
 masquerading as this substrate.
 
+This foundational preference concerns realization reproducibility and the
+currently accepted capability boundary; it does not make DerivedKnowledge mean
+a semantically certain result. Semantic meaning belongs to the
+DerivationDefinition/result vocabulary, while operational determinism describes
+how a realization behaves. A future learned or probabilistic analyzer could,
+after explicit architectural acceptance, establish a repository-relative
+prediction, classification, heuristic result, or bounded approximation whose
+qualified proposition is defined by its DerivationDefinition. It must not
+silently strengthen `model predicts X` into `X is true`. No learned analyzer,
+model identity, probability representation, validation policy, or execution
+infrastructure is selected here.
+
 Model output does not become DerivedKnowledge merely because temperature is
 zero, execution is reproducible, provenance is recorded, multiple models agree,
 a human agrees, or a model reports high confidence. A later repository
@@ -518,8 +603,9 @@ compiler, nor generic Runtime ownership.
 
 Capability execution must eventually correlate requested semantic work,
 DerivationDefinition, actual consumed dependencies, produced knowledge,
-partial/exhaustive completeness where relevant, diagnostics, and terminal
-outcome. This is execution evidence, not applicability authority. Unknown
+semantic-result coverage and partial/exhaustive claims where relevant,
+diagnostics, and terminal outcome. This is execution evidence, not
+applicability or completeness authority. Unknown
 semantics, known-but-unsupported semantics, supported-but-unavailable
 realization, admission denial, execution failure, successful zero result,
 successful partial result, and successful exhaustive result remain distinct
@@ -550,6 +636,38 @@ parser edit history is likewise an optimization: its result remains attributable
 to new content/state and identified derivation semantics, never snapshot
 identity.
 
+### Repository-relative conflict and source-role knowledge
+
+Semantic conflict is defined by the relevant knowledge vocabulary, not by
+matching predicate labels, arguments, or source strings. Two assertions conflict
+only when their propositions are semantically comparable and incompatible under
+compatible assumptions and scope. Conceptually, a family might define
+`MUST_CALL(A, B)` and `CANNOT_CALL(A, B)` as incompatible despite different
+predicate labels; two values of a functionally single-valued property might
+conflict under the same scope; assertions under mutually exclusive
+configurations might not conflict at all. These examples define no universal
+predicates or conflict ontology.
+
+An identified repository Derivation may establish reusable repository-relative
+conflict, divergence, agreement, or consistency knowledge when its comparison
+semantics, scope compatibility, dependencies, and coverage are explicit. For
+example, a future derivation could establish a defined divergence between
+accepted architecture and current implementation. Such a result can be
+DerivedKnowledge. This does not create a universal conflict graph, mandatory
+`CONFLICT` predicate, automatic pairwise conflict materialization, or truth-
+arbitration engine. Purpose-relative judgment about which source to trust for a
+particular task remains downstream under ADR-0004.
+
+Repository intelligence may likewise establish source/resource role,
+governance status, temporal status, location/identity, and semantic relationship
+knowledge useful to downstream authority assessment. A role such as
+implementation, test, configuration, documentation, accepted architecture,
+experiment, or generated material can be DerivedKnowledge when an identified
+Derivation establishes its repository-relative meaning. Roles can be multiple,
+granularity-specific, ecosystem-specific, derived, or absent where irrelevant.
+No mandatory `source_role` field on every ResourceOccurrence/RepositorySubject
+and no closed universal source-role taxonomy is accepted.
+
 ### Two graph families
 
 The architecture distinguishes two non-equivalent graph families.
@@ -572,6 +690,11 @@ subjects, source occurrences, and concepts relate. Eventual typed relationships 
 `DOCUMENTS`, `GOVERNS`, and change relationships. It supports repository
 understanding, traversal, structural retrieval, impact analysis, and Context
 discovery.
+
+Those labels illustrate relationship families rather than asserting one
+unqualified Boolean meaning. Each family's DerivationDefinition/result
+vocabulary defines whether a relationship is definite, possible, necessary,
+conservative, ambiguous, unresolved, scoped, or otherwise qualified.
 
 These graphs are not one graph merely because both use edges. The derivation
 dependency graph is not the repository semantic graph, and no universal
@@ -618,14 +741,14 @@ module/function, module/class/method, document/section, and workflow/job/step
 structures without imposing one repository tree.
 
 Graph maintenance follows the same DerivedKnowledge semantics and actual
-dependencies. Applicable graph facts may be reused, other facts selectively
-rederived, and analyzer-specific projections maintained without rebuilding every
-graph after every repository change. Some broadly useful views may justify
-reusable materialization or incrementally maintained adjacency/index structures;
-specialized or expensive analyses can remain lazy, task-triggered, selectively
-materialized, cached, or incrementally maintained where worthwhile. No eager/
-lazy policy, initial view sequence, graph algorithm, storage/database
-technology, or materialization representation is selected.
+dependencies. Applicable relationship results may be reused and other results
+selectively rederived, with analyzer-specific projections maintained without
+rebuilding every graph after every repository change. Some broadly useful
+views may justify reusable materialization or incrementally maintained
+adjacency/index structures; specialized or expensive analyses can remain lazy,
+task-triggered, selectively materialized, cached, or incrementally maintained
+where worthwhile. No eager/lazy policy, initial view sequence, graph algorithm,
+storage/database technology, or materialization representation is selected.
 
 A graph view can be an on-demand projection over relationship knowledge, a
 reusable index/adjacency structure, or a persisted representation. These are
@@ -650,8 +773,8 @@ identified dependencies -> Derivation -> DerivedKnowledge
 ```
 
 Subjects and source occurrences can be dependencies, referents, provenance
-anchors, or values in DerivedKnowledge. Repository intelligence supplies those
-reusable facts downstream; ADR-0003 owns purpose-relative discovery and
+anchors, or values in DerivedKnowledge. Repository intelligence supplies that
+reusable knowledge downstream; ADR-0003 owns purpose-relative discovery and
 RelevanceEvidence, while ADR-0004 owns purpose-relative disclosure composition
 and representation. This is not a containment pipeline.
 
@@ -710,7 +833,7 @@ roles. No metric, harness, model policy, or worker loop is selected here.
 | DerivationDefinition | Semantic identity of reusable computation, not necessarily implementation binding. |
 | Derivation | Semantic application of a definition to direct semantic dependencies. |
 | DerivationExecution | Particular realization attempt, distinct from derivation and knowledge. |
-| DerivedKnowledge | Reproducible identity tied to derivation/dependencies/result semantics. |
+| DerivedKnowledge | Immutable repository-relative semantic result whose qualified proposition is defined by its DerivationDefinition/result vocabulary; reproducible identity is tied to derivation/dependencies/result semantics. |
 | Relationship | DerivedKnowledge value shape, not an independent foundational identity. |
 
 ## Decision consequences
@@ -742,16 +865,19 @@ scheduler, eager-versus-lazy maintenance, graph storage, cross-repository
 content reuse, and external/environment-dependent derivations; parser/analyzer
 technology, incremental parsing, and analyzer/plugin APIs; concrete
 DerivationDefinition/Derivation/DerivedKnowledge models and identities,
+result-vocabulary/qualification and assumptions/scope representation,
 dependency-role/referent and provenance schemas, definition compatibility/
-versioning, applicability algorithms/APIs, result grouping/cardinality and
-exhaustive-coverage representation, partial-result publication, execution/
-Attempt/Evidence integration, implementation bindings, capability registration,
+versioning, applicability algorithms/APIs, semantic-result coverage,
+result grouping/cardinality and exhaustive-coverage representation,
+partial-result publication, execution/Attempt/Evidence integration,
+implementation bindings, capability registration,
 catalog/discovery, selection, lifecycle, admission, dependency-provider and
 execution-context APIs, dynamic dependency tracking, static declaration format,
 process/subprocess/native execution, governance reuse, evidence schema, result
 publication, partial-result transaction semantics, and package ownership;
-confidence/evidence
-for heuristic knowledge; lexical choices such as grep/BM25/trigram; embeddings,
+specialized confidence/probability evidence for knowledge families that define
+such quantities; conflict/divergence detection and source-role analyzers/
+taxonomies where useful; lexical choices such as grep/BM25/trigram; embeddings,
 vector storage, graph algorithms, learned ranking, task-sensitive strategy
 selection, call graphs, historical co-change, change impact, test/code,
 documentation/code, and ADR/governance relationships; disclosure-history and
@@ -761,9 +887,9 @@ infrastructure and exact metrics.
 It also leaves open whether and under what evidence learned, model-assisted, or
 validated interpretive assertions can become reusable repository intelligence;
 their validation, qualification, promotion, identity, persistence, caching, and
-governance semantics; and any future representation of uncertainty,
-completeness, conflict, source role, or authority beyond the distinctions
-accepted here.
+governance semantics; and any future concrete representation of uncertainty,
+semantic-result coverage/completeness, conflict, source role, or authority
+beyond the distinctions accepted here.
 
 ## Status and implementation boundary
 
