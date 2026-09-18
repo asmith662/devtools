@@ -465,6 +465,40 @@ conditions/interpretation; origin/support; accounted-for result space;
 state-relative reuse; and what occurred during realization. The distinctions do
 not require one object per concept or a universal metadata bag.
 
+External semantic state can participate through the same open, heterogeneous
+dependency semantics. Configuration, language/toolchain semantics,
+dependency-resolution state, platform/environment values, generated inputs, and
+external resources are examples rather than a closed taxonomy. Semantically
+relevant ambient state must be made explicit according to its role, but semantic
+importance does not itself require independent nominal identity or persistence.
+A value, reference, constraint, existing identified object, inline observation,
+or another representation can carry sufficient semantics.
+
+The semantic thing, its relevant state/value, and the observation establishing
+that state are distinct roles. An observation must not claim stronger identity,
+consistency, completeness, equivalence, or other guarantees than its mechanism
+establishes. Observation is not thereby a universal production artifact.
+Likewise, identity, value equality, semantic equivalence, compatibility, and
+applicability are distinct. A dependency can remain satisfied through the
+domain- and derivation-appropriate relation rather than exact identity equality;
+no universal equivalence/compatibility framework is selected.
+
+RepositorySnapshot identifies repository state, not one privileged semantic
+interpretation of that state. Multiple derivations can analyze one snapshot
+under different language/toolchain versions, platforms, feature sets, build
+configurations, or resolution states. No foundational universal
+`WorkspaceSnapshot` or `EnvironmentSnapshot` combines all such state. Narrower
+composite/domain observations remain possible dependencies. Committed generated
+files can be snapshot ResourceOccurrences; other generated material can be
+derivation-produced or use future analysis-resource semantics without becoming
+observed repository contents by default.
+
+Provenance inspection, semantic replay/reconstruction, and operational replay
+are different strengths. Semantic identity is neither a retained executable
+artifact nor proof that a historical environment can be recreated. Retention,
+environment reconstruction, and operational replay remain separate mechanism
+choices.
+
 Determinism is distinct from correctness and certainty; confidence is distinct
 from completeness and is not a universal knowledge field. Where uncertainty or
 alternatives matter, derivation- or knowledge-specific semantics own them. A
@@ -877,6 +911,11 @@ execution success              != exhaustive semantic-result coverage
 absence of knowledge           != negative knowledge
 semantic-result coverage       != purpose-relative disclosure coverage
 source role                    != authority
+semantic importance            != independent identity
+identity                       != value equality or semantic equivalence
+semantic equivalence           != compatibility or applicability
+RepositorySnapshot             != one environment/configuration interpretation
+semantic replay                != operational replay
 ```
 
 ## Taxonomy does not authorize implementation

@@ -16,8 +16,8 @@
   snapshot observation/delta/maintenance, subjects/source occurrences,
   repository DerivedKnowledge jurisdiction, epistemic-derivation/
   representational-transformation boundary, semantic-result coverage/absence,
-  repository conflict/source-role knowledge, external-semantic-state research
-  boundary, capability-realization contract, and graph semantics;
+  repository conflict/source-role knowledge, external-semantic-dependency and
+  observation boundaries, capability-realization contract, and graph semantics;
   ADR-0003
   InformationNeed/retrieval/ranking; and
   [ADR-0004](architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)

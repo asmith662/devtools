@@ -71,18 +71,17 @@ compiler, concrete artifacts, representation/coverage/authority/conflict/
 coherence mechanisms, derivation orchestration, materialization, assembly,
 caching, authorization integration, and evaluation implementations unresolved.
 
-Two focused preimplementation research questions remain after the accepted
-semantic reconciliation. First, external semantic inputs already fit through
-DerivationDefinition semantics, direct dependencies, assumptions/scope,
-provenance, and applicability, but it remains unresolved whether some
-configuration, language/toolchain, dependency/resolution, generated, or
-environment state requires independently identified and observed artifacts with
-stronger equivalence, consistency, and replay semantics. No universal
-external-state container or `WorkspaceSnapshot` is accepted or rejected, and
-the question need not block a bounded initial slice without unresolved ambient
-dependencies. Second, a minimum integrated evaluation architecture must preserve
-causal attribution across the accepted layers without selecting metrics,
-benchmarks, datasets, storage, APIs, or scoring formulas.
+The focused external-semantic-state research has been reconciled into ADR-0002.
+External semantic inputs already fit through the open heterogeneous dependency,
+definition, assumptions/scope, observation, provenance, and applicability
+semantics; relevant ambient state must not remain hidden. The research did not
+justify a universal external-state ontology, independent identity for every
+input, foundational `WorkspaceSnapshot`/`EnvironmentSnapshot`, identity-based
+applicability, hermetic execution, or mandatory operational replay. One focused
+preimplementation research question remains: a minimum integrated evaluation
+architecture must preserve causal attribution across the accepted layers
+without selecting metrics, benchmarks, datasets, storage, APIs, or scoring
+formulas prematurely.
 
 This epic preserves the unimplemented pressure enabled by that decision:
 snapshot policy and acquisition, deterministic repository knowledge,
@@ -115,6 +114,17 @@ and task success alone does not identify the causal layer. Controlled comparison
 and marginal or unique contribution of costly mechanisms should remain possible
 where practical without imposing a universal utility score or requiring every
 component to expose a score.
+
+Concrete external-state dependency representations, optional domain/composite
+identities, observation structures and guarantees, equality/equivalence/
+compatibility relations, applicability algorithms, dynamic dependency
+discovery/enforcement, sandboxing or hermetic mechanisms, generated-resource
+models, retention/artifact storage, environment reconstruction, and semantic or
+operational replay mechanisms remain implementation/design pressure. An
+external input may be represented by a value, reference, constraint, existing
+identity, inline observation, or another adequate form; no representation is
+mandatory. Coverage/exhaustiveness remains derivation-specific and cannot
+claim closure beyond external dependencies, observations, scope, and assumptions.
 
 Concrete graph-view representation/identity, typed node and relationship
 references, compatible cross-view composition and bounded traversal, projection

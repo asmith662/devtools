@@ -369,28 +369,44 @@ evaluation mechanisms remain unimplemented.
 
 ## Remaining preimplementation research and evidence constraints
 
-The core semantic architecture above is sufficiently settled for concrete
-design once two focused preimplementation research questions are completed and
-any accepted findings are reconciled. The first concerns **external semantic
-state**. Repository derivations may already depend on identified configuration,
-language/toolchain semantics, dependency or resolution state, generated inputs,
-environment assumptions, and other external semantic inputs through
-DerivationDefinition semantics, direct dependencies, assumptions/scope,
-provenance where appropriate, and applicability. What remains unresolved is
-whether some such state requires independently identified and observed state
-artifacts with equivalence, consistency, and replay semantics stronger than an
-ordinary dependency reference or assumption. No universal external-state
-container or `WorkspaceSnapshot` is accepted or rejected. Domain-specific
-external-state artifacts, narrower toolchain/environment/dependency identities,
-broader observations, and other evidence-justified architectures remain open.
-This question affects reproducibility, applicability, cache/reuse safety,
-replay, dependency equivalence, and correctness under environment drift. It
-does not necessarily block an initial slice whose complete semantic dependencies
-can be identified without unresolved ambient state.
+The focused external-semantic-state investigation has been reconciled within
+ADR-0002. Repository derivations may consume an open set of external semantic
+inputs, including configuration, language/toolchain semantics, dependency or
+resolution state, generated inputs, platform semantics, environment values, and
+external resources. If such state can change derivation meaning or results, it
+must not remain an invisible ambient dependency: definition, dependency,
+assumption/scope, observation, applicability, and provenance semantics account
+for it according to its role. A value, reference, constraint, existing identity,
+inline observation, or other adequate representation may suffice; semantic
+importance does not automatically require independent identity or persistence.
 
-The second question concerns the minimum integrated **evaluation architecture
-and causal attribution**. Existing boundaries already require future evaluation
-to distinguish, where meaningful, repository observation correctness;
+The semantic thing, its state/value, and its observation are distinct.
+Observation must not claim stronger identity, consistency, completeness,
+equivalence, or other guarantees than its mechanism establishes. Identity,
+value equality, semantic equivalence, compatibility, and applicability likewise
+remain distinct, and dependency satisfaction uses the domain- and derivation-
+appropriate relation rather than universal identity equality. No foundational
+universal `WorkspaceSnapshot`, `EnvironmentSnapshot`, external-state ontology,
+observation artifact, equivalence framework, or applicability algorithm is
+accepted. One RepositorySnapshot can support multiple configuration/toolchain/
+platform interpretations. Committed generated files can be snapshot resources,
+while other generated material can be derivation-produced or use a future
+analysis-resource model without expanding repository-state identity.
+
+Provenance inspection, semantic replay/reconstruction, and operational replay
+have different retention requirements. Semantic identity neither requires a
+retained executable artifact nor proves that a historical environment can be
+recreated. External dependencies and their observations also bound negative or
+exhaustive knowledge; coverage cannot exceed the closure actually established
+by dependencies, scope, assumptions, and observation semantics. Concrete
+external-state representation, observation, equivalence/compatibility,
+generated-resource, enforcement, retention, and replay mechanisms remain
+implementation design.
+
+The remaining focused preimplementation question concerns the minimum integrated
+**evaluation architecture and causal attribution**. Existing boundaries already
+require future evaluation to distinguish, where meaningful, repository
+observation correctness;
 repository-intelligence semantic correctness and derivation-family-specific
 soundness, precision, or coverage; incremental-maintenance correctness and
 dependency-granularity economics; graph, retrieval, RelevanceEvidence, and

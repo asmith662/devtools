@@ -61,7 +61,7 @@ and Evidence ownership terminology, remain in the
   Agent loop, or orchestration system. [B-0008](backlog/items/B-0008-investigate-repository-context-discovery.md)
   remains superseded historical navigation evidence.
 
-### Architecture review gate — final focused research remains
+### Architecture review gate — final evaluation research remains
 
 The broad repository-intelligence architecture investigation has occurred. The
 work included architecture reconstruction/archaeology, rationale steelmanning,
@@ -70,18 +70,18 @@ across multiple focused passes, and a preservation audit. Repository identity,
 subjects/source occurrences, snapshots/maintenance, derivation/knowledge,
 capability realization, graph views, retrieval/ranking, Context disclosure,
 synthesis, authority/conflict boundaries, and semantic-strength preservation
-are considered sufficiently settled at the foundational semantic level.
+are considered sufficiently settled at the foundational semantic level. The
+focused external-semantic-state/dependency-identity/applicability/replay Deep
+Research investigation has also completed and its accepted findings have been
+reconciled into ADR-0002 without selecting concrete mechanisms.
 
-The complete preimplementation architecture-review gate is not yet closed. Two
-focused investigations remain:
-
-1. external semantic state, dependency identity, applicability, and replay;
-2. integrated evaluation architecture and causal attribution.
-
-Completion of those investigations and reconciliation of any accepted findings
-is the remaining architecture-review work before concrete implementation design
-becomes the primary activity. This sequencing does not authorize implementation,
-and implementation-shaped choices remain governed by B-0002 promotion.
+The complete preimplementation architecture-review gate is not yet closed. One
+focused investigation remains: integrated evaluation architecture and causal
+attribution. Completion of that investigation and reconciliation of any accepted
+findings is the remaining architecture-review work before concrete
+implementation design becomes the primary activity. This sequencing does not
+authorize implementation, and implementation-shaped choices remain governed by
+B-0002 promotion.
 
 ### Later — promotion only when evidence is sufficient
 

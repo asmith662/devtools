@@ -326,3 +326,13 @@ prerequisites for a future architectural domain.
   defines evidence-based reopen discipline without creating a WorkspaceSnapshot,
   universal replay artifact, evaluation architecture, API, storage design, or
   implementation.
+- Reconciled the focused external-semantic-state Deep Research investigation
+  within ADR-0002's existing dependency/applicability responsibility. External
+  semantic inputs remain open and heterogeneous; relevant ambient state must be
+  explicit, observation guarantees cannot exceed their mechanism, and identity,
+  equality, equivalence, compatibility, applicability, and replay strength stay
+  distinct. The refinement selects no universal WorkspaceSnapshot/environment
+  ontology, mandatory independent identity, hermetic execution, generated-
+  resource model, retention system, applicability algorithm, or replay
+  mechanism. Integrated evaluation architecture/causal attribution remains the
+  final focused preimplementation research investigation.

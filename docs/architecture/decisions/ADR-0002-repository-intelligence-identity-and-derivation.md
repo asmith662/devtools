@@ -455,32 +455,107 @@ scope, dependencies, or definition semantics according to their actual role.
 The distinctions do not require one production object per concept or one
 universal metadata bag.
 
-#### External semantic state remains an identified research seam
+#### External semantic dependencies and observation
 
-Repository-intelligence semantics already permit configuration, language
-semantics, toolchain semantics, dependency/resolution state, generated inputs,
-environment assumptions, and other external semantic inputs where an identified
-derivation actually consumes them. According to their role, these can
-participate in DerivationDefinition semantics, direct semantic dependencies,
-assumptions/scope, provenance, and applicability. They must not remain hidden
-ambient inputs when their change can alter the meaning or applicability of a
-result.
+Repository-intelligence semantics admit an open, heterogeneous dependency
+universe. Configuration, language version/mode and semantics, compiler or
+interpreter/toolchain semantics, dependency-resolution state, build features,
+target platform, semantically relevant environment values, generated inputs,
+external schemas/resources, and other state outside repository contents can be
+semantic inputs where an identified derivation actually consumes them. These
+are illustrative families, not a closed ontology or a requirement for one
+foundational class per family. According to their role, they can participate in
+DerivationDefinition semantics, direct semantic dependencies,
+assumptions/scope, provenance where appropriate, and applicability.
 
-This decision does not yet determine whether ordinary identified dependency
-references and assumptions are sufficient for every such input, or whether
-some external semantic state requires independently identified and observed
-state artifacts with stronger equivalence, consistency, and replay semantics.
-No universal external-state container or `WorkspaceSnapshot` is accepted or
-rejected. Possible future outcomes include domain-specific identified state
-artifacts, narrower toolchain/environment/dependency identities, broader state
-observations, or another architecture justified by concrete evidence.
+Semantically relevant external state must not remain an invisible ambient
+dependency. If it can change a derivation's meaning or result, the finalized
+derivation/dependency/assumption-scope semantics must account for it according
+to its role, with corresponding provenance where appropriate. A dependency
+needs enough identity, value, reference, constraint, or other semantic
+representation to support correct derivation meaning, applicability,
+provenance, and the intended replay strength. This does not require every input
+to have independent nominal identity, persistence, or a standalone artifact: a
+value, reference, constraint, existing identified object, inline observation,
+or another suitable representation can be sufficient.
 
-The question matters to reproducibility, applicability, cache/reuse safety,
-replay, dependency equivalence, and semantic correctness under environment
-drift. It is focused preimplementation research for analyzers that materially
-depend on such state, but does not necessarily block an initial bounded slice
-whose complete semantic dependencies can be identified without unresolved
-ambient external state.
+The semantic thing that matters, its relevant state/value, and how that state
+was observed or established are distinct roles. An observation of semantic
+state must not claim stronger identity, consistency, completeness, equivalence,
+or other semantic guarantees than its mechanism establishes. Merely recording
+a label such as a language version need not establish how it was observed or
+what that observation guarantees. Observation remains a semantic requirement,
+not a universal `StateObservation` model: a future implementation may represent
+it inline, independently identify it, share it among derivations, derive it from
+another semantic artifact, or use a domain-specific structure.
+
+Identity, state/value equality, semantic equivalence, compatibility, and
+applicability remain distinct. Dependency satisfaction need not always be exact
+identity equality. It can use identity, value equality, semantic equivalence,
+compatibility, constraint satisfaction, or another relation defined by the
+dependency domain and the DerivationDefinition's actual sensitivity. For
+example, two observed CPython patch releases can remain distinct states while
+both satisfy a derivation whose semantics require only a compatible Python 3.12
+language range. This does not select a universal equivalence algorithm,
+compatibility framework, or applicability API, and identity must not be
+redefined merely to increase reuse.
+
+No foundational universal `WorkspaceSnapshot`, `EnvironmentSnapshot`, or other
+composite of repository contents plus toolchains, platform, dependencies,
+environment, configuration, generated state, and external resources is
+accepted. Such a composite would generally be coarser than the actual semantic
+dependencies and difficult to observe under one meaningful consistency
+contract. Narrower domain-specific or composite observations remain permitted
+when evidence justifies them; they are semantic dependencies among others, not
+the foundational identity of repository intelligence.
+
+One RepositorySnapshot can therefore support multiple simultaneous semantic
+interpretations. Derivations over the same repository state may legitimately
+consume different language/toolchain versions, platforms, feature sets, build
+configurations, or dependency-resolution states. Repository state is not the
+semantic interpretation of that state, and multiple configurations do not by
+themselves require separate RepositorySnapshots or a universal workspace
+snapshot. Enumeration and product-space analysis remain unselected mechanisms.
+
+Generated material does not create a binary choice between RepositorySnapshot
+membership and external dependency. Committed generated files can be
+ResourceOccurrences when included by snapshot policy. Other generated or
+analysis-visible material can be established through derivation without being
+misrepresented as observed repository contents, or can belong to a future
+analysis-universe/resource representation. External generator inputs can
+themselves be semantic dependencies. Concrete generated-resource semantics and
+representations remain open; generated material alone does not expand
+RepositorySnapshot responsibility.
+
+PATH-selected tools, environment variables, external filesystem resources,
+registry state, remote schemas, platform semantics, resolution state, and
+similar ambient influences are examples of possible hidden dependencies, not a
+mandatory taxonomy. Bounded access and finalized dynamic dependency accounting
+remain required, while sandboxing, hermetic execution, access mediation,
+tracing, instrumentation, and dependency-enforcement mechanisms remain open.
+
+Replay has multiple strengths with different retention requirements:
+
+- provenance inspection explains which inputs/state were believed to support a
+  historical result and how it was produced;
+- semantic replay or reconstruction recovers enough semantic state to reproduce
+  or reassess the derivation/result meaning; and
+- operational replay recreates a historical executable environment and reruns
+  the computation.
+
+Supporting provenance inspection or applicability does not require retaining
+every compiler binary, package registry, container, virtual machine, or other
+executable artifact. Conversely, retained semantic identity does not prove that
+the executable artifact or historical environment remains reconstructable.
+Retention, artifact stores, environment reconstruction, and concrete replay
+mechanisms remain open.
+
+External dependencies and their observations also bound negative or exhaustive
+knowledge. Claims such as no unresolved imports, no references to a subject, or
+all implementations of an interface cannot claim closure beyond the dependency
+resolution, configuration/plugin state, generated/external resources, scope,
+assumptions, observations, and semantic-result coverage their derivation
+establishes. No universal closed-world flag follows.
 
 Applicability, invalidation discovery, rederivation, and caching/reuse lookup
 are distinct. Applicability is the semantic question whether knowledge applies;
@@ -889,9 +964,10 @@ SnapshotDelta model/persistence, watcher implementation, snapshot retention/
 eviction, persistence, cache, serialization, derivation-dependency storage,
 reverse dependency indexes, invalidation algorithms, maintenance engine/
 scheduler, eager-versus-lazy maintenance, graph storage, cross-repository
-content reuse, and external/environment-dependent derivations, including
-whether some external semantic state requires independently identified and
-observed artifacts beyond ordinary dependencies/assumptions; parser/analyzer
+content reuse, and concrete external/environment-dependent derivation semantics,
+including dependency value/reference/constraint representation, observation,
+domain identity/equality/equivalence/compatibility, generated resources,
+retention, and replay strength; parser/analyzer
 technology, incremental parsing, and analyzer/plugin APIs; concrete
 DerivationDefinition/Derivation/DerivedKnowledge models and identities,
 result-vocabulary/qualification and assumptions/scope representation,
