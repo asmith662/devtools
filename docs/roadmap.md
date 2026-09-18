@@ -30,14 +30,14 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
-### Now — documentation integrity and backlog rebase
+### Ongoing — documentation integrity and backlog rebase
 
 - [B-0001](backlog/epics/B-0001-architecture-documentation-integrity.md) and
   [B-0006](backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md)
   keep current documentation, roadmap sequencing, and backlog pressure aligned
   with the established architecture.
 
-### Next candidate — repository intelligence and coding-Context design
+### Now — first bounded repository-intelligence slice design
 
 - [ADR-0002](architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md)
   establishes semantic architecture for Repository identity, snapshots,
@@ -61,7 +61,16 @@ and Evidence ownership terminology, remain in the
   Agent loop, or orchestration system. [B-0008](backlog/items/B-0008-investigate-repository-context-discovery.md)
   remains superseded historical navigation evidence.
 
-### Architecture review gate — implementation may begin with preserved seams
+- The selected starting hypothesis is direct module-body Python function
+  declaration knowledge. Concrete design will test a narrow proposition in
+  which direct module-body `ast.FunctionDef` and `ast.AsyncFunctionDef` source
+  occurrences in an identified RepositorySnapshot syntactically declare
+  distinct snapshot-local function RepositorySubjects. This is a design target,
+  not an implemented feature, fixed production representation, or universal
+  declaration ontology. [B-0002](backlog/epics/B-0002-coding-context-substrate.md)
+  preserves the exact scope, design pressure, and deliberate deferrals.
+
+### Architecture review gate — crossed with preserved seams
 
 The broad repository-intelligence architecture investigation has occurred. The
 work included architecture reconstruction/archaeology, rationale steelmanning,
@@ -85,12 +94,13 @@ verification; subsequent review and reconciliation treated the dossier as
 research evidence rather than an accepted or mechanically verified decision.
 
 The implementation-start assessment is **SAFE WITH PRESERVED SEAMS**. The core
-semantic architecture is sufficiently settled for a bounded repository-
-intelligence slice to enter concrete design once B-0002's promotion trigger and
-ordinary authorization are satisfied. Initial design must retain the semantic
-basis and correlation needed for later local-correctness, downstream-utility,
-resource, and marginal-contribution evaluation without first building generic
-Evaluation infrastructure.
+semantic architecture is sufficiently settled, and B-0002's bounded-slice
+promotion trigger is now met at the design level by the selected starting
+hypothesis. This sequencing decision does not itself authorize production
+implementation. Initial design must retain the semantic basis and correlation
+needed for later local-correctness, downstream-utility, resource, and marginal-
+contribution evaluation without first building generic Evaluation
+infrastructure.
 
 Later external adversarial/Deep Research confirmation remains a confirmation/
 reopen gate, not an implementation-start gate. It can reopen foundational

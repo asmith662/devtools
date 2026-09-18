@@ -138,6 +138,53 @@ outcome. RepositorySnapshot alone is not the whole evaluated intelligence
 condition, but no universal `RepositoryIntelligenceSnapshot`,
 `KnowledgeClosure`, or `IntelligenceClosure` is accepted.
 
+## Selected first design target
+
+The selected starting hypothesis for concrete design is **direct module-body
+Python function declaration knowledge**. The design should test a bounded
+proposition approximately equivalent to: for a Python module resource in an
+identified RepositorySnapshot, each direct module-body `ast.FunctionDef` or
+`ast.AsyncFunctionDef` SourceOccurrence syntactically declares a distinct
+snapshot-local function RepositorySubject.
+
+This is an implementation-design target, not an implemented feature, a frozen
+production representation, or a universal declaration ontology. It does not
+claim runtime binding, importability, callability, reference resolution,
+qualified-name semantics, cross-snapshot continuity, class-method or nested-
+function declarations, lambda declarations, conditional runtime availability,
+or import resolution. Exact proposition vocabulary and production models remain
+open under ADR-0002.
+
+The target was selected for architectural information value per unit of
+implementation complexity. It pressures RepositorySnapshot,
+ResourceOccurrence, ContentIdentity where appropriate, SourceOccurrence,
+RepositorySubject, DerivationDefinition, Derivation, capability realization
+and binding, DerivationExecution, direct semantic dependencies,
+provenance/support, DerivedKnowledge, semantic-result coverage, and
+deterministic evaluation without first requiring external-state-sensitive
+semantic resolution.
+
+Initial deterministic acceptance pressure includes distinguishing same-named
+direct synchronous and asynchronous declarations as separate subjects and
+source occurrences, excluding a same-named class method from the bounded scope,
+and representing exhaustive coverage of that declared syntactic scope.
+Successful zero results, partial results, exhaustive results, and parse or
+execution failure remain distinct. This is acceptance pressure, not a
+normative fixture or API.
+
+Concrete snapshot observation and identity, occurrence/content roles, source
+and subject identity, derivation proposition and compatibility, parser/analyzer
+identity, capability/binding representation, dependency accounting,
+provenance/support, result publication/grouping, coverage, and execution/
+evidence correlation remain design questions. Classes, methods, nested
+functions, lambdas, imports and semantic resolution, calls, inheritance,
+qualified names, cross-snapshot continuity, generic graph infrastructure,
+retrieval/ranking/Context integration, persistence/caching, generic registries
+or schedulers, external-environment ontology, LLMs, Agent orchestration, and
+governed self-modification remain outside this first slice unless concrete
+design evidence proves a prerequisite unavoidable. They are deferred, not
+permanently excluded from Repository Intelligence.
+
 Concrete external-state dependency representations, optional domain/composite
 identities, observation structures and guarantees, equality/equivalence/
 compatibility relations, applicability algorithms, dynamic dependency
