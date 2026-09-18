@@ -455,6 +455,33 @@ scope, dependencies, or definition semantics according to their actual role.
 The distinctions do not require one production object per concept or one
 universal metadata bag.
 
+#### External semantic state remains an identified research seam
+
+Repository-intelligence semantics already permit configuration, language
+semantics, toolchain semantics, dependency/resolution state, generated inputs,
+environment assumptions, and other external semantic inputs where an identified
+derivation actually consumes them. According to their role, these can
+participate in DerivationDefinition semantics, direct semantic dependencies,
+assumptions/scope, provenance, and applicability. They must not remain hidden
+ambient inputs when their change can alter the meaning or applicability of a
+result.
+
+This decision does not yet determine whether ordinary identified dependency
+references and assumptions are sufficient for every such input, or whether
+some external semantic state requires independently identified and observed
+state artifacts with stronger equivalence, consistency, and replay semantics.
+No universal external-state container or `WorkspaceSnapshot` is accepted or
+rejected. Possible future outcomes include domain-specific identified state
+artifacts, narrower toolchain/environment/dependency identities, broader state
+observations, or another architecture justified by concrete evidence.
+
+The question matters to reproducibility, applicability, cache/reuse safety,
+replay, dependency equivalence, and semantic correctness under environment
+drift. It is focused preimplementation research for analyzers that materially
+depend on such state, but does not necessarily block an initial bounded slice
+whose complete semantic dependencies can be identified without unresolved
+ambient external state.
+
 Applicability, invalidation discovery, rederivation, and caching/reuse lookup
 are distinct. Applicability is the semantic question whether knowledge applies;
 invalidation discovery is how maintenance efficiently detects lost
@@ -862,7 +889,9 @@ SnapshotDelta model/persistence, watcher implementation, snapshot retention/
 eviction, persistence, cache, serialization, derivation-dependency storage,
 reverse dependency indexes, invalidation algorithms, maintenance engine/
 scheduler, eager-versus-lazy maintenance, graph storage, cross-repository
-content reuse, and external/environment-dependent derivations; parser/analyzer
+content reuse, and external/environment-dependent derivations, including
+whether some external semantic state requires independently identified and
+observed artifacts beyond ordinary dependencies/assumptions; parser/analyzer
 technology, incremental parsing, and analyzer/plugin APIs; concrete
 DerivationDefinition/Derivation/DerivedKnowledge models and identities,
 result-vocabulary/qualification and assumptions/scope representation,

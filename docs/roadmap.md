@@ -61,15 +61,27 @@ and Evidence ownership terminology, remain in the
   Agent loop, or orchestration system. [B-0008](backlog/items/B-0008-investigate-repository-context-discovery.md)
   remains superseded historical navigation evidence.
 
-### Architecture review gate — before implementation design
+### Architecture review gate — final focused research remains
 
-The four planned repository-intelligence architecture items are documented:
-subject/identity semantics, snapshot/maintenance semantics, derivation/knowledge
-semantics, and capability-realization boundary. Before implementation design,
-the planned gate is architecture reconstruction/archaeology, rationale
-steelman, adversarial external-research review, and finding-by-finding
-reconciliation. This is a review sequence, not implementation authorization or
-an already-completed review.
+The broad repository-intelligence architecture investigation has occurred. The
+work included architecture reconstruction/archaeology, rationale steelmanning,
+external adversarial/Deep Research review, finding-by-finding reconciliation
+across multiple focused passes, and a preservation audit. Repository identity,
+subjects/source occurrences, snapshots/maintenance, derivation/knowledge,
+capability realization, graph views, retrieval/ranking, Context disclosure,
+synthesis, authority/conflict boundaries, and semantic-strength preservation
+are considered sufficiently settled at the foundational semantic level.
+
+The complete preimplementation architecture-review gate is not yet closed. Two
+focused investigations remain:
+
+1. external semantic state, dependency identity, applicability, and replay;
+2. integrated evaluation architecture and causal attribution.
+
+Completion of those investigations and reconciliation of any accepted findings
+is the remaining architecture-review work before concrete implementation design
+becomes the primary activity. This sequencing does not authorize implementation,
+and implementation-shaped choices remain governed by B-0002 promotion.
 
 ### Later — promotion only when evidence is sufficient
 

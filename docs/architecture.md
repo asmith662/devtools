@@ -367,6 +367,78 @@ authority, uncertainty, completeness, conflict, coherence, semantic-
 transformation/synthesis validation, materialization, cache, assembly, and
 evaluation mechanisms remain unimplemented.
 
+## Remaining preimplementation research and evidence constraints
+
+The core semantic architecture above is sufficiently settled for concrete
+design once two focused preimplementation research questions are completed and
+any accepted findings are reconciled. The first concerns **external semantic
+state**. Repository derivations may already depend on identified configuration,
+language/toolchain semantics, dependency or resolution state, generated inputs,
+environment assumptions, and other external semantic inputs through
+DerivationDefinition semantics, direct dependencies, assumptions/scope,
+provenance where appropriate, and applicability. What remains unresolved is
+whether some such state requires independently identified and observed state
+artifacts with equivalence, consistency, and replay semantics stronger than an
+ordinary dependency reference or assumption. No universal external-state
+container or `WorkspaceSnapshot` is accepted or rejected. Domain-specific
+external-state artifacts, narrower toolchain/environment/dependency identities,
+broader observations, and other evidence-justified architectures remain open.
+This question affects reproducibility, applicability, cache/reuse safety,
+replay, dependency equivalence, and correctness under environment drift. It
+does not necessarily block an initial slice whose complete semantic dependencies
+can be identified without unresolved ambient state.
+
+The second question concerns the minimum integrated **evaluation architecture
+and causal attribution**. Existing boundaries already require future evaluation
+to distinguish, where meaningful, repository observation correctness;
+repository-intelligence semantic correctness and derivation-family-specific
+soundness, precision, or coverage; incremental-maintenance correctness and
+dependency-granularity economics; graph, retrieval, RelevanceEvidence, and
+ranking contribution; disclosure selection, representation, coherence,
+redundancy, complementarity, synthesis fidelity, and semantic-strength
+preservation; model-input presentation effects; resource efficiency; and
+end-to-end coding-agent outcomes. Layer-local correctness or quality is not
+equivalent to task success, and task success alone does not identify which
+layer caused success or failure. Controlled comparison and causal or marginal
+contribution assessment should remain possible where practical without
+requiring a universal score or a score from every component. Metrics, datasets,
+benchmarks, formulas, storage, and APIs remain open. Relevant attribution can
+include the marginal or unique contribution of retrievers, graph views, ranking
+mechanisms, Context representations, synthesis, and finer incremental-
+maintenance precision.
+
+Replay, debugging, and evaluation may therefore need sufficient correlation
+among relevant RepositorySnapshot, derivation semantics, semantic dependencies,
+DerivedKnowledge, retrieval purpose/planning/applications, candidates and
+RelevanceEvidence, ranking, DisclosurePlan, ContextDisclosure, model-input
+assembly, ModelInteraction Evidence, and downstream outcome/evaluation identity.
+This is a correlation and evidence requirement for the purpose being supported,
+not a requirement that every concept have standalone identity, persistence, an
+independent lifecycle, or universal storage. It creates no universal
+`ReplayRecord`, `Episode`, or Trace and does not collapse repository state,
+derivation, retrieval, disclosure, model interaction, and evaluation into one
+ownership domain.
+
+Remaining choices such as snapshot digest/Merkle construction, observation
+mechanics, parser/analyzer technology, graph storage/indexes/algorithms,
+cache/persistence backend, concrete dependency representation and per-family
+granularity, capability APIs/scheduling, InformationNeed and RelevanceEvidence
+representations, retrieval/ranking implementations, DisclosurePlan/
+ContextDisclosure models, materializer and synthesis mechanisms, and exact
+evaluation metrics/benchmarks are normally implementation-design and empirical-
+evidence questions under the accepted constraints, not reasons to continue
+general abstract architecture research.
+
+Settled foundational semantics should be reopened only when concrete research
+or implementation evidence contradicts an accepted invariant or shows that
+required semantics cannot be represented correctly. Representative triggers
+include external state that cannot be represented reproducibly, no viable
+dependency granularity preserving correct applicability, required graph
+composition needing a missing common semantic abstraction, bounded realization
+preventing correct dependency discovery, a knowledge family unable to express
+its qualification, Context realization unable to preserve semantic strength,
+or accepted layer boundaries preventing meaningful causal evaluation.
+
 See [documentation_map.md](documentation_map.md) for current package
 documentation, [taxonomy.md](architecture/taxonomy.md) for definitions, and
 [ADR-0001](architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)

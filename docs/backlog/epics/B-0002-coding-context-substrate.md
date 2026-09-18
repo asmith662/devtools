@@ -71,6 +71,19 @@ compiler, concrete artifacts, representation/coverage/authority/conflict/
 coherence mechanisms, derivation orchestration, materialization, assembly,
 caching, authorization integration, and evaluation implementations unresolved.
 
+Two focused preimplementation research questions remain after the accepted
+semantic reconciliation. First, external semantic inputs already fit through
+DerivationDefinition semantics, direct dependencies, assumptions/scope,
+provenance, and applicability, but it remains unresolved whether some
+configuration, language/toolchain, dependency/resolution, generated, or
+environment state requires independently identified and observed artifacts with
+stronger equivalence, consistency, and replay semantics. No universal
+external-state container or `WorkspaceSnapshot` is accepted or rejected, and
+the question need not block a bounded initial slice without unresolved ambient
+dependencies. Second, a minimum integrated evaluation architecture must preserve
+causal attribution across the accepted layers without selecting metrics,
+benchmarks, datasets, storage, APIs, or scoring formulas.
+
 This epic preserves the unimplemented pressure enabled by that decision:
 snapshot policy and acquisition, deterministic repository knowledge,
 analyzer-established subjects/source occurrences, relationship views, graph
@@ -82,6 +95,26 @@ provenance/disclosure, budgeting, progressive acquisition, and evaluation.
 Resources provide access and
 Tools may adapt bounded access, but neither constitutes repository intelligence
 or Context compilation.
+
+Replay, debugging, and evaluation may require sufficient correlation among the
+relevant snapshot, derivation semantics and dependencies, knowledge, retrieval
+purpose/planning/applications, candidates/evidence, ranking, disclosure plan and
+realization, assembly, model-interaction Evidence, and downstream evaluation
+outcome. This does not require every concept to have standalone identity,
+persistence, or lifecycle and does not accept a universal replay/episode/Trace
+artifact or merge their existing ownership domains.
+
+Integrated evaluation pressure includes, where meaningful, repository
+observation and semantic correctness; derivation-family soundness, precision,
+or coverage; incremental correctness and dependency-granularity economics;
+graph/retrieval/evidence/ranking contribution; disclosure, representation,
+coherence, redundancy, complementarity, synthesis fidelity, and semantic-
+strength preservation; model-input presentation effects; resource efficiency;
+and end-to-end coding-agent outcomes. Layer-local quality is not task success,
+and task success alone does not identify the causal layer. Controlled comparison
+and marginal or unique contribution of costly mechanisms should remain possible
+where practical without imposing a universal utility score or requiring every
+component to expose a score.
 
 Concrete graph-view representation/identity, typed node and relationship
 references, compatible cross-view composition and bounded traversal, projection
@@ -145,6 +178,17 @@ dynamic tracking algorithms, admission/governance integration, execution
 evidence schema, scheduler/concurrency, analyzer/parser interfaces, result
 publication, persistence/caching, replay/evaluation, and package/API design
 remain unresolved implementation/design pressure.
+
+These concrete choices, together with snapshot digest/observation mechanics,
+parser technology, graph storage/indexes/algorithms, per-derivation dependency
+granularity, InformationNeed/RelevanceEvidence representation, retrieval and
+ranking algorithms, DisclosurePlan/ContextDisclosure models, materialization/
+synthesis mechanisms, and exact evaluation metrics/benchmarks, are normally
+implementation-design and empirical-evidence work under the accepted semantics.
+Their openness is not by itself a reason to repeat general foundational
+architecture research. Foundational semantics should be reconsidered only when
+research or implementation evidence contradicts an accepted invariant or shows
+that required semantics cannot be represented correctly.
 
 - hard_dependencies: none
 - pressure_dependencies: none

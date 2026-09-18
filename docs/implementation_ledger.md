@@ -315,3 +315,14 @@ prerequisites for a future architectural domain.
   This documentation-only refinement selects no universal Claim/confidence
   model, coverage object, conflict engine, authority hierarchy, source-role
   taxonomy, analyzer, storage, or API.
+- Completed a read-only architecture-preservation audit and preserved its
+  accepted handoff findings in canonical documentation. Broad archaeology,
+  steelmanning, adversarial/Deep Research review, focused reconciliation, and
+  preservation review have settled the core semantic architecture. Two focused
+  preimplementation investigations remain: external semantic state/dependency
+  identity/applicability/replay, and integrated evaluation/causal attribution.
+  The preservation refinement also records cross-layer replay correlation,
+  distinguishes implementation-shaped choices from foundational research, and
+  defines evidence-based reopen discipline without creating a WorkspaceSnapshot,
+  universal replay artifact, evaluation architecture, API, storage design, or
+  implementation.
