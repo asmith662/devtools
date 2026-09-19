@@ -73,6 +73,10 @@ semantic strengthening. It leaves
 compiler, concrete artifacts, representation/coverage/authority/conflict/
 coherence mechanisms, derivation orchestration, materialization, assembly,
 caching, authorization integration, and evaluation implementations unresolved.
+A bounded production Context operation now selects all exact-name declaration
+matches and realizes provenance-linked structured knowledge projections without
+source reacquisition, ranking, synthesis, or ModelRequest assembly. General
+planning, compilation, representation, and assembly remain unimplemented.
 
 The focused external-semantic-state research has been reconciled into ADR-0002.
 External semantic inputs already fit through the open heterogeneous dependency,
@@ -255,14 +259,15 @@ measurement, ranking features/policies, learned/task-conditioned ranking,
 evidence caching if justified, and broader interaction with repository
 DerivedKnowledge remain unresolved implementation/evaluation pressure.
 
-Concrete representation taxonomy, semantic-transformation and purpose-relative
-synthesis representation, synthesis validation and fidelity evaluation,
-uncertainty and completeness semantics, claim-/purpose-relative authority,
-source roles, conflict preservation, provenance/support representation,
-model-generated information treatment, explicitly planned materialization,
-synthesis identity/persistence/querying/caching/reuse if justified, and package/
-API ownership remain unresolved implementation/design/evaluation pressure. No
-generic promotion of interpretive or model-generated information to repository
+General representation taxonomy beyond the local declaration-knowledge
+projection, semantic-transformation and purpose-relative synthesis
+representation, synthesis validation and fidelity evaluation, uncertainty and
+completeness semantics, claim-/purpose-relative authority, source roles,
+conflict preservation, provenance/support representation, model-generated
+information treatment, explicitly planned materialization, synthesis identity/
+persistence/querying/caching/reuse if justified, and package/API ownership
+remain unresolved implementation/design/evaluation pressure. No generic
+promotion of interpretive or model-generated information to repository
 DerivedKnowledge is selected.
 
 Learned/probabilistic analyzer policy if ever justified, conflict/divergence

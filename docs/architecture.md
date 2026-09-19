@@ -296,9 +296,19 @@ zero matches succeed only over the supplied knowledge. The operation performs no
 repository access or parsing and introduces no score, ranking, or Context
 selection semantics.
 
+The first bounded Context operation consumes that successful retrieval result,
+selects every exact-name match in retrieval order, and realizes a structured
+knowledge projection for each selection. Each item retains its retrieval
+evidence and exposes only the established declared name, declaration kind,
+proposition, and snapshot-local source occurrence. The retrieval result does not
+carry resource content, so disclosure does not include source text or reacquire
+it. Successful retrieval zero becomes a successful zero-item disclosure. This
+local Context artifact is not a generic DisclosurePlan/compiler, ranking result,
+prompt, model-input assembly, or ModelRequest.
+
 Filesystem Resources remain access mechanisms, not Repository identity. Python
 analysis beyond that declaration scope, capability/execution infrastructure,
-broader retrieval, ranking, Context compilation, progressive disclosure,
+broader retrieval, ranking, general Context compilation, progressive disclosure,
 storage, and evaluation remain unimplemented future responsibilities; Runtime
 remains narrow and model requests remain non-authoritative.
 

@@ -63,11 +63,13 @@ implementation observes one explicitly addressed UTF-8 text resource into
 identified snapshot state and derives source-grounded knowledge for direct
 module-body Python function declarations with exhaustive bounded coverage. It
 also provides exact declared-name retrieval over supplied declaration knowledge,
-with purpose-relative match evidence and no ranking. It does not provide general
-repository discovery, capability/execution infrastructure, broader retrieval,
-or a Context compiler. Current durable conversation semantics remain in
-`agents.conversation`, and `context` does not own former Message/History/Session
-semantics.
+with purpose-relative match evidence and no ranking, plus a bounded all-match
+Context disclosure that projects established declaration and source-location
+information. It does not provide general repository discovery,
+capability/execution infrastructure, broader retrieval, a generic Context
+compiler, or ModelRequest assembly. Current durable conversation semantics
+remain in `agents.conversation`, and `context` does not own former
+Message/History/Session semantics.
 
 The `orchestration`, `governance`, and `evaluation` domains remain recognized
 sparse namespaces without reusable implementation APIs. Current accepted
