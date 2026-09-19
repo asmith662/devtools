@@ -58,12 +58,16 @@
   [SQLite](../src/devtools/persistence/docs/sqlite.md).
 - Tools: [overview](../src/devtools/tools/docs/overview.md).
 
-The `context`, `orchestration`, `governance`, and `evaluation` domains are
-recognized sparse namespaces. They intentionally do not yet document a
-reusable implementation API. In particular, current durable conversation
-semantics live in `agents.conversation`; the sparse `context` namespace does
-not own former Message/History/Session semantics or a Context compiler. Current
-accepted Evaluation responsibility and boundaries are summarized in the central
+The `context` domain now exposes a narrow repository-state observation API. Its
+current implementation observes one explicitly addressed UTF-8 text resource
+into identified snapshot state; it is not a Context compiler or the later
+Repository Intelligence analysis/derivation layer. Current durable conversation
+semantics remain in `agents.conversation`, and `context` does not own former
+Message/History/Session semantics.
+
+The `orchestration`, `governance`, and `evaluation` domains remain recognized
+sparse namespaces without reusable implementation APIs. Current accepted
+Evaluation responsibility and boundaries are summarized in the central
 architecture and taxonomy; no Evaluation ADR or reusable framework API is
 currently established.
 

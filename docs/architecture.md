@@ -31,7 +31,7 @@ core/           foundational values and transformations
 resources/      reusable filesystem and process access
 models/         model interaction, serving, and benchmarks
 agents/         durable conversation and external agent integrations
-context/        future repository intelligence and purpose-relative Context
+context/        bounded repository observation and future repository intelligence/Context
 tools/          typed controlled capability boundaries
 execution/      narrow Runtime and specialized InteractionAttempt lifecycle
 orchestration/  reserved workflow coordination
@@ -267,8 +267,18 @@ decomposition and purpose-relative composite disclosure are downstream concerns
 under ADR-0003/ADR-0004; neither makes resulting demands or disclosure units
 into RepositorySubjects.
 
-This architecture does not imply a current `context` implementation. Filesystem
-Resources remain access mechanisms, not Repository identity. Retrieval,
+Current `context` implementation is limited to bounded observation of one
+explicitly addressed UTF-8 text resource. It establishes nominal Repository
+identity, a repository-relative resource occurrence, address-independent
+decoded-text content identity, and deterministic identified snapshot state under
+versioned single-resource observation semantics. The observation performs one
+bounded filesystem read and claims completeness only for that required resource;
+it makes no repository-wide or atomic-filesystem claim. Its local digest and
+representation choices do not select universal snapshot or ContentIdentity
+architecture.
+
+Filesystem Resources remain access mechanisms, not Repository identity. Python
+analysis, SourceOccurrence, RepositorySubject, derivation/knowledge, retrieval,
 ranking, Context compilation, progressive disclosure, storage, and evaluation
 remain unimplemented future responsibilities; Runtime remains narrow and model
 requests remain non-authoritative.
