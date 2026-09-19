@@ -1,6 +1,20 @@
 # Copyright (c) 2026
 """Repository intelligence and purpose-relative Context domain."""
 
+from devtools.context.python_declarations import (
+    PythonFunctionDeclarationAnalysis,
+    PythonFunctionDeclarationCoverage,
+    PythonFunctionDeclarationDerivation,
+    PythonFunctionDeclarationDerivationDefinition,
+    PythonFunctionDeclarationKind,
+    PythonFunctionDeclarationKnowledge,
+    PythonFunctionSubject,
+    PythonModuleParseError,
+    PythonModuleResourceDependency,
+    PythonSourceOccurrence,
+    PythonSourceRange,
+    derive_python_function_declarations,
+)
 from devtools.context.repository import (
     ContentIdentity,
     Repository,
@@ -15,6 +29,17 @@ from devtools.context.repository import (
 
 __all__ = [
     "ContentIdentity",
+    "PythonFunctionDeclarationAnalysis",
+    "PythonFunctionDeclarationCoverage",
+    "PythonFunctionDeclarationDerivation",
+    "PythonFunctionDeclarationDerivationDefinition",
+    "PythonFunctionDeclarationKind",
+    "PythonFunctionDeclarationKnowledge",
+    "PythonFunctionSubject",
+    "PythonModuleParseError",
+    "PythonModuleResourceDependency",
+    "PythonSourceOccurrence",
+    "PythonSourceRange",
     "Repository",
     "RepositoryId",
     "RepositoryObservationError",
@@ -22,5 +47,6 @@ __all__ = [
     "RepositoryResourceOccurrence",
     "RepositorySnapshot",
     "RepositorySnapshotId",
+    "derive_python_function_declarations",
     "observe_repository_resource",
 ]

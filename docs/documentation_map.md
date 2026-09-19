@@ -58,10 +58,12 @@
   [SQLite](../src/devtools/persistence/docs/sqlite.md).
 - Tools: [overview](../src/devtools/tools/docs/overview.md).
 
-The `context` domain now exposes a narrow repository-state observation API. Its
-current implementation observes one explicitly addressed UTF-8 text resource
-into identified snapshot state; it is not a Context compiler or the later
-Repository Intelligence analysis/derivation layer. Current durable conversation
+The `context` domain exposes narrow Repository Intelligence APIs. Its current
+implementation observes one explicitly addressed UTF-8 text resource into
+identified snapshot state and derives source-grounded knowledge for direct
+module-body Python function declarations with exhaustive bounded coverage. It
+does not provide general repository discovery, capability/execution
+infrastructure, retrieval, or a Context compiler. Current durable conversation
 semantics remain in `agents.conversation`, and `context` does not own former
 Message/History/Session semantics.
 

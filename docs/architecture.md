@@ -267,21 +267,32 @@ decomposition and purpose-relative composite disclosure are downstream concerns
 under ADR-0003/ADR-0004; neither makes resulting demands or disclosure units
 into RepositorySubjects.
 
-Current `context` implementation is limited to bounded observation of one
-explicitly addressed UTF-8 text resource. It establishes nominal Repository
-identity, a repository-relative resource occurrence, address-independent
-decoded-text content identity, and deterministic identified snapshot state under
-versioned single-resource observation semantics. The observation performs one
-bounded filesystem read and claims completeness only for that required resource;
-it makes no repository-wide or atomic-filesystem claim. Its local digest and
+Current `context` implementation includes bounded observation of one explicitly
+addressed UTF-8 text resource. It establishes nominal Repository identity, a
+repository-relative resource occurrence, address-independent decoded-text
+content identity, and deterministic identified snapshot state under versioned
+single-resource observation semantics. The observation performs one bounded
+filesystem read and claims completeness only for that required resource; it
+makes no repository-wide or atomic-filesystem claim. Its local digest and
 representation choices do not select universal snapshot or ContentIdentity
 architecture.
 
+The first bounded derivation consumes that observed state and uses stdlib `ast`
+with explicit Python 3.12 grammar-feature semantics to establish source-grounded
+knowledge for direct module-body synchronous and asynchronous function
+declarations. Its identified definition also records the ambient parser
+implementation and runtime version. Successful analysis publishes separately
+referable declaration knowledge plus exhaustive coverage of exactly that scope;
+syntax failure publishes neither successful coverage nor declaration knowledge.
+Subjects are snapshot-local and distinct from their AST nodes, declared names,
+and UTF-8-byte-column source occurrences. This local representation does not
+select universal subject, source, derivation, coverage, or failure architecture.
+
 Filesystem Resources remain access mechanisms, not Repository identity. Python
-analysis, SourceOccurrence, RepositorySubject, derivation/knowledge, retrieval,
-ranking, Context compilation, progressive disclosure, storage, and evaluation
-remain unimplemented future responsibilities; Runtime remains narrow and model
-requests remain non-authoritative.
+analysis beyond that declaration scope, capability/execution infrastructure,
+retrieval, ranking, Context compilation, progressive disclosure, storage, and
+evaluation remain unimplemented future responsibilities; Runtime remains narrow
+and model requests remain non-authoritative.
 
 These concepts describe reusable semantic relationships, not a mandatory
 runtime pipeline. ResourceOccurrence, SourceOccurrence, and RepositorySubject
