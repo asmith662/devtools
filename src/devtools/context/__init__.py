@@ -15,6 +15,12 @@ from devtools.context.python_declarations import (
     PythonSourceRange,
     derive_python_function_declarations,
 )
+from devtools.context.python_function_retrieval import (
+    PythonFunctionExactNameQuery,
+    PythonFunctionExactNameRelevanceEvidence,
+    PythonFunctionExactNameRetrievalResult,
+    retrieve_python_functions_by_exact_name,
+)
 from devtools.context.repository import (
     ContentIdentity,
     Repository,
@@ -35,6 +41,9 @@ __all__ = [
     "PythonFunctionDeclarationDerivationDefinition",
     "PythonFunctionDeclarationKind",
     "PythonFunctionDeclarationKnowledge",
+    "PythonFunctionExactNameQuery",
+    "PythonFunctionExactNameRelevanceEvidence",
+    "PythonFunctionExactNameRetrievalResult",
     "PythonFunctionSubject",
     "PythonModuleParseError",
     "PythonModuleResourceDependency",
@@ -49,4 +58,5 @@ __all__ = [
     "RepositorySnapshotId",
     "derive_python_function_declarations",
     "observe_repository_resource",
+    "retrieve_python_functions_by_exact_name",
 ]

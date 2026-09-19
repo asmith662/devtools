@@ -54,7 +54,10 @@ identified runtime artifact; bounded retrieval planning/applications;
 ContextCandidates; provenance-bearing purpose-relative RelevanceEvidence
 without requiring standalone identity, persistence, or repository
 DerivedKnowledge status; and ranking distinct from final Context selection. It
-does not implement a retrieval system or Context compiler.
+does not itself implement a retrieval system or Context compiler. A bounded
+production operation now performs exact declared-name retrieval over the first
+declaration-knowledge family and retains typed purpose-relative match evidence;
+broader retrieval and Context compilation remain unimplemented.
 
 [ADR-0004](../../architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)
 now settles post-ranking Context/disclosure semantics: conditional composition,
@@ -115,6 +118,21 @@ and task success alone does not identify the causal layer. Controlled comparison
 and marginal or unique contribution of costly mechanisms should remain possible
 where practical without imposing a universal utility score or requiring every
 component to expose a score.
+
+### Near-term empirical sequence
+
+B-0002 preserves a future staged empirical direction without selecting an
+evaluation API or harness: Phase 0 records a native strong-agent repository-
+acquisition baseline; Phase 1 runs `devtools` predictions in shadow mode with no
+influence on the agent; Phase 2 introduces proactive assistance while native
+acquisition remains available; Phase 3 evaluates progressive disclosure with an
+escape hatch; and Phase 4 permits controlled use only after evidence justifies
+it. Agent acquisition behavior is behavioral evidence, not semantic truth, and
+file/resource overlap is only an initial behavioral metric. Evaluation should
+ultimately examine marginal contribution, task correctness, information-
+acquisition effort, and Context/token efficiency. The economic objective is to
+reduce expensive rediscovery and Context waste while preserving or improving
+task outcomes. None of these phases is implemented by the current increment.
 
 Evaluation semantics preserve a referenceable assessment/comparison basis,
 intended condition and relevant fixed factors, distinguishable realizations,
@@ -221,21 +239,21 @@ parser/analyzer incremental capability, and evaluation of reuse gained versus
 dependency/provenance bookkeeping and recomputation cost remain unresolved
 implementation/evaluation pressure.
 
-Concrete information-purpose/InformationNeed representation, whether explicit
-need identity proves useful, anchors and constraints, decomposition/refinement
-and causal provenance, satisfaction/sufficiency assessment, progressive
-acquisition, planning/application models, assessment-basis/condition/
-realization correlation, persistence/replay, and controlled metrics/experiments
-remain unresolved
+General information-purpose/InformationNeed representation beyond the local
+exact-name query, whether explicit need identity proves useful, anchors and
+constraints, decomposition/refinement and causal provenance,
+satisfaction/sufficiency assessment, progressive acquisition,
+planning/application models, assessment-basis/condition/realization correlation,
+persistence/replay, and controlled metrics/experiments remain unresolved
 implementation/evaluation pressure.
 
-Concrete relevance-observation/evidence representation, candidate/evidence
-association, measurement taxonomy, provenance, polarity and confidence
-semantics, cross-retriever composition, persistence/replay and execution-record
-design, marginal-contribution measurement, ranking features/policies,
-learned/task-conditioned ranking, evidence caching if justified, and interaction
-with repository DerivedKnowledge remain unresolved implementation/evaluation
-pressure.
+General relevance-observation/evidence representation beyond local exact-name
+match evidence, candidate/evidence association, measurement taxonomy,
+provenance, polarity and confidence semantics, cross-retriever composition,
+persistence/replay and execution-record design, marginal-contribution
+measurement, ranking features/policies, learned/task-conditioned ranking,
+evidence caching if justified, and broader interaction with repository
+DerivedKnowledge remain unresolved implementation/evaluation pressure.
 
 Concrete representation taxonomy, semantic-transformation and purpose-relative
 synthesis representation, synthesis validation and fidelity evaluation,

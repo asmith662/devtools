@@ -288,11 +288,19 @@ Subjects are snapshot-local and distinct from their AST nodes, declared names,
 and UTF-8-byte-column source occurrences. This local representation does not
 select universal subject, source, derivation, coverage, or failure architecture.
 
+The first bounded retrieval operation consumes supplied declaration knowledge
+and filters it by exact declared-name equality. Its nonempty name query is the
+purpose representation, and each match carries purpose-relative exact-match
+RelevanceEvidence referencing the original knowledge. Input order is preserved;
+zero matches succeed only over the supplied knowledge. The operation performs no
+repository access or parsing and introduces no score, ranking, or Context
+selection semantics.
+
 Filesystem Resources remain access mechanisms, not Repository identity. Python
 analysis beyond that declaration scope, capability/execution infrastructure,
-retrieval, ranking, Context compilation, progressive disclosure, storage, and
-evaluation remain unimplemented future responsibilities; Runtime remains narrow
-and model requests remain non-authoritative.
+broader retrieval, ranking, Context compilation, progressive disclosure,
+storage, and evaluation remain unimplemented future responsibilities; Runtime
+remains narrow and model requests remain non-authoritative.
 
 These concepts describe reusable semantic relationships, not a mandatory
 runtime pipeline. ResourceOccurrence, SourceOccurrence, and RepositorySubject

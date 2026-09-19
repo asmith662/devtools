@@ -62,10 +62,12 @@ The `context` domain exposes narrow Repository Intelligence APIs. Its current
 implementation observes one explicitly addressed UTF-8 text resource into
 identified snapshot state and derives source-grounded knowledge for direct
 module-body Python function declarations with exhaustive bounded coverage. It
-does not provide general repository discovery, capability/execution
-infrastructure, retrieval, or a Context compiler. Current durable conversation
-semantics remain in `agents.conversation`, and `context` does not own former
-Message/History/Session semantics.
+also provides exact declared-name retrieval over supplied declaration knowledge,
+with purpose-relative match evidence and no ranking. It does not provide general
+repository discovery, capability/execution infrastructure, broader retrieval,
+or a Context compiler. Current durable conversation semantics remain in
+`agents.conversation`, and `context` does not own former Message/History/Session
+semantics.
 
 The `orchestration`, `governance`, and `evaluation` domains remain recognized
 sparse namespaces without reusable implementation APIs. Current accepted
