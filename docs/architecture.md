@@ -301,10 +301,16 @@ selects every exact-name match in retrieval order, and realizes a structured
 knowledge projection for each selection. Each item retains its retrieval
 evidence and exposes only the established declared name, declaration kind,
 proposition, and snapshot-local source occurrence. The retrieval result does not
-carry resource content, so disclosure does not include source text or reacquire
-it. Successful retrieval zero becomes a successful zero-item disclosure. This
-local Context artifact is not a generic DisclosurePlan/compiler, ranking result,
-prompt, model-input assembly, or ModelRequest.
+carry resource content, so the structured disclosure itself does not include
+source text or reacquire it. A bounded materializer can separately accept the
+identified single-resource RepositorySnapshot, validate each occurrence's
+snapshot and address, and extract its exact source segment using the established
+one-based line and UTF-8-byte-column coordinates. It preserves observed newline
+bytes after UTF-8 decoding and performs no filesystem access or parsing.
+Successful retrieval zero becomes a successful zero-item disclosure and
+materialization. These local Context artifacts are not a generic
+DisclosurePlan/compiler, ranking result, prompt, model-input assembly, or
+ModelRequest.
 
 Filesystem Resources remain access mechanisms, not Repository identity. Python
 analysis beyond that declaration scope, capability/execution infrastructure,

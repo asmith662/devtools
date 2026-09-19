@@ -20,6 +20,12 @@ from devtools.context.python_function_disclosure import (
     PythonFunctionExactNameContextDisclosure,
     disclose_python_function_exact_name_retrieval,
 )
+from devtools.context.python_function_materialization import (
+    MaterializedPythonFunctionContext,
+    MaterializedPythonFunctionDeclaration,
+    PythonFunctionSourceMaterializationError,
+    materialize_python_function_disclosure_source,
+)
 from devtools.context.python_function_retrieval import (
     PythonFunctionExactNameQuery,
     PythonFunctionExactNameRelevanceEvidence,
@@ -40,6 +46,8 @@ from devtools.context.repository import (
 
 __all__ = [
     "ContentIdentity",
+    "MaterializedPythonFunctionContext",
+    "MaterializedPythonFunctionDeclaration",
     "PythonFunctionDeclarationAnalysis",
     "PythonFunctionDeclarationCoverage",
     "PythonFunctionDeclarationDerivation",
@@ -51,6 +59,7 @@ __all__ = [
     "PythonFunctionExactNameQuery",
     "PythonFunctionExactNameRelevanceEvidence",
     "PythonFunctionExactNameRetrievalResult",
+    "PythonFunctionSourceMaterializationError",
     "PythonFunctionSubject",
     "PythonModuleParseError",
     "PythonModuleResourceDependency",
@@ -65,6 +74,7 @@ __all__ = [
     "RepositorySnapshotId",
     "derive_python_function_declarations",
     "disclose_python_function_exact_name_retrieval",
+    "materialize_python_function_disclosure_source",
     "observe_repository_resource",
     "retrieve_python_functions_by_exact_name",
 ]

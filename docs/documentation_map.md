@@ -65,10 +65,12 @@ module-body Python function declarations with exhaustive bounded coverage. It
 also provides exact declared-name retrieval over supplied declaration knowledge,
 with purpose-relative match evidence and no ranking, plus a bounded all-match
 Context disclosure that projects established declaration and source-location
-information. It does not provide general repository discovery,
-capability/execution infrastructure, broader retrieval, a generic Context
-compiler, or ModelRequest assembly. Current durable conversation semantics
-remain in `agents.conversation`, and `context` does not own former
+information. A separate bounded materializer validates explicitly supplied
+identified snapshot state and adds exact UTF-8 source segments without
+filesystem reacquisition or parsing. It does not provide general repository
+discovery, capability/execution infrastructure, broader retrieval, a generic
+Context compiler, or ModelRequest assembly. Current durable conversation
+semantics remain in `agents.conversation`, and `context` does not own former
 Message/History/Session semantics.
 
 The `orchestration`, `governance`, and `evaluation` domains remain recognized
