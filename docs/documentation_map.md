@@ -60,10 +60,15 @@
 
 The `context` domain exposes narrow Repository Intelligence APIs. Its current
 implementation observes a finite caller-declared collection of UTF-8 text
-resources into identified snapshot state and derives source-grounded knowledge
-from one explicitly selected occurrence for direct module-body Python function
-declarations with exhaustive bounded coverage. A bounded composition operation
-retains independent analyses for an explicit caller-ordered resource selection
+resources into identified snapshot state. For an exact Python function-name
+purpose, a bounded pre-analysis selector filters an explicit caller-ordered set
+of those resources by exact stdlib `NAME` token presence. Its candidates are
+purpose-relative predictions with expected false positives, not declaration
+knowledge, and zero applies only to the eligible set. The domain derives
+source-grounded knowledge from one explicitly selected occurrence for direct
+module-body Python function declarations with exhaustive bounded coverage. A
+bounded composition operation retains independent analyses for an explicit
+caller-ordered resource selection
 and exposes their existing knowledge as one sequence for retrieval. It
 also provides exact declared-name retrieval over supplied declaration knowledge,
 with purpose-relative match evidence and no ranking. A bounded projection of

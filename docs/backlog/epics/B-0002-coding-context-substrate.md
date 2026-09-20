@@ -58,6 +58,13 @@ does not itself implement a retrieval system or Context compiler. A bounded
 production operation now performs exact declared-name retrieval over the first
 declaration-knowledge family and retains typed purpose-relative match evidence;
 broader retrieval and Context compilation remain unimplemented.
+A bounded pre-analysis operation also filters an explicit caller-ordered set of
+observed resources by exact stdlib Python `NAME` token presence for that same
+purpose. It retains its eligible and candidate occurrences plus native token
+match evidence. Candidate presence is weaker than declaration knowledge and
+expected to include calls, references, or methods; candidate zero is bounded to
+the eligible resources, and declaration derivation remains authoritative for
+the implemented syntactic proposition.
 
 [ADR-0004](../../architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)
 now settles post-ranking Context/disclosure semantics: conditional composition,

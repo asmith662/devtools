@@ -17,6 +17,13 @@ from devtools.context.python_declarations import (
     analyze_python_function_declaration_resources,
     derive_python_function_declarations,
 )
+from devtools.context.python_function_candidates import (
+    PythonFunctionAnalysisCandidateResource,
+    PythonFunctionAnalysisCandidateSelection,
+    PythonFunctionCandidateTokenizationError,
+    PythonFunctionNameTokenCandidateEvidence,
+    select_python_function_analysis_candidates,
+)
 from devtools.context.python_function_disclosure import (
     PythonFunctionDeclarationDisclosureItem,
     PythonFunctionExactNameContextDisclosure,
@@ -61,6 +68,9 @@ __all__ = [
     "ContentIdentity",
     "MaterializedPythonFunctionContext",
     "MaterializedPythonFunctionDeclaration",
+    "PythonFunctionAnalysisCandidateResource",
+    "PythonFunctionAnalysisCandidateSelection",
+    "PythonFunctionCandidateTokenizationError",
     "PythonFunctionDeclarationAnalysis",
     "PythonFunctionDeclarationAnalysisAggregate",
     "PythonFunctionDeclarationCoverage",
@@ -75,6 +85,7 @@ __all__ = [
     "PythonFunctionExactNameResourceSelection",
     "PythonFunctionExactNameRetrievalResult",
     "PythonFunctionExactNameSelectedResource",
+    "PythonFunctionNameTokenCandidateEvidence",
     "PythonFunctionSourceMaterializationError",
     "PythonFunctionSubject",
     "PythonModuleParseError",
@@ -98,5 +109,6 @@ __all__ = [
     "observe_repository_resources",
     "render_materialized_python_function_context",
     "retrieve_python_functions_by_exact_name",
+    "select_python_function_analysis_candidates",
     "select_python_function_resources_from_exact_name_retrieval",
 ]

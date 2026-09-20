@@ -278,6 +278,18 @@ the exact requested collection and makes no repository-wide or atomic-filesystem
 claim. Its local digest and representation choices do not select universal
 snapshot or ContentIdentity architecture.
 
+For the exact Python function-name purpose, a bounded pre-analysis selector can
+filter a caller-ordered, nonempty set of eligible observed resources by exact
+stdlib-tokenizer `NAME` equality over their retained decoded text. It preserves
+eligible order and all matching-token observations while selecting each
+resource once. A positive candidate is only a purpose-relative prediction that
+the resource may deserve declaration analysis; calls, references, and methods
+are expected false positives relative to the later direct-declaration scope.
+Candidate zero is bounded to the explicitly eligible resources, and tokenizer
+failure publishes no successful candidate result. The selector performs no
+filesystem acquisition or AST analysis and establishes no declaration
+knowledge.
+
 The first bounded derivation consumes one caller-selected resource occurrence
 from that observed state and uses stdlib `ast` with explicit Python 3.12
 grammar-feature semantics to establish source-grounded knowledge for direct
