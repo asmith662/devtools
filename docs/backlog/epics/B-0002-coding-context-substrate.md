@@ -210,7 +210,7 @@ identified `RepositoryTextCorpus` retaining exactly the definition's selected
 observed occurrences. Its local identity is scoped to the logical Repository
 and selected address/content identities, so unrelated snapshot resources do not
 become members or identity inputs. This is not corpus classification, indexing,
-or retrieval; BM25 remains unimplemented. A whole-resource document
+or retrieval. A whole-resource document
 representation now preserves each corpus member's exact observed text and
 resource correlation in corpus order without tokenization, indexing, or ranking.
 It is one representation strategy, not a universal one-resource-one-document
@@ -235,6 +235,12 @@ Hit@K, Recall@K, reciprocal rank, and same-K aggregate hit rate, mean recall,
 and MRR while retaining recovered/missed relevance evidence. Controlled fixtures
 identify content-match strengths and identifier, path, package, and lexical
 distractor gaps without claiming real-repository quality or BM25 sufficiency. A
+small repository-owned operational benchmark can now apply the unchanged
+content-only baseline to a bounded heterogeneous `devtools` checkout corpus,
+with manually designated native-address relevance and inspectable per-case JSON
+evidence. Its eligibility/exclusion policy is local benchmark operation rather
+than repository classification or relevance semantics; findings remain a narrow
+checkpoint for future comparative evaluation, not BM25 sufficiency. A
 separate bounded,
 purpose-sensitive address projection now
 nominates exact, case-sensitive `.py` discovery addresses for observation while

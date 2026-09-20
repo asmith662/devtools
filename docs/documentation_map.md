@@ -72,7 +72,7 @@ observation can subsequently acquire the selected collection, and an identified
 `RepositoryTextCorpus` can retain exactly those selected observed occurrences.
 Its identity is dependency-scoped to the logical Repository and selected
 address/content identities, not all observed snapshot state. It is not an index
-or retrieval mechanism; BM25 is not implemented. A separate bounded
+or retrieval mechanism. A separate bounded
 whole-resource representation can turn every `RepositoryTextCorpus` member into
 one `RepositoryTextDocument`, retaining exact observed text and resource
 correlation in corpus order. This is a current representation strategy rather
@@ -100,7 +100,13 @@ and fixture-designated native resource addresses without rescoring: it retains
 recovered/missed relevance evidence and reports Hit@K, Recall@K, reciprocal
 rank, and same-K aggregate hit rate, mean recall, and MRR. Controlled fixtures
 expose both content-match strengths and identifier, path, package, and distractor
-gaps; they do not establish broad retrieval quality. A separate bounded
+gaps; they do not establish broad retrieval quality. A repository-owned
+operational benchmark can also run the unchanged pipeline over a bounded,
+heterogeneous selected `devtools` checkout corpus, with manually designated
+native-address relevance and a caller-selected JSON report. Its local suffix
+eligibility and operational exclusions are not repository classification or
+relevance semantics; it provides a small real-repository baseline checkpoint,
+not a general benchmark framework or retrieval-sufficiency claim. A separate bounded
 Python-function-path projection nominates exact, case-sensitive `.py` addresses
 for observation without inspecting content; this is candidacy evidence rather
 than proof of Python source. The observation operation then reads a finite

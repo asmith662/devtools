@@ -1,0 +1,1073 @@
+{
+  "aggregate": {
+    "hit_rate_at_k": 1.0,
+    "mean_recall_at_k": 0.9102564102564104,
+    "mean_reciprocal_rank": 0.7423076923076923
+  },
+  "bm25": {
+    "b": 0.75,
+    "content_only": true,
+    "k1": 1.2,
+    "path_or_package_scoring": false
+  },
+  "bounds": {
+    "evaluation_k": 5,
+    "maximum_discovered_resources": 10000,
+    "maximum_resource_bytes": 1048576,
+    "maximum_results": 5,
+    "maximum_traversal_entries": 20000
+  },
+  "cases": [
+    {
+      "description": "Locate the selected-observed repository text corpus realization.",
+      "designated_relevant_resources": [
+        "src/devtools/context/repository/corpus.py"
+      ],
+      "metrics": {
+        "hit_at_k": true,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      "missed_relevant_resources": [],
+      "name": "corpus-realization",
+      "query": "repository text corpus realization",
+      "ranked_resources": [
+        {
+          "address": "src/devtools/context/repository/corpus.py",
+          "rank": 1,
+          "score": 13.71695366553476
+        },
+        {
+          "address": "tests/context/repository/test_corpus.py",
+          "rank": 2,
+          "score": 12.487919477016698
+        },
+        {
+          "address": "src/devtools/context/repository/document.py",
+          "rank": 3,
+          "score": 11.125659540934038
+        },
+        {
+          "address": "tests/context/repository/test_document.py",
+          "rank": 4,
+          "score": 10.942474746906505
+        },
+        {
+          "address": "tests/context/retrieval/lexical/test_evaluation.py",
+          "rank": 5,
+          "score": 10.084195234459841
+        }
+      ],
+      "retrieved_relevant_resources": [
+        {
+          "address": "src/devtools/context/repository/corpus.py",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "description": "Locate bounded metadata-only repository resource discovery.",
+      "designated_relevant_resources": [
+        "src/devtools/context/repository/discovery.py"
+      ],
+      "metrics": {
+        "hit_at_k": true,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 0.5
+      },
+      "missed_relevant_resources": [],
+      "name": "repository-discovery",
+      "query": "bounded repository resource discovery",
+      "ranked_resources": [
+        {
+          "address": "tests/context/repository/test_discovery.py",
+          "rank": 1,
+          "score": 13.255480471259528
+        },
+        {
+          "address": "src/devtools/context/repository/discovery.py",
+          "rank": 2,
+          "score": 13.077677679699006
+        },
+        {
+          "address": "src/devtools/context/python/source_candidacy.py",
+          "rank": 3,
+          "score": 12.693454369025124
+        },
+        {
+          "address": "tests/context/python/test_source_candidacy.py",
+          "rank": 4,
+          "score": 12.00580515573192
+        },
+        {
+          "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "rank": 5,
+          "score": 11.705139125304424
+        }
+      ],
+      "retrieved_relevant_resources": [
+        {
+          "address": "src/devtools/context/repository/discovery.py",
+          "rank": 2
+        }
+      ]
+    },
+    {
+      "description": "Locate the explicit UTF-8 per-resource observation byte bound.",
+      "designated_relevant_resources": [
+        "src/devtools/context/repository/observation.py"
+      ],
+      "metrics": {
+        "hit_at_k": true,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      "missed_relevant_resources": [],
+      "name": "observation-bound",
+      "query": "maximum resource bytes utf8 observation",
+      "ranked_resources": [
+        {
+          "address": "src/devtools/context/repository/observation.py",
+          "rank": 1,
+          "score": 16.82868425318988
+        },
+        {
+          "address": "src/devtools/context/python/function/materialization.py",
+          "rank": 2,
+          "score": 10.480202866400923
+        },
+        {
+          "address": "src/devtools/resources/commands/models/output.py",
+          "rank": 3,
+          "score": 9.84240352173356
+        },
+        {
+          "address": "tests/context/repository/test_observation.py",
+          "rank": 4,
+          "score": 8.89012419299111
+        },
+        {
+          "address": "tests/context/repository/test_discovery.py",
+          "rank": 5,
+          "score": 8.504419981488711
+        }
+      ],
+      "retrieved_relevant_resources": [
+        {
+          "address": "src/devtools/context/repository/observation.py",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "description": "Locate Unicode word-span and casefold lexical analysis semantics.",
+      "designated_relevant_resources": [
+        "src/devtools/context/retrieval/lexical/analysis.py"
+      ],
+      "metrics": {
+        "hit_at_k": true,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      "missed_relevant_resources": [],
+      "name": "lexical-analysis",
+      "query": "unicode lexical spans casefold",
+      "ranked_resources": [
+        {
+          "address": "src/devtools/context/retrieval/lexical/analysis.py",
+          "rank": 1,
+          "score": 24.844116508139557
+        },
+        {
+          "address": "docs/documentation_map.md",
+          "rank": 2,
+          "score": 11.7455426873037
+        },
+        {
+          "address": "src/devtools/context/retrieval/lexical/bm25.py",
+          "rank": 3,
+          "score": 11.7025030010129
+        },
+        {
+          "address": "tests/context/retrieval/lexical/test_analysis.py",
+          "rank": 4,
+          "score": 8.571767526727408
+        },
+        {
+          "address": "docs/architecture.md",
+          "rank": 5,
+          "score": 7.867207737313969
+        }
+      ],
+      "retrieved_relevant_resources": [
+        {
+          "address": "src/devtools/context/retrieval/lexical/analysis.py",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "description": "Locate Okapi BM25 inverse-document-frequency scoring behavior.",
+      "designated_relevant_resources": [
+        "src/devtools/context/retrieval/lexical/bm25.py"
+      ],
+      "metrics": {
+        "hit_at_k": true,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      "missed_relevant_resources": [],
+      "name": "bm25-scoring",
+      "query": "okapi bm25 inverse document frequency",
+      "ranked_resources": [
+        {
+          "address": "src/devtools/context/retrieval/lexical/bm25.py",
+          "rank": 1,
+          "score": 30.125572441163154
+        },
+        {
+          "address": "tests/context/retrieval/lexical/test_bm25.py",
+          "rank": 2,
+          "score": 15.060162248550661
+        },
+        {
+          "address": "src/devtools/context/retrieval/lexical/statistics.py",
+          "rank": 3,
+          "score": 12.319323807449344
+        },
+        {
+          "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "rank": 4,
+          "score": 9.900982447597865
+        },
+        {
+          "address": "tests/context/retrieval/lexical/test_index.py",
+          "rank": 5,
+          "score": 9.764955063954162
+        }
+      ],
+      "retrieved_relevant_resources": [
+        {
+          "address": "src/devtools/context/retrieval/lexical/bm25.py",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "description": "Locate bounded retrieval evaluation and reciprocal-rank metrics.",
+      "designated_relevant_resources": [
+        "src/devtools/context/retrieval/lexical/evaluation.py"
+      ],
+      "metrics": {
+        "hit_at_k": true,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      "missed_relevant_resources": [],
+      "name": "retrieval-evaluation",
+      "query": "recall reciprocal rank retrieval evaluation",
+      "ranked_resources": [
+        {
+          "address": "src/devtools/context/retrieval/lexical/evaluation.py",
+          "rank": 1,
+          "score": 24.45947636601214
+        },
+        {
+          "address": "tests/context/retrieval/lexical/test_evaluation.py",
+          "rank": 2,
+          "score": 15.569316329780447
+        },
+        {
+          "address": "docs/documentation_map.md",
+          "rank": 3,
+          "score": 15.422797810371716
+        },
+        {
+          "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "rank": 4,
+          "score": 12.598625145844839
+        },
+        {
+          "address": "docs/architecture.md",
+          "rank": 5,
+          "score": 11.833594326014923
+        }
+      ],
+      "retrieved_relevant_resources": [
+        {
+          "address": "src/devtools/context/retrieval/lexical/evaluation.py",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "description": "Locate direct module-body Python function declaration derivation.",
+      "designated_relevant_resources": [
+        "src/devtools/context/python/function/declarations.py"
+      ],
+      "metrics": {
+        "hit_at_k": true,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      "missed_relevant_resources": [],
+      "name": "python-function-declarations",
+      "query": "direct module body python function declarations",
+      "ranked_resources": [
+        {
+          "address": "src/devtools/context/python/function/declarations.py",
+          "rank": 1,
+          "score": 24.634830547168693
+        },
+        {
+          "address": "tests/context/python/function/test_rendering.py",
+          "rank": 2,
+          "score": 20.843161682697918
+        },
+        {
+          "address": "src/devtools/context/python/function/rendering.py",
+          "rank": 3,
+          "score": 20.171250750825916
+        },
+        {
+          "address": "tests/context/python/function/test_declarations.py",
+          "rank": 4,
+          "score": 20.037669840305345
+        },
+        {
+          "address": "scripts/qwen/python_function_context_acceptance.py",
+          "rank": 5,
+          "score": 16.82932697376204
+        }
+      ],
+      "retrieved_relevant_resources": [
+        {
+          "address": "src/devtools/context/python/function/declarations.py",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "description": "Locate exact source materialization, rendering, and request assembly.",
+      "designated_relevant_resources": [
+        "src/devtools/context/python/function/materialization.py",
+        "src/devtools/context/python/function/rendering.py",
+        "src/devtools/context/python/function/request_assembly.py"
+      ],
+      "metrics": {
+        "hit_at_k": true,
+        "recall_at_k": 0.3333333333333333,
+        "reciprocal_rank": 0.5
+      },
+      "missed_relevant_resources": [
+        "src/devtools/context/python/function/materialization.py",
+        "src/devtools/context/python/function/rendering.py"
+      ],
+      "name": "python-function-context-assembly",
+      "query": "exact source materialization rendering model request assembly",
+      "ranked_resources": [
+        {
+          "address": "tests/context/python/function/test_request_assembly.py",
+          "rank": 1,
+          "score": 20.723117093157075
+        },
+        {
+          "address": "src/devtools/context/python/function/request_assembly.py",
+          "rank": 2,
+          "score": 15.761253781507968
+        },
+        {
+          "address": "experiments/qwen/docs/overview.md",
+          "rank": 3,
+          "score": 15.373193587138799
+        },
+        {
+          "address": "tests/context/python/function/test_rendering.py",
+          "rank": 4,
+          "score": 14.703200896433362
+        },
+        {
+          "address": "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+          "rank": 5,
+          "score": 14.576667736564426
+        }
+      ],
+      "retrieved_relevant_resources": [
+        {
+          "address": "src/devtools/context/python/function/request_assembly.py",
+          "rank": 2
+        }
+      ]
+    },
+    {
+      "description": "Locate the current architecture account of Context and retrieval.",
+      "designated_relevant_resources": [
+        "docs/architecture.md"
+      ],
+      "metrics": {
+        "hit_at_k": true,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 0.2
+      },
+      "missed_relevant_resources": [],
+      "name": "architecture-context-retrieval",
+      "query": "Context retrieval repository intelligence architecture",
+      "ranked_resources": [
+        {
+          "address": "README.md",
+          "rank": 1,
+          "score": 17.179132120104512
+        },
+        {
+          "address": "docs/roadmap.md",
+          "rank": 2,
+          "score": 16.725607748684016
+        },
+        {
+          "address": "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+          "rank": 3,
+          "score": 16.5677841770414
+        },
+        {
+          "address": "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+          "rank": 4,
+          "score": 15.980303109418255
+        },
+        {
+          "address": "docs/architecture.md",
+          "rank": 5,
+          "score": 15.961998287123496
+        }
+      ],
+      "retrieved_relevant_resources": [
+        {
+          "address": "docs/architecture.md",
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "description": "Locate the B-0002 coding Context substrate design record.",
+      "designated_relevant_resources": [
+        "docs/backlog/epics/B-0002-coding-context-substrate.md"
+      ],
+      "metrics": {
+        "hit_at_k": true,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 0.25
+      },
+      "missed_relevant_resources": [],
+      "name": "b0002-backlog",
+      "query": "coding Context substrate repository intelligence",
+      "ranked_resources": [
+        {
+          "address": "docs/roadmap.md",
+          "rank": 1,
+          "score": 16.95139111678628
+        },
+        {
+          "address": "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+          "rank": 2,
+          "score": 16.50501897329771
+        },
+        {
+          "address": "docs/backlog/overview.md",
+          "rank": 3,
+          "score": 15.436499126154759
+        },
+        {
+          "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "rank": 4,
+          "score": 13.08774948799572
+        },
+        {
+          "address": "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+          "rank": 5,
+          "score": 11.656389330938898
+        }
+      ],
+      "retrieved_relevant_resources": [
+        {
+          "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "rank": 4
+        }
+      ]
+    },
+    {
+      "description": "Locate pytest coverage and project configuration settings.",
+      "designated_relevant_resources": [
+        "pyproject.toml"
+      ],
+      "metrics": {
+        "hit_at_k": true,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      "missed_relevant_resources": [],
+      "name": "project-configuration",
+      "query": "pytest coverage branch threshold configuration",
+      "ranked_resources": [
+        {
+          "address": "pyproject.toml",
+          "rank": 1,
+          "score": 15.329445878131956
+        },
+        {
+          "address": "AGENTS.md",
+          "rank": 2,
+          "score": 8.115438189680386
+        },
+        {
+          "address": "tests/context/python/function/test_declaration_aggregation.py",
+          "rank": 3,
+          "score": 7.912680805300996
+        },
+        {
+          "address": "tests/context/python/function/test_declarations.py",
+          "rank": 4,
+          "score": 7.377076361210188
+        },
+        {
+          "address": "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+          "rank": 5,
+          "score": 7.012685056525809
+        }
+      ],
+      "retrieved_relevant_resources": [
+        {
+          "address": "pyproject.toml",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "description": "Locate both lexical corpus statistics and inverted index behavior.",
+      "designated_relevant_resources": [
+        "src/devtools/context/retrieval/lexical/statistics.py",
+        "src/devtools/context/retrieval/lexical/index.py"
+      ],
+      "metrics": {
+        "hit_at_k": true,
+        "recall_at_k": 0.5,
+        "reciprocal_rank": 1.0
+      },
+      "missed_relevant_resources": [
+        "src/devtools/context/retrieval/lexical/statistics.py"
+      ],
+      "name": "lexical-index-cross-file",
+      "query": "lexical corpus statistics inverted index",
+      "ranked_resources": [
+        {
+          "address": "src/devtools/context/retrieval/lexical/index.py",
+          "rank": 1,
+          "score": 26.542640220102136
+        },
+        {
+          "address": "tests/context/retrieval/lexical/test_index.py",
+          "rank": 2,
+          "score": 25.841282750501172
+        },
+        {
+          "address": "tests/context/retrieval/lexical/test_evaluation.py",
+          "rank": 3,
+          "score": 17.99350422420731
+        },
+        {
+          "address": "tests/context/retrieval/lexical/test_statistics.py",
+          "rank": 4,
+          "score": 16.411236745007145
+        },
+        {
+          "address": "tests/context/retrieval/lexical/test_bm25.py",
+          "rank": 5,
+          "score": 15.765519013723821
+        }
+      ],
+      "retrieved_relevant_resources": [
+        {
+          "address": "src/devtools/context/retrieval/lexical/index.py",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "description": "Locate the RepositoryTextLexicalQueryObservation identifier concept.",
+      "designated_relevant_resources": [
+        "src/devtools/context/retrieval/lexical/bm25.py"
+      ],
+      "metrics": {
+        "hit_at_k": true,
+        "recall_at_k": 1.0,
+        "reciprocal_rank": 0.2
+      },
+      "missed_relevant_resources": [],
+      "name": "identifier-boundary",
+      "query": "repository text lexical query observation",
+      "ranked_resources": [
+        {
+          "address": "tests/context/retrieval/lexical/test_bm25.py",
+          "rank": 1,
+          "score": 17.405783536493924
+        },
+        {
+          "address": "tests/context/retrieval/lexical/test_analysis.py",
+          "rank": 2,
+          "score": 15.362664452944347
+        },
+        {
+          "address": "tests/context/retrieval/lexical/test_evaluation.py",
+          "rank": 3,
+          "score": 15.247678838173053
+        },
+        {
+          "address": "tests/context/retrieval/lexical/test_index.py",
+          "rank": 4,
+          "score": 14.341774584349078
+        },
+        {
+          "address": "src/devtools/context/retrieval/lexical/bm25.py",
+          "rank": 5,
+          "score": 14.225585792702704
+        }
+      ],
+      "retrieved_relevant_resources": [
+        {
+          "address": "src/devtools/context/retrieval/lexical/bm25.py",
+          "rank": 5
+        }
+      ]
+    }
+  ],
+  "identified_state": {
+    "corpus_id": "0f39d27d87397c3428d762b0132df6313e6f1bf61e804a8657a36e9c9487ab47",
+    "document_count": 390,
+    "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+    "snapshot_id": "c93ee20ea014d4a8d8ea16dbc0cc7c74d8eb91aff52d0a649b66f7662650edeb"
+  },
+  "membership": {
+    "discovered_resource_count": 7512,
+    "examined_entry_count": 8442,
+    "excluded_exact_addresses": [
+      "architecture-archaeology-dossier.md",
+      "docs/implementation_ledger.md",
+      "evaluation-architecture-investigation-dossier.md",
+      "scripts/retrieval_bm25_baseline.py",
+      "tests/scripts/test_retrieval_bm25_baseline.py"
+    ],
+    "excluded_top_level_directories": [
+      ".devtools",
+      ".git",
+      ".idea",
+      ".mypy_cache",
+      ".pytest_cache",
+      ".ruff_cache",
+      ".venv",
+      "__pycache__",
+      "build",
+      "dist",
+      "htmlcov"
+    ],
+    "included_suffixes": [
+      ".md",
+      ".py",
+      ".toml",
+      ".yaml",
+      ".yml"
+    ],
+    "selected_addresses": [
+      "AGENTS.md",
+      "README.md",
+      "docs/architecture.md",
+      "docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md",
+      "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+      "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+      "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+      "docs/architecture/taxonomy.md",
+      "docs/backlog/epics/B-0001-architecture-documentation-integrity.md",
+      "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "docs/backlog/epics/B-0003-local-coding-worker-harness.md",
+      "docs/backlog/epics/B-0004-governed-execution-evolution.md",
+      "docs/backlog/epics/B-0005-effect-governance.md",
+      "docs/backlog/epics/B-0015-framework-acceptance-harness-validation.md",
+      "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+      "docs/backlog/items/B-0007-correct-model-serving-documentation-drift.md",
+      "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+      "docs/backlog/items/B-0009-build-bounded-local-coding-worker-harness.md",
+      "docs/backlog/items/B-0010-investigate-work-execution-attempt-semantics.md",
+      "docs/backlog/items/B-0011-investigate-durable-execution-evidence.md",
+      "docs/backlog/items/B-0012-investigate-governed-effect-semantics.md",
+      "docs/backlog/items/B-0013-investigate-authority-grants-approval.md",
+      "docs/backlog/items/B-0014-investigate-retry-repair-reconciliation.md",
+      "docs/backlog/items/B-0016-define-framework-live-harness-acceptance.md",
+      "docs/backlog/items/B-0017-investigate-runtime-occurrence-observability-boundaries.md",
+      "docs/backlog/items/B-0018-investigate-operational-data-minimization-disclosure.md",
+      "docs/backlog/items/B-0019-investigate-typed-configuration-ownership.md",
+      "docs/backlog/items/B-0020-investigate-capability-operation-model-action-substrate.md",
+      "docs/backlog/items/B-0021-investigate-approval-human-governance-workflow.md",
+      "docs/backlog/items/B-0022-investigate-delegation-acting-authority.md",
+      "docs/backlog/items/B-0023-investigate-observability-architecture.md",
+      "docs/backlog/items/B-0024-investigate-audit-durable-accountability.md",
+      "docs/backlog/items/B-0025-investigate-scoped-runtime-context.md",
+      "docs/backlog/items/B-0026-investigate-runtime-control-lifecycle.md",
+      "docs/backlog/items/B-0027-investigate-serialization-representation-boundaries.md",
+      "docs/backlog/items/B-0028-investigate-persistence-durable-state-boundaries.md",
+      "docs/backlog/items/B-0029-investigate-reusable-agent-definition-runtime-orchestration.md",
+      "docs/backlog/items/B-0030-investigate-provider-neutral-generative-model-interaction.md",
+      "docs/backlog/items/B-0031-investigate-generic-execution-lifecycle-promotion.md",
+      "docs/backlog/items/B-0032-investigate-execution-retry-mechanics.md",
+      "docs/backlog/items/B-0033-investigate-semantic-repair-replanning.md",
+      "docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md",
+      "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+      "docs/backlog/items/B-0036-investigate-action-request-semantics.md",
+      "docs/backlog/items/B-0037-investigate-approval-semantics.md",
+      "docs/backlog/items/B-0038-investigate-approval-workflow-orchestration.md",
+      "docs/backlog/items/B-0039-investigate-delegated-authority.md",
+      "docs/backlog/items/B-0040-investigate-delegated-agent-coordination.md",
+      "docs/backlog/items/B-0041-investigate-execution-local-lifecycle-control.md",
+      "docs/backlog/items/B-0042-investigate-workflow-lifecycle-control.md",
+      "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+      "docs/backlog/items/B-0044-investigate-orchestration-control-loops.md",
+      "docs/backlog/items/B-0045-establish-minimal-model-interaction-core.md",
+      "docs/backlog/items/B-0046-investigate-advanced-model-interaction-provider-pressure.md",
+      "docs/backlog/metadata.md",
+      "docs/backlog/overview.md",
+      "docs/documentation_map.md",
+      "docs/experiments/qwen38_llama_cpp.md",
+      "docs/roadmap.md",
+      "experiments/__init__.py",
+      "experiments/qwen/__init__.py",
+      "experiments/qwen/docs/overview.md",
+      "experiments/qwen/model_tool_composition.py",
+      "experiments/qwen/patch_proposal_worker.py",
+      "experiments/qwen/read_experiment.py",
+      "experiments/qwen/two_action_read_only_experiment.py",
+      "experiments/worker_story/__init__.py",
+      "experiments/worker_story/result.py",
+      "pyproject.toml",
+      "scripts/model_benchmarks/vllm.py",
+      "scripts/qwen/llama_cpp_profile.py",
+      "scripts/qwen/llama_cpp_service.py",
+      "scripts/qwen/patch_proposal_worker_acceptance.py",
+      "scripts/qwen/python_function_context_acceptance.py",
+      "scripts/qwen/two_action_read_only_acceptance.py",
+      "scripts/qwen/two_read_acceptance.py",
+      "src/devtools/__init__.py",
+      "src/devtools/agents/__init__.py",
+      "src/devtools/agents/conversation/__init__.py",
+      "src/devtools/agents/conversation/conversation.py",
+      "src/devtools/agents/conversation/docs/conversation.md",
+      "src/devtools/agents/conversation/docs/history.md",
+      "src/devtools/agents/conversation/docs/overview.md",
+      "src/devtools/agents/conversation/history.py",
+      "src/devtools/agents/conversation/message.py",
+      "src/devtools/agents/integrations/__init__.py",
+      "src/devtools/agents/integrations/codex/__init__.py",
+      "src/devtools/agents/integrations/codex/agent.py",
+      "src/devtools/agents/integrations/codex/docs/cli.md",
+      "src/devtools/agents/integrations/codex/docs/overview.md",
+      "src/devtools/agents/integrations/codex/errors.py",
+      "src/devtools/agents/integrations/codex/models.py",
+      "src/devtools/agents/integrations/codex/parsing.py",
+      "src/devtools/context/__init__.py",
+      "src/devtools/context/python/__init__.py",
+      "src/devtools/context/python/function/__init__.py",
+      "src/devtools/context/python/function/candidates.py",
+      "src/devtools/context/python/function/declarations.py",
+      "src/devtools/context/python/function/disclosure.py",
+      "src/devtools/context/python/function/materialization.py",
+      "src/devtools/context/python/function/rendering.py",
+      "src/devtools/context/python/function/request_assembly.py",
+      "src/devtools/context/python/function/retrieval.py",
+      "src/devtools/context/python/source_candidacy.py",
+      "src/devtools/context/repository/__init__.py",
+      "src/devtools/context/repository/corpus.py",
+      "src/devtools/context/repository/discovery.py",
+      "src/devtools/context/repository/document.py",
+      "src/devtools/context/repository/identity.py",
+      "src/devtools/context/repository/observation.py",
+      "src/devtools/context/repository/resource.py",
+      "src/devtools/context/repository/snapshot.py",
+      "src/devtools/context/retrieval/__init__.py",
+      "src/devtools/context/retrieval/lexical/__init__.py",
+      "src/devtools/context/retrieval/lexical/analysis.py",
+      "src/devtools/context/retrieval/lexical/bm25.py",
+      "src/devtools/context/retrieval/lexical/evaluation.py",
+      "src/devtools/context/retrieval/lexical/index.py",
+      "src/devtools/context/retrieval/lexical/statistics.py",
+      "src/devtools/core/__init__.py",
+      "src/devtools/core/conversion/__init__.py",
+      "src/devtools/core/conversion/conversion.py",
+      "src/devtools/core/conversion/docs/overview.md",
+      "src/devtools/core/conversion/errors.py",
+      "src/devtools/core/identity/__init__.py",
+      "src/devtools/core/identity/docs/overview.md",
+      "src/devtools/core/identity/models.py",
+      "src/devtools/core/paths/__init__.py",
+      "src/devtools/core/paths/docs/overview.md",
+      "src/devtools/core/paths/docs/resolution.md",
+      "src/devtools/core/paths/errors.py",
+      "src/devtools/core/paths/models.py",
+      "src/devtools/core/paths/resolution.py",
+      "src/devtools/core/regex/__init__.py",
+      "src/devtools/core/regex/docs/overview.md",
+      "src/devtools/core/regex/models.py",
+      "src/devtools/core/regex/search.py",
+      "src/devtools/core/system/__init__.py",
+      "src/devtools/core/system/detection.py",
+      "src/devtools/core/system/docs/overview.md",
+      "src/devtools/core/system/models.py",
+      "src/devtools/core/time/__init__.py",
+      "src/devtools/core/time/docs/overview.md",
+      "src/devtools/core/time/docs/timestamps.md",
+      "src/devtools/core/time/docs/timing.md",
+      "src/devtools/core/time/errors.py",
+      "src/devtools/core/time/models/__init__.py",
+      "src/devtools/core/time/models/duration.py",
+      "src/devtools/core/time/models/stopwatch.py",
+      "src/devtools/core/time/models/timestamp.py",
+      "src/devtools/core/time/parsing.py",
+      "src/devtools/evaluation/__init__.py",
+      "src/devtools/execution/__init__.py",
+      "src/devtools/execution/docs/overview.md",
+      "src/devtools/execution/interaction_attempt.py",
+      "src/devtools/execution/protocols.py",
+      "src/devtools/execution/runtime.py",
+      "src/devtools/governance/__init__.py",
+      "src/devtools/models/__init__.py",
+      "src/devtools/models/benchmarks/__init__.py",
+      "src/devtools/models/benchmarks/docs/overview.md",
+      "src/devtools/models/benchmarks/models.py",
+      "src/devtools/models/benchmarks/runner.py",
+      "src/devtools/models/benchmarks/storage.py",
+      "src/devtools/models/interaction/__init__.py",
+      "src/devtools/models/interaction/docs/overview.md",
+      "src/devtools/models/interaction/models.py",
+      "src/devtools/models/interaction/observation.py",
+      "src/devtools/models/interaction/prompt.py",
+      "src/devtools/models/interaction/protocols.py",
+      "src/devtools/models/interaction/providers/__init__.py",
+      "src/devtools/models/interaction/providers/llama_cpp.py",
+      "src/devtools/models/interaction/providers/llama_cpp_errors.py",
+      "src/devtools/models/interaction/providers/llama_cpp_request_settings.py",
+      "src/devtools/models/interaction/response.py",
+      "src/devtools/models/interaction/termination.py",
+      "src/devtools/models/interaction/tools.py",
+      "src/devtools/models/interaction/usage.py",
+      "src/devtools/models/serving/__init__.py",
+      "src/devtools/models/serving/docs/overview.md",
+      "src/devtools/models/serving/errors.py",
+      "src/devtools/models/serving/huggingface.py",
+      "src/devtools/models/serving/identity.py",
+      "src/devtools/models/serving/llama_cpp.py",
+      "src/devtools/models/serving/vllm.py",
+      "src/devtools/observability/__init__.py",
+      "src/devtools/observability/evidence/__init__.py",
+      "src/devtools/observability/evidence/docs/overview.md",
+      "src/devtools/observability/evidence/inspection.py",
+      "src/devtools/observability/evidence/model_interaction.py",
+      "src/devtools/observability/evidence/protocols.py",
+      "src/devtools/observability/evidence/terminal.py",
+      "src/devtools/orchestration/__init__.py",
+      "src/devtools/persistence/__init__.py",
+      "src/devtools/persistence/_snapshot.py",
+      "src/devtools/persistence/docs/json.md",
+      "src/devtools/persistence/docs/overview.md",
+      "src/devtools/persistence/docs/sqlite.md",
+      "src/devtools/persistence/errors.py",
+      "src/devtools/persistence/json.py",
+      "src/devtools/persistence/sqlite.py",
+      "src/devtools/resources/__init__.py",
+      "src/devtools/resources/commands/__init__.py",
+      "src/devtools/resources/commands/docs/command.md",
+      "src/devtools/resources/commands/docs/events.md",
+      "src/devtools/resources/commands/docs/execution.md",
+      "src/devtools/resources/commands/docs/overview.md",
+      "src/devtools/resources/commands/errors.py",
+      "src/devtools/resources/commands/events.py",
+      "src/devtools/resources/commands/execution.py",
+      "src/devtools/resources/commands/handle.py",
+      "src/devtools/resources/commands/models/__init__.py",
+      "src/devtools/resources/commands/models/command.py",
+      "src/devtools/resources/commands/models/output.py",
+      "src/devtools/resources/commands/models/result.py",
+      "src/devtools/resources/filesystem/__init__.py",
+      "src/devtools/resources/filesystem/codecs/__init__.py",
+      "src/devtools/resources/filesystem/codecs/csv.py",
+      "src/devtools/resources/filesystem/codecs/json.py",
+      "src/devtools/resources/filesystem/codecs/markdown.py",
+      "src/devtools/resources/filesystem/codecs/text.py",
+      "src/devtools/resources/filesystem/docs/codecs.md",
+      "src/devtools/resources/filesystem/docs/csv.md",
+      "src/devtools/resources/filesystem/docs/io.md",
+      "src/devtools/resources/filesystem/docs/json.md",
+      "src/devtools/resources/filesystem/docs/markdown.md",
+      "src/devtools/resources/filesystem/docs/models.md",
+      "src/devtools/resources/filesystem/docs/overview.md",
+      "src/devtools/resources/filesystem/docs/roadmap.md",
+      "src/devtools/resources/filesystem/errors.py",
+      "src/devtools/resources/filesystem/models/__init__.py",
+      "src/devtools/resources/filesystem/models/base.py",
+      "src/devtools/resources/filesystem/models/binary.py",
+      "src/devtools/resources/filesystem/models/csv.py",
+      "src/devtools/resources/filesystem/models/json/__init__.py",
+      "src/devtools/resources/filesystem/models/json/base.py",
+      "src/devtools/resources/filesystem/models/json/conversion.py",
+      "src/devtools/resources/filesystem/models/json/list.py",
+      "src/devtools/resources/filesystem/models/json/object.py",
+      "src/devtools/resources/filesystem/models/json/scalar.py",
+      "src/devtools/resources/filesystem/models/markdown/__init__.py",
+      "src/devtools/resources/filesystem/models/markdown/file.py",
+      "src/devtools/resources/filesystem/models/markdown/heading.py",
+      "src/devtools/resources/filesystem/models/markdown/section.py",
+      "src/devtools/resources/filesystem/models/text.py",
+      "src/devtools/resources/filesystem/reading.py",
+      "src/devtools/resources/filesystem/resolution.py",
+      "src/devtools/resources/filesystem/writing.py",
+      "src/devtools/tools/__init__.py",
+      "src/devtools/tools/command.py",
+      "src/devtools/tools/disclosure.py",
+      "src/devtools/tools/docs/overview.md",
+      "src/devtools/tools/errors.py",
+      "src/devtools/tools/execution.py",
+      "src/devtools/tools/filesystem.py",
+      "src/devtools/tools/protocols.py",
+      "tests/__init__.py",
+      "tests/agents/__init__.py",
+      "tests/agents/conversation/__init__.py",
+      "tests/agents/conversation/history/__init__.py",
+      "tests/agents/conversation/history/test_history.py",
+      "tests/agents/conversation/message/__init__.py",
+      "tests/agents/conversation/message/test_message.py",
+      "tests/agents/conversation/test_live.py",
+      "tests/agents/conversation/test_session.py",
+      "tests/agents/conversation/test_session_id.py",
+      "tests/agents/integrations/__init__.py",
+      "tests/agents/integrations/codex/__init__.py",
+      "tests/agents/integrations/codex/test_agent.py",
+      "tests/agents/integrations/codex/test_live.py",
+      "tests/agents/integrations/codex/test_parsing.py",
+      "tests/context/__init__.py",
+      "tests/context/python/__init__.py",
+      "tests/context/python/function/__init__.py",
+      "tests/context/python/function/test_candidates.py",
+      "tests/context/python/function/test_cross_resource_pipeline.py",
+      "tests/context/python/function/test_declaration_aggregation.py",
+      "tests/context/python/function/test_declarations.py",
+      "tests/context/python/function/test_disclosure.py",
+      "tests/context/python/function/test_materialization.py",
+      "tests/context/python/function/test_rendering.py",
+      "tests/context/python/function/test_request_assembly.py",
+      "tests/context/python/function/test_resource_selection.py",
+      "tests/context/python/function/test_retrieval.py",
+      "tests/context/python/test_source_candidacy.py",
+      "tests/context/repository/__init__.py",
+      "tests/context/repository/test_corpus.py",
+      "tests/context/repository/test_discovery.py",
+      "tests/context/repository/test_document.py",
+      "tests/context/repository/test_observation.py",
+      "tests/context/retrieval/__init__.py",
+      "tests/context/retrieval/lexical/__init__.py",
+      "tests/context/retrieval/lexical/_helpers.py",
+      "tests/context/retrieval/lexical/test_analysis.py",
+      "tests/context/retrieval/lexical/test_bm25.py",
+      "tests/context/retrieval/lexical/test_evaluation.py",
+      "tests/context/retrieval/lexical/test_index.py",
+      "tests/context/retrieval/lexical/test_statistics.py",
+      "tests/core/__init__.py",
+      "tests/core/conversion/__init__.py",
+      "tests/core/conversion/test_conversion.py",
+      "tests/core/identity/__init__.py",
+      "tests/core/identity/test_models.py",
+      "tests/core/paths/__init__.py",
+      "tests/core/paths/test_errors.py",
+      "tests/core/paths/test_resolution.py",
+      "tests/core/paths/test_resolved_path.py",
+      "tests/core/regex/__init__.py",
+      "tests/core/regex/test_models.py",
+      "tests/core/regex/test_search.py",
+      "tests/core/system/__init__.py",
+      "tests/core/system/test_detection.py",
+      "tests/core/system/test_models.py",
+      "tests/core/time/__init__.py",
+      "tests/core/time/test_models.py",
+      "tests/core/time/test_parsing.py",
+      "tests/core/time/test_timing.py",
+      "tests/execution/__init__.py",
+      "tests/execution/test_interaction_attempt.py",
+      "tests/execution/test_runtime.py",
+      "tests/experiments/__init__.py",
+      "tests/experiments/qwen/__init__.py",
+      "tests/experiments/qwen/test_patch_proposal_worker.py",
+      "tests/experiments/qwen/test_read_experiment.py",
+      "tests/experiments/qwen/test_two_action_read_only_experiment.py",
+      "tests/experiments/test_worker_story.py",
+      "tests/models/__init__.py",
+      "tests/models/benchmarks/__init__.py",
+      "tests/models/benchmarks/test_models.py",
+      "tests/models/benchmarks/test_runner.py",
+      "tests/models/benchmarks/test_storage.py",
+      "tests/models/interaction/__init__.py",
+      "tests/models/interaction/providers/__init__.py",
+      "tests/models/interaction/providers/test_llama_cpp.py",
+      "tests/models/interaction/test_models.py",
+      "tests/models/interaction/test_protocols.py",
+      "tests/models/interaction/test_tools.py",
+      "tests/models/serving/__init__.py",
+      "tests/models/serving/test_huggingface.py",
+      "tests/models/serving/test_llama_cpp.py",
+      "tests/models/serving/test_vllm.py",
+      "tests/observability/__init__.py",
+      "tests/observability/evidence/__init__.py",
+      "tests/observability/evidence/test_inspection.py",
+      "tests/observability/evidence/test_model_interaction.py",
+      "tests/observability/evidence/test_protocols.py",
+      "tests/observability/evidence/test_terminal.py",
+      "tests/persistence/__init__.py",
+      "tests/persistence/test_json.py",
+      "tests/persistence/test_sqlite.py",
+      "tests/resources/__init__.py",
+      "tests/resources/commands/__init__.py",
+      "tests/resources/commands/test_errors.py",
+      "tests/resources/commands/test_events.py",
+      "tests/resources/commands/test_execution.py",
+      "tests/resources/commands/test_handle.py",
+      "tests/resources/commands/test_models.py",
+      "tests/resources/filesystem/__init__.py",
+      "tests/resources/filesystem/codecs/__init__.py",
+      "tests/resources/filesystem/codecs/test_csv.py",
+      "tests/resources/filesystem/codecs/test_json.py",
+      "tests/resources/filesystem/codecs/test_markdown.py",
+      "tests/resources/filesystem/codecs/test_text.py",
+      "tests/resources/filesystem/models/__init__.py",
+      "tests/resources/filesystem/models/csv/__init__.py",
+      "tests/resources/filesystem/models/csv/test_dialect.py",
+      "tests/resources/filesystem/models/csv/test_file.py",
+      "tests/resources/filesystem/models/csv/test_row.py",
+      "tests/resources/filesystem/models/markdown/__init__.py",
+      "tests/resources/filesystem/models/markdown/test_file.py",
+      "tests/resources/filesystem/models/markdown/test_heading.py",
+      "tests/resources/filesystem/models/markdown/test_section.py",
+      "tests/resources/filesystem/test_json_conversion.py",
+      "tests/resources/filesystem/test_json_models.py",
+      "tests/resources/filesystem/test_models.py",
+      "tests/resources/filesystem/test_reading.py",
+      "tests/resources/filesystem/test_resolution.py",
+      "tests/resources/filesystem/test_writing.py",
+      "tests/scripts/qwen/test_llama_cpp_profile.py",
+      "tests/scripts/qwen/test_llama_cpp_service.py",
+      "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+      "tests/scripts/qwen/test_python_function_context_acceptance.py",
+      "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+      "tests/scripts/qwen/test_two_read_acceptance.py",
+      "tests/scripts/test_vllm_benchmark_driver.py",
+      "tests/tools/__init__.py",
+      "tests/tools/test_command.py",
+      "tests/tools/test_execution.py",
+      "tests/tools/test_filesystem.py",
+      "tests/tools/test_runtime_integration.py"
+    ]
+  },
+  "repository_root": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools",
+  "schema": "devtools-content-only-bm25-repository-benchmark-v1",
+  "scope": "bounded real-repository content-only BM25 baseline"
+}

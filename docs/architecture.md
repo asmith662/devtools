@@ -362,6 +362,20 @@ fixture-local gaps for identifier decomposition, path-only signals, package
 proximity, and lexical distractors. These are controlled findings, not a claim
 about real-repository retrieval quality or BM25 sufficiency.
 
+A repository-owned operational benchmark can now run that unchanged pipeline
+against a bounded, explicitly selected corpus from the checked-out `devtools`
+repository. It uses manually designated native resource addresses as case-local
+ground truth, retains each ranked result and recovered/missed resources, and
+reports same-`K` Hit@K, mean Recall@K, and MRR in a caller-selected JSON report.
+Its `.py`, `.md`, `.toml`, `.yaml`, and `.yml` eligibility and exclusions for
+Git internals, virtual environments, caches, generated output, historical
+dossiers, and benchmark self-input are operational benchmark policy—not
+repository classification or relevance semantics. It measures this baseline's
+real-repository behavior without rescoring it or adding identifier, path,
+package, structural, semantic, hybrid, Context, or model behavior. Its findings
+are a small inspectable checkpoint for choosing a later signal, not a broad
+retrieval-quality conclusion.
+
 For the bounded Python-function path, a separate purpose-sensitive projection
 can nominate discovered addresses ending in the exact, case-sensitive `.py`
 suffix for source observation. It consumes only the completed discovery value,
