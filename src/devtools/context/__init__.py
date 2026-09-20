@@ -30,6 +30,9 @@ from devtools.context.python_function_rendering import (
     RenderedPythonFunctionContext,
     render_materialized_python_function_context,
 )
+from devtools.context.python_function_request_assembly import (
+    assemble_python_function_context_model_request,
+)
 from devtools.context.python_function_retrieval import (
     PythonFunctionExactNameQuery,
     PythonFunctionExactNameRelevanceEvidence,
@@ -77,6 +80,7 @@ __all__ = [
     "RepositoryResourceOccurrence",
     "RepositorySnapshot",
     "RepositorySnapshotId",
+    "assemble_python_function_context_model_request",
     "derive_python_function_declarations",
     "disclose_python_function_exact_name_retrieval",
     "materialize_python_function_disclosure_source",

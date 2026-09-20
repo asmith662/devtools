@@ -81,8 +81,12 @@ snapshot/resource correspondence, and adds exact source segments using the
 established UTF-8 byte-coordinate contract. A purpose-specific renderer now
 produces deterministic model-facing Context text from those materialized values
 while preserving exact source, order, duplicates, and correlation, without
-constructing a model message or ModelRequest. General planning, compilation,
-representation, materialization, and assembly remain unimplemented.
+constructing a model message or ModelRequest. A bounded assembly operation now
+accepts an existing caller-owned `ModelRequest`, preserves its role and other
+request semantics, and places the unchanged rendered Context after its distinct
+unchanged primary task in a new request. It performs no model invocation or
+Conversation mutation. General planning, compilation, representation,
+materialization, and assembly remain unimplemented.
 
 The focused external-semantic-state research has been reconciled into ADR-0002.
 External semantic inputs already fit through the open heterogeneous dependency,

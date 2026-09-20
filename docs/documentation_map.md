@@ -70,11 +70,14 @@ identified snapshot state and adds exact UTF-8 source segments without
 filesystem reacquisition or parsing. A purpose-specific renderer transforms
 that materialized Context into deterministic human-readable text while
 preserving exact source, order, duplicates, and correlation; it does not create
-a model message or request. The domain does not provide general repository
-discovery, capability/execution infrastructure, broader retrieval, a generic
-Context compiler, or ModelRequest assembly. Current durable conversation
-semantics remain in `agents.conversation`, and `context` does not own former
-Message/History/Session semantics.
+a model message or request. A bounded composition operation separately accepts
+an existing caller-owned `ModelRequest`, preserves its request semantics, and
+places that rendered Context after its distinct primary task in a new request
+without execution or Conversation mutation. The domain does not provide general
+repository discovery, capability/execution infrastructure, broader retrieval,
+a generic Context compiler, or general ModelRequest assembly. Current durable
+conversation semantics remain in `agents.conversation`, and `context` does not
+own former Message/History/Session semantics.
 
 The `orchestration`, `governance`, and `evaluation` domains remain recognized
 sparse namespaces without reusable implementation APIs. Current accepted

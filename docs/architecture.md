@@ -313,8 +313,13 @@ metadata, and each unchanged exact source segment. It retains correlation to
 the materialized Context and performs no upstream work or model-specific request
 construction. Successful retrieval zero becomes a successful zero-item
 disclosure, materialization, and rendering. These local Context artifacts are
-not a generic DisclosurePlan/compiler, ranking result, prompt protocol,
-model-input assembly, or ModelRequest.
+not a generic DisclosurePlan/compiler, ranking result, or prompt protocol. A
+bounded assembly operation can accept an existing caller-owned `ModelRequest`
+whose `Prompt` contains the primary task, preserve its role and all other request
+semantics, and construct a new `ModelRequest` whose prompt visibly places the
+unchanged rendered Context after the unchanged task. It does not mutate
+Conversation, invoke ModelInteraction, or retain Context provenance in the
+request. General model-input assembly remains unimplemented.
 
 Filesystem Resources remain access mechanisms, not Repository identity. Python
 analysis beyond that declaration scope, capability/execution infrastructure,
