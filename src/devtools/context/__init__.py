@@ -63,6 +63,11 @@ from devtools.context.repository import (
     observe_repository_resource,
     observe_repository_resources,
 )
+from devtools.context.repository_discovery import (
+    RepositoryResourceDiscovery,
+    RepositoryResourceDiscoveryError,
+    discover_repository_resource_addresses,
+)
 
 __all__ = [
     "ContentIdentity",
@@ -97,6 +102,8 @@ __all__ = [
     "RepositoryId",
     "RepositoryObservationError",
     "RepositoryResourceAddress",
+    "RepositoryResourceDiscovery",
+    "RepositoryResourceDiscoveryError",
     "RepositoryResourceOccurrence",
     "RepositorySnapshot",
     "RepositorySnapshotId",
@@ -104,6 +111,7 @@ __all__ = [
     "assemble_python_function_context_model_request",
     "derive_python_function_declarations",
     "disclose_python_function_exact_name_retrieval",
+    "discover_repository_resource_addresses",
     "materialize_python_function_disclosure_source",
     "observe_repository_resource",
     "observe_repository_resources",

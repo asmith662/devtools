@@ -267,6 +267,20 @@ decomposition and purpose-relative composite disclosure are downstream concerns
 under ADR-0003/ADR-0004; neither makes resulting demands or disclosure units
 into RepositorySubjects.
 
+Current `context` implementation includes bounded recursive discovery of regular
+file addresses beneath an explicit resolved root. The operation is correlated
+to a logical Repository, requires positive maximum counts for both examined
+filesystem entries and discovered regular resources, skips symbolic links and
+Windows junctions, and returns canonical repository-relative addresses in
+lexical order. It uses filesystem metadata without reading file contents.
+Discovery does not create resource occurrences, content identities, or a
+RepositorySnapshot, and it assigns no language or relevance semantics.
+Successful empty discovery applies only to that root and local mechanism; a
+required traversal failure or exceeded bound publishes no partial result. These
+recursion, link, and bound choices are local implementation semantics, and the
+sequential metadata traversal makes no atomic or race-free filesystem claim.
+They are not universal Repository architecture.
+
 Current `context` implementation includes bounded observation of a finite,
 explicitly addressed collection of UTF-8 text resources. It establishes nominal
 Repository identity, repository-relative resource occurrences,

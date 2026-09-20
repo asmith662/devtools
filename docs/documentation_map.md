@@ -59,8 +59,14 @@
 - Tools: [overview](../src/devtools/tools/docs/overview.md).
 
 The `context` domain exposes narrow Repository Intelligence APIs. Its current
-implementation observes a finite caller-declared collection of UTF-8 text
-resources into identified snapshot state. For an exact Python function-name
+implementation can recursively discover regular-file addresses beneath an
+explicit root using metadata only, caller-supplied maximum counts for examined
+filesystem entries and discovered resources, lexical ordering, and conservative
+link skipping. Discovery produces addresses, not contents, occurrences,
+language classification, relevance, or snapshot state. The separate observation
+operation reads a finite caller-declared
+collection of UTF-8 text resources into identified snapshot state. For an exact
+Python function-name
 purpose, a bounded pre-analysis selector filters an explicit caller-ordered set
 of those resources by exact stdlib `NAME` token presence. Its candidates are
 purpose-relative predictions with expected false positives, not declaration
