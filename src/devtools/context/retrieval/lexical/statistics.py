@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, ClassVar
 
 if TYPE_CHECKING:
-    from devtools.context.retrieval.lexical import (
+    from devtools.context.retrieval.lexical.analysis import (
         RepositoryTextLexicalCollectionAnalysis,
         RepositoryTextLexicalDocumentAnalysis,
         RepositoryTextLexicalObservation,

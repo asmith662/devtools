@@ -41,6 +41,17 @@ persistence representation, lifecycle concept, or provider/model abstraction:
 Do not read the entire repository for bounded work. Read enough to establish
 the owner, boundary, and existing mechanism.
 
+Prefer package structure over families of repeated filename prefixes. Multiple
+sibling modules sharing a stable domain prefix are strong evidence that the
+prefix belongs in a package (for example, `lexical_analysis.py`,
+`lexical_statistics.py`, and `lexical_index.py` would normally become
+`lexical/analysis.py`, `lexical/statistics.py`, and `lexical/index.py`). Before
+adding a production module, inspect adjacent ownership and consider whether its
+filename prefix is a missing package. Use responsibility-focused leaf names;
+avoid both flat prefix sprawl and gratuitously deep packages containing only a
+trivial module. Test package organization should normally mirror production
+ownership.
+
 ## Reuse canonical primitives and substrates
 
 If the repository provides a canonical primitive or substrate for a
