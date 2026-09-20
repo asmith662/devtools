@@ -18,6 +18,8 @@ from enum import Enum
 from typing import TYPE_CHECKING, ClassVar, cast
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
+
     from devtools.context.repository import (
         RepositoryId,
         RepositoryResourceAddress,
@@ -219,6 +221,22 @@ class PythonFunctionDeclarationAnalysis:
     coverage: PythonFunctionDeclarationCoverage
 
 
+@dataclass(frozen=True, slots=True)
+class PythonFunctionDeclarationAnalysisAggregate:
+    """Compose ordered independent per-resource declaration analyses."""
+
+    analyses: tuple[PythonFunctionDeclarationAnalysis, ...]
+
+    @property
+    def declarations(self) -> tuple[PythonFunctionDeclarationKnowledge, ...]:
+        """Expose existing declaration knowledge in analysis and source order."""
+        return tuple(
+            declaration
+            for analysis in self.analyses
+            for declaration in analysis.declarations
+        )
+
+
 class PythonModuleParseError(Exception):
     """Report a failed parse without publishing successful coverage."""
 
@@ -326,6 +344,40 @@ def derive_python_function_declarations(
         coverage=PythonFunctionDeclarationCoverage(
             derivation_identity=derivation.identity,
             declaration_count=len(immutable_declarations),
+        ),
+    )
+
+
+def analyze_python_function_declaration_resources(
+    snapshot: RepositorySnapshot,
+    *,
+    resource_addresses: Sequence[RepositoryResourceAddress],
+) -> PythonFunctionDeclarationAnalysisAggregate:
+    """Compose analyses for a caller-ordered explicit resource selection.
+
+    Every address must identify a distinct occurrence in ``snapshot``. Each
+    selected occurrence receives its own existing per-resource derivation and
+    coverage. A selection or parse failure returns no aggregate; successful
+    results preserve caller order and retain the original knowledge values.
+    """
+    selected_addresses = tuple(resource_addresses)
+    if not selected_addresses:
+        msg = "Declaration analysis requires at least one resource address."
+        raise ValueError(msg)
+    if len(set(selected_addresses)) != len(selected_addresses):
+        msg = "Declaration analysis resource addresses must be distinct."
+        raise ValueError(msg)
+
+    for address in selected_addresses:
+        snapshot.resource_at(address)
+
+    return PythonFunctionDeclarationAnalysisAggregate(
+        analyses=tuple(
+            derive_python_function_declarations(
+                snapshot,
+                resource_address=address,
+            )
+            for address in selected_addresses
         ),
     )
 

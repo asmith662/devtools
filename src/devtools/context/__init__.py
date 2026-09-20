@@ -3,6 +3,7 @@
 
 from devtools.context.python_declarations import (
     PythonFunctionDeclarationAnalysis,
+    PythonFunctionDeclarationAnalysisAggregate,
     PythonFunctionDeclarationCoverage,
     PythonFunctionDeclarationDerivation,
     PythonFunctionDeclarationDerivationDefinition,
@@ -13,6 +14,7 @@ from devtools.context.python_declarations import (
     PythonModuleResourceDependency,
     PythonSourceOccurrence,
     PythonSourceRange,
+    analyze_python_function_declaration_resources,
     derive_python_function_declarations,
 )
 from devtools.context.python_function_disclosure import (
@@ -57,6 +59,7 @@ __all__ = [
     "MaterializedPythonFunctionContext",
     "MaterializedPythonFunctionDeclaration",
     "PythonFunctionDeclarationAnalysis",
+    "PythonFunctionDeclarationAnalysisAggregate",
     "PythonFunctionDeclarationCoverage",
     "PythonFunctionDeclarationDerivation",
     "PythonFunctionDeclarationDerivationDefinition",
@@ -81,6 +84,7 @@ __all__ = [
     "RepositoryResourceOccurrence",
     "RepositorySnapshot",
     "RepositorySnapshotId",
+    "analyze_python_function_declaration_resources",
     "assemble_python_function_context_model_request",
     "derive_python_function_declarations",
     "disclose_python_function_exact_name_retrieval",

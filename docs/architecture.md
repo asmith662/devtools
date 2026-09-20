@@ -290,6 +290,11 @@ syntax failure publishes neither successful coverage nor declaration knowledge.
 Subjects are snapshot-local and distinct from their AST nodes, declared names,
 and UTF-8-byte-column source occurrences. This local representation does not
 select universal subject, source, derivation, coverage, or failure architecture.
+A bounded aggregate can apply that existing derivation independently to a
+caller-ordered, nonempty set of distinct selected resource addresses. It retains
+each per-resource analysis and flattens their existing knowledge in selection
+and source order for downstream retrieval. It is not a synthetic derivation or
+aggregate coverage claim; selection or parse failure returns no aggregate.
 
 The first bounded retrieval operation consumes supplied declaration knowledge
 and filters it by exact declared-name equality. Its nonempty name query is the

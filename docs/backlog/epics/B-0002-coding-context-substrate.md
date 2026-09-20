@@ -192,6 +192,12 @@ declarations, lambda declarations, conditional runtime availability, or import
 resolution. Broader proposition vocabulary and production models remain open
 under ADR-0002.
 
+A bounded multi-resource analysis composition can now apply those independent
+derivations to a nonempty, distinct, caller-ordered address selection. It retains
+per-resource coverage and exposes the original declaration knowledge in
+selection and source order. The composition is not a new derivation, aggregate
+coverage claim, resource discovery mechanism, or partial-result architecture.
+
 The target was selected for architectural information value per unit of
 implementation complexity. It pressures RepositorySnapshot,
 ResourceOccurrence, ContentIdentity where appropriate, SourceOccurrence,
