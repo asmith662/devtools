@@ -9,13 +9,11 @@ from typing import TYPE_CHECKING, ClassVar
 if TYPE_CHECKING:
     from collections.abc import Sequence
 
-    from devtools.context.python_declarations import (
+    from devtools.context.python.function.declarations import (
         PythonFunctionDeclarationKnowledge,
     )
-    from devtools.context.repository import (
-        RepositoryResourceAddress,
-        RepositorySnapshotId,
-    )
+    from devtools.context.repository.resource import RepositoryResourceAddress
+    from devtools.context.repository.snapshot import RepositorySnapshotId
 
 
 @dataclass(frozen=True, slots=True)
@@ -69,9 +67,7 @@ class PythonFunctionExactNameResourceSelection:
     @property
     def resource_addresses(self) -> tuple[RepositoryResourceAddress, ...]:
         """Expose selected addresses in first retrieval-match order."""
-        return tuple(
-            selected.resource_address for selected in self.selected_resources
-        )
+        return tuple(selected.resource_address for selected in self.selected_resources)
 
 
 def retrieve_python_functions_by_exact_name(

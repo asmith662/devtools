@@ -221,14 +221,16 @@ def test_materialization_does_not_reacquire_parse_derive_or_retrieve(
         msg = "materialization attempted an upstream operation"
         raise AssertionError(msg)
 
-    monkeypatch.setattr("devtools.context.repository.read", forbidden)
-    monkeypatch.setattr("devtools.context.python_declarations.ast.parse", forbidden)
+    monkeypatch.setattr("devtools.context.repository.observation.read", forbidden)
     monkeypatch.setattr(
-        "devtools.context.python_declarations.derive_python_function_declarations",
+        "devtools.context.python.function.declarations.ast.parse", forbidden,
+    )
+    monkeypatch.setattr(
+        "devtools.context.python.function.declarations.derive_python_function_declarations",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_retrieval.retrieve_python_functions_by_exact_name",
+        "devtools.context.python.function.retrieval.retrieve_python_functions_by_exact_name",
         forbidden,
     )
 
@@ -273,7 +275,7 @@ def test_multi_resource_range_is_applied_only_to_its_addressed_resource(
         msg = "failed materialization attempted filesystem reacquisition"
         raise AssertionError(msg)
 
-    monkeypatch.setattr("devtools.context.repository.read", forbidden_read)
+    monkeypatch.setattr("devtools.context.repository.observation.read", forbidden_read)
 
     absent_occurrence = replace(
         disclosure_item.source_occurrence,

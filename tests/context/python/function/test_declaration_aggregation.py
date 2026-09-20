@@ -67,7 +67,7 @@ def test_aggregates_independent_analyses_for_caller_ordered_resources(
         msg = "aggregation attempted repository acquisition"
         raise AssertionError(msg)
 
-    monkeypatch.setattr("devtools.context.repository.read", forbidden_read)
+    monkeypatch.setattr("devtools.context.repository.observation.read", forbidden_read)
 
     aggregate = analyze_python_function_declaration_resources(
         snapshot,
@@ -178,8 +178,7 @@ def test_all_selected_exhaustive_zero_produces_empty_combined_knowledge(
     assert len(aggregate.analyses) == len(snapshot.resources)
     assert all(analysis.coverage.IS_EXHAUSTIVE for analysis in aggregate.analyses)
     assert all(
-        analysis.coverage.declaration_count == 0
-        for analysis in aggregate.analyses
+        analysis.coverage.declaration_count == 0 for analysis in aggregate.analyses
     )
     assert aggregate.declarations == ()
 
@@ -197,7 +196,7 @@ def test_invalid_aggregate_selections_fail_before_parsing(
         raise AssertionError(msg)
 
     monkeypatch.setattr(
-        "devtools.context.python_declarations.ast.parse",
+        "devtools.context.python.function.declarations.ast.parse",
         forbidden_parse,
     )
     with pytest.raises(ValueError, match="at least one"):

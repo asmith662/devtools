@@ -161,8 +161,10 @@ def test_retrieval_does_not_read_or_parse_source(
         msg = "retrieval attempted repository acquisition or Python parsing"
         raise AssertionError(msg)
 
-    monkeypatch.setattr("devtools.context.repository.read", forbidden)
-    monkeypatch.setattr("devtools.context.python_declarations.ast.parse", forbidden)
+    monkeypatch.setattr("devtools.context.repository.observation.read", forbidden)
+    monkeypatch.setattr(
+        "devtools.context.python.function.declarations.ast.parse", forbidden,
+    )
 
     result = retrieve_python_functions_by_exact_name(
         declarations=analysis.declarations,

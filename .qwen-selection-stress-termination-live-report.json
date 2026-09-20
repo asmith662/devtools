@@ -1,0 +1,158 @@
+{
+  "accepted_tool_cycles": [],
+  "canonical_accepted_patch": null,
+  "failure": {
+    "category": "UNGROUNDED_FINAL_RESPONSE",
+    "error_message": "Final patch remained ungrounded after the inspection correction.",
+    "error_type": "UngroundedFinalResponseError"
+  },
+  "final_model_response": "",
+  "fixture": {
+    "cleanup": "completed",
+    "id": "selection-stress",
+    "logical_structure": [
+      "docs/label-conventions.md",
+      "src/labels.py",
+      "src/display_labels.py",
+      "src/label_slug.py",
+      "src/unrelated.py",
+      "tests/test_labels.py",
+      "tests/test_display_labels.py",
+      "tests/test_label_slug.py",
+      "tests/test_unrelated.py"
+    ],
+    "maximum_output_tokens": 512
+  },
+  "grounding": {
+    "acquired_read_paths": [],
+    "corrections": [
+      {
+        "acquired_paths": [],
+        "follow_up": {
+          "content": "Continue this task:\nMake label matching case-insensitive while preserving existing trimming behavior. Repository contents are unknown: inspect the repository before proposing a patch, and read the relevant implementation and focused test. Return exactly one unified diff and make no unrelated changes.\n\nRepository contents are not known yet. Inspect the repository with the available read-only actions, read the relevant implementation and focused test, then return the final unified diff.",
+          "role": "system",
+          "source": "runtime"
+        },
+        "premature_response": {
+          "content": "",
+          "role": "assistant",
+          "source": "qwen"
+        }
+      }
+    ],
+    "required_read_paths": [
+      "src/labels.py",
+      "tests/test_labels.py"
+    ]
+  },
+  "history": [
+    {
+      "content": "Make label matching case-insensitive while preserving existing trimming behavior. Repository contents are unknown: inspect the repository before proposing a patch, and read the relevant implementation and focused test. Return exactly one unified diff and make no unrelated changes.",
+      "role": "user",
+      "source": "qwen-b0009-live-acceptance"
+    },
+    {
+      "content": "",
+      "role": "assistant",
+      "source": "qwen"
+    },
+    {
+      "content": "Continue this task:\nMake label matching case-insensitive while preserving existing trimming behavior. Repository contents are unknown: inspect the repository before proposing a patch, and read the relevant implementation and focused test. Return exactly one unified diff and make no unrelated changes.\n\nRepository contents are not known yet. Inspect the repository with the available read-only actions, read the relevant implementation and focused test, then return the final unified diff.",
+      "role": "system",
+      "source": "runtime"
+    },
+    {
+      "content": "",
+      "role": "assistant",
+      "source": "qwen"
+    }
+  ],
+  "initial_task": {
+    "content": "Make label matching case-insensitive while preserving existing trimming behavior. Repository contents are unknown: inspect the repository before proposing a patch, and read the relevant implementation and focused test. Return exactly one unified diff and make no unrelated changes.",
+    "role": "user",
+    "source": "qwen-b0009-live-acceptance"
+  },
+  "initial_task_secrecy": {
+    "contains_target_filename": false,
+    "contains_target_path": false,
+    "contains_test_filename": false,
+    "contains_test_path": false
+  },
+  "measurements": {
+    "cumulative_reported_model_usage": {
+      "input_tokens": 229,
+      "input_tokens_reported_turns": 2,
+      "output_tokens": 1024,
+      "output_tokens_reported_turns": 2,
+      "total_tokens": 1253,
+      "total_tokens_reported_turns": 2
+    },
+    "directory_listing_count": 0,
+    "file_read_count": 0,
+    "model_context_capacity_tokens": 32768,
+    "model_termination_by_turn": [
+      "output_limit",
+      "output_limit"
+    ],
+    "model_turn_count": 2,
+    "model_usage_by_turn": [
+      {
+        "input_context_utilization": 0.002960205078125,
+        "input_tokens": 97,
+        "output_tokens": 512,
+        "total_tokens": 609
+      },
+      {
+        "input_context_utilization": 0.0040283203125,
+        "input_tokens": 132,
+        "output_tokens": 512,
+        "total_tokens": 644
+      }
+    ],
+    "repeated_path_count": 0,
+    "repository_projection_characters": 0,
+    "run_duration_seconds": 43.934126,
+    "selection": {
+      "acquisition_precision": null,
+      "clearly_irrelevant_files_read": [],
+      "plausible_unnecessary_files_read": [],
+      "required_files_read": [],
+      "required_read_coverage": 0.0
+    },
+    "tool_action_budget": 7,
+    "tool_action_budget_used": 0,
+    "unique_path_count": 0
+  },
+  "model_responses": [
+    {
+      "content": "",
+      "role": "assistant",
+      "source": "qwen"
+    },
+    {
+      "content": "",
+      "role": "assistant",
+      "source": "qwen"
+    }
+  ],
+  "patch_evaluation": {
+    "applied": null,
+    "behavior_valid": null,
+    "parse_valid": null,
+    "permitted_target": null,
+    "reason": "not reached",
+    "terminal_newline_canonicalized": null
+  },
+  "persistent_service": {
+    "error_message": null,
+    "error_type": null,
+    "status": "state: READY\r\nendpoint: http://127.0.0.1:8080\r\nserved model: qwen38-local\r\ncontainer name: devtools-qwen38-llama-cpp\r\ncontainer id: 71c46aa469a1d141a181f7b3513922127f3b86f46856e7429a391886fd6d4b57\r\nexpected profile fingerprint: 03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1\r\nobserved profile fingerprint: 03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1\r\nprofile matches: True\r\ncontainer running: True\r\nmodel ready: True"
+  },
+  "schema": "qwen-b0009-live-acceptance/3",
+  "tool_executions": {
+    "actions": [],
+    "count": 0,
+    "relative_paths": []
+  },
+  "verdict": "FAIL \u2014 UNGROUNDED_FINAL_RESPONSE"
+}

@@ -12,7 +12,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, ClassVar
 
 if TYPE_CHECKING:
-    from devtools.context.python_function_materialization import (
+    from devtools.context.python.function.materialization import (
         MaterializedPythonFunctionContext,
         MaterializedPythonFunctionDeclaration,
     )

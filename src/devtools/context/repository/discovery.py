@@ -15,11 +15,11 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import TYPE_CHECKING, ClassVar
 
-from devtools.context.repository import RepositoryResourceAddress
+from devtools.context.repository.resource import RepositoryResourceAddress
 from devtools.core.paths import ResolvedPath, resolve_path
 
 if TYPE_CHECKING:
-    from devtools.context.repository import Repository, RepositoryId
+    from devtools.context.repository.identity import Repository, RepositoryId
 
 
 class RepositoryResourceDiscoveryError(Exception):

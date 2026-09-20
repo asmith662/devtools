@@ -281,6 +281,14 @@ recursion, link, and bound choices are local implementation semantics, and the
 sequential metadata traversal makes no atomic or race-free filesystem claim.
 They are not universal Repository architecture.
 
+For the bounded Python-function path, a separate purpose-sensitive projection
+can nominate discovered addresses ending in the exact, case-sensitive `.py`
+suffix for source observation. It consumes only the completed discovery value,
+preserves discovery order and original address values, and performs no
+filesystem or content access. This address convention is evidence of candidacy,
+not proof of Python contents, successful UTF-8 observation, task relevance, or
+declaration knowledge. Repository discovery itself remains language-neutral.
+
 Current `context` implementation includes bounded observation of a finite,
 explicitly addressed collection of UTF-8 text resources. It establishes nominal
 Repository identity, repository-relative resource occurrences,

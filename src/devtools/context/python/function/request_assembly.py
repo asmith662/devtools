@@ -15,7 +15,7 @@ from typing import TYPE_CHECKING
 from devtools.models.interaction import ModelRequest, Prompt
 
 if TYPE_CHECKING:
-    from devtools.context.python_function_rendering import (
+    from devtools.context.python.function.rendering import (
         RenderedPythonFunctionContext,
     )
 

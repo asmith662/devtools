@@ -1,0 +1,44 @@
+{
+  "fixture": {
+    "expected_value": "RI_NONCE_FA2DC958A0E044A5ABE0F8E4AC8CC529",
+    "queried_function_name": "selected_function",
+    "repository_snapshot_id": "03f0110d69236da3e97d27fdab8d2db0aafdb827e7b8d2230495820d3fb7df1a",
+    "resource_address": "module.py",
+    "task": "Read the supporting repository Context supplied after this task. Return only the exact string value returned by the direct module-body function named selected_function. Do not include quotes, code fences, or explanation. Do not execute the source.",
+    "task_contains_expected_value": false
+  },
+  "measurements": {
+    "assembled_prompt_utf8_bytes": 1317,
+    "model_usage": {
+      "input_tokens": 314,
+      "output_tokens": 31,
+      "total_tokens": 345
+    },
+    "rendered_context_utf8_bytes": 824,
+    "retrieval_match_count": 1
+  },
+  "model": {
+    "endpoint": "http://127.0.0.1:8080",
+    "maximum_output_tokens": 64,
+    "provider": "llama.cpp",
+    "response_source": "qwen-b0002-context-acceptance",
+    "served_name": "qwen38-local",
+    "thinking_enabled": false
+  },
+  "model_capabilities_exposed": {
+    "repository_filesystem": false,
+    "repository_search": false,
+    "shell": false,
+    "tools": false
+  },
+  "response": {
+    "exact_acceptance_passed": true,
+    "normalized": "RI_NONCE_FA2DC958A0E044A5ABE0F8E4AC8CC529",
+    "raw": "RI_NONCE_FA2DC958A0E044A5ABE0F8E4AC8CC529",
+    "reasoning_content": null,
+    "termination": "normal_stop"
+  },
+  "schema": "b0002-python-function-context-live-acceptance/1",
+  "scope": "one bounded model consumption of supplied Python-function Context",
+  "verdict": "PASS"
+}

@@ -20,10 +20,12 @@ from typing import TYPE_CHECKING, ClassVar, cast
 if TYPE_CHECKING:
     from collections.abc import Sequence
 
-    from devtools.context.repository import (
-        RepositoryId,
+    from devtools.context.repository.identity import RepositoryId
+    from devtools.context.repository.resource import (
         RepositoryResourceAddress,
         RepositoryResourceOccurrence,
+    )
+    from devtools.context.repository.snapshot import (
         RepositorySnapshot,
         RepositorySnapshotId,
     )
@@ -206,9 +208,7 @@ class PythonFunctionDeclarationCoverage:
     derivation_identity: str
     declaration_count: int
 
-    SCOPE: ClassVar[str] = (
-        "direct-module-body-ast.FunctionDef-or-ast.AsyncFunctionDef"
-    )
+    SCOPE: ClassVar[str] = "direct-module-body-ast.FunctionDef-or-ast.AsyncFunctionDef"
     IS_EXHAUSTIVE: ClassVar[bool] = True
 
 

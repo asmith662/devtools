@@ -73,7 +73,7 @@ def test_selects_matching_resources_without_altering_context_pipeline(
         msg = "post-observation pipeline attempted filesystem acquisition"
         raise AssertionError(msg)
 
-    monkeypatch.setattr("devtools.context.repository.read", forbidden_read)
+    monkeypatch.setattr("devtools.context.repository.observation.read", forbidden_read)
     aggregate = analyze_python_function_declaration_resources(
         snapshot,
         resource_addresses=(addresses["a.py"], addresses["b.py"], addresses["c.py"]),
@@ -87,12 +87,16 @@ def test_selects_matching_resources_without_altering_context_pipeline(
 
     assert selection.retrieval is retrieval
     assert selection.resource_addresses == (addresses["b.py"], addresses["c.py"])
-    assert tuple(
-        selected.snapshot_id for selected in selection.selected_resources
-    ) == (snapshot.id, snapshot.id)
-    assert tuple(
-        selected.supporting_matches[0] for selected in selection.selected_resources
-    ) == retrieval.matches
+    assert tuple(selected.snapshot_id for selected in selection.selected_resources) == (
+        snapshot.id,
+        snapshot.id,
+    )
+    assert (
+        tuple(
+            selected.supporting_matches[0] for selected in selection.selected_resources
+        )
+        == retrieval.matches
+    )
     assert addresses["a.py"] not in selection.resource_addresses
     assert addresses["d.py"] not in selection.resource_addresses
     assert tuple(match.knowledge for match in retrieval.matches) == (
@@ -152,13 +156,15 @@ def test_first_match_order_and_all_support_survive_resource_deduplication(
     selection = select_python_function_resources_from_exact_name_retrieval(retrieval)
 
     assert selection.resource_addresses == (second_address, first_address)
-    assert selection.selected_resources[0].supporting_matches == (
-        retrieval.matches[0],
-    )
+    assert selection.selected_resources[0].supporting_matches == (retrieval.matches[0],)
     assert selection.selected_resources[1].supporting_matches == retrieval.matches[1:]
-    assert tuple(
-        match.knowledge for match in selection.selected_resources[1].supporting_matches
-    ) == aggregate.analyses[1].declarations
+    assert (
+        tuple(
+            match.knowledge
+            for match in selection.selected_resources[1].supporting_matches
+        )
+        == aggregate.analyses[1].declarations
+    )
 
 
 def test_zero_retrieval_produces_successful_zero_resource_selection(
@@ -209,30 +215,32 @@ def test_selection_invokes_no_upstream_or_downstream_operation(
         msg = "resource selection attempted another pipeline operation"
         raise AssertionError(msg)
 
-    monkeypatch.setattr("devtools.context.repository.read", forbidden)
-    monkeypatch.setattr("devtools.context.python_declarations.ast.parse", forbidden)
+    monkeypatch.setattr("devtools.context.repository.observation.read", forbidden)
     monkeypatch.setattr(
-        "devtools.context.python_declarations.derive_python_function_declarations",
+        "devtools.context.python.function.declarations.ast.parse", forbidden,
+    )
+    monkeypatch.setattr(
+        "devtools.context.python.function.declarations.derive_python_function_declarations",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_retrieval.retrieve_python_functions_by_exact_name",
+        "devtools.context.python.function.retrieval.retrieve_python_functions_by_exact_name",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_disclosure.disclose_python_function_exact_name_retrieval",
+        "devtools.context.python.function.disclosure.disclose_python_function_exact_name_retrieval",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_materialization.materialize_python_function_disclosure_source",
+        "devtools.context.python.function.materialization.materialize_python_function_disclosure_source",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_rendering.render_materialized_python_function_context",
+        "devtools.context.python.function.rendering.render_materialized_python_function_context",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_request_assembly.assemble_python_function_context_model_request",
+        "devtools.context.python.function.request_assembly.assemble_python_function_context_model_request",
         forbidden,
     )
 

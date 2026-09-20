@@ -143,22 +143,24 @@ def test_rendering_consumes_only_materialized_context(
         msg = "rendering attempted an upstream operation"
         raise AssertionError(msg)
 
-    monkeypatch.setattr("devtools.context.repository.read", forbidden)
-    monkeypatch.setattr("devtools.context.python_declarations.ast.parse", forbidden)
+    monkeypatch.setattr("devtools.context.repository.observation.read", forbidden)
     monkeypatch.setattr(
-        "devtools.context.python_declarations.derive_python_function_declarations",
+        "devtools.context.python.function.declarations.ast.parse", forbidden,
+    )
+    monkeypatch.setattr(
+        "devtools.context.python.function.declarations.derive_python_function_declarations",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_retrieval.retrieve_python_functions_by_exact_name",
+        "devtools.context.python.function.retrieval.retrieve_python_functions_by_exact_name",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_disclosure.disclose_python_function_exact_name_retrieval",
+        "devtools.context.python.function.disclosure.disclose_python_function_exact_name_retrieval",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_materialization.materialize_python_function_disclosure_source",
+        "devtools.context.python.function.materialization.materialize_python_function_disclosure_source",
         forbidden,
     )
 

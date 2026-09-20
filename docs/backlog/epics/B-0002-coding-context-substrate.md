@@ -199,7 +199,12 @@ addresses from an explicit root using metadata only, lexical ordering, a
 positive resource-count bound, a separate positive examined-entry bound, and
 conservative link skipping. It creates no snapshot, content identity, language
 classification, or relevance claim; observation remains the content-acquisition
-boundary. The caller selects the derivation's direct dependency by its observed
+boundary. A separate bounded, purpose-sensitive address projection now
+nominates exact, case-sensitive `.py` discovery addresses for observation while
+preserving discovery order. That convention is candidacy evidence rather than
+proof of Python contents, successful observation, relevance, or declaration
+knowledge; discovery itself remains language-neutral. The caller selects the
+derivation's direct dependency by its observed
 repository-relative address; other resources in the snapshot are not consumed
 by the derivation. It is not a frozen production representation or a universal
 declaration ontology. It does not claim runtime

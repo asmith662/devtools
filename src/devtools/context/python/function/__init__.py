@@ -1,68 +1,58 @@
 # Copyright (c) 2026
-"""Public Repository Intelligence and bounded Context API."""
+"""Bounded Python-function Repository Intelligence and Context path."""
 
-from devtools.context.python import (
-    PythonSourceAddressCandidate,
-    PythonSourceAddressCandidateEvidence,
-    PythonSourceAddressCandidateSelection,
-    select_python_source_address_candidates,
-)
-from devtools.context.python.function import (
-    MaterializedPythonFunctionContext,
-    MaterializedPythonFunctionDeclaration,
+from devtools.context.python.function.candidates import (
     PythonFunctionAnalysisCandidateResource,
     PythonFunctionAnalysisCandidateSelection,
     PythonFunctionCandidateTokenizationError,
+    PythonFunctionNameTokenCandidateEvidence,
+    select_python_function_analysis_candidates,
+)
+from devtools.context.python.function.declarations import (
     PythonFunctionDeclarationAnalysis,
     PythonFunctionDeclarationAnalysisAggregate,
     PythonFunctionDeclarationCoverage,
     PythonFunctionDeclarationDerivation,
     PythonFunctionDeclarationDerivationDefinition,
-    PythonFunctionDeclarationDisclosureItem,
     PythonFunctionDeclarationKind,
     PythonFunctionDeclarationKnowledge,
-    PythonFunctionExactNameContextDisclosure,
-    PythonFunctionExactNameQuery,
-    PythonFunctionExactNameRelevanceEvidence,
-    PythonFunctionExactNameResourceSelection,
-    PythonFunctionExactNameRetrievalResult,
-    PythonFunctionExactNameSelectedResource,
-    PythonFunctionNameTokenCandidateEvidence,
-    PythonFunctionSourceMaterializationError,
     PythonFunctionSubject,
     PythonModuleParseError,
     PythonModuleResourceDependency,
     PythonSourceOccurrence,
     PythonSourceRange,
-    RenderedPythonFunctionContext,
     analyze_python_function_declaration_resources,
-    assemble_python_function_context_model_request,
     derive_python_function_declarations,
-    disclose_python_function_exact_name_retrieval,
-    materialize_python_function_disclosure_source,
-    render_materialized_python_function_context,
-    retrieve_python_functions_by_exact_name,
-    select_python_function_analysis_candidates,
-    select_python_function_resources_from_exact_name_retrieval,
 )
-from devtools.context.repository import (
-    ContentIdentity,
-    Repository,
-    RepositoryId,
-    RepositoryObservationError,
-    RepositoryResourceAddress,
-    RepositoryResourceDiscovery,
-    RepositoryResourceDiscoveryError,
-    RepositoryResourceOccurrence,
-    RepositorySnapshot,
-    RepositorySnapshotId,
-    discover_repository_resource_addresses,
-    observe_repository_resource,
-    observe_repository_resources,
+from devtools.context.python.function.disclosure import (
+    PythonFunctionDeclarationDisclosureItem,
+    PythonFunctionExactNameContextDisclosure,
+    disclose_python_function_exact_name_retrieval,
+)
+from devtools.context.python.function.materialization import (
+    MaterializedPythonFunctionContext,
+    MaterializedPythonFunctionDeclaration,
+    PythonFunctionSourceMaterializationError,
+    materialize_python_function_disclosure_source,
+)
+from devtools.context.python.function.rendering import (
+    RenderedPythonFunctionContext,
+    render_materialized_python_function_context,
+)
+from devtools.context.python.function.request_assembly import (
+    assemble_python_function_context_model_request,
+)
+from devtools.context.python.function.retrieval import (
+    PythonFunctionExactNameQuery,
+    PythonFunctionExactNameRelevanceEvidence,
+    PythonFunctionExactNameResourceSelection,
+    PythonFunctionExactNameRetrievalResult,
+    PythonFunctionExactNameSelectedResource,
+    retrieve_python_functions_by_exact_name,
+    select_python_function_resources_from_exact_name_retrieval,
 )
 
 __all__ = [
-    "ContentIdentity",
     "MaterializedPythonFunctionContext",
     "MaterializedPythonFunctionDeclaration",
     "PythonFunctionAnalysisCandidateResource",
@@ -87,32 +77,16 @@ __all__ = [
     "PythonFunctionSubject",
     "PythonModuleParseError",
     "PythonModuleResourceDependency",
-    "PythonSourceAddressCandidate",
-    "PythonSourceAddressCandidateEvidence",
-    "PythonSourceAddressCandidateSelection",
     "PythonSourceOccurrence",
     "PythonSourceRange",
     "RenderedPythonFunctionContext",
-    "Repository",
-    "RepositoryId",
-    "RepositoryObservationError",
-    "RepositoryResourceAddress",
-    "RepositoryResourceDiscovery",
-    "RepositoryResourceDiscoveryError",
-    "RepositoryResourceOccurrence",
-    "RepositorySnapshot",
-    "RepositorySnapshotId",
     "analyze_python_function_declaration_resources",
     "assemble_python_function_context_model_request",
     "derive_python_function_declarations",
     "disclose_python_function_exact_name_retrieval",
-    "discover_repository_resource_addresses",
     "materialize_python_function_disclosure_source",
-    "observe_repository_resource",
-    "observe_repository_resources",
     "render_materialized_python_function_context",
     "retrieve_python_functions_by_exact_name",
     "select_python_function_analysis_candidates",
     "select_python_function_resources_from_exact_name_retrieval",
-    "select_python_source_address_candidates",
 ]

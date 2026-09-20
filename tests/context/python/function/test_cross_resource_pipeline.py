@@ -57,7 +57,7 @@ def _forbid_reacquisition(monkeypatch: pytest.MonkeyPatch) -> None:
         msg = "cross-resource pipeline attempted filesystem reacquisition"
         raise AssertionError(msg)
 
-    monkeypatch.setattr("devtools.context.repository.read", forbidden_read)
+    monkeypatch.setattr("devtools.context.repository.observation.read", forbidden_read)
 
 
 def test_cross_resource_match_reaches_request_without_reacquisition(
@@ -164,9 +164,12 @@ def test_duplicate_cross_resource_matches_survive_the_complete_pipeline(
     expected_knowledge = aggregate.declarations
     assert tuple(match.knowledge for match in retrieval.matches) == expected_knowledge
     assert disclosure.selected_matches == retrieval.matches
-    assert tuple(
-        item.disclosure_item.selected_match.knowledge for item in materialized.items
-    ) == expected_knowledge
+    assert (
+        tuple(
+            item.disclosure_item.selected_match.knowledge for item in materialized.items
+        )
+        == expected_knowledge
+    )
     assert [item.source_text for item in materialized.items] == [
         second_source,
         first_source,

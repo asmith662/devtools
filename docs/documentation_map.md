@@ -63,10 +63,12 @@ implementation can recursively discover regular-file addresses beneath an
 explicit root using metadata only, caller-supplied maximum counts for examined
 filesystem entries and discovered resources, lexical ordering, and conservative
 link skipping. Discovery produces addresses, not contents, occurrences,
-language classification, relevance, or snapshot state. The separate observation
-operation reads a finite caller-declared
-collection of UTF-8 text resources into identified snapshot state. For an exact
-Python function-name
+language classification, relevance, or snapshot state. A separate bounded
+Python-function-path projection nominates exact, case-sensitive `.py` addresses
+for observation without inspecting content; this is candidacy evidence rather
+than proof of Python source. The observation operation then reads a finite
+caller-declared collection of UTF-8 text resources into identified snapshot
+state. For an exact Python function-name
 purpose, a bounded pre-analysis selector filters an explicit caller-ordered set
 of those resources by exact stdlib `NAME` token presence. Its candidates are
 purpose-relative predictions with expected false positives, not declaration
@@ -90,9 +92,10 @@ preserving exact source, order, duplicates, and correlation; it does not create
 a model message or request. A bounded composition operation separately accepts
 an existing caller-owned `ModelRequest`, preserves its request semantics, and
 places that rendered Context after its distinct primary task in a new request
-without execution or Conversation mutation. The domain does not provide general
-repository discovery, capability/execution infrastructure, broader retrieval,
-a generic Context compiler, or general ModelRequest assembly. Current durable
+without execution or Conversation mutation. The domain does not provide
+Git-aware or language-classifying discovery, capability/execution
+infrastructure, broader retrieval, a generic Context compiler, or general
+ModelRequest assembly. Current durable
 conversation semantics remain in `agents.conversation`, and `context` does not
 own former Message/History/Session semantics.
 

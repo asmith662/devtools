@@ -71,7 +71,9 @@ def test_recursive_discovery_composes_with_explicit_observation(
 
     with monkeypatch.context() as discovery_guard:
         discovery_guard.setattr(Path, "read_bytes", forbidden_read)
-        discovery_guard.setattr("devtools.context.repository.read", forbidden_read)
+        discovery_guard.setattr(
+            "devtools.context.repository.observation.read", forbidden_read,
+        )
         discovery = discover_repository_resource_addresses(
             repository=_repository(),
             root=ResolvedPath(root),
@@ -124,9 +126,7 @@ def test_discovery_feeds_the_existing_python_function_pipeline(
         "declaration.py": "def selected_function():\n    return 'TARGET'\n",
         "call.py": "value = selected_function()\n",
         "method.py": (
-            "class Holder:\n"
-            "    def selected_function(self):\n"
-            "        return 'METHOD'\n"
+            "class Holder:\n    def selected_function(self):\n        return 'METHOD'\n"
         ),
         "unrelated.py": "def helper():\n    return 'OTHER'\n",
         "notes.txt": "selected_function\n",
@@ -180,9 +180,7 @@ def test_discovery_feeds_the_existing_python_function_pipeline(
     assert len(candidates.candidates) == _EXPECTED_CANDIDATE_COUNT
     assert len(aggregate.analyses) == _EXPECTED_CANDIDATE_COUNT
     assert len(retrieval.matches) == 1
-    assert verified.resource_addresses == (
-        RepositoryResourceAddress("declaration.py"),
-    )
+    assert verified.resource_addresses == (RepositoryResourceAddress("declaration.py"),)
     assert len(disclosure.items) == 1
     assert len(materialized.items) == 1
     assert "Repository-relative resource: declaration.py" in rendered.text
@@ -328,7 +326,7 @@ def test_traversal_and_classification_failures_publish_no_partial_result(
         raise PermissionError(msg)
 
     monkeypatch.setattr(
-        "devtools.context.repository_discovery.os.scandir",
+        "devtools.context.repository.discovery.os.scandir",
         denied_scandir,
     )
     with pytest.raises(RepositoryResourceDiscoveryError, match="directory denied"):
@@ -359,7 +357,7 @@ def test_traversal_and_classification_failures_publish_no_partial_result(
             return None
 
     monkeypatch.setattr(
-        "devtools.context.repository_discovery.os.scandir",
+        "devtools.context.repository.discovery.os.scandir",
         lambda _path: FailingScandir(),
     )
     with pytest.raises(RepositoryResourceDiscoveryError, match="classification denied"):
@@ -390,7 +388,7 @@ def test_resolved_child_escape_is_rejected_before_traversal(
         return ResolvedPath(root) if calls == 1 else ResolvedPath(outside)
 
     monkeypatch.setattr(
-        "devtools.context.repository_discovery.resolve_path",
+        "devtools.context.repository.discovery.resolve_path",
         escape_resolution,
     )
 
@@ -417,38 +415,40 @@ def test_discovery_invokes_no_observation_or_downstream_pipeline_work(
         msg = "discovery attempted observation or downstream work"
         raise AssertionError(msg)
 
-    monkeypatch.setattr("devtools.context.repository.read", forbidden)
+    monkeypatch.setattr("devtools.context.repository.observation.read", forbidden)
     monkeypatch.setattr(
-        "devtools.context.repository.observe_repository_resources",
+        "devtools.context.repository.observation.observe_repository_resources",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_candidates.tokenize.generate_tokens",
-        forbidden,
-    )
-    monkeypatch.setattr("devtools.context.python_declarations.ast.parse", forbidden)
-    monkeypatch.setattr(
-        "devtools.context.python_declarations.derive_python_function_declarations",
+        "devtools.context.python.function.candidates.tokenize.generate_tokens",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_retrieval.retrieve_python_functions_by_exact_name",
+        "devtools.context.python.function.declarations.ast.parse", forbidden,
+    )
+    monkeypatch.setattr(
+        "devtools.context.python.function.declarations.derive_python_function_declarations",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_disclosure.disclose_python_function_exact_name_retrieval",
+        "devtools.context.python.function.retrieval.retrieve_python_functions_by_exact_name",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_materialization.materialize_python_function_disclosure_source",
+        "devtools.context.python.function.disclosure.disclose_python_function_exact_name_retrieval",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_rendering.render_materialized_python_function_context",
+        "devtools.context.python.function.materialization.materialize_python_function_disclosure_source",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_request_assembly.assemble_python_function_context_model_request",
+        "devtools.context.python.function.rendering.render_materialized_python_function_context",
+        forbidden,
+    )
+    monkeypatch.setattr(
+        "devtools.context.python.function.request_assembly.assemble_python_function_context_model_request",
         forbidden,
     )
 

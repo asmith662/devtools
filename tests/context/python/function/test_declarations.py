@@ -102,9 +102,7 @@ class Holder:
         "duplicate",
         "duplicate",
     ]
-    assert [
-        declaration.declaration_kind for declaration in result.declarations
-    ] == [
+    assert [declaration.declaration_kind for declaration in result.declarations] == [
         PythonFunctionDeclarationKind.SYNCHRONOUS,
         PythonFunctionDeclarationKind.ASYNCHRONOUS,
     ]
@@ -325,12 +323,12 @@ def test_explicitly_selected_multi_snapshot_resources_are_distinct_dependencies(
     ]
     assert first.derivation.dependency.resource is snapshot.resource_at(first_address)
     assert second.derivation.dependency.resource is snapshot.resource_at(second_address)
-    assert {
-        item.support.resource_address for item in first.declarations
-    } == {first_address}
-    assert {
-        item.support.resource_address for item in second.declarations
-    } == {second_address}
+    assert {item.support.resource_address for item in first.declarations} == {
+        first_address,
+    }
+    assert {item.support.resource_address for item in second.declarations} == {
+        second_address,
+    }
     first_duplicate = first.declarations[0]
     second_duplicate = second.declarations[0]
     assert first_duplicate.declared_name == second_duplicate.declared_name
@@ -406,7 +404,7 @@ def test_explicit_resource_derivation_performs_no_filesystem_read(
         msg = "derivation attempted repository acquisition"
         raise AssertionError(msg)
 
-    monkeypatch.setattr("devtools.context.repository.read", forbidden_read)
+    monkeypatch.setattr("devtools.context.repository.observation.read", forbidden_read)
 
     result = derive_python_function_declarations(
         snapshot,

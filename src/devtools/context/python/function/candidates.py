@@ -17,12 +17,14 @@ from typing import TYPE_CHECKING, ClassVar
 if TYPE_CHECKING:
     from collections.abc import Sequence
 
-    from devtools.context.python_function_retrieval import (
+    from devtools.context.python.function.retrieval import (
         PythonFunctionExactNameQuery,
     )
-    from devtools.context.repository import (
+    from devtools.context.repository.resource import (
         RepositoryResourceAddress,
         RepositoryResourceOccurrence,
+    )
+    from devtools.context.repository.snapshot import (
         RepositorySnapshot,
         RepositorySnapshotId,
     )

@@ -65,9 +65,7 @@ def test_name_token_candidates_feed_verified_context_pipeline(
         "string_only.py": "value = 'selected_function'\n",
         "comment_only.py": "# selected_function\nVALUE = 1\n",
         "method.py": (
-            "class Holder:\n"
-            "    def selected_function(self):\n"
-            "        return 'METHOD'\n"
+            "class Holder:\n    def selected_function(self):\n        return 'METHOD'\n"
         ),
         "unrelated.py": "def helper():\n    return 'OTHER'\n",
     }
@@ -81,7 +79,7 @@ def test_name_token_candidates_feed_verified_context_pipeline(
         msg = "post-observation pipeline attempted filesystem acquisition"
         raise AssertionError(msg)
 
-    monkeypatch.setattr("devtools.context.repository.read", forbidden_read)
+    monkeypatch.setattr("devtools.context.repository.observation.read", forbidden_read)
     candidates = select_python_function_analysis_candidates(
         snapshot,
         query=query,
@@ -110,8 +108,8 @@ def test_name_token_candidates_feed_verified_context_pipeline(
         declarations=aggregate.declarations,
         query=query,
     )
-    verified_resources = (
-        select_python_function_resources_from_exact_name_retrieval(retrieval)
+    verified_resources = select_python_function_resources_from_exact_name_retrieval(
+        retrieval,
     )
     disclosure = disclose_python_function_exact_name_retrieval(retrieval)
     materialized = materialize_python_function_disclosure_source(
@@ -152,10 +150,7 @@ def test_duplicate_name_tokens_select_each_resource_once_in_eligible_order(
     snapshot = _observe(
         tmp_path,
         {
-            "a.py": (
-                "selected_function = 1\n"
-                "value = selected_function\n"
-            ),
+            "a.py": ("selected_function = 1\nvalue = selected_function\n"),
             "b.py": "selected_function()\n",
         },
     )
@@ -172,14 +167,11 @@ def test_duplicate_name_tokens_select_each_resource_once_in_eligible_order(
     assert len(result.candidates) == len(expected_candidate_addresses)
     assert len(result.candidates[0].supporting_matches) == 1
     assert tuple(
-        match.token_string
-        for match in result.candidates[1].supporting_matches
+        match.token_string for match in result.candidates[1].supporting_matches
     ) == (query.declared_name, query.declared_name)
     assert [
         match.token_index for match in result.candidates[1].supporting_matches
-    ] == sorted(
-        match.token_index for match in result.candidates[1].supporting_matches
-    )
+    ] == sorted(match.token_index for match in result.candidates[1].supporting_matches)
     assert all(
         match.token_string == query.declared_name
         for candidate in result.candidates
@@ -228,7 +220,7 @@ def test_invalid_eligible_resources_fail_before_tokenization(
         raise AssertionError(msg)
 
     monkeypatch.setattr(
-        "devtools.context.python_function_candidates.tokenize.generate_tokens",
+        "devtools.context.python.function.candidates.tokenize.generate_tokens",
         forbidden_tokenization,
     )
     query = PythonFunctionExactNameQuery("selected_function")
@@ -287,30 +279,32 @@ def test_candidate_selection_invokes_no_other_pipeline_operation(
         msg = "candidate selection attempted another pipeline operation"
         raise AssertionError(msg)
 
-    monkeypatch.setattr("devtools.context.repository.read", forbidden)
-    monkeypatch.setattr("devtools.context.python_declarations.ast.parse", forbidden)
+    monkeypatch.setattr("devtools.context.repository.observation.read", forbidden)
     monkeypatch.setattr(
-        "devtools.context.python_declarations.derive_python_function_declarations",
+        "devtools.context.python.function.declarations.ast.parse", forbidden,
+    )
+    monkeypatch.setattr(
+        "devtools.context.python.function.declarations.derive_python_function_declarations",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_retrieval.retrieve_python_functions_by_exact_name",
+        "devtools.context.python.function.retrieval.retrieve_python_functions_by_exact_name",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_disclosure.disclose_python_function_exact_name_retrieval",
+        "devtools.context.python.function.disclosure.disclose_python_function_exact_name_retrieval",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_materialization.materialize_python_function_disclosure_source",
+        "devtools.context.python.function.materialization.materialize_python_function_disclosure_source",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_rendering.render_materialized_python_function_context",
+        "devtools.context.python.function.rendering.render_materialized_python_function_context",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_request_assembly.assemble_python_function_context_model_request",
+        "devtools.context.python.function.request_assembly.assemble_python_function_context_model_request",
         forbidden,
     )
 

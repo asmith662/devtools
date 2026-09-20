@@ -8,20 +8,18 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, ClassVar
 
 if TYPE_CHECKING:
-    from devtools.context.python_declarations import PythonSourceRange
-    from devtools.context.python_function_disclosure import (
+    from devtools.context.python.function.declarations import PythonSourceRange
+    from devtools.context.python.function.disclosure import (
         PythonFunctionDeclarationDisclosureItem,
         PythonFunctionExactNameContextDisclosure,
     )
-    from devtools.context.repository import (
-        ContentIdentity,
+    from devtools.context.repository.resource import ContentIdentity
+    from devtools.context.repository.snapshot import (
         RepositorySnapshot,
         RepositorySnapshotId,
     )
 
-_MATERIALIZATION_IDENTITY_SEMANTICS = (
-    "python-function-exact-source-materialization-v1"
-)
+_MATERIALIZATION_IDENTITY_SEMANTICS = "python-function-exact-source-materialization-v1"
 
 
 class PythonFunctionSourceMaterializationError(Exception):

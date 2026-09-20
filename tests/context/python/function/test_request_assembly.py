@@ -121,10 +121,13 @@ def test_assembles_real_context_after_distinct_unchanged_task(
         f"{len(rendered.text.encode('utf-8'))}\n"
     ) in request.prompt.content
     assert request.prompt.content.count('def target():\r\n    return "caf\u00e9"') == 1
-    assert assemble_python_function_context_model_request(
-        task_request=task_request,
-        context=rendered,
-    ) == request
+    assert (
+        assemble_python_function_context_model_request(
+            task_request=task_request,
+            context=rendered,
+        )
+        == request
+    )
     assert not hasattr(request, "rendered_context")
 
 
@@ -168,26 +171,28 @@ def test_assembly_invokes_no_upstream_execution_or_conversation_work(
         msg = "request assembly attempted upstream or execution work"
         raise AssertionError(msg)
 
-    monkeypatch.setattr("devtools.context.repository.read", forbidden)
-    monkeypatch.setattr("devtools.context.python_declarations.ast.parse", forbidden)
+    monkeypatch.setattr("devtools.context.repository.observation.read", forbidden)
     monkeypatch.setattr(
-        "devtools.context.python_declarations.derive_python_function_declarations",
+        "devtools.context.python.function.declarations.ast.parse", forbidden,
+    )
+    monkeypatch.setattr(
+        "devtools.context.python.function.declarations.derive_python_function_declarations",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_retrieval.retrieve_python_functions_by_exact_name",
+        "devtools.context.python.function.retrieval.retrieve_python_functions_by_exact_name",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_disclosure.disclose_python_function_exact_name_retrieval",
+        "devtools.context.python.function.disclosure.disclose_python_function_exact_name_retrieval",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_materialization.materialize_python_function_disclosure_source",
+        "devtools.context.python.function.materialization.materialize_python_function_disclosure_source",
         forbidden,
     )
     monkeypatch.setattr(
-        "devtools.context.python_function_rendering.render_materialized_python_function_context",
+        "devtools.context.python.function.rendering.render_materialized_python_function_context",
         forbidden,
     )
     monkeypatch.setattr("devtools.execution.Runtime.send", forbidden)

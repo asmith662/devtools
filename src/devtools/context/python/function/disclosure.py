@@ -8,18 +8,16 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, ClassVar
 
 if TYPE_CHECKING:
-    from devtools.context.python_declarations import (
+    from devtools.context.python.function.declarations import (
         PythonFunctionDeclarationKind,
         PythonSourceOccurrence,
     )
-    from devtools.context.python_function_retrieval import (
+    from devtools.context.python.function.retrieval import (
         PythonFunctionExactNameRelevanceEvidence,
         PythonFunctionExactNameRetrievalResult,
     )
 
-_DISCLOSURE_IDENTITY_SEMANTICS = (
-    "python-function-exact-name-context-disclosure-v1"
-)
+_DISCLOSURE_IDENTITY_SEMANTICS = "python-function-exact-name-context-disclosure-v1"
 
 
 @dataclass(frozen=True, slots=True)

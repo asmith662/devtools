@@ -270,7 +270,7 @@ def test_multi_resource_observation_rejects_empty_and_duplicate_requests(
         msg = "invalid collection attempted acquisition"
         raise AssertionError(msg)
 
-    monkeypatch.setattr("devtools.context.repository.read", forbidden_read)
+    monkeypatch.setattr("devtools.context.repository.observation.read", forbidden_read)
     with pytest.raises(ValueError, match="at least one"):
         observe_repository_resources(
             repository=_repository(),
@@ -377,7 +377,7 @@ def test_observation_rejects_a_resolved_escape(
         return root if calls == 1 else outside
 
     monkeypatch.setattr(
-        "devtools.context.repository.resolve_path",
+        "devtools.context.repository.observation.resolve_path",
         escape_resolution,
     )
 
