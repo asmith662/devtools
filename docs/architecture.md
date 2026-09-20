@@ -311,9 +311,10 @@ evidence and exposes only the established declared name, declaration kind,
 proposition, and snapshot-local source occurrence. The retrieval result does not
 carry resource content, so the structured disclosure itself does not include
 source text or reacquire it. A bounded materializer can separately accept the
-identified single-resource RepositorySnapshot, validate each occurrence's
-snapshot and address, and extract its exact source segment using the established
-one-based line and UTF-8-byte-column coordinates. It preserves observed newline
+identified RepositorySnapshot, validate each occurrence's snapshot identity,
+resolve its exact observed resource by repository-relative address, and extract
+its exact source segment using the established one-based line and UTF-8-byte-column
+coordinates. It preserves observed newline
 bytes after UTF-8 decoding and performs no filesystem access or parsing.
 A bounded renderer then produces deterministic human-readable Context text from
 the materialized values, preserving selection order, duplicates, source

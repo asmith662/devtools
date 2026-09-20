@@ -21,6 +21,7 @@ from devtools.context import (
     disclose_python_function_exact_name_retrieval,
     materialize_python_function_disclosure_source,
     observe_repository_resource,
+    observe_repository_resources,
     retrieve_python_functions_by_exact_name,
 )
 from devtools.core.paths import ResolvedPath
@@ -237,3 +238,67 @@ def test_materialization_does_not_reacquire_parse_derive_or_retrieve(
     )
 
     assert materialized.items[0].disclosure_item is disclosure.items[0]
+
+
+def test_multi_resource_range_is_applied_only_to_its_addressed_resource(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A source range cannot be redirected to absent or incompatible source."""
+    first_address = RepositoryResourceAddress("a.py")
+    second_address = RepositoryResourceAddress("b.py")
+    (tmp_path / "a.py").write_text(
+        "# prefix\n\ndef target():\n    pass\n",
+        encoding="utf-8",
+        newline="",
+    )
+    (tmp_path / "b.py").write_text("VALUE = 1\n", encoding="utf-8", newline="")
+    snapshot = observe_repository_resources(
+        repository=Repository(RepositoryId.parse(_REPOSITORY_ID)),
+        root=ResolvedPath(tmp_path),
+        addresses=(first_address, second_address),
+    )
+    analysis = derive_python_function_declarations(
+        snapshot,
+        resource_address=first_address,
+    )
+    retrieval = retrieve_python_functions_by_exact_name(
+        declarations=analysis.declarations,
+        query=PythonFunctionExactNameQuery("target"),
+    )
+    disclosure = disclose_python_function_exact_name_retrieval(retrieval)
+    disclosure_item = disclosure.items[0]
+
+    def forbidden_read(*_args: object, **_kwargs: object) -> None:
+        msg = "failed materialization attempted filesystem reacquisition"
+        raise AssertionError(msg)
+
+    monkeypatch.setattr("devtools.context.repository.read", forbidden_read)
+
+    absent_occurrence = replace(
+        disclosure_item.source_occurrence,
+        resource_address=RepositoryResourceAddress("absent.py"),
+    )
+    absent_disclosure = replace(
+        disclosure,
+        items=(replace(disclosure_item, source_occurrence=absent_occurrence),),
+    )
+    with pytest.raises(PythonFunctionSourceMaterializationError, match="resource"):
+        materialize_python_function_disclosure_source(
+            disclosure=absent_disclosure,
+            snapshot=snapshot,
+        )
+
+    redirected_occurrence = replace(
+        disclosure_item.source_occurrence,
+        resource_address=second_address,
+    )
+    redirected_disclosure = replace(
+        disclosure,
+        items=(replace(disclosure_item, source_occurrence=redirected_occurrence),),
+    )
+    with pytest.raises(PythonFunctionSourceMaterializationError, match="line"):
+        materialize_python_function_disclosure_source(
+            disclosure=redirected_disclosure,
+            snapshot=snapshot,
+        )

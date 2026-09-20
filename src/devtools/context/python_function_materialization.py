@@ -79,17 +79,19 @@ def materialize_python_function_disclosure_source(
         if occurrence.snapshot_id != snapshot.id:
             msg = "Source occurrence does not belong to the supplied snapshot."
             raise PythonFunctionSourceMaterializationError(msg)
-        if occurrence.resource_address != snapshot.resource.address:
-            msg = "Source occurrence does not address the supplied snapshot resource."
-            raise PythonFunctionSourceMaterializationError(msg)
+        try:
+            resource = snapshot.resource_at(occurrence.resource_address)
+        except ValueError as error:
+            msg = "Source occurrence does not address a resource in the snapshot."
+            raise PythonFunctionSourceMaterializationError(msg) from error
 
         materialized_items.append(
             MaterializedPythonFunctionDeclaration(
                 disclosure_item=disclosure_item,
                 source_snapshot_id=snapshot.id,
-                source_content_identity=snapshot.resource.content_identity,
+                source_content_identity=resource.content_identity,
                 source_text=_extract_source_segment(
-                    snapshot.resource.content,
+                    resource.content,
                     occurrence.source_range,
                 ),
             ),
