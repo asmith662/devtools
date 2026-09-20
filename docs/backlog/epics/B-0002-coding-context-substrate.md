@@ -215,7 +215,12 @@ representation now preserves each corpus member's exact observed text and
 resource correlation in corpus order without tokenization, indexing, or ranking.
 It is one representation strategy, not a universal one-resource-one-document
 rule, and preserves repository-relative addresses for later structural/path
-retrieval signals. A separate bounded, purpose-sensitive address projection now
+retrieval signals. A baseline heterogeneous lexical analysis now observes each
+document's ordered Unicode-regex `\w+` spans, retaining exact text, offsets,
+encounter order, and casefolded terms. It preserves repeated spans but performs
+no source-language parsing, identifier decomposition, statistics, index, query,
+ranking, or BM25 work; path evidence remains separate. A separate bounded,
+purpose-sensitive address projection now
 nominates exact, case-sensitive `.py` discovery addresses for observation while
 preserving discovery order. That convention is candidacy evidence rather than
 proof of Python contents, successful observation, relevance, or declaration

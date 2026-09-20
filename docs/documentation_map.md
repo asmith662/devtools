@@ -79,6 +79,13 @@ correlation in corpus order. This is a current representation strategy rather
 than a universal one-resource-one-document rule; it does not tokenize, index,
 rank, or retrieve. Resource addresses remain available for later structural or
 path-sensitive retrieval evidence. A separate bounded
+`context.retrieval` baseline lexical mechanism observes each document's ordered
+Unicode-regex `\w+` spans, retaining exact text, offsets, encounter order, and
+casefolded terms. It is heterogeneous rather than Python-specific: punctuation
+and whitespace separate spans, repeated spans remain repeated, and camelCase,
+PascalCase, and snake_case are not decomposed. It has no parser, token
+statistics, index, query, ranking, or BM25 behavior; path evidence remains
+separate. A separate bounded
 Python-function-path projection nominates exact, case-sensitive `.py` addresses
 for observation without inspecting content; this is candidacy evidence rather
 than proof of Python source. The observation operation then reads a finite

@@ -69,6 +69,13 @@ from devtools.context.repository import (
     realize_repository_text_corpus,
     represent_repository_text_corpus,
 )
+from devtools.context.retrieval import (
+    RepositoryTextLexicalCollectionAnalysis,
+    RepositoryTextLexicalDocumentAnalysis,
+    RepositoryTextLexicalObservation,
+    analyze_repository_text_document,
+    analyze_repository_text_document_collection,
+)
 
 __all__ = [
     "ContentIdentity",
@@ -117,7 +124,12 @@ __all__ = [
     "RepositoryTextDocument",
     "RepositoryTextDocumentCollection",
     "RepositoryTextDocumentId",
+    "RepositoryTextLexicalCollectionAnalysis",
+    "RepositoryTextLexicalDocumentAnalysis",
+    "RepositoryTextLexicalObservation",
     "analyze_python_function_declaration_resources",
+    "analyze_repository_text_document",
+    "analyze_repository_text_document_collection",
     "assemble_python_function_context_model_request",
     "define_repository_text_corpus",
     "derive_python_function_declarations",

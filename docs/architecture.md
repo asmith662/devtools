@@ -309,6 +309,18 @@ section, symbol, or bounded-chunk strategies remain open. It performs no
 tokenization, indexing, ranking, or BM25 retrieval, while preserving paths for
 future structural/path signals.
 
+Current `context.retrieval` implementation provides one baseline heterogeneous
+lexical analysis over RepositoryTextDocuments. It observes ordered Python
+Unicode-regex `\w+` spans (Unicode letters/numbers and underscore), retaining
+each exact span, string offsets, encounter ordinal, and `casefold()`-normalized
+term. Punctuation and whitespace separate spans; repeated spans remain repeated;
+camelCase/PascalCase and snake_case spans are not decomposed. This is lexical
+document observation, not parsing, language classification, repository
+knowledge, retrieval evidence, ranking, or Context selection. Address/path
+evidence remains separate from document-content lexical observations. Collection
+analysis simply composes independent document analyses in document order; it
+does not compute term/document frequency, IDF, an index, a query, or BM25.
+
 For the bounded Python-function path, a separate purpose-sensitive projection
 can nominate discovered addresses ending in the exact, case-sensitive `.py`
 suffix for source observation. It consumes only the completed discovery value,
