@@ -2,6 +2,10 @@
 """Concrete retrieval mechanisms over repository representations."""
 
 from devtools.context.retrieval.lexical import (
+    RepositoryTextLexicalBm25Match,
+    RepositoryTextLexicalBm25RetrievalResult,
+    RepositoryTextLexicalBm25Settings,
+    RepositoryTextLexicalBm25TermContribution,
     RepositoryTextLexicalCollectionAnalysis,
     RepositoryTextLexicalCorpusStatistics,
     RepositoryTextLexicalDocumentAnalysis,
@@ -10,15 +14,23 @@ from devtools.context.retrieval.lexical import (
     RepositoryTextLexicalInvertedIndex,
     RepositoryTextLexicalObservation,
     RepositoryTextLexicalPosting,
+    RepositoryTextLexicalQuery,
+    RepositoryTextLexicalQueryObservation,
     RepositoryTextLexicalTermFrequency,
     RepositoryTextLexicalTermPostings,
     analyze_repository_text_document,
     analyze_repository_text_document_collection,
+    analyze_repository_text_lexical_query,
     build_repository_text_lexical_inverted_index,
     calculate_repository_text_lexical_corpus_statistics,
+    retrieve_repository_text_documents_by_bm25,
 )
 
 __all__ = [
+    "RepositoryTextLexicalBm25Match",
+    "RepositoryTextLexicalBm25RetrievalResult",
+    "RepositoryTextLexicalBm25Settings",
+    "RepositoryTextLexicalBm25TermContribution",
     "RepositoryTextLexicalCollectionAnalysis",
     "RepositoryTextLexicalCorpusStatistics",
     "RepositoryTextLexicalDocumentAnalysis",
@@ -27,10 +39,14 @@ __all__ = [
     "RepositoryTextLexicalInvertedIndex",
     "RepositoryTextLexicalObservation",
     "RepositoryTextLexicalPosting",
+    "RepositoryTextLexicalQuery",
+    "RepositoryTextLexicalQueryObservation",
     "RepositoryTextLexicalTermFrequency",
     "RepositoryTextLexicalTermPostings",
     "analyze_repository_text_document",
     "analyze_repository_text_document_collection",
+    "analyze_repository_text_lexical_query",
     "build_repository_text_lexical_inverted_index",
     "calculate_repository_text_lexical_corpus_statistics",
+    "retrieve_repository_text_documents_by_bm25",
 ]

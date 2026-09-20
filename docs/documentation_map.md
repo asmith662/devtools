@@ -88,8 +88,14 @@ observation-count document lengths, document-local term frequencies,
 distinct-document frequencies, and average document length (`0.0` for an empty
 collection); a content-only inverted index retains direct observation/document
 correlation in first-encounter vocabulary and document posting order. It has no
-parser, query, IDF, ranking, retrieval, or BM25 behavior; path evidence remains
-separate. A separate bounded
+parser or path scoring. The current bounded BM25 operation analyzes query text
+with the same spans and `casefold()` rule, retains repeated query evidence while
+scoring distinct terms, and uses `k1 = 1.2`, `b = 0.75`, and
+`ln(1 + (N - df + 0.5) / (df + 0.5))` IDF. It retains local score-contribution
+evidence, ranks positive content matches by descending score with document-order
+tie breaking, and requires a positive maximum-result bound. Empty/OOV cases are
+successful zero matches; it has no structural, path, Context-selection, or
+quality claim. A separate bounded
 Python-function-path projection nominates exact, case-sensitive `.py` addresses
 for observation without inspecting content; this is candidacy evidence rather
 than proof of Python source. The observation operation then reads a finite

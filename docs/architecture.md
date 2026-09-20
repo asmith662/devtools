@@ -328,8 +328,23 @@ of distinct documents containing that term; and average document length is the
 arithmetic mean across all documents, including zero-observation documents
 (`0.0` for an empty collection). Vocabulary follows first lexical encounter in
 document order, and postings follow document order while retaining direct
-document-analysis and observation correlation. This establishes no IDF, query,
-score, rank, retrieval result, or BM25 behavior.
+document-analysis and observation correlation.
+
+Current retrieval implementation can analyze a query with those same Unicode
+span and `casefold()` semantics, retaining repeated query observations but scoring
+only its distinct normalized terms in first encounter order. It performs bounded
+content-only Okapi BM25 retrieval with defaults `k1 = 1.2` and `b = 0.75`, using
+`ln(1 + (N - df + 0.5) / (df + 0.5))` for IDF and the standard saturated,
+length-normalized contribution
+`IDF * tf * (k1 + 1) / (tf + k1 * (1 - b + b * length / average_length))`.
+OOV terms remain query evidence with no
+posting or score contribution. Positive matches retain term-level TF, DF, IDF,
+document length, average length, and contribution evidence; they rank by
+descending score, with existing document order breaking ties, and require a
+positive maximum-result bound. Empty, OOV-only, and empty-index retrievals
+succeed with zero matches. This uses neither paths nor structural/language
+signals and does not establish Context selection, retrieval quality, or general
+repository retrieval sufficiency.
 
 For the bounded Python-function path, a separate purpose-sensitive projection
 can nominate discovered addresses ending in the exact, case-sensitive `.py`

@@ -57,8 +57,10 @@ and Evidence ownership terminology, remain in the
   during materialization/assembly, and model-input assembly semantics.
   [B-0002](backlog/epics/B-0002-coding-context-substrate.md)
   retains the unimplemented design pressure. These decisions are not authorization
-  for a Context compiler, disclosure model, index, parser, graph store, retrieval system, Memory,
-  Agent loop, or orchestration system. [B-0008](backlog/items/B-0008-investigate-repository-context-discovery.md)
+  for a general Context compiler, disclosure model, parser, graph store, retrieval
+  system, Memory, Agent loop, or orchestration system; the current bounded lexical
+  index and BM25 baseline do not settle those broader responsibilities.
+  [B-0008](backlog/items/B-0008-investigate-repository-context-discovery.md)
   remains superseded historical navigation evidence.
 
 - The selected starting hypothesis is implemented as direct module-body Python function

@@ -223,8 +223,13 @@ statistics now record observation-count document length, document-local term
 frequency, distinct-document frequency, and average document length (`0.0` for
 an empty collection); a content-only inverted index retains first-encounter
 vocabulary and document-ordered postings with direct observation/document
-correlation. It has no query, IDF, ranking, retrieval, or BM25 work; path
-evidence remains separate. A separate bounded,
+correlation. A bounded content-only Okapi BM25 operation now analyzes query text
+with the same lexical semantics, scores distinct query terms using `k1 = 1.2`,
+`b = 0.75`, and `ln(1 + (N - df + 0.5) / (df + 0.5))` IDF, and retains local
+term-contribution evidence for positively scored, document-order-tie-broken
+matches under an explicit positive result bound. It makes no path, structural,
+Context-selection, or retrieval-quality claim; path evidence remains separate.
+A separate bounded,
 purpose-sensitive address projection now
 nominates exact, case-sensitive `.py` discovery addresses for observation while
 preserving discovery order. That convention is candidacy evidence rather than

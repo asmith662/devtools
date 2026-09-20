@@ -8,6 +8,8 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, ClassVar
 
 if TYPE_CHECKING:
+    from collections.abc import Iterator
+
     from devtools.context.repository.document import (
         RepositoryTextDocument,
         RepositoryTextDocumentCollection,
@@ -49,6 +51,18 @@ class RepositoryTextLexicalCollectionAnalysis:
     )
 
 
+def iter_lexical_spans(*, text: str) -> Iterator[tuple[str, str, int, int]]:
+    """Yield baseline lexical spans as observed text, term, and string offsets."""
+    for match in _LEXICAL_SPAN_PATTERN.finditer(text):
+        observed_text = match.group()
+        yield (
+            observed_text,
+            observed_text.casefold(),
+            match.start(),
+            match.end(),
+        )
+
+
 def analyze_repository_text_document(
     *,
     document: RepositoryTextDocument,
@@ -59,13 +73,13 @@ def analyze_repository_text_document(
         observations=tuple(
             RepositoryTextLexicalObservation(
                 encounter_ordinal=ordinal,
-                observed_text=match.group(),
-                normalized_term=match.group().casefold(),
-                start=match.start(),
-                end=match.end(),
+                observed_text=observed_text,
+                normalized_term=normalized_term,
+                start=start,
+                end=end,
             )
-            for ordinal, match in enumerate(
-                _LEXICAL_SPAN_PATTERN.finditer(document.text),
+            for ordinal, (observed_text, normalized_term, start, end) in enumerate(
+                iter_lexical_spans(text=document.text),
             )
         ),
     )
