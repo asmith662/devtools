@@ -26,6 +26,10 @@ from devtools.context.python_function_materialization import (
     PythonFunctionSourceMaterializationError,
     materialize_python_function_disclosure_source,
 )
+from devtools.context.python_function_rendering import (
+    RenderedPythonFunctionContext,
+    render_materialized_python_function_context,
+)
 from devtools.context.python_function_retrieval import (
     PythonFunctionExactNameQuery,
     PythonFunctionExactNameRelevanceEvidence,
@@ -65,6 +69,7 @@ __all__ = [
     "PythonModuleResourceDependency",
     "PythonSourceOccurrence",
     "PythonSourceRange",
+    "RenderedPythonFunctionContext",
     "Repository",
     "RepositoryId",
     "RepositoryObservationError",
@@ -76,5 +81,6 @@ __all__ = [
     "disclose_python_function_exact_name_retrieval",
     "materialize_python_function_disclosure_source",
     "observe_repository_resource",
+    "render_materialized_python_function_context",
     "retrieve_python_functions_by_exact_name",
 ]

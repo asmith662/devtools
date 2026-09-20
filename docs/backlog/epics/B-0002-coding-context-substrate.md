@@ -78,7 +78,10 @@ matches and realizes provenance-linked structured knowledge projections without
 source reacquisition, ranking, synthesis, or ModelRequest assembly. A separate
 bounded materializer accepts explicit identified snapshot state, validates
 snapshot/resource correspondence, and adds exact source segments using the
-established UTF-8 byte-coordinate contract. General planning, compilation,
+established UTF-8 byte-coordinate contract. A purpose-specific renderer now
+produces deterministic model-facing Context text from those materialized values
+while preserving exact source, order, duplicates, and correlation, without
+constructing a model message or ModelRequest. General planning, compilation,
 representation, materialization, and assembly remain unimplemented.
 
 The focused external-semantic-state research has been reconciled into ADR-0002.

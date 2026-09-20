@@ -307,10 +307,14 @@ identified single-resource RepositorySnapshot, validate each occurrence's
 snapshot and address, and extract its exact source segment using the established
 one-based line and UTF-8-byte-column coordinates. It preserves observed newline
 bytes after UTF-8 decoding and performs no filesystem access or parsing.
-Successful retrieval zero becomes a successful zero-item disclosure and
-materialization. These local Context artifacts are not a generic
-DisclosurePlan/compiler, ranking result, prompt, model-input assembly, or
-ModelRequest.
+A bounded renderer then produces deterministic human-readable Context text from
+the materialized values, preserving selection order, duplicates, source
+metadata, and each unchanged exact source segment. It retains correlation to
+the materialized Context and performs no upstream work or model-specific request
+construction. Successful retrieval zero becomes a successful zero-item
+disclosure, materialization, and rendering. These local Context artifacts are
+not a generic DisclosurePlan/compiler, ranking result, prompt protocol,
+model-input assembly, or ModelRequest.
 
 Filesystem Resources remain access mechanisms, not Repository identity. Python
 analysis beyond that declaration scope, capability/execution infrastructure,
