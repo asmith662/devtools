@@ -287,8 +287,14 @@ exact caller-selected subset of its addresses, projected into discovery order.
 It can expose only the complementary meaning “discovered but not selected.”
 This is explicit future-textual-corpus membership intent, not a corpus,
 observation, content claim, classification, or relevance claim; in particular,
-construction does not read resources. The next step may attempt bounded UTF-8
-observation of that selected collection.
+construction does not read resources. Bounded UTF-8 observation can then supply
+the selected occurrences to an identified `RepositoryTextCorpus`. The corpus
+retains that definition and exactly its selected observed occurrences, ordered
+by the definition. Its local identity is scoped to the logical Repository and
+selected address/content identities, rather than all snapshot state; unrelated
+observed resources do not become corpus members or identity inputs. A
+RepositorySnapshot is therefore not a RepositoryTextCorpus. Neither value
+classifies resources or implements indexing, BM25, or retrieval.
 
 For the bounded Python-function path, a separate purpose-sensitive projection
 can nominate discovered addresses ending in the exact, case-sensitive `.py`

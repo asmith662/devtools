@@ -68,7 +68,11 @@ language classification, relevance, or snapshot state. A separate bounded
 caller-selected subset of its discovered addresses in discovery order. It records
 only future textual-corpus membership intent: it performs no observation and
 makes no content, text-validity, classification, or relevance claim. Bounded
-observation can subsequently acquire the selected collection. A separate bounded
+observation can subsequently acquire the selected collection, and an identified
+`RepositoryTextCorpus` can retain exactly those selected observed occurrences.
+Its identity is dependency-scoped to the logical Repository and selected
+address/content identities, not all observed snapshot state. It is not an index
+or retrieval mechanism; BM25 is not implemented. A separate bounded
 Python-function-path projection nominates exact, case-sensitive `.py` addresses
 for observation without inspecting content; this is candidacy evidence rather
 than proof of Python source. The observation operation then reads a finite

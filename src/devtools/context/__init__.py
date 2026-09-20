@@ -56,11 +56,14 @@ from devtools.context.repository import (
     RepositoryResourceOccurrence,
     RepositorySnapshot,
     RepositorySnapshotId,
+    RepositoryTextCorpus,
     RepositoryTextCorpusDefinition,
+    RepositoryTextCorpusId,
     define_repository_text_corpus,
     discover_repository_resource_addresses,
     observe_repository_resource,
     observe_repository_resources,
+    realize_repository_text_corpus,
 )
 
 __all__ = [
@@ -104,7 +107,9 @@ __all__ = [
     "RepositoryResourceOccurrence",
     "RepositorySnapshot",
     "RepositorySnapshotId",
+    "RepositoryTextCorpus",
     "RepositoryTextCorpusDefinition",
+    "RepositoryTextCorpusId",
     "analyze_python_function_declaration_resources",
     "assemble_python_function_context_model_request",
     "define_repository_text_corpus",
@@ -114,6 +119,7 @@ __all__ = [
     "materialize_python_function_disclosure_source",
     "observe_repository_resource",
     "observe_repository_resources",
+    "realize_repository_text_corpus",
     "render_materialized_python_function_context",
     "retrieve_python_functions_by_exact_name",
     "select_python_function_analysis_candidates",

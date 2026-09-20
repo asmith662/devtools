@@ -205,7 +205,12 @@ boundary. A separate immutable `RepositoryTextCorpusDefinition` now retains one
 completed discovery and an exact caller-selected subset of those discovered
 addresses in discovery order. It expresses only future textual-corpus membership
 intent: it performs no observation and establishes no content, UTF-8,
-classification, or relevance claim. A separate bounded, purpose-sensitive address projection now
+classification, or relevance claim. Bounded UTF-8 observation can realize an
+identified `RepositoryTextCorpus` retaining exactly the definition's selected
+observed occurrences. Its local identity is scoped to the logical Repository
+and selected address/content identities, so unrelated snapshot resources do not
+become members or identity inputs. This is not corpus classification, indexing,
+or retrieval; BM25 remains unimplemented. A separate bounded, purpose-sensitive address projection now
 nominates exact, case-sensitive `.py` discovery addresses for observation while
 preserving discovery order. That convention is candidacy evidence rather than
 proof of Python contents, successful observation, relevance, or declaration

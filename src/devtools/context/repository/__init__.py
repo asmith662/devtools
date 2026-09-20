@@ -2,8 +2,11 @@
 """Public repository identity, state, observation, and discovery API."""
 
 from devtools.context.repository.corpus import (
+    RepositoryTextCorpus,
     RepositoryTextCorpusDefinition,
+    RepositoryTextCorpusId,
     define_repository_text_corpus,
+    realize_repository_text_corpus,
 )
 from devtools.context.repository.discovery import (
     RepositoryResourceDiscovery,
@@ -37,9 +40,12 @@ __all__ = [
     "RepositoryResourceOccurrence",
     "RepositorySnapshot",
     "RepositorySnapshotId",
+    "RepositoryTextCorpus",
     "RepositoryTextCorpusDefinition",
+    "RepositoryTextCorpusId",
     "define_repository_text_corpus",
     "discover_repository_resource_addresses",
     "observe_repository_resource",
     "observe_repository_resources",
+    "realize_repository_text_corpus",
 ]
