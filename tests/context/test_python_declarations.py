@@ -22,6 +22,7 @@ from devtools.context import (
     RepositorySnapshot,
     derive_python_function_declarations,
     observe_repository_resource,
+    observe_repository_resources,
 )
 from devtools.core.paths import ResolvedPath
 
@@ -44,6 +45,25 @@ def _snapshot(tmp_path: Path, content: str) -> RepositorySnapshot:
         repository=_repository(),
         root=ResolvedPath(tmp_path),
         address=RepositoryResourceAddress("module.py"),
+    )
+
+
+def _multi_snapshot(
+    tmp_path: Path,
+    *,
+    first: str,
+    second: str,
+) -> RepositorySnapshot:
+    """Observe two addressed Python fixtures into one identified snapshot."""
+    (tmp_path / "a.py").write_text(first, encoding="utf-8", newline="")
+    (tmp_path / "b.py").write_text(second, encoding="utf-8", newline="")
+    return observe_repository_resources(
+        repository=_repository(),
+        root=ResolvedPath(tmp_path),
+        addresses=(
+            RepositoryResourceAddress("a.py"),
+            RepositoryResourceAddress("b.py"),
+        ),
     )
 
 
@@ -127,7 +147,7 @@ def test_derivation_is_reproducible_and_records_narrow_semantic_input(
     assert first.declarations[0].identity == second.declarations[0].identity
     definition = first.derivation.definition
     assert definition.identity == second.derivation.definition.identity
-    assert definition.analyzer_semantics_version == "1"
+    assert definition.analyzer_semantics_version == "2"
     assert definition.parser_implementation == sys.implementation.name
     assert definition.parser_runtime_version == platform.python_version()
     assert definition.grammar_feature_version == (3, 12)
@@ -136,7 +156,7 @@ def test_derivation_is_reproducible_and_records_narrow_semantic_input(
         "ast.FunctionDef",
         "ast.AsyncFunctionDef",
     )
-    upgraded_definition = replace(definition, analyzer_semantics_version="2")
+    upgraded_definition = replace(definition, analyzer_semantics_version="3")
     different_parser = replace(
         definition,
         parser_runtime_version=f"{definition.parser_runtime_version}-different",
@@ -150,6 +170,9 @@ def test_derivation_is_reproducible_and_records_narrow_semantic_input(
     assert dependency.snapshot_id == snapshot.id
     assert dependency.repository_id == snapshot.repository_id
     assert dependency.resource == snapshot.resource
+    assert first.declarations[0].subject.resource_dependency_identity == (
+        dependency.identity
+    )
     assert dependency.identity == second.derivation.dependency.identity
     assert not hasattr(dependency, "root")
 
@@ -269,3 +292,125 @@ def test_source_range_uses_utf8_byte_columns(tmp_path: Path) -> None:
     assert source_range.end_line == expected_end_line
     assert source_range.end_column_utf8 == len(final_line.encode("utf-8"))
     assert source_range.end_column_utf8 != len(final_line)
+
+
+def test_explicitly_selected_multi_snapshot_resources_are_distinct_dependencies(
+    tmp_path: Path,
+) -> None:
+    """Each derivation consumes only its selected observed resource occurrence."""
+    snapshot = _multi_snapshot(
+        tmp_path,
+        first="def duplicate():\n    return 'a'\n\ndef only_a():\n    pass\n",
+        second="async def duplicate():\n    return 'b'\n\ndef only_b():\n    pass\n",
+    )
+    first_address = RepositoryResourceAddress("a.py")
+    second_address = RepositoryResourceAddress("b.py")
+
+    first = derive_python_function_declarations(
+        snapshot,
+        resource_address=first_address,
+    )
+    second = derive_python_function_declarations(
+        snapshot,
+        resource_address=second_address,
+    )
+
+    assert [item.declared_name for item in first.declarations] == [
+        "duplicate",
+        "only_a",
+    ]
+    assert [item.declared_name for item in second.declarations] == [
+        "duplicate",
+        "only_b",
+    ]
+    assert first.derivation.dependency.resource is snapshot.resource_at(first_address)
+    assert second.derivation.dependency.resource is snapshot.resource_at(second_address)
+    assert {
+        item.support.resource_address for item in first.declarations
+    } == {first_address}
+    assert {
+        item.support.resource_address for item in second.declarations
+    } == {second_address}
+    first_duplicate = first.declarations[0]
+    second_duplicate = second.declarations[0]
+    assert first_duplicate.declared_name == second_duplicate.declared_name
+    assert first_duplicate.subject.declaration_ordinal == (
+        second_duplicate.subject.declaration_ordinal
+    )
+    assert first_duplicate.subject.identity != second_duplicate.subject.identity
+    assert first_duplicate.identity != second_duplicate.identity
+    assert first.derivation.identity != second.derivation.identity
+
+
+def test_multi_snapshot_selection_rejects_an_unobserved_address(
+    tmp_path: Path,
+) -> None:
+    """A derivation cannot consume source absent from its identified snapshot."""
+    snapshot = _multi_snapshot(
+        tmp_path,
+        first="def first():\n    pass\n",
+        second="def second():\n    pass\n",
+    )
+
+    with pytest.raises(ValueError, match="does not contain resource address"):
+        derive_python_function_declarations(
+            snapshot,
+            resource_address=RepositoryResourceAddress("absent.py"),
+        )
+    with pytest.raises(ValueError, match="exactly one"):
+        derive_python_function_declarations(snapshot)
+
+
+def test_selected_multi_resource_zero_and_parse_failure_remain_distinct(
+    tmp_path: Path,
+) -> None:
+    """Only the selected resource determines successful zero or parse failure."""
+    snapshot = _multi_snapshot(
+        tmp_path,
+        first="VALUE = 1\n",
+        second="def broken(:\n    pass\n",
+    )
+    first_address = RepositoryResourceAddress("a.py")
+    second_address = RepositoryResourceAddress("b.py")
+
+    exhaustive_zero = derive_python_function_declarations(
+        snapshot,
+        resource_address=first_address,
+    )
+
+    assert exhaustive_zero.declarations == ()
+    assert exhaustive_zero.coverage.declaration_count == 0
+    assert exhaustive_zero.coverage.IS_EXHAUSTIVE is True
+    assert exhaustive_zero.derivation.dependency.resource.address == first_address
+    with pytest.raises(PythonModuleParseError) as captured:
+        derive_python_function_declarations(
+            snapshot,
+            resource_address=second_address,
+        )
+    assert captured.value.derivation.dependency.resource.address == second_address
+    assert not hasattr(captured.value, "coverage")
+
+
+def test_explicit_resource_derivation_performs_no_filesystem_read(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Derivation consumes only selected state already retained by the snapshot."""
+    snapshot = _multi_snapshot(
+        tmp_path,
+        first="def selected():\n    pass\n",
+        second="def unselected():\n    pass\n",
+    )
+
+    def forbidden_read(*_args: object, **_kwargs: object) -> None:
+        msg = "derivation attempted repository acquisition"
+        raise AssertionError(msg)
+
+    monkeypatch.setattr("devtools.context.repository.read", forbidden_read)
+
+    result = derive_python_function_declarations(
+        snapshot,
+        resource_address=RepositoryResourceAddress("a.py"),
+    )
+
+    assert [item.declared_name for item in result.declarations] == ["selected"]

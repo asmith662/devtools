@@ -59,9 +59,10 @@
 - Tools: [overview](../src/devtools/tools/docs/overview.md).
 
 The `context` domain exposes narrow Repository Intelligence APIs. Its current
-implementation observes one explicitly addressed UTF-8 text resource into
-identified snapshot state and derives source-grounded knowledge for direct
-module-body Python function declarations with exhaustive bounded coverage. It
+implementation observes a finite caller-declared collection of UTF-8 text
+resources into identified snapshot state and derives source-grounded knowledge
+from one explicitly selected occurrence for direct module-body Python function
+declarations with exhaustive bounded coverage. It
 also provides exact declared-name retrieval over supplied declaration knowledge,
 with purpose-relative match evidence and no ranking, plus a bounded all-match
 Context disclosure that projects established declaration and source-location

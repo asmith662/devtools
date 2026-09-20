@@ -1,10 +1,10 @@
 # Copyright (c) 2026
 """Direct module-body Python function declaration knowledge.
 
-The analyzer consumes one already observed repository snapshot. It parses the
-snapshot's admitted UTF-8 text with an explicitly identified stdlib ``ast``
-configuration and accounts exhaustively for only direct ``Module.body``
-``FunctionDef`` and ``AsyncFunctionDef`` declarations.
+The analyzer consumes one caller-selected resource from an already observed
+repository snapshot. It parses that admitted UTF-8 text with an explicitly
+identified stdlib ``ast`` configuration and accounts exhaustively for only
+direct ``Module.body`` ``FunctionDef`` and ``AsyncFunctionDef`` declarations.
 """
 
 from __future__ import annotations
@@ -26,14 +26,14 @@ if TYPE_CHECKING:
         RepositorySnapshotId,
     )
 
-_ANALYZER_SEMANTICS_VERSION = "1"
+_ANALYZER_SEMANTICS_VERSION = "2"
 _GRAMMAR_FEATURE_VERSION = (3, 12)
 _DEFINITION_IDENTITY_SEMANTICS = (
     "python-direct-module-function-declaration-definition-v1"
 )
 _DEPENDENCY_IDENTITY_SEMANTICS = "python-module-resource-dependency-v1"
 _DERIVATION_IDENTITY_SEMANTICS = "python-function-declaration-derivation-v1"
-_SUBJECT_IDENTITY_SEMANTICS = "snapshot-local-python-function-subject-v1"
+_SUBJECT_IDENTITY_SEMANTICS = "snapshot-local-python-function-subject-v2"
 _KNOWLEDGE_IDENTITY_SEMANTICS = "python-function-declaration-knowledge-v1"
 
 
@@ -144,6 +144,7 @@ class PythonFunctionSubject:
     """Represent one analyzer-established snapshot-local function subject."""
 
     snapshot_id: RepositorySnapshotId
+    resource_dependency_identity: str
     declaration_ordinal: int
     derivation_definition_identity: str
 
@@ -156,6 +157,7 @@ class PythonFunctionSubject:
             _SUBJECT_IDENTITY_SEMANTICS,
             str(self.snapshot_id),
             self.derivation_definition_identity,
+            self.resource_dependency_identity,
             self.KIND,
             str(self.declaration_ordinal),
         )
@@ -243,18 +245,27 @@ class PythonModuleParseError(Exception):
 
 def derive_python_function_declarations(
     snapshot: RepositorySnapshot,
+    *,
+    resource_address: RepositoryResourceAddress | None = None,
 ) -> PythonFunctionDeclarationAnalysis:
-    """Derive direct module-body function declaration knowledge from a snapshot.
+    """Derive declarations from one explicitly selected observed resource.
 
     A returned value accounts exhaustively for the bounded declaration scope.
     A syntax failure raises :class:`PythonModuleParseError` and returns no
-    coverage or declaration knowledge.
+    coverage or declaration knowledge. Omitting ``resource_address`` is a
+    compatibility path valid only for a snapshot containing exactly one
+    resource.
     """
+    resource = (
+        snapshot.resource
+        if resource_address is None
+        else snapshot.resource_at(resource_address)
+    )
     definition = _current_definition()
     dependency = PythonModuleResourceDependency(
         snapshot_id=snapshot.id,
         repository_id=snapshot.repository_id,
-        resource=snapshot.resource,
+        resource=resource,
     )
     derivation = PythonFunctionDeclarationDerivation(
         definition=definition,
@@ -279,6 +290,7 @@ def derive_python_function_declarations(
         declaration_ordinal = len(declarations)
         subject = PythonFunctionSubject(
             snapshot_id=snapshot.id,
+            resource_dependency_identity=dependency.identity,
             declaration_ordinal=declaration_ordinal,
             derivation_definition_identity=definition.identity,
         )

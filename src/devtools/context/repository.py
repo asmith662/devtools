@@ -158,6 +158,17 @@ class RepositorySnapshot:
             raise ValueError(msg)
         return self.resources[0]
 
+    def resource_at(
+        self,
+        address: RepositoryResourceAddress,
+    ) -> RepositoryResourceOccurrence:
+        """Return the observed occurrence at one exact requested address."""
+        for resource in self.resources:
+            if resource.address == address:
+                return resource
+        msg = f"Repository snapshot does not contain resource address: {address}."
+        raise ValueError(msg)
+
 
 def observe_repository_resource(
     *,

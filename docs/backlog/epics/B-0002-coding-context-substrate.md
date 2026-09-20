@@ -182,7 +182,9 @@ snapshot-local function RepositorySubject.
 A bounded production implementation now realizes this target from an explicitly
 selected resource in the bounded RepositorySnapshot observation substrate,
 which can represent a finite caller-declared resource collection without
-discovery. It is not a frozen production representation or a universal
+discovery. The caller selects that direct dependency by its observed
+repository-relative address; other resources in the snapshot are not consumed
+by the derivation. It is not a frozen production representation or a universal
 declaration ontology. It does not claim runtime
 binding, importability, callability, reference resolution, qualified-name
 semantics, cross-snapshot continuity, class-method or nested-function

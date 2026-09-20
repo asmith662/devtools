@@ -278,10 +278,12 @@ the exact requested collection and makes no repository-wide or atomic-filesystem
 claim. Its local digest and representation choices do not select universal
 snapshot or ContentIdentity architecture.
 
-The first bounded derivation consumes that observed state and uses stdlib `ast`
-with explicit Python 3.12 grammar-feature semantics to establish source-grounded
-knowledge for direct module-body synchronous and asynchronous function
-declarations. Its identified definition also records the ambient parser
+The first bounded derivation consumes one caller-selected resource occurrence
+from that observed state and uses stdlib `ast` with explicit Python 3.12
+grammar-feature semantics to establish source-grounded knowledge for direct
+module-body synchronous and asynchronous function declarations. Other snapshot
+resources are not direct semantic dependencies of that derivation. Its
+identified definition also records the ambient parser
 implementation and runtime version. Successful analysis publishes separately
 referable declaration knowledge plus exhaustive coverage of exactly that scope;
 syntax failure publishes neither successful coverage nor declaration knowledge.
