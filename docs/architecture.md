@@ -318,8 +318,18 @@ camelCase/PascalCase and snake_case spans are not decomposed. This is lexical
 document observation, not parsing, language classification, repository
 knowledge, retrieval evidence, ranking, or Context selection. Address/path
 evidence remains separate from document-content lexical observations. Collection
-analysis simply composes independent document analyses in document order; it
-does not compute term/document frequency, IDF, an index, a query, or BM25.
+analysis simply composes independent document analyses in document order.
+
+Current retrieval implementation can also derive lexical corpus statistics and
+a content-only inverted index from one exact collection analysis. Document length
+is its number of lexical observations; term frequency is the number of one
+normalized term's observations in one document; document frequency is the count
+of distinct documents containing that term; and average document length is the
+arithmetic mean across all documents, including zero-observation documents
+(`0.0` for an empty collection). Vocabulary follows first lexical encounter in
+document order, and postings follow document order while retaining direct
+document-analysis and observation correlation. This establishes no IDF, query,
+score, rank, retrieval result, or BM25 behavior.
 
 For the bounded Python-function path, a separate purpose-sensitive projection
 can nominate discovered addresses ending in the exact, case-sensitive `.py`

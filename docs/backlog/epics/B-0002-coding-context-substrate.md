@@ -218,8 +218,13 @@ rule, and preserves repository-relative addresses for later structural/path
 retrieval signals. A baseline heterogeneous lexical analysis now observes each
 document's ordered Unicode-regex `\w+` spans, retaining exact text, offsets,
 encounter order, and casefolded terms. It preserves repeated spans but performs
-no source-language parsing, identifier decomposition, statistics, index, query,
-ranking, or BM25 work; path evidence remains separate. A separate bounded,
+no source-language parsing or identifier decomposition. Derived lexical corpus
+statistics now record observation-count document length, document-local term
+frequency, distinct-document frequency, and average document length (`0.0` for
+an empty collection); a content-only inverted index retains first-encounter
+vocabulary and document-ordered postings with direct observation/document
+correlation. It has no query, IDF, ranking, retrieval, or BM25 work; path
+evidence remains separate. A separate bounded,
 purpose-sensitive address projection now
 nominates exact, case-sensitive `.py` discovery addresses for observation while
 preserving discovery order. That convention is candidacy evidence rather than

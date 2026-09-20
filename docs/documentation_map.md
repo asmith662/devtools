@@ -83,8 +83,12 @@ path-sensitive retrieval evidence. A separate bounded
 Unicode-regex `\w+` spans, retaining exact text, offsets, encounter order, and
 casefolded terms. It is heterogeneous rather than Python-specific: punctuation
 and whitespace separate spans, repeated spans remain repeated, and camelCase,
-PascalCase, and snake_case are not decomposed. It has no parser, token
-statistics, index, query, ranking, or BM25 behavior; path evidence remains
+PascalCase, and snake_case are not decomposed. Corpus-level statistics now retain
+observation-count document lengths, document-local term frequencies,
+distinct-document frequencies, and average document length (`0.0` for an empty
+collection); a content-only inverted index retains direct observation/document
+correlation in first-encounter vocabulary and document posting order. It has no
+parser, query, IDF, ranking, retrieval, or BM25 behavior; path evidence remains
 separate. A separate bounded
 Python-function-path projection nominates exact, case-sensitive `.py` addresses
 for observation without inspecting content; this is candidacy evidence rather
