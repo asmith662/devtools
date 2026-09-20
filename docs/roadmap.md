@@ -61,12 +61,12 @@ and Evidence ownership terminology, remain in the
   Agent loop, or orchestration system. [B-0008](backlog/items/B-0008-investigate-repository-context-discovery.md)
   remains superseded historical navigation evidence.
 
-- The selected starting hypothesis is direct module-body Python function
+- The selected starting hypothesis was implemented as direct module-body Python function
   declaration knowledge. Concrete design will test a narrow proposition in
   which direct module-body `ast.FunctionDef` and `ast.AsyncFunctionDef` source
   occurrences in an identified RepositorySnapshot syntactically declare
   distinct snapshot-local function RepositorySubjects. This is a design target,
-  not an implemented feature, fixed production representation, or universal
+  not a fixed production representation or universal
   declaration ontology. [B-0002](backlog/epics/B-0002-coding-context-substrate.md)
   preserves the exact scope, design pressure, and deliberate deferrals.
 

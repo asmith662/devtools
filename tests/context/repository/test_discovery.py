@@ -39,6 +39,7 @@ _EXPECTED_COMPOSITION_ENTRY_COUNT = 6
 _EXPECTED_DISCOVERED_COUNT = 5
 _EXPECTED_ELIGIBLE_COUNT = 4
 _EXPECTED_CANDIDATE_COUNT = 3
+_MAXIMUM_RESOURCE_BYTES = 16 * 1024 * 1024
 
 
 def _repository() -> Repository:
@@ -103,6 +104,7 @@ def test_recursive_discovery_composes_with_explicit_observation(
         repository=_repository(),
         root=ResolvedPath(root),
         addresses=discovery.addresses,
+        maximum_resource_bytes=_MAXIMUM_RESOURCE_BYTES,
     )
 
     assert tuple(resource.address for resource in snapshot.resources) == (
@@ -144,6 +146,7 @@ def test_discovery_feeds_the_existing_python_function_pipeline(
         repository=_repository(),
         root=ResolvedPath(root),
         addresses=discovery.addresses,
+        maximum_resource_bytes=_MAXIMUM_RESOURCE_BYTES,
     )
     eligible_addresses = tuple(
         address for address in discovery.addresses if address.value.endswith(".py")

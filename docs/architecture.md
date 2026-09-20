@@ -290,7 +290,9 @@ not proof of Python contents, successful UTF-8 observation, task relevance, or
 declaration knowledge. Repository discovery itself remains language-neutral.
 
 Current `context` implementation includes bounded observation of a finite,
-explicitly addressed collection of UTF-8 text resources. It establishes nominal
+explicitly addressed collection of UTF-8 text resources, including an explicit
+empty collection. Each required resource is subject to a caller-supplied
+positive per-resource byte bound. It establishes nominal
 Repository identity, repository-relative resource occurrences,
 address-independent decoded-text content identities, and deterministic
 identified snapshot state under versioned local semantics. Caller order is

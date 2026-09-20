@@ -42,6 +42,7 @@ def observe_repository_resource(
     repository: Repository,
     root: ResolvedPath,
     address: RepositoryResourceAddress,
+    maximum_resource_bytes: int,
 ) -> RepositorySnapshot:
     """Observe one required UTF-8 text resource through one bounded read.
 
@@ -57,6 +58,7 @@ def observe_repository_resource(
         repository=repository,
         root=root,
         addresses=(address,),
+        maximum_resource_bytes=maximum_resource_bytes,
     )
 
 
@@ -65,6 +67,7 @@ def observe_repository_resources(
     repository: Repository,
     root: ResolvedPath,
     addresses: Collection[RepositoryResourceAddress],
+    maximum_resource_bytes: int,
 ) -> RepositorySnapshot:
     """Observe a finite explicit collection of required UTF-8 text resources.
 
@@ -75,13 +78,13 @@ def observe_repository_resources(
     caller ordering or observation root, but no simultaneous filesystem view is
     claimed.
 
-    :raises ValueError: If no addresses are supplied or an address is repeated.
+    :raises ValueError: If the byte bound is nonpositive or an address is repeated.
     :raises RepositoryObservationError: If resolution escapes the supplied root.
     :raises FilesystemError: If any required resource cannot be read completely.
     """
     requested_addresses = tuple(addresses)
-    if not requested_addresses:
-        msg = "Repository observation requires at least one resource address."
+    if maximum_resource_bytes <= 0:
+        msg = "Repository observation maximum resource bytes must be positive."
         raise ValueError(msg)
     if len(set(requested_addresses)) != len(requested_addresses):
         msg = "Repository observation resource addresses must be distinct."
@@ -92,7 +95,11 @@ def observe_repository_resources(
     )
     normalized_root = resolve_path(root.value)
     resources = tuple(
-        _observe_resource(root=normalized_root, address=requested)
+        _observe_resource(
+            root=normalized_root,
+            address=requested,
+            maximum_resource_bytes=maximum_resource_bytes,
+        )
         for requested in ordered_addresses
     )
     snapshot_id = RepositorySnapshotId(
@@ -120,6 +127,7 @@ def _observe_resource(
     *,
     root: ResolvedPath,
     address: RepositoryResourceAddress,
+    maximum_resource_bytes: int,
 ) -> RepositoryResourceOccurrence:
     """Acquire one required occurrence within a normalized observation root."""
     candidate = resolve_path(
@@ -130,7 +138,14 @@ def _observe_resource(
         msg = f"Repository resource resolves outside the observation root: {address}."
         raise RepositoryObservationError(msg)
 
-    file = cast("TextFile", read(candidate, file_format=FileFormat.TEXT))
+    file = cast(
+        "TextFile",
+        read(
+            candidate,
+            file_format=FileFormat.TEXT,
+            max_bytes=maximum_resource_bytes,
+        ),
+    )
     content_identity = ContentIdentity(
         _semantic_digest(_CONTENT_IDENTITY_SEMANTICS, file.content),
     )

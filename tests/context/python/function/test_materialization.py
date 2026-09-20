@@ -46,6 +46,7 @@ def _snapshot(
         repository=Repository(RepositoryId.parse(_REPOSITORY_ID)),
         root=ResolvedPath(tmp_path),
         address=RepositoryResourceAddress(address),
+        maximum_resource_bytes=16 * 1024 * 1024,
     )
 
 
@@ -259,6 +260,7 @@ def test_multi_resource_range_is_applied_only_to_its_addressed_resource(
         repository=Repository(RepositoryId.parse(_REPOSITORY_ID)),
         root=ResolvedPath(tmp_path),
         addresses=(first_address, second_address),
+        maximum_resource_bytes=16 * 1024 * 1024,
     )
     analysis = derive_python_function_declarations(
         snapshot,

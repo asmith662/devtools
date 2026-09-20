@@ -45,6 +45,7 @@ def _snapshot(tmp_path: Path, content: str) -> RepositorySnapshot:
         repository=_repository(),
         root=ResolvedPath(tmp_path),
         address=RepositoryResourceAddress("module.py"),
+        maximum_resource_bytes=16 * 1024 * 1024,
     )
 
 
@@ -64,6 +65,7 @@ def _multi_snapshot(
             RepositoryResourceAddress("a.py"),
             RepositoryResourceAddress("b.py"),
         ),
+        maximum_resource_bytes=16 * 1024 * 1024,
     )
 
 

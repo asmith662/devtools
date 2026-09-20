@@ -38,6 +38,7 @@ def _declarations(
         repository=Repository(RepositoryId.parse(_REPOSITORY_ID)),
         root=ResolvedPath(tmp_path),
         address=RepositoryResourceAddress("module.py"),
+        maximum_resource_bytes=16 * 1024 * 1024,
     )
     return derive_python_function_declarations(snapshot)
 

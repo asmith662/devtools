@@ -42,6 +42,7 @@ def _materialized_context(
         repository=Repository(RepositoryId.parse(_REPOSITORY_ID)),
         root=ResolvedPath(tmp_path),
         address=RepositoryResourceAddress("module.py"),
+        maximum_resource_bytes=16 * 1024 * 1024,
     )
     analysis = derive_python_function_declarations(snapshot)
     retrieval = retrieve_python_functions_by_exact_name(

@@ -23,11 +23,13 @@ from devtools.core.paths import ResolvedPath
 from devtools.resources.filesystem import (
     FilesystemNotFoundError,
     FilesystemPermissionError,
+    FileTooLargeError,
     NotAFileError,
     TextDecodingError,
 )
 
 _REPOSITORY_ID = "00000000-0000-4000-8000-000000000001"
+_MAXIMUM_RESOURCE_BYTES = 16 * 1024 * 1024
 
 
 def _repository() -> Repository:
@@ -45,6 +47,7 @@ def _observe(
         repository=repository,
         root=ResolvedPath(root),
         address=RepositoryResourceAddress(address),
+        maximum_resource_bytes=_MAXIMUM_RESOURCE_BYTES,
     )
 
 
@@ -58,6 +61,7 @@ def _observe_many(
         repository=repository,
         root=ResolvedPath(root),
         addresses=tuple(RepositoryResourceAddress(value) for value in addresses),
+        maximum_resource_bytes=_MAXIMUM_RESOURCE_BYTES,
     )
 
 
@@ -259,11 +263,11 @@ def test_equal_content_at_two_addresses_retains_distinct_multi_occurrences(
     assert first.content_identity == second.content_identity
 
 
-def test_multi_resource_observation_rejects_empty_and_duplicate_requests(
+def test_empty_observation_is_identified_without_filesystem_acquisition(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    """Invalid requested collections fail before acquiring repository state."""
+    """An explicitly empty collection is a bounded successful observation."""
     address = RepositoryResourceAddress("module.py")
 
     def forbidden_read(*_args: object, **_kwargs: object) -> None:
@@ -271,17 +275,85 @@ def test_multi_resource_observation_rejects_empty_and_duplicate_requests(
         raise AssertionError(msg)
 
     monkeypatch.setattr("devtools.context.repository.observation.read", forbidden_read)
-    with pytest.raises(ValueError, match="at least one"):
-        observe_repository_resources(
-            repository=_repository(),
-            root=ResolvedPath(tmp_path),
-            addresses=(),
-        )
+    snapshot = observe_repository_resources(
+        repository=_repository(),
+        root=ResolvedPath(tmp_path),
+        addresses=(),
+        maximum_resource_bytes=_MAXIMUM_RESOURCE_BYTES,
+    )
+    assert snapshot.resources == ()
+    assert snapshot.repository_id == _repository().id
+    with pytest.raises(ValueError, match="exactly one"):
+        _ = snapshot.resource
     with pytest.raises(ValueError, match="distinct"):
         observe_repository_resources(
             repository=_repository(),
             root=ResolvedPath(tmp_path),
             addresses=(address, address),
+            maximum_resource_bytes=_MAXIMUM_RESOURCE_BYTES,
+        )
+
+
+def test_empty_observation_identity_is_deterministic_and_repository_sensitive(
+    tmp_path: Path,
+) -> None:
+    """Empty observation reflects only its Repository and empty requested set."""
+    first_repository = _repository()
+    second_repository = Repository(
+        RepositoryId.parse("00000000-0000-4000-8000-000000000002"),
+    )
+    first = observe_repository_resources(
+        repository=first_repository,
+        root=ResolvedPath(tmp_path),
+        addresses=(),
+        maximum_resource_bytes=1,
+    )
+    second = observe_repository_resources(
+        repository=first_repository,
+        root=ResolvedPath(tmp_path),
+        addresses=(),
+        maximum_resource_bytes=1,
+    )
+    other = observe_repository_resources(
+        repository=second_repository,
+        root=ResolvedPath(tmp_path),
+        addresses=(),
+        maximum_resource_bytes=1,
+    )
+    assert first == second
+    assert first.id != other.id
+
+
+@pytest.mark.parametrize("maximum_resource_bytes", [0, -1])
+def test_nonpositive_resource_bound_fails_before_read(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    maximum_resource_bytes: int,
+) -> None:
+    """Observation requires a positive caller-visible bound before acquisition."""
+    def forbidden_read(*_args: object, **_kwargs: object) -> None:
+        msg = "invalid bound attempted acquisition"
+        raise AssertionError(msg)
+
+    monkeypatch.setattr("devtools.context.repository.observation.read", forbidden_read)
+    with pytest.raises(ValueError, match="must be positive"):
+        observe_repository_resources(
+            repository=_repository(),
+            root=ResolvedPath(tmp_path),
+            addresses=(RepositoryResourceAddress("module.py"),),
+            maximum_resource_bytes=maximum_resource_bytes,
+        )
+
+
+def test_resource_bound_is_passed_to_canonical_text_read(tmp_path: Path) -> None:
+    """An oversized required resource prevents snapshot publication."""
+    (tmp_path / "module.py").write_text("12345", encoding="utf-8")
+    with pytest.raises(FileTooLargeError):
+        observe_repository_resource(
+            repository=_repository(),
+            root=ResolvedPath(tmp_path),
+            address=RepositoryResourceAddress("module.py"),
+            maximum_resource_bytes=4,
         )
 
 
@@ -386,6 +458,7 @@ def test_observation_rejects_a_resolved_escape(
             repository=_repository(),
             root=root,
             address=RepositoryResourceAddress("module.py"),
+            maximum_resource_bytes=_MAXIMUM_RESOURCE_BYTES,
         )
 
 

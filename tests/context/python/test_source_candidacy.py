@@ -33,6 +33,7 @@ if TYPE_CHECKING:
     import pytest
 
 _REPOSITORY_ID = "00000000-0000-4000-8000-000000000001"
+_MAXIMUM_RESOURCE_BYTES = 16 * 1024 * 1024
 _DISCOVERED_COUNT = 7
 _PYTHON_ADDRESS_CANDIDATE_COUNT = 4
 _ANALYSIS_CANDIDATE_COUNT = 3
@@ -106,6 +107,7 @@ def test_discovery_candidates_compose_through_the_function_context_pipeline(
         repository=_repository(),
         root=ResolvedPath(tmp_path),
         addresses=python_sources.addresses,
+        maximum_resource_bytes=_MAXIMUM_RESOURCE_BYTES,
     )
     query = PythonFunctionExactNameQuery("selected_function")
     analysis_candidates = select_python_function_analysis_candidates(

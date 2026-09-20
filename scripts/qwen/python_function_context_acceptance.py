@@ -54,6 +54,7 @@ _DEFAULT_MODEL = "qwen38-local"
 _FUNCTION_NAME = "selected_function"
 _RESOURCE_ADDRESS = RepositoryResourceAddress("module.py")
 _MAXIMUM_OUTPUT_TOKENS = 64
+_MAXIMUM_RESOURCE_BYTES = 16 * 1024 * 1024
 _REPORT_SCHEMA = "b0002-python-function-context-live-acceptance/1"
 _TASK = (
     "Read the supporting repository Context supplied after this task. Return only "
@@ -113,6 +114,7 @@ async def run_acceptance(
         repository=Repository.new(),
         root=ResolvedPath(repository_root),
         address=_RESOURCE_ADDRESS,
+        maximum_resource_bytes=_MAXIMUM_RESOURCE_BYTES,
     )
     analysis = derive_python_function_declarations(snapshot)
     retrieval = retrieve_python_functions_by_exact_name(

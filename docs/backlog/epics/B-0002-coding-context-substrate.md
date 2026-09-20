@@ -193,7 +193,9 @@ snapshot-local function RepositorySubject.
 
 A bounded production implementation now realizes this target from an explicitly
 selected resource in the bounded RepositorySnapshot observation substrate,
-which can represent a finite caller-declared resource collection. A separate
+which can represent a finite caller-declared resource collection, including an
+explicitly empty collection, with a caller-supplied positive per-resource byte
+bound. A separate
 bounded recursive discovery operation can supply canonical regular-file
 addresses from an explicit root using metadata only, lexical ordering, a
 positive resource-count bound, a separate positive examined-entry bound, and

@@ -31,6 +31,7 @@ if TYPE_CHECKING:
     from devtools.context import RepositorySnapshot
 
 _REPOSITORY_ID = "00000000-0000-4000-8000-000000000001"
+_MAXIMUM_RESOURCE_BYTES = 16 * 1024 * 1024
 
 
 def _observe(
@@ -47,6 +48,7 @@ def _observe(
         repository=Repository(RepositoryId.parse(_REPOSITORY_ID)),
         root=ResolvedPath(tmp_path),
         addresses=addresses,
+        maximum_resource_bytes=_MAXIMUM_RESOURCE_BYTES,
     )
 
 
