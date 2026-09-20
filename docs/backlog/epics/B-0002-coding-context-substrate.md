@@ -210,7 +210,12 @@ identified `RepositoryTextCorpus` retaining exactly the definition's selected
 observed occurrences. Its local identity is scoped to the logical Repository
 and selected address/content identities, so unrelated snapshot resources do not
 become members or identity inputs. This is not corpus classification, indexing,
-or retrieval; BM25 remains unimplemented. A separate bounded, purpose-sensitive address projection now
+or retrieval; BM25 remains unimplemented. A whole-resource document
+representation now preserves each corpus member's exact observed text and
+resource correlation in corpus order without tokenization, indexing, or ranking.
+It is one representation strategy, not a universal one-resource-one-document
+rule, and preserves repository-relative addresses for later structural/path
+retrieval signals. A separate bounded, purpose-sensitive address projection now
 nominates exact, case-sensitive `.py` discovery addresses for observation while
 preserving discovery order. That convention is candidacy evidence rather than
 proof of Python contents, successful observation, relevance, or declaration

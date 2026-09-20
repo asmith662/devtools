@@ -73,6 +73,12 @@ observation can subsequently acquire the selected collection, and an identified
 Its identity is dependency-scoped to the logical Repository and selected
 address/content identities, not all observed snapshot state. It is not an index
 or retrieval mechanism; BM25 is not implemented. A separate bounded
+whole-resource representation can turn every `RepositoryTextCorpus` member into
+one `RepositoryTextDocument`, retaining exact observed text and resource
+correlation in corpus order. This is a current representation strategy rather
+than a universal one-resource-one-document rule; it does not tokenize, index,
+rank, or retrieve. Resource addresses remain available for later structural or
+path-sensitive retrieval evidence. A separate bounded
 Python-function-path projection nominates exact, case-sensitive `.py` addresses
 for observation without inspecting content; this is candidacy evidence rather
 than proof of Python source. The observation operation then reads a finite

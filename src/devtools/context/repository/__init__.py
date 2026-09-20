@@ -13,6 +13,12 @@ from devtools.context.repository.discovery import (
     RepositoryResourceDiscoveryError,
     discover_repository_resource_addresses,
 )
+from devtools.context.repository.document import (
+    RepositoryTextDocument,
+    RepositoryTextDocumentCollection,
+    RepositoryTextDocumentId,
+    represent_repository_text_corpus,
+)
 from devtools.context.repository.identity import Repository, RepositoryId
 from devtools.context.repository.observation import (
     RepositoryObservationError,
@@ -43,9 +49,13 @@ __all__ = [
     "RepositoryTextCorpus",
     "RepositoryTextCorpusDefinition",
     "RepositoryTextCorpusId",
+    "RepositoryTextDocument",
+    "RepositoryTextDocumentCollection",
+    "RepositoryTextDocumentId",
     "define_repository_text_corpus",
     "discover_repository_resource_addresses",
     "observe_repository_resource",
     "observe_repository_resources",
     "realize_repository_text_corpus",
+    "represent_repository_text_corpus",
 ]

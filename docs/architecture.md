@@ -296,6 +296,19 @@ observed resources do not become corpus members or identity inputs. A
 RepositorySnapshot is therefore not a RepositoryTextCorpus. Neither value
 classifies resources or implements indexing, BM25, or retrieval.
 
+Current `context` implementation can deterministically represent each
+RepositoryTextCorpus member as one whole-resource `RepositoryTextDocument`.
+The document retains its exact observed occurrence and text, including its
+repository-relative address and content identity through that correlation. Its
+identity is scoped to the logical Repository, that address, that content
+identity, and the explicit whole-resource representation semantics -- not the
+whole corpus or unrelated members. `RepositoryTextDocumentCollection` retains
+the corpus and documents in corpus order. This is one faithful representation
+strategy, not a universal one-resource-one-document rule: future structural,
+section, symbol, or bounded-chunk strategies remain open. It performs no
+tokenization, indexing, ranking, or BM25 retrieval, while preserving paths for
+future structural/path signals.
+
 For the bounded Python-function path, a separate purpose-sensitive projection
 can nominate discovered addresses ending in the exact, case-sensitive `.py`
 suffix for source observation. It consumes only the completed discovery value,
