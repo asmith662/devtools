@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING, ClassVar
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
+
     from devtools.context.repository.discovery import RepositoryResourceDiscovery
     from devtools.context.repository.resource import RepositoryResourceAddress
 

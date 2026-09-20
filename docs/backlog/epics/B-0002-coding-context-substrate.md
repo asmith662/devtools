@@ -201,7 +201,11 @@ addresses from an explicit root using metadata only, lexical ordering, a
 positive resource-count bound, a separate positive examined-entry bound, and
 conservative link skipping. It creates no snapshot, content identity, language
 classification, or relevance claim; observation remains the content-acquisition
-boundary. A separate bounded, purpose-sensitive address projection now
+boundary. A separate immutable `RepositoryTextCorpusDefinition` now retains one
+completed discovery and an exact caller-selected subset of those discovered
+addresses in discovery order. It expresses only future textual-corpus membership
+intent: it performs no observation and establishes no content, UTF-8,
+classification, or relevance claim. A separate bounded, purpose-sensitive address projection now
 nominates exact, case-sensitive `.py` discovery addresses for observation while
 preserving discovery order. That convention is candidacy evidence rather than
 proof of Python contents, successful observation, relevance, or declaration

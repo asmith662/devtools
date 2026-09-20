@@ -281,6 +281,15 @@ recursion, link, and bound choices are local implementation semantics, and the
 sequential metadata traversal makes no atomic or race-free filesystem claim.
 They are not universal Repository architecture.
 
+Current `context` implementation also has an immutable
+`RepositoryTextCorpusDefinition`: it retains one completed discovery and the
+exact caller-selected subset of its addresses, projected into discovery order.
+It can expose only the complementary meaning “discovered but not selected.”
+This is explicit future-textual-corpus membership intent, not a corpus,
+observation, content claim, classification, or relevance claim; in particular,
+construction does not read resources. The next step may attempt bounded UTF-8
+observation of that selected collection.
+
 For the bounded Python-function path, a separate purpose-sensitive projection
 can nominate discovered addresses ending in the exact, case-sensitive `.py`
 suffix for source observation. It consumes only the completed discovery value,

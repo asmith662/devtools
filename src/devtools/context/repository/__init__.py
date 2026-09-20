@@ -1,14 +1,14 @@
 # Copyright (c) 2026
 """Public repository identity, state, observation, and discovery API."""
 
+from devtools.context.repository.corpus import (
+    RepositoryTextCorpusDefinition,
+    define_repository_text_corpus,
+)
 from devtools.context.repository.discovery import (
     RepositoryResourceDiscovery,
     RepositoryResourceDiscoveryError,
     discover_repository_resource_addresses,
-)
-from devtools.context.repository.corpus import (
-    RepositoryTextCorpusDefinition,
-    define_repository_text_corpus,
 )
 from devtools.context.repository.identity import Repository, RepositoryId
 from devtools.context.repository.observation import (
