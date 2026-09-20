@@ -7,6 +7,15 @@ The llama.cpp transport adapter lives in
 configured with endpoint, served model name, and source identity; it is not
 Qwen-specific.
 
+`scripts/qwen/python_function_context_acceptance.py` is a bounded B-0002 live
+checkpoint. It builds a disposable nonce-bearing Python module, exercises the
+implemented Repository Intelligence, exact-name retrieval, Context disclosure,
+source materialization, rendering, and ModelRequest assembly path, then sends
+the resulting request directly through `LlamaCppInteraction`. The model receives
+no Tools or repository access. Exact whitespace-trimmed nonce equality records
+only whether that configured model consumed the supplied Context for this one
+task; it is not shadow mode, assisted mode, or a general evaluation result.
+
 This repository artifact is intentionally outside the installable `devtools`
 framework API. `read_experiment.py` recognizes one exact read proposal,
 permits only `read_repository_file`, uses the existing `ToolRunner` and
