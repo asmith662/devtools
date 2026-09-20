@@ -38,8 +38,11 @@ from devtools.context.python_function_request_assembly import (
 from devtools.context.python_function_retrieval import (
     PythonFunctionExactNameQuery,
     PythonFunctionExactNameRelevanceEvidence,
+    PythonFunctionExactNameResourceSelection,
     PythonFunctionExactNameRetrievalResult,
+    PythonFunctionExactNameSelectedResource,
     retrieve_python_functions_by_exact_name,
+    select_python_function_resources_from_exact_name_retrieval,
 )
 from devtools.context.repository import (
     ContentIdentity,
@@ -69,7 +72,9 @@ __all__ = [
     "PythonFunctionExactNameContextDisclosure",
     "PythonFunctionExactNameQuery",
     "PythonFunctionExactNameRelevanceEvidence",
+    "PythonFunctionExactNameResourceSelection",
     "PythonFunctionExactNameRetrievalResult",
+    "PythonFunctionExactNameSelectedResource",
     "PythonFunctionSourceMaterializationError",
     "PythonFunctionSubject",
     "PythonModuleParseError",
@@ -93,4 +98,5 @@ __all__ = [
     "observe_repository_resources",
     "render_materialized_python_function_context",
     "retrieve_python_functions_by_exact_name",
+    "select_python_function_resources_from_exact_name_retrieval",
 ]

@@ -304,6 +304,14 @@ zero matches succeed only over the supplied knowledge. The operation performs no
 repository access or parsing and introduces no score, ranking, or Context
 selection semantics.
 
+A bounded resource-selection projection can consume that retrieval result and
+identify the distinct snapshot-relative resource addresses supporting its
+matches. It preserves first-match order and every original declaration-level
+match as support when several matches occur in one resource. This projection
+performs no retrieval, analysis, or source access and makes no claim that an
+unselected resource is irrelevant or that a selected resource is useful beyond
+the exact-name purpose.
+
 The first bounded Context operation consumes that successful retrieval result,
 selects every exact-name match in retrieval order, and realizes a structured
 knowledge projection for each selection. Each item retains its retrieval

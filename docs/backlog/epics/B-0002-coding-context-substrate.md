@@ -76,6 +76,11 @@ caching, authorization integration, and evaluation implementations unresolved.
 A bounded production Context operation now selects all exact-name declaration
 matches and realizes provenance-linked structured knowledge projections without
 source reacquisition, ranking, synthesis, or ModelRequest assembly. A separate
+bounded resource-selection projection identifies the distinct resources that
+support an exact-name retrieval result, preserves first-match order and all
+supporting declaration matches, and performs no analysis, retrieval, or source
+access. It does not select resources for analysis or alter Context disclosure.
+A separate
 bounded materializer accepts explicit identified snapshot state, validates
 snapshot/resource correspondence, and adds exact source segments using the
 established UTF-8 byte-coordinate contract. A purpose-specific renderer now
