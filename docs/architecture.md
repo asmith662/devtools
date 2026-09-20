@@ -267,15 +267,16 @@ decomposition and purpose-relative composite disclosure are downstream concerns
 under ADR-0003/ADR-0004; neither makes resulting demands or disclosure units
 into RepositorySubjects.
 
-Current `context` implementation includes bounded observation of one explicitly
-addressed UTF-8 text resource. It establishes nominal Repository identity, a
-repository-relative resource occurrence, address-independent decoded-text
-content identity, and deterministic identified snapshot state under versioned
-single-resource observation semantics. The observation performs one bounded
-filesystem read and claims completeness only for that required resource; it
-makes no repository-wide or atomic-filesystem claim. Its local digest and
-representation choices do not select universal snapshot or ContentIdentity
-architecture.
+Current `context` implementation includes bounded observation of a finite,
+explicitly addressed collection of UTF-8 text resources. It establishes nominal
+Repository identity, repository-relative resource occurrences,
+address-independent decoded-text content identities, and deterministic
+identified snapshot state under versioned local semantics. Caller order is
+canonicalized by repository-relative address, and duplicate addresses are
+rejected. Resources are read sequentially; success claims completeness only for
+the exact requested collection and makes no repository-wide or atomic-filesystem
+claim. Its local digest and representation choices do not select universal
+snapshot or ContentIdentity architecture.
 
 The first bounded derivation consumes that observed state and uses stdlib `ast`
 with explicit Python 3.12 grammar-feature semantics to establish source-grounded

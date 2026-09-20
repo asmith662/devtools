@@ -143,7 +143,7 @@ def test_rejects_mismatched_snapshot_and_resource_state(tmp_path: Path) -> None:
         snapshot.resource,
         address=RepositoryResourceAddress("other.py"),
     )
-    mismatched_address_snapshot = replace(snapshot, resource=mismatched_resource)
+    mismatched_address_snapshot = replace(snapshot, resources=(mismatched_resource,))
     with pytest.raises(PythonFunctionSourceMaterializationError, match="resource"):
         materialize_python_function_disclosure_source(
             disclosure=disclosure,

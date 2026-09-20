@@ -1,9 +1,9 @@
 # Copyright (c) 2026
-"""Bounded observation of one explicitly addressed repository text resource.
+"""Bounded observation of explicitly addressed repository text resources.
 
-The observation operation is complete for exactly one caller-requested UTF-8
-text resource. It performs one bounded filesystem read and makes no atomic,
-repository-wide, discovery, or multi-resource consistency claim.
+Observation is complete for exactly the finite caller-requested collection of
+UTF-8 text resources. Resources are acquired sequentially in canonical address
+order; the operation makes no atomic, repository-wide, or discovery claim.
 """
 
 from __future__ import annotations
@@ -12,14 +12,17 @@ import hashlib
 import string
 from dataclasses import dataclass
 from pathlib import Path, PurePosixPath, PureWindowsPath
-from typing import ClassVar, cast
+from typing import TYPE_CHECKING, ClassVar, cast
+
+if TYPE_CHECKING:
+    from collections.abc import Collection
 
 from devtools.core.identity import Identity
 from devtools.core.paths import ResolvedPath, resolve_path
 from devtools.resources.filesystem import FileFormat, TextFile, read
 
 _CONTENT_IDENTITY_SEMANTICS = "decoded-utf8-text-sha256-v1"
-_SNAPSHOT_IDENTITY_SEMANTICS = "single-required-text-resource-sha256-v1"
+_SNAPSHOT_IDENTITY_SEMANTICS = "explicit-required-text-resources-sha256-v1"
 _SHA256_HEX_LENGTH = 64
 
 
@@ -113,7 +116,7 @@ class ContentIdentity:
 
 @dataclass(frozen=True, slots=True)
 class RepositorySnapshotId:
-    """Identify state observed under the module's single-resource semantics."""
+    """Identify state observed under this module's bounded semantics."""
 
     value: str
 
@@ -139,13 +142,21 @@ class RepositoryResourceOccurrence:
 
 @dataclass(frozen=True, slots=True)
 class RepositorySnapshot:
-    """Represent complete state for one required resource observation."""
+    """Represent complete state for an explicit required resource collection."""
 
     OBSERVATION_SEMANTICS: ClassVar[str] = _SNAPSHOT_IDENTITY_SEMANTICS
 
     id: RepositorySnapshotId
     repository_id: RepositoryId
-    resource: RepositoryResourceOccurrence
+    resources: tuple[RepositoryResourceOccurrence, ...]
+
+    @property
+    def resource(self) -> RepositoryResourceOccurrence:
+        """Return the sole occurrence for compatible single-resource consumers."""
+        if len(self.resources) != 1:
+            msg = "Repository snapshot does not contain exactly one resource."
+            raise ValueError(msg)
+        return self.resources[0]
 
 
 def observe_repository_resource(
@@ -164,12 +175,80 @@ def observe_repository_resource(
     :raises RepositoryObservationError: If resolution escapes the supplied root.
     :raises FilesystemError: If the required resource cannot be read completely.
     """
+    return observe_repository_resources(
+        repository=repository,
+        root=root,
+        addresses=(address,),
+    )
+
+
+def observe_repository_resources(
+    *,
+    repository: Repository,
+    root: ResolvedPath,
+    addresses: Collection[RepositoryResourceAddress],
+) -> RepositorySnapshot:
+    """Observe a finite explicit collection of required UTF-8 text resources.
+
+    Addresses are canonicalized into repository-relative lexical order before
+    sequential acquisition. Success means every distinct requested address was
+    read completely. A failure raises without publishing a partial snapshot.
+    Equivalent collections therefore produce equivalent state regardless of
+    caller ordering or observation root, but no simultaneous filesystem view is
+    claimed.
+
+    :raises ValueError: If no addresses are supplied or an address is repeated.
+    :raises RepositoryObservationError: If resolution escapes the supplied root.
+    :raises FilesystemError: If any required resource cannot be read completely.
+    """
+    requested_addresses = tuple(addresses)
+    if not requested_addresses:
+        msg = "Repository observation requires at least one resource address."
+        raise ValueError(msg)
+    if len(set(requested_addresses)) != len(requested_addresses):
+        msg = "Repository observation resource addresses must be distinct."
+        raise ValueError(msg)
+
+    ordered_addresses = tuple(
+        sorted(requested_addresses, key=lambda requested: requested.value),
+    )
     normalized_root = resolve_path(root.value)
+    resources = tuple(
+        _observe_resource(root=normalized_root, address=requested)
+        for requested in ordered_addresses
+    )
+    snapshot_id = RepositorySnapshotId(
+        _semantic_digest(
+            _SNAPSHOT_IDENTITY_SEMANTICS,
+            str(repository.id),
+            *(
+                value
+                for resource in resources
+                for value in (
+                    str(resource.address),
+                    str(resource.content_identity),
+                )
+            ),
+        ),
+    )
+    return RepositorySnapshot(
+        id=snapshot_id,
+        repository_id=repository.id,
+        resources=resources,
+    )
+
+
+def _observe_resource(
+    *,
+    root: ResolvedPath,
+    address: RepositoryResourceAddress,
+) -> RepositoryResourceOccurrence:
+    """Acquire one required occurrence within a normalized observation root."""
     candidate = resolve_path(
         Path(*address.parts),
-        base_directory=normalized_root.value,
+        base_directory=root.value,
     )
-    if not candidate.value.is_relative_to(normalized_root.value):
+    if not candidate.value.is_relative_to(root.value):
         msg = f"Repository resource resolves outside the observation root: {address}."
         raise RepositoryObservationError(msg)
 
@@ -177,25 +256,12 @@ def observe_repository_resource(
     content_identity = ContentIdentity(
         _semantic_digest(_CONTENT_IDENTITY_SEMANTICS, file.content),
     )
-    occurrence = RepositoryResourceOccurrence(
+    return RepositoryResourceOccurrence(
         address=address,
         content_identity=content_identity,
         content=file.content,
         encoding=file.encoding,
         byte_size=file.byte_size,
-    )
-    snapshot_id = RepositorySnapshotId(
-        _semantic_digest(
-            _SNAPSHOT_IDENTITY_SEMANTICS,
-            str(repository.id),
-            str(address),
-            str(content_identity),
-        ),
-    )
-    return RepositorySnapshot(
-        id=snapshot_id,
-        repository_id=repository.id,
-        resource=occurrence,
     )
 
 

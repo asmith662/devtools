@@ -17,6 +17,7 @@ from devtools.context import (
     RepositorySnapshot,
     RepositorySnapshotId,
     observe_repository_resource,
+    observe_repository_resources,
 )
 from devtools.core.paths import ResolvedPath
 from devtools.resources.filesystem import (
@@ -44,6 +45,19 @@ def _observe(
         repository=repository,
         root=ResolvedPath(root),
         address=RepositoryResourceAddress(address),
+    )
+
+
+def _observe_many(
+    repository: Repository,
+    root: Path,
+    *addresses: str,
+) -> RepositorySnapshot:
+    """Observe an explicit fixture resource collection through the public boundary."""
+    return observe_repository_resources(
+        repository=repository,
+        root=ResolvedPath(root),
+        addresses=tuple(RepositoryResourceAddress(value) for value in addresses),
     )
 
 
@@ -100,8 +114,9 @@ def test_observes_one_required_resource_into_identified_snapshot_state(
 
     assert snapshot.repository_id == _repository().id
     assert snapshot.OBSERVATION_SEMANTICS == (
-        "single-required-text-resource-sha256-v1"
+        "explicit-required-text-resources-sha256-v1"
     )
+    assert snapshot.resources == (snapshot.resource,)
     assert isinstance(snapshot.id, RepositorySnapshotId)
     assert isinstance(snapshot.resource, RepositoryResourceOccurrence)
     assert snapshot.resource.address.parts == ("src", "module.py")
@@ -161,6 +176,160 @@ def test_equal_content_at_distinct_addresses_preserves_distinct_occurrences(
     assert first.resource != second.resource
     assert first.resource.address != second.resource.address
     assert first.id != second.id
+
+
+def test_observes_multiple_explicit_resources_as_one_identified_snapshot(
+    tmp_path: Path,
+) -> None:
+    """One snapshot retains every distinct required occurrence and its content."""
+    (tmp_path / "zeta.py").write_bytes(b"ZETA = 1\n")
+    nested = tmp_path / "src" / "alpha.py"
+    nested.parent.mkdir()
+    nested.write_bytes(b"ALPHA = 2\n")
+
+    snapshot = _observe_many(_repository(), tmp_path, "zeta.py", "src/alpha.py")
+
+    assert [str(resource.address) for resource in snapshot.resources] == [
+        "src/alpha.py",
+        "zeta.py",
+    ]
+    assert [resource.content for resource in snapshot.resources] == [
+        "ALPHA = 2\n",
+        "ZETA = 1\n",
+    ]
+    assert all(
+        isinstance(resource.content_identity, ContentIdentity)
+        for resource in snapshot.resources
+    )
+    with pytest.raises(ValueError, match="exactly one"):
+        _ = snapshot.resource
+
+
+def test_multi_resource_state_is_root_and_caller_order_independent(
+    tmp_path: Path,
+) -> None:
+    """Canonical address order makes equivalent admitted collections equivalent."""
+    first_root = tmp_path / "first"
+    second_root = tmp_path / "second"
+    first_root.mkdir()
+    second_root.mkdir()
+    for root in (first_root, second_root):
+        (root / "alpha.py").write_text("ALPHA = 1\n", encoding="utf-8")
+        (root / "beta.py").write_text("BETA = 2\n", encoding="utf-8")
+
+    first = _observe_many(_repository(), first_root, "beta.py", "alpha.py")
+    second = _observe_many(_repository(), second_root, "alpha.py", "beta.py")
+
+    assert first == second
+    assert first.id == second.id
+    assert first.resources == second.resources
+
+
+def test_changing_one_resource_changes_multi_resource_snapshot_state(
+    tmp_path: Path,
+) -> None:
+    """Every required occurrence contributes to identified snapshot state."""
+    alpha = tmp_path / "alpha.py"
+    beta = tmp_path / "beta.py"
+    alpha.write_text("ALPHA = 1\n", encoding="utf-8")
+    beta.write_text("BETA = 2\n", encoding="utf-8")
+    first = _observe_many(_repository(), tmp_path, "alpha.py", "beta.py")
+
+    beta.write_text("BETA = 3\n", encoding="utf-8")
+    second = _observe_many(_repository(), tmp_path, "alpha.py", "beta.py")
+
+    assert first.resources[0] == second.resources[0]
+    assert first.resources[1].content_identity != second.resources[1].content_identity
+    assert first.id != second.id
+
+
+def test_equal_content_at_two_addresses_retains_distinct_multi_occurrences(
+    tmp_path: Path,
+) -> None:
+    """Equal content identity does not collapse address-contextual occurrences."""
+    content = "VALUE = 1\n"
+    (tmp_path / "alpha.py").write_text(content, encoding="utf-8")
+    (tmp_path / "beta.py").write_text(content, encoding="utf-8")
+
+    snapshot = _observe_many(_repository(), tmp_path, "alpha.py", "beta.py")
+    first, second = snapshot.resources
+
+    assert first.address != second.address
+    assert first != second
+    assert first.content_identity == second.content_identity
+
+
+def test_multi_resource_observation_rejects_empty_and_duplicate_requests(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Invalid requested collections fail before acquiring repository state."""
+    address = RepositoryResourceAddress("module.py")
+
+    def forbidden_read(*_args: object, **_kwargs: object) -> None:
+        msg = "invalid collection attempted acquisition"
+        raise AssertionError(msg)
+
+    monkeypatch.setattr("devtools.context.repository.read", forbidden_read)
+    with pytest.raises(ValueError, match="at least one"):
+        observe_repository_resources(
+            repository=_repository(),
+            root=ResolvedPath(tmp_path),
+            addresses=(),
+        )
+    with pytest.raises(ValueError, match="distinct"):
+        observe_repository_resources(
+            repository=_repository(),
+            root=ResolvedPath(tmp_path),
+            addresses=(address, address),
+        )
+
+
+def test_required_multi_resource_failure_does_not_publish_a_snapshot(
+    tmp_path: Path,
+) -> None:
+    """A missing required member fails the whole bounded observation operation."""
+    (tmp_path / "available.py").write_text("VALUE = 1\n", encoding="utf-8")
+
+    with pytest.raises(FilesystemNotFoundError):
+        _observe_many(_repository(), tmp_path, "available.py", "missing.py")
+
+
+def test_unsupported_and_undecodable_multi_resources_prevent_a_snapshot(
+    tmp_path: Path,
+) -> None:
+    """Every requested member must be a decodable regular UTF-8 text file."""
+    (tmp_path / "available.py").write_text("VALUE = 1\n", encoding="utf-8")
+    (tmp_path / "directory").mkdir()
+    (tmp_path / "undecodable.py").write_bytes(b"\xff")
+
+    with pytest.raises(NotAFileError):
+        _observe_many(_repository(), tmp_path, "available.py", "directory")
+    with pytest.raises(TextDecodingError):
+        _observe_many(_repository(), tmp_path, "available.py", "undecodable.py")
+
+
+def test_unreadable_multi_resource_prevents_a_snapshot(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A read failure for one required member fails the complete operation."""
+    available = tmp_path / "available.py"
+    denied = tmp_path / "denied.py"
+    available.write_text("VALUE = 1\n", encoding="utf-8")
+    denied.write_text("VALUE = 2\n", encoding="utf-8")
+    original_read_bytes = Path.read_bytes
+
+    def deny_one(path: Path) -> bytes:
+        if path == denied:
+            msg = "denied"
+            raise PermissionError(msg)
+        return original_read_bytes(path)
+
+    monkeypatch.setattr(Path, "read_bytes", deny_one)
+
+    with pytest.raises(FilesystemPermissionError):
+        _observe_many(_repository(), tmp_path, "available.py", "denied.py")
 
 
 @pytest.mark.parametrize(

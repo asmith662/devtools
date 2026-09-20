@@ -49,6 +49,7 @@ from devtools.context.repository import (
     RepositorySnapshot,
     RepositorySnapshotId,
     observe_repository_resource,
+    observe_repository_resources,
 )
 
 __all__ = [
@@ -85,6 +86,7 @@ __all__ = [
     "disclose_python_function_exact_name_retrieval",
     "materialize_python_function_disclosure_source",
     "observe_repository_resource",
+    "observe_repository_resources",
     "render_materialized_python_function_context",
     "retrieve_python_functions_by_exact_name",
 ]

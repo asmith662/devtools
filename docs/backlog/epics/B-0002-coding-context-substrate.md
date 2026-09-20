@@ -179,9 +179,11 @@ identified RepositorySnapshot, each direct module-body `ast.FunctionDef` or
 `ast.AsyncFunctionDef` SourceOccurrence syntactically declares a distinct
 snapshot-local function RepositorySubject.
 
-A bounded production implementation now realizes this target from the existing
-single-resource RepositorySnapshot observation. It is not a frozen production
-representation or a universal declaration ontology. It does not claim runtime
+A bounded production implementation now realizes this target from an explicitly
+selected resource in the bounded RepositorySnapshot observation substrate,
+which can represent a finite caller-declared resource collection without
+discovery. It is not a frozen production representation or a universal
+declaration ontology. It does not claim runtime
 binding, importability, callability, reference resolution, qualified-name
 semantics, cross-snapshot continuity, class-method or nested-function
 declarations, lambda declarations, conditional runtime availability, or import
