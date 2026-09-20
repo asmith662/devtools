@@ -346,6 +346,22 @@ succeed with zero matches. This uses neither paths nor structural/language
 signals and does not establish Context selection, retrieval quality, or general
 repository retrieval sufficiency.
 
+Current retrieval implementation can deterministically evaluate one retained
+bounded BM25 result against fixture-designated relevant
+`RepositoryResourceAddress` values. Relevance is binary, case-local ground truth
+for that evaluation—not repository truth, score-derived inference, or model
+judgment. Evaluation retains the exact result, recovered relevant resources and
+ranks, and designated resources missed within an explicit positive `K`; `K`
+cannot exceed the result's retained bound. It reports Hit@K, Recall@K
+(`recovered relevant / designated relevant`), and reciprocal rank
+(`1 / first relevant rank`, or `0.0`), while same-K summaries report hit rate, mean
+Recall@K, and MRR. Cases require at least one distinct address belonging to the
+indexed collection. Controlled heterogeneous fixtures confirm clear content
+matches, Markdown, configuration, and casefolded queries; they also expose
+fixture-local gaps for identifier decomposition, path-only signals, package
+proximity, and lexical distractors. These are controlled findings, not a claim
+about real-repository retrieval quality or BM25 sufficiency.
+
 For the bounded Python-function path, a separate purpose-sensitive projection
 can nominate discovered addresses ending in the exact, case-sensitive `.py`
 suffix for source observation. It consumes only the completed discovery value,

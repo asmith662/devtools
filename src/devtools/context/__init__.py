@@ -84,6 +84,10 @@ from devtools.context.retrieval import (
     RepositoryTextLexicalPosting,
     RepositoryTextLexicalQuery,
     RepositoryTextLexicalQueryObservation,
+    RepositoryTextLexicalRetrievalEvaluationCase,
+    RepositoryTextLexicalRetrievalEvaluationResult,
+    RepositoryTextLexicalRetrievalEvaluationSummary,
+    RepositoryTextLexicalRetrievedRelevantResource,
     RepositoryTextLexicalTermFrequency,
     RepositoryTextLexicalTermPostings,
     analyze_repository_text_document,
@@ -91,7 +95,9 @@ from devtools.context.retrieval import (
     analyze_repository_text_lexical_query,
     build_repository_text_lexical_inverted_index,
     calculate_repository_text_lexical_corpus_statistics,
+    evaluate_repository_text_lexical_bm25_retrieval,
     retrieve_repository_text_documents_by_bm25,
+    summarize_repository_text_lexical_retrieval_evaluations,
 )
 
 __all__ = [
@@ -155,6 +161,10 @@ __all__ = [
     "RepositoryTextLexicalPosting",
     "RepositoryTextLexicalQuery",
     "RepositoryTextLexicalQueryObservation",
+    "RepositoryTextLexicalRetrievalEvaluationCase",
+    "RepositoryTextLexicalRetrievalEvaluationResult",
+    "RepositoryTextLexicalRetrievalEvaluationSummary",
+    "RepositoryTextLexicalRetrievedRelevantResource",
     "RepositoryTextLexicalTermFrequency",
     "RepositoryTextLexicalTermPostings",
     "analyze_python_function_declaration_resources",
@@ -168,6 +178,7 @@ __all__ = [
     "derive_python_function_declarations",
     "disclose_python_function_exact_name_retrieval",
     "discover_repository_resource_addresses",
+    "evaluate_repository_text_lexical_bm25_retrieval",
     "materialize_python_function_disclosure_source",
     "observe_repository_resource",
     "observe_repository_resources",
@@ -179,4 +190,5 @@ __all__ = [
     "select_python_function_analysis_candidates",
     "select_python_function_resources_from_exact_name_retrieval",
     "select_python_source_address_candidates",
+    "summarize_repository_text_lexical_retrieval_evaluations",
 ]

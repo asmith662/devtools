@@ -95,7 +95,12 @@ scoring distinct terms, and uses `k1 = 1.2`, `b = 0.75`, and
 evidence, ranks positive content matches by descending score with document-order
 tie breaking, and requires a positive maximum-result bound. Empty/OOV cases are
 successful zero matches; it has no structural, path, Context-selection, or
-quality claim. A separate bounded
+quality claim. A bounded deterministic evaluator consumes retained BM25 results
+and fixture-designated native resource addresses without rescoring: it retains
+recovered/missed relevance evidence and reports Hit@K, Recall@K, reciprocal
+rank, and same-K aggregate hit rate, mean recall, and MRR. Controlled fixtures
+expose both content-match strengths and identifier, path, package, and distractor
+gaps; they do not establish broad retrieval quality. A separate bounded
 Python-function-path projection nominates exact, case-sensitive `.py` addresses
 for observation without inspecting content; this is candidacy evidence rather
 than proof of Python source. The observation operation then reads a finite

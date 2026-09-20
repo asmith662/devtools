@@ -229,7 +229,13 @@ with the same lexical semantics, scores distinct query terms using `k1 = 1.2`,
 term-contribution evidence for positively scored, document-order-tie-broken
 matches under an explicit positive result bound. It makes no path, structural,
 Context-selection, or retrieval-quality claim; path evidence remains separate.
-A separate bounded,
+A bounded deterministic evaluator now consumes retained BM25 results and
+fixture-designated native resource addresses without rescoring. It reports
+Hit@K, Recall@K, reciprocal rank, and same-K aggregate hit rate, mean recall,
+and MRR while retaining recovered/missed relevance evidence. Controlled fixtures
+identify content-match strengths and identifier, path, package, and lexical
+distractor gaps without claiming real-repository quality or BM25 sufficiency. A
+separate bounded,
 purpose-sensitive address projection now
 nominates exact, case-sensitive `.py` discovery addresses for observation while
 preserving discovery order. That convention is candidacy evidence rather than

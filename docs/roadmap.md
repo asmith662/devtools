@@ -59,7 +59,8 @@ and Evidence ownership terminology, remain in the
   retains the unimplemented design pressure. These decisions are not authorization
   for a general Context compiler, disclosure model, parser, graph store, retrieval
   system, Memory, Agent loop, or orchestration system; the current bounded lexical
-  index and BM25 baseline do not settle those broader responsibilities.
+  index, BM25 baseline, and deterministic fixture evaluation do not settle those
+  broader responsibilities.
   [B-0008](backlog/items/B-0008-investigate-repository-context-discovery.md)
   remains superseded historical navigation evidence.
 
