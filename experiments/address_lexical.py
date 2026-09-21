@@ -24,6 +24,10 @@ from devtools.context.retrieval.lexical.bm25 import (
     analyze_repository_text_lexical_query,
     retrieve_repository_text_documents_by_bm25,
 )
+from devtools.context.retrieval.lexical.evaluation import (
+    RepositoryTextLexicalRetrievalEvaluationCase,
+    evaluate_repository_text_lexical_bm25_retrieval,
+)
 
 if TYPE_CHECKING:
     from types import ModuleType
@@ -36,6 +40,8 @@ _K = 5
 _REPORT_SCHEMA = "devtools-address-lexical-bm25-comparison-v1"
 _WEIGHT_REPORT_SCHEMA = "devtools-filename-weight-bm25-calibration-v1"
 _FILENAME_WEIGHTS = (0.0, 0.1, 0.25, 0.5, 0.75, 1.0)
+_PROMOTION_WEIGHTS = (0.0, 0.25, 0.5)
+_PROMOTION_REPORT_SCHEMA = "devtools-filename-promotion-gate-v1"
 
 
 @dataclass(frozen=True, slots=True)
@@ -135,6 +141,131 @@ class AddressComparison:
     full_path: AddressEvaluation
 
 
+@dataclass(frozen=True, slots=True)
+class RobustnessCase:
+    """Declare one fixed, manually judged promotion-gate retrieval case."""
+
+    name: str
+    description: str
+    query_text: str
+    relevant_resource_addresses: tuple[RepositoryResourceAddress, ...]
+    source_target: bool = False
+
+
+_ROBUSTNESS_CASES = (
+    RobustnessCase(
+        name="observation-content",
+        description=(
+            "The observation implementation owns explicit required byte limits."
+        ),
+        query_text="required resource byte ceiling before filesystem acquisition",
+        relevant_resource_addresses=(
+            RepositoryResourceAddress("src/devtools/context/repository/observation.py"),
+        ),
+        source_target=True,
+    ),
+    RobustnessCase(
+        name="document-filename",
+        description=(
+            "The document representation implementation is the intended target."
+        ),
+        query_text="repository text document representation",
+        relevant_resource_addresses=(
+            RepositoryResourceAddress("src/devtools/context/repository/document.py"),
+        ),
+        source_target=True,
+    ),
+    RobustnessCase(
+        name="discovery-source-over-test",
+        description=(
+            "The source discovery implementation, not its similarly named test, "
+            "is intended."
+        ),
+        query_text="bounded regular file address traversal",
+        relevant_resource_addresses=(
+            RepositoryResourceAddress("src/devtools/context/repository/discovery.py"),
+        ),
+        source_target=True,
+    ),
+    RobustnessCase(
+        name="corpus-implementation-over-documentation",
+        description="Corpus realization behavior belongs to the implementation module.",
+        query_text="selected observed textual corpus realization",
+        relevant_resource_addresses=(
+            RepositoryResourceAddress("src/devtools/context/repository/corpus.py"),
+        ),
+        source_target=True,
+    ),
+    RobustnessCase(
+        name="context-assembly-multiple-implementations",
+        description=(
+            "All three implementation modules realize the bounded function "
+            "Context path."
+        ),
+        query_text="exact source materialization rendering request assembly",
+        relevant_resource_addresses=(
+            RepositoryResourceAddress(
+                "src/devtools/context/python/function/materialization.py",
+            ),
+            RepositoryResourceAddress(
+                "src/devtools/context/python/function/rendering.py",
+            ),
+            RepositoryResourceAddress(
+                "src/devtools/context/python/function/request_assembly.py",
+            ),
+        ),
+        source_target=True,
+    ),
+    RobustnessCase(
+        name="generic-resource-filename",
+        description=(
+            "Canonical resource-address and content-identity values belong to "
+            "resource.py."
+        ),
+        query_text="canonical POSIX relative address content identity occurrence",
+        relevant_resource_addresses=(
+            RepositoryResourceAddress("src/devtools/context/repository/resource.py"),
+        ),
+        source_target=True,
+    ),
+    RobustnessCase(
+        name="snapshot-without-filename-query",
+        description=(
+            "The snapshot strict singular accessor is the intended implementation."
+        ),
+        query_text="strict exactly one resource compatibility accessor",
+        relevant_resource_addresses=(
+            RepositoryResourceAddress("src/devtools/context/repository/snapshot.py"),
+        ),
+        source_target=True,
+    ),
+    RobustnessCase(
+        name="architecture-documentation",
+        description="The architecture overview is the intended documentation target.",
+        query_text="accepted system responsibility ownership overview",
+        relevant_resource_addresses=(
+            RepositoryResourceAddress("docs/architecture.md"),
+        ),
+    ),
+    RobustnessCase(
+        name="documentation-navigation",
+        description="The documentation map owns repository documentation navigation.",
+        query_text="canonical documentation navigation authority map",
+        relevant_resource_addresses=(
+            RepositoryResourceAddress("docs/documentation_map.md"),
+        ),
+    ),
+    RobustnessCase(
+        name="project-build-metadata",
+        description=(
+            "The project TOML owns the Hatchling build and package configuration."
+        ),
+        query_text="hatchling wheel package project configuration",
+        relevant_resource_addresses=(RepositoryResourceAddress("pyproject.toml"),),
+    ),
+)
+
+
 def parse_arguments(arguments: list[str] | None = None) -> argparse.Namespace:
     """Parse one root and a caller-selected address-comparison report path."""
     parser = argparse.ArgumentParser(description=__doc__)
@@ -142,7 +273,7 @@ def parse_arguments(arguments: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--report-path", required=True, type=Path)
     parser.add_argument(
         "--mode",
-        choices=("address", "filename-calibration"),
+        choices=("address", "filename-calibration", "filename-promotion-gate"),
         default="address",
     )
     return parser.parse_args(arguments)
@@ -399,6 +530,80 @@ def run_filename_weight_calibration(
     )
 
 
+def run_filename_promotion_gate(
+    *,
+    repository_root: Path,
+) -> tuple[
+    Any,
+    tuple[RobustnessCase, ...],
+    tuple[Any, ...],
+    tuple[
+        tuple[float, tuple[AddressEvaluation, ...], tuple[AddressEvaluation, ...]],
+        ...,
+    ],
+]:
+    """Compare fixed original and robustness sets on one exact corpus state."""
+    baseline_script = _load_baseline_runner()
+    baseline_run = baseline_script.run_benchmark(repository_root=repository_root)
+    available_addresses = {
+        document.resource.address for document in baseline_run.documents.documents
+    }
+    unknown_addresses = tuple(
+        address
+        for case in _ROBUSTNESS_CASES
+        for address in case.relevant_resource_addresses
+        if address not in available_addresses
+    )
+    if unknown_addresses:
+        msg = f"Robustness ground truth is absent from the corpus: {unknown_addresses}."
+        raise ValueError(msg)
+    robustness_baselines = tuple(
+        _evaluate_production_case(case=case, index=baseline_run.index)
+        for case in _ROBUSTNESS_CASES
+    )
+    filename_index = build_address_index(
+        addresses=tuple(
+            document.resource.address for document in baseline_run.documents.documents
+        ),
+        variant="filename",
+    )
+    return (
+        baseline_run,
+        _ROBUSTNESS_CASES,
+        robustness_baselines,
+        tuple(
+            (
+                weight,
+                tuple(
+                    evaluate_address_matches(
+                        relevant_addresses=case.relevant_resource_addresses,
+                        matches=retrieve_with_address_evidence(
+                            query_text=case.query_text,
+                            content_index=baseline_run.index,
+                            address_index=filename_index,
+                            address_weight=weight,
+                        ),
+                    )
+                    for case in baseline_run.cases
+                ),
+                tuple(
+                    evaluate_address_matches(
+                        relevant_addresses=case.relevant_resource_addresses,
+                        matches=retrieve_with_address_evidence(
+                            query_text=case.query_text,
+                            content_index=baseline_run.index,
+                            address_index=filename_index,
+                            address_weight=weight,
+                        ),
+                    )
+                    for case in _ROBUSTNESS_CASES
+                ),
+            )
+            for weight in _PROMOTION_WEIGHTS
+        ),
+    )
+
+
 def controlled_cases() -> dict[
     str,
     tuple[AddressEvaluation, AddressEvaluation, AddressEvaluation],
@@ -597,6 +802,80 @@ def filename_weight_report_payload(
     }
 
 
+def filename_promotion_gate_report_payload(
+    *,
+    baseline_run: Any,  # noqa: ANN401 -- dynamic production-script boundary
+    robustness_cases: tuple[RobustnessCase, ...],
+    robustness_baselines: tuple[Any, ...],
+    evaluations_by_weight: tuple[
+        tuple[float, tuple[AddressEvaluation, ...], tuple[AddressEvaluation, ...]],
+        ...,
+    ],
+) -> dict[str, object]:
+    """Serialize the fixed two-set promotion-gate evidence without a decision rule."""
+    return {
+        "schema": _PROMOTION_REPORT_SCHEMA,
+        "identified_state": {
+            "snapshot_id": str(baseline_run.snapshot.id),
+            "corpus_id": str(baseline_run.corpus.id),
+            "document_count": len(baseline_run.documents.documents),
+        },
+        "configuration": {
+            "evaluation_k": _K,
+            "bm25": {"k1": _K1, "b": _B},
+            "filename_semantics": "stem unicode-word-span casefold; extension unscored",
+            "fusion": "content_bm25_score + weight * filename_bm25_score",
+            "weights": list(_PROMOTION_WEIGHTS),
+            "production_changed": False,
+        },
+        "original_case_count": len(baseline_run.cases),
+        "robustness_case_count": len(robustness_cases),
+        "weights": [
+            {
+                "weight": weight,
+                "original": {
+                    "aggregate": _evaluation_metrics(evaluations=original),
+                    "cases": [
+                        _weighted_case_payload(
+                            case=case,
+                            baseline=baseline,
+                            evaluation=evaluation,
+                        )
+                        for case, baseline, evaluation in zip(
+                            baseline_run.cases,
+                            baseline_run.evaluations,
+                            original,
+                            strict=True,
+                        )
+                    ],
+                },
+                "robustness": {
+                    "aggregate": _evaluation_metrics(evaluations=robustness),
+                    "cases": [
+                        _weighted_case_payload(
+                            case=case,
+                            baseline=baseline,
+                            evaluation=evaluation,
+                        )
+                        for case, baseline, evaluation in zip(
+                            robustness_cases,
+                            robustness_baselines,
+                            robustness,
+                            strict=True,
+                        )
+                    ],
+                },
+                "combined": {
+                    "aggregate": _evaluation_metrics(
+                        evaluations=(*original, *robustness),
+                    ),
+                },
+            }
+            for weight, original, robustness in evaluations_by_weight
+        ],
+    }
+
+
 def write_report(*, path: Path, payload: dict[str, object]) -> None:
     """Write only the explicitly selected address-evidence experiment artifact."""
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -614,13 +893,28 @@ def main(arguments: list[str] | None = None) -> None:
             repository_root=parsed.repository_root.resolve(),
         )
         payload = report_payload(baseline_run=baseline_run, comparisons=comparisons)
-    else:
+    elif parsed.mode == "filename-calibration":
         baseline_run, evaluations_by_weight = run_filename_weight_calibration(
             repository_root=parsed.repository_root.resolve(),
         )
         payload = filename_weight_report_payload(
             baseline_run=baseline_run,
             evaluations_by_weight=evaluations_by_weight,
+        )
+    else:
+        (
+            baseline_run,
+            robustness_cases,
+            robustness_baselines,
+            promotion_evaluations_by_weight,
+        ) = run_filename_promotion_gate(
+            repository_root=parsed.repository_root.resolve(),
+        )
+        payload = filename_promotion_gate_report_payload(
+            baseline_run=baseline_run,
+            robustness_cases=robustness_cases,
+            robustness_baselines=robustness_baselines,
+            evaluations_by_weight=promotion_evaluations_by_weight,
         )
     write_report(path=parsed.report_path, payload=payload)
 
@@ -673,6 +967,24 @@ def _address_contributions(
                 ),
             )
     return {position: tuple(items) for position, items in result.items()}
+
+
+def _evaluate_production_case(*, case: RobustnessCase, index: Any) -> Any:  # noqa: ANN401
+    """Evaluate fixed robustness relevance through unchanged production BM25."""
+    query = analyze_repository_text_lexical_query(text=case.query_text)
+    result = retrieve_repository_text_documents_by_bm25(
+        query=query,
+        index=index,
+        maximum_results=_K,
+    )
+    return evaluate_repository_text_lexical_bm25_retrieval(
+        case=RepositoryTextLexicalRetrievalEvaluationCase(
+            query=query,
+            relevant_resource_addresses=case.relevant_resource_addresses,
+            evaluation_k=_K,
+        ),
+        retrieval_result=result,
+    )
 
 
 def _controlled_case(

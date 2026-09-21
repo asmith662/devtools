@@ -277,6 +277,21 @@ weight, and the identifier-boundary `bm25.py` target remained missed. This is
 still calibration evidence, not a production field-weight decision: its small,
 repository-specific case set does not establish an implementation weight,
 cross-repository stability, or package-proximity behavior. A
+final promotion-gate experiment held the same content BM25 and filename-field
+semantics fixed and compared `0.00`, `0.25`, and `0.50` over both the original
+13 cases and a separately declared 10-case repository-shaped robustness set.
+At `0.25`, the original-set mean Recall@5 / MRR moved from `0.8333` / `0.7308`
+to `0.8974` / `0.7885`, and robustness-set mean Recall@5 moved from `0.9333` to
+`0.9667` with unchanged MRR (`0.7283`); no designated relevant resource left
+the top five. It recovered `statistics.py` and `rendering.py`, while strong
+content targets remained stable. At `0.50`, the robustness set lost
+`docs/architecture.md` from the top five and fell to `0.8667` mean Recall@5,
+so the stronger field is not a conservative candidate. The filename evidence
+also did not solve the Context test-file distractor or identifier-boundary
+miss. This is still experiment evidence, not current production behavior, but
+it supports one bounded future promotion decision for a separate `0.25`
+filename field; it does not justify further tuning, full-path lexicalization,
+or package-proximity scoring. A
 separate bounded,
 purpose-sensitive address projection now
 nominates exact, case-sensitive `.py` discovery addresses for observation while

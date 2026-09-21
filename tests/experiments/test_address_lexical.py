@@ -10,6 +10,7 @@ from devtools.context.repository.resource import RepositoryResourceAddress
 from experiments import address_lexical as experiment
 
 _EXPECTED_CASE_COUNT = 13
+_EXPECTED_ROBUSTNESS_CASE_COUNT = 10
 
 
 def test_filename_terms_preserve_stem_and_exclude_extension_scoring() -> None:
@@ -143,3 +144,56 @@ def test_real_repository_comparison_is_paired_and_writes_only_selected_report(
     assert persisted["identified_state"]["corpus_id"] == str(baseline_run.corpus.id)
     assert persisted["configuration"]["bm25"] == {"k1": 1.2, "b": 0.75}
     assert "content_bm25_score" in persisted["configuration"]["combination"]
+
+
+def test_filename_promotion_gate_keeps_the_fixed_sets_and_zero_weight_baseline(
+    tmp_path: Path,
+) -> None:
+    """The promotion comparison is paired and preserves production at zero weight."""
+    (
+        baseline_run,
+        robustness_cases,
+        robustness_baselines,
+        evaluations_by_weight,
+    ) = experiment.run_filename_promotion_gate(repository_root=Path.cwd())
+    payload = experiment.filename_promotion_gate_report_payload(
+        baseline_run=baseline_run,
+        robustness_cases=robustness_cases,
+        robustness_baselines=robustness_baselines,
+        evaluations_by_weight=evaluations_by_weight,
+    )
+    report_path = tmp_path / "filename-promotion-gate.json"
+    experiment.write_report(path=report_path, payload=payload)
+
+    persisted = json.loads(report_path.read_text(encoding="utf-8"))
+    zero_weight_original, zero_weight_robustness = next(
+        (original, robustness)
+        for weight, original, robustness in evaluations_by_weight
+        if weight == 0.0
+    )
+
+    assert len(robustness_cases) == _EXPECTED_ROBUSTNESS_CASE_COUNT
+    assert len(robustness_baselines) == _EXPECTED_ROBUSTNESS_CASE_COUNT
+    assert [weight for weight, _original, _robustness in evaluations_by_weight] == [
+        0.0,
+        0.25,
+        0.5,
+    ]
+    assert [item.relevant_ranks for item in zero_weight_original] == [
+        tuple(
+            (item.address, item.rank)
+            for item in baseline.retrieved_relevant_resources
+        )
+        for baseline in baseline_run.evaluations
+    ]
+    assert [item.relevant_ranks for item in zero_weight_robustness] == [
+        tuple(
+            (item.address, item.rank)
+            for item in baseline.retrieved_relevant_resources
+        )
+        for baseline in robustness_baselines
+    ]
+    assert persisted["schema"] == "devtools-filename-promotion-gate-v1"
+    assert persisted["configuration"]["weights"] == [0.0, 0.25, 0.5]
+    assert persisted["original_case_count"] == _EXPECTED_CASE_COUNT
+    assert persisted["robustness_case_count"] == _EXPECTED_ROBUSTNESS_CASE_COUNT
