@@ -241,6 +241,17 @@ with manually designated native-address relevance and inspectable per-case JSON
 evidence. Its eligibility/exclusion policy is local benchmark operation rather
 than repository classification or relevance semantics; findings remain a narrow
 checkpoint for future comparative evaluation, not BM25 sufficiency. A
+separate experiment evaluated identifier-component expansion without changing
+the production lexical or BM25 path. In a paired 13-case real-repository
+comparison, Hit@5 remained 12/13, mean Recall@5 rose from 0.8333 to 0.8846,
+and MRR moved from 0.7269 to 0.7179. The identifier-boundary target was newly
+recovered at rank 4, while the multi-resource Context case regressed (its one
+baseline hit fell out of the top five); `statistics.py` remained unrecovered in
+the cross-file case. Controlled identifier fixtures improved, but the lexical
+distractor still outranked its relevant result. This is unsettled experimental
+evidence only: identifier decomposition is not production behavior or an
+accepted retrieval semantic, and these results do not establish path/package
+signals as the cause of the remaining misses. A
 separate bounded,
 purpose-sensitive address projection now
 nominates exact, case-sensitive `.py` discovery addresses for observation while

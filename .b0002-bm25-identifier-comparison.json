@@ -1,0 +1,711 @@
+{
+  "aggregate": {
+    "baseline": {
+      "hit_rate_at_k": 0.9230769230769231,
+      "mean_recall_at_k": 0.8333333333333334,
+      "mean_reciprocal_rank": 0.7269230769230769
+    },
+    "delta": {
+      "hit_rate_at_k": 0.0,
+      "mean_recall_at_k": 0.05128205128205121,
+      "mean_reciprocal_rank": -0.008974358974358942
+    },
+    "experimental": {
+      "hit_rate_at_k": 0.9230769230769231,
+      "mean_recall_at_k": 0.8846153846153846,
+      "mean_reciprocal_rank": 0.717948717948718
+    }
+  },
+  "cases": [
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "src/devtools/context/repository/corpus.py",
+          "tests/context/repository/test_corpus.py",
+          "src/devtools/context/repository/document.py",
+          "tests/context/repository/test_document.py",
+          "tests/context/retrieval/lexical/test_evaluation.py"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/repository/corpus.py",
+            "rank": 1
+          }
+        ]
+      },
+      "designated_relevant_resources": [
+        "src/devtools/context/repository/corpus.py"
+      ],
+      "experimental": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "src/devtools/context/repository/corpus.py",
+          "tests/context/repository/test_corpus.py",
+          "src/devtools/context/retrieval/lexical/bm25.py",
+          "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "docs/documentation_map.md"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/repository/corpus.py",
+            "rank": 1
+          }
+        ]
+      },
+      "lost": [],
+      "name": "corpus-realization",
+      "newly_recovered": [],
+      "query": "repository text corpus realization"
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.5
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "tests/context/repository/test_discovery.py",
+          "src/devtools/context/repository/discovery.py",
+          "src/devtools/context/python/source_candidacy.py",
+          "tests/context/python/test_source_candidacy.py",
+          "docs/backlog/epics/B-0002-coding-context-substrate.md"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/repository/discovery.py",
+            "rank": 2
+          }
+        ]
+      },
+      "designated_relevant_resources": [
+        "src/devtools/context/repository/discovery.py"
+      ],
+      "experimental": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.5
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "tests/context/repository/test_discovery.py",
+          "src/devtools/context/repository/discovery.py",
+          "src/devtools/context/python/source_candidacy.py",
+          "tests/context/python/test_source_candidacy.py",
+          "docs/backlog/epics/B-0002-coding-context-substrate.md"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/repository/discovery.py",
+            "rank": 2
+          }
+        ]
+      },
+      "lost": [],
+      "name": "repository-discovery",
+      "newly_recovered": [],
+      "query": "bounded repository resource discovery"
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "src/devtools/context/repository/observation.py",
+          "src/devtools/context/python/function/materialization.py",
+          "src/devtools/resources/commands/models/output.py",
+          "tests/context/repository/test_observation.py",
+          "src/devtools/context/repository/corpus.py"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/repository/observation.py",
+            "rank": 1
+          }
+        ]
+      },
+      "designated_relevant_resources": [
+        "src/devtools/context/repository/observation.py"
+      ],
+      "experimental": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "src/devtools/context/repository/observation.py",
+          "tests/context/repository/test_observation.py",
+          "tests/context/repository/test_discovery.py",
+          "tests/context/python/test_source_candidacy.py",
+          "src/devtools/context/python/function/materialization.py"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/repository/observation.py",
+            "rank": 1
+          }
+        ]
+      },
+      "lost": [],
+      "name": "observation-bound",
+      "newly_recovered": [],
+      "query": "maximum resource bytes utf8 observation"
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "src/devtools/context/retrieval/lexical/analysis.py",
+          "docs/documentation_map.md",
+          "experiments/retrieval_identifier.py",
+          "src/devtools/context/retrieval/lexical/bm25.py",
+          "tests/context/retrieval/lexical/test_analysis.py"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "rank": 1
+          }
+        ]
+      },
+      "designated_relevant_resources": [
+        "src/devtools/context/retrieval/lexical/analysis.py"
+      ],
+      "experimental": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "src/devtools/context/retrieval/lexical/analysis.py",
+          "src/devtools/context/retrieval/lexical/bm25.py",
+          "experiments/retrieval_identifier.py",
+          "docs/documentation_map.md",
+          "src/devtools/context/retrieval/lexical/__init__.py"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "rank": 1
+          }
+        ]
+      },
+      "lost": [],
+      "name": "lexical-analysis",
+      "newly_recovered": [],
+      "query": "unicode lexical spans casefold"
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "src/devtools/context/retrieval/lexical/bm25.py",
+          "tests/context/retrieval/lexical/test_bm25.py",
+          "src/devtools/context/retrieval/lexical/statistics.py",
+          "experiments/retrieval_identifier.py",
+          "docs/backlog/epics/B-0002-coding-context-substrate.md"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "rank": 1
+          }
+        ]
+      },
+      "designated_relevant_resources": [
+        "src/devtools/context/retrieval/lexical/bm25.py"
+      ],
+      "experimental": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "src/devtools/context/retrieval/lexical/bm25.py",
+          "tests/context/retrieval/lexical/test_bm25.py",
+          "experiments/retrieval_identifier.py",
+          "src/devtools/context/retrieval/lexical/__init__.py",
+          "tests/experiments/test_retrieval_identifier.py"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "rank": 1
+          }
+        ]
+      },
+      "lost": [],
+      "name": "bm25-scoring",
+      "newly_recovered": [],
+      "query": "okapi bm25 inverse document frequency"
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "src/devtools/context/retrieval/lexical/evaluation.py",
+          "tests/context/retrieval/lexical/test_evaluation.py",
+          "docs/documentation_map.md",
+          "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "docs/architecture.md"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/evaluation.py",
+            "rank": 1
+          }
+        ]
+      },
+      "designated_relevant_resources": [
+        "src/devtools/context/retrieval/lexical/evaluation.py"
+      ],
+      "experimental": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "src/devtools/context/retrieval/lexical/evaluation.py",
+          "tests/context/retrieval/lexical/test_evaluation.py",
+          "experiments/retrieval_identifier.py",
+          "docs/documentation_map.md",
+          "tests/experiments/test_retrieval_identifier.py"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/evaluation.py",
+            "rank": 1
+          }
+        ]
+      },
+      "lost": [],
+      "name": "retrieval-evaluation",
+      "newly_recovered": [],
+      "query": "recall reciprocal rank retrieval evaluation"
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "src/devtools/context/python/function/declarations.py",
+          "tests/context/python/function/test_rendering.py",
+          "src/devtools/context/python/function/rendering.py",
+          "tests/context/python/function/test_declarations.py",
+          "scripts/qwen/python_function_context_acceptance.py"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/python/function/declarations.py",
+            "rank": 1
+          }
+        ]
+      },
+      "designated_relevant_resources": [
+        "src/devtools/context/python/function/declarations.py"
+      ],
+      "experimental": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "src/devtools/context/python/function/declarations.py",
+          "tests/context/python/function/test_declarations.py",
+          "tests/context/python/function/test_rendering.py",
+          "src/devtools/context/python/function/rendering.py",
+          "scripts/qwen/python_function_context_acceptance.py"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/python/function/declarations.py",
+            "rank": 1
+          }
+        ]
+      },
+      "lost": [],
+      "name": "python-function-declarations",
+      "newly_recovered": [],
+      "query": "direct module body python function declarations"
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 0.3333333333333333,
+          "reciprocal_rank": 0.5
+        },
+        "missed_relevant_resources": [
+          "src/devtools/context/python/function/materialization.py",
+          "src/devtools/context/python/function/rendering.py"
+        ],
+        "ranked_resources": [
+          "tests/context/python/function/test_request_assembly.py",
+          "src/devtools/context/python/function/request_assembly.py",
+          "experiments/qwen/docs/overview.md",
+          "tests/context/python/function/test_rendering.py",
+          "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/python/function/request_assembly.py",
+            "rank": 2
+          }
+        ]
+      },
+      "designated_relevant_resources": [
+        "src/devtools/context/python/function/materialization.py",
+        "src/devtools/context/python/function/rendering.py",
+        "src/devtools/context/python/function/request_assembly.py"
+      ],
+      "experimental": {
+        "metrics": {
+          "hit_at_k": false,
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0.0
+        },
+        "missed_relevant_resources": [
+          "src/devtools/context/python/function/materialization.py",
+          "src/devtools/context/python/function/rendering.py",
+          "src/devtools/context/python/function/request_assembly.py"
+        ],
+        "ranked_resources": [
+          "tests/context/python/function/test_request_assembly.py",
+          "src/devtools/context/python/function/__init__.py",
+          "tests/context/python/function/test_rendering.py",
+          "experiments/qwen/docs/overview.md",
+          "tests/context/python/test_source_candidacy.py"
+        ],
+        "retrieved_relevant_resources": []
+      },
+      "lost": [
+        "src/devtools/context/python/function/request_assembly.py"
+      ],
+      "name": "python-function-context-assembly",
+      "newly_recovered": [],
+      "query": "exact source materialization rendering model request assembly"
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.2
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "README.md",
+          "docs/roadmap.md",
+          "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+          "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+          "docs/architecture.md"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "docs/architecture.md",
+            "rank": 5
+          }
+        ]
+      },
+      "designated_relevant_resources": [
+        "docs/architecture.md"
+      ],
+      "experimental": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.3333333333333333
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "README.md",
+          "docs/roadmap.md",
+          "docs/architecture.md",
+          "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+          "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "docs/architecture.md",
+            "rank": 3
+          }
+        ]
+      },
+      "lost": [],
+      "name": "architecture-context-retrieval",
+      "newly_recovered": [],
+      "query": "Context retrieval repository intelligence architecture"
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.25
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "docs/roadmap.md",
+          "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+          "docs/backlog/overview.md",
+          "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+            "rank": 4
+          }
+        ]
+      },
+      "designated_relevant_resources": [
+        "docs/backlog/epics/B-0002-coding-context-substrate.md"
+      ],
+      "experimental": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.25
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "docs/roadmap.md",
+          "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+          "docs/backlog/overview.md",
+          "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+            "rank": 4
+          }
+        ]
+      },
+      "lost": [],
+      "name": "b0002-backlog",
+      "newly_recovered": [],
+      "query": "coding Context substrate repository intelligence"
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "pyproject.toml",
+          "AGENTS.md",
+          "tests/context/python/function/test_declaration_aggregation.py",
+          "tests/context/python/function/test_declarations.py",
+          "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "pyproject.toml",
+            "rank": 1
+          }
+        ]
+      },
+      "designated_relevant_resources": [
+        "pyproject.toml"
+      ],
+      "experimental": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "pyproject.toml",
+          "AGENTS.md",
+          "tests/context/python/function/test_declaration_aggregation.py",
+          "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+          "tests/context/python/function/test_declarations.py"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "pyproject.toml",
+            "rank": 1
+          }
+        ]
+      },
+      "lost": [],
+      "name": "project-configuration",
+      "newly_recovered": [],
+      "query": "pytest coverage branch threshold configuration"
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 0.5,
+          "reciprocal_rank": 1.0
+        },
+        "missed_relevant_resources": [
+          "src/devtools/context/retrieval/lexical/statistics.py"
+        ],
+        "ranked_resources": [
+          "src/devtools/context/retrieval/lexical/index.py",
+          "tests/context/retrieval/lexical/test_index.py",
+          "tests/context/retrieval/lexical/test_evaluation.py",
+          "experiments/retrieval_identifier.py",
+          "tests/context/retrieval/lexical/test_statistics.py"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/index.py",
+            "rank": 1
+          }
+        ]
+      },
+      "designated_relevant_resources": [
+        "src/devtools/context/retrieval/lexical/statistics.py",
+        "src/devtools/context/retrieval/lexical/index.py"
+      ],
+      "experimental": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 0.5,
+          "reciprocal_rank": 1.0
+        },
+        "missed_relevant_resources": [
+          "src/devtools/context/retrieval/lexical/statistics.py"
+        ],
+        "ranked_resources": [
+          "src/devtools/context/retrieval/lexical/index.py",
+          "tests/context/retrieval/lexical/test_index.py",
+          "src/devtools/context/retrieval/lexical/__init__.py",
+          "src/devtools/context/retrieval/__init__.py",
+          "tests/context/retrieval/lexical/test_bm25.py"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/index.py",
+            "rank": 1
+          }
+        ]
+      },
+      "lost": [],
+      "name": "lexical-index-cross-file",
+      "newly_recovered": [],
+      "query": "lexical corpus statistics inverted index"
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": false,
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0.0
+        },
+        "missed_relevant_resources": [
+          "src/devtools/context/retrieval/lexical/bm25.py"
+        ],
+        "ranked_resources": [
+          "tests/context/retrieval/lexical/test_bm25.py",
+          "tests/context/retrieval/lexical/test_analysis.py",
+          "tests/context/retrieval/lexical/test_evaluation.py",
+          "experiments/retrieval_identifier.py",
+          "tests/context/retrieval/lexical/test_index.py"
+        ],
+        "retrieved_relevant_resources": []
+      },
+      "designated_relevant_resources": [
+        "src/devtools/context/retrieval/lexical/bm25.py"
+      ],
+      "experimental": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.25
+        },
+        "missed_relevant_resources": [],
+        "ranked_resources": [
+          "src/devtools/context/retrieval/__init__.py",
+          "src/devtools/context/retrieval/lexical/__init__.py",
+          "tests/context/retrieval/lexical/test_bm25.py",
+          "src/devtools/context/retrieval/lexical/bm25.py",
+          "src/devtools/context/__init__.py"
+        ],
+        "retrieved_relevant_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "rank": 4
+          }
+        ]
+      },
+      "lost": [],
+      "name": "identifier-boundary",
+      "newly_recovered": [
+        "src/devtools/context/retrieval/lexical/bm25.py"
+      ],
+      "query": "repository text lexical query observation"
+    }
+  ],
+  "constant_configuration": {
+    "baseline_lexical_semantics": "unicode-word-span-casefold-v1",
+    "bm25": {
+      "b": 0.75,
+      "k1": 1.2
+    },
+    "evaluation_k": 5,
+    "experimental_lexical_semantics": "identifier-expansion-v1",
+    "path_or_package_scoring": false
+  },
+  "identified_state": {
+    "corpus_id": "34f3fc804cb036fc22ca6285f16f1e01105d81dc820bae5eab3d62a11c396557",
+    "document_count": 392,
+    "snapshot_id": "1e022ed588b364e8c72b75b5960e8a9b72cb5fbe65eb9fb13c023f4ba2f25c50"
+  },
+  "schema": "devtools-identifier-aware-bm25-comparison-v1",
+  "scope": "experimental identifier-aware lexical expansion comparison"
+}
