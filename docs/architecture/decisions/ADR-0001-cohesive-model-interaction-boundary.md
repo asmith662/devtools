@@ -7,6 +7,19 @@
   for failed interaction observation and cross-layer correlation are recorded
   below.
 
+## Research reconciliation
+
+The preserved [Runtime Evidence governance research](../../research/runtime-evidence-governance.md)
+supports the narrow boundary: occurrence identity differs from durable historical
+record identity; Evidence records facts/observations rather than authority or
+workflow truth; and observation time can differ from occurrence time. Replay
+requires explicitly retained evidence, not merely deterministic code. Governance
+consumes Evidence rather than owning its semantics.
+
+Deferred: complete failure observation, generalized attempt correlation, durable
+Evidence storage, exact replay material, retry/reconciliation, generic
+Trace/Telemetry, and schema-evolution machinery without concrete consumers.
+
 ## Context
 
 The Qwen/llama.cpp experiments established, incrementally, that a model

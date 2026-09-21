@@ -7,6 +7,31 @@
   ranking. This decision authorizes no production retrieval, planner, index,
   ranker, Context compiler, graph algorithm, persistence, protocol, or test.
 
+## Research reconciliation
+
+The [purpose-relative Context research](../../research/purpose-relative-repository-context.md),
+[repository Context-system research](../../research/repository-context-system-architecture.md),
+and [adversarial review](../../research/architecture-adversarial-review.md) support this
+boundary. They, plus Increment 16 and Increment 20, preserve:
+
+> repository relationship truth != retrieval relevance != final top-K selection
+
+InformationNeed is not query text; repository truth is not retrieval evidence;
+candidate surfacing is not final selection; and evaluation remains distinct from
+the mechanism evaluated. Increment 16 found filesystem/path geometry inadequate
+as purpose-relative ranking evidence. Increment 20 found true resolved import
+relations could expose lexical misses but direct fixed-K insertion could expose
+controls and displace relevant lexical resources.
+
+Accordingly, there is currently no universal Candidate, CandidateEvidence,
+relevance-score normalization, first-class Selector, standalone Selection domain,
+production relationship expansion/scoring, or source/test weighting/suppression.
+Source/test classification may be useful evidence for a particular InformationNeed,
+but location alone does not establish purpose-relative relevance.
+
+Revisit only with independently evaluated purpose-relative selection evidence
+showing stable need-specific value that cannot remain local to an existing owner.
+
 ## Context
 
 ADR-0002 establishes Repository identity, snapshots, Derivations,

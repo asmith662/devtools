@@ -117,6 +117,11 @@ needed for later local-correctness, downstream-utility, resource, and marginal-
 contribution evaluation without first building generic Evaluation
 infrastructure.
 
+The recovered [research evidence](research/README.md) has been reconciled into
+canonical research records and linked ADR dispositions. It preserves historical
+alternatives and deferrals; it neither authorizes implementation nor converts
+research recommendations into roadmap commitments.
+
 Later external adversarial/Deep Research confirmation remains a confirmation/
 reopen gate, not an implementation-start gate. It can reopen foundational
 architecture if it discovers a material contradiction or missing semantic

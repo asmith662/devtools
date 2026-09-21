@@ -25,6 +25,12 @@
   explicitly planned transformations, semantic-strength preservation,
   representation-origin, and model-input assembly semantics.
 - [AGENTS.md](../AGENTS.md) defines repository-operating rules.
+- [Research evidence](research/README.md) preserves investigations, alternatives,
+  criticisms, recommendations, and deferred/rejected possibilities. Research is
+  durable evidence and historical reasoning, not automatically accepted
+  architecture, implementation authorization, an ADR replacement, or a current
+  architecture specification. Navigate research to its disposition, then to an
+  ADR, central architecture, and implementation evidence as applicable.
 - Package-local documentation defines detailed implemented public APIs, package
   design, lifecycle/operational behavior, and usage. Central architecture
   summarizes system-level ownership and links outward; it does not duplicate

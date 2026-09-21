@@ -768,6 +768,10 @@ preserve local semantic correctness separately from downstream/task utility,
 typed resource observations, and the intended factor/fixed-condition seams
 needed to assess marginal contribution or interaction effects later.
 
+Supporting historical investigations are indexed in [research evidence](research/README.md).
+They preserve rationale and alternatives; ADRs and this document remain the
+authoritative accepted architecture.
+
 Remaining choices such as snapshot digest/Merkle construction, observation
 mechanics, parser/analyzer technology, graph storage/indexes/algorithms,
 cache/persistence backend, concrete dependency representation and per-family

@@ -524,7 +524,8 @@ that required semantics cannot be represented correctly.
 - hard_dependencies: none
 - pressure_dependencies: none
 - operational_dependencies: resources filesystem, core paths, core regex
-- related: ADR-0002; ADR-0003; ADR-0004; B-0008 (superseded historical investigation)
+- related: ADR-0002; ADR-0003; ADR-0004; B-0008 (superseded historical investigation);
+  docs/research/README.md
 - promotion_trigger: an independently useful, bounded semantic slice is ready
   for design without collapsing Repository intelligence, Context, Tool,
   Runtime, Agent, or orchestration ownership

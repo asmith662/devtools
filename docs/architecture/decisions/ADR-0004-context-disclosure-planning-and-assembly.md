@@ -8,6 +8,17 @@
   optional InformationNeed decomposition. This decision authorizes no compiler, disclosure model,
   decomposer, retriever, ranker, assembler, persistence, or test.
 
+## Research reconciliation
+
+The [purpose-relative Context research](../../research/purpose-relative-repository-context.md)
+and [information-boundaries research](../../research/repository-information-boundaries.md)
+support this ADR's Context-focused ownership. Context disclosure follows
+purpose-relative retrieval/decision semantics; it must not manufacture repository
+truth merely because a transformation helps model consumption. A Context planner
+may make local decisions without establishing a universal standalone Selection
+domain. ADR-0003 owns candidate semantics, relevance, ranking/selection, and
+their current non-promotion boundaries.
+
 ## Context
 
 ADR-0002 establishes repository identity, DerivedKnowledge, applicability, and

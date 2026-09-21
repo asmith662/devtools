@@ -8,6 +8,28 @@
   maintenance semantics. This decision authorizes no production implementation,
   storage, parser, graph, retrieval system, or Context compiler.
 
+## Research reconciliation
+
+This ADR is supported by the [snapshot identity](../../research/repository-snapshot-identity.md),
+[subject identity](../../research/repository-subject-identity-and-decomposition.md),
+[DerivedKnowledge boundary](../../research/repository-derived-knowledge-boundary.md),
+[information-boundaries](../../research/repository-information-boundaries.md),
+[comparative architecture](../../research/repository-intelligence-architecture-review.md),
+and [adversarial review](../../research/architecture-adversarial-review.md) investigations.
+
+They reinforce that nominal Repository identity differs from paths/checkouts/Git;
+snapshots, occurrences, subjects, source anchors, derivation, knowledge, support,
+coverage, and applicability remain distinct; determinism does not make every
+proposition intrinsic repository truth; and model synthesis is not automatically
+DerivedKnowledge. Qualified repository relationships do not imply runtime
+dependency or retrieval relevance. Universal graph/store, confidence, authority,
+and conflict machinery remain rejected for now. Snapshot consistency policy,
+incremental reuse, external semantic state, and richer applicability remain
+deferred pending concrete consumers.
+
+Revisit these choices only when evidence shows the accepted qualification and
+dependency semantics cannot represent an independently useful bounded slice.
+
 ## Context
 
 Existing filesystem and Tool boundaries establish bounded file access, not
