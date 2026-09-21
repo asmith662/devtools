@@ -252,6 +252,18 @@ distractor still outranked its relevant result. This is unsettled experimental
 evidence only: identifier decomposition is not production behavior or an
 accepted retrieval semantic, and these results do not establish path/package
 signals as the cause of the remaining misses. A
+separate address-lexical experiment then added an independently normalized
+address BM25 score to the unchanged content score, first over filename stems
+and then over directory components plus filename stems; extensions remained
+unscored and address observations did not alter content lexical statistics. On
+one paired 13-case checkout state, filename evidence raised mean Recall@5 from
+0.8333 to 0.9231 and MRR from 0.7308 to 0.8462, while full-path evidence raised
+mean Recall@5 to 0.8974 with the same MRR. Both variants recovered
+`statistics.py`; filename evidence recovered all three Context-assembly
+resources, whereas full-path evidence recovered two. Neither variant recovered
+the identifier-boundary `bm25.py` target, and package/directory proximity was
+not tested. This too is experiment-only comparative evidence, not a production
+retrieval semantic or a decision about field weighting/fusion. A
 separate bounded,
 purpose-sensitive address projection now
 nominates exact, case-sensitive `.py` discovery addresses for observation while

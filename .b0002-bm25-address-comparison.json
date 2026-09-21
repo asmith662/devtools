@@ -1,0 +1,2582 @@
+{
+  "aggregate": {
+    "baseline": {
+      "hit_rate_at_k": 0.9230769230769231,
+      "mean_recall_at_k": 0.8333333333333334,
+      "mean_reciprocal_rank": 0.7307692307692307
+    },
+    "filename": {
+      "hit_rate_at_k": 0.9230769230769231,
+      "mean_recall_at_k": 0.9230769230769231,
+      "mean_reciprocal_rank": 0.8461538461538461
+    },
+    "filename_delta": {
+      "hit_rate_at_k": 0.0,
+      "mean_recall_at_k": 0.08974358974358976,
+      "mean_reciprocal_rank": 0.11538461538461542
+    },
+    "full_path": {
+      "hit_rate_at_k": 0.9230769230769231,
+      "mean_recall_at_k": 0.8974358974358974,
+      "mean_reciprocal_rank": 0.8461538461538461
+    },
+    "full_path_delta": {
+      "hit_rate_at_k": 0.0,
+      "mean_recall_at_k": 0.06410256410256399,
+      "mean_reciprocal_rank": 0.11538461538461542
+    }
+  },
+  "cases": [
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "ranked_resources": [
+          "src/devtools/context/repository/corpus.py",
+          "tests/context/repository/test_corpus.py",
+          "src/devtools/context/repository/document.py",
+          "tests/context/repository/test_document.py",
+          "tests/context/retrieval/lexical/test_evaluation.py"
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/repository/corpus.py",
+            "rank": 1
+          }
+        ]
+      },
+      "filename": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "src/devtools/context/repository/corpus.py",
+            "address_contributions": [
+              {
+                "contribution": 6.676718279189653,
+                "sources": [
+                  "filename"
+                ],
+                "term": "corpus"
+              }
+            ],
+            "address_score": 6.676718279189653,
+            "content_score": 13.183300668674907,
+            "score": 19.86001894786456
+          },
+          {
+            "address": "tests/context/repository/test_corpus.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 11.972008190434519,
+            "score": 11.972008190434519
+          },
+          {
+            "address": "src/devtools/context/repository/document.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 10.636234507537928,
+            "score": 10.636234507537928
+          },
+          {
+            "address": "tests/context/repository/test_document.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 10.452957164103733,
+            "score": 10.452957164103733
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_evaluation.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 9.636083883074413,
+            "score": 9.636083883074413
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/repository/corpus.py",
+            "rank": 1
+          }
+        ]
+      },
+      "full_path": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "src/devtools/context/repository/corpus.py",
+            "address_contributions": [
+              {
+                "contribution": 3.3071252086822374,
+                "sources": [
+                  "directory"
+                ],
+                "term": "repository"
+              },
+              {
+                "contribution": 5.692322291628606,
+                "sources": [
+                  "filename"
+                ],
+                "term": "corpus"
+              }
+            ],
+            "address_score": 8.999447500310843,
+            "content_score": 13.183300668674907,
+            "score": 22.18274816898575
+          },
+          {
+            "address": "tests/context/repository/test_corpus.py",
+            "address_contributions": [
+              {
+                "contribution": 3.591956307244056,
+                "sources": [
+                  "directory"
+                ],
+                "term": "repository"
+              }
+            ],
+            "address_score": 3.591956307244056,
+            "content_score": 11.972008190434519,
+            "score": 15.563964497678574
+          },
+          {
+            "address": "tests/context/repository/test_document.py",
+            "address_contributions": [
+              {
+                "contribution": 3.591956307244056,
+                "sources": [
+                  "directory"
+                ],
+                "term": "repository"
+              }
+            ],
+            "address_score": 3.591956307244056,
+            "content_score": 10.452957164103733,
+            "score": 14.044913471347789
+          },
+          {
+            "address": "src/devtools/context/repository/document.py",
+            "address_contributions": [
+              {
+                "contribution": 3.3071252086822374,
+                "sources": [
+                  "directory"
+                ],
+                "term": "repository"
+              }
+            ],
+            "address_score": 3.3071252086822374,
+            "content_score": 10.636234507537928,
+            "score": 13.943359716220165
+          },
+          {
+            "address": "src/devtools/context/repository/__init__.py",
+            "address_contributions": [
+              {
+                "contribution": 3.3071252086822374,
+                "sources": [
+                  "directory"
+                ],
+                "term": "repository"
+              }
+            ],
+            "address_score": 3.3071252086822374,
+            "content_score": 7.094965025013801,
+            "score": 10.402090233696038
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/repository/corpus.py",
+            "rank": 1
+          }
+        ]
+      },
+      "name": "corpus-realization",
+      "query": "repository text corpus realization",
+      "relevant_resources": [
+        "src/devtools/context/repository/corpus.py"
+      ]
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.5
+        },
+        "missed": [],
+        "ranked_resources": [
+          "tests/context/repository/test_discovery.py",
+          "src/devtools/context/repository/discovery.py",
+          "src/devtools/context/python/source_candidacy.py",
+          "tests/context/python/test_source_candidacy.py",
+          "src/devtools/context/repository/corpus.py"
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/repository/discovery.py",
+            "rank": 2
+          }
+        ]
+      },
+      "filename": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "src/devtools/context/repository/discovery.py",
+            "address_contributions": [
+              {
+                "contribution": 6.06477114838769,
+                "sources": [
+                  "filename"
+                ],
+                "term": "discovery"
+              }
+            ],
+            "address_score": 6.06477114838769,
+            "content_score": 12.93771189457156,
+            "score": 19.00248304295925
+          },
+          {
+            "address": "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+            "address_contributions": [
+              {
+                "contribution": 2.4647714007927335,
+                "sources": [
+                  "filename"
+                ],
+                "term": "repository"
+              },
+              {
+                "contribution": 2.4647714007927335,
+                "sources": [
+                  "filename"
+                ],
+                "term": "discovery"
+              }
+            ],
+            "address_score": 4.929542801585467,
+            "content_score": 11.308522742733057,
+            "score": 16.238065544318523
+          },
+          {
+            "address": "tests/context/repository/test_discovery.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 13.128647588573765,
+            "score": 13.128647588573765
+          },
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "address_contributions": [
+              {
+                "contribution": 6.676718279189653,
+                "sources": [
+                  "filename"
+                ],
+                "term": "resource"
+              }
+            ],
+            "address_score": 6.676718279189653,
+            "content_score": 6.379649372795362,
+            "score": 13.056367651985015
+          },
+          {
+            "address": "src/devtools/context/python/source_candidacy.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 12.562231140960444,
+            "score": 12.562231140960444
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/repository/discovery.py",
+            "rank": 1
+          }
+        ]
+      },
+      "full_path": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "src/devtools/context/repository/discovery.py",
+            "address_contributions": [
+              {
+                "contribution": 3.3071252086822374,
+                "sources": [
+                  "directory"
+                ],
+                "term": "repository"
+              },
+              {
+                "contribution": 5.170598871783346,
+                "sources": [
+                  "filename"
+                ],
+                "term": "discovery"
+              }
+            ],
+            "address_score": 8.477724080465583,
+            "content_score": 12.93771189457156,
+            "score": 21.41543597503714
+          },
+          {
+            "address": "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+            "address_contributions": [
+              {
+                "contribution": 2.510747089773731,
+                "sources": [
+                  "filename"
+                ],
+                "term": "repository"
+              },
+              {
+                "contribution": 3.9254836906795636,
+                "sources": [
+                  "filename"
+                ],
+                "term": "discovery"
+              }
+            ],
+            "address_score": 6.436230780453295,
+            "content_score": 11.308522742733057,
+            "score": 17.744753523186354
+          },
+          {
+            "address": "tests/context/repository/test_discovery.py",
+            "address_contributions": [
+              {
+                "contribution": 3.591956307244056,
+                "sources": [
+                  "directory"
+                ],
+                "term": "repository"
+              }
+            ],
+            "address_score": 3.591956307244056,
+            "content_score": 13.128647588573765,
+            "score": 16.72060389581782
+          },
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "address_contributions": [
+              {
+                "contribution": 3.3071252086822374,
+                "sources": [
+                  "directory"
+                ],
+                "term": "repository"
+              },
+              {
+                "contribution": 5.692322291628606,
+                "sources": [
+                  "filename"
+                ],
+                "term": "resource"
+              }
+            ],
+            "address_score": 8.999447500310843,
+            "content_score": 6.379649372795362,
+            "score": 15.379096873106207
+          },
+          {
+            "address": "src/devtools/context/repository/corpus.py",
+            "address_contributions": [
+              {
+                "contribution": 3.3071252086822374,
+                "sources": [
+                  "directory"
+                ],
+                "term": "repository"
+              }
+            ],
+            "address_score": 3.3071252086822374,
+            "content_score": 11.475463865721261,
+            "score": 14.782589074403498
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/repository/discovery.py",
+            "rank": 1
+          }
+        ]
+      },
+      "name": "repository-discovery",
+      "query": "bounded repository resource discovery",
+      "relevant_resources": [
+        "src/devtools/context/repository/discovery.py"
+      ]
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "ranked_resources": [
+          "src/devtools/context/repository/observation.py",
+          "src/devtools/context/python/function/materialization.py",
+          "src/devtools/resources/commands/models/output.py",
+          "tests/context/repository/test_observation.py",
+          "src/devtools/context/repository/corpus.py"
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/repository/observation.py",
+            "rank": 1
+          }
+        ]
+      },
+      "filename": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "src/devtools/context/repository/observation.py",
+            "address_contributions": [
+              {
+                "contribution": 6.06477114838769,
+                "sources": [
+                  "filename"
+                ],
+                "term": "observation"
+              }
+            ],
+            "address_score": 6.06477114838769,
+            "content_score": 16.689357420369017,
+            "score": 22.754128568756705
+          },
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "address_contributions": [
+              {
+                "contribution": 6.676718279189653,
+                "sources": [
+                  "filename"
+                ],
+                "term": "resource"
+              }
+            ],
+            "address_score": 6.676718279189653,
+            "content_score": 3.785848227753179,
+            "score": 10.462566506942832
+          },
+          {
+            "address": "src/devtools/context/python/function/materialization.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 10.439107259168747,
+            "score": 10.439107259168747
+          },
+          {
+            "address": "src/devtools/resources/commands/models/output.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 9.727750151275451,
+            "score": 9.727750151275451
+          },
+          {
+            "address": "src/devtools/models/interaction/observation.py",
+            "address_contributions": [
+              {
+                "contribution": 6.06477114838769,
+                "sources": [
+                  "filename"
+                ],
+                "term": "observation"
+              }
+            ],
+            "address_score": 6.06477114838769,
+            "content_score": 3.37657260242757,
+            "score": 9.44134375081526
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/repository/observation.py",
+            "rank": 1
+          }
+        ]
+      },
+      "full_path": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "src/devtools/context/repository/observation.py",
+            "address_contributions": [
+              {
+                "contribution": 5.170598871783346,
+                "sources": [
+                  "filename"
+                ],
+                "term": "observation"
+              }
+            ],
+            "address_score": 5.170598871783346,
+            "content_score": 16.689357420369017,
+            "score": 21.85995629215236
+          },
+          {
+            "address": "src/devtools/context/python/function/materialization.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 10.439107259168747,
+            "score": 10.439107259168747
+          },
+          {
+            "address": "src/devtools/resources/commands/models/output.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 9.727750151275451,
+            "score": 9.727750151275451
+          },
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "address_contributions": [
+              {
+                "contribution": 5.692322291628606,
+                "sources": [
+                  "filename"
+                ],
+                "term": "resource"
+              }
+            ],
+            "address_score": 5.692322291628606,
+            "content_score": 3.785848227753179,
+            "score": 9.478170519381784
+          },
+          {
+            "address": "tests/context/repository/test_observation.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 8.763279530542611,
+            "score": 8.763279530542611
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/repository/observation.py",
+            "rank": 1
+          }
+        ]
+      },
+      "name": "observation-bound",
+      "query": "maximum resource bytes utf8 observation",
+      "relevant_resources": [
+        "src/devtools/context/repository/observation.py"
+      ]
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "ranked_resources": [
+          "src/devtools/context/retrieval/lexical/analysis.py",
+          "experiments/address_lexical.py",
+          "docs/documentation_map.md",
+          "experiments/retrieval_identifier.py",
+          "src/devtools/context/retrieval/lexical/bm25.py"
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "rank": 1
+          }
+        ]
+      },
+      "filename": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 23.690398888168527,
+            "score": 23.690398888168527
+          },
+          {
+            "address": "experiments/address_lexical.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 11.494357863046062,
+            "score": 11.494357863046062
+          },
+          {
+            "address": "docs/documentation_map.md",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 11.32838086922458,
+            "score": 11.32838086922458
+          },
+          {
+            "address": "experiments/retrieval_identifier.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 11.250151473120098,
+            "score": 11.250151473120098
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 11.145193073114806,
+            "score": 11.145193073114806
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "rank": 1
+          }
+        ]
+      },
+      "full_path": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "address_contributions": [
+              {
+                "contribution": 3.1948787365520506,
+                "sources": [
+                  "directory"
+                ],
+                "term": "lexical"
+              }
+            ],
+            "address_score": 3.1948787365520506,
+            "content_score": 23.690398888168527,
+            "score": 26.88527762472058
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "address_contributions": [
+              {
+                "contribution": 3.1948787365520506,
+                "sources": [
+                  "directory"
+                ],
+                "term": "lexical"
+              }
+            ],
+            "address_score": 3.1948787365520506,
+            "content_score": 11.145193073114806,
+            "score": 14.340071809666856
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_analysis.py",
+            "address_contributions": [
+              {
+                "contribution": 3.4482228038138594,
+                "sources": [
+                  "directory"
+                ],
+                "term": "lexical"
+              }
+            ],
+            "address_score": 3.4482228038138594,
+            "content_score": 8.258434020581326,
+            "score": 11.706656824395186
+          },
+          {
+            "address": "experiments/address_lexical.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 11.494357863046062,
+            "score": 11.494357863046062
+          },
+          {
+            "address": "docs/documentation_map.md",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 11.32838086922458,
+            "score": 11.32838086922458
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "rank": 1
+          }
+        ]
+      },
+      "name": "lexical-analysis",
+      "query": "unicode lexical spans casefold",
+      "relevant_resources": [
+        "src/devtools/context/retrieval/lexical/analysis.py"
+      ]
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "ranked_resources": [
+          "src/devtools/context/retrieval/lexical/bm25.py",
+          "tests/context/retrieval/lexical/test_bm25.py",
+          "experiments/address_lexical.py",
+          "src/devtools/context/retrieval/lexical/statistics.py",
+          "experiments/retrieval_identifier.py"
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "rank": 1
+          }
+        ]
+      },
+      "filename": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "address_contributions": [
+              {
+                "contribution": 6.676718279189653,
+                "sources": [
+                  "filename"
+                ],
+                "term": "bm25"
+              }
+            ],
+            "address_score": 6.676718279189653,
+            "content_score": 29.227188497936208,
+            "score": 35.90390677712586
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_bm25.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 14.57341753515863,
+            "score": 14.57341753515863
+          },
+          {
+            "address": "experiments/address_lexical.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 11.896196576992303,
+            "score": 11.896196576992303
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/statistics.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 11.716327787894672,
+            "score": 11.716327787894672
+          },
+          {
+            "address": "experiments/retrieval_identifier.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 11.641873489415717,
+            "score": 11.641873489415717
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "rank": 1
+          }
+        ]
+      },
+      "full_path": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "address_contributions": [
+              {
+                "contribution": 5.274102192877672,
+                "sources": [
+                  "filename"
+                ],
+                "term": "bm25"
+              }
+            ],
+            "address_score": 5.274102192877672,
+            "content_score": 29.227188497936208,
+            "score": 34.50129069081388
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_bm25.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 14.57341753515863,
+            "score": 14.57341753515863
+          },
+          {
+            "address": "experiments/address_lexical.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 11.896196576992303,
+            "score": 11.896196576992303
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/statistics.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 11.716327787894672,
+            "score": 11.716327787894672
+          },
+          {
+            "address": "experiments/retrieval_identifier.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 11.641873489415717,
+            "score": 11.641873489415717
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "rank": 1
+          }
+        ]
+      },
+      "name": "bm25-scoring",
+      "query": "okapi bm25 inverse document frequency",
+      "relevant_resources": [
+        "src/devtools/context/retrieval/lexical/bm25.py"
+      ]
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "ranked_resources": [
+          "src/devtools/context/retrieval/lexical/evaluation.py",
+          "tests/context/retrieval/lexical/test_evaluation.py",
+          "docs/documentation_map.md",
+          "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "docs/architecture.md"
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/evaluation.py",
+            "rank": 1
+          }
+        ]
+      },
+      "filename": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/evaluation.py",
+            "address_contributions": [
+              {
+                "contribution": 6.676718279189653,
+                "sources": [
+                  "filename"
+                ],
+                "term": "evaluation"
+              }
+            ],
+            "address_score": 6.676718279189653,
+            "content_score": 24.067640042090616,
+            "score": 30.74435832128027
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_evaluation.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 15.308183016058448,
+            "score": 15.308183016058448
+          },
+          {
+            "address": "docs/documentation_map.md",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 15.305163516670186,
+            "score": 15.305163516670186
+          },
+          {
+            "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 14.761404770855288,
+            "score": 14.761404770855288
+          },
+          {
+            "address": "docs/architecture.md",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 11.722254334802154,
+            "score": 11.722254334802154
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/evaluation.py",
+            "rank": 1
+          }
+        ]
+      },
+      "full_path": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/evaluation.py",
+            "address_contributions": [
+              {
+                "contribution": 2.9493044923908784,
+                "sources": [
+                  "directory"
+                ],
+                "term": "retrieval"
+              },
+              {
+                "contribution": 4.790710267454162,
+                "sources": [
+                  "filename"
+                ],
+                "term": "evaluation"
+              }
+            ],
+            "address_score": 7.740014759845041,
+            "content_score": 24.067640042090616,
+            "score": 31.807654801935655
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_evaluation.py",
+            "address_contributions": [
+              {
+                "contribution": 3.1831752766392363,
+                "sources": [
+                  "directory"
+                ],
+                "term": "retrieval"
+              }
+            ],
+            "address_score": 3.1831752766392363,
+            "content_score": 15.308183016058448,
+            "score": 18.491358292697683
+          },
+          {
+            "address": "docs/documentation_map.md",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 15.305163516670186,
+            "score": 15.305163516670186
+          },
+          {
+            "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 14.761404770855288,
+            "score": 14.761404770855288
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_index.py",
+            "address_contributions": [
+              {
+                "contribution": 3.1831752766392363,
+                "sources": [
+                  "directory"
+                ],
+                "term": "retrieval"
+              }
+            ],
+            "address_score": 3.1831752766392363,
+            "content_score": 8.674851815721807,
+            "score": 11.858027092361043
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/evaluation.py",
+            "rank": 1
+          }
+        ]
+      },
+      "name": "retrieval-evaluation",
+      "query": "recall reciprocal rank retrieval evaluation",
+      "relevant_resources": [
+        "src/devtools/context/retrieval/lexical/evaluation.py"
+      ]
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "ranked_resources": [
+          "src/devtools/context/python/function/declarations.py",
+          "tests/context/python/function/test_rendering.py",
+          "src/devtools/context/python/function/rendering.py",
+          "tests/context/python/function/test_declarations.py",
+          "scripts/qwen/python_function_context_acceptance.py"
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/python/function/declarations.py",
+            "rank": 1
+          }
+        ]
+      },
+      "filename": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "src/devtools/context/python/function/declarations.py",
+            "address_contributions": [
+              {
+                "contribution": 6.676718279189653,
+                "sources": [
+                  "filename"
+                ],
+                "term": "declarations"
+              }
+            ],
+            "address_score": 6.676718279189653,
+            "content_score": 24.722904155090177,
+            "score": 31.39962243427983
+          },
+          {
+            "address": "tests/context/python/function/test_rendering.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 20.927298373066066,
+            "score": 20.927298373066066
+          },
+          {
+            "address": "src/devtools/context/python/function/rendering.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 20.275005804387,
+            "score": 20.275005804387
+          },
+          {
+            "address": "tests/context/python/function/test_declarations.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 20.146590178673414,
+            "score": 20.146590178673414
+          },
+          {
+            "address": "scripts/qwen/python_function_context_acceptance.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 16.9331524382558,
+            "score": 16.9331524382558
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/python/function/declarations.py",
+            "rank": 1
+          }
+        ]
+      },
+      "full_path": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "src/devtools/context/python/function/declarations.py",
+            "address_contributions": [
+              {
+                "contribution": 2.6703370507996866,
+                "sources": [
+                  "directory"
+                ],
+                "term": "python"
+              },
+              {
+                "contribution": 2.8469024776865712,
+                "sources": [
+                  "directory"
+                ],
+                "term": "function"
+              },
+              {
+                "contribution": 5.274102192877672,
+                "sources": [
+                  "filename"
+                ],
+                "term": "declarations"
+              }
+            ],
+            "address_score": 10.79134172136393,
+            "content_score": 24.722904155090177,
+            "score": 35.514245876454105
+          },
+          {
+            "address": "tests/context/python/function/test_rendering.py",
+            "address_contributions": [
+              {
+                "contribution": 2.8820865740819377,
+                "sources": [
+                  "directory"
+                ],
+                "term": "python"
+              },
+              {
+                "contribution": 3.0726530968081014,
+                "sources": [
+                  "directory"
+                ],
+                "term": "function"
+              }
+            ],
+            "address_score": 5.954739670890039,
+            "content_score": 20.927298373066066,
+            "score": 26.882038043956104
+          },
+          {
+            "address": "tests/context/python/function/test_declarations.py",
+            "address_contributions": [
+              {
+                "contribution": 2.8820865740819377,
+                "sources": [
+                  "directory"
+                ],
+                "term": "python"
+              },
+              {
+                "contribution": 3.0726530968081014,
+                "sources": [
+                  "directory"
+                ],
+                "term": "function"
+              }
+            ],
+            "address_score": 5.954739670890039,
+            "content_score": 20.146590178673414,
+            "score": 26.101329849563452
+          },
+          {
+            "address": "src/devtools/context/python/function/rendering.py",
+            "address_contributions": [
+              {
+                "contribution": 2.6703370507996866,
+                "sources": [
+                  "directory"
+                ],
+                "term": "python"
+              },
+              {
+                "contribution": 2.8469024776865712,
+                "sources": [
+                  "directory"
+                ],
+                "term": "function"
+              }
+            ],
+            "address_score": 5.517239528486257,
+            "content_score": 20.275005804387,
+            "score": 25.792245332873257
+          },
+          {
+            "address": "tests/context/python/function/test_resource_selection.py",
+            "address_contributions": [
+              {
+                "contribution": 2.8820865740819377,
+                "sources": [
+                  "directory"
+                ],
+                "term": "python"
+              },
+              {
+                "contribution": 3.0726530968081014,
+                "sources": [
+                  "directory"
+                ],
+                "term": "function"
+              }
+            ],
+            "address_score": 5.954739670890039,
+            "content_score": 15.928133014423116,
+            "score": 21.882872685313153
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/python/function/declarations.py",
+            "rank": 1
+          }
+        ]
+      },
+      "name": "python-function-declarations",
+      "query": "direct module body python function declarations",
+      "relevant_resources": [
+        "src/devtools/context/python/function/declarations.py"
+      ]
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 0.3333333333333333,
+          "reciprocal_rank": 0.5
+        },
+        "missed": [
+          "src/devtools/context/python/function/materialization.py",
+          "src/devtools/context/python/function/rendering.py"
+        ],
+        "ranked_resources": [
+          "tests/context/python/function/test_request_assembly.py",
+          "src/devtools/context/python/function/request_assembly.py",
+          "experiments/qwen/docs/overview.md",
+          "tests/context/python/function/test_rendering.py",
+          "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md"
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/python/function/request_assembly.py",
+            "rank": 2
+          }
+        ]
+      },
+      "filename": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.5
+        },
+        "missed": [],
+        "newly_recovered": [
+          "src/devtools/context/python/function/rendering.py",
+          "src/devtools/context/python/function/materialization.py"
+        ],
+        "ranked_resources": [
+          {
+            "address": "tests/context/python/function/test_request_assembly.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 20.866350242740406,
+            "score": 20.866350242740406
+          },
+          {
+            "address": "src/devtools/context/python/function/rendering.py",
+            "address_contributions": [
+              {
+                "contribution": 6.676718279189653,
+                "sources": [
+                  "filename"
+                ],
+                "term": "rendering"
+              }
+            ],
+            "address_score": 6.676718279189653,
+            "content_score": 13.616795477389655,
+            "score": 20.29351375657931
+          },
+          {
+            "address": "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+            "address_contributions": [
+              {
+                "contribution": 2.4255179766896062,
+                "sources": [
+                  "filename"
+                ],
+                "term": "assembly"
+              }
+            ],
+            "address_score": 2.4255179766896062,
+            "content_score": 14.671740676155384,
+            "score": 17.09725865284499
+          },
+          {
+            "address": "src/devtools/context/python/function/materialization.py",
+            "address_contributions": [
+              {
+                "contribution": 6.676718279189653,
+                "sources": [
+                  "filename"
+                ],
+                "term": "materialization"
+              }
+            ],
+            "address_score": 6.676718279189653,
+            "content_score": 9.625057256686462,
+            "score": 16.301775535876114
+          },
+          {
+            "address": "src/devtools/context/python/function/request_assembly.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 15.864933849603936,
+            "score": 15.864933849603936
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/python/function/rendering.py",
+            "rank": 2
+          },
+          {
+            "address": "src/devtools/context/python/function/materialization.py",
+            "rank": 4
+          },
+          {
+            "address": "src/devtools/context/python/function/request_assembly.py",
+            "rank": 5
+          }
+        ]
+      },
+      "full_path": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 0.6666666666666666,
+          "reciprocal_rank": 0.5
+        },
+        "missed": [
+          "src/devtools/context/python/function/materialization.py"
+        ],
+        "newly_recovered": [
+          "src/devtools/context/python/function/rendering.py"
+        ],
+        "ranked_resources": [
+          {
+            "address": "tests/context/python/function/test_request_assembly.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 20.866350242740406,
+            "score": 20.866350242740406
+          },
+          {
+            "address": "src/devtools/context/python/function/rendering.py",
+            "address_contributions": [
+              {
+                "contribution": 5.274102192877672,
+                "sources": [
+                  "filename"
+                ],
+                "term": "rendering"
+              }
+            ],
+            "address_score": 5.274102192877672,
+            "content_score": 13.616795477389655,
+            "score": 18.89089767026733
+          },
+          {
+            "address": "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+            "address_contributions": [
+              {
+                "contribution": 4.076179673280937,
+                "sources": [
+                  "filename"
+                ],
+                "term": "assembly"
+              }
+            ],
+            "address_score": 4.076179673280937,
+            "content_score": 14.671740676155384,
+            "score": 18.74792034943632
+          },
+          {
+            "address": "src/devtools/context/python/function/request_assembly.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 15.864933849603936,
+            "score": 15.864933849603936
+          },
+          {
+            "address": "experiments/qwen/docs/overview.md",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 15.4975260191517,
+            "score": 15.4975260191517
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/python/function/rendering.py",
+            "rank": 2
+          },
+          {
+            "address": "src/devtools/context/python/function/request_assembly.py",
+            "rank": 4
+          }
+        ]
+      },
+      "name": "python-function-context-assembly",
+      "query": "exact source materialization rendering model request assembly",
+      "relevant_resources": [
+        "src/devtools/context/python/function/materialization.py",
+        "src/devtools/context/python/function/rendering.py",
+        "src/devtools/context/python/function/request_assembly.py"
+      ]
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.25
+        },
+        "missed": [],
+        "ranked_resources": [
+          "README.md",
+          "docs/roadmap.md",
+          "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+          "docs/architecture.md",
+          "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md"
+        ],
+        "relevant_ranks": [
+          {
+            "address": "docs/architecture.md",
+            "rank": 4
+          }
+        ]
+      },
+      "filename": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "docs/architecture.md",
+            "address_contributions": [
+              {
+                "contribution": 5.3606279997752315,
+                "sources": [
+                  "filename"
+                ],
+                "term": "architecture"
+              }
+            ],
+            "address_score": 5.3606279997752315,
+            "content_score": 15.91320709467838,
+            "score": 21.273835094453613
+          },
+          {
+            "address": "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+            "address_contributions": [
+              {
+                "contribution": 2.178602005064499,
+                "sources": [
+                  "filename"
+                ],
+                "term": "context"
+              },
+              {
+                "contribution": 2.4647714007927335,
+                "sources": [
+                  "filename"
+                ],
+                "term": "repository"
+              }
+            ],
+            "address_score": 4.643373405857233,
+            "content_score": 16.483194644752942,
+            "score": 21.126568050610175
+          },
+          {
+            "address": "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+            "address_contributions": [
+              {
+                "contribution": 2.2032098449881237,
+                "sources": [
+                  "filename"
+                ],
+                "term": "repository"
+              },
+              {
+                "contribution": 2.4255179766896062,
+                "sources": [
+                  "filename"
+                ],
+                "term": "intelligence"
+              }
+            ],
+            "address_score": 4.62872782167773,
+            "content_score": 14.129388996608565,
+            "score": 18.758116818286297
+          },
+          {
+            "address": "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+            "address_contributions": [
+              {
+                "contribution": 1.9918361778706788,
+                "sources": [
+                  "filename"
+                ],
+                "term": "retrieval"
+              }
+            ],
+            "address_score": 1.9918361778706788,
+            "content_score": 15.907935468130589,
+            "score": 17.899771646001266
+          },
+          {
+            "address": "README.md",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 17.124354078338378,
+            "score": 17.124354078338378
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "docs/architecture.md",
+            "rank": 1
+          }
+        ]
+      },
+      "full_path": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.5
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+            "address_contributions": [
+              {
+                "contribution": 2.3681787260096767,
+                "sources": [
+                  "filename"
+                ],
+                "term": "repository"
+              },
+              {
+                "contribution": 4.076179673280937,
+                "sources": [
+                  "filename"
+                ],
+                "term": "intelligence"
+              },
+              {
+                "contribution": 2.726214956901874,
+                "sources": [
+                  "directory"
+                ],
+                "term": "architecture"
+              }
+            ],
+            "address_score": 9.170573356192488,
+            "content_score": 14.129388996608565,
+            "score": 23.299962352801053
+          },
+          {
+            "address": "docs/architecture.md",
+            "address_contributions": [
+              {
+                "contribution": 4.9955009280694895,
+                "sources": [
+                  "filename"
+                ],
+                "term": "architecture"
+              }
+            ],
+            "address_score": 4.9955009280694895,
+            "content_score": 15.91320709467838,
+            "score": 20.90870802274787
+          },
+          {
+            "address": "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+            "address_contributions": [
+              {
+                "contribution": 2.1569420253470524,
+                "sources": [
+                  "filename"
+                ],
+                "term": "retrieval"
+              },
+              {
+                "contribution": 2.5797295455436586,
+                "sources": [
+                  "directory"
+                ],
+                "term": "architecture"
+              }
+            ],
+            "address_score": 4.736671570890711,
+            "content_score": 15.907935468130589,
+            "score": 20.6446070390213
+          },
+          {
+            "address": "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+            "address_contributions": [
+              {
+                "contribution": 1.4942539899917069,
+                "sources": [
+                  "filename"
+                ],
+                "term": "context"
+              },
+              {
+                "contribution": 2.510747089773731,
+                "sources": [
+                  "filename"
+                ],
+                "term": "repository"
+              }
+            ],
+            "address_score": 4.005001079765438,
+            "content_score": 16.483194644752942,
+            "score": 20.48819572451838
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_index.py",
+            "address_contributions": [
+              {
+                "contribution": 1.96821299070825,
+                "sources": [
+                  "directory"
+                ],
+                "term": "context"
+              },
+              {
+                "contribution": 3.1831752766392363,
+                "sources": [
+                  "directory"
+                ],
+                "term": "retrieval"
+              }
+            ],
+            "address_score": 5.151388267347486,
+            "content_score": 13.203728136533655,
+            "score": 18.35511640388114
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "docs/architecture.md",
+            "rank": 2
+          }
+        ]
+      },
+      "name": "architecture-context-retrieval",
+      "query": "Context retrieval repository intelligence architecture",
+      "relevant_resources": [
+        "docs/architecture.md"
+      ]
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.25
+        },
+        "missed": [],
+        "ranked_resources": [
+          "docs/roadmap.md",
+          "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+          "docs/backlog/overview.md",
+          "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md"
+        ],
+        "relevant_ranks": [
+          {
+            "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+            "rank": 4
+          }
+        ]
+      },
+      "filename": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 0.5
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+            "address_contributions": [
+              {
+                "contribution": 2.178602005064499,
+                "sources": [
+                  "filename"
+                ],
+                "term": "context"
+              },
+              {
+                "contribution": 2.4647714007927335,
+                "sources": [
+                  "filename"
+                ],
+                "term": "repository"
+              }
+            ],
+            "address_score": 4.643373405857233,
+            "content_score": 16.462045145021143,
+            "score": 21.105418550878376
+          },
+          {
+            "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+            "address_contributions": [
+              {
+                "contribution": 2.610921160404683,
+                "sources": [
+                  "filename"
+                ],
+                "term": "coding"
+              },
+              {
+                "contribution": 2.4720838540163177,
+                "sources": [
+                  "filename"
+                ],
+                "term": "context"
+              },
+              {
+                "contribution": 2.796803440727811,
+                "sources": [
+                  "filename"
+                ],
+                "term": "substrate"
+              }
+            ],
+            "address_score": 7.879808455148812,
+            "content_score": 12.710862212285926,
+            "score": 20.590670667434736
+          },
+          {
+            "address": "docs/roadmap.md",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 16.981117972329322,
+            "score": 16.981117972329322
+          },
+          {
+            "address": "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+            "address_contributions": [
+              {
+                "contribution": 2.2032098449881237,
+                "sources": [
+                  "filename"
+                ],
+                "term": "repository"
+              },
+              {
+                "contribution": 2.4255179766896062,
+                "sources": [
+                  "filename"
+                ],
+                "term": "intelligence"
+              }
+            ],
+            "address_score": 4.62872782167773,
+            "content_score": 11.660747865566126,
+            "score": 16.289475687243858
+          },
+          {
+            "address": "docs/backlog/overview.md",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 15.452385291006324,
+            "score": 15.452385291006324
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+            "rank": 2
+          }
+        ]
+      },
+      "full_path": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+            "address_contributions": [
+              {
+                "contribution": 3.899333050752287,
+                "sources": [
+                  "filename"
+                ],
+                "term": "coding"
+              },
+              {
+                "contribution": 1.589973056551982,
+                "sources": [
+                  "filename"
+                ],
+                "term": "context"
+              },
+              {
+                "contribution": 4.176942704465779,
+                "sources": [
+                  "filename"
+                ],
+                "term": "substrate"
+              }
+            ],
+            "address_score": 9.666248811770048,
+            "content_score": 12.710862212285926,
+            "score": 22.377111024055974
+          },
+          {
+            "address": "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+            "address_contributions": [
+              {
+                "contribution": 1.4942539899917069,
+                "sources": [
+                  "filename"
+                ],
+                "term": "context"
+              },
+              {
+                "contribution": 2.510747089773731,
+                "sources": [
+                  "filename"
+                ],
+                "term": "repository"
+              }
+            ],
+            "address_score": 4.005001079765438,
+            "content_score": 16.462045145021143,
+            "score": 20.467046224786582
+          },
+          {
+            "address": "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+            "address_contributions": [
+              {
+                "contribution": 2.3681787260096767,
+                "sources": [
+                  "filename"
+                ],
+                "term": "repository"
+              },
+              {
+                "contribution": 4.076179673280937,
+                "sources": [
+                  "filename"
+                ],
+                "term": "intelligence"
+              }
+            ],
+            "address_score": 6.444358399290614,
+            "content_score": 11.660747865566126,
+            "score": 18.10510626485674
+          },
+          {
+            "address": "docs/roadmap.md",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 16.981117972329322,
+            "score": 16.981117972329322
+          },
+          {
+            "address": "docs/backlog/overview.md",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 15.452385291006324,
+            "score": 15.452385291006324
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+            "rank": 1
+          }
+        ]
+      },
+      "name": "b0002-backlog",
+      "query": "coding Context substrate repository intelligence",
+      "relevant_resources": [
+        "docs/backlog/epics/B-0002-coding-context-substrate.md"
+      ]
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "ranked_resources": [
+          "pyproject.toml",
+          "AGENTS.md",
+          "tests/context/python/function/test_declaration_aggregation.py",
+          "tests/context/python/function/test_declarations.py",
+          "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md"
+        ],
+        "relevant_ranks": [
+          {
+            "address": "pyproject.toml",
+            "rank": 1
+          }
+        ]
+      },
+      "filename": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "pyproject.toml",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 15.411097488538747,
+            "score": 15.411097488538747
+          },
+          {
+            "address": "AGENTS.md",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 8.196505770927967,
+            "score": 8.196505770927967
+          },
+          {
+            "address": "tests/context/python/function/test_declaration_aggregation.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 7.970218828390118,
+            "score": 7.970218828390118
+          },
+          {
+            "address": "docs/backlog/items/B-0019-investigate-typed-configuration-ownership.md",
+            "address_contributions": [
+              {
+                "contribution": 2.713471599018487,
+                "sources": [
+                  "filename"
+                ],
+                "term": "configuration"
+              }
+            ],
+            "address_score": 2.713471599018487,
+            "content_score": 5.147500839346344,
+            "score": 7.860972438364831
+          },
+          {
+            "address": "tests/context/python/function/test_declarations.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 7.43795995352881,
+            "score": 7.43795995352881
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "pyproject.toml",
+            "rank": 1
+          }
+        ]
+      },
+      "full_path": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "pyproject.toml",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 15.411097488538747,
+            "score": 15.411097488538747
+          },
+          {
+            "address": "docs/backlog/items/B-0019-investigate-typed-configuration-ownership.md",
+            "address_contributions": [
+              {
+                "contribution": 4.321572582205154,
+                "sources": [
+                  "filename"
+                ],
+                "term": "configuration"
+              }
+            ],
+            "address_score": 4.321572582205154,
+            "content_score": 5.147500839346344,
+            "score": 9.4690734215515
+          },
+          {
+            "address": "AGENTS.md",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 8.196505770927967,
+            "score": 8.196505770927967
+          },
+          {
+            "address": "tests/context/python/function/test_declaration_aggregation.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 7.970218828390118,
+            "score": 7.970218828390118
+          },
+          {
+            "address": "tests/context/python/function/test_declarations.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 7.43795995352881,
+            "score": 7.43795995352881
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "pyproject.toml",
+            "rank": 1
+          }
+        ]
+      },
+      "name": "project-configuration",
+      "query": "pytest coverage branch threshold configuration",
+      "relevant_resources": [
+        "pyproject.toml"
+      ]
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 0.5,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [
+          "src/devtools/context/retrieval/lexical/statistics.py"
+        ],
+        "ranked_resources": [
+          "src/devtools/context/retrieval/lexical/index.py",
+          "tests/context/retrieval/lexical/test_index.py",
+          "tests/context/retrieval/lexical/test_evaluation.py",
+          "experiments/retrieval_identifier.py",
+          "tests/context/retrieval/lexical/test_statistics.py"
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/index.py",
+            "rank": 1
+          }
+        ]
+      },
+      "filename": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [
+          "src/devtools/context/retrieval/lexical/statistics.py"
+        ],
+        "ranked_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/index.py",
+            "address_contributions": [
+              {
+                "contribution": 6.676718279189653,
+                "sources": [
+                  "filename"
+                ],
+                "term": "index"
+              }
+            ],
+            "address_score": 6.676718279189653,
+            "content_score": 25.83225668401391,
+            "score": 32.50897496320356
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_index.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 25.123227566324914,
+            "score": 25.123227566324914
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/statistics.py",
+            "address_contributions": [
+              {
+                "contribution": 6.676718279189653,
+                "sources": [
+                  "filename"
+                ],
+                "term": "statistics"
+              }
+            ],
+            "address_score": 6.676718279189653,
+            "content_score": 14.3098376590122,
+            "score": 20.986555938201853
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_evaluation.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 17.277897370059808,
+            "score": 17.277897370059808
+          },
+          {
+            "address": "experiments/retrieval_identifier.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 16.679131575567737,
+            "score": 16.679131575567737
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/index.py",
+            "rank": 1
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/statistics.py",
+            "rank": 3
+          }
+        ]
+      },
+      "full_path": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": true,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "missed": [],
+        "newly_recovered": [
+          "src/devtools/context/retrieval/lexical/statistics.py"
+        ],
+        "ranked_resources": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/index.py",
+            "address_contributions": [
+              {
+                "contribution": 3.1948787365520506,
+                "sources": [
+                  "directory"
+                ],
+                "term": "lexical"
+              },
+              {
+                "contribution": 5.274102192877672,
+                "sources": [
+                  "filename"
+                ],
+                "term": "index"
+              }
+            ],
+            "address_score": 8.468980929429723,
+            "content_score": 25.83225668401391,
+            "score": 34.30123761344363
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_index.py",
+            "address_contributions": [
+              {
+                "contribution": 3.4482228038138594,
+                "sources": [
+                  "directory"
+                ],
+                "term": "lexical"
+              }
+            ],
+            "address_score": 3.4482228038138594,
+            "content_score": 25.123227566324914,
+            "score": 28.571450370138773
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/statistics.py",
+            "address_contributions": [
+              {
+                "contribution": 3.1948787365520506,
+                "sources": [
+                  "directory"
+                ],
+                "term": "lexical"
+              },
+              {
+                "contribution": 5.274102192877672,
+                "sources": [
+                  "filename"
+                ],
+                "term": "statistics"
+              }
+            ],
+            "address_score": 8.468980929429723,
+            "content_score": 14.3098376590122,
+            "score": 22.778818588441922
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_evaluation.py",
+            "address_contributions": [
+              {
+                "contribution": 3.4482228038138594,
+                "sources": [
+                  "directory"
+                ],
+                "term": "lexical"
+              }
+            ],
+            "address_score": 3.4482228038138594,
+            "content_score": 17.277897370059808,
+            "score": 20.726120173873667
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_statistics.py",
+            "address_contributions": [
+              {
+                "contribution": 3.4482228038138594,
+                "sources": [
+                  "directory"
+                ],
+                "term": "lexical"
+              }
+            ],
+            "address_score": 3.4482228038138594,
+            "content_score": 15.770393710637757,
+            "score": 19.218616514451618
+          }
+        ],
+        "relevant_ranks": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/index.py",
+            "rank": 1
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/statistics.py",
+            "rank": 3
+          }
+        ]
+      },
+      "name": "lexical-index-cross-file",
+      "query": "lexical corpus statistics inverted index",
+      "relevant_resources": [
+        "src/devtools/context/retrieval/lexical/statistics.py",
+        "src/devtools/context/retrieval/lexical/index.py"
+      ]
+    },
+    {
+      "baseline": {
+        "metrics": {
+          "hit_at_k": false,
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0.0
+        },
+        "missed": [
+          "src/devtools/context/retrieval/lexical/bm25.py"
+        ],
+        "ranked_resources": [
+          "tests/context/retrieval/lexical/test_bm25.py",
+          "tests/context/retrieval/lexical/test_analysis.py",
+          "tests/context/retrieval/lexical/test_evaluation.py",
+          "experiments/retrieval_identifier.py",
+          "tests/context/retrieval/lexical/test_index.py"
+        ],
+        "relevant_ranks": []
+      },
+      "filename": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": false,
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0.0
+        },
+        "missed": [
+          "src/devtools/context/retrieval/lexical/bm25.py"
+        ],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "tests/context/retrieval/lexical/test_bm25.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 16.93370708180366,
+            "score": 16.93370708180366
+          },
+          {
+            "address": "src/devtools/context/repository/observation.py",
+            "address_contributions": [
+              {
+                "contribution": 6.06477114838769,
+                "sources": [
+                  "filename"
+                ],
+                "term": "observation"
+              }
+            ],
+            "address_score": 6.06477114838769,
+            "content_score": 10.50629875003147,
+            "score": 16.57106989841916
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_analysis.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 14.979769613714597,
+            "score": 14.979769613714597
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_evaluation.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 14.799482560947098,
+            "score": 14.799482560947098
+          },
+          {
+            "address": "experiments/retrieval_identifier.py",
+            "address_contributions": [],
+            "address_score": 0,
+            "content_score": 14.151092654534933,
+            "score": 14.151092654534933
+          }
+        ],
+        "relevant_ranks": []
+      },
+      "full_path": {
+        "lost": [],
+        "metrics": {
+          "hit_at_k": false,
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0.0
+        },
+        "missed": [
+          "src/devtools/context/retrieval/lexical/bm25.py"
+        ],
+        "newly_recovered": [],
+        "ranked_resources": [
+          {
+            "address": "tests/context/retrieval/lexical/test_bm25.py",
+            "address_contributions": [
+              {
+                "contribution": 3.4482228038138594,
+                "sources": [
+                  "directory"
+                ],
+                "term": "lexical"
+              }
+            ],
+            "address_score": 3.4482228038138594,
+            "content_score": 16.93370708180366,
+            "score": 20.38192988561752
+          },
+          {
+            "address": "src/devtools/context/repository/observation.py",
+            "address_contributions": [
+              {
+                "contribution": 3.3071252086822374,
+                "sources": [
+                  "directory"
+                ],
+                "term": "repository"
+              },
+              {
+                "contribution": 5.170598871783346,
+                "sources": [
+                  "filename"
+                ],
+                "term": "observation"
+              }
+            ],
+            "address_score": 8.477724080465583,
+            "content_score": 10.50629875003147,
+            "score": 18.984022830497054
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_analysis.py",
+            "address_contributions": [
+              {
+                "contribution": 3.4482228038138594,
+                "sources": [
+                  "directory"
+                ],
+                "term": "lexical"
+              }
+            ],
+            "address_score": 3.4482228038138594,
+            "content_score": 14.979769613714597,
+            "score": 18.427992417528458
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_evaluation.py",
+            "address_contributions": [
+              {
+                "contribution": 3.4482228038138594,
+                "sources": [
+                  "directory"
+                ],
+                "term": "lexical"
+              }
+            ],
+            "address_score": 3.4482228038138594,
+            "content_score": 14.799482560947098,
+            "score": 18.247705364760957
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_index.py",
+            "address_contributions": [
+              {
+                "contribution": 3.4482228038138594,
+                "sources": [
+                  "directory"
+                ],
+                "term": "lexical"
+              }
+            ],
+            "address_score": 3.4482228038138594,
+            "content_score": 13.91519275645259,
+            "score": 17.36341556026645
+          }
+        ],
+        "relevant_ranks": []
+      },
+      "name": "identifier-boundary",
+      "query": "repository text lexical query observation",
+      "relevant_resources": [
+        "src/devtools/context/retrieval/lexical/bm25.py"
+      ]
+    }
+  ],
+  "configuration": {
+    "bm25": {
+      "b": 0.75,
+      "k1": 1.2
+    },
+    "combination": "content_bm25_score + separately_normalized_address_bm25_score",
+    "content_semantics": "production-unicode-word-span-casefold-v1",
+    "evaluation_k": 5,
+    "filename": "stem unicode-word-span casefold; extension retained but unscored",
+    "full_path": "directory components plus filename stem; extension unscored"
+  },
+  "identified_state": {
+    "corpus_id": "631092cd4a0300ed0a2bbf987bdc9489c4005173a94b37e9f42086099d8a5f4b",
+    "document_count": 394,
+    "snapshot_id": "04b1b6a22e20d651f9b4df1fb6683e7c5757fb42297ea19c7eb00fe0408f2366"
+  },
+  "schema": "devtools-address-lexical-bm25-comparison-v1"
+}
