@@ -14,7 +14,7 @@ from devtools.context.retrieval.lexical.analysis import (
 from devtools.context.retrieval.lexical.bm25 import (
     RepositoryTextLexicalBm25Settings,
     analyze_repository_text_lexical_query,
-    retrieve_repository_text_documents_by_bm25,
+    retrieve_repository_text_documents_by_content_bm25,
 )
 from devtools.context.retrieval.lexical.index import (
     RepositoryTextLexicalInvertedIndex,
@@ -68,7 +68,7 @@ def _retrieve(
         if isinstance(query, str)
         else query
     )
-    return retrieve_repository_text_documents_by_bm25(
+    return retrieve_repository_text_documents_by_content_bm25(
         query=analyzed_query,
         index=_index() if index is None else index,
         maximum_results=maximum_results,

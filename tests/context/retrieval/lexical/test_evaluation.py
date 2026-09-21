@@ -14,7 +14,7 @@ from devtools.context.retrieval.lexical.analysis import (
 from devtools.context.retrieval.lexical.bm25 import (
     RepositoryTextLexicalBm25RetrievalResult,
     analyze_repository_text_lexical_query,
-    retrieve_repository_text_documents_by_bm25,
+    retrieve_repository_text_documents_by_content_bm25,
 )
 from devtools.context.retrieval.lexical.evaluation import (
     RepositoryTextLexicalRetrievalEvaluationCase,
@@ -79,7 +79,7 @@ def _retrieve(
     maximum_results: int = 10,
 ) -> RepositoryTextLexicalBm25RetrievalResult:
     """Run existing BM25 once so evaluation consumes retained ranked evidence."""
-    return retrieve_repository_text_documents_by_bm25(
+    return retrieve_repository_text_documents_by_content_bm25(
         query=analyze_repository_text_lexical_query(text=text),
         index=index,
         maximum_results=maximum_results,
@@ -328,7 +328,7 @@ def test_evaluation_is_deterministic_and_performs_no_upstream_or_model_work(
         raise AssertionError(msg)
 
     monkeypatch.setattr(
-        "devtools.context.retrieval.lexical.bm25.retrieve_repository_text_documents_by_bm25",
+        "devtools.context.retrieval.lexical.bm25.retrieve_repository_text_documents_by_content_bm25",
         fail,
     )
     monkeypatch.setattr(

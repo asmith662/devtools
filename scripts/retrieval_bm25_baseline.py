@@ -39,7 +39,7 @@ from devtools.context.retrieval.lexical.analysis import (
 )
 from devtools.context.retrieval.lexical.bm25 import (
     analyze_repository_text_lexical_query,
-    retrieve_repository_text_documents_by_bm25,
+    retrieve_repository_text_documents_by_content_bm25,
 )
 from devtools.context.retrieval.lexical.evaluation import (
     RepositoryTextLexicalRetrievalEvaluationCase,
@@ -405,7 +405,7 @@ def _evaluate_case(
 ) -> RepositoryTextLexicalRetrievalEvaluationResult:
     """Run unchanged BM25 once and evaluate only its retained ranked evidence."""
     query = analyze_repository_text_lexical_query(text=case.query_text)
-    retrieval_result = retrieve_repository_text_documents_by_bm25(
+    retrieval_result = retrieve_repository_text_documents_by_content_bm25(
         query=query,
         index=index,
         maximum_results=_MAXIMUM_RESULTS,

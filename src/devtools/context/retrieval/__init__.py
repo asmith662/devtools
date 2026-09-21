@@ -29,6 +29,7 @@ from devtools.context.retrieval.lexical import (
     calculate_repository_text_lexical_corpus_statistics,
     evaluate_repository_text_lexical_bm25_retrieval,
     retrieve_repository_text_documents_by_bm25,
+    retrieve_repository_text_documents_by_content_bm25,
     summarize_repository_text_lexical_retrieval_evaluations,
 )
 
@@ -60,5 +61,6 @@ __all__ = [
     "calculate_repository_text_lexical_corpus_statistics",
     "evaluate_repository_text_lexical_bm25_retrieval",
     "retrieve_repository_text_documents_by_bm25",
+    "retrieve_repository_text_documents_by_content_bm25",
     "summarize_repository_text_lexical_retrieval_evaluations",
 ]

@@ -18,6 +18,7 @@ from devtools.context.retrieval.lexical.bm25 import (
     RepositoryTextLexicalQueryObservation,
     analyze_repository_text_lexical_query,
     retrieve_repository_text_documents_by_bm25,
+    retrieve_repository_text_documents_by_content_bm25,
 )
 from devtools.context.retrieval.lexical.evaluation import (
     RepositoryTextLexicalRetrievalEvaluationCase,
@@ -26,6 +27,17 @@ from devtools.context.retrieval.lexical.evaluation import (
     RepositoryTextLexicalRetrievedRelevantResource,
     evaluate_repository_text_lexical_bm25_retrieval,
     summarize_repository_text_lexical_retrieval_evaluations,
+)
+from devtools.context.retrieval.lexical.filename import (
+    RepositoryTextFilenameLexicalBm25TermContribution,
+    RepositoryTextFilenameLexicalDocumentAnalysis,
+    RepositoryTextFilenameLexicalDocumentFrequency,
+    RepositoryTextFilenameLexicalDocumentStatistics,
+    RepositoryTextFilenameLexicalIndex,
+    RepositoryTextFilenameLexicalPosting,
+    RepositoryTextFilenameLexicalTermFrequency,
+    RepositoryTextFilenameLexicalTermPostings,
+    build_repository_text_filename_lexical_index,
 )
 from devtools.context.retrieval.lexical.index import (
     RepositoryTextLexicalInvertedIndex,
@@ -42,6 +54,14 @@ from devtools.context.retrieval.lexical.statistics import (
 )
 
 __all__ = [
+    "RepositoryTextFilenameLexicalBm25TermContribution",
+    "RepositoryTextFilenameLexicalDocumentAnalysis",
+    "RepositoryTextFilenameLexicalDocumentFrequency",
+    "RepositoryTextFilenameLexicalDocumentStatistics",
+    "RepositoryTextFilenameLexicalIndex",
+    "RepositoryTextFilenameLexicalPosting",
+    "RepositoryTextFilenameLexicalTermFrequency",
+    "RepositoryTextFilenameLexicalTermPostings",
     "RepositoryTextLexicalBm25Match",
     "RepositoryTextLexicalBm25RetrievalResult",
     "RepositoryTextLexicalBm25Settings",
@@ -65,10 +85,12 @@ __all__ = [
     "analyze_repository_text_document",
     "analyze_repository_text_document_collection",
     "analyze_repository_text_lexical_query",
+    "build_repository_text_filename_lexical_index",
     "build_repository_text_lexical_inverted_index",
     "calculate_repository_text_lexical_corpus_statistics",
     "evaluate_repository_text_lexical_bm25_retrieval",
     "iter_lexical_spans",
     "retrieve_repository_text_documents_by_bm25",
+    "retrieve_repository_text_documents_by_content_bm25",
     "summarize_repository_text_lexical_retrieval_evaluations",
 ]

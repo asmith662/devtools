@@ -92,10 +92,12 @@ parser or path scoring. The current bounded BM25 operation analyzes query text
 with the same spans and `casefold()` rule, retains repeated query evidence while
 scoring distinct terms, and uses `k1 = 1.2`, `b = 0.75`, and
 `ln(1 + (N - df + 0.5) / (df + 0.5))` IDF. It retains local score-contribution
-evidence, ranks positive content matches by descending score with document-order
-tie breaking, and requires a positive maximum-result bound. Empty/OOV cases are
-successful zero matches; it has no structural, path, Context-selection, or
-quality claim. A bounded deterministic evaluator consumes retained BM25 results
+evidence, and combines that content score with `0.25` times an independently
+indexed final filename-stem BM25 score. Filename extensions and directories are
+unscored; filename evidence does not alter content lexical statistics. Combined
+positive matches use document-order tie breaking and require a positive bound.
+Empty/OOV cases are successful zero matches; it has no identifier decomposition,
+full-path, structural, Context-selection, or quality claim. A bounded deterministic evaluator consumes retained BM25 results
 and fixture-designated native resource addresses without rescoring: it retains
 recovered/missed relevance evidence and reports Hit@K, Recall@K, reciprocal
 rank, and same-K aggregate hit rate, mean recall, and MRR. Controlled fixtures

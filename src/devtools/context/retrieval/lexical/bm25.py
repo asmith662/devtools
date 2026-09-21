@@ -8,8 +8,20 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, ClassVar
 
 from devtools.context.retrieval.lexical.analysis import iter_lexical_spans
+from devtools.context.retrieval.lexical.filename import (
+    build_repository_text_filename_lexical_index,
+    score_repository_text_filename_lexical_bm25,
+)
+from devtools.context.retrieval.lexical.scoring import (
+    calculate_bm25_inverse_document_frequency,
+    calculate_bm25_term_contribution,
+)
 
 if TYPE_CHECKING:
+    from devtools.context.retrieval.lexical.filename import (
+        RepositoryTextFilenameLexicalBm25TermContribution,
+        RepositoryTextFilenameLexicalIndex,
+    )
     from devtools.context.retrieval.lexical.index import (
         RepositoryTextLexicalInvertedIndex,
     )
@@ -66,6 +78,7 @@ class RepositoryTextLexicalBm25Settings:
 
 
 _DEFAULT_BM25_SETTINGS = RepositoryTextLexicalBm25Settings()
+_FILENAME_BM25_WEIGHT = 0.25
 
 
 @dataclass(frozen=True, slots=True)
@@ -88,6 +101,14 @@ class RepositoryTextLexicalBm25Match:
     document_statistics: RepositoryTextLexicalDocumentStatistics
     score: float
     term_contributions: tuple[RepositoryTextLexicalBm25TermContribution, ...]
+    content_score: float = 0.0
+    filename_score: float = 0.0
+    filename_weight: float = 0.0
+    weighted_filename_score: float = 0.0
+    filename_term_contributions: tuple[
+        RepositoryTextFilenameLexicalBm25TermContribution,
+        ...,
+    ] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -99,6 +120,7 @@ class RepositoryTextLexicalBm25RetrievalResult:
     settings: RepositoryTextLexicalBm25Settings
     maximum_results: int
     matches: tuple[RepositoryTextLexicalBm25Match, ...]
+    filename_index: RepositoryTextFilenameLexicalIndex | None = None
 
     RETRIEVAL_SEMANTICS: ClassVar[str] = "okapi-bm25-distinct-query-terms-v1"
 
@@ -125,7 +147,7 @@ def analyze_repository_text_lexical_query(
     )
 
 
-def retrieve_repository_text_documents_by_bm25(
+def retrieve_repository_text_documents_by_content_bm25(
     *,
     query: RepositoryTextLexicalQuery,
     index: RepositoryTextLexicalInvertedIndex,
@@ -165,14 +187,14 @@ def retrieve_repository_text_documents_by_bm25(
         if postings is None:
             continue
         document_frequency = document_frequency_by_term[term]
-        inverse_document_frequency = _calculate_bm25_inverse_document_frequency(
+        inverse_document_frequency = calculate_bm25_inverse_document_frequency(
             document_count=index.corpus_statistics.document_count,
             document_frequency=document_frequency,
         )
         for posting in postings:
             document_statistics = posting.document_statistics
             average_document_length = index.corpus_statistics.average_document_length
-            contribution = _calculate_bm25_term_contribution(
+            contribution = calculate_bm25_term_contribution(
                 term_frequency=posting.term_frequency.frequency,
                 inverse_document_frequency=inverse_document_frequency,
                 document_length=document_statistics.document_length,
@@ -205,6 +227,9 @@ def retrieve_repository_text_documents_by_bm25(
             ],
             score=sum(contribution.contribution for contribution in contributions),
             term_contributions=tuple(contributions),
+            content_score=sum(
+                contribution.contribution for contribution in contributions
+            ),
         )
         for document_identity, contributions in ranked_documents
     )
@@ -217,28 +242,74 @@ def retrieve_repository_text_documents_by_bm25(
     )
 
 
-def _calculate_bm25_inverse_document_frequency(
+def retrieve_repository_text_documents_by_bm25(
     *,
-    document_count: int,
-    document_frequency: int,
-) -> float:
-    """Calculate the bounded Okapi BM25 inverse-document-frequency component."""
-    return math.log(
-        1 + (document_count - document_frequency + 0.5) / (document_frequency + 0.5),
-    )
+    query: RepositoryTextLexicalQuery,
+    index: RepositoryTextLexicalInvertedIndex,
+    maximum_results: int,
+    settings: RepositoryTextLexicalBm25Settings = _DEFAULT_BM25_SETTINGS,
+) -> RepositoryTextLexicalBm25RetrievalResult:
+    """Rank content and filename-stem BM25 evidence under one bounded result limit."""
+    if maximum_results <= 0:
+        msg = "Maximum BM25 result count must be positive."
+        raise ValueError(msg)
 
-
-def _calculate_bm25_term_contribution(
-    *,
-    term_frequency: int,
-    inverse_document_frequency: float,
-    document_length: int,
-    average_document_length: float,
-    settings: RepositoryTextLexicalBm25Settings,
-) -> float:
-    """Calculate one term's standard Okapi BM25 contribution."""
-    numerator = term_frequency * (settings.k1 + 1)
-    denominator = term_frequency + settings.k1 * (
-        1 - settings.b + settings.b * document_length / average_document_length
+    collection = index.corpus_statistics.collection_analysis.document_collection
+    content_result = retrieve_repository_text_documents_by_content_bm25(
+        query=query,
+        index=index,
+        maximum_results=max(1, len(collection.documents)),
+        settings=settings,
     )
-    return inverse_document_frequency * numerator / denominator
+    filename_index = build_repository_text_filename_lexical_index(
+        document_collection=collection,
+    )
+    filename_contributions = score_repository_text_filename_lexical_bm25(
+        query=query,
+        index=filename_index,
+        settings=settings,
+    )
+    content_matches = {
+        id(match.document_statistics.analysis.document): match
+        for match in content_result.matches
+    }
+    document_statistics = {
+        id(item.analysis.document): item
+        for item in index.corpus_statistics.document_statistics
+    }
+    ranked_matches: list[tuple[int, RepositoryTextLexicalBm25Match]] = []
+    for position, document in enumerate(collection.documents):
+        document_identity = id(document)
+        content_match = content_matches.get(document_identity)
+        content_score = content_match.content_score if content_match else 0.0
+        filename_terms = filename_contributions.get(document_identity, ())
+        filename_score = sum(item.contribution for item in filename_terms)
+        final_score = content_score + _FILENAME_BM25_WEIGHT * filename_score
+        if final_score <= 0:
+            continue
+        ranked_matches.append(
+            (
+                position,
+                RepositoryTextLexicalBm25Match(
+                    document_statistics=document_statistics[document_identity],
+                    score=final_score,
+                    term_contributions=(
+                        content_match.term_contributions if content_match else ()
+                    ),
+                    content_score=content_score,
+                    filename_score=filename_score,
+                    filename_weight=_FILENAME_BM25_WEIGHT,
+                    weighted_filename_score=(_FILENAME_BM25_WEIGHT * filename_score),
+                    filename_term_contributions=filename_terms,
+                ),
+            ),
+        )
+    ranked_matches.sort(key=lambda item: (-item[1].score, item[0]))
+    return RepositoryTextLexicalBm25RetrievalResult(
+        query=query,
+        index=index,
+        settings=settings,
+        maximum_results=maximum_results,
+        matches=tuple(match for _position, match in ranked_matches[:maximum_results]),
+        filename_index=filename_index,
+    )

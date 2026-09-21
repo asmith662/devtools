@@ -97,6 +97,7 @@ from devtools.context.retrieval import (
     calculate_repository_text_lexical_corpus_statistics,
     evaluate_repository_text_lexical_bm25_retrieval,
     retrieve_repository_text_documents_by_bm25,
+    retrieve_repository_text_documents_by_content_bm25,
     summarize_repository_text_lexical_retrieval_evaluations,
 )
 
@@ -187,6 +188,7 @@ __all__ = [
     "represent_repository_text_corpus",
     "retrieve_python_functions_by_exact_name",
     "retrieve_repository_text_documents_by_bm25",
+    "retrieve_repository_text_documents_by_content_bm25",
     "select_python_function_analysis_candidates",
     "select_python_function_resources_from_exact_name_retrieval",
     "select_python_source_address_candidates",

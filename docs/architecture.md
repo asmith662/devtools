@@ -333,7 +333,7 @@ document-analysis and observation correlation.
 Current retrieval implementation can analyze a query with those same Unicode
 span and `casefold()` semantics, retaining repeated query observations but scoring
 only its distinct normalized terms in first encounter order. It performs bounded
-content-only Okapi BM25 retrieval with defaults `k1 = 1.2` and `b = 0.75`, using
+Okapi BM25 retrieval with defaults `k1 = 1.2` and `b = 0.75`, using
 `ln(1 + (N - df + 0.5) / (df + 0.5))` for IDF and the standard saturated,
 length-normalized contribution
 `IDF * tf * (k1 + 1) / (tf + k1 * (1 - b + b * length / average_length))`.
@@ -341,10 +341,16 @@ OOV terms remain query evidence with no
 posting or score contribution. Positive matches retain term-level TF, DF, IDF,
 document length, average length, and contribution evidence; they rank by
 descending score, with existing document order breaking ties, and require a
-positive maximum-result bound. Empty, OOV-only, and empty-index retrievals
-succeed with zero matches. This uses neither paths nor structural/language
-signals and does not establish Context selection, retrieval quality, or general
-repository retrieval sufficiency.
+positive maximum-result bound. Production additionally scores the final filename
+stem as an independent field with the same spans and `casefold()` semantics,
+excluding extensions and all directory/path components. Its independent TF, DF,
+length, average-length, postings, and term evidence produce a second BM25 score;
+matches rank by `content_score + 0.25 * filename_score` with retained field-level
+evidence and the same document-order tie break. Filename state never changes
+content statistics. Empty, OOV-only, and empty-index retrievals succeed with
+zero matches. This does not implement identifier decomposition, full-path or
+package proximity, structural/language signals, Context selection, retrieval
+quality, or general repository retrieval sufficiency.
 
 Current retrieval implementation can deterministically evaluate one retained
 bounded BM25 result against fixture-designated relevant

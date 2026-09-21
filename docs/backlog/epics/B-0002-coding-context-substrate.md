@@ -223,11 +223,15 @@ statistics now record observation-count document length, document-local term
 frequency, distinct-document frequency, and average document length (`0.0` for
 an empty collection); a content-only inverted index retains first-encounter
 vocabulary and document-ordered postings with direct observation/document
-correlation. A bounded content-only Okapi BM25 operation now analyzes query text
+correlation. A bounded Okapi BM25 operation now analyzes query text
 with the same lexical semantics, scores distinct query terms using `k1 = 1.2`,
 `b = 0.75`, and `ln(1 + (N - df + 0.5) / (df + 0.5))` IDF, and retains local
 term-contribution evidence for positively scored, document-order-tie-broken
-matches under an explicit positive result bound. It makes no path, structural,
+matches under an explicit positive result bound. Production additionally fuses
+an independently indexed final filename-stem BM25 field at a fixed `0.25` weight;
+extensions and directories are unscored, and filename evidence does not alter
+content lexical statistics. It retains content and filename contribution evidence
+separately. It makes no identifier-decomposition, full-path, structural,
 Context-selection, or retrieval-quality claim; path evidence remains separate.
 A bounded deterministic evaluator now consumes retained BM25 results and
 fixture-designated native resource addresses without rescoring. It reports

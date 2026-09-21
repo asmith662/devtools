@@ -22,7 +22,7 @@ from devtools.context.repository.resource import RepositoryResourceAddress
 from devtools.context.retrieval.lexical.analysis import iter_lexical_spans
 from devtools.context.retrieval.lexical.bm25 import (
     analyze_repository_text_lexical_query,
-    retrieve_repository_text_documents_by_bm25,
+    retrieve_repository_text_documents_by_content_bm25,
 )
 from devtools.context.retrieval.lexical.evaluation import (
     RepositoryTextLexicalRetrievalEvaluationCase,
@@ -389,7 +389,7 @@ def retrieve_with_address_evidence(
         msg = "Address evidence weight must be finite and nonnegative."
         raise ValueError(msg)
     query = analyze_repository_text_lexical_query(text=query_text)
-    content_result = retrieve_repository_text_documents_by_bm25(
+    content_result = retrieve_repository_text_documents_by_content_bm25(
         query=query,
         index=content_index,
         maximum_results=len(address_index.documents),
@@ -972,7 +972,7 @@ def _address_contributions(
 def _evaluate_production_case(*, case: RobustnessCase, index: Any) -> Any:  # noqa: ANN401
     """Evaluate fixed robustness relevance through unchanged production BM25."""
     query = analyze_repository_text_lexical_query(text=case.query_text)
-    result = retrieve_repository_text_documents_by_bm25(
+    result = retrieve_repository_text_documents_by_content_bm25(
         query=query,
         index=index,
         maximum_results=_K,
