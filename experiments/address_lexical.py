@@ -34,6 +34,8 @@ _K1 = 1.2
 _B = 0.75
 _K = 5
 _REPORT_SCHEMA = "devtools-address-lexical-bm25-comparison-v1"
+_WEIGHT_REPORT_SCHEMA = "devtools-filename-weight-bm25-calibration-v1"
+_FILENAME_WEIGHTS = (0.0, 0.1, 0.25, 0.5, 0.75, 1.0)
 
 
 @dataclass(frozen=True, slots=True)
@@ -90,6 +92,7 @@ class AddressMatch:
     address: RepositoryResourceAddress
     content_score: float
     address_contributions: tuple[AddressContribution, ...]
+    address_weight: float
     document_position: int
 
     @property
@@ -99,8 +102,13 @@ class AddressMatch:
 
     @property
     def score(self) -> float:
-        """Return the explicit unweighted content-plus-address experiment score."""
-        return self.content_score + self.address_score
+        """Return content plus the explicit weighted address-field score."""
+        return self.content_score + self.address_weight * self.address_score
+
+    @property
+    def weighted_address_score(self) -> float:
+        """Return the explicitly weighted address-field contribution."""
+        return self.address_weight * self.address_score
 
 
 @dataclass(frozen=True, slots=True)
@@ -132,6 +140,11 @@ def parse_arguments(arguments: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repository-root", default=Path.cwd(), type=Path)
     parser.add_argument("--report-path", required=True, type=Path)
+    parser.add_argument(
+        "--mode",
+        choices=("address", "filename-calibration"),
+        default="address",
+    )
     return parser.parse_args(arguments)
 
 
@@ -234,11 +247,15 @@ def retrieve_with_address_evidence(
     query_text: str,
     content_index: Any,  # noqa: ANN401 -- dynamic production-script boundary
     address_index: AddressIndex,
+    address_weight: float = 1.0,
     maximum_results: int = _K,
 ) -> tuple[AddressMatch, ...]:
     """Add separately normalized address BM25 evidence to unchanged content scores."""
     if maximum_results <= 0:
         msg = "Maximum result count must be positive."
+        raise ValueError(msg)
+    if not math.isfinite(address_weight) or address_weight < 0:
+        msg = "Address evidence weight must be finite and nonnegative."
         raise ValueError(msg)
     query = analyze_repository_text_lexical_query(text=query_text)
     content_result = retrieve_repository_text_documents_by_bm25(
@@ -250,15 +267,20 @@ def retrieve_with_address_evidence(
         match.document_statistics.analysis.document.resource.address: match.score
         for match in content_result.matches
     }
-    contributions = _address_contributions(
-        query_terms=query.normalized_terms,
-        index=address_index,
+    contributions = (
+        {}
+        if address_weight == 0
+        else _address_contributions(
+            query_terms=query.normalized_terms,
+            index=address_index,
+        )
     )
     candidates = tuple(
         AddressMatch(
             address=document.address,
             content_score=content_scores.get(document.address, 0.0),
             address_contributions=contributions.get(position, ()),
+            address_weight=address_weight,
             document_position=position,
         )
         for position, document in enumerate(address_index.documents)
@@ -307,7 +329,10 @@ def run_comparison(
     addresses = tuple(
         document.resource.address for document in baseline_run.documents.documents
     )
-    filename_index = build_address_index(addresses=addresses, variant="filename")
+    filename_index = build_address_index(
+        addresses=addresses,
+        variant="filename",
+    )
     path_index = build_address_index(addresses=addresses, variant="full-path")
     return baseline_run, tuple(
         AddressComparison(
@@ -337,6 +362,40 @@ def run_comparison(
             baseline_run.evaluations,
             strict=True,
         )
+    )
+
+
+def run_filename_weight_calibration(
+    *,
+    repository_root: Path,
+    weights: tuple[float, ...] = _FILENAME_WEIGHTS,
+) -> tuple[Any, tuple[tuple[float, tuple[AddressEvaluation, ...]], ...]]:
+    """Compare declared filename-field weights over one exact benchmark corpus."""
+    baseline_script = _load_baseline_runner()
+    baseline_run = baseline_script.run_benchmark(repository_root=repository_root)
+    filename_index = build_address_index(
+        addresses=tuple(
+            document.resource.address for document in baseline_run.documents.documents
+        ),
+        variant="filename",
+    )
+    return baseline_run, tuple(
+        (
+            weight,
+            tuple(
+                evaluate_address_matches(
+                    relevant_addresses=case.relevant_resource_addresses,
+                    matches=retrieve_with_address_evidence(
+                        query_text=case.query_text,
+                        content_index=baseline_run.index,
+                        address_index=filename_index,
+                        address_weight=weight,
+                    ),
+                )
+                for case in baseline_run.cases
+            ),
+        )
+        for weight in weights
     )
 
 
@@ -392,6 +451,67 @@ def controlled_cases() -> dict[
     }
 
 
+def controlled_filename_weight_cases(
+    *,
+    weights: tuple[float, ...] = _FILENAME_WEIGHTS,
+) -> dict[str, tuple[tuple[float, AddressEvaluation], ...]]:
+    """Exercise calibration behavior without changing the real benchmark corpus."""
+    fixtures = {
+        "filename-only": (
+            (("src/guide.md", "quiet prose"), ("docs/noise.md", "quiet prose")),
+            "guide",
+            "src/guide.md",
+        ),
+        "strong-content-filename-coincidence": (
+            (
+                ("src/target.md", "exact strong content"),
+                ("docs/exact.md", "quiet prose"),
+            ),
+            "exact strong content",
+            "src/target.md",
+        ),
+        "test-source-filename-distractor": (
+            (
+                ("src/rendering.py", "quiet prose"),
+                ("tests/test_rendering.py", "rendering rendering"),
+            ),
+            "rendering",
+            "src/rendering.py",
+        ),
+        "shared-filename-term": (
+            (
+                ("src/index.py", "quiet prose"),
+                ("tests/test_index.py", "index index"),
+            ),
+            "index",
+            "src/index.py",
+        ),
+        "ordinary-content": (
+            (("src/target.md", "ordinary content match"), ("docs/noise.md", "quiet")),
+            "ordinary content match",
+            "src/target.md",
+        ),
+    }
+    return {
+        name: tuple(
+            (
+                weight,
+                evaluate_address_matches(
+                    relevant_addresses=(RepositoryResourceAddress(relevant),),
+                    matches=_controlled_matches(
+                        documents=documents,
+                        query=query,
+                        variant="filename",
+                        address_weight=weight,
+                    ),
+                ),
+            )
+            for weight in weights
+        )
+        for name, (documents, query, relevant) in fixtures.items()
+    }
+
+
 def report_payload(
     *,
     baseline_run: Any,  # noqa: ANN401 -- dynamic production-script boundary
@@ -434,6 +554,49 @@ def report_payload(
     }
 
 
+def filename_weight_report_payload(
+    *,
+    baseline_run: Any,  # noqa: ANN401 -- dynamic production-script boundary
+    evaluations_by_weight: tuple[tuple[float, tuple[AddressEvaluation, ...]], ...],
+) -> dict[str, object]:
+    """Serialize paired per-weight rankings and native recovery transitions."""
+    return {
+        "schema": _WEIGHT_REPORT_SCHEMA,
+        "identified_state": {
+            "snapshot_id": str(baseline_run.snapshot.id),
+            "corpus_id": str(baseline_run.corpus.id),
+            "document_count": len(baseline_run.documents.documents),
+        },
+        "configuration": {
+            "evaluation_k": _K,
+            "bm25": {"k1": _K1, "b": _B},
+            "filename_semantics": "stem unicode-word-span casefold; extension unscored",
+            "fusion": "content_bm25_score + weight * filename_bm25_score",
+            "weights": [weight for weight, _evaluations in evaluations_by_weight],
+        },
+        "weights": [
+            {
+                "weight": weight,
+                "aggregate": _evaluation_metrics(evaluations=evaluations),
+                "cases": [
+                    _weighted_case_payload(
+                        case=case,
+                        baseline=baseline,
+                        evaluation=evaluation,
+                    )
+                    for case, baseline, evaluation in zip(
+                        baseline_run.cases,
+                        baseline_run.evaluations,
+                        evaluations,
+                        strict=True,
+                    )
+                ],
+            }
+            for weight, evaluations in evaluations_by_weight
+        ],
+    }
+
+
 def write_report(*, path: Path, payload: dict[str, object]) -> None:
     """Write only the explicitly selected address-evidence experiment artifact."""
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -446,13 +609,20 @@ def write_report(*, path: Path, payload: dict[str, object]) -> None:
 def main(arguments: list[str] | None = None) -> None:
     """Run the paired address-evidence comparison once at a caller-selected path."""
     parsed = parse_arguments(arguments)
-    baseline_run, comparisons = run_comparison(
-        repository_root=parsed.repository_root.resolve(),
-    )
-    write_report(
-        path=parsed.report_path,
-        payload=report_payload(baseline_run=baseline_run, comparisons=comparisons),
-    )
+    if parsed.mode == "address":
+        baseline_run, comparisons = run_comparison(
+            repository_root=parsed.repository_root.resolve(),
+        )
+        payload = report_payload(baseline_run=baseline_run, comparisons=comparisons)
+    else:
+        baseline_run, evaluations_by_weight = run_filename_weight_calibration(
+            repository_root=parsed.repository_root.resolve(),
+        )
+        payload = filename_weight_report_payload(
+            baseline_run=baseline_run,
+            evaluations_by_weight=evaluations_by_weight,
+        )
+    write_report(path=parsed.report_path, payload=payload)
 
 
 def _address_contributions(
@@ -541,6 +711,7 @@ def _controlled_matches(
     documents: tuple[tuple[str, str], ...],
     query: str,
     variant: str | None,
+    address_weight: float = 1.0,
 ) -> tuple[AddressMatch, ...]:
     """Rank a tiny fixture with baseline content counts plus optional address BM25.
 
@@ -560,7 +731,7 @@ def _controlled_matches(
         )
         for address, text in documents
     }
-    if variant is None:
+    if variant is None or address_weight == 0:
         contributions: dict[int, tuple[AddressContribution, ...]] = {}
     else:
         contributions = _address_contributions(
@@ -574,6 +745,7 @@ def _controlled_matches(
                     address=address,
                     content_score=content_scores[address],
                     address_contributions=contributions.get(position, ()),
+                    address_weight=address_weight,
                     document_position=position,
                 )
                 for position, address in enumerate(addresses)
@@ -621,6 +793,20 @@ def _metric_delta(
     right: dict[str, float],
 ) -> dict[str, float]:
     return {key: left[key] - right[key] for key in left}
+
+
+def _evaluation_metrics(
+    *,
+    evaluations: tuple[AddressEvaluation, ...],
+) -> dict[str, float]:
+    """Calculate same-corpus aggregate evidence for one declared field weight."""
+    return {
+        "hit_rate_at_k": sum(item.hit_at_k for item in evaluations) / len(evaluations),
+        "mean_recall_at_k": sum(item.recall_at_k for item in evaluations)
+        / len(evaluations),
+        "mean_reciprocal_rank": sum(item.reciprocal_rank for item in evaluations)
+        / len(evaluations),
+    }
 
 
 def _comparison_payload(*, comparison: AddressComparison) -> dict[str, object]:
@@ -675,6 +861,8 @@ def _address_payload(
                 "address": str(item.address),
                 "content_score": item.content_score,
                 "address_score": item.address_score,
+                "address_weight": item.address_weight,
+                "weighted_address_score": item.weighted_address_score,
                 "score": item.score,
                 "address_contributions": [
                     {
@@ -707,6 +895,27 @@ def _address_payload(
             "recall_at_k": evaluation.recall_at_k,
             "reciprocal_rank": evaluation.reciprocal_rank,
         },
+    }
+
+
+def _weighted_case_payload(
+    *,
+    case: Any,  # noqa: ANN401 -- dynamic production-script boundary
+    baseline: Any,  # noqa: ANN401 -- dynamic production-script boundary
+    evaluation: AddressEvaluation,
+) -> dict[str, object]:
+    """Retain one case's ground truth, rankings, and baseline transition evidence."""
+    return {
+        "name": case.name,
+        "query": case.query_text,
+        "relevant_resources": [
+            str(address) for address in case.relevant_resource_addresses
+        ],
+        "baseline": _baseline_payload(evaluation=baseline),
+        "weighted_filename": _address_payload(
+            evaluation=evaluation,
+            baseline=baseline,
+        ),
     }
 
 

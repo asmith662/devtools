@@ -70,6 +70,58 @@ def test_controlled_address_evidence_exposes_content_distractor_limits() -> None
     assert path.relevant_ranks == ((RepositoryResourceAddress("context/opaque.md"), 2),)
 
 
+def test_filename_weight_fixtures_exercise_conservative_and_distractor_behavior() -> (
+    None
+):
+    """A small declared weight sweep makes regression pressure inspectable."""
+    cases = experiment.controlled_filename_weight_cases(weights=(0.0, 0.25, 1.0))
+
+    filename_only = dict(cases["filename-only"])
+    assert filename_only[0.0].matches == ()
+    assert filename_only[0.25].relevant_ranks == (
+        (RepositoryResourceAddress("src/guide.md"), 1),
+    )
+
+    strong_content = dict(cases["strong-content-filename-coincidence"])
+    assert strong_content[0.0].relevant_ranks == (
+        (RepositoryResourceAddress("src/target.md"), 1),
+    )
+    assert strong_content[1.0].relevant_ranks == (
+        (RepositoryResourceAddress("src/target.md"), 1),
+    )
+
+    test_distractor = dict(cases["test-source-filename-distractor"])
+    assert test_distractor[1.0].relevant_ranks == (
+        (RepositoryResourceAddress("src/rendering.py"), 2),
+    )
+
+
+def test_weight_calibration_preserves_content_baseline_at_zero_weight() -> None:
+    """Zero filename weight leaves native production BM25 ranks unchanged."""
+    baseline_run, evaluations_by_weight = experiment.run_filename_weight_calibration(
+        repository_root=Path.cwd(),
+        weights=(0.0, 0.25),
+    )
+    zero_weight_evaluations = dict(evaluations_by_weight)[0.0]
+    payload = experiment.filename_weight_report_payload(
+        baseline_run=baseline_run,
+        evaluations_by_weight=evaluations_by_weight,
+    )
+
+    assert [item.relevant_ranks for item in zero_weight_evaluations] == [
+        tuple(
+            (item.address, item.rank) for item in baseline.retrieved_relevant_resources
+        )
+        for baseline in baseline_run.evaluations
+    ]
+    assert payload["schema"] == "devtools-filename-weight-bm25-calibration-v1"
+    configuration = payload["configuration"]
+    weights = payload["weights"]
+    assert isinstance(configuration, dict)
+    assert isinstance(weights, list)
+    assert configuration["weights"] == [0.0, 0.25]
+
+
 def test_real_repository_comparison_is_paired_and_writes_only_selected_report(
     tmp_path: Path,
 ) -> None:

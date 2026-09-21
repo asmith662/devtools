@@ -264,6 +264,19 @@ resources, whereas full-path evidence recovered two. Neither variant recovered
 the identifier-boundary `bm25.py` target, and package/directory proximity was
 not tested. This too is experiment-only comparative evidence, not a production
 retrieval semantic or a decision about field weighting/fusion. A
+follow-up filename-weight calibration held the same content score and filename
+field semantics fixed while testing weights `0.00`, `0.10`, `0.25`, `0.50`,
+`0.75`, and `1.00` in `content_score + weight * filename_score`. On one paired
+13-case checkout state, Hit@5 remained 12/13 throughout; mean Recall@5 was
+0.8333, 0.8333, 0.8974, 0.8974, 0.8974, and 0.9231 respectively, while MRR was
+0.7308, 0.7692, 0.7885, 0.7949, 0.8077, and 0.8462. The `0.25` threshold
+recovered `rendering.py` and `statistics.py` without losing a previously
+recovered relevant resource; only `1.00` recovered all three Context-assembly
+resources. The Context test-file distractor remained rank 1 at every tested
+weight, and the identifier-boundary `bm25.py` target remained missed. This is
+still calibration evidence, not a production field-weight decision: its small,
+repository-specific case set does not establish an implementation weight,
+cross-repository stability, or package-proximity behavior. A
 separate bounded,
 purpose-sensitive address projection now
 nominates exact, case-sensitive `.py` discovery addresses for observation while
