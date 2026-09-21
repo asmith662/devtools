@@ -295,7 +295,27 @@ also did not solve the Context test-file distractor or identifier-boundary
 miss. This is still experiment evidence, not current production behavior, but
 it supports one bounded future promotion decision for a separate `0.25`
 filename field; it does not justify further tuning, full-path lexicalization,
-or package-proximity scoring. A
+or package-proximity scoring. A subsequent bounded structural-expansion
+experiment held the production lexical ranker fixed (`content BM25 + 0.25 *
+filename-stem BM25`) and compared same-parent equality and filename-excluded
+directory-tree distance with `K=5`, three candidates per seed, and one or three
+canonical lexical seeds. One 399-document checkout corpus
+(`dfd35d7d6ec8ed88bdd59c28198cc42408aa5e30920049d9c1193108b4df1e8b`,
+`f34b9351b7b18306e0280ea775c1223abdb6fdab11fa319f89447c5bf415fa1a`) used
+the original 13 cases plus six frozen structural cases. On those six cases the
+lexical baseline was Hit@5 `1.0000`, mean Recall@5 `0.8889`, and MRR `0.8056`.
+Both mechanisms had identical outcomes: seed one exposed no new relevant
+resource and fixed-K insertion had zero recoveries with four relevant losses;
+seed three exposed one additional resource (`discovery.py`) but also two
+explicit controls (`evaluation.py` and `docs/roadmap.md`), while fixed-K
+insertion still had zero recoveries and six relevant losses. This is
+experiment-only evidence: raw filesystem proximity does not justify production
+ranking, fixed-K insertion, or candidate expansion. It distinguishes repository
+path geometry from semantic or relational structure; directory placement does
+not establish package, dependency, reference, source/test, or documentation/code
+semantics. It does not establish that richer explicit relationships are useless.
+Import/dependency relationships remain a plausible unproven future experiment,
+not a production solution. A
 separate bounded,
 purpose-sensitive address projection now
 nominates exact, case-sensitive `.py` discovery addresses for observation while
