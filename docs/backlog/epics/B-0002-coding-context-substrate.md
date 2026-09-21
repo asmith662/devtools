@@ -360,7 +360,7 @@ dependency accounting, UTF-8-byte-column source grounding, snapshot-local
 subject identity, definition and derivation identity, result-specific support,
 result grouping, exhaustive coverage, and parse failure. Generalized
 capability/binding and execution/evidence correlation remain design questions.
-Classes, methods, nested functions, lambdas, imports and semantic resolution,
+Classes, methods, nested functions, lambdas, import resolution and semantic resolution,
 calls, inheritance, qualified names, cross-snapshot continuity, generic graph
 infrastructure, retrieval/ranking/Context integration, persistence/caching,
 generic registries or schedulers, external-environment ontology, LLMs, Agent
