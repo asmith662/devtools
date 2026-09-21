@@ -9,6 +9,12 @@ from devtools.context.python.imports.declarations import (
     PythonImportSourceOccurrence,
     derive_python_import_declarations,
 )
+from devtools.context.python.imports.relations import (
+    PythonImportRelationSourceStatus,
+    PythonResolvedModuleImportRelation,
+    PythonResolvedModuleImportRelationAnalysis,
+    derive_python_resolved_module_import_relations,
+)
 from devtools.context.python.imports.resolution import (
     PythonImportResolution,
     PythonImportResolutionOutcome,
@@ -21,10 +27,14 @@ __all__ = [
     "PythonImportDeclarationCoverage",
     "PythonImportDeclarationKnowledge",
     "PythonImportParseError",
+    "PythonImportRelationSourceStatus",
     "PythonImportResolution",
     "PythonImportResolutionOutcome",
     "PythonImportResolutionUnsupportedReason",
     "PythonImportSourceOccurrence",
+    "PythonResolvedModuleImportRelation",
+    "PythonResolvedModuleImportRelationAnalysis",
     "derive_python_import_declarations",
+    "derive_python_resolved_module_import_relations",
     "resolve_python_import_declaration",
 ]

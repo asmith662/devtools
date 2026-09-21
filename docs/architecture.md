@@ -453,7 +453,20 @@ It reports resolved, unresolved-in-universe, ambiguous, or qualified unsupported
 outcomes; ambiguity preserves every match and unresolved retains the exact
 universe that supports its bounded absence claim. Relative imports consume an
 explicit source interpretation, while absolute imports do not. This is neither
-runtime import resolution nor a repository dependency relationship or graph.
+runtime import resolution nor generic dependency semantics.
+
+The adjacent `context.python.imports.relations` operation derives one directed
+`PythonResolvedModuleImportRelation` for each supplied `RESOLVED` declaration
+resolution when exactly one matching source module interpretation is available.
+Each relation connects that exact source interpretation to the exact resolved
+target interpretation and retains its declaration/resolution evidence. The
+explicit interpretation universe bounds resolution; unresolved-in-universe,
+ambiguous, unsupported, or source-unavailable outcomes do not produce a
+relation, while repeated declarations remain distinct evidence. These are
+deterministic, source- and declaration-grounded Repository Intelligence
+relations; they do not establish runtime import execution, runtime dependency,
+undirected adjacency, retrieval relevance, or ranking. No retrieval integration
+or Context behavior is implemented.
 
 The first bounded retrieval operation consumes supplied declaration knowledge
 and filters it by exact declared-name equality. Its nonempty name query is the

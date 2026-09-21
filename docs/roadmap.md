@@ -71,11 +71,16 @@ and Evidence ownership terminology, remain in the
   distinct snapshot-local function RepositorySubjects. Subsequent bounded
   production slices establish direct module-body import-declaration syntax and
   explicit-root Python module interpretation for selected observed `.py`
-  resources. They do not implement import resolution, repository dependency
-  relationships, graphs, retrieval integration, or runtime import semantics.
+  resources. The first slices did not implement import resolution, repository
+  dependency relationships, graphs, retrieval integration, or runtime import
+  semantics.
   A subsequent bounded resolver now resolves eligible import module portions only
-  within an explicit module-interpretation universe; it remains distinct from
-  runtime imports and repository dependency relationships.
+  within an explicit module-interpretation universe. A bounded relation
+  derivation now retains directed declaration-grounded source-to-target module
+  relations only for qualified resolved outcomes; it does not establish runtime
+  imports or retrieval relevance, and is not integrated into production
+  retrieval. The resolver and relation derivation remain distinct from runtime
+  import semantics.
   These are design targets, not fixed production representations or a universal
   declaration ontology. [B-0002](backlog/epics/B-0002-coding-context-substrate.md)
   preserves the exact scope, design pressure, and deliberate deferrals.

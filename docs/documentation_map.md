@@ -145,17 +145,24 @@ conversation semantics remain in `agents.conversation`, and `context` does not
 own former Message/History/Session semantics.
 
 The adjacent `context.python.imports` package retains direct module-body import
-aliases as source-grounded syntax without target resolution. The
+aliases as source-grounded syntax and resolves eligible module portions only
+within an explicit interpretation universe. Its `relations.py` derives directed,
+declaration-grounded relations only for uniquely resolved outcomes with one
+available source interpretation; unresolved, ambiguous, unsupported, or
+source-unavailable cases do not produce relations, and repeated declarations
+remain distinct. These do not establish runtime import execution or retrieval
+relevance. The
 `context.python.modules` package interprets caller-selected observed `.py`
 resources under an explicit repository-relative module root as ordinary or
 package modules with dotted names. Address is not module identity: the explicit
 root and exact observed resource remain part of the interpretation, duplicate
 names are preserved, and no root precedence exists. Neither package implements
-runtime importability, source-root discovery, namespace packages, repository
-relationships, graphs, retrieval, or Context behavior.
+runtime importability, source-root discovery, namespace packages, generic graph
+infrastructure, retrieval, or Context behavior.
 Import resolution is limited to an explicit interpretation universe and retains
 resolved, unresolved-in-universe, ambiguous, or unsupported outcomes. It neither
-emulates runtime imports nor creates repository dependency relationships.
+emulates runtime imports; the separate relation derivation records only the
+qualified source-to-target relations established by resolved outcomes.
 
 The `orchestration`, `governance`, and `evaluation` domains remain recognized
 sparse namespaces without reusable implementation APIs. Current accepted

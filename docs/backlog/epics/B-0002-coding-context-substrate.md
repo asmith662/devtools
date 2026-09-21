@@ -314,8 +314,10 @@ ranking, fixed-K insertion, or candidate expansion. It distinguishes repository
 path geometry from semantic or relational structure; directory placement does
 not establish package, dependency, reference, source/test, or documentation/code
 semantics. It does not establish that richer explicit relationships are useless.
-Import/dependency relationships remain a plausible unproven future experiment,
-not a production solution. A
+Declaration-grounded resolved import relations are now implemented as bounded
+Repository Intelligence. Their separate retrieval experiment shows candidate
+exposure but does not justify production retrieval or fixed-K insertion, as
+recorded below. A
 separate bounded,
 purpose-sensitive address projection now
 nominates exact, case-sensitive `.py` discovery addresses for observation while
@@ -347,9 +349,54 @@ integration.
 The import family can now perform qualified repository-scoped resolution of a
 declaration's eligible module portion against an explicit interpretation universe.
 It retains resolved, unresolved-in-universe, ambiguous, and unsupported outcomes;
-relative imports consume one explicit source interpretation. This does not emulate
-runtime importability or establish repository dependency relationships, graphs,
-retrieval evidence, or Context behavior.
+relative imports consume one explicit source interpretation. A separate adjacent
+relation derivation now retains one directed relation from an exact source module
+interpretation to the exact uniquely resolved target for each resolved direct
+module-body declaration. It requires one matching source interpretation and
+explicit-universe resolution evidence; unresolved-in-universe, ambiguous,
+unsupported, or source-unavailable cases do not create relations, and repeated
+declarations remain distinct. These relations are deterministic, declaration- and
+source-grounded Repository Intelligence, not runtime import execution, generic
+dependency semantics, undirected adjacency, retrieval relevance, or Context
+behavior.
+
+The frozen seven-case relationship comparison used the 417-document corpus
+(321 Python resources; snapshot `c368166a59a86e2deb2957c6992814fd7afac3736495458311b54064f5924642`,
+corpus `e0cb1c2eb403cb8ccb842b9a4d7354b340c4fdfc4002dd8a3f63480211a9003b`)
+and explicit roots `src`, `tests`, `scripts`, and `experiments`. It retained 319
+module interpretations, 2,788 declarations, 1,755 resolved outcomes/relations,
+1,033 unresolved-in-universe outcomes, no ambiguous or unsupported outcomes,
+319 available sources, two missing sources, and no parse errors. The unresolved
+count is bounded absence from the explicit module universe, not resolver failure
+or evidence that a dependency is absent elsewhere.
+
+On the seven frozen cases, canonical lexical retrieval (content BM25 plus
+`0.25 *` filename-stem BM25, `K=5`) had Hit@5 `1.0000`, mean Recall@5
+`0.7619`, and MRR `0.4214`. Outgoing seed-1 candidates retained Hit@5 `1.0000`,
+mean Recall@5 `0.6905`, MRR `0.3381`, seven candidates (maximum fan-out one),
+one newly exposed relevant resource, and no explicit controls. Outgoing seed-3
+had Hit@5 `0.7143`, mean Recall@5 `0.4762`, MRR `0.2310`, 39 candidates
+(maximum fan-out 14), two newly exposed relevant resources, and three explicit
+controls. Incoming seed-1 generated no candidates and therefore matched the
+lexical fixed-K result. Incoming seed-3 had Hit@5 `0.5714`, mean Recall@5
+`0.5714`, MRR `0.1786`, 23 candidates (maximum fan-out 11), two newly exposed
+relevant resources, and one explicit control. Outgoing and incoming remain
+distinct directed traversals; the evidence selects neither as universally
+preferred.
+
+The comparison demonstrates that explicit relations can expose resources missed
+by lexical top-K, but relation existence alone is insufficient evidence to
+insert a candidate into scarce fixed-K output: broader candidate sets also
+included controls and displaced relevant results. Decision category C: do not
+promote relationship retrieval now. Production retrieval remains content BM25
+plus `0.25 *` filename-stem BM25 at `K=5`; no relation retrieval is production
+behavior. Preserve the bounded relation knowledge and this experiment as
+evidence, while retaining pressure for a future bounded purpose-relative selector
+investigation over canonical lexical candidates plus explicitly retained
+relationship candidates. Candidate generation and final selection must remain
+separately observable. This is future work only; it does not authorize a generic
+retriever, graph retrieval, universal score, source/test weighting, or learned
+selector.
 
 A bounded multi-resource analysis composition can now apply those independent
 derivations to a nonempty, distinct, caller-ordered address selection. It retains
