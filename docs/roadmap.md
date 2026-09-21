@@ -64,12 +64,16 @@ and Evidence ownership terminology, remain in the
   [B-0008](backlog/items/B-0008-investigate-repository-context-discovery.md)
   remains superseded historical navigation evidence.
 
-- The selected starting hypothesis is implemented as direct module-body Python function
+- The selected starting hypothesis began with direct module-body Python function
   declaration knowledge. The bounded implementation tests the proposition in
   which direct module-body `ast.FunctionDef` and `ast.AsyncFunctionDef` source
   occurrences in an identified RepositorySnapshot syntactically declare
-  distinct snapshot-local function RepositorySubjects. This is a design target,
-  not a fixed production representation or universal
+  distinct snapshot-local function RepositorySubjects. Subsequent bounded
+  production slices establish direct module-body import-declaration syntax and
+  explicit-root Python module interpretation for selected observed `.py`
+  resources. They do not implement import resolution, repository dependency
+  relationships, graphs, retrieval integration, or runtime import semantics.
+  These are design targets, not fixed production representations or a universal
   declaration ontology. [B-0002](backlog/epics/B-0002-coding-context-substrate.md)
   preserves the exact scope, design pressure, and deliberate deferrals.
 

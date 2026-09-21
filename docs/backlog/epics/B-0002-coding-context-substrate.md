@@ -332,6 +332,18 @@ declarations, lambda declarations, conditional runtime availability, or import
 resolution. Broader proposition vocabulary and production models remain open
 under ADR-0002.
 
+A separate bounded import-declaration family now records ordered direct
+module-body Python import aliases with exact source spans, module text, relative
+level, imported names, and local aliases. It is syntax only and neither resolves
+nor asserts a target. An adjacent explicit-root module-interpretation family now
+maps caller-selected observed `.py` resources to ordinary-module or package-module
+dotted names. Repository address is distinct from Python module identity: the
+explicit root, exact resource, and role qualify the interpretation; duplicate
+names remain separate and no root precedence exists. It performs no source-root
+inference, namespace-package interpretation, runtime import resolution,
+repository relationship construction, graph construction, retrieval, or Context
+integration.
+
 A bounded multi-resource analysis composition can now apply those independent
 derivations to a nonempty, distinct, caller-ordered address selection. It retains
 per-resource coverage and exposes the original declaration knowledge in

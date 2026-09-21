@@ -144,6 +144,16 @@ ModelRequest assembly. Current durable
 conversation semantics remain in `agents.conversation`, and `context` does not
 own former Message/History/Session semantics.
 
+The adjacent `context.python.imports` package retains direct module-body import
+aliases as source-grounded syntax without target resolution. The
+`context.python.modules` package interprets caller-selected observed `.py`
+resources under an explicit repository-relative module root as ordinary or
+package modules with dotted names. Address is not module identity: the explicit
+root and exact observed resource remain part of the interpretation, duplicate
+names are preserved, and no root precedence exists. Neither package implements
+runtime importability, source-root discovery, namespace packages, repository
+relationships, graphs, retrieval, or Context behavior.
+
 The `orchestration`, `governance`, and `evaluation` domains remain recognized
 sparse namespaces without reusable implementation APIs. Current accepted
 Evaluation responsibility and boundaries are summarized in the central

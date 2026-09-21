@@ -433,6 +433,20 @@ each per-resource analysis and flattens their existing knowledge in selection
 and source order for downstream retrieval. It is not a synthetic derivation or
 aggregate coverage claim; selection or parse failure returns no aggregate.
 
+`context.python.imports` separately derives ordered, direct module-body Python
+import aliases from one exact observed resource, retaining their source spans,
+module text, relative level, imported name, and local alias. Those values are
+syntactic declarations only: they do not assert existence, repository membership,
+runtime importability, resolution, or a dependency relationship. The adjacent
+`context.python.modules` capability interprets an explicit caller-selected set
+of observed `.py` resources under one explicit repository-relative module root.
+It maps ordinary modules and `__init__.py` package modules to dotted names while
+retaining the exact resource, root, role, and snapshot correlation. A repository
+address is not Python module identity: content, root, and role matter, duplicate
+names remain distinct interpretations, and root precedence is absent. It performs
+no root inference, acquisition, namespace-package interpretation, import
+resolution, relationship construction, retrieval, or Context work.
+
 The first bounded retrieval operation consumes supplied declaration knowledge
 and filters it by exact declared-name equality. Its nonempty name query is the
 purpose representation, and each match carries purpose-relative exact-match
