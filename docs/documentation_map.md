@@ -153,6 +153,9 @@ root and exact observed resource remain part of the interpretation, duplicate
 names are preserved, and no root precedence exists. Neither package implements
 runtime importability, source-root discovery, namespace packages, repository
 relationships, graphs, retrieval, or Context behavior.
+Import resolution is limited to an explicit interpretation universe and retains
+resolved, unresolved-in-universe, ambiguous, or unsupported outcomes. It neither
+emulates runtime imports nor creates repository dependency relationships.
 
 The `orchestration`, `governance`, and `evaluation` domains remain recognized
 sparse namespaces without reusable implementation APIs. Current accepted

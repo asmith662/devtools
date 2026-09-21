@@ -9,12 +9,22 @@ from devtools.context.python.imports.declarations import (
     PythonImportSourceOccurrence,
     derive_python_import_declarations,
 )
+from devtools.context.python.imports.resolution import (
+    PythonImportResolution,
+    PythonImportResolutionOutcome,
+    PythonImportResolutionUnsupportedReason,
+    resolve_python_import_declaration,
+)
 
 __all__ = [
     "PythonImportDeclarationAnalysis",
     "PythonImportDeclarationCoverage",
     "PythonImportDeclarationKnowledge",
     "PythonImportParseError",
+    "PythonImportResolution",
+    "PythonImportResolutionOutcome",
+    "PythonImportResolutionUnsupportedReason",
     "PythonImportSourceOccurrence",
     "derive_python_import_declarations",
+    "resolve_python_import_declaration",
 ]

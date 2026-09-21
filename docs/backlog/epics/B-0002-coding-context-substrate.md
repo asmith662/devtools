@@ -344,6 +344,13 @@ inference, namespace-package interpretation, runtime import resolution,
 repository relationship construction, graph construction, retrieval, or Context
 integration.
 
+The import family can now perform qualified repository-scoped resolution of a
+declaration's eligible module portion against an explicit interpretation universe.
+It retains resolved, unresolved-in-universe, ambiguous, and unsupported outcomes;
+relative imports consume one explicit source interpretation. This does not emulate
+runtime importability or establish repository dependency relationships, graphs,
+retrieval evidence, or Context behavior.
+
 A bounded multi-resource analysis composition can now apply those independent
 derivations to a nonempty, distinct, caller-ordered address selection. It retains
 per-resource coverage and exposes the original declaration knowledge in

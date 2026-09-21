@@ -6,8 +6,10 @@ from devtools.context.python.modules.interpretation import (
     PythonModuleInterpretationAnalysis,
     PythonModuleInterpretationExclusion,
     PythonModuleInterpretationExclusionReason,
+    PythonModuleInterpretationUniverse,
     PythonModuleKind,
     PythonModuleRoot,
+    define_python_module_interpretation_universe,
     interpret_python_module_resources,
 )
 
@@ -16,7 +18,9 @@ __all__ = [
     "PythonModuleInterpretationAnalysis",
     "PythonModuleInterpretationExclusion",
     "PythonModuleInterpretationExclusionReason",
+    "PythonModuleInterpretationUniverse",
     "PythonModuleKind",
     "PythonModuleRoot",
+    "define_python_module_interpretation_universe",
     "interpret_python_module_resources",
 ]

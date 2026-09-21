@@ -447,6 +447,14 @@ names remain distinct interpretations, and root precedence is absent. It perform
 no root inference, acquisition, namespace-package interpretation, import
 resolution, relationship construction, retrieval, or Context work.
 
+`context.python.imports` can additionally resolve a declaration's eligible
+module portion only within an explicit `PythonModuleInterpretationUniverse`.
+It reports resolved, unresolved-in-universe, ambiguous, or qualified unsupported
+outcomes; ambiguity preserves every match and unresolved retains the exact
+universe that supports its bounded absence claim. Relative imports consume an
+explicit source interpretation, while absolute imports do not. This is neither
+runtime import resolution nor a repository dependency relationship or graph.
+
 The first bounded retrieval operation consumes supplied declaration knowledge
 and filters it by exact declared-name equality. Its nonempty name query is the
 purpose representation, and each match carries purpose-relative exact-match

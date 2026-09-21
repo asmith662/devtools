@@ -115,6 +115,44 @@ class PythonModuleInterpretationAnalysis:
     IS_EXHAUSTIVE: ClassVar[bool] = True
 
 
+@dataclass(frozen=True, slots=True)
+class PythonModuleInterpretationUniverse:
+    """Retain an explicit repository-scoped interpretation universe."""
+
+    repository_id: RepositoryId
+    interpretations: tuple[PythonModuleInterpretation, ...]
+
+    SEMANTICS: ClassVar[str] = "explicit-python-module-interpretation-universe-v1"
+
+    @property
+    def identity(self) -> str:
+        """Identify membership without making supplied order semantic."""
+        return _digest(
+            self.SEMANTICS,
+            str(self.repository_id),
+            *(sorted(item.identity for item in self.interpretations)),
+        )
+
+
+def define_python_module_interpretation_universe(
+    *,
+    repository_id: RepositoryId,
+    interpretations: Sequence[PythonModuleInterpretation],
+) -> PythonModuleInterpretationUniverse:
+    """Define one explicit ordered module universe without root precedence."""
+    values = tuple(interpretations)
+    if any(item.repository_id != repository_id for item in values):
+        msg = "Python module interpretation universe mixes repository identities."
+        raise ValueError(msg)
+    if len({item.identity for item in values}) != len(values):
+        msg = "Python module interpretation universe repeats an interpretation."
+        raise ValueError(msg)
+    return PythonModuleInterpretationUniverse(
+        repository_id=repository_id,
+        interpretations=values,
+    )
+
+
 def interpret_python_module_resources(
     snapshot: RepositorySnapshot,
     *,

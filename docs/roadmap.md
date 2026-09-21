@@ -73,6 +73,9 @@ and Evidence ownership terminology, remain in the
   explicit-root Python module interpretation for selected observed `.py`
   resources. They do not implement import resolution, repository dependency
   relationships, graphs, retrieval integration, or runtime import semantics.
+  A subsequent bounded resolver now resolves eligible import module portions only
+  within an explicit module-interpretation universe; it remains distinct from
+  runtime imports and repository dependency relationships.
   These are design targets, not fixed production representations or a universal
   declaration ontology. [B-0002](backlog/epics/B-0002-coding-context-substrate.md)
   preserves the exact scope, design pressure, and deliberate deferrals.
