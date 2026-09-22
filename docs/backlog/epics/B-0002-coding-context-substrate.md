@@ -398,6 +398,21 @@ separately observable. This is future work only; it does not authorize a generic
 retriever, graph retrieval, universal score, source/test weighting, or learned
 selector.
 
+Increment 21's bounded oracle-headroom evaluation then froze twelve manually
+judged purpose-relative needs, including two needs with identical `Context
+disclosure` query text but disjoint useful-resource judgments. On its
+434-document checkout corpus, canonical top-five consideration had mean useful
+recall `0.5278`; lexical width fifteen raised oracle size-five recall to
+`0.7986`; outgoing and bidirectional one-hop resolved-import surfaces raised it
+to `0.9167`; incoming surfaces did not improve beyond lexical width. The oracle
+is evaluation-only: it demonstrates purpose-relative headroom, not a production
+admission mechanism. Fixed blind relation insertion remained inadequate,
+especially bidirectionally (`0.3889` mean recall with five control insertions),
+and cannot be interpreted as a selector. This is empirical evidence for a later
+separately reviewed bounded decision-rule experiment only; it does not promote
+Selection infrastructure, relationship retrieval, scoring, source/test
+weighting, or any production behavior.
+
 A bounded multi-resource analysis composition can now apply those independent
 derivations to a nonempty, distinct, caller-ordered address selection. It retains
 per-resource coverage and exposes the original declaration knowledge in
