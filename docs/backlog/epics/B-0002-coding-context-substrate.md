@@ -413,6 +413,53 @@ separately reviewed bounded decision-rule experiment only; it does not promote
 Selection infrastructure, relationship retrieval, scoring, source/test
 weighting, or any production behavior.
 
+Increment 22 then froze one deliberately small directional-reservation rule
+before its held-out evaluation and retained the result in
+[the Pass 4 report](../../../.b0002-purpose-relative-admission-rule.json). On
+eight held-out needs, canonical lexical top five had Hit@5 `0.6250`, mean
+Recall@5 `0.4167`, and MRR `0.3333`; directional reservation v1 had `0.8750`,
+`0.5625`, and `0.3833`; and the blind bidirectional reference had `1.0000`,
+`0.4583`, and `0.3875`. The practical rule admitted five resources, newly
+recovered three judged-relevant resources, made two unjudged admissions,
+abstained twice for the local purpose profile and once for no qualifying target,
+and removed no judged-relevant lexical resource. Its protected ranks one
+through four and rank-five-only reservation avoided the destructive losses seen
+in Increments 16 and 20 on this set; that is not a general no-loss guarantee.
+
+No explicit negative control reached an eligible directional surface, so the
+run did not test whether the two-support threshold rejects known negatives.
+The two exact-name controls resolved directly and were correctly outside the
+heterogeneous K=5 comparison. The historical purpose-compatible oracle mean
+Recall@5 of `0.8021` came from a different checkpoint, so the apparent `0.2396`
+gap from the practical rule is unpaired and cannot be allocated among candidate
+recall, purpose representation, direction, threshold, capacity, or judgment
+limitations.
+
+Disposition category B: accept the architectural need for a purpose-bearing,
+abstaining admission decision over preserved typed surfacing evidence, but do
+not promote directional reservation v1. Purpose remains InformationNeed
+semantics rather than the experiment's three-value enum. Admission can remain
+an operation-specific policy or part of Context planning; no first-class
+Selector, universal Candidate/CandidateEvidence, normalized relevance score,
+standalone Selection domain, generic graph retrieval, production relationship
+expansion, or production Context change follows. Production retrieval remains
+content BM25 plus `0.25 *` filename-stem BM25 at `K=5`, and exact/direct
+resolution remains a separate bounded path.
+
+The smallest next investigation is a preregistered, disjoint, non-controlling
+evaluation of the unchanged rule on fully judged eligible surfaces. It should
+include qualifying useful targets, qualifying known-negative controls, a
+same-query/different-purpose pair whose possible admission is judged, and cases
+where a judged-relevant lexical rank-five result is actually at risk. It should
+retain stage-local candidate recall, admission precision, loss/displacement,
+and abstention evidence. This tests generalization, negative rejection, and the
+reservation tradeoff without tuning another threshold. A bounded shadow path
+is the appropriate near-term delivery shape once a real native acquisition
+workload and disclosure/privacy policy are available: production Context stays
+unchanged while hypothetical surfaces, decisions, and outcomes are retained for
+comparison. It must not become a generic experimentation platform or silently
+control disclosure.
+
 A bounded multi-resource analysis composition can now apply those independent
 derivations to a nonempty, distinct, caller-ordered address selection. It retains
 per-resource coverage and exposes the original declaration knowledge in

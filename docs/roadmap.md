@@ -85,6 +85,18 @@ and Evidence ownership terminology, remain in the
   declaration ontology. [B-0002](backlog/epics/B-0002-coding-context-substrate.md)
   preserves the exact scope, design pressure, and deliberate deferrals.
 
+- Increment 22 supplies held-out evidence that a small purpose-bearing,
+  abstaining admission rule can use typed relationship surfaces without the
+  relevant losses caused by earlier blind fixed-K insertion on that set. The
+  concrete rule, relationship expansion, and its three purpose profiles remain
+  experimental. The next empirical priority is an independent, fully judged,
+  non-controlling comparison that includes eligible negative controls and
+  relevant rank-five resources at risk. A bounded shadow path may retain
+  hypothetical surfaces and decisions against a real native acquisition
+  workload while production retrieval/disclosure remains unchanged. This is a
+  near-term evaluation direction, not authorization for a generic experiment
+  platform, Selector, or production Context influence.
+
 ### Architecture review gate — crossed with preserved seams
 
 The broad repository-intelligence architecture investigation has occurred. The

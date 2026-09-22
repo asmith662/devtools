@@ -543,6 +543,14 @@ retrieval observations and retriever-native measurements without requiring a
 standalone artifact or repository DerivedKnowledge status. It preserves
 retrieval as multi-strategy evidence discovery; ranking as evidence
 interpretation; and Context selection/compilation as a later, distinct concern.
+When scarce capacity requires an admission decision, the purpose represented by
+or referenced from InformationNeed must be available to that decision; query
+text alone is insufficient. Admission may explicitly abstain and need not be a
+score or total ordering. It remains a purpose-relative decision over surfaced
+evidence, not proof of usefulness, and can stay operation-local or within
+Context planning. This accepted distinction does not create a universal
+Candidate/CandidateEvidence, first-class Selector, Selection domain, or
+production relationship-expansion policy.
 It also preserves concurrent dependency-aware retrieval, staged expansion,
 progressive disclosure, and future evaluation pressure without assigning them
 to Runtime, Tool execution, authorization, or an Agent loop.

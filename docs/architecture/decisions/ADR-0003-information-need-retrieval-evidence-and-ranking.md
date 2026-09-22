@@ -2,35 +2,52 @@
 
 - Status: Accepted
 - Date: 2026-09-16
+- Evidence amendment: 2026-09-22 (Increment 22 purpose-relative admission)
 - Scope: semantic architecture for future InformationNeed, retrieval planning,
   bounded retrieval applications, ContextCandidates, RelevanceEvidence, and
-  ranking. This decision authorizes no production retrieval, planner, index,
-  ranker, Context compiler, graph algorithm, persistence, protocol, or test.
+  ranking, including bounded purpose-relative admission and abstention. This
+  decision authorizes no production retrieval, planner, index, ranker,
+  admission policy, Context compiler, graph algorithm, persistence, protocol,
+  or test.
 
 ## Research reconciliation
 
 The [purpose-relative Context research](../../research/purpose-relative-repository-context.md),
 [repository Context-system research](../../research/repository-context-system-architecture.md),
-and [adversarial review](../../research/architecture-adversarial-review.md) support this
-boundary. They, plus Increment 16 and Increment 20, preserve:
+[adversarial review](../../research/architecture-adversarial-review.md), and
+[retrieval synthesis](../../research/retrieval-architecture-synthesis.md) support
+this boundary. They, plus Increments 16, 20, 21, and 22, preserve:
 
-> repository relationship truth != retrieval relevance != final top-K selection
+> repository relationship truth != surfaced retrieval evidence !=
+> purpose-relative admission != Context disclosure
 
 InformationNeed is not query text; repository truth is not retrieval evidence;
 candidate surfacing is not final selection; and evaluation remains distinct from
 the mechanism evaluated. Increment 16 found filesystem/path geometry inadequate
 as purpose-relative ranking evidence. Increment 20 found true resolved import
 relations could expose lexical misses but direct fixed-K insertion could expose
-controls and displace relevant lexical resources.
+controls and displace relevant lexical resources. Increment 21 established
+purpose-relative oracle headroom and a same-query/different-purpose
+counterexample, but no realizable decision policy. Increment 22's frozen,
+precommitted directional-reservation rule improved its eight held-out cases
+without removing a judged-relevant lexical result and abstained on three cases.
+That result is evidence for a purpose-bearing admission operation, not proof
+that the concrete rule generalizes or is production-ready: only one held-out
+run exists, two admissions remain unjudged, and no explicit negative control
+reached an eligible directional surface.
 
-Accordingly, there is currently no universal Candidate, CandidateEvidence,
-relevance-score normalization, first-class Selector, standalone Selection domain,
-production relationship expansion/scoring, or source/test weighting/suppression.
+Accordingly, the architecture accepts purpose-relative admission and explicit
+abstention as possible bounded decision semantics while leaving their concrete
+policy and owner-specific representation open. There is still no universal
+Candidate, CandidateEvidence, relevance-score normalization, first-class
+Selector, standalone Selection domain, production relationship
+expansion/scoring, or source/test weighting/suppression.
 Source/test classification may be useful evidence for a particular InformationNeed,
 but location alone does not establish purpose-relative relevance.
 
-Revisit only with independently evaluated purpose-relative selection evidence
-showing stable need-specific value that cannot remain local to an existing owner.
+Revisit a reusable admission/selection abstraction only with broader,
+independently evaluated evidence showing stable need-specific value that cannot
+remain operation-local or within Context planning.
 
 ## Context
 
@@ -222,6 +239,35 @@ and change-impact views may likewise contribute together. No mechanism, graph,
 or pipeline owns repository relevance, and independent evidence must not erase
 or overwrite other evidence.
 
+### Purpose-relative admission and abstention
+
+When a bounded decision chooses whether surfaced information may consume scarce
+consideration or disclosure capacity, the information purpose must be available
+as an explicit input or an explicitly referenced fact. Query text alone is not
+sufficient: Increment 22 retained identical `Context disclosure` query text and
+lexical ranking while its frozen local/governance purpose abstained and its
+implementation-oriented purpose admitted incoming relationship evidence. This
+does not require a separate durable `Purpose` object or enum; InformationNeed
+already owns the semantic distinction, and an operation-specific projection can
+carry only the purpose facts that its policy actually uses.
+
+Admission is a purpose-relative bounded decision over surfaced native evidence;
+it is not proof of relevance or usefulness, and it need not assign a normalized
+score or total order. An admission policy may explicitly abstain when its
+purpose makes the mechanism inapplicable or its evidence does not satisfy the
+policy. Abstention is an outcome to retain and evaluate, not missing data or
+proof that the unchanged result is correct. Capacity reservation can reduce the
+destructive behavior of blind fixed-K insertion, but one zero-loss held-out run
+does not establish a general safety property.
+
+These semantics do not require an `Admission`, `Selector`, or `Selection`
+domain artifact. A retrieval procedure or Context planner may make a local
+decision while preserving the surfaced evidence, purpose basis, capacity
+condition, decision, and abstention reason needed for evaluation. The
+Increment 22 directional-reservation-v1 policy remains experimental; no
+relationship expansion or admission policy is promoted to production by this
+decision.
+
 ### Ranking and Context boundary
 
 **Ranking** is a distinct semantic stage that interprets an information purpose,
@@ -301,7 +347,8 @@ CandidateProducer/EvidenceProducer, planner, plan-identity or
 persistence, application-DAG, scheduler, bound, lexical, graph, semantic,
 embedding, historical-retrieval, evidence, confidence, polarity, normalization,
 deterministic-ranking, learned-ranking, task-classification, wave-policy,
-candidate/evidence association, measurement taxonomy, cross-retriever
+purpose projection, admission policy/representation, candidate/evidence
+association, measurement taxonomy, cross-retriever
 aggregation, evidence-cache/persistence, evaluation-case or execution-record
 identity, evaluation-storage, or metric implementations.
 
@@ -312,5 +359,5 @@ repository-intelligence, retrieval, Context-selection/compilation, progressive-
 disclosure, and evaluation pressure. ADR-0002 remains responsible for identity,
 snapshots, derivation, DerivedKnowledge applicability, and graph-semantic
 foundations. Nothing here creates a production API, retrieval system, planner,
-ranker, Context compiler, graph algorithm, persistence model, Agent loop, Runtime
-responsibility, or test requirement.
+ranker, admission policy, Context compiler, graph algorithm, persistence model,
+Agent loop, Runtime responsibility, or test requirement.
