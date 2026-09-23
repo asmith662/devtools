@@ -738,7 +738,7 @@ Most importantly, the existing negative import result should be preserved withou
 
 > **Imports are valid Repository Intelligence. The tested import-based top-5 admission mechanisms were not useful on the independently validated frozen `devtools` surface. Lexical widening was the stronger retrieval action there. Whether other typed structural relations generate genuinely complementary candidates remains an open empirical question.**
 
-That is the right foundation for Increment 25.
+That is the right foundation for Increment 25
 
 ## Disposition
 
