@@ -1,0 +1,4072 @@
+{
+  "content_identity": "b0ec243125e3408f597f7474288ad632be9e1522ea85878de017b43b33b1598d",
+  "payload": {
+    "acquisition": {
+      "bounds": {
+        "maximum_discovered_resources": 10000,
+        "maximum_resource_bytes": 1048576,
+        "maximum_traversal_entries": 20000
+      },
+      "discovered_resource_count": 7935,
+      "document_count": 454,
+      "examined_entry_count": 8886,
+      "observed_resource_count": 454,
+      "selected_resource_count": 454
+    },
+    "capture_set_identity": "6fa52ec1717d3f677118b497edce81efb028027b1c24ae59779bb9763ee8c647",
+    "case_capture_identities": [
+      "e04ede13d38b414b597a9d12d4311ae2ed69103bcea534672ed7b2d2890c4838",
+      "48cc33b8d635b342d4390cd0a55337673f4b44787b14e8073d787a03747d2b07",
+      "6e274873b01fdaac1b288d5c1c73e7c5dc4a6e93f3eba4cfd2694219243a0a17",
+      "8548c105432f718a03f874b771934e371ccb6a24d4ebb3070d0caafd3b0bf889",
+      "3eba692ce0bb50b874fa6c5a9fac93ccb3a8a15c25f7c6d8a8cf11f4983f6ff1",
+      "018c1e384af9d645b38e7df1eb81bdd2f41bd13327312a353c3ba2190a3bdaac"
+    ],
+    "cases": [
+      {
+        "blind_reference_input": [
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 1,
+            "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+            "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 2,
+            "relation_identity": "2bd5702886f04f3044db7730524af944d2cae508af207ed84c0ad14d68abfc86",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/filename.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 3,
+            "relation_identity": "34657c7d41f8a1b44fad84ea1a8a93bc8f9d91b5a26e531b174b694c1c245c67",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/filename.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 4,
+            "relation_identity": "392300eb720b7dd24cc6378d80b1cd798030cb1c81872519a61c28f0028838f5",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/scoring.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 5,
+            "relation_identity": "8dc001d730c3c15041bf4a28fce66bbd22ad1c45e19273c4c2cdf95a80574bff",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/scoring.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 6,
+            "relation_identity": "ce64767f79f26111d226b634cc2884050d15c5654a003a42a14fbfe24ffa113f",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/address_lexical.py",
+            "direction": "incoming",
+            "encounter_ordinal": 1,
+            "relation_identity": "a65d0fee6547287a91c90904d7aa436cd6a2b1283105657583a361013181cbf9",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/address_lexical.py",
+            "direction": "incoming",
+            "encounter_ordinal": 2,
+            "relation_identity": "20af0e983f9012c630e783ef3b9e402c7ff2975ccc04389f237aaf298ee2fb75",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/import_relationship/comparison.py",
+            "direction": "incoming",
+            "encounter_ordinal": 3,
+            "relation_identity": "8666eea8b8a179691e5d52d8f903b151b15ed8a1daef3c4c2ff27ae8b50ae619",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/import_relationship/comparison.py",
+            "direction": "incoming",
+            "encounter_ordinal": 4,
+            "relation_identity": "d8d9545975d76235076ce12f555f67719d6130eea0faf423fe4fbfdaa2025ed9",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/purpose_relative_admission/evaluation.py",
+            "direction": "incoming",
+            "encounter_ordinal": 5,
+            "relation_identity": "790e651b080909e3477f4c63bc54f9e9b3bb78802b888e42dcbd075b150b49fa",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/purpose_relative_admission/evaluation.py",
+            "direction": "incoming",
+            "encounter_ordinal": 6,
+            "relation_identity": "ee0bf98e1f3dd90558aa3f1808abd693e62612eb3ca33bb1a989093cbbed6888",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/purpose_relative_import/comparison.py",
+            "direction": "incoming",
+            "encounter_ordinal": 7,
+            "relation_identity": "0355291d1b974321b307226b0aa531808cf575a08c8739396db2f492f2dc89b1",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/purpose_relative_import/comparison.py",
+            "direction": "incoming",
+            "encounter_ordinal": 8,
+            "relation_identity": "ac05a82380205754c9e0b8d4e7c9c7687b2d000f42193fa52dfc28e3cdee924f",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/structural_expansion.py",
+            "direction": "incoming",
+            "encounter_ordinal": 9,
+            "relation_identity": "186fb0b58ad160fbe4fb32ca95972608777d551767c09e2be9d6d1ae5bd83ca5",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/structural_expansion.py",
+            "direction": "incoming",
+            "encounter_ordinal": 10,
+            "relation_identity": "bb006a16238c8f53de392c128bdbcbab46e24c5298aea9cdd21adaee607f19c4",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 11,
+            "relation_identity": "8f728ba608de449e57e05ec71744cbf2bad21ad7338321bbd3ab4b1231c22ffe",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 12,
+            "relation_identity": "54e61dd9b167a946d02cd8c9aa262e334b915bbce8b170c1c9df4c4672b0d3dd",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 13,
+            "relation_identity": "b7d68ffd0ed2b32dc12e62ea7718c73c8b2bc32da74302fb185a2e894612eaf3",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 14,
+            "relation_identity": "aba058b0508c28908980bfe1e78cef7312e4107cee26cbcfcf111e86795f5a12",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 15,
+            "relation_identity": "3c35583cab616109c4efd62479a1b60af84772a5cea01e1799fda48e21789a08",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 16,
+            "relation_identity": "47030c1c91393ff0dfa93d695932128d86a40e90aa0f253cd18fc3819404e23c",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 17,
+            "relation_identity": "30ce21c4ccc0eca7d44d8474355d3f9ebffd9ca31f5d7c2c9094112c70d7818b",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 18,
+            "relation_identity": "715c7b5f90a1fabfa5f6a7641557e471ee10fcec4abb02191f8424c8c9c0aa4e",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 19,
+            "relation_identity": "1c25e81fc8a43613a53ca7ba2e823cbb51bbaeca99b985d9bf7735c0f579ad0a",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_bm25.py",
+            "direction": "incoming",
+            "encounter_ordinal": 20,
+            "relation_identity": "6991f8487c1d53276163d50917bc29560099d64f269189bddb872f7770620e8b",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_bm25.py",
+            "direction": "incoming",
+            "encounter_ordinal": 21,
+            "relation_identity": "25be3747b00f5c31fbe4efe64b3aca64c874ed9168e9e12c59a5f1c9fe72f8f7",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_bm25.py",
+            "direction": "incoming",
+            "encounter_ordinal": 22,
+            "relation_identity": "03352427a948f41c11ab8b165c8e42b2645b4dab00896c644ac229d1c8bac67e",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_evaluation.py",
+            "direction": "incoming",
+            "encounter_ordinal": 23,
+            "relation_identity": "9d2d3d4b811ea8dd86be76c716cf77b07a57643d990f4fe861d934b761832f67",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_evaluation.py",
+            "direction": "incoming",
+            "encounter_ordinal": 24,
+            "relation_identity": "1f1fea5bfc6b58991891e8be46b89f1a959dfc1594245adc126389b2ff1a4999",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_evaluation.py",
+            "direction": "incoming",
+            "encounter_ordinal": 25,
+            "relation_identity": "f9acafb66577da6e9dfb1b7c78b912f46952f97caf6afac04dfc4b4b6bcf0ea3",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_filename.py",
+            "direction": "incoming",
+            "encounter_ordinal": 26,
+            "relation_identity": "b26f0cacbb7a8d48f5719635c916594c97b094bd5884855e0a0df0231e8dee3e",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_filename.py",
+            "direction": "incoming",
+            "encounter_ordinal": 27,
+            "relation_identity": "7f11c9d8de810ed2ea559d23de6965ad4b9056e20045c29b29d4d19f5b5a0d53",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          }
+        ],
+        "blind_reference_top_five": [
+          "experiments/purpose_relative_admission/validation_design.py",
+          "src/devtools/context/repository/resource.py",
+          "src/devtools/context/retrieval/lexical/analysis.py",
+          "src/devtools/context/retrieval/lexical/scoring.py",
+          "experiments/import_relationship/comparison.py"
+        ],
+        "case_name": "content-bm25-term-formula",
+        "checkpoint": {
+          "acquisition_bounds": [
+            [
+              "maximum_discovered_resources",
+              10000
+            ],
+            [
+              "maximum_traversal_entries",
+              20000
+            ],
+            [
+              "maximum_resource_bytes",
+              1048576
+            ]
+          ],
+          "corpus_id": "04c19ececa9a0569f5de83dd49a6c215ff57b03567d1611a8d9b08546b4fa8a6",
+          "document_count": 454,
+          "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+          "snapshot_id": "471c921f29805b730c45ebce8791bc0a3078a6cc8efd96643226859aa0b3e506"
+        },
+        "design_fingerprint": "c36d39f18258e918f8a1023a22d821619fc08cb8840d4ed80aae31832feabef7",
+        "incoming_surfaces": [
+          {
+            "address": "experiments/address_lexical.py",
+            "direction": "incoming",
+            "encounter_ordinal": 1,
+            "relation_identity": "a65d0fee6547287a91c90904d7aa436cd6a2b1283105657583a361013181cbf9",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/address_lexical.py",
+            "direction": "incoming",
+            "encounter_ordinal": 2,
+            "relation_identity": "20af0e983f9012c630e783ef3b9e402c7ff2975ccc04389f237aaf298ee2fb75",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/import_relationship/comparison.py",
+            "direction": "incoming",
+            "encounter_ordinal": 3,
+            "relation_identity": "8666eea8b8a179691e5d52d8f903b151b15ed8a1daef3c4c2ff27ae8b50ae619",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/import_relationship/comparison.py",
+            "direction": "incoming",
+            "encounter_ordinal": 4,
+            "relation_identity": "d8d9545975d76235076ce12f555f67719d6130eea0faf423fe4fbfdaa2025ed9",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/purpose_relative_admission/evaluation.py",
+            "direction": "incoming",
+            "encounter_ordinal": 5,
+            "relation_identity": "790e651b080909e3477f4c63bc54f9e9b3bb78802b888e42dcbd075b150b49fa",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/purpose_relative_admission/evaluation.py",
+            "direction": "incoming",
+            "encounter_ordinal": 6,
+            "relation_identity": "ee0bf98e1f3dd90558aa3f1808abd693e62612eb3ca33bb1a989093cbbed6888",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/purpose_relative_import/comparison.py",
+            "direction": "incoming",
+            "encounter_ordinal": 7,
+            "relation_identity": "0355291d1b974321b307226b0aa531808cf575a08c8739396db2f492f2dc89b1",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/purpose_relative_import/comparison.py",
+            "direction": "incoming",
+            "encounter_ordinal": 8,
+            "relation_identity": "ac05a82380205754c9e0b8d4e7c9c7687b2d000f42193fa52dfc28e3cdee924f",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/structural_expansion.py",
+            "direction": "incoming",
+            "encounter_ordinal": 9,
+            "relation_identity": "186fb0b58ad160fbe4fb32ca95972608777d551767c09e2be9d6d1ae5bd83ca5",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/structural_expansion.py",
+            "direction": "incoming",
+            "encounter_ordinal": 10,
+            "relation_identity": "bb006a16238c8f53de392c128bdbcbab46e24c5298aea9cdd21adaee607f19c4",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 11,
+            "relation_identity": "8f728ba608de449e57e05ec71744cbf2bad21ad7338321bbd3ab4b1231c22ffe",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 12,
+            "relation_identity": "54e61dd9b167a946d02cd8c9aa262e334b915bbce8b170c1c9df4c4672b0d3dd",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 13,
+            "relation_identity": "b7d68ffd0ed2b32dc12e62ea7718c73c8b2bc32da74302fb185a2e894612eaf3",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 14,
+            "relation_identity": "aba058b0508c28908980bfe1e78cef7312e4107cee26cbcfcf111e86795f5a12",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 15,
+            "relation_identity": "3c35583cab616109c4efd62479a1b60af84772a5cea01e1799fda48e21789a08",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 16,
+            "relation_identity": "47030c1c91393ff0dfa93d695932128d86a40e90aa0f253cd18fc3819404e23c",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 17,
+            "relation_identity": "30ce21c4ccc0eca7d44d8474355d3f9ebffd9ca31f5d7c2c9094112c70d7818b",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 18,
+            "relation_identity": "715c7b5f90a1fabfa5f6a7641557e471ee10fcec4abb02191f8424c8c9c0aa4e",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 19,
+            "relation_identity": "1c25e81fc8a43613a53ca7ba2e823cbb51bbaeca99b985d9bf7735c0f579ad0a",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_bm25.py",
+            "direction": "incoming",
+            "encounter_ordinal": 20,
+            "relation_identity": "6991f8487c1d53276163d50917bc29560099d64f269189bddb872f7770620e8b",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_bm25.py",
+            "direction": "incoming",
+            "encounter_ordinal": 21,
+            "relation_identity": "25be3747b00f5c31fbe4efe64b3aca64c874ed9168e9e12c59a5f1c9fe72f8f7",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_bm25.py",
+            "direction": "incoming",
+            "encounter_ordinal": 22,
+            "relation_identity": "03352427a948f41c11ab8b165c8e42b2645b4dab00896c644ac229d1c8bac67e",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_evaluation.py",
+            "direction": "incoming",
+            "encounter_ordinal": 23,
+            "relation_identity": "9d2d3d4b811ea8dd86be76c716cf77b07a57643d990f4fe861d934b761832f67",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_evaluation.py",
+            "direction": "incoming",
+            "encounter_ordinal": 24,
+            "relation_identity": "1f1fea5bfc6b58991891e8be46b89f1a959dfc1594245adc126389b2ff1a4999",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_evaluation.py",
+            "direction": "incoming",
+            "encounter_ordinal": 25,
+            "relation_identity": "f9acafb66577da6e9dfb1b7c78b912f46952f97caf6afac04dfc4b4b6bcf0ea3",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_filename.py",
+            "direction": "incoming",
+            "encounter_ordinal": 26,
+            "relation_identity": "b26f0cacbb7a8d48f5719635c916594c97b094bd5884855e0a0df0231e8dee3e",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_filename.py",
+            "direction": "incoming",
+            "encounter_ordinal": 27,
+            "relation_identity": "7f11c9d8de810ed2ea559d23de6965ad4b9056e20045c29b29d4d19f5b5a0d53",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          }
+        ],
+        "information_need": "Identify the implementation, formula helper, and focused test needed to change content-only Okapi BM25 term scoring without changing filename-field fusion behavior.",
+        "lexical_top_fifteen": [
+          {
+            "address": "experiments/purpose_relative_admission/validation_design.py",
+            "rank": 1,
+            "score": 19.869236402512257
+          },
+          {
+            "address": "tests/experiments/purpose_relative_admission/test_validation_design.py",
+            "rank": 2,
+            "score": 16.863483009688316
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "rank": 3,
+            "score": 14.056323255870984
+          },
+          {
+            "address": "experiments/address_lexical.py",
+            "rank": 4,
+            "score": 12.558132370234143
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/filename.py",
+            "rank": 5,
+            "score": 11.107005949612672
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_bm25.py",
+            "rank": 6,
+            "score": 10.629403844123173
+          },
+          {
+            "address": "experiments/retrieval_identifier.py",
+            "rank": 7,
+            "score": 10.23360248369936
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_index.py",
+            "rank": 8,
+            "score": 9.792613459565525
+          },
+          {
+            "address": "experiments/import_relationship_cases.py",
+            "rank": 9,
+            "score": 9.74016240943432
+          },
+          {
+            "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+            "rank": 10,
+            "score": 9.535367523628002
+          },
+          {
+            "address": "docs/research/retrieval-architecture-synthesis.md",
+            "rank": 11,
+            "score": 9.22793504830572
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/scoring.py",
+            "rank": 12,
+            "score": 9.07945476420868
+          },
+          {
+            "address": "docs/documentation_map.md",
+            "rank": 13,
+            "score": 8.171066941115415
+          },
+          {
+            "address": "docs/architecture.md",
+            "rank": 14,
+            "score": 7.952930406286461
+          },
+          {
+            "address": "tests/experiments/test_address_lexical.py",
+            "rank": 15,
+            "score": 7.771153785840046
+          }
+        ],
+        "lexical_top_five": [
+          {
+            "address": "experiments/purpose_relative_admission/validation_design.py",
+            "rank": 1,
+            "score": 19.869236402512257
+          },
+          {
+            "address": "tests/experiments/purpose_relative_admission/test_validation_design.py",
+            "rank": 2,
+            "score": 16.863483009688316
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "rank": 3,
+            "score": 14.056323255870984
+          },
+          {
+            "address": "experiments/address_lexical.py",
+            "rank": 4,
+            "score": 12.558132370234143
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/filename.py",
+            "rank": 5,
+            "score": 11.107005949612672
+          }
+        ],
+        "oracle_top_five": null,
+        "outgoing_surfaces": [
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 1,
+            "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+            "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 2,
+            "relation_identity": "2bd5702886f04f3044db7730524af944d2cae508af207ed84c0ad14d68abfc86",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/filename.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 3,
+            "relation_identity": "34657c7d41f8a1b44fad84ea1a8a93bc8f9d91b5a26e531b174b694c1c245c67",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/filename.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 4,
+            "relation_identity": "392300eb720b7dd24cc6378d80b1cd798030cb1c81872519a61c28f0028838f5",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/scoring.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 5,
+            "relation_identity": "8dc001d730c3c15041bf4a28fce66bbd22ad1c45e19273c4c2cdf95a80574bff",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/scoring.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 6,
+            "relation_identity": "ce64767f79f26111d226b634cc2884050d15c5654a003a42a14fbfe24ffa113f",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          }
+        ],
+        "practical": {
+          "abstention_reason": null,
+          "addresses": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/experiments/purpose_relative_admission/test_validation_design.py",
+            "src/devtools/context/retrieval/lexical/bm25.py",
+            "experiments/address_lexical.py",
+            "src/devtools/context/retrieval/lexical/scoring.py"
+          ],
+          "admitted_target": {
+            "address": "src/devtools/context/retrieval/lexical/scoring.py",
+            "direction": "outgoing",
+            "encounters": [
+              {
+                "address": "src/devtools/context/retrieval/lexical/scoring.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 5,
+                "relation_identity": "8dc001d730c3c15041bf4a28fce66bbd22ad1c45e19273c4c2cdf95a80574bff",
+                "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                "seed_rank": 3
+              },
+              {
+                "address": "src/devtools/context/retrieval/lexical/scoring.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 6,
+                "relation_identity": "ce64767f79f26111d226b634cc2884050d15c5654a003a42a14fbfe24ffa113f",
+                "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                "seed_rank": 3
+              }
+            ],
+            "unique_supports": [
+              {
+                "address": "src/devtools/context/retrieval/lexical/scoring.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 5,
+                "relation_identity": "8dc001d730c3c15041bf4a28fce66bbd22ad1c45e19273c4c2cdf95a80574bff",
+                "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                "seed_rank": 3
+              },
+              {
+                "address": "src/devtools/context/retrieval/lexical/scoring.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 6,
+                "relation_identity": "ce64767f79f26111d226b634cc2884050d15c5654a003a42a14fbfe24ffa113f",
+                "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                "seed_rank": 3
+              }
+            ]
+          },
+          "direction": "outgoing",
+          "disposition": "admitted",
+          "profile": "outgoing-dependency",
+          "retained_targets": [
+            {
+              "address": "src/devtools/context/repository/resource.py",
+              "direction": "outgoing",
+              "encounters": [
+                {
+                  "address": "src/devtools/context/repository/resource.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 1,
+                  "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+                  "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+                  "seed_rank": 1
+                }
+              ],
+              "unique_supports": [
+                {
+                  "address": "src/devtools/context/repository/resource.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 1,
+                  "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+                  "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+                  "seed_rank": 1
+                }
+              ]
+            },
+            {
+              "address": "src/devtools/context/retrieval/lexical/analysis.py",
+              "direction": "outgoing",
+              "encounters": [
+                {
+                  "address": "src/devtools/context/retrieval/lexical/analysis.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 2,
+                  "relation_identity": "2bd5702886f04f3044db7730524af944d2cae508af207ed84c0ad14d68abfc86",
+                  "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                  "seed_rank": 3
+                }
+              ],
+              "unique_supports": [
+                {
+                  "address": "src/devtools/context/retrieval/lexical/analysis.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 2,
+                  "relation_identity": "2bd5702886f04f3044db7730524af944d2cae508af207ed84c0ad14d68abfc86",
+                  "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                  "seed_rank": 3
+                }
+              ]
+            },
+            {
+              "address": "src/devtools/context/retrieval/lexical/filename.py",
+              "direction": "outgoing",
+              "encounters": [
+                {
+                  "address": "src/devtools/context/retrieval/lexical/filename.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 3,
+                  "relation_identity": "34657c7d41f8a1b44fad84ea1a8a93bc8f9d91b5a26e531b174b694c1c245c67",
+                  "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                  "seed_rank": 3
+                },
+                {
+                  "address": "src/devtools/context/retrieval/lexical/filename.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 4,
+                  "relation_identity": "392300eb720b7dd24cc6378d80b1cd798030cb1c81872519a61c28f0028838f5",
+                  "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                  "seed_rank": 3
+                }
+              ],
+              "unique_supports": [
+                {
+                  "address": "src/devtools/context/retrieval/lexical/filename.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 3,
+                  "relation_identity": "34657c7d41f8a1b44fad84ea1a8a93bc8f9d91b5a26e531b174b694c1c245c67",
+                  "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                  "seed_rank": 3
+                },
+                {
+                  "address": "src/devtools/context/retrieval/lexical/filename.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 4,
+                  "relation_identity": "392300eb720b7dd24cc6378d80b1cd798030cb1c81872519a61c28f0028838f5",
+                  "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                  "seed_rank": 3
+                }
+              ]
+            },
+            {
+              "address": "src/devtools/context/retrieval/lexical/scoring.py",
+              "direction": "outgoing",
+              "encounters": [
+                {
+                  "address": "src/devtools/context/retrieval/lexical/scoring.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 5,
+                  "relation_identity": "8dc001d730c3c15041bf4a28fce66bbd22ad1c45e19273c4c2cdf95a80574bff",
+                  "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                  "seed_rank": 3
+                },
+                {
+                  "address": "src/devtools/context/retrieval/lexical/scoring.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 6,
+                  "relation_identity": "ce64767f79f26111d226b634cc2884050d15c5654a003a42a14fbfe24ffa113f",
+                  "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                  "seed_rank": 3
+                }
+              ],
+              "unique_supports": [
+                {
+                  "address": "src/devtools/context/retrieval/lexical/scoring.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 5,
+                  "relation_identity": "8dc001d730c3c15041bf4a28fce66bbd22ad1c45e19273c4c2cdf95a80574bff",
+                  "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                  "seed_rank": 3
+                },
+                {
+                  "address": "src/devtools/context/retrieval/lexical/scoring.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 6,
+                  "relation_identity": "ce64767f79f26111d226b634cc2884050d15c5654a003a42a14fbfe24ffa113f",
+                  "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                  "seed_rank": 3
+                }
+              ]
+            }
+          ]
+        },
+        "profile": "outgoing-dependency",
+        "profile_eligible_surfaces": [
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 1,
+            "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+            "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 2,
+            "relation_identity": "2bd5702886f04f3044db7730524af944d2cae508af207ed84c0ad14d68abfc86",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/filename.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 3,
+            "relation_identity": "34657c7d41f8a1b44fad84ea1a8a93bc8f9d91b5a26e531b174b694c1c245c67",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/filename.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 4,
+            "relation_identity": "392300eb720b7dd24cc6378d80b1cd798030cb1c81872519a61c28f0028838f5",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/scoring.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 5,
+            "relation_identity": "8dc001d730c3c15041bf4a28fce66bbd22ad1c45e19273c4c2cdf95a80574bff",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/scoring.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 6,
+            "relation_identity": "ce64767f79f26111d226b634cc2884050d15c5654a003a42a14fbfe24ffa113f",
+            "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "seed_rank": 3
+          }
+        ],
+        "query_text": "content only BM25 term formula",
+        "retained_targets": [
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounters": [
+              {
+                "address": "src/devtools/context/repository/resource.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 1,
+                "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+                "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+                "seed_rank": 1
+              }
+            ],
+            "unique_supports": [
+              {
+                "address": "src/devtools/context/repository/resource.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 1,
+                "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+                "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+                "seed_rank": 1
+              }
+            ]
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "direction": "outgoing",
+            "encounters": [
+              {
+                "address": "src/devtools/context/retrieval/lexical/analysis.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 2,
+                "relation_identity": "2bd5702886f04f3044db7730524af944d2cae508af207ed84c0ad14d68abfc86",
+                "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                "seed_rank": 3
+              }
+            ],
+            "unique_supports": [
+              {
+                "address": "src/devtools/context/retrieval/lexical/analysis.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 2,
+                "relation_identity": "2bd5702886f04f3044db7730524af944d2cae508af207ed84c0ad14d68abfc86",
+                "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                "seed_rank": 3
+              }
+            ]
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/filename.py",
+            "direction": "outgoing",
+            "encounters": [
+              {
+                "address": "src/devtools/context/retrieval/lexical/filename.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 3,
+                "relation_identity": "34657c7d41f8a1b44fad84ea1a8a93bc8f9d91b5a26e531b174b694c1c245c67",
+                "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                "seed_rank": 3
+              },
+              {
+                "address": "src/devtools/context/retrieval/lexical/filename.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 4,
+                "relation_identity": "392300eb720b7dd24cc6378d80b1cd798030cb1c81872519a61c28f0028838f5",
+                "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                "seed_rank": 3
+              }
+            ],
+            "unique_supports": [
+              {
+                "address": "src/devtools/context/retrieval/lexical/filename.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 3,
+                "relation_identity": "34657c7d41f8a1b44fad84ea1a8a93bc8f9d91b5a26e531b174b694c1c245c67",
+                "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                "seed_rank": 3
+              },
+              {
+                "address": "src/devtools/context/retrieval/lexical/filename.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 4,
+                "relation_identity": "392300eb720b7dd24cc6378d80b1cd798030cb1c81872519a61c28f0028838f5",
+                "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                "seed_rank": 3
+              }
+            ]
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/scoring.py",
+            "direction": "outgoing",
+            "encounters": [
+              {
+                "address": "src/devtools/context/retrieval/lexical/scoring.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 5,
+                "relation_identity": "8dc001d730c3c15041bf4a28fce66bbd22ad1c45e19273c4c2cdf95a80574bff",
+                "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                "seed_rank": 3
+              },
+              {
+                "address": "src/devtools/context/retrieval/lexical/scoring.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 6,
+                "relation_identity": "ce64767f79f26111d226b634cc2884050d15c5654a003a42a14fbfe24ffa113f",
+                "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                "seed_rank": 3
+              }
+            ],
+            "unique_supports": [
+              {
+                "address": "src/devtools/context/retrieval/lexical/scoring.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 5,
+                "relation_identity": "8dc001d730c3c15041bf4a28fce66bbd22ad1c45e19273c4c2cdf95a80574bff",
+                "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                "seed_rank": 3
+              },
+              {
+                "address": "src/devtools/context/retrieval/lexical/scoring.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 6,
+                "relation_identity": "ce64767f79f26111d226b634cc2884050d15c5654a003a42a14fbfe24ffa113f",
+                "seed_address": "src/devtools/context/retrieval/lexical/bm25.py",
+                "seed_rank": 3
+              }
+            ]
+          }
+        ],
+        "route": "heterogeneous-k5",
+        "top_fifteen_adjudication_addresses": [
+          "tests/context/retrieval/lexical/test_bm25.py",
+          "experiments/retrieval_identifier.py",
+          "tests/context/retrieval/lexical/test_index.py",
+          "experiments/import_relationship_cases.py",
+          "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "docs/research/retrieval-architecture-synthesis.md",
+          "src/devtools/context/retrieval/lexical/scoring.py",
+          "docs/documentation_map.md",
+          "docs/architecture.md",
+          "tests/experiments/test_address_lexical.py"
+        ]
+      },
+      {
+        "blind_reference_input": [
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 1,
+            "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+            "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 2,
+            "relation_identity": "6843054734ea31954f78ee86d45711cb8e552d46e541633516052d4b51777a81",
+            "seed_address": "tests/context/retrieval/lexical/test_analysis.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 3,
+            "relation_identity": "7df895be4f3b0ddf323dcac94deb19e5761b04cee823a3051f15ea36fc6e0c63",
+            "seed_address": "tests/context/retrieval/lexical/test_analysis.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "tests/context/retrieval/lexical/_helpers.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 4,
+            "relation_identity": "56ae723885b9bb06880d6943d71c1a5d485a2efac05cea32f3206d4071bb7483",
+            "seed_address": "tests/context/retrieval/lexical/test_analysis.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "tests/context/retrieval/lexical/_helpers.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 5,
+            "relation_identity": "1fc82b1ad6cf95d9ff01c9387b04fa4671ecdb41502621dfbf242235a59f0449",
+            "seed_address": "tests/context/retrieval/lexical/test_analysis.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 6,
+            "relation_identity": "71bb121766a09bfbfc9ee9c37348404d760004f79557f00edfc4b1853ee0c3bf",
+            "seed_address": "experiments/retrieval_identifier.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 7,
+            "relation_identity": "4c0eef993f6f7b73d9286520123b5f62543b791dae947ee0e48ef5a94f1bcc23",
+            "seed_address": "experiments/retrieval_identifier.py",
+            "seed_rank": 3
+          }
+        ],
+        "blind_reference_top_five": [
+          "experiments/purpose_relative_admission/validation_design.py",
+          "src/devtools/context/repository/resource.py",
+          "src/devtools/context/__init__.py",
+          "tests/context/retrieval/lexical/_helpers.py",
+          "tests/context/retrieval/lexical/test_analysis.py"
+        ],
+        "case_name": "baseline-lexical-analysis-definition",
+        "checkpoint": {
+          "acquisition_bounds": [
+            [
+              "maximum_discovered_resources",
+              10000
+            ],
+            [
+              "maximum_traversal_entries",
+              20000
+            ],
+            [
+              "maximum_resource_bytes",
+              1048576
+            ]
+          ],
+          "corpus_id": "04c19ececa9a0569f5de83dd49a6c215ff57b03567d1611a8d9b08546b4fa8a6",
+          "document_count": 454,
+          "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+          "snapshot_id": "471c921f29805b730c45ebce8791bc0a3078a6cc8efd96643226859aa0b3e506"
+        },
+        "design_fingerprint": "c36d39f18258e918f8a1023a22d821619fc08cb8840d4ed80aae31832feabef7",
+        "incoming_surfaces": [],
+        "information_need": "Identify the local implementation and focused test that define baseline lexical span extraction and collection analysis semantics.",
+        "lexical_top_fifteen": [
+          {
+            "address": "experiments/purpose_relative_admission/validation_design.py",
+            "rank": 1,
+            "score": 12.90116945194837
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_analysis.py",
+            "rank": 2,
+            "score": 12.807708210930187
+          },
+          {
+            "address": "experiments/retrieval_identifier.py",
+            "rank": 3,
+            "score": 10.946479054496317
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "rank": 4,
+            "score": 10.908851203901396
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "rank": 5,
+            "score": 10.84349089621138
+          },
+          {
+            "address": "experiments/address_lexical.py",
+            "rank": 6,
+            "score": 10.52962446887561
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/filename.py",
+            "rank": 7,
+            "score": 10.479098229796069
+          },
+          {
+            "address": "tests/experiments/purpose_relative_admission/test_validation_design.py",
+            "rank": 8,
+            "score": 10.23811831252476
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_evaluation.py",
+            "rank": 9,
+            "score": 10.008755116806167
+          },
+          {
+            "address": "experiments/import_relationship_cases.py",
+            "rank": 10,
+            "score": 9.943767535606355
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_bm25.py",
+            "rank": 11,
+            "score": 9.88572302756603
+          },
+          {
+            "address": "tests/experiments/test_retrieval_identifier.py",
+            "rank": 12,
+            "score": 9.197716239531573
+          },
+          {
+            "address": "docs/research/repository-context-system-architecture.md",
+            "rank": 13,
+            "score": 8.329104682404552
+          },
+          {
+            "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+            "rank": 14,
+            "score": 8.25166513160676
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/statistics.py",
+            "rank": 15,
+            "score": 8.236715502838468
+          }
+        ],
+        "lexical_top_five": [
+          {
+            "address": "experiments/purpose_relative_admission/validation_design.py",
+            "rank": 1,
+            "score": 12.90116945194837
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_analysis.py",
+            "rank": 2,
+            "score": 12.807708210930187
+          },
+          {
+            "address": "experiments/retrieval_identifier.py",
+            "rank": 3,
+            "score": 10.946479054496317
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "rank": 4,
+            "score": 10.908851203901396
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "rank": 5,
+            "score": 10.84349089621138
+          }
+        ],
+        "oracle_top_five": null,
+        "outgoing_surfaces": [
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 1,
+            "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+            "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 2,
+            "relation_identity": "6843054734ea31954f78ee86d45711cb8e552d46e541633516052d4b51777a81",
+            "seed_address": "tests/context/retrieval/lexical/test_analysis.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 3,
+            "relation_identity": "7df895be4f3b0ddf323dcac94deb19e5761b04cee823a3051f15ea36fc6e0c63",
+            "seed_address": "tests/context/retrieval/lexical/test_analysis.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "tests/context/retrieval/lexical/_helpers.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 4,
+            "relation_identity": "56ae723885b9bb06880d6943d71c1a5d485a2efac05cea32f3206d4071bb7483",
+            "seed_address": "tests/context/retrieval/lexical/test_analysis.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "tests/context/retrieval/lexical/_helpers.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 5,
+            "relation_identity": "1fc82b1ad6cf95d9ff01c9387b04fa4671ecdb41502621dfbf242235a59f0449",
+            "seed_address": "tests/context/retrieval/lexical/test_analysis.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 6,
+            "relation_identity": "71bb121766a09bfbfc9ee9c37348404d760004f79557f00edfc4b1853ee0c3bf",
+            "seed_address": "experiments/retrieval_identifier.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 7,
+            "relation_identity": "4c0eef993f6f7b73d9286520123b5f62543b791dae947ee0e48ef5a94f1bcc23",
+            "seed_address": "experiments/retrieval_identifier.py",
+            "seed_rank": 3
+          }
+        ],
+        "practical": {
+          "abstention_reason": "local-profile",
+          "addresses": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/retrieval/lexical/test_analysis.py",
+            "experiments/retrieval_identifier.py",
+            "src/devtools/context/retrieval/lexical/analysis.py",
+            "src/devtools/context/retrieval/lexical/bm25.py"
+          ],
+          "admitted_target": null,
+          "direction": null,
+          "disposition": "abstained",
+          "profile": "local-definition-or-governance",
+          "retained_targets": []
+        },
+        "profile": "local-definition-or-governance",
+        "profile_eligible_surfaces": [],
+        "query_text": "baseline lexical analysis",
+        "retained_targets": [],
+        "route": "heterogeneous-k5",
+        "top_fifteen_adjudication_addresses": [
+          "experiments/address_lexical.py",
+          "src/devtools/context/retrieval/lexical/filename.py",
+          "tests/experiments/purpose_relative_admission/test_validation_design.py",
+          "tests/context/retrieval/lexical/test_evaluation.py",
+          "experiments/import_relationship_cases.py",
+          "tests/context/retrieval/lexical/test_bm25.py",
+          "tests/experiments/test_retrieval_identifier.py",
+          "docs/research/repository-context-system-architecture.md",
+          "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "src/devtools/context/retrieval/lexical/statistics.py"
+        ]
+      },
+      {
+        "blind_reference_input": [
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 1,
+            "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+            "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 2,
+            "relation_identity": "6843054734ea31954f78ee86d45711cb8e552d46e541633516052d4b51777a81",
+            "seed_address": "tests/context/retrieval/lexical/test_analysis.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 3,
+            "relation_identity": "7df895be4f3b0ddf323dcac94deb19e5761b04cee823a3051f15ea36fc6e0c63",
+            "seed_address": "tests/context/retrieval/lexical/test_analysis.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "tests/context/retrieval/lexical/_helpers.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 4,
+            "relation_identity": "56ae723885b9bb06880d6943d71c1a5d485a2efac05cea32f3206d4071bb7483",
+            "seed_address": "tests/context/retrieval/lexical/test_analysis.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "tests/context/retrieval/lexical/_helpers.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 5,
+            "relation_identity": "1fc82b1ad6cf95d9ff01c9387b04fa4671ecdb41502621dfbf242235a59f0449",
+            "seed_address": "tests/context/retrieval/lexical/test_analysis.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 6,
+            "relation_identity": "71bb121766a09bfbfc9ee9c37348404d760004f79557f00edfc4b1853ee0c3bf",
+            "seed_address": "experiments/retrieval_identifier.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 7,
+            "relation_identity": "4c0eef993f6f7b73d9286520123b5f62543b791dae947ee0e48ef5a94f1bcc23",
+            "seed_address": "experiments/retrieval_identifier.py",
+            "seed_rank": 3
+          }
+        ],
+        "blind_reference_top_five": [
+          "experiments/purpose_relative_admission/validation_design.py",
+          "src/devtools/context/repository/resource.py",
+          "src/devtools/context/__init__.py",
+          "tests/context/retrieval/lexical/_helpers.py",
+          "tests/context/retrieval/lexical/test_analysis.py"
+        ],
+        "case_name": "content-bm25-analysis-consumer",
+        "checkpoint": {
+          "acquisition_bounds": [
+            [
+              "maximum_discovered_resources",
+              10000
+            ],
+            [
+              "maximum_traversal_entries",
+              20000
+            ],
+            [
+              "maximum_resource_bytes",
+              1048576
+            ]
+          ],
+          "corpus_id": "04c19ececa9a0569f5de83dd49a6c215ff57b03567d1611a8d9b08546b4fa8a6",
+          "document_count": 454,
+          "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+          "snapshot_id": "471c921f29805b730c45ebce8791bc0a3078a6cc8efd96643226859aa0b3e506"
+        },
+        "design_fingerprint": "c36d39f18258e918f8a1023a22d821619fc08cb8840d4ed80aae31832feabef7",
+        "incoming_surfaces": [],
+        "information_need": "Identify the downstream content-BM25 implementation and focused behavioral test that consume baseline lexical analysis.",
+        "lexical_top_fifteen": [
+          {
+            "address": "experiments/purpose_relative_admission/validation_design.py",
+            "rank": 1,
+            "score": 12.90116945194837
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_analysis.py",
+            "rank": 2,
+            "score": 12.807708210930187
+          },
+          {
+            "address": "experiments/retrieval_identifier.py",
+            "rank": 3,
+            "score": 10.946479054496317
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "rank": 4,
+            "score": 10.908851203901396
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "rank": 5,
+            "score": 10.84349089621138
+          },
+          {
+            "address": "experiments/address_lexical.py",
+            "rank": 6,
+            "score": 10.52962446887561
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/filename.py",
+            "rank": 7,
+            "score": 10.479098229796069
+          },
+          {
+            "address": "tests/experiments/purpose_relative_admission/test_validation_design.py",
+            "rank": 8,
+            "score": 10.23811831252476
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_evaluation.py",
+            "rank": 9,
+            "score": 10.008755116806167
+          },
+          {
+            "address": "experiments/import_relationship_cases.py",
+            "rank": 10,
+            "score": 9.943767535606355
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_bm25.py",
+            "rank": 11,
+            "score": 9.88572302756603
+          },
+          {
+            "address": "tests/experiments/test_retrieval_identifier.py",
+            "rank": 12,
+            "score": 9.197716239531573
+          },
+          {
+            "address": "docs/research/repository-context-system-architecture.md",
+            "rank": 13,
+            "score": 8.329104682404552
+          },
+          {
+            "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+            "rank": 14,
+            "score": 8.25166513160676
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/statistics.py",
+            "rank": 15,
+            "score": 8.236715502838468
+          }
+        ],
+        "lexical_top_five": [
+          {
+            "address": "experiments/purpose_relative_admission/validation_design.py",
+            "rank": 1,
+            "score": 12.90116945194837
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_analysis.py",
+            "rank": 2,
+            "score": 12.807708210930187
+          },
+          {
+            "address": "experiments/retrieval_identifier.py",
+            "rank": 3,
+            "score": 10.946479054496317
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "rank": 4,
+            "score": 10.908851203901396
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/bm25.py",
+            "rank": 5,
+            "score": 10.84349089621138
+          }
+        ],
+        "oracle_top_five": null,
+        "outgoing_surfaces": [
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 1,
+            "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+            "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 2,
+            "relation_identity": "6843054734ea31954f78ee86d45711cb8e552d46e541633516052d4b51777a81",
+            "seed_address": "tests/context/retrieval/lexical/test_analysis.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 3,
+            "relation_identity": "7df895be4f3b0ddf323dcac94deb19e5761b04cee823a3051f15ea36fc6e0c63",
+            "seed_address": "tests/context/retrieval/lexical/test_analysis.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "tests/context/retrieval/lexical/_helpers.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 4,
+            "relation_identity": "56ae723885b9bb06880d6943d71c1a5d485a2efac05cea32f3206d4071bb7483",
+            "seed_address": "tests/context/retrieval/lexical/test_analysis.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "tests/context/retrieval/lexical/_helpers.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 5,
+            "relation_identity": "1fc82b1ad6cf95d9ff01c9387b04fa4671ecdb41502621dfbf242235a59f0449",
+            "seed_address": "tests/context/retrieval/lexical/test_analysis.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 6,
+            "relation_identity": "71bb121766a09bfbfc9ee9c37348404d760004f79557f00edfc4b1853ee0c3bf",
+            "seed_address": "experiments/retrieval_identifier.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/retrieval/lexical/analysis.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 7,
+            "relation_identity": "4c0eef993f6f7b73d9286520123b5f62543b791dae947ee0e48ef5a94f1bcc23",
+            "seed_address": "experiments/retrieval_identifier.py",
+            "seed_rank": 3
+          }
+        ],
+        "practical": {
+          "abstention_reason": "no-qualifying-target",
+          "addresses": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/retrieval/lexical/test_analysis.py",
+            "experiments/retrieval_identifier.py",
+            "src/devtools/context/retrieval/lexical/analysis.py",
+            "src/devtools/context/retrieval/lexical/bm25.py"
+          ],
+          "admitted_target": null,
+          "direction": "incoming",
+          "disposition": "abstained",
+          "profile": "incoming-consumer-or-test",
+          "retained_targets": []
+        },
+        "profile": "incoming-consumer-or-test",
+        "profile_eligible_surfaces": [],
+        "query_text": "baseline lexical analysis",
+        "retained_targets": [],
+        "route": "heterogeneous-k5",
+        "top_fifteen_adjudication_addresses": [
+          "experiments/address_lexical.py",
+          "src/devtools/context/retrieval/lexical/filename.py",
+          "tests/experiments/purpose_relative_admission/test_validation_design.py",
+          "tests/context/retrieval/lexical/test_evaluation.py",
+          "experiments/import_relationship_cases.py",
+          "tests/context/retrieval/lexical/test_bm25.py",
+          "tests/experiments/test_retrieval_identifier.py",
+          "docs/research/repository-context-system-architecture.md",
+          "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "src/devtools/context/retrieval/lexical/statistics.py"
+        ]
+      },
+      {
+        "blind_reference_input": [
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 1,
+            "relation_identity": "54ceab9305fd7e72ad330fa8e76f497926e88948fe5cdd490d108fa1a193a56d",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 2,
+            "relation_identity": "f01bc30175389b348416aa0295bb299fbb78ff9b235dc25800c275635164efa1",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 3,
+            "relation_identity": "6191cc4f2a1f7e061608725b70d562de5c5d5b7f78f612c1f3b53d73d0714084",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 4,
+            "relation_identity": "a531c728d9af835eec78b3a1dcd2a289643441f1bd9ded25bc67e848ebc65cf3",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 5,
+            "relation_identity": "39742cd3d01b04bfd4263305790ac0a68cd911b3a21b675810596c4d84aa69f9",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 6,
+            "relation_identity": "3229aa0bbbba95df678e52cf0261c804e846dfcac7c4e9a1d6efd90aae943738",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 7,
+            "relation_identity": "83a5d687b593208aed66eb3d9a67dd3fa288ee0cf690dd052ef4f95706e43c1e",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 8,
+            "relation_identity": "78ad21665d512c95088621faa3873a6be061ec2b07590e29c19851911c0c9a6c",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 9,
+            "relation_identity": "37a34a53865cf640b8e8e6e6ea76d0b6c300ba7a232b42005bfd2bd3d0e95fb5",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 10,
+            "relation_identity": "e4ce7ac88b08d9b3dfe2fdcb42200f33e64ef423205a67435a03fa3f89487f3b",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 11,
+            "relation_identity": "ba5a270d880dc1d5a01c058e92bf9165eb581a21e65861c5cdb141051d1b37f0",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 12,
+            "relation_identity": "dbcec6a2890b910e584e436eab19d605c8716ef8321c57504a636aead9f3881b",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 13,
+            "relation_identity": "d4fe85c4c8fc4e37d92146e7e626b1a199a0c3b849526d4fa8f4fb06c521651f",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 14,
+            "relation_identity": "c7108d52267eb5f044ed722dee9ef7c3e71bfea64cedd571ebfb97786fcb00da",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 15,
+            "relation_identity": "04f16ebeae2ebfc5e22429c49bbda10aa599aa90e420f890e7e713fbe4ac0942",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 16,
+            "relation_identity": "e617c84f1bb9112b32ea6d33d172db1f82bf33bf9f4a7fc4253d96c0048cd142",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/core/paths/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 17,
+            "relation_identity": "bb8fb7ef2221a66fc1a419333f83d12b7f69957c7ffc88739c5b294060137497",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/models/interaction/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 18,
+            "relation_identity": "c928e61378ec138875f88bac521057816029450a525794f6b83a2aaba3e32357",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/models/interaction/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 19,
+            "relation_identity": "a9643f3bd81120b0f178d3649d82f36074425bf7424d5c8c95149fce0ecd28c7",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 20,
+            "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+            "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 1,
+            "relation_identity": "2e07d1dfd96057a5d44c4889ab3ac7199b427291ca448f26a27cee76ebde724d",
+            "seed_address": "src/devtools/context/python/function/candidates.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 2,
+            "relation_identity": "b28898f736bea1d49cb1452312253a50eb1abfad13f7780f8f1b51f71cafa740",
+            "seed_address": "src/devtools/context/python/function/candidates.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 3,
+            "relation_identity": "bb6ab9909c4d1fc9b541f5b71ca0d17982c7ae6820ec9b3a883c264bd0357d70",
+            "seed_address": "src/devtools/context/python/function/candidates.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 4,
+            "relation_identity": "b00e056825a5cde7236b3a1a73f221ffcabc15aee33cae69a0705fddd9710529",
+            "seed_address": "src/devtools/context/python/function/candidates.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 5,
+            "relation_identity": "252986828876dc9e2e510fb071d7e3febf03fbbce17f8aaaa0a01454151340d9",
+            "seed_address": "src/devtools/context/python/function/candidates.py",
+            "seed_rank": 1
+          }
+        ],
+        "blind_reference_top_five": [
+          "src/devtools/context/python/function/candidates.py",
+          "src/devtools/context/__init__.py",
+          "src/devtools/core/paths/__init__.py",
+          "src/devtools/models/interaction/__init__.py",
+          "src/devtools/context/repository/resource.py"
+        ],
+        "case_name": "python-function-token-candidate-boundary",
+        "checkpoint": {
+          "acquisition_bounds": [
+            [
+              "maximum_discovered_resources",
+              10000
+            ],
+            [
+              "maximum_traversal_entries",
+              20000
+            ],
+            [
+              "maximum_resource_bytes",
+              1048576
+            ]
+          ],
+          "corpus_id": "04c19ececa9a0569f5de83dd49a6c215ff57b03567d1611a8d9b08546b4fa8a6",
+          "document_count": 454,
+          "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+          "snapshot_id": "471c921f29805b730c45ebce8791bc0a3078a6cc8efd96643226859aa0b3e506"
+        },
+        "design_fingerprint": "c36d39f18258e918f8a1023a22d821619fc08cb8840d4ed80aae31832feabef7",
+        "incoming_surfaces": [
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 1,
+            "relation_identity": "2e07d1dfd96057a5d44c4889ab3ac7199b427291ca448f26a27cee76ebde724d",
+            "seed_address": "src/devtools/context/python/function/candidates.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 2,
+            "relation_identity": "b28898f736bea1d49cb1452312253a50eb1abfad13f7780f8f1b51f71cafa740",
+            "seed_address": "src/devtools/context/python/function/candidates.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 3,
+            "relation_identity": "bb6ab9909c4d1fc9b541f5b71ca0d17982c7ae6820ec9b3a883c264bd0357d70",
+            "seed_address": "src/devtools/context/python/function/candidates.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 4,
+            "relation_identity": "b00e056825a5cde7236b3a1a73f221ffcabc15aee33cae69a0705fddd9710529",
+            "seed_address": "src/devtools/context/python/function/candidates.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 5,
+            "relation_identity": "252986828876dc9e2e510fb071d7e3febf03fbbce17f8aaaa0a01454151340d9",
+            "seed_address": "src/devtools/context/python/function/candidates.py",
+            "seed_rank": 1
+          }
+        ],
+        "information_need": "Identify the implementation and focused test that keep tokenizer-based Python function name candidates distinct from declaration analysis.",
+        "lexical_top_fifteen": [
+          {
+            "address": "src/devtools/context/python/function/candidates.py",
+            "rank": 1,
+            "score": 21.50411714289499
+          },
+          {
+            "address": "tests/context/python/function/test_candidates.py",
+            "rank": 2,
+            "score": 19.134300479992316
+          },
+          {
+            "address": "experiments/purpose_relative_admission/validation_design.py",
+            "rank": 3,
+            "score": 16.6617505400358
+          },
+          {
+            "address": "tests/context/python/function/test_resource_selection.py",
+            "rank": 4,
+            "score": 11.485340679123112
+          },
+          {
+            "address": "src/devtools/context/python/function/disclosure.py",
+            "rank": 5,
+            "score": 11.247962034571579
+          },
+          {
+            "address": "docs/architecture.md",
+            "rank": 6,
+            "score": 10.467214157514109
+          },
+          {
+            "address": "tests/context/python/function/test_rendering.py",
+            "rank": 7,
+            "score": 10.285773709634814
+          },
+          {
+            "address": "docs/research/purpose-relative-repository-context.md",
+            "rank": 8,
+            "score": 10.280322679533613
+          },
+          {
+            "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+            "rank": 9,
+            "score": 9.972572649724809
+          },
+          {
+            "address": "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+            "rank": 10,
+            "score": 9.896822177438061
+          },
+          {
+            "address": "docs/research/retrieval-architecture-synthesis.md",
+            "rank": 11,
+            "score": 9.796544287458255
+          },
+          {
+            "address": "src/devtools/context/python/function/rendering.py",
+            "rank": 12,
+            "score": 9.759747931313168
+          },
+          {
+            "address": "tests/context/python/function/test_disclosure.py",
+            "rank": 13,
+            "score": 9.675005681238513
+          },
+          {
+            "address": "tests/context/python/test_source_candidacy.py",
+            "rank": 14,
+            "score": 9.425360509478558
+          },
+          {
+            "address": "src/devtools/context/python/function/declarations.py",
+            "rank": 15,
+            "score": 9.38075254961928
+          }
+        ],
+        "lexical_top_five": [
+          {
+            "address": "src/devtools/context/python/function/candidates.py",
+            "rank": 1,
+            "score": 21.50411714289499
+          },
+          {
+            "address": "tests/context/python/function/test_candidates.py",
+            "rank": 2,
+            "score": 19.134300479992316
+          },
+          {
+            "address": "experiments/purpose_relative_admission/validation_design.py",
+            "rank": 3,
+            "score": 16.6617505400358
+          },
+          {
+            "address": "tests/context/python/function/test_resource_selection.py",
+            "rank": 4,
+            "score": 11.485340679123112
+          },
+          {
+            "address": "src/devtools/context/python/function/disclosure.py",
+            "rank": 5,
+            "score": 11.247962034571579
+          }
+        ],
+        "oracle_top_five": null,
+        "outgoing_surfaces": [
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 1,
+            "relation_identity": "54ceab9305fd7e72ad330fa8e76f497926e88948fe5cdd490d108fa1a193a56d",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 2,
+            "relation_identity": "f01bc30175389b348416aa0295bb299fbb78ff9b235dc25800c275635164efa1",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 3,
+            "relation_identity": "6191cc4f2a1f7e061608725b70d562de5c5d5b7f78f612c1f3b53d73d0714084",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 4,
+            "relation_identity": "a531c728d9af835eec78b3a1dcd2a289643441f1bd9ded25bc67e848ebc65cf3",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 5,
+            "relation_identity": "39742cd3d01b04bfd4263305790ac0a68cd911b3a21b675810596c4d84aa69f9",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 6,
+            "relation_identity": "3229aa0bbbba95df678e52cf0261c804e846dfcac7c4e9a1d6efd90aae943738",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 7,
+            "relation_identity": "83a5d687b593208aed66eb3d9a67dd3fa288ee0cf690dd052ef4f95706e43c1e",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 8,
+            "relation_identity": "78ad21665d512c95088621faa3873a6be061ec2b07590e29c19851911c0c9a6c",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 9,
+            "relation_identity": "37a34a53865cf640b8e8e6e6ea76d0b6c300ba7a232b42005bfd2bd3d0e95fb5",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 10,
+            "relation_identity": "e4ce7ac88b08d9b3dfe2fdcb42200f33e64ef423205a67435a03fa3f89487f3b",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 11,
+            "relation_identity": "ba5a270d880dc1d5a01c058e92bf9165eb581a21e65861c5cdb141051d1b37f0",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 12,
+            "relation_identity": "dbcec6a2890b910e584e436eab19d605c8716ef8321c57504a636aead9f3881b",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 13,
+            "relation_identity": "d4fe85c4c8fc4e37d92146e7e626b1a199a0c3b849526d4fa8f4fb06c521651f",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 14,
+            "relation_identity": "c7108d52267eb5f044ed722dee9ef7c3e71bfea64cedd571ebfb97786fcb00da",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 15,
+            "relation_identity": "04f16ebeae2ebfc5e22429c49bbda10aa599aa90e420f890e7e713fbe4ac0942",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 16,
+            "relation_identity": "e617c84f1bb9112b32ea6d33d172db1f82bf33bf9f4a7fc4253d96c0048cd142",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/core/paths/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 17,
+            "relation_identity": "bb8fb7ef2221a66fc1a419333f83d12b7f69957c7ffc88739c5b294060137497",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/models/interaction/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 18,
+            "relation_identity": "c928e61378ec138875f88bac521057816029450a525794f6b83a2aaba3e32357",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/models/interaction/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 19,
+            "relation_identity": "a9643f3bd81120b0f178d3649d82f36074425bf7424d5c8c95149fce0ecd28c7",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 20,
+            "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+            "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+            "seed_rank": 3
+          }
+        ],
+        "practical": {
+          "abstention_reason": null,
+          "addresses": [
+            "src/devtools/context/python/function/candidates.py",
+            "tests/context/python/function/test_candidates.py",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/python/function/test_resource_selection.py",
+            "src/devtools/context/__init__.py"
+          ],
+          "admitted_target": {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounters": [
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 1,
+                "relation_identity": "54ceab9305fd7e72ad330fa8e76f497926e88948fe5cdd490d108fa1a193a56d",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 2,
+                "relation_identity": "f01bc30175389b348416aa0295bb299fbb78ff9b235dc25800c275635164efa1",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 3,
+                "relation_identity": "6191cc4f2a1f7e061608725b70d562de5c5d5b7f78f612c1f3b53d73d0714084",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 4,
+                "relation_identity": "a531c728d9af835eec78b3a1dcd2a289643441f1bd9ded25bc67e848ebc65cf3",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 5,
+                "relation_identity": "39742cd3d01b04bfd4263305790ac0a68cd911b3a21b675810596c4d84aa69f9",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 6,
+                "relation_identity": "3229aa0bbbba95df678e52cf0261c804e846dfcac7c4e9a1d6efd90aae943738",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 7,
+                "relation_identity": "83a5d687b593208aed66eb3d9a67dd3fa288ee0cf690dd052ef4f95706e43c1e",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 8,
+                "relation_identity": "78ad21665d512c95088621faa3873a6be061ec2b07590e29c19851911c0c9a6c",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 9,
+                "relation_identity": "37a34a53865cf640b8e8e6e6ea76d0b6c300ba7a232b42005bfd2bd3d0e95fb5",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 10,
+                "relation_identity": "e4ce7ac88b08d9b3dfe2fdcb42200f33e64ef423205a67435a03fa3f89487f3b",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 11,
+                "relation_identity": "ba5a270d880dc1d5a01c058e92bf9165eb581a21e65861c5cdb141051d1b37f0",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 12,
+                "relation_identity": "dbcec6a2890b910e584e436eab19d605c8716ef8321c57504a636aead9f3881b",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 13,
+                "relation_identity": "d4fe85c4c8fc4e37d92146e7e626b1a199a0c3b849526d4fa8f4fb06c521651f",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 14,
+                "relation_identity": "c7108d52267eb5f044ed722dee9ef7c3e71bfea64cedd571ebfb97786fcb00da",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 15,
+                "relation_identity": "04f16ebeae2ebfc5e22429c49bbda10aa599aa90e420f890e7e713fbe4ac0942",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 16,
+                "relation_identity": "e617c84f1bb9112b32ea6d33d172db1f82bf33bf9f4a7fc4253d96c0048cd142",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              }
+            ],
+            "unique_supports": [
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 1,
+                "relation_identity": "54ceab9305fd7e72ad330fa8e76f497926e88948fe5cdd490d108fa1a193a56d",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 2,
+                "relation_identity": "f01bc30175389b348416aa0295bb299fbb78ff9b235dc25800c275635164efa1",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 3,
+                "relation_identity": "6191cc4f2a1f7e061608725b70d562de5c5d5b7f78f612c1f3b53d73d0714084",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 4,
+                "relation_identity": "a531c728d9af835eec78b3a1dcd2a289643441f1bd9ded25bc67e848ebc65cf3",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 5,
+                "relation_identity": "39742cd3d01b04bfd4263305790ac0a68cd911b3a21b675810596c4d84aa69f9",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 6,
+                "relation_identity": "3229aa0bbbba95df678e52cf0261c804e846dfcac7c4e9a1d6efd90aae943738",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 7,
+                "relation_identity": "83a5d687b593208aed66eb3d9a67dd3fa288ee0cf690dd052ef4f95706e43c1e",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 8,
+                "relation_identity": "78ad21665d512c95088621faa3873a6be061ec2b07590e29c19851911c0c9a6c",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 9,
+                "relation_identity": "37a34a53865cf640b8e8e6e6ea76d0b6c300ba7a232b42005bfd2bd3d0e95fb5",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 10,
+                "relation_identity": "e4ce7ac88b08d9b3dfe2fdcb42200f33e64ef423205a67435a03fa3f89487f3b",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 11,
+                "relation_identity": "ba5a270d880dc1d5a01c058e92bf9165eb581a21e65861c5cdb141051d1b37f0",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 12,
+                "relation_identity": "dbcec6a2890b910e584e436eab19d605c8716ef8321c57504a636aead9f3881b",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 13,
+                "relation_identity": "d4fe85c4c8fc4e37d92146e7e626b1a199a0c3b849526d4fa8f4fb06c521651f",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 14,
+                "relation_identity": "c7108d52267eb5f044ed722dee9ef7c3e71bfea64cedd571ebfb97786fcb00da",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 15,
+                "relation_identity": "04f16ebeae2ebfc5e22429c49bbda10aa599aa90e420f890e7e713fbe4ac0942",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 16,
+                "relation_identity": "e617c84f1bb9112b32ea6d33d172db1f82bf33bf9f4a7fc4253d96c0048cd142",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              }
+            ]
+          },
+          "direction": "outgoing",
+          "disposition": "admitted",
+          "profile": "outgoing-dependency",
+          "retained_targets": [
+            {
+              "address": "src/devtools/context/__init__.py",
+              "direction": "outgoing",
+              "encounters": [
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 1,
+                  "relation_identity": "54ceab9305fd7e72ad330fa8e76f497926e88948fe5cdd490d108fa1a193a56d",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 2,
+                  "relation_identity": "f01bc30175389b348416aa0295bb299fbb78ff9b235dc25800c275635164efa1",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 3,
+                  "relation_identity": "6191cc4f2a1f7e061608725b70d562de5c5d5b7f78f612c1f3b53d73d0714084",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 4,
+                  "relation_identity": "a531c728d9af835eec78b3a1dcd2a289643441f1bd9ded25bc67e848ebc65cf3",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 5,
+                  "relation_identity": "39742cd3d01b04bfd4263305790ac0a68cd911b3a21b675810596c4d84aa69f9",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 6,
+                  "relation_identity": "3229aa0bbbba95df678e52cf0261c804e846dfcac7c4e9a1d6efd90aae943738",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 7,
+                  "relation_identity": "83a5d687b593208aed66eb3d9a67dd3fa288ee0cf690dd052ef4f95706e43c1e",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 8,
+                  "relation_identity": "78ad21665d512c95088621faa3873a6be061ec2b07590e29c19851911c0c9a6c",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 9,
+                  "relation_identity": "37a34a53865cf640b8e8e6e6ea76d0b6c300ba7a232b42005bfd2bd3d0e95fb5",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 10,
+                  "relation_identity": "e4ce7ac88b08d9b3dfe2fdcb42200f33e64ef423205a67435a03fa3f89487f3b",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 11,
+                  "relation_identity": "ba5a270d880dc1d5a01c058e92bf9165eb581a21e65861c5cdb141051d1b37f0",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 12,
+                  "relation_identity": "dbcec6a2890b910e584e436eab19d605c8716ef8321c57504a636aead9f3881b",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 13,
+                  "relation_identity": "d4fe85c4c8fc4e37d92146e7e626b1a199a0c3b849526d4fa8f4fb06c521651f",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 14,
+                  "relation_identity": "c7108d52267eb5f044ed722dee9ef7c3e71bfea64cedd571ebfb97786fcb00da",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 15,
+                  "relation_identity": "04f16ebeae2ebfc5e22429c49bbda10aa599aa90e420f890e7e713fbe4ac0942",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 16,
+                  "relation_identity": "e617c84f1bb9112b32ea6d33d172db1f82bf33bf9f4a7fc4253d96c0048cd142",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                }
+              ],
+              "unique_supports": [
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 1,
+                  "relation_identity": "54ceab9305fd7e72ad330fa8e76f497926e88948fe5cdd490d108fa1a193a56d",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 2,
+                  "relation_identity": "f01bc30175389b348416aa0295bb299fbb78ff9b235dc25800c275635164efa1",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 3,
+                  "relation_identity": "6191cc4f2a1f7e061608725b70d562de5c5d5b7f78f612c1f3b53d73d0714084",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 4,
+                  "relation_identity": "a531c728d9af835eec78b3a1dcd2a289643441f1bd9ded25bc67e848ebc65cf3",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 5,
+                  "relation_identity": "39742cd3d01b04bfd4263305790ac0a68cd911b3a21b675810596c4d84aa69f9",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 6,
+                  "relation_identity": "3229aa0bbbba95df678e52cf0261c804e846dfcac7c4e9a1d6efd90aae943738",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 7,
+                  "relation_identity": "83a5d687b593208aed66eb3d9a67dd3fa288ee0cf690dd052ef4f95706e43c1e",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 8,
+                  "relation_identity": "78ad21665d512c95088621faa3873a6be061ec2b07590e29c19851911c0c9a6c",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 9,
+                  "relation_identity": "37a34a53865cf640b8e8e6e6ea76d0b6c300ba7a232b42005bfd2bd3d0e95fb5",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 10,
+                  "relation_identity": "e4ce7ac88b08d9b3dfe2fdcb42200f33e64ef423205a67435a03fa3f89487f3b",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 11,
+                  "relation_identity": "ba5a270d880dc1d5a01c058e92bf9165eb581a21e65861c5cdb141051d1b37f0",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 12,
+                  "relation_identity": "dbcec6a2890b910e584e436eab19d605c8716ef8321c57504a636aead9f3881b",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 13,
+                  "relation_identity": "d4fe85c4c8fc4e37d92146e7e626b1a199a0c3b849526d4fa8f4fb06c521651f",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 14,
+                  "relation_identity": "c7108d52267eb5f044ed722dee9ef7c3e71bfea64cedd571ebfb97786fcb00da",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 15,
+                  "relation_identity": "04f16ebeae2ebfc5e22429c49bbda10aa599aa90e420f890e7e713fbe4ac0942",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/context/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 16,
+                  "relation_identity": "e617c84f1bb9112b32ea6d33d172db1f82bf33bf9f4a7fc4253d96c0048cd142",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                }
+              ]
+            },
+            {
+              "address": "src/devtools/core/paths/__init__.py",
+              "direction": "outgoing",
+              "encounters": [
+                {
+                  "address": "src/devtools/core/paths/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 17,
+                  "relation_identity": "bb8fb7ef2221a66fc1a419333f83d12b7f69957c7ffc88739c5b294060137497",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                }
+              ],
+              "unique_supports": [
+                {
+                  "address": "src/devtools/core/paths/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 17,
+                  "relation_identity": "bb8fb7ef2221a66fc1a419333f83d12b7f69957c7ffc88739c5b294060137497",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                }
+              ]
+            },
+            {
+              "address": "src/devtools/models/interaction/__init__.py",
+              "direction": "outgoing",
+              "encounters": [
+                {
+                  "address": "src/devtools/models/interaction/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 18,
+                  "relation_identity": "c928e61378ec138875f88bac521057816029450a525794f6b83a2aaba3e32357",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/models/interaction/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 19,
+                  "relation_identity": "a9643f3bd81120b0f178d3649d82f36074425bf7424d5c8c95149fce0ecd28c7",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                }
+              ],
+              "unique_supports": [
+                {
+                  "address": "src/devtools/models/interaction/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 18,
+                  "relation_identity": "c928e61378ec138875f88bac521057816029450a525794f6b83a2aaba3e32357",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                },
+                {
+                  "address": "src/devtools/models/interaction/__init__.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 19,
+                  "relation_identity": "a9643f3bd81120b0f178d3649d82f36074425bf7424d5c8c95149fce0ecd28c7",
+                  "seed_address": "tests/context/python/function/test_candidates.py",
+                  "seed_rank": 2
+                }
+              ]
+            },
+            {
+              "address": "src/devtools/context/repository/resource.py",
+              "direction": "outgoing",
+              "encounters": [
+                {
+                  "address": "src/devtools/context/repository/resource.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 20,
+                  "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+                  "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+                  "seed_rank": 3
+                }
+              ],
+              "unique_supports": [
+                {
+                  "address": "src/devtools/context/repository/resource.py",
+                  "direction": "outgoing",
+                  "encounter_ordinal": 20,
+                  "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+                  "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+                  "seed_rank": 3
+                }
+              ]
+            }
+          ]
+        },
+        "profile": "outgoing-dependency",
+        "profile_eligible_surfaces": [
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 1,
+            "relation_identity": "54ceab9305fd7e72ad330fa8e76f497926e88948fe5cdd490d108fa1a193a56d",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 2,
+            "relation_identity": "f01bc30175389b348416aa0295bb299fbb78ff9b235dc25800c275635164efa1",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 3,
+            "relation_identity": "6191cc4f2a1f7e061608725b70d562de5c5d5b7f78f612c1f3b53d73d0714084",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 4,
+            "relation_identity": "a531c728d9af835eec78b3a1dcd2a289643441f1bd9ded25bc67e848ebc65cf3",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 5,
+            "relation_identity": "39742cd3d01b04bfd4263305790ac0a68cd911b3a21b675810596c4d84aa69f9",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 6,
+            "relation_identity": "3229aa0bbbba95df678e52cf0261c804e846dfcac7c4e9a1d6efd90aae943738",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 7,
+            "relation_identity": "83a5d687b593208aed66eb3d9a67dd3fa288ee0cf690dd052ef4f95706e43c1e",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 8,
+            "relation_identity": "78ad21665d512c95088621faa3873a6be061ec2b07590e29c19851911c0c9a6c",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 9,
+            "relation_identity": "37a34a53865cf640b8e8e6e6ea76d0b6c300ba7a232b42005bfd2bd3d0e95fb5",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 10,
+            "relation_identity": "e4ce7ac88b08d9b3dfe2fdcb42200f33e64ef423205a67435a03fa3f89487f3b",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 11,
+            "relation_identity": "ba5a270d880dc1d5a01c058e92bf9165eb581a21e65861c5cdb141051d1b37f0",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 12,
+            "relation_identity": "dbcec6a2890b910e584e436eab19d605c8716ef8321c57504a636aead9f3881b",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 13,
+            "relation_identity": "d4fe85c4c8fc4e37d92146e7e626b1a199a0c3b849526d4fa8f4fb06c521651f",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 14,
+            "relation_identity": "c7108d52267eb5f044ed722dee9ef7c3e71bfea64cedd571ebfb97786fcb00da",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 15,
+            "relation_identity": "04f16ebeae2ebfc5e22429c49bbda10aa599aa90e420f890e7e713fbe4ac0942",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 16,
+            "relation_identity": "e617c84f1bb9112b32ea6d33d172db1f82bf33bf9f4a7fc4253d96c0048cd142",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/core/paths/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 17,
+            "relation_identity": "bb8fb7ef2221a66fc1a419333f83d12b7f69957c7ffc88739c5b294060137497",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/models/interaction/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 18,
+            "relation_identity": "c928e61378ec138875f88bac521057816029450a525794f6b83a2aaba3e32357",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/models/interaction/__init__.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 19,
+            "relation_identity": "a9643f3bd81120b0f178d3649d82f36074425bf7424d5c8c95149fce0ecd28c7",
+            "seed_address": "tests/context/python/function/test_candidates.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 20,
+            "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+            "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+            "seed_rank": 3
+          }
+        ],
+        "query_text": "Python function candidate selection tokenizer",
+        "retained_targets": [
+          {
+            "address": "src/devtools/context/__init__.py",
+            "direction": "outgoing",
+            "encounters": [
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 1,
+                "relation_identity": "54ceab9305fd7e72ad330fa8e76f497926e88948fe5cdd490d108fa1a193a56d",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 2,
+                "relation_identity": "f01bc30175389b348416aa0295bb299fbb78ff9b235dc25800c275635164efa1",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 3,
+                "relation_identity": "6191cc4f2a1f7e061608725b70d562de5c5d5b7f78f612c1f3b53d73d0714084",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 4,
+                "relation_identity": "a531c728d9af835eec78b3a1dcd2a289643441f1bd9ded25bc67e848ebc65cf3",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 5,
+                "relation_identity": "39742cd3d01b04bfd4263305790ac0a68cd911b3a21b675810596c4d84aa69f9",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 6,
+                "relation_identity": "3229aa0bbbba95df678e52cf0261c804e846dfcac7c4e9a1d6efd90aae943738",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 7,
+                "relation_identity": "83a5d687b593208aed66eb3d9a67dd3fa288ee0cf690dd052ef4f95706e43c1e",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 8,
+                "relation_identity": "78ad21665d512c95088621faa3873a6be061ec2b07590e29c19851911c0c9a6c",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 9,
+                "relation_identity": "37a34a53865cf640b8e8e6e6ea76d0b6c300ba7a232b42005bfd2bd3d0e95fb5",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 10,
+                "relation_identity": "e4ce7ac88b08d9b3dfe2fdcb42200f33e64ef423205a67435a03fa3f89487f3b",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 11,
+                "relation_identity": "ba5a270d880dc1d5a01c058e92bf9165eb581a21e65861c5cdb141051d1b37f0",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 12,
+                "relation_identity": "dbcec6a2890b910e584e436eab19d605c8716ef8321c57504a636aead9f3881b",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 13,
+                "relation_identity": "d4fe85c4c8fc4e37d92146e7e626b1a199a0c3b849526d4fa8f4fb06c521651f",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 14,
+                "relation_identity": "c7108d52267eb5f044ed722dee9ef7c3e71bfea64cedd571ebfb97786fcb00da",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 15,
+                "relation_identity": "04f16ebeae2ebfc5e22429c49bbda10aa599aa90e420f890e7e713fbe4ac0942",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 16,
+                "relation_identity": "e617c84f1bb9112b32ea6d33d172db1f82bf33bf9f4a7fc4253d96c0048cd142",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              }
+            ],
+            "unique_supports": [
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 1,
+                "relation_identity": "54ceab9305fd7e72ad330fa8e76f497926e88948fe5cdd490d108fa1a193a56d",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 2,
+                "relation_identity": "f01bc30175389b348416aa0295bb299fbb78ff9b235dc25800c275635164efa1",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 3,
+                "relation_identity": "6191cc4f2a1f7e061608725b70d562de5c5d5b7f78f612c1f3b53d73d0714084",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 4,
+                "relation_identity": "a531c728d9af835eec78b3a1dcd2a289643441f1bd9ded25bc67e848ebc65cf3",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 5,
+                "relation_identity": "39742cd3d01b04bfd4263305790ac0a68cd911b3a21b675810596c4d84aa69f9",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 6,
+                "relation_identity": "3229aa0bbbba95df678e52cf0261c804e846dfcac7c4e9a1d6efd90aae943738",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 7,
+                "relation_identity": "83a5d687b593208aed66eb3d9a67dd3fa288ee0cf690dd052ef4f95706e43c1e",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 8,
+                "relation_identity": "78ad21665d512c95088621faa3873a6be061ec2b07590e29c19851911c0c9a6c",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 9,
+                "relation_identity": "37a34a53865cf640b8e8e6e6ea76d0b6c300ba7a232b42005bfd2bd3d0e95fb5",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 10,
+                "relation_identity": "e4ce7ac88b08d9b3dfe2fdcb42200f33e64ef423205a67435a03fa3f89487f3b",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 11,
+                "relation_identity": "ba5a270d880dc1d5a01c058e92bf9165eb581a21e65861c5cdb141051d1b37f0",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 12,
+                "relation_identity": "dbcec6a2890b910e584e436eab19d605c8716ef8321c57504a636aead9f3881b",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 13,
+                "relation_identity": "d4fe85c4c8fc4e37d92146e7e626b1a199a0c3b849526d4fa8f4fb06c521651f",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 14,
+                "relation_identity": "c7108d52267eb5f044ed722dee9ef7c3e71bfea64cedd571ebfb97786fcb00da",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 15,
+                "relation_identity": "04f16ebeae2ebfc5e22429c49bbda10aa599aa90e420f890e7e713fbe4ac0942",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/context/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 16,
+                "relation_identity": "e617c84f1bb9112b32ea6d33d172db1f82bf33bf9f4a7fc4253d96c0048cd142",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              }
+            ]
+          },
+          {
+            "address": "src/devtools/core/paths/__init__.py",
+            "direction": "outgoing",
+            "encounters": [
+              {
+                "address": "src/devtools/core/paths/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 17,
+                "relation_identity": "bb8fb7ef2221a66fc1a419333f83d12b7f69957c7ffc88739c5b294060137497",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              }
+            ],
+            "unique_supports": [
+              {
+                "address": "src/devtools/core/paths/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 17,
+                "relation_identity": "bb8fb7ef2221a66fc1a419333f83d12b7f69957c7ffc88739c5b294060137497",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              }
+            ]
+          },
+          {
+            "address": "src/devtools/models/interaction/__init__.py",
+            "direction": "outgoing",
+            "encounters": [
+              {
+                "address": "src/devtools/models/interaction/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 18,
+                "relation_identity": "c928e61378ec138875f88bac521057816029450a525794f6b83a2aaba3e32357",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/models/interaction/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 19,
+                "relation_identity": "a9643f3bd81120b0f178d3649d82f36074425bf7424d5c8c95149fce0ecd28c7",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              }
+            ],
+            "unique_supports": [
+              {
+                "address": "src/devtools/models/interaction/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 18,
+                "relation_identity": "c928e61378ec138875f88bac521057816029450a525794f6b83a2aaba3e32357",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              },
+              {
+                "address": "src/devtools/models/interaction/__init__.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 19,
+                "relation_identity": "a9643f3bd81120b0f178d3649d82f36074425bf7424d5c8c95149fce0ecd28c7",
+                "seed_address": "tests/context/python/function/test_candidates.py",
+                "seed_rank": 2
+              }
+            ]
+          },
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounters": [
+              {
+                "address": "src/devtools/context/repository/resource.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 20,
+                "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+                "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+                "seed_rank": 3
+              }
+            ],
+            "unique_supports": [
+              {
+                "address": "src/devtools/context/repository/resource.py",
+                "direction": "outgoing",
+                "encounter_ordinal": 20,
+                "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+                "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+                "seed_rank": 3
+              }
+            ]
+          }
+        ],
+        "route": "heterogeneous-k5",
+        "top_fifteen_adjudication_addresses": [
+          "docs/architecture.md",
+          "tests/context/python/function/test_rendering.py",
+          "docs/research/purpose-relative-repository-context.md",
+          "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+          "docs/research/retrieval-architecture-synthesis.md",
+          "src/devtools/context/python/function/rendering.py",
+          "tests/context/python/function/test_disclosure.py",
+          "tests/context/python/test_source_candidacy.py",
+          "src/devtools/context/python/function/declarations.py"
+        ]
+      },
+      {
+        "blind_reference_input": [
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 1,
+            "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+            "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+            "seed_rank": 3
+          },
+          {
+            "address": "experiments/purpose_relative_admission/evaluation.py",
+            "direction": "incoming",
+            "encounter_ordinal": 1,
+            "relation_identity": "a7b11fddd9c68e86638f18eb2c9c293980a6949960aa0175cf6ec9c3307dfa45",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "experiments/purpose_relative_admission/evaluation.py",
+            "direction": "incoming",
+            "encounter_ordinal": 2,
+            "relation_identity": "848ce315a1b39c00da82d90cf0555751e09b107de4b9251e54d40dc4e10d8452",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 3,
+            "relation_identity": "82f203931924c7851ee2c7d5c1b1706cf0df488f11be403cd69c2db93d88c91c",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 4,
+            "relation_identity": "7a32c45b2d67951ea4da0ce57b34f894dcb5ba08dcc8dd8deb922a423431359f",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 5,
+            "relation_identity": "bcdde2dcdcb45bf671e3804442d2e9df38794d43d26159f1fb1ff33ee1f56b9c",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 6,
+            "relation_identity": "8b8cfe16136a2bf2dddf32bed8e2c1152b43ad9be9ff7a635e95661abc7dd8bc",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 7,
+            "relation_identity": "ec4fb2fcd983eacd6363cfa646d15dcf9e5a343b68af32a89c2cb4c4f1183691",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 8,
+            "relation_identity": "e0f79f87acd4e5b44b1da5b6f59fe89c3131b6c11972c47f39310dbb79d5fa3a",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 9,
+            "relation_identity": "cf2f2dd15168a8e78e8286827384e6971e434da1d2a8401b75c88faf5f6b6e18",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 10,
+            "relation_identity": "028331cccaece03346f68bf55a8769502b5555afa939b923de2f6e26bcdf4fbc",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 11,
+            "relation_identity": "519269e16806135c02a216b5040536541478e79455327fcfa4eba138b1ec2d62",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 12,
+            "relation_identity": "a7c62af469ebac3fd5bee61a0b0ff4d599a8d441f584d9adfc508ddd0d4ec076",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 13,
+            "relation_identity": "7c75b3729f995af29a1fe523e11c9819e314e7fcf8fc121bdf213f0e47f23eba",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 14,
+            "relation_identity": "ad6fa69fdd531a6a451aa9c38637815332ae428936be467caf83eec0bd81f6d6",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 15,
+            "relation_identity": "ca8d42cef133b1833042361c074821fe7b8a24fd5614429a37ba5afd6ad0ee71",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 16,
+            "relation_identity": "35f37a56f14a82996fb1783cd25ec0e5e508925ca036f2e70bc953f61ac51307",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 17,
+            "relation_identity": "36e8228217f69b339714b65ccd700c28e99f448b530746fd63046e22c04f9f36",
+            "seed_address": "src/devtools/context/python/function/rendering.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 18,
+            "relation_identity": "c1f5a7bdf02c8a20ed266f00d93c6a1412aeaa86595e3f748d17724ba797c4f9",
+            "seed_address": "src/devtools/context/python/function/rendering.py",
+            "seed_rank": 2
+          }
+        ],
+        "blind_reference_top_five": [
+          "src/devtools/context/python/function/declarations.py",
+          "src/devtools/context/repository/resource.py",
+          "experiments/purpose_relative_admission/evaluation.py",
+          "src/devtools/context/python/function/__init__.py",
+          "src/devtools/context/python/function/rendering.py"
+        ],
+        "case_name": "import-declaration-source-evidence-contract",
+        "checkpoint": {
+          "acquisition_bounds": [
+            [
+              "maximum_discovered_resources",
+              10000
+            ],
+            [
+              "maximum_traversal_entries",
+              20000
+            ],
+            [
+              "maximum_resource_bytes",
+              1048576
+            ]
+          ],
+          "corpus_id": "04c19ececa9a0569f5de83dd49a6c215ff57b03567d1611a8d9b08546b4fa8a6",
+          "document_count": 454,
+          "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+          "snapshot_id": "471c921f29805b730c45ebce8791bc0a3078a6cc8efd96643226859aa0b3e506"
+        },
+        "design_fingerprint": "c36d39f18258e918f8a1023a22d821619fc08cb8840d4ed80aae31832feabef7",
+        "incoming_surfaces": [
+          {
+            "address": "experiments/purpose_relative_admission/evaluation.py",
+            "direction": "incoming",
+            "encounter_ordinal": 1,
+            "relation_identity": "a7b11fddd9c68e86638f18eb2c9c293980a6949960aa0175cf6ec9c3307dfa45",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "experiments/purpose_relative_admission/evaluation.py",
+            "direction": "incoming",
+            "encounter_ordinal": 2,
+            "relation_identity": "848ce315a1b39c00da82d90cf0555751e09b107de4b9251e54d40dc4e10d8452",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 3,
+            "relation_identity": "82f203931924c7851ee2c7d5c1b1706cf0df488f11be403cd69c2db93d88c91c",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 4,
+            "relation_identity": "7a32c45b2d67951ea4da0ce57b34f894dcb5ba08dcc8dd8deb922a423431359f",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 5,
+            "relation_identity": "bcdde2dcdcb45bf671e3804442d2e9df38794d43d26159f1fb1ff33ee1f56b9c",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 6,
+            "relation_identity": "8b8cfe16136a2bf2dddf32bed8e2c1152b43ad9be9ff7a635e95661abc7dd8bc",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 7,
+            "relation_identity": "ec4fb2fcd983eacd6363cfa646d15dcf9e5a343b68af32a89c2cb4c4f1183691",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 8,
+            "relation_identity": "e0f79f87acd4e5b44b1da5b6f59fe89c3131b6c11972c47f39310dbb79d5fa3a",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 9,
+            "relation_identity": "cf2f2dd15168a8e78e8286827384e6971e434da1d2a8401b75c88faf5f6b6e18",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 10,
+            "relation_identity": "028331cccaece03346f68bf55a8769502b5555afa939b923de2f6e26bcdf4fbc",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 11,
+            "relation_identity": "519269e16806135c02a216b5040536541478e79455327fcfa4eba138b1ec2d62",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 12,
+            "relation_identity": "a7c62af469ebac3fd5bee61a0b0ff4d599a8d441f584d9adfc508ddd0d4ec076",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 13,
+            "relation_identity": "7c75b3729f995af29a1fe523e11c9819e314e7fcf8fc121bdf213f0e47f23eba",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 14,
+            "relation_identity": "ad6fa69fdd531a6a451aa9c38637815332ae428936be467caf83eec0bd81f6d6",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 15,
+            "relation_identity": "ca8d42cef133b1833042361c074821fe7b8a24fd5614429a37ba5afd6ad0ee71",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 16,
+            "relation_identity": "35f37a56f14a82996fb1783cd25ec0e5e508925ca036f2e70bc953f61ac51307",
+            "seed_address": "src/devtools/context/python/function/declarations.py",
+            "seed_rank": 1
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 17,
+            "relation_identity": "36e8228217f69b339714b65ccd700c28e99f448b530746fd63046e22c04f9f36",
+            "seed_address": "src/devtools/context/python/function/rendering.py",
+            "seed_rank": 2
+          },
+          {
+            "address": "src/devtools/context/python/function/__init__.py",
+            "direction": "incoming",
+            "encounter_ordinal": 18,
+            "relation_identity": "c1f5a7bdf02c8a20ed266f00d93c6a1412aeaa86595e3f748d17724ba797c4f9",
+            "seed_address": "src/devtools/context/python/function/rendering.py",
+            "seed_rank": 2
+          }
+        ],
+        "information_need": "Identify the implementation and focused test that preserve direct module-body import declaration source-occurrence and span evidence.",
+        "lexical_top_fifteen": [
+          {
+            "address": "src/devtools/context/python/function/declarations.py",
+            "rank": 1,
+            "score": 23.839628037376663
+          },
+          {
+            "address": "src/devtools/context/python/function/rendering.py",
+            "rank": 2,
+            "score": 20.379793603861415
+          },
+          {
+            "address": "experiments/purpose_relative_admission/validation_design.py",
+            "rank": 3,
+            "score": 19.601844673062665
+          },
+          {
+            "address": "tests/context/python/function/test_declarations.py",
+            "rank": 4,
+            "score": 18.935478177124622
+          },
+          {
+            "address": "src/devtools/context/python/imports/declarations.py",
+            "rank": 5,
+            "score": 17.8635020642414
+          },
+          {
+            "address": "tests/context/python/function/test_rendering.py",
+            "rank": 6,
+            "score": 17.459810205450893
+          },
+          {
+            "address": "docs/roadmap.md",
+            "rank": 7,
+            "score": 16.45851383861729
+          },
+          {
+            "address": "docs/documentation_map.md",
+            "rank": 8,
+            "score": 15.908912545243108
+          },
+          {
+            "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+            "rank": 9,
+            "score": 14.209774754307402
+          },
+          {
+            "address": "docs/research/retrieval-architecture-synthesis.md",
+            "rank": 10,
+            "score": 14.203960456971858
+          },
+          {
+            "address": "docs/architecture.md",
+            "rank": 11,
+            "score": 12.89165302402199
+          },
+          {
+            "address": "tests/context/python/imports/test_declarations.py",
+            "rank": 12,
+            "score": 12.355820192856411
+          },
+          {
+            "address": "experiments/import_relationship_cases.py",
+            "rank": 13,
+            "score": 12.114489736687148
+          },
+          {
+            "address": "src/devtools/context/python/imports/resolution.py",
+            "rank": 14,
+            "score": 12.029025011954769
+          },
+          {
+            "address": "src/devtools/context/python/imports/relations.py",
+            "rank": 15,
+            "score": 11.752338036138928
+          }
+        ],
+        "lexical_top_five": [
+          {
+            "address": "src/devtools/context/python/function/declarations.py",
+            "rank": 1,
+            "score": 23.839628037376663
+          },
+          {
+            "address": "src/devtools/context/python/function/rendering.py",
+            "rank": 2,
+            "score": 20.379793603861415
+          },
+          {
+            "address": "experiments/purpose_relative_admission/validation_design.py",
+            "rank": 3,
+            "score": 19.601844673062665
+          },
+          {
+            "address": "tests/context/python/function/test_declarations.py",
+            "rank": 4,
+            "score": 18.935478177124622
+          },
+          {
+            "address": "src/devtools/context/python/imports/declarations.py",
+            "rank": 5,
+            "score": 17.8635020642414
+          }
+        ],
+        "oracle_top_five": null,
+        "outgoing_surfaces": [
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "direction": "outgoing",
+            "encounter_ordinal": 1,
+            "relation_identity": "d943926885fec0f1d1b78cd5c556ff070b2a367e7f11bbd204a66dcbcf1fd4c0",
+            "seed_address": "experiments/purpose_relative_admission/validation_design.py",
+            "seed_rank": 3
+          }
+        ],
+        "practical": {
+          "abstention_reason": "local-profile",
+          "addresses": [
+            "src/devtools/context/python/function/declarations.py",
+            "src/devtools/context/python/function/rendering.py",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/python/function/test_declarations.py",
+            "src/devtools/context/python/imports/declarations.py"
+          ],
+          "admitted_target": null,
+          "direction": null,
+          "disposition": "abstained",
+          "profile": "local-definition-or-governance",
+          "retained_targets": []
+        },
+        "profile": "local-definition-or-governance",
+        "profile_eligible_surfaces": [],
+        "query_text": "direct module body import declaration source occurrence",
+        "retained_targets": [],
+        "route": "heterogeneous-k5",
+        "top_fifteen_adjudication_addresses": [
+          "tests/context/python/function/test_rendering.py",
+          "docs/roadmap.md",
+          "docs/documentation_map.md",
+          "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "docs/research/retrieval-architecture-synthesis.md",
+          "docs/architecture.md",
+          "tests/context/python/imports/test_declarations.py",
+          "experiments/import_relationship_cases.py",
+          "src/devtools/context/python/imports/resolution.py",
+          "src/devtools/context/python/imports/relations.py"
+        ]
+      },
+      {
+        "blind_reference_input": [],
+        "blind_reference_top_five": [
+          "docs/architecture/taxonomy.md",
+          "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+          "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+          "experiments/purpose_relative_admission/validation_design.py",
+          "docs/research/purpose-relative-repository-context.md"
+        ],
+        "case_name": "repository-context-taxonomy-boundary",
+        "checkpoint": {
+          "acquisition_bounds": [
+            [
+              "maximum_discovered_resources",
+              10000
+            ],
+            [
+              "maximum_traversal_entries",
+              20000
+            ],
+            [
+              "maximum_resource_bytes",
+              1048576
+            ]
+          ],
+          "corpus_id": "04c19ececa9a0569f5de83dd49a6c215ff57b03567d1611a8d9b08546b4fa8a6",
+          "document_count": 454,
+          "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+          "snapshot_id": "471c921f29805b730c45ebce8791bc0a3078a6cc8efd96643226859aa0b3e506"
+        },
+        "design_fingerprint": "c36d39f18258e918f8a1023a22d821619fc08cb8840d4ed80aae31832feabef7",
+        "incoming_surfaces": [],
+        "information_need": "Identify the authoritative current documentation defining Context as purpose-relative information and distinguishing it from Memory and Persistence.",
+        "lexical_top_fifteen": [
+          {
+            "address": "docs/architecture/taxonomy.md",
+            "rank": 1,
+            "score": 19.70010601038478
+          },
+          {
+            "address": "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+            "rank": 2,
+            "score": 18.64666682032081
+          },
+          {
+            "address": "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+            "rank": 3,
+            "score": 17.55867815819479
+          },
+          {
+            "address": "experiments/purpose_relative_admission/validation_design.py",
+            "rank": 4,
+            "score": 16.70281304010143
+          },
+          {
+            "address": "docs/research/purpose-relative-repository-context.md",
+            "rank": 5,
+            "score": 15.910347323748972
+          },
+          {
+            "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+            "rank": 6,
+            "score": 15.723024501561826
+          },
+          {
+            "address": "docs/architecture.md",
+            "rank": 7,
+            "score": 15.562244386799541
+          },
+          {
+            "address": "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+            "rank": 8,
+            "score": 13.833105559235925
+          },
+          {
+            "address": "docs/roadmap.md",
+            "rank": 9,
+            "score": 13.790395726705214
+          },
+          {
+            "address": "docs/documentation_map.md",
+            "rank": 10,
+            "score": 12.795449261519401
+          },
+          {
+            "address": "docs/research/README.md",
+            "rank": 11,
+            "score": 12.777389067760314
+          },
+          {
+            "address": "AGENTS.md",
+            "rank": 12,
+            "score": 12.697663841987104
+          },
+          {
+            "address": "docs/research/retrieval-architecture-synthesis.md",
+            "rank": 13,
+            "score": 11.953700310787626
+          },
+          {
+            "address": "docs/research/repository-information-boundaries.md",
+            "rank": 14,
+            "score": 11.90237761279205
+          },
+          {
+            "address": "src/devtools/context/python/function/rendering.py",
+            "rank": 15,
+            "score": 11.014504083283796
+          }
+        ],
+        "lexical_top_five": [
+          {
+            "address": "docs/architecture/taxonomy.md",
+            "rank": 1,
+            "score": 19.70010601038478
+          },
+          {
+            "address": "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+            "rank": 2,
+            "score": 18.64666682032081
+          },
+          {
+            "address": "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+            "rank": 3,
+            "score": 17.55867815819479
+          },
+          {
+            "address": "experiments/purpose_relative_admission/validation_design.py",
+            "rank": 4,
+            "score": 16.70281304010143
+          },
+          {
+            "address": "docs/research/purpose-relative-repository-context.md",
+            "rank": 5,
+            "score": 15.910347323748972
+          }
+        ],
+        "oracle_top_five": null,
+        "outgoing_surfaces": [],
+        "practical": {
+          "abstention_reason": "local-profile",
+          "addresses": [
+            "docs/architecture/taxonomy.md",
+            "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+            "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "docs/research/purpose-relative-repository-context.md"
+          ],
+          "admitted_target": null,
+          "direction": null,
+          "disposition": "abstained",
+          "profile": "local-definition-or-governance",
+          "retained_targets": []
+        },
+        "profile": "local-definition-or-governance",
+        "profile_eligible_surfaces": [],
+        "query_text": "Context purpose relative information Memory Persistence",
+        "retained_targets": [],
+        "route": "heterogeneous-k5",
+        "top_fifteen_adjudication_addresses": [
+          "docs/backlog/epics/B-0002-coding-context-substrate.md",
+          "docs/architecture.md",
+          "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+          "docs/roadmap.md",
+          "docs/documentation_map.md",
+          "docs/research/README.md",
+          "AGENTS.md",
+          "docs/research/retrieval-architecture-synthesis.md",
+          "docs/research/repository-information-boundaries.md",
+          "src/devtools/context/python/function/rendering.py"
+        ]
+      }
+    ],
+    "design_fingerprint": "c36d39f18258e918f8a1023a22d821619fc08cb8840d4ed80aae31832feabef7",
+    "direct_resolution_controls": [
+      {
+        "name": "exact-name-function-retrieval",
+        "result": {
+          "applicable_to_heterogeneous_k5_metrics": false,
+          "declared_name": "retrieve_python_functions_by_exact_name",
+          "resource_addresses": [
+            "src/devtools/context/python/function/retrieval.py"
+          ]
+        }
+      },
+      {
+        "name": "exact-name-source-materialization",
+        "result": {
+          "applicable_to_heterogeneous_k5_metrics": false,
+          "declared_name": "materialize_python_function_disclosure_source",
+          "resource_addresses": [
+            "src/devtools/context/python/function/materialization.py"
+          ]
+        }
+      }
+    ],
+    "mechanical_failure_history": [],
+    "relation_coverage": {
+      "declaration_count": 3084,
+      "module_interpretation_count": 344,
+      "parse_error_count": 0,
+      "python_resource_count": 346,
+      "relation_count": 1802,
+      "resolution_outcomes": {
+        "resolved": 1802,
+        "unresolved-in-universe": 1282
+      },
+      "source_statuses": {
+        "available": 344,
+        "missing": 2
+      }
+    },
+    "repository_checkpoint": {
+      "branch": "main",
+      "checkpoint": {
+        "acquisition_bounds": [
+          [
+            "maximum_discovered_resources",
+            10000
+          ],
+          [
+            "maximum_traversal_entries",
+            20000
+          ],
+          [
+            "maximum_resource_bytes",
+            1048576
+          ]
+        ],
+        "corpus_id": "04c19ececa9a0569f5de83dd49a6c215ff57b03567d1611a8d9b08546b4fa8a6",
+        "document_count": 454,
+        "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+        "snapshot_id": "471c921f29805b730c45ebce8791bc0a3078a6cc8efd96643226859aa0b3e506"
+      },
+      "head": "0f61f3d328bad3d4743130e2e1fb1e8f6698fb19"
+    },
+    "rule_fingerprint": "7e215ac2961a4329074e9a25d35d3decc554f394435aa0b73cb2251254160345",
+    "scope": "hidden internal experiment evidence; not an adjudicator input",
+    "successful_capture_run_count": 1
+  },
+  "schema": "devtools-b0002-increment-23-hidden-surface-capture-v1"
+}

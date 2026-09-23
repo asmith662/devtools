@@ -2,7 +2,8 @@
 
 - Status: Accepted
 - Date: 2026-09-16
-- Evidence amendment: 2026-09-22 (Increment 22 purpose-relative admission)
+- Evidence amendments: 2026-09-22 (Increment 22 purpose-relative admission),
+  2026-09-22 (Increment 23 independent blinded validation)
 - Scope: semantic architecture for future InformationNeed, retrieval planning,
   bounded retrieval applications, ContextCandidates, RelevanceEvidence, and
   ranking, including bounded purpose-relative admission and abstention. This
@@ -36,6 +37,17 @@ that the concrete rule generalizes or is production-ready: only one held-out
 run exists, two admissions remain unjudged, and no explicit negative control
 reached an eligible directional surface.
 
+Increment 23 independently adjudicated six new cases and confirmed the semantic
+separation while pressuring the concrete rule. Canonical and practical top five
+each recovered 10 of 18 known-useful material resources: the rule recovered one
+useful relationship target but displaced one useful lexical rank-five resource,
+and its other admission was not useful. Ten of 96 material judgments remain
+`UNJUDGED`, so final Recall/MRR claims are bounded. Lexical top fifteen contained
+all 18 known-useful resources; relationship surfaces exposed only one useful
+resource beyond top five. This evidence rejects shadow readiness and production
+promotion for the concrete rule without rejecting purpose-relative decision
+semantics or heterogeneous retrieval.
+
 Accordingly, the architecture accepts purpose-relative admission and explicit
 abstention as possible bounded decision semantics while leaving their concrete
 policy and owner-specific representation open. There is still no universal
@@ -44,6 +56,14 @@ Selector, standalone Selection domain, production relationship
 expansion/scoring, or source/test weighting/suppression.
 Source/test classification may be useful evidence for a particular InformationNeed,
 but location alone does not establish purpose-relative relevance.
+
+An experiment's expected control label is also not repository truth or
+authoritative relevance truth. Increment 23 preserved a blinded `USEFUL`
+judgment that conflicted with an expected negative control, then separately
+reviewed the now-unblinded resource and found the control expectation
+unsupported for the exact InformationNeed. Control expectation, independent
+usefulness judgment, and post-unblinding disposition must remain distinguishable
+when they disagree; none may silently rewrite the others.
 
 Revisit a reusable admission/selection abstraction only with broader,
 independently evaluated evidence showing stable need-specific value that cannot
@@ -337,6 +357,41 @@ Repository information and RelevanceEvidence remain data, not execution
 authority. Existing model Tool/proposal/materialization/validation/
 authorization/execution boundaries remain authoritative. Retrieval planning
 does not grant capability or collapse into Tool authorization or execution.
+
+### Increment 23 independent-validation evidence
+
+The retained report uses schema
+`devtools-b0002-purpose-relative-independent-validation-v1`. Increment 23
+separated judgment-free capture, a corrected v2 structural blinded projection,
+immutable usefulness judgments, authorized unblinding, control annotation, and
+mechanism evaluation. The invalid v1 package remains preserved because its raw
+source projection exposed expected judgments and control semantics. A frozen
+blinded judgment contains neither resource address nor control truth; those
+facts enter only after its fingerprint is fixed.
+
+Across six cases, 86/96 material resources received definitive judgments and 10
+remain `UNJUDGED`. Canonical and directional top five each recover 10/18 known-
+useful resources. Their exact known-hit rate is `1.0`; unresolved evidence bounds
+macro Recall@5 to `[0.5111, 0.7202]` and MRR to `[0.5389, 0.8889]` for both
+arms. Directional reservation makes two admissions with precision `0.5`: one
+useful and one not useful. It displaces two rank-five resources, including one
+useful resource, producing one useful recovery and one useful loss rather than
+a net known-useful gain. Protected ranks one through four record no loss.
+
+Lexical top fifteen contains all 18 known-useful material resources, eight more
+than top five. Relationship surfaces contain eight candidates: two useful and
+six not useful; only one useful relationship resource is beyond lexical top
+five. Qualification passes one useful and two not-useful candidates, so the
+two-support threshold is not an adequate relevance discriminator on this set.
+No paired oracle result was retained, and none is fabricated.
+
+The concrete rule is `NOT_READY_FOR_SHADOW` under its frozen readiness criteria:
+coverage is incomplete, no validated negative control reaches the relationship
+surface, one not-useful admission occurs, and one useful rank-five resource is
+lost. Production promotion is not justified. The next evidence step is a
+stronger bounded candidate/ranking comparison, not threshold tuning of this
+sole reservation slot. This does not retract the purpose-relative decision
+boundary or select a universal selector.
 
 ## Deferred and open pressure
 

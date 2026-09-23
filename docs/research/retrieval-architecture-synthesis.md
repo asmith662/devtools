@@ -4,10 +4,11 @@
 
 This is durable research synthesis, not an ADR and not implementation
 authorization. It reconciles the recovered research corpus, accepted ADRs,
-current source, B-0002's empirical lineage, and the retained Increment 22 Pass 4
-report at `251e290c985d1b93aa97b346ee44dbb949f21932` (2026-09-22). Its purpose
-is to keep both positive and negative retrieval/Context findings recoverable
-and to interpret the frozen decision-rule evidence. It does not authorize a
+current source, B-0002's empirical lineage, the retained Increment 22 Pass 4
+report at `251e290c985d1b93aa97b346ee44dbb949f21932` (2026-09-22), and the
+retained Increment 23 independent-validation report. Its purpose is to keep
+both positive and negative retrieval/Context findings recoverable and to
+interpret the frozen decision-rule evidence. It does not authorize a
 Selector, Candidate framework, graph store, vector system, learned ranker,
 shadow runtime, or Context redesign.
 
@@ -46,7 +47,10 @@ work, structural expansion, import-relationship comparison/cases, and the
 purpose-relative oracle comparison/cases. Increment 22 inspection covered the
 frozen design/tests and
 [retained Pass 4 report](../../.b0002-purpose-relative-admission-rule.json).
-The experiment was not rerun or tuned.
+Increment 23 inspection covered its frozen validation design, invalidated v1
+projection, corrected v2 blinded package, immutable adjudication, and
+[independent-validation report](../../.b0002-purpose-relative-independent-validation.json).
+Neither capture nor the rule was rerun or tuned.
 
 ## Historical retrieval trajectory
 
@@ -89,6 +93,16 @@ the newest result.
    eligible surface, so negative rejection remains untested. This establishes
    practical held-out evidence for the purpose-bearing admission boundary, not
    production readiness of the rule.
+9. Increment 23 independently captured six cases and adjudicated 96 material
+   resources through a corrected structural blinded projection. It retained 18
+   useful, 68 not-useful, and 10 unjudged judgments. Canonical and directional
+   top five each recovered 10/18 known-useful resources: the rule recovered one
+   useful relationship target but displaced one useful lexical rank-five
+   resource, and its second admission was not useful. Lexical top fifteen
+   contained all 18 known-useful resources. One expected negative control was
+   independently judged useful; post-unblinding review preserved both labels
+   and found the control expectation unsupported for the exact need. The rule
+   is not ready for shadow or production promotion.
 
 ## Current production state
 
@@ -363,6 +377,15 @@ decisions, disclosure/privacy policy, and a comparison basis. Shadow output
 must never silently affect production Context. Nothing here justifies a
 heavyweight experimentation platform.
 
+Increment 23 demonstrates that the repaired capture/blinding/freezing/
+unblinding/evaluation chain can retain such evidence, but it does not pass the
+precommitted readiness gates for executing the current rule in shadow. Ten
+material resources remain unjudged, no validated negative control reaches the
+eligible relationship surface, one not-useful resource is admitted, and one
+useful lexical rank-five resource is displaced. The next step is therefore a
+stronger offline candidate/ranking comparison, not operational shadow rollout
+of directional-reservation-v1.
+
 ## Learned-intelligence assessment
 
 Research permits learned analyzers only when their qualified output and
@@ -397,7 +420,7 @@ comparisons; it does not itself solve labels or causal attribution.
 | Semantic/vector retrieval | Research-supported optional family | Deferred/unselected | Absent | No local experiment | Deferred | Honest frozen comparison and representation/cost basis | Embeddings are not presumed better |
 | Learned fusion/ranking | Research-supported late option | Enabled, unselected | Absent | No labels/workload | Deferred | Diverse labels/outcomes and alternatives | No universal feature/score meaning |
 | Model-directed/iterative retrieval | Research-supported future | Future planning/acquisition | Absent | No local agent experiment | Deferred | Bounded task/outcome evidence | Not narrow Runtime ownership |
-| Purpose-relative admission/selection | Strong semantic/evaluation support | Purpose-bearing admission/abstention accepted; representation open | Experiment rule only; exact all-match is narrow | Increment 22 improved one held-out set with no relevant loss | Architecture accepted; concrete production policy deferred | Independent fully judged eligible-control and loss-risk evidence | Rule is not a Selector or safety proof |
+| Purpose-relative admission/selection | Strong semantic/evaluation support | Purpose-bearing admission/abstention accepted; representation open | Experiment rule only; exact all-match is narrow | Increment 22 improved one set; Increment 23 had zero net known-useful gain and one useful loss | Architecture accepted; concrete rule not shadow-ready | Stronger bounded candidate/ranking evidence | Rule is not a Selector or safety proof |
 | Universal Candidate abstraction | Earlier proposals challenged | No generic Candidate; ADR-0003 has conceptual ContextCandidate | Absent | Increment 20/21 support typed grouping | Rejected for now | Durable cross-stage need beyond identity + observations | Do not conflate ADR concept with generic class |
 | Universal CandidateEvidence abstraction | Rejected by later research | No mandatory evidence artifact | Absent | Typed surfaces useful | Rejected for now | Shared semantics not expressible natively | Preserve native provenance |
 | Normalized universal relevance score | Rejected | Rejected | Absent | BM25/relation incomparable | Rejected for now | Explicit calibrated policy/model | Numeric output can be policy-local |
@@ -405,9 +428,9 @@ comparisons; it does not itself solve labels or causal attribution.
 | Standalone Selection domain | Challenged | Rejected for now | Absent | None | Rejected for now | Independent lifecycle/consumers | Context may own admission |
 | Context representation choice | Strong | Accepted semantics | Narrow declaration/source representations | No comparative representation experiment | Accepted but unimplemented generally | Bounded representation experiment | Resource top-K is insufficient |
 | Progressive disclosure | Strong research support | Accepted future semantics | Absent | No local outcome evaluation | Deferred | Bounded acquisition/outcome evidence | New episode, not a loop inside Context |
-| Shadow retrieval/evaluation | B-0002 staged direction | No generic platform accepted | Absent | Increment 22 supplies an auditable hypothetical decision | Near-term bounded evaluation direction | Real native workload, retention and disclosure policy | Must not control production behavior |
+| Shadow retrieval/evaluation | B-0002 staged direction | No generic platform accepted | Absent | Increment 23 validates the pipeline but fails its frozen shadow-readiness gates | Not ready for shadow | Stronger candidate/ranking strategy plus complete decision-surface judgments | Must not control production behavior |
 | Source/test heuristics | Research challenge and local negative evidence | No default weighting | Absent | Relevant and irrelevant test controls | Rejected for now | Need-specific held-out evidence | Role is not relevance |
-| Evaluation / retained evidence | Strong | Accepted future responsibility | Lexical evaluator + experiment JSON schema/code | Increments 10-22 | Partially implemented | Claim-specific evaluation need | No universal metric/store |
+| Evaluation / retained evidence | Strong | Accepted future responsibility | Lexical evaluator + experiment JSON schema/code | Increments 10-23 | Partially implemented | Claim-specific evaluation need | No universal metric/store |
 
 ## Recovered and missing historical findings
 
@@ -427,7 +450,7 @@ comparisons; it does not itself solve labels or causal attribution.
 | Context is more than top-K; representations/progressive disclosure matter | Fully preserved | ADR-0004 |
 | Coverage, complementarity, authority, coherence, multidimensional cost | Fully preserved as accepted semantics | ADR-0004; mechanisms remain open |
 | Surface/choose/disclose/model-use failure separation | Fully preserved as future requirement | ADR-0003/0004; Increment 22 evaluates only early stages |
-| Shadow comparison on real workloads | Strengthened as bounded next direction | B-0002 plus Increment 22; contract and workload remain absent |
+| Shadow comparison on real workloads | Preserved but deferred by frozen readiness gates | B-0002 plus Increment 23; stronger candidate/ranking evidence and the operational contract remain absent |
 | Repository Intelligence is not retrieval; usefulness is not truth | Fully preserved | ADR-0002 through ADR-0004 |
 
 The material most plausibly lost from the recalled **“Summarize strong
@@ -467,23 +490,25 @@ which representation helps the downstream consumer.
 No current source establishes the right direct-lookup eligibility test, the
 next relationship family, a semantic retrieval unit, a useful representation
 cost model, a sufficiency signal, an authority assessment, shadow ownership, or
-a learned objective. Increment 22 also does not establish negative-control
-rejection, complete admission precision, cross-repository generalization, or a
-safe capacity policy when lexical rank five is relevant. These are questions to
-preserve for bounded evidence, not unfilled interfaces.
+a learned objective. Increment 23 directly demonstrates that the current
+support threshold admits non-useful evidence and that the sole reservation slot
+can lose useful lexical rank five. It still does not establish validated
+negative-control rejection, complete relevance labels, cross-repository
+generalization, or a safe alternative capacity/ranking policy. These are
+questions to preserve for bounded evidence, not unfilled interfaces.
 
 ## Recommended next investigations
 
 Order is dependency-based:
 
-1. Run a preregistered, disjoint evaluation of the unchanged Increment 22 rule
-   with complete judgments for eligible/admitted surfaces. Include known
-   negative controls that actually reach the eligible direction, a judged
-   same-query/different-purpose possible admission, and cases with a relevant
-   lexical rank-five result at risk. Retain surfacing recall, admission
-   precision, displacement/loss, and abstention separately. This discriminates
-   purpose/direction/support and reservation safety without threshold tuning.
-2. Establish a bounded non-controlling shadow comparison only when a real native
+1. Stop tuning the single rank-five reservation rule. Freeze the same needs and
+   compare stronger bounded candidate generation and purpose-relative ranking
+   over lexical top-fifteen and typed relationship surfaces. Retain native
+   evidence, useful-loss accounting, candidate volume, and unresolved-label
+   bounds; do not normalize heterogeneous evidence into one universal score.
+2. Establish a bounded non-controlling shadow comparison only after the stronger
+   offline strategy has complete decision-surface judgments and passes explicit
+   loss, non-useful-admission, and negative-control gates, and when a real native
    acquisition workload, retained hypothetical decision record, comparison
    basis, and disclosure/privacy policy exist. Production Context must remain
    unchanged.
@@ -553,13 +578,15 @@ before their evidence and consumers exist.
 
 ## Final disposition
 
-**Disposition B:** promote the underlying purpose-relative admission
-architecture, but not directional reservation v1. Increment 22 supplies
-held-out evidence that an explicit purpose-bearing, abstaining decision over
-typed surfaced evidence can realize useful relationship headroom without the
-destructive losses seen in earlier blind insertion on this set. The concrete
-rule is not production-ready because the set is small, two admissions are
-unjudged, no eligible negative control tested its threshold, and its historical
-oracle comparison is unpaired. Production remains content BM25 plus `0.25 *`
-filename-stem BM25 at `K=5`; relationship expansion and the admission rule
-remain experimental, while exact/direct resolution remains separate.
+**Disposition B, refined by Increment 23:** retain the underlying
+purpose-relative admission architecture, but stop optimizing directional
+reservation v1. Independent validation finds zero net known-useful gain, one
+not-useful admission, and one useful rank-five loss. It also finds that lexical
+top fifteen contains all known-useful material resources while the relationship
+surface contributes only one useful resource beyond top five. The concrete rule
+is `NOT_READY_FOR_SHADOW` and production promotion is not justified. This does
+not falsify purpose-relative retrieval or the heterogeneous portfolio; it shifts
+the next bounded work toward stronger candidate generation and ranking.
+Production remains content BM25 plus `0.25 *` filename-stem BM25 at `K=5`;
+relationship expansion and admission remain experimental, and exact/direct
+resolution remains separate.

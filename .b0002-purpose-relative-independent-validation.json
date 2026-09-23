@@ -1,0 +1,1460 @@
+{
+  "content_identity": "49ed431db96003fa4635eec0ca87d58cf6bc402d49a6d4b9049ba07d87465a51",
+  "payload": {
+    "abstention": {
+      "demonstrably_inappropriate": 0,
+      "local_profile": 3,
+      "no_qualifying_target": 1,
+      "useful_qualified_during_abstention": 0
+    },
+    "admission": {
+      "conditional_recall_over_qualified_useful": 1.0,
+      "not_useful": 1,
+      "precision": 0.5,
+      "total": 2,
+      "unjudged": 0,
+      "useful": 1
+    },
+    "artifact_identities": {
+      "capture": {
+        "content_identity": "b0ec243125e3408f597f7474288ad632be9e1522ea85878de017b43b33b1598d",
+        "path": ".b0002-increment-23-hidden-surface-capture.json",
+        "raw_sha256": "f15a165e589bc48ecfedfda2b32987815c5ecc8273ce7b8fe3da84f7df79560c"
+      },
+      "frozen_adjudication": {
+        "content_identity": "189033782e641e7826d9334df54b2a2113eef388080bbb8326f91e8915f76e59",
+        "path": ".b0002-increment-23-frozen-adjudication.json",
+        "raw_sha256": "4c58ec0645080f3341ef46a9705d2e276a928cc8eb3cf869efadbe01779a5c48"
+      },
+      "mapping": {
+        "content_identity": "9dc00a58875d3fdb63085b0f2f3feff8e6d341136c23161da71cc7587a636762",
+        "path": ".b0002-increment-23-neutral-resource-mapping.json",
+        "raw_sha256": "5cd943ca7da954a6b33f13b1ee4349d6aaef5738ee1069daa1fcb51f6d346fe8"
+      },
+      "package": {
+        "content_identity": "6317cb1cd1de36100c6ecaa37807b994c69f71c23be490c334cdfe1ee8e9c0e9",
+        "path": ".b0002-increment-23-blinded-adjudication-package.json",
+        "raw_sha256": "3c2e17302f211772e2abd19458d05266ab4548accbada7e74191e181e1cbe85b"
+      }
+    },
+    "capacity": {
+      "not_useful_displacements": 1,
+      "rank_five_displacements": 2,
+      "rank_one_through_four_losses": 0,
+      "unjudged_displacements": 0,
+      "useful_displacements": 1,
+      "useful_final_losses": 1
+    },
+    "capture_set_identity": "6fa52ec1717d3f677118b497edce81efb028027b1c24ae59779bb9763ee8c647",
+    "case_results": [
+      {
+        "abstention_reason": null,
+        "admission": {
+          "address": "src/devtools/context/retrieval/lexical/scoring.py",
+          "judgment": "useful"
+        },
+        "canonical_known_useful": [
+          "src/devtools/context/retrieval/lexical/bm25.py",
+          "src/devtools/context/retrieval/lexical/filename.py"
+        ],
+        "case_name": "content-bm25-term-formula",
+        "controls": {
+          "admitted": [],
+          "exposed": [],
+          "historically_annotated": [
+            "src/devtools/context/retrieval/lexical/filename.py"
+          ],
+          "qualified": [],
+          "unsupported_expectations": [
+            "src/devtools/context/retrieval/lexical/filename.py"
+          ],
+          "validated_negative": []
+        },
+        "displacement": {
+          "address": "src/devtools/context/retrieval/lexical/filename.py",
+          "judgment": "useful",
+          "occurred": true
+        },
+        "judged_fraction": 0.8823529411764706,
+        "judgments": {
+          "not-useful": 11,
+          "unjudged": 2,
+          "useful": 4
+        },
+        "known_useful": [
+          "src/devtools/context/retrieval/lexical/bm25.py",
+          "src/devtools/context/retrieval/lexical/filename.py",
+          "src/devtools/context/retrieval/lexical/scoring.py",
+          "tests/context/retrieval/lexical/test_bm25.py"
+        ],
+        "profile": "outgoing-dependency",
+        "qualified": {
+          "not_useful": [],
+          "unjudged": [],
+          "useful": [
+            "src/devtools/context/retrieval/lexical/scoring.py"
+          ]
+        },
+        "relationship_known_useful": [
+          "src/devtools/context/retrieval/lexical/filename.py",
+          "src/devtools/context/retrieval/lexical/scoring.py"
+        ],
+        "top_fifteen_known_useful": [
+          "src/devtools/context/retrieval/lexical/bm25.py",
+          "src/devtools/context/retrieval/lexical/filename.py",
+          "src/devtools/context/retrieval/lexical/scoring.py",
+          "tests/context/retrieval/lexical/test_bm25.py"
+        ],
+        "useful_misses": [
+          {
+            "address": "src/devtools/context/retrieval/lexical/filename.py",
+            "boundary": "reservation-capacity",
+            "case_name": "content-bm25-term-formula",
+            "detail": "Useful lexical rank five was displaced by the sole reservation slot."
+          },
+          {
+            "address": "tests/context/retrieval/lexical/test_bm25.py",
+            "boundary": "lexical-top-5-capacity/no-relationship-recovery",
+            "case_name": "content-bm25-term-formula",
+            "detail": "Useful evidence appeared in lexical top fifteen but not top five and was not recovered by the eligible relationship surface."
+          }
+        ]
+      },
+      {
+        "abstention_reason": "local-profile",
+        "admission": {
+          "address": null,
+          "judgment": null
+        },
+        "canonical_known_useful": [
+          "src/devtools/context/retrieval/lexical/analysis.py",
+          "tests/context/retrieval/lexical/test_analysis.py"
+        ],
+        "case_name": "baseline-lexical-analysis-definition",
+        "controls": {
+          "admitted": [],
+          "exposed": [],
+          "historically_annotated": [],
+          "qualified": [],
+          "unsupported_expectations": [],
+          "validated_negative": []
+        },
+        "displacement": {
+          "address": null,
+          "judgment": null,
+          "occurred": false
+        },
+        "judged_fraction": 0.8666666666666667,
+        "judgments": {
+          "not-useful": 11,
+          "unjudged": 2,
+          "useful": 2
+        },
+        "known_useful": [
+          "src/devtools/context/retrieval/lexical/analysis.py",
+          "tests/context/retrieval/lexical/test_analysis.py"
+        ],
+        "profile": "local-definition-or-governance",
+        "qualified": {
+          "not_useful": [],
+          "unjudged": [],
+          "useful": []
+        },
+        "relationship_known_useful": [],
+        "top_fifteen_known_useful": [
+          "src/devtools/context/retrieval/lexical/analysis.py",
+          "tests/context/retrieval/lexical/test_analysis.py"
+        ],
+        "useful_misses": []
+      },
+      {
+        "abstention_reason": "no-qualifying-target",
+        "admission": {
+          "address": null,
+          "judgment": null
+        },
+        "canonical_known_useful": [
+          "src/devtools/context/retrieval/lexical/bm25.py"
+        ],
+        "case_name": "content-bm25-analysis-consumer",
+        "controls": {
+          "admitted": [],
+          "exposed": [],
+          "historically_annotated": [
+            "src/devtools/context/retrieval/lexical/filename.py"
+          ],
+          "qualified": [],
+          "unsupported_expectations": [],
+          "validated_negative": [
+            "src/devtools/context/retrieval/lexical/filename.py"
+          ]
+        },
+        "displacement": {
+          "address": null,
+          "judgment": null,
+          "occurred": false
+        },
+        "judged_fraction": 0.8666666666666667,
+        "judgments": {
+          "not-useful": 11,
+          "unjudged": 2,
+          "useful": 2
+        },
+        "known_useful": [
+          "src/devtools/context/retrieval/lexical/bm25.py",
+          "tests/context/retrieval/lexical/test_bm25.py"
+        ],
+        "profile": "incoming-consumer-or-test",
+        "qualified": {
+          "not_useful": [],
+          "unjudged": [],
+          "useful": []
+        },
+        "relationship_known_useful": [],
+        "top_fifteen_known_useful": [
+          "src/devtools/context/retrieval/lexical/bm25.py",
+          "tests/context/retrieval/lexical/test_bm25.py"
+        ],
+        "useful_misses": [
+          {
+            "address": "tests/context/retrieval/lexical/test_bm25.py",
+            "boundary": "lexical-top-5-capacity/no-relationship-recovery",
+            "case_name": "content-bm25-analysis-consumer",
+            "detail": "Useful evidence appeared in lexical top fifteen but not top five and was not recovered by the eligible relationship surface."
+          }
+        ]
+      },
+      {
+        "abstention_reason": null,
+        "admission": {
+          "address": "src/devtools/context/__init__.py",
+          "judgment": "not-useful"
+        },
+        "canonical_known_useful": [
+          "src/devtools/context/python/function/candidates.py",
+          "tests/context/python/function/test_candidates.py"
+        ],
+        "case_name": "python-function-token-candidate-boundary",
+        "controls": {
+          "admitted": [],
+          "exposed": [],
+          "historically_annotated": [],
+          "qualified": [],
+          "unsupported_expectations": [],
+          "validated_negative": []
+        },
+        "displacement": {
+          "address": "src/devtools/context/python/function/disclosure.py",
+          "judgment": "not-useful",
+          "occurred": true
+        },
+        "judged_fraction": 0.9473684210526315,
+        "judgments": {
+          "not-useful": 15,
+          "unjudged": 1,
+          "useful": 3
+        },
+        "known_useful": [
+          "src/devtools/context/python/function/candidates.py",
+          "src/devtools/context/python/function/declarations.py",
+          "tests/context/python/function/test_candidates.py"
+        ],
+        "profile": "outgoing-dependency",
+        "qualified": {
+          "not_useful": [
+            "src/devtools/context/__init__.py",
+            "src/devtools/models/interaction/__init__.py"
+          ],
+          "unjudged": [],
+          "useful": []
+        },
+        "relationship_known_useful": [],
+        "top_fifteen_known_useful": [
+          "src/devtools/context/python/function/candidates.py",
+          "src/devtools/context/python/function/declarations.py",
+          "tests/context/python/function/test_candidates.py"
+        ],
+        "useful_misses": [
+          {
+            "address": "src/devtools/context/python/function/declarations.py",
+            "boundary": "lexical-top-5-capacity/no-relationship-recovery",
+            "case_name": "python-function-token-candidate-boundary",
+            "detail": "Useful evidence appeared in lexical top fifteen but not top five and was not recovered by the eligible relationship surface."
+          }
+        ]
+      },
+      {
+        "abstention_reason": "local-profile",
+        "admission": {
+          "address": null,
+          "judgment": null
+        },
+        "canonical_known_useful": [
+          "src/devtools/context/python/imports/declarations.py"
+        ],
+        "case_name": "import-declaration-source-evidence-contract",
+        "controls": {
+          "admitted": [],
+          "exposed": [],
+          "historically_annotated": [],
+          "qualified": [],
+          "unsupported_expectations": [],
+          "validated_negative": []
+        },
+        "displacement": {
+          "address": null,
+          "judgment": null,
+          "occurred": false
+        },
+        "judged_fraction": 0.9333333333333333,
+        "judgments": {
+          "not-useful": 12,
+          "unjudged": 1,
+          "useful": 2
+        },
+        "known_useful": [
+          "src/devtools/context/python/imports/declarations.py",
+          "tests/context/python/imports/test_declarations.py"
+        ],
+        "profile": "local-definition-or-governance",
+        "qualified": {
+          "not_useful": [],
+          "unjudged": [],
+          "useful": []
+        },
+        "relationship_known_useful": [],
+        "top_fifteen_known_useful": [
+          "src/devtools/context/python/imports/declarations.py",
+          "tests/context/python/imports/test_declarations.py"
+        ],
+        "useful_misses": [
+          {
+            "address": "tests/context/python/imports/test_declarations.py",
+            "boundary": "lexical-top-5-capacity/no-relationship-recovery",
+            "case_name": "import-declaration-source-evidence-contract",
+            "detail": "Useful evidence appeared in lexical top fifteen but not top five and was not recovered by the eligible relationship surface."
+          }
+        ]
+      },
+      {
+        "abstention_reason": "local-profile",
+        "admission": {
+          "address": null,
+          "judgment": null
+        },
+        "canonical_known_useful": [
+          "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+          "docs/architecture/taxonomy.md"
+        ],
+        "case_name": "repository-context-taxonomy-boundary",
+        "controls": {
+          "admitted": [],
+          "exposed": [],
+          "historically_annotated": [],
+          "qualified": [],
+          "unsupported_expectations": [],
+          "validated_negative": []
+        },
+        "displacement": {
+          "address": null,
+          "judgment": null,
+          "occurred": false
+        },
+        "judged_fraction": 0.8666666666666667,
+        "judgments": {
+          "not-useful": 8,
+          "unjudged": 2,
+          "useful": 5
+        },
+        "known_useful": [
+          "AGENTS.md",
+          "docs/architecture.md",
+          "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+          "docs/architecture/taxonomy.md",
+          "docs/documentation_map.md"
+        ],
+        "profile": "local-definition-or-governance",
+        "qualified": {
+          "not_useful": [],
+          "unjudged": [],
+          "useful": []
+        },
+        "relationship_known_useful": [],
+        "top_fifteen_known_useful": [
+          "AGENTS.md",
+          "docs/architecture.md",
+          "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+          "docs/architecture/taxonomy.md",
+          "docs/documentation_map.md"
+        ],
+        "useful_misses": [
+          {
+            "address": "AGENTS.md",
+            "boundary": "lexical-top-5-capacity/no-relationship-recovery",
+            "case_name": "repository-context-taxonomy-boundary",
+            "detail": "Useful evidence appeared in lexical top fifteen but not top five and was not recovered by the eligible relationship surface."
+          },
+          {
+            "address": "docs/architecture.md",
+            "boundary": "lexical-top-5-capacity/no-relationship-recovery",
+            "case_name": "repository-context-taxonomy-boundary",
+            "detail": "Useful evidence appeared in lexical top fifteen but not top five and was not recovered by the eligible relationship surface."
+          },
+          {
+            "address": "docs/documentation_map.md",
+            "boundary": "lexical-top-5-capacity/no-relationship-recovery",
+            "case_name": "repository-context-taxonomy-boundary",
+            "detail": "Useful evidence appeared in lexical top fifteen but not top five and was not recovered by the eligible relationship surface."
+          }
+        ]
+      }
+    ],
+    "comparison_arm_definitions": [
+      [
+        "canonical-lexical-top-5",
+        "practical baseline"
+      ],
+      [
+        "directional-reservation-v1",
+        "unchanged practical experimental rule"
+      ],
+      [
+        "blind-relationship-insertion",
+        "falsification reference"
+      ],
+      [
+        "lexical-top-15",
+        "coverage control"
+      ],
+      [
+        "oracle-headroom",
+        "evaluation-only"
+      ],
+      [
+        "direct-resolution-controls",
+        "outside heterogeneous K=5 metrics"
+      ]
+    ],
+    "comparison_arms": {
+      "blind-relationship-insertion": {
+        "aggregate": {
+          "hit_at_5": {
+            "lower": 0.6666666666666666,
+            "upper": 1.0
+          },
+          "known_useful_recovered": 5,
+          "known_useful_total": 18,
+          "mrr": {
+            "lower": 0.4083333333333334,
+            "upper": 0.9166666666666666
+          },
+          "outside_material_unresolved": 10,
+          "recall_at_5": {
+            "lower": 0.19722222222222222,
+            "upper": 0.5841269841269842
+          }
+        },
+        "cases": [
+          {
+            "addresses": [
+              "experiments/purpose_relative_admission/validation_design.py",
+              "src/devtools/context/repository/resource.py",
+              "src/devtools/context/retrieval/lexical/analysis.py",
+              "src/devtools/context/retrieval/lexical/scoring.py",
+              "experiments/import_relationship/comparison.py"
+            ],
+            "case_name": "content-bm25-term-formula",
+            "cutoff": 5,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 1,
+            "known_useful_total": 4,
+            "mrr": {
+              "lower": 0.25,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 1,
+            "recall": {
+              "lower": 0.2,
+              "upper": 0.5
+            },
+            "unresolved_in_arm": 2
+          },
+          {
+            "addresses": [
+              "experiments/purpose_relative_admission/validation_design.py",
+              "src/devtools/context/repository/resource.py",
+              "src/devtools/context/__init__.py",
+              "tests/context/retrieval/lexical/_helpers.py",
+              "tests/context/retrieval/lexical/test_analysis.py"
+            ],
+            "case_name": "baseline-lexical-analysis-definition",
+            "cutoff": 5,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 1,
+            "known_useful_total": 2,
+            "mrr": {
+              "lower": 0.2,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 3,
+            "recall": {
+              "lower": 0.3333333333333333,
+              "upper": 0.8333333333333334
+            },
+            "unresolved_in_arm": 4
+          },
+          {
+            "addresses": [
+              "experiments/purpose_relative_admission/validation_design.py",
+              "src/devtools/context/repository/resource.py",
+              "src/devtools/context/__init__.py",
+              "tests/context/retrieval/lexical/_helpers.py",
+              "tests/context/retrieval/lexical/test_analysis.py"
+            ],
+            "case_name": "content-bm25-analysis-consumer",
+            "cutoff": 5,
+            "hit": {
+              "lower": 0.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 0,
+            "known_useful_total": 2,
+            "mrr": {
+              "lower": 0.0,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 3,
+            "recall": {
+              "lower": 0.0,
+              "upper": 0.6666666666666666
+            },
+            "unresolved_in_arm": 4
+          },
+          {
+            "addresses": [
+              "src/devtools/context/python/function/candidates.py",
+              "src/devtools/context/__init__.py",
+              "src/devtools/core/paths/__init__.py",
+              "src/devtools/models/interaction/__init__.py",
+              "src/devtools/context/repository/resource.py"
+            ],
+            "case_name": "python-function-token-candidate-boundary",
+            "cutoff": 5,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 1,
+            "known_useful_total": 3,
+            "mrr": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 0.25,
+              "upper": 0.3333333333333333
+            },
+            "unresolved_in_arm": 0
+          },
+          {
+            "addresses": [
+              "src/devtools/context/python/function/declarations.py",
+              "src/devtools/context/repository/resource.py",
+              "experiments/purpose_relative_admission/evaluation.py",
+              "src/devtools/context/python/function/__init__.py",
+              "src/devtools/context/python/function/rendering.py"
+            ],
+            "case_name": "import-declaration-source-evidence-contract",
+            "cutoff": 5,
+            "hit": {
+              "lower": 0.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 0,
+            "known_useful_total": 2,
+            "mrr": {
+              "lower": 0.0,
+              "upper": 0.5
+            },
+            "outside_material_unresolved": 3,
+            "recall": {
+              "lower": 0.0,
+              "upper": 0.6
+            },
+            "unresolved_in_arm": 3
+          },
+          {
+            "addresses": [
+              "docs/architecture/taxonomy.md",
+              "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+              "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+              "experiments/purpose_relative_admission/validation_design.py",
+              "docs/research/purpose-relative-repository-context.md"
+            ],
+            "case_name": "repository-context-taxonomy-boundary",
+            "cutoff": 5,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 2,
+            "known_useful_total": 5,
+            "mrr": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 0.4,
+              "upper": 0.5714285714285714
+            },
+            "unresolved_in_arm": 2
+          }
+        ]
+      },
+      "canonical-lexical-top-5": {
+        "aggregate": {
+          "hit_at_5": {
+            "lower": 1.0,
+            "upper": 1.0
+          },
+          "known_useful_recovered": 10,
+          "known_useful_total": 18,
+          "mrr": {
+            "lower": 0.5388888888888889,
+            "upper": 0.8888888888888888
+          },
+          "outside_material_unresolved": 0,
+          "recall_at_5": {
+            "lower": 0.5111111111111111,
+            "upper": 0.7202380952380952
+          }
+        },
+        "cases": [
+          {
+            "addresses": [
+              "experiments/purpose_relative_admission/validation_design.py",
+              "tests/experiments/purpose_relative_admission/test_validation_design.py",
+              "src/devtools/context/retrieval/lexical/bm25.py",
+              "experiments/address_lexical.py",
+              "src/devtools/context/retrieval/lexical/filename.py"
+            ],
+            "case_name": "content-bm25-term-formula",
+            "cutoff": 5,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 2,
+            "known_useful_total": 4,
+            "mrr": {
+              "lower": 0.3333333333333333,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 0.5,
+              "upper": 0.6666666666666666
+            },
+            "unresolved_in_arm": 2
+          },
+          {
+            "addresses": [
+              "experiments/purpose_relative_admission/validation_design.py",
+              "tests/context/retrieval/lexical/test_analysis.py",
+              "experiments/retrieval_identifier.py",
+              "src/devtools/context/retrieval/lexical/analysis.py",
+              "src/devtools/context/retrieval/lexical/bm25.py"
+            ],
+            "case_name": "baseline-lexical-analysis-definition",
+            "cutoff": 5,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 2,
+            "known_useful_total": 2,
+            "mrr": {
+              "lower": 0.5,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 0.6666666666666666,
+              "upper": 1.0
+            },
+            "unresolved_in_arm": 1
+          },
+          {
+            "addresses": [
+              "experiments/purpose_relative_admission/validation_design.py",
+              "tests/context/retrieval/lexical/test_analysis.py",
+              "experiments/retrieval_identifier.py",
+              "src/devtools/context/retrieval/lexical/analysis.py",
+              "src/devtools/context/retrieval/lexical/bm25.py"
+            ],
+            "case_name": "content-bm25-analysis-consumer",
+            "cutoff": 5,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 1,
+            "known_useful_total": 2,
+            "mrr": {
+              "lower": 0.2,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 0.3333333333333333,
+              "upper": 0.6666666666666666
+            },
+            "unresolved_in_arm": 1
+          },
+          {
+            "addresses": [
+              "src/devtools/context/python/function/candidates.py",
+              "tests/context/python/function/test_candidates.py",
+              "experiments/purpose_relative_admission/validation_design.py",
+              "tests/context/python/function/test_resource_selection.py",
+              "src/devtools/context/python/function/disclosure.py"
+            ],
+            "case_name": "python-function-token-candidate-boundary",
+            "cutoff": 5,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 2,
+            "known_useful_total": 3,
+            "mrr": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 0.6666666666666666,
+              "upper": 0.75
+            },
+            "unresolved_in_arm": 1
+          },
+          {
+            "addresses": [
+              "src/devtools/context/python/function/declarations.py",
+              "src/devtools/context/python/function/rendering.py",
+              "experiments/purpose_relative_admission/validation_design.py",
+              "tests/context/python/function/test_declarations.py",
+              "src/devtools/context/python/imports/declarations.py"
+            ],
+            "case_name": "import-declaration-source-evidence-contract",
+            "cutoff": 5,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 1,
+            "known_useful_total": 2,
+            "mrr": {
+              "lower": 0.2,
+              "upper": 0.3333333333333333
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 0.5,
+              "upper": 0.6666666666666666
+            },
+            "unresolved_in_arm": 1
+          },
+          {
+            "addresses": [
+              "docs/architecture/taxonomy.md",
+              "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+              "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+              "experiments/purpose_relative_admission/validation_design.py",
+              "docs/research/purpose-relative-repository-context.md"
+            ],
+            "case_name": "repository-context-taxonomy-boundary",
+            "cutoff": 5,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 2,
+            "known_useful_total": 5,
+            "mrr": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 0.4,
+              "upper": 0.5714285714285714
+            },
+            "unresolved_in_arm": 2
+          }
+        ]
+      },
+      "directional-reservation-v1": {
+        "aggregate": {
+          "hit_at_5": {
+            "lower": 1.0,
+            "upper": 1.0
+          },
+          "known_useful_recovered": 10,
+          "known_useful_total": 18,
+          "mrr": {
+            "lower": 0.5388888888888889,
+            "upper": 0.8888888888888888
+          },
+          "outside_material_unresolved": 0,
+          "recall_at_5": {
+            "lower": 0.5111111111111111,
+            "upper": 0.7202380952380952
+          }
+        },
+        "cases": [
+          {
+            "addresses": [
+              "experiments/purpose_relative_admission/validation_design.py",
+              "tests/experiments/purpose_relative_admission/test_validation_design.py",
+              "src/devtools/context/retrieval/lexical/bm25.py",
+              "experiments/address_lexical.py",
+              "src/devtools/context/retrieval/lexical/scoring.py"
+            ],
+            "case_name": "content-bm25-term-formula",
+            "cutoff": 5,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 2,
+            "known_useful_total": 4,
+            "mrr": {
+              "lower": 0.3333333333333333,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 0.5,
+              "upper": 0.6666666666666666
+            },
+            "unresolved_in_arm": 2
+          },
+          {
+            "addresses": [
+              "experiments/purpose_relative_admission/validation_design.py",
+              "tests/context/retrieval/lexical/test_analysis.py",
+              "experiments/retrieval_identifier.py",
+              "src/devtools/context/retrieval/lexical/analysis.py",
+              "src/devtools/context/retrieval/lexical/bm25.py"
+            ],
+            "case_name": "baseline-lexical-analysis-definition",
+            "cutoff": 5,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 2,
+            "known_useful_total": 2,
+            "mrr": {
+              "lower": 0.5,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 0.6666666666666666,
+              "upper": 1.0
+            },
+            "unresolved_in_arm": 1
+          },
+          {
+            "addresses": [
+              "experiments/purpose_relative_admission/validation_design.py",
+              "tests/context/retrieval/lexical/test_analysis.py",
+              "experiments/retrieval_identifier.py",
+              "src/devtools/context/retrieval/lexical/analysis.py",
+              "src/devtools/context/retrieval/lexical/bm25.py"
+            ],
+            "case_name": "content-bm25-analysis-consumer",
+            "cutoff": 5,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 1,
+            "known_useful_total": 2,
+            "mrr": {
+              "lower": 0.2,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 0.3333333333333333,
+              "upper": 0.6666666666666666
+            },
+            "unresolved_in_arm": 1
+          },
+          {
+            "addresses": [
+              "src/devtools/context/python/function/candidates.py",
+              "tests/context/python/function/test_candidates.py",
+              "experiments/purpose_relative_admission/validation_design.py",
+              "tests/context/python/function/test_resource_selection.py",
+              "src/devtools/context/__init__.py"
+            ],
+            "case_name": "python-function-token-candidate-boundary",
+            "cutoff": 5,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 2,
+            "known_useful_total": 3,
+            "mrr": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 0.6666666666666666,
+              "upper": 0.75
+            },
+            "unresolved_in_arm": 1
+          },
+          {
+            "addresses": [
+              "src/devtools/context/python/function/declarations.py",
+              "src/devtools/context/python/function/rendering.py",
+              "experiments/purpose_relative_admission/validation_design.py",
+              "tests/context/python/function/test_declarations.py",
+              "src/devtools/context/python/imports/declarations.py"
+            ],
+            "case_name": "import-declaration-source-evidence-contract",
+            "cutoff": 5,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 1,
+            "known_useful_total": 2,
+            "mrr": {
+              "lower": 0.2,
+              "upper": 0.3333333333333333
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 0.5,
+              "upper": 0.6666666666666666
+            },
+            "unresolved_in_arm": 1
+          },
+          {
+            "addresses": [
+              "docs/architecture/taxonomy.md",
+              "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+              "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+              "experiments/purpose_relative_admission/validation_design.py",
+              "docs/research/purpose-relative-repository-context.md"
+            ],
+            "case_name": "repository-context-taxonomy-boundary",
+            "cutoff": 5,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 2,
+            "known_useful_total": 5,
+            "mrr": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 0.4,
+              "upper": 0.5714285714285714
+            },
+            "unresolved_in_arm": 2
+          }
+        ]
+      },
+      "lexical-top-15": {
+        "aggregate": {
+          "hit_at_15": {
+            "lower": 1.0,
+            "upper": 1.0
+          },
+          "known_useful_recovered": 18,
+          "known_useful_total": 18,
+          "mrr": {
+            "lower": 0.5388888888888889,
+            "upper": 0.8888888888888888
+          },
+          "outside_material_unresolved": 0,
+          "recall_at_15": {
+            "lower": 1.0,
+            "upper": 1.0
+          }
+        },
+        "cases": [
+          {
+            "addresses": [
+              "experiments/purpose_relative_admission/validation_design.py",
+              "tests/experiments/purpose_relative_admission/test_validation_design.py",
+              "src/devtools/context/retrieval/lexical/bm25.py",
+              "experiments/address_lexical.py",
+              "src/devtools/context/retrieval/lexical/filename.py",
+              "tests/context/retrieval/lexical/test_bm25.py",
+              "experiments/retrieval_identifier.py",
+              "tests/context/retrieval/lexical/test_index.py",
+              "experiments/import_relationship_cases.py",
+              "docs/backlog/epics/B-0002-coding-context-substrate.md",
+              "docs/research/retrieval-architecture-synthesis.md",
+              "src/devtools/context/retrieval/lexical/scoring.py",
+              "docs/documentation_map.md",
+              "docs/architecture.md",
+              "tests/experiments/test_address_lexical.py"
+            ],
+            "case_name": "content-bm25-term-formula",
+            "cutoff": 15,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 4,
+            "known_useful_total": 4,
+            "mrr": {
+              "lower": 0.3333333333333333,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "unresolved_in_arm": 2
+          },
+          {
+            "addresses": [
+              "experiments/purpose_relative_admission/validation_design.py",
+              "tests/context/retrieval/lexical/test_analysis.py",
+              "experiments/retrieval_identifier.py",
+              "src/devtools/context/retrieval/lexical/analysis.py",
+              "src/devtools/context/retrieval/lexical/bm25.py",
+              "experiments/address_lexical.py",
+              "src/devtools/context/retrieval/lexical/filename.py",
+              "tests/experiments/purpose_relative_admission/test_validation_design.py",
+              "tests/context/retrieval/lexical/test_evaluation.py",
+              "experiments/import_relationship_cases.py",
+              "tests/context/retrieval/lexical/test_bm25.py",
+              "tests/experiments/test_retrieval_identifier.py",
+              "docs/research/repository-context-system-architecture.md",
+              "docs/backlog/epics/B-0002-coding-context-substrate.md",
+              "src/devtools/context/retrieval/lexical/statistics.py"
+            ],
+            "case_name": "baseline-lexical-analysis-definition",
+            "cutoff": 15,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 2,
+            "known_useful_total": 2,
+            "mrr": {
+              "lower": 0.5,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "unresolved_in_arm": 2
+          },
+          {
+            "addresses": [
+              "experiments/purpose_relative_admission/validation_design.py",
+              "tests/context/retrieval/lexical/test_analysis.py",
+              "experiments/retrieval_identifier.py",
+              "src/devtools/context/retrieval/lexical/analysis.py",
+              "src/devtools/context/retrieval/lexical/bm25.py",
+              "experiments/address_lexical.py",
+              "src/devtools/context/retrieval/lexical/filename.py",
+              "tests/experiments/purpose_relative_admission/test_validation_design.py",
+              "tests/context/retrieval/lexical/test_evaluation.py",
+              "experiments/import_relationship_cases.py",
+              "tests/context/retrieval/lexical/test_bm25.py",
+              "tests/experiments/test_retrieval_identifier.py",
+              "docs/research/repository-context-system-architecture.md",
+              "docs/backlog/epics/B-0002-coding-context-substrate.md",
+              "src/devtools/context/retrieval/lexical/statistics.py"
+            ],
+            "case_name": "content-bm25-analysis-consumer",
+            "cutoff": 15,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 2,
+            "known_useful_total": 2,
+            "mrr": {
+              "lower": 0.2,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "unresolved_in_arm": 2
+          },
+          {
+            "addresses": [
+              "src/devtools/context/python/function/candidates.py",
+              "tests/context/python/function/test_candidates.py",
+              "experiments/purpose_relative_admission/validation_design.py",
+              "tests/context/python/function/test_resource_selection.py",
+              "src/devtools/context/python/function/disclosure.py",
+              "docs/architecture.md",
+              "tests/context/python/function/test_rendering.py",
+              "docs/research/purpose-relative-repository-context.md",
+              "docs/backlog/epics/B-0002-coding-context-substrate.md",
+              "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+              "docs/research/retrieval-architecture-synthesis.md",
+              "src/devtools/context/python/function/rendering.py",
+              "tests/context/python/function/test_disclosure.py",
+              "tests/context/python/test_source_candidacy.py",
+              "src/devtools/context/python/function/declarations.py"
+            ],
+            "case_name": "python-function-token-candidate-boundary",
+            "cutoff": 15,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 3,
+            "known_useful_total": 3,
+            "mrr": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "unresolved_in_arm": 1
+          },
+          {
+            "addresses": [
+              "src/devtools/context/python/function/declarations.py",
+              "src/devtools/context/python/function/rendering.py",
+              "experiments/purpose_relative_admission/validation_design.py",
+              "tests/context/python/function/test_declarations.py",
+              "src/devtools/context/python/imports/declarations.py",
+              "tests/context/python/function/test_rendering.py",
+              "docs/roadmap.md",
+              "docs/documentation_map.md",
+              "docs/backlog/epics/B-0002-coding-context-substrate.md",
+              "docs/research/retrieval-architecture-synthesis.md",
+              "docs/architecture.md",
+              "tests/context/python/imports/test_declarations.py",
+              "experiments/import_relationship_cases.py",
+              "src/devtools/context/python/imports/resolution.py",
+              "src/devtools/context/python/imports/relations.py"
+            ],
+            "case_name": "import-declaration-source-evidence-contract",
+            "cutoff": 15,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 2,
+            "known_useful_total": 2,
+            "mrr": {
+              "lower": 0.2,
+              "upper": 0.3333333333333333
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "unresolved_in_arm": 1
+          },
+          {
+            "addresses": [
+              "docs/architecture/taxonomy.md",
+              "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+              "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+              "experiments/purpose_relative_admission/validation_design.py",
+              "docs/research/purpose-relative-repository-context.md",
+              "docs/backlog/epics/B-0002-coding-context-substrate.md",
+              "docs/architecture.md",
+              "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+              "docs/roadmap.md",
+              "docs/documentation_map.md",
+              "docs/research/README.md",
+              "AGENTS.md",
+              "docs/research/retrieval-architecture-synthesis.md",
+              "docs/research/repository-information-boundaries.md",
+              "src/devtools/context/python/function/rendering.py"
+            ],
+            "case_name": "repository-context-taxonomy-boundary",
+            "cutoff": 15,
+            "hit": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "known_useful_recovered": 5,
+            "known_useful_total": 5,
+            "mrr": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "outside_material_unresolved": 0,
+            "recall": {
+              "lower": 1.0,
+              "upper": 1.0
+            },
+            "unresolved_in_arm": 2
+          }
+        ]
+      }
+    },
+    "control_conflict": {
+      "address": "src/devtools/context/retrieval/lexical/filename.py",
+      "case_name": "content-bm25-term-formula",
+      "disposition": "control-expectation-unsupported",
+      "frozen_blinded_judgment": "useful",
+      "frozen_control_expectation": "not-useful",
+      "metric_policy": "Retain both historical labels; exclude this expectation from validated-negative control claims and retain the frozen USEFUL judgment in usefulness metrics.",
+      "neutral_id": "resource-a14175c2072d3f9c",
+      "original_control_rationale": "Filename fusion is a genuine imported neighbor but does not answer the requested content-only term-formula change.",
+      "rationale": "The resource materially identifies the coupled filename-scoring boundary that must be protected while changing content-only term scoring; the original negative control expectation is therefore unsupported for this exact InformationNeed.",
+      "reviewed_evidence": [
+        "filename.py imports both shared Okapi BM25 formula helpers from scoring.py.",
+        "score_repository_text_filename_lexical_bm25 invokes the shared term-contribution helper with the same settings type.",
+        "bm25.py imports filename-field indexing/scoring and combines that field at the frozen 0.25 weight."
+      ]
+    },
+    "controls": {
+      "admitted": 0,
+      "historically_annotated": 2,
+      "qualified": 0,
+      "rejected": 0,
+      "relationship_exposed": 0,
+      "unsupported_expectations": 1,
+      "validated_negative_after_review": 1
+    },
+    "direct_resolution_controls": [
+      {
+        "name": "exact-name-function-retrieval",
+        "result": {
+          "applicable_to_heterogeneous_k5_metrics": false,
+          "declared_name": "retrieve_python_functions_by_exact_name",
+          "resource_addresses": [
+            "src/devtools/context/python/function/retrieval.py"
+          ]
+        }
+      },
+      {
+        "name": "exact-name-source-materialization",
+        "result": {
+          "applicable_to_heterogeneous_k5_metrics": false,
+          "declared_name": "materialize_python_function_disclosure_source",
+          "resource_addresses": [
+            "src/devtools/context/python/function/materialization.py"
+          ]
+        }
+      }
+    ],
+    "disposition": {
+      "directional_reservation_v1": "not-falsified-as-a-surfacing-idea-but-this-rule-realization-has-zero-net-known-useful-gain-and-one-useful-loss",
+      "next_strategy": "Stop optimizing the single rank-five reservation rule; investigate stronger bounded candidate generation and purpose-relative ranking before shadow execution.",
+      "production_behavior": "content BM25 + 0.25 * filename-stem BM25; K = 5; unchanged",
+      "production_promotion": "NOT_JUSTIFIED",
+      "shadow_mode": "NOT_READY_FOR_SHADOW",
+      "shadow_rationale": "The frozen readiness gates fail: judgment coverage is incomplete, no validated negative control reached the relationship surface, one non-useful admission occurred, and one useful lexical rank-five resource was displaced."
+    },
+    "failure_localization": [
+      {
+        "address": "src/devtools/context/retrieval/lexical/filename.py",
+        "boundary": "reservation-capacity",
+        "case_name": "content-bm25-term-formula",
+        "detail": "Useful lexical rank five was displaced by the sole reservation slot."
+      },
+      {
+        "address": "tests/context/retrieval/lexical/test_bm25.py",
+        "boundary": "lexical-top-5-capacity/no-relationship-recovery",
+        "case_name": "content-bm25-term-formula",
+        "detail": "Useful evidence appeared in lexical top fifteen but not top five and was not recovered by the eligible relationship surface."
+      },
+      {
+        "address": "tests/context/retrieval/lexical/test_bm25.py",
+        "boundary": "lexical-top-5-capacity/no-relationship-recovery",
+        "case_name": "content-bm25-analysis-consumer",
+        "detail": "Useful evidence appeared in lexical top fifteen but not top five and was not recovered by the eligible relationship surface."
+      },
+      {
+        "address": "src/devtools/context/python/function/declarations.py",
+        "boundary": "lexical-top-5-capacity/no-relationship-recovery",
+        "case_name": "python-function-token-candidate-boundary",
+        "detail": "Useful evidence appeared in lexical top fifteen but not top five and was not recovered by the eligible relationship surface."
+      },
+      {
+        "address": "tests/context/python/imports/test_declarations.py",
+        "boundary": "lexical-top-5-capacity/no-relationship-recovery",
+        "case_name": "import-declaration-source-evidence-contract",
+        "detail": "Useful evidence appeared in lexical top fifteen but not top five and was not recovered by the eligible relationship surface."
+      },
+      {
+        "address": "AGENTS.md",
+        "boundary": "lexical-top-5-capacity/no-relationship-recovery",
+        "case_name": "repository-context-taxonomy-boundary",
+        "detail": "Useful evidence appeared in lexical top fifteen but not top five and was not recovered by the eligible relationship surface."
+      },
+      {
+        "address": "docs/architecture.md",
+        "boundary": "lexical-top-5-capacity/no-relationship-recovery",
+        "case_name": "repository-context-taxonomy-boundary",
+        "detail": "Useful evidence appeared in lexical top fifteen but not top five and was not recovered by the eligible relationship surface."
+      },
+      {
+        "address": "docs/documentation_map.md",
+        "boundary": "lexical-top-5-capacity/no-relationship-recovery",
+        "case_name": "repository-context-taxonomy-boundary",
+        "detail": "Useful evidence appeared in lexical top fifteen but not top five and was not recovered by the eligible relationship surface."
+      }
+    ],
+    "fingerprints": {
+      "adjudication": "7e6e5107cc409ef7159de675d2fd12942bd9270c456901006f9158f77bf64143",
+      "increment_22_rule": "7e215ac2961a4329074e9a25d35d3decc554f394435aa0b73cb2251254160345",
+      "increment_23_design": "c36d39f18258e918f8a1023a22d821619fc08cb8840d4ed80aae31832feabef7"
+    },
+    "judgment_coverage": {
+      "cases": [
+        {
+          "case_name": "content-bm25-term-formula",
+          "counts": {
+            "not-useful": 11,
+            "unjudged": 2,
+            "useful": 4
+          },
+          "judged_fraction": 0.8823529411764706
+        },
+        {
+          "case_name": "baseline-lexical-analysis-definition",
+          "counts": {
+            "not-useful": 11,
+            "unjudged": 2,
+            "useful": 2
+          },
+          "judged_fraction": 0.8666666666666667
+        },
+        {
+          "case_name": "content-bm25-analysis-consumer",
+          "counts": {
+            "not-useful": 11,
+            "unjudged": 2,
+            "useful": 2
+          },
+          "judged_fraction": 0.8666666666666667
+        },
+        {
+          "case_name": "python-function-token-candidate-boundary",
+          "counts": {
+            "not-useful": 15,
+            "unjudged": 1,
+            "useful": 3
+          },
+          "judged_fraction": 0.9473684210526315
+        },
+        {
+          "case_name": "import-declaration-source-evidence-contract",
+          "counts": {
+            "not-useful": 12,
+            "unjudged": 1,
+            "useful": 2
+          },
+          "judged_fraction": 0.9333333333333333
+        },
+        {
+          "case_name": "repository-context-taxonomy-boundary",
+          "counts": {
+            "not-useful": 8,
+            "unjudged": 2,
+            "useful": 5
+          },
+          "judged_fraction": 0.8666666666666667
+        }
+      ],
+      "judged": 86,
+      "judged_fraction": 0.8958333333333334,
+      "limitation": "UNJUDGED resources are retained as unresolved and produce metric bounds rather than coerced labels.",
+      "not_useful": 68,
+      "total": 96,
+      "unjudged": 10,
+      "useful": 18
+    },
+    "mapping_set_identity": "8aec000c61772dba83f480c4708526bfb2a0087bfcbdc0fa480e14fea88d8717",
+    "oracle": {
+      "detail": "No oracle top-five view was retained for these six cases; oracle remains evaluation-only and no oracle metric is fabricated.",
+      "state": "not-observed"
+    },
+    "package_set_identity": "433efa8beabac18badb6ccdcc6fc752327968677b2876656079663e0dd36d2e3",
+    "qualification": {
+      "not_useful": 2,
+      "unjudged": 0,
+      "useful": 1
+    },
+    "repository_checkpoint": {
+      "branch": "main",
+      "checkpoint": {
+        "acquisition_bounds": [
+          [
+            "maximum_discovered_resources",
+            10000
+          ],
+          [
+            "maximum_traversal_entries",
+            20000
+          ],
+          [
+            "maximum_resource_bytes",
+            1048576
+          ]
+        ],
+        "corpus_id": "04c19ececa9a0569f5de83dd49a6c215ff57b03567d1611a8d9b08546b4fa8a6",
+        "document_count": 454,
+        "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+        "snapshot_id": "471c921f29805b730c45ebce8791bc0a3078a6cc8efd96643226859aa0b3e506"
+      },
+      "head": "0f61f3d328bad3d4743130e2e1fb1e8f6698fb19"
+    },
+    "status": "complete-independent-validation",
+    "surface_quality": {
+      "canonical_known_useful_recovered": 10,
+      "known_useful_beyond_top_15": 0,
+      "known_useful_beyond_top_5": 8,
+      "known_useful_material_resources": 18,
+      "known_useful_surface_recall": 1.0,
+      "known_useful_top_15_recovered": 18,
+      "limitation": "Recall is exact only over the frozen material surface; it does not assert that no useful repository resource exists outside that surface.",
+      "not_useful_relationship_candidates": 6,
+      "relationship_candidates": 8,
+      "unjudged_relationship_candidates": 0,
+      "useful_relationship_beyond_top_15": 0,
+      "useful_relationship_beyond_top_5": 1,
+      "useful_relationship_candidates": 2
+    }
+  },
+  "schema": "devtools-b0002-purpose-relative-independent-validation-v1"
+}

@@ -460,6 +460,43 @@ unchanged while hypothetical surfaces, decisions, and outcomes are retained for
 comparison. It must not become a generic experimentation platform or silently
 control disclosure.
 
+Increment 23 completed that preregistered independent validation step on one
+454-document capture while preserving the Increment-22 rule fingerprint. Its
+corrected structural blinded package covered six cases and 96 material
+resources; independent adjudication froze 18 `USEFUL`, 68 `NOT_USEFUL`, and 10
+`UNJUDGED` records (86/96 judged). The original raw-source blinded projection
+was invalidated and retained because experiment-control source leaked answer
+semantics; the repaired v2 projection and a separate post-freeze unblinding
+representation prevented mechanism and control truth from entering judgments.
+
+One resource frozen as an expected negative control was independently judged
+useful. Post-unblinding review retained both historical facts and found the
+control expectation unsupported: the filename-field module calls the shared
+BM25 formula and materially identifies the boundary that a content-only change
+must protect. An experimental control expectation is evaluation evidence, not
+repository truth or automatically authoritative relevance truth.
+
+On the known-useful judgments, canonical lexical top five and unchanged
+directional reservation each recovered 10/18 resources. The rule recovered one
+useful relationship target but displaced one useful lexical rank-five resource,
+so it produced zero net known-useful gain; its two admissions were one useful
+and one not useful. Lexical top fifteen contained all 18 known-useful resources,
+including eight beyond top five. Relationship surfaces contained two useful
+resources, only one beyond top five, alongside six not-useful resources; one
+useful and two not-useful candidates qualified. Ten `UNJUDGED` resources make
+the final top-five Recall/MRR results bounded rather than point estimates. The
+retained report is
+[the Increment-23 independent-validation report](../../../.b0002-purpose-relative-independent-validation.json).
+
+The frozen shadow-readiness gates therefore do not pass: judgment coverage is
+incomplete, no validated negative control reached the relationship surface, a
+not-useful resource was admitted, and a useful rank-five resource was lost.
+Increment 23 is `NOT_READY_FOR_SHADOW`, and production promotion is not
+justified. The next bounded work should stop optimizing this single reservation
+rule and compare stronger candidate generation and purpose-relative ranking on
+fixed needs before reconsidering non-controlling shadow execution. Production
+retrieval remains content BM25 plus `0.25 *` filename-stem BM25 at `K=5`.
+
 A bounded multi-resource analysis composition can now apply those independent
 derivations to a nonempty, distinct, caller-ordered address selection. It retains
 per-resource coverage and exposes the original declaration knowledge in

@@ -555,6 +555,18 @@ It also preserves concurrent dependency-aware retrieval, staged expansion,
 progressive disclosure, and future evaluation pressure without assigning them
 to Runtime, Tool execution, authorization, or an Agent loop.
 
+Increment 23 independently validates this boundary but does not promote its
+directional-reservation-v1 realization. Canonical and practical top five each
+recover 10/18 known-useful resources; the rule exchanges one useful rank-five
+resource for one useful relationship resource and also makes one not-useful
+admission. Lexical top fifteen contains all 18 known-useful material resources,
+while relationships contribute only one useful resource beyond top five. The
+rule is not ready for shadow or production. This evidence preserves
+purpose-relative decision semantics and the heterogeneous portfolio while
+shifting the next experiment toward stronger bounded candidate generation and
+ranking. Production remains content BM25 plus `0.25 *` filename-stem BM25 at
+`K=5`.
+
 ## Accepted Context and disclosure semantics
 
 [ADR-0004](architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)

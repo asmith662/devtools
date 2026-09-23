@@ -1,0 +1,2245 @@
+{
+  "content_identity": "6317cb1cd1de36100c6ecaa37807b994c69f71c23be490c334cdfe1ee8e9c0e9",
+  "payload": {
+    "blindness_audit": {
+      "cases": [
+        {
+          "address_visibility_count": 0,
+          "case_name": "content-bm25-term-formula",
+          "material_resource_count": 17
+        },
+        {
+          "address_visibility_count": 0,
+          "case_name": "baseline-lexical-analysis-definition",
+          "material_resource_count": 15
+        },
+        {
+          "address_visibility_count": 0,
+          "case_name": "content-bm25-analysis-consumer",
+          "material_resource_count": 15
+        },
+        {
+          "address_visibility_count": 0,
+          "case_name": "python-function-token-candidate-boundary",
+          "material_resource_count": 19
+        },
+        {
+          "address_visibility_count": 0,
+          "case_name": "import-declaration-source-evidence-contract",
+          "material_resource_count": 15
+        },
+        {
+          "address_visibility_count": 0,
+          "case_name": "repository-context-taxonomy-boundary",
+          "material_resource_count": 15
+        }
+      ],
+      "checks": [
+        "one neutral identifier per material resource",
+        "no prohibited mechanism field at any serialized item depth",
+        "structural bounded evidence contains no protected semantic leak class",
+        "no unapproved repository address in serialized blinded items",
+        "address visibility facts correspond to serialized items"
+      ],
+      "passed": true,
+      "violation_count": 0,
+      "violations": []
+    },
+    "capture_set_identity": "6fa52ec1717d3f677118b497edce81efb028027b1c24ae59779bb9763ee8c647",
+    "design_fingerprint": "c36d39f18258e918f8a1023a22d821619fc08cb8840d4ed80aae31832feabef7",
+    "package_set_identity": "433efa8beabac18badb6ccdcc6fc752327968677b2876656079663e0dd36d2e3",
+    "packages": [
+      {
+        "capture_identity": "e04ede13d38b414b597a9d12d4311ae2ed69103bcea534672ed7b2d2890c4838",
+        "case_name": "content-bm25-term-formula",
+        "design_fingerprint": "c36d39f18258e918f8a1023a22d821619fc08cb8840d4ed80aae31832feabef7",
+        "information_need": "Identify the implementation, formula helper, and focused test needed to change content-only Okapi BM25 term scoring without changing filename-field fusion behavior.",
+        "items": [
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "withheld",
+              "resource_kind": "unavailable",
+              "semantic_outline": [
+                "Semantic evidence unavailable under the blinded structural projection."
+              ]
+            },
+            "neutral_id": "resource-b882b7770cfa9cbd",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "withheld",
+              "resource_kind": "unavailable",
+              "semantic_outline": [
+                "Semantic evidence unavailable under the blinded structural projection."
+              ]
+            },
+            "neutral_id": "resource-e8ff48bc3c84a84b",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Bounded content-only Okapi BM25 retrieval over one lexical inverted index.",
+                "Top-level declaration: RepositoryTextLexicalQueryObservation",
+                "Top-level declaration: RepositoryTextLexicalQuery",
+                "Top-level declaration: RepositoryTextLexicalBm25Settings",
+                "Top-level declaration: RepositoryTextLexicalBm25TermContribution",
+                "Top-level declaration: RepositoryTextLexicalBm25Match",
+                "Top-level declaration: RepositoryTextLexicalBm25RetrievalResult",
+                "Top-level declaration: analyze_repository_text_lexical_query",
+                "Top-level declaration: retrieve_repository_text_documents_by_content_bm25",
+                "Top-level declaration: retrieve_repository_text_documents_by_bm25"
+              ]
+            },
+            "neutral_id": "resource-9c950d689ed1cb38",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Compare experimental filename and path lexical evidence with content BM25.",
+                "Top-level declaration: AddressObservation",
+                "Top-level declaration: AddressDocument",
+                "Top-level declaration: AddressIndex",
+                "Top-level declaration: AddressContribution",
+                "Top-level declaration: AddressMatch",
+                "Top-level declaration: AddressEvaluation",
+                "Top-level declaration: AddressComparison",
+                "Top-level declaration: RobustnessCase",
+                "Top-level declaration: parse_arguments",
+                "Top-level declaration: filename_observations",
+                "Top-level declaration: full_path_observations",
+                "Top-level declaration: address_document",
+                "Top-level declaration: build_address_index",
+                "Top-level declaration: retrieve_with_address_evidence",
+                "Top-level declaration: evaluate_address_matches",
+                "Top-level declaration: run_comparison",
+                "Top-level declaration: run_filename_weight_calibration",
+                "Top-level declaration: run_filename_promotion_gate",
+                "Top-level declaration: controlled_cases",
+                "Top-level declaration: controlled_filename_weight_cases",
+                "Top-level declaration: report_payload",
+                "Top-level declaration: filename_weight_report_payload",
+                "Top-level declaration: filename_promotion_gate_report_payload",
+                "Top-level declaration: write_report",
+                "Top-level declaration: main",
+                "Top-level declaration: _address_contributions",
+                "Top-level declaration: _evaluate_production_case",
+                "Top-level declaration: _controlled_case",
+                "Top-level declaration: _controlled_matches",
+                "Top-level declaration: _baseline_metrics",
+                "Top-level declaration: _variant_metrics",
+                "Top-level declaration: _metric_delta",
+                "Top-level declaration: _evaluation_metrics",
+                "Top-level declaration: _comparison_payload",
+                "Top-level declaration: _baseline_payload",
+                "Top-level declaration: _address_payload",
+                "Top-level declaration: _weighted_case_payload",
+                "Top-level declaration: _load_baseline_runner"
+              ]
+            },
+            "neutral_id": "resource-7f04587fdd3d3b0b",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Independent filename-stem lexical field state for repository retrieval.",
+                "Top-level declaration: RepositoryTextFilenameLexicalDocumentAnalysis",
+                "Top-level declaration: RepositoryTextFilenameLexicalTermFrequency",
+                "Top-level declaration: RepositoryTextFilenameLexicalDocumentStatistics",
+                "Top-level declaration: RepositoryTextFilenameLexicalDocumentFrequency",
+                "Top-level declaration: RepositoryTextFilenameLexicalPosting",
+                "Top-level declaration: RepositoryTextFilenameLexicalTermPostings",
+                "Top-level declaration: RepositoryTextFilenameLexicalIndex",
+                "Top-level declaration: RepositoryTextFilenameLexicalBm25TermContribution",
+                "Top-level declaration: build_repository_text_filename_lexical_index",
+                "Top-level declaration: score_repository_text_filename_lexical_bm25",
+                "Top-level declaration: _document_statistics"
+              ]
+            },
+            "neutral_id": "resource-a14175c2072d3f9c",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Repository resource addresses, content identity, and occurrences.",
+                "Top-level declaration: RepositoryResourceAddress",
+                "Top-level declaration: ContentIdentity",
+                "Top-level declaration: RepositoryResourceOccurrence",
+                "Top-level declaration: _validate_sha256"
+              ]
+            },
+            "neutral_id": "resource-4af4f9917f1b710d",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Baseline heterogeneous lexical observations over repository text documents.",
+                "Top-level declaration: RepositoryTextLexicalObservation",
+                "Top-level declaration: RepositoryTextLexicalDocumentAnalysis",
+                "Top-level declaration: RepositoryTextLexicalCollectionAnalysis",
+                "Top-level declaration: iter_lexical_spans",
+                "Top-level declaration: analyze_repository_text_document",
+                "Top-level declaration: analyze_repository_text_document_collection"
+              ]
+            },
+            "neutral_id": "resource-14b7ff1772fe68ba",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Shared Okapi BM25 arithmetic for concrete lexical retrieval fields.",
+                "Top-level declaration: calculate_bm25_inverse_document_frequency",
+                "Top-level declaration: calculate_bm25_term_contribution"
+              ]
+            },
+            "neutral_id": "resource-8e0091bf6a9694d9",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for bounded content-only Okapi BM25 lexical retrieval.",
+                "Top-level declaration: _index",
+                "Top-level declaration: _retrieve",
+                "Top-level declaration: test_query_uses_baseline_lexical_spans_and_retains_repeated_evidence",
+                "Top-level declaration: test_manual_okapi_bm25_score_and_contribution_evidence",
+                "Top-level declaration: test_multi_term_scores_sum_contributions_and_casefold_matches",
+                "Top-level declaration: test_repeated_query_terms_are_retained_but_scored_once",
+                "Top-level declaration: test_ranking_is_descending_with_upstream_document_order_for_ties",
+                "Top-level declaration: test_maximum_results_is_required_positive_and_applied_after_ranking",
+                "Top-level declaration: test_settings_validate_and_change_bm25_length_normalization",
+                "Top-level declaration: test_empty_oov_and_mixed_query_semantics_are_successful",
+                "Top-level declaration: test_empty_index_and_empty_documents_produce_successful_zero_matches",
+                "Top-level declaration: test_retrieval_is_content_only_and_performs_no_external_work",
+                "Top-level declaration: test_retrieval_exposes_no_context_or_nonlexical_retrieval_state"
+              ]
+            },
+            "neutral_id": "resource-dcaffa6551136aa3",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Compare experimental identifier-aware lexical expansion with the BM25 baseline.",
+                "Top-level declaration: IdentifierExperimentDocument",
+                "Top-level declaration: IdentifierExperimentObservation",
+                "Top-level declaration: IdentifierExperimentDocumentStatistics",
+                "Top-level declaration: IdentifierExperimentIndex",
+                "Top-level declaration: IdentifierExperimentMatch",
+                "Top-level declaration: IdentifierExperimentEvaluation",
+                "Top-level declaration: IdentifierExperimentComparison",
+                "Top-level declaration: parse_arguments",
+                "Top-level declaration: expand_identifier_terms",
+                "Top-level declaration: analyze_identifier_text",
+                "Top-level declaration: analyze_identifier_query",
+                "Top-level declaration: build_identifier_index",
+                "Top-level declaration: retrieve_identifier_bm25",
+                "Top-level declaration: evaluate_identifier_retrieval",
+                "Top-level declaration: run_comparison",
+                "Top-level declaration: controlled_cases",
+                "Top-level declaration: report_payload",
+                "Top-level declaration: write_report",
+                "Top-level declaration: main",
+                "Top-level declaration: _split_identifier_piece",
+                "Top-level declaration: _document_statistics",
+                "Top-level declaration: _query_observations",
+                "Top-level declaration: _compare_case",
+                "Top-level declaration: _controlled_case",
+                "Top-level declaration: _aggregate_metrics",
+                "Top-level declaration: _summary_payload",
+                "Top-level declaration: _comparison_payload",
+                "Top-level declaration: _evaluation_metrics",
+                "Top-level declaration: _load_baseline_runner"
+              ]
+            },
+            "neutral_id": "resource-b73debb67756d5bd",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for content-only inverted lexical postings.",
+                "Top-level declaration: _analyzed_collection",
+                "Top-level declaration: _statistics",
+                "Top-level declaration: _index",
+                "Top-level declaration: test_equivalent_analyses_produce_equal_statistics_and_index",
+                "Top-level declaration: test_postings_retain_document_and_observation_evidence",
+                "Top-level declaration: test_index_changes_with_statistics_without_mutating_analysis",
+                "Top-level declaration: test_empty_index_has_no_postings",
+                "Top-level declaration: test_statistics_and_index_do_not_retokenize_or_acquire_resources",
+                "Top-level declaration: test_statistics_and_index_expose_no_query_scoring_or_retrieval_state",
+                "Top-level declaration: test_paths_are_not_indexed_unless_present_in_document_content"
+              ]
+            },
+            "neutral_id": "resource-de70093ea8aee8dd",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Frozen manual cases for the import-relationship retrieval experiment.",
+                "Top-level declaration: ImportRelationshipDirection",
+                "Top-level declaration: ImportRelationshipCase",
+                "Top-level declaration: import_relationship_cases"
+              ]
+            },
+            "neutral_id": "resource-dad57b769a3c04e9",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # B-0002 \u2014 Coding Context Substrate",
+                "Document heading: ## Problem / value",
+                "Document heading: ### Near-term empirical sequence",
+                "Document heading: ## Selected first design target"
+              ]
+            },
+            "neutral_id": "resource-2a513b46f75e9f0c",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Retrieval Architecture Synthesis and Research-Recovery Checkpoint",
+                "Document heading: ## Purpose",
+                "Document heading: ## Sources reviewed",
+                "Document heading: ## Historical retrieval trajectory",
+                "Document heading: ## Current production state",
+                "Document heading: ### Production retrieval",
+                "Document heading: ### Current Repository Intelligence substrate",
+                "Document heading: ## Intended heterogeneous portfolio",
+                "Document heading: ## Semantic/vector retrieval boundary",
+                "Document heading: ## Exact/direct lookup boundary",
+                "Document heading: ## Relationship/graph boundary",
+                "Document heading: ## Purpose-relative decision and Context disclosure",
+                "Document heading: ## Increment 22 evidence interpretation",
+                "Document heading: ## Context planning/disclosure boundary",
+                "Document heading: ## Progressive disclosure",
+                "Document heading: ## Evaluation/observability chain",
+                "Document heading: ## Shadow-mode assessment",
+                "Document heading: ## Learned-intelligence assessment",
+                "Document heading: ## Architecture evidence matrix",
+                "Document heading: ## Recovered and missing historical findings",
+                "Document heading: ## Rejected and constrained approaches",
+                "Document heading: ## Deferred capabilities",
+                "Document heading: ## Open questions",
+                "Document heading: ## Recommended next investigations",
+                "Document heading: ## Revisit triggers",
+                "Document heading: ## ADR assessment and disposition",
+                "Document heading: ## Long-term architecture synthesis",
+                "Document heading: ## Final disposition"
+              ]
+            },
+            "neutral_id": "resource-16e5b4133a37b654",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Documentation Map",
+                "Document heading: ## Authority and ownership",
+                "Document heading: ## Package documentation",
+                "Document heading: ## Experiments and scripts",
+                "Document heading: ## Backlog navigation",
+                "Document heading: ## Update workflow"
+              ]
+            },
+            "neutral_id": "resource-6cd09b59f2a0ce62",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Architecture",
+                "Document heading: ## Reading architectural and implementation status",
+                "Document heading: ## Domains",
+                "Document heading: ## Current boundaries",
+                "Document heading: ## Dependency direction",
+                "Document heading: ## Principles",
+                "Document heading: ## Accepted ModelInteraction boundary",
+                "Document heading: ## Accepted repository-intelligence semantics",
+                "Document heading: ## Accepted retrieval and ranking semantics",
+                "Document heading: ## Accepted Context and disclosure semantics",
+                "Document heading: ## Accepted Evaluation responsibility",
+                "Document heading: ## Implementation-start and remaining evidence constraints"
+              ]
+            },
+            "neutral_id": "resource-0153b146e3e84e35",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for the experiment-owned filename and full-path lexical comparison.",
+                "Top-level declaration: test_filename_terms_preserve_stem_and_exclude_extension_scoring",
+                "Top-level declaration: test_full_path_terms_include_generic_directories_but_not_extension",
+                "Top-level declaration: test_controlled_cases_isolate_filename_directory_and_extension_effects",
+                "Top-level declaration: test_controlled_address_evidence_exposes_content_distractor_limits",
+                "Top-level declaration: test_filename_weight_fixtures_exercise_conservative_and_distractor_behavior",
+                "Top-level declaration: test_weight_calibration_preserves_content_baseline_at_zero_weight",
+                "Top-level declaration: test_real_repository_comparison_is_paired_and_writes_only_selected_report",
+                "Top-level declaration: test_filename_promotion_gate_keeps_the_fixed_sets_and_zero_weight_baseline"
+              ]
+            },
+            "neutral_id": "resource-b5cb4487ab8fc8b2",
+            "visible_address": null
+          }
+        ],
+        "protocol_version": "increment-23-blinded-adjudication-v2",
+        "purpose_rationale": "Judge whether each supplied resource is materially useful for answering the frozen information need, using only the bounded evidence shown."
+      },
+      {
+        "capture_identity": "48cc33b8d635b342d4390cd0a55337673f4b44787b14e8073d787a03747d2b07",
+        "case_name": "baseline-lexical-analysis-definition",
+        "design_fingerprint": "c36d39f18258e918f8a1023a22d821619fc08cb8840d4ed80aae31832feabef7",
+        "information_need": "Identify the local implementation and focused test that define baseline lexical span extraction and collection analysis semantics.",
+        "items": [
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "withheld",
+              "resource_kind": "unavailable",
+              "semantic_outline": [
+                "Semantic evidence unavailable under the blinded structural projection."
+              ]
+            },
+            "neutral_id": "resource-a434eb20c04e3c52",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for baseline heterogeneous repository text lexical analysis.",
+                "Top-level declaration: test_heterogeneous_documents_use_one_baseline_lexical_mechanism",
+                "Top-level declaration: test_observations_preserve_order_repetition_casefolding_and_exact_spans",
+                "Top-level declaration: test_document_analysis_is_deterministic_and_independent_of_other_documents",
+                "Top-level declaration: test_empty_document_and_empty_collection_are_successful_zero_results",
+                "Top-level declaration: test_analysis_performs_no_acquisition_parsing_or_retrieval",
+                "Top-level declaration: test_analysis_exposes_no_statistics_or_retrieval_state"
+              ]
+            },
+            "neutral_id": "resource-119fb156d18cdf5f",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Compare experimental identifier-aware lexical expansion with the BM25 baseline.",
+                "Top-level declaration: IdentifierExperimentDocument",
+                "Top-level declaration: IdentifierExperimentObservation",
+                "Top-level declaration: IdentifierExperimentDocumentStatistics",
+                "Top-level declaration: IdentifierExperimentIndex",
+                "Top-level declaration: IdentifierExperimentMatch",
+                "Top-level declaration: IdentifierExperimentEvaluation",
+                "Top-level declaration: IdentifierExperimentComparison",
+                "Top-level declaration: parse_arguments",
+                "Top-level declaration: expand_identifier_terms",
+                "Top-level declaration: analyze_identifier_text",
+                "Top-level declaration: analyze_identifier_query",
+                "Top-level declaration: build_identifier_index",
+                "Top-level declaration: retrieve_identifier_bm25",
+                "Top-level declaration: evaluate_identifier_retrieval",
+                "Top-level declaration: run_comparison",
+                "Top-level declaration: controlled_cases",
+                "Top-level declaration: report_payload",
+                "Top-level declaration: write_report",
+                "Top-level declaration: main",
+                "Top-level declaration: _split_identifier_piece",
+                "Top-level declaration: _document_statistics",
+                "Top-level declaration: _query_observations",
+                "Top-level declaration: _compare_case",
+                "Top-level declaration: _controlled_case",
+                "Top-level declaration: _aggregate_metrics",
+                "Top-level declaration: _summary_payload",
+                "Top-level declaration: _comparison_payload",
+                "Top-level declaration: _evaluation_metrics",
+                "Top-level declaration: _load_baseline_runner"
+              ]
+            },
+            "neutral_id": "resource-3ecbc09ec4fc10da",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Baseline heterogeneous lexical observations over repository text documents.",
+                "Top-level declaration: RepositoryTextLexicalObservation",
+                "Top-level declaration: RepositoryTextLexicalDocumentAnalysis",
+                "Top-level declaration: RepositoryTextLexicalCollectionAnalysis",
+                "Top-level declaration: iter_lexical_spans",
+                "Top-level declaration: analyze_repository_text_document",
+                "Top-level declaration: analyze_repository_text_document_collection"
+              ]
+            },
+            "neutral_id": "resource-c7e6fdbbd8417f99",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Bounded content-only Okapi BM25 retrieval over one lexical inverted index.",
+                "Top-level declaration: RepositoryTextLexicalQueryObservation",
+                "Top-level declaration: RepositoryTextLexicalQuery",
+                "Top-level declaration: RepositoryTextLexicalBm25Settings",
+                "Top-level declaration: RepositoryTextLexicalBm25TermContribution",
+                "Top-level declaration: RepositoryTextLexicalBm25Match",
+                "Top-level declaration: RepositoryTextLexicalBm25RetrievalResult",
+                "Top-level declaration: analyze_repository_text_lexical_query",
+                "Top-level declaration: retrieve_repository_text_documents_by_content_bm25",
+                "Top-level declaration: retrieve_repository_text_documents_by_bm25"
+              ]
+            },
+            "neutral_id": "resource-660d11b4b1d0266c",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Compare experimental filename and path lexical evidence with content BM25.",
+                "Top-level declaration: AddressObservation",
+                "Top-level declaration: AddressDocument",
+                "Top-level declaration: AddressIndex",
+                "Top-level declaration: AddressContribution",
+                "Top-level declaration: AddressMatch",
+                "Top-level declaration: AddressEvaluation",
+                "Top-level declaration: AddressComparison",
+                "Top-level declaration: RobustnessCase",
+                "Top-level declaration: parse_arguments",
+                "Top-level declaration: filename_observations",
+                "Top-level declaration: full_path_observations",
+                "Top-level declaration: address_document",
+                "Top-level declaration: build_address_index",
+                "Top-level declaration: retrieve_with_address_evidence",
+                "Top-level declaration: evaluate_address_matches",
+                "Top-level declaration: run_comparison",
+                "Top-level declaration: run_filename_weight_calibration",
+                "Top-level declaration: run_filename_promotion_gate",
+                "Top-level declaration: controlled_cases",
+                "Top-level declaration: controlled_filename_weight_cases",
+                "Top-level declaration: report_payload",
+                "Top-level declaration: filename_weight_report_payload",
+                "Top-level declaration: filename_promotion_gate_report_payload",
+                "Top-level declaration: write_report",
+                "Top-level declaration: main",
+                "Top-level declaration: _address_contributions",
+                "Top-level declaration: _evaluate_production_case",
+                "Top-level declaration: _controlled_case",
+                "Top-level declaration: _controlled_matches",
+                "Top-level declaration: _baseline_metrics",
+                "Top-level declaration: _variant_metrics",
+                "Top-level declaration: _metric_delta",
+                "Top-level declaration: _evaluation_metrics",
+                "Top-level declaration: _comparison_payload",
+                "Top-level declaration: _baseline_payload",
+                "Top-level declaration: _address_payload",
+                "Top-level declaration: _weighted_case_payload",
+                "Top-level declaration: _load_baseline_runner"
+              ]
+            },
+            "neutral_id": "resource-f266f9581fe7f77e",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Independent filename-stem lexical field state for repository retrieval.",
+                "Top-level declaration: RepositoryTextFilenameLexicalDocumentAnalysis",
+                "Top-level declaration: RepositoryTextFilenameLexicalTermFrequency",
+                "Top-level declaration: RepositoryTextFilenameLexicalDocumentStatistics",
+                "Top-level declaration: RepositoryTextFilenameLexicalDocumentFrequency",
+                "Top-level declaration: RepositoryTextFilenameLexicalPosting",
+                "Top-level declaration: RepositoryTextFilenameLexicalTermPostings",
+                "Top-level declaration: RepositoryTextFilenameLexicalIndex",
+                "Top-level declaration: RepositoryTextFilenameLexicalBm25TermContribution",
+                "Top-level declaration: build_repository_text_filename_lexical_index",
+                "Top-level declaration: score_repository_text_filename_lexical_bm25",
+                "Top-level declaration: _document_statistics"
+              ]
+            },
+            "neutral_id": "resource-4c9af3907acc1897",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "withheld",
+              "resource_kind": "unavailable",
+              "semantic_outline": [
+                "Semantic evidence unavailable under the blinded structural projection."
+              ]
+            },
+            "neutral_id": "resource-889b7f641d3d469f",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for deterministic evaluation of bounded lexical retrieval results.",
+                "Top-level declaration: _controlled_index",
+                "Top-level declaration: _address",
+                "Top-level declaration: _retrieve",
+                "Top-level declaration: _case",
+                "Top-level declaration: test_evaluation_retains_native_relevance_rank_and_missed_resource_evidence",
+                "Top-level declaration: test_evaluation_metrics_handle_no_results_short_lists_and_multiple_relevant",
+                "Top-level declaration: test_aggregate_metrics_preserve_case_results_and_compute_mrr",
+                "Top-level declaration: test_evaluation_rejects_invalid_cases_and_insufficient_result_evidence",
+                "Top-level declaration: test_summary_rejects_mixed_cutoffs_and_case_query_mismatch",
+                "Top-level declaration: test_controlled_heterogeneous_cases_measure_strengths_and_known_gaps",
+                "Top-level declaration: test_evaluation_is_deterministic_and_performs_no_upstream_or_model_work"
+              ]
+            },
+            "neutral_id": "resource-91e5d07054c1b0a9",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Frozen manual cases for the import-relationship retrieval experiment.",
+                "Top-level declaration: ImportRelationshipDirection",
+                "Top-level declaration: ImportRelationshipCase",
+                "Top-level declaration: import_relationship_cases"
+              ]
+            },
+            "neutral_id": "resource-b66aadaf23484f27",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for bounded content-only Okapi BM25 lexical retrieval.",
+                "Top-level declaration: _index",
+                "Top-level declaration: _retrieve",
+                "Top-level declaration: test_query_uses_baseline_lexical_spans_and_retains_repeated_evidence",
+                "Top-level declaration: test_manual_okapi_bm25_score_and_contribution_evidence",
+                "Top-level declaration: test_multi_term_scores_sum_contributions_and_casefold_matches",
+                "Top-level declaration: test_repeated_query_terms_are_retained_but_scored_once",
+                "Top-level declaration: test_ranking_is_descending_with_upstream_document_order_for_ties",
+                "Top-level declaration: test_maximum_results_is_required_positive_and_applied_after_ranking",
+                "Top-level declaration: test_settings_validate_and_change_bm25_length_normalization",
+                "Top-level declaration: test_empty_oov_and_mixed_query_semantics_are_successful",
+                "Top-level declaration: test_empty_index_and_empty_documents_produce_successful_zero_matches",
+                "Top-level declaration: test_retrieval_is_content_only_and_performs_no_external_work",
+                "Top-level declaration: test_retrieval_exposes_no_context_or_nonlexical_retrieval_state"
+              ]
+            },
+            "neutral_id": "resource-6d34ac8c85a881e0",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for the experiment-owned identifier-aware lexical comparison.",
+                "Top-level declaration: test_identifier_expansion_preserves_original_and_has_explicit_boundaries",
+                "Top-level declaration: test_query_and_document_expansion_are_symmetric_and_preserve_spans",
+                "Top-level declaration: test_expansion_changes_only_experimental_term_statistics",
+                "Top-level declaration: test_controlled_cases_show_identifier_improvements_and_distractor_limit",
+                "Top-level declaration: test_real_repository_comparison_is_paired_and_report_is_caller_selected"
+              ]
+            },
+            "neutral_id": "resource-5dae6dc0d212a23b",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Repository Intelligence and Context System Architecture",
+                "Document heading: ## Disposition",
+                "Document heading: ## A. Executive conclusion",
+                "Document heading: # B. Current-state problem model",
+                "Document heading: # C. State of the art",
+                "Document heading: # D. Token-reduction evidence",
+                "Document heading: # E. Retrieval evidence",
+                "Document heading: # F. Task dependence",
+                "Document heading: # G. Selective retrieval",
+                "Document heading: # H. Repository representation",
+                "Document heading: # I. Repository intelligence",
+                "Document heading: # J. Architecture/documentation intelligence",
+                "Document heading: # K. Change-impact intelligence",
+                "Document heading: # L. Context compilation",
+                "Document heading: # M. Progressive disclosure",
+                "Document heading: # N. Context caching and reuse",
+                "Document heading: # O. Local-model feasibility",
+                "Document heading: # P. CIT 52600 relationship",
+                "Document heading: # Q. Evaluation architecture",
+                "Document heading: # R. Codex baseline measurement",
+                "Document heading: # S. Controlled experiment",
+                "Document heading: # T. Security/trust",
+                "Document heading: # U. Failure taxonomy",
+                "Document heading: # V. Recommended target architecture",
+                "Document heading: # W. Minimal semantic model",
+                "Document heading: # X. Gap analysis against current `devtools`",
+                "Document heading: # Y. Implementation roadmap",
+                "Document heading: # Z. First implementation slice",
+                "Document heading: # 37. Final decision questions"
+              ]
+            },
+            "neutral_id": "resource-e7a5a6706f6dd2d8",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # B-0002 \u2014 Coding Context Substrate",
+                "Document heading: ## Problem / value",
+                "Document heading: ### Near-term empirical sequence",
+                "Document heading: ## Selected first design target"
+              ]
+            },
+            "neutral_id": "resource-313fe8a8ae6ebf86",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Deterministic cross-document statistics over lexical document analyses.",
+                "Top-level declaration: RepositoryTextLexicalTermFrequency",
+                "Top-level declaration: RepositoryTextLexicalDocumentStatistics",
+                "Top-level declaration: RepositoryTextLexicalDocumentFrequency",
+                "Top-level declaration: RepositoryTextLexicalCorpusStatistics",
+                "Top-level declaration: calculate_repository_text_lexical_corpus_statistics",
+                "Top-level declaration: _calculate_document_statistics"
+              ]
+            },
+            "neutral_id": "resource-61f2a3b1a72fa774",
+            "visible_address": null
+          }
+        ],
+        "protocol_version": "increment-23-blinded-adjudication-v2",
+        "purpose_rationale": "Judge whether each supplied resource is materially useful for answering the frozen information need, using only the bounded evidence shown."
+      },
+      {
+        "capture_identity": "6e274873b01fdaac1b288d5c1c73e7c5dc4a6e93f3eba4cfd2694219243a0a17",
+        "case_name": "content-bm25-analysis-consumer",
+        "design_fingerprint": "c36d39f18258e918f8a1023a22d821619fc08cb8840d4ed80aae31832feabef7",
+        "information_need": "Identify the downstream content-BM25 implementation and focused behavioral test that consume baseline lexical analysis.",
+        "items": [
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "withheld",
+              "resource_kind": "unavailable",
+              "semantic_outline": [
+                "Semantic evidence unavailable under the blinded structural projection."
+              ]
+            },
+            "neutral_id": "resource-6e8b0655bd7597b7",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for baseline heterogeneous repository text lexical analysis.",
+                "Top-level declaration: test_heterogeneous_documents_use_one_baseline_lexical_mechanism",
+                "Top-level declaration: test_observations_preserve_order_repetition_casefolding_and_exact_spans",
+                "Top-level declaration: test_document_analysis_is_deterministic_and_independent_of_other_documents",
+                "Top-level declaration: test_empty_document_and_empty_collection_are_successful_zero_results",
+                "Top-level declaration: test_analysis_performs_no_acquisition_parsing_or_retrieval",
+                "Top-level declaration: test_analysis_exposes_no_statistics_or_retrieval_state"
+              ]
+            },
+            "neutral_id": "resource-8471133d15219dcc",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Compare experimental identifier-aware lexical expansion with the BM25 baseline.",
+                "Top-level declaration: IdentifierExperimentDocument",
+                "Top-level declaration: IdentifierExperimentObservation",
+                "Top-level declaration: IdentifierExperimentDocumentStatistics",
+                "Top-level declaration: IdentifierExperimentIndex",
+                "Top-level declaration: IdentifierExperimentMatch",
+                "Top-level declaration: IdentifierExperimentEvaluation",
+                "Top-level declaration: IdentifierExperimentComparison",
+                "Top-level declaration: parse_arguments",
+                "Top-level declaration: expand_identifier_terms",
+                "Top-level declaration: analyze_identifier_text",
+                "Top-level declaration: analyze_identifier_query",
+                "Top-level declaration: build_identifier_index",
+                "Top-level declaration: retrieve_identifier_bm25",
+                "Top-level declaration: evaluate_identifier_retrieval",
+                "Top-level declaration: run_comparison",
+                "Top-level declaration: controlled_cases",
+                "Top-level declaration: report_payload",
+                "Top-level declaration: write_report",
+                "Top-level declaration: main",
+                "Top-level declaration: _split_identifier_piece",
+                "Top-level declaration: _document_statistics",
+                "Top-level declaration: _query_observations",
+                "Top-level declaration: _compare_case",
+                "Top-level declaration: _controlled_case",
+                "Top-level declaration: _aggregate_metrics",
+                "Top-level declaration: _summary_payload",
+                "Top-level declaration: _comparison_payload",
+                "Top-level declaration: _evaluation_metrics",
+                "Top-level declaration: _load_baseline_runner"
+              ]
+            },
+            "neutral_id": "resource-24a9e4f61983d16b",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Baseline heterogeneous lexical observations over repository text documents.",
+                "Top-level declaration: RepositoryTextLexicalObservation",
+                "Top-level declaration: RepositoryTextLexicalDocumentAnalysis",
+                "Top-level declaration: RepositoryTextLexicalCollectionAnalysis",
+                "Top-level declaration: iter_lexical_spans",
+                "Top-level declaration: analyze_repository_text_document",
+                "Top-level declaration: analyze_repository_text_document_collection"
+              ]
+            },
+            "neutral_id": "resource-f9295f9afe89a07b",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Bounded content-only Okapi BM25 retrieval over one lexical inverted index.",
+                "Top-level declaration: RepositoryTextLexicalQueryObservation",
+                "Top-level declaration: RepositoryTextLexicalQuery",
+                "Top-level declaration: RepositoryTextLexicalBm25Settings",
+                "Top-level declaration: RepositoryTextLexicalBm25TermContribution",
+                "Top-level declaration: RepositoryTextLexicalBm25Match",
+                "Top-level declaration: RepositoryTextLexicalBm25RetrievalResult",
+                "Top-level declaration: analyze_repository_text_lexical_query",
+                "Top-level declaration: retrieve_repository_text_documents_by_content_bm25",
+                "Top-level declaration: retrieve_repository_text_documents_by_bm25"
+              ]
+            },
+            "neutral_id": "resource-4c5c07eb2d8a3459",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Compare experimental filename and path lexical evidence with content BM25.",
+                "Top-level declaration: AddressObservation",
+                "Top-level declaration: AddressDocument",
+                "Top-level declaration: AddressIndex",
+                "Top-level declaration: AddressContribution",
+                "Top-level declaration: AddressMatch",
+                "Top-level declaration: AddressEvaluation",
+                "Top-level declaration: AddressComparison",
+                "Top-level declaration: RobustnessCase",
+                "Top-level declaration: parse_arguments",
+                "Top-level declaration: filename_observations",
+                "Top-level declaration: full_path_observations",
+                "Top-level declaration: address_document",
+                "Top-level declaration: build_address_index",
+                "Top-level declaration: retrieve_with_address_evidence",
+                "Top-level declaration: evaluate_address_matches",
+                "Top-level declaration: run_comparison",
+                "Top-level declaration: run_filename_weight_calibration",
+                "Top-level declaration: run_filename_promotion_gate",
+                "Top-level declaration: controlled_cases",
+                "Top-level declaration: controlled_filename_weight_cases",
+                "Top-level declaration: report_payload",
+                "Top-level declaration: filename_weight_report_payload",
+                "Top-level declaration: filename_promotion_gate_report_payload",
+                "Top-level declaration: write_report",
+                "Top-level declaration: main",
+                "Top-level declaration: _address_contributions",
+                "Top-level declaration: _evaluate_production_case",
+                "Top-level declaration: _controlled_case",
+                "Top-level declaration: _controlled_matches",
+                "Top-level declaration: _baseline_metrics",
+                "Top-level declaration: _variant_metrics",
+                "Top-level declaration: _metric_delta",
+                "Top-level declaration: _evaluation_metrics",
+                "Top-level declaration: _comparison_payload",
+                "Top-level declaration: _baseline_payload",
+                "Top-level declaration: _address_payload",
+                "Top-level declaration: _weighted_case_payload",
+                "Top-level declaration: _load_baseline_runner"
+              ]
+            },
+            "neutral_id": "resource-95f8bf8e50d51a38",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Independent filename-stem lexical field state for repository retrieval.",
+                "Top-level declaration: RepositoryTextFilenameLexicalDocumentAnalysis",
+                "Top-level declaration: RepositoryTextFilenameLexicalTermFrequency",
+                "Top-level declaration: RepositoryTextFilenameLexicalDocumentStatistics",
+                "Top-level declaration: RepositoryTextFilenameLexicalDocumentFrequency",
+                "Top-level declaration: RepositoryTextFilenameLexicalPosting",
+                "Top-level declaration: RepositoryTextFilenameLexicalTermPostings",
+                "Top-level declaration: RepositoryTextFilenameLexicalIndex",
+                "Top-level declaration: RepositoryTextFilenameLexicalBm25TermContribution",
+                "Top-level declaration: build_repository_text_filename_lexical_index",
+                "Top-level declaration: score_repository_text_filename_lexical_bm25",
+                "Top-level declaration: _document_statistics"
+              ]
+            },
+            "neutral_id": "resource-04d9ebfe9e9293d6",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "withheld",
+              "resource_kind": "unavailable",
+              "semantic_outline": [
+                "Semantic evidence unavailable under the blinded structural projection."
+              ]
+            },
+            "neutral_id": "resource-444d41c5a9a5c8ab",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for deterministic evaluation of bounded lexical retrieval results.",
+                "Top-level declaration: _controlled_index",
+                "Top-level declaration: _address",
+                "Top-level declaration: _retrieve",
+                "Top-level declaration: _case",
+                "Top-level declaration: test_evaluation_retains_native_relevance_rank_and_missed_resource_evidence",
+                "Top-level declaration: test_evaluation_metrics_handle_no_results_short_lists_and_multiple_relevant",
+                "Top-level declaration: test_aggregate_metrics_preserve_case_results_and_compute_mrr",
+                "Top-level declaration: test_evaluation_rejects_invalid_cases_and_insufficient_result_evidence",
+                "Top-level declaration: test_summary_rejects_mixed_cutoffs_and_case_query_mismatch",
+                "Top-level declaration: test_controlled_heterogeneous_cases_measure_strengths_and_known_gaps",
+                "Top-level declaration: test_evaluation_is_deterministic_and_performs_no_upstream_or_model_work"
+              ]
+            },
+            "neutral_id": "resource-e6d395e702aeb060",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Frozen manual cases for the import-relationship retrieval experiment.",
+                "Top-level declaration: ImportRelationshipDirection",
+                "Top-level declaration: ImportRelationshipCase",
+                "Top-level declaration: import_relationship_cases"
+              ]
+            },
+            "neutral_id": "resource-20c0e572ddb80d23",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for bounded content-only Okapi BM25 lexical retrieval.",
+                "Top-level declaration: _index",
+                "Top-level declaration: _retrieve",
+                "Top-level declaration: test_query_uses_baseline_lexical_spans_and_retains_repeated_evidence",
+                "Top-level declaration: test_manual_okapi_bm25_score_and_contribution_evidence",
+                "Top-level declaration: test_multi_term_scores_sum_contributions_and_casefold_matches",
+                "Top-level declaration: test_repeated_query_terms_are_retained_but_scored_once",
+                "Top-level declaration: test_ranking_is_descending_with_upstream_document_order_for_ties",
+                "Top-level declaration: test_maximum_results_is_required_positive_and_applied_after_ranking",
+                "Top-level declaration: test_settings_validate_and_change_bm25_length_normalization",
+                "Top-level declaration: test_empty_oov_and_mixed_query_semantics_are_successful",
+                "Top-level declaration: test_empty_index_and_empty_documents_produce_successful_zero_matches",
+                "Top-level declaration: test_retrieval_is_content_only_and_performs_no_external_work",
+                "Top-level declaration: test_retrieval_exposes_no_context_or_nonlexical_retrieval_state"
+              ]
+            },
+            "neutral_id": "resource-d309b7d55c8555a0",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for the experiment-owned identifier-aware lexical comparison.",
+                "Top-level declaration: test_identifier_expansion_preserves_original_and_has_explicit_boundaries",
+                "Top-level declaration: test_query_and_document_expansion_are_symmetric_and_preserve_spans",
+                "Top-level declaration: test_expansion_changes_only_experimental_term_statistics",
+                "Top-level declaration: test_controlled_cases_show_identifier_improvements_and_distractor_limit",
+                "Top-level declaration: test_real_repository_comparison_is_paired_and_report_is_caller_selected"
+              ]
+            },
+            "neutral_id": "resource-3904c8761104c269",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Repository Intelligence and Context System Architecture",
+                "Document heading: ## Disposition",
+                "Document heading: ## A. Executive conclusion",
+                "Document heading: # B. Current-state problem model",
+                "Document heading: # C. State of the art",
+                "Document heading: # D. Token-reduction evidence",
+                "Document heading: # E. Retrieval evidence",
+                "Document heading: # F. Task dependence",
+                "Document heading: # G. Selective retrieval",
+                "Document heading: # H. Repository representation",
+                "Document heading: # I. Repository intelligence",
+                "Document heading: # J. Architecture/documentation intelligence",
+                "Document heading: # K. Change-impact intelligence",
+                "Document heading: # L. Context compilation",
+                "Document heading: # M. Progressive disclosure",
+                "Document heading: # N. Context caching and reuse",
+                "Document heading: # O. Local-model feasibility",
+                "Document heading: # P. CIT 52600 relationship",
+                "Document heading: # Q. Evaluation architecture",
+                "Document heading: # R. Codex baseline measurement",
+                "Document heading: # S. Controlled experiment",
+                "Document heading: # T. Security/trust",
+                "Document heading: # U. Failure taxonomy",
+                "Document heading: # V. Recommended target architecture",
+                "Document heading: # W. Minimal semantic model",
+                "Document heading: # X. Gap analysis against current `devtools`",
+                "Document heading: # Y. Implementation roadmap",
+                "Document heading: # Z. First implementation slice",
+                "Document heading: # 37. Final decision questions"
+              ]
+            },
+            "neutral_id": "resource-c577c4fe472ccd98",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # B-0002 \u2014 Coding Context Substrate",
+                "Document heading: ## Problem / value",
+                "Document heading: ### Near-term empirical sequence",
+                "Document heading: ## Selected first design target"
+              ]
+            },
+            "neutral_id": "resource-333aa6b7cdc84035",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Deterministic cross-document statistics over lexical document analyses.",
+                "Top-level declaration: RepositoryTextLexicalTermFrequency",
+                "Top-level declaration: RepositoryTextLexicalDocumentStatistics",
+                "Top-level declaration: RepositoryTextLexicalDocumentFrequency",
+                "Top-level declaration: RepositoryTextLexicalCorpusStatistics",
+                "Top-level declaration: calculate_repository_text_lexical_corpus_statistics",
+                "Top-level declaration: _calculate_document_statistics"
+              ]
+            },
+            "neutral_id": "resource-01179767530c0185",
+            "visible_address": null
+          }
+        ],
+        "protocol_version": "increment-23-blinded-adjudication-v2",
+        "purpose_rationale": "Judge whether each supplied resource is materially useful for answering the frozen information need, using only the bounded evidence shown."
+      },
+      {
+        "capture_identity": "8548c105432f718a03f874b771934e371ccb6a24d4ebb3070d0caafd3b0bf889",
+        "case_name": "python-function-token-candidate-boundary",
+        "design_fingerprint": "c36d39f18258e918f8a1023a22d821619fc08cb8840d4ed80aae31832feabef7",
+        "information_need": "Identify the implementation and focused test that keep tokenizer-based Python function name candidates distinct from declaration analysis.",
+        "items": [
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Pre-analysis Python function resource candidates from observed source.",
+                "Top-level declaration: PythonFunctionCandidateTokenizationError",
+                "Top-level declaration: PythonFunctionNameTokenCandidateEvidence",
+                "Top-level declaration: PythonFunctionAnalysisCandidateResource",
+                "Top-level declaration: PythonFunctionAnalysisCandidateSelection",
+                "Top-level declaration: select_python_function_analysis_candidates"
+              ]
+            },
+            "neutral_id": "resource-a4b0353b84341416",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for pre-analysis Python function resource candidate selection.",
+                "Top-level declaration: _observe",
+                "Top-level declaration: test_name_token_candidates_feed_verified_context_pipeline",
+                "Top-level declaration: test_duplicate_name_tokens_select_each_resource_once_in_eligible_order",
+                "Top-level declaration: test_candidate_zero_is_successful_and_bounded_to_eligible_resources",
+                "Top-level declaration: test_invalid_eligible_resources_fail_before_tokenization",
+                "Top-level declaration: test_tokenization_failure_is_distinct_from_candidate_zero",
+                "Top-level declaration: test_candidate_selection_invokes_no_other_pipeline_operation"
+              ]
+            },
+            "neutral_id": "resource-c467e20a0ed2da33",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "withheld",
+              "resource_kind": "unavailable",
+              "semantic_outline": [
+                "Semantic evidence unavailable under the blinded structural projection."
+              ]
+            },
+            "neutral_id": "resource-9a2e889e82d0dea9",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for resource selection from exact-name Python function retrieval.",
+                "Top-level declaration: _observe",
+                "Top-level declaration: test_selects_matching_resources_without_altering_context_pipeline",
+                "Top-level declaration: test_first_match_order_and_all_support_survive_resource_deduplication",
+                "Top-level declaration: test_zero_retrieval_produces_successful_zero_resource_selection",
+                "Top-level declaration: test_selection_invokes_no_upstream_or_downstream_operation"
+              ]
+            },
+            "neutral_id": "resource-60727ceb7d598e44",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Bounded Context disclosure for exact-name Python function retrieval.",
+                "Top-level declaration: PythonFunctionDeclarationDisclosureItem",
+                "Top-level declaration: PythonFunctionExactNameContextDisclosure",
+                "Top-level declaration: disclose_python_function_exact_name_retrieval",
+                "Top-level declaration: _semantic_digest"
+              ]
+            },
+            "neutral_id": "resource-0da6278edf3e8799",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Public Repository Intelligence and bounded Context API."
+              ]
+            },
+            "neutral_id": "resource-9d9ddbc6955d5382",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Path primitives for developer tooling."
+              ]
+            },
+            "neutral_id": "resource-00414a5ede595295",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Model invocation contracts, values, and providers."
+              ]
+            },
+            "neutral_id": "resource-acf2fe71646fa65b",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Repository resource addresses, content identity, and occurrences.",
+                "Top-level declaration: RepositoryResourceAddress",
+                "Top-level declaration: ContentIdentity",
+                "Top-level declaration: RepositoryResourceOccurrence",
+                "Top-level declaration: _validate_sha256"
+              ]
+            },
+            "neutral_id": "resource-00d467993bbbe3e8",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Architecture",
+                "Document heading: ## Reading architectural and implementation status",
+                "Document heading: ## Domains",
+                "Document heading: ## Current boundaries",
+                "Document heading: ## Dependency direction",
+                "Document heading: ## Principles",
+                "Document heading: ## Accepted ModelInteraction boundary",
+                "Document heading: ## Accepted repository-intelligence semantics",
+                "Document heading: ## Accepted retrieval and ranking semantics",
+                "Document heading: ## Accepted Context and disclosure semantics",
+                "Document heading: ## Accepted Evaluation responsibility",
+                "Document heading: ## Implementation-start and remaining evidence constraints"
+              ]
+            },
+            "neutral_id": "resource-2057a0cfe48027bc",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for deterministic rendering of materialized Python function Context.",
+                "Top-level declaration: _materialized_context",
+                "Top-level declaration: test_renders_ordered_duplicate_sync_and_async_context_exactly",
+                "Top-level declaration: test_zero_context_renders_bounded_success_without_absence_claim",
+                "Top-level declaration: test_rendering_consumes_only_materialized_context"
+              ]
+            },
+            "neutral_id": "resource-23b73221c66bbb86",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Purpose-Relative Repository Context: Retrieval, Selection, and Disclosure",
+                "Document heading: ## Disposition",
+                "Document heading: ## Executive conclusion and strongest challenges",
+                "Document heading: ### Strongest challenges to the current framing \u2014 B",
+                "Document heading: ## Semantic decomposition, information need, and candidatehood",
+                "Document heading: ### Information-need semantics \u2014 D",
+                "Document heading: ### Candidate semantics \u2014 E",
+                "Document heading: ## Selection, evidence composition, budget, and Context",
+                "Document heading: ### Heterogeneous evidence composition \u2014 G",
+                "Document heading: ### Negative evidence",
+                "Document heading: ### Multi-resource selection, redundancy, and marginal value",
+                "Document heading: ### Budget and Context boundary \u2014 H",
+                "Document heading: ### Required distinction matrix",
+                "Document heading: ## Identity, provenance, applicability, and replay",
+                "Document heading: ### What exact replay requires",
+                "Document heading: ### Applicability and invalidation",
+                "Document heading: ### What belongs in identity versus logs",
+                "Document heading: ## Evaluation, benchmark governance, and learned intelligence",
+                "Document heading: ### Which metric answers which question",
+                "Document heading: ### Multi-resource completeness requires more than binary qrels",
+                "Document heading: ### Benchmark judgment governance",
+                "Document heading: ### Deterministic versus learned boundary \u2014 K",
+                "Document heading: ## External evidence and adversarial falsification",
+                "Document heading: ### Adversarial questions",
+                "Document heading: ## Increment 21, failure modes, and deliberate non-decisions",
+                "Document heading: ### Explicit non-recommendations \u2014 N",
+                "Document heading: ### Increment 21 implications \u2014 O",
+                "Document heading: #### Production code",
+                "Document heading: #### Smallest required experimental values and operations",
+                "Document heading: #### Controlled fixtures",
+                "Document heading: #### Real-repository cases",
+                "Document heading: #### Experimental arms",
+                "Document heading: #### Evidence that must be retained",
+                "Document heading: #### Success criteria",
+                "Document heading: #### Failure criteria",
+                "Document heading: #### Explicitly out of scope for Increment 21",
+                "Document heading: ### Open questions \u2014 P"
+              ]
+            },
+            "neutral_id": "resource-9e1df8bbb5fe51d2",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # B-0002 \u2014 Coding Context Substrate",
+                "Document heading: ## Problem / value",
+                "Document heading: ### Near-term empirical sequence",
+                "Document heading: ## Selected first design target"
+              ]
+            },
+            "neutral_id": "resource-3da3c63912fa37e5",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # ADR-0004 \u2014 Context disclosure planning and model-input assembly semantics",
+                "Document heading: ## Research reconciliation",
+                "Document heading: ## Context",
+                "Document heading: ## Decision",
+                "Document heading: ### Disclosure planning is conditional composition",
+                "Document heading: ### Prior information, applicability, and sufficiency",
+                "Document heading: ### Constraints, budgets, and disclosure artifacts",
+                "Document heading: ### Planning versus model-input assembly",
+                "Document heading: ### InformationNeed decomposition",
+                "Document heading: ### Representation origin, coherence, authority, and conflict refinement",
+                "Document heading: ### Remaining open pressure",
+                "Document heading: ## Status and implementation boundary"
+              ]
+            },
+            "neutral_id": "resource-8c1b977b8ebc0b11",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Retrieval Architecture Synthesis and Research-Recovery Checkpoint",
+                "Document heading: ## Purpose",
+                "Document heading: ## Sources reviewed",
+                "Document heading: ## Historical retrieval trajectory",
+                "Document heading: ## Current production state",
+                "Document heading: ### Production retrieval",
+                "Document heading: ### Current Repository Intelligence substrate",
+                "Document heading: ## Intended heterogeneous portfolio",
+                "Document heading: ## Semantic/vector retrieval boundary",
+                "Document heading: ## Exact/direct lookup boundary",
+                "Document heading: ## Relationship/graph boundary",
+                "Document heading: ## Purpose-relative decision and Context disclosure",
+                "Document heading: ## Increment 22 evidence interpretation",
+                "Document heading: ## Context planning/disclosure boundary",
+                "Document heading: ## Progressive disclosure",
+                "Document heading: ## Evaluation/observability chain",
+                "Document heading: ## Shadow-mode assessment",
+                "Document heading: ## Learned-intelligence assessment",
+                "Document heading: ## Architecture evidence matrix",
+                "Document heading: ## Recovered and missing historical findings",
+                "Document heading: ## Rejected and constrained approaches",
+                "Document heading: ## Deferred capabilities",
+                "Document heading: ## Open questions",
+                "Document heading: ## Recommended next investigations",
+                "Document heading: ## Revisit triggers",
+                "Document heading: ## ADR assessment and disposition",
+                "Document heading: ## Long-term architecture synthesis",
+                "Document heading: ## Final disposition"
+              ]
+            },
+            "neutral_id": "resource-6a6c93fec370cc1e",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Deterministic text rendering for materialized Python function Context.",
+                "Top-level declaration: RenderedPythonFunctionContext",
+                "Top-level declaration: render_materialized_python_function_context",
+                "Top-level declaration: _render_item"
+              ]
+            },
+            "neutral_id": "resource-73089212aeed2c14",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for bounded Context disclosure of exact-name function retrieval.",
+                "Top-level declaration: _analysis",
+                "Top-level declaration: _retrieve",
+                "Top-level declaration: test_disclosure_selects_and_projects_all_matches_without_strengthening",
+                "Top-level declaration: test_successful_retrieval_zero_becomes_successful_zero_item_disclosure",
+                "Top-level declaration: test_disclosure_does_not_acquire_parse_or_derive"
+              ]
+            },
+            "neutral_id": "resource-9046b8d5069c6fbc",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for Python-source address candidacy from repository discovery.",
+                "Top-level declaration: _repository",
+                "Top-level declaration: _discover",
+                "Top-level declaration: test_exact_dot_py_candidacy_preserves_discovery_order_and_address_values",
+                "Top-level declaration: test_discovery_candidates_compose_through_the_function_context_pipeline",
+                "Top-level declaration: test_candidate_zero_is_successful_and_bounded_to_discovered_addresses",
+                "Top-level declaration: test_candidate_projection_performs_no_filesystem_or_pipeline_work"
+              ]
+            },
+            "neutral_id": "resource-0f1b4b58d1a2c007",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Direct module-body Python function declaration knowledge.",
+                "Top-level declaration: PythonFunctionDeclarationKind",
+                "Top-level declaration: PythonSourceRange",
+                "Top-level declaration: PythonSourceOccurrence",
+                "Top-level declaration: PythonModuleResourceDependency",
+                "Top-level declaration: PythonFunctionDeclarationDerivationDefinition",
+                "Top-level declaration: PythonFunctionDeclarationDerivation",
+                "Top-level declaration: PythonFunctionSubject",
+                "Top-level declaration: PythonFunctionDeclarationKnowledge",
+                "Top-level declaration: PythonFunctionDeclarationCoverage",
+                "Top-level declaration: PythonFunctionDeclarationAnalysis",
+                "Top-level declaration: PythonFunctionDeclarationAnalysisAggregate",
+                "Top-level declaration: PythonModuleParseError",
+                "Top-level declaration: derive_python_function_declarations",
+                "Top-level declaration: analyze_python_function_declaration_resources",
+                "Top-level declaration: _current_definition",
+                "Top-level declaration: _semantic_digest"
+              ]
+            },
+            "neutral_id": "resource-0f1b7882056cbd6a",
+            "visible_address": null
+          }
+        ],
+        "protocol_version": "increment-23-blinded-adjudication-v2",
+        "purpose_rationale": "Judge whether each supplied resource is materially useful for answering the frozen information need, using only the bounded evidence shown."
+      },
+      {
+        "capture_identity": "3eba692ce0bb50b874fa6c5a9fac93ccb3a8a15c25f7c6d8a8cf11f4983f6ff1",
+        "case_name": "import-declaration-source-evidence-contract",
+        "design_fingerprint": "c36d39f18258e918f8a1023a22d821619fc08cb8840d4ed80aae31832feabef7",
+        "information_need": "Identify the implementation and focused test that preserve direct module-body import declaration source-occurrence and span evidence.",
+        "items": [
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Direct module-body Python function declaration knowledge.",
+                "Top-level declaration: PythonFunctionDeclarationKind",
+                "Top-level declaration: PythonSourceRange",
+                "Top-level declaration: PythonSourceOccurrence",
+                "Top-level declaration: PythonModuleResourceDependency",
+                "Top-level declaration: PythonFunctionDeclarationDerivationDefinition",
+                "Top-level declaration: PythonFunctionDeclarationDerivation",
+                "Top-level declaration: PythonFunctionSubject",
+                "Top-level declaration: PythonFunctionDeclarationKnowledge",
+                "Top-level declaration: PythonFunctionDeclarationCoverage",
+                "Top-level declaration: PythonFunctionDeclarationAnalysis",
+                "Top-level declaration: PythonFunctionDeclarationAnalysisAggregate",
+                "Top-level declaration: PythonModuleParseError",
+                "Top-level declaration: derive_python_function_declarations",
+                "Top-level declaration: analyze_python_function_declaration_resources",
+                "Top-level declaration: _current_definition",
+                "Top-level declaration: _semantic_digest"
+              ]
+            },
+            "neutral_id": "resource-9e506b3d04dc6dc6",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Deterministic text rendering for materialized Python function Context.",
+                "Top-level declaration: RenderedPythonFunctionContext",
+                "Top-level declaration: render_materialized_python_function_context",
+                "Top-level declaration: _render_item"
+              ]
+            },
+            "neutral_id": "resource-347ae360f63de644",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "withheld",
+              "resource_kind": "unavailable",
+              "semantic_outline": [
+                "Semantic evidence unavailable under the blinded structural projection."
+              ]
+            },
+            "neutral_id": "resource-9774589485785b0b",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for direct module-body Python function declaration knowledge.",
+                "Top-level declaration: _repository",
+                "Top-level declaration: _snapshot",
+                "Top-level declaration: _multi_snapshot",
+                "Top-level declaration: test_derives_source_grounded_direct_function_declaration_knowledge",
+                "Top-level declaration: test_derivation_is_reproducible_and_records_narrow_semantic_input",
+                "Top-level declaration: test_valid_module_with_no_direct_declarations_is_exhaustive_zero",
+                "Top-level declaration: test_invalid_python_is_parse_failure_without_successful_coverage",
+                "Top-level declaration: test_multiple_same_name_direct_declarations_have_distinct_subjects",
+                "Top-level declaration: test_surrounding_source_shift_changes_source_grounding",
+                "Top-level declaration: test_source_range_uses_utf8_byte_columns",
+                "Top-level declaration: test_explicitly_selected_multi_snapshot_resources_are_distinct_dependencies",
+                "Top-level declaration: test_multi_snapshot_selection_rejects_an_unobserved_address",
+                "Top-level declaration: test_selected_multi_resource_zero_and_parse_failure_remain_distinct",
+                "Top-level declaration: test_explicit_resource_derivation_performs_no_filesystem_read"
+              ]
+            },
+            "neutral_id": "resource-af8d9f9a743b1988",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Direct module-body Python import declarations without resolution.",
+                "Top-level declaration: PythonImportSourceOccurrence",
+                "Top-level declaration: PythonImportDeclarationKnowledge",
+                "Top-level declaration: PythonImportDeclarationCoverage",
+                "Top-level declaration: PythonImportDeclarationAnalysis",
+                "Top-level declaration: PythonImportParseError",
+                "Top-level declaration: derive_python_import_declarations",
+                "Top-level declaration: _digest"
+              ]
+            },
+            "neutral_id": "resource-9107cea000f668e8",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for deterministic rendering of materialized Python function Context.",
+                "Top-level declaration: _materialized_context",
+                "Top-level declaration: test_renders_ordered_duplicate_sync_and_async_context_exactly",
+                "Top-level declaration: test_zero_context_renders_bounded_success_without_absence_claim",
+                "Top-level declaration: test_rendering_consumes_only_materialized_context"
+              ]
+            },
+            "neutral_id": "resource-5fe200637c1e9869",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Roadmap",
+                "Document heading: ## Purpose",
+                "Document heading: ## Established architecture",
+                "Document heading: ## Current sequencing",
+                "Document heading: ### Ongoing \u2014 documentation integrity and backlog rebase",
+                "Document heading: ### Now \u2014 first bounded repository-intelligence slice design",
+                "Document heading: ### Architecture review gate \u2014 crossed with preserved seams",
+                "Document heading: ### Later \u2014 promotion only when evidence is sufficient",
+                "Document heading: ## Validation cadence"
+              ]
+            },
+            "neutral_id": "resource-6c68e70d8fc15295",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Documentation Map",
+                "Document heading: ## Authority and ownership",
+                "Document heading: ## Package documentation",
+                "Document heading: ## Experiments and scripts",
+                "Document heading: ## Backlog navigation",
+                "Document heading: ## Update workflow"
+              ]
+            },
+            "neutral_id": "resource-1f4f83f75bb0a0e0",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # B-0002 \u2014 Coding Context Substrate",
+                "Document heading: ## Problem / value",
+                "Document heading: ### Near-term empirical sequence",
+                "Document heading: ## Selected first design target"
+              ]
+            },
+            "neutral_id": "resource-e116f7168904391a",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Retrieval Architecture Synthesis and Research-Recovery Checkpoint",
+                "Document heading: ## Purpose",
+                "Document heading: ## Sources reviewed",
+                "Document heading: ## Historical retrieval trajectory",
+                "Document heading: ## Current production state",
+                "Document heading: ### Production retrieval",
+                "Document heading: ### Current Repository Intelligence substrate",
+                "Document heading: ## Intended heterogeneous portfolio",
+                "Document heading: ## Semantic/vector retrieval boundary",
+                "Document heading: ## Exact/direct lookup boundary",
+                "Document heading: ## Relationship/graph boundary",
+                "Document heading: ## Purpose-relative decision and Context disclosure",
+                "Document heading: ## Increment 22 evidence interpretation",
+                "Document heading: ## Context planning/disclosure boundary",
+                "Document heading: ## Progressive disclosure",
+                "Document heading: ## Evaluation/observability chain",
+                "Document heading: ## Shadow-mode assessment",
+                "Document heading: ## Learned-intelligence assessment",
+                "Document heading: ## Architecture evidence matrix",
+                "Document heading: ## Recovered and missing historical findings",
+                "Document heading: ## Rejected and constrained approaches",
+                "Document heading: ## Deferred capabilities",
+                "Document heading: ## Open questions",
+                "Document heading: ## Recommended next investigations",
+                "Document heading: ## Revisit triggers",
+                "Document heading: ## ADR assessment and disposition",
+                "Document heading: ## Long-term architecture synthesis",
+                "Document heading: ## Final disposition"
+              ]
+            },
+            "neutral_id": "resource-e2994e69c6d6d27f",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Architecture",
+                "Document heading: ## Reading architectural and implementation status",
+                "Document heading: ## Domains",
+                "Document heading: ## Current boundaries",
+                "Document heading: ## Dependency direction",
+                "Document heading: ## Principles",
+                "Document heading: ## Accepted ModelInteraction boundary",
+                "Document heading: ## Accepted repository-intelligence semantics",
+                "Document heading: ## Accepted retrieval and ranking semantics",
+                "Document heading: ## Accepted Context and disclosure semantics",
+                "Document heading: ## Accepted Evaluation responsibility",
+                "Document heading: ## Implementation-start and remaining evidence constraints"
+              ]
+            },
+            "neutral_id": "resource-53803d205146db0f",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Tests for direct Python import-declaration knowledge.",
+                "Top-level declaration: _snapshot",
+                "Top-level declaration: test_import_forms_aliases_relative_levels_and_order",
+                "Top-level declaration: test_zero_nested_parse_failure_and_occurrence",
+                "Top-level declaration: test_explicit_address_and_multi_resource_requirement"
+              ]
+            },
+            "neutral_id": "resource-3bbaf3250a333346",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Frozen manual cases for the import-relationship retrieval experiment.",
+                "Top-level declaration: ImportRelationshipDirection",
+                "Top-level declaration: ImportRelationshipCase",
+                "Top-level declaration: import_relationship_cases"
+              ]
+            },
+            "neutral_id": "resource-96d36d89177e6e96",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Qualified resolution of import syntax within an explicit module universe.",
+                "Top-level declaration: PythonImportResolutionOutcome",
+                "Top-level declaration: PythonImportResolutionUnsupportedReason",
+                "Top-level declaration: PythonImportResolution",
+                "Top-level declaration: resolve_python_import_declaration",
+                "Top-level declaration: _source_interpretation",
+                "Top-level declaration: _requested_module",
+                "Top-level declaration: _digest"
+              ]
+            },
+            "neutral_id": "resource-d5369e3ea81233b8",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Declaration-grounded repository module-import relations.",
+                "Top-level declaration: PythonImportRelationSourceStatus",
+                "Top-level declaration: PythonResolvedModuleImportRelation",
+                "Top-level declaration: PythonResolvedModuleImportRelationAnalysis",
+                "Top-level declaration: derive_python_resolved_module_import_relations",
+                "Top-level declaration: _digest"
+              ]
+            },
+            "neutral_id": "resource-73b582e475de22c6",
+            "visible_address": null
+          }
+        ],
+        "protocol_version": "increment-23-blinded-adjudication-v2",
+        "purpose_rationale": "Judge whether each supplied resource is materially useful for answering the frozen information need, using only the bounded evidence shown."
+      },
+      {
+        "capture_identity": "018c1e384af9d645b38e7df1eb81bdd2f41bd13327312a353c3ba2190a3bdaac",
+        "case_name": "repository-context-taxonomy-boundary",
+        "design_fingerprint": "c36d39f18258e918f8a1023a22d821619fc08cb8840d4ed80aae31832feabef7",
+        "information_need": "Identify the authoritative current documentation defining Context as purpose-relative information and distinguishing it from Memory and Persistence.",
+        "items": [
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Architecture Taxonomy",
+                "Document heading: ## Authority and scope",
+                "Document heading: ## Status vocabulary",
+                "Document heading: ## Relationship overview",
+                "Document heading: ### Conversation and execution",
+                "Document heading: ### Model path",
+                "Document heading: ## Conversation domain",
+                "Document heading: ### Conversation",
+                "Document heading: ### ConversationMessage",
+                "Document heading: ### ConversationTurn",
+                "Document heading: ## Model domain",
+                "Document heading: ### Model",
+                "Document heading: ### Prompt",
+                "Document heading: ### ModelInteraction",
+                "Document heading: ### ModelResponse",
+                "Document heading: ### ModelServing",
+                "Document heading: ### ModelBenchmark",
+                "Document heading: ## Agent and execution domain",
+                "Document heading: ### Agent",
+                "Document heading: ### AgentResult",
+                "Document heading: ### Run",
+                "Document heading: ### Step",
+                "Document heading: ### Attempt",
+                "Document heading: ### InteractionAttempt",
+                "Document heading: ## Context, resources, and capabilities",
+                "Document heading: ### Context",
+                "Document heading: ### Repository intelligence",
+                "Document heading: #### RepositorySnapshot, SnapshotDelta, and IncrementalMaintenance",
+                "Document heading: #### RepositorySubject and SourceOccurrence",
+                "Document heading: #### DerivationDefinition, Derivation, execution, and DerivedKnowledge",
+                "Document heading: #### Repository-intelligence capability",
+                "Document heading: ### InformationNeed, retrieval, and ranking",
+                "Document heading: ### Context disclosure and assembly",
+                "Document heading: ### Resource",
+                "Document heading: ### Tool",
+                "Document heading: ### Action",
+                "Document heading: ### Capability",
+                "Document heading: ### Authorization",
+                "Document heading: ## Evidence and observability",
+                "Document heading: ### Evidence"
+              ]
+            },
+            "neutral_id": "resource-45e620b6296db499",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "withheld",
+              "resource_kind": "unavailable",
+              "semantic_outline": [
+                "Semantic evidence unavailable under the blinded structural projection."
+              ]
+            },
+            "neutral_id": "resource-7e0158efc48fef97",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # ADR-0004 \u2014 Context disclosure planning and model-input assembly semantics",
+                "Document heading: ## Research reconciliation",
+                "Document heading: ## Context",
+                "Document heading: ## Decision",
+                "Document heading: ### Disclosure planning is conditional composition",
+                "Document heading: ### Prior information, applicability, and sufficiency",
+                "Document heading: ### Constraints, budgets, and disclosure artifacts",
+                "Document heading: ### Planning versus model-input assembly",
+                "Document heading: ### InformationNeed decomposition",
+                "Document heading: ### Representation origin, coherence, authority, and conflict refinement",
+                "Document heading: ### Remaining open pressure",
+                "Document heading: ## Status and implementation boundary"
+              ]
+            },
+            "neutral_id": "resource-b48caa5d39d65a4c",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "withheld",
+              "resource_kind": "unavailable",
+              "semantic_outline": [
+                "Semantic evidence unavailable under the blinded structural projection."
+              ]
+            },
+            "neutral_id": "resource-5539a5e1d7d778a2",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Purpose-Relative Repository Context: Retrieval, Selection, and Disclosure",
+                "Document heading: ## Disposition",
+                "Document heading: ## Executive conclusion and strongest challenges",
+                "Document heading: ### Strongest challenges to the current framing \u2014 B",
+                "Document heading: ## Semantic decomposition, information need, and candidatehood",
+                "Document heading: ### Information-need semantics \u2014 D",
+                "Document heading: ### Candidate semantics \u2014 E",
+                "Document heading: ## Selection, evidence composition, budget, and Context",
+                "Document heading: ### Heterogeneous evidence composition \u2014 G",
+                "Document heading: ### Negative evidence",
+                "Document heading: ### Multi-resource selection, redundancy, and marginal value",
+                "Document heading: ### Budget and Context boundary \u2014 H",
+                "Document heading: ### Required distinction matrix",
+                "Document heading: ## Identity, provenance, applicability, and replay",
+                "Document heading: ### What exact replay requires",
+                "Document heading: ### Applicability and invalidation",
+                "Document heading: ### What belongs in identity versus logs",
+                "Document heading: ## Evaluation, benchmark governance, and learned intelligence",
+                "Document heading: ### Which metric answers which question",
+                "Document heading: ### Multi-resource completeness requires more than binary qrels",
+                "Document heading: ### Benchmark judgment governance",
+                "Document heading: ### Deterministic versus learned boundary \u2014 K",
+                "Document heading: ## External evidence and adversarial falsification",
+                "Document heading: ### Adversarial questions",
+                "Document heading: ## Increment 21, failure modes, and deliberate non-decisions",
+                "Document heading: ### Explicit non-recommendations \u2014 N",
+                "Document heading: ### Increment 21 implications \u2014 O",
+                "Document heading: #### Production code",
+                "Document heading: #### Smallest required experimental values and operations",
+                "Document heading: #### Controlled fixtures",
+                "Document heading: #### Real-repository cases",
+                "Document heading: #### Experimental arms",
+                "Document heading: #### Evidence that must be retained",
+                "Document heading: #### Success criteria",
+                "Document heading: #### Failure criteria",
+                "Document heading: #### Explicitly out of scope for Increment 21",
+                "Document heading: ### Open questions \u2014 P"
+              ]
+            },
+            "neutral_id": "resource-acd8a21c687e5417",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # B-0002 \u2014 Coding Context Substrate",
+                "Document heading: ## Problem / value",
+                "Document heading: ### Near-term empirical sequence",
+                "Document heading: ## Selected first design target"
+              ]
+            },
+            "neutral_id": "resource-df4890cf14fd5214",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Architecture",
+                "Document heading: ## Reading architectural and implementation status",
+                "Document heading: ## Domains",
+                "Document heading: ## Current boundaries",
+                "Document heading: ## Dependency direction",
+                "Document heading: ## Principles",
+                "Document heading: ## Accepted ModelInteraction boundary",
+                "Document heading: ## Accepted repository-intelligence semantics",
+                "Document heading: ## Accepted retrieval and ranking semantics",
+                "Document heading: ## Accepted Context and disclosure semantics",
+                "Document heading: ## Accepted Evaluation responsibility",
+                "Document heading: ## Implementation-start and remaining evidence constraints"
+              ]
+            },
+            "neutral_id": "resource-5160bf1fd16180e4",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # ADR-0002 \u2014 Repository intelligence identity and derivation semantics",
+                "Document heading: ## Research reconciliation",
+                "Document heading: ## Context",
+                "Document heading: ## Decision",
+                "Document heading: ### Repository state and identity",
+                "Document heading: ### SnapshotDelta and incremental maintenance",
+                "Document heading: ### Repository subjects and source occurrences",
+                "Document heading: ### Distinct decomposition semantics",
+                "Document heading: ### DerivationDefinition, Derivation, execution, and DerivedKnowledge",
+                "Document heading: #### Epistemic derivation and representational transformation",
+                "Document heading: #### Semantic-result coverage, completeness, and absence",
+                "Document heading: #### External semantic dependencies and observation",
+                "Document heading: ### Repository-intelligence capability boundary",
+                "Document heading: ### Repository-relative conflict and source-role knowledge",
+                "Document heading: ### Two graph families",
+                "Document heading: ### Repository intelligence and Context",
+                "Document heading: ### Identity taxonomy",
+                "Document heading: ## Decision consequences",
+                "Document heading: ## Deferred and open pressure",
+                "Document heading: ## Status and implementation boundary"
+              ]
+            },
+            "neutral_id": "resource-202cad746a86fee0",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Roadmap",
+                "Document heading: ## Purpose",
+                "Document heading: ## Established architecture",
+                "Document heading: ## Current sequencing",
+                "Document heading: ### Ongoing \u2014 documentation integrity and backlog rebase",
+                "Document heading: ### Now \u2014 first bounded repository-intelligence slice design",
+                "Document heading: ### Architecture review gate \u2014 crossed with preserved seams",
+                "Document heading: ### Later \u2014 promotion only when evidence is sufficient",
+                "Document heading: ## Validation cadence"
+              ]
+            },
+            "neutral_id": "resource-b6c9ea86fe83a1d6",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Documentation Map",
+                "Document heading: ## Authority and ownership",
+                "Document heading: ## Package documentation",
+                "Document heading: ## Experiments and scripts",
+                "Document heading: ## Backlog navigation",
+                "Document heading: ## Update workflow"
+              ]
+            },
+            "neutral_id": "resource-42d93e419ae67849",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Research Evidence",
+                "Document heading: ## Research lineage",
+                "Document heading: ## Research governance"
+              ]
+            },
+            "neutral_id": "resource-0a979f9721f81c16",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Repository Operating Guide",
+                "Document heading: ## Purpose and authority",
+                "Document heading: ## Inspect before inventing",
+                "Document heading: ## Reuse canonical primitives and substrates",
+                "Document heading: ## Taxonomy and transitional names",
+                "Document heading: ## Backlog and promotion",
+                "Document heading: ## Stop and report",
+                "Document heading: ## Framework, experiments, and integrations",
+                "Document heading: ## Runtime, lifecycle, Context, and evidence",
+                "Document heading: ## Documentation and validation",
+                "Document heading: ## Git and external-state safety"
+              ]
+            },
+            "neutral_id": "resource-61da14af2eb41d11",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Retrieval Architecture Synthesis and Research-Recovery Checkpoint",
+                "Document heading: ## Purpose",
+                "Document heading: ## Sources reviewed",
+                "Document heading: ## Historical retrieval trajectory",
+                "Document heading: ## Current production state",
+                "Document heading: ### Production retrieval",
+                "Document heading: ### Current Repository Intelligence substrate",
+                "Document heading: ## Intended heterogeneous portfolio",
+                "Document heading: ## Semantic/vector retrieval boundary",
+                "Document heading: ## Exact/direct lookup boundary",
+                "Document heading: ## Relationship/graph boundary",
+                "Document heading: ## Purpose-relative decision and Context disclosure",
+                "Document heading: ## Increment 22 evidence interpretation",
+                "Document heading: ## Context planning/disclosure boundary",
+                "Document heading: ## Progressive disclosure",
+                "Document heading: ## Evaluation/observability chain",
+                "Document heading: ## Shadow-mode assessment",
+                "Document heading: ## Learned-intelligence assessment",
+                "Document heading: ## Architecture evidence matrix",
+                "Document heading: ## Recovered and missing historical findings",
+                "Document heading: ## Rejected and constrained approaches",
+                "Document heading: ## Deferred capabilities",
+                "Document heading: ## Open questions",
+                "Document heading: ## Recommended next investigations",
+                "Document heading: ## Revisit triggers",
+                "Document heading: ## ADR assessment and disposition",
+                "Document heading: ## Long-term architecture synthesis",
+                "Document heading: ## Final disposition"
+              ]
+            },
+            "neutral_id": "resource-423c3147750f8202",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "markdown",
+              "semantic_outline": [
+                "Document heading: # Repository Information Boundaries: Derivation, Representation, and Context",
+                "Document heading: ## Disposition",
+                "Document heading: ## A. Executive Conclusion",
+                "Document heading: # B. Current Architecture Reconstructed",
+                "Document heading: # C. Strongest Case for Current Architecture",
+                "Document heading: # D. Falsification: Challenges to Current Architecture",
+                "Document heading: # E. Taxonomy of Derived Information",
+                "Document heading: # F. Epistemic Derivation vs Representational Transformation",
+                "Document heading: # G. Deterministic Repository Intelligence",
+                "Document heading: # H. Heuristic/Probabilistic Analysis",
+                "Document heading: # I. LLM-Generated Knowledge",
+                "Document heading: # J. Provenance, Support, Authority, Confidence, Uncertainty",
+                "Document heading: # K. Conflict and Completeness",
+                "Document heading: # L. Purpose and Applicability",
+                "Document heading: # M. Context Preparation Responsibilities",
+                "Document heading: # N. Compression and Summarization",
+                "Document heading: # O. Identity, Lifecycle, Persistence, and Caching",
+                "Document heading: # P. Evaluation and Replay",
+                "Document heading: # Q. Comparative Architecture Analysis",
+                "Document heading: # R. Recommended Architecture",
+                "Document heading: # S. ADR Impact",
+                "Document heading: # T. Falsification Questions",
+                "Document heading: # U. Risks and Unresolved Questions",
+                "Document heading: # V. Implementation Implications",
+                "Document heading: # W. Sources"
+              ]
+            },
+            "neutral_id": "resource-456bc98dbeb47e09",
+            "visible_address": null
+          },
+          {
+            "bounded_evidence": {
+              "format_version": "increment-23-structural-resource-evidence-v1",
+              "representation": "structural-outline",
+              "resource_kind": "python",
+              "semantic_outline": [
+                "Module purpose: Deterministic text rendering for materialized Python function Context.",
+                "Top-level declaration: RenderedPythonFunctionContext",
+                "Top-level declaration: render_materialized_python_function_context",
+                "Top-level declaration: _render_item"
+              ]
+            },
+            "neutral_id": "resource-0a869d12e1c38235",
+            "visible_address": null
+          }
+        ],
+        "protocol_version": "increment-23-blinded-adjudication-v2",
+        "purpose_rationale": "Judge whether each supplied resource is materially useful for answering the frozen information need, using only the bounded evidence shown."
+      }
+    ],
+    "scope": "adjudicator-facing structural blinded evidence only"
+  },
+  "schema": "devtools-b0002-increment-23-blinded-adjudication-package-v2"
+}
