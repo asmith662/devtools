@@ -33,7 +33,10 @@
   ADR, central architecture, and implementation evidence as applicable.
   The [retrieval architecture synthesis](research/retrieval-architecture-synthesis.md)
   is the recovery/navigation point for the retrieval, purpose-relative decision,
-  Context-disclosure, and Increment 10-21 evidence lineage.
+  Context-disclosure, and Increment 10-24 evidence lineage. It records a
+  heterogeneous future portfolio as research evidence; ADR-0003 remains the
+  authority for accepted retrieval/ranking semantics and current production
+  behavior remains defined by source and tests.
 - Package-local documentation defines detailed implemented public APIs, package
   design, lifecycle/operational behavior, and usage. Central architecture
   summarizes system-level ownership and links outward; it does not duplicate

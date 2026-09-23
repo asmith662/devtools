@@ -179,7 +179,11 @@ dispositions are:
   waves require evidence/coverage justification.
 - **Learned fusion/ranking:** enabled but explicitly unselected. It belongs in
   a particular retrieval or Context-planning policy according to its target,
-  not in Repository Intelligence and not in a universal score abstraction.
+  not in Repository Intelligence and not in a universal score abstraction. A
+  reusable Learned Intelligence capability, if later justified, would own
+  reusable model construction, training, and evaluation across domains; B-0002
+  supplies native retrieval evidence and evaluation boundaries rather than a
+  retrieval-local training framework.
 
 ## Semantic/vector retrieval boundary
 
@@ -222,7 +226,10 @@ ADR-0002 resolves the prior research disagreement in favor of multiple typed
 relationship/graph views, not one canonical graph. A graph view is a projection
 over qualified relationship knowledge; it can be an index, adjacency structure,
 or on-demand projection. Its node domain and traversal limits are view-specific.
-The derivation dependency graph remains distinct from repository relationships.
+This settles relationship semantics, not physical organization: separately
+maintained views, a unified typed substrate, and relation/index structures with
+derived graph projections remain open operational choices. The derivation
+dependency graph remains distinct from repository relationships.
 
 ## Purpose-relative decision and Context disclosure
 
@@ -363,19 +370,16 @@ Evidence system follows.
 
 ## Shadow-mode assessment
 
-Shadow mode is a **near-term bounded evaluation direction, not accepted generic
-architecture**. B-0002's
-near-term sequence explicitly names Phase 1: run `devtools` predictions in
-shadow mode without influencing native agent acquisition, then compare before
-proactive assistance. No recovered research document, ADR, implementation, or
-runtime design owns its contract, retained alternative Context, workload
-correlation, or task-outcome comparator. Increment 22 strengthens the need for
-such a path because it supplies an auditable hypothetical decision whose
-production effect should not be assumed from offline metrics. A future bounded
-slice needs a real native baseline, retained non-controlling surfaces and
-decisions, disclosure/privacy policy, and a comparison basis. Shadow output
-must never silently affect production Context. Nothing here justifies a
-heavyweight experimentation platform.
+Shadow mode is an **evaluation/deployment progression, not a retrieval
+mechanism or accepted generic architecture**: offline evaluation, then
+independent-repository validation, then a non-controlling comparison against a
+native baseline, and only then a separately governed promotion question. No
+recovered research document, ADR, implementation, or runtime design owns its
+contract, retained alternative Context, workload correlation, or task-outcome
+comparator. A future bounded slice needs a real native baseline, retained
+non-controlling surfaces and decisions, disclosure/privacy policy, and a
+comparison basis. Shadow output must never silently affect production Context.
+Nothing here justifies a heavyweight experimentation platform.
 
 Increment 23 demonstrates that the repaired capture/blinding/freezing/
 unblinding/evaluation chain can retain such evidence, but it does not pass the
@@ -397,6 +401,12 @@ and retained decision/disclosure/outcome traces. Current twelve manually judged
 needs and oracle results are useful semantic counterexamples, not training data
 for a general model. Shadow evidence could later provide non-controlling
 comparisons; it does not itself solve labels or causal attribution.
+
+Consuming a pretrained embedding or representation model for semantic retrieval
+is a separate future evidence-family experiment, not learned-ranking training.
+Any external empirical or academic project can consume retained retrieval
+evidence and return findings or models for review, but it does not own
+architecture authority and does not make B-0002 depend on that work.
 
 ## Architecture evidence matrix
 
@@ -501,11 +511,13 @@ questions to preserve for bounded evidence, not unfilled interfaces.
 
 Order is dependency-based:
 
-1. Stop tuning the single rank-five reservation rule. Freeze the same needs and
-   compare stronger bounded candidate generation and purpose-relative ranking
-   over lexical top-fifteen and typed relationship surfaces. Retain native
-   evidence, useful-loss accounting, candidate volume, and unresolved-label
-   bounds; do not normalize heterogeneous evidence into one universal score.
+1. Stop tuning the single rank-five reservation rule. The retained Increment 24
+   sequence makes semantic/pretrained-representation retrieval the next distinct
+   candidate-generation hypothesis, with frozen representation/cost accounting
+   and lexical/direct controls. A separate structural experiment remains near
+   pressure: it must choose a bounded typed relationship family and operational
+   projection only after the physical-representation question is researched
+   enough for that experiment, not by introducing a universal graph.
 2. Establish a bounded non-controlling shadow comparison only after the stronger
    offline strategy has complete decision-surface judgments and passes explicit
    loss, non-useful-admission, and negative-control gates, and when a real native
@@ -515,11 +527,10 @@ Order is dependency-based:
 3. If independent evidence remains positive, evaluate a bounded Context
    representation/admission comparison on fixed selected information before
    promoting any selector-shaped API.
-4. Then select the next retrieval family by unique held-out failure mode:
-   broaden direct declaration/reference lookup if exact needs dominate; add a
-   second typed relation only where a documented need remains unserved; or run
-   a semantic experiment only with its explicit prerequisites and lexical/direct
-   controls.
+4. Compare lexical, structural, semantic, and justified combinations on frozen
+   independent-repository evidence before treating a devtools-local result as a
+   broader retrieval conclusion. One additional repository is a falsification
+   step, not universal validation.
 5. Learned ranking should wait still longer for diverse labels/outcomes and
    shadow/decision/disclosure traces.
 

@@ -259,6 +259,19 @@ and change-impact views may likewise contribute together. No mechanism, graph,
 or pipeline owns repository relevance, and independent evidence must not erase
 or overwrite other evidence.
 
+The evidence families remain deliberately heterogeneous. Semantic retrieval may
+later consume a pretrained representation model to produce a semantic-similarity
+observation; that is distinct from training a ranking or decision model. A
+future learned policy may interpret retained native observations, but neither a
+pretrained representation nor learned ranking changes Repository Intelligence
+truth, supplies a universal score, or is selected by this ADR. The current
+devtools-only lexical, import, admission, and offline-ranking experiments are
+local evidence, not a general portfolio ordering or a claim that lexical width
+is generally sufficient. Independent-repository evaluation is required before
+strong retrieval or ranking conclusions; a non-controlling shadow comparison,
+if ever justified, follows offline and independent evaluation rather than
+becoming a retrieval mechanism itself.
+
 ### Purpose-relative admission and abstention
 
 When a bounded decision chooses whether surfaced information may consume scarce

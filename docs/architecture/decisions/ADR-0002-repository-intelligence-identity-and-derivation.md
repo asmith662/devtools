@@ -892,6 +892,12 @@ reusable index/adjacency structure, or a persisted representation. These are
 physical realization choices, not semantic authority: graph indexes, cached
 neighborhoods, and materialized projections remain rebuildable views over
 applicable relationship knowledge rather than an independent source of truth.
+This decision does not choose separately maintained graphs, one unified typed
+graph substrate, or relation/index structures with graph projections. Typed
+relationship meaning, direction, provenance, qualification, applicability, and
+view-specific node domains are the accepted semantic commitment; topology is a
+derived operational view unless a future consumer establishes a stronger
+representation requirement.
 
 Repository intelligence defines no foundational universal `Chunk`. Fixed token
 windows, arbitrary line chunks, syntax-aware slices, graph neighborhoods,

@@ -33,11 +33,13 @@ adversarial criticism, and the purpose-relative investigation informed ADR-0003
 and ADR-0004. Framework-boundary and Runtime-Evidence research separately
 informed the narrow Runtime, Tool, Context, and Evidence taxonomy.
 The retrieval-architecture synthesis reconciles this corpus with B-0002 and
-the Increment 10-23 empirical lineage. Increment 23 validates the bounded
+the Increment 10-24 empirical lineage. Increment 23 validates the bounded
 capture/blinding/evaluation chain but finds directional-reservation-v1 not ready
 for shadow: it has zero net known-useful gain, one not-useful admission, and one
-useful loss. The next pressure is stronger offline candidate/ranking evidence,
-not a generic shadow platform or production decision policy.
+useful loss. Increment 24 then finds no local improvement from its predeclared
+purpose-relative deterministic ranking over the same devtools surface. The next
+pressure is distinct candidate-generation evidence and independent-repository
+validation, not a generic shadow platform or production decision policy.
 
 ## Research governance
 

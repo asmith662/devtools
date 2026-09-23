@@ -164,3 +164,10 @@ does not promote a ranker: its frozen purpose-relative deterministic arm recover
 9 known-useful resources versus 10 for lexical/native ranking. Increment 25 is
 sequenced to test a distinct semantic candidate-generation family; Increment 26
 must obtain independent-repository evidence before retrieval architecture closure.
+The broader portfolio remains heterogeneous: typed structural/relational views,
+semantic/pretrained-representation evidence, and later learned decision models
+are separate hypotheses with native evidence semantics. Repository Intelligence
+owns qualified typed facts; whether future structural navigation uses independent
+views, a unified typed substrate, or relation/index projections remains an
+operational question. Shadow execution, if later justified, follows offline and
+independent validation and remains non-controlling until separately promoted.

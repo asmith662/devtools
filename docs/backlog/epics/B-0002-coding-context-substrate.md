@@ -641,3 +641,18 @@ top fifteen. No learned ranking was fit because six grouped InformationNeeds do
 not support a credible non-leaking train/evaluation split. This is local
 evidence only: Increment 25 should test distinct semantic candidate generation,
 and Increment 26 requires independent-repository evidence before closure.
+
+This checkpoint preserves a heterogeneous long-term direction without selecting
+a production mechanism: exact resolution remains separate from discovery;
+lexical, typed structural/relational, semantic/pretrained-representation, and
+future learned evidence families retain native semantics; purpose-relative
+ranking/capacity remains distinct from Context disclosure. Typed relationship
+semantics do not decide whether structural intelligence is represented by
+independent views, a unified typed graph, or relation/index projections. A
+future reusable Learned Intelligence capability may consume native evidence and
+train reusable models across domains, but B-0002 neither depends on external
+coursework nor creates a retrieval-local training subsystem. Shadow comparison
+is a later non-controlling evaluation progression after offline and
+independent-repository evidence, not a production mechanism. None of these
+statements promotes graph infrastructure, embeddings, learned ranking, or
+production retrieval behavior.

@@ -573,6 +573,19 @@ not improve this result: its purpose-relative deterministic ordering recovered
 repository-local evidence only; it does not promote a ranker, alter production,
 or close the cross-repository evaluation requirement.
 
+The accepted long-term direction is a heterogeneous, non-mandatory portfolio:
+Repository Intelligence can supply lexical, typed structural/relational,
+semantic/representation-based, change/history, and other future evidence;
+bounded discovery can then be interpreted for an InformationNeed under scarce
+capacity before Context disclosure. Exact addressed resolution remains a
+separate path when discovery is unnecessary. Native evidence retains its own
+meaning: a future pretrained semantic representation is not a trained ranking
+model, and either differs from repository truth and from later disclosure.
+No evidence family, physical graph representation, ranker, learned capability,
+or shadow execution is selected by this statement. Devtools-only observations
+cannot establish lexical sufficiency, relationship failure, or a general
+ranking policy; independent-repository evidence remains required.
+
 ## Accepted Context and disclosure semantics
 
 [ADR-0004](architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)
