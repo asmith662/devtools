@@ -37,6 +37,11 @@
   heterogeneous future portfolio as research evidence; ADR-0003 remains the
   authority for accepted retrieval/ranking semantics and current production
   behavior remains defined by source and tests.
+  The [structural repository retrieval investigation](research/structural-repository-retrieval.md)
+  preserves the focused evidence for typed structural candidate generation,
+  the semantic-versus-physical graph distinction, lexical-widening controls,
+  and deferred semantic/learned alternatives; ADR-0002 and ADR-0003 disposition
+  its accepted conclusions.
 - Package-local documentation defines detailed implemented public APIs, package
   design, lifecycle/operational behavior, and usage. Central architecture
   summarizes system-level ownership and links outward; it does not duplicate

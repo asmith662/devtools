@@ -132,16 +132,19 @@ and other dependencies. Subject identity is not a path/range, name, qualified
 name, AST node, or cross-snapshot continuity claim.
 
 Typed containment, declaration, reference, call, import, inheritance, and
-other relationships remain DerivedKnowledge. Composable typed graph views are a
-first-class repository-intelligence capability for reusable relational
-navigation, multi-hop reasoning, retrieval, change impact, and Context
-efficiency. Graph views choose suitable node domains: they may reuse subjects
-and source occurrences, or use local derived nodes without making every graph
-node a RepositorySubject. Shared graph/query mechanics may compose compatible
-typed views, but do not define relationship semantics or create universal node
-identity. There is no universal repository hierarchy, semantic graph, graph
-store, graph database, or foundational Chunk. This also preserves Context as
-purpose-relative selection and disclosure rather than repository truth.
+other relationships remain DerivedKnowledge. Their semantics do not select a
+physical graph representation. The preferred current posture is canonical
+typed relationship knowledge, relation-specific indexes/traversal support when
+justified, and ephemeral typed structural projections for particular consumers.
+A future unified typed substrate or independently materialized view remains
+possible only with concrete consumer and measurement evidence. Views choose
+suitable node domains: they may reuse subjects and source occurrences, or use
+local derived nodes without making every graph node a RepositorySubject. Shared
+mechanics may compose compatible typed views, but do not define relationship
+semantics or create universal node identity. There is no universal repository
+hierarchy, semantic graph, graph store, graph database, or foundational Chunk.
+This also preserves Context as purpose-relative selection and disclosure rather
+than repository truth.
 
 Relationship labels are illustrative, not universally unqualified Booleans;
 their knowledge-family semantics determine qualification. Repository-relative
@@ -585,6 +588,15 @@ No evidence family, physical graph representation, ranker, learned capability,
 or shadow execution is selected by this statement. Devtools-only observations
 cannot establish lexical sufficiency, relationship failure, or a general
 ranking policy; independent-repository evidence remains required.
+
+The next offline question is candidate-generation complementarity rather than
+another K=5 relationship-admission policy. A bounded structural experiment may
+use existing qualified imports and investigate the smallest defensible
+declaration-grounded reference proposition, with one-hop incoming/outgoing
+evidence kept distinct and compared against lexical widening at comparable
+candidate volume. A separate pretrained semantic-retrieval experiment follows;
+later work may compare evidence families. None of this implements reference
+knowledge, graph infrastructure, embeddings, ranking, or shadow behavior.
 
 ## Accepted Context and disclosure semantics
 

@@ -639,8 +639,8 @@ deterministic ordering recovers 9/18 and selects three additional known-not-
 useful resources. All 18 known-useful material resources are already in lexical
 top fifteen. No learned ranking was fit because six grouped InformationNeeds do
 not support a credible non-leaking train/evaluation split. This is local
-evidence only: Increment 25 should test distinct semantic candidate generation,
-and Increment 26 requires independent-repository evidence before closure.
+evidence only: it establishes neither general lexical-width sufficiency nor
+general relationship failure.
 
 This checkpoint preserves a heterogeneous long-term direction without selecting
 a production mechanism: exact resolution remains separate from discovery;
@@ -656,3 +656,36 @@ is a later non-controlling evaluation progression after offline and
 independent-repository evidence, not a production mechanism. None of these
 statements promotes graph infrastructure, embeddings, learned ranking, or
 production retrieval behavior.
+
+## Structural-retrieval reconciliation and next evidence sequence
+
+The recovered
+[structural-retrieval investigation](../../research/structural-repository-retrieval.md)
+preserves the Increment 16-24 lineage while changing the next question from
+how import relationship evidence should occupy K=5 to which evidence families
+expose complementary useful resources. Typed repository relations remain
+semantically important, but their meaning does not select one universal graph,
+separately maintained graphs, a graph database, or generic graph APIs. The
+current preferred posture is canonical typed Repository Intelligence plus only
+justified relation-specific indexes/traversal support and ephemeral typed
+projections; physical representation remains open.
+
+Increment 25 is sequenced as a bounded structural candidate-generation
+investigation. It should determine the smallest defensible declaration-grounded
+reference-knowledge proposition, use existing qualified import relations and
+new reference/call-position evidence only where independently justified,
+preserve incoming/outgoing direction, remain one hop, and compare candidate
+exposure against candidate-volume-matched or otherwise preregistered defensible
+lexical widening. Candidate generation and ranking/capacity remain separately
+observable; no graph framework or top-K insertion policy is authorized.
+
+Increment 26 separately investigates pretrained semantic/representation-based
+candidate generation; consuming a pretrained representation is not training a
+ranker. Increment 27 compares lexical, structural, semantic, and justified
+combined evidence families while retaining native evidence semantics.
+Increment 28 requires independent-repository falsification before stronger
+generalization. Increment 29 or later may investigate learned decisions and/or
+non-controlling shadow execution only if prior evidence warrants them. A future
+reusable Learned Intelligence subsystem may own cross-domain model construction,
+training, and evaluation; B-0002 remains an evidence producer/consumer rather
+than the owner of generic ML training infrastructure.

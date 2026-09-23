@@ -161,9 +161,28 @@ See [documentation_map.md](documentation_map.md) for authority and navigation.
 
 Increment 24's offline comparison over Increment 23's retained six-case surface
 does not promote a ranker: its frozen purpose-relative deterministic arm recovers
-9 known-useful resources versus 10 for lexical/native ranking. Increment 25 is
-sequenced to test a distinct semantic candidate-generation family; Increment 26
-must obtain independent-repository evidence before retrieval architecture closure.
+9 known-useful resources versus 10 for lexical/native ranking. The reconciled
+[structural-retrieval research](research/structural-repository-retrieval.md)
+changes the next scientific question from how relationship evidence should
+occupy K=5 to which evidence families expose complementary useful resources.
+
+- **Increment 25:** investigate bounded structural candidate generation. Find
+  the smallest defensible declaration-grounded reference proposition; combine
+  it only as justified with existing qualified imports; preserve one-hop
+  incoming/outgoing semantics; compare candidate exposure against lexical
+  widening at defensible matched volume; and evaluate surfacing separately from
+  ranking/capacity. This is not authorization for graph infrastructure.
+- **Increment 26:** investigate bounded pretrained semantic/representation-
+  based candidate generation against compatible lexical/direct baselines. No
+  trained ranker or vector database is implied.
+- **Increment 27:** compare lexical, structural, semantic, and justified
+  combined evidence families while preserving their native semantics.
+- **Increment 28:** falsify surviving hypotheses on at least one independently
+  selected repository. One additional repository is evidence, not proof of
+  universality.
+- **Increment 29 and later:** only if evidence warrants it, investigate learned
+  decisions and/or non-controlling shadow comparison under separate governance.
+
 The broader portfolio remains heterogeneous: typed structural/relational views,
 semantic/pretrained-representation evidence, and later learned decision models
 are separate hypotheses with native evidence semantics. Repository Intelligence

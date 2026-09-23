@@ -16,7 +16,8 @@ because later evidence may justify reconsideration.
 | [Architecture adversarial review](architecture-adversarial-review.md) | Adversarial architecture challenge | Partially reconciled | Preserve evidence boundaries; resist premature abstractions | 0002-0004 | Lexical evaluation | Universal graph/store; model knowledge promotion | ADRs; Inc. 16/20 | Bounded evidence requiring reusable semantics |
 | [Framework domain boundaries](framework-domain-boundaries.md) | Framework ownership | Reconciled | Narrow orthogonal domains | 0001, 0004 | Runtime/Tool/Context separation | Workflow infrastructure | Taxonomy | Cross-domain consumer pressure |
 | [Purpose-relative repository Context](purpose-relative-repository-context.md) | Retrieval, decision, disclosure | Reconciled | Truth, surfacing, relevance, ranking, disclosure differ | 0003, 0004 | Lexical and import experiments | Universal Candidate/Selector/score | Increments 20-22 | Stable need-specific value requiring reuse beyond local policy/Context planning |
-| [Retrieval architecture synthesis](retrieval-architecture-synthesis.md) | Retrieval portfolio and research recovery | Reconciled synthesis | Heterogeneous portfolio; direct acquisition; purpose-bearing admission and disclosure remain distinct | 0002-0004 | Filename BM25; exact-name lookup; import knowledge; Increments 23-24 offline evaluation | Semantic/learned retrieval, general Selector, production relationship expansion | Increments 16, 20, 21, 22, 23, 24 | Semantic candidate-generation evidence and independent-repository closure |
+| [Retrieval architecture synthesis](retrieval-architecture-synthesis.md) | Retrieval portfolio and research recovery | Reconciled synthesis | Heterogeneous portfolio; direct acquisition; purpose-bearing admission and disclosure remain distinct | 0002-0004 | Filename BM25; exact-name lookup; import knowledge; Increments 23-24 offline evaluation | Structural/semantic retrieval, general Selector, production relationship expansion | Increments 16, 20, 21, 22, 23, 24 | Structural and semantic candidate-generation evidence plus independent-repository closure |
+| [Structural repository retrieval](structural-repository-retrieval.md) | Typed structural evidence, graph representation, and candidate generation | Reconciled research evidence | Native typed relationships; physical graph form remains open; test bounded structural complementarity against lexical widening | 0002, 0003 | Qualified import relations and Increments 20-24 | Universal graph/store/API, recursive traversal, PageRank, learned ranker, production expansion | ADR-0002/0003 reconciliation | Concrete consumers and measured structural complementarity across repositories |
 | [Repository Context system](repository-context-system-architecture.md) | Repository intelligence and Context | Partially reconciled | Deterministic intelligence precedes model use | 0002-0004 | Corpus and lexical retrieval | Vectors, change impact, progressive disclosure | Later ADRs | Independent bounded evidence |
 | [Derived knowledge boundary](repository-derived-knowledge-boundary.md) | Qualification and applicability | Reconciled | Provenance/coverage differ from knowledge | 0002, 0004 | Bounded derivations | Universal claim/confidence | ADR-0002 | Shared consumer need |
 | [Repository information boundaries](repository-information-boundaries.md) | Derivation versus representation | Reconciled | Context synthesis is not automatic knowledge | 0002, 0004 | Materialization/rendering | Automatic model knowledge promotion | ADR-0004 | Reusable semantic assertion |
@@ -40,6 +41,11 @@ useful loss. Increment 24 then finds no local improvement from its predeclared
 purpose-relative deterministic ranking over the same devtools surface. The next
 pressure is distinct candidate-generation evidence and independent-repository
 validation, not a generic shadow platform or production decision policy.
+The structural-retrieval investigation then reframes the next question from how
+relationship evidence should occupy K=5 to whether bounded typed structure can
+surface useful resources that candidate-volume-matched lexical widening does
+not. It preserves pretrained semantic retrieval as a separate subsequent arm
+and leaves physical graph representation unresolved.
 
 ## Research governance
 

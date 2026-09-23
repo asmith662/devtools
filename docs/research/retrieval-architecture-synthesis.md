@@ -28,7 +28,8 @@ Full-body review covered the research index and every indexed canonical body:
   [Repository information boundaries](repository-information-boundaries.md),
   [Repository intelligence review](repository-intelligence-architecture-review.md),
   [Snapshot identity](repository-snapshot-identity.md),
-  [Subject identity](repository-subject-identity-and-decomposition.md), and
+  [Subject identity](repository-subject-identity-and-decomposition.md),
+  [Structural repository retrieval](structural-repository-retrieval.md), and
   [Runtime Evidence governance](runtime-evidence-governance.md).
 - [ADR-0001](../architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md),
   [ADR-0002](../architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md),
@@ -151,7 +152,8 @@ retriever, but are not themselves a retriever.
 ADR-0003 accepts a portfolio, not a mandatory pipeline: exact/identifier,
 lexical, symbol/structural, typed relationship/graph, optional semantic,
 change/history, and future mechanisms may independently surface typed evidence.
-ADR-0002 makes typed graph views a future Repository Intelligence capability;
+ADR-0002 permits typed structural projections as a future Repository
+Intelligence capability;
 ADR-0004 makes final disclosure representation-aware. The portfolio's current
 dispositions are:
 
@@ -165,11 +167,14 @@ dispositions are:
   directory proximity, and package proximity are constrained/deferred.
 - **Symbol/declaration:** narrow direct function-name lookup is production;
   richer subject/declaration/reference lookup is accepted future pressure.
-- **Typed relationship views:** accepted Repository Intelligence semantics;
+- **Typed structural/relationship evidence:** accepted Repository Intelligence semantics;
   import relations are implemented knowledge and experiment-only surfacing.
-  Future traversal must be typed, directed, bounded, and purpose-derived.
-- **Semantic/vector:** durable research support for an optional later family,
-  but no ADR selection or local evaluation. It needs an honest representation
+  The preferred current physical posture is native relation knowledge plus
+  justified indexes and ephemeral projections. Future traversal must be typed,
+  directed, bounded, and purpose-derived.
+- **Semantic/pretrained representation:** durable research support for a
+  distinct later evidence family, but no production selection or local
+  evaluation. It needs an honest representation
   unit, frozen tasks where lexical cues are weak, a model/index version and
   cost basis, comparison with lexical/direct/relationship baselines, and
   held-out evidence before promotion.
@@ -222,14 +227,29 @@ family and shows it can increase surfacing headroom while causing controls.
 Neither supports an undirected adjacency score, universal graph, graph store,
 or relationship insertion rule.
 
-ADR-0002 resolves the prior research disagreement in favor of multiple typed
-relationship/graph views, not one canonical graph. A graph view is a projection
-over qualified relationship knowledge; it can be an index, adjacency structure,
-or on-demand projection. Its node domain and traversal limits are view-specific.
-This settles relationship semantics, not physical organization: separately
-maintained views, a unified typed substrate, and relation/index structures with
-derived graph projections remain open operational choices. The derivation
-dependency graph remains distinct from repository relationships.
+ADR-0002 resolves the semantic question in favor of native typed relationship
+knowledge, not one canonical graph. A structural view is a projection over
+qualified relationship knowledge; it can use a relation-specific index,
+adjacency structure, or on-demand projection, and its node domain and traversal
+limits remain view-specific. The preferred current physical posture is native
+facts plus only justified indexes and ephemeral consumer projections. This does
+not prohibit separately maintained views or a unified typed substrate if later
+consumers and measurements justify them. The derivation dependency graph
+remains distinct from repository relationships.
+
+Declaration-grounded reference knowledge is the next plausible bounded
+Repository Intelligence hypothesis: a SourceOccurrence syntactically denotes,
+resolves to, or may resolve to a RepositorySubject under explicit semantics.
+Call-position references can be a specialization or typed use rather than a
+universal call graph. Increment 25 must discover the smallest defensible
+proposition rather than treating the research proposal as an implemented model.
+
+Structural retrieval should first measure candidate-generation complementarity,
+not force relation-derived resources into K=5. Begin with one hop, keep incoming
+and outgoing semantics distinct, retain native relation provenance, and compare
+against candidate-volume-matched or otherwise preregistered defensible lexical
+widening. Generic neighborhoods, recursive traversal, undirected adjacency,
+PageRank, and centrality remain deferred.
 
 ## Purpose-relative decision and Context disclosure
 
@@ -511,33 +531,29 @@ questions to preserve for bounded evidence, not unfilled interfaces.
 
 Order is dependency-based:
 
-1. Stop tuning the single rank-five reservation rule. The retained Increment 24
-   sequence makes semantic/pretrained-representation retrieval the next distinct
-   candidate-generation hypothesis, with frozen representation/cost accounting
-   and lexical/direct controls. A separate structural experiment remains near
-   pressure: it must choose a bounded typed relationship family and operational
-   projection only after the physical-representation question is researched
-   enough for that experiment, not by introducing a universal graph.
-2. Establish a bounded non-controlling shadow comparison only after the stronger
-   offline strategy has complete decision-surface judgments and passes explicit
-   loss, non-useful-admission, and negative-control gates, and when a real native
-   acquisition workload, retained hypothetical decision record, comparison
-   basis, and disclosure/privacy policy exist. Production Context must remain
-   unchanged.
-3. If independent evidence remains positive, evaluate a bounded Context
-   representation/admission comparison on fixed selected information before
-   promoting any selector-shaped API.
-4. Compare lexical, structural, semantic, and justified combinations on frozen
-   independent-repository evidence before treating a devtools-local result as a
-   broader retrieval conclusion. One additional repository is a falsification
-   step, not universal validation.
-5. Learned ranking should wait still longer for diverse labels/outcomes and
-   shadow/decision/disclosure traces.
+1. **Increment 25:** stop tuning the single rank-five reservation rule and test
+   bounded one-hop structural candidate generation. Determine the smallest
+   defensible declaration-grounded reference proposition, retain imports and
+   reference/call-position families separately where justified, preserve
+   direction/provenance, and compare against lexical widening at defensible
+   matched candidate volume. Do not force candidates into top K.
+2. **Increment 26:** test bounded pretrained semantic/representation-based
+   candidate generation against compatible lexical/direct baselines. Consuming
+   a pretrained model is not training a learned ranker.
+3. **Increment 27:** compare lexical, structural, semantic, and justified
+   combinations while preserving native evidence rather than imposing a
+   universal score.
+4. **Increment 28:** falsify surviving hypotheses on independently selected
+   repository evidence. One additional repository is not proof of universality.
+5. **Increment 29 or later:** only if prior evidence warrants it, investigate
+   learned decision mechanisms and/or bounded non-controlling shadow comparison.
+   Production Context must remain unchanged absent separate promotion.
 
 ## Revisit triggers
 
-Revisit semantic retrieval on lexical/direct/typed-view misses with frozen
-needs and representation/cost accounting. Revisit learned ranking only when
+Revisit structural physical representation when measured consumers require
+shared or persisted topology. Revisit semantic retrieval on comparable frozen
+needs with representation/cost accounting. Revisit learned ranking only when
 there are sufficient diverse held-out examples and a target that is not an
 oracle label alone. Revisit a first-class Selector only when multiple consumers
 need reusable decisions outside operation-specific policy or
@@ -545,14 +561,15 @@ representation-aware Context planning.
 
 ## ADR assessment and disposition
 
-ADR-0002, ADR-0003, and ADR-0004 own Repository Intelligence/typed views;
+ADR-0002, ADR-0003, and ADR-0004 own Repository Intelligence/typed relations;
 InformationNeed/native evidence/direct acquisition/ranking; and
 representation-aware disclosure respectively. ADR-0003 is amended to record
 the now-empirical requirement that purpose be available to a bounded admission
-decision and that explicit abstention is valid decision semantics. ADR-0004
-already permits that decision to remain local to Context planning and needs no
-amendment. No new ADR is justified: there is no distinct new domain, lifecycle,
-or cross-package owner. Shadow comparison remains a bounded evaluation direction
+decision, structural candidate-generation controls, and explicit abstention.
+ADR-0004's disclosure semantics are unchanged and need no amendment. No new ADR
+is justified: ADR-0002 owns the repository semantics/representation boundary and
+ADR-0003 owns retrieval evidence and evaluation sequencing; there is no distinct
+new domain, lifecycle, or cross-package owner. Shadow comparison remains a bounded evaluation direction
 whose scope, owner, privacy boundary, and production-control contract are open.
 
 ## Long-term architecture synthesis
@@ -610,5 +627,7 @@ resources are already in lexical top fifteen. Typed import evidence has no
 demonstrated incremental ranking value on this six-case devtools surface; a
 learned baseline is not estimable without unacceptable grouped-split variance.
 This is not evidence that lexical width is generally sufficient. Increment 25
-should test a distinct semantic candidate-generation family, and Increment 26
-requires independent-repository evidence before closure.
+should test bounded structural candidate-generation complementarity against
+lexical widening; Increment 26 should test pretrained semantic candidate
+generation; Increment 27 should compare surviving evidence families; and
+Increment 28 requires independent-repository falsification before closure.

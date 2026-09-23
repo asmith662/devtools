@@ -15,7 +15,9 @@ This ADR is supported by the [snapshot identity](../../research/repository-snaps
 [DerivedKnowledge boundary](../../research/repository-derived-knowledge-boundary.md),
 [information-boundaries](../../research/repository-information-boundaries.md),
 [comparative architecture](../../research/repository-intelligence-architecture-review.md),
-and [adversarial review](../../research/architecture-adversarial-review.md) investigations.
+[adversarial review](../../research/architecture-adversarial-review.md), and
+[structural repository retrieval](../../research/structural-repository-retrieval.md)
+investigations.
 
 They reinforce that nominal Repository identity differs from paths/checkouts/Git;
 snapshots, occurrences, subjects, source anchors, derivation, knowledge, support,
@@ -845,15 +847,19 @@ and relevant evidence/metadata. They do not need a separate foundational
 knowledge identity provide lineage. One universal canonical repository graph is
 not accepted.
 
-Multiple **typed graph views** are a first-class repository-intelligence
-capability. A view is a reusable relational projection over selected node
+Typed graph-shaped views are a possible repository-intelligence capability. A
+view is a relational projection over selected node
 identities and relationship semantics, not the semantic authority for those
 relationships. Conceptual views can include containment, definition/reference,
 import, call, inheritance, test, documentation, governance, or change
 relationships; this is not a closed taxonomy or mandatory implementation list.
-Graph views support deterministic repository navigation, multi-hop reasoning
-outside the LLM, structural retrieval, change-impact reasoning, Context
-efficiency, and future coding-agent repository understanding.
+Such views can support deterministic repository navigation, bounded typed
+reasoning outside the LLM, structural retrieval, change-impact reasoning,
+Context efficiency, and future coding-agent repository understanding. The
+preferred current posture is canonical typed relationship knowledge with only
+justified relation-specific indexes or traversal support and ephemeral typed
+projections for particular consumers. This posture neither prohibits a future
+unified typed substrate nor requires independently materialized views.
 
 Graph infrastructure is distinct from relationship knowledge and graph-view
 semantics. Where identities and relationship meanings are compatible, shared
@@ -898,6 +904,15 @@ relationship meaning, direction, provenance, qualification, applicability, and
 view-specific node domains are the accepted semantic commitment; topology is a
 derived operational view unless a future consumer establishes a stronger
 representation requirement.
+
+Declaration-grounded reference knowledge is a promising next bounded
+Repository Intelligence hypothesis: a SourceOccurrence may syntactically
+denote, resolve to, or conservatively may resolve to a RepositorySubject under
+explicit derivation, resolution, qualification, and coverage semantics.
+Call-position references can later specialize or make typed use of that
+knowledge without requiring a universal call graph. This statement identifies
+pressure only; it does not select a final Reference proposition, analyzer,
+subject model, call semantics, index, or API.
 
 Repository intelligence defines no foundational universal `Chunk`. Fixed token
 windows, arbitrary line chunks, syntax-aware slices, graph neighborhoods,

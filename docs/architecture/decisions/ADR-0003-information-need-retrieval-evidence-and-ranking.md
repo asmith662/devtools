@@ -3,7 +3,8 @@
 - Status: Accepted
 - Date: 2026-09-16
 - Evidence amendments: 2026-09-22 (Increment 22 purpose-relative admission),
-  2026-09-22 (Increment 23 independent blinded validation)
+  2026-09-22 (Increment 23 independent blinded validation),
+  2026-09-23 (structural-retrieval research reconciliation)
 - Scope: semantic architecture for future InformationNeed, retrieval planning,
   bounded retrieval applications, ContextCandidates, RelevanceEvidence, and
   ranking, including bounded purpose-relative admission and abstention. This
@@ -16,7 +17,8 @@
 The [purpose-relative Context research](../../research/purpose-relative-repository-context.md),
 [repository Context-system research](../../research/repository-context-system-architecture.md),
 [adversarial review](../../research/architecture-adversarial-review.md), and
-[retrieval synthesis](../../research/retrieval-architecture-synthesis.md) support
+[retrieval synthesis](../../research/retrieval-architecture-synthesis.md), and
+[structural repository retrieval](../../research/structural-repository-retrieval.md) support
 this boundary. They, plus Increments 16, 20, 21, and 22, preserve:
 
 > repository relationship truth != surfaced retrieval evidence !=
@@ -230,6 +232,18 @@ relationship families and bounded traversal constraints; its reached candidates,
 path, distance, and relationship observations remain RelevanceEvidence rather
 than automatically becoming repository DerivedKnowledge.
 
+Structural evidence is first an independently measurable candidate-generation
+family, not a mandate to insert reached resources into scarce top-K capacity.
+Candidate generation and ranking/capacity decisions must remain separately
+observable. The next bounded structural hypothesis begins with one relation
+hop, preserves incoming and outgoing semantics, retains native relation/path
+provenance, and excludes generic recursive walks, undirected adjacency,
+PageRank, centrality, and arbitrary multi-hop traversal. Any structural
+candidate-generation evaluation must compare against candidate-volume-matched
+lexical widening or another preregistered scientifically defensible lexical
+control, so it can determine whether structure exposes useful resources that
+additional lexical capacity would not.
+
 Planning may later be deterministic, learned, model-assisted, or hybrid. This
 ADR freezes none of `Retriever`, `RetrievalPlan`, `RetrievalApplication`, or a
 planner implementation shape.
@@ -424,6 +438,15 @@ policy or a change to the accepted ranking boundary. It reinforces that ranking
 must be evaluated separately from surfacing, but does not justify production
 ranking, shadow execution, universal feature normalization, or a Selector.
 Cross-repository evidence remains required before architectural closure.
+
+The next evidence sequence therefore tests bounded typed structural candidate
+generation before a separate pretrained semantic/representation-based arm,
+then compares lexical, structural, semantic, and justified combinations while
+preserving native evidence semantics. Independent-repository falsification is
+required before stronger conclusions. Learned decision mechanisms or
+non-controlling shadow execution remain later options only if those offline
+families produce credible evidence. Consuming a pretrained representation model
+for semantic retrieval is not training a learned ranker.
 
 ## Deferred and open pressure
 
