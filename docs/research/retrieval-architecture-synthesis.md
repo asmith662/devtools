@@ -590,3 +590,14 @@ the next bounded work toward stronger candidate generation and ranking.
 Production remains content BM25 plus `0.25 *` filename-stem BM25 at `K=5`;
 relationship expansion and admission remain experimental, and exact/direct
 resolution remains separate.
+
+**Increment 24 refinement:** the frozen offline ranking comparison finds no
+local improvement from its purpose-relative deterministic ordering: it recovers
+9 known-useful resources versus 10 for lexical/native ranking, and selects
+three additional known-not-useful resources. All 18 known-useful material
+resources are already in lexical top fifteen. Typed import evidence has no
+demonstrated incremental ranking value on this six-case devtools surface; a
+learned baseline is not estimable without unacceptable grouped-split variance.
+This is not evidence that lexical width is generally sufficient. Increment 25
+should test a distinct semantic candidate-generation family, and Increment 26
+requires independent-repository evidence before closure.

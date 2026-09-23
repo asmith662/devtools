@@ -629,3 +629,15 @@ that required semantics cannot be represented correctly.
   for design without collapsing Repository intelligence, Context, Tool,
   Runtime, Agent, or orchestration ownership
 - validation_level: NONE
+
+## Increment 24 ranking checkpoint
+
+The retained offline comparison reuses Increment 23's adjudicated material
+surface without changing production retrieval. Lexical/native ranking recovers
+10/18 known-useful resources at K=5; the predeclared purpose-relative
+deterministic ordering recovers 9/18 and selects three additional known-not-
+useful resources. All 18 known-useful material resources are already in lexical
+top fifteen. No learned ranking was fit because six grouped InformationNeeds do
+not support a credible non-leaking train/evaluation split. This is local
+evidence only: Increment 25 should test distinct semantic candidate generation,
+and Increment 26 requires independent-repository evidence before closure.

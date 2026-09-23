@@ -1,0 +1,1060 @@
+{
+  "content_identity": "7da0403d834a12134fd1008d114a088de29ed37ccccdee8b7c13dcf1aed0b105",
+  "payload": {
+    "aggregates": {
+      "canonical-top5": {
+        "hit_at_5": 1.0,
+        "known_useful_recovered": 10,
+        "known_useful_total": 18,
+        "mrr": 0.5388888888888889,
+        "ndcg_at_5": 0.4576044905781045,
+        "pairwise_useful_not_useful_accuracy": 0.5416666666666666,
+        "precision_at_5_definitive": 0.47222222222222215,
+        "ranking_capacity_failure_known_useful": 8,
+        "recall_at_5": 0.5944444444444444,
+        "selected_not_useful_count": 12,
+        "selected_unjudged_count": 8
+      },
+      "lexical-top15-truncated-to5": {
+        "hit_at_5": 1.0,
+        "known_useful_recovered": 10,
+        "known_useful_total": 18,
+        "mrr": 0.5388888888888889,
+        "ndcg_at_5": 0.4576044905781045,
+        "pairwise_useful_not_useful_accuracy": 0.5416666666666666,
+        "precision_at_5_definitive": 0.47222222222222215,
+        "ranking_capacity_failure_known_useful": 8,
+        "recall_at_5": 0.5944444444444444,
+        "selected_not_useful_count": 12,
+        "selected_unjudged_count": 8
+      },
+      "purpose-agnostic-native-evidence": {
+        "hit_at_5": 1.0,
+        "known_useful_recovered": 10,
+        "known_useful_total": 18,
+        "mrr": 0.5388888888888889,
+        "ndcg_at_5": 0.4576044905781045,
+        "pairwise_useful_not_useful_accuracy": 0.5416666666666666,
+        "precision_at_5_definitive": 0.47222222222222215,
+        "ranking_capacity_failure_known_useful": 8,
+        "recall_at_5": 0.5944444444444444,
+        "selected_not_useful_count": 12,
+        "selected_unjudged_count": 8
+      },
+      "purpose-relative-deterministic": {
+        "hit_at_5": 1.0,
+        "known_useful_recovered": 9,
+        "known_useful_total": 18,
+        "mrr": 0.5166666666666667,
+        "ndcg_at_5": 0.4087134824210556,
+        "pairwise_useful_not_useful_accuracy": 0.4583333333333333,
+        "precision_at_5_definitive": 0.39444444444444443,
+        "ranking_capacity_failure_known_useful": 9,
+        "recall_at_5": 0.5388888888888889,
+        "selected_not_useful_count": 15,
+        "selected_unjudged_count": 6
+      },
+      "purpose-relative-without-relationships": {
+        "hit_at_5": 1.0,
+        "known_useful_recovered": 10,
+        "known_useful_total": 18,
+        "mrr": 0.5388888888888889,
+        "ndcg_at_5": 0.4576044905781045,
+        "pairwise_useful_not_useful_accuracy": 0.5416666666666666,
+        "precision_at_5_definitive": 0.47222222222222215,
+        "ranking_capacity_failure_known_useful": 8,
+        "recall_at_5": 0.5944444444444444,
+        "selected_not_useful_count": 12,
+        "selected_unjudged_count": 8
+      }
+    },
+    "arms": {
+      "canonical-top5": [
+        {
+          "arm": "canonical-top5",
+          "case_name": "content-bm25-term-formula",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "src/devtools/context/retrieval/lexical/scoring.py",
+            "tests/context/retrieval/lexical/test_bm25.py"
+          ],
+          "known_useful_recovered": 2,
+          "known_useful_total": 4,
+          "mrr": 0.3333333333333333,
+          "ndcg_at_5": 0.34620964322385606,
+          "pairwise_useful_not_useful_accuracy": 0.5,
+          "precision_at_5_definitive": 0.6666666666666666,
+          "profile": "outgoing-dependency",
+          "query_text": "content only BM25 term formula",
+          "ranking": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/experiments/purpose_relative_admission/test_validation_design.py",
+            "src/devtools/context/retrieval/lexical/bm25.py",
+            "experiments/address_lexical.py",
+            "src/devtools/context/retrieval/lexical/filename.py"
+          ],
+          "ranking_capacity_failure_known_useful": 2,
+          "recall_at_5": 0.5,
+          "selected_not_useful_count": 1,
+          "selected_unjudged_count": 2
+        },
+        {
+          "arm": "canonical-top5",
+          "case_name": "baseline-lexical-analysis-definition",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [],
+          "known_useful_recovered": 2,
+          "known_useful_total": 2,
+          "mrr": 0.5,
+          "ndcg_at_5": 0.6509209298071326,
+          "pairwise_useful_not_useful_accuracy": 0.75,
+          "precision_at_5_definitive": 0.5,
+          "profile": "local-definition-or-governance",
+          "query_text": "baseline lexical analysis",
+          "ranking": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/retrieval/lexical/test_analysis.py",
+            "experiments/retrieval_identifier.py",
+            "src/devtools/context/retrieval/lexical/analysis.py",
+            "src/devtools/context/retrieval/lexical/bm25.py"
+          ],
+          "ranking_capacity_failure_known_useful": 0,
+          "recall_at_5": 1.0,
+          "selected_not_useful_count": 2,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "canonical-top5",
+          "case_name": "content-bm25-analysis-consumer",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "tests/context/retrieval/lexical/test_bm25.py"
+          ],
+          "known_useful_recovered": 1,
+          "known_useful_total": 2,
+          "mrr": 0.2,
+          "ndcg_at_5": 0.23719771276929622,
+          "pairwise_useful_not_useful_accuracy": 0.0,
+          "precision_at_5_definitive": 0.25,
+          "profile": "incoming-consumer-or-test",
+          "query_text": "baseline lexical analysis",
+          "ranking": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/retrieval/lexical/test_analysis.py",
+            "experiments/retrieval_identifier.py",
+            "src/devtools/context/retrieval/lexical/analysis.py",
+            "src/devtools/context/retrieval/lexical/bm25.py"
+          ],
+          "ranking_capacity_failure_known_useful": 1,
+          "recall_at_5": 0.5,
+          "selected_not_useful_count": 3,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "canonical-top5",
+          "case_name": "python-function-token-candidate-boundary",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "src/devtools/context/python/function/declarations.py"
+          ],
+          "known_useful_recovered": 2,
+          "known_useful_total": 3,
+          "mrr": 1.0,
+          "ndcg_at_5": 0.7653606369886217,
+          "pairwise_useful_not_useful_accuracy": 1.0,
+          "precision_at_5_definitive": 0.5,
+          "profile": "outgoing-dependency",
+          "query_text": "Python function candidate selection tokenizer",
+          "ranking": [
+            "src/devtools/context/python/function/candidates.py",
+            "tests/context/python/function/test_candidates.py",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/python/function/test_resource_selection.py",
+            "src/devtools/context/python/function/disclosure.py"
+          ],
+          "ranking_capacity_failure_known_useful": 1,
+          "recall_at_5": 0.6666666666666666,
+          "selected_not_useful_count": 2,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "canonical-top5",
+          "case_name": "import-declaration-source-evidence-contract",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "tests/context/python/imports/test_declarations.py"
+          ],
+          "known_useful_recovered": 1,
+          "known_useful_total": 2,
+          "mrr": 0.2,
+          "ndcg_at_5": 0.23719771276929622,
+          "pairwise_useful_not_useful_accuracy": 0.0,
+          "precision_at_5_definitive": 0.25,
+          "profile": "local-definition-or-governance",
+          "query_text": "direct module body import declaration source occurrence",
+          "ranking": [
+            "src/devtools/context/python/function/declarations.py",
+            "src/devtools/context/python/function/rendering.py",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/python/function/test_declarations.py",
+            "src/devtools/context/python/imports/declarations.py"
+          ],
+          "ranking_capacity_failure_known_useful": 1,
+          "recall_at_5": 0.5,
+          "selected_not_useful_count": 3,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "canonical-top5",
+          "case_name": "repository-context-taxonomy-boundary",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "AGENTS.md",
+            "docs/architecture.md",
+            "docs/documentation_map.md"
+          ],
+          "known_useful_recovered": 2,
+          "known_useful_total": 5,
+          "mrr": 1.0,
+          "ndcg_at_5": 0.5087403079104241,
+          "pairwise_useful_not_useful_accuracy": 1.0,
+          "precision_at_5_definitive": 0.6666666666666666,
+          "profile": "local-definition-or-governance",
+          "query_text": "Context purpose relative information Memory Persistence",
+          "ranking": [
+            "docs/architecture/taxonomy.md",
+            "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+            "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "docs/research/purpose-relative-repository-context.md"
+          ],
+          "ranking_capacity_failure_known_useful": 3,
+          "recall_at_5": 0.4,
+          "selected_not_useful_count": 1,
+          "selected_unjudged_count": 2
+        }
+      ],
+      "lexical-top15-truncated-to5": [
+        {
+          "arm": "lexical-top15-truncated-to5",
+          "case_name": "content-bm25-term-formula",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "src/devtools/context/retrieval/lexical/scoring.py",
+            "tests/context/retrieval/lexical/test_bm25.py"
+          ],
+          "known_useful_recovered": 2,
+          "known_useful_total": 4,
+          "mrr": 0.3333333333333333,
+          "ndcg_at_5": 0.34620964322385606,
+          "pairwise_useful_not_useful_accuracy": 0.5,
+          "precision_at_5_definitive": 0.6666666666666666,
+          "profile": "outgoing-dependency",
+          "query_text": "content only BM25 term formula",
+          "ranking": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/experiments/purpose_relative_admission/test_validation_design.py",
+            "src/devtools/context/retrieval/lexical/bm25.py",
+            "experiments/address_lexical.py",
+            "src/devtools/context/retrieval/lexical/filename.py"
+          ],
+          "ranking_capacity_failure_known_useful": 2,
+          "recall_at_5": 0.5,
+          "selected_not_useful_count": 1,
+          "selected_unjudged_count": 2
+        },
+        {
+          "arm": "lexical-top15-truncated-to5",
+          "case_name": "baseline-lexical-analysis-definition",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [],
+          "known_useful_recovered": 2,
+          "known_useful_total": 2,
+          "mrr": 0.5,
+          "ndcg_at_5": 0.6509209298071326,
+          "pairwise_useful_not_useful_accuracy": 0.75,
+          "precision_at_5_definitive": 0.5,
+          "profile": "local-definition-or-governance",
+          "query_text": "baseline lexical analysis",
+          "ranking": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/retrieval/lexical/test_analysis.py",
+            "experiments/retrieval_identifier.py",
+            "src/devtools/context/retrieval/lexical/analysis.py",
+            "src/devtools/context/retrieval/lexical/bm25.py"
+          ],
+          "ranking_capacity_failure_known_useful": 0,
+          "recall_at_5": 1.0,
+          "selected_not_useful_count": 2,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "lexical-top15-truncated-to5",
+          "case_name": "content-bm25-analysis-consumer",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "tests/context/retrieval/lexical/test_bm25.py"
+          ],
+          "known_useful_recovered": 1,
+          "known_useful_total": 2,
+          "mrr": 0.2,
+          "ndcg_at_5": 0.23719771276929622,
+          "pairwise_useful_not_useful_accuracy": 0.0,
+          "precision_at_5_definitive": 0.25,
+          "profile": "incoming-consumer-or-test",
+          "query_text": "baseline lexical analysis",
+          "ranking": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/retrieval/lexical/test_analysis.py",
+            "experiments/retrieval_identifier.py",
+            "src/devtools/context/retrieval/lexical/analysis.py",
+            "src/devtools/context/retrieval/lexical/bm25.py"
+          ],
+          "ranking_capacity_failure_known_useful": 1,
+          "recall_at_5": 0.5,
+          "selected_not_useful_count": 3,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "lexical-top15-truncated-to5",
+          "case_name": "python-function-token-candidate-boundary",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "src/devtools/context/python/function/declarations.py"
+          ],
+          "known_useful_recovered": 2,
+          "known_useful_total": 3,
+          "mrr": 1.0,
+          "ndcg_at_5": 0.7653606369886217,
+          "pairwise_useful_not_useful_accuracy": 1.0,
+          "precision_at_5_definitive": 0.5,
+          "profile": "outgoing-dependency",
+          "query_text": "Python function candidate selection tokenizer",
+          "ranking": [
+            "src/devtools/context/python/function/candidates.py",
+            "tests/context/python/function/test_candidates.py",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/python/function/test_resource_selection.py",
+            "src/devtools/context/python/function/disclosure.py"
+          ],
+          "ranking_capacity_failure_known_useful": 1,
+          "recall_at_5": 0.6666666666666666,
+          "selected_not_useful_count": 2,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "lexical-top15-truncated-to5",
+          "case_name": "import-declaration-source-evidence-contract",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "tests/context/python/imports/test_declarations.py"
+          ],
+          "known_useful_recovered": 1,
+          "known_useful_total": 2,
+          "mrr": 0.2,
+          "ndcg_at_5": 0.23719771276929622,
+          "pairwise_useful_not_useful_accuracy": 0.0,
+          "precision_at_5_definitive": 0.25,
+          "profile": "local-definition-or-governance",
+          "query_text": "direct module body import declaration source occurrence",
+          "ranking": [
+            "src/devtools/context/python/function/declarations.py",
+            "src/devtools/context/python/function/rendering.py",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/python/function/test_declarations.py",
+            "src/devtools/context/python/imports/declarations.py"
+          ],
+          "ranking_capacity_failure_known_useful": 1,
+          "recall_at_5": 0.5,
+          "selected_not_useful_count": 3,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "lexical-top15-truncated-to5",
+          "case_name": "repository-context-taxonomy-boundary",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "AGENTS.md",
+            "docs/architecture.md",
+            "docs/documentation_map.md"
+          ],
+          "known_useful_recovered": 2,
+          "known_useful_total": 5,
+          "mrr": 1.0,
+          "ndcg_at_5": 0.5087403079104241,
+          "pairwise_useful_not_useful_accuracy": 1.0,
+          "precision_at_5_definitive": 0.6666666666666666,
+          "profile": "local-definition-or-governance",
+          "query_text": "Context purpose relative information Memory Persistence",
+          "ranking": [
+            "docs/architecture/taxonomy.md",
+            "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+            "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "docs/research/purpose-relative-repository-context.md"
+          ],
+          "ranking_capacity_failure_known_useful": 3,
+          "recall_at_5": 0.4,
+          "selected_not_useful_count": 1,
+          "selected_unjudged_count": 2
+        }
+      ],
+      "purpose-agnostic-native-evidence": [
+        {
+          "arm": "purpose-agnostic-native-evidence",
+          "case_name": "content-bm25-term-formula",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "src/devtools/context/retrieval/lexical/scoring.py",
+            "tests/context/retrieval/lexical/test_bm25.py"
+          ],
+          "known_useful_recovered": 2,
+          "known_useful_total": 4,
+          "mrr": 0.3333333333333333,
+          "ndcg_at_5": 0.34620964322385606,
+          "pairwise_useful_not_useful_accuracy": 0.5,
+          "precision_at_5_definitive": 0.6666666666666666,
+          "profile": "outgoing-dependency",
+          "query_text": "content only BM25 term formula",
+          "ranking": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/experiments/purpose_relative_admission/test_validation_design.py",
+            "src/devtools/context/retrieval/lexical/bm25.py",
+            "experiments/address_lexical.py",
+            "src/devtools/context/retrieval/lexical/filename.py"
+          ],
+          "ranking_capacity_failure_known_useful": 2,
+          "recall_at_5": 0.5,
+          "selected_not_useful_count": 1,
+          "selected_unjudged_count": 2
+        },
+        {
+          "arm": "purpose-agnostic-native-evidence",
+          "case_name": "baseline-lexical-analysis-definition",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [],
+          "known_useful_recovered": 2,
+          "known_useful_total": 2,
+          "mrr": 0.5,
+          "ndcg_at_5": 0.6509209298071326,
+          "pairwise_useful_not_useful_accuracy": 0.75,
+          "precision_at_5_definitive": 0.5,
+          "profile": "local-definition-or-governance",
+          "query_text": "baseline lexical analysis",
+          "ranking": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/retrieval/lexical/test_analysis.py",
+            "experiments/retrieval_identifier.py",
+            "src/devtools/context/retrieval/lexical/analysis.py",
+            "src/devtools/context/retrieval/lexical/bm25.py"
+          ],
+          "ranking_capacity_failure_known_useful": 0,
+          "recall_at_5": 1.0,
+          "selected_not_useful_count": 2,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "purpose-agnostic-native-evidence",
+          "case_name": "content-bm25-analysis-consumer",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "tests/context/retrieval/lexical/test_bm25.py"
+          ],
+          "known_useful_recovered": 1,
+          "known_useful_total": 2,
+          "mrr": 0.2,
+          "ndcg_at_5": 0.23719771276929622,
+          "pairwise_useful_not_useful_accuracy": 0.0,
+          "precision_at_5_definitive": 0.25,
+          "profile": "incoming-consumer-or-test",
+          "query_text": "baseline lexical analysis",
+          "ranking": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/retrieval/lexical/test_analysis.py",
+            "experiments/retrieval_identifier.py",
+            "src/devtools/context/retrieval/lexical/analysis.py",
+            "src/devtools/context/retrieval/lexical/bm25.py"
+          ],
+          "ranking_capacity_failure_known_useful": 1,
+          "recall_at_5": 0.5,
+          "selected_not_useful_count": 3,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "purpose-agnostic-native-evidence",
+          "case_name": "python-function-token-candidate-boundary",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "src/devtools/context/python/function/declarations.py"
+          ],
+          "known_useful_recovered": 2,
+          "known_useful_total": 3,
+          "mrr": 1.0,
+          "ndcg_at_5": 0.7653606369886217,
+          "pairwise_useful_not_useful_accuracy": 1.0,
+          "precision_at_5_definitive": 0.5,
+          "profile": "outgoing-dependency",
+          "query_text": "Python function candidate selection tokenizer",
+          "ranking": [
+            "src/devtools/context/python/function/candidates.py",
+            "tests/context/python/function/test_candidates.py",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/python/function/test_resource_selection.py",
+            "src/devtools/context/python/function/disclosure.py"
+          ],
+          "ranking_capacity_failure_known_useful": 1,
+          "recall_at_5": 0.6666666666666666,
+          "selected_not_useful_count": 2,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "purpose-agnostic-native-evidence",
+          "case_name": "import-declaration-source-evidence-contract",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "tests/context/python/imports/test_declarations.py"
+          ],
+          "known_useful_recovered": 1,
+          "known_useful_total": 2,
+          "mrr": 0.2,
+          "ndcg_at_5": 0.23719771276929622,
+          "pairwise_useful_not_useful_accuracy": 0.0,
+          "precision_at_5_definitive": 0.25,
+          "profile": "local-definition-or-governance",
+          "query_text": "direct module body import declaration source occurrence",
+          "ranking": [
+            "src/devtools/context/python/function/declarations.py",
+            "src/devtools/context/python/function/rendering.py",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/python/function/test_declarations.py",
+            "src/devtools/context/python/imports/declarations.py"
+          ],
+          "ranking_capacity_failure_known_useful": 1,
+          "recall_at_5": 0.5,
+          "selected_not_useful_count": 3,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "purpose-agnostic-native-evidence",
+          "case_name": "repository-context-taxonomy-boundary",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "AGENTS.md",
+            "docs/architecture.md",
+            "docs/documentation_map.md"
+          ],
+          "known_useful_recovered": 2,
+          "known_useful_total": 5,
+          "mrr": 1.0,
+          "ndcg_at_5": 0.5087403079104241,
+          "pairwise_useful_not_useful_accuracy": 1.0,
+          "precision_at_5_definitive": 0.6666666666666666,
+          "profile": "local-definition-or-governance",
+          "query_text": "Context purpose relative information Memory Persistence",
+          "ranking": [
+            "docs/architecture/taxonomy.md",
+            "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+            "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "docs/research/purpose-relative-repository-context.md"
+          ],
+          "ranking_capacity_failure_known_useful": 3,
+          "recall_at_5": 0.4,
+          "selected_not_useful_count": 1,
+          "selected_unjudged_count": 2
+        }
+      ],
+      "purpose-relative-deterministic": [
+        {
+          "arm": "purpose-relative-deterministic",
+          "case_name": "content-bm25-term-formula",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "src/devtools/context/retrieval/lexical/bm25.py",
+            "tests/context/retrieval/lexical/test_bm25.py"
+          ],
+          "known_useful_recovered": 2,
+          "known_useful_total": 4,
+          "mrr": 1.0,
+          "ndcg_at_5": 0.6366824387328317,
+          "pairwise_useful_not_useful_accuracy": 1.0,
+          "precision_at_5_definitive": 0.5,
+          "profile": "outgoing-dependency",
+          "query_text": "content only BM25 term formula",
+          "ranking": [
+            "src/devtools/context/retrieval/lexical/filename.py",
+            "src/devtools/context/retrieval/lexical/scoring.py",
+            "src/devtools/context/repository/resource.py",
+            "src/devtools/context/retrieval/lexical/analysis.py",
+            "experiments/purpose_relative_admission/validation_design.py"
+          ],
+          "ranking_capacity_failure_known_useful": 2,
+          "recall_at_5": 0.5,
+          "selected_not_useful_count": 2,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "purpose-relative-deterministic",
+          "case_name": "baseline-lexical-analysis-definition",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [],
+          "known_useful_recovered": 2,
+          "known_useful_total": 2,
+          "mrr": 0.5,
+          "ndcg_at_5": 0.6509209298071326,
+          "pairwise_useful_not_useful_accuracy": 0.75,
+          "precision_at_5_definitive": 0.5,
+          "profile": "local-definition-or-governance",
+          "query_text": "baseline lexical analysis",
+          "ranking": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/retrieval/lexical/test_analysis.py",
+            "experiments/retrieval_identifier.py",
+            "src/devtools/context/retrieval/lexical/analysis.py",
+            "src/devtools/context/retrieval/lexical/bm25.py"
+          ],
+          "ranking_capacity_failure_known_useful": 0,
+          "recall_at_5": 1.0,
+          "selected_not_useful_count": 2,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "purpose-relative-deterministic",
+          "case_name": "content-bm25-analysis-consumer",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "tests/context/retrieval/lexical/test_bm25.py"
+          ],
+          "known_useful_recovered": 1,
+          "known_useful_total": 2,
+          "mrr": 0.2,
+          "ndcg_at_5": 0.23719771276929622,
+          "pairwise_useful_not_useful_accuracy": 0.0,
+          "precision_at_5_definitive": 0.25,
+          "profile": "incoming-consumer-or-test",
+          "query_text": "baseline lexical analysis",
+          "ranking": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/retrieval/lexical/test_analysis.py",
+            "experiments/retrieval_identifier.py",
+            "src/devtools/context/retrieval/lexical/analysis.py",
+            "src/devtools/context/retrieval/lexical/bm25.py"
+          ],
+          "ranking_capacity_failure_known_useful": 1,
+          "recall_at_5": 0.5,
+          "selected_not_useful_count": 3,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "purpose-relative-deterministic",
+          "case_name": "python-function-token-candidate-boundary",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": false,
+          "known_useful_omitted": [
+            "src/devtools/context/python/function/declarations.py",
+            "tests/context/python/function/test_candidates.py"
+          ],
+          "known_useful_recovered": 1,
+          "known_useful_total": 3,
+          "mrr": 0.2,
+          "ndcg_at_5": 0.18154179253735267,
+          "pairwise_useful_not_useful_accuracy": 0.0,
+          "precision_at_5_definitive": 0.2,
+          "profile": "outgoing-dependency",
+          "query_text": "Python function candidate selection tokenizer",
+          "ranking": [
+            "src/devtools/context/__init__.py",
+            "src/devtools/models/interaction/__init__.py",
+            "src/devtools/core/paths/__init__.py",
+            "src/devtools/context/repository/resource.py",
+            "src/devtools/context/python/function/candidates.py"
+          ],
+          "ranking_capacity_failure_known_useful": 2,
+          "recall_at_5": 0.3333333333333333,
+          "selected_not_useful_count": 4,
+          "selected_unjudged_count": 0
+        },
+        {
+          "arm": "purpose-relative-deterministic",
+          "case_name": "import-declaration-source-evidence-contract",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "tests/context/python/imports/test_declarations.py"
+          ],
+          "known_useful_recovered": 1,
+          "known_useful_total": 2,
+          "mrr": 0.2,
+          "ndcg_at_5": 0.23719771276929622,
+          "pairwise_useful_not_useful_accuracy": 0.0,
+          "precision_at_5_definitive": 0.25,
+          "profile": "local-definition-or-governance",
+          "query_text": "direct module body import declaration source occurrence",
+          "ranking": [
+            "src/devtools/context/python/function/declarations.py",
+            "src/devtools/context/python/function/rendering.py",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/python/function/test_declarations.py",
+            "src/devtools/context/python/imports/declarations.py"
+          ],
+          "ranking_capacity_failure_known_useful": 1,
+          "recall_at_5": 0.5,
+          "selected_not_useful_count": 3,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "purpose-relative-deterministic",
+          "case_name": "repository-context-taxonomy-boundary",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "AGENTS.md",
+            "docs/architecture.md",
+            "docs/documentation_map.md"
+          ],
+          "known_useful_recovered": 2,
+          "known_useful_total": 5,
+          "mrr": 1.0,
+          "ndcg_at_5": 0.5087403079104241,
+          "pairwise_useful_not_useful_accuracy": 1.0,
+          "precision_at_5_definitive": 0.6666666666666666,
+          "profile": "local-definition-or-governance",
+          "query_text": "Context purpose relative information Memory Persistence",
+          "ranking": [
+            "docs/architecture/taxonomy.md",
+            "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+            "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "docs/research/purpose-relative-repository-context.md"
+          ],
+          "ranking_capacity_failure_known_useful": 3,
+          "recall_at_5": 0.4,
+          "selected_not_useful_count": 1,
+          "selected_unjudged_count": 2
+        }
+      ],
+      "purpose-relative-without-relationships": [
+        {
+          "arm": "purpose-relative-without-relationships",
+          "case_name": "content-bm25-term-formula",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "src/devtools/context/retrieval/lexical/scoring.py",
+            "tests/context/retrieval/lexical/test_bm25.py"
+          ],
+          "known_useful_recovered": 2,
+          "known_useful_total": 4,
+          "mrr": 0.3333333333333333,
+          "ndcg_at_5": 0.34620964322385606,
+          "pairwise_useful_not_useful_accuracy": 0.5,
+          "precision_at_5_definitive": 0.6666666666666666,
+          "profile": "outgoing-dependency",
+          "query_text": "content only BM25 term formula",
+          "ranking": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/experiments/purpose_relative_admission/test_validation_design.py",
+            "src/devtools/context/retrieval/lexical/bm25.py",
+            "experiments/address_lexical.py",
+            "src/devtools/context/retrieval/lexical/filename.py"
+          ],
+          "ranking_capacity_failure_known_useful": 2,
+          "recall_at_5": 0.5,
+          "selected_not_useful_count": 1,
+          "selected_unjudged_count": 2
+        },
+        {
+          "arm": "purpose-relative-without-relationships",
+          "case_name": "baseline-lexical-analysis-definition",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [],
+          "known_useful_recovered": 2,
+          "known_useful_total": 2,
+          "mrr": 0.5,
+          "ndcg_at_5": 0.6509209298071326,
+          "pairwise_useful_not_useful_accuracy": 0.75,
+          "precision_at_5_definitive": 0.5,
+          "profile": "local-definition-or-governance",
+          "query_text": "baseline lexical analysis",
+          "ranking": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/retrieval/lexical/test_analysis.py",
+            "experiments/retrieval_identifier.py",
+            "src/devtools/context/retrieval/lexical/analysis.py",
+            "src/devtools/context/retrieval/lexical/bm25.py"
+          ],
+          "ranking_capacity_failure_known_useful": 0,
+          "recall_at_5": 1.0,
+          "selected_not_useful_count": 2,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "purpose-relative-without-relationships",
+          "case_name": "content-bm25-analysis-consumer",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "tests/context/retrieval/lexical/test_bm25.py"
+          ],
+          "known_useful_recovered": 1,
+          "known_useful_total": 2,
+          "mrr": 0.2,
+          "ndcg_at_5": 0.23719771276929622,
+          "pairwise_useful_not_useful_accuracy": 0.0,
+          "precision_at_5_definitive": 0.25,
+          "profile": "incoming-consumer-or-test",
+          "query_text": "baseline lexical analysis",
+          "ranking": [
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/retrieval/lexical/test_analysis.py",
+            "experiments/retrieval_identifier.py",
+            "src/devtools/context/retrieval/lexical/analysis.py",
+            "src/devtools/context/retrieval/lexical/bm25.py"
+          ],
+          "ranking_capacity_failure_known_useful": 1,
+          "recall_at_5": 0.5,
+          "selected_not_useful_count": 3,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "purpose-relative-without-relationships",
+          "case_name": "python-function-token-candidate-boundary",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "src/devtools/context/python/function/declarations.py"
+          ],
+          "known_useful_recovered": 2,
+          "known_useful_total": 3,
+          "mrr": 1.0,
+          "ndcg_at_5": 0.7653606369886217,
+          "pairwise_useful_not_useful_accuracy": 1.0,
+          "precision_at_5_definitive": 0.5,
+          "profile": "outgoing-dependency",
+          "query_text": "Python function candidate selection tokenizer",
+          "ranking": [
+            "src/devtools/context/python/function/candidates.py",
+            "tests/context/python/function/test_candidates.py",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/python/function/test_resource_selection.py",
+            "src/devtools/context/python/function/disclosure.py"
+          ],
+          "ranking_capacity_failure_known_useful": 1,
+          "recall_at_5": 0.6666666666666666,
+          "selected_not_useful_count": 2,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "purpose-relative-without-relationships",
+          "case_name": "import-declaration-source-evidence-contract",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "tests/context/python/imports/test_declarations.py"
+          ],
+          "known_useful_recovered": 1,
+          "known_useful_total": 2,
+          "mrr": 0.2,
+          "ndcg_at_5": 0.23719771276929622,
+          "pairwise_useful_not_useful_accuracy": 0.0,
+          "precision_at_5_definitive": 0.25,
+          "profile": "local-definition-or-governance",
+          "query_text": "direct module body import declaration source occurrence",
+          "ranking": [
+            "src/devtools/context/python/function/declarations.py",
+            "src/devtools/context/python/function/rendering.py",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "tests/context/python/function/test_declarations.py",
+            "src/devtools/context/python/imports/declarations.py"
+          ],
+          "ranking_capacity_failure_known_useful": 1,
+          "recall_at_5": 0.5,
+          "selected_not_useful_count": 3,
+          "selected_unjudged_count": 1
+        },
+        {
+          "arm": "purpose-relative-without-relationships",
+          "case_name": "repository-context-taxonomy-boundary",
+          "generation_failure_known_useful": 0,
+          "hit_at_5": 1.0,
+          "judgment_limitation": true,
+          "known_useful_omitted": [
+            "AGENTS.md",
+            "docs/architecture.md",
+            "docs/documentation_map.md"
+          ],
+          "known_useful_recovered": 2,
+          "known_useful_total": 5,
+          "mrr": 1.0,
+          "ndcg_at_5": 0.5087403079104241,
+          "pairwise_useful_not_useful_accuracy": 1.0,
+          "precision_at_5_definitive": 0.6666666666666666,
+          "profile": "local-definition-or-governance",
+          "query_text": "Context purpose relative information Memory Persistence",
+          "ranking": [
+            "docs/architecture/taxonomy.md",
+            "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+            "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+            "experiments/purpose_relative_admission/validation_design.py",
+            "docs/research/purpose-relative-repository-context.md"
+          ],
+          "ranking_capacity_failure_known_useful": 3,
+          "recall_at_5": 0.4,
+          "selected_not_useful_count": 1,
+          "selected_unjudged_count": 2
+        }
+      ]
+    },
+    "case_split": {
+      "calibration": [],
+      "evaluation": [
+        "content-bm25-term-formula",
+        "baseline-lexical-analysis-definition",
+        "content-bm25-analysis-consumer",
+        "python-function-token-candidate-boundary",
+        "import-declaration-source-evidence-contract",
+        "repository-context-taxonomy-boundary"
+      ],
+      "status": "descriptive within-repository; no training or tuning"
+    },
+    "design_fingerprint": "60cb90b63f11b3b34edd7abc3a0bfeefee41cca1744013aaa1e70212ce55da73",
+    "direct_resolution_controls": [
+      {
+        "name": "exact-name-function-retrieval",
+        "result": {
+          "applicable_to_heterogeneous_k5_metrics": false,
+          "declared_name": "retrieve_python_functions_by_exact_name",
+          "resource_addresses": [
+            "src/devtools/context/python/function/retrieval.py"
+          ]
+        }
+      },
+      {
+        "name": "exact-name-source-materialization",
+        "result": {
+          "applicable_to_heterogeneous_k5_metrics": false,
+          "declared_name": "materialize_python_function_disclosure_source",
+          "resource_addresses": [
+            "src/devtools/context/python/function/materialization.py"
+          ]
+        }
+      }
+    ],
+    "disposition": "INSUFFICIENT_EVIDENCE_FOR_PRODUCTION_RANKING; local deterministic ordering is descriptive only, learned ranking not estimable, and cross-repository validity is untested.",
+    "external_validity": "NOT_TESTED_CROSS_REPOSITORY; results are descriptive for the retained devtools surface only.",
+    "failed_run_history": [],
+    "feature_definitions": [
+      "lexical_score",
+      "lexical_rank",
+      "in_top5",
+      "in_top15",
+      "incoming_support_count",
+      "outgoing_support_count",
+      "profile_support_count",
+      "best_profile_seed_rank",
+      "profile_encounter_count"
+    ],
+    "headroom": {
+      "generation_failure_known_useful": 0,
+      "ranking_capacity_failure_known_useful": 9
+    },
+    "increment_25_question": "Does a distinct semantic candidate-generation family expose useful resources absent from bounded lexical retrieval?",
+    "increment_26_requirement": "Freeze and evaluate at least one independent repository before architectural closure or general ranking claims.",
+    "learned_ranking": {
+      "reason": "Six grouped InformationNeeds provide no scientifically credible non-leaking train/evaluation split; no learned model was fit.",
+      "status": "not-estimable"
+    },
+    "purpose_contribution": {
+      "known_useful_recovery_delta": -1,
+      "not_useful_selection_delta": 3
+    },
+    "relationship_contribution": {
+      "known_useful_recovery_delta": -1,
+      "not_useful_selection_delta": 3
+    },
+    "scope": "offline devtools-only ranking comparison; no production behavior change",
+    "source_artifacts": [
+      ".b0002-increment-23-hidden-surface-capture.json",
+      ".b0002-increment-23-neutral-resource-mapping.json",
+      ".b0002-increment-23-frozen-adjudication.json",
+      ".b0002-purpose-relative-independent-validation.json"
+    ],
+    "source_checkpoint": {
+      "branch": "main",
+      "checkpoint": {
+        "acquisition_bounds": [
+          [
+            "maximum_discovered_resources",
+            10000
+          ],
+          [
+            "maximum_traversal_entries",
+            20000
+          ],
+          [
+            "maximum_resource_bytes",
+            1048576
+          ]
+        ],
+        "corpus_id": "04c19ececa9a0569f5de83dd49a6c215ff57b03567d1611a8d9b08546b4fa8a6",
+        "document_count": 454,
+        "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+        "snapshot_id": "471c921f29805b730c45ebce8791bc0a3078a6cc8efd96643226859aa0b3e506"
+      },
+      "head": "0f61f3d328bad3d4743130e2e1fb1e8f6698fb19"
+    },
+    "unjudged_policy": "Retain unresolved; exclude from definitive precision and pairwise denominators; do not train or coerce as negative."
+  },
+  "schema": "devtools-b0002-purpose-relative-ranking-comparison-v1"
+}

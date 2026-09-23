@@ -156,3 +156,11 @@ acceptance only when a meaningful specialized path exists; live evidence tests
 framework enforcement and causal boundaries, not voluntary model obedience.
 
 See [documentation_map.md](documentation_map.md) for authority and navigation.
+
+## Retrieval evidence checkpoint
+
+Increment 24's offline comparison over Increment 23's retained six-case surface
+does not promote a ranker: its frozen purpose-relative deterministic arm recovers
+9 known-useful resources versus 10 for lexical/native ranking. Increment 25 is
+sequenced to test a distinct semantic candidate-generation family; Increment 26
+must obtain independent-repository evidence before retrieval architecture closure.

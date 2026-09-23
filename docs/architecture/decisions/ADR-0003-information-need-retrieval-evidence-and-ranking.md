@@ -393,6 +393,25 @@ stronger bounded candidate/ranking comparison, not threshold tuning of this
 sole reservation slot. This does not retract the purpose-relative decision
 boundary or select a universal selector.
 
+### Increment 24 offline ranking evidence
+
+The retained Increment 24 report uses schema
+`devtools-b0002-purpose-relative-ranking-comparison-v1`. It compares frozen,
+judgment-free Increment 23 material surfaces with labels joined only by the
+offline evaluator. On six devtools InformationNeeds, all 18 known-useful
+resources are present in lexical top fifteen, while canonical top five recovers
+10. A predeclared purpose-relative deterministic ordering recovers 9 and
+selects three more known-not-useful resources than the lexical/native baseline.
+Typed import evidence therefore does not add demonstrated ranking value on this
+surface, and no lightweight learned ranking result is estimated: six grouped
+needs do not support a non-leaking train/evaluation split.
+
+This is repository-local descriptive evidence, not a selection of a ranking
+policy or a change to the accepted ranking boundary. It reinforces that ranking
+must be evaluated separately from surfacing, but does not justify production
+ranking, shadow execution, universal feature normalization, or a Selector.
+Cross-repository evidence remains required before architectural closure.
+
 ## Deferred and open pressure
 
 This ADR does not select concrete purpose/InformationNeed representation or

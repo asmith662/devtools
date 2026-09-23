@@ -567,6 +567,12 @@ shifting the next experiment toward stronger bounded candidate generation and
 ranking. Production remains content BM25 plus `0.25 *` filename-stem BM25 at
 `K=5`.
 
+Increment 24's offline comparison over the same retained six-case surface did
+not improve this result: its purpose-relative deterministic ordering recovered
+9 known-useful resources versus 10 for the lexical/native baseline. This is
+repository-local evidence only; it does not promote a ranker, alter production,
+or close the cross-repository evaluation requirement.
+
 ## Accepted Context and disclosure semantics
 
 [ADR-0004](architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)
