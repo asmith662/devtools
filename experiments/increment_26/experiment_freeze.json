@@ -1,0 +1,181 @@
+{
+  "content_identity": "6ada5106d1271800267f24942345f327bae460defbb14533965e46de03d5e074",
+  "payload": {
+    "arms": {
+      "capacity": {
+        "exhaustion": "record separately for each arm",
+        "n": "min(5, available semantic resources, available positive lexical resources)",
+        "shared_lexical_seed": false,
+        "target": 5,
+        "zero_padding": "prohibited"
+      },
+      "lexical": "top n positive-scoring resources under canonical content-BM25 plus 0.25 * filename-stem-BM25",
+      "semantic": "top n distinct resources by semantic resource score",
+      "structural": "not an Increment-26 candidate input, modifier, capacity control, or judgment input"
+    },
+    "encoder": {
+      "execution": {
+        "custom_code": "trust_remote_code=True at the pinned model revision only",
+        "determinism": "CPU execution; stable input order; no stochastic sampling; exact replay identity required subject to documented numerical-runtime limits.",
+        "device": "cpu",
+        "gradient_mode": "inference_mode",
+        "model_mode": "eval",
+        "python_requires": ">=3.12",
+        "runtime_group": "increment-26",
+        "torch": "2.14.0",
+        "transformers": "5.17.0",
+        "vector_dtype": "float32"
+      },
+      "license": "MIT",
+      "model_card": "https://huggingface.co/nomic-ai/CodeRankEmbed",
+      "repository": "nomic-ai/CodeRankEmbed",
+      "revision": "3c4b60807d71f79b43f3c4363786d9493691f8b1",
+      "tokenizer": {
+        "class": "BertTokenizer",
+        "filename": "tokenizer.json",
+        "model_max_length": 8192,
+        "revision": "3c4b60807d71f79b43f3c4363786d9493691f8b1",
+        "special_tokens": [
+          "[CLS]",
+          "[SEP]"
+        ]
+      },
+      "weight_artifact": {
+        "dtype": "float32",
+        "filename": "model.safetensors",
+        "parameter_count": 136731648,
+        "sha256": "827529bcd58aef0d9082e66eeff7e7d53a02f62bd005f841a26b3d3e2fb17ebe",
+        "xet_hash": "2c08597aed3bb850ee42d4c9f38cbfb646762fada0bb8e45d2084f445b43c947"
+      }
+    },
+    "falsification": [
+      "no useful semantic-only resource appears on frozen confirmation",
+      "all useful semantic resources occur in the equal-volume lexical arm",
+      "semantic-only additions are overwhelmingly NOT_USEFUL",
+      "replay is not reproducible under the frozen configuration",
+      "results materially depend on undocumented truncation or runtime choices"
+    ],
+    "judgment_reuse": {
+      "hidden_from_new_judgment": [
+        "semantic versus lexical origin",
+        "semantic and lexical rank or score",
+        "chunk identity and support",
+        "changed-path metadata",
+        "structural origin or history"
+      ],
+      "new_resources": "require blinded three-state judgment",
+      "rule": "Reuse an Increment-25 usefulness judgment if and only if InformationNeed identity, parent snapshot identity, repository resource address, and usefulness semantics are identical. Candidate origin is irrelevant."
+    },
+    "measurements": [
+      "semantic and lexical candidate count",
+      "per-case and aggregate overlap, semantic-only, and lexical-only counts",
+      "USEFUL, NOT_USEFUL, and UNJUDGED counts per arm",
+      "useful overlap, semantic-only, and lexical-only resources",
+      "semantic candidates without a positive lexical rank and their positive lexical ranks when present",
+      "native semantic resource score and winning-chunk/support provenance for audit",
+      "arm exhaustion and deterministic replay identity"
+    ],
+    "population": {
+      "confirmation_case_ids": [
+        "i25-901246bd802a",
+        "i25-ab24906f07ed",
+        "i25-ac797431db35",
+        "i25-842e90e63f37",
+        "i25-eadb6f231f57",
+        "i25-8994c4e58644",
+        "i25-c0fabcb195e2",
+        "i25-d9e58cd09390",
+        "i25-b5280a3c38ca",
+        "i25-85cfd9ff68a0",
+        "i25-6156c70be14b",
+        "i25-2a4f058d5262",
+        "i25-5fdf5fe05527",
+        "i25-9009cc143957",
+        "i25-4ce485f737e4",
+        "i25-5bdc70483eed"
+      ],
+      "development_case_ids": [
+        "i25-66ed2049de72",
+        "i25-858bfa85787e",
+        "i25-6f304a8c737c",
+        "i25-bb9f807bcd61",
+        "i25-0f7a13667ef3",
+        "i25-739c82bd3398",
+        "i25-9efe3dc31e80",
+        "i25-6b0e9c52fb26"
+      ],
+      "increment_25_freeze_identity": "df4128bf1a6afc246aff072ff3922e4b9deb0205c95b74310a64d29497c02c0b",
+      "query_source": "each selected task card lexical_query",
+      "reserve_case_ids": [
+        "i25-514fdb223b40",
+        "i25-64cd17d51701",
+        "i25-5b75000b60f7",
+        "i25-f61e24db3528",
+        "i25-004d3829a475",
+        "i25-e0a344227af1",
+        "i25-add3c3ed5195",
+        "i25-4ba894f29abf",
+        "i25-7594b8450649",
+        "i25-e142585a95da",
+        "i25-5c5bdf4212ac",
+        "i25-d58c0504b671",
+        "i25-e976f7f20898",
+        "i25-ca9963afa999"
+      ],
+      "source_roots": [
+        "src",
+        "tests"
+      ]
+    },
+    "protocol": {
+      "confirmation_status": "sealed-for-semantic-outcomes",
+      "identity": "increment-26-independent-semantic-candidate-generation-v1",
+      "information_need_distinction": "InformationNeed is not query text. This experiment holds the task-card lexical_query constant across independent lexical and semantic mechanisms to isolate candidate generation.",
+      "non_claims": [
+        "not lexically seeded semantic expansion",
+        "not learned ranking or model training",
+        "not production hybrid retrieval",
+        "not Context selection or K=5 insertion",
+        "not Increment-27 evidence-family comparison"
+      ],
+      "outcomes_generated": false,
+      "proposition": "For a frozen InformationNeed and historical parent-snapshot corpus, similarity under one pinned pretrained representation configuration may expose useful repository resources that an equal-cardinality canonical lexical surface does not expose.",
+      "usefulness_adjudication_started": false
+    },
+    "representation": {
+      "chunking": {
+        "content_tokens_per_chunk": 2046,
+        "coverage": "tokenize without special tokens; emit ordered overlapping windows across all content tokens; add tokenizer special tokens only when encoding each window; retain the final nonempty partial window",
+        "maximum_input_tokens": 2048,
+        "overlap_tokens": 256,
+        "special_token_allowance": 2,
+        "stride_tokens": 1790,
+        "text_decoding": "reuse the already decoded immutable RepositoryTextDocument content; introduce no additional normalization or newline rewriting",
+        "tokenizer_relative": true
+      },
+      "document": {
+        "empty_resource": "produces zero chunks and no semantic resource candidate",
+        "serialization": "raw decoded source content only; no filename, address, path, language marker, diff, changed-path metadata, or post-change content",
+        "source": "RepositoryTextDocument resource content from the frozen parent snapshot"
+      },
+      "encoding": {
+        "chunk_method": "raw chunk text without instruction prefix",
+        "chunk_support": "retain every chunk ordinal tied at the resource maximum; winning chunk is the lowest ordinal",
+        "normalization": "L2 normalize each float32 embedding before comparison",
+        "pooling": "CLS-token pooling, as declared by the pinned sentence-transformers pooling configuration",
+        "query_method": "documented CodeRankEmbed query instruction prefix plus frozen lexical_query",
+        "resource_aggregation": "maximum chunk similarity per repository resource",
+        "resource_tie_break": "descending resource score, then ascending repository resource address",
+        "similarity": "float32 dot product of L2-normalized vectors (cosine similarity)"
+      },
+      "query": {
+        "overlength": "reject rather than truncate when tokenized query content exceeds 2046 tokens",
+        "serialization": "Represent this query for searching relevant code: {lexical_query}",
+        "source": "task-card.lexical_query exactly",
+        "task_derived_content": "lexical_query only"
+      },
+      "unit_boundary": "Chunks are experiment-local representations, not RepositorySubjects, Repository Intelligence, retrieval candidates, or Context units. Candidate and judgment unit is one repository resource."
+    }
+  },
+  "schema": "devtools-increment-26-semantic-candidate-generation-freeze-v1"
+}
