@@ -166,12 +166,16 @@ does not promote a ranker: its frozen purpose-relative deterministic arm recover
 changes the next scientific question from how relationship evidence should
 occupy K=5 to which evidence families expose complementary useful resources.
 
-- **Increment 25:** investigate bounded structural candidate generation. Find
-  the smallest defensible declaration-grounded reference proposition; combine
-  it only as justified with existing qualified imports; preserve one-hop
-  incoming/outgoing semantics; compare candidate exposure against lexical
-  widening at defensible matched volume; and evaluate surfacing separately from
-  ranking/capacity. This is not authorization for graph infrastructure.
+- **Increment 25 (complete):** the frozen `devtools` confirmation compared
+  one-hop outgoing imported-member function-binding expansion from lexical
+  top-five seeds with candidate-volume-matched lexical widening. Structural
+  expansion fired in 12/16 cases and produced 31 additions: 17 useful and 14
+  not useful. Of the useful additions, seven overlapped matched lexical
+  widening, ten were structural-only, and five had no positive lexical rank.
+  Matched lexical widening produced 15 useful and 16 not-useful additions,
+  including eight useful lexical-only resources. This repository-local result
+  retains the imported-member family for Increment 27 without authorizing
+  production retrieval, common graph infrastructure, or ranking changes.
 - **Increment 26:** investigate bounded pretrained semantic/representation-
   based candidate generation against compatible lexical/direct baselines. No
   trained ranker or vector database is implied.

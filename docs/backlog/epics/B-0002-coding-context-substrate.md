@@ -670,14 +670,25 @@ current preferred posture is canonical typed Repository Intelligence plus only
 justified relation-specific indexes/traversal support and ephemeral typed
 projections; physical representation remains open.
 
-Increment 25 is sequenced as a bounded structural candidate-generation
-investigation. It should determine the smallest defensible declaration-grounded
-reference-knowledge proposition, use existing qualified import relations and
-new reference/call-position evidence only where independently justified,
-preserve incoming/outgoing direction, remain one hop, and compare candidate
-exposure against candidate-volume-matched or otherwise preregistered defensible
-lexical widening. Candidate generation and ranking/capacity remain separately
-observable; no graph framework or top-K insertion policy is authorized.
+Increment 25 completed its frozen bounded structural candidate-generation
+evaluation over sixteen historical `devtools` confirmation tasks. From shared
+canonical lexical top-five seeds, one-hop outgoing imported-member function
+binding produced 31 distinct additions in 12 cases; candidate-volume-matched
+lexical widening also produced 31 additions without exhaustion. The arms
+overlapped on 11 resources. Blinded judgments frozen before origin joining
+classified structural additions as 17 useful and 14 not useful, and matched
+lexical additions as 15 useful and 16 not useful. Seven useful resources
+overlapped, ten were structural-only, eight were lexical-only, and five useful
+structural resources had no positive lexical rank.
+
+This local evidence retains qualified imported-member structural evidence as a
+candidate family for the Increment-27 comparison and weakens the hypotheses
+that this family merely duplicates matched lexical widening, fires too rarely
+on this workload, or produces predominantly not-useful candidates. It does not
+generalize beyond `devtools`, authorize other structural families, select a
+physical graph representation, justify common graph infrastructure, promote a
+ranker, or change production retrieval. Candidate generation remains distinct
+from ranking/capacity and Context disclosure.
 
 Increment 26 separately investigates pretrained semantic/representation-based
 candidate generation; consuming a pretrained representation is not training a

@@ -1,0 +1,1836 @@
+{
+  "content_identity": "ded066dec21e8f0ce8874a4f6fcf8514165f15db8d38b8678c0b50426aa79c2c",
+  "payload": {
+    "aggregate": {
+      "case_count": 16,
+      "cases_with_structural_additions": 12,
+      "distinct_structural_additions": 31,
+      "lexical_exhaustion_cases": [],
+      "matched_lexical_additions": 31,
+      "matched_lexical_judgments": {
+        "not-useful": 16,
+        "unjudged": 0,
+        "useful": 15
+      },
+      "overlap": 11,
+      "structural_judgments": {
+        "not-useful": 14,
+        "unjudged": 0,
+        "useful": 17
+      },
+      "useful_matched_lexical_only": 8,
+      "useful_overlap": 7,
+      "useful_structural_only": 10,
+      "useful_structural_without_positive_lexical_rank": 5
+    },
+    "blinded_package_identity": "2cd51156fde62e325b389c34e7db1f1e45020faffaff5f7d91b66a283c2ce25c",
+    "candidate_identity": "49c5ffb2c71d0d115b21199d32b479c23ad50ab159ba5427f2e11b0086880572",
+    "cases": [
+      {
+        "case_id": "i25-901246bd802a",
+        "judgments_by_arm": {
+          "matched_lexical": {
+            "not-useful": 2,
+            "unjudged": 0,
+            "useful": 1
+          },
+          "structural": {
+            "not-useful": 3,
+            "unjudged": 0,
+            "useful": 0
+          }
+        },
+        "lexical_exhausted": false,
+        "m": 3,
+        "matched_lexical_additions": [
+          "tests/scripts/qwen/test_two_read_acceptance.py",
+          "src/devtools/context/__init__.py",
+          "src/devtools/models/serving/huggingface.py"
+        ],
+        "overlap": [],
+        "resolution_diagnostics": {
+          "aggregate": {
+            "ambiguous": 0,
+            "distinct_structural_additions": 3,
+            "relevant_imported_member_observations_considered": 79,
+            "resolved": 3,
+            "resolved_targets_already_in_seed": 0,
+            "unresolved_in_universe": 60,
+            "unsupported": 16
+          },
+          "by_seed": [
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 16,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 10,
+                "unsupported": 6
+              },
+              "seed": "tests/scripts/qwen/test_two_action_read_only_acceptance.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 3,
+                "relevant_imported_member_observations_considered": 32,
+                "resolved": 3,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 26,
+                "unsupported": 3
+              },
+              "seed": "tests/experiments/qwen/test_patch_proposal_worker.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 24,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 20,
+                "unsupported": 4
+              },
+              "seed": "tests/experiments/qwen/test_two_action_read_only_experiment.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/models/serving/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 7,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 4,
+                "unsupported": 3
+              },
+              "seed": "tests/scripts/qwen/test_llama_cpp_profile.py"
+            }
+          ]
+        },
+        "structural_additions": [
+          "src/devtools/core/paths/resolution.py",
+          "src/devtools/resources/filesystem/reading.py",
+          "src/devtools/resources/filesystem/writing.py"
+        ],
+        "useful_matched_lexical_only": [
+          "tests/scripts/qwen/test_two_read_acceptance.py"
+        ],
+        "useful_overlap": [],
+        "useful_structural_lexical_ranks": [],
+        "useful_structural_only": [],
+        "useful_structural_without_positive_lexical_rank": []
+      },
+      {
+        "case_id": "i25-ab24906f07ed",
+        "judgments_by_arm": {
+          "matched_lexical": {
+            "not-useful": 2,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "structural": {
+            "not-useful": 1,
+            "unjudged": 0,
+            "useful": 1
+          }
+        },
+        "lexical_exhausted": false,
+        "m": 2,
+        "matched_lexical_additions": [
+          "src/devtools/context/python_function_retrieval.py",
+          "tests/context/test_python_declaration_aggregation.py"
+        ],
+        "overlap": [],
+        "resolution_diagnostics": {
+          "aggregate": {
+            "ambiguous": 0,
+            "distinct_structural_additions": 2,
+            "relevant_imported_member_observations_considered": 40,
+            "resolved": 4,
+            "resolved_targets_already_in_seed": 2,
+            "unresolved_in_universe": 32,
+            "unsupported": 4
+          },
+          "by_seed": [
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/tools/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 2,
+                "relevant_imported_member_observations_considered": 16,
+                "resolved": 2,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 12,
+                "unsupported": 2
+              },
+              "seed": "src/devtools/context/repository.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 18,
+                "resolved": 2,
+                "resolved_targets_already_in_seed": 2,
+                "unresolved_in_universe": 15,
+                "unsupported": 1
+              },
+              "seed": "tests/context/test_repository.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/resources/filesystem/docs/roadmap.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 6,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 5,
+                "unsupported": 1
+              },
+              "seed": "src/devtools/context/python_function_candidates.py"
+            }
+          ]
+        },
+        "structural_additions": [
+          "src/devtools/core/paths/resolution.py",
+          "src/devtools/resources/filesystem/reading.py"
+        ],
+        "useful_matched_lexical_only": [],
+        "useful_overlap": [],
+        "useful_structural_lexical_ranks": [
+          {
+            "address": "src/devtools/core/paths/resolution.py",
+            "positive_lexical_rank": null
+          }
+        ],
+        "useful_structural_only": [
+          "src/devtools/core/paths/resolution.py"
+        ],
+        "useful_structural_without_positive_lexical_rank": [
+          "src/devtools/core/paths/resolution.py"
+        ]
+      },
+      {
+        "case_id": "i25-ac797431db35",
+        "judgments_by_arm": {
+          "matched_lexical": {
+            "not-useful": 2,
+            "unjudged": 0,
+            "useful": 2
+          },
+          "structural": {
+            "not-useful": 2,
+            "unjudged": 0,
+            "useful": 2
+          }
+        },
+        "lexical_exhausted": false,
+        "m": 4,
+        "matched_lexical_additions": [
+          "src/devtools/context/python_function_retrieval.py",
+          "src/devtools/context/python_function_disclosure.py",
+          "src/devtools/context/python_function_materialization.py",
+          "tests/context/test_python_function_retrieval.py"
+        ],
+        "overlap": [
+          "src/devtools/context/python_function_disclosure.py",
+          "src/devtools/context/python_function_materialization.py",
+          "src/devtools/context/python_function_retrieval.py"
+        ],
+        "resolution_diagnostics": {
+          "aggregate": {
+            "ambiguous": 0,
+            "distinct_structural_additions": 5,
+            "relevant_imported_member_observations_considered": 48,
+            "resolved": 9,
+            "resolved_targets_already_in_seed": 3,
+            "unresolved_in_universe": 32,
+            "unsupported": 7
+          },
+          "by_seed": [
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 10,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 6,
+                "unsupported": 4
+              },
+              "seed": "src/devtools/context/python_declarations.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 1,
+                "relevant_imported_member_observations_considered": 19,
+                "resolved": 3,
+                "resolved_targets_already_in_seed": 1,
+                "unresolved_in_universe": 13,
+                "unsupported": 3
+              },
+              "seed": "tests/context/test_python_declarations.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 4,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 4,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/context/python_function_rendering.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/tools/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 4,
+                "relevant_imported_member_observations_considered": 15,
+                "resolved": 6,
+                "resolved_targets_already_in_seed": 2,
+                "unresolved_in_universe": 9,
+                "unsupported": 0
+              },
+              "seed": "tests/context/test_python_function_rendering.py"
+            }
+          ]
+        },
+        "structural_additions": [
+          "src/devtools/context/repository.py",
+          "src/devtools/context/python_function_disclosure.py",
+          "src/devtools/context/python_function_materialization.py",
+          "src/devtools/context/python_function_retrieval.py"
+        ],
+        "useful_matched_lexical_only": [
+          "tests/context/test_python_function_retrieval.py"
+        ],
+        "useful_overlap": [
+          "src/devtools/context/python_function_retrieval.py"
+        ],
+        "useful_structural_lexical_ranks": [
+          {
+            "address": "src/devtools/context/repository.py",
+            "positive_lexical_rank": 13
+          },
+          {
+            "address": "src/devtools/context/python_function_retrieval.py",
+            "positive_lexical_rank": 6
+          }
+        ],
+        "useful_structural_only": [
+          "src/devtools/context/repository.py"
+        ],
+        "useful_structural_without_positive_lexical_rank": []
+      },
+      {
+        "case_id": "i25-842e90e63f37",
+        "judgments_by_arm": {
+          "matched_lexical": {
+            "not-useful": 3,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "structural": {
+            "not-useful": 3,
+            "unjudged": 0,
+            "useful": 0
+          }
+        },
+        "lexical_exhausted": false,
+        "m": 3,
+        "matched_lexical_additions": [
+          "tests/observability/evidence/test_protocols.py",
+          "tests/scripts/qwen/test_llama_cpp_profile.py",
+          "src/devtools/agents/integrations/codex/docs/cli.md"
+        ],
+        "overlap": [],
+        "resolution_diagnostics": {
+          "aggregate": {
+            "ambiguous": 0,
+            "distinct_structural_additions": 3,
+            "relevant_imported_member_observations_considered": 90,
+            "resolved": 3,
+            "resolved_targets_already_in_seed": 0,
+            "unresolved_in_universe": 68,
+            "unsupported": 19
+          },
+          "by_seed": [
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 19,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 16,
+                "unsupported": 3
+              },
+              "seed": "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 16,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 10,
+                "unsupported": 6
+              },
+              "seed": "tests/scripts/qwen/test_two_action_read_only_acceptance.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 17,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 10,
+                "unsupported": 7
+              },
+              "seed": "tests/scripts/qwen/test_two_read_acceptance.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 3,
+                "relevant_imported_member_observations_considered": 38,
+                "resolved": 3,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 32,
+                "unsupported": 3
+              },
+              "seed": "tests/experiments/qwen/test_patch_proposal_worker.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/context/__init__.py"
+            }
+          ]
+        },
+        "structural_additions": [
+          "src/devtools/core/paths/resolution.py",
+          "src/devtools/resources/filesystem/reading.py",
+          "src/devtools/resources/filesystem/writing.py"
+        ],
+        "useful_matched_lexical_only": [],
+        "useful_overlap": [],
+        "useful_structural_lexical_ranks": [],
+        "useful_structural_only": [],
+        "useful_structural_without_positive_lexical_rank": []
+      },
+      {
+        "case_id": "i25-eadb6f231f57",
+        "judgments_by_arm": {
+          "matched_lexical": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 1
+          },
+          "structural": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 1
+          }
+        },
+        "lexical_exhausted": false,
+        "m": 1,
+        "matched_lexical_additions": [
+          "src/devtools/execution/runtime.py"
+        ],
+        "overlap": [],
+        "resolution_diagnostics": {
+          "aggregate": {
+            "ambiguous": 0,
+            "distinct_structural_additions": 1,
+            "relevant_imported_member_observations_considered": 54,
+            "resolved": 1,
+            "resolved_targets_already_in_seed": 0,
+            "unresolved_in_universe": 43,
+            "unsupported": 10
+          },
+          "by_seed": [
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 1,
+                "relevant_imported_member_observations_considered": 10,
+                "resolved": 1,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 8,
+                "unsupported": 1
+              },
+              "seed": "tests/models/interaction/test_models.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 16,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 13,
+                "unsupported": 3
+              },
+              "seed": "tests/models/interaction/providers/test_llama_cpp.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 20,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 18,
+                "unsupported": 2
+              },
+              "seed": "tests/execution/test_runtime.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 3,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 3,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/models/interaction/protocols.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 5,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 1,
+                "unsupported": 4
+              },
+              "seed": "src/devtools/models/interaction/response.py"
+            }
+          ]
+        },
+        "structural_additions": [
+          "src/devtools/models/interaction/models.py"
+        ],
+        "useful_matched_lexical_only": [
+          "src/devtools/execution/runtime.py"
+        ],
+        "useful_overlap": [],
+        "useful_structural_lexical_ranks": [
+          {
+            "address": "src/devtools/models/interaction/models.py",
+            "positive_lexical_rank": 21
+          }
+        ],
+        "useful_structural_only": [
+          "src/devtools/models/interaction/models.py"
+        ],
+        "useful_structural_without_positive_lexical_rank": []
+      },
+      {
+        "case_id": "i25-8994c4e58644",
+        "judgments_by_arm": {
+          "matched_lexical": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "structural": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 0
+          }
+        },
+        "lexical_exhausted": false,
+        "m": 0,
+        "matched_lexical_additions": [],
+        "overlap": [],
+        "resolution_diagnostics": {
+          "aggregate": {
+            "ambiguous": 0,
+            "distinct_structural_additions": 0,
+            "relevant_imported_member_observations_considered": 14,
+            "resolved": 0,
+            "resolved_targets_already_in_seed": 0,
+            "unresolved_in_universe": 10,
+            "unsupported": 4
+          },
+          "by_seed": [
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/resources/filesystem/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/resources/filesystem/docs/roadmap.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/agents/integrations/codex/docs/cli.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 14,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 10,
+                "unsupported": 4
+              },
+              "seed": "tests/agents/conversation/message/test_message.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/resources/filesystem/docs/codecs.md"
+            }
+          ]
+        },
+        "structural_additions": [],
+        "useful_matched_lexical_only": [],
+        "useful_overlap": [],
+        "useful_structural_lexical_ranks": [],
+        "useful_structural_only": [],
+        "useful_structural_without_positive_lexical_rank": []
+      },
+      {
+        "case_id": "i25-c0fabcb195e2",
+        "judgments_by_arm": {
+          "matched_lexical": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "structural": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 0
+          }
+        },
+        "lexical_exhausted": false,
+        "m": 0,
+        "matched_lexical_additions": [],
+        "overlap": [],
+        "resolution_diagnostics": {
+          "aggregate": {
+            "ambiguous": 0,
+            "distinct_structural_additions": 0,
+            "relevant_imported_member_observations_considered": 0,
+            "resolved": 0,
+            "resolved_targets_already_in_seed": 0,
+            "unresolved_in_universe": 0,
+            "unsupported": 0
+          },
+          "by_seed": [
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/persistence/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/runtime/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/persistence/docs/sqlite.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/context/docs/history.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/agents/docs/overview.md"
+            }
+          ]
+        },
+        "structural_additions": [],
+        "useful_matched_lexical_only": [],
+        "useful_overlap": [],
+        "useful_structural_lexical_ranks": [],
+        "useful_structural_only": [],
+        "useful_structural_without_positive_lexical_rank": []
+      },
+      {
+        "case_id": "i25-d9e58cd09390",
+        "judgments_by_arm": {
+          "matched_lexical": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "structural": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 0
+          }
+        },
+        "lexical_exhausted": false,
+        "m": 0,
+        "matched_lexical_additions": [],
+        "overlap": [],
+        "resolution_diagnostics": {
+          "aggregate": {
+            "ambiguous": 0,
+            "distinct_structural_additions": 0,
+            "relevant_imported_member_observations_considered": 22,
+            "resolved": 0,
+            "resolved_targets_already_in_seed": 0,
+            "unresolved_in_universe": 18,
+            "unsupported": 4
+          },
+          "by_seed": [
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/models/interaction/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/tools/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 20,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 16,
+                "unsupported": 4
+              },
+              "seed": "tests/tools/test_runtime_integration.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/resources/filesystem/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 2,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 2,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/tools/execution.py"
+            }
+          ]
+        },
+        "structural_additions": [],
+        "useful_matched_lexical_only": [],
+        "useful_overlap": [],
+        "useful_structural_lexical_ranks": [],
+        "useful_structural_only": [],
+        "useful_structural_without_positive_lexical_rank": []
+      },
+      {
+        "case_id": "i25-b5280a3c38ca",
+        "judgments_by_arm": {
+          "matched_lexical": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 4
+          },
+          "structural": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 4
+          }
+        },
+        "lexical_exhausted": false,
+        "m": 4,
+        "matched_lexical_additions": [
+          "src/devtools/context/python_declarations.py",
+          "src/devtools/context/python_function_materialization.py",
+          "src/devtools/context/python_function_retrieval.py",
+          "tests/context/test_python_function_disclosure.py"
+        ],
+        "overlap": [
+          "src/devtools/context/python_declarations.py",
+          "src/devtools/context/python_function_materialization.py",
+          "src/devtools/context/python_function_retrieval.py"
+        ],
+        "resolution_diagnostics": {
+          "aggregate": {
+            "ambiguous": 0,
+            "distinct_structural_additions": 4,
+            "relevant_imported_member_observations_considered": 50,
+            "resolved": 6,
+            "resolved_targets_already_in_seed": 2,
+            "unresolved_in_universe": 40,
+            "unsupported": 4
+          },
+          "by_seed": [
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 4,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 4,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/context/python_function_rendering.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 4,
+                "relevant_imported_member_observations_considered": 15,
+                "resolved": 6,
+                "resolved_targets_already_in_seed": 2,
+                "unresolved_in_universe": 9,
+                "unsupported": 0
+              },
+              "seed": "tests/context/test_python_function_rendering.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 5,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 4,
+                "unsupported": 1
+              },
+              "seed": "src/devtools/context/python_function_disclosure.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 5,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 5,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/context/python_function_request_assembly.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 21,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 18,
+                "unsupported": 3
+              },
+              "seed": "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py"
+            }
+          ]
+        },
+        "structural_additions": [
+          "src/devtools/context/python_declarations.py",
+          "src/devtools/context/python_function_materialization.py",
+          "src/devtools/context/repository.py",
+          "src/devtools/context/python_function_retrieval.py"
+        ],
+        "useful_matched_lexical_only": [
+          "tests/context/test_python_function_disclosure.py"
+        ],
+        "useful_overlap": [
+          "src/devtools/context/python_declarations.py",
+          "src/devtools/context/python_function_materialization.py",
+          "src/devtools/context/python_function_retrieval.py"
+        ],
+        "useful_structural_lexical_ranks": [
+          {
+            "address": "src/devtools/context/python_declarations.py",
+            "positive_lexical_rank": 6
+          },
+          {
+            "address": "src/devtools/context/python_function_materialization.py",
+            "positive_lexical_rank": 7
+          },
+          {
+            "address": "src/devtools/context/repository.py",
+            "positive_lexical_rank": null
+          },
+          {
+            "address": "src/devtools/context/python_function_retrieval.py",
+            "positive_lexical_rank": 8
+          }
+        ],
+        "useful_structural_only": [
+          "src/devtools/context/repository.py"
+        ],
+        "useful_structural_without_positive_lexical_rank": [
+          "src/devtools/context/repository.py"
+        ]
+      },
+      {
+        "case_id": "i25-85cfd9ff68a0",
+        "judgments_by_arm": {
+          "matched_lexical": {
+            "not-useful": 1,
+            "unjudged": 0,
+            "useful": 2
+          },
+          "structural": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 3
+          }
+        },
+        "lexical_exhausted": false,
+        "m": 3,
+        "matched_lexical_additions": [
+          "tests/context/test_python_declarations.py",
+          "src/devtools/context/python_function_disclosure.py",
+          "src/devtools/core/time/docs/timing.md"
+        ],
+        "overlap": [
+          "src/devtools/context/python_function_disclosure.py"
+        ],
+        "resolution_diagnostics": {
+          "aggregate": {
+            "ambiguous": 0,
+            "distinct_structural_additions": 6,
+            "relevant_imported_member_observations_considered": 52,
+            "resolved": 11,
+            "resolved_targets_already_in_seed": 5,
+            "unresolved_in_universe": 35,
+            "unsupported": 6
+          },
+          "by_seed": [
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 5,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 4,
+                "unsupported": 1
+              },
+              "seed": "src/devtools/context/python_function_materialization.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 3,
+                "relevant_imported_member_observations_considered": 15,
+                "resolved": 6,
+                "resolved_targets_already_in_seed": 3,
+                "unresolved_in_universe": 9,
+                "unsupported": 0
+              },
+              "seed": "tests/context/test_python_function_rendering.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 3,
+                "relevant_imported_member_observations_considered": 18,
+                "resolved": 5,
+                "resolved_targets_already_in_seed": 2,
+                "unresolved_in_universe": 12,
+                "unsupported": 1
+              },
+              "seed": "tests/context/test_python_function_materialization.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 4,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 4,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/context/python_function_rendering.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 10,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 6,
+                "unsupported": 4
+              },
+              "seed": "src/devtools/context/python_declarations.py"
+            }
+          ]
+        },
+        "structural_additions": [
+          "src/devtools/context/python_function_disclosure.py",
+          "src/devtools/context/repository.py",
+          "src/devtools/context/python_function_retrieval.py"
+        ],
+        "useful_matched_lexical_only": [
+          "tests/context/test_python_declarations.py"
+        ],
+        "useful_overlap": [
+          "src/devtools/context/python_function_disclosure.py"
+        ],
+        "useful_structural_lexical_ranks": [
+          {
+            "address": "src/devtools/context/python_function_disclosure.py",
+            "positive_lexical_rank": 7
+          },
+          {
+            "address": "src/devtools/context/repository.py",
+            "positive_lexical_rank": 18
+          },
+          {
+            "address": "src/devtools/context/python_function_retrieval.py",
+            "positive_lexical_rank": 12
+          }
+        ],
+        "useful_structural_only": [
+          "src/devtools/context/python_function_retrieval.py",
+          "src/devtools/context/repository.py"
+        ],
+        "useful_structural_without_positive_lexical_rank": []
+      },
+      {
+        "case_id": "i25-6156c70be14b",
+        "judgments_by_arm": {
+          "matched_lexical": {
+            "not-useful": 1,
+            "unjudged": 0,
+            "useful": 2
+          },
+          "structural": {
+            "not-useful": 2,
+            "unjudged": 0,
+            "useful": 1
+          }
+        },
+        "lexical_exhausted": false,
+        "m": 3,
+        "matched_lexical_additions": [
+          "src/devtools/context/python_declarations.py",
+          "src/devtools/context/python_function_retrieval.py",
+          "tests/context/test_python_function_disclosure.py"
+        ],
+        "overlap": [
+          "src/devtools/context/python_declarations.py",
+          "src/devtools/context/python_function_retrieval.py"
+        ],
+        "resolution_diagnostics": {
+          "aggregate": {
+            "ambiguous": 0,
+            "distinct_structural_additions": 3,
+            "relevant_imported_member_observations_considered": 29,
+            "resolved": 6,
+            "resolved_targets_already_in_seed": 3,
+            "unresolved_in_universe": 21,
+            "unsupported": 2
+          },
+          "by_seed": [
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 5,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 4,
+                "unsupported": 1
+              },
+              "seed": "src/devtools/context/python_function_disclosure.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/models/interaction/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 4,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 4,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/context/python_function_rendering.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 3,
+                "relevant_imported_member_observations_considered": 15,
+                "resolved": 6,
+                "resolved_targets_already_in_seed": 3,
+                "unresolved_in_universe": 9,
+                "unsupported": 0
+              },
+              "seed": "tests/context/test_python_function_rendering.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 5,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 4,
+                "unsupported": 1
+              },
+              "seed": "src/devtools/context/python_function_materialization.py"
+            }
+          ]
+        },
+        "structural_additions": [
+          "src/devtools/context/python_declarations.py",
+          "src/devtools/context/repository.py",
+          "src/devtools/context/python_function_retrieval.py"
+        ],
+        "useful_matched_lexical_only": [
+          "tests/context/test_python_function_disclosure.py"
+        ],
+        "useful_overlap": [
+          "src/devtools/context/python_function_retrieval.py"
+        ],
+        "useful_structural_lexical_ranks": [
+          {
+            "address": "src/devtools/context/python_function_retrieval.py",
+            "positive_lexical_rank": 7
+          }
+        ],
+        "useful_structural_only": [],
+        "useful_structural_without_positive_lexical_rank": []
+      },
+      {
+        "case_id": "i25-2a4f058d5262",
+        "judgments_by_arm": {
+          "matched_lexical": {
+            "not-useful": 3,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "structural": {
+            "not-useful": 2,
+            "unjudged": 0,
+            "useful": 1
+          }
+        },
+        "lexical_exhausted": false,
+        "m": 3,
+        "matched_lexical_additions": [
+          "tests/context/test_python_function_rendering.py",
+          "src/devtools/context/python_function_retrieval.py",
+          "src/devtools/context/python_function_materialization.py"
+        ],
+        "overlap": [
+          "src/devtools/context/python_function_retrieval.py"
+        ],
+        "resolution_diagnostics": {
+          "aggregate": {
+            "ambiguous": 0,
+            "distinct_structural_additions": 4,
+            "relevant_imported_member_observations_considered": 46,
+            "resolved": 6,
+            "resolved_targets_already_in_seed": 2,
+            "unresolved_in_universe": 33,
+            "unsupported": 7
+          },
+          "by_seed": [
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 10,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 6,
+                "unsupported": 4
+              },
+              "seed": "src/devtools/context/python_declarations.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 1,
+                "relevant_imported_member_observations_considered": 18,
+                "resolved": 2,
+                "resolved_targets_already_in_seed": 1,
+                "unresolved_in_universe": 13,
+                "unsupported": 3
+              },
+              "seed": "tests/context/test_python_declarations.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/tools/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 4,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 4,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/context/python_function_rendering.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 3,
+                "relevant_imported_member_observations_considered": 14,
+                "resolved": 4,
+                "resolved_targets_already_in_seed": 1,
+                "unresolved_in_universe": 10,
+                "unsupported": 0
+              },
+              "seed": "tests/context/test_python_function_disclosure.py"
+            }
+          ]
+        },
+        "structural_additions": [
+          "src/devtools/context/repository.py",
+          "src/devtools/context/python_function_disclosure.py",
+          "src/devtools/context/python_function_retrieval.py"
+        ],
+        "useful_matched_lexical_only": [],
+        "useful_overlap": [],
+        "useful_structural_lexical_ranks": [
+          {
+            "address": "src/devtools/context/repository.py",
+            "positive_lexical_rank": 10
+          }
+        ],
+        "useful_structural_only": [
+          "src/devtools/context/repository.py"
+        ],
+        "useful_structural_without_positive_lexical_rank": []
+      },
+      {
+        "case_id": "i25-5fdf5fe05527",
+        "judgments_by_arm": {
+          "matched_lexical": {
+            "not-useful": 1,
+            "unjudged": 0,
+            "useful": 1
+          },
+          "structural": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 2
+          }
+        },
+        "lexical_exhausted": false,
+        "m": 2,
+        "matched_lexical_additions": [
+          "tests/context/python/test_source_candidacy.py",
+          "tests/context/repository/test_observation.py"
+        ],
+        "overlap": [],
+        "resolution_diagnostics": {
+          "aggregate": {
+            "ambiguous": 0,
+            "distinct_structural_additions": 2,
+            "relevant_imported_member_observations_considered": 45,
+            "resolved": 2,
+            "resolved_targets_already_in_seed": 0,
+            "unresolved_in_universe": 33,
+            "unsupported": 10
+          },
+          "by_seed": [
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/tools/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 2,
+                "relevant_imported_member_observations_considered": 15,
+                "resolved": 2,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 7,
+                "unsupported": 6
+              },
+              "seed": "src/devtools/context/repository/observation.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 23,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 22,
+                "unsupported": 1
+              },
+              "seed": "tests/context/repository/test_discovery.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/resources/commands/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 7,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 4,
+                "unsupported": 3
+              },
+              "seed": "src/devtools/context/repository/snapshot.py"
+            }
+          ]
+        },
+        "structural_additions": [
+          "src/devtools/core/paths/resolution.py",
+          "src/devtools/resources/filesystem/reading.py"
+        ],
+        "useful_matched_lexical_only": [
+          "tests/context/repository/test_observation.py"
+        ],
+        "useful_overlap": [],
+        "useful_structural_lexical_ranks": [
+          {
+            "address": "src/devtools/core/paths/resolution.py",
+            "positive_lexical_rank": null
+          },
+          {
+            "address": "src/devtools/resources/filesystem/reading.py",
+            "positive_lexical_rank": null
+          }
+        ],
+        "useful_structural_only": [
+          "src/devtools/core/paths/resolution.py",
+          "src/devtools/resources/filesystem/reading.py"
+        ],
+        "useful_structural_without_positive_lexical_rank": [
+          "src/devtools/core/paths/resolution.py",
+          "src/devtools/resources/filesystem/reading.py"
+        ]
+      },
+      {
+        "case_id": "i25-9009cc143957",
+        "judgments_by_arm": {
+          "matched_lexical": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "structural": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 0
+          }
+        },
+        "lexical_exhausted": false,
+        "m": 0,
+        "matched_lexical_additions": [],
+        "overlap": [],
+        "resolution_diagnostics": {
+          "aggregate": {
+            "ambiguous": 0,
+            "distinct_structural_additions": 0,
+            "relevant_imported_member_observations_considered": 18,
+            "resolved": 0,
+            "resolved_targets_already_in_seed": 0,
+            "unresolved_in_universe": 11,
+            "unsupported": 7
+          },
+          "by_seed": [
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/models/benchmarks/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/core/time/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 7,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 5,
+                "unsupported": 2
+              },
+              "seed": "src/devtools/core/time/models/stopwatch.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 11,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 6,
+                "unsupported": 5
+              },
+              "seed": "src/devtools/models/benchmarks/runner.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/core/time/docs/timing.md"
+            }
+          ]
+        },
+        "structural_additions": [],
+        "useful_matched_lexical_only": [],
+        "useful_overlap": [],
+        "useful_structural_lexical_ranks": [],
+        "useful_structural_only": [],
+        "useful_structural_without_positive_lexical_rank": []
+      },
+      {
+        "case_id": "i25-4ce485f737e4",
+        "judgments_by_arm": {
+          "matched_lexical": {
+            "not-useful": 1,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "structural": {
+            "not-useful": 1,
+            "unjudged": 0,
+            "useful": 0
+          }
+        },
+        "lexical_exhausted": false,
+        "m": 1,
+        "matched_lexical_additions": [
+          "tests/context/repository/test_observation.py"
+        ],
+        "overlap": [],
+        "resolution_diagnostics": {
+          "aggregate": {
+            "ambiguous": 0,
+            "distinct_structural_additions": 1,
+            "relevant_imported_member_observations_considered": 54,
+            "resolved": 1,
+            "resolved_targets_already_in_seed": 0,
+            "unresolved_in_universe": 47,
+            "unsupported": 6
+          },
+          "by_seed": [
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/core/paths/docs/resolution.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 1,
+                "relevant_imported_member_observations_considered": 9,
+                "resolved": 1,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 3,
+                "unsupported": 5
+              },
+              "seed": "tests/context/python/imports/test_declarations.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 22,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 22,
+                "unsupported": 0
+              },
+              "seed": "tests/context/python/test_source_candidacy.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/core/identity/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 23,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 22,
+                "unsupported": 1
+              },
+              "seed": "tests/context/repository/test_discovery.py"
+            }
+          ]
+        },
+        "structural_additions": [
+          "src/devtools/context/python/imports/declarations.py"
+        ],
+        "useful_matched_lexical_only": [],
+        "useful_overlap": [],
+        "useful_structural_lexical_ranks": [],
+        "useful_structural_only": [],
+        "useful_structural_without_positive_lexical_rank": []
+      },
+      {
+        "case_id": "i25-5bdc70483eed",
+        "judgments_by_arm": {
+          "matched_lexical": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 2
+          },
+          "structural": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 2
+          }
+        },
+        "lexical_exhausted": false,
+        "m": 2,
+        "matched_lexical_additions": [
+          "tests/context/test_python_function_disclosure.py",
+          "src/devtools/context/python_function_retrieval.py"
+        ],
+        "overlap": [
+          "src/devtools/context/python_function_retrieval.py"
+        ],
+        "resolution_diagnostics": {
+          "aggregate": {
+            "ambiguous": 0,
+            "distinct_structural_additions": 3,
+            "relevant_imported_member_observations_considered": 47,
+            "resolved": 5,
+            "resolved_targets_already_in_seed": 2,
+            "unresolved_in_universe": 33,
+            "unsupported": 9
+          },
+          "by_seed": [
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 10,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 6,
+                "unsupported": 4
+              },
+              "seed": "src/devtools/context/python_declarations.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 0,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 0,
+                "unsupported": 0
+              },
+              "seed": "src/devtools/agents/conversation/docs/overview.md"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 0,
+                "relevant_imported_member_observations_considered": 5,
+                "resolved": 0,
+                "resolved_targets_already_in_seed": 0,
+                "unresolved_in_universe": 4,
+                "unsupported": 1
+              },
+              "seed": "src/devtools/context/python_function_disclosure.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 1,
+                "relevant_imported_member_observations_considered": 18,
+                "resolved": 2,
+                "resolved_targets_already_in_seed": 1,
+                "unresolved_in_universe": 13,
+                "unsupported": 3
+              },
+              "seed": "tests/context/test_python_declarations.py"
+            },
+            {
+              "counts": {
+                "ambiguous": 0,
+                "distinct_structural_additions": 2,
+                "relevant_imported_member_observations_considered": 14,
+                "resolved": 3,
+                "resolved_targets_already_in_seed": 1,
+                "unresolved_in_universe": 10,
+                "unsupported": 1
+              },
+              "seed": "tests/context/test_python_function_retrieval.py"
+            }
+          ]
+        },
+        "structural_additions": [
+          "src/devtools/context/repository.py",
+          "src/devtools/context/python_function_retrieval.py"
+        ],
+        "useful_matched_lexical_only": [
+          "tests/context/test_python_function_disclosure.py"
+        ],
+        "useful_overlap": [
+          "src/devtools/context/python_function_retrieval.py"
+        ],
+        "useful_structural_lexical_ranks": [
+          {
+            "address": "src/devtools/context/repository.py",
+            "positive_lexical_rank": null
+          },
+          {
+            "address": "src/devtools/context/python_function_retrieval.py",
+            "positive_lexical_rank": 7
+          }
+        ],
+        "useful_structural_only": [
+          "src/devtools/context/repository.py"
+        ],
+        "useful_structural_without_positive_lexical_rank": [
+          "src/devtools/context/repository.py"
+        ]
+      }
+    ],
+    "frozen_judgment_identity": "d08fadb863adacc366233ff9c46531ef4e3998ae9034deb543bed2b7fd74a860"
+  },
+  "schema": "devtools-increment-25-confirmation-results-v1"
+}
