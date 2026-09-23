@@ -181,6 +181,16 @@ resolved, unresolved-in-universe, ambiguous, or unsupported outcomes. It neither
 emulates runtime imports; the separate relation derivation records only the
 qualified source-to-target relations established by resolved outcomes.
 
+`context/python/imports/members.py` owns bounded imported-member binding
+resolution: a direct module-body `ImportFrom` member occurrence may resolve
+through exactly one direct facade binding to one direct function declaration in
+a uniquely resolved target module. It retains qualified outcomes and source,
+facade, target-module, and declaration provenance, with a source-resource to
+defining-resource projection where relevant. This is distinct from the
+module-only import relation and does not provide runtime import, export or
+`__all__`, general reference, recursive facade, other-target, or retrieval
+semantics.
+
 The `orchestration`, `governance`, and `evaluation` domains remain recognized
 sparse namespaces without reusable implementation APIs. Current accepted
 Evaluation responsibility and boundaries are summarized in the central

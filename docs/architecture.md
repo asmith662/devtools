@@ -471,6 +471,21 @@ relations; they do not establish runtime import execution, runtime dependency,
 undirected adjacency, retrieval relevance, or ranking. No retrieval integration
 or Context behavior is implemented.
 
+`context.python.imports.members` provides a separate bounded imported-member
+binding resolution capability. For one direct module-body `ImportFrom` member
+occurrence, it accepts exactly one eligible direct facade binding, resolves that
+facade's target module uniquely within the explicit interpretation universe,
+and accepts exactly one existing direct module-body `FunctionDef` or
+`AsyncFunctionDef` declaration. It retains resolved,
+unresolved-in-universe, ambiguous, and unsupported outcomes with provenance
+through the source occurrence, facade binding, target-module resolution, and
+target declaration; where projected as resources, the result is source
+resource to defining resource. This remains distinct from the module-only
+import relation above and establishes only qualified static Repository
+Intelligence: not runtime import behavior, public/exported API or `__all__`
+semantics, general Python reference resolution, later local-name use,
+recursive facade traversal, other target kinds, or retrieval relevance.
+
 The first bounded retrieval operation consumes supplied declaration knowledge
 and filters it by exact declared-name equality. Its nonempty name query is the
 purpose representation, and each match carries purpose-relative exact-match

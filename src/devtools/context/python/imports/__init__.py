@@ -9,6 +9,15 @@ from devtools.context.python.imports.declarations import (
     PythonImportSourceOccurrence,
     derive_python_import_declarations,
 )
+from devtools.context.python.imports.members import (
+    PythonFacadeBindingSourceOccurrence,
+    PythonFacadeCompetingBinding,
+    PythonFacadeCompetingBindingKind,
+    PythonImportedMemberResolution,
+    PythonImportedMemberResolutionOutcome,
+    PythonImportedMemberUnsupportedReason,
+    resolve_python_imported_member,
+)
 from devtools.context.python.imports.relations import (
     PythonImportRelationSourceStatus,
     PythonResolvedModuleImportRelation,
@@ -23,6 +32,9 @@ from devtools.context.python.imports.resolution import (
 )
 
 __all__ = [
+    "PythonFacadeBindingSourceOccurrence",
+    "PythonFacadeCompetingBinding",
+    "PythonFacadeCompetingBindingKind",
     "PythonImportDeclarationAnalysis",
     "PythonImportDeclarationCoverage",
     "PythonImportDeclarationKnowledge",
@@ -32,9 +44,13 @@ __all__ = [
     "PythonImportResolutionOutcome",
     "PythonImportResolutionUnsupportedReason",
     "PythonImportSourceOccurrence",
+    "PythonImportedMemberResolution",
+    "PythonImportedMemberResolutionOutcome",
+    "PythonImportedMemberUnsupportedReason",
     "PythonResolvedModuleImportRelation",
     "PythonResolvedModuleImportRelationAnalysis",
     "derive_python_import_declarations",
     "derive_python_resolved_module_import_relations",
     "resolve_python_import_declaration",
+    "resolve_python_imported_member",
 ]
