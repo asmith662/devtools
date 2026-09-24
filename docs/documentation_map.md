@@ -42,6 +42,9 @@
   the semantic-versus-physical graph distinction, lexical-widening controls,
   and deferred semantic/learned alternatives; ADR-0002 and ADR-0003 disposition
   its accepted conclusions.
+  The [repository retrieval algorithm landscape](research/repository-retrieval-algorithm-landscape.md)
+  interprets Increment 25 and Increment 26 development evidence and recommends
+  foundational retrieval experiments; the roadmap owns their current sequence.
 - Package-local documentation defines detailed implemented public APIs, package
   design, lifecycle/operational behavior, and usage. Central architecture
   summarizes system-level ownership and links outward; it does not duplicate

@@ -37,7 +37,7 @@ and Evidence ownership terminology, remain in the
   keep current documentation, roadmap sequencing, and backlog pressure aligned
   with the established architecture.
 
-### Now — first bounded repository-intelligence slice design
+### Now — bounded Repository Intelligence and retrieval evidence
 
 - [ADR-0002](architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md)
   establishes semantic architecture for Repository identity, snapshots,
@@ -90,9 +90,9 @@ and Evidence ownership terminology, remain in the
   among control expectation, blinded usefulness, and post-unblinding review.
   The rule has zero net known-useful gain, one not-useful admission, and one
   useful rank-five loss; it is `NOT_READY_FOR_SHADOW` and not production-ready.
-  Lexical top fifteen contains all known-useful material resources, so the next
-  empirical priority is a stronger bounded candidate-generation/ranking
-  comparison, not further tuning of the single reservation slot. Production
+  Lexical top fifteen contains all known-useful material resources, so this
+  checkpoint points toward measuring candidate coverage and ranking depth
+  separately, not further tuning of the single reservation slot. Production
   retrieval/disclosure remains unchanged; no generic experiment platform,
   Selector, or production Context influence is authorized.
 
@@ -163,8 +163,10 @@ Increment 24's offline comparison over Increment 23's retained six-case surface
 does not promote a ranker: its frozen purpose-relative deterministic arm recovers
 9 known-useful resources versus 10 for lexical/native ranking. The reconciled
 [structural-retrieval research](research/structural-repository-retrieval.md)
-changes the next scientific question from how relationship evidence should
-occupy K=5 to which evidence families expose complementary useful resources.
+changed the Increment 25 question from how relationship evidence should occupy
+K=5 to which evidence families expose complementary useful resources. The
+[repository-retrieval landscape](research/repository-retrieval-algorithm-landscape.md)
+now directs the next experiment toward foundational retrieval variables.
 
 - **Increment 25 (complete):** the frozen `devtools` confirmation compared
   one-hop outgoing imported-member function-binding expansion from lexical
@@ -174,18 +176,44 @@ occupy K=5 to which evidence families expose complementary useful resources.
   widening, ten were structural-only, and five had no positive lexical rank.
   Matched lexical widening produced 15 useful and 16 not-useful additions,
   including eight useful lexical-only resources. This repository-local result
-  retains the imported-member family for Increment 27 without authorizing
-  production retrieval, common graph infrastructure, or ranking changes.
-- **Increment 26:** investigate bounded pretrained semantic/representation-
-  based candidate generation against compatible lexical/direct baselines. No
-  trained ranker or vector database is implied.
-- **Increment 27:** compare lexical, structural, semantic, and justified
-  combined evidence families while preserving their native semantics.
-- **Increment 28:** falsify surviving hypotheses on at least one independently
-  selected repository. One additional repository is evidence, not proof of
-  universality.
-- **Increment 29 and later:** only if evidence warrants it, investigate learned
-  decisions and/or non-controlling shadow comparison under separate governance.
+  retains the imported-member family as validated structural evidence without
+  authorizing production retrieval, common graph infrastructure, or ranking
+  changes.
+- **Increment 26 (development complete):** the frozen CodeRankEmbed comparison
+  found eight useful semantic-only top-five resources. All eight had a deeper
+  positive lexical rank, so this is top-K/ranking complementarity, not evidence
+  of useful lexical-unreachable resources. Preserve its valid development
+  evidence and sealed confirmation population. Confirmation is suspended
+  pending a decision-worthy future comparison; it is neither completed nor
+  rejected. No trained ranker or vector database follows from this result.
+- **Increment 27 — Repository Retrieval Foundations: unit, representation,
+  fielding, fusion, and ranking-depth falsification:** test the ceiling and
+  failure modes of inexpensive code-aware retrieval. Measure Recall@K over
+  depth; exact symbol/path/error resolution or routing where applicable;
+  resource, declaration/AST-aware, and useful fixed-window retrieval units;
+  exact identifiers plus
+  subtokens, code-aware lexical text, and path/module/symbol/content fields;
+  deterministic query-clue extraction while preserving the InformationNeed;
+  a small BM25 sensitivity check; character n-gram auxiliary retrieval; cheap
+  union/interleaving/Reciprocal Rank Fusion; already validated structural
+  evidence; and compact repository/symbol-map disclosure where appropriate.
+  Keep retrieval unit distinct from disclosure unit. This is a bounded
+  falsification program, not a generic retrieval framework.
+- **Later, conditional evidence:** test additional typed relations, lightweight
+  learned ranking only after a high-recall pool exists, and persistent-index
+  neural retrieval with a competitive model only if cheaper baselines leave a
+  decision-worthy gap. Any broader evidence-family comparison depends on the
+  foundations results; no later increment is selected yet. Falsify surviving
+  claims on independently selected repositories before broader generalization
+  or production promotion. Consider non-controlling shadow comparison only
+  under separate governance and later supporting evidence.
+
+Evaluate stages separately: poor broad Recall@K points to candidate generation;
+good broad recall but poor small-K ordering points to ranking; good ordering
+but poor useful information per disclosure budget points to representation and
+Context disclosure. Cheap follow-up inspection/search can also change the
+value of one-shot ranking. These are diagnostic guides for experiments, not
+fixed architecture or a universal score.
 
 The broader portfolio remains heterogeneous: typed structural/relational views,
 semantic/pretrained-representation evidence, and later learned decision models

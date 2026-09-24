@@ -624,7 +624,8 @@ that required semantics cannot be represented correctly.
 - pressure_dependencies: none
 - operational_dependencies: resources filesystem, core paths, core regex
 - related: ADR-0002; ADR-0003; ADR-0004; B-0008 (superseded historical investigation);
-  docs/research/README.md
+  docs/research/README.md;
+  docs/research/repository-retrieval-algorithm-landscape.md
 - promotion_trigger: an independently useful, bounded semantic slice is ready
   for design without collapsing Repository intelligence, Context, Tool,
   Runtime, Agent, or orchestration ownership
@@ -657,7 +658,7 @@ independent-repository evidence, not a production mechanism. None of these
 statements promotes graph infrastructure, embeddings, learned ranking, or
 production retrieval behavior.
 
-## Structural-retrieval reconciliation and next evidence sequence
+## Structural and semantic evidence; next retrieval-foundations sequence
 
 The recovered
 [structural-retrieval investigation](../../research/structural-repository-retrieval.md)
@@ -682,7 +683,7 @@ overlapped, ten were structural-only, eight were lexical-only, and five useful
 structural resources had no positive lexical rank.
 
 This local evidence retains qualified imported-member structural evidence as a
-candidate family for the Increment-27 comparison and weakens the hypotheses
+candidate family for later comparisons and weakens the hypotheses
 that this family merely duplicates matched lexical widening, fires too rarely
 on this workload, or produces predominantly not-useful candidates. It does not
 generalize beyond `devtools`, authorize other structural families, select a
@@ -690,13 +691,33 @@ physical graph representation, justify common graph infrastructure, promote a
 ranker, or change production retrieval. Candidate generation remains distinct
 from ranking/capacity and Context disclosure.
 
-Increment 26 separately investigates pretrained semantic/representation-based
-candidate generation; consuming a pretrained representation is not training a
-ranker. Increment 27 compares lexical, structural, semantic, and justified
-combined evidence families while retaining native evidence semantics.
-Increment 28 requires independent-repository falsification before stronger
-generalization. Increment 29 or later may investigate learned decisions and/or
-non-controlling shadow execution only if prior evidence warrants them. A future
-reusable Learned Intelligence subsystem may own cross-domain model construction,
-training, and evaluation; B-0002 remains an evidence producer/consumer rather
-than the owner of generic ML training infrastructure.
+Increment 26's completed frozen CodeRankEmbed development comparison found
+eight useful semantic-only top-five resources, all reachable at deeper positive
+lexical ranks. This is valid ranking-depth complementarity, not a demonstrated
+lexical-unreachable useful class. Its sealed confirmation population is
+preserved and confirmation is suspended pending a decision-worthy future
+comparison. Consuming a pretrained representation is not training a ranker.
+
+Increment 27 is **Repository Retrieval Foundations — unit, representation,
+fielding, fusion, and ranking-depth falsification**. It should first separate
+broad candidate Recall@K from small-K ranking quality, useful disclosure per
+budget, and cheap follow-up search. Its bounded experiments should test exact
+resolution/routing where applicable; retrieval depth and resource,
+declaration/AST-aware, and fixed-window units;
+exact identifiers and subtokens, code-aware lexical text and field evidence;
+deterministic query clues preserving the InformationNeed; a small BM25
+sensitivity check; character n-grams; cheap union/interleaving/RRF with already
+validated structural evidence; and compact repository/symbol-map disclosure
+where appropriate. Retrieval units need not be disclosure units. This sequence
+does not authorize a generic retrieval framework or production change.
+
+Additional typed relations, lightweight learned ranking after a high-recall
+candidate pool, and persistent-index neural retrieval remain conditional later
+hypotheses. Broader evidence-family comparison depends on Increment 27's
+foundations results and a decision-worthy gap; no later increment is selected
+yet. Independent-repository falsification is required before stronger
+generalization or production promotion. Non-controlling shadow execution
+remains separately governed and requires later supporting evidence.
+A future reusable Learned Intelligence subsystem may own cross-domain model
+construction, training, and evaluation; B-0002 remains an evidence producer/
+consumer rather than the owner of generic ML training infrastructure.

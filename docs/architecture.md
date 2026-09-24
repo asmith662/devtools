@@ -579,9 +579,9 @@ recover 10/18 known-useful resources; the rule exchanges one useful rank-five
 resource for one useful relationship resource and also makes one not-useful
 admission. Lexical top fifteen contains all 18 known-useful material resources,
 while relationships contribute only one useful resource beyond top five. The
-rule is not ready for shadow or production. This evidence preserves
-purpose-relative decision semantics and the heterogeneous portfolio while
-shifting the next experiment toward stronger bounded candidate generation and
+rule is not ready for shadow or production. At that checkpoint, this evidence
+preserved purpose-relative decision semantics and the heterogeneous portfolio
+while directing subsequent experiments toward bounded candidate generation and
 ranking. Production remains content BM25 plus `0.25 *` filename-stem BM25 at
 `K=5`.
 
@@ -604,14 +604,14 @@ or shadow execution is selected by this statement. Devtools-only observations
 cannot establish lexical sufficiency, relationship failure, or a general
 ranking policy; independent-repository evidence remains required.
 
-The next offline question is candidate-generation complementarity rather than
-another K=5 relationship-admission policy. A bounded structural experiment may
-use existing qualified imports and investigate the smallest defensible
-declaration-grounded reference proposition, with one-hop incoming/outgoing
-evidence kept distinct and compared against lexical widening at comparable
-candidate volume. A separate pretrained semantic-retrieval experiment follows;
-later work may compare evidence families. None of this implements reference
-knowledge, graph infrastructure, embeddings, ranking, or shadow behavior.
+Increment 25 subsequently found bounded imported-member structural
+candidate-generation complementarity on `devtools`. Increment 26 development
+found useful semantic-only top-five resources, but each had a deeper positive
+lexical rank; its sealed confirmation is suspended. These observations do not
+change the accepted repository-truth, evidence, ranking, and disclosure
+boundaries. The [roadmap](roadmap.md) records the current retrieval-foundations
+experiment sequence. No graph, vector, ranking, or shadow infrastructure is
+selected by these results.
 
 ## Accepted Context and disclosure semantics
 
