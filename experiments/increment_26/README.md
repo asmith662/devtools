@@ -56,6 +56,12 @@ is intermediate; it does not establish semantic usefulness, superiority over
 lexical retrieval, confirmation, or production readiness. Roadmap, backlog, and
 architecture updates remain deferred until a later authorized conclusion.
 
+For replay from an already populated Hugging Face cache, the development
+command supports `--offline`. This resolves only the frozen repository and
+revision from local cache files, then retains the frozen weight SHA-256 check
+and local-only model/tokenizer loading. Missing or mismatched artifacts fail
+without an online fallback.
+
 The pre-outcome freeze was amended only to add the omitted transitive runtime
 dependency `einops==0.8.1`, required by the pinned CodeRankEmbed implementation
 for model loading. The omission was discovered before CPU inference and before

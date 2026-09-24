@@ -1,11 +1,14 @@
 # Copyright (c) 2026
-# ruff: noqa: ANN401, D101, D102, D103, E501, PLR2004, SLF001
+# ruff: noqa: ANN401, D101, D102, D103, E501, PLR2004, S105, SLF001
 """Contract checks for the frozen Increment-26 development consumer."""
 
 from __future__ import annotations
 
+import hashlib
 import json
+import sys
 from pathlib import Path
+from types import SimpleNamespace
 from typing import Any, cast
 
 import pytest
@@ -22,8 +25,11 @@ from experiments.increment_25.development import (
 from experiments.increment_25.task_population import TaskCard
 from experiments.increment_26 import development
 from experiments.increment_26.configuration import (
+    CAPACITY,
     CHUNK_CONTENT_TOKENS,
     CHUNK_OVERLAP_TOKENS,
+    MODEL_REPOSITORY,
+    MODEL_REVISION,
     QUERY_PREFIX,
 )
 from experiments.increment_26.run_development import parse_arguments
@@ -98,6 +104,168 @@ def test_exact_freeze_and_partition_enforced(tmp_path: Path) -> None:
         with pytest.raises(ValueError, match=r"case|Case"):
             frozen.require_case(case_id)
     assert "partition" not in vars(parse_arguments(["--candidate-output", "a", "--judgment-output", "b"]))
+
+
+def test_offline_encoder_uses_exact_local_revision_without_metadata_lookup(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    weights = b"locally verified frozen weights"
+    (tmp_path / "model.safetensors").write_bytes(weights)
+    calls: list[dict[str, object]] = []
+
+    class RejectingHfApi:
+        def model_info(self, *_args: object, **_kwargs: object) -> None:
+            raise AssertionError
+
+    def resolve_snapshot(**kwargs: object) -> str:
+        calls.append(kwargs)
+        return str(tmp_path)
+
+    class LoadedModel:
+        def to(self, device: str) -> LoadedModel:
+            assert device == "cpu"
+            return self
+
+        def eval(self) -> LoadedModel:
+            return self
+
+    class LoadedTokenizer:
+        cls_token = "[CLS]"
+        sep_token = "[SEP]"
+        cls_token_id = 101
+        sep_token_id = 102
+
+        def num_special_tokens_to_add(self, *, pair: bool) -> int:
+            assert not pair
+            return 2
+
+        def encode(self, _text: str, *, add_special_tokens: bool) -> list[int]:
+            return [101, 103, 102] if add_special_tokens else [103]
+
+    class AutoModel:
+        @staticmethod
+        def from_pretrained(_path: Path, **kwargs: object) -> LoadedModel:
+            assert kwargs["revision"] == MODEL_REVISION
+            assert kwargs["local_files_only"] is True
+            return LoadedModel()
+
+    class AutoTokenizer:
+        @staticmethod
+        def from_pretrained(_path: Path, **kwargs: object) -> LoadedTokenizer:
+            assert kwargs["revision"] == MODEL_REVISION
+            assert kwargs["local_files_only"] is True
+            return LoadedTokenizer()
+
+    monkeypatch.setattr(
+        "experiments.increment_26.development.HfApi",
+        RejectingHfApi,
+    )
+    monkeypatch.setattr(development, "snapshot_download", resolve_snapshot)
+    monkeypatch.setattr(development, "MODEL_WEIGHT_SHA256", hashlib.sha256(weights).hexdigest())
+    monkeypatch.setitem(
+        sys.modules,
+        "transformers",
+        SimpleNamespace(AutoModel=AutoModel, AutoTokenizer=AutoTokenizer),
+    )
+
+    model, tokenizer, identity = development.realize_pinned_encoder(
+        cache_dir=tmp_path / "hub-cache",
+        offline=True,
+    )
+
+    assert isinstance(model, LoadedModel)
+    assert isinstance(tokenizer, LoadedTokenizer)
+    assert calls == [
+        {
+            "repo_id": MODEL_REPOSITORY,
+            "revision": MODEL_REVISION,
+            "cache_dir": tmp_path / "hub-cache",
+            "local_files_only": True,
+        },
+    ]
+    assert identity == {
+        "repository": MODEL_REPOSITORY,
+        "revision": MODEL_REVISION,
+        "weight_filename": "model.safetensors",
+        "weight_sha256": hashlib.sha256(weights).hexdigest(),
+        "device": "cpu",
+    }
+
+
+@pytest.mark.parametrize("artifact", ["missing", "hash_mismatch"])
+def test_offline_encoder_rejects_missing_or_unverified_weights_without_fallback(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    artifact: str,
+) -> None:
+    if artifact == "hash_mismatch":
+        (tmp_path / "model.safetensors").write_bytes(b"wrong weights")
+    calls: list[dict[str, object]] = []
+
+    class RejectingHfApi:
+        def model_info(self, *_args: object, **_kwargs: object) -> None:
+            raise AssertionError
+
+    def resolve_snapshot(**kwargs: object) -> str:
+        calls.append(kwargs)
+        return str(tmp_path)
+
+    monkeypatch.setattr(
+        "experiments.increment_26.development.HfApi",
+        RejectingHfApi,
+    )
+    monkeypatch.setattr(development, "snapshot_download", resolve_snapshot)
+    monkeypatch.setattr(development, "MODEL_WEIGHT_SHA256", "0" * 64)
+
+    with pytest.raises(development.ModelIntegrityError, match=r"model.safetensors"):
+        development.realize_pinned_encoder(offline=True)
+
+    assert calls[0]["repo_id"] == MODEL_REPOSITORY
+    assert calls[0]["revision"] == MODEL_REVISION
+    assert calls[0]["local_files_only"] is True
+
+
+def test_offline_encoder_propagates_missing_snapshot_without_network_fallback(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    calls: list[dict[str, object]] = []
+
+    class RejectingHfApi:
+        def model_info(self, *_args: object, **_kwargs: object) -> None:
+            raise AssertionError
+
+    def missing_snapshot(**kwargs: object) -> str:
+        calls.append(kwargs)
+        raise FileNotFoundError
+
+    monkeypatch.setattr(
+        "experiments.increment_26.development.HfApi",
+        RejectingHfApi,
+    )
+    monkeypatch.setattr(development, "snapshot_download", missing_snapshot)
+
+    with pytest.raises(FileNotFoundError):
+        development.realize_pinned_encoder(offline=True)
+
+    assert calls[0]["repo_id"] == MODEL_REPOSITORY
+    assert calls[0]["revision"] == MODEL_REVISION
+    assert calls[0]["local_files_only"] is True
+
+
+def test_offline_option_does_not_change_frozen_computation_settings() -> None:
+    freeze = json.loads(I26.read_text(encoding="utf-8"))
+    execution = freeze["payload"]["encoder"]["execution"]
+    assert development.ENCODE_BATCH_SIZE == 16
+    assert execution["device"] == "cpu"
+    assert execution["vector_dtype"] == "float32"
+    assert CAPACITY == 5
+    assert CHUNK_CONTENT_TOKENS == 2046
+    assert CHUNK_OVERLAP_TOKENS == 256
+    assert QUERY_PREFIX == "Represent this query for searching relevant code: "
+    assert parse_arguments(
+        ["--candidate-output", "a", "--judgment-output", "b", "--offline"],
+    ).offline is True
 
 
 def test_query_prefix_and_chunk_coverage() -> None:

@@ -30,6 +30,14 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
     parser.add_argument("--candidate-output", type=Path, required=True)
     parser.add_argument("--judgment-output", type=Path, required=True)
     parser.add_argument("--model-cache", type=Path)
+    parser.add_argument(
+        "--offline",
+        action="store_true",
+        help=(
+            "Resolve the exact pinned model revision from the local Hugging Face "
+            "cache only."
+        ),
+    )
     return parser.parse_args(arguments)
 
 
@@ -41,6 +49,7 @@ def main(arguments: Sequence[str] | None = None) -> None:
         increment_25_freeze_path=parsed.increment_25_freeze,
         increment_26_freeze_path=parsed.increment_26_freeze,
         cache_dir=parsed.model_cache,
+        offline=parsed.offline,
     )
     write_artifact(path=parsed.candidate_output, payload=evidence)
     write_artifact(path=parsed.judgment_output, payload=judgment)

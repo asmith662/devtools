@@ -110,17 +110,23 @@ def load_frozen_increment_26(path: Path, *, increment_25_freeze_path: Path) -> d
     return envelope
 
 
-def realize_pinned_encoder(*, cache_dir: Path | None = None) -> tuple[Any, Any, dict[str, object]]:
+def realize_pinned_encoder(
+    *,
+    cache_dir: Path | None = None,
+    offline: bool = False,
+) -> tuple[Any, Any, dict[str, object]]:
     """Download, verify, and load only the frozen CPU CodeRankEmbed artifact."""
-    info = HfApi().model_info(MODEL_REPOSITORY, revision=MODEL_REVISION)
-    if info.sha != MODEL_REVISION:
-        msg = "Remote model revision did not resolve to the frozen immutable revision."
-        raise ModelIntegrityError(msg)
+    if not offline:
+        info = HfApi().model_info(MODEL_REPOSITORY, revision=MODEL_REVISION)
+        if info.sha != MODEL_REVISION:
+            msg = "Remote model revision did not resolve to the frozen immutable revision."
+            raise ModelIntegrityError(msg)
     local = Path(
         snapshot_download(
             repo_id=MODEL_REPOSITORY,
             revision=MODEL_REVISION,
             cache_dir=cache_dir,
+            local_files_only=offline,
         ),
     )
     weight = local / MODEL_WEIGHT_FILENAME
@@ -319,13 +325,13 @@ def generate_case(*, card: TaskCard, corpus: SnapshotCorpus, model: Any, tokeniz
     }
 
 
-def run_development(*, repository_root: Path, increment_25_freeze_path: Path, increment_26_freeze_path: Path, cache_dir: Path | None = None) -> tuple[dict[str, object], dict[str, object]]:
+def run_development(*, repository_root: Path, increment_25_freeze_path: Path, increment_26_freeze_path: Path, cache_dir: Path | None = None, offline: bool = False) -> tuple[dict[str, object], dict[str, object]]:
     """Execute exactly the sealed development partition and no usefulness work."""
     increment_26 = load_frozen_increment_26(
         increment_26_freeze_path, increment_25_freeze_path=increment_25_freeze_path,
     )
     frozen = load_frozen_development(increment_25_freeze_path)
-    model, tokenizer, model_identity = realize_pinned_encoder(cache_dir=cache_dir)
+    model, tokenizer, model_identity = realize_pinned_encoder(cache_dir=cache_dir, offline=offline)
     cases: list[dict[str, object]] = []
     judgment_cases: list[dict[str, object]] = []
     embedding_cache: dict[tuple[int, ...], Any] = {}
