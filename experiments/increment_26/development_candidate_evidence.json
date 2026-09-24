@@ -1,0 +1,1185 @@
+{
+  "cases": [
+    {
+      "capacity": {
+        "lexical_exhausted": false,
+        "n": 5,
+        "positive_lexical_available": 42,
+        "semantic_available": 264,
+        "semantic_exhausted": false
+      },
+      "case_id": "i25-66ed2049de72",
+      "chunk_diagnostics": {
+        "maximum_chunks_for_one_resource": 9,
+        "scored_resource_count": 264,
+        "total_chunk_count": 340
+      },
+      "corpus": {
+        "corpus_id": "fb08925d17ece753349bb2f6337a0589b72ef3e1a39761b166a4147e27fe82e4",
+        "resource_count": 264,
+        "snapshot_id": "4d6882c3a0f87226dc814ad968721d16fad5584422693fc7fe2ee162bafbe9c8"
+      },
+      "information_need": {
+        "lexical_query": "Implement direct Python function declaration derivation",
+        "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+      },
+      "lexical_candidates": [
+        {
+          "address": "src/devtools/core/identity/docs/overview.md",
+          "rank": 1,
+          "score": 7.984428264431129
+        },
+        {
+          "address": "src/devtools/core/time/docs/timestamps.md",
+          "rank": 2,
+          "score": 7.486460949843611
+        },
+        {
+          "address": "src/devtools/core/paths/docs/overview.md",
+          "rank": 3,
+          "score": 6.781953963365746
+        },
+        {
+          "address": "tests/observability/evidence/test_model_interaction.py",
+          "rank": 4,
+          "score": 6.360872431655022
+        },
+        {
+          "address": "src/devtools/core/paths/docs/resolution.md",
+          "rank": 5,
+          "score": 6.321307218620466
+        }
+      ],
+      "overlap": {
+        "intersection": [],
+        "lexical_only": [
+          "src/devtools/core/identity/docs/overview.md",
+          "src/devtools/core/time/docs/timestamps.md",
+          "src/devtools/core/paths/docs/overview.md",
+          "tests/observability/evidence/test_model_interaction.py",
+          "src/devtools/core/paths/docs/resolution.md"
+        ],
+        "semantic_only": [
+          "src/devtools/core/conversion/__init__.py",
+          "tests/core/conversion/__init__.py",
+          "src/devtools/models/interaction/tools.py",
+          "src/devtools/resources/commands/docs/command.md",
+          "src/devtools/core/__init__.py"
+        ]
+      },
+      "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+      "semantic_candidates": [
+        {
+          "address": "src/devtools/core/conversion/__init__.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": false,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": null,
+          "score": 0.26084771752357483,
+          "winning_chunk": {
+            "end_token": 83,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "tests/core/conversion/__init__.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": false,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": null,
+          "score": 0.22149789333343506,
+          "winning_chunk": {
+            "end_token": 22,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/models/interaction/tools.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": false,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": null,
+          "score": 0.21990260481834412,
+          "winning_chunk": {
+            "end_token": 725,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/resources/commands/docs/command.md",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 22,
+          "score": 0.20879346132278442,
+          "winning_chunk": {
+            "end_token": 551,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/core/__init__.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": false,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": null,
+          "score": 0.20454253256320953,
+          "winning_chunk": {
+            "end_token": 21,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        }
+      ]
+    },
+    {
+      "capacity": {
+        "lexical_exhausted": false,
+        "n": 5,
+        "positive_lexical_available": 152,
+        "semantic_available": 297,
+        "semantic_exhausted": false
+      },
+      "case_id": "i25-858bfa85787e",
+      "chunk_diagnostics": {
+        "maximum_chunks_for_one_resource": 9,
+        "scored_resource_count": 297,
+        "total_chunk_count": 387
+      },
+      "corpus": {
+        "corpus_id": "9ca4802b3fc52761d076e7803579c79935535450490479db2cfc65d34e392250",
+        "resource_count": 297,
+        "snapshot_id": "986507baf9b1d2ba8c4e194e87c758732230675d4069e49f19c57827362fbcb5"
+      },
+      "information_need": {
+        "lexical_query": "Implement repository text document representation",
+        "purpose": "Address the historical maintenance task: Implement repository text document representation"
+      },
+      "lexical_candidates": [
+        {
+          "address": "src/devtools/tools/docs/overview.md",
+          "rank": 1,
+          "score": 12.970880793984733
+        },
+        {
+          "address": "tests/resources/filesystem/codecs/test_markdown.py",
+          "rank": 2,
+          "score": 7.892382875182386
+        },
+        {
+          "address": "src/devtools/context/repository/resource.py",
+          "rank": 3,
+          "score": 7.760275613197727
+        },
+        {
+          "address": "src/devtools/core/time/docs/timestamps.md",
+          "rank": 4,
+          "score": 7.531892171258932
+        },
+        {
+          "address": "src/devtools/context/repository/snapshot.py",
+          "rank": 5,
+          "score": 7.393260460347927
+        }
+      ],
+      "overlap": {
+        "intersection": [
+          "src/devtools/context/repository/resource.py"
+        ],
+        "lexical_only": [
+          "src/devtools/tools/docs/overview.md",
+          "tests/resources/filesystem/codecs/test_markdown.py",
+          "src/devtools/core/time/docs/timestamps.md",
+          "src/devtools/context/repository/snapshot.py"
+        ],
+        "semantic_only": [
+          "src/devtools/context/repository/__init__.py",
+          "tests/context/repository/test_corpus.py",
+          "tests/context/repository/__init__.py",
+          "tests/context/__init__.py"
+        ]
+      },
+      "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+      "semantic_candidates": [
+        {
+          "address": "src/devtools/context/repository/__init__.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 51,
+          "score": 0.4201987683773041,
+          "winning_chunk": {
+            "end_token": 383,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "tests/context/repository/test_corpus.py",
+          "chunk_count": 3,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            2
+          ],
+          "positive_lexical_rank": 55,
+          "score": 0.3744415044784546,
+          "winning_chunk": {
+            "end_token": 4670,
+            "ordinal": 2,
+            "start_token": 3580
+          }
+        },
+        {
+          "address": "src/devtools/context/repository/resource.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 3,
+          "score": 0.3493107855319977,
+          "winning_chunk": {
+            "end_token": 767,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "tests/context/repository/__init__.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 79,
+          "score": 0.3296418786048889,
+          "winning_chunk": {
+            "end_token": 17,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "tests/context/__init__.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 80,
+          "score": 0.305996835231781,
+          "winning_chunk": {
+            "end_token": 20,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        }
+      ]
+    },
+    {
+      "capacity": {
+        "lexical_exhausted": false,
+        "n": 5,
+        "positive_lexical_available": 43,
+        "semantic_available": 253,
+        "semantic_exhausted": false
+      },
+      "case_id": "i25-6f304a8c737c",
+      "chunk_diagnostics": {
+        "maximum_chunks_for_one_resource": 9,
+        "scored_resource_count": 253,
+        "total_chunk_count": 323
+      },
+      "corpus": {
+        "corpus_id": "e5c65eec9bf5b04d2cfc5a75de0e157a0b000956f3405c301551b701641c8342",
+        "resource_count": 253,
+        "snapshot_id": "e996eaa84723e64b35c9bb3a163369242016176d31dcbbc447774b9f79191991"
+      },
+      "information_need": {
+        "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+        "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+      },
+      "lexical_candidates": [
+        {
+          "address": "src/devtools/models/interaction/docs/overview.md",
+          "rank": 1,
+          "score": 12.529460425508962
+        },
+        {
+          "address": "src/devtools/models/interaction/models.py",
+          "rank": 2,
+          "score": 11.71794023932514
+        },
+        {
+          "address": "tests/models/interaction/test_models.py",
+          "rank": 3,
+          "score": 7.938319055496695
+        },
+        {
+          "address": "src/devtools/models/interaction/protocols.py",
+          "rank": 4,
+          "score": 7.587590572831749
+        },
+        {
+          "address": "tests/models/interaction/providers/test_llama_cpp.py",
+          "rank": 5,
+          "score": 7.06750984879915
+        }
+      ],
+      "overlap": {
+        "intersection": [
+          "src/devtools/models/interaction/docs/overview.md",
+          "src/devtools/models/interaction/models.py",
+          "src/devtools/models/interaction/protocols.py"
+        ],
+        "lexical_only": [
+          "tests/models/interaction/test_models.py",
+          "tests/models/interaction/providers/test_llama_cpp.py"
+        ],
+        "semantic_only": [
+          "tests/models/interaction/__init__.py",
+          "src/devtools/execution/runtime.py"
+        ]
+      },
+      "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+      "semantic_candidates": [
+        {
+          "address": "src/devtools/models/interaction/docs/overview.md",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 1,
+          "score": 0.4968070387840271,
+          "winning_chunk": {
+            "end_token": 452,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/models/interaction/models.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 2,
+          "score": 0.4572833776473999,
+          "winning_chunk": {
+            "end_token": 518,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "tests/models/interaction/__init__.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": false,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": null,
+          "score": 0.4149954319000244,
+          "winning_chunk": {
+            "end_token": 18,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/execution/runtime.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 11,
+          "score": 0.4102631211280823,
+          "winning_chunk": {
+            "end_token": 1280,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/models/interaction/protocols.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 4,
+          "score": 0.40431511402130127,
+          "winning_chunk": {
+            "end_token": 230,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        }
+      ]
+    },
+    {
+      "capacity": {
+        "lexical_exhausted": false,
+        "n": 5,
+        "positive_lexical_available": 110,
+        "semantic_available": 279,
+        "semantic_exhausted": false
+      },
+      "case_id": "i25-bb9f807bcd61",
+      "chunk_diagnostics": {
+        "maximum_chunks_for_one_resource": 9,
+        "scored_resource_count": 279,
+        "total_chunk_count": 363
+      },
+      "corpus": {
+        "corpus_id": "9ab89d3799ecb19b5071a57fda9bed8a6122d824b7661479a4f96ac33ff0ae6d",
+        "resource_count": 279,
+        "snapshot_id": "692de428753d833319403b06784b44af4c765b2483c1c1550e2cc9bbaa38ef00"
+      },
+      "information_need": {
+        "lexical_query": "Implement exact-name Python function resource selection",
+        "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+      },
+      "lexical_candidates": [
+        {
+          "address": "src/devtools/context/python_function_rendering.py",
+          "rank": 1,
+          "score": 20.690996971527802
+        },
+        {
+          "address": "tests/context/test_python_function_rendering.py",
+          "rank": 2,
+          "score": 19.653623787787424
+        },
+        {
+          "address": "src/devtools/context/python_declarations.py",
+          "rank": 3,
+          "score": 19.262496255159075
+        },
+        {
+          "address": "src/devtools/context/python_function_disclosure.py",
+          "rank": 4,
+          "score": 18.853414532635355
+        },
+        {
+          "address": "tests/context/test_python_function_disclosure.py",
+          "rank": 5,
+          "score": 14.584763784223723
+        }
+      ],
+      "overlap": {
+        "intersection": [
+          "src/devtools/context/python_function_disclosure.py",
+          "tests/context/test_python_function_disclosure.py"
+        ],
+        "lexical_only": [
+          "src/devtools/context/python_function_rendering.py",
+          "tests/context/test_python_function_rendering.py",
+          "src/devtools/context/python_declarations.py"
+        ],
+        "semantic_only": [
+          "tests/context/test_python_function_cross_resource_pipeline.py",
+          "src/devtools/context/python_function_retrieval.py",
+          "tests/context/test_python_function_retrieval.py"
+        ]
+      },
+      "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+      "semantic_candidates": [
+        {
+          "address": "tests/context/test_python_function_cross_resource_pipeline.py",
+          "chunk_count": 2,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            1
+          ],
+          "positive_lexical_rank": 9,
+          "score": 0.473175048828125,
+          "winning_chunk": {
+            "end_token": 2308,
+            "ordinal": 1,
+            "start_token": 1790
+          }
+        },
+        {
+          "address": "src/devtools/context/python_function_disclosure.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 4,
+          "score": 0.4502406418323517,
+          "winning_chunk": {
+            "end_token": 778,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/context/python_function_retrieval.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 8,
+          "score": 0.4384500980377197,
+          "winning_chunk": {
+            "end_token": 552,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "tests/context/test_python_function_disclosure.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 5,
+          "score": 0.4009309411048889,
+          "winning_chunk": {
+            "end_token": 1350,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "tests/context/test_python_function_retrieval.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 12,
+          "score": 0.39864659309387207,
+          "winning_chunk": {
+            "end_token": 1357,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        }
+      ]
+    },
+    {
+      "capacity": {
+        "lexical_exhausted": false,
+        "n": 5,
+        "positive_lexical_available": 37,
+        "semantic_available": 185,
+        "semantic_exhausted": false
+      },
+      "case_id": "i25-0f7a13667ef3",
+      "chunk_diagnostics": {
+        "maximum_chunks_for_one_resource": 7,
+        "scored_resource_count": 185,
+        "total_chunk_count": 208
+      },
+      "corpus": {
+        "corpus_id": "3dad608842a5cf05023a612349931f6e0e551e3bbb760b9c39a72a555886222a",
+        "resource_count": 185,
+        "snapshot_id": "5073a7bdd33abf62206b3386641ca24a91cf9b17dc17f8ebdf03dfbbe16f268a"
+      },
+      "information_need": {
+        "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+        "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+      },
+      "lexical_candidates": [
+        {
+          "address": "src/devtools/evidence/docs/overview.md",
+          "rank": 1,
+          "score": 18.90646368439691
+        },
+        {
+          "address": "src/devtools/evidence/terminal.py",
+          "rank": 2,
+          "score": 13.100687596987404
+        },
+        {
+          "address": "tests/evidence/test_terminal.py",
+          "rank": 3,
+          "score": 11.89247406072661
+        },
+        {
+          "address": "src/devtools/persistence/docs/overview.md",
+          "rank": 4,
+          "score": 9.393660163617659
+        },
+        {
+          "address": "src/devtools/runtime/runtime.py",
+          "rank": 5,
+          "score": 9.055335116181059
+        }
+      ],
+      "overlap": {
+        "intersection": [
+          "src/devtools/evidence/terminal.py",
+          "tests/evidence/test_terminal.py",
+          "src/devtools/evidence/docs/overview.md"
+        ],
+        "lexical_only": [
+          "src/devtools/persistence/docs/overview.md",
+          "src/devtools/runtime/runtime.py"
+        ],
+        "semantic_only": [
+          "src/devtools/evidence/__init__.py",
+          "tests/evidence/__init__.py"
+        ]
+      },
+      "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+      "semantic_candidates": [
+        {
+          "address": "src/devtools/evidence/terminal.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 2,
+          "score": 0.46174487471580505,
+          "winning_chunk": {
+            "end_token": 699,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "tests/evidence/test_terminal.py",
+          "chunk_count": 2,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            1
+          ],
+          "positive_lexical_rank": 3,
+          "score": 0.44456571340560913,
+          "winning_chunk": {
+            "end_token": 2402,
+            "ordinal": 1,
+            "start_token": 1790
+          }
+        },
+        {
+          "address": "src/devtools/evidence/__init__.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 6,
+          "score": 0.41302433609962463,
+          "winning_chunk": {
+            "end_token": 171,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/evidence/docs/overview.md",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 1,
+          "score": 0.38812291622161865,
+          "winning_chunk": {
+            "end_token": 1740,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "tests/evidence/__init__.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 18,
+          "score": 0.3219464421272278,
+          "winning_chunk": {
+            "end_token": 22,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        }
+      ]
+    },
+    {
+      "capacity": {
+        "lexical_exhausted": false,
+        "n": 5,
+        "positive_lexical_available": 108,
+        "semantic_available": 253,
+        "semantic_exhausted": false
+      },
+      "case_id": "i25-739c82bd3398",
+      "chunk_diagnostics": {
+        "maximum_chunks_for_one_resource": 9,
+        "scored_resource_count": 253,
+        "total_chunk_count": 321
+      },
+      "corpus": {
+        "corpus_id": "e079e84e7ce6217f633167787cc4f6b794db7c86210855a63f9a85348a2c6ee7",
+        "resource_count": 253,
+        "snapshot_id": "8b37d831ad98cc15dc3f70dd5c5b110fbd77c5821b0a4890a055bf1169290ead"
+      },
+      "information_need": {
+        "lexical_query": "Implement model reasoning content",
+        "purpose": "Address the historical maintenance task: Implement model reasoning content"
+      },
+      "lexical_candidates": [
+        {
+          "address": "src/devtools/resources/filesystem/codecs/markdown.py",
+          "rank": 1,
+          "score": 4.6940029443911895
+        },
+        {
+          "address": "src/devtools/resources/filesystem/codecs/json.py",
+          "rank": 2,
+          "score": 4.630266430658283
+        },
+        {
+          "address": "src/devtools/resources/filesystem/codecs/text.py",
+          "rank": 3,
+          "score": 4.62673341301692
+        },
+        {
+          "address": "tests/models/interaction/test_protocols.py",
+          "rank": 4,
+          "score": 4.3220113364375035
+        },
+        {
+          "address": "src/devtools/resources/filesystem/docs/json.md",
+          "rank": 5,
+          "score": 4.2312179280833115
+        }
+      ],
+      "overlap": {
+        "intersection": [],
+        "lexical_only": [
+          "src/devtools/resources/filesystem/codecs/markdown.py",
+          "src/devtools/resources/filesystem/codecs/json.py",
+          "src/devtools/resources/filesystem/codecs/text.py",
+          "tests/models/interaction/test_protocols.py",
+          "src/devtools/resources/filesystem/docs/json.md"
+        ],
+        "semantic_only": [
+          "src/devtools/models/interaction/response.py",
+          "src/devtools/models/interaction/prompt.py",
+          "src/devtools/models/__init__.py",
+          "src/devtools/resources/filesystem/docs/io.md",
+          "tests/models/serving/__init__.py"
+        ]
+      },
+      "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+      "semantic_candidates": [
+        {
+          "address": "src/devtools/models/interaction/response.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 16,
+          "score": 0.3273134231567383,
+          "winning_chunk": {
+            "end_token": 219,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/models/interaction/prompt.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 6,
+          "score": 0.3210490345954895,
+          "winning_chunk": {
+            "end_token": 67,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/models/__init__.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 74,
+          "score": 0.3107588291168213,
+          "winning_chunk": {
+            "end_token": 24,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/resources/filesystem/docs/io.md",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 60,
+          "score": 0.30847758054733276,
+          "winning_chunk": {
+            "end_token": 629,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "tests/models/serving/__init__.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 71,
+          "score": 0.30472278594970703,
+          "winning_chunk": {
+            "end_token": 18,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        }
+      ]
+    },
+    {
+      "capacity": {
+        "lexical_exhausted": false,
+        "n": 5,
+        "positive_lexical_available": 119,
+        "semantic_available": 252,
+        "semantic_exhausted": false
+      },
+      "case_id": "i25-9efe3dc31e80",
+      "chunk_diagnostics": {
+        "maximum_chunks_for_one_resource": 9,
+        "scored_resource_count": 252,
+        "total_chunk_count": 316
+      },
+      "corpus": {
+        "corpus_id": "bd04fdffd57ba5252bd4540cff588876af03b4970907f5d77355abb53a152d10",
+        "resource_count": 252,
+        "snapshot_id": "0d14e2db5b037b889d01e295fc175f4a0fc42d8a2c8220bb7389c9e3fc873454"
+      },
+      "information_need": {
+        "lexical_query": "Implement model interaction output bound",
+        "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+      },
+      "lexical_candidates": [
+        {
+          "address": "src/devtools/resources/commands/models/output.py",
+          "rank": 1,
+          "score": 9.493348920238333
+        },
+        {
+          "address": "src/devtools/models/interaction/response.py",
+          "rank": 2,
+          "score": 8.444804432694205
+        },
+        {
+          "address": "tests/models/interaction/test_protocols.py",
+          "rank": 3,
+          "score": 7.640899784792969
+        },
+        {
+          "address": "src/devtools/models/interaction/docs/overview.md",
+          "rank": 4,
+          "score": 7.54286996845086
+        },
+        {
+          "address": "src/devtools/resources/filesystem/docs/roadmap.md",
+          "rank": 5,
+          "score": 6.955850454889953
+        }
+      ],
+      "overlap": {
+        "intersection": [
+          "src/devtools/models/interaction/docs/overview.md",
+          "src/devtools/models/interaction/response.py"
+        ],
+        "lexical_only": [
+          "src/devtools/resources/commands/models/output.py",
+          "tests/models/interaction/test_protocols.py",
+          "src/devtools/resources/filesystem/docs/roadmap.md"
+        ],
+        "semantic_only": [
+          "tests/models/interaction/__init__.py",
+          "src/devtools/models/interaction/models.py",
+          "tests/models/interaction/test_models.py"
+        ]
+      },
+      "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+      "semantic_candidates": [
+        {
+          "address": "tests/models/interaction/__init__.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 20,
+          "score": 0.423111230134964,
+          "winning_chunk": {
+            "end_token": 18,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/models/interaction/docs/overview.md",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 4,
+          "score": 0.4163658916950226,
+          "winning_chunk": {
+            "end_token": 253,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/models/interaction/models.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 27,
+          "score": 0.4024308919906616,
+          "winning_chunk": {
+            "end_token": 349,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/models/interaction/response.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 2,
+          "score": 0.3879885673522949,
+          "winning_chunk": {
+            "end_token": 196,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "tests/models/interaction/test_models.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 31,
+          "score": 0.3595077693462372,
+          "winning_chunk": {
+            "end_token": 1190,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        }
+      ]
+    },
+    {
+      "capacity": {
+        "lexical_exhausted": false,
+        "n": 5,
+        "positive_lexical_available": 70,
+        "semantic_available": 261,
+        "semantic_exhausted": false
+      },
+      "case_id": "i25-6b0e9c52fb26",
+      "chunk_diagnostics": {
+        "maximum_chunks_for_one_resource": 9,
+        "scored_resource_count": 261,
+        "total_chunk_count": 336
+      },
+      "corpus": {
+        "corpus_id": "a0c343c156c6a09e60626fdbf7e1597b4c6564fbe89af2da53d9ee4960627071",
+        "resource_count": 261,
+        "snapshot_id": "8bcb053857abd5eb0e8b0ee7b8b101ef67119e83e41fc8398752bca737dc76c9"
+      },
+      "information_need": {
+        "lexical_query": "Implement bounded repository snapshot observation",
+        "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+      },
+      "lexical_candidates": [
+        {
+          "address": "src/devtools/tools/docs/overview.md",
+          "rank": 1,
+          "score": 12.691571355070948
+        },
+        {
+          "address": "tests/models/serving/test_huggingface.py",
+          "rank": 2,
+          "score": 10.283276405701688
+        },
+        {
+          "address": "src/devtools/resources/commands/docs/overview.md",
+          "rank": 3,
+          "score": 10.08376465518138
+        },
+        {
+          "address": "src/devtools/models/serving/docs/overview.md",
+          "rank": 4,
+          "score": 8.264348645368429
+        },
+        {
+          "address": "tests/models/benchmarks/test_models.py",
+          "rank": 5,
+          "score": 8.197479146586058
+        }
+      ],
+      "overlap": {
+        "intersection": [],
+        "lexical_only": [
+          "src/devtools/tools/docs/overview.md",
+          "tests/models/serving/test_huggingface.py",
+          "src/devtools/resources/commands/docs/overview.md",
+          "src/devtools/models/serving/docs/overview.md",
+          "tests/models/benchmarks/test_models.py"
+        ],
+        "semantic_only": [
+          "src/devtools/observability/evidence/model_interaction.py",
+          "src/devtools/tools/filesystem.py",
+          "src/devtools/observability/evidence/__init__.py",
+          "src/devtools/models/interaction/observation.py",
+          "src/devtools/observability/evidence/docs/overview.md"
+        ]
+      },
+      "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+      "semantic_candidates": [
+        {
+          "address": "src/devtools/observability/evidence/model_interaction.py",
+          "chunk_count": 2,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            1
+          ],
+          "positive_lexical_rank": 7,
+          "score": 0.27807632088661194,
+          "winning_chunk": {
+            "end_token": 2765,
+            "ordinal": 1,
+            "start_token": 1790
+          }
+        },
+        {
+          "address": "src/devtools/tools/filesystem.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 6,
+          "score": 0.27142614126205444,
+          "winning_chunk": {
+            "end_token": 1393,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/observability/evidence/__init__.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": false,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": null,
+          "score": 0.23126868903636932,
+          "winning_chunk": {
+            "end_token": 326,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/models/interaction/observation.py",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 8,
+          "score": 0.23112305998802185,
+          "winning_chunk": {
+            "end_token": 572,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        },
+        {
+          "address": "src/devtools/observability/evidence/docs/overview.md",
+          "chunk_count": 1,
+          "has_positive_lexical_rank": true,
+          "maximum_chunk_ordinals": [
+            0
+          ],
+          "positive_lexical_rank": 11,
+          "score": 0.22711065411567688,
+          "winning_chunk": {
+            "end_token": 505,
+            "ordinal": 0,
+            "start_token": 0
+          }
+        }
+      ]
+    }
+  ],
+  "execution": {
+    "batch_order": "ascending content-token length; stable corpus and chunk order for ties",
+    "batch_size": 16,
+    "case_count": 8,
+    "embedding_cache": "exact tokenizer token ids within one development pass; cleared before replay",
+    "freeze_identity": "a8d57b68a8043b88300c8ea5f28d12266a1d74f7aa9e9a09e323a4c6ba9f22c1",
+    "increment_25_freeze_identity": "df4128bf1a6afc246aff072ff3922e4b9deb0205c95b74310a64d29497c02c0b",
+    "mode": "development-only",
+    "model": {
+      "device": "cpu",
+      "repository": "nomic-ai/CodeRankEmbed",
+      "revision": "3c4b60807d71f79b43f3c4363786d9493691f8b1",
+      "weight_filename": "model.safetensors",
+      "weight_sha256": "827529bcd58aef0d9082e66eeff7e7d53a02f62bd005f841a26b3d3e2fb17ebe"
+    },
+    "semantics": "increment-26-development-generator-v1"
+  },
+  "execution_identity": "330a9bec94a023d1033ece21f885cdaca122f70eb7d3acb02c4588e948fb4ce2",
+  "schema": "devtools-increment-26-development-candidates-v1"
+}
