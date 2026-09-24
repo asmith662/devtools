@@ -1,0 +1,703 @@
+{
+  "content_identity": "d24a1f0dd20c456cb65ff922c65f9764d231771d9e09bcc8ca7332d3086bf598",
+  "payload": {
+    "aggregate": {
+      "candidate_counts": {
+        "lexical": 40,
+        "lexical_only": 29,
+        "overlap": 11,
+        "semantic": 40,
+        "semantic_only": 29
+      },
+      "case_count": 8,
+      "judgment_counts": {
+        "lexical": {
+          "not-useful": 24,
+          "unjudged": 0,
+          "useful": 16
+        },
+        "lexical_only": {
+          "not-useful": 23,
+          "unjudged": 0,
+          "useful": 6
+        },
+        "overlap": {
+          "not-useful": 1,
+          "unjudged": 0,
+          "useful": 10
+        },
+        "semantic": {
+          "not-useful": 20,
+          "unjudged": 2,
+          "useful": 18
+        },
+        "semantic_only": {
+          "not-useful": 19,
+          "unjudged": 2,
+          "useful": 8
+        }
+      },
+      "lexical_reachability": {
+        "semantic_without_positive_lexical_rank": [
+          {
+            "address": "src/devtools/core/conversion/__init__.py",
+            "case_id": "i25-66ed2049de72"
+          },
+          {
+            "address": "tests/core/conversion/__init__.py",
+            "case_id": "i25-66ed2049de72"
+          },
+          {
+            "address": "src/devtools/models/interaction/tools.py",
+            "case_id": "i25-66ed2049de72"
+          },
+          {
+            "address": "src/devtools/core/__init__.py",
+            "case_id": "i25-66ed2049de72"
+          },
+          {
+            "address": "tests/models/interaction/__init__.py",
+            "case_id": "i25-6f304a8c737c"
+          },
+          {
+            "address": "src/devtools/observability/evidence/__init__.py",
+            "case_id": "i25-6b0e9c52fb26"
+          }
+        ],
+        "useful_semantic_only_positive_lexical_rank_distribution": {
+          "11": 1,
+          "12": 1,
+          "16": 1,
+          "51": 1,
+          "55": 1,
+          "6": 1,
+          "8": 1,
+          "9": 1
+        },
+        "useful_semantic_only_ranked_outside_capacity": [
+          {
+            "address": "src/devtools/context/repository/__init__.py",
+            "case_id": "i25-858bfa85787e",
+            "lexical_rank": 51
+          },
+          {
+            "address": "tests/context/repository/test_corpus.py",
+            "case_id": "i25-858bfa85787e",
+            "lexical_rank": 55
+          },
+          {
+            "address": "src/devtools/execution/runtime.py",
+            "case_id": "i25-6f304a8c737c",
+            "lexical_rank": 11
+          },
+          {
+            "address": "tests/context/test_python_function_cross_resource_pipeline.py",
+            "case_id": "i25-bb9f807bcd61",
+            "lexical_rank": 9
+          },
+          {
+            "address": "src/devtools/context/python_function_retrieval.py",
+            "case_id": "i25-bb9f807bcd61",
+            "lexical_rank": 8
+          },
+          {
+            "address": "tests/context/test_python_function_retrieval.py",
+            "case_id": "i25-bb9f807bcd61",
+            "lexical_rank": 12
+          },
+          {
+            "address": "src/devtools/evidence/__init__.py",
+            "case_id": "i25-0f7a13667ef3",
+            "lexical_rank": 6
+          },
+          {
+            "address": "src/devtools/models/interaction/response.py",
+            "case_id": "i25-739c82bd3398",
+            "lexical_rank": 16
+          }
+        ],
+        "useful_semantic_without_positive_lexical_rank": []
+      },
+      "neutral_pair_count": 69
+    },
+    "blinded_input_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+    "candidate_evidence_identity": "330a9bec94a023d1033ece21f885cdaca122f70eb7d3acb02c4588e948fb4ce2",
+    "candidate_evidence_sha256": "3b78cd07360f277523ca195401d1bc322ad28c1d7e03c1ea569490b87afa277d",
+    "cases": [
+      {
+        "candidate_counts": {
+          "lexical": 5,
+          "lexical_only": 5,
+          "overlap": 0,
+          "semantic": 5,
+          "semantic_only": 5
+        },
+        "capacity": 5,
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment_counts": {
+          "lexical": {
+            "not-useful": 5,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "lexical_only": {
+            "not-useful": 5,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "overlap": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "semantic": {
+            "not-useful": 5,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "semantic_only": {
+            "not-useful": 5,
+            "unjudged": 0,
+            "useful": 0
+          }
+        },
+        "lexical_reachability": {
+          "semantic_without_positive_lexical_rank": [
+            "src/devtools/core/conversion/__init__.py",
+            "tests/core/conversion/__init__.py",
+            "src/devtools/models/interaction/tools.py",
+            "src/devtools/core/__init__.py"
+          ],
+          "useful_semantic_only_ranked_outside_capacity": [],
+          "useful_semantic_without_positive_lexical_rank": []
+        },
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "useful_resources": {
+          "lexical": [],
+          "lexical_only": [],
+          "overlap": [],
+          "semantic": [],
+          "semantic_only": []
+        }
+      },
+      {
+        "candidate_counts": {
+          "lexical": 5,
+          "lexical_only": 4,
+          "overlap": 1,
+          "semantic": 5,
+          "semantic_only": 4
+        },
+        "capacity": 5,
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment_counts": {
+          "lexical": {
+            "not-useful": 3,
+            "unjudged": 0,
+            "useful": 2
+          },
+          "lexical_only": {
+            "not-useful": 3,
+            "unjudged": 0,
+            "useful": 1
+          },
+          "overlap": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 1
+          },
+          "semantic": {
+            "not-useful": 2,
+            "unjudged": 0,
+            "useful": 3
+          },
+          "semantic_only": {
+            "not-useful": 2,
+            "unjudged": 0,
+            "useful": 2
+          }
+        },
+        "lexical_reachability": {
+          "semantic_without_positive_lexical_rank": [],
+          "useful_semantic_only_ranked_outside_capacity": [
+            {
+              "address": "src/devtools/context/repository/__init__.py",
+              "lexical_rank": 51
+            },
+            {
+              "address": "tests/context/repository/test_corpus.py",
+              "lexical_rank": 55
+            }
+          ],
+          "useful_semantic_without_positive_lexical_rank": []
+        },
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "useful_resources": {
+          "lexical": [
+            "src/devtools/context/repository/resource.py",
+            "src/devtools/context/repository/snapshot.py"
+          ],
+          "lexical_only": [
+            "src/devtools/context/repository/snapshot.py"
+          ],
+          "overlap": [
+            "src/devtools/context/repository/resource.py"
+          ],
+          "semantic": [
+            "src/devtools/context/repository/__init__.py",
+            "tests/context/repository/test_corpus.py",
+            "src/devtools/context/repository/resource.py"
+          ],
+          "semantic_only": [
+            "src/devtools/context/repository/__init__.py",
+            "tests/context/repository/test_corpus.py"
+          ]
+        }
+      },
+      {
+        "candidate_counts": {
+          "lexical": 5,
+          "lexical_only": 2,
+          "overlap": 3,
+          "semantic": 5,
+          "semantic_only": 2
+        },
+        "capacity": 5,
+        "case_id": "i25-6f304a8c737c",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment_counts": {
+          "lexical": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 5
+          },
+          "lexical_only": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 2
+          },
+          "overlap": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 3
+          },
+          "semantic": {
+            "not-useful": 1,
+            "unjudged": 0,
+            "useful": 4
+          },
+          "semantic_only": {
+            "not-useful": 1,
+            "unjudged": 0,
+            "useful": 1
+          }
+        },
+        "lexical_reachability": {
+          "semantic_without_positive_lexical_rank": [
+            "tests/models/interaction/__init__.py"
+          ],
+          "useful_semantic_only_ranked_outside_capacity": [
+            {
+              "address": "src/devtools/execution/runtime.py",
+              "lexical_rank": 11
+            }
+          ],
+          "useful_semantic_without_positive_lexical_rank": []
+        },
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "useful_resources": {
+          "lexical": [
+            "src/devtools/models/interaction/docs/overview.md",
+            "src/devtools/models/interaction/models.py",
+            "tests/models/interaction/test_models.py",
+            "src/devtools/models/interaction/protocols.py",
+            "tests/models/interaction/providers/test_llama_cpp.py"
+          ],
+          "lexical_only": [
+            "tests/models/interaction/test_models.py",
+            "tests/models/interaction/providers/test_llama_cpp.py"
+          ],
+          "overlap": [
+            "src/devtools/models/interaction/docs/overview.md",
+            "src/devtools/models/interaction/models.py",
+            "src/devtools/models/interaction/protocols.py"
+          ],
+          "semantic": [
+            "src/devtools/models/interaction/docs/overview.md",
+            "src/devtools/models/interaction/models.py",
+            "src/devtools/execution/runtime.py",
+            "src/devtools/models/interaction/protocols.py"
+          ],
+          "semantic_only": [
+            "src/devtools/execution/runtime.py"
+          ]
+        }
+      },
+      {
+        "candidate_counts": {
+          "lexical": 5,
+          "lexical_only": 3,
+          "overlap": 2,
+          "semantic": 5,
+          "semantic_only": 3
+        },
+        "capacity": 5,
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment_counts": {
+          "lexical": {
+            "not-useful": 2,
+            "unjudged": 0,
+            "useful": 3
+          },
+          "lexical_only": {
+            "not-useful": 2,
+            "unjudged": 0,
+            "useful": 1
+          },
+          "overlap": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 2
+          },
+          "semantic": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 5
+          },
+          "semantic_only": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 3
+          }
+        },
+        "lexical_reachability": {
+          "semantic_without_positive_lexical_rank": [],
+          "useful_semantic_only_ranked_outside_capacity": [
+            {
+              "address": "tests/context/test_python_function_cross_resource_pipeline.py",
+              "lexical_rank": 9
+            },
+            {
+              "address": "src/devtools/context/python_function_retrieval.py",
+              "lexical_rank": 8
+            },
+            {
+              "address": "tests/context/test_python_function_retrieval.py",
+              "lexical_rank": 12
+            }
+          ],
+          "useful_semantic_without_positive_lexical_rank": []
+        },
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "useful_resources": {
+          "lexical": [
+            "src/devtools/context/python_declarations.py",
+            "src/devtools/context/python_function_disclosure.py",
+            "tests/context/test_python_function_disclosure.py"
+          ],
+          "lexical_only": [
+            "src/devtools/context/python_declarations.py"
+          ],
+          "overlap": [
+            "src/devtools/context/python_function_disclosure.py",
+            "tests/context/test_python_function_disclosure.py"
+          ],
+          "semantic": [
+            "tests/context/test_python_function_cross_resource_pipeline.py",
+            "src/devtools/context/python_function_disclosure.py",
+            "src/devtools/context/python_function_retrieval.py",
+            "tests/context/test_python_function_disclosure.py",
+            "tests/context/test_python_function_retrieval.py"
+          ],
+          "semantic_only": [
+            "tests/context/test_python_function_cross_resource_pipeline.py",
+            "src/devtools/context/python_function_retrieval.py",
+            "tests/context/test_python_function_retrieval.py"
+          ]
+        }
+      },
+      {
+        "candidate_counts": {
+          "lexical": 5,
+          "lexical_only": 2,
+          "overlap": 3,
+          "semantic": 5,
+          "semantic_only": 2
+        },
+        "capacity": 5,
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime \u00e2\u2020\u2019 terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime \u00e2\u2020\u2019 terminal Evidence production/delivery"
+        },
+        "judgment_counts": {
+          "lexical": {
+            "not-useful": 1,
+            "unjudged": 0,
+            "useful": 4
+          },
+          "lexical_only": {
+            "not-useful": 1,
+            "unjudged": 0,
+            "useful": 1
+          },
+          "overlap": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 3
+          },
+          "semantic": {
+            "not-useful": 1,
+            "unjudged": 0,
+            "useful": 4
+          },
+          "semantic_only": {
+            "not-useful": 1,
+            "unjudged": 0,
+            "useful": 1
+          }
+        },
+        "lexical_reachability": {
+          "semantic_without_positive_lexical_rank": [],
+          "useful_semantic_only_ranked_outside_capacity": [
+            {
+              "address": "src/devtools/evidence/__init__.py",
+              "lexical_rank": 6
+            }
+          ],
+          "useful_semantic_without_positive_lexical_rank": []
+        },
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "useful_resources": {
+          "lexical": [
+            "src/devtools/evidence/docs/overview.md",
+            "src/devtools/evidence/terminal.py",
+            "tests/evidence/test_terminal.py",
+            "src/devtools/runtime/runtime.py"
+          ],
+          "lexical_only": [
+            "src/devtools/runtime/runtime.py"
+          ],
+          "overlap": [
+            "src/devtools/evidence/terminal.py",
+            "tests/evidence/test_terminal.py",
+            "src/devtools/evidence/docs/overview.md"
+          ],
+          "semantic": [
+            "src/devtools/evidence/terminal.py",
+            "tests/evidence/test_terminal.py",
+            "src/devtools/evidence/__init__.py",
+            "src/devtools/evidence/docs/overview.md"
+          ],
+          "semantic_only": [
+            "src/devtools/evidence/__init__.py"
+          ]
+        }
+      },
+      {
+        "candidate_counts": {
+          "lexical": 5,
+          "lexical_only": 5,
+          "overlap": 0,
+          "semantic": 5,
+          "semantic_only": 5
+        },
+        "capacity": 5,
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment_counts": {
+          "lexical": {
+            "not-useful": 5,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "lexical_only": {
+            "not-useful": 5,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "overlap": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "semantic": {
+            "not-useful": 4,
+            "unjudged": 0,
+            "useful": 1
+          },
+          "semantic_only": {
+            "not-useful": 4,
+            "unjudged": 0,
+            "useful": 1
+          }
+        },
+        "lexical_reachability": {
+          "semantic_without_positive_lexical_rank": [],
+          "useful_semantic_only_ranked_outside_capacity": [
+            {
+              "address": "src/devtools/models/interaction/response.py",
+              "lexical_rank": 16
+            }
+          ],
+          "useful_semantic_without_positive_lexical_rank": []
+        },
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "useful_resources": {
+          "lexical": [],
+          "lexical_only": [],
+          "overlap": [],
+          "semantic": [
+            "src/devtools/models/interaction/response.py"
+          ],
+          "semantic_only": [
+            "src/devtools/models/interaction/response.py"
+          ]
+        }
+      },
+      {
+        "candidate_counts": {
+          "lexical": 5,
+          "lexical_only": 3,
+          "overlap": 2,
+          "semantic": 5,
+          "semantic_only": 3
+        },
+        "capacity": 5,
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "judgment_counts": {
+          "lexical": {
+            "not-useful": 3,
+            "unjudged": 0,
+            "useful": 2
+          },
+          "lexical_only": {
+            "not-useful": 2,
+            "unjudged": 0,
+            "useful": 1
+          },
+          "overlap": {
+            "not-useful": 1,
+            "unjudged": 0,
+            "useful": 1
+          },
+          "semantic": {
+            "not-useful": 3,
+            "unjudged": 1,
+            "useful": 1
+          },
+          "semantic_only": {
+            "not-useful": 2,
+            "unjudged": 1,
+            "useful": 0
+          }
+        },
+        "lexical_reachability": {
+          "semantic_without_positive_lexical_rank": [],
+          "useful_semantic_only_ranked_outside_capacity": [],
+          "useful_semantic_without_positive_lexical_rank": []
+        },
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+        "useful_resources": {
+          "lexical": [
+            "tests/models/interaction/test_protocols.py",
+            "src/devtools/models/interaction/docs/overview.md"
+          ],
+          "lexical_only": [
+            "tests/models/interaction/test_protocols.py"
+          ],
+          "overlap": [
+            "src/devtools/models/interaction/docs/overview.md"
+          ],
+          "semantic": [
+            "src/devtools/models/interaction/docs/overview.md"
+          ],
+          "semantic_only": []
+        }
+      },
+      {
+        "candidate_counts": {
+          "lexical": 5,
+          "lexical_only": 5,
+          "overlap": 0,
+          "semantic": 5,
+          "semantic_only": 5
+        },
+        "capacity": 5,
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment_counts": {
+          "lexical": {
+            "not-useful": 5,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "lexical_only": {
+            "not-useful": 5,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "overlap": {
+            "not-useful": 0,
+            "unjudged": 0,
+            "useful": 0
+          },
+          "semantic": {
+            "not-useful": 4,
+            "unjudged": 1,
+            "useful": 0
+          },
+          "semantic_only": {
+            "not-useful": 4,
+            "unjudged": 1,
+            "useful": 0
+          }
+        },
+        "lexical_reachability": {
+          "semantic_without_positive_lexical_rank": [
+            "src/devtools/observability/evidence/__init__.py"
+          ],
+          "useful_semantic_only_ranked_outside_capacity": [],
+          "useful_semantic_without_positive_lexical_rank": []
+        },
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "useful_resources": {
+          "lexical": [],
+          "lexical_only": [],
+          "overlap": [],
+          "semantic": [],
+          "semantic_only": []
+        }
+      }
+    ],
+    "frozen_judgment_identity": "36c4ab749c8829750eb5fc47bef0125ac45d2e481626b277cb2510061c510fc8",
+    "frozen_judgment_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+    "increment_26_freeze_identity": "a8d57b68a8043b88300c8ea5f28d12266a1d74f7aa9e9a09e323a4c6ba9f22c1"
+  },
+  "schema": "devtools-increment-26-development-results-v1"
+}

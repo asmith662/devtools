@@ -83,6 +83,48 @@ Increment-25 confirmation population has no matching InformationNeed and
 parent snapshot in this development partition. These counts do not include
 candidate-origin information.
 
+## Development post-freeze evaluation
+
+The frozen judgments were mechanically joined to the committed development
+candidate evidence after verifying the exact artifact hashes, identities, and
+eight-case population. `development_results.json` retains the deterministic
+case-by-case and aggregate accounting. Its content identity is:
+
+```text
+d24a1f0dd20c456cb65ff922c65f9764d231771d9e09bcc8ca7332d3086bf598
+```
+
+Each arm retained 40 candidate occurrences across eight cases. Eleven were
+overlap occurrences, leaving 29 semantic-only and 29 lexical-only. The
+three-state development judgments by surface are:
+
+| Surface | USEFUL | NOT_USEFUL | UNJUDGED |
+| --- | ---: | ---: | ---: |
+| Semantic arm | 18 | 20 | 2 |
+| Lexical arm | 16 | 24 | 0 |
+| Overlap | 10 | 1 | 0 |
+| Semantic-only | 8 | 19 | 2 |
+| Lexical-only | 6 | 23 | 0 |
+
+Useful semantic-only resources occurred in five of the eight development
+InformationNeeds. They were absent from the equal-capacity lexical top five,
+which supports the frozen candidate-exposure proposition on this development
+population. This does not establish that semantic retrieval is better overall:
+the lexical-only surface also contained six useful resources, two cases had no
+useful resource in either arm, and two semantic-only pairs remain `UNJUDGED`.
+Nineteen of the 29 semantic-only resources were judged `NOT_USEFUL`; this is a
+substantial limitation rather than a tuned success criterion.
+
+All eight useful semantic-only resources had a retained positive lexical rank
+outside the matched capacity: ranks 6, 8, 9, 11, 12, 16, 51, and 55. Six
+semantic candidates had no positive lexical rank, and none was judged useful.
+Thus this development result supports exposure beyond the equal-volume lexical
+surface; it does not show useful resources unreachable by positive lexical
+retrieval. The unchanged frozen configuration is eligible for sealed
+confirmation as a falsification test. No confirmation or reserve case has been
+executed, and no structural arm comparison or production claim follows from
+these eight development cases.
+
 For replay from an already populated Hugging Face cache, the development
 command supports `--offline`. This resolves only the frozen repository and
 revision from local cache files, then retains the frozen weight SHA-256 check
