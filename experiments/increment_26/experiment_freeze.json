@@ -1,6 +1,19 @@
 {
-  "content_identity": "6ada5106d1271800267f24942345f327bae460defbb14533965e46de03d5e074",
+  "content_identity": "a8d57b68a8043b88300c8ea5f28d12266a1d74f7aa9e9a09e323a4c6ba9f22c1",
   "payload": {
+    "amendment_history": [
+      {
+        "amendment_scope": "Add only the missing runtime dependency.",
+        "dependency": "einops==0.8.1",
+        "discovered_during": "pinned CodeRankEmbed model loading",
+        "experimental_outcome_informed": false,
+        "original_freeze_content_identity": "6ada5106d1271800267f24942345f327bae460defbb14533965e46de03d5e074",
+        "pre_outcome_boundary": "The failure occurred before CPU inference and before any development case, query, resource, similarity, candidate, or usefulness outcome was processed.",
+        "reason": "The original freeze omitted a transitive runtime dependency required by the pinned model implementation.",
+        "scientific_parameter_changed": false,
+        "type": "pre-outcome-runtime-dependency-correction"
+      }
+    ],
     "arms": {
       "capacity": {
         "exhaustion": "record separately for each arm",
@@ -18,6 +31,7 @@
         "custom_code": "trust_remote_code=True at the pinned model revision only",
         "determinism": "CPU execution; stable input order; no stochastic sampling; exact replay identity required subject to documented numerical-runtime limits.",
         "device": "cpu",
+        "einops": "0.8.1",
         "gradient_mode": "inference_mode",
         "model_mode": "eval",
         "python_requires": ">=3.12",

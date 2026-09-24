@@ -18,3 +18,11 @@ resource usefulness judgments are reused only under their frozen identities.
 
 No task or source embedding, similarity, candidate surface, usefulness outcome,
 or semantic retrieval result has been generated at this checkpoint.
+
+The pre-outcome freeze was amended only to add the omitted transitive runtime
+dependency `einops==0.8.1`, required by the pinned CodeRankEmbed implementation
+for model loading. The omission was discovered before CPU inference and before
+any development case, query, resource, similarity, candidate, or usefulness
+outcome was processed. The original freeze identity is retained in the
+amendment history; no scientific parameter or experimental outcome informed
+this correction.

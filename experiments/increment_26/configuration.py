@@ -14,6 +14,9 @@ if TYPE_CHECKING:
 INCREMENT_25_FREEZE_IDENTITY = (
     "df4128bf1a6afc246aff072ff3922e4b9deb0205c95b74310a64d29497c02c0b"
 )
+ORIGINAL_FREEZE_CONTENT_IDENTITY = (
+    "6ada5106d1271800267f24942345f327bae460defbb14533965e46de03d5e074"
+)
 SCHEMA = "devtools-increment-26-semantic-candidate-generation-freeze-v1"
 MODEL_REPOSITORY = "nomic-ai/CodeRankEmbed"
 MODEL_REVISION = "3c4b60807d71f79b43f3c4363786d9493691f8b1"
@@ -23,6 +26,7 @@ MODEL_XET_HASH = "2c08597aed3bb850ee42d4c9f38cbfb646762fada0bb8e45d2084f445b43c9
 TOKENIZER_FILENAME = "tokenizer.json"
 TOKENIZER_CLASS = "BertTokenizer"
 TOKENIZER_MAX_LENGTH = 8192
+EINOPS_VERSION = "0.8.1"
 MAX_INPUT_TOKENS = 2048
 SPECIAL_TOKEN_ALLOWANCE = 2
 CHUNK_CONTENT_TOKENS = MAX_INPUT_TOKENS - SPECIAL_TOKEN_ALLOWANCE
@@ -35,6 +39,19 @@ def build_freeze(*, increment_25_freeze_path: Path) -> dict[str, object]:
     """Build the immutable configuration without encoding a query or resource."""
     population = _population_contract(increment_25_freeze_path)
     payload: dict[str, object] = {
+        "amendment_history": [
+            {
+                "type": "pre-outcome-runtime-dependency-correction",
+                "original_freeze_content_identity": ORIGINAL_FREEZE_CONTENT_IDENTITY,
+                "dependency": f"einops=={EINOPS_VERSION}",
+                "reason": "The original freeze omitted a transitive runtime dependency required by the pinned model implementation.",
+                "discovered_during": "pinned CodeRankEmbed model loading",
+                "pre_outcome_boundary": "The failure occurred before CPU inference and before any development case, query, resource, similarity, candidate, or usefulness outcome was processed.",
+                "amendment_scope": "Add only the missing runtime dependency.",
+                "scientific_parameter_changed": False,
+                "experimental_outcome_informed": False,
+            },
+        ],
         "protocol": {
             "identity": "increment-26-independent-semantic-candidate-generation-v1",
             "proposition": "For a frozen InformationNeed and historical parent-snapshot corpus, similarity under one pinned pretrained representation configuration may expose useful repository resources that an equal-cardinality canonical lexical surface does not expose.",
@@ -73,6 +90,7 @@ def build_freeze(*, increment_25_freeze_path: Path) -> dict[str, object]:
             "execution": {
                 "runtime_group": "increment-26",
                 "python_requires": ">=3.12",
+                "einops": EINOPS_VERSION,
                 "transformers": "5.17.0",
                 "torch": "2.14.0",
                 "device": "cpu",

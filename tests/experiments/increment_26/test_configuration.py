@@ -63,6 +63,20 @@ def test_serialization_is_deterministic_and_contains_no_outcomes() -> None:
     assert first["payload"]["protocol"]["usefulness_adjudication_started"] is False
 
 
+def test_runtime_amendment_preserves_original_identity_and_scientific_contract() -> None:
+    freeze = configuration.build_freeze(increment_25_freeze_path=_I25_FREEZE)
+    amendment = freeze["payload"]["amendment_history"][0]
+    execution = freeze["payload"]["encoder"]["execution"]
+    assert (
+        amendment["original_freeze_content_identity"]
+        == "6ada5106d1271800267f24942345f327bae460defbb14533965e46de03d5e074"
+    )
+    assert amendment["dependency"] == "einops==0.8.1"
+    assert amendment["scientific_parameter_changed"] is False
+    assert amendment["experimental_outcome_informed"] is False
+    assert execution["einops"] == "0.8.1"
+
+
 def test_committed_freeze_is_valid_and_contains_no_semantic_results() -> None:
     freeze = json.loads(_I26_FREEZE.read_text(encoding="utf-8"))
     assert configuration.validate_freeze(freeze)
@@ -70,6 +84,8 @@ def test_committed_freeze_is_valid_and_contains_no_semantic_results() -> None:
     assert '"embeddings"' not in rendered
     assert '"semantic_candidates"' not in rendered
     assert '"semantic_results"' not in rendered
+    assert '"einops": "0.8.1"' in rendered
+    assert "6ada5106d1271800267f24942345f327bae460defbb14533965e46de03d5e074" in rendered
 
 
 def test_configuration_never_imports_or_executes_an_encoder() -> None:
