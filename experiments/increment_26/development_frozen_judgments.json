@@ -1,0 +1,535 @@
+{
+  "content_identity": "36c4ab749c8829750eb5fc47bef0125ac45d2e481626b277cb2510061c510fc8",
+  "payload": {
+    "blinded_input_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+    "candidate_evidence_identity": "330a9bec94a023d1033ece21f885cdaca122f70eb7d3acb02c4588e948fb4ce2",
+    "cases": [
+      {
+        "case_id": "i25-66ed2049de72",
+        "records": [
+          {
+            "address": "src/devtools/core/__init__.py",
+            "judgment": "not-useful",
+            "neutral_id": "4284689426d94cd8ad374237d5d140ba1f33c66473d9fb22401616ffc79f620c",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Core package marker contains no Python declaration derivation behavior."
+          },
+          {
+            "address": "src/devtools/core/conversion/__init__.py",
+            "judgment": "not-useful",
+            "neutral_id": "c58ff41927b0816144eaca11af6bf58d83fd7b85b3d0286b1768d8f2c1c6e05e",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Conversion package marker concerns callable conversion, not Python declarations."
+          },
+          {
+            "address": "src/devtools/core/identity/docs/overview.md",
+            "judgment": "not-useful",
+            "neutral_id": "435a24df266b45ee9f099ad4dd322f50cb1f6a4e04af356e10ff0020495630b5",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Identity documentation concerns ID lifecycle rather than AST declarations."
+          },
+          {
+            "address": "src/devtools/core/paths/docs/overview.md",
+            "judgment": "not-useful",
+            "neutral_id": "031dee9b4ca77c63f6badfb3552209f99edd54a07c3597ff43490045c4d93c89",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Path documentation concerns path values rather than function syntax."
+          },
+          {
+            "address": "src/devtools/core/paths/docs/resolution.md",
+            "judgment": "not-useful",
+            "neutral_id": "910a6347e7193b5df8b756a462f27e7a38ce6fc7555f7f6bc88b151d2f9117fc",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Path resolution documentation does not derive Python declarations."
+          },
+          {
+            "address": "src/devtools/core/time/docs/timestamps.md",
+            "judgment": "not-useful",
+            "neutral_id": "4d1ae766dd47b2396b4373bcf1897f51bd38808604da788860f5de02953c9ade",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Timestamp documentation does not address Python syntax analysis."
+          },
+          {
+            "address": "src/devtools/models/interaction/tools.py",
+            "judgment": "not-useful",
+            "neutral_id": "47e82ff94d3bd9e967872a7a067871caa16fbff5de38a01913e6b0ab04647332",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Model tool-call values are unrelated to deriving Python functions."
+          },
+          {
+            "address": "src/devtools/resources/commands/docs/command.md",
+            "judgment": "not-useful",
+            "neutral_id": "1af8654a76acf9f382c703299c6d7b8d0aa1bee78e9ad83f9370d1152a3f3f04",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Command value documentation does not address Python declarations."
+          },
+          {
+            "address": "tests/core/conversion/__init__.py",
+            "judgment": "not-useful",
+            "neutral_id": "49663d7c4076b609c76dca9d269acd84db5f79b4562cd1cbb57df440bbb89301",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Conversion test package marker contains no declaration behavior."
+          },
+          {
+            "address": "tests/observability/evidence/test_model_interaction.py",
+            "judgment": "not-useful",
+            "neutral_id": "37b18a4ef4cde69f03091ea8f2cbf3393318e9276358feb13ffef1d47413562f",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Model-interaction Evidence tests do not exercise Python declaration derivation."
+          }
+        ]
+      },
+      {
+        "case_id": "i25-858bfa85787e",
+        "records": [
+          {
+            "address": "src/devtools/context/repository/__init__.py",
+            "judgment": "useful",
+            "neutral_id": "3c357d5cf1bb5452188657818e0ea2e93988db5d3c80bab4a06d46ef95dfc01c",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Repository public API exposes resource, snapshot, and text-corpus representations."
+          },
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "judgment": "useful",
+            "neutral_id": "18ea8740089fa69c7fb9e247190365e60dc7ac813093f757859095f0f5405da5",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Defines addressed text occurrences and content identity used by repository documents."
+          },
+          {
+            "address": "src/devtools/context/repository/snapshot.py",
+            "judgment": "useful",
+            "neutral_id": "1351f462f748025fcb3079b233c3ae5e6e883edcccbcd302035707e12b20da57",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Defines the parent repository snapshot and its addressed resource lookup."
+          },
+          {
+            "address": "src/devtools/core/time/docs/timestamps.md",
+            "judgment": "not-useful",
+            "neutral_id": "edae4089cfe9d0908bea751742014ef28bac1aa2b6650ed69171082456311c55",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Timestamp documentation does not define repository text documents."
+          },
+          {
+            "address": "src/devtools/tools/docs/overview.md",
+            "judgment": "not-useful",
+            "neutral_id": "07575ce511fcc4d5d8f060a48bf96b3eaf76dfdc47124bf327609d4536e16d34",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Tool overview does not define repository document representation."
+          },
+          {
+            "address": "tests/context/__init__.py",
+            "judgment": "not-useful",
+            "neutral_id": "43d16357bb7c4cd9963d8ce636d791a4d780b077666fda9840193d9753fe69df",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Context test package marker has no document behavior."
+          },
+          {
+            "address": "tests/context/repository/__init__.py",
+            "judgment": "not-useful",
+            "neutral_id": "8fc84d00f67fe358bc0d499bf3811fb7bd4b626d943aef7c4e3f2a5aa5dbc371",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Repository test package marker has no document behavior."
+          },
+          {
+            "address": "tests/context/repository/test_corpus.py",
+            "judgment": "useful",
+            "neutral_id": "b3bed47df2f75e13ba4aa8d6af4319d548b2ee69e85a9ad3af78c791a07da77c",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Corpus tests exercise selected repository resources and snapshot membership."
+          },
+          {
+            "address": "tests/resources/filesystem/codecs/test_markdown.py",
+            "judgment": "not-useful",
+            "neutral_id": "f318b47c339968305d782bd0abc10b0996315b4da3f33fc0881fdbb8bdbac495",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Markdown codec tests concern file decoding, not repository document identity."
+          }
+        ]
+      },
+      {
+        "case_id": "i25-6f304a8c737c",
+        "records": [
+          {
+            "address": "src/devtools/execution/runtime.py",
+            "judgment": "useful",
+            "neutral_id": "e5d9660f94fc3d5ff73948baddfc2ed157bb03c51edea161ec7b8ef7bc2d4aa7",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Runtime invokes ModelInteraction through the request boundary and retains its response."
+          },
+          {
+            "address": "src/devtools/models/interaction/docs/overview.md",
+            "judgment": "useful",
+            "neutral_id": "7ba98c69424a7cc11b3fb02d0094173ebbe451220b04be39d49927978fcfd0a3",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Package overview describes Prompt, ModelInteraction, and ModelResponse ownership."
+          },
+          {
+            "address": "src/devtools/models/interaction/models.py",
+            "judgment": "useful",
+            "neutral_id": "8e232b079eed0114dd2b45f6c6f7d0f0e86ed7d82e93f79f6cd55e5f7c034f7c",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Defines values exchanged at the model invocation boundary."
+          },
+          {
+            "address": "src/devtools/models/interaction/protocols.py",
+            "judgment": "useful",
+            "neutral_id": "440d92f8614bdecc24d6159e4b66ed2c6ada4474fe6806d6c49f5336224eca1a",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Defines the ModelInteraction send protocol and request parameters."
+          },
+          {
+            "address": "tests/models/interaction/__init__.py",
+            "judgment": "not-useful",
+            "neutral_id": "07d9c6a190b476ce002112e92ad4d37840533352577b602a4ab060b73ca90002",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Model-interaction test package marker has no request-boundary behavior."
+          },
+          {
+            "address": "tests/models/interaction/providers/test_llama_cpp.py",
+            "judgment": "useful",
+            "neutral_id": "8d3fdab0b59dcec2a842dfe3a36cc369e345d0cbce766a59300d53592f34132b",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Provider tests exercise translation of model requests and responses."
+          },
+          {
+            "address": "tests/models/interaction/test_models.py",
+            "judgment": "useful",
+            "neutral_id": "0a6ca936f4df2da9ef6dd19c79fbde95c81d698b69a80b91cb1eae7b4b2af9e9",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Value tests exercise request constraints and model-boundary invariants."
+          }
+        ]
+      },
+      {
+        "case_id": "i25-bb9f807bcd61",
+        "records": [
+          {
+            "address": "src/devtools/context/python_declarations.py",
+            "judgment": "useful",
+            "neutral_id": "9cdc5d3f283ffb6896b921397e21eacfd47de0f2459b1a66d59ca29eddbefc99",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Defines established direct Python function declaration knowledge selected by name."
+          },
+          {
+            "address": "src/devtools/context/python_function_disclosure.py",
+            "judgment": "useful",
+            "neutral_id": "c2577d1dd07d948a386c6349f22907c2b2e60da7bf1af66320ac3d0fb91232fc",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Selects and discloses exact-name function retrieval results."
+          },
+          {
+            "address": "src/devtools/context/python_function_rendering.py",
+            "judgment": "not-useful",
+            "neutral_id": "46a4d6df8419bb976d01c6920eb764f0024b6cba5fda532c746f464a9cab2db9",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Renders already selected Context and does not choose resources by name."
+          },
+          {
+            "address": "src/devtools/context/python_function_retrieval.py",
+            "judgment": "useful",
+            "neutral_id": "64d50c922b16d3f1530d5ee1e0d2a615be644ad90cb032115adc61587246b575",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Implements literal exact-name retrieval over declared Python functions."
+          },
+          {
+            "address": "tests/context/test_python_function_cross_resource_pipeline.py",
+            "judgment": "useful",
+            "neutral_id": "30727613a75b5e0bdb070c92278cf801067d997ecef51d6b744a079ad925f240",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Cross-resource tests show exact-name matches reaching request assembly."
+          },
+          {
+            "address": "tests/context/test_python_function_disclosure.py",
+            "judgment": "useful",
+            "neutral_id": "cb9df3193926524f42a02661337032b35a37dff04b4473d92a2f4f50b6b3bf9d",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Disclosure tests verify exact-name selection and all-match projection."
+          },
+          {
+            "address": "tests/context/test_python_function_rendering.py",
+            "judgment": "not-useful",
+            "neutral_id": "cec20a3f5166a5033dfd667bae4ad393b3e8050a8a2cc3468db49ec5d83a8a72",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Rendering tests cover downstream text output after resource selection."
+          },
+          {
+            "address": "tests/context/test_python_function_retrieval.py",
+            "judgment": "useful",
+            "neutral_id": "14692750ea1aef537c5d34964f9364fd688fed16bc807a761dff8666b807e0ad",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Retrieval tests verify literal name matching and ordered result evidence."
+          }
+        ]
+      },
+      {
+        "case_id": "i25-0f7a13667ef3",
+        "records": [
+          {
+            "address": "src/devtools/evidence/__init__.py",
+            "judgment": "useful",
+            "neutral_id": "9db79a6958848072b944572384af2ca6af5dfa4b6ab7b9b1951f6b74dc3eddac",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Evidence public exports include terminal Attempt evidence values."
+          },
+          {
+            "address": "src/devtools/evidence/docs/overview.md",
+            "judgment": "useful",
+            "neutral_id": "ad70470d2b5eb3b469ed59d8cf294c21ca438193211e5cb3a2cb8b02b18a0b86",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Documents terminal Evidence outcomes and the Runtime producer boundary."
+          },
+          {
+            "address": "src/devtools/evidence/terminal.py",
+            "judgment": "useful",
+            "neutral_id": "b005a306d79756cdc8dbc1ab5f6239a6d729cfe6737c21b30da62a1bc7d95a0a",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Defines immutable terminal Evidence and Attempt stages used at Runtime completion."
+          },
+          {
+            "address": "src/devtools/persistence/docs/overview.md",
+            "judgment": "not-useful",
+            "neutral_id": "f9a225735154aaeae5043c0a441f0f38f1c61df963fb19d8b9ba426257c3a0eb",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Persistence overview concerns Session storage, not terminal Evidence delivery."
+          },
+          {
+            "address": "src/devtools/runtime/runtime.py",
+            "judgment": "useful",
+            "neutral_id": "ca422e8cef270b66aab71c89f47e436710e95995c85d2aadf457f9fd507f5fd3",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Runtime terminalizes Attempts and calls its observer at completion."
+          },
+          {
+            "address": "tests/evidence/__init__.py",
+            "judgment": "not-useful",
+            "neutral_id": "c5cd3bcda14611cccc51a1ad7052153d4e270c9658ee2bcbd36029040d3aed4a",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Evidence test package marker has no production or delivery behavior."
+          },
+          {
+            "address": "tests/evidence/test_terminal.py",
+            "judgment": "useful",
+            "neutral_id": "4546883fc1bccae74bc5b272f586e99300971d7054d2d4ff0e30ede68e502f3d",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Terminal Evidence tests verify the values produced after Attempts end."
+          }
+        ]
+      },
+      {
+        "case_id": "i25-739c82bd3398",
+        "records": [
+          {
+            "address": "src/devtools/models/__init__.py",
+            "judgment": "not-useful",
+            "neutral_id": "b32520da111b916bf1351558b202959d00e89ffb53bb02175693214a184216f7",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Models package marker has no reasoning-content representation."
+          },
+          {
+            "address": "src/devtools/models/interaction/prompt.py",
+            "judgment": "not-useful",
+            "neutral_id": "111a97429c72f36b7c2f22b1b7f1daecc7401c513cc9d4cb86093afdb134149d",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Prompt contains input text and role, not model reasoning output."
+          },
+          {
+            "address": "src/devtools/models/interaction/response.py",
+            "judgment": "useful",
+            "neutral_id": "aaac46adb647abd32db5b094e7fdd0f8c3cbb48d9d4f87014e2e6eb93b0d3634",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "ModelResponse defines model output content and provider facts to extend for reasoning."
+          },
+          {
+            "address": "src/devtools/resources/filesystem/codecs/json.py",
+            "judgment": "not-useful",
+            "neutral_id": "daade709310ea8236e48b6d1d9d1704bc93a0c2b5adda2af55cddf597ed3fd15",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "JSON filesystem codec concerns file representation, not model reasoning."
+          },
+          {
+            "address": "src/devtools/resources/filesystem/codecs/markdown.py",
+            "judgment": "not-useful",
+            "neutral_id": "1e40c8a047093f185c2cf59920ffff4967ae732fb27623e33ff5f41eb54561b3",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Markdown filesystem codec concerns file representation, not model reasoning."
+          },
+          {
+            "address": "src/devtools/resources/filesystem/codecs/text.py",
+            "judgment": "not-useful",
+            "neutral_id": "edbe6685626f2b5991775347d901f803dfa1d3794200fe67fd502b2b1616859e",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Text filesystem codec concerns file representation, not model reasoning."
+          },
+          {
+            "address": "src/devtools/resources/filesystem/docs/io.md",
+            "judgment": "not-useful",
+            "neutral_id": "c7961e0c7daabbe1ebdd39fb7cbea5e5add86119261e3829cc7fcb32cd7778e3",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Filesystem I/O documentation does not define model reasoning content."
+          },
+          {
+            "address": "src/devtools/resources/filesystem/docs/json.md",
+            "judgment": "not-useful",
+            "neutral_id": "831b9ab8ae49771690cb0f10fe6f4c5b8961e6aa9ebb0258a3a95aa3365ffab8",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "JSON file-model documentation does not define model reasoning content."
+          },
+          {
+            "address": "tests/models/interaction/test_protocols.py",
+            "judgment": "not-useful",
+            "neutral_id": "e15f73a5d62bbbe7da212e1dbce20399ce34b9efdcdf4d02a97c6c712dd571c8",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Protocol test exercises generic sends and does not inspect reasoning output."
+          },
+          {
+            "address": "tests/models/serving/__init__.py",
+            "judgment": "not-useful",
+            "neutral_id": "e10d0cef43fd7eea7a8e923b62980619fef13df050545daa4e5d0316be76ef3b",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Model-serving test package marker has no reasoning-content behavior."
+          }
+        ]
+      },
+      {
+        "case_id": "i25-9efe3dc31e80",
+        "records": [
+          {
+            "address": "src/devtools/models/interaction/docs/overview.md",
+            "judgment": "useful",
+            "neutral_id": "baae8f35cb070bca1eba1a029c51212d338d53803bc7d726dc0b9ab056dbc6bd",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "ModelInteraction overview establishes the request and response boundary where an output bound belongs."
+          },
+          {
+            "address": "src/devtools/models/interaction/models.py",
+            "judgment": "not-useful",
+            "neutral_id": "0f50ce797c29cd88653e6ba9ca82a5bb7faed6269614b9257343063225d01cd0",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Current values only define source and continuation IDs, not request output limits."
+          },
+          {
+            "address": "src/devtools/models/interaction/response.py",
+            "judgment": "not-useful",
+            "neutral_id": "4195e42b10a631616705b023eb972518bbea90e5b295921cb4b7ea09c1659955",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "ModelResponse retains output and usage but does not constrain requested output length."
+          },
+          {
+            "address": "src/devtools/resources/commands/models/output.py",
+            "judgment": "not-useful",
+            "neutral_id": "1316033732962bbc66989475d624d0fc121bd38c63e3ba344f5c4423fd374b48",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Command output retention policy bounds subprocess output, not model tokens."
+          },
+          {
+            "address": "src/devtools/resources/filesystem/docs/roadmap.md",
+            "judgment": "not-useful",
+            "neutral_id": "419e0b14127d1853db828bc94f84fbf36d7e5659cc86d19de2b20eddacd0e438",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Filesystem roadmap concerns file reads and writes, not model output limits."
+          },
+          {
+            "address": "tests/models/interaction/__init__.py",
+            "judgment": "not-useful",
+            "neutral_id": "e226f728242a0e26ff2e5fbd577d0a32a6cf7a87d06eff1ea46deadf29b24f0b",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Model-interaction test package marker has no output-bound behavior."
+          },
+          {
+            "address": "tests/models/interaction/test_models.py",
+            "judgment": "unjudged",
+            "neutral_id": "bfb146c4bea280f570ff126b9f7eca4b026c2cb8b0bdbe2fe0d572c3cebf2353",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Existing value tests describe model output but do not establish whether new output-bound validation belongs here."
+          },
+          {
+            "address": "tests/models/interaction/test_protocols.py",
+            "judgment": "useful",
+            "neutral_id": "788234d5153be43e01fad0030286b49a9701f88fc4e7b61c3f8cdfd5c0dccf5a",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Protocol test supplies the existing send signature that a request output bound would extend."
+          }
+        ]
+      },
+      {
+        "case_id": "i25-6b0e9c52fb26",
+        "records": [
+          {
+            "address": "src/devtools/models/interaction/observation.py",
+            "judgment": "not-useful",
+            "neutral_id": "636babb725ae84229127600e8637a642104fe75e853cfd3657a461ba47f9aca7",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Model-interaction observation records invocation facts, not repository snapshots."
+          },
+          {
+            "address": "src/devtools/models/serving/docs/overview.md",
+            "judgment": "not-useful",
+            "neutral_id": "ceb133b23c5a460e7564b4c669cea13c0fce22d165ac3cbc116b8e9dbd4c2a39",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Model-serving documentation concerns endpoints rather than repository observation."
+          },
+          {
+            "address": "src/devtools/observability/evidence/__init__.py",
+            "judgment": "not-useful",
+            "neutral_id": "9316c6e573f5a4e9ea8f7aefdc6a43ba50b1058e22092fec7746b7ecce86f434",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Observability Evidence exports do not define repository snapshots."
+          },
+          {
+            "address": "src/devtools/observability/evidence/docs/overview.md",
+            "judgment": "not-useful",
+            "neutral_id": "46f2580fc7945daaf1f1ee8ddf24f307537b6c317da793c65ab45471e207a74f",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Evidence overview concerns model invocation capture, not repository observation."
+          },
+          {
+            "address": "src/devtools/observability/evidence/model_interaction.py",
+            "judgment": "not-useful",
+            "neutral_id": "094319327cff96b017db19d2051d58c31420c694186c33223f05a6d6f5d97c5a",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Model-interaction Evidence captures provider exchanges, not repository resources."
+          },
+          {
+            "address": "src/devtools/resources/commands/docs/overview.md",
+            "judgment": "not-useful",
+            "neutral_id": "cdbaebaabb616510ffe26a540f34fc976c625f3a4ce6bf04d9c20d1dbc4fd753",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Command documentation concerns subprocess execution rather than repository snapshots."
+          },
+          {
+            "address": "src/devtools/tools/docs/overview.md",
+            "judgment": "not-useful",
+            "neutral_id": "45315bfca357b17eec9ae7ba657d6d43ab87041ad32b7d24751d56b4252ea223",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Tool overview does not define bounded repository snapshot observation."
+          },
+          {
+            "address": "src/devtools/tools/filesystem.py",
+            "judgment": "unjudged",
+            "neutral_id": "0e6766ee14030f16184680205fcfba7be5e88a89f8553a43f4f4d0f4b150bb7c",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Repository file Tool performs bounded reads, but its role in snapshot observation is unclear from this content."
+          },
+          {
+            "address": "tests/models/benchmarks/test_models.py",
+            "judgment": "not-useful",
+            "neutral_id": "7cb45f2c8b2bf75b8f847c6047f6bcce0fabd4e07bac1bc4f7f44d76a499abf3",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Model benchmark tests do not exercise repository resource observation."
+          },
+          {
+            "address": "tests/models/serving/test_huggingface.py",
+            "judgment": "not-useful",
+            "neutral_id": "292d39b2f0a2ce3b66102e0db5eaf6b366fd40734d6e2cd16316c5d29d4a7c52",
+            "provenance": "NEW_INCREMENT_26",
+            "rationale": "Hugging Face serving tests do not exercise repository resource observation."
+          }
+        ]
+      }
+    ],
+    "increment_26_freeze_identity": "a8d57b68a8043b88300c8ea5f28d12266a1d74f7aa9e9a09e323a4c6ba9f22c1",
+    "pair_count": 69
+  },
+  "schema": "devtools-increment-26-development-frozen-judgments-v1"
+}

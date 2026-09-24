@@ -16,12 +16,11 @@ they are not Repository Intelligence, RepositorySubjects, candidates, or
 Context units. Parent snapshots, task cards, partitions, and qualifying
 resource usefulness judgments are reused only under their frozen identities.
 
-## Development first pass checkpoint
+## Development reproducibility and blinded judgment checkpoint
 
-The amended frozen protocol has executed successfully once across all eight
-frozen development cases. This is a DEVELOPMENT FIRST PASS. Candidate evidence
-and blinded judgment artifacts were generated; no usefulness judgments have
-been performed. Exactly 8 development cases executed, retaining 40 semantic-arm
+The amended frozen protocol executed across all eight frozen development cases.
+Candidate evidence and blinded judgment artifacts were generated. Exactly 8
+development cases executed, retaining 40 semantic-arm
 candidate occurrences and 40 lexical-arm candidate occurrences. Their union
 contains 69 neutral InformationNeed/resource pairs.
 
@@ -48,13 +47,41 @@ The pinned model required a narrow compatibility implementation for
 found it semantically equivalent to the relevant noncausal float32
 encoder-mask behavior for this frozen execution path.
 
-An attempted replay was interrupted before case execution and produced no
-scientific result. A complete independent full-model replay has not yet
-completed, so replay reproducibility remains pending before blinded development
-usefulness judgment. Confirmation and reserve remain sealed. This checkpoint
-is intermediate; it does not establish semantic usefulness, superiority over
-lexical retrieval, confirmation, or production readiness. Roadmap, backlog, and
-architecture updates remain deferred until a later authorized conclusion.
+One independent full eight-case CPU replay completed in approximately 905
+seconds. Its candidate evidence and blinded judgment artifacts were each
+byte-identical to their committed canonical counterparts, with the same
+execution/evidence identity. Semantic scores, candidate order, winning chunks,
+lexical candidates, and the neutral pair union were exact matches. During the
+run, the Windows process priority was corrected from Idle to BelowNormal
+without restarting the process or changing computation. Process priority is
+not part of retrieval semantics. The redundant replay JSON files were removed
+after their hashes were verified against the canonical files.
+
+All 69 neutral development pairs were then judged using only the blinded
+judgment input: frozen purpose and lexical query, parent snapshot identity,
+resource address, and parent-snapshot content. Increment-25 prior judgments
+were checked under the frozen four-part identity rule; none matched these
+development cases. The three-state, purpose-relative decisions and rationales
+are retained in `development_frozen_judgments.json`, bound to the amended freeze,
+canonical blinded input hash, and canonical evidence identity. This judgment
+artifact was validated and fingerprinted before any origin join. No development
+semantic-versus-lexical usefulness comparison has occurred. Confirmation and
+reserve remain sealed. This checkpoint does not establish semantic usefulness,
+superiority over lexical retrieval, confirmation, or production readiness.
+Roadmap, backlog, and architecture updates remain deferred until a later
+authorized conclusion.
+
+Frozen development judgment content identity:
+
+```text
+36c4ab749c8829750eb5fc47bef0125ac45d2e481626b277cb2510061c510fc8
+```
+
+The frozen artifact has 24 `USEFUL`, 43 `NOT_USEFUL`, and 2 `UNJUDGED`
+judgments. All 69 are new Increment-26 judgments; the prior frozen
+Increment-25 confirmation population has no matching InformationNeed and
+parent snapshot in this development partition. These counts do not include
+candidate-origin information.
 
 For replay from an already populated Hugging Face cache, the development
 command supports `--offline`. This resolves only the frozen repository and
