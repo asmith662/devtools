@@ -145,9 +145,10 @@ not exhaustive Recall@K. No usefulness labels are created or changed.
 
 This slice does not test retrieval-unit ablation, char n-grams, BM25F,
 query rewriting, structural/graph evidence, dense or learned retrieval,
-Context disclosure, or sealed confirmation. The top-5 union is now frozen for
-blinded adjudication; the larger top-10 and top-20 pool estimates remain
-prospective and do not imply that those larger pools should be adjudicated.
+Context disclosure, or sealed confirmation. The top-5 union was frozen for
+blinded adjudication and is adjudicated below; the larger top-10 and top-20
+pool estimates remain prospective and do not imply that those larger pools
+should be adjudicated.
 
 ### Development mechanics and existing-label diagnostics
 
@@ -182,10 +183,11 @@ Prospective unions of equally shallow method rankings are:
 | 10 | 332 | 90 | 242 | 4.0–8.1 hours |
 | 20 | 573 | 98 | 475 | 7.9–15.8 hours |
 
-The top-5 union covers multiple mechanism-specific candidates for roughly
-one-seventh of Phase-1's 971 new labels. This population calculation motivated
-the frozen top-5 pool described below; it does not select a retrieval method.
-No new pair has been judged, and confirmation remains sealed.
+The top-5 union covered multiple mechanism-specific candidates for roughly
+one-seventh of Phase-1's 971 new labels. This calculation motivated the frozen
+top-5 pool described below; it did not select a retrieval method. At the time
+of that calculation no new pair had been judged. The later adjudication is
+recorded below, and confirmation remains sealed.
 
 ### Phase 1 disposition and frozen top-five population
 
@@ -211,11 +213,12 @@ not usefulness results.
 
 Fifty-eight pairs reuse exact prior judgments (28 USEFUL, 29 NOT_USEFUL, and
 1 UNJUDGED), each linked to its source artifact hash and source judgment
-identity. The other 133 pairs are new neutral blinded targets. No new
-usefulness judgments have been performed. The blinded input contains all 24
-neutral case identities and only the 133 new resources; it omits method
-membership, rank, score, retrieval-family evidence, and prior labels. New
-resource order is based on opaque neutral identities rather than ranking.
+identity. The other 133 pairs were new neutral blinded targets. At the time
+the population was frozen they had no usefulness outcomes. The blinded input
+contains all 24 neutral case identities and only the 133 new resources; it
+omits method membership, rank, score, retrieval-family evidence, and prior
+labels. New resource order is based on opaque neutral identities rather than
+ranking.
 
 Top-five freeze and population identities:
 
@@ -229,5 +232,21 @@ Top-five freeze and population identities:
   `f2dabd43c8de35b9bc3f9ae4ef5d8d0149849bee6270d9f9744a6f533fc19555`.
 
 The 14 Increment-27 confirmation cases remain sealed. The suspended
-Increment-26 confirmation population remains untouched. This pass performs
-no adjudication, no new metric calculation, and no retrieval execution.
+Increment-26 confirmation population remains untouched. The pool-construction
+pass did not adjudicate targets, calculate new metrics, or execute retrieval.
+
+### Frozen top-five development judgments
+
+All 133 new targets in the frozen top-five blinded population have now been
+adjudicated from that neutral input and frozen. The aggregate labels are 76
+USEFUL, 52 NOT_USEFUL, and 5 UNJUDGED. The five UNJUDGED outcomes preserve
+cases where the exposed task description did not support a defensible binary
+decision. Existing reused judgments remain separately frozen.
+
+The judgment artifact is `lexical_top5_frozen_judgments.json`, with content
+identity
+`4ad2219a71f161c1ed3a7576300e707f0154b5bc8b1732015618b7f44e3e0960`.
+Retrieval origins remain unjoined. No method-level usefulness comparison has
+yet occurred, and the 14 Increment-27 confirmation cases remain sealed. This
+judgment checkpoint does not promote any retrieval method or change production
+retrieval.
