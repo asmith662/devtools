@@ -250,3 +250,87 @@ Retrieval origins remain unjoined. No method-level usefulness comparison has
 yet occurred, and the 14 Increment-27 confirmation cases remain sealed. This
 judgment checkpoint does not promote any retrieval method or change production
 retrieval.
+
+### Frozen top-five development analysis
+
+The frozen 58 reused and 133 new judgments were joined to the saved five-method
+top-five pool only after source hashes, content identities, the exact 191-pair
+union, and the 24-development/14-held-out boundary were checked. The
+deterministic `lexical_top5_development_results.json` retains each pair's
+three-state judgment, provenance, and native method ranks, plus source bindings
+and aggregate, pairwise, agreement, case, fusion, and depth diagnostics. No
+ranking or judgment was recomputed. Its content identity is
+`ecbe17480a250cd8ab2e14f67ebdc81e6ac8ca5f8ca979f98109ad2941feb2df`.
+
+The 191-pair union contains 104 USEFUL, 81 NOT_USEFUL, and 6 UNJUDGED
+resources across case/resource pairs. Twenty of 24 cases have at least one
+USEFUL union resource. Per-method top-five exposure is:
+
+| Method | Occurrences | USEFUL | NOT_USEFUL | UNJUDGED | Cases with USEFUL | Useful among binary judgments |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Canonical BM25 | 120 | 63 | 52 | 5 | 19 | 63/115 |
+| BM25+ | 120 | 63 | 52 | 5 | 19 | 63/115 |
+| Identifier-aware BM25 | 120 | 68 | 46 | 6 | 20 | 68/114 |
+| Path-only BM25 | 48 | 31 | 16 | 1 | 10 | 31/47 |
+| RRF | 120 | 74 | 41 | 5 | 20 | 74/115 |
+
+These fractions describe judged binary outcomes within each frozen candidate
+surface. They do not measure exhaustive corpus recall or task success.
+Twenty-six useful pairs occur in exactly one method's top five; 18 in two,
+12 in three, 39 in four, and 9 in all five. Nine of ten all-five pairs are
+USEFUL, but the useful fraction is not monotonic across agreement levels.
+Agreement is evidence to inspect, not a universal relevance score.
+
+BM25+ changes top-five membership by two pairs on each side of canonical, but
+exposes no additional USEFUL pair; both methods expose the same 63 useful
+pairs. Identifier-aware BM25 exposes 16 useful pairs absent from canonical top
+five, including six unique to identifier top five across all methods. Path-only
+BM25 exposes 21 useful pairs absent from canonical top five, including 14
+unique to path top five; its 28 method-exclusive pairs also contain 14
+NOT_USEFUL outcomes. Thus path evidence is not merely weak overlap. It has
+48 top-five occurrences in 12 cases, with useful results in ten of them.
+
+RRF exposes 74 useful top-five pairs: 21 absent from canonical top five, 17
+absent from identifier top five, and 11 absent from both. Six useful RRF
+top-five pairs are outside *all three* input top-five surfaces. Each of those
+six is present deeper in at least one positive input ranking. RRF changes
+ordering and capacity exposure; it does not generate a resource outside its
+input rankings.
+
+The full union's 20-case useful coverage exceeds canonical's 19 cases by one:
+`i25-739c82bd3398` has useful identifier and RRF candidates but no useful
+canonical top-five candidate. Identifier alone and RRF alone each cover all
+20 union-covered cases on this development sample, but expose only 68 and 74
+of the union's 104 useful pairs respectively. Four cases have no USEFUL pair
+in any tested top-five surface. These observed one-method subsets are not
+production selections.
+
+All 41 useful union pairs absent from canonical top five nevertheless have a
+positive canonical rank: 35 at ranks 6–50 and six beyond rank 50; the range is
+6–97. This distinguishes shallow ranking/capacity loss from lexical
+unreachability for this *judged union*. The earlier Phase-0 depth result used
+only 49 prior-known useful pairs and therefore has a different judgment
+denominator. Its broader K curve and this fully judged top-five union both
+show strong depth effects. Neither exhaustively labels the repository.
+
+Increment 25's confirmed five useful structural additions with no positive
+lexical rank remain valid evidence for that typed imported-member family;
+this lexical-only top-five result does not invalidate them. Increment 26's
+eight useful semantic-only top-five development resources were all reachable
+deeper lexically, consistent with the ranking-depth pattern observed here.
+Its confirmation remains suspended. No structural or semantic score was
+combined with these lexical scores.
+
+On this development sample, the tested cheap mechanisms provide useful
+top-five *resource* complementarity, while only identifier and RRF add
+case-level coverage over canonical. BM25+ is largely redundant here. The
+remaining observed whole-resource lexical problem is chiefly early ordering
+and five-resource capacity within the judged union; broad candidate-generation
+failure outside that union remains unresolved. The next bounded scientific
+step is a preregistered **retrieval-unit ablation** over the same development
+population, comparing whole-resource retrieval with deterministic fixed-window
+lexical units projected back to resource candidates.
+It should preserve the retrieval-unit/disclosure-unit distinction and freeze
+its configuration before any new outcomes. More BM25 formula tuning, the
+971-pair deep adjudication, production promotion, and sealed confirmation are
+not justified by this development analysis alone.
