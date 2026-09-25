@@ -1,0 +1,66 @@
+{
+  "freeze_identity": "758f338af25a5f88fa66229d5ed29f1065a244f4116e0ac843e169114624254c",
+  "schema": "devtools-increment-27-development-depth-summary-v1",
+  "summary": {
+    "case_count": 24,
+    "cases_with_no_known_useful_resource": 8,
+    "existing_judgment_counts": {
+      "not-useful": 69,
+      "unjudged": 2,
+      "useful": 49
+    },
+    "first_known_useful_rank_case_distribution": {
+      "11-20": 1,
+      "21-50": 0,
+      "6-10": 9,
+      "<=5": 5,
+      ">50": 0,
+      "no-known-useful-resource": 8,
+      "unreachable": 1
+    },
+    "known_useful_beyond_50": 2,
+    "known_useful_rank_distribution": {
+      "1-5": 16,
+      "11-20": 6,
+      "21-50": 1,
+      "6-10": 19,
+      ">50": 2,
+      "unreachable": 5
+    },
+    "known_useful_reached_by_k": [
+      {
+        "k": 1,
+        "known_useful_reached": 2,
+        "total_known_useful": 49
+      },
+      {
+        "k": 3,
+        "known_useful_reached": 9,
+        "total_known_useful": 49
+      },
+      {
+        "k": 5,
+        "known_useful_reached": 16,
+        "total_known_useful": 49
+      },
+      {
+        "k": 10,
+        "known_useful_reached": 35,
+        "total_known_useful": 49
+      },
+      {
+        "k": 20,
+        "known_useful_reached": 41,
+        "total_known_useful": 49
+      },
+      {
+        "k": 50,
+        "known_useful_reached": 42,
+        "total_known_useful": 49
+      }
+    ],
+    "known_useful_unreachable_by_positive_lexical_retrieval": 5,
+    "metric_caveat": "Judged-pool depth diagnostics only; these counts are not exhaustive repository Recall@K.",
+    "total_known_useful_pairs": 49
+  }
+}

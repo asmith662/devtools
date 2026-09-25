@@ -1,0 +1,4318 @@
+{
+  "content_identity": "ace8c18e42bc88f1304030c399f29daea66baf26772558ed867244e9dd20ce44",
+  "payload": {
+    "blinding_rules": [
+      "expose only neutral case ID, frozen purpose and query, parent snapshot identity, neutral resource ID/address, and parent-snapshot content",
+      "hide method membership, method-exclusive status, overlap, rank, score, BM25 components, identifier/path/RRF evidence, prior structural/semantic evidence, changed paths, task diff, post-change content, and other-resource judgments",
+      "include no usefulness label in the new blinded input",
+      "sort neutral case and resource identities by their opaque identifiers, not retrieval rank or method"
+    ],
+    "development_case_ids": [
+      "i25-66ed2049de72",
+      "i25-858bfa85787e",
+      "i25-6f304a8c737c",
+      "i25-bb9f807bcd61",
+      "i25-0f7a13667ef3",
+      "i25-739c82bd3398",
+      "i25-9efe3dc31e80",
+      "i25-6b0e9c52fb26",
+      "i25-901246bd802a",
+      "i25-ab24906f07ed",
+      "i25-ac797431db35",
+      "i25-842e90e63f37",
+      "i25-eadb6f231f57",
+      "i25-8994c4e58644",
+      "i25-c0fabcb195e2",
+      "i25-d9e58cd09390",
+      "i25-b5280a3c38ca",
+      "i25-85cfd9ff68a0",
+      "i25-6156c70be14b",
+      "i25-2a4f058d5262",
+      "i25-5fdf5fe05527",
+      "i25-9009cc143957",
+      "i25-4ce485f737e4",
+      "i25-5bdc70483eed"
+    ],
+    "heldout_confirmation_case_count": 14,
+    "heldout_confirmation_outcomes_included": false,
+    "judgment_semantics": {
+      "not_useful": "not useful for the frozen InformationNeed purpose",
+      "unjudged": "no usefulness outcome; never coerce to not-useful",
+      "useful": "useful for the frozen InformationNeed purpose"
+    },
+    "lexical_comparison_configuration_identity": "bc01df59626dd19dceee2a78031d387273c62b26af5ccea4aef59b5dc33328ef",
+    "lexical_comparison_configuration_sha256": "5243f9243235edff4341a2520a8ca820753217699639b4f30ca2e8ce915d4c0f",
+    "lexical_ranking_identity": "e256e90e5b09367f28a749fddc4cd0e39d1bf1645a0cf4931c16535eab57ea86",
+    "lexical_rankings_sha256": "7d566ba0e402d180b2ddfc0840f3002ec8c8337edbed0e3d14e391b717b5f46e",
+    "method_surface_diagnostics": {
+      "membership_distribution": {
+        "1": 51,
+        "2": 33,
+        "3": 27,
+        "4": 70,
+        "5": 10
+      },
+      "method_exclusive_counts": {
+        "bm25_plus": 1,
+        "canonical": 0,
+        "identifier": 14,
+        "path": 28,
+        "rrf": 8
+      },
+      "pairwise_method_overlap": {
+        "bm25_plus x identifier": 91,
+        "bm25_plus x path": 11,
+        "bm25_plus x rrf": 92,
+        "canonical x bm25_plus": 118,
+        "canonical x identifier": 92,
+        "canonical x path": 11,
+        "canonical x rrf": 93,
+        "identifier x path": 13,
+        "identifier x rrf": 94,
+        "path x rrf": 19
+      },
+      "per_method_occurrences": {
+        "bm25_plus": 120,
+        "canonical": 120,
+        "identifier": 120,
+        "path": 48,
+        "rrf": 120
+      }
+    },
+    "new_blinded_population_identity": "f2dabd43c8de35b9bc3f9ae4ef5d8d0149849bee6270d9f9744a6f533fc19555",
+    "new_judgment_count": 133,
+    "new_judgment_pairs": [
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-66ed2049de72"
+      },
+      {
+        "address": "tests/resources/filesystem/models/markdown/test_file.py",
+        "case_id": "i25-858bfa85787e"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/codecs/text.py",
+        "case_id": "i25-858bfa85787e"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/models/text.py",
+        "case_id": "i25-858bfa85787e"
+      },
+      {
+        "address": "tests/context/repository/test_discovery.py",
+        "case_id": "i25-858bfa85787e"
+      },
+      {
+        "address": "src/devtools/context/repository/corpus.py",
+        "case_id": "i25-858bfa85787e"
+      },
+      {
+        "address": "src/devtools/context/repository/observation.py",
+        "case_id": "i25-858bfa85787e"
+      },
+      {
+        "address": "src/devtools/context/repository/identity.py",
+        "case_id": "i25-858bfa85787e"
+      },
+      {
+        "address": "tests/context/test_python_function_materialization.py",
+        "case_id": "i25-bb9f807bcd61"
+      },
+      {
+        "address": "tests/runtime/__init__.py",
+        "case_id": "i25-0f7a13667ef3"
+      },
+      {
+        "address": "tests/runtime/test_live.py",
+        "case_id": "i25-0f7a13667ef3"
+      },
+      {
+        "address": "tests/runtime/test_runtime.py",
+        "case_id": "i25-0f7a13667ef3"
+      },
+      {
+        "address": "tests/execution/test_runtime.py",
+        "case_id": "i25-739c82bd3398"
+      },
+      {
+        "address": "tests/models/interaction/test_models.py",
+        "case_id": "i25-739c82bd3398"
+      },
+      {
+        "address": "src/devtools/execution/interaction_attempt.py",
+        "case_id": "i25-9efe3dc31e80"
+      },
+      {
+        "address": "src/devtools/models/interaction/__init__.py",
+        "case_id": "i25-9efe3dc31e80"
+      },
+      {
+        "address": "src/devtools/models/interaction/usage.py",
+        "case_id": "i25-9efe3dc31e80"
+      },
+      {
+        "address": "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+        "case_id": "i25-901246bd802a"
+      },
+      {
+        "address": "tests/experiments/qwen/test_patch_proposal_worker.py",
+        "case_id": "i25-901246bd802a"
+      },
+      {
+        "address": "tests/experiments/qwen/test_two_action_read_only_experiment.py",
+        "case_id": "i25-901246bd802a"
+      },
+      {
+        "address": "src/devtools/models/serving/docs/overview.md",
+        "case_id": "i25-901246bd802a"
+      },
+      {
+        "address": "tests/scripts/qwen/test_llama_cpp_profile.py",
+        "case_id": "i25-901246bd802a"
+      },
+      {
+        "address": "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+        "case_id": "i25-901246bd802a"
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-ab24906f07ed"
+      },
+      {
+        "address": "src/devtools/context/repository.py",
+        "case_id": "i25-ab24906f07ed"
+      },
+      {
+        "address": "tests/context/test_repository.py",
+        "case_id": "i25-ab24906f07ed"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/roadmap.md",
+        "case_id": "i25-ab24906f07ed"
+      },
+      {
+        "address": "src/devtools/context/python_function_candidates.py",
+        "case_id": "i25-ab24906f07ed"
+      },
+      {
+        "address": "src/devtools/context/python_declarations.py",
+        "case_id": "i25-ac797431db35"
+      },
+      {
+        "address": "tests/context/test_python_declarations.py",
+        "case_id": "i25-ac797431db35"
+      },
+      {
+        "address": "src/devtools/context/python_function_rendering.py",
+        "case_id": "i25-ac797431db35"
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-ac797431db35"
+      },
+      {
+        "address": "tests/context/test_python_function_rendering.py",
+        "case_id": "i25-ac797431db35"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "case_id": "i25-ac797431db35"
+      },
+      {
+        "address": "tests/context/test_python_function_disclosure.py",
+        "case_id": "i25-ac797431db35"
+      },
+      {
+        "address": "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+        "case_id": "i25-842e90e63f37"
+      },
+      {
+        "address": "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+        "case_id": "i25-842e90e63f37"
+      },
+      {
+        "address": "tests/scripts/qwen/test_two_read_acceptance.py",
+        "case_id": "i25-842e90e63f37"
+      },
+      {
+        "address": "tests/experiments/qwen/test_patch_proposal_worker.py",
+        "case_id": "i25-842e90e63f37"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "case_id": "i25-842e90e63f37"
+      },
+      {
+        "address": "tests/models/interaction/test_models.py",
+        "case_id": "i25-eadb6f231f57"
+      },
+      {
+        "address": "tests/models/interaction/providers/test_llama_cpp.py",
+        "case_id": "i25-eadb6f231f57"
+      },
+      {
+        "address": "tests/execution/test_runtime.py",
+        "case_id": "i25-eadb6f231f57"
+      },
+      {
+        "address": "src/devtools/models/interaction/protocols.py",
+        "case_id": "i25-eadb6f231f57"
+      },
+      {
+        "address": "src/devtools/models/interaction/response.py",
+        "case_id": "i25-eadb6f231f57"
+      },
+      {
+        "address": "src/devtools/execution/interaction_attempt.py",
+        "case_id": "i25-eadb6f231f57"
+      },
+      {
+        "address": "src/devtools/models/interaction/__init__.py",
+        "case_id": "i25-eadb6f231f57"
+      },
+      {
+        "address": "tests/models/interaction/__init__.py",
+        "case_id": "i25-eadb6f231f57"
+      },
+      {
+        "address": "tests/models/interaction/test_protocols.py",
+        "case_id": "i25-eadb6f231f57"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/overview.md",
+        "case_id": "i25-8994c4e58644"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/roadmap.md",
+        "case_id": "i25-8994c4e58644"
+      },
+      {
+        "address": "src/devtools/agents/integrations/codex/docs/cli.md",
+        "case_id": "i25-8994c4e58644"
+      },
+      {
+        "address": "tests/agents/conversation/message/test_message.py",
+        "case_id": "i25-8994c4e58644"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/codecs.md",
+        "case_id": "i25-8994c4e58644"
+      },
+      {
+        "address": "tests/scripts/qwen/test_llama_cpp_profile.py",
+        "case_id": "i25-8994c4e58644"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "case_id": "i25-8994c4e58644"
+      },
+      {
+        "address": "src/devtools/persistence/docs/overview.md",
+        "case_id": "i25-c0fabcb195e2"
+      },
+      {
+        "address": "src/devtools/runtime/docs/overview.md",
+        "case_id": "i25-c0fabcb195e2"
+      },
+      {
+        "address": "src/devtools/persistence/docs/sqlite.md",
+        "case_id": "i25-c0fabcb195e2"
+      },
+      {
+        "address": "src/devtools/context/docs/history.md",
+        "case_id": "i25-c0fabcb195e2"
+      },
+      {
+        "address": "src/devtools/agents/docs/overview.md",
+        "case_id": "i25-c0fabcb195e2"
+      },
+      {
+        "address": "src/devtools/models/interaction/docs/overview.md",
+        "case_id": "i25-d9e58cd09390"
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-d9e58cd09390"
+      },
+      {
+        "address": "tests/tools/test_runtime_integration.py",
+        "case_id": "i25-d9e58cd09390"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/overview.md",
+        "case_id": "i25-d9e58cd09390"
+      },
+      {
+        "address": "src/devtools/tools/execution.py",
+        "case_id": "i25-d9e58cd09390"
+      },
+      {
+        "address": "src/devtools/agents/conversation/docs/overview.md",
+        "case_id": "i25-d9e58cd09390"
+      },
+      {
+        "address": "src/devtools/context/python_function_rendering.py",
+        "case_id": "i25-b5280a3c38ca"
+      },
+      {
+        "address": "tests/context/test_python_function_rendering.py",
+        "case_id": "i25-b5280a3c38ca"
+      },
+      {
+        "address": "src/devtools/context/python_function_disclosure.py",
+        "case_id": "i25-b5280a3c38ca"
+      },
+      {
+        "address": "src/devtools/context/python_function_request_assembly.py",
+        "case_id": "i25-b5280a3c38ca"
+      },
+      {
+        "address": "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+        "case_id": "i25-b5280a3c38ca"
+      },
+      {
+        "address": "tests/context/test_python_function_request_assembly.py",
+        "case_id": "i25-b5280a3c38ca"
+      },
+      {
+        "address": "tests/context/__init__.py",
+        "case_id": "i25-b5280a3c38ca"
+      },
+      {
+        "address": "tests/context/test_python_declarations.py",
+        "case_id": "i25-b5280a3c38ca"
+      },
+      {
+        "address": "tests/context/test_python_function_materialization.py",
+        "case_id": "i25-b5280a3c38ca"
+      },
+      {
+        "address": "src/devtools/context/python_function_materialization.py",
+        "case_id": "i25-85cfd9ff68a0"
+      },
+      {
+        "address": "tests/context/test_python_function_rendering.py",
+        "case_id": "i25-85cfd9ff68a0"
+      },
+      {
+        "address": "tests/context/test_python_function_materialization.py",
+        "case_id": "i25-85cfd9ff68a0"
+      },
+      {
+        "address": "src/devtools/context/python_function_rendering.py",
+        "case_id": "i25-85cfd9ff68a0"
+      },
+      {
+        "address": "src/devtools/context/python_declarations.py",
+        "case_id": "i25-85cfd9ff68a0"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "case_id": "i25-85cfd9ff68a0"
+      },
+      {
+        "address": "tests/context/__init__.py",
+        "case_id": "i25-85cfd9ff68a0"
+      },
+      {
+        "address": "tests/context/test_python_declaration_aggregation.py",
+        "case_id": "i25-85cfd9ff68a0"
+      },
+      {
+        "address": "tests/context/test_python_function_disclosure.py",
+        "case_id": "i25-85cfd9ff68a0"
+      },
+      {
+        "address": "src/devtools/context/python_function_disclosure.py",
+        "case_id": "i25-6156c70be14b"
+      },
+      {
+        "address": "src/devtools/models/interaction/docs/overview.md",
+        "case_id": "i25-6156c70be14b"
+      },
+      {
+        "address": "src/devtools/context/python_function_rendering.py",
+        "case_id": "i25-6156c70be14b"
+      },
+      {
+        "address": "tests/context/test_python_function_rendering.py",
+        "case_id": "i25-6156c70be14b"
+      },
+      {
+        "address": "src/devtools/context/python_function_materialization.py",
+        "case_id": "i25-6156c70be14b"
+      },
+      {
+        "address": "tests/context/test_python_function_materialization.py",
+        "case_id": "i25-6156c70be14b"
+      },
+      {
+        "address": "tests/context/__init__.py",
+        "case_id": "i25-6156c70be14b"
+      },
+      {
+        "address": "tests/context/test_python_declarations.py",
+        "case_id": "i25-6156c70be14b"
+      },
+      {
+        "address": "src/devtools/context/python_declarations.py",
+        "case_id": "i25-2a4f058d5262"
+      },
+      {
+        "address": "tests/context/test_python_declarations.py",
+        "case_id": "i25-2a4f058d5262"
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-2a4f058d5262"
+      },
+      {
+        "address": "src/devtools/context/python_function_rendering.py",
+        "case_id": "i25-2a4f058d5262"
+      },
+      {
+        "address": "tests/context/test_python_function_disclosure.py",
+        "case_id": "i25-2a4f058d5262"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "case_id": "i25-2a4f058d5262"
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-5fdf5fe05527"
+      },
+      {
+        "address": "src/devtools/context/repository/observation.py",
+        "case_id": "i25-5fdf5fe05527"
+      },
+      {
+        "address": "tests/context/repository/test_discovery.py",
+        "case_id": "i25-5fdf5fe05527"
+      },
+      {
+        "address": "src/devtools/resources/commands/docs/overview.md",
+        "case_id": "i25-5fdf5fe05527"
+      },
+      {
+        "address": "src/devtools/context/repository/snapshot.py",
+        "case_id": "i25-5fdf5fe05527"
+      },
+      {
+        "address": "src/devtools/models/interaction/observation.py",
+        "case_id": "i25-5fdf5fe05527"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/codecs/text.py",
+        "case_id": "i25-5fdf5fe05527"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/models/text.py",
+        "case_id": "i25-5fdf5fe05527"
+      },
+      {
+        "address": "tests/context/repository/__init__.py",
+        "case_id": "i25-5fdf5fe05527"
+      },
+      {
+        "address": "src/devtools/context/repository/__init__.py",
+        "case_id": "i25-5fdf5fe05527"
+      },
+      {
+        "address": "src/devtools/models/benchmarks/docs/overview.md",
+        "case_id": "i25-9009cc143957"
+      },
+      {
+        "address": "src/devtools/core/time/docs/overview.md",
+        "case_id": "i25-9009cc143957"
+      },
+      {
+        "address": "src/devtools/core/time/models/stopwatch.py",
+        "case_id": "i25-9009cc143957"
+      },
+      {
+        "address": "src/devtools/models/benchmarks/runner.py",
+        "case_id": "i25-9009cc143957"
+      },
+      {
+        "address": "src/devtools/core/time/docs/timing.md",
+        "case_id": "i25-9009cc143957"
+      },
+      {
+        "address": "tests/models/benchmarks/test_runner.py",
+        "case_id": "i25-9009cc143957"
+      },
+      {
+        "address": "src/devtools/core/paths/docs/resolution.md",
+        "case_id": "i25-4ce485f737e4"
+      },
+      {
+        "address": "tests/context/python/imports/test_declarations.py",
+        "case_id": "i25-4ce485f737e4"
+      },
+      {
+        "address": "tests/context/python/test_source_candidacy.py",
+        "case_id": "i25-4ce485f737e4"
+      },
+      {
+        "address": "src/devtools/core/identity/docs/overview.md",
+        "case_id": "i25-4ce485f737e4"
+      },
+      {
+        "address": "tests/context/repository/test_discovery.py",
+        "case_id": "i25-4ce485f737e4"
+      },
+      {
+        "address": "tests/context/python/__init__.py",
+        "case_id": "i25-4ce485f737e4"
+      },
+      {
+        "address": "src/devtools/context/python/__init__.py",
+        "case_id": "i25-4ce485f737e4"
+      },
+      {
+        "address": "src/devtools/context/python/source_candidacy.py",
+        "case_id": "i25-4ce485f737e4"
+      },
+      {
+        "address": "tests/context/python/function/__init__.py",
+        "case_id": "i25-4ce485f737e4"
+      },
+      {
+        "address": "tests/context/python/function/test_candidates.py",
+        "case_id": "i25-4ce485f737e4"
+      },
+      {
+        "address": "tests/context/python/function/test_resource_selection.py",
+        "case_id": "i25-4ce485f737e4"
+      },
+      {
+        "address": "tests/context/python/function/test_declarations.py",
+        "case_id": "i25-4ce485f737e4"
+      },
+      {
+        "address": "src/devtools/context/python_declarations.py",
+        "case_id": "i25-5bdc70483eed"
+      },
+      {
+        "address": "src/devtools/agents/conversation/docs/overview.md",
+        "case_id": "i25-5bdc70483eed"
+      },
+      {
+        "address": "src/devtools/context/python_function_disclosure.py",
+        "case_id": "i25-5bdc70483eed"
+      },
+      {
+        "address": "tests/context/test_python_declarations.py",
+        "case_id": "i25-5bdc70483eed"
+      },
+      {
+        "address": "tests/context/test_python_function_retrieval.py",
+        "case_id": "i25-5bdc70483eed"
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-5bdc70483eed"
+      }
+    ],
+    "new_usefulness_outcomes": false,
+    "phase0_freeze_identity": "758f338af25a5f88fa66229d5ed29f1065a244f4116e0ac843e169114624254c",
+    "phase1_deep_pool_artifact_sha256": {
+      "phase1_blinded_judgment_input.json": "b7ccacfe76990cfab5ad0f17b70886ca5d9c4d8fc8e4c88f03b2d8ddb00f55e2",
+      "phase1_pooled_pairs.json": "a9d56ba5ce3ddcf5a21411daa0a0d0ea14d3487e33c2cc20408e3bbe2181310d",
+      "phase1_population_freeze.json": "9cc4795711ac44e2a9537605af7bb78fa8968d0ffb15eb52488915e23063e19b",
+      "phase1_reused_judgments.json": "0475e11f86a385f5b91c0f5778444cd9c23f63d0d6551e9e6ca2ec3203e47783"
+    },
+    "phase1_deep_pool_freeze_identity": "44ea9b89baec2e68e11ee3ba476317e7ef65f9c396b965b1bcc38e727cd07642",
+    "phase1_deep_pool_status": "preserved frozen population; adjudication suspended",
+    "pooled_pair_count": 191,
+    "pooled_pairs": [
+      {
+        "address": "src/devtools/core/identity/docs/overview.md",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f"
+      },
+      {
+        "address": "src/devtools/core/time/docs/timestamps.md",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 2,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f"
+      },
+      {
+        "address": "src/devtools/core/paths/docs/overview.md",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 3,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f"
+      },
+      {
+        "address": "tests/observability/evidence/test_model_interaction.py",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 4
+        },
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f"
+      },
+      {
+        "address": "src/devtools/core/paths/docs/resolution.md",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "method_ranks": {
+          "canonical": 5,
+          "identifier": 5,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f"
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "identifier": 4,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f"
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1
+        },
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282"
+      },
+      {
+        "address": "tests/resources/filesystem/codecs/test_markdown.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 2
+        },
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282"
+      },
+      {
+        "address": "src/devtools/context/repository/resource.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 4,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282"
+      },
+      {
+        "address": "src/devtools/core/time/docs/timestamps.md",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "identifier": 3
+        },
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282"
+      },
+      {
+        "address": "src/devtools/context/repository/snapshot.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282"
+      },
+      {
+        "address": "tests/resources/filesystem/models/markdown/test_file.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "method_ranks": {
+          "identifier": 5
+        },
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/codecs/text.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "method_ranks": {
+          "path": 1
+        },
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/models/text.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "method_ranks": {
+          "path": 2
+        },
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282"
+      },
+      {
+        "address": "tests/context/repository/__init__.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "method_ranks": {
+          "path": 3
+        },
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282"
+      },
+      {
+        "address": "tests/context/repository/test_corpus.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "method_ranks": {
+          "path": 4
+        },
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282"
+      },
+      {
+        "address": "tests/context/repository/test_discovery.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "method_ranks": {
+          "path": 5
+        },
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282"
+      },
+      {
+        "address": "src/devtools/context/repository/corpus.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "method_ranks": {
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282"
+      },
+      {
+        "address": "src/devtools/context/repository/observation.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "method_ranks": {
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282"
+      },
+      {
+        "address": "src/devtools/context/repository/identity.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "method_ranks": {
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282"
+      },
+      {
+        "address": "src/devtools/models/interaction/docs/overview.md",
+        "case_id": "i25-6f304a8c737c",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f"
+      },
+      {
+        "address": "src/devtools/models/interaction/models.py",
+        "case_id": "i25-6f304a8c737c",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 2,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f"
+      },
+      {
+        "address": "tests/models/interaction/test_models.py",
+        "case_id": "i25-6f304a8c737c",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 4,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f"
+      },
+      {
+        "address": "src/devtools/models/interaction/protocols.py",
+        "case_id": "i25-6f304a8c737c",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "identifier": 3,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f"
+      },
+      {
+        "address": "tests/models/interaction/providers/test_llama_cpp.py",
+        "case_id": "i25-6f304a8c737c",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5,
+          "identifier": 5,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f"
+      },
+      {
+        "address": "src/devtools/context/python_function_rendering.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 3,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6"
+      },
+      {
+        "address": "tests/context/test_python_function_rendering.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 2,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6"
+      },
+      {
+        "address": "src/devtools/context/python_declarations.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3
+        },
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6"
+      },
+      {
+        "address": "src/devtools/context/python_function_disclosure.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6"
+      },
+      {
+        "address": "tests/context/test_python_function_disclosure.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5,
+          "identifier": 1,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6"
+      },
+      {
+        "address": "tests/context/test_python_function_materialization.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "method_ranks": {
+          "identifier": 4,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6"
+      },
+      {
+        "address": "tests/context/test_python_function_cross_resource_pipeline.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "method_ranks": {
+          "identifier": 5
+        },
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6"
+      },
+      {
+        "address": "src/devtools/evidence/docs/overview.md",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84"
+      },
+      {
+        "address": "src/devtools/evidence/terminal.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 2,
+          "path": 1,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84"
+      },
+      {
+        "address": "tests/evidence/test_terminal.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 3,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84"
+      },
+      {
+        "address": "src/devtools/persistence/docs/overview.md",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 4
+        },
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84"
+      },
+      {
+        "address": "src/devtools/runtime/runtime.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 5,
+          "identifier": 4,
+          "path": 2,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84"
+      },
+      {
+        "address": "src/devtools/evidence/__init__.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "method_ranks": {
+          "identifier": 5,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84"
+      },
+      {
+        "address": "tests/runtime/__init__.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "method_ranks": {
+          "path": 3
+        },
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84"
+      },
+      {
+        "address": "tests/runtime/test_live.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "method_ranks": {
+          "path": 4
+        },
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84"
+      },
+      {
+        "address": "tests/runtime/test_runtime.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "method_ranks": {
+          "path": 5
+        },
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/codecs/markdown.py",
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 4,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/codecs/json.py",
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/codecs/text.py",
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 5,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728"
+      },
+      {
+        "address": "tests/models/interaction/test_protocols.py",
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "identifier": 1,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/json.md",
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5
+        },
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728"
+      },
+      {
+        "address": "tests/execution/test_runtime.py",
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "method_ranks": {
+          "identifier": 2
+        },
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728"
+      },
+      {
+        "address": "tests/models/interaction/test_models.py",
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "method_ranks": {
+          "identifier": 3,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728"
+      },
+      {
+        "address": "src/devtools/resources/commands/models/output.py",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1,
+          "path": 1,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967"
+      },
+      {
+        "address": "src/devtools/models/interaction/response.py",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 2,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967"
+      },
+      {
+        "address": "tests/models/interaction/test_protocols.py",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "path": 4,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967"
+      },
+      {
+        "address": "src/devtools/models/interaction/docs/overview.md",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "identifier": 4,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/roadmap.md",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5
+        },
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967"
+      },
+      {
+        "address": "tests/models/interaction/test_models.py",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "method_ranks": {
+          "identifier": 3,
+          "path": 3
+        },
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967"
+      },
+      {
+        "address": "src/devtools/execution/interaction_attempt.py",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "method_ranks": {
+          "identifier": 5
+        },
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967"
+      },
+      {
+        "address": "tests/models/interaction/__init__.py",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "method_ranks": {
+          "path": 2
+        },
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967"
+      },
+      {
+        "address": "src/devtools/models/interaction/__init__.py",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "method_ranks": {
+          "path": 5
+        },
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967"
+      },
+      {
+        "address": "src/devtools/models/interaction/usage.py",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "method_ranks": {
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967"
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775"
+      },
+      {
+        "address": "tests/models/serving/test_huggingface.py",
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 3,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775"
+      },
+      {
+        "address": "src/devtools/resources/commands/docs/overview.md",
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 2,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775"
+      },
+      {
+        "address": "src/devtools/models/serving/docs/overview.md",
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "identifier": 5,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775"
+      },
+      {
+        "address": "tests/models/benchmarks/test_models.py",
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5,
+          "identifier": 4
+        },
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775"
+      },
+      {
+        "address": "src/devtools/models/interaction/observation.py",
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "method_ranks": {
+          "path": 1,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775"
+      },
+      {
+        "address": "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1"
+      },
+      {
+        "address": "tests/experiments/qwen/test_patch_proposal_worker.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 3,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1"
+      },
+      {
+        "address": "tests/experiments/qwen/test_two_action_read_only_experiment.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 5,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1"
+      },
+      {
+        "address": "src/devtools/models/serving/docs/overview.md",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1"
+      },
+      {
+        "address": "tests/scripts/qwen/test_llama_cpp_profile.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5
+        },
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1"
+      },
+      {
+        "address": "tests/scripts/qwen/test_two_read_acceptance.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "method_ranks": {
+          "identifier": 2,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1"
+      },
+      {
+        "address": "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "method_ranks": {
+          "identifier": 4
+        },
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1"
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-ab24906f07ed",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61"
+      },
+      {
+        "address": "src/devtools/context/repository.py",
+        "case_id": "i25-ab24906f07ed",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 2,
+          "path": 1,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61"
+      },
+      {
+        "address": "tests/context/test_repository.py",
+        "case_id": "i25-ab24906f07ed",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 3,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/roadmap.md",
+        "case_id": "i25-ab24906f07ed",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4
+        },
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61"
+      },
+      {
+        "address": "src/devtools/context/python_function_candidates.py",
+        "case_id": "i25-ab24906f07ed",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5,
+          "identifier": 4,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61"
+      },
+      {
+        "address": "src/devtools/context/python_function_retrieval.py",
+        "case_id": "i25-ab24906f07ed",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "method_ranks": {
+          "identifier": 5,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61"
+      },
+      {
+        "address": "src/devtools/context/python_declarations.py",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 2,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2"
+      },
+      {
+        "address": "tests/context/test_python_declarations.py",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 1,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2"
+      },
+      {
+        "address": "src/devtools/context/python_function_rendering.py",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2"
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4
+        },
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2"
+      },
+      {
+        "address": "tests/context/test_python_function_rendering.py",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "method_ranks": {
+          "identifier": 3
+        },
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2"
+      },
+      {
+        "address": "tests/context/test_python_function_disclosure.py",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "method_ranks": {
+          "identifier": 4,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2"
+      },
+      {
+        "address": "tests/context/test_python_function_retrieval.py",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "method_ranks": {
+          "identifier": 5
+        },
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2"
+      },
+      {
+        "address": "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+        "case_id": "i25-842e90e63f37",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a"
+      },
+      {
+        "address": "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+        "case_id": "i25-842e90e63f37",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 3,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a"
+      },
+      {
+        "address": "tests/scripts/qwen/test_two_read_acceptance.py",
+        "case_id": "i25-842e90e63f37",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 4,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a"
+      },
+      {
+        "address": "tests/experiments/qwen/test_patch_proposal_worker.py",
+        "case_id": "i25-842e90e63f37",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "identifier": 2,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "case_id": "i25-842e90e63f37",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5,
+          "identifier": 5,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a"
+      },
+      {
+        "address": "tests/models/interaction/test_models.py",
+        "case_id": "i25-eadb6f231f57",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1,
+          "path": 2,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9"
+      },
+      {
+        "address": "tests/models/interaction/providers/test_llama_cpp.py",
+        "case_id": "i25-eadb6f231f57",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 2,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9"
+      },
+      {
+        "address": "tests/execution/test_runtime.py",
+        "case_id": "i25-eadb6f231f57",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 3
+        },
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9"
+      },
+      {
+        "address": "src/devtools/models/interaction/protocols.py",
+        "case_id": "i25-eadb6f231f57",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9"
+      },
+      {
+        "address": "src/devtools/models/interaction/response.py",
+        "case_id": "i25-eadb6f231f57",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5
+        },
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9"
+      },
+      {
+        "address": "src/devtools/execution/interaction_attempt.py",
+        "case_id": "i25-eadb6f231f57",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "method_ranks": {
+          "identifier": 4
+        },
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9"
+      },
+      {
+        "address": "src/devtools/models/interaction/__init__.py",
+        "case_id": "i25-eadb6f231f57",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "method_ranks": {
+          "identifier": 5,
+          "path": 4,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9"
+      },
+      {
+        "address": "tests/models/interaction/__init__.py",
+        "case_id": "i25-eadb6f231f57",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "method_ranks": {
+          "path": 1
+        },
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9"
+      },
+      {
+        "address": "tests/models/interaction/test_protocols.py",
+        "case_id": "i25-eadb6f231f57",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "method_ranks": {
+          "path": 3,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9"
+      },
+      {
+        "address": "src/devtools/models/interaction/models.py",
+        "case_id": "i25-eadb6f231f57",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "method_ranks": {
+          "path": 5
+        },
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/overview.md",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/roadmap.md",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 2,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629"
+      },
+      {
+        "address": "src/devtools/agents/integrations/codex/docs/cli.md",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 3,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629"
+      },
+      {
+        "address": "tests/agents/conversation/message/test_message.py",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/codecs.md",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5,
+          "identifier": 5,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629"
+      },
+      {
+        "address": "tests/scripts/qwen/test_llama_cpp_profile.py",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "method_ranks": {
+          "identifier": 4
+        },
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "method_ranks": {
+          "path": 1
+        },
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629"
+      },
+      {
+        "address": "src/devtools/persistence/docs/overview.md",
+        "case_id": "i25-c0fabcb195e2",
+        "information_need": {
+          "lexical_query": "ed evidence",
+          "purpose": "Address the historical maintenance task: ed evidence"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "9c42bd9b3da3f468bb7bbf0b8235596187dc64c3"
+      },
+      {
+        "address": "src/devtools/runtime/docs/overview.md",
+        "case_id": "i25-c0fabcb195e2",
+        "information_need": {
+          "lexical_query": "ed evidence",
+          "purpose": "Address the historical maintenance task: ed evidence"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 2,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "9c42bd9b3da3f468bb7bbf0b8235596187dc64c3"
+      },
+      {
+        "address": "src/devtools/persistence/docs/sqlite.md",
+        "case_id": "i25-c0fabcb195e2",
+        "information_need": {
+          "lexical_query": "ed evidence",
+          "purpose": "Address the historical maintenance task: ed evidence"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 3,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "9c42bd9b3da3f468bb7bbf0b8235596187dc64c3"
+      },
+      {
+        "address": "src/devtools/context/docs/history.md",
+        "case_id": "i25-c0fabcb195e2",
+        "information_need": {
+          "lexical_query": "ed evidence",
+          "purpose": "Address the historical maintenance task: ed evidence"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "identifier": 4,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "9c42bd9b3da3f468bb7bbf0b8235596187dc64c3"
+      },
+      {
+        "address": "src/devtools/agents/docs/overview.md",
+        "case_id": "i25-c0fabcb195e2",
+        "information_need": {
+          "lexical_query": "ed evidence",
+          "purpose": "Address the historical maintenance task: ed evidence"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5,
+          "identifier": 5,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "9c42bd9b3da3f468bb7bbf0b8235596187dc64c3"
+      },
+      {
+        "address": "src/devtools/models/interaction/docs/overview.md",
+        "case_id": "i25-d9e58cd09390",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4"
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-d9e58cd09390",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 2,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4"
+      },
+      {
+        "address": "tests/tools/test_runtime_integration.py",
+        "case_id": "i25-d9e58cd09390",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 3,
+          "identifier": 4,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/overview.md",
+        "case_id": "i25-d9e58cd09390",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 4,
+          "identifier": 3,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4"
+      },
+      {
+        "address": "src/devtools/tools/execution.py",
+        "case_id": "i25-d9e58cd09390",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5
+        },
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4"
+      },
+      {
+        "address": "src/devtools/agents/conversation/docs/overview.md",
+        "case_id": "i25-d9e58cd09390",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "method_ranks": {
+          "identifier": 5,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4"
+      },
+      {
+        "address": "src/devtools/context/python_function_rendering.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 2,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee"
+      },
+      {
+        "address": "tests/context/test_python_function_rendering.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 1,
+          "path": 5,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee"
+      },
+      {
+        "address": "src/devtools/context/python_function_disclosure.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 3,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee"
+      },
+      {
+        "address": "src/devtools/context/python_function_request_assembly.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4
+        },
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee"
+      },
+      {
+        "address": "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5
+        },
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee"
+      },
+      {
+        "address": "tests/context/test_python_function_request_assembly.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "method_ranks": {
+          "identifier": 4,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee"
+      },
+      {
+        "address": "src/devtools/context/python_function_materialization.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "method_ranks": {
+          "identifier": 5
+        },
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee"
+      },
+      {
+        "address": "tests/context/__init__.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "method_ranks": {
+          "path": 1
+        },
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee"
+      },
+      {
+        "address": "tests/context/test_python_declarations.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "method_ranks": {
+          "path": 2
+        },
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee"
+      },
+      {
+        "address": "tests/context/test_python_function_disclosure.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "method_ranks": {
+          "path": 3,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee"
+      },
+      {
+        "address": "tests/context/test_python_function_materialization.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "method_ranks": {
+          "path": 4
+        },
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee"
+      },
+      {
+        "address": "src/devtools/context/python_function_materialization.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83"
+      },
+      {
+        "address": "tests/context/test_python_function_rendering.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 4,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83"
+      },
+      {
+        "address": "tests/context/test_python_function_materialization.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 2,
+          "path": 5,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83"
+      },
+      {
+        "address": "src/devtools/context/python_function_rendering.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "identifier": 5
+        },
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83"
+      },
+      {
+        "address": "src/devtools/context/python_declarations.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5
+        },
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "method_ranks": {
+          "identifier": 3
+        },
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83"
+      },
+      {
+        "address": "tests/context/__init__.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "method_ranks": {
+          "path": 1
+        },
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83"
+      },
+      {
+        "address": "tests/context/test_python_declaration_aggregation.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "method_ranks": {
+          "path": 2,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83"
+      },
+      {
+        "address": "tests/context/test_python_declarations.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "method_ranks": {
+          "path": 3,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83"
+      },
+      {
+        "address": "tests/context/test_python_function_disclosure.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "method_ranks": {
+          "path": 4
+        },
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83"
+      },
+      {
+        "address": "src/devtools/context/python_function_disclosure.py",
+        "case_id": "i25-6156c70be14b",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431"
+      },
+      {
+        "address": "src/devtools/models/interaction/docs/overview.md",
+        "case_id": "i25-6156c70be14b",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2
+        },
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431"
+      },
+      {
+        "address": "src/devtools/context/python_function_rendering.py",
+        "case_id": "i25-6156c70be14b",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 5
+        },
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431"
+      },
+      {
+        "address": "tests/context/test_python_function_rendering.py",
+        "case_id": "i25-6156c70be14b",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "identifier": 4,
+          "path": 5,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431"
+      },
+      {
+        "address": "src/devtools/context/python_function_materialization.py",
+        "case_id": "i25-6156c70be14b",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5,
+          "identifier": 2,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431"
+      },
+      {
+        "address": "tests/context/test_python_function_materialization.py",
+        "case_id": "i25-6156c70be14b",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "method_ranks": {
+          "identifier": 3,
+          "path": 4,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431"
+      },
+      {
+        "address": "tests/context/__init__.py",
+        "case_id": "i25-6156c70be14b",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "method_ranks": {
+          "path": 1
+        },
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431"
+      },
+      {
+        "address": "tests/context/test_python_declarations.py",
+        "case_id": "i25-6156c70be14b",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "method_ranks": {
+          "path": 2
+        },
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431"
+      },
+      {
+        "address": "tests/context/test_python_function_disclosure.py",
+        "case_id": "i25-6156c70be14b",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "method_ranks": {
+          "path": 3,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431"
+      },
+      {
+        "address": "src/devtools/context/python_declarations.py",
+        "case_id": "i25-2a4f058d5262",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b"
+      },
+      {
+        "address": "tests/context/test_python_declarations.py",
+        "case_id": "i25-2a4f058d5262",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 2,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b"
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-2a4f058d5262",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b"
+      },
+      {
+        "address": "src/devtools/context/python_function_rendering.py",
+        "case_id": "i25-2a4f058d5262",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b"
+      },
+      {
+        "address": "tests/context/test_python_function_disclosure.py",
+        "case_id": "i25-2a4f058d5262",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5,
+          "identifier": 4,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "case_id": "i25-2a4f058d5262",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "method_ranks": {
+          "identifier": 3
+        },
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b"
+      },
+      {
+        "address": "src/devtools/context/python_function_materialization.py",
+        "case_id": "i25-2a4f058d5262",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "method_ranks": {
+          "identifier": 5
+        },
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b"
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-5fdf5fe05527",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1
+        },
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d"
+      },
+      {
+        "address": "src/devtools/context/repository/observation.py",
+        "case_id": "i25-5fdf5fe05527",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 2,
+          "path": 1,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d"
+      },
+      {
+        "address": "tests/context/repository/test_discovery.py",
+        "case_id": "i25-5fdf5fe05527",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 4,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d"
+      },
+      {
+        "address": "src/devtools/resources/commands/docs/overview.md",
+        "case_id": "i25-5fdf5fe05527",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4
+        },
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d"
+      },
+      {
+        "address": "src/devtools/context/repository/snapshot.py",
+        "case_id": "i25-5fdf5fe05527",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5,
+          "identifier": 5,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d"
+      },
+      {
+        "address": "tests/context/repository/test_observation.py",
+        "case_id": "i25-5fdf5fe05527",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "method_ranks": {
+          "identifier": 3,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d"
+      },
+      {
+        "address": "src/devtools/models/interaction/observation.py",
+        "case_id": "i25-5fdf5fe05527",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "method_ranks": {
+          "path": 2
+        },
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/codecs/text.py",
+        "case_id": "i25-5fdf5fe05527",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "method_ranks": {
+          "path": 3
+        },
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/models/text.py",
+        "case_id": "i25-5fdf5fe05527",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "method_ranks": {
+          "path": 4
+        },
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d"
+      },
+      {
+        "address": "tests/context/repository/__init__.py",
+        "case_id": "i25-5fdf5fe05527",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "method_ranks": {
+          "path": 5
+        },
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d"
+      },
+      {
+        "address": "src/devtools/context/repository/__init__.py",
+        "case_id": "i25-5fdf5fe05527",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "method_ranks": {
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d"
+      },
+      {
+        "address": "src/devtools/models/benchmarks/docs/overview.md",
+        "case_id": "i25-9009cc143957",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 1,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e"
+      },
+      {
+        "address": "src/devtools/core/time/docs/overview.md",
+        "case_id": "i25-9009cc143957",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 2,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e"
+      },
+      {
+        "address": "src/devtools/core/time/models/stopwatch.py",
+        "case_id": "i25-9009cc143957",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 3,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e"
+      },
+      {
+        "address": "src/devtools/models/benchmarks/runner.py",
+        "case_id": "i25-9009cc143957",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "identifier": 4,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e"
+      },
+      {
+        "address": "src/devtools/core/time/docs/timing.md",
+        "case_id": "i25-9009cc143957",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e"
+      },
+      {
+        "address": "tests/models/benchmarks/test_runner.py",
+        "case_id": "i25-9009cc143957",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "method_ranks": {
+          "identifier": 5
+        },
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e"
+      },
+      {
+        "address": "src/devtools/core/paths/docs/resolution.md",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 2
+        },
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591"
+      },
+      {
+        "address": "tests/context/python/imports/test_declarations.py",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2,
+          "identifier": 1,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591"
+      },
+      {
+        "address": "tests/context/python/test_source_candidacy.py",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 4,
+          "path": 2,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591"
+      },
+      {
+        "address": "src/devtools/core/identity/docs/overview.md",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "identifier": 3
+        },
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591"
+      },
+      {
+        "address": "tests/context/repository/test_discovery.py",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "method_ranks": {
+          "bm25_plus": 5,
+          "canonical": 5,
+          "identifier": 5
+        },
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591"
+      },
+      {
+        "address": "tests/context/python/__init__.py",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "method_ranks": {
+          "path": 1
+        },
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591"
+      },
+      {
+        "address": "src/devtools/context/python/__init__.py",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "method_ranks": {
+          "path": 3
+        },
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591"
+      },
+      {
+        "address": "src/devtools/context/python/source_candidacy.py",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "method_ranks": {
+          "path": 4
+        },
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591"
+      },
+      {
+        "address": "tests/context/python/function/__init__.py",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "method_ranks": {
+          "path": 5
+        },
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591"
+      },
+      {
+        "address": "tests/context/python/function/test_candidates.py",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "method_ranks": {
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591"
+      },
+      {
+        "address": "tests/context/python/function/test_resource_selection.py",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "method_ranks": {
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591"
+      },
+      {
+        "address": "tests/context/python/function/test_declarations.py",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "method_ranks": {
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591"
+      },
+      {
+        "address": "src/devtools/context/python_declarations.py",
+        "case_id": "i25-5bdc70483eed",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "method_ranks": {
+          "bm25_plus": 1,
+          "canonical": 1,
+          "identifier": 3,
+          "rrf": 1
+        },
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000"
+      },
+      {
+        "address": "src/devtools/agents/conversation/docs/overview.md",
+        "case_id": "i25-5bdc70483eed",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "method_ranks": {
+          "bm25_plus": 2,
+          "canonical": 2
+        },
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000"
+      },
+      {
+        "address": "src/devtools/context/python_function_disclosure.py",
+        "case_id": "i25-5bdc70483eed",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "method_ranks": {
+          "bm25_plus": 3,
+          "canonical": 3,
+          "identifier": 1,
+          "rrf": 2
+        },
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000"
+      },
+      {
+        "address": "tests/context/test_python_declarations.py",
+        "case_id": "i25-5bdc70483eed",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "method_ranks": {
+          "bm25_plus": 4,
+          "canonical": 4,
+          "identifier": 5,
+          "rrf": 4
+        },
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000"
+      },
+      {
+        "address": "tests/context/test_python_function_retrieval.py",
+        "case_id": "i25-5bdc70483eed",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "method_ranks": {
+          "canonical": 5,
+          "identifier": 4,
+          "rrf": 5
+        },
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000"
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-5bdc70483eed",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "method_ranks": {
+          "bm25_plus": 5
+        },
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000"
+      },
+      {
+        "address": "tests/context/test_python_function_disclosure.py",
+        "case_id": "i25-5bdc70483eed",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "method_ranks": {
+          "identifier": 2,
+          "rrf": 3
+        },
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000"
+      }
+    ],
+    "pooled_population_identity": "5095a7dbdd054bdba51c41d9a171ef718151caa05360557e8b702aae46b53390",
+    "reused_judgment_count": 58,
+    "reused_judgment_mapping_identity": "d7bc881400a2fc475c098f153c94829f23e39257c7bc3a8a857cfacb44cce1b9",
+    "reused_judgments": [
+      {
+        "address": "src/devtools/core/identity/docs/overview.md",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "35b358d34626247a5455c78c0482edc0f4a561db880a9df6217d251990aa3eec",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/core/time/docs/timestamps.md",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "c506a1c2d8068a619a1ed51fb68ed0de56e665b49ccd88cf223f15bbd014db47",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/core/paths/docs/overview.md",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "bcf155fa66461c8183ac47a59f77a4ac840b8ffebb867f1de2e4a80677828e37",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/observability/evidence/test_model_interaction.py",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "7459f6640712977e352c2ed614896f29268a504689c9e069057c6ee9c0753d27",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/core/paths/docs/resolution.md",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "d31278db80b81a3f3366e745b8765d9f8cc87666c3882d5d567bf76eee17d6b5",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "ef8456820f77e38ba05de93295c5b30a680fe2354145a4012d0a052464bc3430",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/resources/filesystem/codecs/test_markdown.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "324a1918ee80c142968ac15ade6ea44568a21be06ef98f9c00d07132934f609f",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/context/repository/resource.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "4802c79936f10e47fed4d55fa1209b5f0f0fcc41876e5b8250f7ff53283f3a42",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/core/time/docs/timestamps.md",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "cf0d4b05210ed0c2bd3455f820ee43d3503cd7f5defb9fbd7e58e68568a63c32",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/context/repository/snapshot.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "ed2f3e63ea3f5395cd412e80f1e78674d67f81f4db23a7d4d91e3b76e9c42777",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/context/repository/__init__.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "a5c9d506be932b9a539cc2bb9622d18763049df9677f53eae776fac0bcc43ddb",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/context/repository/test_corpus.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "428569e68c717a4530af2a9f3738e0c2e7343ec4001d64c8e5d974d10ecbea29",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/models/interaction/docs/overview.md",
+        "case_id": "i25-6f304a8c737c",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "66a8d386f4ea192a573fc333f1dc0ee60bfb048981d37b67bfec26b5024ccb6b",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/models/interaction/models.py",
+        "case_id": "i25-6f304a8c737c",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "37b76aeb8e3048c02fab65d2e42add8a05d27d3a99e6af0cba61926ede7a628b",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/models/interaction/test_models.py",
+        "case_id": "i25-6f304a8c737c",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "9ffb029137465a388a9a3697a8967d3ce3f9503a51ab59aa7060c6e8119bb01e",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/models/interaction/protocols.py",
+        "case_id": "i25-6f304a8c737c",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "6a96368bc37d9c3c369b8f3981681a9293471b7fd2fa5b6520b7c770c4251bd8",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/models/interaction/providers/test_llama_cpp.py",
+        "case_id": "i25-6f304a8c737c",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "40115316b006bd1b398c7eda5c4f2317ee6bb725086ebc991b1e34f23cfa8aa3",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/context/python_function_rendering.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "16a0544408763f8e3a1202a2b2aff948dacdb97723bced15b9b1e886fe24b5be",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/context/test_python_function_rendering.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "0e5d9e9f6bd148714a27950bff8868bc237d776a499e283f46fa70333996195c",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/context/python_declarations.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "130c123d9684ba5c5aee4998c226e4f0eb2f794cab2dbf2ca2608b0917dde66c",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/context/python_function_disclosure.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "a974f40e8c1e55470c5833b7f5b8de6094e5139fba8ad1080471d122fed232ce",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/context/test_python_function_disclosure.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "4e6ded9d19a84d32b08a994543ac45d0e743ac3d46542bab01c8a105c3a9cbda",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/context/test_python_function_cross_resource_pipeline.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "3558bad5f4abf655c969c9710bc76527563448204033ac09fa3067887fab3ca6",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/evidence/docs/overview.md",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "f78d9d6e5e54b8edf1927e838bc15adf5da40811cdcc84d01d28f92b9af3803f",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/evidence/terminal.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "b5d603f508d167bc090d598c643d45c223a283e9ee0068d4dbe1c78803e286a5",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/evidence/test_terminal.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "0b8b8ca63ed3beddc9ef4eb8cdae1f206824b31b73bd788ebeca5f66187a211d",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/persistence/docs/overview.md",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "5ff8960f971da28b2bcb72bfae3c11a584ab0dad71b38031c624ad564c1c36c6",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/runtime/runtime.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "f5d6b7e914bbcecf1284d471f67615b7d54f415160bf0f70b7e913b22c9ada72",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/evidence/__init__.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "7bd099f2a033de6027bb2bde8867b99b383168fa26b53232af9d6ba82ef12841",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/resources/filesystem/codecs/markdown.py",
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "0d334f7ed7606d5398e3fa7ca54c0c20555dc9c2851d77a41e74e4a5108ed0b0",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/resources/filesystem/codecs/json.py",
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "a414cfdb92cb56ba5e0d40efd163a0455d7c6f4560c264b22376f433934323d9",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/resources/filesystem/codecs/text.py",
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "da5d469372177ef4ee2e522e89e8e3f2b5d4b853c1a76b7a7e11e20fd50ea42e",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/models/interaction/test_protocols.py",
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "54027012c86ab3cc3106ace0d60a9a6cdf0305173b55e965b7d6f09fe644b1c0",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/json.md",
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "c8e8e536b1aba300d7317af95cb36a6e24daf52cf1f59e32931fa182dcc61ae2",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/resources/commands/models/output.py",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "a427d4223e25644ccab719f7bea01ad2437dbb7db1651c08fc753e98842565d8",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/models/interaction/response.py",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "8ba1279c3df12067eec8cf9acb89e38ece1984f551d4feb739dd0b0a04d1e234",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/models/interaction/test_protocols.py",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "282456f0c6b99c59b589177a07ccc3939d7a5806701430d56dbc7d348214a1b1",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/models/interaction/docs/overview.md",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "410827ab72cc2ad8d372ea974b4e5b700ba20d692aa91c2dcc34337fb08a758f",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/roadmap.md",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "9dae146c5381f2804fdbec63626a51768e4e062fd3c8bd36211eb1886986c2a1",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/models/interaction/test_models.py",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "judgment": "unjudged",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "606a1da0e90aad766b780d5badbbccd5ca48bf88803d503e90ed13df7e525b05",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/models/interaction/__init__.py",
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "802f31804f5b69b7dcf2903d4c33fa9e581e872c7781c85edf023b35df50c078",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "3d3cc01722b85c4a39381f0f59e878287406f7e380c9084ea9568517ae3ea993",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/models/serving/test_huggingface.py",
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "57c6c2565bc1a67ff23deb99e5d9b7808db02c4f7fc3da159a7af10b6d5d3543",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/resources/commands/docs/overview.md",
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "5e7344fe650dd6ef716a81a91e9b15e4f2caac01fd58dba560e63365ee1b094f",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/models/serving/docs/overview.md",
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "fdca619d2ba9692a6fd96ff2ae1037ba0dd7375b72ad62cd41cc6d5590054f7f",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/models/benchmarks/test_models.py",
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "550c1b0bd6aa4b5bd1c374126fbe5e0ccd3bc1737d1dfd1902e0c3948098ade0",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "src/devtools/models/interaction/observation.py",
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "source_artifact": "experiments/increment_26/development_frozen_judgments.json",
+        "source_artifact_sha256": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa",
+        "source_blinded_input_artifact": "experiments/increment_26/development_judgment_input.json",
+        "source_blinded_input_artifact_sha256": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+        "source_judgment_identity": "df9af22f15deff23c35cbbbf05528da2295db94708e20282460887807b7dcfbc",
+        "source_mapping_artifact": null,
+        "source_mapping_artifact_sha256": null
+      },
+      {
+        "address": "tests/scripts/qwen/test_two_read_acceptance.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "source_artifact": "experiments/increment_25/confirmation_frozen_judgments.json",
+        "source_artifact_sha256": "ef76013a31ff263e26d798f0560627d26289e44387fdad5a9c9a5583791a7c4b",
+        "source_blinded_input_artifact": null,
+        "source_blinded_input_artifact_sha256": null,
+        "source_judgment_identity": "d9dbb62cce75541dffa9724524e66acd74185b24bc0d6237c5927a76408e8a70",
+        "source_mapping_artifact": "experiments/increment_25/confirmation_neutral_mapping.json",
+        "source_mapping_artifact_sha256": "6c252793b31e9e340926601cd679d67068c5cb94c5394cf18024aa753df975cd"
+      },
+      {
+        "address": "src/devtools/context/python_function_retrieval.py",
+        "case_id": "i25-ab24906f07ed",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "source_artifact": "experiments/increment_25/confirmation_frozen_judgments.json",
+        "source_artifact_sha256": "ef76013a31ff263e26d798f0560627d26289e44387fdad5a9c9a5583791a7c4b",
+        "source_blinded_input_artifact": null,
+        "source_blinded_input_artifact_sha256": null,
+        "source_judgment_identity": "d57d80efda5b6073c903dd4ffdef04d050248cdd2b633043958b905fd8916e6a",
+        "source_mapping_artifact": "experiments/increment_25/confirmation_neutral_mapping.json",
+        "source_mapping_artifact_sha256": "6c252793b31e9e340926601cd679d67068c5cb94c5394cf18024aa753df975cd"
+      },
+      {
+        "address": "tests/context/test_python_function_retrieval.py",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "source_artifact": "experiments/increment_25/confirmation_frozen_judgments.json",
+        "source_artifact_sha256": "ef76013a31ff263e26d798f0560627d26289e44387fdad5a9c9a5583791a7c4b",
+        "source_blinded_input_artifact": null,
+        "source_blinded_input_artifact_sha256": null,
+        "source_judgment_identity": "6daa02207f69fe7d4c096a95c02a345a37ee6ff8e1977152951da7e126ad37a1",
+        "source_mapping_artifact": "experiments/increment_25/confirmation_neutral_mapping.json",
+        "source_mapping_artifact_sha256": "6c252793b31e9e340926601cd679d67068c5cb94c5394cf18024aa753df975cd"
+      },
+      {
+        "address": "src/devtools/models/interaction/models.py",
+        "case_id": "i25-eadb6f231f57",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "source_artifact": "experiments/increment_25/confirmation_frozen_judgments.json",
+        "source_artifact_sha256": "ef76013a31ff263e26d798f0560627d26289e44387fdad5a9c9a5583791a7c4b",
+        "source_blinded_input_artifact": null,
+        "source_blinded_input_artifact_sha256": null,
+        "source_judgment_identity": "86bd6ee0bde1a98d6d9980f4c02843738f190dceb25e298cd43ec336bc5e1261",
+        "source_mapping_artifact": "experiments/increment_25/confirmation_neutral_mapping.json",
+        "source_mapping_artifact_sha256": "6c252793b31e9e340926601cd679d67068c5cb94c5394cf18024aa753df975cd"
+      },
+      {
+        "address": "src/devtools/context/python_function_materialization.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "source_artifact": "experiments/increment_25/confirmation_frozen_judgments.json",
+        "source_artifact_sha256": "ef76013a31ff263e26d798f0560627d26289e44387fdad5a9c9a5583791a7c4b",
+        "source_blinded_input_artifact": null,
+        "source_blinded_input_artifact_sha256": null,
+        "source_judgment_identity": "69dbc9fea8ab48a4e57d9813c985be248e9e444f9490676476c348b13bd7b42d",
+        "source_mapping_artifact": "experiments/increment_25/confirmation_neutral_mapping.json",
+        "source_mapping_artifact_sha256": "6c252793b31e9e340926601cd679d67068c5cb94c5394cf18024aa753df975cd"
+      },
+      {
+        "address": "tests/context/test_python_function_disclosure.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "source_artifact": "experiments/increment_25/confirmation_frozen_judgments.json",
+        "source_artifact_sha256": "ef76013a31ff263e26d798f0560627d26289e44387fdad5a9c9a5583791a7c4b",
+        "source_blinded_input_artifact": null,
+        "source_blinded_input_artifact_sha256": null,
+        "source_judgment_identity": "647a717feac0e26a2f4a20fcd8683e9d9a0f32753ecc92cc0b53893db3418f6c",
+        "source_mapping_artifact": "experiments/increment_25/confirmation_neutral_mapping.json",
+        "source_mapping_artifact_sha256": "6c252793b31e9e340926601cd679d67068c5cb94c5394cf18024aa753df975cd"
+      },
+      {
+        "address": "tests/context/test_python_declarations.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "source_artifact": "experiments/increment_25/confirmation_frozen_judgments.json",
+        "source_artifact_sha256": "ef76013a31ff263e26d798f0560627d26289e44387fdad5a9c9a5583791a7c4b",
+        "source_blinded_input_artifact": null,
+        "source_blinded_input_artifact_sha256": null,
+        "source_judgment_identity": "93e0af2e4738dbf484ec5dfd5d59e4cf6448c2b49a53fe5db01b017a520a2a47",
+        "source_mapping_artifact": "experiments/increment_25/confirmation_neutral_mapping.json",
+        "source_mapping_artifact_sha256": "6c252793b31e9e340926601cd679d67068c5cb94c5394cf18024aa753df975cd"
+      },
+      {
+        "address": "tests/context/test_python_function_disclosure.py",
+        "case_id": "i25-6156c70be14b",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+        "source_artifact": "experiments/increment_25/confirmation_frozen_judgments.json",
+        "source_artifact_sha256": "ef76013a31ff263e26d798f0560627d26289e44387fdad5a9c9a5583791a7c4b",
+        "source_blinded_input_artifact": null,
+        "source_blinded_input_artifact_sha256": null,
+        "source_judgment_identity": "c028c1813351183a255f851253b0f29f81217e4aa6e4fb73f6fe03757c722a0f",
+        "source_mapping_artifact": "experiments/increment_25/confirmation_neutral_mapping.json",
+        "source_mapping_artifact_sha256": "6c252793b31e9e340926601cd679d67068c5cb94c5394cf18024aa753df975cd"
+      },
+      {
+        "address": "src/devtools/context/python_function_materialization.py",
+        "case_id": "i25-2a4f058d5262",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "not-useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "source_artifact": "experiments/increment_25/confirmation_frozen_judgments.json",
+        "source_artifact_sha256": "ef76013a31ff263e26d798f0560627d26289e44387fdad5a9c9a5583791a7c4b",
+        "source_blinded_input_artifact": null,
+        "source_blinded_input_artifact_sha256": null,
+        "source_judgment_identity": "21d46915a7f6ac8ffbfb163a0a2eaf43f55dbab8d12cce834aad1054711f0df3",
+        "source_mapping_artifact": "experiments/increment_25/confirmation_neutral_mapping.json",
+        "source_mapping_artifact_sha256": "6c252793b31e9e340926601cd679d67068c5cb94c5394cf18024aa753df975cd"
+      },
+      {
+        "address": "tests/context/repository/test_observation.py",
+        "case_id": "i25-5fdf5fe05527",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "source_artifact": "experiments/increment_25/confirmation_frozen_judgments.json",
+        "source_artifact_sha256": "ef76013a31ff263e26d798f0560627d26289e44387fdad5a9c9a5583791a7c4b",
+        "source_blinded_input_artifact": null,
+        "source_blinded_input_artifact_sha256": null,
+        "source_judgment_identity": "da85f9cf49e092fb8a298c7187f701a11dfc30883a23f26c701f07a0acedd96d",
+        "source_mapping_artifact": "experiments/increment_25/confirmation_neutral_mapping.json",
+        "source_mapping_artifact_sha256": "6c252793b31e9e340926601cd679d67068c5cb94c5394cf18024aa753df975cd"
+      },
+      {
+        "address": "tests/context/test_python_function_disclosure.py",
+        "case_id": "i25-5bdc70483eed",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "judgment": "useful",
+        "judgment_semantics": "purpose-relative-three-state-v1",
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "source_artifact": "experiments/increment_25/confirmation_frozen_judgments.json",
+        "source_artifact_sha256": "ef76013a31ff263e26d798f0560627d26289e44387fdad5a9c9a5583791a7c4b",
+        "source_blinded_input_artifact": null,
+        "source_blinded_input_artifact_sha256": null,
+        "source_judgment_identity": "3e9bc70ac88b76f12a6288a9a8c18bc68663e568253149918d939662268280d6",
+        "source_mapping_artifact": "experiments/increment_25/confirmation_neutral_mapping.json",
+        "source_mapping_artifact_sha256": "6c252793b31e9e340926601cd679d67068c5cb94c5394cf18024aa753df975cd"
+      }
+    ],
+    "source_judgment_artifact_sha256": {
+      "increment_25_confirmation_judgment_input": "dcddc418004c7db5bbe37fa0f3d66830a78a9546018156d34944fc56d3279c74",
+      "increment_25_confirmation_judgments": "ef76013a31ff263e26d798f0560627d26289e44387fdad5a9c9a5583791a7c4b",
+      "increment_25_confirmation_neutral_mapping": "6c252793b31e9e340926601cd679d67068c5cb94c5394cf18024aa753df975cd",
+      "increment_26_development_judgment_input": "7df8065b63f896e2e16d5aea29c93dd7fd46e3321ac820a656eeee795f71d69d",
+      "increment_26_development_judgments": "1bf9ace759a876998a7de4581bd94bcc9f1347da8bfc5632dc43ae7789df8baa"
+    }
+  },
+  "schema": "devtools-increment-27-top5-lexical-pool-freeze-v1"
+}
