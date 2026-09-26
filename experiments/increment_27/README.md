@@ -334,3 +334,79 @@ It should preserve the retrieval-unit/disclosure-unit distinction and freeze
 its configuration before any new outcomes. More BM25 formula tuning, the
 971-pair deep adjudication, production promotion, and sealed confirmation are
 not justified by this development analysis alone.
+
+## Retrieval-unit ablation: frozen development surface
+
+This experiment isolates the **content scoring unit**. It asks whether bounded
+source windows improve shallow useful-resource exposure over whole resources
+by reducing length and topic dilution. The control is the saved canonical
+whole-resource ranking, checked against the separately saved Phase-2 canonical
+scores and order. Both arms use the same 24 development InformationNeeds,
+frozen lexical queries, parent-snapshot corpora, canonical Unicode word-span
+casefold analysis, BM25 arithmetic (`k1=1.2`, `b=0.75`), resource-level
+filename-stem BM25 and `0.25` filename coefficient, positive results, and
+five-resource capacity. Window content scores use windows as the BM25 document
+universe; the strongest positive window score per resource is added to the
+unchanged filename score. Corpus order breaks resource ties and the earliest
+window breaks exact within-resource content-score ties.
+
+The representation contract was written to `window_unit_freeze.json` before
+new retrieval or usefulness reuse. A window holds at most 256 canonical
+lexical content tokens, advances 224 tokens, and overlaps its predecessor by
+32. The last nonempty partial window is retained. A short resource gets one
+window; resources with no lexical token get zero content windows and can still
+match through the filename field. Every source character is covered by the
+retained window spans when the resource has lexical tokens. Window identity
+binds parent snapshot, resource address, ordinal, and half-open token and
+character spans. The winning window's span, source text, hash, native score,
+and per-term contributions are retained as **retrieval evidence**; the
+candidate remains the parent-snapshot resource address. A window is neither
+Repository Intelligence nor a Context disclosure unit.
+
+This single setting was selected before outcome joins. In a mechanical count
+of current `src/` and `tests/` Python files, median canonical lexical length
+was 251 tokens, and 165 of 333 files exceeded 256 tokens. A 256-token cap
+therefore leaves many small files intact while splitting longer ones; 32-token
+overlap limits boundary loss at modest duplication cost. Byte or line windows
+would make lexical lengths incomparable; declaration units would introduce
+parsing and a different hypothesis. Nonoverlapping windows would make
+boundary placement unusually influential. These observations motivate one
+falsifiable control, not an outcome-tuned window-size sweep.
+
+The development execution produced 13,908 content windows across 24
+historical corpora. The complete positive resource set matched the canonical
+set case by case (1,942 positive resource occurrences in each arm), as
+expected with unchanged query terms and lexical tokenization. At equal
+top-five resource capacity, the arms share 90 pairs, with 30 whole-resource
+only and 30 window-only pairs. All 30 window-only top-five resources have a
+deeper positive whole-resource rank. This is **candidate-surface mechanics
+only**; usefulness of newly exposed resources has not been judged. The unit
+change reorders lexically reachable resources rather than making unmatched
+lexical resources positive.
+
+The equal-capacity union is 150 neutral case/resource pairs. Exact
+InformationNeed, parent-snapshot, resource-address, and usefulness-semantics
+identity permits 138 previously frozen judgments to be reused. The other 12
+pairs are in `window_unit_blinded_judgment_input.json`, containing only neutral
+case/resource identities, frozen purpose and query, parent snapshot, address,
+and exact parent-snapshot source content. It contains no origin, rank, score,
+window, overlap, or prior outcome fields. These 12 pairs have **no judgment in
+this checkpoint**. Do not compare arm usefulness until their blind judgments
+are completed and frozen.
+
+Artifacts and identities:
+
+- `window_unit_freeze.json`: contract identity
+  `bfb805bcc124b5eef9cf27cb44905287cfef41a108fd903864024ad781eb8a62`.
+- `window_resource_rankings.json`: complete positive development ranking identity
+  `9d813083ef7370dd8f895ba8e7bc61c61078962497a6cbecec5d42198cbd6520`.
+- `window_unit_pool.json`: candidate union and exact reuse identity
+  `50b7523ddcf890c8c1df832908929d0d208ec347bf18164b8f4ad9f9f1832132`.
+- `window_unit_blinded_judgment_input.json`: new neutral input identity
+  `ae238e965b8278ed788f24ff93c21354bb167bfd7d0de2c9381d125fb20ce28c`.
+
+The 14 Increment-27 held-out cases have no window rankings or judgment pool.
+The suspended Increment-26 confirmation and Phase-1 971-pair deep adjudication
+remain untouched. This ablation does not test declarations, AST units,
+semantic chunks, structural retrieval, learned ranking, Context disclosure,
+or production chunk storage.
