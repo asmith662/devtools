@@ -629,3 +629,71 @@ its file SHA-256 is
 The Increment-27 held-out population and suspended Increment-26 confirmation
 remain sealed. A subsequent scientific decision may test a bounded combination
 of lexical and import evidence before any authorized confirmation.
+
+## Fixed-budget lexical and direct-import fusion
+
+This development-only test asks whether already-saved lexical and direct-import
+evidence can improve a five-resource candidate surface. The strategy was
+frozen before usefulness outcomes were joined. Canonical top five is the
+baseline. The one fusion rule retains canonical ranks 1–4 and uses the fifth
+slot for one direct-import addition; when no import addition exists, canonical
+rank 5 fills it. A separate structural-only diagnostic takes up to five
+direct-import candidates, but sparse expansion means it is not a full-budget
+comparator. No retrieval or new judgment was needed.
+
+Structural candidates have no native relevance rank. The fixed selection rule
+uses the best rank of a supporting canonical lexical seed, then the number of
+distinct supporting seeds, then resource address as a deterministic tie-break.
+Import direction and relation support remain visible as evidence; neither
+direction receives preference. Support/path count exists but is not treated
+as a calibrated relevance score, and path enumeration order has no ranking
+meaning. The smallest structural reservation, one of five slots, tests
+complementarity without increasing downstream resource capacity.
+
+| Surface | Slots used | USEFUL | NOT_USEFUL | UNJUDGED | Useful / judged | Cases with ≥1 useful | Cases with ≥2 useful |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Canonical top five | 120 | 63 | 52 | 5 | 54.8% | 19 | 18 |
+| Canonical four + import one | 120 | 63 | 50 | 7 | 55.8% | 20 | 17 |
+| Structural-only diagnostic | 92 | 33 | 44 | 15 | 42.9% | 16 | 9 |
+
+Fusion retained two of the eleven known useful resources absent from all
+five saved lexical universes. The 23 actual fifth-slot substitutions comprise
+five useful-import-for-not-useful-lexical gains, five harmful reverse trades,
+seven useful-for-useful trades, four not-useful-for-not-useful trades, and two
+unresolved trades involving `UNJUDGED` import resources. Five cases gained a
+useful resource and five lost one relative to canonical top five. The total
+useful yield stayed at 63, while coverage of cases with at least one useful
+resource rose from 19 to 20; coverage at two useful resources fell from 18 to
+17. Candidate changes alone do not constitute an improvement in useful yield.
+
+A labeled **post-hoc oracle upper bound**, which is not an executable retrieval
+strategy, selects from each case's canonical top five plus all saved direct
+import additions. It could place at most 85 already-judged useful resources
+within the 24 five-slot surfaces and cover 21 cases at one or more useful
+resources. Both executable five-slot strategies yield 63 useful resources,
+22 below that bound. Complementary useful evidence exists, but this simple
+outcome-independent selection rule does not identify enough of it to improve
+total yield. Unknown usefulness remains unknown; the bound counts only known
+useful resources. This result does not authorize learned ranking, production
+fusion, or Context disclosure policy.
+
+The deterministic source-bound artifacts are:
+
+- `lexical_import_fusion_freeze.json`: content identity
+  `63589dbc351453d17ea4f72012c921b67207d18a576955753875bb0048157a10`;
+  file SHA-256
+  `6313759a10abed5cca8008722e0964c9bc3c10e8ea167f9ea472accacfcf0ae3`.
+- `lexical_import_fusion_candidates.json`: content identity
+  `f4daac3be9b36bf89002f08991d1d3ea455c277b88102a6afb330e6f2e1a5bbd`;
+  file SHA-256
+  `f249e5962955cbc860b46ef3700131af7504e6e4a7e7fbf576eb810cb6c6b5b6`.
+- `lexical_import_fusion_development_results.json`: content identity
+  `777ab831d918ce74bcafa3c0c69dc9a0c1530cb39ec54d1a62fef1a4f3d33039`;
+  file SHA-256
+  `ee5b967396ca4f5c2b7b45d7582a5ebf459ae45d78baf71eeef7dfcb9ace8747`.
+
+These artifacts cover only the 24 development cases. The 14 Increment-27
+held-out cases and suspended Increment-26 confirmation remain sealed. The
+next decision is whether to pre-specify a different evidence-based selection
+rule for development or stop this branch; the observed upper-bound gap makes
+selection quality the specific unresolved question.

@@ -1,0 +1,98 @@
+{
+  "content_identity": "63589dbc351453d17ea4f72012c921b67207d18a576955753875bb0048157a10",
+  "payload": {
+    "budget_k": 5,
+    "development_case_ids": [
+      "i25-66ed2049de72",
+      "i25-858bfa85787e",
+      "i25-6f304a8c737c",
+      "i25-bb9f807bcd61",
+      "i25-0f7a13667ef3",
+      "i25-739c82bd3398",
+      "i25-9efe3dc31e80",
+      "i25-6b0e9c52fb26",
+      "i25-901246bd802a",
+      "i25-ab24906f07ed",
+      "i25-ac797431db35",
+      "i25-842e90e63f37",
+      "i25-eadb6f231f57",
+      "i25-8994c4e58644",
+      "i25-c0fabcb195e2",
+      "i25-d9e58cd09390",
+      "i25-b5280a3c38ca",
+      "i25-85cfd9ff68a0",
+      "i25-6156c70be14b",
+      "i25-2a4f058d5262",
+      "i25-5fdf5fe05527",
+      "i25-9009cc143957",
+      "i25-4ce485f737e4",
+      "i25-5bdc70483eed"
+    ],
+    "direction_policy": "outgoing and incoming are jointly eligible; preserve both memberships without a direction preference",
+    "duplicate_policy": "one resource address per InformationNeed and parent snapshot; retain all directed relation and seed support identities",
+    "heldout_case_ids_sealed": [
+      "i25-514fdb223b40",
+      "i25-64cd17d51701",
+      "i25-5b75000b60f7",
+      "i25-f61e24db3528",
+      "i25-004d3829a475",
+      "i25-e0a344227af1",
+      "i25-add3c3ed5195",
+      "i25-4ba894f29abf",
+      "i25-7594b8450649",
+      "i25-e142585a95da",
+      "i25-5c5bdf4212ac",
+      "i25-d58c0504b671",
+      "i25-e976f7f20898",
+      "i25-ca9963afa999"
+    ],
+    "source_content_identity": {
+      "structural_import_candidates": "f9a78024a0be52af56dc5d676794f4dba2f52ca90a6c0454644d113bb34f09a0",
+      "structural_import_development_results": "c1f70f19210e06e04d52ffff31ab9f0e58be950b73e5f4d8721765dc276600eb",
+      "structural_import_freeze": "b1e73fcf79f1bbf0e75a83b71822550352ce208107efc61ad5dab5001edc7dda"
+    },
+    "source_sha256": {
+      "canonical_positive_lexical_rankings.json": "6072195afe50376722c06157ae04e8b33ed1346e4c75c763d83f22f30dd72657",
+      "comparison_blinded_judgment_input.json": "1114ff4d1b45edfac8178744e29640763ff1cc2c8cd5804e80dc67351694a26f",
+      "comparison_frozen_judgments.json": "08cf1c7e05e1299fbb76eaa956657cb625852765fa446009c3cc06c47a9f6383",
+      "experiment_freeze.json": "846e88929234261ac8e0fc3c872b65c329bb571f129181597bae1be8a9a7b800",
+      "lexical_comparison_rankings.json": "7d566ba0e402d180b2ddfc0840f3002ec8c8337edbed0e3d14e391b717b5f46e",
+      "lexical_top5_development_results.json": "2c685ba683e107a2bb76ac2cd1083580a556d4753a94045474e06ff808efd983",
+      "structural_import_candidates.json.gz": "bfc399e1ecf8315c6ec9e12bf5f900b8766e697def5eb8e5f07b21bb699afb68",
+      "structural_import_development_results.json": "21d1bd3a3935c1a400d266bdd19538f59d90b11a541f4af331a6210fc7dbafcf",
+      "structural_import_freeze.json": "8d623668514211360ccfbe38173a64c9909507a4dd34cc992183d394be59a41e",
+      "structural_import_judgment_freeze.json": "a28d079344f85ecd0a79dbc50fdca2a336f1f80f4ee72cd9798dc6486b4416ee"
+    },
+    "strategies": {
+      "canonical_top5": "saved canonical positive ranks 1 through 5",
+      "lexical4_import1": "canonical positive ranks 1 through 4, then the first eligible direct-import candidate; if none, canonical rank 5",
+      "structural_top5_diagnostic": "up to five direct-import candidates; fewer where expansion is sparse; not a full-budget comparator"
+    },
+    "structural_order_caveat": "no native structural relevance rank; seed rank is transferred lexical evidence, distinct seeds are corroboration, and address is only a tie-break",
+    "structural_selection_order": [
+      "lowest canonical rank among distinct supporting lexical seeds",
+      "highest count of distinct supporting lexical seeds",
+      "resource address ascending as deterministic non-relevance tie-break"
+    ],
+    "suspended_increment_26_case_ids_not_executed": [
+      "i25-901246bd802a",
+      "i25-ab24906f07ed",
+      "i25-ac797431db35",
+      "i25-842e90e63f37",
+      "i25-eadb6f231f57",
+      "i25-8994c4e58644",
+      "i25-c0fabcb195e2",
+      "i25-d9e58cd09390",
+      "i25-b5280a3c38ca",
+      "i25-85cfd9ff68a0",
+      "i25-6156c70be14b",
+      "i25-2a4f058d5262",
+      "i25-5fdf5fe05527",
+      "i25-9009cc143957",
+      "i25-4ce485f737e4",
+      "i25-5bdc70483eed"
+    ],
+    "usefulness_join_during_freeze_or_candidate_generation": false
+  },
+  "schema": "devtools-i27-lexical-import-fusion-freeze-v1"
+}

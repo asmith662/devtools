@@ -1,0 +1,3710 @@
+{
+  "content_identity": "f4daac3be9b36bf89002f08991d1d3ea455c277b88102a6afb330e6f2e1a5bbd",
+  "payload": {
+    "budget_k": 5,
+    "cases": [
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/core/identity/docs/overview.md",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "src/devtools/core/time/docs/timestamps.md",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "src/devtools/core/paths/docs/overview.md",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "tests/observability/evidence/test_model_interaction.py",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "src/devtools/core/paths/docs/resolution.md",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/time/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "16ea280d2e2ed28f95f6b627e5ee525c3bbd8496a4394419a9a07cba3db3573d"
+            ],
+            "seed_addresses": [
+              "tests/observability/evidence/test_model_interaction.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/models/interaction/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 11,
+            "relation_identities": [
+              "00873c411ef08c35b3f615e4d461f6cc336b34ceae4f191c31da65259abe791d",
+              "18b9594edccc247bc0fd75d858b8508bd8d052e468763ad4ef35f812995a2489",
+              "36b50ddd5f952c8fb3f5fd8e4878142b7ca40afcae400c1038d95a91d91b4114",
+              "3cb18c4d5fa89670ba01f2dc01b6f91a34f48869d96c44cecc727359fc072782",
+              "55651aa7f6589269ad83a29dc3da34cb9cf3e22b987bc006db21e0865f74df97",
+              "5e19d8d6f7cee918ecfa16168005dba4dedbe9150320f66429f7e6fc46d5ed9b",
+              "7f73e458cc165966065342a0929d45db795e8bba24461626301403157febc741",
+              "a690b90972fa540af0aa9eeff1d8d1cf3603e41f972166ed4eefaf5bcf623e0d",
+              "c027621419a254bde9d42e6e3c26b64c0ccd4290e1699f72fc07e230305ec461",
+              "e75aa2b59db77eec07a46f14f2a6232499106fa4a47bdde6294626c5579f7b27",
+              "e8ff4fbffc0b97467d73bf6c82427a8b32968e2d8f475e9ebb107241ea255f41"
+            ],
+            "seed_addresses": [
+              "tests/observability/evidence/test_model_interaction.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/models/interaction/providers/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "36b172236b1d25284c671378c5f8fb6acddeafa8e81bc34e2e27a26c2a09e368",
+              "487c56286d1a8fb384f89c34924306c9a65957b06b9df167e6e56ce9af511286"
+            ],
+            "seed_addresses": [
+              "tests/observability/evidence/test_model_interaction.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/interaction/providers/llama_cpp.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": 8,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "6abb72384ed05f548916925cc5941fa1c36f9f809cf53aadf06da92ae628a7c1"
+            ],
+            "seed_addresses": [
+              "tests/observability/evidence/test_model_interaction.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/models/serving/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "4b436ee0f92d13292e8239639bc4aa4c8099906381dd14655e86d34f3fd7f3ca",
+              "870c9a71985915f46708be9c2bc6fa2725e1dd9afb3b626c5482fc01d23764a6"
+            ],
+            "seed_addresses": [
+              "tests/observability/evidence/test_model_interaction.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/observability/evidence/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 7,
+            "relation_identities": [
+              "3d94d68c5a5c24e49b8c71834feadeda377c500f03da47ddfbf6424677ca28e4",
+              "8018dc670ca0d6aa8f841f96cee2185c22dfb687808514f1864ec77d65825b4b",
+              "8ae7d3fd44957b91ec7c87fddde5f6e08853403bc19421a1e80d6ca40d083598",
+              "8db8839f98bf65d43ae50c83b5e2fdbc7dbfa816ae4656d84cfdca40d32eb33d",
+              "a5a83f79733a5c155c06c76dcc06bf5e84aff90f77902ed0ed081547babe33d7",
+              "afd08605016167b43fe0255cf95ef928b39ef67d3bf317fac6ebbb2c9eaefc95",
+              "ccc61ac4101f5f8312c98da3ac9097c3917a6821698ee66793744bcb147c0362"
+            ],
+            "seed_addresses": [
+              "tests/observability/evidence/test_model_interaction.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/core/identity/docs/overview.md",
+            "src/devtools/core/time/docs/timestamps.md",
+            "src/devtools/core/paths/docs/overview.md",
+            "tests/observability/evidence/test_model_interaction.py",
+            "src/devtools/core/paths/docs/resolution.md"
+          ],
+          "lexical4_import1": [
+            "src/devtools/core/identity/docs/overview.md",
+            "src/devtools/core/time/docs/timestamps.md",
+            "src/devtools/core/paths/docs/overview.md",
+            "tests/observability/evidence/test_model_interaction.py",
+            "src/devtools/core/time/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/core/time/__init__.py",
+            "src/devtools/models/interaction/__init__.py",
+            "src/devtools/models/interaction/providers/__init__.py",
+            "src/devtools/models/interaction/providers/llama_cpp.py",
+            "src/devtools/models/serving/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/tools/docs/overview.md",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "tests/resources/filesystem/codecs/test_markdown.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "src/devtools/context/repository/resource.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/core/time/docs/timestamps.md",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "src/devtools/context/repository/snapshot.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/paths/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "d6760a5b90ebd38bacda0a2fa290e925abdc34b43cedaadd86f3f9c495ed4db2"
+            ],
+            "seed_addresses": [
+              "tests/resources/filesystem/codecs/test_markdown.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/resources/filesystem/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 3,
+            "relation_identities": [
+              "2f1bdbe4f4217a84b8ab30879ce3e6a2ca79a99cf6cf5bcbeb4d28cd328d12c6",
+              "65bcb7dd94987874a16584d4a95ae4aef3b08892344a1978f3e4ce8e931ce60d",
+              "791f5c94381da70ab2bcc91073133af5ebad08ec955a8123d9ae4eabec416047"
+            ],
+            "seed_addresses": [
+              "tests/resources/filesystem/codecs/test_markdown.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/repository/__init__.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": 51,
+            "distinct_seed_count": 2,
+            "incoming": true,
+            "outgoing": false,
+            "path_count": 5,
+            "relation_identities": [
+              "043172e0540a93b997ce7fd0ed167b6e0041034ce55bf32b3feafad65b1c3179",
+              "05430b195f7b25096310f2f13e4db0624b18ac811a49ac4f3eb4e3cefe663025",
+              "313f5a21c82f783c5e41bc67daad29bb200bf528cb93bc135e5c9cab780c9481",
+              "6c2183b7c21a9f794219e8a0c6942cd6865d4420922d8621d089dffc273057ed",
+              "e29100219173391caf67674e7b463af4726d9a526a597ef19805899ed7db92e0"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/repository/resource.py",
+              "src/devtools/context/repository/snapshot.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/repository/observation.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": 14,
+            "distinct_seed_count": 2,
+            "incoming": true,
+            "outgoing": false,
+            "path_count": 5,
+            "relation_identities": [
+              "11efd83e0b4446e4ffb74d0aae3131e0e11d804e059e8ffd6f3aa87c4647d216",
+              "44d7613b8f835ac04af24921cd69b68d7269fb4bff85c1f60c5f28e3b9fe3b2a",
+              "7490a9602d4bdea5943d67d979263af36d2f87cd3c4c20916abbe11e3c79b130",
+              "7c0b74bddce9b7eabe413e12946afa915c49faa501bc8f1bf8985c8940b41543",
+              "eddc04ac240429d74e45324e82051f9420cd528b4151422121a92130e071a78b"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/repository/resource.py",
+              "src/devtools/context/repository/snapshot.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/repository/corpus.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": 6,
+            "distinct_seed_count": 1,
+            "incoming": true,
+            "outgoing": false,
+            "path_count": 1,
+            "relation_identities": [
+              "20706848b152af39a1c972fafae04b014ae8ba5a64150f2b753fbda31e18c714"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/repository/resource.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/repository/discovery.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": 67,
+            "distinct_seed_count": 1,
+            "incoming": true,
+            "outgoing": false,
+            "path_count": 1,
+            "relation_identities": [
+              "02d970f77bd8e67c6e69bfe3f74675ac90e2a68be33cc0714acf2de7dd874b29"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/repository/resource.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/tools/docs/overview.md",
+            "tests/resources/filesystem/codecs/test_markdown.py",
+            "src/devtools/context/repository/resource.py",
+            "src/devtools/core/time/docs/timestamps.md",
+            "src/devtools/context/repository/snapshot.py"
+          ],
+          "lexical4_import1": [
+            "src/devtools/tools/docs/overview.md",
+            "tests/resources/filesystem/codecs/test_markdown.py",
+            "src/devtools/context/repository/resource.py",
+            "src/devtools/core/time/docs/timestamps.md",
+            "src/devtools/core/paths/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/core/paths/__init__.py",
+            "src/devtools/resources/filesystem/__init__.py",
+            "src/devtools/context/repository/__init__.py",
+            "src/devtools/context/repository/observation.py",
+            "src/devtools/context/repository/corpus.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/models/interaction/docs/overview.md",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "src/devtools/models/interaction/models.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "tests/models/interaction/test_models.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/models/interaction/protocols.py",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "tests/models/interaction/providers/test_llama_cpp.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-6f304a8c737c",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/interaction/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": 8,
+            "distinct_seed_count": 4,
+            "incoming": true,
+            "outgoing": true,
+            "path_count": 18,
+            "relation_identities": [
+              "37bf38db1aed3c25796ebd89a01b6714dac5f788aca1ee3127b8c4b78d646fbc",
+              "4f03dc5cfa1e007f58645a9a617b53dcc1c2e6415e8241b4cb04de0b0c1453c8",
+              "6114a21f20ef7cf3bb0394f7a3640b2bec3635888ccdf2cd4d5ed9a98edd9d70",
+              "73e41fa2c19c0bcef8459c39d68bd6f9d76a39f528822bc2150e2839c36f2380",
+              "7903022225575afc8c57eab7d418d0305b7256767d9b02a35ddbdc6e26716561",
+              "8119f33b37da770b41542080fc766c6bafea4e3418d4ac4d5795a39a3469705b",
+              "85b23472456dcfc1666066829bf81edf54951a817014c409758d7479dcc46ea7",
+              "9c90476a812c6ce0dcef3974bb30604c1ecfefe7ee0f1be42ba169d72caff490",
+              "c85907f121a2afa0a67ce6ef94c8a8dfc5aedc2db981803a2c3ecae82c681d34",
+              "cc2201a065d9e4aa206a1ba8123e279b86e5e3d9bd484e55c5d747f08861c962",
+              "d5187eb1985f558313a0910182acf495a1d2abaa394f0f76e34ff198d1b91690",
+              "d6537de5bd5dd568cd6583b819da85ad34be02fd445c6783c44a9b5b257bca1e",
+              "db6af478c8a6b08a54102f4930e745d1e8b31e04976b0f2c2964d90fd26a9ff2",
+              "dc3c5fcf7f3c66efea456052a9dc255e031df10058c079b2e3f0d37c977227cb",
+              "f317215e6e61bb7f0d0f342caba39a94f86e1cac0783f025cdb44ad1603dd76d",
+              "f3cd4213853d7553edc8c278ddc97ccdbfb82e566a25a9aa42b3ecb18db2fc25",
+              "f762d2f66de3a28f5490eb3921729a34a7c96033eee6da27023186dcd4d263e5",
+              "fe795494703f73aa2880f90a239441ecae4b4daa003fe98f16ca8f94ed7daf97"
+            ],
+            "seed_addresses": [
+              "src/devtools/models/interaction/models.py",
+              "src/devtools/models/interaction/protocols.py",
+              "tests/models/interaction/providers/test_llama_cpp.py",
+              "tests/models/interaction/test_models.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/interaction/response.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": true,
+            "outgoing": false,
+            "path_count": 2,
+            "relation_identities": [
+              "9f1da8226d2b7d0ddd4673b25e3041d7425f6b5a93dfd8d18984749341cd57df",
+              "fd88b9cff72932eb6908e1fc3e5ca0bb5e6834c55ad2a3cb0c6b402298e394b4"
+            ],
+            "seed_addresses": [
+              "src/devtools/models/interaction/models.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/agents/conversation/__init__.py",
+            "best_seed_rank": 5,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "9aafeac89c30b1a66e0c18d3e3001f0238c2b5b38f19d83d691b416ef5bab46c"
+            ],
+            "seed_addresses": [
+              "tests/models/interaction/providers/test_llama_cpp.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/interaction/providers/__init__.py",
+            "best_seed_rank": 5,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 5,
+            "relation_identities": [
+              "80a80e21aedb7709f16b1778c9717deebc9d65d7339e279227d61e8a312b7703",
+              "b4e95e7acc49e19c154bec676743ffdc757021b288277e2d27f61ae2fe0cd424",
+              "c93214abb6df97ac5928287828d9011c2db76cf9966d15a4c474a5f301d9a296",
+              "fdf8cc5f1e8d0b06d79ad634528fd007fabf346710a5625aa948bf9fbe32e4d4",
+              "ffe7469d58e3136a0d31633e769f3349bfdc9105e4c9695fbd75a33486e83331"
+            ],
+            "seed_addresses": [
+              "tests/models/interaction/providers/test_llama_cpp.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/models/interaction/docs/overview.md",
+            "src/devtools/models/interaction/models.py",
+            "tests/models/interaction/test_models.py",
+            "src/devtools/models/interaction/protocols.py",
+            "tests/models/interaction/providers/test_llama_cpp.py"
+          ],
+          "lexical4_import1": [
+            "src/devtools/models/interaction/docs/overview.md",
+            "src/devtools/models/interaction/models.py",
+            "tests/models/interaction/test_models.py",
+            "src/devtools/models/interaction/protocols.py",
+            "src/devtools/models/interaction/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/models/interaction/__init__.py",
+            "src/devtools/models/interaction/response.py",
+            "src/devtools/agents/conversation/__init__.py",
+            "src/devtools/models/interaction/providers/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/context/python_function_rendering.py",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "tests/context/test_python_function_rendering.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "src/devtools/context/python_declarations.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/context/python_function_disclosure.py",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "tests/context/test_python_function_disclosure.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/__init__.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 5,
+            "incoming": true,
+            "outgoing": true,
+            "path_count": 42,
+            "relation_identities": [
+              "0148dbdb7b265e84196003c987bafb42242226bba5d87163a6cc47b4c4342c3d",
+              "02ef92ebccd103c88da8387bb6edf4ae5d7d8be25743a28d8de7e017837d349c",
+              "05c94cdff1d7e40ffc754423e2ccd897c892115ec2e13616f749b7c7dce5d18d",
+              "0d722144e90de461ca5a6e5e859ed15c315c5654537beb93074a29357dbe08e7",
+              "165783952e30c043cd1d8e32b50882f67be45329a9e3bf8a8fab49f4e0055d0a",
+              "17c0b3d7c60be927a33d86a6560d44707138589484805a1de973dd6c39d77d05",
+              "19820fc191a78300618fc6c0d17da453dde7d7929dbc441ebe8a438d5435fbc0",
+              "2515f298f6bfb87e8edf978ab7cafcfb0dc9248d782005a88a061091bfd2e8b8",
+              "27ae0e1666863b5885513fcfdeb3249e31adc147c0985d0297b5bd655192a313",
+              "2de305ad85d48918349c891057ad9abbc388d2c2d7f34b881dda7767d0f6efe3",
+              "4289e72580be9ba2280df40cceaf40c8e930f6624d0886d7df0d38ad8334eeac",
+              "488804790880b7b4654e19d6d8ca3dfc8b3d6d368c05506f83f237d1c5cb5d14",
+              "4e8c0ab08ca590fc3b6370b887c36e31b4d3a476b83387c01eea7186d9995103",
+              "4e996321efa4e5844c16099f45ddc79d77ac87df1eeee309d06bbe2b0c3417eb",
+              "52dab97ecd3ab34bcbfe9d496bd526d9fa8723484556744aa91624b697284e9f",
+              "76932520f62e1195113b7f0d4d4a105257dde953a692b7dd08cedbac4abcbfb2",
+              "7ab607019e62af8f7946b2a328093c08df3eda9a2fb0a47b6620a8ea0f8a6ad6",
+              "86b61d01d2f966a6ed55ff4f2bd06abc8201d54e8a39f565579a0d04f541c19b",
+              "8d0a0ee58bc47aec332cd7602c42377ac9e46fb812445fd8b46c26d0847849a3",
+              "977577167d31675f6c38b6c564cc1363d1b4bd8aac59ab93275709470782c90f",
+              "9a9e7a655d0b469b4235171ef9c65a518bb2e3e8a8f6e1d761672a88d8636491",
+              "9f401c4d53c53d05981d9337f35301a9e9a40b724d9648fdcf4b4ae20a3c7944",
+              "a0c697cddf6932b2ca0c974d8415f6b66dc397463def565a42dfcc4145f24e88",
+              "a2f76877892f52c4555d1636ae52b78f588ea817dcbe8b1c603d2ee64f5eab88",
+              "a8787339e6f2dd0041f9200ac125233db47821c4ebf125b82c60204e60571cb6",
+              "a94f42accc97176a2993fc1212d1e1c2956323be65938ffb94fda868497f4fc5",
+              "b38b5ccd6fc724894cf91f55617e607e0eb279d8876c57f03b2ab20112e4ab39",
+              "b9f840b3e5aa4840e7be8f5d9dd9f2ed3e3c4d6b513ac994cf65376d6b9a728a",
+              "bda167acb19f949460282cae19b697f11184f6ffd794fcc1f667ab53189b91cb",
+              "bf8714cdf84bc2aab3bc6c7a5004778d3e86f3fdbb455fc169cd285059dc6703",
+              "c1ca986f18f8c997ac285cb322e61b1cceacf1f697f89c2a77863f48c9f0e082",
+              "c2b19c1510afde26dfd1837db3021b0d779b52f48d01f9037e9b2fad21490ebc",
+              "c5b0732633e82975d2137a2812f3e3e9304b6bf03c7f4da6190a4d00c965bafa",
+              "c648a14f22728aeec25d6163a2d6d70aa0e2f52cadfd5be6715fc4e0038bfd52",
+              "cf0aa0096d6c7daa52911222fb5def5a506a5a9a53010533748cb7f6d072911b",
+              "d5b30095317baa31e09a5c0c9eafd668be838b37c6aa0f68134b0185c899c8f1",
+              "d68ac8eab35861818cb836c3af3b896541bd72e696a1309c6a39e6c3cea5e241",
+              "d99aef9ab7b7475ea5b2164823e70da8317e530c886e4405609472897e279662",
+              "e5c55cb130543721133e9f08be0314f9b0abd725920cde4e4fe3a62cd96e62fb",
+              "e5e9706980c5af381c0284aac8e8900e9b637d88b044a2f0aeb3b31458107aab",
+              "e89c66e7b8bd76cd0e3297f86bbd1ca4be94930c1dec46409f7bd049421499cc",
+              "f45f93aec291ba7a29303a5380d4296a60860b301b14b38a101459a1a1f6d8ba"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/python_declarations.py",
+              "src/devtools/context/python_function_disclosure.py",
+              "src/devtools/context/python_function_rendering.py",
+              "tests/context/test_python_function_disclosure.py",
+              "tests/context/test_python_function_rendering.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/paths/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "3e3ecc9af58648b3f1c1c75274657172b3cdc66c54d0766378b19cac516b9bb8",
+              "d5f4b5fd8883c91e85ecc12ea33dea29562ee8bb2381439a1f0c9a317d4a874e"
+            ],
+            "seed_addresses": [
+              "tests/context/test_python_function_disclosure.py",
+              "tests/context/test_python_function_rendering.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/context/python_function_rendering.py",
+            "tests/context/test_python_function_rendering.py",
+            "src/devtools/context/python_declarations.py",
+            "src/devtools/context/python_function_disclosure.py",
+            "tests/context/test_python_function_disclosure.py"
+          ],
+          "lexical4_import1": [
+            "src/devtools/context/python_function_rendering.py",
+            "tests/context/test_python_function_rendering.py",
+            "src/devtools/context/python_declarations.py",
+            "src/devtools/context/python_function_disclosure.py",
+            "src/devtools/context/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/context/__init__.py",
+            "src/devtools/core/paths/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/evidence/docs/overview.md",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "src/devtools/evidence/terminal.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "tests/evidence/test_terminal.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/persistence/docs/overview.md",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "src/devtools/runtime/runtime.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/evidence/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": 6,
+            "distinct_seed_count": 3,
+            "incoming": true,
+            "outgoing": true,
+            "path_count": 21,
+            "relation_identities": [
+              "070e162c53420bfb17cb7c874df6d8bdd65fc5c0cdd71c49754bfb65c8569b19",
+              "193aefc988c9d0bc9e0daaadc8b3614c19da520fb78a3407cac7b88a27602330",
+              "1f94f3696dad6c98ea8b18e7d11bffc73a541297d15006a5dfc8fca0b392df0c",
+              "26d9bad3b4bd6b08809efdd72ccbd02355a37429ff73b795fe217122ae3b61cc",
+              "2d067f1d245a3f066d0aa7b78c046086d025d440a2efcc3d93d9527436cc2bb6",
+              "2d0e7190d21aa8a5f6b0eef99b8ae8363cb0e2d165bb1929ccfd10e3c5292f37",
+              "5e6ce8db2925dd83cc6a8dfb0a1bc7e46e84236a1b4d0ef10f3333c54bafe02a",
+              "5f9d7f7b5da5b9feac6691439a3304f768b206613a62e25da71b71edd5cafecc",
+              "6aa6bba05cabf0901c4772c286299c3a8777ed44778b3cf635d5c994e56fd54e",
+              "766f34996a56658a6a16403ab9c1d65578f89ed1aba3791d07efad46f03d2f88",
+              "796dbfa36d1bb0b7f26cb226a2b72b839c391081371919dcae455462ee58c119",
+              "7cdc9fecdb42203a581932f8354f7aac79b24e4a20ff7139057da0c782d68623",
+              "93600a63cf6fc567bc8e3f3ea48637280fa86c46b05ea13412bcf78464249206",
+              "97fccdcdd9618c288ff7777349595d9d1debba855cba4f2f26b6a48a8a0ccce7",
+              "9a790fcedc732bff2651d5835ca810820aa2b8fed56b095bc2dd5ebe8eb031b6",
+              "a8d0becb74c6e10b8e903e1ddf7eeba1b12e4b51661e68e3dff0080e50abe7d8",
+              "b528b5ba21eefae4f0e2440f65d323c2faad666507a414b17f95a6e98207b1d7",
+              "b53ff0b69c957514212c62f1e483ce5e29841ba47e79f9688798a4045f5d2c6f",
+              "ba1eee99e4b4f66666d4a09e2ba12b62a846341abdaa4f580bd8cce7ca02a6bb",
+              "d5aaa1cdc7f79ca92cc2a08fdb3a81af8690f53beb64d7ea2ae39bf06a41493c",
+              "f07b2512b0779f3a436b2b3a5e9a60a05ba879cc7d510e206ea6f0d8f46a994d"
+            ],
+            "seed_addresses": [
+              "src/devtools/evidence/terminal.py",
+              "src/devtools/runtime/runtime.py",
+              "tests/evidence/test_terminal.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/identity/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "091803d41fd82dbe7acedb0144da496ee4330812d976a7820a76419115867248",
+              "86b797227b68af36b2ccb5bea566fb71ff7de5d0ea9dc29a1aea8b1ab20cae19"
+            ],
+            "seed_addresses": [
+              "src/devtools/evidence/terminal.py",
+              "tests/evidence/test_terminal.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/time/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "02fc19db616e1b13fb4b610aaeb3e6c4638de48fc91345d563a4893c430bd046",
+              "1beab3b3b03d924a9acdd2437a1fdeabdc8b68615558c489b4181ae3da3d679f"
+            ],
+            "seed_addresses": [
+              "src/devtools/evidence/terminal.py",
+              "tests/evidence/test_terminal.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/__init__.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "4f684640448de5d1c16608162a39b2a29e8c85d99c942b6e30a8e44d8ed9efc5"
+            ],
+            "seed_addresses": [
+              "tests/evidence/test_terminal.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/runtime/__init__.py",
+            "best_seed_rank": 5,
+            "canonical_positive_rank": 19,
+            "distinct_seed_count": 1,
+            "incoming": true,
+            "outgoing": false,
+            "path_count": 1,
+            "relation_identities": [
+              "22746906f3b4a48f43800d0258a4c3bd45627edeea8061b626b71cc367154845"
+            ],
+            "seed_addresses": [
+              "src/devtools/runtime/runtime.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/evidence/docs/overview.md",
+            "src/devtools/evidence/terminal.py",
+            "tests/evidence/test_terminal.py",
+            "src/devtools/persistence/docs/overview.md",
+            "src/devtools/runtime/runtime.py"
+          ],
+          "lexical4_import1": [
+            "src/devtools/evidence/docs/overview.md",
+            "src/devtools/evidence/terminal.py",
+            "tests/evidence/test_terminal.py",
+            "src/devtools/persistence/docs/overview.md",
+            "src/devtools/evidence/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/evidence/__init__.py",
+            "src/devtools/identity/__init__.py",
+            "src/devtools/time/__init__.py",
+            "src/devtools/__init__.py",
+            "src/devtools/runtime/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/resources/filesystem/codecs/markdown.py",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "src/devtools/resources/filesystem/codecs/json.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "src/devtools/resources/filesystem/codecs/text.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "tests/models/interaction/test_protocols.py",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "src/devtools/resources/filesystem/docs/json.md",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/resources/filesystem/codecs/__init__.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 3,
+            "incoming": true,
+            "outgoing": false,
+            "path_count": 3,
+            "relation_identities": [
+              "3d9157aad91bd3b7a84d87f1bb8660c886dd9712c12c381efa9d4a3da4b48a29",
+              "9654adf6621060096a154a1d29c369bfdcdbb9247f71657459379b17f9d27f31",
+              "f500ea35dab478a8ca68129e2108ee389e535ab9719a2e2016a407947469b285"
+            ],
+            "seed_addresses": [
+              "src/devtools/resources/filesystem/codecs/json.py",
+              "src/devtools/resources/filesystem/codecs/markdown.py",
+              "src/devtools/resources/filesystem/codecs/text.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/resources/filesystem/errors.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": 83,
+            "distinct_seed_count": 3,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 7,
+            "relation_identities": [
+              "22c3a18255384bea16426b5d8b15d83b4f367c9bc3547f6950d6f1852c439ef0",
+              "5c0eccd07cc9c5ef84f1bce5dcb6b431af7ab99ad0c6e56356a89f3da0d58542",
+              "7ae8db2046bf3f13710a1fe341bc66686627c90da47346dd00e8c864d360ae2b",
+              "8de7aba229f1192a2254b04237d5e83e916434fe2c2bee77e17aece1743e289c",
+              "9077cc0b970f84f9c80339e12f41b7b6fa093dfdd0a1534f73369e3c1a6b2fa6",
+              "9f7de2fe3d3dc9ae1d89298735b96b567929888348ebe29f2ed1ad12cfc36e3a",
+              "ad9854a9ab19b18949e1c4e5989e974e51267cbb971867e377e3e0cc931d68e2"
+            ],
+            "seed_addresses": [
+              "src/devtools/resources/filesystem/codecs/json.py",
+              "src/devtools/resources/filesystem/codecs/markdown.py",
+              "src/devtools/resources/filesystem/codecs/text.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/resources/filesystem/models/__init__.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 3,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 6,
+            "relation_identities": [
+              "2c317ad3833b4afe231cd1a895c3fe96500cdb7f893c2b3831a370fa4dcf6359",
+              "7548c2b1aff51d2a22f27c74c88a8b462ab6f2302a65f256cf432b4fe9c82206",
+              "adc30a8a15908e7dc3cd8eaa517994733cf7666fe285752f5bcf970e17ef9f34",
+              "d94aadeecf3f1ff541acb3686ce8f45ccee7dc1171cb68fa4e79f704b459d759",
+              "ddf723479b2310410bf181df4916fe42381aca4794d24423094974964b19abac",
+              "ea49de4b805839081d179746ca0af49d86756fc62107e70dad96c1f98da2e984"
+            ],
+            "seed_addresses": [
+              "src/devtools/resources/filesystem/codecs/json.py",
+              "src/devtools/resources/filesystem/codecs/markdown.py",
+              "src/devtools/resources/filesystem/codecs/text.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/resources/filesystem/models/json/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "565d148ef7306b7f3062a2b627d07b0bef05f8a48002181bd66acdc8d08c3e56",
+              "917fe3a2ec0e91ec26ca5ad1beff83d85e431ebe0d71794c68d528c914efa6cd"
+            ],
+            "seed_addresses": [
+              "src/devtools/resources/filesystem/codecs/json.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/interaction/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": 87,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 5,
+            "relation_identities": [
+              "34c0b96160eee78a131755b3968316c59c2bb7fd97e9859265fdff6a2cda8063",
+              "42fd48c4561c8d8f1a04ae885b5f5bcc206a96b440c3c6e8f779d83e64a6e2cf",
+              "955c563ecbf8c413996d299c693f9f10a0875dd37a5ef5d66a28f04f3130af62",
+              "f2f6f6d6c6a5b0cab2c65dadaabe602bea6febafc67e5a43ed3362b658294932",
+              "feb7bbf0c51e01e3d74228d5454f8238a4e62ff70b76168d19ea96eec49a0ccc"
+            ],
+            "seed_addresses": [
+              "tests/models/interaction/test_protocols.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/resources/filesystem/codecs/markdown.py",
+            "src/devtools/resources/filesystem/codecs/json.py",
+            "src/devtools/resources/filesystem/codecs/text.py",
+            "tests/models/interaction/test_protocols.py",
+            "src/devtools/resources/filesystem/docs/json.md"
+          ],
+          "lexical4_import1": [
+            "src/devtools/resources/filesystem/codecs/markdown.py",
+            "src/devtools/resources/filesystem/codecs/json.py",
+            "src/devtools/resources/filesystem/codecs/text.py",
+            "tests/models/interaction/test_protocols.py",
+            "src/devtools/resources/filesystem/codecs/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/resources/filesystem/codecs/__init__.py",
+            "src/devtools/resources/filesystem/errors.py",
+            "src/devtools/resources/filesystem/models/__init__.py",
+            "src/devtools/resources/filesystem/models/json/__init__.py",
+            "src/devtools/models/interaction/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/resources/commands/models/output.py",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "src/devtools/models/interaction/response.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "tests/models/interaction/test_protocols.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/models/interaction/docs/overview.md",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "src/devtools/resources/filesystem/docs/roadmap.md",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-9efe3dc31e80",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/resources/commands/models/__init__.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": 49,
+            "distinct_seed_count": 1,
+            "incoming": true,
+            "outgoing": false,
+            "path_count": 1,
+            "relation_identities": [
+              "0ef35be19f95e8c0cf10fde44a3be575a97416ae5683e6956c49b4974237c132"
+            ],
+            "seed_addresses": [
+              "src/devtools/resources/commands/models/output.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/interaction/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": 13,
+            "distinct_seed_count": 2,
+            "incoming": true,
+            "outgoing": true,
+            "path_count": 6,
+            "relation_identities": [
+              "443705184465a1c6c95a9a182a495fd8dc30d19dd51b1e70a89f524d7e0a6f45",
+              "4ad7d5876e7daa231cdaab711bcda9bc2929cef07ebe89b3117ac9f342b0b31c",
+              "522a20710ea6fa29d88ec7612429402eaed366e627f468e700a2996d894d39c4",
+              "83118b3289ecd1527d9b7e27e520fb1fdf5335d3f4ab8ffb74a5ab2c5b2dba79",
+              "8d770ac0470feccb74995ee062d7435174eeabf09d0f17e093a6cd5c5137e692",
+              "9f734cf4f933e96964458703fb46adf41b645f0562ec29d92a5b8f9bff8c8f56"
+            ],
+            "seed_addresses": [
+              "src/devtools/models/interaction/response.py",
+              "tests/models/interaction/test_protocols.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/interaction/models.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": 27,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "9255202fa6abc59d508574e7888fa3ae3eecc0553785ef6795aad0b1d218c748",
+              "9d89c61cb97eb04c8a70c65d3493f3e822903e9745bcc807541a8011f9be0bc5"
+            ],
+            "seed_addresses": [
+              "src/devtools/models/interaction/response.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/interaction/usage.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": 7,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "1efaf1efdfceffc82189d512d5a5015235f7379d017b8fff65af711ea69f98d0"
+            ],
+            "seed_addresses": [
+              "src/devtools/models/interaction/response.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/resources/commands/models/output.py",
+            "src/devtools/models/interaction/response.py",
+            "tests/models/interaction/test_protocols.py",
+            "src/devtools/models/interaction/docs/overview.md",
+            "src/devtools/resources/filesystem/docs/roadmap.md"
+          ],
+          "lexical4_import1": [
+            "src/devtools/resources/commands/models/output.py",
+            "src/devtools/models/interaction/response.py",
+            "tests/models/interaction/test_protocols.py",
+            "src/devtools/models/interaction/docs/overview.md",
+            "src/devtools/resources/commands/models/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/resources/commands/models/__init__.py",
+            "src/devtools/models/interaction/__init__.py",
+            "src/devtools/models/interaction/models.py",
+            "src/devtools/models/interaction/usage.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/tools/docs/overview.md",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "tests/models/serving/test_huggingface.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "src/devtools/resources/commands/docs/overview.md",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/models/serving/docs/overview.md",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "tests/models/benchmarks/test_models.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/paths/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "2990260f2d410b289d30d24dcbae4d84be1099f29612c3d67dc4297d04a4879d",
+              "edb3e9f5b8498bbd9fb030b2201b8639eecb486c5f616e7c48e0c9de0cce99a9"
+            ],
+            "seed_addresses": [
+              "tests/models/benchmarks/test_models.py",
+              "tests/models/serving/test_huggingface.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/serving/huggingface.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": 21,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 5,
+            "relation_identities": [
+              "023f7dcb80c974bb13bb1da060da5c177c155b8182fa88fcba284661e7902db4",
+              "0f512b9b872246edcd13a65db743c0107973d1b2f8a73a631a4def2842ab70ee",
+              "1447f3947a9cb1be05adac062d1ee77d5ff7c4e8e78cd35d5911ae666754946f",
+              "1e3aac0dee1421781caa31c1e513fb31b276f1deb179df0a7a0b454763e3b593",
+              "d7724b06c6a1c7c11af60c813d967c1a4f76d46935a34e0103f9e9565b367550"
+            ],
+            "seed_addresses": [
+              "tests/models/benchmarks/test_models.py",
+              "tests/models/serving/test_huggingface.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/serving/llama_cpp.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": 69,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "88b1efac068ea770f0fb467a5552833a5a7d0603a5f84ebe0598d3a9d5886496"
+            ],
+            "seed_addresses": [
+              "tests/models/serving/test_huggingface.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/time/__init__.py",
+            "best_seed_rank": 5,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "461873113865bdbd269bddf7a800fc6000b6815573d2e0150d010732a7a89ce0",
+              "e0c4393b3c168d3b07e9d5aa7b6dbf4fcca494bfb5b99ef7b856316c4000ccff"
+            ],
+            "seed_addresses": [
+              "tests/models/benchmarks/test_models.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/benchmarks/models.py",
+            "best_seed_rank": 5,
+            "canonical_positive_rank": 46,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 3,
+            "relation_identities": [
+              "4245af7fde05aad3ac4e2a4199d5d15359ca9f1632e94df4d8b02a3975a88f76",
+              "8f4b7f9cf63994c895b0822fb5721c08dbbcaf0e877f7ab15f8063adbc51f65d",
+              "9674f9f2604c0d7727f2fd190562fbc6b3114b5844c29ec636a2b7c4a934fdac"
+            ],
+            "seed_addresses": [
+              "tests/models/benchmarks/test_models.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/serving/vllm.py",
+            "best_seed_rank": 5,
+            "canonical_positive_rank": 32,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "374c08dc6f69b8d4df6107f9a8ade6adac1e60162cb35cdbc3453c361620f08b",
+              "7300935df38871f0a51faf1b382d4ff77d27eb38b9430637d041efe3f2891a21"
+            ],
+            "seed_addresses": [
+              "tests/models/benchmarks/test_models.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/tools/docs/overview.md",
+            "tests/models/serving/test_huggingface.py",
+            "src/devtools/resources/commands/docs/overview.md",
+            "src/devtools/models/serving/docs/overview.md",
+            "tests/models/benchmarks/test_models.py"
+          ],
+          "lexical4_import1": [
+            "src/devtools/tools/docs/overview.md",
+            "tests/models/serving/test_huggingface.py",
+            "src/devtools/resources/commands/docs/overview.md",
+            "src/devtools/models/serving/docs/overview.md",
+            "src/devtools/core/paths/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/core/paths/__init__.py",
+            "src/devtools/models/serving/huggingface.py",
+            "src/devtools/models/serving/llama_cpp.py",
+            "src/devtools/core/time/__init__.py",
+            "src/devtools/models/benchmarks/models.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "tests/experiments/qwen/test_patch_proposal_worker.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "tests/experiments/qwen/test_two_action_read_only_experiment.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/models/serving/docs/overview.md",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "tests/scripts/qwen/test_llama_cpp_profile.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/agents/conversation/__init__.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 3,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 8,
+            "relation_identities": [
+              "056d248642aeab0d7c83ddeacc62325afd521c2927902aa4974d4a6cc1f36879",
+              "06f4a63ca6c49faf91943c35864d7a16c4dead9814a33bb45f256322ff5c6816",
+              "0f36a8f7e706833f876ee889863c2fa7e320be3db8d108309632155421456ff3",
+              "293aa7c9d75e4c26f5d66f1e438195189462815ba2d74d141e6f5eb037d0cd16",
+              "405283cffa18d13f76b14536b713bb8d741e5004bf6d5f3055487b2175f597a2",
+              "6499578246ea478a6ba6500cc0b7cb4fd6f8d8eb27b4fe1654f1dac130abd584",
+              "ba6806b5939569d60b39fcd32164ed093be8d808a935f52b17da99639da58e15",
+              "e40c5b635ebc82a670736b8bea1fa5bd8c720d76d5724be7e52646bccb40906d"
+            ],
+            "seed_addresses": [
+              "tests/experiments/qwen/test_patch_proposal_worker.py",
+              "tests/experiments/qwen/test_two_action_read_only_experiment.py",
+              "tests/scripts/qwen/test_two_action_read_only_acceptance.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/models/interaction/__init__.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 3,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 8,
+            "relation_identities": [
+              "0b690a59dbc7cc67654c320d231eba4de101db7d22fb66446949bf8fea594943",
+              "2fc0552c8078f82320bfd5e463b6a9e2511f5a08b816b2868db01e19b6a11df3",
+              "49b9e7b9213778cc62bdfa709048512c7965a29d9a0a0704034f4354ee641e9c",
+              "637c32f430b075e382c7e6922bd3a3d635dccbb7f3d8707b7de13f0db6f5e215",
+              "68f7bc8a075c3be82facd186d7deb851958097e3c519d3a215ca2dded6117a18",
+              "714b8305698fb9c54ca33abb23c9a43adcb4658eb7c6a37ccaec1fa22410561b",
+              "8be85bf7c489d5f1fd16e966093de9bbdd404e3f06af5b19c06afc711d97fb43",
+              "b5f6875cb184ae29a5e95cae85c01dca768f91ba64ecdaa0daeed452690080a2"
+            ],
+            "seed_addresses": [
+              "tests/experiments/qwen/test_patch_proposal_worker.py",
+              "tests/experiments/qwen/test_two_action_read_only_experiment.py",
+              "tests/scripts/qwen/test_two_action_read_only_acceptance.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/resources/filesystem/__init__.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 3,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 7,
+            "relation_identities": [
+              "087fde55eef3a24a28ce73357f5916d7e59fbb2c15918eeb4e7b8613dec780ff",
+              "543b5324b9b2fc5262997574e2a269bbecf1f5f168cb91383ccd8f842e847af9",
+              "66ede7a1918352d33ca066e497aebd059942388148e2ba4f1e5a1468c0c59cd5",
+              "a4a86a3ab666c4a9146d03ec5a96ed5e2af4985d7c374bd148d9d582f3933ffb",
+              "af5d5196b7d9475fddd6e3454da4438cb653df8be5e93c1eca3a78be7e3bc053",
+              "b0499ed9fea47eb17fda526d3c48866c12207d0a7cdb6670d6f05ef3a66a413b",
+              "b595d0f089985f014f34761b1bd63b6b7e55b2e4eedf77e5c0f61fbc9266d376"
+            ],
+            "seed_addresses": [
+              "tests/experiments/qwen/test_patch_proposal_worker.py",
+              "tests/experiments/qwen/test_two_action_read_only_experiment.py",
+              "tests/scripts/qwen/test_two_action_read_only_acceptance.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/paths/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 3,
+            "relation_identities": [
+              "57aebdd9fea61352e9a16b4ec8cf6a4cf5daaf581c1111e832aad1244b6a7e06",
+              "78b267b37da143776fd62e10daef90ad7f36e5886d548a72f23703e0563bafeb",
+              "e057bdb1b3129fa518e9f7e87bae4ddf4c1dc9d8e57c15619c6d11ed88fcea25"
+            ],
+            "seed_addresses": [
+              "tests/experiments/qwen/test_patch_proposal_worker.py",
+              "tests/experiments/qwen/test_two_action_read_only_experiment.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/execution/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "204b32193fd72270d98107d90a1f989bbc9d915ff0645f8e3c51af3b7a5e285a",
+              "283f03f19c2e8c96c9b457e7979a5d8d0775f127d0c62f7faaa9ca128dc76650"
+            ],
+            "seed_addresses": [
+              "tests/experiments/qwen/test_patch_proposal_worker.py",
+              "tests/experiments/qwen/test_two_action_read_only_experiment.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/tools/filesystem.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": 10,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 3,
+            "relation_identities": [
+              "08db5cb23f5e6ec4ec19a37e8e9caf00bd900ae9d33190da7846ee3bb7d357a0",
+              "3e77ec19b6727efb25bd7ea60d6c65852c71651f64952a5e6bdead62e5801d93",
+              "c7bd890bfa7ffdd911ed7415fb0912a0621dc8a754e99ee306c2b0d155c3cab3"
+            ],
+            "seed_addresses": [
+              "tests/experiments/qwen/test_patch_proposal_worker.py",
+              "tests/experiments/qwen/test_two_action_read_only_experiment.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/tools/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "d81380ee5ca5fbd9b65553b090c4bb033048380abeb64330b114d5e01f58799c"
+            ],
+            "seed_addresses": [
+              "tests/experiments/qwen/test_patch_proposal_worker.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "tests/experiments/qwen/__init__.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "459d8e60acb557920f6127092e78fadb00939eac428749c01bf880e07110c72c"
+            ],
+            "seed_addresses": [
+              "tests/experiments/qwen/test_two_action_read_only_experiment.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+            "tests/experiments/qwen/test_patch_proposal_worker.py",
+            "tests/experiments/qwen/test_two_action_read_only_experiment.py",
+            "src/devtools/models/serving/docs/overview.md",
+            "tests/scripts/qwen/test_llama_cpp_profile.py"
+          ],
+          "lexical4_import1": [
+            "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+            "tests/experiments/qwen/test_patch_proposal_worker.py",
+            "tests/experiments/qwen/test_two_action_read_only_experiment.py",
+            "src/devtools/models/serving/docs/overview.md",
+            "src/devtools/agents/conversation/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/agents/conversation/__init__.py",
+            "src/devtools/models/interaction/__init__.py",
+            "src/devtools/resources/filesystem/__init__.py",
+            "src/devtools/core/paths/__init__.py",
+            "src/devtools/execution/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/tools/docs/overview.md",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "src/devtools/context/repository.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "tests/context/test_repository.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/resources/filesystem/docs/roadmap.md",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "src/devtools/context/python_function_candidates.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-ab24906f07ed",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": 33,
+            "distinct_seed_count": 3,
+            "incoming": true,
+            "outgoing": true,
+            "path_count": 25,
+            "relation_identities": [
+              "1b1b518474343030fc75db500c6987e869f61cb61a0fd754690149742e49cd77",
+              "1fc391043b53a9b74dc453b242472d29cdd5de239f1bcc43ecfb2838a305d499",
+              "207e354b2277fba42cb76d34c0e7e2df56c4f5719afc5f99e577a8d59c74fe64",
+              "21ff0e27d0cf5110264cac1e8cac583d024f468fd669141f58d8e35e352f2736",
+              "28756005b2fd298e78896b95f80ea61837672e526143493d17782bc65a4a3ce0",
+              "2c5510375df727d3ec8b97de922d16c46bc6881d14260723f2962a409e196605",
+              "4cd6943ba062a95657799d75aff37067a751ddcae90abaf0aeaca56964195f29",
+              "504a74f33fadf3e264a787b5e907f531f12c05f4f05feb1b5115213da4f63261",
+              "55db6b52bc9a1bc97bc185da0c85e98ab3ff12f3b0f746d649eaee359e197621",
+              "5957490521d520f51995d9f4d773a6daeada12036b972a95dd058e694cdc5256",
+              "5ca8ff6ce4cb9d3869196bf3c5c0fdf2f210767216af10695c325b8da0a837b0",
+              "75ecd7da7394a6146c138157dc70d9a1ba0eb062f6c6782cad839eb3a629b449",
+              "82d575382392bad31eaede451f86d683da926ccddd0589a910c4dfd7796d082b",
+              "82ecd479cda01bd71fb039f5671efbab921bf07eadf3a345bfb7921ea119aa65",
+              "8316bfe2f2b77444c41b7e38b4d869de267577dd350da1a17cf543cde8c7336d",
+              "86745b509e685458062ab554944b24a97b42e9e2536490c40b52a15adaf29c1a",
+              "99e0296bacf1d0c1a77363aed639182f4dc5701fb742bf6d3e4ed8ba6a156a4b",
+              "9b9ce4e284bb292df12839fe2574c023387a12c5705f4fdcbb6d2b8d7ef8432a",
+              "a120f0ab894c1ae98ac75c2a3e65c2fe381576807baaa6ea8a751e9f798a281f",
+              "d31a578be43beada6d628d4eeb6991f06e9e74691e1649c7ea53c611b72dba25",
+              "dfa1b0ff1b1f187ee353b17af70f6452bda1e35521cc3b9f832f53b02410f55f",
+              "ef54a9b4dd0c2dfe7aafeb9a7369e6ebc2f3794a3e91abf34e74a5c295314f35",
+              "f1513abb260a612d96d61f38103c149d72a7ddf83a2aa13aa8d7d92d74a631a7",
+              "fa144fc9e4da91ca84d6e834ef709df15e7c57c45d4d2f6e669a4390822917c7",
+              "fa40bddc7aae57881800d85db88c5c2102d4ffbb4882e053d4369beaeb141c34"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/python_function_candidates.py",
+              "src/devtools/context/repository.py",
+              "tests/context/test_repository.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/paths/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 3,
+            "relation_identities": [
+              "0118d1f49caeb8083144a7ae5a20bd21b7d5c2ad61acc050c27400f3667f2741",
+              "24a1e024e9c92b8427e02db48e3e76de3c119e24e6b5f52efb694245521d2ddd",
+              "f559c396cba783e35dca3caf07b367e1a9811fd6fbdc69e1547adf070521c234"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/repository.py",
+              "tests/context/test_repository.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/resources/filesystem/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 7,
+            "relation_identities": [
+              "05e6fc38bcc0aec200d22c93c5d0b36e6c14d034121c489fc9fb1de9195ffb68",
+              "1a4ac177730aae73dc9564aa0f781fdc4782ad9e0497db6edcbf724af604b923",
+              "442c42776606b8cc9aa0ed6a9bccf83a9221fe0b106da7f664aca2f0fc3585fc",
+              "57232a1d0d3c1d7c4157cca31902c9be979eb93f4abb31cf6d86ddc91d749fbd",
+              "8739b27189395a7f70191e800d6f1c75cf11f89b760b53f4c2fb3ad8a5b47269",
+              "ceca0c649e1d69ecc73098c87c18e87714c16a4225e5187bb30dcdbee72449fb",
+              "dd4348d7cf1544771168e09d5cd9fa1c2344eeaaedd51ebc979acae589f2f676"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/repository.py",
+              "tests/context/test_repository.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/identity/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "69d7d0ce02d08b859096007b4d3041050268284caf69df86455bfc72c717730b"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/repository.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/tools/docs/overview.md",
+            "src/devtools/context/repository.py",
+            "tests/context/test_repository.py",
+            "src/devtools/resources/filesystem/docs/roadmap.md",
+            "src/devtools/context/python_function_candidates.py"
+          ],
+          "lexical4_import1": [
+            "src/devtools/tools/docs/overview.md",
+            "src/devtools/context/repository.py",
+            "tests/context/test_repository.py",
+            "src/devtools/resources/filesystem/docs/roadmap.md",
+            "src/devtools/context/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/context/__init__.py",
+            "src/devtools/core/paths/__init__.py",
+            "src/devtools/resources/filesystem/__init__.py",
+            "src/devtools/core/identity/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/context/python_declarations.py",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "tests/context/test_python_declarations.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "src/devtools/context/python_function_rendering.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/tools/docs/overview.md",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "tests/context/test_python_function_rendering.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/__init__.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 4,
+            "incoming": true,
+            "outgoing": true,
+            "path_count": 38,
+            "relation_identities": [
+              "073bdf34625e26200ce99943146fffc1e6deaa2aa4261a6849ebd50d44521d05",
+              "15eed3607e59e142c031726443913e6b4536a2e3005e48c509aa840a2f41cf06",
+              "19cc6cf6c276ac8f02ef411de810bd5cf5fae7534c3ff16e4c31a847b845fa15",
+              "217606943e75046375a1ae29a33a3ed79a219dec757411760b94ba9dcacdddac",
+              "2aa12cabca32ce3774c51d40a090fcc2ed6002f4d26e4347a7bb95bc70ef3508",
+              "2ade014ea1eef4949595c84f7c45e5fb376b62c9d8ef92109e5f9de87d12b1cb",
+              "3447a20408db78c5abaace67c48c1cf632ae7e6c8455e1af15b962bfea9953f7",
+              "36fbd797a654824b642784e646438c7f16afa9a312fb6dcd38804594e5940448",
+              "3b8c98ef3e3b45d8e1a178929114424c4dd78c908688c8ab9989990770161a1a",
+              "3c22444febe00eec333ac4c0b4c50a2ef376eba301f6f644f701b93aed15cb7d",
+              "4185e771b1588695e243a21cc95cb540e62a1b9c2b179f72cb630cf6d0c77024",
+              "429b16e56b99e7eed4463108c408c68a1f76d1f241b287a84f09c689af898501",
+              "43602a3c9363504d92942ccd879c168153a3ace35d345be86fad972a9e2d3ce9",
+              "4d318ce1312ae9e91cb9c8f7e626016fc8f20493ca3ba561da4a068a98ec3360",
+              "4db6c7f62dbaed223a332d9644bd79f4c3d04a2e0d85a89f3fa751d7876d58c2",
+              "60019c272ea106899884a8104d784056f55811dda356832aae40f2f0b1df243c",
+              "615b00c971b0a33c987a3e7c6966c4bc15518815eac9f5cb1c8bcade6b38d279",
+              "6825b19217228f571ad81a02230d540466890c9288ff060471a55596262ba1e6",
+              "8c10fd64cd2aebdcaa8b74acb898b6468e8b427e894648f4787f02cb174d85d7",
+              "a5a176d20478e900ee2aa78adb75d57b4da6b7b084cde2a2676d1d9a09ff462d",
+              "a5bce089f05b950b24df6a3fa9ab2ef188e637d8d15d6b4b6db296ca8b640da9",
+              "aa96b8c91d56a4e1a07032fdb067e036137da69facf6e59822bbb5246a58daf4",
+              "af3dd3395d6752301f3280ff3aadccd7b4f9464f5269a375438dd496e233bdb6",
+              "b0da9aed1dd5b94d93d293f03f1ba821d66075f9b767c05bc5de5ebe3441d9ed",
+              "b6ae175fbfb09a827f9df4336569ef0948382b7e2ff3102880defd1800a3eb7d",
+              "c9abd095d53d06e3cddaf3cc5b0a9f5cd1ef0e63132fc862c61e93437bf61291",
+              "ca5d9c0cffe548dd9264b8a3aa172896692a6c9eecc5dcf1b8bac4af97d9a499",
+              "cb4a63c0d989e97d5f3b73dce28a44860c0f84ce1ad699d7e292befa6cfb6339",
+              "ce59d9e9b953c650ee6064124206dd65da9cdb4bd6410354a417cef776b2ac0d",
+              "d81fb62518cf8b61b1420f844804735a615cda868dff11281b0204a1f170e5c8",
+              "d9051b6884260851b204eccf3436440d886c52bb6c3356aafec5d20265d9a34f",
+              "dd78db1b373afe99794f403bbb120585463e431bd43a69c921bacd50e8f5badd",
+              "e33539af29faf3bf04db791e8084f510daa0f3ffa45e75edad4d69af153b1177",
+              "e88ecc5ad6eacfc669ca28146309680ea879f9c550f8b4f54be62386a5c486ab",
+              "f208676d0a7f03d4a08c28a1db683adc403fdfd4e8aa26877f5a37feafcdc23a",
+              "f6129a23536fc7fd65f15f977938cf38c3f2cd372cf7c7788f4608a428803582",
+              "fd456536a4a469a71b09da4f5e79fe585361609e371969ba495c8201e14d3b4d",
+              "fd8ed35bd12c85aabae9c67d20e6011d380b124b07f1236adf4e87fc795bbd77"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/python_declarations.py",
+              "src/devtools/context/python_function_rendering.py",
+              "tests/context/test_python_declarations.py",
+              "tests/context/test_python_function_rendering.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/paths/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "90305f86feabfeccdcb17931f9a00800bca4742b5de4c6df276774fe0b705d7c",
+              "93a8d63876da82cd0ff4415f6a2b4aff0d36a393ee13fab6c83b1111e7d84f36"
+            ],
+            "seed_addresses": [
+              "tests/context/test_python_declarations.py",
+              "tests/context/test_python_function_rendering.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/context/python_declarations.py",
+            "tests/context/test_python_declarations.py",
+            "src/devtools/context/python_function_rendering.py",
+            "src/devtools/tools/docs/overview.md",
+            "tests/context/test_python_function_rendering.py"
+          ],
+          "lexical4_import1": [
+            "src/devtools/context/python_declarations.py",
+            "tests/context/test_python_declarations.py",
+            "src/devtools/context/python_function_rendering.py",
+            "src/devtools/tools/docs/overview.md",
+            "src/devtools/context/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/context/__init__.py",
+            "src/devtools/core/paths/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "tests/scripts/qwen/test_two_read_acceptance.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "tests/experiments/qwen/test_patch_proposal_worker.py",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "src/devtools/context/__init__.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-842e90e63f37",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/agents/conversation/__init__.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 4,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 8,
+            "relation_identities": [
+              "11d5e984c8b0dfa1115023ac21967e2cd599f6797e8cf421c70d536430f1770b",
+              "13ae8dc74a77d3c1389eced9c65c54aec38ed80187c635cdd628b3899076156c",
+              "1f3b4d5ce1df43f4707ae28c61a03f40785622e4d27826d230b6189c5c62adae",
+              "241a0fd902840a55e10d0cb00a9f7a7b3f5dbb5f9c3b075e48bb8bfdbbe820e7",
+              "9992544d4b5556ef6cddc49737bb32deb7348d476d13723af6409ebe3c781101",
+              "b450fd138f3a1d73928e8109010eb92a787ad4896242b903b46b7df813c957eb",
+              "bbc944a998233634a522376a3dd1edd9303382ccded6cd981178182f34481a8b",
+              "beead940fcb15e528c16a998c78993fccf8ecba3c7a4fd9b53701a2917aad06c"
+            ],
+            "seed_addresses": [
+              "tests/experiments/qwen/test_patch_proposal_worker.py",
+              "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+              "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+              "tests/scripts/qwen/test_two_read_acceptance.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/models/interaction/__init__.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 4,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 11,
+            "relation_identities": [
+              "349022268948edd67428c999017d265b8491a9b48cdb3d043a11c8d68f776219",
+              "47146bb02fcc9cc1b7d7f37c3ccc78bdf3420ca4957c35dbbd01d820c3215698",
+              "4f9fbfe65442382267c991befd37c618e49fdd7ca049313648927639c51a6767",
+              "600ee4ea3831403cda13adda526037f3d419bfcd0b62a8cfb24f2e3c283f1a42",
+              "613609b2b4507cf9772fc69919bd00e8e57a241eb87f0aa2ed3c465f8be61604",
+              "69914791812005f667028971ef23e20251e611e5b8a13d5f3ab5a596c31bc281",
+              "7faa724c8c83d618b671ab5e1170a8a29140d5ea756552d8315e8a6fcde94237",
+              "8af4776ecd06866361d64a7337084492759189dc046beef43eb9d448a5c85264",
+              "9b5e3fed53c39713e0831b8589750c20e555a23a710daea1157d66f88ee6fff9",
+              "a659e1d234b7e80a9552b26bb9086e76e50e94759be7ae154c3a8a631dc3c7f3",
+              "f3b6e7d6a5afbf16bed78e76c712ad44537220021b07e7086445b7b2a18f41ca"
+            ],
+            "seed_addresses": [
+              "tests/experiments/qwen/test_patch_proposal_worker.py",
+              "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+              "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+              "tests/scripts/qwen/test_two_read_acceptance.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/resources/filesystem/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 6,
+            "relation_identities": [
+              "0fd6969ac1ba61a58fda2e06e8930aa1a32b912a22d8c491f680a7b4fb845fcf",
+              "131479ac593759e2fc7f0b4a8ea415fdace2dd37a8f7ba0e08b291ef9174087d",
+              "645bb4046bc3a8b6c4816cfd7933fc17b6903bc44bc2ef38bc6b6083ffbe1d15",
+              "774b4b6ede940993600eab8f8af093348c5c1c698a81d6af560b8da1b6899789",
+              "a57c7552195d804077b2c4ad6f84c2d503c236de4ad9d8d37c057f29d3dd49fb",
+              "caa091f3b7a5599411e3fabed8f9fab7d9c50449f9048fa1558ed769e84f93ab"
+            ],
+            "seed_addresses": [
+              "tests/experiments/qwen/test_patch_proposal_worker.py",
+              "tests/scripts/qwen/test_two_action_read_only_acceptance.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/models/interaction/providers/llama_cpp_errors.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "b4153bd4eaa8a324f830776a77eb728eeb2af0c4a8fcbba49b1723caf217f2ff"
+            ],
+            "seed_addresses": [
+              "tests/scripts/qwen/test_two_read_acceptance.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/paths/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "6ac4af5b0cd9dbb967aad454ca8a955784a0dd13a0d95d435b38991fa6d23b29",
+              "88ccbde7221da7cf968a61fc70e4e749f41661bbd4d771961cd8cf15161362ea"
+            ],
+            "seed_addresses": [
+              "tests/experiments/qwen/test_patch_proposal_worker.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/execution/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "714885f187e52810b87afd256a396691d48adbadc43aac4a2bd4e026ebc29021"
+            ],
+            "seed_addresses": [
+              "tests/experiments/qwen/test_patch_proposal_worker.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/tools/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "991bed80bf4db9007b1945f575164b2113d1fb9e0187e10743955848bbad37ae"
+            ],
+            "seed_addresses": [
+              "tests/experiments/qwen/test_patch_proposal_worker.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/tools/filesystem.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "ea1ebc2d8569513301b1d82fc5a4749b84fc03485dbee11205c212665048e1f3"
+            ],
+            "seed_addresses": [
+              "tests/experiments/qwen/test_patch_proposal_worker.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+            "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+            "tests/scripts/qwen/test_two_read_acceptance.py",
+            "tests/experiments/qwen/test_patch_proposal_worker.py",
+            "src/devtools/context/__init__.py"
+          ],
+          "lexical4_import1": [
+            "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+            "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+            "tests/scripts/qwen/test_two_read_acceptance.py",
+            "tests/experiments/qwen/test_patch_proposal_worker.py",
+            "src/devtools/agents/conversation/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/agents/conversation/__init__.py",
+            "src/devtools/models/interaction/__init__.py",
+            "src/devtools/resources/filesystem/__init__.py",
+            "src/devtools/models/interaction/providers/llama_cpp_errors.py",
+            "src/devtools/core/paths/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "tests/models/interaction/test_models.py",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "tests/models/interaction/providers/test_llama_cpp.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "tests/execution/test_runtime.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/models/interaction/protocols.py",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "src/devtools/models/interaction/response.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-eadb6f231f57",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/interaction/__init__.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": 8,
+            "distinct_seed_count": 5,
+            "incoming": true,
+            "outgoing": true,
+            "path_count": 18,
+            "relation_identities": [
+              "06485f5c4795f15113d1eec563a80a3c2cc8db6baa346e0ad483f3ab02aae715",
+              "09516b36ed31d610ed2dfd290d4428beafa2fcef8ceb262ce02fa1c87a6296af",
+              "0fc845b1a4ed444683cda0cd162a64d0a8fa5febc68a5d7f3cc33df8513d6bd2",
+              "1d84ef6be672c0390a6258f451f0e4f2d837047bbbf19d2783d70fb6e2db7589",
+              "259ac8f0c4f8cbfd3abea0179b6ce42721a60cf9ea1a6261773bf01b2ae19f8d",
+              "4186cd869e59c42e0cad493692b5ce7f391dfb544e2f3177ca13617fa5304fb1",
+              "4da2d68e514b1bb972cb41fb8708944ab8c68659b1978b5cc489fc4d54c2d01f",
+              "56fb02c9ec50f58ec68d50446da5da3f3f8d595b65e9dbbef70e934c51fb9dab",
+              "5fd18b5a60309631b88cba4555d03f5b4e09f423bb40936b9806692271156cd5",
+              "6c94780ba865b310c4d31051aa4b944b938523c521c4ff4d405bfa7662e1612c",
+              "769c952431541347c8b472f627c65d32412212b2422af5edf88b5803b27a1e8d",
+              "8aa4b25cb46180cbfcc5ddf9550de443371878f452c7f75458f04e0d7a81f7f1",
+              "ad050f897eecb95827cc1bad802035bd91187551db202923211abdf03308f9be",
+              "b5d0999d59bdfc6e5295c556718638b3112433154ca7dc543ffa04b828dab09c",
+              "b628c314b7578d49ce14c85b759de945c992c7d29659dcfa40633e91bbf7274c",
+              "b6fc7eb90fa9accfaa128151bf97cd62bda4b5ce4b0cd1201194cb1f489af7db",
+              "b7f7ae585c7f897ff3869bec2c3e143e87069027c80a1039341a061a0cf8fe9d",
+              "f6f159faa6749ffc73fdb3ce3c9f92a4bffb763d5e40f9df01ba7667ac1876b9"
+            ],
+            "seed_addresses": [
+              "src/devtools/models/interaction/protocols.py",
+              "src/devtools/models/interaction/response.py",
+              "tests/execution/test_runtime.py",
+              "tests/models/interaction/providers/test_llama_cpp.py",
+              "tests/models/interaction/test_models.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/agents/conversation/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": 31,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 4,
+            "relation_identities": [
+              "7c69f56a72957d348b6008953a6949ec59b27805f46df39c9e0fa761a4767252",
+              "8054d64141fbc6680629c373db577f617c4b9576d675dcef85db1491319f4946",
+              "84bbb94bcc2d00d61b774d2d777b2ca326b1715689bf5bdb450996203ce3467a",
+              "c166faae3374278daa67c33837af2301b76a06f73a36187c4cea1482b563cc2a"
+            ],
+            "seed_addresses": [
+              "tests/execution/test_runtime.py",
+              "tests/models/interaction/providers/test_llama_cpp.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/interaction/providers/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": 9,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 5,
+            "relation_identities": [
+              "12398a0491d2f13ce89d9853f6a1b98667ce8c8f75a88e826284eb29c65fd79d",
+              "2094c4c0b3428baa404b9cc4ec670355233327554b2787acb3cd5988c00f1b7e",
+              "38f5e78d3b3be7ed3933783a5d5ea61cacccba7e285e25a8c1214734b9ce0d0c",
+              "b24a450d695d1d174f46fc10c2bad1861c30318f99910f36d311dd2b59de69b2",
+              "fab760d920bd20eb29daf691f2c319f440cef464b9514f93af4dc61178cd5382"
+            ],
+            "seed_addresses": [
+              "tests/models/interaction/providers/test_llama_cpp.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/execution/__init__.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 7,
+            "relation_identities": [
+              "4f9fdf4ad189d27156edef9481bb828b6569c71b91df2a9fcf040945d8df1dad",
+              "540905aa7ad73cb955e58eb382fb20c095ddb59e49c92767a16e9a3eda0fb13a",
+              "676ee43c884645251d404cbec2b1582dc66b49d09d61e1767870d65154f7c04c",
+              "87268eb956a84751a6f854f7e7427a690a4394432fb66e6de69658f2d8291e5c",
+              "a78846ad9c8d16f0bab39aaedd0933358c56e3b1aace1aa554008942e16a3902",
+              "bb5f6c49523b1c10f3a929a63a31e745fbf900239000cf515f2b15863b137c46",
+              "c1260b033d3bae0a441e8c9a16a67aceb54286506ed369bc3574ee3103564381"
+            ],
+            "seed_addresses": [
+              "tests/execution/test_runtime.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/observability/evidence/__init__.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "3a2f2151a58d4c81fad5be2c3b5bedf895c41c6a7427284f516ecf20c9e0c276"
+            ],
+            "seed_addresses": [
+              "tests/execution/test_runtime.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/interaction/models.py",
+            "best_seed_rank": 5,
+            "canonical_positive_rank": 21,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "4b4bf711e567f489abf55fa5563561eb39a60b47459574bc1ed864d58f753c74",
+              "89830d99adae32efbed6fe70e657bbe5ca3cc6c1b57c94ba0a74dcaa583b455b"
+            ],
+            "seed_addresses": [
+              "src/devtools/models/interaction/response.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/interaction/termination.py",
+            "best_seed_rank": 5,
+            "canonical_positive_rank": 15,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "7595b18314c73e6375a1b10837514dece45bc311ade6898593bb30c626125658"
+            ],
+            "seed_addresses": [
+              "src/devtools/models/interaction/response.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/interaction/usage.py",
+            "best_seed_rank": 5,
+            "canonical_positive_rank": 22,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "cc33a21c5dde87573709ca5bb548a0aabdf382897feb91f073038ed9f1c62548"
+            ],
+            "seed_addresses": [
+              "src/devtools/models/interaction/response.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "tests/models/interaction/test_models.py",
+            "tests/models/interaction/providers/test_llama_cpp.py",
+            "tests/execution/test_runtime.py",
+            "src/devtools/models/interaction/protocols.py",
+            "src/devtools/models/interaction/response.py"
+          ],
+          "lexical4_import1": [
+            "tests/models/interaction/test_models.py",
+            "tests/models/interaction/providers/test_llama_cpp.py",
+            "tests/execution/test_runtime.py",
+            "src/devtools/models/interaction/protocols.py",
+            "src/devtools/models/interaction/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/models/interaction/__init__.py",
+            "src/devtools/agents/conversation/__init__.py",
+            "src/devtools/models/interaction/providers/__init__.py",
+            "src/devtools/execution/__init__.py",
+            "src/devtools/observability/evidence/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/resources/filesystem/docs/overview.md",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "src/devtools/resources/filesystem/docs/roadmap.md",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "src/devtools/agents/integrations/codex/docs/cli.md",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "tests/agents/conversation/message/test_message.py",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "src/devtools/resources/filesystem/docs/codecs.md",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/agents/conversation/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": 13,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 3,
+            "relation_identities": [
+              "50197df1ba0855599812dfac8557afe2e3a3b895f2d5ab415d1ca4edf77a0c17",
+              "63aedbdb2effc24372cc87b2a1852b7c649eccdb2ab6fd44e0b79cf9338788d5",
+              "b90d3e0ad91f8b94f6af50bc4481ea9286b39939f32314767e69ea2f30e64f99"
+            ],
+            "seed_addresses": [
+              "tests/agents/conversation/message/test_message.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/agents/conversation/message.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 3,
+            "relation_identities": [
+              "2d72fcfb534ee009112f5ccaf5883d5bab299ad170c99377ea7789523b757151",
+              "71a92e632c3e9bfed371cc6bfc2aa272a731c1973530db22fc2f7806619bae0a",
+              "cb069758874173a35fecf58e28feb31e1f32ea4cc1a2cbbf9ab6cb2cdca397a4"
+            ],
+            "seed_addresses": [
+              "tests/agents/conversation/message/test_message.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/identity/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "dac6fcd294d5261c68023810dc39ec0c15f753f7f51864d2d6d358ceb1d44ddb"
+            ],
+            "seed_addresses": [
+              "tests/agents/conversation/message/test_message.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/time/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "5ea11a9aa7c91978009f2eeab43b5633de9448f677f1d38ac1091e95c720fb09"
+            ],
+            "seed_addresses": [
+              "tests/agents/conversation/message/test_message.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/models/interaction/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "cf7bd0476b546d8d6b2fec1ff1d0554c1a6de13f270f59d34c9c3e74c2edb715"
+            ],
+            "seed_addresses": [
+              "tests/agents/conversation/message/test_message.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/resources/filesystem/docs/overview.md",
+            "src/devtools/resources/filesystem/docs/roadmap.md",
+            "src/devtools/agents/integrations/codex/docs/cli.md",
+            "tests/agents/conversation/message/test_message.py",
+            "src/devtools/resources/filesystem/docs/codecs.md"
+          ],
+          "lexical4_import1": [
+            "src/devtools/resources/filesystem/docs/overview.md",
+            "src/devtools/resources/filesystem/docs/roadmap.md",
+            "src/devtools/agents/integrations/codex/docs/cli.md",
+            "tests/agents/conversation/message/test_message.py",
+            "src/devtools/agents/conversation/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/agents/conversation/__init__.py",
+            "src/devtools/agents/conversation/message.py",
+            "src/devtools/core/identity/__init__.py",
+            "src/devtools/core/time/__init__.py",
+            "src/devtools/models/interaction/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/persistence/docs/overview.md",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "src/devtools/runtime/docs/overview.md",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "src/devtools/persistence/docs/sqlite.md",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/context/docs/history.md",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "src/devtools/agents/docs/overview.md",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-c0fabcb195e2",
+        "information_need": {
+          "lexical_query": "ed evidence",
+          "purpose": "Address the historical maintenance task: ed evidence"
+        },
+        "parent_snapshot_sha": "9c42bd9b3da3f468bb7bbf0b8235596187dc64c3",
+        "ranked_structural_evidence": [],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/persistence/docs/overview.md",
+            "src/devtools/runtime/docs/overview.md",
+            "src/devtools/persistence/docs/sqlite.md",
+            "src/devtools/context/docs/history.md",
+            "src/devtools/agents/docs/overview.md"
+          ],
+          "lexical4_import1": [
+            "src/devtools/persistence/docs/overview.md",
+            "src/devtools/runtime/docs/overview.md",
+            "src/devtools/persistence/docs/sqlite.md",
+            "src/devtools/context/docs/history.md",
+            "src/devtools/agents/docs/overview.md"
+          ],
+          "structural_top5_diagnostic": []
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/models/interaction/docs/overview.md",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "src/devtools/tools/docs/overview.md",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "tests/tools/test_runtime_integration.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/resources/filesystem/docs/overview.md",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "src/devtools/tools/execution.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-d9e58cd09390",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/tools/__init__.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": 12,
+            "distinct_seed_count": 2,
+            "incoming": true,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "7f554363f4a3dcac4f43c9ed0f2bb822b0761bf3923655dd4d06f42817f366bb",
+              "9b184b8c73f965cbbabedabb72bdce2b44e0e1fc4268653598480ff3f0fbec73"
+            ],
+            "seed_addresses": [
+              "src/devtools/tools/execution.py",
+              "tests/tools/test_runtime_integration.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/agents/conversation/__init__.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 3,
+            "relation_identities": [
+              "9ed9f67a0166b6ef6fec06db2c4f63e047cfe9bb638a920113aa220d823cb1e1",
+              "9f9251eefb4f705e6de2c279a5d8521bf80bebede6e117d1e43ef081fa9e2489",
+              "ef51045c2ac1e0ecd9be05277af4c7253c2f19ad4e85c6a0877e43facd3bb90e"
+            ],
+            "seed_addresses": [
+              "tests/tools/test_runtime_integration.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/execution/__init__.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 4,
+            "relation_identities": [
+              "71d0323b2765de7d594179ba1f78ca5467dee00c8bc745e1e2ee8eb4e5574d67",
+              "8161b3216e28c07f2b5befba3996adf48476913c7aba03460ad14ca487077cb8",
+              "d9df2ddd5cfddba577e31c8aa78de408411ce6260fea6063d8cfd2dd5132a43b",
+              "e31d501c12c2cc9db27cd890ccb5e447f7be3b1ccc90549a922c639f93c3b6de"
+            ],
+            "seed_addresses": [
+              "tests/tools/test_runtime_integration.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/interaction/__init__.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": 77,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 3,
+            "relation_identities": [
+              "515060fe1d35699c70cd0ceca82436d38b04a1695accdff3c67532120965147a",
+              "5e393dd6bbb1febde94dc8a86c22ed256725c7ad2d2ade4c855035217f4456ba",
+              "902ff65e1b8f87d8529db689b4ec536276d4386da1524965471f22e1118c040e"
+            ],
+            "seed_addresses": [
+              "tests/tools/test_runtime_integration.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/observability/evidence/__init__.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "a15bd93b64d9b68d6a159b629356c8ea81e8c14fe8f8ecb71a81849f0f685998"
+            ],
+            "seed_addresses": [
+              "tests/tools/test_runtime_integration.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/resources/commands/__init__.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 3,
+            "relation_identities": [
+              "b4eca7747f5f2077a34278c9fcf958b09e740417e69578e3c11922c464aba93f",
+              "de0eb77a28ad4c93a4bdc751acfd20675892ce7284b6b5103b261e14eda00622",
+              "f6a7ad0bfc660b135d65faf7b84a3f33ac28b555f62b0a6b353b62bb7af12358"
+            ],
+            "seed_addresses": [
+              "tests/tools/test_runtime_integration.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/tools/command.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": 22,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "a5d3a15734f0a6f2ac3acef6ca3576efda87f6ee76494cff8ac51744dfd75332"
+            ],
+            "seed_addresses": [
+              "tests/tools/test_runtime_integration.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/models/interaction/docs/overview.md",
+            "src/devtools/tools/docs/overview.md",
+            "tests/tools/test_runtime_integration.py",
+            "src/devtools/resources/filesystem/docs/overview.md",
+            "src/devtools/tools/execution.py"
+          ],
+          "lexical4_import1": [
+            "src/devtools/models/interaction/docs/overview.md",
+            "src/devtools/tools/docs/overview.md",
+            "tests/tools/test_runtime_integration.py",
+            "src/devtools/resources/filesystem/docs/overview.md",
+            "src/devtools/tools/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/tools/__init__.py",
+            "src/devtools/agents/conversation/__init__.py",
+            "src/devtools/execution/__init__.py",
+            "src/devtools/models/interaction/__init__.py",
+            "src/devtools/observability/evidence/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/context/python_function_rendering.py",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "tests/context/test_python_function_rendering.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "src/devtools/context/python_function_disclosure.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/context/python_function_request_assembly.py",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/__init__.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": 28,
+            "distinct_seed_count": 4,
+            "incoming": true,
+            "outgoing": true,
+            "path_count": 18,
+            "relation_identities": [
+              "1701d7f470523b7b943bc896b5bbee7c5f66b59e8c8fc42655f2bcff8086e7d2",
+              "2c0e367a3200f0dadf830a1ddb361f67e0010602e342800be423c112872de3c2",
+              "57a95971be41d607fee909b556862ab5a59fbfd16b75d9bbd68dbd867e9e3c14",
+              "6170d8e939c748edbeaefeb4bd8d2093464432e8533ed405a48e97a9cc45f3c6",
+              "6e8e8cf03d3b6a1465c4a5ebd17e304fa5eda678fab8703ae38bf618212b9256",
+              "7a28a77447cd28e52b8a80597bd0a439e940c45b26ba0c074bf2d5ed6b785576",
+              "7eba5ef4b3ed3b44ec3778c5513c039c0cdb98a90b30651b9b3c7ef1efa78aa0",
+              "87788704bf03291f557948bf8d805dfe46615d56eec4345fe0534f0bca59d4d3",
+              "b048255deacb3a11a26cf47c1c3c1babaafdeed2673aada3887704a5e156b7e0",
+              "b401400d28a772ae935b452ba826ea1ab19922db32b9806131a37d3ccb6a8a54",
+              "bced76b3b9a304afd7c520bf1fdb6728f9b43fcf0930f30636fe19c30751a23a",
+              "c5c2845b55fc743ace3c0c2c39afec27d1009eb750aefa8ef8aedaa93be92c3d",
+              "c79adfd14c11d5e6b3cfb0923a4c58c05e3f2efa2ba03cad5aae295a27d7f736",
+              "d56bed4f05b8dfe0a820b0227a6da2c7b094aae07989c8f2d5881a8530dbb317",
+              "dc95f72cc5be6d043dfb6f7259564c5be7bd47d9be70f328dbf07b15458f9dcc",
+              "ef84f05cddfafa22beda1ea7ee1253d81b5a10cbdc7970455f277f421267445e",
+              "f3e97a33d471ed97ae0e74c34ff446c5e978a214207ce49a3fdc4b9ac0818612",
+              "f616551b2cc69a8aad12d4664d65b192d77857f1e0c4c615106d97ae134c702f"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/python_function_disclosure.py",
+              "src/devtools/context/python_function_rendering.py",
+              "src/devtools/context/python_function_request_assembly.py",
+              "tests/context/test_python_function_rendering.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/paths/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "866d238fb5ab8709ac84a49251815c3fac26774cfa450da671ff4776b95ba653"
+            ],
+            "seed_addresses": [
+              "tests/context/test_python_function_rendering.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/models/interaction/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 8,
+            "relation_identities": [
+              "21a3365028a465f8e4f356afc2662d69284faeb4b77c4eb7e6bac5a24da68bfc",
+              "2beac2874cbdeff96b34fc7bc8d951bea560afd9875d1a5d5cbdffb47be24d40",
+              "3e461d71bce9d465bee7c8579c34af6b6811cb1a352253a64d5f9b0c18109974",
+              "7517521a6b7c980fb9ee201cd1f68e6f3109cbcea3fef42fe968793bba45a7a0",
+              "76d1cdcd8daea03b4c6c5a5624c04091ed1422d5f7e6458c266837d5f78130eb",
+              "959d5c8913324fd27f3fb9c36c1b0d79a19d3588afaf92b7de688e14168cb47f",
+              "a819b1daba4981f53731ccab7bff1dc68469f55f52e2993e14d1da0b739a623d",
+              "cbda5e36ac4e0d37dda1732aeeb7ec46e5c366c0c0eb79f948520615940b3e5b"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/python_function_request_assembly.py",
+              "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/agents/conversation/__init__.py",
+            "best_seed_rank": 5,
+            "canonical_positive_rank": 42,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "56fa29be8384935f96155dea88ad48a7182cd117f8b169e3679297c3c2b97a14"
+            ],
+            "seed_addresses": [
+              "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/context/python_function_rendering.py",
+            "tests/context/test_python_function_rendering.py",
+            "src/devtools/context/python_function_disclosure.py",
+            "src/devtools/context/python_function_request_assembly.py",
+            "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py"
+          ],
+          "lexical4_import1": [
+            "src/devtools/context/python_function_rendering.py",
+            "tests/context/test_python_function_rendering.py",
+            "src/devtools/context/python_function_disclosure.py",
+            "src/devtools/context/python_function_request_assembly.py",
+            "src/devtools/context/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/context/__init__.py",
+            "src/devtools/core/paths/__init__.py",
+            "src/devtools/models/interaction/__init__.py",
+            "src/devtools/agents/conversation/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/context/python_function_materialization.py",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "tests/context/test_python_function_rendering.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "tests/context/test_python_function_materialization.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/context/python_function_rendering.py",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "src/devtools/context/python_declarations.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/__init__.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": 27,
+            "distinct_seed_count": 5,
+            "incoming": true,
+            "outgoing": true,
+            "path_count": 45,
+            "relation_identities": [
+              "045331c76900e266f21662ca333c6e4a6b806c40902fb65d49f92db4d430259d",
+              "049f2e69e89782e412048c830d7d64762a468fd4f6076d96cc1e95a095fdd572",
+              "12aab36018a2c5ca542539bb567eafc3f6707586ef89e4a5968ae2431c936345",
+              "1538e0ceafcad2a96f84cd0d4c25f74ac21c5d8420e435140a9bf847dbf7b521",
+              "15ef8a7a87cac3ec6c2938c95137d043b9b2d336fd9789ab0d411519e68e3f48",
+              "1b39617ed718edb03b76f8e8312398b84b25fd6512c3c52b7d329fb6f0bd1e08",
+              "39556f239273a0768f959e56f08d1a6ad718fc120fae17652eb910498fba4534",
+              "3c037fe3923262fda9696725dae255994f2522a1a40e9414b2508250c675f1f0",
+              "3dc6a3404e595985072a0c587c2f95b9eb14a7dfa0e16c22e31ee6eec8bdeb3e",
+              "563ef3fa813fd125c192d9d013936f0f66c0f2088fc88be1ab154e8ec2e89795",
+              "56a72819515dd9910c8d484577eb11641b37bfeb40d35ebb798b30a6d2ea1034",
+              "698407adbba246c48925dc31303e32a30b40de236e386cb7048256a4f8258bd3",
+              "6b9a689da5cc2caa934a4df197c63a4688b86a7c58e789fad3a7f175b21d6824",
+              "6bd43649b6e044fd7c7256c23c59627d313a2c29c02404b3df5950a15e160975",
+              "72ea68d3f6feb4a043acbc938b7c89c58ecebf1708c52b91e5051a9f1e9d3d89",
+              "78630ec01c9a5fb93f4d1cca85f5a19083624db9237b8a14ca3105ea78d6353d",
+              "792f9c8cbafb12c8cef11f056ef807e78ecc8454ee03bda91161cba864b4039a",
+              "7b86f4369fcd6aaa1be8904bb3d1b14d1d58c39adc290c6afe594473465f035d",
+              "8b1ba53277c3ca9beac6dcc3d78ca2dfe28bffbe87dee3850f0c6842be174129",
+              "8d2682ab978f9fc4cc4d000f8e532fc1d77bb330cb4892e50d4a45b8544c1a4b",
+              "8f4ae640f5d1b6f101fd05a4955fa724a88b4ffa75ffa1ad093ba6ce0d4dc77b",
+              "9561c7585d8aa7ee189702aa5fd3c86d6f9346d300c4dc4f96371f61d03071b7",
+              "96529fbd60ae3666a68efea6a21f41084a23dd6aa0cca2510bb1870985936bca",
+              "a7fcadf6258f67fabf281504ab1fba82f6f7be445710a695c5de1364d8947cdf",
+              "ad3149e34ff78c881bf13f15ed52e42150dee2e97ff42ad90f98562158d8c505",
+              "af92b48be584793bb899edf6dd3efa9d9815348e374e7073d151824b60943186",
+              "b1ad5ebd1134fe8e63f33d3b763fcdd3418012a32137c85c56de69a6fe494e2b",
+              "b1d46513493f864e5b23022139af642f0a5fabebb7e67c8db5c68ab91699d996",
+              "b5dea79836f7d22d615b5a3816dd17a4b65643f27a17f1b0540040ef4d2150d0",
+              "b5ff2c0375c06f81bf9e53d014d2b53c1580dcd6f2314e4dfe7f644825477493",
+              "b8b1fd1e03c75cdb33f4708b43791670fce1fa99beffc71fdc47764615d8c685",
+              "bca9807aaf4135bd068584c0753d178cb8d011c0dfa240d9bf9cc7327aefc52e",
+              "c8ae04e890a1013332d2f5a1e5475a975648e695fb0bb03c9e7578240d19c0c8",
+              "cc6f1fa524605fd1eceafe74347eb0f96e5afde3606d6a4f245b2b6a45608347",
+              "cca52f025bca341229fe3fd93d62f9458d7a7a668a446e3737bf5707bd858784",
+              "ce6733cfc835b4ad72b551113d56e5da1ad735e55759a524eb2deb281ebef713",
+              "d059184d06fbe135d2b56019901d09365fbce7b6d88b81258546f3c36b12d3ac",
+              "d1ab30372e412b8ccc949af6f5a5293e04bcaf3ee22ded1f0677fb826550e273",
+              "d7801d1d5ede618a083758849dc96213ca8ad5e0d4c62b773efb9f9fadfcac86",
+              "d945fa165ee9867de7f9e9a3493823e89190b577c4550bf4e5b263543c697d63",
+              "e30c111a3bdc152f5d18aa7c2690cc96e8e552a425c5f7606cdca0a6d0a518a1",
+              "e7bf6d6c033d403fcf56c82dabb4f7dc8ea11ea32b1a971ab95c7ebca4443fbf",
+              "edb635dbdfe539f5f1c1fe43205caf46f647a2d0b4d1f3f679aea92f52c3e826",
+              "f52dac0f4744616b076d13291f87732a7a4878d4a5e7dfed4fbe05720241ce53",
+              "fa060c10704b0335a85f85ef646c16e1571adcf83e2b78c49ace020824f2daef"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/python_declarations.py",
+              "src/devtools/context/python_function_materialization.py",
+              "src/devtools/context/python_function_rendering.py",
+              "tests/context/test_python_function_materialization.py",
+              "tests/context/test_python_function_rendering.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/paths/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "6c577474be67cc4ec5df31e85e47b3c9cc7385860e29ae7bb2f83f76b263aeb9",
+              "b83710d8cd0c143c7bd28479f96af6ad2dc348560e94a316af27b48431a3ce85"
+            ],
+            "seed_addresses": [
+              "tests/context/test_python_function_materialization.py",
+              "tests/context/test_python_function_rendering.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/context/python_function_materialization.py",
+            "tests/context/test_python_function_rendering.py",
+            "tests/context/test_python_function_materialization.py",
+            "src/devtools/context/python_function_rendering.py",
+            "src/devtools/context/python_declarations.py"
+          ],
+          "lexical4_import1": [
+            "src/devtools/context/python_function_materialization.py",
+            "tests/context/test_python_function_rendering.py",
+            "tests/context/test_python_function_materialization.py",
+            "src/devtools/context/python_function_rendering.py",
+            "src/devtools/context/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/context/__init__.py",
+            "src/devtools/core/paths/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/context/python_function_disclosure.py",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "src/devtools/models/interaction/docs/overview.md",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "src/devtools/context/python_function_rendering.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "tests/context/test_python_function_rendering.py",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "src/devtools/context/python_function_materialization.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-6156c70be14b",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/__init__.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": 36,
+            "distinct_seed_count": 4,
+            "incoming": true,
+            "outgoing": true,
+            "path_count": 21,
+            "relation_identities": [
+              "05d834a5de00df77fa2203b5b6c4ad7d168cd09c8de34a152bc7aa9436871ac5",
+              "0f43a739e3642268abc047038cb028addf545cb8860c99fde1ee46311a0e5599",
+              "10a08a6b32755feae2ce8781725462491b638f565cc843195a86dd718100d293",
+              "232196912b5d7f14bd8980756ef6d9438e335b694695a1654299bda8000849c4",
+              "2852692af7468158a8846ee8db132d7865c9c44ba8b017b94e3a89cec9327747",
+              "29e83582de028cdb3f08fd7f77b3d49ec8817ec2fe5f3d45023b607d7044da94",
+              "374c244dd8b5a393e371d2770e5733ccb2b0dcf95526da311770469a453ec9ce",
+              "6115a61a766d01c472153a793746eb2c91db47f515aae16fbac14cd004e7aafe",
+              "67311a858cc5676fe736828b61e7e1a2d0fc69c678d6ecc2a481097e9ce407d2",
+              "692b821762acc248a88a8ad0ee2ea75a885a6e5b9a50dc0bcdaf701a5539657f",
+              "788815ac4323bc4815dfa04b97e212b864a433a88895cb97b895461eeea1a400",
+              "8780dc1f268925ba12a9765ce96f9bf966ae1e13f3501a643740906313c8d344",
+              "951f79ce16f1a3c57c9bff909cad115cfcbcc1981224404e2d407499ccf7f1a6",
+              "bcefe9afde8281613424cdd081230853462c8b916c63d21de77b399e8765df1f",
+              "c752283d99a33af913297d13698a32368e944be8469c398f2f76ce9715d10b31",
+              "dce80801e4829c996cb58442ab9de19c243ed240ad81a1933f31c5d461842871",
+              "dd9ae405ea3266513efbc8862bca887cd55b48efc1d28b4138f4c7418532c0c8",
+              "e0cd33b76897edabf9b0ca9b8783c115989cf22256581329f3e515d0809434d2",
+              "e19ab2568099c81d905e61b80beab1374db260ad48f3219b1401c7dce5b2c971",
+              "e2307d2265c8e2253695e8ecc20f55b6bdc4c783043bba964a238b6a8d4d5267",
+              "eaf450d204f1a9103458a2a044a43ef38d55096db3ac8a2a647de48581ea9a64"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/python_function_disclosure.py",
+              "src/devtools/context/python_function_materialization.py",
+              "src/devtools/context/python_function_rendering.py",
+              "tests/context/test_python_function_rendering.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/paths/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "c4a5dd0b09cea7f431b80eae2e1fc0614bfc190aedbbf360a03f04a92004bf1d"
+            ],
+            "seed_addresses": [
+              "tests/context/test_python_function_rendering.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/context/python_function_disclosure.py",
+            "src/devtools/models/interaction/docs/overview.md",
+            "src/devtools/context/python_function_rendering.py",
+            "tests/context/test_python_function_rendering.py",
+            "src/devtools/context/python_function_materialization.py"
+          ],
+          "lexical4_import1": [
+            "src/devtools/context/python_function_disclosure.py",
+            "src/devtools/models/interaction/docs/overview.md",
+            "src/devtools/context/python_function_rendering.py",
+            "tests/context/test_python_function_rendering.py",
+            "src/devtools/context/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/context/__init__.py",
+            "src/devtools/core/paths/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/context/python_declarations.py",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "tests/context/test_python_declarations.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "src/devtools/tools/docs/overview.md",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/context/python_function_rendering.py",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "tests/context/test_python_function_disclosure.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-2a4f058d5262",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/__init__.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 4,
+            "incoming": true,
+            "outgoing": true,
+            "path_count": 36,
+            "relation_identities": [
+              "052ea5e6ac610a033c74399e094f7724147a8bc23c6ad99511584555c0cc32db",
+              "088c88e1342f3c04fa8a3eab7fd93926b72f5bd5cf3ef399c878a0093cf27cd0",
+              "1656809d257f448ad9986cffbd27c48f30b9c038d75323c3c2dae95c43094cca",
+              "2931eae638859dff39392e8e69fbf4253ad223a61216638dc479533cf6c30f18",
+              "2bf0c38f5cdfb80e74e16c4790957c271a33b8c2cfc28082997600a8715a70fb",
+              "2d592a332d33815e8a28ecfec12b03aaed48ed8e634fafb30318879c49f806f4",
+              "2da2c9b96fde8fbf46358c39e8d57939749b7a88f76f90873a66ad04bef2df67",
+              "30aaa241d6f4f662b700e62371265405f9b0f74b89dff455ea0cc8f50a0b9dc2",
+              "3127d864fc43f20fa0d8874c623a062d46f21cb62ad312e88e58958e28a968d3",
+              "32a16652981200d77041b59f9b17dea4f1f2017632423db35f91e3255e302bdf",
+              "360554b2192404955346495cdfea837295d641471622ab409e71109b6f29b833",
+              "38749a0933ac20cfb8f48cb86c4840b811e9dd35b6f7888d61b40d332bc99e4b",
+              "456965bd3dd0512a1914d6c2c1f43765e87ee38512b799a43444ff83c0d51ae0",
+              "468cf9a2d291b9f634464f92d94be2448d77fd9a4d27831dcf2fe9ca299d51f9",
+              "4e503ee9c98027ad04adca2a8ef9e92a54e256104030c4febb1c311ddb40e2c6",
+              "4f548257457ced56e8ed98f5d7546122eb590ae5add8c5f432f02ae14c6e48c5",
+              "949e318d1213c5dfa572832284902d4601e246741cf4eb25aea0a78fe0a9d41a",
+              "9511ed5486864ddbdabfc49e71bd32d9008e729e4d5c1bb14496a674b52e9861",
+              "9820c621a004a2bc5fc6d44d3b3b1c5fb12eb10d8db4f08ec64c001f4e0f83aa",
+              "9a406c870e835a78137b4c05491e7f0416a69f3cf24248eefd4bfe45516a8787",
+              "9d1ec5d576b6c97da6411995abe43cfe336b6b699f896a6cc96a1eb4a64202c8",
+              "a4a5d1779c49c11725783144580f4e44a6a5cbf95646bbd4de44544ee0a06d8f",
+              "ab8a082d79a49b8ee1d241dcc3ed91b944a9a3be1b68402d1139660744ebfc08",
+              "ba1e682e68a225701bc64882098aecf92bd7d7c557ee0a3986f61370730b6bef",
+              "bab30af349143de62201b18275be82e0b91e0cf66707305fe668063e2c9d91de",
+              "bb8c2432471ff3d5798cafe02bd6061d6c667fc20028edb3ecf7bbe1a14e989b",
+              "be624eb9fc8925fee59071ad428760fd8e553744e9780a51dbf84964b4bbce1c",
+              "dd4aa16564e1998da9ea724e46564e004482cc69cc8ab3cecc77659faa51a172",
+              "e3e0585a40d2edfbcc26d843853dccbfdc0894b7debf85f006ff085d23608a71",
+              "e64fe4a1de88d54124160a97c89b95128b7802f1bc154ceb6da32618835bb562",
+              "ec3fb6b89e54748bacfba6870e8ebb2acce20d5af55285e7a1558d668b5bfd7c",
+              "f0badd72f0e4a5fe2fb84610a9e4e83cfc84f57f5b86e0c2b0ea4937e9b119c0",
+              "f32027ec53a694a38287a591383a7689324114e3e07981d5473b09eecfca68b2",
+              "f54b52334f7fe76584056b77c1e4937102bfe7c21f4e835f6682eb6dd37b099d",
+              "fa1537f4832101e17c9e8b6d8e017581f67d23e6548d77ce3c419abce2902b06",
+              "fc3cf1481fb4fecf0cc783d6f94a0297be470cc9f37c62bb73fe30d59c88b260"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/python_declarations.py",
+              "src/devtools/context/python_function_rendering.py",
+              "tests/context/test_python_declarations.py",
+              "tests/context/test_python_function_disclosure.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/paths/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "b4bf9ce41e52999a1f73a5076d5998b52c313cb239b3946e2711ceddc6db3349",
+              "d08a5a8839a36cac1154cfffc15f8b5ef12608d927fa2664b317c500b879c235"
+            ],
+            "seed_addresses": [
+              "tests/context/test_python_declarations.py",
+              "tests/context/test_python_function_disclosure.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/context/python_declarations.py",
+            "tests/context/test_python_declarations.py",
+            "src/devtools/tools/docs/overview.md",
+            "src/devtools/context/python_function_rendering.py",
+            "tests/context/test_python_function_disclosure.py"
+          ],
+          "lexical4_import1": [
+            "src/devtools/context/python_declarations.py",
+            "tests/context/test_python_declarations.py",
+            "src/devtools/tools/docs/overview.md",
+            "src/devtools/context/python_function_rendering.py",
+            "src/devtools/context/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/context/__init__.py",
+            "src/devtools/core/paths/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/tools/docs/overview.md",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "src/devtools/context/repository/observation.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "tests/context/repository/test_discovery.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/resources/commands/docs/overview.md",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "src/devtools/context/repository/snapshot.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-5fdf5fe05527",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/repository/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": 14,
+            "distinct_seed_count": 2,
+            "incoming": true,
+            "outgoing": false,
+            "path_count": 5,
+            "relation_identities": [
+              "229cef34e9decd89eb7826b9470b9d4bac3b749ea0eecee7325855682d0660c6",
+              "23d9f971d128d9ddd951df254570aca3baf1ff1c5f1ec2069970e98cca6a8332",
+              "9b55fc9ada9dafa6c57af3d0fe8613683f9656caee57e8110d43adbea5c8462b",
+              "c546d20f2f105a7baa8b8bcc22bfd34babd5f4aec5aabec53d78211c1e07d799",
+              "cb1cb7c50cdecc328803968964f8d87e130225dd7dcff62fea051c7cf5c5d649"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/repository/observation.py",
+              "src/devtools/context/repository/snapshot.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/repository/resource.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": 35,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 6,
+            "relation_identities": [
+              "0803644ad44e2e45664c5bc8f1576e6baec6d43a2ea800b224e5a6e0554b5f2b",
+              "3d70610dcd6cb4599cef910186c771f2213e3c47e65d9dd32c13734cf4583ac2",
+              "442ec9864715f782649f97d68321484b8eceda4ae77c8c13fcdc8fb8f7d79f52",
+              "5323578e7199c67f0a7b4b2829d28beb47a2afbd1c05c736ed9206939538dd60",
+              "6dd2368e4001a73c2dd1f3f06e60dbc026865daab6ee29a8c1070a51ba81e09b",
+              "cf6c256e22b2db6009c6c92851944b8b6ac5fceb321cbc7b662767efd5ecc743"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/repository/observation.py",
+              "src/devtools/context/repository/snapshot.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/paths/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 3,
+            "relation_identities": [
+              "efbba5b59e09e0f411538b93be41ac225488497f03b73cab171a48f771c2ff8e",
+              "f2fadd0946874e9efc994768b691e14f27991d2c7c899cd2a22496287d6b628f",
+              "fa6e792ca14f26652297e8ab62b954cc0ef06da14b109ac19981bdef1289c7b6"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/repository/observation.py",
+              "tests/context/repository/test_discovery.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/resources/filesystem/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 3,
+            "relation_identities": [
+              "769544b1b6b8a893b2a345108fa725c029a1a72cff2dcf724504679f66b0b195",
+              "ae1268051c6749942ac6615786d0f4678f6343f4254fda09459d49d163397cb7",
+              "cb95bddf32b00c3d1128ed94a646cd0d1f0c0ed0f8acdfd4b1873690ca959308"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/repository/observation.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/__init__.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": 30,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 16,
+            "relation_identities": [
+              "1ee5dd6ce43fef30aa1af522db441e64f93a6c2b639ebde922b6f224af2cb755",
+              "1f6840f0ac25278cc192ec7bafe478f8e287198bc53887545cad21e8942b4999",
+              "3fa878d709c2a74c1c0ad4f9a7682ddb077c26078b5f0011172e0ea6bd633b80",
+              "411b7b1fecae06bec9ef76ea3cebb8d87f8e4376793fae6aab65dab5912549c5",
+              "439493c8eda78ab6a49e4b012c59655e32e8f3ce40e2af10929c05c202e1c337",
+              "4e2b4433fc54e1e3b5cc32da604fb6bdcc11a00d3d40314cabb7afa4c6f97bd4",
+              "5703d52f56a6cea7c0d5147990015a9b1a7ae97800ce392eee03bfbe7f3b7b32",
+              "5d78ed37067bd507b5ed16b2d7074df5e1a1892b231ba16933231f9899cbc4c6",
+              "631e0e6c261a80bcfed64c0a97623def5c25d42fb04f33b837d89c0bd89e83d9",
+              "6799e4e5241f71b78cc171cf2824fcb079e0e01a3081f1c029d6729c26eeee7e",
+              "7862c7b68d341ca5b07b81c2f371e4c707ad7dc05922928fd8c5963324eddb66",
+              "7883ed07268cc31d73f01ec80fbd6e96cd59ea243774d6ab10cb69ab03fd434f",
+              "b69d77db7462eba01b8cf1e688cd08bd6e3a170a8d24ce981efaf5d702e1e4c4",
+              "c0eb4169a2b37c63675ed2db8b3cbb22213b5eb31b9ebb31630866ef9d23c738",
+              "c396f67f6a07959963a9aac2d19bd75593c63dcdd726e03b6d1615f299261648",
+              "c8af39fd1d7c875c5b457dbb89e3a02d0f7de670b808850a25c8f50dc0680c8a"
+            ],
+            "seed_addresses": [
+              "tests/context/repository/test_discovery.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/interaction/__init__.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": 61,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "5d68a0cde19414c0ff85d78fd8a9c8d5ce028f03f18cf44235954e06dfa2fd85",
+              "83eda161f7519082e6bed5bd0239480d3d320575da02cfc83cbac6179e46aad1"
+            ],
+            "seed_addresses": [
+              "tests/context/repository/test_discovery.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/tools/docs/overview.md",
+            "src/devtools/context/repository/observation.py",
+            "tests/context/repository/test_discovery.py",
+            "src/devtools/resources/commands/docs/overview.md",
+            "src/devtools/context/repository/snapshot.py"
+          ],
+          "lexical4_import1": [
+            "src/devtools/tools/docs/overview.md",
+            "src/devtools/context/repository/observation.py",
+            "tests/context/repository/test_discovery.py",
+            "src/devtools/resources/commands/docs/overview.md",
+            "src/devtools/context/repository/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/context/repository/__init__.py",
+            "src/devtools/context/repository/resource.py",
+            "src/devtools/core/paths/__init__.py",
+            "src/devtools/resources/filesystem/__init__.py",
+            "src/devtools/context/__init__.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/models/benchmarks/docs/overview.md",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "src/devtools/core/time/docs/overview.md",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "src/devtools/core/time/models/stopwatch.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/models/benchmarks/runner.py",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "src/devtools/core/time/docs/timing.md",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-9009cc143957",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/time/models/__init__.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": true,
+            "outgoing": false,
+            "path_count": 1,
+            "relation_identities": [
+              "ffeb652161086b1d31fc9a0d4221427f3a9fde3f797ccacf435f7a68df7c90ca"
+            ],
+            "seed_addresses": [
+              "src/devtools/core/time/models/stopwatch.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/time/models/duration.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "ae135f9cc2db4d7e4c0bb99ff63c313a6808733e71b717161f5f011d2482d0df"
+            ],
+            "seed_addresses": [
+              "src/devtools/core/time/models/stopwatch.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/time/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 3,
+            "relation_identities": [
+              "48bb86d4820814a0486f6d2d957c3141b34e3f88ed282f394fe434d8a21b891b",
+              "8c98e719b65bea8aa6ab5640fc8a8a0d21589daac88a37b9a8d8ba123ed1afe1",
+              "99c55947e547e85edbb47a56b3f3078c7f998258576f5a3406f17d3b2df1f6ee"
+            ],
+            "seed_addresses": [
+              "src/devtools/models/benchmarks/runner.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/models/benchmarks/models.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": 59,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 3,
+            "relation_identities": [
+              "142692663a089d40f5b82e706526abaa8a8b922fe6538e366ef41135de04ddb9",
+              "530eb3b2b5713e0e0c99e35078cd6a4330d84ef5c3ab99cf4ce11fb5b47d16a3",
+              "ef8526eaf81ee0d399da1f2230a6ef5926818d4c16baaf5312effc27219cc58f"
+            ],
+            "seed_addresses": [
+              "src/devtools/models/benchmarks/runner.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/models/benchmarks/docs/overview.md",
+            "src/devtools/core/time/docs/overview.md",
+            "src/devtools/core/time/models/stopwatch.py",
+            "src/devtools/models/benchmarks/runner.py",
+            "src/devtools/core/time/docs/timing.md"
+          ],
+          "lexical4_import1": [
+            "src/devtools/models/benchmarks/docs/overview.md",
+            "src/devtools/core/time/docs/overview.md",
+            "src/devtools/core/time/models/stopwatch.py",
+            "src/devtools/models/benchmarks/runner.py",
+            "src/devtools/core/time/models/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/core/time/models/__init__.py",
+            "src/devtools/core/time/models/duration.py",
+            "src/devtools/core/time/__init__.py",
+            "src/devtools/models/benchmarks/models.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/core/paths/docs/resolution.md",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "tests/context/python/imports/test_declarations.py",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "tests/context/python/test_source_candidacy.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "src/devtools/core/identity/docs/overview.md",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "tests/context/repository/test_discovery.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/paths/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 3,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 3,
+            "relation_identities": [
+              "bd9392c2f7bcd591ea7816a0f8a3e72f7ae0cadbdd1213e400a61dd8284d6be5",
+              "f15a9b1265489721c99355b94bcadbb2bb251c8ac1484a4a6fe1b7a5e9a925d0",
+              "fe37e002751e6c132893f6827f31d80e8ddffdb4c99021f1e629e333efab106a"
+            ],
+            "seed_addresses": [
+              "tests/context/python/imports/test_declarations.py",
+              "tests/context/python/test_source_candidacy.py",
+              "tests/context/repository/test_discovery.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/python/imports/__init__.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": 68,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "053fd38f919002c5c73c8e9d3db513e9facfa68af79af82c355d7a8be556eb4d",
+              "52f13725111a51bfb25f5b85fb0597866c2a83d501e1065effcd219093b9126f"
+            ],
+            "seed_addresses": [
+              "tests/context/python/imports/test_declarations.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/context/repository/identity.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "4fdae83bdf7844b290a9567d2a26ba548b303d6b148ba1bcf6ff64e7b9cb77f9",
+              "bac5c52553e6ad96a1cd2af524cdc70210f097ffc1270a309d73a243122344cd"
+            ],
+            "seed_addresses": [
+              "tests/context/python/imports/test_declarations.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/repository/observation.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": 20,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "d9a12d4a488b2d2ec672294e7df6422a3d6c4c9348eebe6638533ca69181799b"
+            ],
+            "seed_addresses": [
+              "tests/context/python/imports/test_declarations.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/repository/resource.py",
+            "best_seed_rank": 2,
+            "canonical_positive_rank": 100,
+            "distinct_seed_count": 1,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 1,
+            "relation_identities": [
+              "67a099b7f24ae23f803d9c48368bd9345bfde0b6c948a96344d6526e22fc6524"
+            ],
+            "seed_addresses": [
+              "tests/context/python/imports/test_declarations.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/__init__.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": 79,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 33,
+            "relation_identities": [
+              "06addd94955385b836a1f8d3714e68f80aff9df2b3e62bcffaf612793dd2b083",
+              "0df9f5de904836f395ecd599a3dfdc06499d29338dab6e98464c5cc4339187f4",
+              "118d28fc5cc9409cf6946c16e4f94a460f0399b3037ad58998c7edc4d055f1bb",
+              "21cda7edefdb056534b515e29e7aa19de33fa8870431f3db62a4638016cf2c6a",
+              "228f00e3779f17676808a0367e339d4c9205e87a394581ea21293ad705a088fa",
+              "249ab7a496890dc25dc1c235d9ec9ac9b1b9093bea2c1e5a75aea12bd02ece7f",
+              "2ffec1fbdb27e5674b27353741408278399634a78fcdbea583e548c665aa9135",
+              "39bcf5f249e22a761e036656d6736bfc01fe7c4ee4d9f1ca10e7b1e1e8fa4cce",
+              "3b8ccf32991d88e781138a7ad605beba55fbaf55d524e106389ee43d332bc4da",
+              "4917a48f60ae7454d4242e564b4aa818f3c8645e6ae7c2d6b45567d017d7a70d",
+              "51c73a247cd597f9c544027a66c6a7cf864d5379bc150d94419dd8ed49229ae4",
+              "52aea1b7bdfdcf56d97c8cb1334daa2c8c19f52cc988624f76eea144d326f181",
+              "64d73925f6b0c015be113162370608281b9a3bd04ca53a2faf4e526428a229e9",
+              "6687dfb27fb11cfe7dcb8129f8107807f6f1d933c8ebd7f36dd6a016b50155d1",
+              "693ed47e132183dec78443e7388d103e323df379162a85a7ad6da0223c02e076",
+              "6deb64fa3cec943899600e7300411dc4bad26524b5ef2c6b9638cd3ee19ae359",
+              "72a9bff9d122fd8ce6c9bfc6c30627b0cae93ad520aa825079cc2da56a8f1ea9",
+              "7d643e77d4e319fbeae1652d6d04478984a2f4e4a4954535457ec4f510257c9d",
+              "84b75dc7d728fba86ddd2301a371716bdfa9b48fb6b30ec47fd4334960a52232",
+              "907a7f53c7a4c0c1541b07eb3206267b0ade2ea7e4aa456ba4aed36ef7c92a2c",
+              "a1cb804788916ad8f64a1db4998d5b8175aaee36e7b28cdaf4a15267b844d093",
+              "a430a19be99a6918b1d91658a6d86fdc440563c9644906e6037148f8fd57ac5d",
+              "a5823bc45e57368baeee05f9f3a92c0036198f57607146dccac9a72135a93f98",
+              "a6aceff5f33814b63ec0fe1cf9f1d223ac80b218aa39ba91d9f8dd1ccaa9b9a4",
+              "a7bb2a0853257408163511813685a7a30bc60c26a898c0e7e717a782c628f466",
+              "ad59aed0406698d8caed11d0ab2744b557a7ffb7c85b4bf3cefc44100e69e94d",
+              "aeaf90c6b99a41888f362d4c936b19c8b7b3647fa430e41730894740366297b1",
+              "af22d97b9f51fb5367bc740cc4e2a5549faae9c1f14d6f001f29dc1083c647e5",
+              "b61fb34c866d7a7d65fb2413180138e0bfdc7e0c820efafc1a728eb92d3f8727",
+              "c3221cf17bff210ab923f010835a40aa700725da458847e4b6a3f63086d3f045",
+              "e5dd82866b5e396291d5f19db73939f2c226a8694a3b2350857dfde3b15b5a21",
+              "f70099e8d859f433000aebf5c332635f5f2f3dfbda0a4026cbe2dc4f5ce1bbce",
+              "f95dd36af98ac9ec5b804c90be2fc961616fb42a61bd9edf55a1952d7496a4c2"
+            ],
+            "seed_addresses": [
+              "tests/context/python/test_source_candidacy.py",
+              "tests/context/repository/test_discovery.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/models/interaction/__init__.py",
+            "best_seed_rank": 3,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 4,
+            "relation_identities": [
+              "10f8f5eef27ade55530173e5c22948a8210bc42903e9c7e1250c8ecc987af6d6",
+              "22725d10808ea2c2c7d6afc8c7be160ba50deb54b8ac68f19ef2f85330336a12",
+              "cf74d174138047dd3e8ab95ef204805989798aa19d3512cff8e89343c68a0cd2",
+              "eba83978dd6d1cf2d97a77583f38ce74c8588992dbe5f106a3d3465b64cdb675"
+            ],
+            "seed_addresses": [
+              "tests/context/python/test_source_candidacy.py",
+              "tests/context/repository/test_discovery.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/core/paths/docs/resolution.md",
+            "tests/context/python/imports/test_declarations.py",
+            "tests/context/python/test_source_candidacy.py",
+            "src/devtools/core/identity/docs/overview.md",
+            "tests/context/repository/test_discovery.py"
+          ],
+          "lexical4_import1": [
+            "src/devtools/core/paths/docs/resolution.md",
+            "tests/context/python/imports/test_declarations.py",
+            "tests/context/python/test_source_candidacy.py",
+            "src/devtools/core/identity/docs/overview.md",
+            "src/devtools/core/paths/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/core/paths/__init__.py",
+            "src/devtools/context/python/imports/__init__.py",
+            "src/devtools/context/repository/identity.py",
+            "src/devtools/context/repository/observation.py",
+            "src/devtools/context/repository/resource.py"
+          ]
+        }
+      },
+      {
+        "canonical_top5_evidence": [
+          {
+            "address": "src/devtools/context/python_declarations.py",
+            "canonical_positive_rank": 1
+          },
+          {
+            "address": "src/devtools/agents/conversation/docs/overview.md",
+            "canonical_positive_rank": 2
+          },
+          {
+            "address": "src/devtools/context/python_function_disclosure.py",
+            "canonical_positive_rank": 3
+          },
+          {
+            "address": "tests/context/test_python_declarations.py",
+            "canonical_positive_rank": 4
+          },
+          {
+            "address": "tests/context/test_python_function_retrieval.py",
+            "canonical_positive_rank": 5
+          }
+        ],
+        "case_id": "i25-5bdc70483eed",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "ranked_structural_evidence": [
+          {
+            "absent_all_saved_positive_lexical": false,
+            "address": "src/devtools/context/__init__.py",
+            "best_seed_rank": 1,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 4,
+            "incoming": true,
+            "outgoing": true,
+            "path_count": 36,
+            "relation_identities": [
+              "0916dc2a4b4da4ffd2b7feed507d9316b68fef01042ac8aeeaa2443e8893eda4",
+              "0d2d194a5c1a2da081b93d20903d7f828b611eeda45c4e827d9a0a6792f09ceb",
+              "172c66872f355ddeaaf3a380efe00676214f7422ddefdc406eedc0cc9e402f40",
+              "1825f97d2c6547bb4c511761c4df34515084bb223ed325a41a0fb152d7dfc3a5",
+              "1cfea9f1ce0b0d4f2ca6e7fc145f43027232cd182e8bd4bea06e7997d9cdb3f2",
+              "27a263eb52e6fd57aeca25f58bafc981faf030531ced42df9e970c3716fcd597",
+              "44d6cc94b98053a64587e7a34319133f8b49c38b58363f24ec3571572577a6aa",
+              "4514de6da05e7809164abafa87a403e56f9c24cec1f9cf487e433f129f41e4a0",
+              "4905c18b35de8f0250010a67bf8273acc6327ee810b3f7865a0e12f0ec1cadef",
+              "5139c8934104d9534d49ec2b7424421ba7ab10deb3dfec5c659bc8066836f270",
+              "5149262af569f146eeef72c5dc652c919c2376fa53bb8a030beebe72fc746381",
+              "5aa82c82bef2f9a9e61c2e70b8504e95d73aefbacb6aa835758d6166ad3b6e1f",
+              "5c780eb6efaaac9ec2ee878e67e6baaff055b541594bfee6faa97eeb48f398a4",
+              "66b1e581ebed651f9041a6611b329c4a1648c733e6c25ce31c340870aa5a589e",
+              "6a3378b0a1520d0522bd010c9f136d4992eeecb5a9fef712100601b8c48849b6",
+              "716e40ef06069a1d4cabcddbdbb5580e5390c90ef3cbb5d543c2aa24ec84a467",
+              "771afd0861e82ff7994a6c0b5df4a64ca602a2e9080ce8e11f3d2097e6894ff4",
+              "7ec7f43d0139d1c7c35bc22dd652ec9f9de4b156e2e1f117a887f09c9e398b8a",
+              "85becf00b7f37340f93b4fa068f6ce0d7d4a6effdf925f2646cb4b4e847c4e12",
+              "86f713d7a9d32f5fbb4e2ca5a9bee4a974aa6039e59d4854d86cc532ce89820f",
+              "88923a5f441f152f32b7c6c52c048b819ac11d79a02140dd79889b78fbe2a5ca",
+              "93bfdd6ee6588c2fca3814dcc385bbc4c7052e652215ea597d94f637fc47250c",
+              "aebf8e0d3fa3de70b871608b8b954a39143ab87cc2c4fbc200147479982cd8d3",
+              "b260526bd8e6c10839486ad54e97f0e329190a8215e99dbac35f009985663b57",
+              "b3eaf66cdb80bba21d8594cba508b173a7d6151080810148dcfddcd770497860",
+              "b455fec54fe02e87ff160bae4971627d3f1d57afd1bb4e115da0824fa9fb9fd0",
+              "b811f0c31bdb9d9ae52ac4db359d83b0468b3bfed29bfd5aedb6e32b6905e7aa",
+              "c15ccba422a72d2640ab21e8b90f5cb724218b58e633d3f7810ddc6f2ded3288",
+              "c755eec1d9ed0ccb3aedbcf6da4a003c6ab4a634bf4ec75c9a5c929aea8bea12",
+              "c7fde652b85d456682e1c00f714b2d53e747356907b44b25d6a21a8a451c3269",
+              "c84fdc2b9041be41e1976b5331922d6d283bdfc224ee0d66a77d9b7f6ead9932",
+              "ce35476c04398499848674df1bf923b72d8d8d338d0b0c412c5bafd37c8c1a4e",
+              "db1087f76222b6ae1edd51ec9db4e3394de31ce2f79d522ee49ab61c04000c98",
+              "de9892a0795f92bd8ca9335e916059646582c9b1fe1b43c0638589c6b2c76de5",
+              "e0a417622338cd3d8ce5f4260a266f8cb059ace3e3887d082ba284dbe62e2cc7",
+              "e4c8393ce5b1bfce784bea25399c89a3cd5c1b76d7e1baa66acf677265441f1c"
+            ],
+            "seed_addresses": [
+              "src/devtools/context/python_declarations.py",
+              "src/devtools/context/python_function_disclosure.py",
+              "tests/context/test_python_declarations.py",
+              "tests/context/test_python_function_retrieval.py"
+            ]
+          },
+          {
+            "absent_all_saved_positive_lexical": true,
+            "address": "src/devtools/core/paths/__init__.py",
+            "best_seed_rank": 4,
+            "canonical_positive_rank": null,
+            "distinct_seed_count": 2,
+            "incoming": false,
+            "outgoing": true,
+            "path_count": 2,
+            "relation_identities": [
+              "ccc29a927c4477b271636172f750757de77a2b6499ac516bd34c5cd6d02b13e5",
+              "f13244bb2cb9dad846be410e07fdba6f3040b9ae0819f1a9996bf71556392759"
+            ],
+            "seed_addresses": [
+              "tests/context/test_python_declarations.py",
+              "tests/context/test_python_function_retrieval.py"
+            ]
+          }
+        ],
+        "surfaces": {
+          "canonical_top5": [
+            "src/devtools/context/python_declarations.py",
+            "src/devtools/agents/conversation/docs/overview.md",
+            "src/devtools/context/python_function_disclosure.py",
+            "tests/context/test_python_declarations.py",
+            "tests/context/test_python_function_retrieval.py"
+          ],
+          "lexical4_import1": [
+            "src/devtools/context/python_declarations.py",
+            "src/devtools/agents/conversation/docs/overview.md",
+            "src/devtools/context/python_function_disclosure.py",
+            "tests/context/test_python_declarations.py",
+            "src/devtools/context/__init__.py"
+          ],
+          "structural_top5_diagnostic": [
+            "src/devtools/context/__init__.py",
+            "src/devtools/core/paths/__init__.py"
+          ]
+        }
+      }
+    ],
+    "development_case_ids": [
+      "i25-66ed2049de72",
+      "i25-858bfa85787e",
+      "i25-6f304a8c737c",
+      "i25-bb9f807bcd61",
+      "i25-0f7a13667ef3",
+      "i25-739c82bd3398",
+      "i25-9efe3dc31e80",
+      "i25-6b0e9c52fb26",
+      "i25-901246bd802a",
+      "i25-ab24906f07ed",
+      "i25-ac797431db35",
+      "i25-842e90e63f37",
+      "i25-eadb6f231f57",
+      "i25-8994c4e58644",
+      "i25-c0fabcb195e2",
+      "i25-d9e58cd09390",
+      "i25-b5280a3c38ca",
+      "i25-85cfd9ff68a0",
+      "i25-6156c70be14b",
+      "i25-2a4f058d5262",
+      "i25-5fdf5fe05527",
+      "i25-9009cc143957",
+      "i25-4ce485f737e4",
+      "i25-5bdc70483eed"
+    ],
+    "freeze_identity": "63589dbc351453d17ea4f72012c921b67207d18a576955753875bb0048157a10",
+    "heldout_case_ids_sealed": [
+      "i25-514fdb223b40",
+      "i25-64cd17d51701",
+      "i25-5b75000b60f7",
+      "i25-f61e24db3528",
+      "i25-004d3829a475",
+      "i25-e0a344227af1",
+      "i25-add3c3ed5195",
+      "i25-4ba894f29abf",
+      "i25-7594b8450649",
+      "i25-e142585a95da",
+      "i25-5c5bdf4212ac",
+      "i25-d58c0504b671",
+      "i25-e976f7f20898",
+      "i25-ca9963afa999"
+    ],
+    "usefulness_join_performed": false
+  },
+  "schema": "devtools-i27-lexical-import-fusion-candidates-v1"
+}
