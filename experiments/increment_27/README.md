@@ -462,3 +462,94 @@ The **lexical-window retrieval-unit branch is complete and closed**.
 three-state counts, source bindings, and the canonical reachability of window
 additions. Its content identity is
 `32b46ea33c7f0a3110342a87e6e535cd3507cd83a681855543e58b31cdee5999`.
+
+## Direct module-import structural candidate and judgment-cost gate
+
+This next development-only slice consumes the existing directed,
+declaration-grounded `PythonResolvedModuleImportRelation`. The frozen primary
+seeds are exactly the saved first five positive canonical lexical resources for
+each of the 24 previously executed development InformationNeeds. An outgoing
+path projects the uniquely resolved target module to its resource; an incoming
+path uses a reverse lookup of an independently established directed relation
+and projects its importer resource. Each candidate path contains exactly one
+resolved relation. The arms remain separate, exclude seed resources, and retain
+every declaration/resolution/relation support after resource deduplication.
+There is no general graph traversal or new Repository Intelligence.
+
+The outcome-blind protocol was persisted to `structural_import_freeze.json`
+before derivation (content identity
+`b1e73fcf79f1bbf0e75a83b71822550352ce208107efc61ad5dab5001edc7dda`).
+The complete candidate mechanics were then persisted as exact canonical UTF-8
+JSON inside `structural_import_candidates.json.gz` (content identity
+`f9a78024a0be52af56dc5d676794f4dba2f52ca90a6c0454644d113bb34f09a0`).
+The original 42,265,900 JSON bytes have SHA-256
+`f42215df4ab75455f8a6fc5993993d81093f411b0835f449afe9ece16d6551b5`.
+Deterministic `gzip.compress` with `compresslevel=9` and `mtime=0` stores those
+exact bytes in 4,574,038 bytes (compressed SHA-256
+`bfc399e1ecf8315c6ec9e12bf5f900b8766e697def5eb8e5f07b21bb699afb68`).
+Decompression, raw-byte identity, and candidate content identity are checked
+when the artifact is read.
+It retains source-level import-resolution qualifications, seed interpretation
+status, all candidate paths and support, per-direction branching, saved lexical
+reachability, and same-volume lexical controls. It contains no usefulness
+judgments. Only after this artifact was frozen did the exact-label reuse audit
+write `structural_import_judgment_cost.json` (content identity
+`ae7ea932dea5278e980cfe0a567132be5b437cc8e07457307905bfb11fada71a`).
+
+Across 120 saved seed slots, 79 were eligible module interpretations and 41
+were non-Python resources. The derivation examined 40,412 direct import alias
+occurrences across the 24 parent-snapshot corpora, with 24,963 uniquely
+resolved module relations and 15,449 unresolved-in-universe outcomes. These
+are corpus-wide work counts, not retrieval candidates. The outgoing arm had
+511 one-relation paths from seeds and 99 unique non-seed resource additions;
+the incoming arm had 165 paths and 23 additions. The arms overlap on 13
+case/resource pairs, making a 109-pair structural union. No case produced more
+than eight outgoing or four incoming additions. Path multiplicity is material:
+outgoing retained 499 non-seed supports and incoming retained 153, with all
+supports preserved on their deduplicated candidates.
+
+All additions are outside the canonical top five because the seed resources
+are excluded. Outgoing has 36 candidates with deeper positive canonical ranks
+and 63 with no positive canonical rank. Incoming has 16 and seven respectively.
+The structural union has 66 distinct candidates without a positive canonical
+rank. Of those, 54 also lack a positive rank in **every** saved lexical
+universe (canonical, BM25+, identifier, path, and RRF). These are
+candidate-mechanics categories, not usefulness outcomes. Each direction's
+same-volume control adds the next `m` canonical positive resources: 99 outgoing
+control occurrences and 23 incoming, with no lexical-exhaustion case.
+
+Exact reuse of the already frozen Increment-25/26/27 judgments covers 14 of
+the 109 structural union pairs; **95 pairs require new blinded judgments**
+before usefulness can be compared. The outgoing count is 10 reused / 89 new
+of 99; incoming is 10 reused / 13 new of 23. The canonical-zero union is two
+reused / 64 new of 66. All 54 candidates absent from every saved positive
+lexical universe lack a prior judgment and require first-time adjudication.
+The same-volume lexical controls contain 52 reused / 49 new distinct pairs in
+their 101-pair union. Existing
+`UNJUDGED` remains a third state; no new labels were assigned. The cost
+artifact lists counts by case and direction without comparing label outcomes.
+
+The pre-adjudication checkpoint freezes one exact population in
+`structural_import_judgment_freeze.json` (content identity
+`30396777d0f0e719a5c717a47697f83fa9f0ea7cd6a18c3d650da7d33d64439e`,
+file SHA-256
+`a28d079344f85ecd0a79dbc50fdca2a336f1f80f4ee72cd9798dc6486b4416ee`).
+Its hidden evidence retains origin membership, all structural supports, five
+saved lexical ranks, exact three-state judgment reuse, and source hashes. Of
+the 95 new structural pairs and 49 new control pairs, four overlap, leaving
+**140 distinct new judgments**. The separate human input,
+`comparison_blinded_judgment_input.json` (content identity
+`90213a1d9dc7370559313a425a593208ba5c71e523a78fd71753beab8d905fe3`,
+file SHA-256
+`1114ff4d1b45edfac8178744e29640763ff1cc2c8cd5804e80dc67351694a26f`),
+contains only opaque case/resource identities, frozen InformationNeed text,
+parent snapshot identity, resource address, and exact parent-snapshot content.
+It contains no origin metadata or usefulness outcome.
+
+The 109 structural candidates and 54 absent from every saved positive lexical
+universe establish **candidate novelty only**. Whether any new candidate is
+useful, or contributes useful resources beyond same-volume canonical lexical
+widening, remains unknown. The 14 Increment-27 held-out confirmation cases and
+suspended Increment-26 confirmation remain sealed and unexecuted in this step.
+The next bounded step is blinded adjudication of exactly the frozen 140 pairs;
+no usefulness comparison is permitted before those labels are frozen.
