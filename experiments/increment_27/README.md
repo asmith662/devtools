@@ -697,3 +697,89 @@ held-out cases and suspended Increment-26 confirmation remain sealed. The
 next decision is whether to pre-specify a different evidence-based selection
 rule for development or stop this branch; the observed upper-bound gap makes
 selection quality the specific unresolved question.
+
+## Candidate-evidence discrimination diagnostic
+
+This development-only diagnostic joins already-persisted lexical, window,
+direct-import, and fusion evidence to exact frozen usefulness states. It does
+not retrieve, judge, fit a model, or choose a new ranking policy. The table has
+389 distinct case/resource pairs across 24 development InformationNeeds:
+165 `USEFUL`, 185 `NOT_USEFUL`, and 39 `UNJUDGED`. Sixteen exact historical
+judgments lacked candidate evidence in the saved sources and were explicitly
+excluded. Binary discrimination summaries use only the 350 judged pairs.
+
+The dataset inventories canonical, BM25+, identifier, path, and RRF positive
+membership, rank, and saved score; canonical content and weighted filename
+components; method count and best saved lexical rank; outgoing and incoming
+import membership; support, distinct relation, distinct seed, and best seed
+rank counts; saved window rank and window count; and resource suffix. Missing
+positive evidence is `null` in rank/score fields and separately recorded as
+false membership. Exact resource lexical-token length was not persisted for
+these pairs, so it remains `null` for all rows. Native scores are query-local
+and are not treated as globally calibrated. All feature fields are classified
+as native evidence, deterministic evidence derivation, or resource
+characteristic; no outcome-derived feature enters the dataset.
+
+Among judged pairs, path-method membership has 76 useful and 29 not useful
+(72.4% useful), versus 89 useful and 156 not useful without it (36.3%). Its
+binary phi association is 0.331. Within-case useful-versus-not-useful
+pairwise ordering AUCs are 0.716 for saved RRF rank (825 comparable pairs),
+0.628 for identifier rank (811), and 0.546 for canonical rank (747). The
+number of saved lexical methods has AUC 0.649 (1,061 comparisons). These are
+descriptive diagnostics on a selected judgment pool, not validated model
+performance or causal effects. Outgoing and incoming membership show different
+rates, but the incoming judged sample is only 22 pairs.
+
+Canonical and BM25+ positive membership are identical in this table
+(Jaccard 1.0); their ranks have Spearman correlation 0.996. Canonical and RRF
+membership overlap strongly (Jaccard 0.952), though their ranks correlate
+less closely (0.750). Structural support count and distinct relation count
+coincide here; support and distinct supporting seeds correlate at 0.705. No
+row has exactly one saved lexical-method membership, because of the saved
+method dependencies. Method count is therefore not five independent votes.
+
+Predeclared intersections show 127 useful / 134 not useful lexical-only
+pairs, 11 / 31 structural-only pairs, and 27 / 20 pairs with both lexical and
+structural evidence. Outgoing-only structural membership is 21 / 46,
+incoming-only is 7 / 2, and both directions is 10 / 3; 19, one, and zero
+respectively remain `UNJUDGED`. These overlapping descriptive surfaces do not
+establish a general direction preference.
+
+The 54 structural candidates absent from all five saved positive lexical
+universes remain 11 useful, 31 not useful, and 12 unjudged. Fifty-two are
+outgoing-only and two incoming-only; none have both directions. Useful and
+not-useful escapes have the same median support/path count (2), distinct
+supporting seeds (1), and best supporting seed rank (3). Every escape is a
+Python resource. Thus those coarse persisted import fields do not clearly
+separate useful from not-useful lexical-universe escapes.
+
+The fusion upper-bound union contains 229 pairs. Both executable five-slot
+surfaces omit 26 known useful structural candidates, including nine of the
+eleven useful lexical-universe escapes, while selecting 61 distinct not-useful
+pairs between them. The omitted useful candidates have median structural
+support count 3 and one distinct supporting seed; selected not-useful
+structural candidates have median support count 3 among the nine with such
+evidence. The candidate pool has headroom, but observable evidence has not
+yet shown clean separation for the hardest useful escapes.
+
+**Development conclusion B: existing evidence shows some discriminatory
+signal but is insufficient.** Lexical rank and method evidence justify
+further selection research, while useful lexical-universe escapes may require
+more or different task-relevant evidence. A logistic diagnostic was not fit:
+24 case groups, correlated lexical fields, heterogeneous missingness, and
+judgment-pool selection bias make its apparent separability too easy to
+misread. This does not authorize learned ranking or production fusion.
+
+`candidate_evidence_dataset.json` has content identity
+`050e748456d42334f5ee9b4108c247c91864cd7e70716ac2fe563e7ed476b073`
+and file SHA-256
+`640e790768d003b5c372b8f2d7b4b654806e60840674d2285c5203f49cad45e4`.
+`candidate_evidence_diagnostic.json` has content identity
+`d00acc8ef5548627f83edfd70bd5f2a7dcc089aa6d417911308bb03977dbe14a`
+and file SHA-256
+`a6d6c3bdcce7e341fd3c21e3856cf5fda7d904c662cbeae5e6fec2e65aa65344`.
+Both bind their frozen source artifacts and preserve the three usefulness
+states. Held-out Increment-27 and suspended Increment-26 confirmation remain
+sealed. The next bounded decision is whether to pre-register an independent
+test of task-relevant evidence for import-only escapes before investing in a
+more sophisticated selector.

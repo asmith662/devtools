@@ -1,0 +1,2013 @@
+{
+  "content_identity": "d00acc8ef5548627f83edfd70bd5f2a7dcc089aa6d417911308bb03977dbe14a",
+  "payload": {
+    "binary_population": {
+      "NOT_USEFUL": 185,
+      "UNJUDGED": 0,
+      "USEFUL": 165,
+      "judged_total": 350,
+      "total": 350,
+      "useful_rate_among_judged": 0.471429
+    },
+    "confirmation_executed": false,
+    "dataset_identity": "050e748456d42334f5ee9b4108c247c91864cd7e70716ac2fe563e7ed476b073",
+    "dataset_sha256": "640e790768d003b5c372b8f2d7b4b654806e60840674d2285c5203f49cad45e4",
+    "excluded_without_candidate_evidence": [
+      {
+        "address": "src/devtools/context/repository.py",
+        "case_id": "i25-5bdc70483eed"
+      },
+      {
+        "address": "src/devtools/core/paths/resolution.py",
+        "case_id": "i25-5fdf5fe05527"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/reading.py",
+        "case_id": "i25-5fdf5fe05527"
+      },
+      {
+        "address": "src/devtools/core/__init__.py",
+        "case_id": "i25-66ed2049de72"
+      },
+      {
+        "address": "src/devtools/core/conversion/__init__.py",
+        "case_id": "i25-66ed2049de72"
+      },
+      {
+        "address": "src/devtools/models/interaction/tools.py",
+        "case_id": "i25-66ed2049de72"
+      },
+      {
+        "address": "tests/core/conversion/__init__.py",
+        "case_id": "i25-66ed2049de72"
+      },
+      {
+        "address": "src/devtools/observability/evidence/__init__.py",
+        "case_id": "i25-6b0e9c52fb26"
+      },
+      {
+        "address": "src/devtools/core/paths/resolution.py",
+        "case_id": "i25-842e90e63f37"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/reading.py",
+        "case_id": "i25-842e90e63f37"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/writing.py",
+        "case_id": "i25-842e90e63f37"
+      },
+      {
+        "address": "src/devtools/core/paths/resolution.py",
+        "case_id": "i25-901246bd802a"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/reading.py",
+        "case_id": "i25-901246bd802a"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/writing.py",
+        "case_id": "i25-901246bd802a"
+      },
+      {
+        "address": "src/devtools/core/paths/resolution.py",
+        "case_id": "i25-ab24906f07ed"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/reading.py",
+        "case_id": "i25-ab24906f07ed"
+      }
+    ],
+    "feature_coverage": {
+      "best_lexical_rank": {
+        "absent": {
+          "NOT_USEFUL": 31,
+          "UNJUDGED": 12,
+          "USEFUL": 11,
+          "judged_total": 42,
+          "total": 54,
+          "useful_rate_among_judged": 0.261905
+        },
+        "judged_absent": 42,
+        "judged_present": 308,
+        "present": {
+          "NOT_USEFUL": 154,
+          "UNJUDGED": 27,
+          "USEFUL": 154,
+          "judged_total": 308,
+          "total": 335,
+          "useful_rate_among_judged": 0.5
+        }
+      },
+      "best_seed_rank": {
+        "absent": {
+          "NOT_USEFUL": 134,
+          "UNJUDGED": 19,
+          "USEFUL": 127,
+          "judged_total": 261,
+          "total": 280,
+          "useful_rate_among_judged": 0.48659
+        },
+        "judged_absent": 261,
+        "judged_present": 89,
+        "present": {
+          "NOT_USEFUL": 51,
+          "UNJUDGED": 20,
+          "USEFUL": 38,
+          "judged_total": 89,
+          "total": 109,
+          "useful_rate_among_judged": 0.426966
+        }
+      },
+      "bm25_plus_member": {
+        "absent": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 0,
+          "judged_total": 0,
+          "total": 0,
+          "useful_rate_among_judged": null
+        },
+        "judged_absent": 0,
+        "judged_present": 350,
+        "present": {
+          "NOT_USEFUL": 185,
+          "UNJUDGED": 39,
+          "USEFUL": 165,
+          "judged_total": 350,
+          "total": 389,
+          "useful_rate_among_judged": 0.471429
+        }
+      },
+      "bm25_plus_rank": {
+        "absent": {
+          "NOT_USEFUL": 39,
+          "UNJUDGED": 15,
+          "USEFUL": 16,
+          "judged_total": 55,
+          "total": 70,
+          "useful_rate_among_judged": 0.290909
+        },
+        "judged_absent": 55,
+        "judged_present": 295,
+        "present": {
+          "NOT_USEFUL": 146,
+          "UNJUDGED": 24,
+          "USEFUL": 149,
+          "judged_total": 295,
+          "total": 319,
+          "useful_rate_among_judged": 0.505085
+        }
+      },
+      "bm25_plus_score": {
+        "absent": {
+          "NOT_USEFUL": 39,
+          "UNJUDGED": 15,
+          "USEFUL": 16,
+          "judged_total": 55,
+          "total": 70,
+          "useful_rate_among_judged": 0.290909
+        },
+        "judged_absent": 55,
+        "judged_present": 295,
+        "present": {
+          "NOT_USEFUL": 146,
+          "UNJUDGED": 24,
+          "USEFUL": 149,
+          "judged_total": 295,
+          "total": 319,
+          "useful_rate_among_judged": 0.505085
+        }
+      },
+      "both_import_directions": {
+        "absent": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 0,
+          "judged_total": 0,
+          "total": 0,
+          "useful_rate_among_judged": null
+        },
+        "judged_absent": 0,
+        "judged_present": 350,
+        "present": {
+          "NOT_USEFUL": 185,
+          "UNJUDGED": 39,
+          "USEFUL": 165,
+          "judged_total": 350,
+          "total": 389,
+          "useful_rate_among_judged": 0.471429
+        }
+      },
+      "canonical_content_score": {
+        "absent": {
+          "NOT_USEFUL": 39,
+          "UNJUDGED": 15,
+          "USEFUL": 16,
+          "judged_total": 55,
+          "total": 70,
+          "useful_rate_among_judged": 0.290909
+        },
+        "judged_absent": 55,
+        "judged_present": 295,
+        "present": {
+          "NOT_USEFUL": 146,
+          "UNJUDGED": 24,
+          "USEFUL": 149,
+          "judged_total": 295,
+          "total": 319,
+          "useful_rate_among_judged": 0.505085
+        }
+      },
+      "canonical_filename_score": {
+        "absent": {
+          "NOT_USEFUL": 39,
+          "UNJUDGED": 15,
+          "USEFUL": 16,
+          "judged_total": 55,
+          "total": 70,
+          "useful_rate_among_judged": 0.290909
+        },
+        "judged_absent": 55,
+        "judged_present": 295,
+        "present": {
+          "NOT_USEFUL": 146,
+          "UNJUDGED": 24,
+          "USEFUL": 149,
+          "judged_total": 295,
+          "total": 319,
+          "useful_rate_among_judged": 0.505085
+        }
+      },
+      "canonical_member": {
+        "absent": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 0,
+          "judged_total": 0,
+          "total": 0,
+          "useful_rate_among_judged": null
+        },
+        "judged_absent": 0,
+        "judged_present": 350,
+        "present": {
+          "NOT_USEFUL": 185,
+          "UNJUDGED": 39,
+          "USEFUL": 165,
+          "judged_total": 350,
+          "total": 389,
+          "useful_rate_among_judged": 0.471429
+        }
+      },
+      "canonical_rank": {
+        "absent": {
+          "NOT_USEFUL": 39,
+          "UNJUDGED": 15,
+          "USEFUL": 16,
+          "judged_total": 55,
+          "total": 70,
+          "useful_rate_among_judged": 0.290909
+        },
+        "judged_absent": 55,
+        "judged_present": 295,
+        "present": {
+          "NOT_USEFUL": 146,
+          "UNJUDGED": 24,
+          "USEFUL": 149,
+          "judged_total": 295,
+          "total": 319,
+          "useful_rate_among_judged": 0.505085
+        }
+      },
+      "canonical_score": {
+        "absent": {
+          "NOT_USEFUL": 39,
+          "UNJUDGED": 15,
+          "USEFUL": 16,
+          "judged_total": 55,
+          "total": 70,
+          "useful_rate_among_judged": 0.290909
+        },
+        "judged_absent": 55,
+        "judged_present": 295,
+        "present": {
+          "NOT_USEFUL": 146,
+          "UNJUDGED": 24,
+          "USEFUL": 149,
+          "judged_total": 295,
+          "total": 319,
+          "useful_rate_among_judged": 0.505085
+        }
+      },
+      "distinct_relation_count": {
+        "absent": {
+          "NOT_USEFUL": 134,
+          "UNJUDGED": 19,
+          "USEFUL": 127,
+          "judged_total": 261,
+          "total": 280,
+          "useful_rate_among_judged": 0.48659
+        },
+        "judged_absent": 261,
+        "judged_present": 89,
+        "present": {
+          "NOT_USEFUL": 51,
+          "UNJUDGED": 20,
+          "USEFUL": 38,
+          "judged_total": 89,
+          "total": 109,
+          "useful_rate_among_judged": 0.426966
+        }
+      },
+      "distinct_seed_count": {
+        "absent": {
+          "NOT_USEFUL": 134,
+          "UNJUDGED": 19,
+          "USEFUL": 127,
+          "judged_total": 261,
+          "total": 280,
+          "useful_rate_among_judged": 0.48659
+        },
+        "judged_absent": 261,
+        "judged_present": 89,
+        "present": {
+          "NOT_USEFUL": 51,
+          "UNJUDGED": 20,
+          "USEFUL": 38,
+          "judged_total": 89,
+          "total": 109,
+          "useful_rate_among_judged": 0.426966
+        }
+      },
+      "identifier_member": {
+        "absent": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 0,
+          "judged_total": 0,
+          "total": 0,
+          "useful_rate_among_judged": null
+        },
+        "judged_absent": 0,
+        "judged_present": 350,
+        "present": {
+          "NOT_USEFUL": 185,
+          "UNJUDGED": 39,
+          "USEFUL": 165,
+          "judged_total": 350,
+          "total": 389,
+          "useful_rate_among_judged": 0.471429
+        }
+      },
+      "identifier_rank": {
+        "absent": {
+          "NOT_USEFUL": 33,
+          "UNJUDGED": 12,
+          "USEFUL": 12,
+          "judged_total": 45,
+          "total": 57,
+          "useful_rate_among_judged": 0.266667
+        },
+        "judged_absent": 45,
+        "judged_present": 305,
+        "present": {
+          "NOT_USEFUL": 152,
+          "UNJUDGED": 27,
+          "USEFUL": 153,
+          "judged_total": 305,
+          "total": 332,
+          "useful_rate_among_judged": 0.501639
+        }
+      },
+      "identifier_score": {
+        "absent": {
+          "NOT_USEFUL": 33,
+          "UNJUDGED": 12,
+          "USEFUL": 12,
+          "judged_total": 45,
+          "total": 57,
+          "useful_rate_among_judged": 0.266667
+        },
+        "judged_absent": 45,
+        "judged_present": 305,
+        "present": {
+          "NOT_USEFUL": 152,
+          "UNJUDGED": 27,
+          "USEFUL": 153,
+          "judged_total": 305,
+          "total": 332,
+          "useful_rate_among_judged": 0.501639
+        }
+      },
+      "incoming_import": {
+        "absent": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 0,
+          "judged_total": 0,
+          "total": 0,
+          "useful_rate_among_judged": null
+        },
+        "judged_absent": 0,
+        "judged_present": 350,
+        "present": {
+          "NOT_USEFUL": 185,
+          "UNJUDGED": 39,
+          "USEFUL": 165,
+          "judged_total": 350,
+          "total": 389,
+          "useful_rate_among_judged": 0.471429
+        }
+      },
+      "lexical_method_count": {
+        "absent": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 0,
+          "judged_total": 0,
+          "total": 0,
+          "useful_rate_among_judged": null
+        },
+        "judged_absent": 0,
+        "judged_present": 350,
+        "present": {
+          "NOT_USEFUL": 185,
+          "UNJUDGED": 39,
+          "USEFUL": 165,
+          "judged_total": 350,
+          "total": 389,
+          "useful_rate_among_judged": 0.471429
+        }
+      },
+      "multi_lexical_method": {
+        "absent": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 0,
+          "judged_total": 0,
+          "total": 0,
+          "useful_rate_among_judged": null
+        },
+        "judged_absent": 0,
+        "judged_present": 350,
+        "present": {
+          "NOT_USEFUL": 185,
+          "UNJUDGED": 39,
+          "USEFUL": 165,
+          "judged_total": 350,
+          "total": 389,
+          "useful_rate_among_judged": 0.471429
+        }
+      },
+      "outgoing_import": {
+        "absent": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 0,
+          "judged_total": 0,
+          "total": 0,
+          "useful_rate_among_judged": null
+        },
+        "judged_absent": 0,
+        "judged_present": 350,
+        "present": {
+          "NOT_USEFUL": 185,
+          "UNJUDGED": 39,
+          "USEFUL": 165,
+          "judged_total": 350,
+          "total": 389,
+          "useful_rate_among_judged": 0.471429
+        }
+      },
+      "path_count": {
+        "absent": {
+          "NOT_USEFUL": 134,
+          "UNJUDGED": 19,
+          "USEFUL": 127,
+          "judged_total": 261,
+          "total": 280,
+          "useful_rate_among_judged": 0.48659
+        },
+        "judged_absent": 261,
+        "judged_present": 89,
+        "present": {
+          "NOT_USEFUL": 51,
+          "UNJUDGED": 20,
+          "USEFUL": 38,
+          "judged_total": 89,
+          "total": 109,
+          "useful_rate_among_judged": 0.426966
+        }
+      },
+      "path_member": {
+        "absent": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 0,
+          "judged_total": 0,
+          "total": 0,
+          "useful_rate_among_judged": null
+        },
+        "judged_absent": 0,
+        "judged_present": 350,
+        "present": {
+          "NOT_USEFUL": 185,
+          "UNJUDGED": 39,
+          "USEFUL": 165,
+          "judged_total": 350,
+          "total": 389,
+          "useful_rate_among_judged": 0.471429
+        }
+      },
+      "path_rank": {
+        "absent": {
+          "NOT_USEFUL": 156,
+          "UNJUDGED": 33,
+          "USEFUL": 89,
+          "judged_total": 245,
+          "total": 278,
+          "useful_rate_among_judged": 0.363265
+        },
+        "judged_absent": 245,
+        "judged_present": 105,
+        "present": {
+          "NOT_USEFUL": 29,
+          "UNJUDGED": 6,
+          "USEFUL": 76,
+          "judged_total": 105,
+          "total": 111,
+          "useful_rate_among_judged": 0.72381
+        }
+      },
+      "path_score": {
+        "absent": {
+          "NOT_USEFUL": 156,
+          "UNJUDGED": 33,
+          "USEFUL": 89,
+          "judged_total": 245,
+          "total": 278,
+          "useful_rate_among_judged": 0.363265
+        },
+        "judged_absent": 245,
+        "judged_present": 105,
+        "present": {
+          "NOT_USEFUL": 29,
+          "UNJUDGED": 6,
+          "USEFUL": 76,
+          "judged_total": 105,
+          "total": 111,
+          "useful_rate_among_judged": 0.72381
+        }
+      },
+      "resource_lexical_token_length": {
+        "absent": {
+          "NOT_USEFUL": 185,
+          "UNJUDGED": 39,
+          "USEFUL": 165,
+          "judged_total": 350,
+          "total": 389,
+          "useful_rate_among_judged": 0.471429
+        },
+        "judged_absent": 350,
+        "judged_present": 0,
+        "present": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 0,
+          "judged_total": 0,
+          "total": 0,
+          "useful_rate_among_judged": null
+        }
+      },
+      "resource_suffix": {
+        "absent": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 0,
+          "judged_total": 0,
+          "total": 0,
+          "useful_rate_among_judged": null
+        },
+        "judged_absent": 0,
+        "judged_present": 350,
+        "present": {
+          "NOT_USEFUL": 185,
+          "UNJUDGED": 39,
+          "USEFUL": 165,
+          "judged_total": 350,
+          "total": 389,
+          "useful_rate_among_judged": 0.471429
+        }
+      },
+      "rrf_member": {
+        "absent": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 0,
+          "judged_total": 0,
+          "total": 0,
+          "useful_rate_among_judged": null
+        },
+        "judged_absent": 0,
+        "judged_present": 350,
+        "present": {
+          "NOT_USEFUL": 185,
+          "UNJUDGED": 39,
+          "USEFUL": 165,
+          "judged_total": 350,
+          "total": 389,
+          "useful_rate_among_judged": 0.471429
+        }
+      },
+      "rrf_rank": {
+        "absent": {
+          "NOT_USEFUL": 31,
+          "UNJUDGED": 12,
+          "USEFUL": 11,
+          "judged_total": 42,
+          "total": 54,
+          "useful_rate_among_judged": 0.261905
+        },
+        "judged_absent": 42,
+        "judged_present": 308,
+        "present": {
+          "NOT_USEFUL": 154,
+          "UNJUDGED": 27,
+          "USEFUL": 154,
+          "judged_total": 308,
+          "total": 335,
+          "useful_rate_among_judged": 0.5
+        }
+      },
+      "rrf_score": {
+        "absent": {
+          "NOT_USEFUL": 31,
+          "UNJUDGED": 12,
+          "USEFUL": 11,
+          "judged_total": 42,
+          "total": 54,
+          "useful_rate_among_judged": 0.261905
+        },
+        "judged_absent": 42,
+        "judged_present": 308,
+        "present": {
+          "NOT_USEFUL": 154,
+          "UNJUDGED": 27,
+          "USEFUL": 154,
+          "judged_total": 308,
+          "total": 335,
+          "useful_rate_among_judged": 0.5
+        }
+      },
+      "structural_member": {
+        "absent": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 0,
+          "judged_total": 0,
+          "total": 0,
+          "useful_rate_among_judged": null
+        },
+        "judged_absent": 0,
+        "judged_present": 350,
+        "present": {
+          "NOT_USEFUL": 185,
+          "UNJUDGED": 39,
+          "USEFUL": 165,
+          "judged_total": 350,
+          "total": 389,
+          "useful_rate_among_judged": 0.471429
+        }
+      },
+      "structural_support_count": {
+        "absent": {
+          "NOT_USEFUL": 134,
+          "UNJUDGED": 19,
+          "USEFUL": 127,
+          "judged_total": 261,
+          "total": 280,
+          "useful_rate_among_judged": 0.48659
+        },
+        "judged_absent": 261,
+        "judged_present": 89,
+        "present": {
+          "NOT_USEFUL": 51,
+          "UNJUDGED": 20,
+          "USEFUL": 38,
+          "judged_total": 89,
+          "total": 109,
+          "useful_rate_among_judged": 0.426966
+        }
+      },
+      "window_count": {
+        "absent": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 0,
+          "judged_total": 0,
+          "total": 0,
+          "useful_rate_among_judged": null
+        },
+        "judged_absent": 0,
+        "judged_present": 350,
+        "present": {
+          "NOT_USEFUL": 185,
+          "UNJUDGED": 39,
+          "USEFUL": 165,
+          "judged_total": 350,
+          "total": 389,
+          "useful_rate_among_judged": 0.471429
+        }
+      },
+      "window_positive_rank": {
+        "absent": {
+          "NOT_USEFUL": 39,
+          "UNJUDGED": 15,
+          "USEFUL": 16,
+          "judged_total": 55,
+          "total": 70,
+          "useful_rate_among_judged": 0.290909
+        },
+        "judged_absent": 55,
+        "judged_present": 295,
+        "present": {
+          "NOT_USEFUL": 146,
+          "UNJUDGED": 24,
+          "USEFUL": 149,
+          "judged_total": 295,
+          "total": 319,
+          "useful_rate_among_judged": 0.505085
+        }
+      }
+    },
+    "lexical_universe_escapes": {
+      "direction_states": {
+        "both": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 0,
+          "judged_total": 0,
+          "total": 0,
+          "useful_rate_among_judged": null
+        },
+        "incoming_only": {
+          "NOT_USEFUL": 1,
+          "UNJUDGED": 0,
+          "USEFUL": 1,
+          "judged_total": 2,
+          "total": 2,
+          "useful_rate_among_judged": 0.5
+        },
+        "outgoing_only": {
+          "NOT_USEFUL": 30,
+          "UNJUDGED": 12,
+          "USEFUL": 10,
+          "judged_total": 40,
+          "total": 52,
+          "useful_rate_among_judged": 0.25
+        }
+      },
+      "numeric_by_state": {
+        "best_seed_rank": {
+          "NOT_USEFUL": {
+            "count": 31,
+            "maximum": 5,
+            "median": 3,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 11,
+            "maximum": 4,
+            "median": 3,
+            "minimum": 2
+          }
+        },
+        "distinct_relation_count": {
+          "NOT_USEFUL": {
+            "count": 31,
+            "maximum": 11,
+            "median": 2,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 11,
+            "maximum": 8,
+            "median": 2,
+            "minimum": 1
+          }
+        },
+        "distinct_seed_count": {
+          "NOT_USEFUL": {
+            "count": 31,
+            "maximum": 3,
+            "median": 1,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 11,
+            "maximum": 2,
+            "median": 1,
+            "minimum": 1
+          }
+        },
+        "path_count": {
+          "NOT_USEFUL": {
+            "count": 31,
+            "maximum": 11,
+            "median": 2,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 11,
+            "maximum": 8,
+            "median": 2,
+            "minimum": 1
+          }
+        },
+        "structural_support_count": {
+          "NOT_USEFUL": {
+            "count": 31,
+            "maximum": 11,
+            "median": 2,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 11,
+            "maximum": 8,
+            "median": 2,
+            "minimum": 1
+          }
+        },
+        "window_count": {
+          "NOT_USEFUL": {
+            "count": 31,
+            "maximum": 2,
+            "median": 1,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 11,
+            "maximum": 3,
+            "median": 1,
+            "minimum": 1
+          }
+        }
+      },
+      "states": {
+        "NOT_USEFUL": 31,
+        "UNJUDGED": 12,
+        "USEFUL": 11,
+        "judged_total": 42,
+        "total": 54,
+        "useful_rate_among_judged": 0.261905
+      },
+      "suffix_by_state": {
+        "NOT_USEFUL": {
+          ".py": 31
+        },
+        "UNJUDGED": {
+          ".py": 12
+        },
+        "USEFUL": {
+          ".py": 11
+        }
+      },
+      "useful_case_count": 9,
+      "useful_identities": [
+        {
+          "address": "src/devtools/time/__init__.py",
+          "case_id": "i25-0f7a13667ef3",
+          "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84"
+        },
+        {
+          "address": "src/devtools/context/repository/identity.py",
+          "case_id": "i25-4ce485f737e4",
+          "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591"
+        },
+        {
+          "address": "src/devtools/core/paths/__init__.py",
+          "case_id": "i25-5fdf5fe05527",
+          "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d"
+        },
+        {
+          "address": "src/devtools/core/paths/__init__.py",
+          "case_id": "i25-6b0e9c52fb26",
+          "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775"
+        },
+        {
+          "address": "src/devtools/tools/filesystem.py",
+          "case_id": "i25-842e90e63f37",
+          "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a"
+        },
+        {
+          "address": "src/devtools/core/time/__init__.py",
+          "case_id": "i25-9009cc143957",
+          "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e"
+        },
+        {
+          "address": "src/devtools/core/time/models/__init__.py",
+          "case_id": "i25-9009cc143957",
+          "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e"
+        },
+        {
+          "address": "src/devtools/core/time/models/duration.py",
+          "case_id": "i25-9009cc143957",
+          "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e"
+        },
+        {
+          "address": "src/devtools/core/paths/__init__.py",
+          "case_id": "i25-ab24906f07ed",
+          "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61"
+        },
+        {
+          "address": "src/devtools/models/interaction/__init__.py",
+          "case_id": "i25-b5280a3c38ca",
+          "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee"
+        },
+        {
+          "address": "src/devtools/resources/commands/__init__.py",
+          "case_id": "i25-d9e58cd09390",
+          "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4"
+        }
+      ]
+    },
+    "new_judgments_created": false,
+    "oracle_gap": {
+      "candidate_union_count": 229,
+      "omitted_by_both_useful": {
+        "all_lexical_absent": 9,
+        "canonical_positive": 15,
+        "incoming": 6,
+        "numeric": {
+          "best_seed_rank": {
+            "median_when_present": 3.0,
+            "present": 26
+          },
+          "canonical_rank": {
+            "median_when_present": 22,
+            "present": 15
+          },
+          "canonical_score": {
+            "median_when_present": 4.210339402687591,
+            "present": 15
+          },
+          "distinct_seed_count": {
+            "median_when_present": 1.0,
+            "present": 26
+          },
+          "lexical_method_count": {
+            "median_when_present": 4.0,
+            "present": 26
+          },
+          "path_rank": {
+            "median_when_present": 7,
+            "present": 7
+          },
+          "structural_support_count": {
+            "median_when_present": 3.0,
+            "present": 26
+          },
+          "window_count": {
+            "median_when_present": 1.0,
+            "present": 26
+          }
+        },
+        "outgoing": 21,
+        "states": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 26,
+          "judged_total": 26,
+          "total": 26,
+          "useful_rate_among_judged": 1.0
+        },
+        "structural": 26
+      },
+      "omitted_useful_identities": [
+        {
+          "address": "src/devtools/runtime/__init__.py",
+          "case_id": "i25-0f7a13667ef3"
+        },
+        {
+          "address": "src/devtools/time/__init__.py",
+          "case_id": "i25-0f7a13667ef3"
+        },
+        {
+          "address": "src/devtools/context/repository/identity.py",
+          "case_id": "i25-4ce485f737e4"
+        },
+        {
+          "address": "src/devtools/context/repository/observation.py",
+          "case_id": "i25-4ce485f737e4"
+        },
+        {
+          "address": "src/devtools/context/repository/resource.py",
+          "case_id": "i25-4ce485f737e4"
+        },
+        {
+          "address": "src/devtools/context/__init__.py",
+          "case_id": "i25-5fdf5fe05527"
+        },
+        {
+          "address": "src/devtools/context/repository/resource.py",
+          "case_id": "i25-5fdf5fe05527"
+        },
+        {
+          "address": "src/devtools/core/paths/__init__.py",
+          "case_id": "i25-5fdf5fe05527"
+        },
+        {
+          "address": "src/devtools/resources/filesystem/__init__.py",
+          "case_id": "i25-5fdf5fe05527"
+        },
+        {
+          "address": "src/devtools/models/interaction/response.py",
+          "case_id": "i25-6f304a8c737c"
+        },
+        {
+          "address": "src/devtools/models/interaction/__init__.py",
+          "case_id": "i25-739c82bd3398"
+        },
+        {
+          "address": "src/devtools/tools/filesystem.py",
+          "case_id": "i25-842e90e63f37"
+        },
+        {
+          "address": "src/devtools/context/repository/__init__.py",
+          "case_id": "i25-858bfa85787e"
+        },
+        {
+          "address": "src/devtools/context/repository/corpus.py",
+          "case_id": "i25-858bfa85787e"
+        },
+        {
+          "address": "src/devtools/context/repository/observation.py",
+          "case_id": "i25-858bfa85787e"
+        },
+        {
+          "address": "src/devtools/core/time/__init__.py",
+          "case_id": "i25-9009cc143957"
+        },
+        {
+          "address": "src/devtools/core/time/models/duration.py",
+          "case_id": "i25-9009cc143957"
+        },
+        {
+          "address": "src/devtools/models/benchmarks/models.py",
+          "case_id": "i25-9009cc143957"
+        },
+        {
+          "address": "src/devtools/tools/filesystem.py",
+          "case_id": "i25-901246bd802a"
+        },
+        {
+          "address": "src/devtools/models/interaction/__init__.py",
+          "case_id": "i25-9efe3dc31e80"
+        },
+        {
+          "address": "src/devtools/core/paths/__init__.py",
+          "case_id": "i25-ab24906f07ed"
+        },
+        {
+          "address": "src/devtools/models/interaction/__init__.py",
+          "case_id": "i25-b5280a3c38ca"
+        },
+        {
+          "address": "src/devtools/models/interaction/__init__.py",
+          "case_id": "i25-d9e58cd09390"
+        },
+        {
+          "address": "src/devtools/resources/commands/__init__.py",
+          "case_id": "i25-d9e58cd09390"
+        },
+        {
+          "address": "src/devtools/tools/command.py",
+          "case_id": "i25-d9e58cd09390"
+        },
+        {
+          "address": "src/devtools/models/interaction/models.py",
+          "case_id": "i25-eadb6f231f57"
+        }
+      ],
+      "oracle_cases_coverable_at_least_one": 21,
+      "oracle_maximum_useful_at_k5": 85,
+      "selected_by_either_not_useful": {
+        "all_lexical_absent": 4,
+        "canonical_positive": 55,
+        "incoming": 5,
+        "numeric": {
+          "best_seed_rank": {
+            "median_when_present": 1,
+            "present": 9
+          },
+          "canonical_rank": {
+            "median_when_present": 3,
+            "present": 55
+          },
+          "canonical_score": {
+            "median_when_present": 8.105638810396085,
+            "present": 55
+          },
+          "distinct_seed_count": {
+            "median_when_present": 3,
+            "present": 9
+          },
+          "lexical_method_count": {
+            "median_when_present": 4,
+            "present": 61
+          },
+          "path_rank": {
+            "median_when_present": 8.5,
+            "present": 4
+          },
+          "structural_support_count": {
+            "median_when_present": 3,
+            "present": 9
+          },
+          "window_count": {
+            "median_when_present": 1,
+            "present": 61
+          }
+        },
+        "outgoing": 7,
+        "states": {
+          "NOT_USEFUL": 61,
+          "UNJUDGED": 0,
+          "USEFUL": 0,
+          "judged_total": 61,
+          "total": 61,
+          "useful_rate_among_judged": 0.0
+        },
+        "structural": 9
+      },
+      "selected_by_either_unjudged": {
+        "all_lexical_absent": 2,
+        "canonical_positive": 5,
+        "incoming": 0,
+        "numeric": {
+          "best_seed_rank": {
+            "median_when_present": 1.0,
+            "present": 2
+          },
+          "canonical_rank": {
+            "median_when_present": 3,
+            "present": 5
+          },
+          "canonical_score": {
+            "median_when_present": 2.786785747244713,
+            "present": 5
+          },
+          "distinct_seed_count": {
+            "median_when_present": 3.5,
+            "present": 2
+          },
+          "lexical_method_count": {
+            "median_when_present": 4,
+            "present": 7
+          },
+          "path_rank": {
+            "median_when_present": null,
+            "present": 0
+          },
+          "structural_support_count": {
+            "median_when_present": 8.0,
+            "present": 2
+          },
+          "window_count": {
+            "median_when_present": 2,
+            "present": 7
+          }
+        },
+        "outgoing": 2,
+        "states": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 7,
+          "USEFUL": 0,
+          "judged_total": 0,
+          "total": 7,
+          "useful_rate_among_judged": null
+        },
+        "structural": 2
+      },
+      "selected_by_either_useful": {
+        "all_lexical_absent": 2,
+        "canonical_positive": 71,
+        "incoming": 11,
+        "numeric": {
+          "best_seed_rank": {
+            "median_when_present": 2.0,
+            "present": 12
+          },
+          "canonical_rank": {
+            "median_when_present": 3,
+            "present": 71
+          },
+          "canonical_score": {
+            "median_when_present": 10.514947044467906,
+            "present": 71
+          },
+          "distinct_seed_count": {
+            "median_when_present": 3.5,
+            "present": 12
+          },
+          "lexical_method_count": {
+            "median_when_present": 4,
+            "present": 75
+          },
+          "path_rank": {
+            "median_when_present": 10,
+            "present": 35
+          },
+          "structural_support_count": {
+            "median_when_present": 18.0,
+            "present": 12
+          },
+          "window_count": {
+            "median_when_present": 2,
+            "present": 75
+          }
+        },
+        "outgoing": 10,
+        "states": {
+          "NOT_USEFUL": 0,
+          "UNJUDGED": 0,
+          "USEFUL": 75,
+          "judged_total": 75,
+          "total": 75,
+          "useful_rate_among_judged": 1.0
+        },
+        "structural": 12
+      }
+    },
+    "population": {
+      "NOT_USEFUL": 185,
+      "UNJUDGED": 39,
+      "USEFUL": 165,
+      "judged_total": 350,
+      "total": 389,
+      "useful_rate_among_judged": 0.471429
+    },
+    "predeclared_intersections": {
+      "both_import_directions": {
+        "NOT_USEFUL": 3,
+        "UNJUDGED": 0,
+        "USEFUL": 10,
+        "judged_total": 13,
+        "total": 13,
+        "useful_rate_among_judged": 0.769231
+      },
+      "both_lexical_and_structural": {
+        "NOT_USEFUL": 20,
+        "UNJUDGED": 8,
+        "USEFUL": 27,
+        "judged_total": 47,
+        "total": 55,
+        "useful_rate_among_judged": 0.574468
+      },
+      "incoming_only_structural": {
+        "NOT_USEFUL": 2,
+        "UNJUDGED": 1,
+        "USEFUL": 7,
+        "judged_total": 9,
+        "total": 10,
+        "useful_rate_among_judged": 0.777778
+      },
+      "lexical_only": {
+        "NOT_USEFUL": 134,
+        "UNJUDGED": 19,
+        "USEFUL": 127,
+        "judged_total": 261,
+        "total": 280,
+        "useful_rate_among_judged": 0.48659
+      },
+      "multiple_lexical_methods": {
+        "NOT_USEFUL": 154,
+        "UNJUDGED": 27,
+        "USEFUL": 154,
+        "judged_total": 308,
+        "total": 335,
+        "useful_rate_among_judged": 0.5
+      },
+      "outgoing_only_structural": {
+        "NOT_USEFUL": 46,
+        "UNJUDGED": 19,
+        "USEFUL": 21,
+        "judged_total": 67,
+        "total": 86,
+        "useful_rate_among_judged": 0.313433
+      },
+      "single_lexical_method": {
+        "NOT_USEFUL": 0,
+        "UNJUDGED": 0,
+        "USEFUL": 0,
+        "judged_total": 0,
+        "total": 0,
+        "useful_rate_among_judged": null
+      },
+      "structural_only": {
+        "NOT_USEFUL": 31,
+        "UNJUDGED": 12,
+        "USEFUL": 11,
+        "judged_total": 42,
+        "total": 54,
+        "useful_rate_among_judged": 0.261905
+      }
+    },
+    "redundancy": {
+      "canonical_vs_bm25_plus_membership": {
+        "intersection": 319,
+        "jaccard": 1.0,
+        "union": 319
+      },
+      "canonical_vs_bm25_plus_rank": {
+        "n": 319,
+        "spearman": 0.99623
+      },
+      "canonical_vs_rrf_membership": {
+        "intersection": 319,
+        "jaccard": 0.952239,
+        "union": 335
+      },
+      "canonical_vs_rrf_rank": {
+        "n": 319,
+        "spearman": 0.75047
+      },
+      "method_count_by_canonical_membership": {
+        "False": {
+          "median_when_present": 0.0,
+          "present": 70
+        },
+        "True": {
+          "median_when_present": 4,
+          "present": 319
+        }
+      },
+      "support_vs_distinct_relations": {
+        "n": 109,
+        "spearman": 1.0
+      },
+      "support_vs_distinct_seeds": {
+        "n": 109,
+        "spearman": 0.704534
+      }
+    },
+    "statistical_model": "not fitted: only 24 development cases, heterogeneous feature missingness, correlated lexical methods, and judgment-pool selection bias; descriptive diagnostics answer this gate",
+    "univariate_binary": {
+      "bm25_plus_member": {
+        "false": {
+          "NOT_USEFUL": 39,
+          "UNJUDGED": 0,
+          "USEFUL": 16,
+          "judged_total": 55,
+          "total": 55,
+          "useful_rate_among_judged": 0.290909
+        },
+        "phi": 0.156147,
+        "true": {
+          "NOT_USEFUL": 146,
+          "UNJUDGED": 0,
+          "USEFUL": 149,
+          "judged_total": 295,
+          "total": 295,
+          "useful_rate_among_judged": 0.505085
+        }
+      },
+      "both_import_directions": {
+        "false": {
+          "NOT_USEFUL": 182,
+          "UNJUDGED": 0,
+          "USEFUL": 155,
+          "judged_total": 337,
+          "total": 337,
+          "useful_rate_among_judged": 0.459941
+        },
+        "phi": 0.117172,
+        "true": {
+          "NOT_USEFUL": 3,
+          "UNJUDGED": 0,
+          "USEFUL": 10,
+          "judged_total": 13,
+          "total": 13,
+          "useful_rate_among_judged": 0.769231
+        }
+      },
+      "canonical_member": {
+        "false": {
+          "NOT_USEFUL": 39,
+          "UNJUDGED": 0,
+          "USEFUL": 16,
+          "judged_total": 55,
+          "total": 55,
+          "useful_rate_among_judged": 0.290909
+        },
+        "phi": 0.156147,
+        "true": {
+          "NOT_USEFUL": 146,
+          "UNJUDGED": 0,
+          "USEFUL": 149,
+          "judged_total": 295,
+          "total": 295,
+          "useful_rate_among_judged": 0.505085
+        }
+      },
+      "identifier_member": {
+        "false": {
+          "NOT_USEFUL": 33,
+          "UNJUDGED": 0,
+          "USEFUL": 12,
+          "judged_total": 45,
+          "total": 45,
+          "useful_rate_among_judged": 0.266667
+        },
+        "phi": 0.15756,
+        "true": {
+          "NOT_USEFUL": 152,
+          "UNJUDGED": 0,
+          "USEFUL": 153,
+          "judged_total": 305,
+          "total": 305,
+          "useful_rate_among_judged": 0.501639
+        }
+      },
+      "incoming_import": {
+        "false": {
+          "NOT_USEFUL": 180,
+          "UNJUDGED": 0,
+          "USEFUL": 148,
+          "judged_total": 328,
+          "total": 328,
+          "useful_rate_among_judged": 0.45122
+        },
+        "phi": 0.156319,
+        "true": {
+          "NOT_USEFUL": 5,
+          "UNJUDGED": 0,
+          "USEFUL": 17,
+          "judged_total": 22,
+          "total": 22,
+          "useful_rate_among_judged": 0.772727
+        }
+      },
+      "multi_lexical_method": {
+        "false": {
+          "NOT_USEFUL": 31,
+          "UNJUDGED": 0,
+          "USEFUL": 11,
+          "judged_total": 42,
+          "total": 42,
+          "useful_rate_among_judged": 0.261905
+        },
+        "phi": 0.154997,
+        "true": {
+          "NOT_USEFUL": 154,
+          "UNJUDGED": 0,
+          "USEFUL": 154,
+          "judged_total": 308,
+          "total": 308,
+          "useful_rate_among_judged": 0.5
+        }
+      },
+      "outgoing_import": {
+        "false": {
+          "NOT_USEFUL": 136,
+          "UNJUDGED": 0,
+          "USEFUL": 134,
+          "judged_total": 270,
+          "total": 270,
+          "useful_rate_among_judged": 0.496296
+        },
+        "phi": -0.091519,
+        "true": {
+          "NOT_USEFUL": 49,
+          "UNJUDGED": 0,
+          "USEFUL": 31,
+          "judged_total": 80,
+          "total": 80,
+          "useful_rate_among_judged": 0.3875
+        }
+      },
+      "path_member": {
+        "false": {
+          "NOT_USEFUL": 156,
+          "UNJUDGED": 0,
+          "USEFUL": 89,
+          "judged_total": 245,
+          "total": 245,
+          "useful_rate_among_judged": 0.363265
+        },
+        "phi": 0.330985,
+        "true": {
+          "NOT_USEFUL": 29,
+          "UNJUDGED": 0,
+          "USEFUL": 76,
+          "judged_total": 105,
+          "total": 105,
+          "useful_rate_among_judged": 0.72381
+        }
+      },
+      "rrf_member": {
+        "false": {
+          "NOT_USEFUL": 31,
+          "UNJUDGED": 0,
+          "USEFUL": 11,
+          "judged_total": 42,
+          "total": 42,
+          "useful_rate_among_judged": 0.261905
+        },
+        "phi": 0.154997,
+        "true": {
+          "NOT_USEFUL": 154,
+          "UNJUDGED": 0,
+          "USEFUL": 154,
+          "judged_total": 308,
+          "total": 308,
+          "useful_rate_among_judged": 0.5
+        }
+      },
+      "structural_member": {
+        "false": {
+          "NOT_USEFUL": 134,
+          "UNJUDGED": 0,
+          "USEFUL": 127,
+          "judged_total": 261,
+          "total": 261,
+          "useful_rate_among_judged": 0.48659
+        },
+        "phi": -0.052012,
+        "true": {
+          "NOT_USEFUL": 51,
+          "UNJUDGED": 0,
+          "USEFUL": 38,
+          "judged_total": 89,
+          "total": 89,
+          "useful_rate_among_judged": 0.426966
+        }
+      }
+    },
+    "univariate_numeric": {
+      "best_lexical_rank": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 154,
+            "maximum": 83,
+            "median": 5.0,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 154,
+            "maximum": 100,
+            "median": 4.0,
+            "minimum": 1
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 21,
+          "direction": "lower",
+          "useful_not_useful_pairs": 825,
+          "within_case_auc": 0.593939
+        }
+      },
+      "best_seed_rank": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 51,
+            "maximum": 5,
+            "median": 3,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 38,
+            "maximum": 5,
+            "median": 2.0,
+            "minimum": 1
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 16,
+          "direction": "lower",
+          "useful_not_useful_pairs": 61,
+          "within_case_auc": 0.557377
+        }
+      },
+      "bm25_plus_rank": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 146,
+            "maximum": 83,
+            "median": 7.0,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 149,
+            "maximum": 100,
+            "median": 7,
+            "minimum": 1
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 20,
+          "direction": "lower",
+          "useful_not_useful_pairs": 747,
+          "within_case_auc": 0.539491
+        }
+      },
+      "bm25_plus_score": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 146,
+            "maximum": 30.68583754469565,
+            "median": 13.780711177414663,
+            "minimum": 3.06056612799765
+          },
+          "USEFUL": {
+            "count": 149,
+            "maximum": 37.29716030082004,
+            "median": 15.990661485451737,
+            "minimum": 2.9791548216568113
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 20,
+          "direction": "higher",
+          "useful_not_useful_pairs": 747,
+          "within_case_auc": 0.539491
+        }
+      },
+      "canonical_content_score": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 146,
+            "maximum": 20.690996971527802,
+            "median": 6.2745354696115685,
+            "minimum": 0.7848342387708862
+          },
+          "USEFUL": {
+            "count": 149,
+            "maximum": 25.798826004143216,
+            "median": 8.11625043309018,
+            "minimum": 1.5381195679695683
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 20,
+          "direction": "higher",
+          "useful_not_useful_pairs": 747,
+          "within_case_auc": 0.535475
+        }
+      },
+      "canonical_filename_score": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 146,
+            "maximum": 1.2907198489132332,
+            "median": 0.0,
+            "minimum": 0.0
+          },
+          "USEFUL": {
+            "count": 149,
+            "maximum": 1.3099954473837683,
+            "median": 0.0,
+            "minimum": 0.0
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 20,
+          "direction": "higher",
+          "useful_not_useful_pairs": 747,
+          "within_case_auc": 0.531459
+        }
+      },
+      "canonical_rank": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 146,
+            "maximum": 83,
+            "median": 7.5,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 149,
+            "maximum": 100,
+            "median": 7,
+            "minimum": 1
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 20,
+          "direction": "lower",
+          "useful_not_useful_pairs": 747,
+          "within_case_auc": 0.546185
+        }
+      },
+      "canonical_score": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 146,
+            "maximum": 20.690996971527802,
+            "median": 6.325299481785645,
+            "minimum": 0.7848342387708862
+          },
+          "USEFUL": {
+            "count": 149,
+            "maximum": 25.798826004143216,
+            "median": 8.17663167808682,
+            "minimum": 1.5381195679695683
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 20,
+          "direction": "higher",
+          "useful_not_useful_pairs": 747,
+          "within_case_auc": 0.546185
+        }
+      },
+      "distinct_relation_count": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 51,
+            "maximum": 45,
+            "median": 2,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 38,
+            "maximum": 42,
+            "median": 3.0,
+            "minimum": 1
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 16,
+          "direction": "higher",
+          "useful_not_useful_pairs": 61,
+          "within_case_auc": 0.655738
+        }
+      },
+      "distinct_seed_count": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 51,
+            "maximum": 5,
+            "median": 1,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 38,
+            "maximum": 5,
+            "median": 2.0,
+            "minimum": 1
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 16,
+          "direction": "higher",
+          "useful_not_useful_pairs": 61,
+          "within_case_auc": 0.655738
+        }
+      },
+      "identifier_rank": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 152,
+            "maximum": 98,
+            "median": 9.0,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 153,
+            "maximum": 116,
+            "median": 7,
+            "minimum": 1
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 21,
+          "direction": "lower",
+          "useful_not_useful_pairs": 811,
+          "within_case_auc": 0.62762
+        }
+      },
+      "identifier_score": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 152,
+            "maximum": 11.084946894715435,
+            "median": 3.002148127644471,
+            "minimum": 0.33721022689242164
+          },
+          "USEFUL": {
+            "count": 153,
+            "maximum": 12.57378482083362,
+            "median": 4.654023424900024,
+            "minimum": 0.7579996854907846
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 21,
+          "direction": "higher",
+          "useful_not_useful_pairs": 811,
+          "within_case_auc": 0.62762
+        }
+      },
+      "lexical_method_count": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 185,
+            "maximum": 5,
+            "median": 4,
+            "minimum": 0
+          },
+          "USEFUL": {
+            "count": 165,
+            "maximum": 5,
+            "median": 4,
+            "minimum": 0
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 22,
+          "direction": "higher",
+          "useful_not_useful_pairs": 1061,
+          "within_case_auc": 0.649387
+        }
+      },
+      "path_count": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 51,
+            "maximum": 45,
+            "median": 2,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 38,
+            "maximum": 42,
+            "median": 3.0,
+            "minimum": 1
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 16,
+          "direction": "higher",
+          "useful_not_useful_pairs": 61,
+          "within_case_auc": 0.655738
+        }
+      },
+      "path_rank": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 29,
+            "maximum": 27,
+            "median": 5,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 76,
+            "maximum": 17,
+            "median": 7.0,
+            "minimum": 1
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 9,
+          "direction": "lower",
+          "useful_not_useful_pairs": 196,
+          "within_case_auc": 0.377551
+        }
+      },
+      "path_score": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 29,
+            "maximum": 2.4713724778194526,
+            "median": 1.414799772121615,
+            "minimum": 1.0414752356703667
+          },
+          "USEFUL": {
+            "count": 76,
+            "maximum": 3.6956010851971604,
+            "median": 1.4320168669493132,
+            "minimum": 1.113444501034566
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 9,
+          "direction": "higher",
+          "useful_not_useful_pairs": 196,
+          "within_case_auc": 0.446429
+        }
+      },
+      "rrf_rank": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 154,
+            "maximum": 112,
+            "median": 10.0,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 154,
+            "maximum": 153,
+            "median": 6.0,
+            "minimum": 1
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 21,
+          "direction": "lower",
+          "useful_not_useful_pairs": 825,
+          "within_case_auc": 0.716364
+        }
+      },
+      "rrf_score": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 154,
+            "maximum": 0.04918032786885246,
+            "median": 0.03008369301170004,
+            "minimum": 0.008928571428571428
+          },
+          "USEFUL": {
+            "count": 154,
+            "maximum": 0.04891591750396616,
+            "median": 0.03252247488101534,
+            "minimum": 0.00625
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 21,
+          "direction": "higher",
+          "useful_not_useful_pairs": 825,
+          "within_case_auc": 0.716364
+        }
+      },
+      "structural_support_count": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 51,
+            "maximum": 45,
+            "median": 2,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 38,
+            "maximum": 42,
+            "median": 3.0,
+            "minimum": 1
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 16,
+          "direction": "higher",
+          "useful_not_useful_pairs": 61,
+          "within_case_auc": 0.655738
+        }
+      },
+      "window_count": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 185,
+            "maximum": 16,
+            "median": 1,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 165,
+            "maximum": 19,
+            "median": 2,
+            "minimum": 1
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 22,
+          "direction": "higher",
+          "useful_not_useful_pairs": 1061,
+          "within_case_auc": 0.660226
+        }
+      },
+      "window_positive_rank": {
+        "by_state": {
+          "NOT_USEFUL": {
+            "count": 146,
+            "maximum": 99,
+            "median": 8.0,
+            "minimum": 1
+          },
+          "USEFUL": {
+            "count": 149,
+            "maximum": 131,
+            "median": 7,
+            "minimum": 1
+          }
+        },
+        "ordering": {
+          "cases_with_comparable_pairs": 20,
+          "direction": "lower",
+          "useful_not_useful_pairs": 747,
+          "within_case_auc": 0.53012
+        }
+      }
+    }
+  },
+  "schema": "devtools-i27-candidate-evidence-diagnostic-v1"
+}
