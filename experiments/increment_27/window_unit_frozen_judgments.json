@@ -1,0 +1,105 @@
+{
+  "content_identity": "ec4bdbb83c2c9bea2b87e513ee87b5a5a8ead769d4d161364c5c599ba254c01d",
+  "payload": {
+    "blinded_input_identity": "ae238e965b8278ed788f24ff93c21354bb167bfd7d0de2c9381d125fb20ce28c",
+    "blinded_input_sha256": "a179fcbd35f6e1f175df7186381ad5ecdd0ab42ec020e62093e09984e82f372f",
+    "judgment_semantics": {
+      "NOT_USEFUL": "Parent-snapshot resource would not materially help satisfy the frozen InformationNeed.",
+      "UNJUDGED": "The blinded InformationNeed and resource do not support a defensible binary judgment.",
+      "USEFUL": "Parent-snapshot resource would materially help satisfy the frozen InformationNeed."
+    },
+    "judgments": [
+      {
+        "address": "tests/models/interaction/providers/test_llama_cpp.py",
+        "case_id": "case-17de7008549a6418",
+        "judgment": "NOT_USEFUL",
+        "rationale": "The tests exercise llama.cpp model interactions and HTTP response handling; they do not specify Python function source materialization.",
+        "resource_id": "resource-01896c8f8bc08b3a"
+      },
+      {
+        "address": "src/devtools/context/docs/session.md",
+        "case_id": "case-1a3a2b2c552f1f8d",
+        "judgment": "UNJUDGED",
+        "rationale": "The frozen purpose is only 'ed evidence'; it does not identify the evidence work well enough to judge whether Session documentation would materially help.",
+        "resource_id": "resource-697418696ac4d55c"
+      },
+      {
+        "address": "tests/models/interaction/providers/test_llama_cpp.py",
+        "case_id": "case-70a67d64ff2d9f24",
+        "judgment": "NOT_USEFUL",
+        "rationale": "The tests cover llama.cpp provider behavior, not derivation of Python function declarations from source.",
+        "resource_id": "resource-7e946d62b8b944aa"
+      },
+      {
+        "address": "src/devtools/models/interaction/providers/llama_cpp.py",
+        "case_id": "case-70a67d64ff2d9f24",
+        "judgment": "NOT_USEFUL",
+        "rationale": "The llama.cpp adapter handles model requests and responses; it contains no Python declaration derivation behavior or interface.",
+        "resource_id": "resource-a95e76ab09a651c2"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/overview.md",
+        "case_id": "case-a239c3aad2c8f86c",
+        "judgment": "NOT_USEFUL",
+        "rationale": "This filesystem overview covers file models and bounded reads and explicitly excludes directory traversal and repository indexing; it does not specify bounded repository resource discovery.",
+        "resource_id": "resource-2fa9b098f7c866cb"
+      },
+      {
+        "address": "src/devtools/models/benchmarks/runner.py",
+        "case_id": "case-b77d0e2f0b86d7e3",
+        "judgment": "NOT_USEFUL",
+        "rationale": "The vLLM benchmark runner collects streamed content, usage, and timing; it does not define or preserve model reasoning content in the interaction response.",
+        "resource_id": "resource-06152d4559675fce"
+      },
+      {
+        "address": "src/devtools/models/interaction/providers/llama_cpp.py",
+        "case_id": "case-b77d0e2f0b86d7e3",
+        "judgment": "USEFUL",
+        "rationale": "The llama.cpp adapter constructs ModelResponse from provider output and parses assistant content, making it a direct integration point for separate reasoning content.",
+        "resource_id": "resource-f9993c89d51f5643"
+      },
+      {
+        "address": "src/devtools/core/time/models/stopwatch.py",
+        "case_id": "case-cb3864f3df4840d1",
+        "judgment": "NOT_USEFUL",
+        "rationale": "The Stopwatch implements elapsed-time measurement, with no repository Context discovery behavior.",
+        "resource_id": "resource-4a9c9743a4f29b55"
+      },
+      {
+        "address": "src/devtools/core/time/docs/timing.md",
+        "case_id": "case-cb3864f3df4840d1",
+        "judgment": "NOT_USEFUL",
+        "rationale": "The timing document explains Stopwatch lifecycle and clock semantics, not repository Context discovery.",
+        "resource_id": "resource-e8557fc45206f311"
+      },
+      {
+        "address": "src/devtools/core/regex/docs/overview.md",
+        "case_id": "case-e87cce1298aebd52",
+        "judgment": "NOT_USEFUL",
+        "rationale": "The regex overview describes generic pattern matching and explicitly excludes document querying or indexing; it does not specify repository text document representation.",
+        "resource_id": "resource-9a64913a5bc5d69a"
+      },
+      {
+        "address": "src/devtools/context/python_function_materialization.py",
+        "case_id": "case-e9c93387944ece9a",
+        "judgment": "USEFUL",
+        "rationale": "The source materializer consumes exact-name disclosure items and their source occurrences, showing the downstream interface that exact-name function resource selection must supply.",
+        "resource_id": "resource-5c56e4dae201f112"
+      },
+      {
+        "address": "src/devtools/models/interaction/providers/llama_cpp.py",
+        "case_id": "case-f217f9f28815079a",
+        "judgment": "USEFUL",
+        "rationale": "The llama.cpp send method builds the provider request without an output bound, so it is the direct request path to extend for model interaction output limits.",
+        "resource_id": "resource-32895fcca1c0369d"
+      }
+    ],
+    "new_pair_population_identity": "9e2b40806156c7cc11a6d1e41558a2730b37a95a6f95875cea70b98bacbc5dfd",
+    "provenance": {
+      "method": "purpose-relative adjudication from committed blinded input only",
+      "retrieval_evidence_joined": false
+    },
+    "window_freeze_identity": "bfb805bcc124b5eef9cf27cb44905287cfef41a108fd903864024ad781eb8a62"
+  },
+  "schema": "devtools-i27-window-unit-frozen-judgments-v1"
+}

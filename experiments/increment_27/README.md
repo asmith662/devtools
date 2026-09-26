@@ -327,7 +327,7 @@ case-level coverage over canonical. BM25+ is largely redundant here. The
 remaining observed whole-resource lexical problem is chiefly early ordering
 and five-resource capacity within the judged union; broad candidate-generation
 failure outside that union remains unresolved. The next bounded scientific
-step is a preregistered **retrieval-unit ablation** over the same development
+step was a preregistered **retrieval-unit ablation** over the same development
 population, comparing whole-resource retrieval with deterministic fixed-window
 lexical units projected back to resource candidates.
 It should preserve the retrieval-unit/disclosure-unit distinction and freeze
@@ -335,7 +335,7 @@ its configuration before any new outcomes. More BM25 formula tuning, the
 971-pair deep adjudication, production promotion, and sealed confirmation are
 not justified by this development analysis alone.
 
-## Retrieval-unit ablation: frozen development surface
+## Retrieval-unit ablation: frozen candidate checkpoint
 
 This experiment isolates the **content scoring unit**. It asks whether bounded
 source windows improve shallow useful-resource exposure over whole resources
@@ -390,9 +390,9 @@ identity permits 138 previously frozen judgments to be reused. The other 12
 pairs are in `window_unit_blinded_judgment_input.json`, containing only neutral
 case/resource identities, frozen purpose and query, parent snapshot, address,
 and exact parent-snapshot source content. It contains no origin, rank, score,
-window, overlap, or prior outcome fields. These 12 pairs have **no judgment in
-this checkpoint**. Do not compare arm usefulness until their blind judgments
-are completed and frozen.
+window, overlap, or prior outcome fields. At this candidate checkpoint the 12
+pairs had **no judgment**. Arm usefulness was compared only after their blind
+judgments were completed and frozen, as recorded below.
 
 Artifacts and identities:
 
@@ -410,3 +410,55 @@ The suspended Increment-26 confirmation and Phase-1 971-pair deep adjudication
 remain untouched. This ablation does not test declarations, AST units,
 semantic chunks, structural retrieval, learned ranking, Context disclosure,
 or production chunk storage.
+
+### Blinded judgments and completed development result
+
+The 12 new neutral pairs were adjudicated from the committed blind input only:
+3 USEFUL, 8 NOT_USEFUL, and 1 UNJUDGED. The UNJUDGED pair has a truncated
+InformationNeed of only “ed evidence”; its usefulness cannot be decided from
+the exposed purpose. Each new label has a content-grounded rationale. The
+frozen artifact `window_unit_frozen_judgments.json` binds the exact input file
+hash, neutral 12-pair population, retrieval-unit freeze, and three-state
+semantics. Its content identity is
+`ec4bdbb83c2c9bea2b87e513ee87b5a5a8ead769d4d161364c5c599ba254c01d`.
+No retrieval origin was joined until this artifact passed validation.
+
+The subsequent deterministic result artifact joined those 12 labels with 138
+exactly reused judgments, without rerunning retrieval or changing labels.
+The 150-pair union contains 75 USEFUL, 68 NOT_USEFUL, and 7 UNJUDGED pairs.
+At equal top-five **resource** capacity:
+
+| Surface | Candidates | USEFUL | NOT_USEFUL | UNJUDGED |
+| --- | ---: | ---: | ---: | ---: |
+| Whole resource | 120 | 63 | 52 | 5 |
+| Fixed window | 120 | 64 | 50 | 6 |
+| Both | 90 | 52 | 34 | 4 |
+| Whole resource only | 30 | 11 | 18 | 1 |
+| Window only | 30 | 12 | 16 | 2 |
+
+Windowing changed top-five usefulness by **one net useful resource**. Its
+useful count was higher in seven cases, lower in six, and equal in eleven.
+Whole-resource scoring found at least one useful top-five resource in 19 of
+24 cases; windowing did so in 20. It recovered one case with no useful
+whole-resource top-five candidate and lost no such covered case.
+
+Every window-only top-five resource, including all 12 useful ones, already
+had a positive whole-resource lexical rank. The useful additions' canonical
+ranks were 6–22. Thus this is a **small useful incremental ranking
+improvement** in this development sample, not a new positive lexical
+candidate-coverage capability. The unit change promoted deeper canonical
+candidates into shallow capacity. Its 30 changed candidate identities should
+not be mistaken for 30 new useful resources or broad task gains.
+
+The result is descriptive for 24 historical devtools cases, one fixed window
+setting, one query view, and five-resource capacity. UNJUDGED remains distinct
+from NOT_USEFUL. It does not establish statistical generalization, production
+benefit, independent-repository behavior, or Context disclosure quality.
+The held-out Increment-27 population and suspended Increment-26 confirmation
+remain sealed. No window-size or overlap tuning follows from this result.
+The **lexical-window retrieval-unit branch is complete and closed**.
+
+`window_unit_development_results.json` retains all per-case and per-surface
+three-state counts, source bindings, and the canonical reachability of window
+additions. Its content identity is
+`32b46ea33c7f0a3110342a87e6e535cd3507cd83a681855543e58b31cdee5999`.
