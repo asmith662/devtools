@@ -1,0 +1,73 @@
+{
+  "content_identity": "7b3efe03b37686c8335107ac328de88f4a6b3e80be1c38cbaaaf6b598533bad0",
+  "payload": {
+    "aggregation": "Classify every outgoing support first. Candidate has any-supported when at least one support is SUPPORTED; retain all support identities, counts, seed identities, incoming membership and strict saved-lexical escape membership. No weighted score.",
+    "candidate_identity": "f9a78024a0be52af56dc5d676794f4dba2f52ca90a6c0454644d113bb34f09a0",
+    "candidate_population": {
+      "outgoing_pairs": 99,
+      "union_pairs": 109
+    },
+    "competition": "Any additional module-scope binding of the local name (including pattern capture), named-expression assignment to that name, wildcard import, global/nonlocal declaration naming it anywhere in the source, dynamic exec/globals/locals call, or relevant read in an unsupported scope makes unsupported absence indeterminate. A verified qualifying read can establish support only when module binding is unique and its function scope chain is unshadowed.",
+    "development_case_ids": [
+      "i25-66ed2049de72",
+      "i25-858bfa85787e",
+      "i25-6f304a8c737c",
+      "i25-bb9f807bcd61",
+      "i25-0f7a13667ef3",
+      "i25-739c82bd3398",
+      "i25-9efe3dc31e80",
+      "i25-6b0e9c52fb26",
+      "i25-901246bd802a",
+      "i25-ab24906f07ed",
+      "i25-ac797431db35",
+      "i25-842e90e63f37",
+      "i25-eadb6f231f57",
+      "i25-8994c4e58644",
+      "i25-c0fabcb195e2",
+      "i25-d9e58cd09390",
+      "i25-b5280a3c38ca",
+      "i25-85cfd9ff68a0",
+      "i25-6156c70be14b",
+      "i25-2a4f058d5262",
+      "i25-5fdf5fe05527",
+      "i25-9009cc143957",
+      "i25-4ce485f737e4",
+      "i25-5bdc70483eed"
+    ],
+    "forms": {
+      "from package import name": "local imported name; its read qualifies for the resolved module-portion candidate",
+      "from package import name as alias": "local alias; its read qualifies for the resolved module-portion candidate",
+      "import package": "local first dotted component; dotted target requires an Attribute chain with the full dotted target prefix",
+      "import package as alias": "local alias names the requested module; alias read qualifies",
+      "star_import": "indeterminate"
+    },
+    "heldout_case_ids_sealed": [
+      "i25-514fdb223b40",
+      "i25-64cd17d51701",
+      "i25-5b75000b60f7",
+      "i25-f61e24db3528",
+      "i25-004d3829a475",
+      "i25-e0a344227af1",
+      "i25-add3c3ed5195",
+      "i25-4ba894f29abf",
+      "i25-7594b8450649",
+      "i25-e142585a95da",
+      "i25-5c5bdf4212ac",
+      "i25-d58c0504b671",
+      "i25-e976f7f20898",
+      "i25-ca9963afa999"
+    ],
+    "new_candidates": 0,
+    "outcome_join_before_checkpoint": false,
+    "proposition": "A source-grounded read of the specifically imported local binding in the seed's saved winning query-scored window qualifies one existing outgoing direct-import support; it creates no candidates.",
+    "scope": "Direct module-body import declarations already grounded by uniquely resolved module-import relations. AST Name Load reads at module level and in function/async-function/lambda bodies with no local or enclosing-function competing binding. Class and comprehension scopes and function/variable annotation expressions are indeterminate for relevant reads. Import declarations are never reads.",
+    "source_sha256": {
+      "structural_import_candidates.json.gz": "bfc399e1ecf8315c6ec9e12bf5f900b8766e697def5eb8e5f07b21bb699afb68",
+      "structural_import_freeze.json": "8d623668514211360ccfbe38173a64c9909507a4dd34cc992183d394be59a41e",
+      "window_resource_rankings.json": "8b499f47de88a0b31ac30f2bf083fbe3c86ee8cfac2bde515dea66163eba0e26"
+    },
+    "window": "Use saved positive winning window identity and half-open Unicode character bounds. An AST read occurrence must fit wholly inside; partial overlap is indeterminate. AST UTF-8 byte columns are mapped to Unicode character offsets against exact parent-snapshot source; saved text, hash, and window identity are verified before use.",
+    "window_identity": "9d813083ef7370dd8f895ba8e7bc61c61078962497a6cbecec5d42198cbd6520"
+  },
+  "schema": "devtools-i28-import-use-freeze-v1"
+}
