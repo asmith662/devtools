@@ -570,3 +570,62 @@ and file SHA-256
 It binds to the exact neutral input identity and byte hash. Judgments were
 completed and frozen before any retrieval-origin join. Method-level results
 remain unknown, and held-out confirmation remains sealed.
+
+## Direct-import development comparison
+
+After the 140 neutral judgments were frozen, the development-only join matched
+them and 61 exact prior judgments to the persisted structural candidates and
+same-volume deeper canonical lexical controls. No label was changed, and no
+retrieval was rerun. The joined union contains 201 distinct case/resource
+pairs. `USEFUL`, `NOT_USEFUL`, and `UNJUDGED` remain separate; the rate below
+uses only the first two states as its denominator.
+
+| Surface | Candidates | USEFUL | NOT_USEFUL | UNJUDGED | Useful / judged |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Structural union | 109 | 38 | 51 | 20 | 42.7% |
+| Outgoing additions | 99 | 31 | 49 | 19 | 38.8% |
+| Incoming additions | 23 | 17 | 5 | 1 | 77.3% |
+| Structural, canonical rank > 5 | 43 | 23 | 15 | 5 | 60.5% |
+| Structural, no positive canonical rank | 66 | 15 | 36 | 15 | 29.4% |
+| Structural, absent from all five saved positive lexical universes | 54 | 11 | 31 | 12 | 26.2% |
+| Same-volume lexical-control union | 101 | 38 | 50 | 13 | 43.2% |
+
+The outgoing and incoming arms overlap on 13 pairs, including ten useful
+pairs, so their counts must not be added to obtain the structural union. The
+separate controls match each arm's candidate volume; deduplication leaves 109
+structural pairs and 101 distinct control pairs. Structural and control unions
+each contain 38 useful resources. Eighteen cases have a useful structural
+addition and seventeen have a useful control addition. Four cases have useful
+structure but no useful control, three have useful control but no useful
+structure, fourteen have both, and three have neither. These descriptive
+counts do not establish general statistical superiority.
+
+Among the 38 useful structural pairs, 23 have a deeper positive canonical
+rank, four have no positive canonical rank but appear in another saved
+positive lexical method, and **eleven are absent from all five saved positive
+lexical universes**. Those eleven span nine development cases (ten outgoing,
+one incoming). Direct import structure therefore demonstrated useful
+candidate reach beyond the five saved lexical retrieval universes on
+Increment-27 development. It also recovered useful resources already
+lexically reachable at greater depth. Candidate novelty alone would not have
+established either usefulness result.
+
+The 31 newly blinded `UNJUDGED` targets remain unresolved. Across the joined
+surfaces, 20 structural and 13 control pairs are `UNJUDGED`; 12 of the 54
+structural pairs absent from all five lexical universes are `UNJUDGED`. Their
+usefulness is unknown. This limits rate comparisons, though it does not erase
+the eleven observed useful cases of lexical-universe escape. The evidence
+supports retaining directed import relationships as experimental candidate
+evidence and testing combination later; it does not specify a ranking or
+Context-disclosure policy or justify production promotion.
+
+`structural_import_development_results.json` binds the candidate, lexical,
+population, neutral input, and judgment evidence and retains the exact joined
+pairs, useful addresses, per-case counts, reach partitions, and unknown-state
+accounting. Its content identity is
+`c1f70f19210e06e04d52ffff31ab9f0e58be950b73e5f4d8721765dc276600eb`;
+its file SHA-256 is
+`21d1bd3a3935c1a400d266bdd19538f59d90b11a541f4af331a6210fc7dbafcf`.
+The Increment-27 held-out population and suspended Increment-26 confirmation
+remain sealed. A subsequent scientific decision may test a bounded combination
+of lexical and import evidence before any authorized confirmation.
