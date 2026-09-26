@@ -1,0 +1,1843 @@
+{
+  "content_identity": "4e7394f0c2cfa8079f5e0b8b06506834046c3035856f6ab8db8c92b21efadea2",
+  "payload": {
+    "blinded_input_content_identity": "90213a1d9dc7370559313a425a593208ba5c71e523a78fd71753beab8d905fe3",
+    "blinded_input_sha256": "1114ff4d1b45edfac8178744e29640763ff1cc2c8cd5804e80dc67351694a26f",
+    "records": [
+      {
+        "address": "src/devtools/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-04c29d27de08ff83",
+        "neutral_resource_id": "resource-f10c5589bf4b95e6",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "rationale": "Path exports provide no function disclosure or source materialization behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/models/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-18945a0713e7b5a8",
+        "neutral_resource_id": "resource-4327987557d5834b",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "rationale": "Filesystem model exports do not address model reasoning content.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/writing.py",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-18945a0713e7b5a8",
+        "neutral_resource_id": "resource-49e38d4a5aa883f6",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "rationale": "Atomic file writing does not define model reasoning output.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/models.md",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-18945a0713e7b5a8",
+        "neutral_resource_id": "resource-61f21a84a3a44252",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "rationale": "Filesystem model documentation does not describe model response content.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/models/json/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-18945a0713e7b5a8",
+        "neutral_resource_id": "resource-919139e8f4ba708a",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "rationale": "JSON file models do not define model reasoning content.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/errors.py",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-18945a0713e7b5a8",
+        "neutral_resource_id": "resource-a6dbee21c5380f14",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "rationale": "Filesystem exceptions do not inform the model response contract.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/codecs/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-18945a0713e7b5a8",
+        "neutral_resource_id": "resource-b8ccece1a56cb4d6",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "rationale": "File codecs do not address reasoning content in model output.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-18945a0713e7b5a8",
+        "neutral_resource_id": "resource-d20b3a4efb66aa1f",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "rationale": "The public ModelResponse and Prompt boundary identifies where reasoning content must fit.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-33ac211b95d90071",
+        "neutral_resource_id": "resource-5122b8f427b792af",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "rationale": "Path exports do not select resources by Python function name.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-33ac211b95d90071",
+        "neutral_resource_id": "resource-cff04572a5a3e6d7",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "rationale": "The Context API exposes existing Python declaration and retrieval contracts relevant to selection.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-3a6b422e4cc72fe3",
+        "neutral_resource_id": "resource-20908893f2ed3a4e",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "rationale": "Path exports do not derive Python declarations from an explicit resource.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-3f8badb471f67f23",
+        "neutral_resource_id": "resource-4cd0c4fef24acc9c",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "Path exports do not aggregate declaration analyses across resources.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/time/models/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-4ce940cf9a58d493",
+        "neutral_resource_id": "resource-191b582406089b62",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "rationale": "Duration, Stopwatch, and Timestamp exports provide timing values for usage measurement.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/benchmarks/models.py",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-4ce940cf9a58d493",
+        "neutral_resource_id": "resource-4a5c71193245d3ac",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "rationale": "Benchmark result values show concrete token and duration measurements.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/time/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-4ce940cf9a58d493",
+        "neutral_resource_id": "resource-511a6b83f38779a4",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "rationale": "The time API exposes elapsed-time values relevant to usage measurements.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/time/models/duration.py",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-4ce940cf9a58d493",
+        "neutral_resource_id": "resource-7a3c3c140202b027",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "rationale": "Duration defines the elapsed-time representation needed for latency measurements.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/models/benchmarks/test_models.py",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-4ce940cf9a58d493",
+        "neutral_resource_id": "resource-9094683578df9ef8",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "rationale": "Benchmark tests show validation of token and duration measurement fields.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/experiments/test_worker_story.py",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-4ce940cf9a58d493",
+        "neutral_resource_id": "resource-a8aafc2e099fa8f4",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "rationale": "Optional supervisor token counts may inform usage semantics, but the task gives no worker-measurement scope.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/python/function/declarations.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-57e49cfc55e02854",
+        "neutral_resource_id": "resource-0715811e992ff83e",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "Function declaration dependencies identify module resources, but their role in root interpretation is unclear.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/python/function/test_rendering.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-57e49cfc55e02854",
+        "neutral_resource_id": "resource-3b8cef5de6480af9",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "Function Context rendering tests do not define module interpretation.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-57e49cfc55e02854",
+        "neutral_resource_id": "resource-3d116aabc102fe8f",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "General path exports do not define repository-relative Python modules.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-57e49cfc55e02854",
+        "neutral_resource_id": "resource-50cd33eab50433d5",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "The broad Context exports show related APIs but not enough module-root behavior to establish material help.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-57e49cfc55e02854",
+        "neutral_resource_id": "resource-59862d10a4beb5e9",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "Model invocation exports do not concern Python module interpretation.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/repository/observation.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-57e49cfc55e02854",
+        "neutral_resource_id": "resource-5e49fc912963c0ee",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "Repository observation defines the identified snapshot resources that module interpretation would consume.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/python/imports/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-57e49cfc55e02854",
+        "neutral_resource_id": "resource-65198373c073c2ca",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "Python syntax analysis is adjacent to module interpretation, but the exposed API gives no root semantics.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/repository/resource.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-57e49cfc55e02854",
+        "neutral_resource_id": "resource-66edea20428e1094",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "Canonical resource addresses and occurrences are necessary inputs to explicit-root module mapping.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/repository/identity.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-57e49cfc55e02854",
+        "neutral_resource_id": "resource-71eb67c85724b4eb",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "Repository identity supplies the logical repository scope for module interpretations.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/integrations/codex/docs/overview.md",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-57e49cfc55e02854",
+        "neutral_resource_id": "resource-dc56d632cbf1eb81",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "Codex integration documentation does not define Python module roots.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/tools/docs/overview.md",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-57e49cfc55e02854",
+        "neutral_resource_id": "resource-f29f041c8a909a48",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "Tool documentation does not address Python module interpretation.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/benchmarks/models.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-58f449cbab3de7dd",
+        "neutral_resource_id": "resource-098c1ba35bb7ffda",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "rationale": "Benchmark values do not observe repository snapshots.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/time/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-58f449cbab3de7dd",
+        "neutral_resource_id": "resource-2665ad7b6561f9ee",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "rationale": "Time exports do not implement bounded resource observation.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/persistence/sqlite.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-58f449cbab3de7dd",
+        "neutral_resource_id": "resource-29b21e7e8614c118",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "rationale": "Conversation SQLite storage does not observe repository resource snapshots.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/serving/huggingface.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-58f449cbab3de7dd",
+        "neutral_resource_id": "resource-3c3c6f9159642e6b",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "rationale": "Model artifact acquisition does not observe repository text resources.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/serving/llama_cpp.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-58f449cbab3de7dd",
+        "neutral_resource_id": "resource-6923f5587f148f5b",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "rationale": "llama.cpp serving lifecycle does not address repository snapshot observation.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-58f449cbab3de7dd",
+        "neutral_resource_id": "resource-724ae17f83059876",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "rationale": "Resolved path exports provide the bounded filesystem-root value needed for observation.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/serving/vllm.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-58f449cbab3de7dd",
+        "neutral_resource_id": "resource-79264744399a5d09",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "rationale": "vLLM serving lifecycle does not observe repository resources.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/roadmap.md",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-58f449cbab3de7dd",
+        "neutral_resource_id": "resource-a78a64d534164b37",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "rationale": "Filesystem roadmap notes provide no concrete snapshot observation contract.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/__init__.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-5b85eb74a8f918c9",
+        "neutral_resource_id": "resource-0bfd4d6245ab6a44",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "Model invocation contracts may be used by an acceptance fixture, but the task does not specify that path.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/agents/integrations/codex/test_live.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-5b85eb74a8f918c9",
+        "neutral_resource_id": "resource-209a6002a56ba21b",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "A live Codex acceptance example may help fixture design, but it does not show selection stress.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/execution/__init__.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-5b85eb74a8f918c9",
+        "neutral_resource_id": "resource-260facddf240d682",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "Runtime coordination could participate in an acceptance fixture, but the task gives no execution design.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/tools/__init__.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-5b85eb74a8f918c9",
+        "neutral_resource_id": "resource-3378552cd97e0d1f",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "ToolRunner could drive selection stress, but the task does not identify its Tool boundary.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/agents/conversation/test_live.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-5b85eb74a8f918c9",
+        "neutral_resource_id": "resource-5d7d753ce1b0e341",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "A live Conversation acceptance example is adjacent, without a stated selection criterion.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-5b85eb74a8f918c9",
+        "neutral_resource_id": "resource-7bbec2c834e11aec",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "General path exports do not define a selection-stress acceptance fixture.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/conversation/__init__.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-5b85eb74a8f918c9",
+        "neutral_resource_id": "resource-8b5d258a6231c2ec",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "Conversation values could support a fixture, but their role is unspecified.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/serving/docs/overview.md",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-5b85eb74a8f918c9",
+        "neutral_resource_id": "resource-a5c42e1d6415ade4",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "Model-serving lifecycle documentation does not define repository selection stress.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/providers/llama_cpp_errors.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-5b85eb74a8f918c9",
+        "neutral_resource_id": "resource-a858431d050ebb2c",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "Provider transport exceptions do not define selection behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/experiments/test_worker_story.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-5b85eb74a8f918c9",
+        "neutral_resource_id": "resource-c83af6da01ad75bd",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "Worker telemetry tests are adjacent to acceptance reporting, but selection-stress measures are unspecified.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/benchmarks/docs/overview.md",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-5b85eb74a8f918c9",
+        "neutral_resource_id": "resource-df763e92dd266d60",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "Model benchmark documentation measures serving behavior rather than repository selection.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/tools/filesystem.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-5b85eb74a8f918c9",
+        "neutral_resource_id": "resource-ee9822f6b7cb0971",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "The bounded repository read and directory-list Tool provides concrete operations for a selection fixture.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/__init__.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-5b85eb74a8f918c9",
+        "neutral_resource_id": "resource-ff9224ff2ca86d5d",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "Filesystem exports might support fixture reads, but the needed resource operations are unspecified.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-64c36a0195b105ed",
+        "neutral_resource_id": "resource-0be487ab44587506",
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "rationale": "The Context API exposes the Python function source materialization operation directly.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-64c36a0195b105ed",
+        "neutral_resource_id": "resource-390f8d9f3ef0e22c",
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "rationale": "Path exports do not materialize declaration source from snapshot content.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/repository/resource.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-67477be4a8ffb65d",
+        "neutral_resource_id": "resource-111e240b49813247",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "rationale": "Resource address, occurrence, and content identity define observation outputs.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-67477be4a8ffb65d",
+        "neutral_resource_id": "resource-15b5b56dabe0394d",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "rationale": "The public Context API exposes repository observation values and operations.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-67477be4a8ffb65d",
+        "neutral_resource_id": "resource-1e117f2c6999902a",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "rationale": "Resolved paths provide the bounded root used to read observed resources.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-67477be4a8ffb65d",
+        "neutral_resource_id": "resource-29ab75d7d7eb9501",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "rationale": "Model invocation exports do not observe repository text.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/python/function/test_request_assembly.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-67477be4a8ffb65d",
+        "neutral_resource_id": "resource-6f948f4593d9f492",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "rationale": "Model request assembly tests concern downstream use of Context, not text observation.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/python/function/test_rendering.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-67477be4a8ffb65d",
+        "neutral_resource_id": "resource-73df17cf5ae93ea0",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "rationale": "Function rendering tests concern downstream presentation, not resource observation.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/python/function/test_candidates.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-67477be4a8ffb65d",
+        "neutral_resource_id": "resource-e278b4061cc5783a",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "rationale": "Function-name candidate tests do not define bounded text observation.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-67477be4a8ffb65d",
+        "neutral_resource_id": "resource-f2cf9b5d5670f046",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "rationale": "Filesystem read and text-file exports supply the bounded read substrate for observation.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-7551af5c012ff662",
+        "neutral_resource_id": "resource-15c8b93c3a0538d4",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "Filesystem models may support discovery, but the exposed exports focus on file contents rather than enumeration.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-7551af5c012ff662",
+        "neutral_resource_id": "resource-5ff72744401185fa",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "Resolved path primitives provide the root and containment behavior needed by discovery.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_function_candidates.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7551af5c012ff662",
+        "neutral_resource_id": "resource-c5f440b7b23958c5",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "Function-name candidate tests select within known resources, not discover repository files.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/python_declarations.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7551af5c012ff662",
+        "neutral_resource_id": "resource-dd297c6e55fe0670",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "Function declaration derivation does not enumerate repository resources.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-7551af5c012ff662",
+        "neutral_resource_id": "resource-f6ad873a03d32f23",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "The Context API exposes repository resource discovery as a public responsibility.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/identity/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7551af5c012ff662",
+        "neutral_resource_id": "resource-fb4c0b56b02744b8",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "Generic identity exports do not define filesystem discovery behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/commands/models/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-76a446edbf83a524",
+        "neutral_resource_id": "resource-709e31a35b9e280e",
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+        "rationale": "Command output values concern subprocess capture rather than model interaction output limits.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/tools/test_runtime_integration.py",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-76a446edbf83a524",
+        "neutral_resource_id": "resource-8f9b16d89c28a54f",
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+        "rationale": "Runtime response-validation tests may constrain an output bound, but no limit semantics are shown.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-76a446edbf83a524",
+        "neutral_resource_id": "resource-91297c7430d4e45a",
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+        "rationale": "Qwen acceptance reporting tests do not define a model interaction output bound.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/identity/__init__.py",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7f8dd20b42d740f5",
+        "neutral_resource_id": "resource-266d41e19a564848",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "rationale": "Generic identity exports do not describe repository Context discovery.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/tools/filesystem.py",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-7f8dd20b42d740f5",
+        "neutral_resource_id": "resource-304d9cc19e3b2620",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "rationale": "Repository read and directory-list operations provide concrete discovery behavior to investigate.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/__init__.py",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7f8dd20b42d740f5",
+        "neutral_resource_id": "resource-600e5949a5e5a9c6",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "rationale": "Model invocation exports do not discover repository context.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/conversation/message.py",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7f8dd20b42d740f5",
+        "neutral_resource_id": "resource-6f95541c5eb8933b",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "rationale": "Conversation message values do not discover repository resources.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/time/__init__.py",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7f8dd20b42d740f5",
+        "neutral_resource_id": "resource-957ff4d5610c1cb4",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "rationale": "Time exports do not describe repository context discovery.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/conversation/__init__.py",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7f8dd20b42d740f5",
+        "neutral_resource_id": "resource-a26ec741c03bab1a",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "rationale": "Conversation exports do not enumerate or select repository resources.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/serving/huggingface.py",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7f8dd20b42d740f5",
+        "neutral_resource_id": "resource-d8e3383ef2f84f43",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "rationale": "Model artifact acquisition does not investigate repository Context discovery.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/tools/test_filesystem.py",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-7f8dd20b42d740f5",
+        "neutral_resource_id": "resource-f1e93f68267074d1",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "rationale": "Filesystem Tool tests document directory listing and bounded repository reads relevant to discovery.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/providers/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-a00d9e18a47f5521",
+        "neutral_resource_id": "resource-040074ddddadbcf0",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "rationale": "The provider package identifies the interaction adapter, but its exports alone do not show thinking controls.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/usage.py",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-a00d9e18a47f5521",
+        "neutral_resource_id": "resource-1382c17d3e51dbf3",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "rationale": "Token usage values do not define a thinking-control request.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/execution/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-a00d9e18a47f5521",
+        "neutral_resource_id": "resource-1961abd2ff1cc898",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "rationale": "Execution lifecycle exports do not specify model thinking controls.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/prompt.py",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-a00d9e18a47f5521",
+        "neutral_resource_id": "resource-3665d8b73045173a",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "rationale": "Prompt input could carry a control, but the exposed value has only content and role.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/conversation/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-a00d9e18a47f5521",
+        "neutral_resource_id": "resource-39fabe9fe40cc77b",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "rationale": "Conversation exports do not define model thinking settings.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/termination.py",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-a00d9e18a47f5521",
+        "neutral_resource_id": "resource-552605cffbf62487",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "rationale": "Termination reasons describe response endings, not thinking controls.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/core/conversion/test_conversion.py",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-a00d9e18a47f5521",
+        "neutral_resource_id": "resource-62558e24a5b1a075",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "rationale": "Generic conversion tests do not concern model thinking.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/observability/evidence/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-a00d9e18a47f5521",
+        "neutral_resource_id": "resource-8d05096d884f6dd2",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "rationale": "Evidence exports do not configure model interaction thinking.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-b23ad7eb4ca450ff",
+        "neutral_resource_id": "resource-459c0aac1f673e38",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "Filesystem exports might support fixture resources, but the selection measure is unspecified.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/experiments/qwen/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-b23ad7eb4ca450ff",
+        "neutral_resource_id": "resource-463762d92b2cb698",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "A Qwen test-package marker contains no fixture behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/execution/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-b23ad7eb4ca450ff",
+        "neutral_resource_id": "resource-569a3ff163cf35a5",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "Runtime coordination may participate in measurement, but the fixture execution path is unspecified.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/tools/test_filesystem.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-b23ad7eb4ca450ff",
+        "neutral_resource_id": "resource-593ed3f533293831",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "Repository-file Tool tests show bounded reads and listing behavior usable in selection stress.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/observability/evidence/test_protocols.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-b23ad7eb4ca450ff",
+        "neutral_resource_id": "resource-9ef40c4c7623a92b",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "Evidence delivery could record a measure, but this task does not identify that protocol.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/tools/filesystem.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-b23ad7eb4ca450ff",
+        "neutral_resource_id": "resource-a98012181f5cba21",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "The repository-file Tool implements concrete read and list operations for selection stress.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/tools/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-b23ad7eb4ca450ff",
+        "neutral_resource_id": "resource-b209cbce0116c391",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "ToolRunner exports could support a fixture, but the requested measurement flow is unspecified.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-b23ad7eb4ca450ff",
+        "neutral_resource_id": "resource-b6d1ea262ab7c934",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "General path exports do not define selection measurements.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/models/serving/test_huggingface.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-b23ad7eb4ca450ff",
+        "neutral_resource_id": "resource-c7cdbd0291f0ed14",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "Model artifact-reference tests do not measure repository selection.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/conversation/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-b23ad7eb4ca450ff",
+        "neutral_resource_id": "resource-dc91aea0cd5421c1",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "Conversation values may be used in an acceptance run, but their role is unspecified.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-b23ad7eb4ca450ff",
+        "neutral_resource_id": "resource-e850ceac598ee7ce",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "Model invocation values may be used in an acceptance run, but the selection measure is unspecified.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/experiments/qwen/test_read_experiment.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-b23ad7eb4ca450ff",
+        "neutral_resource_id": "resource-e864aaec151ea51c",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "Repeated-read experiment tests provide a concrete acceptance pattern for repository reads.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/__init__.py",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-b3b893128b16a167",
+        "neutral_resource_id": "resource-05993f716b35240f",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "rationale": "Model interaction contracts identify the request and response boundary used by an acceptance run.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-b3b893128b16a167",
+        "neutral_resource_id": "resource-52f34b762aff3ddc",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "rationale": "General path exports do not test Python function Context acceptance.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-b3b893128b16a167",
+        "neutral_resource_id": "resource-6f7145f511ad9031",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "rationale": "The Context API exposes the function analysis, disclosure, materialization, and assembly operations under test.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/conversation/__init__.py",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-b3b893128b16a167",
+        "neutral_resource_id": "resource-e5b31c64e8559700",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "rationale": "Conversation values may matter to an acceptance run, but the task does not specify persistence behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/tools/protocols.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-b704ce910f7c020f",
+        "neutral_resource_id": "resource-0a01e0dc33f991b2",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "The Tool protocol directly defines the execution boundary under consideration.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/tools/command.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-b704ce910f7c020f",
+        "neutral_resource_id": "resource-335758bfeabe6d36",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "CommandTool is a concrete adapter demonstrating that boundary.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/tools/test_filesystem.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-b704ce910f7c020f",
+        "neutral_resource_id": "resource-5dbbeeb1392a053c",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "Filesystem Tool tests exercise validation and execution behavior at the boundary.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/tools/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-b704ce910f7c020f",
+        "neutral_resource_id": "resource-6039ffae5cf2a05a",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "The public Tool API exposes the protocol, runner, and input-error contract.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-b704ce910f7c020f",
+        "neutral_resource_id": "resource-7f7988334b1c9c70",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "ModelInteraction exports identify the model-facing boundary that native Tool requests would meet.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/execution/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-b704ce910f7c020f",
+        "neutral_resource_id": "resource-9d458f1ea93ece00",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "Runtime coordination is adjacent, but the requested Tool boundary does not specify Runtime changes.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/conversation/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-b704ce910f7c020f",
+        "neutral_resource_id": "resource-a21dba2a5f59fd63",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "Conversation exports do not define Tool request or execution semantics.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/execution/interaction_attempt.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-b704ce910f7c020f",
+        "neutral_resource_id": "resource-a36dd1fda8052621",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "Interaction-attempt lifecycle facts do not define the model-native Tool boundary.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/commands/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-b704ce910f7c020f",
+        "neutral_resource_id": "resource-a61bee4f53d5e95e",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "Command execution primitives are the concrete resource substrate used by a Tool adapter.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/observability/evidence/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-b704ce910f7c020f",
+        "neutral_resource_id": "resource-b02ac8ee277b568f",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "Evidence exports do not define Tool request authority or execution.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/paths/models.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-b704ce910f7c020f",
+        "neutral_resource_id": "resource-ba14040cb81a95c5",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "ResolvedPath could type Tool inputs, but the model-native boundary is not path-specific.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/tools/test_execution.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-b704ce910f7c020f",
+        "neutral_resource_id": "resource-bf3064caf027bacf",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "ToolRunner tests directly show validation, execution, failure, and cancellation contracts.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/observability/evidence/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c4c83335f9ff0471",
+        "neutral_resource_id": "resource-136e240b87d7467d",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "rationale": "Evidence exports do not derive Python function declarations.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c4c83335f9ff0471",
+        "neutral_resource_id": "resource-30a3ba938461b5f3",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "rationale": "Model invocation exports do not parse Python function declarations.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/time/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c4c83335f9ff0471",
+        "neutral_resource_id": "resource-3276a85eb173d51c",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "rationale": "Time exports do not analyze Python source declarations.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/providers/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c4c83335f9ff0471",
+        "neutral_resource_id": "resource-7eb010fa10ac6fe0",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "rationale": "Provider exports do not derive Python function declarations.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/commands/docs/execution.md",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c4c83335f9ff0471",
+        "neutral_resource_id": "resource-c625469d4dee91f5",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "rationale": "Command execution documentation does not define Python declaration analysis.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/serving/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c4c83335f9ff0471",
+        "neutral_resource_id": "resource-c80ea07c4846462e",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "rationale": "Model-serving exports do not analyze Python source declarations.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/commands/docs/overview.md",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c4c83335f9ff0471",
+        "neutral_resource_id": "resource-d7e934b3df29f666",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "rationale": "Command package documentation does not address Python declaration derivation.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/integrations/codex/docs/cli.md",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c4c83335f9ff0471",
+        "neutral_resource_id": "resource-db018b0fd790e0cc",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "rationale": "Codex CLI documentation does not define direct Python declaration analysis.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/paths/docs/resolution.md",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c5b51793c4eb8e65",
+        "neutral_resource_id": "resource-1db1f17ccb1477f9",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "rationale": "Path resolution documentation does not define repository text documents.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/docs/overview.md",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-c5b51793c4eb8e65",
+        "neutral_resource_id": "resource-25820074e06e5c09",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "rationale": "Text-file models may inform representation, but the task gives no document content contract.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/repository/discovery.py",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-c5b51793c4eb8e65",
+        "neutral_resource_id": "resource-292caa6ec8a903d3",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "rationale": "Discovery yields resource addresses that documents might preserve, but the representation boundary is unspecified.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-c5b51793c4eb8e65",
+        "neutral_resource_id": "resource-33b6a3a2b77a6ada",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "rationale": "Filesystem file models might inform text storage, but document semantics are not shown.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c5b51793c4eb8e65",
+        "neutral_resource_id": "resource-760c73a98c8c3d75",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "rationale": "General path exports do not represent observed text documents.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/time/__init__.py",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-d1798de93b6db6cd",
+        "neutral_resource_id": "resource-081e154f1a357369",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "rationale": "Time primitives supply timestamps for terminal lifecycle evidence.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/runtime/__init__.py",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-d1798de93b6db6cd",
+        "neutral_resource_id": "resource-2b2321866fbe49e2",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "rationale": "The Runtime public API identifies the coordinator whose terminal evidence is at issue.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/runtime/docs/overview.md",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-d1798de93b6db6cd",
+        "neutral_resource_id": "resource-515ff944ad8ae418",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "rationale": "Runtime documentation describes interaction coordination and evidence delivery boundaries.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/evidence/test_attempt.py",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-d1798de93b6db6cd",
+        "neutral_resource_id": "resource-588461e04f950e2b",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "rationale": "Attempt lifecycle tests specify terminal transitions and timestamps relevant to evidence.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/__init__.py",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-d1798de93b6db6cd",
+        "neutral_resource_id": "resource-a40352a0dbe3bc74",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "rationale": "The package root contains no Runtime or Evidence contract.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/identity/__init__.py",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-d1798de93b6db6cd",
+        "neutral_resource_id": "resource-a97bafff6a23c336",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "rationale": "Generic identity exports do not define terminal Evidence production or delivery.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/tools/test_runtime_integration.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-d7c24c6769836b31",
+        "neutral_resource_id": "resource-887595514c81afa7",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "rationale": "Runtime Tool integration tests exercise interactions, but the request boundary itself is not specified there.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/execution/docs/overview.md",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-d7c24c6769836b31",
+        "neutral_resource_id": "resource-8de7ca8d0baa2268",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "rationale": "Execution documentation describes how Runtime passes a request to one selected ModelInteraction.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/response.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-d7c24c6769836b31",
+        "neutral_resource_id": "resource-90977af870eb71ab",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "rationale": "ModelResponse defines the output counterpart to a ModelInteraction request.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-d7c24c6769836b31",
+        "neutral_resource_id": "resource-b202c733c3fbf76c",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "rationale": "The public ModelInteraction API exposes Prompt and protocol contracts at the request boundary.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/conversation/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-d7c24c6769836b31",
+        "neutral_resource_id": "resource-e8ad79f482b61fde",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "rationale": "Conversation values may be a request source, but the task does not specify their projection.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/providers/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "UNJUDGED",
+        "neutral_case_id": "case-d7c24c6769836b31",
+        "neutral_resource_id": "resource-f2b07c605b184b6f",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "rationale": "Provider exports identify adapters, but do not show their request translation contract.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-f9e64c7c4d05b3b4",
+        "neutral_resource_id": "resource-129bd1ecba498f3e",
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+        "rationale": "General path exports do not assemble Python function Context into model requests.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/__init__.py",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-f9e64c7c4d05b3b4",
+        "neutral_resource_id": "resource-a77b1a8f94f0f6a1",
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+        "rationale": "The Context API exposes the function Context assembly operation directly.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      }
+    ],
+    "schema": "devtools-i27-neutral-comparison-frozen-judgments-v1",
+    "state_counts": {
+      "NOT_USEFUL": 68,
+      "UNJUDGED": 31,
+      "USEFUL": 41
+    },
+    "target_count": 140,
+    "three_states": [
+      "USEFUL",
+      "NOT_USEFUL",
+      "UNJUDGED"
+    ],
+    "usefulness_semantics": "purpose-relative-three-state-v1"
+  },
+  "schema": "devtools-i27-neutral-comparison-frozen-judgments-v1"
+}

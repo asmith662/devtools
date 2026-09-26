@@ -553,3 +553,20 @@ widening, remains unknown. The 14 Increment-27 held-out confirmation cases and
 suspended Increment-26 confirmation remain sealed and unexecuted in this step.
 The next bounded step is blinded adjudication of exactly the frozen 140 pairs;
 no usefulness comparison is permitted before those labels are frozen.
+
+## Blinded comparison judgments
+
+The neutral input contained 140 new targets across 23 nonempty development
+case records. The remaining development case, `i25-c0fabcb195e2`, had zero
+new targets after exact judgment reuse and pair deduplication; no empty case
+record was added. Every neutral target received one purpose-relative judgment
+and a concise usefulness rationale: 41 `USEFUL`, 68 `NOT_USEFUL`, and 31
+`UNJUDGED`. The three states remain distinct.
+
+The frozen `comparison_frozen_judgments.json` has content identity
+`4e7394f0c2cfa8079f5e0b8b06506834046c3035856f6ab8db8c92b21efadea2`
+and file SHA-256
+`08cf1c7e05e1299fbb76eaa956657cb625852765fa446009c3cc06c47a9f6383`.
+It binds to the exact neutral input identity and byte hash. Judgments were
+completed and frozen before any retrieval-origin join. Method-level results
+remain unknown, and held-out confirmation remains sealed.
