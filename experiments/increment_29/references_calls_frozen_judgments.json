@@ -1,0 +1,270 @@
+{
+  "content_identity": "d93eb7d3e1d62d6e202eca927538a3042f35e876b2c2b10e5a55b398fc54505a",
+  "payload": {
+    "blinded_input_content_identity": "5c00fbf66914df9f6ce2f6d47cf0a891b02b4ff34e69dda7ac6c12f54ef473ba",
+    "blinded_input_sha256": "14a34a48f3d21f6b069f1de32e8caf7b33d9c93c2faa1c100dc0c3fd2f4ff75c",
+    "records": [
+      {
+        "address": "tests/context/test_python_declaration_aggregation.py",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-0cd51df550eb7612",
+        "neutral_resource_id": "resource-026ccd13898217c5",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "rationale": "Tests combined declarations across resources and exact-name retrieval, including which source resource supplied each match.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_declarations.py",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-0cd51df550eb7612",
+        "neutral_resource_id": "resource-3fdd6ba66abb0c2f",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "rationale": "Tests that direct function declarations retain distinct source resource addresses and identities needed for resource selection.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_function_request_assembly.py",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-0cd51df550eb7612",
+        "neutral_resource_id": "resource-50e4f970d25a581b",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "rationale": "Tests model-request assembly after Context rendering; exact-name resource selection is only setup.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/repository.py",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-0cd51df550eb7612",
+        "neutral_resource_id": "resource-8f7ce49068a13c24",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "rationale": "Defines general addressed resource observation without exact-name function resource selection.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_function_request_assembly.py",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-4fbcc2920e0908b0",
+        "neutral_resource_id": "resource-4306c12606b2a5b3",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "rationale": "Tests model-request assembly from a single-resource Context, not cross-resource source materialization.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_function_retrieval.py",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-4fbcc2920e0908b0",
+        "neutral_resource_id": "resource-5dddaf9575c53624",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "rationale": "Tests exact-name retrieval over one resource, without cross-resource source materialization.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_function_request_assembly.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-6145235a0b44352d",
+        "neutral_resource_id": "resource-276852ca85f80505",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "Tests downstream model-request assembly rather than combining declaration analyses across resources.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_function_materialization.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-6145235a0b44352d",
+        "neutral_resource_id": "resource-a5ebfb1e923fe526",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "Tests source extraction after disclosure, not multi-resource declaration aggregation.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_function_request_assembly.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-958b82bd6e85680d",
+        "neutral_resource_id": "resource-0d186c0dedf2dc8c",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "rationale": "Tests downstream request assembly, not deriving declarations from an explicitly addressed resource.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_function_materialization.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-958b82bd6e85680d",
+        "neutral_resource_id": "resource-e4eb1b5957276d18",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "rationale": "Tests materialization of already derived declarations, not explicit-resource declaration derivation.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_function_retrieval.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-958b82bd6e85680d",
+        "neutral_resource_id": "resource-f8193cdc16b3ef3c",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "rationale": "Tests retrieval over completed declaration knowledge, not explicit-resource derivation.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_function_cross_resource_pipeline.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-b9330e5384081153",
+        "neutral_resource_id": "resource-178d2149cf34d45c",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "Tests a function Context pipeline over caller-specified addresses, without discovering repository resources.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_function_request_assembly.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-b9330e5384081153",
+        "neutral_resource_id": "resource-1a1962e561de610c",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "Tests model-request assembly from prepared Context, without repository resource discovery.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_function_materialization.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-b9330e5384081153",
+        "neutral_resource_id": "resource-3059ec9a840ab905",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "Tests function source materialization from an explicit snapshot, without resource discovery.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_function_rendering.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-b9330e5384081153",
+        "neutral_resource_id": "resource-4c779572dce4d243",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "Tests rendering of materialized function Context, without resource discovery.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_function_retrieval.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-b9330e5384081153",
+        "neutral_resource_id": "resource-6c4e915c2b17b06b",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "Tests exact-name function retrieval, without repository resource discovery.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_function_resource_selection.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-b9330e5384081153",
+        "neutral_resource_id": "resource-7914f14580fd1643",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "Tests selecting resources from completed function retrieval results, not discovering repository resources.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_function_disclosure.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-b9330e5384081153",
+        "neutral_resource_id": "resource-91c6581e07638a40",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "Tests Context disclosure of function matches, without repository resource discovery.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/test_python_declarations.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-b9330e5384081153",
+        "neutral_resource_id": "resource-9e5b69e91a850ccb",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "Tests function declarations in explicitly observed resources, without discovering repository resources.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      }
+    ],
+    "schema": "devtools-i29-neutral-references-calls-frozen-judgments-v1",
+    "state_counts": {
+      "NOT_USEFUL": 17,
+      "UNJUDGED": 0,
+      "USEFUL": 2
+    },
+    "target_count": 19,
+    "three_states": [
+      "USEFUL",
+      "NOT_USEFUL",
+      "UNJUDGED"
+    ],
+    "usefulness_semantics": "purpose-relative-three-state-v1"
+  },
+  "schema": "devtools-i29-neutral-references-calls-frozen-judgments-v1"
+}
