@@ -1,0 +1,2010 @@
+{
+  "cases": [
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 47,
+        "excluded_initializers": 69,
+        "source_resources_examined": 121,
+        "test_resources_examined": 108,
+        "unmatched_named_test_resources": 27,
+        "unmatched_source_resources": 39
+      },
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": true,
+          "absent_existing_evidence_union": true,
+          "address": "src/devtools/observability/evidence/model_interaction.py",
+          "canonical_top_five": false,
+          "directions": [
+            "test_to_source"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": null,
+            "path": null,
+            "rrf": null
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "test_to_source",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "tests/observability/evidence/test_model_interaction.py",
+              "snapshot_id": "4d6882c3a0f87226dc814ad968721d16fad5584422693fc7fe2ee162bafbe9c8",
+              "source_address": "src/devtools/observability/evidence/model_interaction.py",
+              "source_content_identity": "6791cab34092a26f1742c01d9ec807f488282fd41ef874538a02dc89a4b65e20",
+              "test_address": "tests/observability/evidence/test_model_interaction.py",
+              "test_content_identity": "b736d5348b8c5a9aa918cc53c46405399c1506092b79acf8a2102cdc5862a812"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-66ed2049de72",
+      "corpus_id": "fb08925d17ece753349bb2f6337a0589b72ef3e1a39761b166a4147e27fe82e4",
+      "information_need": {
+        "lexical_query": "Implement direct Python function declaration derivation",
+        "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+      },
+      "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+      "relation_count": 47,
+      "seed_addresses": [
+        "src/devtools/core/identity/docs/overview.md",
+        "src/devtools/core/time/docs/timestamps.md",
+        "src/devtools/core/paths/docs/overview.md",
+        "tests/observability/evidence/test_model_interaction.py",
+        "src/devtools/core/paths/docs/resolution.md"
+      ],
+      "seed_fanout": {
+        "src/devtools/core/identity/docs/overview.md": 0,
+        "src/devtools/core/paths/docs/overview.md": 0,
+        "src/devtools/core/paths/docs/resolution.md": 0,
+        "src/devtools/core/time/docs/timestamps.md": 0,
+        "tests/observability/evidence/test_model_interaction.py": 1
+      },
+      "snapshot_id": "4d6882c3a0f87226dc814ad968721d16fad5584422693fc7fe2ee162bafbe9c8"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 57,
+        "excluded_initializers": 75,
+        "source_resources_examined": 137,
+        "test_resources_examined": 125,
+        "unmatched_named_test_resources": 31,
+        "unmatched_source_resources": 42
+      },
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/resources/filesystem/codecs/markdown.py",
+          "canonical_top_five": false,
+          "directions": [
+            "test_to_source"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 114,
+            "canonical": 114,
+            "identifier": 114,
+            "path": null,
+            "rrf": 114
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "test_to_source",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "tests/resources/filesystem/codecs/test_markdown.py",
+              "snapshot_id": "986507baf9b1d2ba8c4e194e87c758732230675d4069e49f19c57827362fbcb5",
+              "source_address": "src/devtools/resources/filesystem/codecs/markdown.py",
+              "source_content_identity": "3662893e3f5974d201e647f00d32ac4acdac70530920847e0f5b171c1515970c",
+              "test_address": "tests/resources/filesystem/codecs/test_markdown.py",
+              "test_content_identity": "a1a56af67b293df9d5fd6bafbf91dbc0b8d011e891b50529a629e3ebb219ac0d"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-858bfa85787e",
+      "corpus_id": "9ca4802b3fc52761d076e7803579c79935535450490479db2cfc65d34e392250",
+      "information_need": {
+        "lexical_query": "Implement repository text document representation",
+        "purpose": "Address the historical maintenance task: Implement repository text document representation"
+      },
+      "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+      "relation_count": 57,
+      "seed_addresses": [
+        "src/devtools/tools/docs/overview.md",
+        "tests/resources/filesystem/codecs/test_markdown.py",
+        "src/devtools/context/repository/resource.py",
+        "src/devtools/core/time/docs/timestamps.md",
+        "src/devtools/context/repository/snapshot.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/repository/resource.py": 0,
+        "src/devtools/context/repository/snapshot.py": 0,
+        "src/devtools/core/time/docs/timestamps.md": 0,
+        "src/devtools/tools/docs/overview.md": 0,
+        "tests/resources/filesystem/codecs/test_markdown.py": 1
+      },
+      "snapshot_id": "986507baf9b1d2ba8c4e194e87c758732230675d4069e49f19c57827362fbcb5"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 44,
+        "excluded_initializers": 68,
+        "source_resources_examined": 114,
+        "test_resources_examined": 104,
+        "unmatched_named_test_resources": 27,
+        "unmatched_source_resources": 35
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/models/interaction/providers/llama_cpp.py",
+          "canonical_top_five": false,
+          "directions": [
+            "test_to_source"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 20,
+            "canonical": 20,
+            "identifier": 15,
+            "path": null,
+            "rrf": 17
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "test_to_source",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "tests/models/interaction/providers/test_llama_cpp.py",
+              "snapshot_id": "e996eaa84723e64b35c9bb3a163369242016176d31dcbbc447774b9f79191991",
+              "source_address": "src/devtools/models/interaction/providers/llama_cpp.py",
+              "source_content_identity": "6b5bde2f435b2a3d42c5dc2d8030d1e43aa3e09ac2b4b5f00691fe3c6c33a485",
+              "test_address": "tests/models/interaction/providers/test_llama_cpp.py",
+              "test_content_identity": "c2e58b5d17fd67e544c08d7ca258839c58adee7300f4bad3eb5b8450b32b2992"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/models/interaction/test_protocols.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 9,
+            "canonical": 9,
+            "identifier": 6,
+            "path": null,
+            "rrf": 6
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/models/interaction/protocols.py",
+              "snapshot_id": "e996eaa84723e64b35c9bb3a163369242016176d31dcbbc447774b9f79191991",
+              "source_address": "src/devtools/models/interaction/protocols.py",
+              "source_content_identity": "5c65d577deaf80bb4b10a0a77151755e5bb1f249a177755ff314355d5f075871",
+              "test_address": "tests/models/interaction/test_protocols.py",
+              "test_content_identity": "774bf92a9cbcb915027a5f48dee08eb3eac21ef7b7f72d68c03e9c15296634e4"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-6f304a8c737c",
+      "corpus_id": "e5c65eec9bf5b04d2cfc5a75de0e157a0b000956f3405c301551b701641c8342",
+      "information_need": {
+        "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+        "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+      },
+      "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+      "relation_count": 44,
+      "seed_addresses": [
+        "src/devtools/models/interaction/docs/overview.md",
+        "src/devtools/models/interaction/models.py",
+        "tests/models/interaction/test_models.py",
+        "src/devtools/models/interaction/protocols.py",
+        "tests/models/interaction/providers/test_llama_cpp.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/models/interaction/docs/overview.md": 0,
+        "src/devtools/models/interaction/models.py": 0,
+        "src/devtools/models/interaction/protocols.py": 1,
+        "tests/models/interaction/providers/test_llama_cpp.py": 1,
+        "tests/models/interaction/test_models.py": 0
+      },
+      "snapshot_id": "e996eaa84723e64b35c9bb3a163369242016176d31dcbbc447774b9f79191991"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 53,
+        "excluded_initializers": 69,
+        "source_resources_examined": 127,
+        "test_resources_examined": 117,
+        "unmatched_named_test_resources": 30,
+        "unmatched_source_resources": 39
+      },
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/test_python_declarations.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": true,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 11,
+            "canonical": 11,
+            "identifier": 13,
+            "path": null,
+            "rrf": 12
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/context/python_declarations.py",
+              "snapshot_id": "692de428753d833319403b06784b44af4c765b2483c1c1550e2cc9bbaa38ef00",
+              "source_address": "src/devtools/context/python_declarations.py",
+              "source_content_identity": "afb1f958327a18fed7c46a36cf3e7f1ed3fe871630e50116e9368da9bacf2e07",
+              "test_address": "tests/context/test_python_declarations.py",
+              "test_content_identity": "37bc88b60c0142d28d1a1e861e4dcf465c2df4b981978a9815b05dc8e741e169"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-bb9f807bcd61",
+      "corpus_id": "9ab89d3799ecb19b5071a57fda9bed8a6122d824b7661479a4f96ac33ff0ae6d",
+      "information_need": {
+        "lexical_query": "Implement exact-name Python function resource selection",
+        "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+      },
+      "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+      "relation_count": 53,
+      "seed_addresses": [
+        "src/devtools/context/python_function_rendering.py",
+        "tests/context/test_python_function_rendering.py",
+        "src/devtools/context/python_declarations.py",
+        "src/devtools/context/python_function_disclosure.py",
+        "tests/context/test_python_function_disclosure.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/python_declarations.py": 1,
+        "src/devtools/context/python_function_disclosure.py": 0,
+        "src/devtools/context/python_function_rendering.py": 0,
+        "tests/context/test_python_function_disclosure.py": 0,
+        "tests/context/test_python_function_rendering.py": 0
+      },
+      "snapshot_id": "692de428753d833319403b06784b44af4c765b2483c1c1550e2cc9bbaa38ef00"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 33,
+        "excluded_initializers": 43,
+        "source_resources_examined": 80,
+        "test_resources_examined": 73,
+        "unmatched_named_test_resources": 18,
+        "unmatched_source_resources": 26
+      },
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/runtime/test_runtime.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 12,
+            "canonical": 12,
+            "identifier": 13,
+            "path": 5,
+            "rrf": 9
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/runtime/runtime.py",
+              "snapshot_id": "5073a7bdd33abf62206b3386641ca24a91cf9b17dc17f8ebdf03dfbbe16f268a",
+              "source_address": "src/devtools/runtime/runtime.py",
+              "source_content_identity": "98e00d2afd06c9f73a1998d401c8b4da036dd173c03d1548e33001f574980c59",
+              "test_address": "tests/runtime/test_runtime.py",
+              "test_content_identity": "af97018dffbbcd4e7966bbc16461d8ba135df28600945d0f5e2e492708a01ffe"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-0f7a13667ef3",
+      "corpus_id": "3dad608842a5cf05023a612349931f6e0e551e3bbb760b9c39a72a555886222a",
+      "information_need": {
+        "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+        "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+      },
+      "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+      "relation_count": 33,
+      "seed_addresses": [
+        "src/devtools/evidence/docs/overview.md",
+        "src/devtools/evidence/terminal.py",
+        "tests/evidence/test_terminal.py",
+        "src/devtools/persistence/docs/overview.md",
+        "src/devtools/runtime/runtime.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/evidence/docs/overview.md": 0,
+        "src/devtools/evidence/terminal.py": 0,
+        "src/devtools/persistence/docs/overview.md": 0,
+        "src/devtools/runtime/runtime.py": 1,
+        "tests/evidence/test_terminal.py": 0
+      },
+      "snapshot_id": "5073a7bdd33abf62206b3386641ca24a91cf9b17dc17f8ebdf03dfbbe16f268a"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 44,
+        "excluded_initializers": 68,
+        "source_resources_examined": 114,
+        "test_resources_examined": 104,
+        "unmatched_named_test_resources": 27,
+        "unmatched_source_resources": 35
+      },
+      "candidate_count": 4,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/models/interaction/protocols.py",
+          "canonical_top_five": false,
+          "directions": [
+            "test_to_source"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 55,
+            "canonical": 55,
+            "identifier": 58,
+            "path": null,
+            "rrf": 56
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "test_to_source",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "tests/models/interaction/test_protocols.py",
+              "snapshot_id": "8b37d831ad98cc15dc3f70dd5c5b110fbd77c5821b0a4890a055bf1169290ead",
+              "source_address": "src/devtools/models/interaction/protocols.py",
+              "source_content_identity": "9d0f7febc017015a1fc9e330730c00ebea522bcb52f664a922b3d7dc7b4f092a",
+              "test_address": "tests/models/interaction/test_protocols.py",
+              "test_content_identity": "86b05bf1102e9fea2eaa777e0b3d8c05ad34366725e4a2964ddd1340c9ea6486"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/resources/filesystem/codecs/test_json.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 24,
+            "canonical": 24,
+            "identifier": 20,
+            "path": null,
+            "rrf": 22
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/resources/filesystem/codecs/json.py",
+              "snapshot_id": "8b37d831ad98cc15dc3f70dd5c5b110fbd77c5821b0a4890a055bf1169290ead",
+              "source_address": "src/devtools/resources/filesystem/codecs/json.py",
+              "source_content_identity": "1ed913e313d22fe9e38fe68da1d2f948b6f19ef23421ebb951efabc988885e93",
+              "test_address": "tests/resources/filesystem/codecs/test_json.py",
+              "test_content_identity": "1b03c4f7a0c8a8da3c91f921e9a58743a0674e185b2b1b7e479a583e90ebf7e4"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/resources/filesystem/codecs/test_markdown.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 46,
+            "canonical": 46,
+            "identifier": 49,
+            "path": null,
+            "rrf": 48
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/resources/filesystem/codecs/markdown.py",
+              "snapshot_id": "8b37d831ad98cc15dc3f70dd5c5b110fbd77c5821b0a4890a055bf1169290ead",
+              "source_address": "src/devtools/resources/filesystem/codecs/markdown.py",
+              "source_content_identity": "3662893e3f5974d201e647f00d32ac4acdac70530920847e0f5b171c1515970c",
+              "test_address": "tests/resources/filesystem/codecs/test_markdown.py",
+              "test_content_identity": "a1a56af67b293df9d5fd6bafbf91dbc0b8d011e891b50529a629e3ebb219ac0d"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/resources/filesystem/codecs/test_text.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 25,
+            "canonical": 25,
+            "identifier": 25,
+            "path": null,
+            "rrf": 27
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/resources/filesystem/codecs/text.py",
+              "snapshot_id": "8b37d831ad98cc15dc3f70dd5c5b110fbd77c5821b0a4890a055bf1169290ead",
+              "source_address": "src/devtools/resources/filesystem/codecs/text.py",
+              "source_content_identity": "e408f6ca75508acc25debc8023d15d78e03665c509e7e0c478fddea8ce46b303",
+              "test_address": "tests/resources/filesystem/codecs/test_text.py",
+              "test_content_identity": "b8f9cc0b3d2ab072dafffca15ce6fe2f507cf6b8e3d8b94bbdf350d86395a3bc"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-739c82bd3398",
+      "corpus_id": "e079e84e7ce6217f633167787cc4f6b794db7c86210855a63f9a85348a2c6ee7",
+      "information_need": {
+        "lexical_query": "Implement model reasoning content",
+        "purpose": "Address the historical maintenance task: Implement model reasoning content"
+      },
+      "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+      "relation_count": 44,
+      "seed_addresses": [
+        "src/devtools/resources/filesystem/codecs/markdown.py",
+        "src/devtools/resources/filesystem/codecs/json.py",
+        "src/devtools/resources/filesystem/codecs/text.py",
+        "tests/models/interaction/test_protocols.py",
+        "src/devtools/resources/filesystem/docs/json.md"
+      ],
+      "seed_fanout": {
+        "src/devtools/resources/filesystem/codecs/json.py": 1,
+        "src/devtools/resources/filesystem/codecs/markdown.py": 1,
+        "src/devtools/resources/filesystem/codecs/text.py": 1,
+        "src/devtools/resources/filesystem/docs/json.md": 0,
+        "tests/models/interaction/test_protocols.py": 1
+      },
+      "snapshot_id": "8b37d831ad98cc15dc3f70dd5c5b110fbd77c5821b0a4890a055bf1169290ead"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 44,
+        "excluded_initializers": 68,
+        "source_resources_examined": 113,
+        "test_resources_examined": 104,
+        "unmatched_named_test_resources": 27,
+        "unmatched_source_resources": 34
+      },
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/models/interaction/protocols.py",
+          "canonical_top_five": false,
+          "directions": [
+            "test_to_source"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 10,
+            "canonical": 10,
+            "identifier": 24,
+            "path": 8,
+            "rrf": 8
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "test_to_source",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "tests/models/interaction/test_protocols.py",
+              "snapshot_id": "0d14e2db5b037b889d01e295fc175f4a0fc42d8a2c8220bb7389c9e3fc873454",
+              "source_address": "src/devtools/models/interaction/protocols.py",
+              "source_content_identity": "9563d36803db90028ac2399228b8de9f3a73430ddb0ed31b06bbb8ddf8b30396",
+              "test_address": "tests/models/interaction/test_protocols.py",
+              "test_content_identity": "431416a747d66b40f1ce552076a9ce71e1cf204208c0674e9839e98e45b36e59"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-9efe3dc31e80",
+      "corpus_id": "bd04fdffd57ba5252bd4540cff588876af03b4970907f5d77355abb53a152d10",
+      "information_need": {
+        "lexical_query": "Implement model interaction output bound",
+        "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+      },
+      "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+      "relation_count": 44,
+      "seed_addresses": [
+        "src/devtools/resources/commands/models/output.py",
+        "src/devtools/models/interaction/response.py",
+        "tests/models/interaction/test_protocols.py",
+        "src/devtools/models/interaction/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/roadmap.md"
+      ],
+      "seed_fanout": {
+        "src/devtools/models/interaction/docs/overview.md": 0,
+        "src/devtools/models/interaction/response.py": 0,
+        "src/devtools/resources/commands/models/output.py": 0,
+        "src/devtools/resources/filesystem/docs/roadmap.md": 0,
+        "tests/models/interaction/test_protocols.py": 1
+      },
+      "snapshot_id": "0d14e2db5b037b889d01e295fc175f4a0fc42d8a2c8220bb7389c9e3fc873454"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 46,
+        "excluded_initializers": 68,
+        "source_resources_examined": 120,
+        "test_resources_examined": 106,
+        "unmatched_named_test_resources": 27,
+        "unmatched_source_resources": 39
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/models/benchmarks/models.py",
+          "canonical_top_five": false,
+          "directions": [
+            "test_to_source"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 46,
+            "canonical": 46,
+            "identifier": 7,
+            "path": null,
+            "rrf": 21
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "test_to_source",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "tests/models/benchmarks/test_models.py",
+              "snapshot_id": "8bcb053857abd5eb0e8b0ee7b8b101ef67119e83e41fc8398752bca737dc76c9",
+              "source_address": "src/devtools/models/benchmarks/models.py",
+              "source_content_identity": "856e9cb0a4355718d4bd7599c1a9ba038f44eacdcfeceda48958facb56b670f5",
+              "test_address": "tests/models/benchmarks/test_models.py",
+              "test_content_identity": "582423270354ce5925f1c493a10062f906204462e976712730d51cde04f9a1df"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/models/serving/huggingface.py",
+          "canonical_top_five": false,
+          "directions": [
+            "test_to_source"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": true,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 21,
+            "canonical": 21,
+            "identifier": 31,
+            "path": null,
+            "rrf": 25
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "test_to_source",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "tests/models/serving/test_huggingface.py",
+              "snapshot_id": "8bcb053857abd5eb0e8b0ee7b8b101ef67119e83e41fc8398752bca737dc76c9",
+              "source_address": "src/devtools/models/serving/huggingface.py",
+              "source_content_identity": "69f8095b6883dc2d8cdf556d73f9913d89b49e2c0689d6e12f1e496c48415d1c",
+              "test_address": "tests/models/serving/test_huggingface.py",
+              "test_content_identity": "9b7b273b3c1fa39ba2eef3158a8c248e1f8546815441314ffe39c9b9c404acc2"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-6b0e9c52fb26",
+      "corpus_id": "a0c343c156c6a09e60626fdbf7e1597b4c6564fbe89af2da53d9ee4960627071",
+      "information_need": {
+        "lexical_query": "Implement bounded repository snapshot observation",
+        "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+      },
+      "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+      "relation_count": 46,
+      "seed_addresses": [
+        "src/devtools/tools/docs/overview.md",
+        "tests/models/serving/test_huggingface.py",
+        "src/devtools/resources/commands/docs/overview.md",
+        "src/devtools/models/serving/docs/overview.md",
+        "tests/models/benchmarks/test_models.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/models/serving/docs/overview.md": 0,
+        "src/devtools/resources/commands/docs/overview.md": 0,
+        "src/devtools/tools/docs/overview.md": 0,
+        "tests/models/benchmarks/test_models.py": 1,
+        "tests/models/serving/test_huggingface.py": 1
+      },
+      "snapshot_id": "8bcb053857abd5eb0e8b0ee7b8b101ef67119e83e41fc8398752bca737dc76c9"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 44,
+        "excluded_initializers": 68,
+        "source_resources_examined": 113,
+        "test_resources_examined": 104,
+        "unmatched_named_test_resources": 27,
+        "unmatched_source_resources": 34
+      },
+      "candidate_count": 0,
+      "candidates": [],
+      "case_id": "i25-901246bd802a",
+      "corpus_id": "73f41ff55e590e661c59484c495d6b53b693d1e28b8c4b7d80381e3735b3bb76",
+      "information_need": {
+        "lexical_query": "measured repository selection stress fixture",
+        "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+      },
+      "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+      "relation_count": 44,
+      "seed_addresses": [
+        "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+        "tests/experiments/qwen/test_patch_proposal_worker.py",
+        "tests/experiments/qwen/test_two_action_read_only_experiment.py",
+        "src/devtools/models/serving/docs/overview.md",
+        "tests/scripts/qwen/test_llama_cpp_profile.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/models/serving/docs/overview.md": 0,
+        "tests/experiments/qwen/test_patch_proposal_worker.py": 0,
+        "tests/experiments/qwen/test_two_action_read_only_experiment.py": 0,
+        "tests/scripts/qwen/test_llama_cpp_profile.py": 0,
+        "tests/scripts/qwen/test_two_action_read_only_acceptance.py": 0
+      },
+      "snapshot_id": "a9e8e4418d94c9a3c68a63d7235ea01576f5a4259074348d7ae390749e01d1de"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 54,
+        "excluded_initializers": 69,
+        "source_resources_examined": 128,
+        "test_resources_examined": 119,
+        "unmatched_named_test_resources": 31,
+        "unmatched_source_resources": 39
+      },
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/test_python_function_candidates.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": true,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 9,
+            "canonical": 9,
+            "identifier": 9,
+            "path": null,
+            "rrf": 9
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/context/python_function_candidates.py",
+              "snapshot_id": "4992e02934cb390cd16fe76142aee4f24bb3a01f6f855901849f9b15dedb773b",
+              "source_address": "src/devtools/context/python_function_candidates.py",
+              "source_content_identity": "2f9fdc24ab143682ae5fc3c90934626c9b9db6160d6cf819e7fbee8b585ced90",
+              "test_address": "tests/context/test_python_function_candidates.py",
+              "test_content_identity": "e2fabd2380dac722007023304a969c96ad21589f717ebbcde699244579417142"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-ab24906f07ed",
+      "corpus_id": "9c9083b07a968ce4ef806d8e07dc985118402c28c5906cd5b5c24b6f2a4bc3d2",
+      "information_need": {
+        "lexical_query": "Implement bounded repository resource discovery",
+        "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+      },
+      "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+      "relation_count": 54,
+      "seed_addresses": [
+        "src/devtools/tools/docs/overview.md",
+        "src/devtools/context/repository.py",
+        "tests/context/test_repository.py",
+        "src/devtools/resources/filesystem/docs/roadmap.md",
+        "src/devtools/context/python_function_candidates.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/python_function_candidates.py": 1,
+        "src/devtools/context/repository.py": 0,
+        "src/devtools/resources/filesystem/docs/roadmap.md": 0,
+        "src/devtools/tools/docs/overview.md": 0,
+        "tests/context/test_repository.py": 0
+      },
+      "snapshot_id": "4992e02934cb390cd16fe76142aee4f24bb3a01f6f855901849f9b15dedb773b"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 53,
+        "excluded_initializers": 69,
+        "source_resources_examined": 127,
+        "test_resources_examined": 115,
+        "unmatched_named_test_resources": 28,
+        "unmatched_source_resources": 39
+      },
+      "candidate_count": 0,
+      "candidates": [],
+      "case_id": "i25-ac797431db35",
+      "corpus_id": "5f60978cc3cbfa8876c5aeba859e16f62be7c8c2b3493e549daa5ac8839b5995",
+      "information_need": {
+        "lexical_query": "Implement multi-resource Python declaration aggregation",
+        "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+      },
+      "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+      "relation_count": 53,
+      "seed_addresses": [
+        "src/devtools/context/python_declarations.py",
+        "tests/context/test_python_declarations.py",
+        "src/devtools/context/python_function_rendering.py",
+        "src/devtools/tools/docs/overview.md",
+        "tests/context/test_python_function_rendering.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/python_declarations.py": 0,
+        "src/devtools/context/python_function_rendering.py": 0,
+        "src/devtools/tools/docs/overview.md": 0,
+        "tests/context/test_python_declarations.py": 0,
+        "tests/context/test_python_function_rendering.py": 0
+      },
+      "snapshot_id": "49f846f50781975bf83b93918a808972d7d94bb097b4f698c725da92454dcbe7"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 44,
+        "excluded_initializers": 68,
+        "source_resources_examined": 113,
+        "test_resources_examined": 104,
+        "unmatched_named_test_resources": 27,
+        "unmatched_source_resources": 34
+      },
+      "candidate_count": 0,
+      "candidates": [],
+      "case_id": "i25-842e90e63f37",
+      "corpus_id": "9e526be963a5479984594453f1b7b383dcfd5defd835491aba2c1a50eed61d0d",
+      "information_need": {
+        "lexical_query": "selection-stress acceptance fixture",
+        "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+      },
+      "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+      "relation_count": 44,
+      "seed_addresses": [
+        "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+        "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+        "tests/scripts/qwen/test_two_read_acceptance.py",
+        "tests/experiments/qwen/test_patch_proposal_worker.py",
+        "src/devtools/context/__init__.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/__init__.py": 0,
+        "tests/experiments/qwen/test_patch_proposal_worker.py": 0,
+        "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py": 0,
+        "tests/scripts/qwen/test_two_action_read_only_acceptance.py": 0,
+        "tests/scripts/qwen/test_two_read_acceptance.py": 0
+      },
+      "snapshot_id": "dc7c52489abe2a1e7368dcd62bb53b75af8a4d9898f4a5242ab23feacb6f483a"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 44,
+        "excluded_initializers": 68,
+        "source_resources_examined": 114,
+        "test_resources_examined": 104,
+        "unmatched_named_test_resources": 27,
+        "unmatched_source_resources": 35
+      },
+      "candidate_count": 4,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/execution/runtime.py",
+          "canonical_top_five": false,
+          "directions": [
+            "test_to_source"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 6,
+            "canonical": 6,
+            "identifier": 7,
+            "path": null,
+            "rrf": 18
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "test_to_source",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "tests/execution/test_runtime.py",
+              "snapshot_id": "deacbb2f3e85afd2ea8557e6a2e7a18b4c68c6aa972b0b9c57f09446ec947020",
+              "source_address": "src/devtools/execution/runtime.py",
+              "source_content_identity": "723fadb80869151cee17aa110b9b4534c370fd1331696fc047ecf3f6516459a4",
+              "test_address": "tests/execution/test_runtime.py",
+              "test_content_identity": "70b288624e2888fba306c426dfbea3db22968512f580be1c047d6ecf4be72df3"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/models/interaction/models.py",
+          "canonical_top_five": false,
+          "directions": [
+            "test_to_source"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": true,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 21,
+            "canonical": 21,
+            "identifier": 12,
+            "path": 5,
+            "rrf": 8
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "test_to_source",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "tests/models/interaction/test_models.py",
+              "snapshot_id": "deacbb2f3e85afd2ea8557e6a2e7a18b4c68c6aa972b0b9c57f09446ec947020",
+              "source_address": "src/devtools/models/interaction/models.py",
+              "source_content_identity": "bcdac7e06a1bc0e0496a49f49dada3702e697b5900e82ac141513ea711189464",
+              "test_address": "tests/models/interaction/test_models.py",
+              "test_content_identity": "217382dc874bb332b4d3d59f8c2d69e73a68de0344498b52d47fc62f960bbee9"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/models/interaction/providers/llama_cpp.py",
+          "canonical_top_five": false,
+          "directions": [
+            "test_to_source"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 26,
+            "canonical": 26,
+            "identifier": 25,
+            "path": 15,
+            "rrf": 15
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "test_to_source",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "tests/models/interaction/providers/test_llama_cpp.py",
+              "snapshot_id": "deacbb2f3e85afd2ea8557e6a2e7a18b4c68c6aa972b0b9c57f09446ec947020",
+              "source_address": "src/devtools/models/interaction/providers/llama_cpp.py",
+              "source_content_identity": "18b7d8d2c7639b56e6e54624b46703eeb171364b0ab32066dae53a638b1602c4",
+              "test_address": "tests/models/interaction/providers/test_llama_cpp.py",
+              "test_content_identity": "22415b5caa968e026a190351fc7cb7fdf5e5eb0add1d7d6496a06343e0914509"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/models/interaction/test_protocols.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 7,
+            "canonical": 7,
+            "identifier": 6,
+            "path": 3,
+            "rrf": 3
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/models/interaction/protocols.py",
+              "snapshot_id": "deacbb2f3e85afd2ea8557e6a2e7a18b4c68c6aa972b0b9c57f09446ec947020",
+              "source_address": "src/devtools/models/interaction/protocols.py",
+              "source_content_identity": "9d0f7febc017015a1fc9e330730c00ebea522bcb52f664a922b3d7dc7b4f092a",
+              "test_address": "tests/models/interaction/test_protocols.py",
+              "test_content_identity": "86b05bf1102e9fea2eaa777e0b3d8c05ad34366725e4a2964ddd1340c9ea6486"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-eadb6f231f57",
+      "corpus_id": "7d9a666139ecf4216405fd731478ffc635cc74feb108e3f2c7af09669999a3e1",
+      "information_need": {
+        "lexical_query": "Implement model interaction thinking control",
+        "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+      },
+      "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+      "relation_count": 44,
+      "seed_addresses": [
+        "tests/models/interaction/test_models.py",
+        "tests/models/interaction/providers/test_llama_cpp.py",
+        "tests/execution/test_runtime.py",
+        "src/devtools/models/interaction/protocols.py",
+        "src/devtools/models/interaction/response.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/models/interaction/protocols.py": 1,
+        "src/devtools/models/interaction/response.py": 0,
+        "tests/execution/test_runtime.py": 1,
+        "tests/models/interaction/providers/test_llama_cpp.py": 1,
+        "tests/models/interaction/test_models.py": 1
+      },
+      "snapshot_id": "deacbb2f3e85afd2ea8557e6a2e7a18b4c68c6aa972b0b9c57f09446ec947020"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 44,
+        "excluded_initializers": 68,
+        "source_resources_examined": 112,
+        "test_resources_examined": 102,
+        "unmatched_named_test_resources": 25,
+        "unmatched_source_resources": 33
+      },
+      "candidate_count": 0,
+      "candidates": [],
+      "case_id": "i25-8994c4e58644",
+      "corpus_id": "c1443707d1fc75ebe72257aa91ef597131d263d63c53d11f14a64bcb697dacab",
+      "information_need": {
+        "lexical_query": "Investigate Repository Context Discovery",
+        "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+      },
+      "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+      "relation_count": 44,
+      "seed_addresses": [
+        "src/devtools/resources/filesystem/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/roadmap.md",
+        "src/devtools/agents/integrations/codex/docs/cli.md",
+        "tests/agents/conversation/message/test_message.py",
+        "src/devtools/resources/filesystem/docs/codecs.md"
+      ],
+      "seed_fanout": {
+        "src/devtools/agents/integrations/codex/docs/cli.md": 0,
+        "src/devtools/resources/filesystem/docs/codecs.md": 0,
+        "src/devtools/resources/filesystem/docs/overview.md": 0,
+        "src/devtools/resources/filesystem/docs/roadmap.md": 0,
+        "tests/agents/conversation/message/test_message.py": 0
+      },
+      "snapshot_id": "5fc27c32ac3c008337fb7262448c46b5bf2991a3261ffd43ec6480574784c97c"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 30,
+        "excluded_initializers": 41,
+        "source_resources_examined": 76,
+        "test_resources_examined": 69,
+        "unmatched_named_test_resources": 18,
+        "unmatched_source_resources": 26
+      },
+      "candidate_count": 0,
+      "candidates": [],
+      "case_id": "i25-c0fabcb195e2",
+      "corpus_id": "59aff35b21ee29fe81c03b479a809546853ca1f8e3705bc0ded9dac13baa9a69",
+      "information_need": {
+        "lexical_query": "ed evidence",
+        "purpose": "Address the historical maintenance task: ed evidence"
+      },
+      "parent_snapshot_sha": "9c42bd9b3da3f468bb7bbf0b8235596187dc64c3",
+      "relation_count": 30,
+      "seed_addresses": [
+        "src/devtools/persistence/docs/overview.md",
+        "src/devtools/runtime/docs/overview.md",
+        "src/devtools/persistence/docs/sqlite.md",
+        "src/devtools/context/docs/history.md",
+        "src/devtools/agents/docs/overview.md"
+      ],
+      "seed_fanout": {
+        "src/devtools/agents/docs/overview.md": 0,
+        "src/devtools/context/docs/history.md": 0,
+        "src/devtools/persistence/docs/overview.md": 0,
+        "src/devtools/persistence/docs/sqlite.md": 0,
+        "src/devtools/runtime/docs/overview.md": 0
+      },
+      "snapshot_id": "2b2573d1eb751fa1757cf90f412e61ffc706c2585a45ad453ae54b175afd8842"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 45,
+        "excluded_initializers": 68,
+        "source_resources_examined": 118,
+        "test_resources_examined": 105,
+        "unmatched_named_test_resources": 27,
+        "unmatched_source_resources": 38
+      },
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/tools/test_execution.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 7,
+            "canonical": 7,
+            "identifier": 7,
+            "path": null,
+            "rrf": 7
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/tools/execution.py",
+              "snapshot_id": "36be414ba3ae60b35aecc374a4d674542ebc6c2fc4c0cb1d54de5d833ebfc372",
+              "source_address": "src/devtools/tools/execution.py",
+              "source_content_identity": "83f76f63eb0214d03451ca47a806ef5e5dd70ef2bfa1b43754fe60032823c00e",
+              "test_address": "tests/tools/test_execution.py",
+              "test_content_identity": "ca795dd35424539b29e091e66f20e67a66c99f9b2902729a49d1f8264555c5c2"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-d9e58cd09390",
+      "corpus_id": "1304aba35bb95c944afef85bb89ad4d3174a57306c0abb56727c444cd3fd3101",
+      "information_need": {
+        "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+        "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+      },
+      "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+      "relation_count": 45,
+      "seed_addresses": [
+        "src/devtools/models/interaction/docs/overview.md",
+        "src/devtools/tools/docs/overview.md",
+        "tests/tools/test_runtime_integration.py",
+        "src/devtools/resources/filesystem/docs/overview.md",
+        "src/devtools/tools/execution.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/models/interaction/docs/overview.md": 0,
+        "src/devtools/resources/filesystem/docs/overview.md": 0,
+        "src/devtools/tools/docs/overview.md": 0,
+        "src/devtools/tools/execution.py": 1,
+        "tests/tools/test_runtime_integration.py": 0
+      },
+      "snapshot_id": "36be414ba3ae60b35aecc374a4d674542ebc6c2fc4c0cb1d54de5d833ebfc372"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 53,
+        "excluded_initializers": 69,
+        "source_resources_examined": 127,
+        "test_resources_examined": 114,
+        "unmatched_named_test_resources": 27,
+        "unmatched_source_resources": 39
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/test_python_function_disclosure.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": true,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 9,
+            "canonical": 9,
+            "identifier": 9,
+            "path": 3,
+            "rrf": 4
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/context/python_function_disclosure.py",
+              "snapshot_id": "95aa4487bee640bd631a8fce33882289c70e1d8f7926268859b0cec9a99953e6",
+              "source_address": "src/devtools/context/python_function_disclosure.py",
+              "source_content_identity": "90d28597f214ed9b3295314c10db46816948e9428bdb2350480ef9adeab381f5",
+              "test_address": "tests/context/test_python_function_disclosure.py",
+              "test_content_identity": "62692b1f96a8f41ab9f2097070125b9211b0befd787465fc56aa8a06459e2610"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/test_python_function_request_assembly.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": true,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 12,
+            "canonical": 12,
+            "identifier": 4,
+            "path": 6,
+            "rrf": 5
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/context/python_function_request_assembly.py",
+              "snapshot_id": "95aa4487bee640bd631a8fce33882289c70e1d8f7926268859b0cec9a99953e6",
+              "source_address": "src/devtools/context/python_function_request_assembly.py",
+              "source_content_identity": "89186f15ef571d9115f2b8e17bd475d1b7853d381c4903213a1c7bc2afb13f52",
+              "test_address": "tests/context/test_python_function_request_assembly.py",
+              "test_content_identity": "4015f73d98b284d8a6aa2a439541456cb1ad5bf737faa3e6b7bcd4fff0c75a67"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-b5280a3c38ca",
+      "corpus_id": "4424adf117a153dde313fa1f249ea5b2f8b5136aa81e7ac2d4efa927772a9dab",
+      "information_need": {
+        "lexical_query": "Python function Context acceptance experiment",
+        "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+      },
+      "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+      "relation_count": 53,
+      "seed_addresses": [
+        "src/devtools/context/python_function_rendering.py",
+        "tests/context/test_python_function_rendering.py",
+        "src/devtools/context/python_function_disclosure.py",
+        "src/devtools/context/python_function_request_assembly.py",
+        "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/python_function_disclosure.py": 1,
+        "src/devtools/context/python_function_rendering.py": 0,
+        "src/devtools/context/python_function_request_assembly.py": 1,
+        "tests/context/test_python_function_rendering.py": 0,
+        "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py": 0
+      },
+      "snapshot_id": "95aa4487bee640bd631a8fce33882289c70e1d8f7926268859b0cec9a99953e6"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 53,
+        "excluded_initializers": 69,
+        "source_resources_examined": 127,
+        "test_resources_examined": 116,
+        "unmatched_named_test_resources": 29,
+        "unmatched_source_resources": 39
+      },
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/test_python_declarations.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": true,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 6,
+            "canonical": 6,
+            "identifier": 11,
+            "path": 3,
+            "rrf": 4
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/context/python_declarations.py",
+              "snapshot_id": "2f3657561f5140c8f857bb7b546df3b5a40b37a767f4043b599aa2d135b7e9c9",
+              "source_address": "src/devtools/context/python_declarations.py",
+              "source_content_identity": "afb1f958327a18fed7c46a36cf3e7f1ed3fe871630e50116e9368da9bacf2e07",
+              "test_address": "tests/context/test_python_declarations.py",
+              "test_content_identity": "37bc88b60c0142d28d1a1e861e4dcf465c2df4b981978a9815b05dc8e741e169"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-85cfd9ff68a0",
+      "corpus_id": "24538fee122d8dda1ebf729f806ae6861c8e20473728bf7eccef2d733b842b96",
+      "information_need": {
+        "lexical_query": "cross-resource Python function Context materialization",
+        "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+      },
+      "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+      "relation_count": 53,
+      "seed_addresses": [
+        "src/devtools/context/python_function_materialization.py",
+        "tests/context/test_python_function_rendering.py",
+        "tests/context/test_python_function_materialization.py",
+        "src/devtools/context/python_function_rendering.py",
+        "src/devtools/context/python_declarations.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/python_declarations.py": 1,
+        "src/devtools/context/python_function_materialization.py": 0,
+        "src/devtools/context/python_function_rendering.py": 0,
+        "tests/context/test_python_function_materialization.py": 0,
+        "tests/context/test_python_function_rendering.py": 0
+      },
+      "snapshot_id": "2f3657561f5140c8f857bb7b546df3b5a40b37a767f4043b599aa2d135b7e9c9"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 52,
+        "excluded_initializers": 69,
+        "source_resources_examined": 126,
+        "test_resources_examined": 113,
+        "unmatched_named_test_resources": 27,
+        "unmatched_source_resources": 39
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/test_python_function_disclosure.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": true,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 8,
+            "canonical": 8,
+            "identifier": 6,
+            "path": 3,
+            "rrf": 4
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/context/python_function_disclosure.py",
+              "snapshot_id": "23c603485e26dace4837d98fbb140fb2b48ed7fb96770ad1d659609433e7217b",
+              "source_address": "src/devtools/context/python_function_disclosure.py",
+              "source_content_identity": "90d28597f214ed9b3295314c10db46816948e9428bdb2350480ef9adeab381f5",
+              "test_address": "tests/context/test_python_function_disclosure.py",
+              "test_content_identity": "62692b1f96a8f41ab9f2097070125b9211b0befd787465fc56aa8a06459e2610"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/test_python_function_materialization.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": true,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 10,
+            "canonical": 10,
+            "identifier": 3,
+            "path": 4,
+            "rrf": 3
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/context/python_function_materialization.py",
+              "snapshot_id": "23c603485e26dace4837d98fbb140fb2b48ed7fb96770ad1d659609433e7217b",
+              "source_address": "src/devtools/context/python_function_materialization.py",
+              "source_content_identity": "7daab507d9d4b7e29c49fa3223ee3372eb32693e63a861bf47ea415d1944b1d4",
+              "test_address": "tests/context/test_python_function_materialization.py",
+              "test_content_identity": "a17a85b4973951e4834ac94f786cda9c041a1914379e70a572c66b0b347865a1"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-6156c70be14b",
+      "corpus_id": "55d5f45f608299c863326c363b6f9cf918040832bb4b79439e1187c08befffb5",
+      "information_need": {
+        "lexical_query": "Assemble Python function Context into model requests",
+        "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+      },
+      "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+      "relation_count": 52,
+      "seed_addresses": [
+        "src/devtools/context/python_function_disclosure.py",
+        "src/devtools/models/interaction/docs/overview.md",
+        "src/devtools/context/python_function_rendering.py",
+        "tests/context/test_python_function_rendering.py",
+        "src/devtools/context/python_function_materialization.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/python_function_disclosure.py": 1,
+        "src/devtools/context/python_function_materialization.py": 1,
+        "src/devtools/context/python_function_rendering.py": 0,
+        "src/devtools/models/interaction/docs/overview.md": 0,
+        "tests/context/test_python_function_rendering.py": 0
+      },
+      "snapshot_id": "23c603485e26dace4837d98fbb140fb2b48ed7fb96770ad1d659609433e7217b"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 53,
+        "excluded_initializers": 69,
+        "source_resources_examined": 127,
+        "test_resources_examined": 115,
+        "unmatched_named_test_resources": 28,
+        "unmatched_source_resources": 39
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/context/python_function_disclosure.py",
+          "canonical_top_five": false,
+          "directions": [
+            "test_to_source"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": true,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 9,
+            "canonical": 9,
+            "identifier": 10,
+            "path": null,
+            "rrf": 10
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "test_to_source",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "tests/context/test_python_function_disclosure.py",
+              "snapshot_id": "07b16d999ca2459d7f541064ac91e2e3d799f9ac70e7e822ec656ed811d230ac",
+              "source_address": "src/devtools/context/python_function_disclosure.py",
+              "source_content_identity": "90d28597f214ed9b3295314c10db46816948e9428bdb2350480ef9adeab381f5",
+              "test_address": "tests/context/test_python_function_disclosure.py",
+              "test_content_identity": "62692b1f96a8f41ab9f2097070125b9211b0befd787465fc56aa8a06459e2610"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/test_python_function_rendering.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": true,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 6,
+            "canonical": 6,
+            "identifier": 8,
+            "path": null,
+            "rrf": 7
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/context/python_function_rendering.py",
+              "snapshot_id": "07b16d999ca2459d7f541064ac91e2e3d799f9ac70e7e822ec656ed811d230ac",
+              "source_address": "src/devtools/context/python_function_rendering.py",
+              "source_content_identity": "dfbf052836b915bae56edc3c56cfb9ad01c9a3173483b9ed8fbf0dc46851e990",
+              "test_address": "tests/context/test_python_function_rendering.py",
+              "test_content_identity": "1a4ddc9028bbb8352637fa4451a63edf6c66011eff5360aaf62abf40d778c144"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-2a4f058d5262",
+      "corpus_id": "7d17c7fc640c48b47003de65153d8008e74cc65e0a815072f8c1f373ca26869e",
+      "information_need": {
+        "lexical_query": "Implement explicit-resource Python declaration derivation",
+        "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+      },
+      "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+      "relation_count": 53,
+      "seed_addresses": [
+        "src/devtools/context/python_declarations.py",
+        "tests/context/test_python_declarations.py",
+        "src/devtools/tools/docs/overview.md",
+        "src/devtools/context/python_function_rendering.py",
+        "tests/context/test_python_function_disclosure.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/python_declarations.py": 0,
+        "src/devtools/context/python_function_rendering.py": 1,
+        "src/devtools/tools/docs/overview.md": 0,
+        "tests/context/test_python_declarations.py": 0,
+        "tests/context/test_python_function_disclosure.py": 1
+      },
+      "snapshot_id": "07b16d999ca2459d7f541064ac91e2e3d799f9ac70e7e822ec656ed811d230ac"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 56,
+        "excluded_initializers": 75,
+        "source_resources_examined": 136,
+        "test_resources_examined": 124,
+        "unmatched_named_test_resources": 31,
+        "unmatched_source_resources": 42
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/context/repository/discovery.py",
+          "canonical_top_five": false,
+          "directions": [
+            "test_to_source"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 28,
+            "canonical": 28,
+            "identifier": 33,
+            "path": 9,
+            "rrf": 7
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "test_to_source",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "tests/context/repository/test_discovery.py",
+              "snapshot_id": "d552b087d0f078df67515cbe275b5755088a55a67b496e06eb76dcea75ed3e49",
+              "source_address": "src/devtools/context/repository/discovery.py",
+              "source_content_identity": "1e5d07bddab1549f1a0852d9ba82186721f662d61434fafdfbbda9f8c13ec198",
+              "test_address": "tests/context/repository/test_discovery.py",
+              "test_content_identity": "3b469db4a85e07044acbc54b9d70fe7271f103620c45e20dca9db9029e28be54"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/repository/test_observation.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 7,
+            "canonical": 7,
+            "identifier": 3,
+            "path": 7,
+            "rrf": 3
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/context/repository/observation.py",
+              "snapshot_id": "d552b087d0f078df67515cbe275b5755088a55a67b496e06eb76dcea75ed3e49",
+              "source_address": "src/devtools/context/repository/observation.py",
+              "source_content_identity": "d310c92cb22c4e9fb12613938051e100549d115a4ffeaa090104b4a22a21ab2c",
+              "test_address": "tests/context/repository/test_observation.py",
+              "test_content_identity": "505a38aa3ef26b8fc46b40a763e77fd7605aad1b0935ef0f7d18dcefb72027e1"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-5fdf5fe05527",
+      "corpus_id": "8b57d96ee6968914d413744189db99fb0a79a44f18df25eb4c2689c5671ef723",
+      "information_need": {
+        "lexical_query": "Implement bounded repository text observation",
+        "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+      },
+      "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+      "relation_count": 56,
+      "seed_addresses": [
+        "src/devtools/tools/docs/overview.md",
+        "src/devtools/context/repository/observation.py",
+        "tests/context/repository/test_discovery.py",
+        "src/devtools/resources/commands/docs/overview.md",
+        "src/devtools/context/repository/snapshot.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/repository/observation.py": 1,
+        "src/devtools/context/repository/snapshot.py": 0,
+        "src/devtools/resources/commands/docs/overview.md": 0,
+        "src/devtools/tools/docs/overview.md": 0,
+        "tests/context/repository/test_discovery.py": 1
+      },
+      "snapshot_id": "d552b087d0f078df67515cbe275b5755088a55a67b496e06eb76dcea75ed3e49"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 44,
+        "excluded_initializers": 68,
+        "source_resources_examined": 112,
+        "test_resources_examined": 104,
+        "unmatched_named_test_resources": 27,
+        "unmatched_source_resources": 33
+      },
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/models/benchmarks/test_runner.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 8,
+            "canonical": 8,
+            "identifier": 5,
+            "path": null,
+            "rrf": 6
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/models/benchmarks/runner.py",
+              "snapshot_id": "e25dce0002fd0c2f3a4d2171e59ffd1aae20ed5708ea7cd7ced9984f42cacfc4",
+              "source_address": "src/devtools/models/benchmarks/runner.py",
+              "source_content_identity": "f3d508c393972700e34e285252dcfba5a154d358d01fa42e12fae283d7d6a35c",
+              "test_address": "tests/models/benchmarks/test_runner.py",
+              "test_content_identity": "14ee7d72d179a7b5ce3dfdc722944833986a2f16abb549d48dc92906f3e2ceb8"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-9009cc143957",
+      "corpus_id": "b5434e8ab1b11274518d6008615fcc447c2002f8759b11a00fc9492bac3e7b43",
+      "information_need": {
+        "lexical_query": "Implement model usage measurement",
+        "purpose": "Address the historical maintenance task: Implement model usage measurement"
+      },
+      "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+      "relation_count": 44,
+      "seed_addresses": [
+        "src/devtools/models/benchmarks/docs/overview.md",
+        "src/devtools/core/time/docs/overview.md",
+        "src/devtools/core/time/models/stopwatch.py",
+        "src/devtools/models/benchmarks/runner.py",
+        "src/devtools/core/time/docs/timing.md"
+      ],
+      "seed_fanout": {
+        "src/devtools/core/time/docs/overview.md": 0,
+        "src/devtools/core/time/docs/timing.md": 0,
+        "src/devtools/core/time/models/stopwatch.py": 0,
+        "src/devtools/models/benchmarks/docs/overview.md": 0,
+        "src/devtools/models/benchmarks/runner.py": 1
+      },
+      "snapshot_id": "e25dce0002fd0c2f3a4d2171e59ffd1aae20ed5708ea7cd7ced9984f42cacfc4"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 65,
+        "excluded_initializers": 81,
+        "source_resources_examined": 149,
+        "test_resources_examined": 141,
+        "unmatched_named_test_resources": 35,
+        "unmatched_source_resources": 43
+      },
+      "candidate_count": 3,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/context/python/imports/declarations.py",
+          "canonical_top_five": false,
+          "directions": [
+            "test_to_source"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": true,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 19,
+            "canonical": 19,
+            "identifier": 21,
+            "path": 27,
+            "rrf": 13
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "test_to_source",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "tests/context/python/imports/test_declarations.py",
+              "snapshot_id": "cb022f3b4ada7c325040de2560b2b371de698d7ba2a2b1189f8de459d0e3d30b",
+              "source_address": "src/devtools/context/python/imports/declarations.py",
+              "source_content_identity": "8dd7599da30693e1cdd2270f0b6b3ad3c0d48ebb8cbe81ca072211171ed62b72",
+              "test_address": "tests/context/python/imports/test_declarations.py",
+              "test_content_identity": "a10f487e0b5593f434e70281175a0f9da22fbd0a2cd4129e1b1281597678d441"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/context/python/source_candidacy.py",
+          "canonical_top_five": false,
+          "directions": [
+            "test_to_source"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 96,
+            "canonical": 97,
+            "identifier": 70,
+            "path": 4,
+            "rrf": 24
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "test_to_source",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "tests/context/python/test_source_candidacy.py",
+              "snapshot_id": "cb022f3b4ada7c325040de2560b2b371de698d7ba2a2b1189f8de459d0e3d30b",
+              "source_address": "src/devtools/context/python/source_candidacy.py",
+              "source_content_identity": "577710fa500280cdacaa7e81aee93dfe2a7886b1a511d4fbbb094b4afe66752c",
+              "test_address": "tests/context/python/test_source_candidacy.py",
+              "test_content_identity": "5b03f561a6f3b381907c8f953b4908ca59a9b7219f3c6c1b2fbde0ad02d26a6a"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/context/repository/discovery.py",
+          "canonical_top_five": false,
+          "directions": [
+            "test_to_source"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 34,
+            "canonical": 34,
+            "identifier": 43,
+            "path": null,
+            "rrf": 51
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "test_to_source",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "tests/context/repository/test_discovery.py",
+              "snapshot_id": "cb022f3b4ada7c325040de2560b2b371de698d7ba2a2b1189f8de459d0e3d30b",
+              "source_address": "src/devtools/context/repository/discovery.py",
+              "source_content_identity": "1e5d07bddab1549f1a0852d9ba82186721f662d61434fafdfbbda9f8c13ec198",
+              "test_address": "tests/context/repository/test_discovery.py",
+              "test_content_identity": "504d86f0d3f8395f67d20431c527a5836663688feb0b96fa3f1a45cc10aeee68"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-4ce485f737e4",
+      "corpus_id": "a374d531c052ee504ef954c5f89bfde33ca0cb026e131c72441c9b07ba05504d",
+      "information_need": {
+        "lexical_query": "Implement explicit-root Python module interpretation",
+        "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+      },
+      "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+      "relation_count": 65,
+      "seed_addresses": [
+        "src/devtools/core/paths/docs/resolution.md",
+        "tests/context/python/imports/test_declarations.py",
+        "tests/context/python/test_source_candidacy.py",
+        "src/devtools/core/identity/docs/overview.md",
+        "tests/context/repository/test_discovery.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/core/identity/docs/overview.md": 0,
+        "src/devtools/core/paths/docs/resolution.md": 0,
+        "tests/context/python/imports/test_declarations.py": 1,
+        "tests/context/python/test_source_candidacy.py": 1,
+        "tests/context/repository/test_discovery.py": 1
+      },
+      "snapshot_id": "cb022f3b4ada7c325040de2560b2b371de698d7ba2a2b1189f8de459d0e3d30b"
+    },
+    {
+      "analysis_diagnostics": {
+        "exact_mirrored_pairs": 50,
+        "excluded_initializers": 69,
+        "source_resources_examined": 124,
+        "test_resources_examined": 111,
+        "unmatched_named_test_resources": 27,
+        "unmatched_source_resources": 39
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/context/python_function_retrieval.py",
+          "canonical_top_five": false,
+          "directions": [
+            "test_to_source"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": true,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 8,
+            "canonical": 7,
+            "identifier": 7,
+            "path": null,
+            "rrf": 7
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "test_to_source",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "tests/context/test_python_function_retrieval.py",
+              "snapshot_id": "4251b67185c52d1fdc96421104d270632c9c0659d0a0aa25b21b3f56858f1082",
+              "source_address": "src/devtools/context/python_function_retrieval.py",
+              "source_content_identity": "c85d4fc2b549efb57b3fbe9820228d8e1fe5b1488a996079fc9e109dbd42118e",
+              "test_address": "tests/context/test_python_function_retrieval.py",
+              "test_content_identity": "54ca85a87aaab2821b2cebe2c74f7a3e5fd6022794e3c5676f8b95e1bddf60ac"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/test_python_function_disclosure.py",
+          "canonical_top_five": false,
+          "directions": [
+            "source_to_test"
+          ],
+          "existing_containment_candidate": false,
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": true,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 7,
+            "canonical": 6,
+            "identifier": 2,
+            "path": null,
+            "rrf": 3
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "direction": "source_to_test",
+              "rule": "exact-mirrored-test-path-v1",
+              "seed_address": "src/devtools/context/python_function_disclosure.py",
+              "snapshot_id": "4251b67185c52d1fdc96421104d270632c9c0659d0a0aa25b21b3f56858f1082",
+              "source_address": "src/devtools/context/python_function_disclosure.py",
+              "source_content_identity": "90d28597f214ed9b3295314c10db46816948e9428bdb2350480ef9adeab381f5",
+              "test_address": "tests/context/test_python_function_disclosure.py",
+              "test_content_identity": "62692b1f96a8f41ab9f2097070125b9211b0befd787465fc56aa8a06459e2610"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-5bdc70483eed",
+      "corpus_id": "1d754c2be37e65f91ce39f2cb710bd366a4eeb4a2ccbe909bee49b35ece965b2",
+      "information_need": {
+        "lexical_query": "Implement Python function source materialization",
+        "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+      },
+      "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+      "relation_count": 50,
+      "seed_addresses": [
+        "src/devtools/context/python_declarations.py",
+        "src/devtools/agents/conversation/docs/overview.md",
+        "src/devtools/context/python_function_disclosure.py",
+        "tests/context/test_python_declarations.py",
+        "tests/context/test_python_function_retrieval.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/agents/conversation/docs/overview.md": 0,
+        "src/devtools/context/python_declarations.py": 0,
+        "src/devtools/context/python_function_disclosure.py": 1,
+        "tests/context/test_python_declarations.py": 0,
+        "tests/context/test_python_function_retrieval.py": 1
+      },
+      "snapshot_id": "4251b67185c52d1fdc96421104d270632c9c0659d0a0aa25b21b3f56858f1082"
+    }
+  ],
+  "content_identity": "7c4e6d924ab5a12477746629a74470dba82281a55e22b950b2126980701113d7",
+  "freeze_identity": "e05fd19e2ccba9c62a08e68d73cdf833614813b86812ed2119b2c441849a1a53",
+  "heldout_executed": false,
+  "judgments_loaded": false,
+  "schema": "devtools-i31-mirrored-test-path-candidates-v1",
+  "summary": {
+    "candidate_pairs": 34,
+    "case_fanout": {
+      "i25-0f7a13667ef3": 1,
+      "i25-2a4f058d5262": 2,
+      "i25-4ce485f737e4": 3,
+      "i25-5bdc70483eed": 2,
+      "i25-5fdf5fe05527": 2,
+      "i25-6156c70be14b": 2,
+      "i25-66ed2049de72": 1,
+      "i25-6b0e9c52fb26": 2,
+      "i25-6f304a8c737c": 2,
+      "i25-739c82bd3398": 4,
+      "i25-842e90e63f37": 0,
+      "i25-858bfa85787e": 1,
+      "i25-85cfd9ff68a0": 1,
+      "i25-8994c4e58644": 0,
+      "i25-9009cc143957": 1,
+      "i25-901246bd802a": 0,
+      "i25-9efe3dc31e80": 1,
+      "i25-ab24906f07ed": 1,
+      "i25-ac797431db35": 0,
+      "i25-b5280a3c38ca": 2,
+      "i25-bb9f807bcd61": 1,
+      "i25-c0fabcb195e2": 0,
+      "i25-d9e58cd09390": 1,
+      "i25-eadb6f231f57": 4
+    },
+    "cases_with_additions": 19,
+    "counts": {
+      "absent_all_saved_positive_lexical": 1,
+      "absent_bm25_plus_positive": 1,
+      "absent_canonical_positive": 1,
+      "absent_existing_evidence_union": 1,
+      "absent_identifier_positive": 1,
+      "absent_path_positive": 20,
+      "absent_rrf_positive": 1,
+      "existing_import_candidate": 3,
+      "existing_references_calls_candidate": 14,
+      "source_to_test_pairs": 18,
+      "test_to_source_pairs": 16
+    },
+    "development_cases": 24,
+    "distinct_candidate_addresses": 27,
+    "exact_mirrored_pairs": 1152,
+    "excluded_initializers": 1616,
+    "max_case_fanout": 4,
+    "max_seed_fanout": 1,
+    "retained_supports": 34,
+    "source_resources_examined": 2855,
+    "test_resources_examined": 2601,
+    "unmatched_named_test_resources": 655,
+    "unmatched_source_resources": 880
+  }
+}

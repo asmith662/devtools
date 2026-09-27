@@ -1,0 +1,179 @@
+{
+  "content_identity": "1e603bdaa614b58474f7796e7c80ad732fa806a9bb9ae0ec95475c243aff0799",
+  "payload": {
+    "blinded_input_content_identity": "64fb7e675d6d7d0b28e72af7ef5adb1a7bc20bfc384cf21dc5a781c1a5eb85d8",
+    "blinded_input_sha256": "968a8d32cfe852252a4a2fdeb2906059f4200e700829ddb02dd5ce9f39d296e3",
+    "records": [
+      {
+        "address": "src/devtools/context/repository/discovery.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-42a2366e7df28fae",
+        "neutral_resource_id": "resource-89c1f9e3e765252b",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "Resource discovery lists bounded file addresses but provides no explicit-root Python module naming or package interpretation rules.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/codecs/markdown.py",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-63a068e8f69d0069",
+        "neutral_resource_id": "resource-da7856baf3efacac",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "rationale": "The Markdown filesystem codec does not define repository text-document representation.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/context/repository/discovery.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-a9ebfc8fe4736770",
+        "neutral_resource_id": "resource-7fe0a8d26e70ec1e",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "rationale": "Bounded resource discovery supplies the canonical addresses and traversal limits needed before repository text resources can be observed.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/observability/evidence/model_interaction.py",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-b4fb52a82939916b",
+        "neutral_resource_id": "resource-b8a7a61ae8d8e96d",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "rationale": "Model-interaction Evidence does not parse Python source or derive direct function declarations.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/models/interaction/test_protocols.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-bb9a1bdeed90d57e",
+        "neutral_resource_id": "resource-3476f590c13826e1",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "rationale": "The protocol test shows the existing Prompt-to-ModelResponse request contract and continuation behavior that the request boundary must preserve.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/providers/llama_cpp.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-bb9a1bdeed90d57e",
+        "neutral_resource_id": "resource-4eb224cfb6e80a67",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "rationale": "This concrete model interaction maps a Prompt into a provider request and returns ModelResponse, showing the request boundary in use.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/resources/filesystem/codecs/test_text.py",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-e53c8cd8e7e28e7d",
+        "neutral_resource_id": "resource-156bbe3ed9696657",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "rationale": "Text-file codec tests cover byte decoding and encoding, not model reasoning content.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/protocols.py",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-e53c8cd8e7e28e7d",
+        "neutral_resource_id": "resource-5ddbe1653bd24832",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "rationale": "The generic send protocol names ModelResponse but provides no reasoning-content representation or handling behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/resources/filesystem/codecs/test_json.py",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-e53c8cd8e7e28e7d",
+        "neutral_resource_id": "resource-625cbf8584f86a91",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "rationale": "JSON filesystem codec tests do not define or validate reasoning content in model responses.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/resources/filesystem/codecs/test_markdown.py",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-e53c8cd8e7e28e7d",
+        "neutral_resource_id": "resource-a67ab262543b235d",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "rationale": "Markdown filesystem codec tests do not address model reasoning content.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/protocols.py",
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-f0eb55930dc9bb58",
+        "neutral_resource_id": "resource-991d75ecbe4fb3a7",
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+        "rationale": "The model invocation protocol is the existing send signature where an output-token bound would need to be represented.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/providers/llama_cpp.py",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "USEFUL",
+        "neutral_case_id": "case-f8a847a9d2e0276e",
+        "neutral_resource_id": "resource-4aa9e15bfe14f12d",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "rationale": "The llama.cpp interaction shows where request options enter send and become provider payload fields, which is material to adding thinking control.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      }
+    ],
+    "schema": "devtools-i31-neutral-frozen-judgments-v1",
+    "state_counts": {
+      "NOT_USEFUL": 7,
+      "UNJUDGED": 0,
+      "USEFUL": 5
+    },
+    "target_count": 12,
+    "three_states": [
+      "USEFUL",
+      "NOT_USEFUL",
+      "UNJUDGED"
+    ],
+    "usefulness_semantics": "purpose-relative-three-state-v1"
+  },
+  "schema": "devtools-i31-neutral-frozen-judgments-v1"
+}
