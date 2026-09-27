@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: C901, COM812, EM101, PLR0912, PLR2004, TRY003
+# ruff: noqa: C901, COM812, EM101, PLR2004, TRY003
 """Mechanical development join for frozen package-containment judgments."""
 
 from __future__ import annotations
@@ -16,20 +16,15 @@ from experiments.increment_30.judgments import OUTPUT_NAME as JUDGMENTS_NAME
 from experiments.increment_30.judgments import STATES
 from experiments.increment_30.mechanics import CANDIDATES_NAME, FREEZE_NAME
 from experiments.increment_30.population import BLINDED_NAME, JUDGMENT_FREEZE_NAME
+from experiments.retrieval_judgment_coverage import (
+    judgment_identity,
+    validate_frozen_judgment_coverage,
+    validate_neutral_target_coverage,
+    validated_outcome_mappings,
+)
 
 ROOT = Path(__file__).resolve().parent
 RESULT_NAME = "package_containment_development_results.json"
-
-
-def _identity(row: dict[str, Any]) -> tuple[str, str, str, str, str]:
-    need = row["information_need"]
-    return (
-        str(need["purpose"]),
-        str(need["lexical_query"]),
-        str(row["parent_snapshot_sha"]),
-        str(row["address"]),
-        str(row["usefulness_semantics"]),
-    )
 
 
 def _verified_sources(root: Path) -> dict[str, dict[str, Any]]:
@@ -104,10 +99,7 @@ def build_results(root: Path = ROOT) -> dict[str, Any]:
         or set(allowed) & set(protocol["payload"]["heldout_case_ids_sealed"])
     ):
         raise ValueError("Joined cases differ from frozen development.")
-    frozen_new = {
-        (str(row["neutral_case_id"]), str(row["neutral_resource_id"])): row
-        for row in population["new_judgment_pairs"]
-    }
+    frozen_new = validate_neutral_target_coverage(population["new_judgment_pairs"])
     blind_targets = {
         (str(case["neutral_case_id"]), str(resource["neutral_resource_id"]))
         for case in blind["payload"]["cases"]
@@ -115,25 +107,13 @@ def build_results(root: Path = ROOT) -> dict[str, Any]:
     }
     if len(frozen_new) != 20 or set(frozen_new) != blind_targets:
         raise ValueError("New judgment freeze differs from exact blind targets.")
-    newly_judged: dict[tuple[str, str, str, str, str], dict[str, Any]] = {}
-    for row in judgments["records"]:
-        neutral_key = (str(row["neutral_case_id"]), str(row["neutral_resource_id"]))
-        frozen = frozen_new.get(neutral_key)
-        if (
-            frozen is None
-            or _identity(row) != _identity(frozen)
-            or row["judgment"] not in STATES
-            or not str(row["rationale"]).strip()
-            or _identity(row) in newly_judged
-        ):
-            raise ValueError("A neutral judgment has no exact frozen candidate pair.")
-        newly_judged[_identity(row)] = row
-    reused = {_identity(row): row for row in population["reused_judgments"]}
-    if (
-        len(newly_judged) != len(frozen_new)
-        or len(reused) != 29
-        or set(reused) & set(newly_judged)
-    ):
+    newly_judged = validate_frozen_judgment_coverage(
+        population["new_judgment_pairs"], judgments["records"], STATES, blind_targets
+    )
+    reused, newly_judged = validated_outcome_mappings(
+        population["reused_judgments"], newly_judged
+    )
+    if len(reused) != 29 or len(newly_judged) != len(frozen_new):
         raise ValueError("Reused and new exact judgment populations differ.")
     joined = []
     for case in mechanics["cases"]:
@@ -145,7 +125,7 @@ def build_results(root: Path = ROOT) -> dict[str, Any]:
                 "address": candidate["address"],
                 "usefulness_semantics": USEFULNESS_SEMANTICS,
             }
-            pair_key = _identity(identity)
+            pair_key = judgment_identity(identity)
             prior, fresh = reused.get(pair_key), newly_judged.get(pair_key)
             if (prior is None) == (fresh is None):
                 raise ValueError("Candidate pair has zero or multiple exact judgments.")
@@ -182,7 +162,7 @@ def build_results(root: Path = ROOT) -> dict[str, Any]:
             )
     if (
         len(joined) != mechanics["summary"]["candidate_pairs"]
-        or len({_identity(row) for row in joined}) != len(joined)
+        or len({judgment_identity(row) for row in joined}) != len(joined)
         or len(joined) != len(reused) + len(newly_judged)
     ):
         raise ValueError("Joined result does not cover exact frozen candidate pairs.")

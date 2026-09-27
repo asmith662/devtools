@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: C901, E501, EM101, PLR0912, PLR2004, TRY003
+# ruff: noqa: C901, E501, EM101, PLR2004, TRY003
 """Mechanical development join for the frozen mirrored-test-path baseline."""
 
 from __future__ import annotations
@@ -25,6 +25,12 @@ from experiments.increment_31.population import (
     JUDGMENT_FREEZE_NAME,
     build_population,
 )
+from experiments.retrieval_judgment_coverage import (
+    judgment_identity,
+    validate_frozen_judgment_coverage,
+    validate_neutral_target_coverage,
+    validated_outcome_mappings,
+)
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -44,17 +50,6 @@ EXPECTED_IDENTITIES = {
     BLINDED_NAME: "64fb7e675d6d7d0b28e72af7ef5adb1a7bc20bfc384cf21dc5a781c1a5eb85d8",
     JUDGMENTS_NAME: "1e603bdaa614b58474f7796e7c80ad732fa806a9bb9ae0ec95475c243aff0799",
 }
-
-
-def _identity(row: dict[str, Any]) -> tuple[str, str, str, str, str]:
-    need = row["information_need"]
-    return (
-        str(need["purpose"]),
-        str(need["lexical_query"]),
-        str(row["parent_snapshot_sha"]),
-        str(row["address"]),
-        str(row["usefulness_semantics"]),
-    )
 
 
 def _counts(rows: list[dict[str, Any]]) -> dict[str, int]:
@@ -105,10 +100,7 @@ def build_results(root: Path = ROOT) -> dict[str, Any]:
         or set(allowed) & set(protocol["payload"]["heldout_case_ids_sealed"])
     ):
         raise ValueError("Joined cases differ from frozen development population.")
-    frozen_new = {
-        (str(row["neutral_case_id"]), str(row["neutral_resource_id"])): row
-        for row in population["new_judgment_pairs"]
-    }
+    frozen_new = validate_neutral_target_coverage(population["new_judgment_pairs"])
     blind_targets = {
         (str(case["neutral_case_id"]), str(resource["neutral_resource_id"]))
         for case in blind["payload"]["cases"]
@@ -120,25 +112,17 @@ def build_results(root: Path = ROOT) -> dict[str, Any]:
         or judgments["target_count"] != 12
     ):
         raise ValueError("Neutral targets differ from exact frozen population.")
-    new_by_identity: dict[tuple[str, str, str, str, str], dict[str, Any]] = {}
-    for row in judgments["records"]:
-        neutral = (str(row["neutral_case_id"]), str(row["neutral_resource_id"]))
-        frozen = frozen_new.get(neutral)
-        if (
-            frozen is None
-            or _identity(row) != _identity(frozen)
-            or row["judgment"] not in STATES
-            or not str(row["rationale"]).strip()
-            or _identity(row) in new_by_identity
-        ):
-            raise ValueError("A new judgment fails exact frozen target coverage.")
-        new_by_identity[_identity(row)] = row
-    reused = {_identity(row): row for row in population["reused_judgments"]}
-    if (
-        len(new_by_identity) != 12
-        or len(reused) != 22
-        or set(reused) & set(new_by_identity)
-    ):
+    new_by_identity = validate_frozen_judgment_coverage(
+        population["new_judgment_pairs"],
+        judgments["records"],
+        STATES,
+        blind_targets,
+    )
+    reused, new_by_identity = validated_outcome_mappings(
+        population["reused_judgments"],
+        new_by_identity,
+    )
+    if len(new_by_identity) != 12 or len(reused) != 22:
         raise ValueError("New/reused judgment populations overlap or are incomplete.")
     joined: list[dict[str, Any]] = []
     for case in mechanics["cases"]:
@@ -150,7 +134,7 @@ def build_results(root: Path = ROOT) -> dict[str, Any]:
                 "address": candidate["address"],
                 "usefulness_semantics": USEFULNESS_SEMANTICS,
             }
-            key = _identity(identity)
+            key = judgment_identity(identity)
             previous, fresh = reused.get(key), new_by_identity.get(key)
             if (previous is None) == (fresh is None):
                 raise ValueError("Candidate has zero or multiple exact judgments.")
@@ -189,7 +173,7 @@ def build_results(root: Path = ROOT) -> dict[str, Any]:
             )
     if (
         len(joined) != 34
-        or len({_identity(row) for row in joined}) != 34
+        or len({judgment_identity(row) for row in joined}) != 34
         or any(
             candidate["canonical_top_five"]
             for case in mechanics["cases"]

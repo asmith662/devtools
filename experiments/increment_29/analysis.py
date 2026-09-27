@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: C901, COM812, EM101, PLR0912, PLR2004, TRY003
+# ruff: noqa: C901, COM812, EM101, PLR2004, TRY003
 """Mechanical development join for the completed reference/call breadth baseline."""
 
 from __future__ import annotations
@@ -15,20 +15,15 @@ from experiments.increment_29.judgments import OUTPUT_NAME as JUDGMENTS_NAME
 from experiments.increment_29.judgments import SEMANTICS, STATES
 from experiments.increment_29.mechanics import CANDIDATES_NAME, FREEZE_NAME
 from experiments.increment_29.population import BLINDED_NAME, POPULATION_NAME
+from experiments.retrieval_judgment_coverage import (
+    judgment_identity,
+    validate_frozen_judgment_coverage,
+    validate_neutral_target_coverage,
+    validated_outcome_mappings,
+)
 
 ROOT = Path(__file__).resolve().parent
 RESULT_NAME = "references_calls_development_results.json"
-
-
-def _identity(row: dict[str, Any]) -> tuple[str, str, str, str, str]:
-    need = row["information_need"]
-    return (
-        str(need["purpose"]),
-        str(need["lexical_query"]),
-        str(row["parent_snapshot_sha"]),
-        str(row["address"]),
-        str(row["usefulness_semantics"]),
-    )
 
 
 def _states(rows: list[dict[str, Any]]) -> dict[str, int]:
@@ -114,32 +109,21 @@ def build_results(root: Path = ROOT) -> dict[str, Any]:
     ):
         raise ValueError("Development case boundary differs from frozen population.")
 
-    frozen_new = {
-        (str(row["neutral_case_id"]), str(row["neutral_resource_id"])): row
-        for row in population["new_judgment_pairs"]
+    blind_targets = {
+        (str(case["neutral_case_id"]), str(resource["neutral_resource_id"]))
+        for case in blind["payload"]["cases"]
+        for resource in case["resources"]
     }
-    if (
-        len(frozen_new) != len(population["new_judgment_pairs"])
-        or len(frozen_new) != 19
-    ):
+    frozen_new = validate_neutral_target_coverage(
+        population["new_judgment_pairs"], blind_targets
+    )
+    if len(frozen_new) != 19:
         raise ValueError("New judgment population has duplicate target identities.")
-    new: dict[tuple[str, str, str, str, str], dict[str, Any]] = {}
-    for row in judgments["records"]:
-        neutral_key = (str(row["neutral_case_id"]), str(row["neutral_resource_id"]))
-        frozen = frozen_new.get(neutral_key)
-        if (
-            frozen is None
-            or _identity(row) != _identity(frozen)
-            or row["judgment"] not in STATES
-            or not str(row["rationale"]).strip()
-            or _identity(row) in new
-        ):
-            raise ValueError("A frozen neutral judgment has no exact candidate pair.")
-        new[_identity(row)] = row
-    if len(new) != len(frozen_new) or len(new) != 19:
-        raise ValueError("Frozen neutral judgment coverage is incomplete.")
-    reused = {_identity(row): row for row in population["reused_judgments"]}
-    if len(reused) != len(population["reused_judgments"]) or set(reused) & set(new):
+    new = validate_frozen_judgment_coverage(
+        population["new_judgment_pairs"], judgments["records"], STATES, blind_targets
+    )
+    reused, new = validated_outcome_mappings(population["reused_judgments"], new)
+    if len(new) != 19 or len(reused) != len(population["reused_judgments"]):
         raise ValueError("Reused and new exact judgments overlap or duplicate.")
 
     joined: list[dict[str, Any]] = []
@@ -152,7 +136,7 @@ def build_results(root: Path = ROOT) -> dict[str, Any]:
                 "address": candidate["address"],
                 "usefulness_semantics": SEMANTICS,
             }
-            pair_key = _identity(identity)
+            pair_key = judgment_identity(identity)
             prior, fresh = reused.get(pair_key), new.get(pair_key)
             if (prior is None) == (fresh is None):
                 raise ValueError("Candidate pair has zero or multiple exact judgments.")
@@ -185,7 +169,7 @@ def build_results(root: Path = ROOT) -> dict[str, Any]:
             )
     if (
         len(joined) != mechanics["summary"]["candidate_pairs"]
-        or len({_identity(row) for row in joined}) != len(joined)
+        or len({judgment_identity(row) for row in joined}) != len(joined)
         or len(joined) != len(reused) + len(new)
     ):
         raise ValueError("Joined result does not cover the exact candidate union.")
