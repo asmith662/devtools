@@ -121,3 +121,45 @@ The result supports further bounded diagnostic work on whether import-use
 evidence adds information conditional on the coarse structural features. It
 does not authorize a production reference resolver, fusion rule, ranking
 change, learned ranker, or held-out confirmation.
+
+## Follow-up: paired task-localization control, pre-outcome checkpoint
+
+The follow-up asks whether a qualified imported-binding read in the saved
+winning window carries information beyond qualified use elsewhere in the same
+lexical seed source. It keeps the exact 24 development cases, 109 structural
+pairs, 99 outgoing pairs, and 499 outgoing supports. It creates no candidates
+or judgments. Incoming-only pairs remain unclassified by this proposition.
+
+`localization_freeze.json` binds the committed Increment-28 binding semantics,
+evidence identity, saved windows, and five location states before source
+derivation. `localization_evidence.json` reuses the unchanged Increment-28
+binding checker on the exact historical seed source, verifies every saved
+in-window classification against the committed support evidence, then places
+each qualified full-source occurrence relative to the same saved half-open
+winning window. A read crossing the boundary remains indeterminate. An
+outside-only conclusion requires adequate coverage across **all** supports;
+positive inside and outside observations are retained even when other
+occurrences are uncertain. No usefulness outcomes appear in either artifact.
+
+| Surface | Support paths | In-window only | Both | Outside only | No qualifying occurrence | Indeterminate |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| All outgoing | 499 | 95 | 85 | 169 | 2 | 148 |
+| Absent from all saved positive lexical universes | 165 | 17 | 26 | 60 | 1 | 61 |
+
+| Surface | Candidate pairs | In-window only | Both | Outside only | No qualifying occurrence | Indeterminate |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| All outgoing | 99 | 11 | 44 | 17 | 0 | 27 |
+| Absent from all saved positive lexical universes | 52 | 8 | 21 | 12 | 0 | 11 |
+
+Across all outgoing candidates, 87 have at least one proven qualifying read
+somewhere; 58 have one inside a winning window; 17 are defensibly outside
+only. Those candidate categories occur in 9, 19, 11, 0, and 13 cases,
+respectively. On the hard lexical-escape surface, 48 have a proven read
+somewhere, 30 have one inside, and 12 are outside only. The corresponding
+candidate categories occur in 7, 12, 8, 0, and 6 cases. The zero count for
+definitively unused candidate pairs reflects conservative full-source
+uncertainty; it must not be read as proof that every import is used.
+
+The strict post-checkpoint comparison is in-window use (in-window only or
+both) against outside-only use. Indeterminate pairs remain separate. The
+pre-outcome artifact makes no claim about usefulness or task localization.
