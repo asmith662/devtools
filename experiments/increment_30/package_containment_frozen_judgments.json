@@ -1,0 +1,283 @@
+{
+  "content_identity": "6e51723f95df07c528f11fa8e78d731ae6fc550e1b9c572155c69ab2a80da1a8",
+  "payload": {
+    "blinded_input_content_identity": "58efd8c4c506a770eb7afed00df3214e4a239be25bd2d84210cd035e53b605f7",
+    "blinded_input_sha256": "7ea5664fd8ed90216b9f60e5afb16453e3cc0e6caf94452ce927c24caf8ba244",
+    "records": [
+      {
+        "address": "tests/tools/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-15d330f1ade32c35",
+        "neutral_resource_id": "resource-5c0d0594fc1a72fe",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "Only labels the Tool test package; it gives no behavior or tests for the model-native Tool boundary.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/models/interaction/providers/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-1791859db14b45d6",
+        "neutral_resource_id": "resource-3ce7366efd125c98",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "rationale": "Only labels provider tests; it gives no request-boundary implementation or test behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-27f2b0fa1635ff9c",
+        "neutral_resource_id": "resource-6fe731bcb1ac7f76",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "Only labels Context tests; it gives no resource-discovery behavior or constraints.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/python/imports/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-3efb44d7ad8d52d3",
+        "neutral_resource_id": "resource-46eb23d0e9e9a128",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "Only labels import-declaration tests; it gives no explicit-root module interpretation behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/repository/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-3efb44d7ad8d52d3",
+        "neutral_resource_id": "resource-90d2e6cfab445ee6",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "Only labels Repository Context tests; it gives no module interpretation rules or examples.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-42fa07477116d9cc",
+        "neutral_resource_id": "resource-79fe621fc5ac2bd3",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "Only labels Context tests; it gives no declaration aggregation logic or cases.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/benchmarks/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-6946449aaad0d035",
+        "neutral_resource_id": "resource-8469e86b314b05ed",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "rationale": "Only labels benchmark infrastructure and exports nothing; it gives no model usage measurement behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/agents/conversation/message/__init__.py",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-765a0602800c31c5",
+        "neutral_resource_id": "resource-da38f9a7ab417c0c",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "rationale": "Only labels conversation-message tests; it gives no Repository Context discovery material.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/models/benchmarks/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-83b03cabeed5e9de",
+        "neutral_resource_id": "resource-2a0b11cfa780e597",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "rationale": "Only labels benchmark tests; it gives no repository snapshot observation behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/models/serving/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-83b03cabeed5e9de",
+        "neutral_resource_id": "resource-f7fb169df9f046af",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "rationale": "Only labels model-serving tests; it gives no repository snapshot observation behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-8460682006ffb7f9",
+        "neutral_resource_id": "resource-5e6cdac0fc1c9960",
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "rationale": "Only labels Context tests; it gives no function source materialization logic or cases.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/experiments/qwen/__init__.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-9ce3492528f5b730",
+        "neutral_resource_id": "resource-52ffa72dbe5614a4",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "Only labels Qwen experiment tests; it gives no selection-stress fixture behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/__init__.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-9ce3492528f5b730",
+        "neutral_resource_id": "resource-9eee937e91b32229",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "Only gives a general project description; it gives no selection-stress fixture behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/models/interaction/providers/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-a7d12d33a37b1f98",
+        "neutral_resource_id": "resource-116356e81c612915",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "rationale": "Only labels provider tests; it gives no thinking-control implementation or test cases.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/execution/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-a7d12d33a37b1f98",
+        "neutral_resource_id": "resource-ac18fe2db363464f",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "rationale": "Only labels execution-domain tests; it gives no model interaction thinking-control behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/resources/filesystem/codecs/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-accf183bd25ef500",
+        "neutral_resource_id": "resource-72dbecef5e038663",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "rationale": "Only labels filesystem codec tests; it gives no repository text document representation behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/observability/evidence/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c052264ce4011608",
+        "neutral_resource_id": "resource-9f632ee858263d90",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "rationale": "Only labels evidence tests; it gives no direct Python function declaration derivation behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-cb979553076f7d94",
+        "neutral_resource_id": "resource-0083a3f65199f16d",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "rationale": "Only labels Context tests; it gives no explicit-resource declaration derivation behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/models/interaction/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-ecf136e804c8b7b8",
+        "neutral_resource_id": "resource-56bf5fd59e093eba",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "rationale": "Only labels model-interaction tests; it gives no reasoning-content implementation or cases.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-f4f3d9bdc6910e38",
+        "neutral_resource_id": "resource-b158a328f1554c5c",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "rationale": "Only labels Context tests; it gives no exact-name function resource selection behavior.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      }
+    ],
+    "schema": "devtools-i30-neutral-frozen-judgments-v1",
+    "state_counts": {
+      "NOT_USEFUL": 20,
+      "UNJUDGED": 0,
+      "USEFUL": 0
+    },
+    "target_count": 20,
+    "three_states": [
+      "USEFUL",
+      "NOT_USEFUL",
+      "UNJUDGED"
+    ],
+    "usefulness_semantics": "purpose-relative-three-state-v1"
+  },
+  "schema": "devtools-i30-neutral-frozen-judgments-v1"
+}

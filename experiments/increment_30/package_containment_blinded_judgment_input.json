@@ -1,0 +1,269 @@
+{
+  "content_identity": "58efd8c4c506a770eb7afed00df3214e4a239be25bd2d84210cd035e53b605f7",
+  "payload": {
+    "cases": [
+      {
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "neutral_case_id": "case-15d330f1ade32c35",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "resources": [
+          {
+            "address": "tests/tools/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Tests for experimental Tool execution.\"\"\"\n",
+            "neutral_resource_id": "resource-5c0d0594fc1a72fe"
+          }
+        ]
+      },
+      {
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "neutral_case_id": "case-1791859db14b45d6",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "resources": [
+          {
+            "address": "tests/models/interaction/providers/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Model-interaction provider tests.\"\"\"\n",
+            "neutral_resource_id": "resource-3ce7366efd125c98"
+          }
+        ]
+      },
+      {
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "neutral_case_id": "case-27f2b0fa1635ff9c",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "resources": [
+          {
+            "address": "tests/context/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Tests for repository intelligence and Context.\"\"\"\n",
+            "neutral_resource_id": "resource-6fe731bcb1ac7f76"
+          }
+        ]
+      },
+      {
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "neutral_case_id": "case-3efb44d7ad8d52d3",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "resources": [
+          {
+            "address": "tests/context/python/imports/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Tests for bounded Python import declarations.\"\"\"\n",
+            "neutral_resource_id": "resource-46eb23d0e9e9a128"
+          },
+          {
+            "address": "tests/context/repository/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Repository Context tests.\"\"\"\n",
+            "neutral_resource_id": "resource-90d2e6cfab445ee6"
+          }
+        ]
+      },
+      {
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "neutral_case_id": "case-42fa07477116d9cc",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "resources": [
+          {
+            "address": "tests/context/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Tests for repository intelligence and Context.\"\"\"\n",
+            "neutral_resource_id": "resource-79fe621fc5ac2bd3"
+          }
+        ]
+      },
+      {
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "neutral_case_id": "case-6946449aaad0d035",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "resources": [
+          {
+            "address": "src/devtools/models/benchmarks/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Experimental one-run local model benchmark infrastructure.\"\"\"\n\n__all__: tuple[str, ...] = ()\n",
+            "neutral_resource_id": "resource-8469e86b314b05ed"
+          }
+        ]
+      },
+      {
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "neutral_case_id": "case-765a0602800c31c5",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "resources": [
+          {
+            "address": "tests/agents/conversation/message/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Tests for :mod:`devtools.agents.conversation.message`.\"\"\"\n",
+            "neutral_resource_id": "resource-da38f9a7ab417c0c"
+          }
+        ]
+      },
+      {
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "neutral_case_id": "case-83b03cabeed5e9de",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "resources": [
+          {
+            "address": "tests/models/benchmarks/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Model benchmark tests.\"\"\"\n",
+            "neutral_resource_id": "resource-2a0b11cfa780e597"
+          },
+          {
+            "address": "tests/models/serving/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Model-serving tests.\"\"\"\n",
+            "neutral_resource_id": "resource-f7fb169df9f046af"
+          }
+        ]
+      },
+      {
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "neutral_case_id": "case-8460682006ffb7f9",
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "resources": [
+          {
+            "address": "tests/context/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Tests for repository intelligence and Context.\"\"\"\n",
+            "neutral_resource_id": "resource-5e6cdac0fc1c9960"
+          }
+        ]
+      },
+      {
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "neutral_case_id": "case-9ce3492528f5b730",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "resources": [
+          {
+            "address": "tests/experiments/qwen/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Tests for Qwen experiments.\"\"\"\n",
+            "neutral_resource_id": "resource-52ffa72dbe5614a4"
+          },
+          {
+            "address": "src/devtools/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Composable developer-tool primitives.\"\"\"\n",
+            "neutral_resource_id": "resource-9eee937e91b32229"
+          }
+        ]
+      },
+      {
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "neutral_case_id": "case-a7d12d33a37b1f98",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "resources": [
+          {
+            "address": "tests/models/interaction/providers/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Model-interaction provider tests.\"\"\"\n",
+            "neutral_resource_id": "resource-116356e81c612915"
+          },
+          {
+            "address": "tests/execution/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Execution-domain tests.\"\"\"\n",
+            "neutral_resource_id": "resource-ac18fe2db363464f"
+          }
+        ]
+      },
+      {
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "neutral_case_id": "case-accf183bd25ef500",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "resources": [
+          {
+            "address": "tests/resources/filesystem/codecs/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Tests for filesystem representation codecs.\"\"\"\n",
+            "neutral_resource_id": "resource-72dbecef5e038663"
+          }
+        ]
+      },
+      {
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "neutral_case_id": "case-c052264ce4011608",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "resources": [
+          {
+            "address": "tests/observability/evidence/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Evidence tests.\"\"\"\n",
+            "neutral_resource_id": "resource-9f632ee858263d90"
+          }
+        ]
+      },
+      {
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "neutral_case_id": "case-cb979553076f7d94",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "resources": [
+          {
+            "address": "tests/context/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Tests for repository intelligence and Context.\"\"\"\n",
+            "neutral_resource_id": "resource-0083a3f65199f16d"
+          }
+        ]
+      },
+      {
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "neutral_case_id": "case-ecf136e804c8b7b8",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "resources": [
+          {
+            "address": "tests/models/interaction/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Model-interaction tests.\"\"\"\n",
+            "neutral_resource_id": "resource-56bf5fd59e093eba"
+          }
+        ]
+      },
+      {
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "neutral_case_id": "case-f4f3d9bdc6910e38",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "resources": [
+          {
+            "address": "tests/context/__init__.py",
+            "content": "# Copyright (c) 2026\n\"\"\"Tests for repository intelligence and Context.\"\"\"\n",
+            "neutral_resource_id": "resource-b158a328f1554c5c"
+          }
+        ]
+      }
+    ],
+    "schema": "devtools-neutral-resource-judgment-input-v1"
+  },
+  "schema": "devtools-neutral-resource-judgment-input-v1"
+}

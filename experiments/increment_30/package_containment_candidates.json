@@ -1,0 +1,4183 @@
+{
+  "cases": [
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 228,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 6,
+          "qualified_relations": 211,
+          "without_immediate_parent_name": 11
+        },
+        "resources_examined": 264
+      },
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": true,
+          "absent_existing_evidence_union": true,
+          "address": "tests/observability/evidence/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": null,
+            "path": null,
+            "rrf": null
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/observability/evidence/test_model_interaction.py",
+              "child_content_identity": "b736d5348b8c5a9aa918cc53c46405399c1506092b79acf8a2102cdc5862a812",
+              "child_dotted_name": "observability.evidence.test_model_interaction",
+              "child_interpretation_identity": "20de32d29964dfe7687fab6daa9bd3a25f9cfc2193889606dfbe22263ef91c1d",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/observability/evidence/__init__.py",
+              "package_content_identity": "3da89ca2ca4351ec7917dfe8968829b6eec8b7c99a4b5d0fbec90191a90f9591",
+              "package_dotted_name": "observability.evidence",
+              "package_interpretation_identity": "187f96326aa2717214e6d81c9cd1bdb9b642ed627abed3a3029cf50c81594da8",
+              "package_kind": "package-module",
+              "seed_address": "tests/observability/evidence/test_model_interaction.py",
+              "snapshot_id": "4d6882c3a0f87226dc814ad968721d16fad5584422693fc7fe2ee162bafbe9c8"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-66ed2049de72",
+      "corpus_id": "fb08925d17ece753349bb2f6337a0589b72ef3e1a39761b166a4147e27fe82e4",
+      "information_need": {
+        "lexical_query": "Implement direct Python function declaration derivation",
+        "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+      },
+      "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+      "relation_count": 211,
+      "seed_addresses": [
+        "src/devtools/core/identity/docs/overview.md",
+        "src/devtools/core/time/docs/timestamps.md",
+        "src/devtools/core/paths/docs/overview.md",
+        "tests/observability/evidence/test_model_interaction.py",
+        "src/devtools/core/paths/docs/resolution.md"
+      ],
+      "seed_fanout": {
+        "src/devtools/core/identity/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/core/paths/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/core/paths/docs/resolution.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/core/time/docs/timestamps.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/observability/evidence/test_model_interaction.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "4d6882c3a0f87226dc814ad968721d16fad5584422693fc7fe2ee162bafbe9c8"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 261,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 7,
+          "qualified_relations": 243,
+          "without_immediate_parent_name": 11
+        },
+        "resources_examined": 297
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/context/repository/__init__.py",
+          "canonical_positive_rank": 51,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 54,
+            "canonical": 51,
+            "identifier": 17,
+            "path": 7,
+            "rrf": 9
+          },
+          "support_count": 2,
+          "supports": [
+            {
+              "child_address": "src/devtools/context/repository/resource.py",
+              "child_content_identity": "a1d3fbdcff843b2a2b672307a4b204bf4d4ea8fca96b2cf2cfc0533b28e1421c",
+              "child_dotted_name": "devtools.context.repository.resource",
+              "child_interpretation_identity": "d5a2e2b6a077a41947d56e6d52e04379f679066dfc663ca8b7376bcbedb77df9",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/repository/__init__.py",
+              "package_content_identity": "f1f74d5e2729567a7cfb2ddf5e64861738e2a74700373f4bea3418e12afa11e3",
+              "package_dotted_name": "devtools.context.repository",
+              "package_interpretation_identity": "3e632d2c282cb52ede52c87539e9f52767995e480dfa3d54b1e588773f7ddf28",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/repository/resource.py",
+              "snapshot_id": "986507baf9b1d2ba8c4e194e87c758732230675d4069e49f19c57827362fbcb5"
+            },
+            {
+              "child_address": "src/devtools/context/repository/snapshot.py",
+              "child_content_identity": "492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098",
+              "child_dotted_name": "devtools.context.repository.snapshot",
+              "child_interpretation_identity": "29feeb8df746f1a6af15672e6bcdf9093b1b92a9a3eb394a100b8e935988d6bb",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/repository/__init__.py",
+              "package_content_identity": "f1f74d5e2729567a7cfb2ddf5e64861738e2a74700373f4bea3418e12afa11e3",
+              "package_dotted_name": "devtools.context.repository",
+              "package_interpretation_identity": "3e632d2c282cb52ede52c87539e9f52767995e480dfa3d54b1e588773f7ddf28",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/repository/snapshot.py",
+              "snapshot_id": "986507baf9b1d2ba8c4e194e87c758732230675d4069e49f19c57827362fbcb5"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/resources/filesystem/codecs/__init__.py",
+          "canonical_positive_rank": 71,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 71,
+            "canonical": 71,
+            "identifier": 82,
+            "path": null,
+            "rrf": 76
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/resources/filesystem/codecs/test_markdown.py",
+              "child_content_identity": "a1a56af67b293df9d5fd6bafbf91dbc0b8d011e891b50529a629e3ebb219ac0d",
+              "child_dotted_name": "resources.filesystem.codecs.test_markdown",
+              "child_interpretation_identity": "c6308818797e73c895452c82690a815e66b49d7b81720da58a854db76463d1c7",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/resources/filesystem/codecs/__init__.py",
+              "package_content_identity": "70a9ca92be20c4c09ee6bfe45d22e53fe190f7941f433c41120500ac890b7933",
+              "package_dotted_name": "resources.filesystem.codecs",
+              "package_interpretation_identity": "fa12e825913a899243003ec71d74b49773405331e46a5e193a084387c0bde48a",
+              "package_kind": "package-module",
+              "seed_address": "tests/resources/filesystem/codecs/test_markdown.py",
+              "snapshot_id": "986507baf9b1d2ba8c4e194e87c758732230675d4069e49f19c57827362fbcb5"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-858bfa85787e",
+      "corpus_id": "9ca4802b3fc52761d076e7803579c79935535450490479db2cfc65d34e392250",
+      "information_need": {
+        "lexical_query": "Implement repository text document representation",
+        "purpose": "Address the historical maintenance task: Implement repository text document representation"
+      },
+      "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+      "relation_count": 243,
+      "seed_addresses": [
+        "src/devtools/tools/docs/overview.md",
+        "tests/resources/filesystem/codecs/test_markdown.py",
+        "src/devtools/context/repository/resource.py",
+        "src/devtools/core/time/docs/timestamps.md",
+        "src/devtools/context/repository/snapshot.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/repository/resource.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/repository/snapshot.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/core/time/docs/timestamps.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/tools/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/resources/filesystem/codecs/test_markdown.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "986507baf9b1d2ba8c4e194e87c758732230675d4069e49f19c57827362fbcb5"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 217,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 6,
+          "qualified_relations": 201,
+          "without_immediate_parent_name": 10
+        },
+        "resources_examined": 253
+      },
+      "candidate_count": 3,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/models/interaction/__init__.py",
+          "canonical_positive_rank": 8,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 8,
+            "canonical": 8,
+            "identifier": 7,
+            "path": null,
+            "rrf": 9
+          },
+          "support_count": 2,
+          "supports": [
+            {
+              "child_address": "src/devtools/models/interaction/models.py",
+              "child_content_identity": "635877167313f4e4b3be9ec33dc41e3f3eb5f1c1b0ec57598389b3d8936a5952",
+              "child_dotted_name": "devtools.models.interaction.models",
+              "child_interpretation_identity": "f0bae6a5e0e3e7ba6f99e0a152e463cf3b8286003a67d2d7935e9fdcc4c29e29",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/models/interaction/__init__.py",
+              "package_content_identity": "bb0fd693b9cdcb7f7b1f08c49e5b99e43ac6573ba75351fbad2c348a4fbcc1f1",
+              "package_dotted_name": "devtools.models.interaction",
+              "package_interpretation_identity": "3cfeee20787e3de58c91500b023bd6b73f5cf603f9db68529447edfd51bb0c74",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/models/interaction/models.py",
+              "snapshot_id": "e996eaa84723e64b35c9bb3a163369242016176d31dcbbc447774b9f79191991"
+            },
+            {
+              "child_address": "src/devtools/models/interaction/protocols.py",
+              "child_content_identity": "5c65d577deaf80bb4b10a0a77151755e5bb1f249a177755ff314355d5f075871",
+              "child_dotted_name": "devtools.models.interaction.protocols",
+              "child_interpretation_identity": "2e47303ac1a49f642d9a30ec6746bb4996017b7d1695acd1c263131943f40886",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/models/interaction/__init__.py",
+              "package_content_identity": "bb0fd693b9cdcb7f7b1f08c49e5b99e43ac6573ba75351fbad2c348a4fbcc1f1",
+              "package_dotted_name": "devtools.models.interaction",
+              "package_interpretation_identity": "3cfeee20787e3de58c91500b023bd6b73f5cf603f9db68529447edfd51bb0c74",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/models/interaction/protocols.py",
+              "snapshot_id": "e996eaa84723e64b35c9bb3a163369242016176d31dcbbc447774b9f79191991"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/models/interaction/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": 38,
+            "path": null,
+            "rrf": 50
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/models/interaction/test_models.py",
+              "child_content_identity": "5976505983d7c70ca44efb5d51e309460ea74a6d24322f16acfc34401ed3e427",
+              "child_dotted_name": "models.interaction.test_models",
+              "child_interpretation_identity": "df1624f091cbd345bb2396aab5c43a1be4c0412b3aaa8993f8792061b672a521",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/models/interaction/__init__.py",
+              "package_content_identity": "03845fa419576eb82b4c37f6351c5c716c77590c473eb26de51c7348d3f7e86b",
+              "package_dotted_name": "models.interaction",
+              "package_interpretation_identity": "4c04f6c8e6b814c931b754ef837dcca5c9dcc98e339b822ab4160785cfd30c17",
+              "package_kind": "package-module",
+              "seed_address": "tests/models/interaction/test_models.py",
+              "snapshot_id": "e996eaa84723e64b35c9bb3a163369242016176d31dcbbc447774b9f79191991"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/models/interaction/providers/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": 39,
+            "path": null,
+            "rrf": 51
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/models/interaction/providers/test_llama_cpp.py",
+              "child_content_identity": "c2e58b5d17fd67e544c08d7ca258839c58adee7300f4bad3eb5b8450b32b2992",
+              "child_dotted_name": "models.interaction.providers.test_llama_cpp",
+              "child_interpretation_identity": "d51290cc734f8ed152f5e49210a91bbf3b4a3a837032fec8fe5096419a16e552",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/models/interaction/providers/__init__.py",
+              "package_content_identity": "0e89c5fb746cafd96b282d84be2c2e77ea9d57b038615de658be94c75ae4e37b",
+              "package_dotted_name": "models.interaction.providers",
+              "package_interpretation_identity": "8c4fb50a74ee4074bed72b7ea5e678c6a03074f16dcca8ab9287bb47ff37d1aa",
+              "package_kind": "package-module",
+              "seed_address": "tests/models/interaction/providers/test_llama_cpp.py",
+              "snapshot_id": "e996eaa84723e64b35c9bb3a163369242016176d31dcbbc447774b9f79191991"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-6f304a8c737c",
+      "corpus_id": "e5c65eec9bf5b04d2cfc5a75de0e157a0b000956f3405c301551b701641c8342",
+      "information_need": {
+        "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+        "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+      },
+      "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+      "relation_count": 201,
+      "seed_addresses": [
+        "src/devtools/models/interaction/docs/overview.md",
+        "src/devtools/models/interaction/models.py",
+        "tests/models/interaction/test_models.py",
+        "src/devtools/models/interaction/protocols.py",
+        "tests/models/interaction/providers/test_llama_cpp.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/models/interaction/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/models/interaction/models.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/models/interaction/protocols.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/models/interaction/providers/test_llama_cpp.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/models/interaction/test_models.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "e996eaa84723e64b35c9bb3a163369242016176d31dcbbc447774b9f79191991"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 243,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 7,
+          "qualified_relations": 225,
+          "without_immediate_parent_name": 11
+        },
+        "resources_examined": 279
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/context/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": 8,
+            "path": null,
+            "rrf": 79
+          },
+          "support_count": 3,
+          "supports": [
+            {
+              "child_address": "src/devtools/context/python_function_rendering.py",
+              "child_content_identity": "dfbf052836b915bae56edc3c56cfb9ad01c9a3173483b9ed8fbf0dc46851e990",
+              "child_dotted_name": "devtools.context.python_function_rendering",
+              "child_interpretation_identity": "7c19d9fe5b5f008ce8285daf6b86c94fa7b4de39c7c1ea44bb7d64d271c8fba4",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "c82554e5de86a06fe69f00221dbec2e9db51e9b5f58c9efb692223fdfaee7f94",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "a262e7d51e9fff81393c9e8a590db819b693994a073ab27c54b1fefef3725f6a",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_function_rendering.py",
+              "snapshot_id": "692de428753d833319403b06784b44af4c765b2483c1c1550e2cc9bbaa38ef00"
+            },
+            {
+              "child_address": "src/devtools/context/python_declarations.py",
+              "child_content_identity": "afb1f958327a18fed7c46a36cf3e7f1ed3fe871630e50116e9368da9bacf2e07",
+              "child_dotted_name": "devtools.context.python_declarations",
+              "child_interpretation_identity": "97d784e389ff3079b2609fea506065a4bd84119a5315bbe6986520373d12158a",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "c82554e5de86a06fe69f00221dbec2e9db51e9b5f58c9efb692223fdfaee7f94",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "a262e7d51e9fff81393c9e8a590db819b693994a073ab27c54b1fefef3725f6a",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_declarations.py",
+              "snapshot_id": "692de428753d833319403b06784b44af4c765b2483c1c1550e2cc9bbaa38ef00"
+            },
+            {
+              "child_address": "src/devtools/context/python_function_disclosure.py",
+              "child_content_identity": "90d28597f214ed9b3295314c10db46816948e9428bdb2350480ef9adeab381f5",
+              "child_dotted_name": "devtools.context.python_function_disclosure",
+              "child_interpretation_identity": "a9594970a3f80968d852eb8f0b58677b6a0c5f04ac2f7248316bf4a73269a753",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "c82554e5de86a06fe69f00221dbec2e9db51e9b5f58c9efb692223fdfaee7f94",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "a262e7d51e9fff81393c9e8a590db819b693994a073ab27c54b1fefef3725f6a",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_function_disclosure.py",
+              "snapshot_id": "692de428753d833319403b06784b44af4c765b2483c1c1550e2cc9bbaa38ef00"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": true,
+          "absent_existing_evidence_union": true,
+          "address": "tests/context/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": null,
+            "path": null,
+            "rrf": null
+          },
+          "support_count": 2,
+          "supports": [
+            {
+              "child_address": "tests/context/test_python_function_rendering.py",
+              "child_content_identity": "1a4ddc9028bbb8352637fa4451a63edf6c66011eff5360aaf62abf40d778c144",
+              "child_dotted_name": "context.test_python_function_rendering",
+              "child_interpretation_identity": "6d66207601bbf097c72d94bb397d84c8c79e656f9ba5b794d61fb2dc82126a48",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/__init__.py",
+              "package_content_identity": "3572c092e02fdfe637dd358503b0f6d6f987a86cdc480a31e0a24757c4a6b3b7",
+              "package_dotted_name": "context",
+              "package_interpretation_identity": "06d71c48b843dd4c7a0dc27710814a360b4853b5484526d5f5082227de9de1d0",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/test_python_function_rendering.py",
+              "snapshot_id": "692de428753d833319403b06784b44af4c765b2483c1c1550e2cc9bbaa38ef00"
+            },
+            {
+              "child_address": "tests/context/test_python_function_disclosure.py",
+              "child_content_identity": "62692b1f96a8f41ab9f2097070125b9211b0befd787465fc56aa8a06459e2610",
+              "child_dotted_name": "context.test_python_function_disclosure",
+              "child_interpretation_identity": "f1c00f3ef20885f163f6bfff88a0ffd105ebf8b1fd13943d5ba5cb17743e053b",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/__init__.py",
+              "package_content_identity": "3572c092e02fdfe637dd358503b0f6d6f987a86cdc480a31e0a24757c4a6b3b7",
+              "package_dotted_name": "context",
+              "package_interpretation_identity": "06d71c48b843dd4c7a0dc27710814a360b4853b5484526d5f5082227de9de1d0",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/test_python_function_disclosure.py",
+              "snapshot_id": "692de428753d833319403b06784b44af4c765b2483c1c1550e2cc9bbaa38ef00"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-bb9f807bcd61",
+      "corpus_id": "9ab89d3799ecb19b5071a57fda9bed8a6122d824b7661479a4f96ac33ff0ae6d",
+      "information_need": {
+        "lexical_query": "Implement exact-name Python function resource selection",
+        "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+      },
+      "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+      "relation_count": 225,
+      "seed_addresses": [
+        "src/devtools/context/python_function_rendering.py",
+        "tests/context/test_python_function_rendering.py",
+        "src/devtools/context/python_declarations.py",
+        "src/devtools/context/python_function_disclosure.py",
+        "tests/context/test_python_function_disclosure.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/python_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_disclosure.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_disclosure.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "692de428753d833319403b06784b44af4c765b2483c1c1550e2cc9bbaa38ef00"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 32,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 152,
+        "relation_statuses": {
+          "qualified_relations": 137,
+          "without_immediate_parent_name": 15
+        },
+        "resources_examined": 185
+      },
+      "candidate_count": 3,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/evidence/__init__.py",
+          "canonical_positive_rank": 6,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 6,
+            "canonical": 6,
+            "identifier": 5,
+            "path": 12,
+            "rrf": 5
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "src/devtools/evidence/terminal.py",
+              "child_content_identity": "00dc14b7f9dc6edf5fd14add3e84487834f5ecd28c9914e3f5f2459b3bba435a",
+              "child_dotted_name": "devtools.evidence.terminal",
+              "child_interpretation_identity": "c532929212cbebcd29a0f83c95fc08d0e40ecb763cf59a3a7b1350681ed3828c",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/evidence/__init__.py",
+              "package_content_identity": "04786be37026ccd9d94b654570c3666ed98e54cb279bec04b85d2bcb41a043c2",
+              "package_dotted_name": "devtools.evidence",
+              "package_interpretation_identity": "e97adfaa0dfd519a1885cb486adf503555f6b6b753a51f137cf9f03c1e429e98",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/evidence/terminal.py",
+              "snapshot_id": "5073a7bdd33abf62206b3386641ca24a91cf9b17dc17f8ebdf03dfbbe16f268a"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/runtime/__init__.py",
+          "canonical_positive_rank": 19,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 19,
+            "canonical": 19,
+            "identifier": 20,
+            "path": 6,
+            "rrf": 13
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "src/devtools/runtime/runtime.py",
+              "child_content_identity": "98e00d2afd06c9f73a1998d401c8b4da036dd173c03d1548e33001f574980c59",
+              "child_dotted_name": "devtools.runtime.runtime",
+              "child_interpretation_identity": "a912af3248925893171814af1d3cabc95eb45fc15d60080edbf78b556b45826a",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/runtime/__init__.py",
+              "package_content_identity": "8398604a0f74cb12ed3b39d727afb79bf937e33398e96709bdf44fa7e9947c76",
+              "package_dotted_name": "devtools.runtime",
+              "package_interpretation_identity": "59e193fa05b124541230c64cd23a231156330ef2f9fc896ba590b8ceced38088",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/runtime/runtime.py",
+              "snapshot_id": "5073a7bdd33abf62206b3386641ca24a91cf9b17dc17f8ebdf03dfbbe16f268a"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/evidence/__init__.py",
+          "canonical_positive_rank": 18,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 18,
+            "canonical": 18,
+            "identifier": 18,
+            "path": 7,
+            "rrf": 12
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/evidence/test_terminal.py",
+              "child_content_identity": "ca1c3429ed8b32dd6cbd2b710e04a2eaac350e89ed1ba804a1b1e83b8089005b",
+              "child_dotted_name": "evidence.test_terminal",
+              "child_interpretation_identity": "ca2d4894e12e8ebc0c9bde4da5d71d9b07e960d571be02e0407754cf2eed11fa",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/evidence/__init__.py",
+              "package_content_identity": "37136bb17f12fef8583d72a6c90ce621b1205613cbd74c638645c2d0ea59203c",
+              "package_dotted_name": "evidence",
+              "package_interpretation_identity": "94cbdac2f728c71288f675fb6b9ab8987dbc746a8015933fd908cbcbad160068",
+              "package_kind": "package-module",
+              "seed_address": "tests/evidence/test_terminal.py",
+              "snapshot_id": "5073a7bdd33abf62206b3386641ca24a91cf9b17dc17f8ebdf03dfbbe16f268a"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-0f7a13667ef3",
+      "corpus_id": "3dad608842a5cf05023a612349931f6e0e551e3bbb760b9c39a72a555886222a",
+      "information_need": {
+        "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+        "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+      },
+      "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+      "relation_count": 137,
+      "seed_addresses": [
+        "src/devtools/evidence/docs/overview.md",
+        "src/devtools/evidence/terminal.py",
+        "tests/evidence/test_terminal.py",
+        "src/devtools/persistence/docs/overview.md",
+        "src/devtools/runtime/runtime.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/evidence/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/evidence/terminal.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/persistence/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/runtime/runtime.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/evidence/test_terminal.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "5073a7bdd33abf62206b3386641ca24a91cf9b17dc17f8ebdf03dfbbe16f268a"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 217,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 6,
+          "qualified_relations": 201,
+          "without_immediate_parent_name": 10
+        },
+        "resources_examined": 253
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": true,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/resources/filesystem/codecs/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": null,
+            "path": null,
+            "rrf": null
+          },
+          "support_count": 3,
+          "supports": [
+            {
+              "child_address": "src/devtools/resources/filesystem/codecs/markdown.py",
+              "child_content_identity": "3662893e3f5974d201e647f00d32ac4acdac70530920847e0f5b171c1515970c",
+              "child_dotted_name": "devtools.resources.filesystem.codecs.markdown",
+              "child_interpretation_identity": "85d13a2e78d2996c114d997c587e1ec62deb5a810ad06316296620ece3ee5282",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/resources/filesystem/codecs/__init__.py",
+              "package_content_identity": "7c815bc2e91f3150ebd9e5551dd30c947ba6313c1a65b9cf310d5d468133b659",
+              "package_dotted_name": "devtools.resources.filesystem.codecs",
+              "package_interpretation_identity": "639e38266e64e80f30ab2f032673c0e910b1c33f4b14c2cdaa47210818087d12",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/resources/filesystem/codecs/markdown.py",
+              "snapshot_id": "8b37d831ad98cc15dc3f70dd5c5b110fbd77c5821b0a4890a055bf1169290ead"
+            },
+            {
+              "child_address": "src/devtools/resources/filesystem/codecs/json.py",
+              "child_content_identity": "1ed913e313d22fe9e38fe68da1d2f948b6f19ef23421ebb951efabc988885e93",
+              "child_dotted_name": "devtools.resources.filesystem.codecs.json",
+              "child_interpretation_identity": "e49090315e8fb585d1b6d8474fc9f32bc0fc224303f5e0be178ce3db723c06d8",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/resources/filesystem/codecs/__init__.py",
+              "package_content_identity": "7c815bc2e91f3150ebd9e5551dd30c947ba6313c1a65b9cf310d5d468133b659",
+              "package_dotted_name": "devtools.resources.filesystem.codecs",
+              "package_interpretation_identity": "639e38266e64e80f30ab2f032673c0e910b1c33f4b14c2cdaa47210818087d12",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/resources/filesystem/codecs/json.py",
+              "snapshot_id": "8b37d831ad98cc15dc3f70dd5c5b110fbd77c5821b0a4890a055bf1169290ead"
+            },
+            {
+              "child_address": "src/devtools/resources/filesystem/codecs/text.py",
+              "child_content_identity": "e408f6ca75508acc25debc8023d15d78e03665c509e7e0c478fddea8ce46b303",
+              "child_dotted_name": "devtools.resources.filesystem.codecs.text",
+              "child_interpretation_identity": "c6499468aec97ebddf721d657787f7fc3173258884c59ef6fc19e226c1c45fb0",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/resources/filesystem/codecs/__init__.py",
+              "package_content_identity": "7c815bc2e91f3150ebd9e5551dd30c947ba6313c1a65b9cf310d5d468133b659",
+              "package_dotted_name": "devtools.resources.filesystem.codecs",
+              "package_interpretation_identity": "639e38266e64e80f30ab2f032673c0e910b1c33f4b14c2cdaa47210818087d12",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/resources/filesystem/codecs/text.py",
+              "snapshot_id": "8b37d831ad98cc15dc3f70dd5c5b110fbd77c5821b0a4890a055bf1169290ead"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/models/interaction/__init__.py",
+          "canonical_positive_rank": 70,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 70,
+            "canonical": 70,
+            "identifier": 84,
+            "path": null,
+            "rrf": 77
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/models/interaction/test_protocols.py",
+              "child_content_identity": "86b05bf1102e9fea2eaa777e0b3d8c05ad34366725e4a2964ddd1340c9ea6486",
+              "child_dotted_name": "models.interaction.test_protocols",
+              "child_interpretation_identity": "9d13b6206f9273b4b63d17ce40d32c4560f4f87253eb45f3c3b1a0b76834afc8",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/models/interaction/__init__.py",
+              "package_content_identity": "03845fa419576eb82b4c37f6351c5c716c77590c473eb26de51c7348d3f7e86b",
+              "package_dotted_name": "models.interaction",
+              "package_interpretation_identity": "4c04f6c8e6b814c931b754ef837dcca5c9dcc98e339b822ab4160785cfd30c17",
+              "package_kind": "package-module",
+              "seed_address": "tests/models/interaction/test_protocols.py",
+              "snapshot_id": "8b37d831ad98cc15dc3f70dd5c5b110fbd77c5821b0a4890a055bf1169290ead"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-739c82bd3398",
+      "corpus_id": "e079e84e7ce6217f633167787cc4f6b794db7c86210855a63f9a85348a2c6ee7",
+      "information_need": {
+        "lexical_query": "Implement model reasoning content",
+        "purpose": "Address the historical maintenance task: Implement model reasoning content"
+      },
+      "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+      "relation_count": 201,
+      "seed_addresses": [
+        "src/devtools/resources/filesystem/codecs/markdown.py",
+        "src/devtools/resources/filesystem/codecs/json.py",
+        "src/devtools/resources/filesystem/codecs/text.py",
+        "tests/models/interaction/test_protocols.py",
+        "src/devtools/resources/filesystem/docs/json.md"
+      ],
+      "seed_fanout": {
+        "src/devtools/resources/filesystem/codecs/json.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/codecs/markdown.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/codecs/text.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/docs/json.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/models/interaction/test_protocols.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "8b37d831ad98cc15dc3f70dd5c5b110fbd77c5821b0a4890a055bf1169290ead"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 216,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 6,
+          "qualified_relations": 200,
+          "without_immediate_parent_name": 10
+        },
+        "resources_examined": 252
+      },
+      "candidate_count": 3,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/models/interaction/__init__.py",
+          "canonical_positive_rank": 13,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 13,
+            "canonical": 13,
+            "identifier": 22,
+            "path": 5,
+            "rrf": 7
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "src/devtools/models/interaction/response.py",
+              "child_content_identity": "57b2016088bd782b53c7e687d45740e2e0c2f4cd81ff8a773cdae9293024cb19",
+              "child_dotted_name": "devtools.models.interaction.response",
+              "child_interpretation_identity": "2eb5fa9f936df79291badc0bcec5a76c66e577056f7c8fb0f68c289007f13d22",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/models/interaction/__init__.py",
+              "package_content_identity": "bdc61886e1f12657e117ea4bf014a0ad50eaf1423971e02b0b9db4763d1b09bd",
+              "package_dotted_name": "devtools.models.interaction",
+              "package_interpretation_identity": "192f4068390ef1d3ff8b265e626b5ce44f916d6dff53e4f897f4c5229ff33d8e",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/models/interaction/response.py",
+              "snapshot_id": "0d14e2db5b037b889d01e295fc175f4a0fc42d8a2c8220bb7389c9e3fc873454"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/resources/commands/models/__init__.py",
+          "canonical_positive_rank": 49,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 49,
+            "canonical": 49,
+            "identifier": 57,
+            "path": null,
+            "rrf": 51
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "src/devtools/resources/commands/models/output.py",
+              "child_content_identity": "bd7b139009ad69f8bc0f5326c26eaa5d651a60cf534eef3994d0d1d5269a5336",
+              "child_dotted_name": "devtools.resources.commands.models.output",
+              "child_interpretation_identity": "d08f7825f266c199c324c64e0275047d38557b887dcd257f6395bc03d57eeff1",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/resources/commands/models/__init__.py",
+              "package_content_identity": "663fbad9d358d6ebb6f849fe60b189a4fc48bbf688ec809f3122929d7c68836f",
+              "package_dotted_name": "devtools.resources.commands.models",
+              "package_interpretation_identity": "65ed1f1705e8416a20414b97d9dad8bf34769deb80099d3fafaa0b924fa16f82",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/resources/commands/models/output.py",
+              "snapshot_id": "0d14e2db5b037b889d01e295fc175f4a0fc42d8a2c8220bb7389c9e3fc873454"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/models/interaction/__init__.py",
+          "canonical_positive_rank": 20,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 20,
+            "canonical": 20,
+            "identifier": 35,
+            "path": 2,
+            "rrf": 9
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/models/interaction/test_protocols.py",
+              "child_content_identity": "431416a747d66b40f1ce552076a9ce71e1cf204208c0674e9839e98e45b36e59",
+              "child_dotted_name": "models.interaction.test_protocols",
+              "child_interpretation_identity": "240925e596079d5b94ad58b866da7839c31962e839aa2c001cf3bce6d9db9ef0",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/models/interaction/__init__.py",
+              "package_content_identity": "03845fa419576eb82b4c37f6351c5c716c77590c473eb26de51c7348d3f7e86b",
+              "package_dotted_name": "models.interaction",
+              "package_interpretation_identity": "4c04f6c8e6b814c931b754ef837dcca5c9dcc98e339b822ab4160785cfd30c17",
+              "package_kind": "package-module",
+              "seed_address": "tests/models/interaction/test_protocols.py",
+              "snapshot_id": "0d14e2db5b037b889d01e295fc175f4a0fc42d8a2c8220bb7389c9e3fc873454"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-9efe3dc31e80",
+      "corpus_id": "bd04fdffd57ba5252bd4540cff588876af03b4970907f5d77355abb53a152d10",
+      "information_need": {
+        "lexical_query": "Implement model interaction output bound",
+        "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+      },
+      "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+      "relation_count": 200,
+      "seed_addresses": [
+        "src/devtools/resources/commands/models/output.py",
+        "src/devtools/models/interaction/response.py",
+        "tests/models/interaction/test_protocols.py",
+        "src/devtools/models/interaction/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/roadmap.md"
+      ],
+      "seed_fanout": {
+        "src/devtools/models/interaction/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/models/interaction/response.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/commands/models/output.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/docs/roadmap.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/models/interaction/test_protocols.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "0d14e2db5b037b889d01e295fc175f4a0fc42d8a2c8220bb7389c9e3fc873454"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 225,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 6,
+          "qualified_relations": 209,
+          "without_immediate_parent_name": 10
+        },
+        "resources_examined": 261
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": true,
+          "absent_existing_evidence_union": true,
+          "address": "tests/models/benchmarks/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": null,
+            "path": null,
+            "rrf": null
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/models/benchmarks/test_models.py",
+              "child_content_identity": "582423270354ce5925f1c493a10062f906204462e976712730d51cde04f9a1df",
+              "child_dotted_name": "models.benchmarks.test_models",
+              "child_interpretation_identity": "63b7c15c00a712a4e1c0c161c558fe7d86e69a42f3084e99e156442c8679b6d0",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/models/benchmarks/__init__.py",
+              "package_content_identity": "15e003260ce96077c0604a88d1b238e972c2a5a22e0d729b756c6084a9a445ff",
+              "package_dotted_name": "models.benchmarks",
+              "package_interpretation_identity": "b9c6149f3731b1582ae6f622a518a08b1ea24ff1255e55bfdc9f5fc647499ca6",
+              "package_kind": "package-module",
+              "seed_address": "tests/models/benchmarks/test_models.py",
+              "snapshot_id": "8bcb053857abd5eb0e8b0ee7b8b101ef67119e83e41fc8398752bca737dc76c9"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": true,
+          "absent_existing_evidence_union": true,
+          "address": "tests/models/serving/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": null,
+            "path": null,
+            "rrf": null
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/models/serving/test_huggingface.py",
+              "child_content_identity": "9b7b273b3c1fa39ba2eef3158a8c248e1f8546815441314ffe39c9b9c404acc2",
+              "child_dotted_name": "models.serving.test_huggingface",
+              "child_interpretation_identity": "037c0bb7188d56e74ee5a48e1c9943a9cf5767190c1397253ab42ad77162df6b",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/models/serving/__init__.py",
+              "package_content_identity": "356dbed695c9205f3c2d84b1a5531529d2df170690310700f0364e851456cdeb",
+              "package_dotted_name": "models.serving",
+              "package_interpretation_identity": "ca3a8fcccc30af9306270724b3b127d1f80a39a0893b7114e9d31f8a0bbe6e96",
+              "package_kind": "package-module",
+              "seed_address": "tests/models/serving/test_huggingface.py",
+              "snapshot_id": "8bcb053857abd5eb0e8b0ee7b8b101ef67119e83e41fc8398752bca737dc76c9"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-6b0e9c52fb26",
+      "corpus_id": "a0c343c156c6a09e60626fdbf7e1597b4c6564fbe89af2da53d9ee4960627071",
+      "information_need": {
+        "lexical_query": "Implement bounded repository snapshot observation",
+        "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+      },
+      "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+      "relation_count": 209,
+      "seed_addresses": [
+        "src/devtools/tools/docs/overview.md",
+        "tests/models/serving/test_huggingface.py",
+        "src/devtools/resources/commands/docs/overview.md",
+        "src/devtools/models/serving/docs/overview.md",
+        "tests/models/benchmarks/test_models.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/models/serving/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/commands/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/tools/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/models/benchmarks/test_models.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/models/serving/test_huggingface.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "8bcb053857abd5eb0e8b0ee7b8b101ef67119e83e41fc8398752bca737dc76c9"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 216,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 6,
+          "qualified_relations": 200,
+          "without_immediate_parent_name": 10
+        },
+        "resources_examined": 252
+      },
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": true,
+          "absent_existing_evidence_union": false,
+          "address": "tests/experiments/qwen/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": null,
+            "path": null,
+            "rrf": null
+          },
+          "support_count": 2,
+          "supports": [
+            {
+              "child_address": "tests/experiments/qwen/test_patch_proposal_worker.py",
+              "child_content_identity": "40a3dbacdd92e6815343a8316d45e0c9e9f2e2f335f8f58b613d4f22328bd5c1",
+              "child_dotted_name": "experiments.qwen.test_patch_proposal_worker",
+              "child_interpretation_identity": "e9f13a6e1f822d27f9dde86763909a0eb3826b8f1a34fadd995b06516bf64229",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/experiments/qwen/__init__.py",
+              "package_content_identity": "2158d2dfe415fe687b588719d3e358c00645e38bebe8d2745aa56aa953c88094",
+              "package_dotted_name": "experiments.qwen",
+              "package_interpretation_identity": "1baf0d52e6c3aee91bd3a1a283665ce1337a15baef3f9baf123914e2f8cbc174",
+              "package_kind": "package-module",
+              "seed_address": "tests/experiments/qwen/test_patch_proposal_worker.py",
+              "snapshot_id": "a9e8e4418d94c9a3c68a63d7235ea01576f5a4259074348d7ae390749e01d1de"
+            },
+            {
+              "child_address": "tests/experiments/qwen/test_two_action_read_only_experiment.py",
+              "child_content_identity": "86b9d77d01b80839d41adef4333aab101bc733c380b7e6c2330903a455d32c7b",
+              "child_dotted_name": "experiments.qwen.test_two_action_read_only_experiment",
+              "child_interpretation_identity": "1b8ae8fd2fb6cbba119913783c15680c93b18ae84d2f0745c963c7fc687258b5",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/experiments/qwen/__init__.py",
+              "package_content_identity": "2158d2dfe415fe687b588719d3e358c00645e38bebe8d2745aa56aa953c88094",
+              "package_dotted_name": "experiments.qwen",
+              "package_interpretation_identity": "1baf0d52e6c3aee91bd3a1a283665ce1337a15baef3f9baf123914e2f8cbc174",
+              "package_kind": "package-module",
+              "seed_address": "tests/experiments/qwen/test_two_action_read_only_experiment.py",
+              "snapshot_id": "a9e8e4418d94c9a3c68a63d7235ea01576f5a4259074348d7ae390749e01d1de"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-901246bd802a",
+      "corpus_id": "73f41ff55e590e661c59484c495d6b53b693d1e28b8c4b7d80381e3735b3bb76",
+      "information_need": {
+        "lexical_query": "measured repository selection stress fixture",
+        "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+      },
+      "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+      "relation_count": 200,
+      "seed_addresses": [
+        "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+        "tests/experiments/qwen/test_patch_proposal_worker.py",
+        "tests/experiments/qwen/test_two_action_read_only_experiment.py",
+        "src/devtools/models/serving/docs/overview.md",
+        "tests/scripts/qwen/test_llama_cpp_profile.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/models/serving/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/experiments/qwen/test_patch_proposal_worker.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/experiments/qwen/test_two_action_read_only_experiment.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/scripts/qwen/test_llama_cpp_profile.py": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/scripts/qwen/test_two_action_read_only_acceptance.py": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "a9e8e4418d94c9a3c68a63d7235ea01576f5a4259074348d7ae390749e01d1de"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 246,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 7,
+          "qualified_relations": 228,
+          "without_immediate_parent_name": 11
+        },
+        "resources_examined": 282
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/context/__init__.py",
+          "canonical_positive_rank": 33,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 33,
+            "canonical": 33,
+            "identifier": 17,
+            "path": null,
+            "rrf": 23
+          },
+          "support_count": 2,
+          "supports": [
+            {
+              "child_address": "src/devtools/context/repository.py",
+              "child_content_identity": "7c39f91187e30f3e1f334a22ffd33c1e2fbb8bb02a2335cb69778ca5bc305455",
+              "child_dotted_name": "devtools.context.repository",
+              "child_interpretation_identity": "3d622a5ef229e14590c300246d80d46af5b09ecd65fbd162a410f05474548ee2",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "6df9e8947aaa73fbc9a648c1a37fef096726ab7334ed4bd8d021643ba1a88135",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "f6ef31b2bd1431c174e04fe5a5d9d05f7debf2bcc7943b4a370b2b0da039b286",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/repository.py",
+              "snapshot_id": "4992e02934cb390cd16fe76142aee4f24bb3a01f6f855901849f9b15dedb773b"
+            },
+            {
+              "child_address": "src/devtools/context/python_function_candidates.py",
+              "child_content_identity": "2f9fdc24ab143682ae5fc3c90934626c9b9db6160d6cf819e7fbee8b585ced90",
+              "child_dotted_name": "devtools.context.python_function_candidates",
+              "child_interpretation_identity": "6ac88f6d51ebd6b0946c1f47ceb87e937bc6bfc31d3026f5d39e562501cf111c",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "6df9e8947aaa73fbc9a648c1a37fef096726ab7334ed4bd8d021643ba1a88135",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "f6ef31b2bd1431c174e04fe5a5d9d05f7debf2bcc7943b4a370b2b0da039b286",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_function_candidates.py",
+              "snapshot_id": "4992e02934cb390cd16fe76142aee4f24bb3a01f6f855901849f9b15dedb773b"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/__init__.py",
+          "canonical_positive_rank": 37,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 37,
+            "canonical": 37,
+            "identifier": 42,
+            "path": null,
+            "rrf": 39
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/context/test_repository.py",
+              "child_content_identity": "cab46e69b34469a53714bdcd67f88e4b613ec36e58e9f5cc13b26380e81e9fca",
+              "child_dotted_name": "context.test_repository",
+              "child_interpretation_identity": "ad0ff7219f74806d39d43456467d46300ded182681746bc8d0e5ba9ab8ed2794",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/__init__.py",
+              "package_content_identity": "3572c092e02fdfe637dd358503b0f6d6f987a86cdc480a31e0a24757c4a6b3b7",
+              "package_dotted_name": "context",
+              "package_interpretation_identity": "06d71c48b843dd4c7a0dc27710814a360b4853b5484526d5f5082227de9de1d0",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/test_repository.py",
+              "snapshot_id": "4992e02934cb390cd16fe76142aee4f24bb3a01f6f855901849f9b15dedb773b"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-ab24906f07ed",
+      "corpus_id": "9c9083b07a968ce4ef806d8e07dc985118402c28c5906cd5b5c24b6f2a4bc3d2",
+      "information_need": {
+        "lexical_query": "Implement bounded repository resource discovery",
+        "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+      },
+      "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+      "relation_count": 228,
+      "seed_addresses": [
+        "src/devtools/tools/docs/overview.md",
+        "src/devtools/context/repository.py",
+        "tests/context/test_repository.py",
+        "src/devtools/resources/filesystem/docs/roadmap.md",
+        "src/devtools/context/python_function_candidates.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/python_function_candidates.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/repository.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/docs/roadmap.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/tools/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/context/test_repository.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "4992e02934cb390cd16fe76142aee4f24bb3a01f6f855901849f9b15dedb773b"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 241,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 7,
+          "qualified_relations": 223,
+          "without_immediate_parent_name": 11
+        },
+        "resources_examined": 277
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/context/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": 3,
+            "path": null,
+            "rrf": 47
+          },
+          "support_count": 2,
+          "supports": [
+            {
+              "child_address": "src/devtools/context/python_declarations.py",
+              "child_content_identity": "e43e006369991a5c4b68fbba29c1c2fd270fc4df64f92a9f80bca8fed6fb46df",
+              "child_dotted_name": "devtools.context.python_declarations",
+              "child_interpretation_identity": "518bfd83770f5072b2131141d7aeab0fe8355641b4ea156a2e32b08b52384c53",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "cd55d0784caf96ceafacaffbae74e139a49083d51d8dcde84fa6e27e9b53803f",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "e0a348c5dca89f796de96fbaebecfac2f7764a09a792dc83b9134d7f25c0c92d",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_declarations.py",
+              "snapshot_id": "49f846f50781975bf83b93918a808972d7d94bb097b4f698c725da92454dcbe7"
+            },
+            {
+              "child_address": "src/devtools/context/python_function_rendering.py",
+              "child_content_identity": "dfbf052836b915bae56edc3c56cfb9ad01c9a3173483b9ed8fbf0dc46851e990",
+              "child_dotted_name": "devtools.context.python_function_rendering",
+              "child_interpretation_identity": "7c19d9fe5b5f008ce8285daf6b86c94fa7b4de39c7c1ea44bb7d64d271c8fba4",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "cd55d0784caf96ceafacaffbae74e139a49083d51d8dcde84fa6e27e9b53803f",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "e0a348c5dca89f796de96fbaebecfac2f7764a09a792dc83b9134d7f25c0c92d",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_function_rendering.py",
+              "snapshot_id": "49f846f50781975bf83b93918a808972d7d94bb097b4f698c725da92454dcbe7"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": true,
+          "absent_existing_evidence_union": true,
+          "address": "tests/context/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": null,
+            "path": null,
+            "rrf": null
+          },
+          "support_count": 2,
+          "supports": [
+            {
+              "child_address": "tests/context/test_python_declarations.py",
+              "child_content_identity": "37bc88b60c0142d28d1a1e861e4dcf465c2df4b981978a9815b05dc8e741e169",
+              "child_dotted_name": "context.test_python_declarations",
+              "child_interpretation_identity": "e107a9e3cbd1fa398fa8f8eaa3b9bc02f5ccd6f0ce454abfc1bfd47bada85044",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/__init__.py",
+              "package_content_identity": "3572c092e02fdfe637dd358503b0f6d6f987a86cdc480a31e0a24757c4a6b3b7",
+              "package_dotted_name": "context",
+              "package_interpretation_identity": "06d71c48b843dd4c7a0dc27710814a360b4853b5484526d5f5082227de9de1d0",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/test_python_declarations.py",
+              "snapshot_id": "49f846f50781975bf83b93918a808972d7d94bb097b4f698c725da92454dcbe7"
+            },
+            {
+              "child_address": "tests/context/test_python_function_rendering.py",
+              "child_content_identity": "1a4ddc9028bbb8352637fa4451a63edf6c66011eff5360aaf62abf40d778c144",
+              "child_dotted_name": "context.test_python_function_rendering",
+              "child_interpretation_identity": "6d66207601bbf097c72d94bb397d84c8c79e656f9ba5b794d61fb2dc82126a48",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/__init__.py",
+              "package_content_identity": "3572c092e02fdfe637dd358503b0f6d6f987a86cdc480a31e0a24757c4a6b3b7",
+              "package_dotted_name": "context",
+              "package_interpretation_identity": "06d71c48b843dd4c7a0dc27710814a360b4853b5484526d5f5082227de9de1d0",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/test_python_function_rendering.py",
+              "snapshot_id": "49f846f50781975bf83b93918a808972d7d94bb097b4f698c725da92454dcbe7"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-ac797431db35",
+      "corpus_id": "5f60978cc3cbfa8876c5aeba859e16f62be7c8c2b3493e549daa5ac8839b5995",
+      "information_need": {
+        "lexical_query": "Implement multi-resource Python declaration aggregation",
+        "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+      },
+      "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+      "relation_count": 223,
+      "seed_addresses": [
+        "src/devtools/context/python_declarations.py",
+        "tests/context/test_python_declarations.py",
+        "src/devtools/context/python_function_rendering.py",
+        "src/devtools/tools/docs/overview.md",
+        "tests/context/test_python_function_rendering.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/python_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/tools/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "49f846f50781975bf83b93918a808972d7d94bb097b4f698c725da92454dcbe7"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 216,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 6,
+          "qualified_relations": 200,
+          "without_immediate_parent_name": 10
+        },
+        "resources_examined": 252
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": true,
+          "absent_existing_evidence_union": true,
+          "address": "src/devtools/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": null,
+            "path": null,
+            "rrf": null
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "src/devtools/context/__init__.py",
+              "child_content_identity": "aacc0a8c9371f7dc669e7d18c3a9eb945c8ee9bf53a0fa5d3b2e07fa34094b34",
+              "child_dotted_name": "devtools.context",
+              "child_interpretation_identity": "94c1a7fef821f58124f9f2d7724671e494101991a67143a061226a7a0e770234",
+              "child_kind": "package-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/__init__.py",
+              "package_content_identity": "a75866ef0a6cf072e848a36ed646aec382888688263e7a7c469387cd9bdc446d",
+              "package_dotted_name": "devtools",
+              "package_interpretation_identity": "1e55278ba6b4c5b6634a4286670a3e7a21b2c21109f2a6066ced3e209aa081a4",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/__init__.py",
+              "snapshot_id": "dc7c52489abe2a1e7368dcd62bb53b75af8a4d9898f4a5242ab23feacb6f483a"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": true,
+          "absent_existing_evidence_union": true,
+          "address": "tests/experiments/qwen/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": null,
+            "path": null,
+            "rrf": null
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/experiments/qwen/test_patch_proposal_worker.py",
+              "child_content_identity": "0f103f8bdade3beee29243d3b71378f6262e90fd3aa1f0a7974bbc90ffc37f10",
+              "child_dotted_name": "experiments.qwen.test_patch_proposal_worker",
+              "child_interpretation_identity": "0d1b14f81903a09bea5373c5d8c051feeb252c75b2cb395a9e1a43883790b898",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/experiments/qwen/__init__.py",
+              "package_content_identity": "2158d2dfe415fe687b588719d3e358c00645e38bebe8d2745aa56aa953c88094",
+              "package_dotted_name": "experiments.qwen",
+              "package_interpretation_identity": "1baf0d52e6c3aee91bd3a1a283665ce1337a15baef3f9baf123914e2f8cbc174",
+              "package_kind": "package-module",
+              "seed_address": "tests/experiments/qwen/test_patch_proposal_worker.py",
+              "snapshot_id": "dc7c52489abe2a1e7368dcd62bb53b75af8a4d9898f4a5242ab23feacb6f483a"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-842e90e63f37",
+      "corpus_id": "9e526be963a5479984594453f1b7b383dcfd5defd835491aba2c1a50eed61d0d",
+      "information_need": {
+        "lexical_query": "selection-stress acceptance fixture",
+        "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+      },
+      "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+      "relation_count": 200,
+      "seed_addresses": [
+        "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+        "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+        "tests/scripts/qwen/test_two_read_acceptance.py",
+        "tests/experiments/qwen/test_patch_proposal_worker.py",
+        "src/devtools/context/__init__.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/__init__.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/experiments/qwen/test_patch_proposal_worker.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/scripts/qwen/test_two_action_read_only_acceptance.py": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/scripts/qwen/test_two_read_acceptance.py": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "dc7c52489abe2a1e7368dcd62bb53b75af8a4d9898f4a5242ab23feacb6f483a"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 217,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 6,
+          "qualified_relations": 201,
+          "without_immediate_parent_name": 10
+        },
+        "resources_examined": 253
+      },
+      "candidate_count": 4,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/models/interaction/__init__.py",
+          "canonical_positive_rank": 8,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 8,
+            "canonical": 8,
+            "identifier": 5,
+            "path": 4,
+            "rrf": 4
+          },
+          "support_count": 2,
+          "supports": [
+            {
+              "child_address": "src/devtools/models/interaction/protocols.py",
+              "child_content_identity": "9d0f7febc017015a1fc9e330730c00ebea522bcb52f664a922b3d7dc7b4f092a",
+              "child_dotted_name": "devtools.models.interaction.protocols",
+              "child_interpretation_identity": "db99b7177ed2cda336c2c274fb3dc208613dc38dd5efef95d3b6b80022c6e552",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/models/interaction/__init__.py",
+              "package_content_identity": "a89f04bb57f669e1ad653f39d0aff34cf7a85d8d6b5e3f78e54bdd2b35a78b17",
+              "package_dotted_name": "devtools.models.interaction",
+              "package_interpretation_identity": "b92f9671f375971cc95571fdac57929c071045ef0cc03fe93e77eb5b8f45c628",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/models/interaction/protocols.py",
+              "snapshot_id": "deacbb2f3e85afd2ea8557e6a2e7a18b4c68c6aa972b0b9c57f09446ec947020"
+            },
+            {
+              "child_address": "src/devtools/models/interaction/response.py",
+              "child_content_identity": "58ef931a22a54ed39580b7060052c2556f6041fb006973bd7f4776c8fef3001b",
+              "child_dotted_name": "devtools.models.interaction.response",
+              "child_interpretation_identity": "4b45f454fd77310486427534302400d8669b9cd692d5c4437ce39f301a0990c0",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/models/interaction/__init__.py",
+              "package_content_identity": "a89f04bb57f669e1ad653f39d0aff34cf7a85d8d6b5e3f78e54bdd2b35a78b17",
+              "package_dotted_name": "devtools.models.interaction",
+              "package_interpretation_identity": "b92f9671f375971cc95571fdac57929c071045ef0cc03fe93e77eb5b8f45c628",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/models/interaction/response.py",
+              "snapshot_id": "deacbb2f3e85afd2ea8557e6a2e7a18b4c68c6aa972b0b9c57f09446ec947020"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": true,
+          "absent_existing_evidence_union": true,
+          "address": "tests/execution/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": null,
+            "path": null,
+            "rrf": null
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/execution/test_runtime.py",
+              "child_content_identity": "70b288624e2888fba306c426dfbea3db22968512f580be1c047d6ecf4be72df3",
+              "child_dotted_name": "execution.test_runtime",
+              "child_interpretation_identity": "546850d257a3c64c96b12e3ef678b225751570628bbba8a3b5363391ade70c0f",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/execution/__init__.py",
+              "package_content_identity": "d7e4439ed88f2edf74503d5f95e355dc6f8b9a17a104acc159d0489ae3aab26c",
+              "package_dotted_name": "execution",
+              "package_interpretation_identity": "602334ab6f28717408fbdcad0f6408a53f505467bd9857bed52aa95f6dcc1cbf",
+              "package_kind": "package-module",
+              "seed_address": "tests/execution/test_runtime.py",
+              "snapshot_id": "deacbb2f3e85afd2ea8557e6a2e7a18b4c68c6aa972b0b9c57f09446ec947020"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/models/interaction/__init__.py",
+          "canonical_positive_rank": 13,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 13,
+            "canonical": 13,
+            "identifier": 26,
+            "path": 1,
+            "rrf": 7
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/models/interaction/test_models.py",
+              "child_content_identity": "217382dc874bb332b4d3d59f8c2d69e73a68de0344498b52d47fc62f960bbee9",
+              "child_dotted_name": "models.interaction.test_models",
+              "child_interpretation_identity": "85ac4d90ec3b0bfeb2ab48d6dc396f88c9eb314b21522af866cf03e980b73c96",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/models/interaction/__init__.py",
+              "package_content_identity": "03845fa419576eb82b4c37f6351c5c716c77590c473eb26de51c7348d3f7e86b",
+              "package_dotted_name": "models.interaction",
+              "package_interpretation_identity": "4c04f6c8e6b814c931b754ef837dcca5c9dcc98e339b822ab4160785cfd30c17",
+              "package_kind": "package-module",
+              "seed_address": "tests/models/interaction/test_models.py",
+              "snapshot_id": "deacbb2f3e85afd2ea8557e6a2e7a18b4c68c6aa972b0b9c57f09446ec947020"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/models/interaction/providers/__init__.py",
+          "canonical_positive_rank": 14,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 14,
+            "canonical": 14,
+            "identifier": 28,
+            "path": 11,
+            "rrf": 13
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/models/interaction/providers/test_llama_cpp.py",
+              "child_content_identity": "22415b5caa968e026a190351fc7cb7fdf5e5eb0add1d7d6496a06343e0914509",
+              "child_dotted_name": "models.interaction.providers.test_llama_cpp",
+              "child_interpretation_identity": "d27f088c7ac9c673f33113f3e34aa23432f46f416ac25e229c21606a6672cc2e",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/models/interaction/providers/__init__.py",
+              "package_content_identity": "0e89c5fb746cafd96b282d84be2c2e77ea9d57b038615de658be94c75ae4e37b",
+              "package_dotted_name": "models.interaction.providers",
+              "package_interpretation_identity": "8c4fb50a74ee4074bed72b7ea5e678c6a03074f16dcca8ab9287bb47ff37d1aa",
+              "package_kind": "package-module",
+              "seed_address": "tests/models/interaction/providers/test_llama_cpp.py",
+              "snapshot_id": "deacbb2f3e85afd2ea8557e6a2e7a18b4c68c6aa972b0b9c57f09446ec947020"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-eadb6f231f57",
+      "corpus_id": "7d9a666139ecf4216405fd731478ffc635cc74feb108e3f2c7af09669999a3e1",
+      "information_need": {
+        "lexical_query": "Implement model interaction thinking control",
+        "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+      },
+      "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+      "relation_count": 201,
+      "seed_addresses": [
+        "tests/models/interaction/test_models.py",
+        "tests/models/interaction/providers/test_llama_cpp.py",
+        "tests/execution/test_runtime.py",
+        "src/devtools/models/interaction/protocols.py",
+        "src/devtools/models/interaction/response.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/models/interaction/protocols.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/models/interaction/response.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/execution/test_runtime.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/models/interaction/providers/test_llama_cpp.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/models/interaction/test_models.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "deacbb2f3e85afd2ea8557e6a2e7a18b4c68c6aa972b0b9c57f09446ec947020"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 213,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 5,
+          "qualified_relations": 198,
+          "without_immediate_parent_name": 10
+        },
+        "resources_examined": 249
+      },
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": true,
+          "absent_existing_evidence_union": true,
+          "address": "tests/agents/conversation/message/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": null,
+            "path": null,
+            "rrf": null
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/agents/conversation/message/test_message.py",
+              "child_content_identity": "018edd9fec6141cd06971551c60343ee4502df935dd5133ed64396386043c941",
+              "child_dotted_name": "agents.conversation.message.test_message",
+              "child_interpretation_identity": "02c5a2c36f6e3374968f92ded38f9e95f4d0a1e00e3d65a80a2c203997b1c56e",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/agents/conversation/message/__init__.py",
+              "package_content_identity": "3b2f62df3dc1d659a4cbc8d341c15e4e7c2f44dbe0cf385e2908ef3b598f7461",
+              "package_dotted_name": "agents.conversation.message",
+              "package_interpretation_identity": "181d1ec5a4de6c2291b2d890c201a94c6b5eaa46d36e9f9f04542572efc5b728",
+              "package_kind": "package-module",
+              "seed_address": "tests/agents/conversation/message/test_message.py",
+              "snapshot_id": "5fc27c32ac3c008337fb7262448c46b5bf2991a3261ffd43ec6480574784c97c"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-8994c4e58644",
+      "corpus_id": "c1443707d1fc75ebe72257aa91ef597131d263d63c53d11f14a64bcb697dacab",
+      "information_need": {
+        "lexical_query": "Investigate Repository Context Discovery",
+        "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+      },
+      "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+      "relation_count": 198,
+      "seed_addresses": [
+        "src/devtools/resources/filesystem/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/roadmap.md",
+        "src/devtools/agents/integrations/codex/docs/cli.md",
+        "tests/agents/conversation/message/test_message.py",
+        "src/devtools/resources/filesystem/docs/codecs.md"
+      ],
+      "seed_fanout": {
+        "src/devtools/agents/integrations/codex/docs/cli.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/docs/codecs.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/docs/roadmap.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/agents/conversation/message/test_message.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "5fc27c32ac3c008337fb7262448c46b5bf2991a3261ffd43ec6480574784c97c"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 31,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 144,
+        "relation_statuses": {
+          "qualified_relations": 130,
+          "without_immediate_parent_name": 14
+        },
+        "resources_examined": 176
+      },
+      "candidate_count": 0,
+      "candidates": [],
+      "case_id": "i25-c0fabcb195e2",
+      "corpus_id": "59aff35b21ee29fe81c03b479a809546853ca1f8e3705bc0ded9dac13baa9a69",
+      "information_need": {
+        "lexical_query": "ed evidence",
+        "purpose": "Address the historical maintenance task: ed evidence"
+      },
+      "parent_snapshot_sha": "9c42bd9b3da3f468bb7bbf0b8235596187dc64c3",
+      "relation_count": 130,
+      "seed_addresses": [
+        "src/devtools/persistence/docs/overview.md",
+        "src/devtools/runtime/docs/overview.md",
+        "src/devtools/persistence/docs/sqlite.md",
+        "src/devtools/context/docs/history.md",
+        "src/devtools/agents/docs/overview.md"
+      ],
+      "seed_fanout": {
+        "src/devtools/agents/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/context/docs/history.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/persistence/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/persistence/docs/sqlite.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/runtime/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "2b2573d1eb751fa1757cf90f412e61ffc706c2585a45ad453ae54b175afd8842"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 222,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 6,
+          "qualified_relations": 206,
+          "without_immediate_parent_name": 10
+        },
+        "resources_examined": 258
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/tools/__init__.py",
+          "canonical_positive_rank": 12,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 12,
+            "canonical": 12,
+            "identifier": 21,
+            "path": null,
+            "rrf": 13
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "src/devtools/tools/execution.py",
+              "child_content_identity": "83f76f63eb0214d03451ca47a806ef5e5dd70ef2bfa1b43754fe60032823c00e",
+              "child_dotted_name": "devtools.tools.execution",
+              "child_interpretation_identity": "64943a673cfeb3361d4a59caac99c6fac7f7f5ba6481d4df051ba2c067e4526a",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/tools/__init__.py",
+              "package_content_identity": "2025376c88d659c4e27452aee42dfe8ae1df1e70cb76129d3ec4ae84c2bf5051",
+              "package_dotted_name": "devtools.tools",
+              "package_interpretation_identity": "567c48a47857785207a0c130ff57f6fc97bf03ad982f1b1dfb4130404d09f705",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/tools/execution.py",
+              "snapshot_id": "36be414ba3ae60b35aecc374a4d674542ebc6c2fc4c0cb1d54de5d833ebfc372"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/tools/__init__.py",
+          "canonical_positive_rank": 25,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 25,
+            "canonical": 25,
+            "identifier": 37,
+            "path": null,
+            "rrf": 31
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/tools/test_runtime_integration.py",
+              "child_content_identity": "82979c703980afb5f5508789155c45bb06adc7a5a7d6a973c74c251b602cde1e",
+              "child_dotted_name": "tools.test_runtime_integration",
+              "child_interpretation_identity": "fdf17c2fb367fbc973cf544b9d85c0b5f17a6154cd08bc50cabbb41357adb31d",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/tools/__init__.py",
+              "package_content_identity": "726ac7b7eaccd4faa8c34c92b0aabf4908155cb121acca9d9f6e1b5a7af37a86",
+              "package_dotted_name": "tools",
+              "package_interpretation_identity": "dd6f891d7c56520b2073cb9f608850527197f647803f28936593307e051a8e99",
+              "package_kind": "package-module",
+              "seed_address": "tests/tools/test_runtime_integration.py",
+              "snapshot_id": "36be414ba3ae60b35aecc374a4d674542ebc6c2fc4c0cb1d54de5d833ebfc372"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-d9e58cd09390",
+      "corpus_id": "1304aba35bb95c944afef85bb89ad4d3174a57306c0abb56727c444cd3fd3101",
+      "information_need": {
+        "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+        "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+      },
+      "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+      "relation_count": 206,
+      "seed_addresses": [
+        "src/devtools/models/interaction/docs/overview.md",
+        "src/devtools/tools/docs/overview.md",
+        "tests/tools/test_runtime_integration.py",
+        "src/devtools/resources/filesystem/docs/overview.md",
+        "src/devtools/tools/execution.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/models/interaction/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/tools/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/tools/execution.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/tools/test_runtime_integration.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "36be414ba3ae60b35aecc374a4d674542ebc6c2fc4c0cb1d54de5d833ebfc372"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 240,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 6,
+          "qualified_relations": 223,
+          "without_immediate_parent_name": 11
+        },
+        "resources_examined": 276
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/context/__init__.py",
+          "canonical_positive_rank": 28,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 28,
+            "canonical": 28,
+            "identifier": 8,
+            "path": 9,
+            "rrf": 13
+          },
+          "support_count": 3,
+          "supports": [
+            {
+              "child_address": "src/devtools/context/python_function_rendering.py",
+              "child_content_identity": "dfbf052836b915bae56edc3c56cfb9ad01c9a3173483b9ed8fbf0dc46851e990",
+              "child_dotted_name": "devtools.context.python_function_rendering",
+              "child_interpretation_identity": "7c19d9fe5b5f008ce8285daf6b86c94fa7b4de39c7c1ea44bb7d64d271c8fba4",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "39922cadae9d932f8628c54cf3ad4a3f757bc961e544c358f5c9f08a9e20a983",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "cb6646d64682626cfe8dffcfac744933b8903510b46ab7cb3875b5cf57ecfa34",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_function_rendering.py",
+              "snapshot_id": "95aa4487bee640bd631a8fce33882289c70e1d8f7926268859b0cec9a99953e6"
+            },
+            {
+              "child_address": "src/devtools/context/python_function_disclosure.py",
+              "child_content_identity": "90d28597f214ed9b3295314c10db46816948e9428bdb2350480ef9adeab381f5",
+              "child_dotted_name": "devtools.context.python_function_disclosure",
+              "child_interpretation_identity": "a9594970a3f80968d852eb8f0b58677b6a0c5f04ac2f7248316bf4a73269a753",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "39922cadae9d932f8628c54cf3ad4a3f757bc961e544c358f5c9f08a9e20a983",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "cb6646d64682626cfe8dffcfac744933b8903510b46ab7cb3875b5cf57ecfa34",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_function_disclosure.py",
+              "snapshot_id": "95aa4487bee640bd631a8fce33882289c70e1d8f7926268859b0cec9a99953e6"
+            },
+            {
+              "child_address": "src/devtools/context/python_function_request_assembly.py",
+              "child_content_identity": "89186f15ef571d9115f2b8e17bd475d1b7853d381c4903213a1c7bc2afb13f52",
+              "child_dotted_name": "devtools.context.python_function_request_assembly",
+              "child_interpretation_identity": "5997bccbdbade72e0bc69f39febb150be5ed904ed05a9a6b04a2e1055386f513",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "39922cadae9d932f8628c54cf3ad4a3f757bc961e544c358f5c9f08a9e20a983",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "cb6646d64682626cfe8dffcfac744933b8903510b46ab7cb3875b5cf57ecfa34",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_function_request_assembly.py",
+              "snapshot_id": "95aa4487bee640bd631a8fce33882289c70e1d8f7926268859b0cec9a99953e6"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/__init__.py",
+          "canonical_positive_rank": 34,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 34,
+            "canonical": 34,
+            "identifier": 45,
+            "path": 1,
+            "rrf": 15
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/context/test_python_function_rendering.py",
+              "child_content_identity": "1a4ddc9028bbb8352637fa4451a63edf6c66011eff5360aaf62abf40d778c144",
+              "child_dotted_name": "context.test_python_function_rendering",
+              "child_interpretation_identity": "6d66207601bbf097c72d94bb397d84c8c79e656f9ba5b794d61fb2dc82126a48",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/__init__.py",
+              "package_content_identity": "3572c092e02fdfe637dd358503b0f6d6f987a86cdc480a31e0a24757c4a6b3b7",
+              "package_dotted_name": "context",
+              "package_interpretation_identity": "06d71c48b843dd4c7a0dc27710814a360b4853b5484526d5f5082227de9de1d0",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/test_python_function_rendering.py",
+              "snapshot_id": "95aa4487bee640bd631a8fce33882289c70e1d8f7926268859b0cec9a99953e6"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-b5280a3c38ca",
+      "corpus_id": "4424adf117a153dde313fa1f249ea5b2f8b5136aa81e7ac2d4efa927772a9dab",
+      "information_need": {
+        "lexical_query": "Python function Context acceptance experiment",
+        "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+      },
+      "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+      "relation_count": 223,
+      "seed_addresses": [
+        "src/devtools/context/python_function_rendering.py",
+        "tests/context/test_python_function_rendering.py",
+        "src/devtools/context/python_function_disclosure.py",
+        "src/devtools/context/python_function_request_assembly.py",
+        "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/python_function_disclosure.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_request_assembly.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "95aa4487bee640bd631a8fce33882289c70e1d8f7926268859b0cec9a99953e6"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 242,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 7,
+          "qualified_relations": 224,
+          "without_immediate_parent_name": 11
+        },
+        "resources_examined": 278
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/context/__init__.py",
+          "canonical_positive_rank": 27,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 27,
+            "canonical": 27,
+            "identifier": 3,
+            "path": 10,
+            "rrf": 13
+          },
+          "support_count": 3,
+          "supports": [
+            {
+              "child_address": "src/devtools/context/python_function_materialization.py",
+              "child_content_identity": "7daab507d9d4b7e29c49fa3223ee3372eb32693e63a861bf47ea415d1944b1d4",
+              "child_dotted_name": "devtools.context.python_function_materialization",
+              "child_interpretation_identity": "8c5985ce751fbbbdafb65cddc2e65794b4add3e804199c7ac5047c79ca239c4f",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "c82554e5de86a06fe69f00221dbec2e9db51e9b5f58c9efb692223fdfaee7f94",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "a262e7d51e9fff81393c9e8a590db819b693994a073ab27c54b1fefef3725f6a",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_function_materialization.py",
+              "snapshot_id": "2f3657561f5140c8f857bb7b546df3b5a40b37a767f4043b599aa2d135b7e9c9"
+            },
+            {
+              "child_address": "src/devtools/context/python_function_rendering.py",
+              "child_content_identity": "dfbf052836b915bae56edc3c56cfb9ad01c9a3173483b9ed8fbf0dc46851e990",
+              "child_dotted_name": "devtools.context.python_function_rendering",
+              "child_interpretation_identity": "7c19d9fe5b5f008ce8285daf6b86c94fa7b4de39c7c1ea44bb7d64d271c8fba4",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "c82554e5de86a06fe69f00221dbec2e9db51e9b5f58c9efb692223fdfaee7f94",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "a262e7d51e9fff81393c9e8a590db819b693994a073ab27c54b1fefef3725f6a",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_function_rendering.py",
+              "snapshot_id": "2f3657561f5140c8f857bb7b546df3b5a40b37a767f4043b599aa2d135b7e9c9"
+            },
+            {
+              "child_address": "src/devtools/context/python_declarations.py",
+              "child_content_identity": "afb1f958327a18fed7c46a36cf3e7f1ed3fe871630e50116e9368da9bacf2e07",
+              "child_dotted_name": "devtools.context.python_declarations",
+              "child_interpretation_identity": "97d784e389ff3079b2609fea506065a4bd84119a5315bbe6986520373d12158a",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "c82554e5de86a06fe69f00221dbec2e9db51e9b5f58c9efb692223fdfaee7f94",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "a262e7d51e9fff81393c9e8a590db819b693994a073ab27c54b1fefef3725f6a",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_declarations.py",
+              "snapshot_id": "2f3657561f5140c8f857bb7b546df3b5a40b37a767f4043b599aa2d135b7e9c9"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/__init__.py",
+          "canonical_positive_rank": 34,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 34,
+            "canonical": 34,
+            "identifier": 43,
+            "path": 1,
+            "rrf": 17
+          },
+          "support_count": 2,
+          "supports": [
+            {
+              "child_address": "tests/context/test_python_function_rendering.py",
+              "child_content_identity": "1a4ddc9028bbb8352637fa4451a63edf6c66011eff5360aaf62abf40d778c144",
+              "child_dotted_name": "context.test_python_function_rendering",
+              "child_interpretation_identity": "6d66207601bbf097c72d94bb397d84c8c79e656f9ba5b794d61fb2dc82126a48",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/__init__.py",
+              "package_content_identity": "3572c092e02fdfe637dd358503b0f6d6f987a86cdc480a31e0a24757c4a6b3b7",
+              "package_dotted_name": "context",
+              "package_interpretation_identity": "06d71c48b843dd4c7a0dc27710814a360b4853b5484526d5f5082227de9de1d0",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/test_python_function_rendering.py",
+              "snapshot_id": "2f3657561f5140c8f857bb7b546df3b5a40b37a767f4043b599aa2d135b7e9c9"
+            },
+            {
+              "child_address": "tests/context/test_python_function_materialization.py",
+              "child_content_identity": "c948f8574f461148d6bf6dd6f2cb855ee482ed268a338f55f392c127e77a836e",
+              "child_dotted_name": "context.test_python_function_materialization",
+              "child_interpretation_identity": "d7ed6f3dd444b42d07ea3c5eb5f744eec53621708f1538f15c5510005e261204",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/__init__.py",
+              "package_content_identity": "3572c092e02fdfe637dd358503b0f6d6f987a86cdc480a31e0a24757c4a6b3b7",
+              "package_dotted_name": "context",
+              "package_interpretation_identity": "06d71c48b843dd4c7a0dc27710814a360b4853b5484526d5f5082227de9de1d0",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/test_python_function_materialization.py",
+              "snapshot_id": "2f3657561f5140c8f857bb7b546df3b5a40b37a767f4043b599aa2d135b7e9c9"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-85cfd9ff68a0",
+      "corpus_id": "24538fee122d8dda1ebf729f806ae6861c8e20473728bf7eccef2d733b842b96",
+      "information_need": {
+        "lexical_query": "cross-resource Python function Context materialization",
+        "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+      },
+      "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+      "relation_count": 224,
+      "seed_addresses": [
+        "src/devtools/context/python_function_materialization.py",
+        "tests/context/test_python_function_rendering.py",
+        "tests/context/test_python_function_materialization.py",
+        "src/devtools/context/python_function_rendering.py",
+        "src/devtools/context/python_declarations.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/python_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_materialization.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_materialization.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "2f3657561f5140c8f857bb7b546df3b5a40b37a767f4043b599aa2d135b7e9c9"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 238,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 6,
+          "qualified_relations": 221,
+          "without_immediate_parent_name": 11
+        },
+        "resources_examined": 274
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/context/__init__.py",
+          "canonical_positive_rank": 36,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 36,
+            "canonical": 36,
+            "identifier": 8,
+            "path": 8,
+            "rrf": 11
+          },
+          "support_count": 3,
+          "supports": [
+            {
+              "child_address": "src/devtools/context/python_function_disclosure.py",
+              "child_content_identity": "90d28597f214ed9b3295314c10db46816948e9428bdb2350480ef9adeab381f5",
+              "child_dotted_name": "devtools.context.python_function_disclosure",
+              "child_interpretation_identity": "a9594970a3f80968d852eb8f0b58677b6a0c5f04ac2f7248316bf4a73269a753",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "489415858b3b849cf175b1fa01f18ade57f22dd906a6bca34f38aa1bba51f3b3",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "adf01c908fe316dee617ab5f6761c65d5b86b98711a3d0e7f3c3c37c16a92320",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_function_disclosure.py",
+              "snapshot_id": "23c603485e26dace4837d98fbb140fb2b48ed7fb96770ad1d659609433e7217b"
+            },
+            {
+              "child_address": "src/devtools/context/python_function_rendering.py",
+              "child_content_identity": "dfbf052836b915bae56edc3c56cfb9ad01c9a3173483b9ed8fbf0dc46851e990",
+              "child_dotted_name": "devtools.context.python_function_rendering",
+              "child_interpretation_identity": "7c19d9fe5b5f008ce8285daf6b86c94fa7b4de39c7c1ea44bb7d64d271c8fba4",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "489415858b3b849cf175b1fa01f18ade57f22dd906a6bca34f38aa1bba51f3b3",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "adf01c908fe316dee617ab5f6761c65d5b86b98711a3d0e7f3c3c37c16a92320",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_function_rendering.py",
+              "snapshot_id": "23c603485e26dace4837d98fbb140fb2b48ed7fb96770ad1d659609433e7217b"
+            },
+            {
+              "child_address": "src/devtools/context/python_function_materialization.py",
+              "child_content_identity": "7daab507d9d4b7e29c49fa3223ee3372eb32693e63a861bf47ea415d1944b1d4",
+              "child_dotted_name": "devtools.context.python_function_materialization",
+              "child_interpretation_identity": "8c5985ce751fbbbdafb65cddc2e65794b4add3e804199c7ac5047c79ca239c4f",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "489415858b3b849cf175b1fa01f18ade57f22dd906a6bca34f38aa1bba51f3b3",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "adf01c908fe316dee617ab5f6761c65d5b86b98711a3d0e7f3c3c37c16a92320",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_function_materialization.py",
+              "snapshot_id": "23c603485e26dace4837d98fbb140fb2b48ed7fb96770ad1d659609433e7217b"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/__init__.py",
+          "canonical_positive_rank": 48,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 48,
+            "canonical": 48,
+            "identifier": 61,
+            "path": 1,
+            "rrf": 13
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/context/test_python_function_rendering.py",
+              "child_content_identity": "1a4ddc9028bbb8352637fa4451a63edf6c66011eff5360aaf62abf40d778c144",
+              "child_dotted_name": "context.test_python_function_rendering",
+              "child_interpretation_identity": "6d66207601bbf097c72d94bb397d84c8c79e656f9ba5b794d61fb2dc82126a48",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/__init__.py",
+              "package_content_identity": "3572c092e02fdfe637dd358503b0f6d6f987a86cdc480a31e0a24757c4a6b3b7",
+              "package_dotted_name": "context",
+              "package_interpretation_identity": "06d71c48b843dd4c7a0dc27710814a360b4853b5484526d5f5082227de9de1d0",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/test_python_function_rendering.py",
+              "snapshot_id": "23c603485e26dace4837d98fbb140fb2b48ed7fb96770ad1d659609433e7217b"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-6156c70be14b",
+      "corpus_id": "55d5f45f608299c863326c363b6f9cf918040832bb4b79439e1187c08befffb5",
+      "information_need": {
+        "lexical_query": "Assemble Python function Context into model requests",
+        "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+      },
+      "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+      "relation_count": 221,
+      "seed_addresses": [
+        "src/devtools/context/python_function_disclosure.py",
+        "src/devtools/models/interaction/docs/overview.md",
+        "src/devtools/context/python_function_rendering.py",
+        "tests/context/test_python_function_rendering.py",
+        "src/devtools/context/python_function_materialization.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/python_function_disclosure.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_materialization.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/models/interaction/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "23c603485e26dace4837d98fbb140fb2b48ed7fb96770ad1d659609433e7217b"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 241,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 7,
+          "qualified_relations": 223,
+          "without_immediate_parent_name": 11
+        },
+        "resources_examined": 277
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/context/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": 3,
+            "path": null,
+            "rrf": 65
+          },
+          "support_count": 2,
+          "supports": [
+            {
+              "child_address": "src/devtools/context/python_declarations.py",
+              "child_content_identity": "0550908d1f8bf447f0fceb250ef1942a867042e75a8c8288c537591f0d822ba7",
+              "child_dotted_name": "devtools.context.python_declarations",
+              "child_interpretation_identity": "04c8524a2a549c4c0c7182eb60dbd3c539d4759bb709bf73ed0c66bfd1c45d2f",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "cd55d0784caf96ceafacaffbae74e139a49083d51d8dcde84fa6e27e9b53803f",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "e0a348c5dca89f796de96fbaebecfac2f7764a09a792dc83b9134d7f25c0c92d",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_declarations.py",
+              "snapshot_id": "07b16d999ca2459d7f541064ac91e2e3d799f9ac70e7e822ec656ed811d230ac"
+            },
+            {
+              "child_address": "src/devtools/context/python_function_rendering.py",
+              "child_content_identity": "dfbf052836b915bae56edc3c56cfb9ad01c9a3173483b9ed8fbf0dc46851e990",
+              "child_dotted_name": "devtools.context.python_function_rendering",
+              "child_interpretation_identity": "7c19d9fe5b5f008ce8285daf6b86c94fa7b4de39c7c1ea44bb7d64d271c8fba4",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "cd55d0784caf96ceafacaffbae74e139a49083d51d8dcde84fa6e27e9b53803f",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "e0a348c5dca89f796de96fbaebecfac2f7764a09a792dc83b9134d7f25c0c92d",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_function_rendering.py",
+              "snapshot_id": "07b16d999ca2459d7f541064ac91e2e3d799f9ac70e7e822ec656ed811d230ac"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": true,
+          "absent_existing_evidence_union": true,
+          "address": "tests/context/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": null,
+            "path": null,
+            "rrf": null
+          },
+          "support_count": 2,
+          "supports": [
+            {
+              "child_address": "tests/context/test_python_declarations.py",
+              "child_content_identity": "4e181b9027cc8547c2aaeeee23ec224e20085612238ec31ad9ab2acfb7fb2cf1",
+              "child_dotted_name": "context.test_python_declarations",
+              "child_interpretation_identity": "ecc2c6a9ac8172855734fc79af4becf9caad01f9cd59e0e8e2b6292912ad6d90",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/__init__.py",
+              "package_content_identity": "3572c092e02fdfe637dd358503b0f6d6f987a86cdc480a31e0a24757c4a6b3b7",
+              "package_dotted_name": "context",
+              "package_interpretation_identity": "06d71c48b843dd4c7a0dc27710814a360b4853b5484526d5f5082227de9de1d0",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/test_python_declarations.py",
+              "snapshot_id": "07b16d999ca2459d7f541064ac91e2e3d799f9ac70e7e822ec656ed811d230ac"
+            },
+            {
+              "child_address": "tests/context/test_python_function_disclosure.py",
+              "child_content_identity": "62692b1f96a8f41ab9f2097070125b9211b0befd787465fc56aa8a06459e2610",
+              "child_dotted_name": "context.test_python_function_disclosure",
+              "child_interpretation_identity": "f1c00f3ef20885f163f6bfff88a0ffd105ebf8b1fd13943d5ba5cb17743e053b",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/__init__.py",
+              "package_content_identity": "3572c092e02fdfe637dd358503b0f6d6f987a86cdc480a31e0a24757c4a6b3b7",
+              "package_dotted_name": "context",
+              "package_interpretation_identity": "06d71c48b843dd4c7a0dc27710814a360b4853b5484526d5f5082227de9de1d0",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/test_python_function_disclosure.py",
+              "snapshot_id": "07b16d999ca2459d7f541064ac91e2e3d799f9ac70e7e822ec656ed811d230ac"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-2a4f058d5262",
+      "corpus_id": "7d17c7fc640c48b47003de65153d8008e74cc65e0a815072f8c1f373ca26869e",
+      "information_need": {
+        "lexical_query": "Implement explicit-resource Python declaration derivation",
+        "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+      },
+      "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+      "relation_count": 223,
+      "seed_addresses": [
+        "src/devtools/context/python_declarations.py",
+        "tests/context/test_python_declarations.py",
+        "src/devtools/tools/docs/overview.md",
+        "src/devtools/context/python_function_rendering.py",
+        "tests/context/test_python_function_disclosure.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/python_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/tools/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_disclosure.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "07b16d999ca2459d7f541064ac91e2e3d799f9ac70e7e822ec656ed811d230ac"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 259,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 7,
+          "qualified_relations": 241,
+          "without_immediate_parent_name": 11
+        },
+        "resources_examined": 295
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/context/repository/__init__.py",
+          "canonical_positive_rank": 14,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 15,
+            "canonical": 14,
+            "identifier": 17,
+            "path": 8,
+            "rrf": 5
+          },
+          "support_count": 2,
+          "supports": [
+            {
+              "child_address": "src/devtools/context/repository/observation.py",
+              "child_content_identity": "d310c92cb22c4e9fb12613938051e100549d115a4ffeaa090104b4a22a21ab2c",
+              "child_dotted_name": "devtools.context.repository.observation",
+              "child_interpretation_identity": "a965d22bb535d718293051a129e943d5087cb7af3a91be48e0c7c47b4d0d1fb0",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/repository/__init__.py",
+              "package_content_identity": "601efad127a715a859e1eb376e5ed90771299efea58ecfb32a3f2c0ffe078b75",
+              "package_dotted_name": "devtools.context.repository",
+              "package_interpretation_identity": "2625b76ed675b7f00f43319575f78dc904823b392f9c6c4992d7ff8618dc455a",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/repository/observation.py",
+              "snapshot_id": "d552b087d0f078df67515cbe275b5755088a55a67b496e06eb76dcea75ed3e49"
+            },
+            {
+              "child_address": "src/devtools/context/repository/snapshot.py",
+              "child_content_identity": "492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098",
+              "child_dotted_name": "devtools.context.repository.snapshot",
+              "child_interpretation_identity": "29feeb8df746f1a6af15672e6bcdf9093b1b92a9a3eb394a100b8e935988d6bb",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/repository/__init__.py",
+              "package_content_identity": "601efad127a715a859e1eb376e5ed90771299efea58ecfb32a3f2c0ffe078b75",
+              "package_dotted_name": "devtools.context.repository",
+              "package_interpretation_identity": "2625b76ed675b7f00f43319575f78dc904823b392f9c6c4992d7ff8618dc455a",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/repository/snapshot.py",
+              "snapshot_id": "d552b087d0f078df67515cbe275b5755088a55a67b496e06eb76dcea75ed3e49"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/repository/__init__.py",
+          "canonical_positive_rank": 65,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 65,
+            "canonical": 65,
+            "identifier": 79,
+            "path": 5,
+            "rrf": 14
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/context/repository/test_discovery.py",
+              "child_content_identity": "3b469db4a85e07044acbc54b9d70fe7271f103620c45e20dca9db9029e28be54",
+              "child_dotted_name": "context.repository.test_discovery",
+              "child_interpretation_identity": "69bcb173831ced9de0b39bb2a38c24bb7ac68f87423426eb4f144c3886ba8328",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/repository/__init__.py",
+              "package_content_identity": "a4ddb695661c9f434550d390ce57e64c963c257b60c158db9fe481753701b0af",
+              "package_dotted_name": "context.repository",
+              "package_interpretation_identity": "ac0ba8a3bd9870b199266f65ea60e34ca154adefd7d7ec985d2bfca224ada68e",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/repository/test_discovery.py",
+              "snapshot_id": "d552b087d0f078df67515cbe275b5755088a55a67b496e06eb76dcea75ed3e49"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-5fdf5fe05527",
+      "corpus_id": "8b57d96ee6968914d413744189db99fb0a79a44f18df25eb4c2689c5671ef723",
+      "information_need": {
+        "lexical_query": "Implement bounded repository text observation",
+        "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+      },
+      "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+      "relation_count": 241,
+      "seed_addresses": [
+        "src/devtools/tools/docs/overview.md",
+        "src/devtools/context/repository/observation.py",
+        "tests/context/repository/test_discovery.py",
+        "src/devtools/resources/commands/docs/overview.md",
+        "src/devtools/context/repository/snapshot.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/context/repository/observation.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/repository/snapshot.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/commands/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/tools/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/context/repository/test_discovery.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "d552b087d0f078df67515cbe275b5755088a55a67b496e06eb76dcea75ed3e49"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 215,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 6,
+          "qualified_relations": 199,
+          "without_immediate_parent_name": 10
+        },
+        "resources_examined": 251
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": true,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/core/time/models/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": null,
+            "path": null,
+            "rrf": null
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "src/devtools/core/time/models/stopwatch.py",
+              "child_content_identity": "5306df1e288b79df32e8f607cb151d008213a5fd53fc2eaadba05c5c08c94476",
+              "child_dotted_name": "devtools.core.time.models.stopwatch",
+              "child_interpretation_identity": "4abdfb3980623568b95a1345e05e4d128c5739162039f1b64df90b9a0c8c1119",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/core/time/models/__init__.py",
+              "package_content_identity": "40bb7631e333049efe4b92be0d47fe65422074a9691e2197948a88217ce1b799",
+              "package_dotted_name": "devtools.core.time.models",
+              "package_interpretation_identity": "92b51900f9675e902064ab7383501bb1b9506b649cf92a150fa44bd1e4f9e8f3",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/core/time/models/stopwatch.py",
+              "snapshot_id": "e25dce0002fd0c2f3a4d2171e59ffd1aae20ed5708ea7cd7ced9984f42cacfc4"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/models/benchmarks/__init__.py",
+          "canonical_positive_rank": 37,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 37,
+            "canonical": 37,
+            "identifier": 54,
+            "path": null,
+            "rrf": 47
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "src/devtools/models/benchmarks/runner.py",
+              "child_content_identity": "f3d508c393972700e34e285252dcfba5a154d358d01fa42e12fae283d7d6a35c",
+              "child_dotted_name": "devtools.models.benchmarks.runner",
+              "child_interpretation_identity": "8e81f8130cde850262dc3ed7ad09fbf4e9da3a1cbc47695f80485a144e9583c9",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/models/benchmarks/__init__.py",
+              "package_content_identity": "7e1196c8fc0c352fb65a5cb3d784ef1e7fb3c3acbfa57bdde17e0e77b4f736de",
+              "package_dotted_name": "devtools.models.benchmarks",
+              "package_interpretation_identity": "e4c7e77403dfb8a24d985665b00753eef922c0da31d8193785c3aed5fd0d8efc",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/models/benchmarks/runner.py",
+              "snapshot_id": "e25dce0002fd0c2f3a4d2171e59ffd1aae20ed5708ea7cd7ced9984f42cacfc4"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-9009cc143957",
+      "corpus_id": "b5434e8ab1b11274518d6008615fcc447c2002f8759b11a00fc9492bac3e7b43",
+      "information_need": {
+        "lexical_query": "Implement model usage measurement",
+        "purpose": "Address the historical maintenance task: Implement model usage measurement"
+      },
+      "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+      "relation_count": 199,
+      "seed_addresses": [
+        "src/devtools/models/benchmarks/docs/overview.md",
+        "src/devtools/core/time/docs/overview.md",
+        "src/devtools/core/time/models/stopwatch.py",
+        "src/devtools/models/benchmarks/runner.py",
+        "src/devtools/core/time/docs/timing.md"
+      ],
+      "seed_fanout": {
+        "src/devtools/core/time/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/core/time/docs/timing.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/core/time/models/stopwatch.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/models/benchmarks/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/models/benchmarks/runner.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "e25dce0002fd0c2f3a4d2171e59ffd1aae20ed5708ea7cd7ced9984f42cacfc4"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 289,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 8,
+          "qualified_relations": 270,
+          "without_immediate_parent_name": 11
+        },
+        "resources_examined": 325
+      },
+      "candidate_count": 3,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/python/__init__.py",
+          "canonical_positive_rank": 74,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 74,
+            "canonical": 74,
+            "identifier": 85,
+            "path": 1,
+            "rrf": 22
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/context/python/test_source_candidacy.py",
+              "child_content_identity": "5b03f561a6f3b381907c8f953b4908ca59a9b7219f3c6c1b2fbde0ad02d26a6a",
+              "child_dotted_name": "context.python.test_source_candidacy",
+              "child_interpretation_identity": "d19fd8edc6bde392c17e364b918f4469341cfeee712754c29b89ac9aaf76ae7a",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/python/__init__.py",
+              "package_content_identity": "2e25d9a33df0dd911114ef812a22f7a16a3a4418014d70b982c75def2b9177fd",
+              "package_dotted_name": "context.python",
+              "package_interpretation_identity": "7745d872f7e2d35b07fb33de4fd0ccdd786195d66b33e3e7cbb7a92968db9e88",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/python/test_source_candidacy.py",
+              "snapshot_id": "cb022f3b4ada7c325040de2560b2b371de698d7ba2a2b1189f8de459d0e3d30b"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "tests/context/python/imports/__init__.py",
+          "canonical_positive_rank": 76,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": 76,
+            "canonical": 76,
+            "identifier": 88,
+            "path": 16,
+            "rrf": 30
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/context/python/imports/test_declarations.py",
+              "child_content_identity": "a10f487e0b5593f434e70281175a0f9da22fbd0a2cd4129e1b1281597678d441",
+              "child_dotted_name": "context.python.imports.test_declarations",
+              "child_interpretation_identity": "e9133667f168bd0150e2f70bb6f0c6c89677f33c964a7233f6eddbf15e5213c9",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/python/imports/__init__.py",
+              "package_content_identity": "524f373dd9ab8a0bf1560bfd54556137cdbfe3512d114a992941fd06791189f4",
+              "package_dotted_name": "context.python.imports",
+              "package_interpretation_identity": "96ee99f3b8249dc31f18a6aa088bf84342837144d958184b284776042db14901",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/python/imports/test_declarations.py",
+              "snapshot_id": "cb022f3b4ada7c325040de2560b2b371de698d7ba2a2b1189f8de459d0e3d30b"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": true,
+          "absent_existing_evidence_union": true,
+          "address": "tests/context/repository/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": null,
+            "path": null,
+            "rrf": null
+          },
+          "support_count": 1,
+          "supports": [
+            {
+              "child_address": "tests/context/repository/test_discovery.py",
+              "child_content_identity": "504d86f0d3f8395f67d20431c527a5836663688feb0b96fa3f1a45cc10aeee68",
+              "child_dotted_name": "context.repository.test_discovery",
+              "child_interpretation_identity": "bef706b04a4e8bf702ae4f238611ff1d406fc20a86203d91fe625fb17ad32dce",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/repository/__init__.py",
+              "package_content_identity": "a4ddb695661c9f434550d390ce57e64c963c257b60c158db9fe481753701b0af",
+              "package_dotted_name": "context.repository",
+              "package_interpretation_identity": "ac0ba8a3bd9870b199266f65ea60e34ca154adefd7d7ec985d2bfca224ada68e",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/repository/test_discovery.py",
+              "snapshot_id": "cb022f3b4ada7c325040de2560b2b371de698d7ba2a2b1189f8de459d0e3d30b"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-4ce485f737e4",
+      "corpus_id": "a374d531c052ee504ef954c5f89bfde33ca0cb026e131c72441c9b07ba05504d",
+      "information_need": {
+        "lexical_query": "Implement explicit-root Python module interpretation",
+        "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+      },
+      "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+      "relation_count": 270,
+      "seed_addresses": [
+        "src/devtools/core/paths/docs/resolution.md",
+        "tests/context/python/imports/test_declarations.py",
+        "tests/context/python/test_source_candidacy.py",
+        "src/devtools/core/identity/docs/overview.md",
+        "tests/context/repository/test_discovery.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/core/identity/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/core/paths/docs/resolution.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/context/python/imports/test_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/python/test_source_candidacy.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/repository/test_discovery.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "cb022f3b4ada7c325040de2560b2b371de698d7ba2a2b1189f8de459d0e3d30b"
+    },
+    {
+      "analysis_diagnostics": {
+        "interpretation_exclusions": {
+          "non-python-resource": 35,
+          "root-level-init": 1
+        },
+        "interpreted_resources": 234,
+        "relation_statuses": {
+          "missing_observed_immediate_package": 6,
+          "qualified_relations": 217,
+          "without_immediate_parent_name": 11
+        },
+        "resources_examined": 270
+      },
+      "candidate_count": 2,
+      "candidates": [
+        {
+          "absent_all_saved_positive_lexical": false,
+          "absent_existing_evidence_union": false,
+          "address": "src/devtools/context/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": true,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": 6,
+            "path": null,
+            "rrf": 71
+          },
+          "support_count": 2,
+          "supports": [
+            {
+              "child_address": "src/devtools/context/python_declarations.py",
+              "child_content_identity": "0550908d1f8bf447f0fceb250ef1942a867042e75a8c8288c537591f0d822ba7",
+              "child_dotted_name": "devtools.context.python_declarations",
+              "child_interpretation_identity": "04c8524a2a549c4c0c7182eb60dbd3c539d4759bb709bf73ed0c66bfd1c45d2f",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "4f5afa69c5decffa46c3709988ff61e44d5d96346d39fb1fc81b250e0059680a",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "95835001c9236fb1d5fa758bb5284b352aa34e8d262688008e2880a62338c67e",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_declarations.py",
+              "snapshot_id": "4251b67185c52d1fdc96421104d270632c9c0659d0a0aa25b21b3f56858f1082"
+            },
+            {
+              "child_address": "src/devtools/context/python_function_disclosure.py",
+              "child_content_identity": "90d28597f214ed9b3295314c10db46816948e9428bdb2350480ef9adeab381f5",
+              "child_dotted_name": "devtools.context.python_function_disclosure",
+              "child_interpretation_identity": "a9594970a3f80968d852eb8f0b58677b6a0c5f04ac2f7248316bf4a73269a753",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "src",
+              "package_address": "src/devtools/context/__init__.py",
+              "package_content_identity": "4f5afa69c5decffa46c3709988ff61e44d5d96346d39fb1fc81b250e0059680a",
+              "package_dotted_name": "devtools.context",
+              "package_interpretation_identity": "95835001c9236fb1d5fa758bb5284b352aa34e8d262688008e2880a62338c67e",
+              "package_kind": "package-module",
+              "seed_address": "src/devtools/context/python_function_disclosure.py",
+              "snapshot_id": "4251b67185c52d1fdc96421104d270632c9c0659d0a0aa25b21b3f56858f1082"
+            }
+          ]
+        },
+        {
+          "absent_all_saved_positive_lexical": true,
+          "absent_existing_evidence_union": true,
+          "address": "tests/context/__init__.py",
+          "canonical_positive_rank": null,
+          "canonical_top_five": false,
+          "directions": [
+            "child_to_package"
+          ],
+          "existing_import_candidate": false,
+          "existing_references_calls_candidate": false,
+          "saved_positive_method_ranks": {
+            "bm25_plus": null,
+            "canonical": null,
+            "identifier": null,
+            "path": null,
+            "rrf": null
+          },
+          "support_count": 2,
+          "supports": [
+            {
+              "child_address": "tests/context/test_python_declarations.py",
+              "child_content_identity": "4e181b9027cc8547c2aaeeee23ec224e20085612238ec31ad9ab2acfb7fb2cf1",
+              "child_dotted_name": "context.test_python_declarations",
+              "child_interpretation_identity": "ecc2c6a9ac8172855734fc79af4becf9caad01f9cd59e0e8e2b6292912ad6d90",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/__init__.py",
+              "package_content_identity": "3572c092e02fdfe637dd358503b0f6d6f987a86cdc480a31e0a24757c4a6b3b7",
+              "package_dotted_name": "context",
+              "package_interpretation_identity": "06d71c48b843dd4c7a0dc27710814a360b4853b5484526d5f5082227de9de1d0",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/test_python_declarations.py",
+              "snapshot_id": "4251b67185c52d1fdc96421104d270632c9c0659d0a0aa25b21b3f56858f1082"
+            },
+            {
+              "child_address": "tests/context/test_python_function_retrieval.py",
+              "child_content_identity": "54ca85a87aaab2821b2cebe2c74f7a3e5fd6022794e3c5676f8b95e1bddf60ac",
+              "child_dotted_name": "context.test_python_function_retrieval",
+              "child_interpretation_identity": "41f324c9e6bcea0252d07819e21f8c77bf6969d6ae62d2dd0e5045f7227d696b",
+              "child_kind": "ordinary-module",
+              "direction": "child_to_package",
+              "module_root": "tests",
+              "package_address": "tests/context/__init__.py",
+              "package_content_identity": "3572c092e02fdfe637dd358503b0f6d6f987a86cdc480a31e0a24757c4a6b3b7",
+              "package_dotted_name": "context",
+              "package_interpretation_identity": "06d71c48b843dd4c7a0dc27710814a360b4853b5484526d5f5082227de9de1d0",
+              "package_kind": "package-module",
+              "seed_address": "tests/context/test_python_function_retrieval.py",
+              "snapshot_id": "4251b67185c52d1fdc96421104d270632c9c0659d0a0aa25b21b3f56858f1082"
+            }
+          ]
+        }
+      ],
+      "case_id": "i25-5bdc70483eed",
+      "corpus_id": "1d754c2be37e65f91ce39f2cb710bd366a4eeb4a2ccbe909bee49b35ece965b2",
+      "information_need": {
+        "lexical_query": "Implement Python function source materialization",
+        "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+      },
+      "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+      "relation_count": 217,
+      "seed_addresses": [
+        "src/devtools/context/python_declarations.py",
+        "src/devtools/agents/conversation/docs/overview.md",
+        "src/devtools/context/python_function_disclosure.py",
+        "tests/context/test_python_declarations.py",
+        "tests/context/test_python_function_retrieval.py"
+      ],
+      "seed_fanout": {
+        "src/devtools/agents/conversation/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_disclosure.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_retrieval.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "snapshot_id": "4251b67185c52d1fdc96421104d270632c9c0659d0a0aa25b21b3f56858f1082"
+    }
+  ],
+  "content_identity": "019c3a6e0a718b0f025a332bdef7d9c7b6f5d40baa453fc9544100572b6ac612",
+  "freeze_identity": "c2a9fa9e7fc89da68975752ff229d1b35e2da2865ff14e7aa46304dba4395b0b",
+  "heldout_executed": false,
+  "judgments_loaded": false,
+  "schema": "devtools-i30-package-containment-candidates-v1",
+  "summary": {
+    "candidate_pairs": 49,
+    "case_fanout": {
+      "i25-0f7a13667ef3": 3,
+      "i25-2a4f058d5262": 2,
+      "i25-4ce485f737e4": 3,
+      "i25-5bdc70483eed": 2,
+      "i25-5fdf5fe05527": 2,
+      "i25-6156c70be14b": 2,
+      "i25-66ed2049de72": 1,
+      "i25-6b0e9c52fb26": 2,
+      "i25-6f304a8c737c": 3,
+      "i25-739c82bd3398": 2,
+      "i25-842e90e63f37": 2,
+      "i25-858bfa85787e": 2,
+      "i25-85cfd9ff68a0": 2,
+      "i25-8994c4e58644": 1,
+      "i25-9009cc143957": 2,
+      "i25-901246bd802a": 1,
+      "i25-9efe3dc31e80": 3,
+      "i25-ab24906f07ed": 2,
+      "i25-ac797431db35": 2,
+      "i25-b5280a3c38ca": 2,
+      "i25-bb9f807bcd61": 2,
+      "i25-c0fabcb195e2": 0,
+      "i25-d9e58cd09390": 2,
+      "i25-eadb6f231f57": 4
+    },
+    "cases_with_additions": 23,
+    "cases_with_relations": 24,
+    "counts": {
+      "absent_all_saved_positive_lexical": 15,
+      "absent_existing_evidence_union": 12,
+      "absent_import_candidates": 29,
+      "absent_references_calls_candidates": 49,
+      "canonical_rank_gt_five": 28,
+      "child_to_package_pairs": 49,
+      "no_positive_canonical_rank": 21
+    },
+    "development_cases": 24,
+    "distinct_candidate_addresses": 26,
+    "interpretation_exclusions": {
+      "non-python-resource": 833,
+      "root-level-init": 24
+    },
+    "interpreted_resources": 5432,
+    "max_case_fanout": 4,
+    "max_seed_fanout": 1,
+    "qualified_relations": 5031,
+    "relation_statuses": {
+      "missing_observed_immediate_package": 140,
+      "qualified_relations": 5031,
+      "without_immediate_parent_name": 261
+    },
+    "resources_examined": 6289,
+    "retained_supports": 73,
+    "seed_fanout": {
+      "i25-0f7a13667ef3": {
+        "src/devtools/evidence/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/evidence/terminal.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/persistence/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/runtime/runtime.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/evidence/test_terminal.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-2a4f058d5262": {
+        "src/devtools/context/python_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/tools/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_disclosure.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-4ce485f737e4": {
+        "src/devtools/core/identity/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/core/paths/docs/resolution.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/context/python/imports/test_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/python/test_source_candidacy.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/repository/test_discovery.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-5bdc70483eed": {
+        "src/devtools/agents/conversation/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_disclosure.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_retrieval.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-5fdf5fe05527": {
+        "src/devtools/context/repository/observation.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/repository/snapshot.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/commands/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/tools/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/context/repository/test_discovery.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-6156c70be14b": {
+        "src/devtools/context/python_function_disclosure.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_materialization.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/models/interaction/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-66ed2049de72": {
+        "src/devtools/core/identity/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/core/paths/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/core/paths/docs/resolution.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/core/time/docs/timestamps.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/observability/evidence/test_model_interaction.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-6b0e9c52fb26": {
+        "src/devtools/models/serving/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/commands/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/tools/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/models/benchmarks/test_models.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/models/serving/test_huggingface.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-6f304a8c737c": {
+        "src/devtools/models/interaction/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/models/interaction/models.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/models/interaction/protocols.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/models/interaction/providers/test_llama_cpp.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/models/interaction/test_models.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-739c82bd3398": {
+        "src/devtools/resources/filesystem/codecs/json.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/codecs/markdown.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/codecs/text.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/docs/json.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/models/interaction/test_protocols.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-842e90e63f37": {
+        "src/devtools/context/__init__.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/experiments/qwen/test_patch_proposal_worker.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/scripts/qwen/test_two_action_read_only_acceptance.py": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/scripts/qwen/test_two_read_acceptance.py": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        }
+      },
+      "i25-858bfa85787e": {
+        "src/devtools/context/repository/resource.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/repository/snapshot.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/core/time/docs/timestamps.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/tools/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/resources/filesystem/codecs/test_markdown.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-85cfd9ff68a0": {
+        "src/devtools/context/python_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_materialization.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_materialization.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-8994c4e58644": {
+        "src/devtools/agents/integrations/codex/docs/cli.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/docs/codecs.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/docs/roadmap.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/agents/conversation/message/test_message.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-9009cc143957": {
+        "src/devtools/core/time/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/core/time/docs/timing.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/core/time/models/stopwatch.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/models/benchmarks/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/models/benchmarks/runner.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-901246bd802a": {
+        "src/devtools/models/serving/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/experiments/qwen/test_patch_proposal_worker.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/experiments/qwen/test_two_action_read_only_experiment.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/scripts/qwen/test_llama_cpp_profile.py": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/scripts/qwen/test_two_action_read_only_acceptance.py": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        }
+      },
+      "i25-9efe3dc31e80": {
+        "src/devtools/models/interaction/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/models/interaction/response.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/commands/models/output.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/docs/roadmap.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/models/interaction/test_protocols.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-ab24906f07ed": {
+        "src/devtools/context/python_function_candidates.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/repository.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/docs/roadmap.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/tools/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/context/test_repository.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-ac797431db35": {
+        "src/devtools/context/python_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/tools/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-b5280a3c38ca": {
+        "src/devtools/context/python_function_disclosure.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_request_assembly.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        }
+      },
+      "i25-bb9f807bcd61": {
+        "src/devtools/context/python_declarations.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_disclosure.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/context/python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_disclosure.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/context/test_python_function_rendering.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-c0fabcb195e2": {
+        "src/devtools/agents/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/context/docs/history.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/persistence/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/persistence/docs/sqlite.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/runtime/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        }
+      },
+      "i25-d9e58cd09390": {
+        "src/devtools/models/interaction/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/resources/filesystem/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/tools/docs/overview.md": {
+          "child_to_package": 0,
+          "package_to_child": 0
+        },
+        "src/devtools/tools/execution.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/tools/test_runtime_integration.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      },
+      "i25-eadb6f231f57": {
+        "src/devtools/models/interaction/protocols.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "src/devtools/models/interaction/response.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/execution/test_runtime.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/models/interaction/providers/test_llama_cpp.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        },
+        "tests/models/interaction/test_models.py": {
+          "child_to_package": 1,
+          "package_to_child": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,2410 @@
+{
+  "content_identity": "cd071c0206a0dcfabbb95bbc6815443c30adfc6f04fbc65971f4330015bb83b3",
+  "payload": {
+    "candidate_mechanics_changed": false,
+    "confirmation_executed": false,
+    "cost_summary": {
+      "candidate_pairs": 49,
+      "case_fanout": {
+        "i25-0f7a13667ef3": 3,
+        "i25-2a4f058d5262": 2,
+        "i25-4ce485f737e4": 3,
+        "i25-5bdc70483eed": 2,
+        "i25-5fdf5fe05527": 2,
+        "i25-6156c70be14b": 2,
+        "i25-66ed2049de72": 1,
+        "i25-6b0e9c52fb26": 2,
+        "i25-6f304a8c737c": 3,
+        "i25-739c82bd3398": 2,
+        "i25-842e90e63f37": 2,
+        "i25-858bfa85787e": 2,
+        "i25-85cfd9ff68a0": 2,
+        "i25-8994c4e58644": 1,
+        "i25-9009cc143957": 2,
+        "i25-901246bd802a": 1,
+        "i25-9efe3dc31e80": 3,
+        "i25-ab24906f07ed": 2,
+        "i25-ac797431db35": 2,
+        "i25-b5280a3c38ca": 2,
+        "i25-bb9f807bcd61": 2,
+        "i25-c0fabcb195e2": 0,
+        "i25-d9e58cd09390": 2,
+        "i25-eadb6f231f57": 4
+      },
+      "cases_with_additions": 23,
+      "cases_with_relations": 24,
+      "counts": {
+        "absent_all_saved_positive_lexical": 15,
+        "absent_existing_evidence_union": 12,
+        "absent_import_candidates": 29,
+        "absent_references_calls_candidates": 49,
+        "canonical_rank_gt_five": 28,
+        "child_to_package_pairs": 49,
+        "no_positive_canonical_rank": 21
+      },
+      "development_cases": 24,
+      "distinct_candidate_addresses": 26,
+      "interpretation_exclusions": {
+        "non-python-resource": 833,
+        "root-level-init": 24
+      },
+      "interpreted_resources": 5432,
+      "max_case_fanout": 4,
+      "max_seed_fanout": 1,
+      "qualified_relations": 5031,
+      "relation_statuses": {
+        "missing_observed_immediate_package": 140,
+        "qualified_relations": 5031,
+        "without_immediate_parent_name": 261
+      },
+      "resources_examined": 6289,
+      "retained_supports": 73,
+      "seed_fanout": {
+        "i25-0f7a13667ef3": {
+          "src/devtools/evidence/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/evidence/terminal.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/persistence/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/runtime/runtime.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/evidence/test_terminal.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-2a4f058d5262": {
+          "src/devtools/context/python_declarations.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/context/python_function_rendering.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/tools/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "tests/context/test_python_declarations.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/context/test_python_function_disclosure.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-4ce485f737e4": {
+          "src/devtools/core/identity/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/core/paths/docs/resolution.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "tests/context/python/imports/test_declarations.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/context/python/test_source_candidacy.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/context/repository/test_discovery.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-5bdc70483eed": {
+          "src/devtools/agents/conversation/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/context/python_declarations.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/context/python_function_disclosure.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/context/test_python_declarations.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/context/test_python_function_retrieval.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-5fdf5fe05527": {
+          "src/devtools/context/repository/observation.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/context/repository/snapshot.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/resources/commands/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/tools/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "tests/context/repository/test_discovery.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-6156c70be14b": {
+          "src/devtools/context/python_function_disclosure.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/context/python_function_materialization.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/context/python_function_rendering.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/models/interaction/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "tests/context/test_python_function_rendering.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-66ed2049de72": {
+          "src/devtools/core/identity/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/core/paths/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/core/paths/docs/resolution.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/core/time/docs/timestamps.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "tests/observability/evidence/test_model_interaction.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-6b0e9c52fb26": {
+          "src/devtools/models/serving/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/resources/commands/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/tools/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "tests/models/benchmarks/test_models.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/models/serving/test_huggingface.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-6f304a8c737c": {
+          "src/devtools/models/interaction/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/models/interaction/models.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/models/interaction/protocols.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/models/interaction/providers/test_llama_cpp.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/models/interaction/test_models.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-739c82bd3398": {
+          "src/devtools/resources/filesystem/codecs/json.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/resources/filesystem/codecs/markdown.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/resources/filesystem/codecs/text.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/resources/filesystem/docs/json.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "tests/models/interaction/test_protocols.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-842e90e63f37": {
+          "src/devtools/context/__init__.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/experiments/qwen/test_patch_proposal_worker.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "tests/scripts/qwen/test_two_action_read_only_acceptance.py": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "tests/scripts/qwen/test_two_read_acceptance.py": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          }
+        },
+        "i25-858bfa85787e": {
+          "src/devtools/context/repository/resource.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/context/repository/snapshot.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/core/time/docs/timestamps.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/tools/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "tests/resources/filesystem/codecs/test_markdown.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-85cfd9ff68a0": {
+          "src/devtools/context/python_declarations.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/context/python_function_materialization.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/context/python_function_rendering.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/context/test_python_function_materialization.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/context/test_python_function_rendering.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-8994c4e58644": {
+          "src/devtools/agents/integrations/codex/docs/cli.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/resources/filesystem/docs/codecs.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/resources/filesystem/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/resources/filesystem/docs/roadmap.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "tests/agents/conversation/message/test_message.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-9009cc143957": {
+          "src/devtools/core/time/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/core/time/docs/timing.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/core/time/models/stopwatch.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/models/benchmarks/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/models/benchmarks/runner.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-901246bd802a": {
+          "src/devtools/models/serving/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "tests/experiments/qwen/test_patch_proposal_worker.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/experiments/qwen/test_two_action_read_only_experiment.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/scripts/qwen/test_llama_cpp_profile.py": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "tests/scripts/qwen/test_two_action_read_only_acceptance.py": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          }
+        },
+        "i25-9efe3dc31e80": {
+          "src/devtools/models/interaction/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/models/interaction/response.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/resources/commands/models/output.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/resources/filesystem/docs/roadmap.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "tests/models/interaction/test_protocols.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-ab24906f07ed": {
+          "src/devtools/context/python_function_candidates.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/context/repository.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/resources/filesystem/docs/roadmap.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/tools/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "tests/context/test_repository.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-ac797431db35": {
+          "src/devtools/context/python_declarations.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/context/python_function_rendering.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/tools/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "tests/context/test_python_declarations.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/context/test_python_function_rendering.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-b5280a3c38ca": {
+          "src/devtools/context/python_function_disclosure.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/context/python_function_rendering.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/context/python_function_request_assembly.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/context/test_python_function_rendering.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          }
+        },
+        "i25-bb9f807bcd61": {
+          "src/devtools/context/python_declarations.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/context/python_function_disclosure.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/context/python_function_rendering.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/context/test_python_function_disclosure.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/context/test_python_function_rendering.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-c0fabcb195e2": {
+          "src/devtools/agents/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/context/docs/history.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/persistence/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/persistence/docs/sqlite.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/runtime/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          }
+        },
+        "i25-d9e58cd09390": {
+          "src/devtools/models/interaction/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/resources/filesystem/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/tools/docs/overview.md": {
+            "child_to_package": 0,
+            "package_to_child": 0
+          },
+          "src/devtools/tools/execution.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/tools/test_runtime_integration.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        },
+        "i25-eadb6f231f57": {
+          "src/devtools/models/interaction/protocols.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "src/devtools/models/interaction/response.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/execution/test_runtime.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/models/interaction/providers/test_llama_cpp.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          },
+          "tests/models/interaction/test_models.py": {
+            "child_to_package": 1,
+            "package_to_child": 0
+          }
+        }
+      }
+    },
+    "development_case_ids": [
+      "i25-66ed2049de72",
+      "i25-858bfa85787e",
+      "i25-6f304a8c737c",
+      "i25-bb9f807bcd61",
+      "i25-0f7a13667ef3",
+      "i25-739c82bd3398",
+      "i25-9efe3dc31e80",
+      "i25-6b0e9c52fb26",
+      "i25-901246bd802a",
+      "i25-ab24906f07ed",
+      "i25-ac797431db35",
+      "i25-842e90e63f37",
+      "i25-eadb6f231f57",
+      "i25-8994c4e58644",
+      "i25-c0fabcb195e2",
+      "i25-d9e58cd09390",
+      "i25-b5280a3c38ca",
+      "i25-85cfd9ff68a0",
+      "i25-6156c70be14b",
+      "i25-2a4f058d5262",
+      "i25-5fdf5fe05527",
+      "i25-9009cc143957",
+      "i25-4ce485f737e4",
+      "i25-5bdc70483eed"
+    ],
+    "heldout_case_ids_sealed": [
+      "i25-514fdb223b40",
+      "i25-64cd17d51701",
+      "i25-5b75000b60f7",
+      "i25-f61e24db3528",
+      "i25-004d3829a475",
+      "i25-e0a344227af1",
+      "i25-add3c3ed5195",
+      "i25-4ba894f29abf",
+      "i25-7594b8450649",
+      "i25-e142585a95da",
+      "i25-5c5bdf4212ac",
+      "i25-d58c0504b671",
+      "i25-e976f7f20898",
+      "i25-ca9963afa999"
+    ],
+    "joined_pairs": [
+      {
+        "absent_all_saved_positive_lexical": true,
+        "absent_existing_evidence_union": true,
+        "address": "tests/observability/evidence/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-66ed2049de72",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": null,
+          "path": null,
+          "rrf": null
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/context/repository/__init__.py",
+        "canonical_positive_rank": 51,
+        "case_id": "i25-858bfa85787e",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-26-development",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 54,
+          "canonical": 51,
+          "identifier": 17,
+          "path": 7,
+          "rrf": 9
+        },
+        "support_count": 2,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "tests/resources/filesystem/codecs/__init__.py",
+        "canonical_positive_rank": 71,
+        "case_id": "i25-858bfa85787e",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 71,
+          "canonical": 71,
+          "identifier": 82,
+          "path": null,
+          "rrf": 76
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/models/interaction/__init__.py",
+        "canonical_positive_rank": 8,
+        "case_id": "i25-6f304a8c737c",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-comparison",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 8,
+          "canonical": 8,
+          "identifier": 7,
+          "path": null,
+          "rrf": 9
+        },
+        "support_count": 2,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "tests/models/interaction/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-6f304a8c737c",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-26-development",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": 38,
+          "path": null,
+          "rrf": 50
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "tests/models/interaction/providers/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-6f304a8c737c",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 ModelInteraction request boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 ModelInteraction request boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": 39,
+          "path": null,
+          "rrf": 51
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/context/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-bb9f807bcd61",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-comparison",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": 8,
+          "path": null,
+          "rrf": 79
+        },
+        "support_count": 3,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": true,
+        "absent_existing_evidence_union": true,
+        "address": "tests/context/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-bb9f807bcd61",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": null,
+          "path": null,
+          "rrf": null
+        },
+        "support_count": 2,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/evidence/__init__.py",
+        "canonical_positive_rank": 6,
+        "case_id": "i25-0f7a13667ef3",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-26-development",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 6,
+          "canonical": 6,
+          "identifier": 5,
+          "path": 12,
+          "rrf": 5
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/runtime/__init__.py",
+        "canonical_positive_rank": 19,
+        "case_id": "i25-0f7a13667ef3",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-comparison",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 19,
+          "canonical": 19,
+          "identifier": 20,
+          "path": 6,
+          "rrf": 13
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "tests/evidence/__init__.py",
+        "canonical_positive_rank": 18,
+        "case_id": "i25-0f7a13667ef3",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-26-development",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 18,
+          "canonical": 18,
+          "identifier": 18,
+          "path": 7,
+          "rrf": 12
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": true,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/resources/filesystem/codecs/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-739c82bd3398",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-comparison",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": null,
+          "path": null,
+          "rrf": null
+        },
+        "support_count": 3,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "tests/models/interaction/__init__.py",
+        "canonical_positive_rank": 70,
+        "case_id": "i25-739c82bd3398",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 70,
+          "canonical": 70,
+          "identifier": 84,
+          "path": null,
+          "rrf": 77
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/models/interaction/__init__.py",
+        "canonical_positive_rank": 13,
+        "case_id": "i25-9efe3dc31e80",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-top-five",
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 13,
+          "canonical": 13,
+          "identifier": 22,
+          "path": 5,
+          "rrf": 7
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/resources/commands/models/__init__.py",
+        "canonical_positive_rank": 49,
+        "case_id": "i25-9efe3dc31e80",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-comparison",
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 49,
+          "canonical": 49,
+          "identifier": 57,
+          "path": null,
+          "rrf": 51
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "tests/models/interaction/__init__.py",
+        "canonical_positive_rank": 20,
+        "case_id": "i25-9efe3dc31e80",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement model interaction output bound",
+          "purpose": "Address the historical maintenance task: Implement model interaction output bound"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-26-development",
+        "parent_snapshot_sha": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 20,
+          "canonical": 20,
+          "identifier": 35,
+          "path": 2,
+          "rrf": 9
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": true,
+        "absent_existing_evidence_union": true,
+        "address": "tests/models/benchmarks/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-6b0e9c52fb26",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": null,
+          "path": null,
+          "rrf": null
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": true,
+        "absent_existing_evidence_union": true,
+        "address": "tests/models/serving/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-6b0e9c52fb26",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": null,
+          "path": null,
+          "rrf": null
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": true,
+        "absent_existing_evidence_union": false,
+        "address": "tests/experiments/qwen/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-901246bd802a",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-comparison",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": null,
+          "path": null,
+          "rrf": null
+        },
+        "support_count": 2,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/context/__init__.py",
+        "canonical_positive_rank": 33,
+        "case_id": "i25-ab24906f07ed",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-comparison",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 33,
+          "canonical": 33,
+          "identifier": 17,
+          "path": null,
+          "rrf": 23
+        },
+        "support_count": 2,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "tests/context/__init__.py",
+        "canonical_positive_rank": 37,
+        "case_id": "i25-ab24906f07ed",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 37,
+          "canonical": 37,
+          "identifier": 42,
+          "path": null,
+          "rrf": 39
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/context/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-ac797431db35",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-top-five",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": 3,
+          "path": null,
+          "rrf": 47
+        },
+        "support_count": 2,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": true,
+        "absent_existing_evidence_union": true,
+        "address": "tests/context/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-ac797431db35",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": null,
+          "path": null,
+          "rrf": null
+        },
+        "support_count": 2,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": true,
+        "absent_existing_evidence_union": true,
+        "address": "src/devtools/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-842e90e63f37",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": null,
+          "path": null,
+          "rrf": null
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": true,
+        "absent_existing_evidence_union": true,
+        "address": "tests/experiments/qwen/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-842e90e63f37",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": null,
+          "path": null,
+          "rrf": null
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/models/interaction/__init__.py",
+        "canonical_positive_rank": 8,
+        "case_id": "i25-eadb6f231f57",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-top-five",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 8,
+          "canonical": 8,
+          "identifier": 5,
+          "path": 4,
+          "rrf": 4
+        },
+        "support_count": 2,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": true,
+        "absent_existing_evidence_union": true,
+        "address": "tests/execution/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-eadb6f231f57",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": null,
+          "path": null,
+          "rrf": null
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "tests/models/interaction/__init__.py",
+        "canonical_positive_rank": 13,
+        "case_id": "i25-eadb6f231f57",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-top-five",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 13,
+          "canonical": 13,
+          "identifier": 26,
+          "path": 1,
+          "rrf": 7
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "tests/models/interaction/providers/__init__.py",
+        "canonical_positive_rank": 14,
+        "case_id": "i25-eadb6f231f57",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 14,
+          "canonical": 14,
+          "identifier": 28,
+          "path": 11,
+          "rrf": 13
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": true,
+        "absent_existing_evidence_union": true,
+        "address": "tests/agents/conversation/message/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-8994c4e58644",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": null,
+          "path": null,
+          "rrf": null
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/tools/__init__.py",
+        "canonical_positive_rank": 12,
+        "case_id": "i25-d9e58cd09390",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-comparison",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 12,
+          "canonical": 12,
+          "identifier": 21,
+          "path": null,
+          "rrf": 13
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "tests/tools/__init__.py",
+        "canonical_positive_rank": 25,
+        "case_id": "i25-d9e58cd09390",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 25,
+          "canonical": 25,
+          "identifier": 37,
+          "path": null,
+          "rrf": 31
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/context/__init__.py",
+        "canonical_positive_rank": 28,
+        "case_id": "i25-b5280a3c38ca",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-comparison",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 28,
+          "canonical": 28,
+          "identifier": 8,
+          "path": 9,
+          "rrf": 13
+        },
+        "support_count": 3,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "tests/context/__init__.py",
+        "canonical_positive_rank": 34,
+        "case_id": "i25-b5280a3c38ca",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-top-five",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 34,
+          "canonical": 34,
+          "identifier": 45,
+          "path": 1,
+          "rrf": 15
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/context/__init__.py",
+        "canonical_positive_rank": 27,
+        "case_id": "i25-85cfd9ff68a0",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-top-five",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 27,
+          "canonical": 27,
+          "identifier": 3,
+          "path": 10,
+          "rrf": 13
+        },
+        "support_count": 3,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "tests/context/__init__.py",
+        "canonical_positive_rank": 34,
+        "case_id": "i25-85cfd9ff68a0",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-top-five",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 34,
+          "canonical": 34,
+          "identifier": 43,
+          "path": 1,
+          "rrf": 17
+        },
+        "support_count": 2,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/context/__init__.py",
+        "canonical_positive_rank": 36,
+        "case_id": "i25-6156c70be14b",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-comparison",
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 36,
+          "canonical": 36,
+          "identifier": 8,
+          "path": 8,
+          "rrf": 11
+        },
+        "support_count": 3,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "tests/context/__init__.py",
+        "canonical_positive_rank": 48,
+        "case_id": "i25-6156c70be14b",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-top-five",
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 48,
+          "canonical": 48,
+          "identifier": 61,
+          "path": 1,
+          "rrf": 13
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/context/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-2a4f058d5262",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-top-five",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": 3,
+          "path": null,
+          "rrf": 65
+        },
+        "support_count": 2,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": true,
+        "absent_existing_evidence_union": true,
+        "address": "tests/context/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-2a4f058d5262",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": null,
+          "path": null,
+          "rrf": null
+        },
+        "support_count": 2,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/context/repository/__init__.py",
+        "canonical_positive_rank": 14,
+        "case_id": "i25-5fdf5fe05527",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-top-five",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 15,
+          "canonical": 14,
+          "identifier": 17,
+          "path": 8,
+          "rrf": 5
+        },
+        "support_count": 2,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "tests/context/repository/__init__.py",
+        "canonical_positive_rank": 65,
+        "case_id": "i25-5fdf5fe05527",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-top-five",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 65,
+          "canonical": 65,
+          "identifier": 79,
+          "path": 5,
+          "rrf": 14
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": true,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/core/time/models/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-9009cc143957",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-comparison",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": null,
+          "path": null,
+          "rrf": null
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/models/benchmarks/__init__.py",
+        "canonical_positive_rank": 37,
+        "case_id": "i25-9009cc143957",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 37,
+          "canonical": 37,
+          "identifier": 54,
+          "path": null,
+          "rrf": 47
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "tests/context/python/__init__.py",
+        "canonical_positive_rank": 74,
+        "case_id": "i25-4ce485f737e4",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-top-five",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 74,
+          "canonical": 74,
+          "identifier": 85,
+          "path": 1,
+          "rrf": 22
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "tests/context/python/imports/__init__.py",
+        "canonical_positive_rank": 76,
+        "case_id": "i25-4ce485f737e4",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "saved_positive_method_ranks": {
+          "bm25_plus": 76,
+          "canonical": 76,
+          "identifier": 88,
+          "path": 16,
+          "rrf": 30
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": true,
+        "absent_existing_evidence_union": true,
+        "address": "tests/context/repository/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-4ce485f737e4",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": null,
+          "path": null,
+          "rrf": null
+        },
+        "support_count": 1,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": false,
+        "absent_existing_evidence_union": false,
+        "address": "src/devtools/context/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-5bdc70483eed",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": true,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-27-comparison",
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": 6,
+          "path": null,
+          "rrf": 71
+        },
+        "support_count": 2,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "absent_all_saved_positive_lexical": true,
+        "absent_existing_evidence_union": true,
+        "address": "tests/context/__init__.py",
+        "canonical_positive_rank": null,
+        "case_id": "i25-5bdc70483eed",
+        "directions": [
+          "child_to_package"
+        ],
+        "existing_import_candidate": false,
+        "existing_references_calls_candidate": false,
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "new-blinded",
+        "judgment_source": "package_containment_frozen_judgments.json",
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "saved_positive_method_ranks": {
+          "bm25_plus": null,
+          "canonical": null,
+          "identifier": null,
+          "path": null,
+          "rrf": null
+        },
+        "support_count": 2,
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      }
+    ],
+    "per_case": [
+      {
+        "NOT_USEFUL": 1,
+        "UNJUDGED": 0,
+        "USEFUL": 0,
+        "candidate_pairs": 1,
+        "case_id": "i25-66ed2049de72",
+        "judged_total": 1
+      },
+      {
+        "NOT_USEFUL": 1,
+        "UNJUDGED": 0,
+        "USEFUL": 1,
+        "candidate_pairs": 2,
+        "case_id": "i25-858bfa85787e",
+        "judged_total": 2
+      },
+      {
+        "NOT_USEFUL": 2,
+        "UNJUDGED": 0,
+        "USEFUL": 1,
+        "candidate_pairs": 3,
+        "case_id": "i25-6f304a8c737c",
+        "judged_total": 3
+      },
+      {
+        "NOT_USEFUL": 1,
+        "UNJUDGED": 0,
+        "USEFUL": 1,
+        "candidate_pairs": 2,
+        "case_id": "i25-bb9f807bcd61",
+        "judged_total": 2
+      },
+      {
+        "NOT_USEFUL": 1,
+        "UNJUDGED": 0,
+        "USEFUL": 2,
+        "candidate_pairs": 3,
+        "case_id": "i25-0f7a13667ef3",
+        "judged_total": 3
+      },
+      {
+        "NOT_USEFUL": 2,
+        "UNJUDGED": 0,
+        "USEFUL": 0,
+        "candidate_pairs": 2,
+        "case_id": "i25-739c82bd3398",
+        "judged_total": 2
+      },
+      {
+        "NOT_USEFUL": 2,
+        "UNJUDGED": 0,
+        "USEFUL": 1,
+        "candidate_pairs": 3,
+        "case_id": "i25-9efe3dc31e80",
+        "judged_total": 3
+      },
+      {
+        "NOT_USEFUL": 2,
+        "UNJUDGED": 0,
+        "USEFUL": 0,
+        "candidate_pairs": 2,
+        "case_id": "i25-6b0e9c52fb26",
+        "judged_total": 2
+      },
+      {
+        "NOT_USEFUL": 1,
+        "UNJUDGED": 0,
+        "USEFUL": 0,
+        "candidate_pairs": 1,
+        "case_id": "i25-901246bd802a",
+        "judged_total": 1
+      },
+      {
+        "NOT_USEFUL": 1,
+        "UNJUDGED": 0,
+        "USEFUL": 1,
+        "candidate_pairs": 2,
+        "case_id": "i25-ab24906f07ed",
+        "judged_total": 2
+      },
+      {
+        "NOT_USEFUL": 2,
+        "UNJUDGED": 0,
+        "USEFUL": 0,
+        "candidate_pairs": 2,
+        "case_id": "i25-ac797431db35",
+        "judged_total": 2
+      },
+      {
+        "NOT_USEFUL": 2,
+        "UNJUDGED": 0,
+        "USEFUL": 0,
+        "candidate_pairs": 2,
+        "case_id": "i25-842e90e63f37",
+        "judged_total": 2
+      },
+      {
+        "NOT_USEFUL": 3,
+        "UNJUDGED": 0,
+        "USEFUL": 1,
+        "candidate_pairs": 4,
+        "case_id": "i25-eadb6f231f57",
+        "judged_total": 4
+      },
+      {
+        "NOT_USEFUL": 1,
+        "UNJUDGED": 0,
+        "USEFUL": 0,
+        "candidate_pairs": 1,
+        "case_id": "i25-8994c4e58644",
+        "judged_total": 1
+      },
+      {
+        "NOT_USEFUL": 0,
+        "UNJUDGED": 0,
+        "USEFUL": 0,
+        "candidate_pairs": 0,
+        "case_id": "i25-c0fabcb195e2",
+        "judged_total": 0
+      },
+      {
+        "NOT_USEFUL": 1,
+        "UNJUDGED": 0,
+        "USEFUL": 1,
+        "candidate_pairs": 2,
+        "case_id": "i25-d9e58cd09390",
+        "judged_total": 2
+      },
+      {
+        "NOT_USEFUL": 1,
+        "UNJUDGED": 0,
+        "USEFUL": 1,
+        "candidate_pairs": 2,
+        "case_id": "i25-b5280a3c38ca",
+        "judged_total": 2
+      },
+      {
+        "NOT_USEFUL": 2,
+        "UNJUDGED": 0,
+        "USEFUL": 0,
+        "candidate_pairs": 2,
+        "case_id": "i25-85cfd9ff68a0",
+        "judged_total": 2
+      },
+      {
+        "NOT_USEFUL": 1,
+        "UNJUDGED": 0,
+        "USEFUL": 1,
+        "candidate_pairs": 2,
+        "case_id": "i25-6156c70be14b",
+        "judged_total": 2
+      },
+      {
+        "NOT_USEFUL": 2,
+        "UNJUDGED": 0,
+        "USEFUL": 0,
+        "candidate_pairs": 2,
+        "case_id": "i25-2a4f058d5262",
+        "judged_total": 2
+      },
+      {
+        "NOT_USEFUL": 1,
+        "UNJUDGED": 0,
+        "USEFUL": 1,
+        "candidate_pairs": 2,
+        "case_id": "i25-5fdf5fe05527",
+        "judged_total": 2
+      },
+      {
+        "NOT_USEFUL": 1,
+        "UNJUDGED": 0,
+        "USEFUL": 1,
+        "candidate_pairs": 2,
+        "case_id": "i25-9009cc143957",
+        "judged_total": 2
+      },
+      {
+        "NOT_USEFUL": 3,
+        "UNJUDGED": 0,
+        "USEFUL": 0,
+        "candidate_pairs": 3,
+        "case_id": "i25-4ce485f737e4",
+        "judged_total": 3
+      },
+      {
+        "NOT_USEFUL": 1,
+        "UNJUDGED": 0,
+        "USEFUL": 1,
+        "candidate_pairs": 2,
+        "case_id": "i25-5bdc70483eed",
+        "judged_total": 2
+      }
+    ],
+    "schema": "devtools-i30-package-containment-development-results-v1",
+    "source_content_identities": {
+      "package_containment_blinded_judgment_input.json": "58efd8c4c506a770eb7afed00df3214e4a239be25bd2d84210cd035e53b605f7",
+      "package_containment_candidates.json": "019c3a6e0a718b0f025a332bdef7d9c7b6f5d40baa453fc9544100572b6ac612",
+      "package_containment_freeze.json": "c2a9fa9e7fc89da68975752ff229d1b35e2da2865ff14e7aa46304dba4395b0b",
+      "package_containment_frozen_judgments.json": "6e51723f95df07c528f11fa8e78d731ae6fc550e1b9c572155c69ab2a80da1a8",
+      "package_containment_judgment_freeze.json": "21141340498b57be402d09598b58d77e427f2de3de245dd19714734f1d6f398d"
+    },
+    "source_sha256": {
+      "package_containment_blinded_judgment_input.json": "7ea5664fd8ed90216b9f60e5afb16453e3cc0e6caf94452ce927c24caf8ba244",
+      "package_containment_candidates.json": "39c5624c312e259b002408e9707cb17237f2641d6922b3b20a8559f67efa29ad",
+      "package_containment_freeze.json": "9be06e2dda17caafcc648ccdb05a2c1d8305126b5295f74685feb105c5dd36ae",
+      "package_containment_frozen_judgments.json": "408a65bbc4bc30d8284af287b047b737346a1751503d7a17cce5bdd7df1d043e",
+      "package_containment_judgment_freeze.json": "c3f61fac9c42d2e37ea718fa161a3ad8c9e179a0f7ba6b4c7b54b615b8fb10a5"
+    },
+    "surface_counts": {
+      "all_saved_lexical_escape": {
+        "NOT_USEFUL": 14,
+        "UNJUDGED": 0,
+        "USEFUL": 1,
+        "candidate_pairs": 15,
+        "judged_total": 15
+      },
+      "canonical_top_five_escape": {
+        "NOT_USEFUL": 35,
+        "UNJUDGED": 0,
+        "USEFUL": 14,
+        "candidate_pairs": 49,
+        "judged_total": 49
+      },
+      "child_to_package": {
+        "NOT_USEFUL": 35,
+        "UNJUDGED": 0,
+        "USEFUL": 14,
+        "candidate_pairs": 49,
+        "judged_total": 49
+      },
+      "complete_existing_evidence_escape": {
+        "NOT_USEFUL": 12,
+        "UNJUDGED": 0,
+        "USEFUL": 0,
+        "candidate_pairs": 12,
+        "judged_total": 12
+      },
+      "exact_reuse": {
+        "NOT_USEFUL": 15,
+        "UNJUDGED": 0,
+        "USEFUL": 14,
+        "candidate_pairs": 29,
+        "judged_total": 29
+      },
+      "import_escape": {
+        "NOT_USEFUL": 29,
+        "UNJUDGED": 0,
+        "USEFUL": 0,
+        "candidate_pairs": 29,
+        "judged_total": 29
+      },
+      "new_blinded": {
+        "NOT_USEFUL": 20,
+        "UNJUDGED": 0,
+        "USEFUL": 0,
+        "candidate_pairs": 20,
+        "judged_total": 20
+      },
+      "package_to_child": {
+        "NOT_USEFUL": 0,
+        "UNJUDGED": 0,
+        "USEFUL": 0,
+        "candidate_pairs": 0,
+        "judged_total": 0
+      },
+      "references_calls_escape": {
+        "NOT_USEFUL": 35,
+        "UNJUDGED": 0,
+        "USEFUL": 14,
+        "candidate_pairs": 49,
+        "judged_total": 49
+      },
+      "union": {
+        "NOT_USEFUL": 35,
+        "UNJUDGED": 0,
+        "USEFUL": 14,
+        "candidate_pairs": 49,
+        "judged_total": 49
+      }
+    },
+    "useful_escape_pairs": {
+      "all_saved_lexical_escape": [
+        {
+          "address": "src/devtools/core/time/models/__init__.py",
+          "case_id": "i25-9009cc143957"
+        }
+      ],
+      "complete_existing_evidence_escape": [],
+      "import_escape": [],
+      "references_calls_escape": [
+        {
+          "address": "src/devtools/context/repository/__init__.py",
+          "case_id": "i25-858bfa85787e"
+        },
+        {
+          "address": "src/devtools/models/interaction/__init__.py",
+          "case_id": "i25-6f304a8c737c"
+        },
+        {
+          "address": "src/devtools/context/__init__.py",
+          "case_id": "i25-bb9f807bcd61"
+        },
+        {
+          "address": "src/devtools/evidence/__init__.py",
+          "case_id": "i25-0f7a13667ef3"
+        },
+        {
+          "address": "src/devtools/runtime/__init__.py",
+          "case_id": "i25-0f7a13667ef3"
+        },
+        {
+          "address": "src/devtools/models/interaction/__init__.py",
+          "case_id": "i25-9efe3dc31e80"
+        },
+        {
+          "address": "src/devtools/context/__init__.py",
+          "case_id": "i25-ab24906f07ed"
+        },
+        {
+          "address": "src/devtools/models/interaction/__init__.py",
+          "case_id": "i25-eadb6f231f57"
+        },
+        {
+          "address": "src/devtools/tools/__init__.py",
+          "case_id": "i25-d9e58cd09390"
+        },
+        {
+          "address": "src/devtools/context/__init__.py",
+          "case_id": "i25-b5280a3c38ca"
+        },
+        {
+          "address": "src/devtools/context/__init__.py",
+          "case_id": "i25-6156c70be14b"
+        },
+        {
+          "address": "src/devtools/context/repository/__init__.py",
+          "case_id": "i25-5fdf5fe05527"
+        },
+        {
+          "address": "src/devtools/core/time/models/__init__.py",
+          "case_id": "i25-9009cc143957"
+        },
+        {
+          "address": "src/devtools/context/__init__.py",
+          "case_id": "i25-5bdc70483eed"
+        }
+      ]
+    },
+    "usefulness_semantics": "purpose-relative-three-state-v1"
+  },
+  "schema": "devtools-i30-package-containment-development-results-v1"
+}
