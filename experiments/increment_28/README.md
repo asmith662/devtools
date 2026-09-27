@@ -163,3 +163,54 @@ uncertainty; it must not be read as proof that every import is used.
 The strict post-checkpoint comparison is in-window use (in-window only or
 both) against outside-only use. Indeterminate pairs remain separate. The
 pre-outcome artifact makes no claim about usefulness or task localization.
+
+## Task-localization control: post-checkpoint development result
+
+Only after the clean pre-outcome commit
+`5b37d70dcec15d38bf31b7aee6441530d6fab2e9` did the analysis
+mechanically join the already frozen development judgments. No label changed
+and no new judgment or candidate was created. The reproducible joined artifact
+is `localization_development_results.json`.
+
+| Candidate evidence | Pairs | USEFUL | NOT_USEFUL | UNJUDGED | Useful among binary judgments |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Qualified read inside winning window (in-window only or both) | 55 | 19 | 25 | 11 | 19/44 (43.2%) |
+| Qualified read strictly outside only | 17 | 1 | 12 | 4 | 1/13 (7.7%) |
+| No qualifying read anywhere | 0 | 0 | 0 | 0 | not estimable |
+| Indeterminate location/binding | 27 | 11 | 12 | 4 | 11/23 (47.8%) |
+
+The 19 useful in-window pairs span 12 cases. Eleven cases contain candidates
+in **both** strict comparison groups. Within those cases, the in-window group
+has 12 USEFUL, 10 NOT_USEFUL, and 9 UNJUDGED pairs; outside-only has 1, 12,
+and 4, respectively. The single outside-only useful pair is in one of those
+cases. This is a same-case descriptive control, not a paired causal estimate.
+
+The single-support subset removes the opportunity to find a qualifying read
+simply by having more import paths:
+
+| Single-support evidence | Pairs | USEFUL | NOT_USEFUL | UNJUDGED |
+| --- | ---: | ---: | ---: | ---: |
+| Inside | 12 | 2 | 8 | 2 |
+| Outside only | 8 | 0 | 6 | 2 |
+| Indeterminate | 9 | 4 | 4 | 1 |
+
+Only five exact strata contain both strict groups when matching support count,
+distinct seed count, and best seed rank. They contain 17 in-window pairs
+(4 USEFUL, 11 NOT_USEFUL, 2 UNJUDGED) and 12 outside-only pairs (1 USEFUL,
+8 NOT_USEFUL, 3 UNJUDGED). These small cells cannot establish conditional
+incremental value.
+
+For the 52 outgoing candidates absent from all five saved positive lexical
+universes, in-window use covers 29 pairs (7 USEFUL, 16 NOT_USEFUL, 6
+UNJUDGED), outside-only use covers 12 (0, 8, 4), and 11 are indeterminate
+(3, 6, 2). No hard-escape candidate has a definitive no-use classification.
+
+The strict contrast is consistent with task localization adding information
+beyond use somewhere in a file, including on the hard lexical-escape surface.
+It is **not established** once the small outside-only, single-support, exact
+matched, and unjudged populations are respected. High usefulness among
+indeterminate pairs means they cannot be dropped as negatives. Since no
+candidate is definitively unused under this conservative full-source analysis,
+this experiment cannot separately estimate the value of mere use versus
+definite non-use. The result neither changes Increment-28's accepted verdict
+nor authorizes ranking or architecture promotion.
