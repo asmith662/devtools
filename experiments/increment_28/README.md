@@ -70,4 +70,54 @@ incoming-only pairs are preserved without import-use classification.
 
 The pre-outcome artifact was validated and committed before any usefulness
 join. The post-checkpoint analysis of existing frozen judgments is recorded
-separately after that commit.
+separately after that commit. The pre-outcome checkpoint is
+`8809c478d0d0509e4eb921740eed2d4f78a2216e`.
+
+## Post-checkpoint development join
+
+`import_use_development_results.json` mechanically joins exact frozen
+Increment-27 usefulness outcomes after the evidence checkpoint. It creates no
+judgments and keeps `UNJUDGED` distinct. The 99 outgoing pairs contain 31
+`USEFUL`, 49 `NOT_USEFUL`, and 19 `UNJUDGED` outcomes.
+
+| Exclusive evidence category | Pairs | USEFUL | NOT_USEFUL | UNJUDGED | Useful among binary judgments |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| At least one SUPPORTED path | 58 | 22 | 25 | 11 | 22/47 (46.8%) |
+| Only NO_QUALIFYING_OCCURRENCE paths | 28 | 3 | 17 | 8 | 3/20 (15.0%) |
+| No support, at least one INDETERMINATE path | 13 | 6 | 7 | 0 | 6/13 (46.2%) |
+
+Among all 41 pairs without a supported path, 9 of 33 binary-judged pairs are
+useful (27.3%). The 22 supported useful pairs span 15 cases; removing any one
+case leaves the supported-versus-without-supported binary-judgment fraction
+positive by roughly 16 to 25 percentage points. These are descriptive
+selected-development comparisons, not validated probabilities. A candidate
+may have a supported and an indeterminate support at once: 31 pairs have at
+least one indeterminate path, including pairs assigned the exclusive
+SUPPORTED category. The high usefulness among these pairs warns against
+treating unknown binding evidence as a negative.
+
+The 52 outgoing candidates absent from every saved positive lexical universe
+contain 10 `USEFUL`, 30 `NOT_USEFUL`, and 12 `UNJUDGED` outcomes. Qualified use
+retains eight of the ten known useful hard escapes across eight cases:
+
+| Hard-escape category | Pairs | USEFUL | NOT_USEFUL | UNJUDGED |
+| --- | ---: | ---: | ---: | ---: |
+| SUPPORTED | 30 | 8 | 16 | 6 |
+| NO_QUALIFYING_OCCURRENCE | 19 | 1 | 12 | 6 |
+| INDETERMINATE | 3 | 1 | 2 | 0 |
+
+The broad contrast does **not** establish additional discrimination beyond
+existing coarse signals. In particular, for candidates with exactly one
+structural support, supported paths have 2 USEFUL and 8 NOT_USEFUL outcomes,
+while candidates without a supported path have 4 USEFUL and 10 NOT_USEFUL.
+Across the 11 exact strata that contain both groups when matched on support
+count, distinct seed count, and best seed rank, there are only 55 pairs: the
+supported group has 8 USEFUL / 13 NOT_USEFUL and the other group has 7 USEFUL /
+16 NOT_USEFUL. Most strata are too small for a stable contrast. Larger support
+counts also make it more likely that at least one support qualifies. No
+threshold, weighted score, or classifier was selected from these outcomes.
+
+The result supports further bounded diagnostic work on whether import-use
+evidence adds information conditional on the coarse structural features. It
+does not authorize a production reference resolver, fusion rule, ranking
+change, learned ranker, or held-out confirmation.
