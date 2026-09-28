@@ -48,7 +48,8 @@ membership; (3) a narrow cross-domain Evaluation assessment/coverage kernel;
 (5) one fine-grained Context disclosure slice using exact spans, qualified
 relations and progressive pointers; (6) bounded structural selection research
 and later Learning convergence only after their prerequisites. Item 1 is the
-single next production implementation increment. Preserve frozen experiments
+first completed production implementation increment. Qualified immediate
+package membership is next. Preserve frozen experiments
 as evidence and remove duplicate derivation from future consumers only after
 production parity is established. Confirmation remains sealed until a specific
 executable selection policy exists; no shadow or independent-repository claim

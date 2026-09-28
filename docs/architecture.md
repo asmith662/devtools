@@ -486,6 +486,17 @@ Intelligence: not runtime import behavior, public/exported API or `__all__`
 semantics, general Python reference resolution, later local-name use,
 recursive facade traversal, other target kinds, or retrieval relevance.
 
+`context.python.references` now derives bounded source-grounded Python function
+References from qualified direct module-body named imports to existing direct
+function declarations, including the supported one-facade path. Each result
+retains the exact source occurrence, target declaration/subject, native import
+and resolution support, snapshot, and derivation identity. A direct Call is the
+same Reference when the Name occupies `ast.Call.func`; it is not a runtime
+invocation or a caller/callee graph edge. Ambiguous, shadowed, dynamic, and
+unsupported bindings produce no positive fact, and coverage is explicitly
+non-exhaustive. The [package contract](../src/devtools/context/python/references/docs/overview.md)
+defines the current bounded API. Retrieval and Context behavior are unchanged.
+
 The first bounded retrieval operation consumes supplied declaration knowledge
 and filters it by exact declared-name equality. Its nonempty name query is the
 purpose representation, and each match carries purpose-relative exact-match
@@ -623,10 +634,10 @@ facts and keeps structural admission under a fixed budget an open retrieval
 question. Canonical BM25 remains the implemented production retrieval baseline;
 the stronger development lexical RRF control, dense comparison, unions, and
 simple fusion are not production defaults. No universal graph or graph store is
-selected. The next production RI design target is a bounded, source-grounded
-Python function Reference occurrence with direct Call specialization and
-explicit uncertainty/coverage; no runtime dispatch or generic call graph is
-implied. Immediate qualified package membership is a later typed fact, while
+selected. The bounded source-grounded Python function Reference occurrence
+with direct Call specialization is now production RI with explicit uncertainty
+and coverage; no runtime dispatch or generic call graph is implied. Immediate
+qualified package membership is the next typed fact, while
 mirrored test paths do not establish TESTS or EXERCISES knowledge.
 
 ## Accepted Context and disclosure semantics

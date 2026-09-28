@@ -737,11 +737,11 @@ sampled usefulness; the heterogeneous candidate pool exposed a resource
 selection gap that neither simple fusion nor unranked structural evidence
 settles. No result promotes a production ranker or disclosure policy.
 
-The next bounded production target is source-grounded Python function Reference
-occurrences with direct Call specialization, tied conservatively to existing
+Bounded source-grounded Python function Reference occurrences with direct Call
+specialization are now production RI, tied conservatively to existing
 declarations and import resolution. This establishes qualified repository
 knowledge, not runtime invocation or a generic call graph. Qualified immediate
-package membership follows as a separate typed fact. Later pressure includes
+package membership is the next separate typed fact. Later pressure includes
 an Evaluation assessment/coverage kernel, production direct structural
 candidate use, and a first fine-grained Context disclosure slice. Class/base,
 test semantics, configuration/registration bindings, structural admission,

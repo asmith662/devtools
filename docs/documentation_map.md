@@ -198,6 +198,12 @@ module-only import relation and does not provide runtime import, export or
 `__all__`, general reference, recursive facade, other-target, or retrieval
 semantics.
 
+The [Python References package](../src/devtools/context/python/references/docs/overview.md)
+owns qualified source-occurrence-to-direct-function knowledge over existing
+import and declaration support. Its direct Call tag specializes the same
+Reference; its result coverage is non-exhaustive. It owns no retrieval or
+Context selection policy.
+
 The `orchestration`, `governance`, and `evaluation` domains remain recognized
 sparse namespaces without reusable implementation APIs. Current accepted
 Evaluation responsibility and boundaries are summarized in the central
