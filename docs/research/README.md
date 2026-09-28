@@ -18,7 +18,8 @@ because later evidence may justify reconsideration.
 | [Purpose-relative repository Context](purpose-relative-repository-context.md) | Retrieval, decision, disclosure | Reconciled | Truth, surfacing, relevance, ranking, disclosure differ | 0003, 0004 | Lexical and import experiments | Universal Candidate/Selector/score | Increments 20-22 | Stable need-specific value requiring reuse beyond local policy/Context planning |
 | [Retrieval architecture synthesis](retrieval-architecture-synthesis.md) | Retrieval portfolio and research recovery | Reconciled synthesis | Heterogeneous portfolio; direct acquisition; purpose-bearing admission and disclosure remain distinct | 0002-0004 | Filename BM25; exact-name lookup; import knowledge; Increments 23-26 offline evaluation | General Selector, production relationship expansion, further neural retrieval | Increments 16, 20, 21, 22, 23, 24; [retrieval landscape](repository-retrieval-algorithm-landscape.md) | Foundational retrieval and independent-repository evidence |
 | [Structural repository retrieval](structural-repository-retrieval.md) | Typed structural evidence, graph representation, and candidate generation | Reconciled research evidence | Native typed relationships; physical graph form remains open; test bounded structural complementarity against lexical widening | 0002, 0003 | Qualified import relations and Increment 25 | Universal graph/store/API, recursive traversal, PageRank, learned ranker, production expansion | ADR-0002/0003 reconciliation; [retrieval landscape](repository-retrieval-algorithm-landscape.md) | Concrete consumers and measured structural complementarity across repositories |
-| [Repository retrieval algorithm landscape](repository-retrieval-algorithm-landscape.md) | Retrieval variables and experimental sequence | Current research recommendation | Measure depth, unit, representation, fields, fusion, and disclosure separately | 0002-0004 | Increments 25-26 development | Generic graph/vector infrastructure and retrieval-local training | — | Foundational ablations and independent-repository evidence |
+| [Repository retrieval algorithm landscape](repository-retrieval-algorithm-landscape.md) | Retrieval variables and experimental sequence | Historical prospective recommendation | Measure depth, unit, representation, fields, fusion, and disclosure separately | 0002-0004 | Increments 25-26 development | Generic graph/vector infrastructure and retrieval-local training | Breadth production gate | Independent-repository evidence |
+| [Repository retrieval breadth production gate](repository-retrieval-breadth-production-gate.md) | Completed Tier-1 breadth evidence and production dispositions | Accepted development synthesis | Direct structural useful reach, graph fan-out, heterogeneous selection gap, and bounded RI/Context/Evaluation migration | 0002-0004 | Increments 25-36 development | Universal graph, default structural rank, generic experiment platform, confirmation inference | Retrieval landscape's prospective sequence | Independent-repository evidence, production semantic counterexample, or a bounded selection policy |
 | [Repository Context system](repository-context-system-architecture.md) | Repository intelligence and Context | Partially reconciled | Deterministic intelligence precedes model use | 0002-0004 | Corpus and lexical retrieval | Vectors, change impact, progressive disclosure | Later ADRs | Independent bounded evidence |
 | [Derived knowledge boundary](repository-derived-knowledge-boundary.md) | Qualification and applicability | Reconciled | Provenance/coverage differ from knowledge | 0002, 0004 | Bounded derivations | Universal claim/confidence | ADR-0002 | Shared consumer need |
 | [Repository information boundaries](repository-information-boundaries.md) | Derivation versus representation | Reconciled | Context synthesis is not automatic knowledge | 0002, 0004 | Materialization/rendering | Automatic model knowledge promotion | ADR-0004 | Reusable semantic assertion |
@@ -47,9 +48,13 @@ The structural-retrieval investigation then reframed the question from how
 relationship evidence should occupy K=5 to whether bounded typed structure can
 surface useful resources that candidate-volume-matched lexical widening does
 not. Increment 25 and Increment 26 development supplied bounded structural and
-semantic evidence. The repository-retrieval landscape now recommends testing
-retrieval foundations before further evidence-family escalation; the
-[roadmap](../roadmap.md) owns the current sequence.
+semantic evidence. At that checkpoint, the repository-retrieval landscape
+recommended testing retrieval foundations before further evidence-family
+escalation; the [roadmap](../roadmap.md) owns the current sequence. The
+[breadth production gate](repository-retrieval-breadth-production-gate.md)
+now records the completed Increment 25-36 development evidence and current
+production, Context, and Evaluation dispositions; the older landscape remains
+the prospective research sequence at its original checkpoint.
 
 ## Research governance
 

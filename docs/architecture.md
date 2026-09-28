@@ -610,8 +610,24 @@ found useful semantic-only top-five resources, but each had a deeper positive
 lexical rank; its sealed confirmation is suspended. These observations do not
 change the accepted repository-truth, evidence, ranking, and disclosure
 boundaries. The [roadmap](roadmap.md) records the current retrieval-foundations
-experiment sequence. No graph, vector, ranking, or shadow infrastructure is
-selected by these results.
+sequence as it stood at that checkpoint. No graph, vector, ranking, or shadow
+infrastructure was selected by those results.
+
+The subsequent Tier-1 breadth sprint is complete. Its
+[development evidence and production gate](research/repository-retrieval-breadth-production-gate.md)
+show useful resource reach from direct Imports and bounded References/direct
+Calls, while greater graph depth has large fan-out and only sparse sampled
+usefulness. The heterogeneous pool contains more known-useful resources than
+the executable K=5 rankings select. This supports qualified direct structural
+facts and keeps structural admission under a fixed budget an open retrieval
+question. Canonical BM25 remains the implemented production retrieval baseline;
+the stronger development lexical RRF control, dense comparison, unions, and
+simple fusion are not production defaults. No universal graph or graph store is
+selected. The next production RI design target is a bounded, source-grounded
+Python function Reference occurrence with direct Call specialization and
+explicit uncertainty/coverage; no runtime dispatch or generic call graph is
+implied. Immediate qualified package membership is a later typed fact, while
+mirrored test paths do not establish TESTS or EXERCISES knowledge.
 
 ## Accepted Context and disclosure semantics
 
@@ -676,6 +692,15 @@ authority, uncertainty, completeness, conflict, coherence, semantic-
 transformation/synthesis validation, materialization, cache, assembly, and
 evaluation mechanisms remain unimplemented.
 
+The breadth gate makes the next Context problem concrete: after resource
+selection, identify task-relevant declarations, exact source spans, and
+qualified relationships; choose source-preserving excerpts, knowledge
+projections, explanations, or pointers under a disclosure ceiling; then
+materialize and assemble the chosen information. Later expansion may expose
+more detail for a new purpose. Lexical windows and structural supports are
+possible localization inputs, not demonstrated disclosure policies or
+permission to synthesize stronger claims than their provenance supports.
+
 ## Accepted Evaluation responsibility
 
 Evaluation is a distinct semantic responsibility for assessment and controlled
@@ -739,6 +764,19 @@ or model actions are not automatically a valid counterfactual continuation;
 the affected continuation may require a rerun. Progressive evaluation can
 retain experiment-local decision correlation without a foundational Episode or
 Trajectory model.
+
+The completed retrieval breadth work justifies designing a small reusable
+Evaluation kernel for exact assessment identity, candidate/judgment coverage,
+sampling provenance, and missingness. This is an implementation target, not an
+existing production framework. Retrieval still defines its candidate universe,
+relevance semantics, and K; Evaluation guards the basis and validity of a
+comparison. A population is an identified assessment cohort, not inherently a
+Learning dataset. Generic metric interfaces and a universal experiment object
+remain unselected. Future cross-domain Learning may consume Evaluation and
+repository-derived observations and supply learned capabilities to retrieval or
+Context, but Context does not own training and no Learning package or name is
+selected. The [breadth gate](research/repository-retrieval-breadth-production-gate.md)
+records the bounded evidence and migration sequence.
 
 ## Implementation-start and remaining evidence constraints
 

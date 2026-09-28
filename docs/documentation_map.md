@@ -43,8 +43,12 @@
   and deferred semantic/learned alternatives; ADR-0002 and ADR-0003 disposition
   its accepted conclusions.
   The [repository retrieval algorithm landscape](research/repository-retrieval-algorithm-landscape.md)
-  interprets Increment 25 and Increment 26 development evidence and recommends
-  foundational retrieval experiments; the roadmap owns their current sequence.
+  interprets Increment 25 and Increment 26 development evidence and records the
+  then-prospective foundational sequence. The
+  [breadth production gate](research/repository-retrieval-breadth-production-gate.md)
+  owns the completed Increment 25-36 empirical map and disposition rationale;
+  central architecture owns accepted current boundaries, and the roadmap owns
+  the next production sequence.
 - Package-local documentation defines detailed implemented public APIs, package
   design, lifecycle/operational behavior, and usage. Central architecture
   summarizes system-level ownership and links outward; it does not duplicate

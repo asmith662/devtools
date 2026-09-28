@@ -30,6 +30,30 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
+### Current — production consolidation after retrieval breadth
+
+The Tier-1 breadth sprint through Increment 36 is complete. The
+[breadth evidence and production gate](research/repository-retrieval-breadth-production-gate.md)
+records its empirical limits and dispositions; the prospective Increment 27
+sequence and earlier retrieval checkpoint below remain historical. Direct
+Imports and bounded References/direct Calls supplied useful complementary
+resource reach. Graph depth caused large fan-out, and structural selection at
+K=5 is unresolved. Canonical lexical retrieval remains the production baseline;
+no union, graph expansion, dense model, or fusion policy is promoted.
+
+Proceed in dependency order: (1) bounded source-grounded Python function
+Reference/direct Call Repository Intelligence; (2) qualified immediate package
+membership; (3) a narrow cross-domain Evaluation assessment/coverage kernel;
+(4) direct retrieval candidate generation consuming production typed facts;
+(5) one fine-grained Context disclosure slice using exact spans, qualified
+relations and progressive pointers; (6) bounded structural selection research
+and later Learning convergence only after their prerequisites. Item 1 is the
+single next production implementation increment. Preserve frozen experiments
+as evidence and remove duplicate derivation from future consumers only after
+production parity is established. Confirmation remains sealed until a specific
+executable selection policy exists; no shadow or independent-repository claim
+follows from these development results.
+
 ### Ongoing — documentation integrity and backlog rebase
 
 - [B-0001](backlog/epics/B-0001-architecture-documentation-integrity.md) and
@@ -37,7 +61,7 @@ and Evidence ownership terminology, remain in the
   keep current documentation, roadmap sequencing, and backlog pressure aligned
   with the established architecture.
 
-### Now — bounded Repository Intelligence and retrieval evidence
+### Historical starting point — bounded Repository Intelligence and retrieval evidence
 
 - [ADR-0002](architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md)
   establishes semantic architecture for Repository identity, snapshots,
@@ -157,7 +181,7 @@ framework enforcement and causal boundaries, not voluntary model obedience.
 
 See [documentation_map.md](documentation_map.md) for authority and navigation.
 
-## Retrieval evidence checkpoint
+## Historical retrieval evidence checkpoint
 
 Increment 24's offline comparison over Increment 23's retained six-case surface
 does not promote a ranker: its frozen purpose-relative deterministic arm recovers

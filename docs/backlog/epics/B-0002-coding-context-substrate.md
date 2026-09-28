@@ -719,5 +719,31 @@ yet. Independent-repository falsification is required before stronger
 generalization or production promotion. Non-controlling shadow execution
 remains separately governed and requires later supporting evidence.
 A future reusable Learned Intelligence subsystem may own cross-domain model
-construction, training, and evaluation; B-0002 remains an evidence producer/
-consumer rather than the owner of generic ML training infrastructure.
+construction, training, and model-specific validation; the distinct Evaluation
+responsibility owns assessment semantics across domains. B-0002 remains an
+evidence producer/consumer rather than the owner of generic ML training
+infrastructure.
+
+## Completed breadth gate and remaining production pressure
+
+The Increment 25-36 development evidence is reconciled in the
+[breadth production gate](../../research/repository-retrieval-breadth-production-gate.md).
+The earlier proposed Increment 27 sequence above records its historical
+decision point; the Tier-1 breadth sprint is complete. Qualified direct import
+and bounded Reference/direct Call evidence produced useful resource reach,
+while package containment and mirrored test paths added no useful novelty
+beyond the preceding union. Graph-1/2 increased fan-out sharply, with limited
+sampled usefulness; the heterogeneous candidate pool exposed a resource
+selection gap that neither simple fusion nor unranked structural evidence
+settles. No result promotes a production ranker or disclosure policy.
+
+The next bounded production target is source-grounded Python function Reference
+occurrences with direct Call specialization, tied conservatively to existing
+declarations and import resolution. This establishes qualified repository
+knowledge, not runtime invocation or a generic call graph. Qualified immediate
+package membership follows as a separate typed fact. Later pressure includes
+an Evaluation assessment/coverage kernel, production direct structural
+candidate use, and a first fine-grained Context disclosure slice. Class/base,
+test semantics, configuration/registration bindings, structural admission,
+and Learning remain scoped design questions. Frozen experiments and sealed
+confirmation retain their original identities; no held-out result is inferred.
