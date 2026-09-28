@@ -1,0 +1,2174 @@
+{
+  "content_identity": "28106c22ba753418edb34b90ab251cc4390d93671d2212ab064297e7c1b9d956",
+  "payload": {
+    "breadth_verdict": "sampled useful complementary reach established",
+    "candidate_mechanics_changed": false,
+    "complete_outcome_coverage_claimed": false,
+    "confirmation_executed": false,
+    "development_case_ids": [
+      "i25-66ed2049de72",
+      "i25-858bfa85787e",
+      "i25-6f304a8c737c",
+      "i25-bb9f807bcd61",
+      "i25-0f7a13667ef3",
+      "i25-739c82bd3398",
+      "i25-9efe3dc31e80",
+      "i25-6b0e9c52fb26",
+      "i25-901246bd802a",
+      "i25-ab24906f07ed",
+      "i25-ac797431db35",
+      "i25-842e90e63f37",
+      "i25-eadb6f231f57",
+      "i25-8994c4e58644",
+      "i25-c0fabcb195e2",
+      "i25-d9e58cd09390",
+      "i25-b5280a3c38ca",
+      "i25-85cfd9ff68a0",
+      "i25-6156c70be14b",
+      "i25-2a4f058d5262",
+      "i25-5fdf5fe05527",
+      "i25-9009cc143957",
+      "i25-4ce485f737e4",
+      "i25-5bdc70483eed"
+    ],
+    "outcome_free_reach_and_cost": {
+      "backtrack_paths": 6561,
+      "candidate_pairs": 704,
+      "case_candidate_counts": {
+        "i25-0f7a13667ef3": 33,
+        "i25-2a4f058d5262": 19,
+        "i25-4ce485f737e4": 35,
+        "i25-5bdc70483eed": 19,
+        "i25-5fdf5fe05527": 27,
+        "i25-6156c70be14b": 15,
+        "i25-66ed2049de72": 60,
+        "i25-6b0e9c52fb26": 39,
+        "i25-6f304a8c737c": 3,
+        "i25-739c82bd3398": 11,
+        "i25-842e90e63f37": 80,
+        "i25-858bfa85787e": 11,
+        "i25-85cfd9ff68a0": 33,
+        "i25-8994c4e58644": 44,
+        "i25-9009cc143957": 24,
+        "i25-901246bd802a": 67,
+        "i25-9efe3dc31e80": 0,
+        "i25-ab24906f07ed": 41,
+        "i25-ac797431db35": 39,
+        "i25-b5280a3c38ca": 55,
+        "i25-bb9f807bcd61": 13,
+        "i25-c0fabcb195e2": 0,
+        "i25-d9e58cd09390": 30,
+        "i25-eadb6f231f57": 6
+      },
+      "cases_with_novelty": 22,
+      "development_cases": 24,
+      "direct_union_overlap_case_resource_pairs": 969,
+      "distinct_candidate_addresses": 183,
+      "frontier_case_resource_pairs": 225,
+      "frontier_first_supports": 957,
+      "lexical_comparator_actual": 565,
+      "lexical_comparator_exhausted_cases": 5,
+      "lexical_comparator_requested": 704,
+      "max_case_novelty": 80,
+      "max_frontier_distinct_neighbors": 60,
+      "max_seed_novel_fanout": 75,
+      "path_combinations": {
+        "immediate_package:child_to_package -> immediate_package:child_to_package": 33,
+        "immediate_package:child_to_package -> immediate_package:package_to_child": 14,
+        "immediate_package:child_to_package -> import:forward": 1,
+        "immediate_package:child_to_package -> import:inverse": 27,
+        "import:incoming -> immediate_package:child_to_package": 115,
+        "import:incoming -> immediate_package:package_to_child": 1,
+        "import:incoming -> import:forward": 1,
+        "import:incoming -> import:inverse": 25,
+        "import:incoming -> reference:forward": 5,
+        "import:outgoing -> immediate_package:child_to_package": 389,
+        "import:outgoing -> immediate_package:package_to_child": 736,
+        "import:outgoing -> import:forward": 3312,
+        "import:outgoing -> import:inverse": 5422,
+        "import:outgoing -> mirrored_path:source_to_test": 1,
+        "import:outgoing -> reference:forward": 1,
+        "mirrored_path:source_to_test -> immediate_package:child_to_package": 3,
+        "mirrored_path:source_to_test -> import:forward": 27,
+        "mirrored_path:test_to_source -> immediate_package:child_to_package": 3,
+        "mirrored_path:test_to_source -> import:forward": 1,
+        "mirrored_path:test_to_source -> import:inverse": 3,
+        "reference:forward -> immediate_package:child_to_package": 7,
+        "reference:forward -> import:forward": 116,
+        "reference:forward -> import:inverse": 6,
+        "reference:forward -> mirrored_path:source_to_test": 8,
+        "reference:forward -> reference:forward": 16,
+        "reference:forward -> reference:inverse": 152,
+        "reference:reverse -> import:forward": 125
+      },
+      "retained_typed_paths": 10550,
+      "second_edge_path_fanout_by_direction": {
+        "immediate_package:child_to_package": 939,
+        "immediate_package:package_to_child": 3417,
+        "import:forward": 18693,
+        "import:inverse": 46883,
+        "mirrored_path:source_to_test": 68,
+        "mirrored_path:test_to_source": 37,
+        "reference:forward": 948,
+        "reference:inverse": 541
+      },
+      "second_edge_path_fanout_by_family": {
+        "immediate_package": 4356,
+        "import": 65576,
+        "mirrored_path": 105,
+        "reference": 1489
+      }
+    },
+    "population_counts": {
+      "complete_novel_candidate_pairs": 704,
+      "exact_reused": 2,
+      "new_sampled_adjudicated": 128,
+      "reused_states": {
+        "NOT_USEFUL": 2,
+        "UNJUDGED": 0,
+        "USEFUL": 0
+      },
+      "sampled_states": {
+        "NOT_USEFUL": 126,
+        "UNJUDGED": 0,
+        "USEFUL": 2
+      },
+      "unsampled_unadjudicated": 574
+    },
+    "reused_pairs": [
+      {
+        "address": "src/devtools/core/__init__.py",
+        "case_id": "i25-66ed2049de72",
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-26-development",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f"
+      },
+      {
+        "address": "src/devtools/models/interaction/tools.py",
+        "case_id": "i25-66ed2049de72",
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "exact-reuse",
+        "judgment_source": "increment-26-development",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f"
+      }
+    ],
+    "sampled_pairs": [
+      {
+        "address": "src/devtools/agents/__init__.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 1,
+          "mirrored_path:source_to_test -> import:forward": 3
+        },
+        "support_count": 4
+      },
+      {
+        "address": "src/devtools/commands/execution.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "src/devtools/context/message.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 4
+        },
+        "support_count": 4
+      },
+      {
+        "address": "src/devtools/filesystem/__init__.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "src/devtools/system/__init__.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "src/devtools/time/models/__init__.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 2,
+          "import:outgoing -> import:forward": 6
+        },
+        "support_count": 8
+      },
+      {
+        "address": "tests/commands/test_execution.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/commands/test_models.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/identity/test_models.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/time/test_parsing.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 8
+        },
+        "support_count": 8
+      },
+      {
+        "address": "src/devtools/resources/filesystem/__init__.py",
+        "case_id": "i25-2a4f058d5262",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "path_combinations": {
+          "reference:forward -> import:forward": 6
+        },
+        "support_count": 6
+      },
+      {
+        "address": "src/devtools/tools/filesystem.py",
+        "case_id": "i25-2a4f058d5262",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/models/serving/test_llama_cpp.py",
+        "case_id": "i25-2a4f058d5262",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "src/devtools/core/__init__.py",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:child_to_package": 3
+        },
+        "support_count": 3
+      },
+      {
+        "address": "src/devtools/models/interaction/providers/llama_cpp_request_settings.py",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 4
+        },
+        "support_count": 4
+      },
+      {
+        "address": "src/devtools/models/interaction/response.py",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 4,
+          "import:outgoing -> import:forward": 4
+        },
+        "support_count": 8
+      },
+      {
+        "address": "src/devtools/models/interaction/termination.py",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 4,
+          "import:outgoing -> import:forward": 4
+        },
+        "support_count": 8
+      },
+      {
+        "address": "tests/persistence/test_json.py",
+        "case_id": "i25-4ce485f737e4",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 4
+        },
+        "support_count": 4
+      },
+      {
+        "address": "src/devtools/core/__init__.py",
+        "case_id": "i25-5bdc70483eed",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:child_to_package": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "src/devtools/core/paths/errors.py",
+        "case_id": "i25-5bdc70483eed",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 2,
+          "import:outgoing -> import:forward": 6
+        },
+        "support_count": 8
+      },
+      {
+        "address": "src/devtools/core/paths/models.py",
+        "case_id": "i25-5bdc70483eed",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 2,
+          "import:outgoing -> import:forward": 2
+        },
+        "support_count": 4
+      },
+      {
+        "address": "tests/models/benchmarks/test_runner.py",
+        "case_id": "i25-5bdc70483eed",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/scripts/test_vllm_benchmark_driver.py",
+        "case_id": "i25-5bdc70483eed",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "src/devtools/models/interaction/models.py",
+        "case_id": "i25-5fdf5fe05527",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 2,
+          "import:outgoing -> import:forward": 14
+        },
+        "support_count": 16
+      },
+      {
+        "address": "src/devtools/models/interaction/response.py",
+        "case_id": "i25-5fdf5fe05527",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 2,
+          "import:outgoing -> import:forward": 2
+        },
+        "support_count": 4
+      },
+      {
+        "address": "src/devtools/resources/__init__.py",
+        "case_id": "i25-5fdf5fe05527",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:child_to_package": 3
+        },
+        "support_count": 3
+      },
+      {
+        "address": "src/devtools/core/identity/__init__.py",
+        "case_id": "i25-6156c70be14b",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+        "path_combinations": {
+          "reference:forward -> import:forward": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "tests/agents/conversation/test_live.py",
+        "case_id": "i25-6156c70be14b",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "tests/core/paths/test_resolved_path.py",
+        "case_id": "i25-6156c70be14b",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "src/devtools/core/time/errors.py",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 1,
+          "import:outgoing -> import:forward": 2
+        },
+        "support_count": 3
+      },
+      {
+        "address": "src/devtools/core/time/models/__init__.py",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 1,
+          "import:outgoing -> import:forward": 3
+        },
+        "support_count": 4
+      },
+      {
+        "address": "src/devtools/models/serving/vllm.py",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 2,
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 4
+      },
+      {
+        "address": "src/devtools/observability/__init__.py",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:child_to_package": 7
+        },
+        "support_count": 7
+      },
+      {
+        "address": "src/devtools/observability/evidence/protocols.py",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 7,
+          "import:outgoing -> import:forward": 7
+        },
+        "support_count": 14
+      },
+      {
+        "address": "src/devtools/observability/evidence/terminal.py",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 7,
+          "import:outgoing -> import:forward": 14,
+          "import:outgoing -> import:inverse": 1,
+          "mirrored_path:test_to_source -> import:forward": 1
+        },
+        "support_count": 23
+      },
+      {
+        "address": "src/devtools/persistence/json.py",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 24
+        },
+        "support_count": 24
+      },
+      {
+        "address": "src/devtools/persistence/sqlite.py",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 24
+        },
+        "support_count": 24
+      },
+      {
+        "address": "tests/agents/integrations/codex/test_live.py",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 11
+        },
+        "support_count": 11
+      },
+      {
+        "address": "tests/models/interaction/test_tools.py",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 66
+        },
+        "support_count": 66
+      },
+      {
+        "address": "tests/models/serving/test_llama_cpp.py",
+        "case_id": "i25-66ed2049de72",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 4
+        },
+        "support_count": 4
+      },
+      {
+        "address": "src/devtools/core/regex/search.py",
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "path_combinations": {
+          "import:outgoing -> reference:forward": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "tests/core/paths/test_errors.py",
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 6
+        },
+        "support_count": 6
+      },
+      {
+        "address": "tests/observability/evidence/test_inspection.py",
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/resources/commands/test_handle.py",
+        "case_id": "i25-6b0e9c52fb26",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "src/devtools/agents/conversation/__init__.py",
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 5
+        },
+        "support_count": 5
+      },
+      {
+        "address": "src/devtools/core/paths/__init__.py",
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "path_combinations": {
+          "mirrored_path:source_to_test -> import:forward": 3
+        },
+        "support_count": 3
+      },
+      {
+        "address": "tests/resources/filesystem/codecs/__init__.py",
+        "case_id": "i25-739c82bd3398",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "path_combinations": {
+          "mirrored_path:source_to_test -> immediate_package:child_to_package": 3
+        },
+        "support_count": 3
+      },
+      {
+        "address": "src/devtools/agents/conversation/conversation.py",
+        "case_id": "i25-842e90e63f37",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 8,
+          "import:outgoing -> import:forward": 16
+        },
+        "support_count": 24
+      },
+      {
+        "address": "src/devtools/models/interaction/usage.py",
+        "case_id": "i25-842e90e63f37",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 11,
+          "import:outgoing -> import:forward": 11
+        },
+        "support_count": 22
+      },
+      {
+        "address": "src/devtools/persistence/json.py",
+        "case_id": "i25-842e90e63f37",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 22
+        },
+        "support_count": 22
+      },
+      {
+        "address": "src/devtools/tools/command.py",
+        "case_id": "i25-842e90e63f37",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "tests/agents/conversation/message/test_message.py",
+        "case_id": "i25-842e90e63f37",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 35
+        },
+        "support_count": 35
+      },
+      {
+        "address": "tests/core/paths/test_errors.py",
+        "case_id": "i25-842e90e63f37",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 6
+        },
+        "support_count": 6
+      },
+      {
+        "address": "tests/execution/test_runtime.py",
+        "case_id": "i25-842e90e63f37",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 75
+        },
+        "support_count": 75
+      },
+      {
+        "address": "tests/models/benchmarks/test_runner.py",
+        "case_id": "i25-842e90e63f37",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/resources/filesystem/models/markdown/test_file.py",
+        "case_id": "i25-842e90e63f37",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 8
+        },
+        "support_count": 8
+      },
+      {
+        "address": "tests/resources/filesystem/__init__.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "path_combinations": {
+          "immediate_package:child_to_package -> immediate_package:child_to_package": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "tests/resources/filesystem/models/csv/test_file.py",
+        "case_id": "i25-858bfa85787e",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 10
+        },
+        "support_count": 10
+      },
+      {
+        "address": "src/devtools/core/__init__.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:child_to_package": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "src/devtools/models/interaction/__init__.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "path_combinations": {
+          "reference:reverse -> import:forward": 21
+        },
+        "support_count": 21
+      },
+      {
+        "address": "tests/agents/integrations/codex/test_live.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/core/paths/test_errors.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 6
+        },
+        "support_count": 6
+      },
+      {
+        "address": "tests/core/paths/test_resolved_path.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/models/serving/test_huggingface.py",
+        "case_id": "i25-85cfd9ff68a0",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "src/devtools/core/__init__.py",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:child_to_package": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "src/devtools/execution/runtime.py",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 12
+        },
+        "support_count": 12
+      },
+      {
+        "address": "src/devtools/models/interaction/models.py",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 1,
+          "import:outgoing -> import:forward": 2
+        },
+        "support_count": 3
+      },
+      {
+        "address": "src/devtools/models/interaction/providers/llama_cpp.py",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 4
+        },
+        "support_count": 4
+      },
+      {
+        "address": "src/devtools/persistence/_snapshot.py",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 3
+        },
+        "support_count": 3
+      },
+      {
+        "address": "src/devtools/persistence/sqlite.py",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 10
+        },
+        "support_count": 10
+      },
+      {
+        "address": "tests/execution/test_interaction_attempt.py",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 11
+        },
+        "support_count": 11
+      },
+      {
+        "address": "tests/models/benchmarks/test_runner.py",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/models/interaction/providers/test_llama_cpp.py",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 6
+        },
+        "support_count": 6
+      },
+      {
+        "address": "tests/resources/commands/test_handle.py",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "src/devtools/core/paths/__init__.py",
+        "case_id": "i25-9009cc143957",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "path_combinations": {
+          "mirrored_path:source_to_test -> import:forward": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "src/devtools/core/time/errors.py",
+        "case_id": "i25-9009cc143957",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 3,
+          "import:outgoing -> import:forward": 6
+        },
+        "support_count": 9
+      },
+      {
+        "address": "src/devtools/core/time/models/timestamp.py",
+        "case_id": "i25-9009cc143957",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "path_combinations": {
+          "immediate_package:child_to_package -> immediate_package:package_to_child": 1,
+          "immediate_package:child_to_package -> import:forward": 1,
+          "import:incoming -> immediate_package:package_to_child": 1,
+          "import:incoming -> import:forward": 1,
+          "import:outgoing -> import:inverse": 1
+        },
+        "support_count": 5
+      },
+      {
+        "address": "src/devtools/observability/evidence/terminal.py",
+        "case_id": "i25-9009cc143957",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 3
+        },
+        "support_count": 3
+      },
+      {
+        "address": "tests/observability/evidence/test_terminal.py",
+        "case_id": "i25-9009cc143957",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 3
+        },
+        "support_count": 3
+      },
+      {
+        "address": "tests/resources/commands/test_handle.py",
+        "case_id": "i25-9009cc143957",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 3
+        },
+        "support_count": 3
+      },
+      {
+        "address": "src/devtools/__init__.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:child_to_package": 3
+        },
+        "support_count": 3
+      },
+      {
+        "address": "src/devtools/core/paths/models.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 3,
+          "import:outgoing -> import:forward": 3,
+          "reference:forward -> import:forward": 1
+        },
+        "support_count": 7
+      },
+      {
+        "address": "src/devtools/models/interaction/providers/llama_cpp.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 40
+        },
+        "support_count": 40
+      },
+      {
+        "address": "src/devtools/tools/execution.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 1,
+          "import:outgoing -> import:forward": 1
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/execution/test_interaction_attempt.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 32
+        },
+        "support_count": 32
+      },
+      {
+        "address": "tests/models/benchmarks/test_runner.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 3
+        },
+        "support_count": 3
+      },
+      {
+        "address": "tests/resources/commands/test_execution.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 3
+        },
+        "support_count": 3
+      },
+      {
+        "address": "tests/resources/filesystem/codecs/test_text.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 24
+        },
+        "support_count": 24
+      },
+      {
+        "address": "tests/resources/filesystem/models/csv/test_dialect.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 14
+        },
+        "support_count": 14
+      },
+      {
+        "address": "tests/resources/filesystem/models/csv/test_row.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 7
+        },
+        "support_count": 7
+      },
+      {
+        "address": "tests/resources/filesystem/models/markdown/test_section.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 14
+        },
+        "support_count": 14
+      },
+      {
+        "address": "tests/resources/filesystem/test_resolution.py",
+        "case_id": "i25-901246bd802a",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 52
+        },
+        "support_count": 52
+      },
+      {
+        "address": "src/devtools/__init__.py",
+        "case_id": "i25-ab24906f07ed",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "path_combinations": {
+          "immediate_package:child_to_package -> immediate_package:child_to_package": 2,
+          "import:incoming -> immediate_package:child_to_package": 15,
+          "import:outgoing -> immediate_package:child_to_package": 10
+        },
+        "support_count": 27
+      },
+      {
+        "address": "src/devtools/agents/conversation/__init__.py",
+        "case_id": "i25-ab24906f07ed",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "path_combinations": {
+          "reference:reverse -> import:forward": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "src/devtools/agents/conversation/message.py",
+        "case_id": "i25-ab24906f07ed",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "src/devtools/resources/filesystem/writing.py",
+        "case_id": "i25-ab24906f07ed",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 7,
+          "import:outgoing -> import:forward": 7
+        },
+        "support_count": 14
+      },
+      {
+        "address": "tests/agents/integrations/codex/test_agent.py",
+        "case_id": "i25-ab24906f07ed",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 3
+        },
+        "support_count": 3
+      },
+      {
+        "address": "tests/resources/filesystem/test_json_models.py",
+        "case_id": "i25-ab24906f07ed",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 24
+        },
+        "support_count": 24
+      },
+      {
+        "address": "src/devtools/models/benchmarks/storage.py",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/core/paths/test_resolution.py",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 20
+        },
+        "support_count": 20
+      },
+      {
+        "address": "tests/models/benchmarks/test_models.py",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/models/serving/test_huggingface.py",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/resources/filesystem/codecs/test_json.py",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/resources/filesystem/test_models.py",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/resources/filesystem/test_reading.py",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/scripts/qwen/test_llama_cpp_service.py",
+        "case_id": "i25-ac797431db35",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "src/devtools/tools/filesystem.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "tests/core/paths/test_errors.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 3
+        },
+        "support_count": 3
+      },
+      {
+        "address": "tests/models/benchmarks/test_models.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "tests/models/benchmarks/test_runner.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "tests/models/interaction/test_protocols.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 48
+        },
+        "support_count": 48
+      },
+      {
+        "address": "tests/observability/evidence/test_inspection.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 10
+        },
+        "support_count": 10
+      },
+      {
+        "address": "tests/resources/filesystem/codecs/test_text.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "tests/resources/filesystem/test_json_models.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "tests/tools/test_runtime_integration.py",
+        "case_id": "i25-b5280a3c38ca",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 27
+        },
+        "support_count": 27
+      },
+      {
+        "address": "src/devtools/core/__init__.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:child_to_package": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "src/devtools/models/interaction/__init__.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "path_combinations": {
+          "reference:reverse -> import:forward": 39
+        },
+        "support_count": 39
+      },
+      {
+        "address": "src/devtools/resources/filesystem/reading.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "path_combinations": {
+          "reference:forward -> reference:forward": 2
+        },
+        "support_count": 2
+      },
+      {
+        "address": "tests/core/paths/test_errors.py",
+        "case_id": "i25-bb9f807bcd61",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 6
+        },
+        "support_count": 6
+      },
+      {
+        "address": "src/devtools/agents/conversation/message.py",
+        "case_id": "i25-d9e58cd09390",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 3,
+          "import:outgoing -> import:forward": 9
+        },
+        "support_count": 12
+      },
+      {
+        "address": "src/devtools/persistence/json.py",
+        "case_id": "i25-d9e58cd09390",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 6
+        },
+        "support_count": 6
+      },
+      {
+        "address": "src/devtools/persistence/sqlite.py",
+        "case_id": "i25-d9e58cd09390",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 6
+        },
+        "support_count": 6
+      },
+      {
+        "address": "src/devtools/resources/commands/events.py",
+        "case_id": "i25-d9e58cd09390",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:package_to_child": 3,
+          "import:outgoing -> import:forward": 15
+        },
+        "support_count": 18
+      },
+      {
+        "address": "tests/agents/conversation/test_live.py",
+        "case_id": "i25-d9e58cd09390",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 21
+        },
+        "support_count": 21
+      },
+      {
+        "address": "tests/persistence/test_json.py",
+        "case_id": "i25-d9e58cd09390",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 24
+        },
+        "support_count": 24
+      },
+      {
+        "address": "tests/resources/commands/test_models.py",
+        "case_id": "i25-d9e58cd09390",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 9
+        },
+        "support_count": 9
+      },
+      {
+        "address": "src/devtools/observability/__init__.py",
+        "case_id": "i25-eadb6f231f57",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "path_combinations": {
+          "import:outgoing -> immediate_package:child_to_package": 1
+        },
+        "support_count": 1
+      },
+      {
+        "address": "tests/observability/evidence/test_protocols.py",
+        "case_id": "i25-eadb6f231f57",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "NOT_USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 1
+        },
+        "support_count": 1
+      }
+    ],
+    "sampled_useful_pairs": [
+      {
+        "address": "src/devtools/context/message.py",
+        "case_id": "i25-0f7a13667ef3",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 4
+        },
+        "support_count": 4
+      },
+      {
+        "address": "src/devtools/execution/runtime.py",
+        "case_id": "i25-8994c4e58644",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "USEFUL",
+        "judgment_origin": "probability-sample-blinded",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "path_combinations": {
+          "import:outgoing -> import:inverse": 12
+        },
+        "support_count": 12
+      }
+    ],
+    "sampled_useful_proportion": {
+      "finite_population_correction": false,
+      "interpretation": "descriptive uncertainty for the useful proportion of the 702 frozen unresolved pairs; simple random sampling without replacement",
+      "lower": 0.004295449710144082,
+      "method": "Wilson score 95% binomial approximation",
+      "sampled_fraction": 0.015625,
+      "upper": 0.055180976679817195
+    },
+    "sampling_method": "simple-random-sampling-without-replacement",
+    "sampling_seed": 320128,
+    "schema": "devtools-i32-graph-round-one-development-results-v1",
+    "source_content_identities": {
+      "graph_round_one_blinded_judgment_input.json": "ec6896c208ad0dcadd698e6cd97235c3efcb065110466b19b6ef638beb2a1362",
+      "graph_round_one_candidates.json": "e6bd93726e9227a4ef91d0a313d9ce52dba4ae1e44a7c237752b8cc8b62e6564",
+      "graph_round_one_freeze.json": "4c8d7e9b0a3fc0d647565594fae9833a2240345ef35e78e05fa561573476dec0",
+      "graph_round_one_judgment_freeze.json": "b63b3cd05d7e9b774abca724d0fe4b41c69b078b83bf7d920f7288f625bb240e",
+      "graph_round_one_sampled_blinded_judgment_input.json": "cadb37daf2612cc29f373878cc230c1be9f0ad15d2ad13560e6c10061860770f",
+      "graph_round_one_sampled_frozen_judgments.json": "c007bf201e8d8d29d43fcc1b58079ad33be7109c6a1d117e43feb24724120e7c",
+      "graph_round_one_sampling_freeze.json": "cea7a880b0bfbbc0a0f3970879dab8f87606e0118507e3bce10f5e1ac2ed19c7"
+    },
+    "source_sha256": {
+      "graph_round_one_blinded_judgment_input.json": "2721f737aff1bc0d266f767dcbb49ab623bc1b2d7c19c05aec4ef55a89b603b9",
+      "graph_round_one_candidates.json": "b8cb242dc0ff3d9184bcd14da2572864806f8986390ffe8000d4ff9a4e9fba0a",
+      "graph_round_one_freeze.json": "4869d561b9cf2b50665102f775f0d2d450b52db7e75bfa576e2ddb42911412f9",
+      "graph_round_one_judgment_freeze.json": "a461d48a3c33dcfcbb1f8a1ab3a6174d1ce9c3a8d06710fb67ddc8803538dd5e",
+      "graph_round_one_sampled_blinded_judgment_input.json": "dc922555365307e8146c00ae5bda2c646372badbc45574dbbd30c707d4190949",
+      "graph_round_one_sampled_frozen_judgments.json": "5406ecf910664a6fe347cd5f23269bcce9a7f61718b2cfeb89832a0366cdde5c",
+      "graph_round_one_sampling_freeze.json": "1b1b113a17939a5cadfbe731c4282d756b5835422de99845207e06789e03d00d"
+    },
+    "unsampled_semantic_judgments_assigned": false,
+    "usefulness_semantics": "purpose-relative-three-state-v1"
+  },
+  "schema": "devtools-i32-graph-round-one-development-results-v1"
+}
