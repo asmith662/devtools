@@ -741,8 +741,10 @@ Bounded source-grounded Python function Reference occurrences with direct Call
 specialization are now production RI, tied conservatively to existing
 declarations and import resolution. This establishes qualified repository
 knowledge, not runtime invocation or a generic call graph. Qualified immediate
-package membership is the next separate typed fact. Later pressure includes
-an Evaluation assessment/coverage kernel, production direct structural
+package membership is now a separate production typed fact over one explicit
+module-root interpretation selection. Its missing and ambiguous assessments
+do not assert repository-wide absence. The next pressure is a narrow Evaluation
+assessment/coverage kernel, followed by production direct structural
 candidate use, and a first fine-grained Context disclosure slice. Class/base,
 test semantics, configuration/registration bindings, structural admission,
 and Learning remain scoped design questions. Frozen experiments and sealed

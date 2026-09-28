@@ -450,6 +450,16 @@ names remain distinct interpretations, and root precedence is absent. It perform
 no root inference, acquisition, namespace-package interpretation, import
 resolution, relationship construction, retrieval, or Context work.
 
+`context.python.modules.membership` now derives qualified immediate membership
+from existing module interpretations. One child module `P.C` is a member of
+exactly one observed package module `P` under the same explicit root and
+snapshot. The fact retains both interpreted resources and its derivation;
+per-child assessments distinguish missing, non-package, and ambiguous parents
+within the supplied selected set. Both directions query this one fact. It
+implies no Imports relation, runtime importability, transitive containment, or
+relevance. The [package contract](../src/devtools/context/python/modules/docs/overview.md)
+defines the bounded API.
+
 `context.python.imports` can additionally resolve a declaration's eligible
 module portion only within an explicit `PythonModuleInterpretationUniverse`.
 It reports resolved, unresolved-in-universe, ambiguous, or qualified unsupported
@@ -637,7 +647,7 @@ simple fusion are not production defaults. No universal graph or graph store is
 selected. The bounded source-grounded Python function Reference occurrence
 with direct Call specialization is now production RI with explicit uncertainty
 and coverage; no runtime dispatch or generic call graph is implied. Immediate
-qualified package membership is the next typed fact, while
+qualified package membership is now a second production typed fact, while
 mirrored test paths do not establish TESTS or EXERCISES knowledge.
 
 ## Accepted Context and disclosure semantics

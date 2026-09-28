@@ -12,8 +12,23 @@ from devtools.context.python.modules.interpretation import (
     define_python_module_interpretation_universe,
     interpret_python_module_resources,
 )
+from devtools.context.python.modules.membership import (
+    PythonImmediatePackageMembership,
+    PythonImmediatePackageMembershipAnalysis,
+    PythonImmediatePackageMembershipAssessment,
+    PythonImmediatePackageMembershipCoverage,
+    PythonImmediatePackageMembershipDerivation,
+    PythonImmediatePackageMembershipStatus,
+    derive_python_immediate_package_memberships,
+)
 
 __all__ = [
+    "PythonImmediatePackageMembership",
+    "PythonImmediatePackageMembershipAnalysis",
+    "PythonImmediatePackageMembershipAssessment",
+    "PythonImmediatePackageMembershipCoverage",
+    "PythonImmediatePackageMembershipDerivation",
+    "PythonImmediatePackageMembershipStatus",
     "PythonModuleInterpretation",
     "PythonModuleInterpretationAnalysis",
     "PythonModuleInterpretationExclusion",
@@ -22,5 +37,6 @@ __all__ = [
     "PythonModuleKind",
     "PythonModuleRoot",
     "define_python_module_interpretation_universe",
+    "derive_python_immediate_package_memberships",
     "interpret_python_module_resources",
 ]

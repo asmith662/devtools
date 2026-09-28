@@ -183,6 +183,13 @@ root and exact observed resource remain part of the interpretation, duplicate
 names are preserved, and no root precedence exists. Neither package implements
 runtime importability, source-root discovery, namespace packages, generic graph
 infrastructure, retrieval, or Context behavior.
+
+The [Python modules package](../src/devtools/context/python/modules/docs/overview.md)
+also owns qualified immediate package membership over one explicit-root
+selected interpretation analysis. A single fact supports child-to-package and
+package-to-child questions, with bounded missing and ambiguous assessments;
+it does not establish Imports or retrieval relevance.
+
 Import resolution is limited to an explicit interpretation universe and retains
 resolved, unresolved-in-universe, ambiguous, or unsupported outcomes. It neither
 emulates runtime imports; the separate relation derivation records only the
