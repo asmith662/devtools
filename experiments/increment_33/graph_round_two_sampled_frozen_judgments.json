@@ -1,0 +1,1691 @@
+{
+  "content_identity": "457e10b91aae0a1b8356f68442e1f656dc1dc9885b37fad8ee8936b412ed754a",
+  "payload": {
+    "complete_unresolved_neutral_input_identity": "1a7e028014e15188e0753c839b190b9a8ef9dea9b242d806a591bcc150020779",
+    "confirmation_executed": false,
+    "counts": {
+      "NOT_USEFUL": 128,
+      "UNJUDGED": 0,
+      "USEFUL": 0
+    },
+    "decisions": [
+      {
+        "address": "src/devtools/resources/filesystem/errors.py",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-06a43840518722e1",
+        "neutral_resource_id": "resource-1f621c969c087f2d",
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "rationale": "The sampled module concerns Exceptions for the :mod:`devtools.resources.filesystem` domain; its content does not implement or test the requested work (Implement Python function source materialization).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/resources/filesystem/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-06a43840518722e1",
+        "neutral_resource_id": "resource-6a87c178fba807af",
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "rationale": "The sampled test file concerns Tests for immutable filesystem models; its content does not implement or test the requested work (Implement Python function source materialization).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-06a43840518722e1",
+        "neutral_resource_id": "resource-bd368d7ab78f586a",
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "rationale": "The sampled test file concerns Tests for path primitives; its content does not implement or test the requested work (Implement Python function source materialization).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/models/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement Python function source materialization",
+          "purpose": "Address the historical maintenance task: Implement Python function source materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-06a43840518722e1",
+        "neutral_resource_id": "resource-c475f87b4c1cc222",
+        "parent_snapshot_sha": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+        "rationale": "The file only reexports filesystem model types; it contains no Python function source materialization logic.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/tools/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-0da0f55c10708909",
+        "neutral_resource_id": "resource-2f910b63467fb2cd",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "rationale": "The sampled module concerns Experimental provider-neutral Tool execution primitives; its content does not implement or test the requested work (Implement bounded repository text observation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/identity/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-0da0f55c10708909",
+        "neutral_resource_id": "resource-53aff453b9d6a33b",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "rationale": "The sampled module concerns Identity primitives for developer tooling; its content does not implement or test the requested work (Implement bounded repository text observation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/time/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-0da0f55c10708909",
+        "neutral_resource_id": "resource-822805ee0b3bb9a1",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "rationale": "The sampled module concerns Time primitives for developer tooling; its content does not implement or test the requested work (Implement bounded repository text observation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/system/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository text observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository text observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-0da0f55c10708909",
+        "neutral_resource_id": "resource-d11d146907f2c932",
+        "parent_snapshot_sha": "b8e533042d6904554cce28a1402148ee2454a67d",
+        "rationale": "The sampled module concerns System primitives for developer tooling; its content does not implement or test the requested work (Implement bounded repository text observation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/core/time/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-11bcb64621e6c39c",
+        "neutral_resource_id": "resource-0cb43f0f306d92fc",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "rationale": "The sampled test file concerns Tests for time primitives; its content does not implement or test the requested work (Implement model usage measurement).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/system/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-11bcb64621e6c39c",
+        "neutral_resource_id": "resource-afbe1e42e21eac7a",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "rationale": "The sampled module concerns System primitives for developer tooling; its content does not implement or test the requested work (Implement model usage measurement).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/conversation/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-11bcb64621e6c39c",
+        "neutral_resource_id": "resource-c44f635a72950f39",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "rationale": "The sampled module concerns Retained interaction-context values for developer tooling; its content does not implement or test the requested work (Implement model usage measurement).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/tools/command.py",
+        "information_need": {
+          "lexical_query": "Implement model usage measurement",
+          "purpose": "Address the historical maintenance task: Implement model usage measurement"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-11bcb64621e6c39c",
+        "neutral_resource_id": "resource-cdcae5c6b07d131f",
+        "parent_snapshot_sha": "d58c0504b671703090cacec2f0123fa83220446e",
+        "rationale": "The sampled module concerns Experimental Tool bridge over direct command execution; its content does not implement or test the requested work (Implement model usage measurement).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/codecs/csv.py",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-133133cf67e8f260",
+        "neutral_resource_id": "resource-0400ffd6cf375925",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "rationale": "The sampled module concerns CSV representation codec; its content does not implement or test the requested work (cross-resource Python function Context materialization).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/serving/vllm.py",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-133133cf67e8f260",
+        "neutral_resource_id": "resource-0df337fb5d5bd468",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "rationale": "The sampled module concerns Experimental concrete vLLM Docker serving lifecycle; its content does not implement or test the requested work (cross-resource Python function Context materialization).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/execution/__init__.py",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-133133cf67e8f260",
+        "neutral_resource_id": "resource-0eeb7933dcf5b0f6",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "rationale": "The sampled module concerns Execution lifecycle and narrow Runtime coordination; its content does not implement or test the requested work (cross-resource Python function Context materialization).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/governance/__init__.py",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-133133cf67e8f260",
+        "neutral_resource_id": "resource-1cc4dc0391733b82",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "rationale": "The sampled module concerns Reserved domain for authority, policy, and constraints; its content does not implement or test the requested work (cross-resource Python function Context materialization).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/execution/runtime.py",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-133133cf67e8f260",
+        "neutral_resource_id": "resource-4c57a56b8b695b49",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "rationale": "Runtime coordinates one model interaction and Conversation; it does not resolve or materialize cross-resource Python function Context.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/resources/filesystem/models/csv/__init__.py",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-133133cf67e8f260",
+        "neutral_resource_id": "resource-d5243ee41d6e3d67",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "rationale": "The sampled test file concerns Tests for immutable CSV filesystem models; its content does not implement or test the requested work (cross-resource Python function Context materialization).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/serving/__init__.py",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-133133cf67e8f260",
+        "neutral_resource_id": "resource-d7e4f6b758ba2733",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "rationale": "The sampled module concerns Experimental local model-serving lifecycle infrastructure; its content does not implement or test the requested work (cross-resource Python function Context materialization).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/__init__.py",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-133133cf67e8f260",
+        "neutral_resource_id": "resource-db51d8f8703f5d61",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "rationale": "The sampled module concerns Reusable access and manipulation resources; its content does not implement or test the requested work (cross-resource Python function Context materialization).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "cross-resource Python function Context materialization",
+          "purpose": "Address the historical maintenance task: cross-resource Python function Context materialization"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-133133cf67e8f260",
+        "neutral_resource_id": "resource-dd854f565ea30278",
+        "parent_snapshot_sha": "ac797431db35c26b1b42625db3054273346a4a83",
+        "rationale": "The sampled test file concerns Tests for path primitives; its content does not implement or test the requested work (cross-resource Python function Context materialization).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/regex/__init__.py",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-166dd0bb5b52446e",
+        "neutral_resource_id": "resource-32e5be78ace9ae8a",
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+        "rationale": "The sampled module concerns Regular-expression primitives for developer tooling; its content does not implement or test the requested work (Assemble Python function Context into model requests).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/evaluation/__init__.py",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-166dd0bb5b52446e",
+        "neutral_resource_id": "resource-572d2878ba1b5796",
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+        "rationale": "The sampled module concerns Reserved domain for reusable evaluation semantics; its content does not implement or test the requested work (Assemble Python function Context into model requests).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/resources/filesystem/models/csv/test_row.py",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-166dd0bb5b52446e",
+        "neutral_resource_id": "resource-58337c827e2918a5",
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+        "rationale": "The sampled test file concerns Tests for immutable header-addressable CSV rows; its content does not implement or test the requested work (Assemble Python function Context into model requests).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/execution/test_interaction_attempt.py",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-166dd0bb5b52446e",
+        "neutral_resource_id": "resource-76f6dafb3a8c97fc",
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+        "rationale": "The sampled test file concerns Tests for application-level processing attempts; its content does not implement or test the requested work (Assemble Python function Context into model requests).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/resources/filesystem/models/markdown/test_heading.py",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-166dd0bb5b52446e",
+        "neutral_resource_id": "resource-93282b78736b5cb5",
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+        "rationale": "The sampled test file concerns Tests for immutable Markdown heading values; its content does not implement or test the requested work (Assemble Python function Context into model requests).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/time/__init__.py",
+        "information_need": {
+          "lexical_query": "Assemble Python function Context into model requests",
+          "purpose": "Address the historical maintenance task: Assemble Python function Context into model requests"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-166dd0bb5b52446e",
+        "neutral_resource_id": "resource-e60aeda8055c7a94",
+        "parent_snapshot_sha": "e142585a95da66cfa2aee967b6877bb640e8c431",
+        "rationale": "The sampled module concerns Time primitives for developer tooling; its content does not implement or test the requested work (Assemble Python function Context into model requests).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/evaluation/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-18b84f1b99354d61",
+        "neutral_resource_id": "resource-78490dd18c66b31f",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "rationale": "The sampled module concerns Reserved domain for reusable evaluation semantics; its content does not implement or test the requested work (Implement exact-name Python function resource selection).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/termination.py",
+        "information_need": {
+          "lexical_query": "Implement exact-name Python function resource selection",
+          "purpose": "Address the historical maintenance task: Implement exact-name Python function resource selection"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-18b84f1b99354d61",
+        "neutral_resource_id": "resource-b1386eda9bf21b78",
+        "parent_snapshot_sha": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+        "rationale": "The sampled module concerns Provider-reported termination for one completed model interaction; its content does not implement or test the requested work (Implement exact-name Python function resource selection).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-241377482ce7ebeb",
+        "neutral_resource_id": "resource-046065fc125db8f6",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "rationale": "The sampled test file concerns Tests for path primitives; its content does not implement or test the requested work (Python function Context acceptance experiment).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/tools/__init__.py",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-241377482ce7ebeb",
+        "neutral_resource_id": "resource-2aa80f5123ad127e",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "rationale": "The sampled test file concerns Tests for experimental Tool execution; its content does not implement or test the requested work (Python function Context acceptance experiment).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/models/benchmarks/__init__.py",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-241377482ce7ebeb",
+        "neutral_resource_id": "resource-6470dff8458af601",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "rationale": "The sampled test file concerns Model benchmark tests; its content does not implement or test the requested work (Python function Context acceptance experiment).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/tools/command.py",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-241377482ce7ebeb",
+        "neutral_resource_id": "resource-a3d63f37144ea86d",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "rationale": "The sampled module concerns Experimental Tool bridge over direct command execution; its content does not implement or test the requested work (Python function Context acceptance experiment).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/observability/evidence/__init__.py",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-241377482ce7ebeb",
+        "neutral_resource_id": "resource-bf0b2b31921454aa",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "rationale": "The sampled test file concerns Evidence tests; its content does not implement or test the requested work (Python function Context acceptance experiment).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/agents/integrations/codex/__init__.py",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-241377482ce7ebeb",
+        "neutral_resource_id": "resource-ca66c7489fa29d54",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "rationale": "The sampled test file concerns Codex integration tests; its content does not implement or test the requested work (Python function Context acceptance experiment).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/integrations/codex/__init__.py",
+        "information_need": {
+          "lexical_query": "Python function Context acceptance experiment",
+          "purpose": "Address the historical maintenance task: Python function Context acceptance experiment"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-241377482ce7ebeb",
+        "neutral_resource_id": "resource-ece0d17f6368c367",
+        "parent_snapshot_sha": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+        "rationale": "This initializer only exports the Codex adapter API; it contains no Python function Context acceptance fixture or result.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/resources/filesystem/models/csv/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-35f5e1f25f9a4dfe",
+        "neutral_resource_id": "resource-5abb0ef1f2297ead",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "rationale": "The sampled test file concerns Tests for immutable CSV filesystem models; its content does not implement or test the requested work (Implement repository text document representation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/commands/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement repository text document representation",
+          "purpose": "Address the historical maintenance task: Implement repository text document representation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-35f5e1f25f9a4dfe",
+        "neutral_resource_id": "resource-ea629b60ad5ab01c",
+        "parent_snapshot_sha": "004d3829a4754cce1e632288450a0f6ada682282",
+        "rationale": "The sampled module concerns Command execution primitives for developer tooling; its content does not implement or test the requested work (Implement repository text document representation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/persistence/sqlite.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-37d9d7150779855c",
+        "neutral_resource_id": "resource-0acde403a89120a1",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "rationale": "The sampled module concerns Normalized SQLite current-snapshot Conversation store; its content does not implement or test the requested work (Implement explicit-resource Python declaration derivation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/models/json/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-37d9d7150779855c",
+        "neutral_resource_id": "resource-2f8c27fa73a18f99",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "rationale": "The sampled module concerns JSON filesystem models; its content does not implement or test the requested work (Implement explicit-resource Python declaration derivation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/providers/llama_cpp_request_settings.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-37d9d7150779855c",
+        "neutral_resource_id": "resource-3f89c86524970d56",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "rationale": "The sampled module concerns Typed llama.cpp-specific request-settings extension seam; its content does not implement or test the requested work (Implement explicit-resource Python declaration derivation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/usage.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-37d9d7150779855c",
+        "neutral_resource_id": "resource-4219669bf85d28d0",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "rationale": "The sampled module concerns Provider-reported usage for one completed model interaction; its content does not implement or test the requested work (Implement explicit-resource Python declaration derivation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/errors.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-37d9d7150779855c",
+        "neutral_resource_id": "resource-77f9bb7db19b08a7",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "rationale": "The sampled module concerns Exceptions for the :mod:`devtools.resources.filesystem` domain; its content does not implement or test the requested work (Implement explicit-resource Python declaration derivation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/commands/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-37d9d7150779855c",
+        "neutral_resource_id": "resource-8e88b9f745cd4413",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "rationale": "The sampled module concerns Command execution primitives for developer tooling; its content does not implement or test the requested work (Implement explicit-resource Python declaration derivation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/resources/filesystem/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-37d9d7150779855c",
+        "neutral_resource_id": "resource-a9e0cfe1f05801c8",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "rationale": "The sampled test file concerns Tests for immutable filesystem models; its content does not implement or test the requested work (Implement explicit-resource Python declaration derivation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/execution/runtime.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-37d9d7150779855c",
+        "neutral_resource_id": "resource-ad8515e431f6d457",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "rationale": "The sampled module concerns Narrow coordination of one ModelInteraction with one Conversation; its content does not implement or test the requested work (Implement explicit-resource Python declaration derivation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/resolution.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-resource Python declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement explicit-resource Python declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-37d9d7150779855c",
+        "neutral_resource_id": "resource-e961a944e3148ac5",
+        "parent_snapshot_sha": "7594b845064971862d2067bc3166258c9f50416b",
+        "rationale": "The sampled module concerns Filesystem format and codec resolution; its content does not implement or test the requested work (Implement explicit-resource Python declaration derivation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/observability/evidence/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-4707f38800767945",
+        "neutral_resource_id": "resource-2d7cb5d246ef0b5c",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "rationale": "The sampled test file concerns Evidence tests; its content does not implement or test the requested work (Implement bounded repository snapshot observation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/commands/errors.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-4707f38800767945",
+        "neutral_resource_id": "resource-3ef87554d3af1d08",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "rationale": "The sampled module concerns Exceptions for the :mod:`devtools.resources.commands` domain; its content does not implement or test the requested work (Implement bounded repository snapshot observation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/models/json/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-4707f38800767945",
+        "neutral_resource_id": "resource-697ba1d7e5fe80f5",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "rationale": "The sampled module concerns JSON filesystem models; its content does not implement or test the requested work (Implement bounded repository snapshot observation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/execution/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-4707f38800767945",
+        "neutral_resource_id": "resource-72fcda7581bc4ded",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "rationale": "The sampled test file concerns Execution-domain tests; its content does not implement or test the requested work (Implement bounded repository snapshot observation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/resources/commands/test_errors.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-4707f38800767945",
+        "neutral_resource_id": "resource-9461486ccb9fb4e9",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "rationale": "The sampled test file concerns Tests for public command-domain error types; its content does not implement or test the requested work (Implement bounded repository snapshot observation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/resources/commands/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository snapshot observation",
+          "purpose": "Address the historical maintenance task: Implement bounded repository snapshot observation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-4707f38800767945",
+        "neutral_resource_id": "resource-dc34dc3562d1dec8",
+        "parent_snapshot_sha": "3f11ca00bb76435ded833925b72372094a578775",
+        "rationale": "The sampled test file concerns Tests for command execution primitives; its content does not implement or test the requested work (Implement bounded repository snapshot observation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/context/session/test_live.py",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-60de3531c1a1c4e5",
+        "neutral_resource_id": "resource-08ae97b12c705b46",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "rationale": "The live test checks Session and Codex continuation; it contains no Runtime terminal Evidence production or delivery check.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/regex/test_models.py",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-60de3531c1a1c4e5",
+        "neutral_resource_id": "resource-1bf24236b017bddb",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "rationale": "The sampled test file concerns Tests for regex value objects; its content does not implement or test the requested work (Runtime â†’ terminal Evidence production/delivery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/persistence/__init__.py",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-60de3531c1a1c4e5",
+        "neutral_resource_id": "resource-1dd07dea02f9b424",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "rationale": "The sampled test file concerns Persistence tests; its content does not implement or test the requested work (Runtime â†’ terminal Evidence production/delivery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/filesystem/models/markdown/test_section.py",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-60de3531c1a1c4e5",
+        "neutral_resource_id": "resource-256e457a7d3f95b9",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "rationale": "The sampled test file concerns Tests for immutable Markdown section values; its content does not implement or test the requested work (Runtime â†’ terminal Evidence production/delivery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/filesystem/test_json_models.py",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-60de3531c1a1c4e5",
+        "neutral_resource_id": "resource-29e862c0fdc8b689",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "rationale": "The sampled test file concerns Tests for immutable JSON file models; its content does not implement or test the requested work (Runtime â†’ terminal Evidence production/delivery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/time/__init__.py",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-60de3531c1a1c4e5",
+        "neutral_resource_id": "resource-571eae7dd35bc9cf",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "rationale": "The sampled test file concerns Tests for time primitives; its content does not implement or test the requested work (Runtime â†’ terminal Evidence production/delivery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/filesystem/test_models.py",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-60de3531c1a1c4e5",
+        "neutral_resource_id": "resource-8def21c74b94d975",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "rationale": "The sampled test file concerns Tests for base filesystem models; its content does not implement or test the requested work (Runtime â†’ terminal Evidence production/delivery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/codex/errors.py",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-60de3531c1a1c4e5",
+        "neutral_resource_id": "resource-8e0fd799d9d9128e",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "rationale": "The sampled module concerns Codex adapter errors; its content does not implement or test the requested work (Runtime â†’ terminal Evidence production/delivery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/filesystem/models/json/object.py",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-60de3531c1a1c4e5",
+        "neutral_resource_id": "resource-ccffcc01bc6b1af9",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "rationale": "The sampled module concerns JSON object filesystem models; its content does not implement or test the requested work (Runtime â†’ terminal Evidence production/delivery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/filesystem/reading.py",
+        "information_need": {
+          "lexical_query": "Runtime â†’ terminal Evidence production/delivery",
+          "purpose": "Address the historical maintenance task: Runtime â†’ terminal Evidence production/delivery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-60de3531c1a1c4e5",
+        "neutral_resource_id": "resource-e5253877b25c43f3",
+        "parent_snapshot_sha": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+        "rationale": "The sampled module concerns Codec-backed filesystem reading; its content does not implement or test the requested work (Runtime â†’ terminal Evidence production/delivery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/conversation/history.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-62309d717cc787fc",
+        "neutral_resource_id": "resource-09f0f9ec184e7c2a",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "The sampled module concerns Immutable retained message transcripts; its content does not implement or test the requested work (Implement explicit-root Python module interpretation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/resources/filesystem/models/markdown/test_heading.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-62309d717cc787fc",
+        "neutral_resource_id": "resource-39b9aef75dadd617",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "The sampled test file concerns Tests for immutable Markdown heading values; its content does not implement or test the requested work (Implement explicit-root Python module interpretation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/orchestration/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-62309d717cc787fc",
+        "neutral_resource_id": "resource-638afacb523b7468",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "The sampled module concerns Reserved domain for coordination across runs and agents; its content does not implement or test the requested work (Implement explicit-root Python module interpretation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement explicit-root Python module interpretation",
+          "purpose": "Address the historical maintenance task: Implement explicit-root Python module interpretation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-62309d717cc787fc",
+        "neutral_resource_id": "resource-b9745231698df41a",
+        "parent_snapshot_sha": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+        "rationale": "The sampled module concerns Goal-directed integrations and durable conversation semantics; its content does not implement or test the requested work (Implement explicit-root Python module interpretation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/orchestration/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement model interaction thinking control",
+          "purpose": "Address the historical maintenance task: Implement model interaction thinking control"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-68f84fbf324609e6",
+        "neutral_resource_id": "resource-616538a011b969a9",
+        "parent_snapshot_sha": "739c82bd3398181c0278286c32444ee0526586a9",
+        "rationale": "The sampled module concerns Reserved domain for coordination across runs and agents; its content does not implement or test the requested work (Implement model interaction thinking control).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/resources/filesystem/models/markdown/test_heading.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7c3ca1b774e6de0e",
+        "neutral_resource_id": "resource-52aa7155ba1cd7e1",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "The sampled test file concerns Tests for immutable Markdown heading values; its content does not implement or test the requested work (Implement multi-resource Python declaration aggregation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/observability/evidence/test_inspection.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7c3ca1b774e6de0e",
+        "neutral_resource_id": "resource-59ddf15fa9e3fef9",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "The sampled test file concerns Tests for process-local Evidence inspection; its content does not implement or test the requested work (Implement multi-resource Python declaration aggregation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/agents/integrations/codex/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7c3ca1b774e6de0e",
+        "neutral_resource_id": "resource-66a1e39232d7af8b",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "The sampled test file concerns Codex integration tests; its content does not implement or test the requested work (Implement multi-resource Python declaration aggregation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/observability/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7c3ca1b774e6de0e",
+        "neutral_resource_id": "resource-7cee1e8d8b00edee",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "The sampled module concerns Evidence, trace, and telemetry ownership domain; its content does not implement or test the requested work (Implement multi-resource Python declaration aggregation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/errors.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7c3ca1b774e6de0e",
+        "neutral_resource_id": "resource-a5daa085e0138c9d",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "The sampled module concerns Exceptions for the :mod:`devtools.resources.filesystem` domain; its content does not implement or test the requested work (Implement multi-resource Python declaration aggregation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/termination.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7c3ca1b774e6de0e",
+        "neutral_resource_id": "resource-ae4b6c499acb7d33",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "The sampled module concerns Provider-reported termination for one completed model interaction; its content does not implement or test the requested work (Implement multi-resource Python declaration aggregation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/execution/runtime.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7c3ca1b774e6de0e",
+        "neutral_resource_id": "resource-b5a7ed0b4f43a46e",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "The sampled module concerns Narrow coordination of one ModelInteraction with one Conversation; its content does not implement or test the requested work (Implement multi-resource Python declaration aggregation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/resolution.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7c3ca1b774e6de0e",
+        "neutral_resource_id": "resource-c3e38d5321bf258d",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "The sampled module concerns Filesystem format and codec resolution; its content does not implement or test the requested work (Implement multi-resource Python declaration aggregation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/models/interaction/test_protocols.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7c3ca1b774e6de0e",
+        "neutral_resource_id": "resource-cfa3d1585f79178d",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "The sampled test file concerns Tests for the structural ModelInteraction protocol; its content does not implement or test the requested work (Implement multi-resource Python declaration aggregation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/observation.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7c3ca1b774e6de0e",
+        "neutral_resource_id": "resource-d16e4be2b83321c6",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "The sampled module concerns Portable transient facts emitted at a completed model-interaction boundary; its content does not implement or test the requested work (Implement multi-resource Python declaration aggregation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/resources/filesystem/codecs/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7c3ca1b774e6de0e",
+        "neutral_resource_id": "resource-d6ea7321814c0c79",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "The sampled test file concerns Tests for filesystem representation codecs; its content does not implement or test the requested work (Implement multi-resource Python declaration aggregation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/benchmarks/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7c3ca1b774e6de0e",
+        "neutral_resource_id": "resource-da0891b3108e2a5a",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "The sampled module concerns Experimental one-run local model benchmark infrastructure; its content does not implement or test the requested work (Implement multi-resource Python declaration aggregation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/benchmarks/models.py",
+        "information_need": {
+          "lexical_query": "Implement multi-resource Python declaration aggregation",
+          "purpose": "Address the historical maintenance task: Implement multi-resource Python declaration aggregation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-7c3ca1b774e6de0e",
+        "neutral_resource_id": "resource-ed8b84d7081bd41b",
+        "parent_snapshot_sha": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+        "rationale": "The sampled module concerns Immutable values for experimental vLLM benchmark runs; its content does not implement or test the requested work (Implement multi-resource Python declaration aggregation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/commands/events.py",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-82c50ce34ded4217",
+        "neutral_resource_id": "resource-0a6105dd68aa3141",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "rationale": "The sampled module concerns Structured command execution events; its content does not implement or test the requested work (Implement direct Python function declaration derivation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/tools/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-82c50ce34ded4217",
+        "neutral_resource_id": "resource-62adaef345581e52",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "rationale": "The sampled module concerns Experimental provider-neutral Tool execution primitives; its content does not implement or test the requested work (Implement direct Python function declaration derivation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/execution/protocols.py",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-82c50ce34ded4217",
+        "neutral_resource_id": "resource-679997803646bf5a",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "rationale": "The sampled module concerns Execution-lifecycle observation contracts; its content does not implement or test the requested work (Implement direct Python function declaration derivation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/identity/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-82c50ce34ded4217",
+        "neutral_resource_id": "resource-b5dbc2522a68c471",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "rationale": "The sampled module concerns Identity primitives for developer tooling; its content does not implement or test the requested work (Implement direct Python function declaration derivation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/experiments/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-82c50ce34ded4217",
+        "neutral_resource_id": "resource-b6155fb732ea010b",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "rationale": "The sampled test file concerns Experiment tests; its content does not implement or test the requested work (Implement direct Python function declaration derivation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/system/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement direct Python function declaration derivation",
+          "purpose": "Address the historical maintenance task: Implement direct Python function declaration derivation"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-82c50ce34ded4217",
+        "neutral_resource_id": "resource-dbb6e2cebe95f730",
+        "parent_snapshot_sha": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+        "rationale": "The sampled module concerns System primitives for developer tooling; its content does not implement or test the requested work (Implement direct Python function declaration derivation).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/termination.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-ad294e74319b5036",
+        "neutral_resource_id": "resource-3760233e7ff72c62",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "The sampled module concerns Provider-reported termination for one completed model interaction; its content does not implement or test the requested work (Implement bounded repository resource discovery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/models/text.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-ad294e74319b5036",
+        "neutral_resource_id": "resource-51627c89599720da",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "TextFile supplies immutable text operations; it does not discover repository resource addresses or enforce discovery bounds.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/models/markdown/heading.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-ad294e74319b5036",
+        "neutral_resource_id": "resource-5d5d8d3918ac0129",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "The sampled module concerns Markdown heading models; its content does not implement or test the requested work (Implement bounded repository resource discovery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/conversion/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-ad294e74319b5036",
+        "neutral_resource_id": "resource-6550a8eff48de646",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "The sampled module concerns Explicit callable-based typed conversion; its content does not implement or test the requested work (Implement bounded repository resource discovery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/models/csv.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-ad294e74319b5036",
+        "neutral_resource_id": "resource-718af05796741a68",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "The sampled module concerns Immutable header-based CSV filesystem models; its content does not implement or test the requested work (Implement bounded repository resource discovery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/orchestration/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-ad294e74319b5036",
+        "neutral_resource_id": "resource-7fdf97df29aa40b9",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "The sampled module concerns Reserved domain for coordination across runs and agents; its content does not implement or test the requested work (Implement bounded repository resource discovery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/models/interaction/models.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-ad294e74319b5036",
+        "neutral_resource_id": "resource-a1dbe14551942018",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "The sampled module concerns Values exchanged at the model-invocation boundary; its content does not implement or test the requested work (Implement bounded repository resource discovery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/observability/evidence/test_terminal.py",
+        "information_need": {
+          "lexical_query": "Implement bounded repository resource discovery",
+          "purpose": "Address the historical maintenance task: Implement bounded repository resource discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-ad294e74319b5036",
+        "neutral_resource_id": "resource-acdba5f3492e471d",
+        "parent_snapshot_sha": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+        "rationale": "The sampled test file concerns Tests for immutable terminal interaction-attempt Evidence; its content does not implement or test the requested work (Implement bounded repository resource discovery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/execution/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-ba7a655027fb2bbd",
+        "neutral_resource_id": "resource-156035eef96fd55b",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "The sampled test file concerns Execution-domain tests; its content does not implement or test the requested work (Implement ADR-0001 model-native Tool boundary).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/agents/conversation/__init__.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-ba7a655027fb2bbd",
+        "neutral_resource_id": "resource-b9d5d74d4442c366",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "The sampled test file concerns Conversation tests; its content does not implement or test the requested work (Implement ADR-0001 model-native Tool boundary).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/commands/models/result.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-ba7a655027fb2bbd",
+        "neutral_resource_id": "resource-db70e03767d69ad4",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "CommandResult models command execution output; it does not define the model-native Tool request/response boundary.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/persistence/errors.py",
+        "information_need": {
+          "lexical_query": "Implement ADR-0001 model-native Tool boundary",
+          "purpose": "Address the historical maintenance task: Implement ADR-0001 model-native Tool boundary"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-ba7a655027fb2bbd",
+        "neutral_resource_id": "resource-e032e214902df1dd",
+        "parent_snapshot_sha": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+        "rationale": "The sampled module concerns Persistence-domain errors; its content does not implement or test the requested work (Implement ADR-0001 model-native Tool boundary).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/evaluation/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bbb57cf1fcb5706b",
+        "neutral_resource_id": "resource-00405b705ed6244d",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "The sampled module concerns Reserved domain for reusable evaluation semantics; its content does not implement or test the requested work (measured repository selection stress fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/experiments/test_worker_story.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bbb57cf1fcb5706b",
+        "neutral_resource_id": "resource-155e083c8ecfe4a6",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "These tests validate WorkerStoryResult telemetry fields; they do not construct or measure a repository selection stress fixture.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/integrations/codex/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bbb57cf1fcb5706b",
+        "neutral_resource_id": "resource-59d22709b2434c4b",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "The sampled module concerns ModelInteraction provider adapter for the external Codex agent system; its content does not implement or test the requested work (measured repository selection stress fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/commands/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bbb57cf1fcb5706b",
+        "neutral_resource_id": "resource-5f3572d92778cba6",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "The sampled module concerns Command execution primitives for developer tooling; its content does not implement or test the requested work (measured repository selection stress fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/codecs/markdown.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bbb57cf1fcb5706b",
+        "neutral_resource_id": "resource-6bc7a3200671de44",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "The sampled module concerns Markdown filesystem codec; its content does not implement or test the requested work (measured repository selection stress fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/identity/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bbb57cf1fcb5706b",
+        "neutral_resource_id": "resource-8e1dcee1a47c383f",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "The sampled module concerns Identity primitives for developer tooling; its content does not implement or test the requested work (measured repository selection stress fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/core/paths/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bbb57cf1fcb5706b",
+        "neutral_resource_id": "resource-a0032dad220b054c",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "The sampled test file concerns Tests for path primitives; its content does not implement or test the requested work (measured repository selection stress fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/observability/evidence/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bbb57cf1fcb5706b",
+        "neutral_resource_id": "resource-a06e592f4c2386b9",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "The sampled test file concerns Evidence tests; its content does not implement or test the requested work (measured repository selection stress fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/persistence/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bbb57cf1fcb5706b",
+        "neutral_resource_id": "resource-eaec60b52137cb21",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "The sampled module concerns Durable Conversation persistence public API; its content does not implement or test the requested work (measured repository selection stress fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/models/markdown/heading.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bbb57cf1fcb5706b",
+        "neutral_resource_id": "resource-f649fbb1ffcf8a6b",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "The sampled module concerns Markdown heading models; its content does not implement or test the requested work (measured repository selection stress fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/agents/conversation/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bbb57cf1fcb5706b",
+        "neutral_resource_id": "resource-f64bd95d19f4abb5",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "The sampled test file concerns Conversation tests; its content does not implement or test the requested work (measured repository selection stress fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/regex/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bbb57cf1fcb5706b",
+        "neutral_resource_id": "resource-f7989d20c8df22f9",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "The sampled module concerns Regular-expression primitives for developer tooling; its content does not implement or test the requested work (measured repository selection stress fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/models/json/__init__.py",
+        "information_need": {
+          "lexical_query": "measured repository selection stress fixture",
+          "purpose": "Address the historical maintenance task: measured repository selection stress fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bbb57cf1fcb5706b",
+        "neutral_resource_id": "resource-faeb3977ae756f65",
+        "parent_snapshot_sha": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+        "rationale": "The sampled module concerns JSON filesystem models; its content does not implement or test the requested work (measured repository selection stress fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/conversion/__init__.py",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bf4db39bab1a50df",
+        "neutral_resource_id": "resource-146e7719c6ce8488",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "rationale": "The sampled module concerns Explicit callable-based typed conversion; its content does not implement or test the requested work (Investigate Repository Context Discovery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/observability/evidence/protocols.py",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bf4db39bab1a50df",
+        "neutral_resource_id": "resource-2d830677323beacb",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "rationale": "The sampled module concerns Evidence delivery contract; its content does not implement or test the requested work (Investigate Repository Context Discovery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/commands/models/__init__.py",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bf4db39bab1a50df",
+        "neutral_resource_id": "resource-3bcf03da04963fd2",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "rationale": "The sampled module concerns Command value objects; its content does not implement or test the requested work (Investigate Repository Context Discovery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/tools/__init__.py",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bf4db39bab1a50df",
+        "neutral_resource_id": "resource-43718bd4369caebb",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "rationale": "The sampled test file concerns Tests for experimental Tool execution; its content does not implement or test the requested work (Investigate Repository Context Discovery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/commands/events.py",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bf4db39bab1a50df",
+        "neutral_resource_id": "resource-9bbd3e90ecd6fb3d",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "rationale": "The sampled module concerns Structured command execution events; its content does not implement or test the requested work (Investigate Repository Context Discovery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/integrations/codex/errors.py",
+        "information_need": {
+          "lexical_query": "Investigate Repository Context Discovery",
+          "purpose": "Address the historical maintenance task: Investigate Repository Context Discovery"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-bf4db39bab1a50df",
+        "neutral_resource_id": "resource-b4b025b27ad38d90",
+        "parent_snapshot_sha": "886fef9217205f1292f54ee14105c8930bffc629",
+        "rationale": "The sampled module concerns Codex adapter errors; its content does not implement or test the requested work (Investigate Repository Context Discovery).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/models/interaction/__init__.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c0053d357f3ac3a1",
+        "neutral_resource_id": "resource-1b200c8761ea503b",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "The sampled test file concerns Model-interaction tests; its content does not implement or test the requested work (selection-stress acceptance fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/agents/integrations/codex/parsing.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c0053d357f3ac3a1",
+        "neutral_resource_id": "resource-2fd390299a668e3a",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "This module parses Codex JSONL turn output; it does not implement or validate a selection-stress acceptance fixture.",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/time/__init__.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c0053d357f3ac3a1",
+        "neutral_resource_id": "resource-34c263b583f15946",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "The sampled module concerns Time primitives for developer tooling; its content does not implement or test the requested work (selection-stress acceptance fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/resources/commands/__init__.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c0053d357f3ac3a1",
+        "neutral_resource_id": "resource-4c1da83b20814f5c",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "The sampled test file concerns Tests for command execution primitives; its content does not implement or test the requested work (selection-stress acceptance fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/persistence/__init__.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c0053d357f3ac3a1",
+        "neutral_resource_id": "resource-611d31cf438fde38",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "The sampled test file concerns Persistence tests; its content does not implement or test the requested work (selection-stress acceptance fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/agents/integrations/codex/__init__.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c0053d357f3ac3a1",
+        "neutral_resource_id": "resource-8fa83ee92f9e2e25",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "The sampled test file concerns Codex integration tests; its content does not implement or test the requested work (selection-stress acceptance fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/core/regex/__init__.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c0053d357f3ac3a1",
+        "neutral_resource_id": "resource-95ed410f768993e0",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "The sampled module concerns Regular-expression primitives for developer tooling; its content does not implement or test the requested work (selection-stress acceptance fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/codecs/csv.py",
+        "information_need": {
+          "lexical_query": "selection-stress acceptance fixture",
+          "purpose": "Address the historical maintenance task: selection-stress acceptance fixture"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-c0053d357f3ac3a1",
+        "neutral_resource_id": "resource-d51f9c298077fb82",
+        "parent_snapshot_sha": "901246bd802abfd615e1ea851c35a23e233bc37a",
+        "rationale": "The sampled module concerns CSV representation codec; its content does not implement or test the requested work (selection-stress acceptance fixture).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "tests/core/paths/test_resolution.py",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-d338db24e1cb1fd9",
+        "neutral_resource_id": "resource-0bd3dee372e140c8",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "rationale": "The sampled test file concerns Tests for public path parsing, resolution, and location helpers; its content does not implement or test the requested work (Implement model reasoning content).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      },
+      {
+        "address": "src/devtools/resources/filesystem/models/markdown/heading.py",
+        "information_need": {
+          "lexical_query": "Implement model reasoning content",
+          "purpose": "Address the historical maintenance task: Implement model reasoning content"
+        },
+        "judgment": "NOT_USEFUL",
+        "neutral_case_id": "case-d338db24e1cb1fd9",
+        "neutral_resource_id": "resource-e47a138e20ef05d3",
+        "parent_snapshot_sha": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+        "rationale": "The sampled module concerns Markdown heading models; its content does not implement or test the requested work (Implement model reasoning content).",
+        "usefulness_semantics": "purpose-relative-three-state-v1"
+      }
+    ],
+    "provenance_inspected_before_freeze": false,
+    "sample_size": 128,
+    "sampled_input_identity": "cb2a8977c285df008daf52228cc4e6a0eb5c137c460973d2222b0a5fac66cc86",
+    "sampled_input_sha256": "3d66623275ccaf5f8807974b4c805885b9427d44cf0a1f74a00c2a83383f12b7",
+    "sampling_freeze_identity": "716b76e07384f18406febab3b0e6e89c09e1896025bcb1372622ba10e9229e9b",
+    "sampling_freeze_sha256": "230cd6a5b5bba79ecaec31f36d127ee575cedcdfa8d03ef488c04ccd4e4761f6",
+    "states": [
+      "USEFUL",
+      "NOT_USEFUL",
+      "UNJUDGED"
+    ],
+    "usefulness_semantics": "purpose-relative-three-state-v1"
+  },
+  "schema": "devtools-i33-graph-round-two-sampled-judgments-v1"
+}
