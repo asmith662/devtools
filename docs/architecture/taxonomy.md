@@ -861,6 +861,14 @@ information must remain outside model-visible disclosure unless deliberately
 authorized; host-side oracle assistance that changes an interaction remains
 part of its experimental condition/provenance even when not shown directly.
 
+The production `devtools.evaluation` package currently provides identity
+coverage accounting between a caller-supplied expected frame and observed
+identities. It reports duplicates, missing expected identities, and unexpected
+observed identities; it does not own identity or outcome semantics, relevance,
+sampling, metrics, or experiment protocols. An observed `UNJUDGED` payload is
+present for this purpose, while an identity absent from observations is
+missing relative to the expected frame.
+
 ## Memory and persistence
 
 ### Persistence

@@ -786,18 +786,20 @@ the affected continuation may require a rerun. Progressive evaluation can
 retain experiment-local decision correlation without a foundational Episode or
 Trajectory model.
 
-The completed retrieval breadth work justifies designing a small reusable
-Evaluation kernel for exact assessment identity, candidate/judgment coverage,
-sampling provenance, and missingness. This is an implementation target, not an
-existing production framework. Retrieval still defines its candidate universe,
-relevance semantics, and K; Evaluation guards the basis and validity of a
-comparison. A population is an identified assessment cohort, not inherently a
-Learning dataset. Generic metric interfaces and a universal experiment object
-remain unselected. Future cross-domain Learning may consume Evaluation and
-repository-derived observations and supply learned capabilities to retrieval or
-Context, but Context does not own training and no Learning package or name is
-selected. The [breadth gate](research/repository-retrieval-breadth-production-gate.md)
-records the bounded evidence and migration sequence.
+The completed retrieval breadth work justifies a small production Evaluation
+kernel for expected-versus-observed identity coverage. It reports duplicate
+identities on each side, missing expected identities, and unexpected observed
+identities while preserving input order. Evaluation owns comparison and
+assessment validity at this boundary; callers own identity meaning and decide
+whether a non-exact report is fatal. Coverage concerns identity presence only:
+an observed `UNJUDGED` outcome is observed, while an identity left unsampled is
+missing if it remains in the expected frame. Evaluation does not own outcome,
+relevance/usefulness, rationale, or sampling semantics, metrics, artifact
+freezing, or experiment protocols. The primitive is designed to support future
+assessment domains without interpreting their outcomes. No generic Population,
+metric interface, universal experiment object, or Learning package is
+established. See the [Evaluation package documentation](../src/devtools/evaluation/docs/overview.md)
+and [breadth gate](research/repository-retrieval-breadth-production-gate.md).
 
 ## Implementation-start and remaining evidence constraints
 

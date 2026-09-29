@@ -49,8 +49,9 @@ membership; (3) a narrow cross-domain Evaluation assessment/coverage kernel;
 relations and progressive pointers; (6) bounded structural selection research
 and later Learning convergence only after their prerequisites. Item 1 is the
 first completed production implementation increment. Item 2, qualified immediate
-package membership RI, is also complete. The narrow Evaluation assessment/
-coverage kernel is next. Preserve frozen experiments
+package membership RI, is also complete. Item 3 is now complete as the
+domain-neutral expected-versus-observed identity coverage kernel; assessment
+identity and all outcome semantics remain consumer-owned. Preserve frozen experiments
 as evidence and remove duplicate derivation from future consumers only after
 production parity is established. Confirmation remains sealed until a specific
 executable selection policy exists; no shadow or independent-repository claim

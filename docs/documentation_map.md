@@ -81,6 +81,7 @@
   [JSON](../src/devtools/persistence/docs/json.md), and
   [SQLite](../src/devtools/persistence/docs/sqlite.md).
 - Tools: [overview](../src/devtools/tools/docs/overview.md).
+- Evaluation: [identity coverage](../src/devtools/evaluation/docs/overview.md).
 
 The `context` domain exposes narrow Repository Intelligence APIs. Its current
 implementation can recursively discover regular-file addresses beneath an
@@ -211,11 +212,10 @@ import and declaration support. Its direct Call tag specializes the same
 Reference; its result coverage is non-exhaustive. It owns no retrieval or
 Context selection policy.
 
-The `orchestration`, `governance`, and `evaluation` domains remain recognized
-sparse namespaces without reusable implementation APIs. Current accepted
-Evaluation responsibility and boundaries are summarized in the central
-architecture and taxonomy; no Evaluation ADR or reusable framework API is
-currently established.
+The `orchestration` and `governance` domains remain recognized sparse
+namespaces without reusable implementation APIs. Evaluation now provides the
+bounded expected-versus-observed identity coverage API documented in its
+package overview. Broader Evaluation architecture remains unimplemented.
 
 ## Experiments and scripts
 
