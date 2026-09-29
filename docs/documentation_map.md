@@ -82,6 +82,7 @@
   [SQLite](../src/devtools/persistence/docs/sqlite.md).
 - Tools: [overview](../src/devtools/tools/docs/overview.md).
 - Evaluation: [identity coverage](../src/devtools/evaluation/docs/overview.md).
+- Retrieval: [production mechanisms](../src/devtools/context/retrieval/docs/overview.md).
 
 The `context` domain exposes narrow Repository Intelligence APIs. Its current
 implementation can recursively discover regular-file addresses beneath an
@@ -211,6 +212,13 @@ owns qualified source-occurrence-to-direct-function knowledge over existing
 import and declaration support. Its direct Call tag specializes the same
 Reference; its result coverage is non-exhaustive. It owns no retrieval or
 Context selection policy.
+
+`context.retrieval` now also exposes direct Python structural resource
+projection over supplied production Imports, References/direct Calls, and
+qualified immediate package membership facts. Its purpose-bearing request and
+snapshot-scoped result retain each candidate's seed, direction, and native RI
+support without source parsing, ranking, or Context disclosure. The lexical
+baseline remains separate pending an explicit production integration surface.
 
 The `orchestration` and `governance` domains remain recognized sparse
 namespaces without reusable implementation APIs. Evaluation now provides the

@@ -594,6 +594,20 @@ It also preserves concurrent dependency-aware retrieval, staged expansion,
 progressive disclosure, and future evaluation pressure without assigning them
 to Runtime, Tool execution, authorization, or an Agent loop.
 
+The current direct Python structural retrieval operation consumes established
+Imports, bounded References with direct Call tags, and qualified immediate
+package membership from Repository Intelligence. It projects one relation from
+explicit snapshot resource seeds under a purpose-bearing request and retains
+each native fact, seed, and direction as support for the surfaced resource.
+It does not parse source, create repository relationship truth, traverse further,
+score candidates, or disclose Context. Repository Intelligence owns deterministic
+facts; Retrieval owns purpose-relative candidate evidence; future selection
+decides which candidates deserve limited capacity; future Context compilation
+decides which facts, spans, summaries, or pointers to disclose. The
+[retrieval package overview](../src/devtools/context/retrieval/docs/overview.md)
+defines the implemented API and bounds. Lexical and structural retrieval remain
+separate production results pending an explicit integration surface.
+
 Increment 23 independently validates this boundary but does not promote its
 directional-reservation-v1 realization. Canonical and practical top five each
 recover 10/18 known-useful resources; the rule exchanges one useful rank-five
@@ -644,7 +658,15 @@ facts and keeps structural admission under a fixed budget an open retrieval
 question. Canonical BM25 remains the implemented production retrieval baseline;
 the stronger development lexical RRF control, dense comparison, unions, and
 simple fusion are not production defaults. No universal graph or graph store is
-selected. The bounded source-grounded Python function Reference occurrence
+selected.
+
+Graph-1/Graph-2 tested unranked structural neighborhood traversal for resource
+candidate generation. Sparse useful novelty in judged samples and sharp fan-out
+reject that mechanism as a strong default. Task-conditioned graph ranking and
+graph-assisted Context compilation were not tested by those traversals and
+remain later, distinct investigations.
+
+The bounded source-grounded Python function Reference occurrence
 with direct Call specialization is now production RI with explicit uncertainty
 and coverage; no runtime dispatch or generic call graph is implied. Immediate
 qualified package membership is now a second production typed fact, while

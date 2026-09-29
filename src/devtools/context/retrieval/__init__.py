@@ -32,8 +32,19 @@ from devtools.context.retrieval.lexical import (
     retrieve_repository_text_documents_by_content_bm25,
     summarize_repository_text_lexical_retrieval_evaluations,
 )
+from devtools.context.retrieval.structural import (
+    PythonDirectStructuralResourceCandidate,
+    PythonDirectStructuralResourceEvidence,
+    PythonDirectStructuralRetrievalRequest,
+    PythonDirectStructuralRetrievalResult,
+    retrieve_python_direct_structural_resources,
+)
 
 __all__ = [
+    "PythonDirectStructuralResourceCandidate",
+    "PythonDirectStructuralResourceEvidence",
+    "PythonDirectStructuralRetrievalRequest",
+    "PythonDirectStructuralRetrievalResult",
     "RepositoryTextLexicalBm25Match",
     "RepositoryTextLexicalBm25RetrievalResult",
     "RepositoryTextLexicalBm25Settings",
@@ -60,6 +71,7 @@ __all__ = [
     "build_repository_text_lexical_inverted_index",
     "calculate_repository_text_lexical_corpus_statistics",
     "evaluate_repository_text_lexical_bm25_retrieval",
+    "retrieve_python_direct_structural_resources",
     "retrieve_repository_text_documents_by_bm25",
     "retrieve_repository_text_documents_by_content_bm25",
     "summarize_repository_text_lexical_retrieval_evaluations",

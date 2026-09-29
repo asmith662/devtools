@@ -30,32 +30,42 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
-### Current — production consolidation after retrieval breadth
+### Current — integrate direct structural and lexical retrieval
 
 The Tier-1 breadth sprint through Increment 36 is complete. The
 [breadth evidence and production gate](research/repository-retrieval-breadth-production-gate.md)
 records its empirical limits and dispositions; the prospective Increment 27
 sequence and earlier retrieval checkpoint below remain historical. Direct
 Imports and bounded References/direct Calls supplied useful complementary
-resource reach. Graph depth caused large fan-out, and structural selection at
-K=5 is unresolved. Canonical lexical retrieval remains the production baseline;
+resource reach. Unranked Graph-1/Graph-2 traversal caused large fan-out, and
+structural selection at K=5 is unresolved. Canonical lexical retrieval remains
+the production baseline;
 no union, graph expansion, dense model, or fusion policy is promoted.
 
 Proceed in dependency order: (1) bounded source-grounded Python function
 Reference/direct Call Repository Intelligence; (2) qualified immediate package
 membership; (3) a narrow cross-domain Evaluation assessment/coverage kernel;
 (4) direct retrieval candidate generation consuming production typed facts;
-(5) one fine-grained Context disclosure slice using exact spans, qualified
-relations and progressive pointers; (6) bounded structural selection research
-and later Learning convergence only after their prerequisites. Item 1 is the
-first completed production implementation increment. Item 2, qualified immediate
-package membership RI, is also complete. Item 3 is now complete as the
-domain-neutral expected-versus-observed identity coverage kernel; assessment
-identity and all outcome semantics remain consumer-owned. Preserve frozen experiments
-as evidence and remove duplicate derivation from future consumers only after
-production parity is established. Confirmation remains sealed until a specific
-executable selection policy exists; no shadow or independent-repository claim
-follows from these development results.
+(5) integrate structural and lexical production retrieval and establish a
+production file-retrieval surface for controlled Codex dogfooding; (6) measure
+whether that surface reduces repository exploration without missing required
+files; (7) one fine-grained Context disclosure slice using exact spans,
+qualified relations, and progressive pointers. Items 1-4 are complete: bounded
+Reference/direct Call RI, qualified immediate package membership RI, the
+domain-neutral expected-versus-observed identity coverage kernel, and direct
+structural candidate projection over production RI. Assessment identity and
+outcome semantics remain consumer-owned. Preserve frozen experiments for
+reproduction; new consumers should use production RI rather than duplicate
+its derivation. Confirmation remains sealed until a specific executable
+selection policy exists; no shadow or independent-repository claim follows
+from these development results.
+
+Later investigate task-conditioned structural ranking, including established
+personalized graph-ranking techniques, only after the production retrieval
+surface supplies trustworthy direct facts and controlled evaluation. Graph-3,
+naive graph-depth refinement, family-specific retrieval refinements, and
+confirmation remain parked. The poor unranked Graph-1/Graph-2 candidate results
+do not evaluate graph-based ranking or graph-assisted Context compilation.
 
 ### Ongoing — documentation integrity and backlog rebase
 
