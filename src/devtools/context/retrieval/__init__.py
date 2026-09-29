@@ -1,6 +1,11 @@
 # Copyright (c) 2026
 """Concrete retrieval mechanisms over repository representations."""
 
+from devtools.context.retrieval.composition import (
+    LexicalStructuralResourceEntry,
+    LexicalStructuralResourceInventory,
+    compose_lexical_structural_resource_evidence,
+)
 from devtools.context.retrieval.lexical import (
     RepositoryTextLexicalBm25Match,
     RepositoryTextLexicalBm25RetrievalResult,
@@ -41,6 +46,8 @@ from devtools.context.retrieval.structural import (
 )
 
 __all__ = [
+    "LexicalStructuralResourceEntry",
+    "LexicalStructuralResourceInventory",
     "PythonDirectStructuralResourceCandidate",
     "PythonDirectStructuralResourceEvidence",
     "PythonDirectStructuralRetrievalRequest",
@@ -70,6 +77,7 @@ __all__ = [
     "analyze_repository_text_lexical_query",
     "build_repository_text_lexical_inverted_index",
     "calculate_repository_text_lexical_corpus_statistics",
+    "compose_lexical_structural_resource_evidence",
     "evaluate_repository_text_lexical_bm25_retrieval",
     "retrieve_python_direct_structural_resources",
     "retrieve_repository_text_documents_by_bm25",

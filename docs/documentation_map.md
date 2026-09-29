@@ -218,7 +218,14 @@ projection over supplied production Imports, References/direct Calls, and
 qualified immediate package membership facts. Its purpose-bearing request and
 snapshot-scoped result retain each candidate's seed, direction, and native RI
 support without source parsing, ranking, or Context disclosure. The lexical
-baseline remains separate pending an explicit production integration surface.
+baseline keeps its own query, corpus, ranked matches, scores, and contributions.
+The production lexical/structural composition operation accepts an explicit
+snapshot and purpose, checks the entire lexical corpus against exact observed
+snapshot resources, and correlates native evidence per resource in neutral
+address order. It produces an inventory without cross-mechanism ranking,
+budgeted Selection, or Context disclosure. The
+[retrieval package overview](../src/devtools/context/retrieval/docs/overview.md)
+defines its API and validation contract.
 
 The `orchestration` and `governance` domains remain recognized sparse
 namespaces without reusable implementation APIs. Evaluation now provides the

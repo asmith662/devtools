@@ -605,8 +605,16 @@ facts; Retrieval owns purpose-relative candidate evidence; future selection
 decides which candidates deserve limited capacity; future Context compilation
 decides which facts, spans, summaries, or pointers to disclose. The
 [retrieval package overview](../src/devtools/context/retrieval/docs/overview.md)
-defines the implemented API and bounds. Lexical and structural retrieval remain
-separate production results pending an explicit integration surface.
+defines the implemented API and bounds. A separate snapshot-bound composition
+operation now correlates native lexical and direct structural evidence for the
+same observed resource under a caller-supplied purpose. It validates the entire
+lexical corpus against that snapshot, including content identity for unreturned
+documents that can affect BM25 statistics; it requires the structural result's
+snapshot and purpose to match. The lexical query remains mechanism input, not
+an InformationNeed identity. The result retains both original mechanism results
+and iterates candidate resources by canonical address, with no cross-mechanism
+rank or budgeted file selection. Explicit Selection architecture remains open;
+Context disclosure remains downstream.
 
 Increment 23 independently validates this boundary but does not promote its
 directional-reservation-v1 realization. Canonical and practical top five each

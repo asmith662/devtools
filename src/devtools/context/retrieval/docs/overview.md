@@ -31,6 +31,53 @@ target, resolution, and qualification provenance as applicable. Surfacing a
 resource predicts possible usefulness for this request; it does not establish
 relevance, select a resource for a budget, or choose a Context representation.
 
-The lexical BM25 baseline remains a separate retrieval mechanism with its own
-query and score evidence. No production union or ranking API combines it with
-direct structural candidates yet.
+## Snapshot-bound resource evidence composition
+
+`compose_lexical_structural_resource_evidence` accepts a caller-selected
+`RepositorySnapshot` and explicit nonempty purpose alongside one native lexical
+BM25 result and one native direct structural result. It does not make the lexical
+query text into an InformationNeed or change either mechanism's result type.
+The structural result and its candidates must match the invocation snapshot;
+its request purpose must exactly match the invocation purpose.
+
+The lexical corpus retains selected observed occurrences rather than a snapshot
+identity. Composition therefore checks the corpus repository, every represented
+document and indexed statistic, and each returned match. Every corpus resource
+must be the exact observed resource at that address in the supplied snapshot.
+This checks content identity even for corpus members that were not returned as
+matches, since they can affect BM25 statistics. Missing or changed resources
+reject composition; no cross-snapshot applicability is inferred.
+
+One `LexicalStructuralResourceEntry` retains the snapshot ID and observed
+resource, an optional native `RepositoryTextLexicalBm25Match`, and all distinct
+native `PythonDirectStructuralResourceEvidence` supports. Repeated presentation
+of the same match or structural support is deduplicated; independent supports
+remain separate. The `LexicalStructuralResourceInventory` also retains the
+original results and invocation purpose. Entries iterate by ascending canonical
+repository address, a neutral deterministic inventory order. Native lexical
+rank is retained as a separate one-based lexical rank on matching entries;
+scores, field contributions, query, index, structural seed, direction, and RI
+fact provenance remain available in their original forms. Missing
+support from either mechanism makes no negative relevance claim.
+
+```text
+Repository Intelligence
+        |
+        v
+mechanism-specific retrieval
+   |             |
+ lexical      structural
+   |             |
+   +------v------+
+          |
+resource evidence composition
+          |
+          v
+future Selection -> future Context disclosure
+```
+
+The composed result is a candidate/evidence inventory, not an actionable file
+set. Selection under a limited budget remains an explicit unresolved decision.
+The historical structural union experiments remain reproduction evidence;
+future production consumers use this composition operation for native direct
+facts and lexical evidence.
