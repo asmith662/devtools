@@ -1,0 +1,311 @@
+# Development task
+
+Implement the roadmap's explicit lexical-only Codex dogfood capture path for tasks with no justified structural seed. In experiments/codex_dogfood/capture.py, allow a case with zero seed_origins to run both production BM25 query arms against the same frozen snapshot/corpus/settings and preserve native ranked results in a neutral address-ordered advisory orientation. Keep the current seeded lexical plus direct structural behavior and provenance unchanged. Inspect the production direct structural request in src/devtools/context/retrieval/structural.py and snapshot-bound composition in src/devtools/context/retrieval/composition.py; do not fabricate a structural seed or relax either production contract. Do not modify production retrieval, BM25 settings, Evaluation, Context, or Codex integration. Add focused tests for zero-seed capture, seeded behavior, and stale-snapshot rejection. Update the roadmap protocol description to match implemented behavior. Run focused tests, Ruff, mypy, and Git diff checks. Leave only the intended implementation, tests, and documentation change; do not commit or push.
+
+# Advisory devtools resource orientation
+
+These resources were surfaced by devtools. This list is advisory and is not asserted complete. Continue to search, open, inspect, edit, and validate any repository resource needed for the task. No listed resource is asserted to be relevant.
+
+Advisory repository orientation; this list is not a sufficiency claim.
+Search and open any additional repository resources needed for the task.
+Snapshot: 84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b
+Eligible corpus: 571e1145ed03d45f8c4533c7fc033299a65af33a02a0a2328e0fcacfaa0b1c56
+AGENTS.md: full-prompt lexical rank 5, short-need lexical rank 10
+docs/architecture.md: full-prompt lexical rank 6, short-need lexical rank 7
+docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md: full-prompt lexical rank 14, short-need lexical rank 17
+docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md: full-prompt lexical rank 12, short-need lexical rank 21
+docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md: full-prompt lexical rank 10, short-need lexical rank 5
+docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md: full-prompt lexical rank 17, short-need lexical rank 19
+docs/architecture/taxonomy.md: full-prompt lexical rank 11, short-need lexical rank 24
+docs/backlog/epics/B-0001-architecture-documentation-integrity.md: full-prompt lexical rank 56, short-need lexical rank 167
+docs/backlog/epics/B-0002-coding-context-substrate.md: full-prompt lexical rank 4, short-need lexical rank 4
+docs/backlog/epics/B-0003-local-coding-worker-harness.md: full-prompt lexical rank 114, short-need lexical rank 74
+docs/backlog/epics/B-0004-governed-execution-evolution.md: full-prompt lexical rank 242, short-need lexical rank 226
+docs/backlog/epics/B-0005-effect-governance.md: full-prompt lexical rank 158, short-need lexical rank 173
+docs/backlog/epics/B-0015-framework-acceptance-harness-validation.md: full-prompt lexical rank 28, short-need lexical rank 16
+docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md: full-prompt lexical rank 45, short-need lexical rank 172
+docs/backlog/items/B-0007-correct-model-serving-documentation-drift.md: full-prompt lexical rank 85, short-need lexical rank 129
+docs/backlog/items/B-0008-investigate-repository-context-discovery.md: full-prompt lexical rank 49, short-need lexical rank 41
+docs/backlog/items/B-0009-build-bounded-local-coding-worker-harness.md: full-prompt lexical rank 35, short-need lexical rank 36
+docs/backlog/items/B-0010-investigate-work-execution-attempt-semantics.md: full-prompt lexical rank 147, short-need lexical rank 127
+docs/backlog/items/B-0011-investigate-durable-execution-evidence.md: full-prompt lexical rank 219, short-need lexical rank 180
+docs/backlog/items/B-0012-investigate-governed-effect-semantics.md: full-prompt lexical rank 257, short-need lexical rank 223
+docs/backlog/items/B-0013-investigate-authority-grants-approval.md: full-prompt lexical rank 200, short-need lexical rank 193
+docs/backlog/items/B-0014-investigate-retry-repair-reconciliation.md: full-prompt lexical rank 286, short-need lexical rank 257
+docs/backlog/items/B-0016-define-framework-live-harness-acceptance.md: full-prompt lexical rank 134, short-need lexical rank 109
+docs/backlog/items/B-0017-investigate-runtime-occurrence-observability-boundaries.md: full-prompt lexical rank 202, short-need lexical rank 125
+docs/backlog/items/B-0018-investigate-operational-data-minimization-disclosure.md: full-prompt lexical rank 150, short-need lexical rank 35
+docs/backlog/items/B-0019-investigate-typed-configuration-ownership.md: full-prompt lexical rank 196, short-need lexical rank 144
+docs/backlog/items/B-0020-investigate-capability-operation-model-action-substrate.md: full-prompt lexical rank 170, short-need lexical rank 67
+docs/backlog/items/B-0021-investigate-approval-human-governance-workflow.md: full-prompt lexical rank 201, short-need lexical rank 96
+docs/backlog/items/B-0022-investigate-delegation-acting-authority.md: full-prompt lexical rank 229, short-need lexical rank 151
+docs/backlog/items/B-0023-investigate-observability-architecture.md: full-prompt lexical rank 61, short-need lexical rank 29
+docs/backlog/items/B-0024-investigate-audit-durable-accountability.md: full-prompt lexical rank 212, short-need lexical rank 157
+docs/backlog/items/B-0025-investigate-scoped-runtime-context.md: full-prompt lexical rank 192, short-need lexical rank 158
+docs/backlog/items/B-0026-investigate-runtime-control-lifecycle.md: full-prompt lexical rank 226, short-need lexical rank 166
+docs/backlog/items/B-0027-investigate-serialization-representation-boundaries.md: full-prompt lexical rank 143, short-need lexical rank 57
+docs/backlog/items/B-0028-investigate-persistence-durable-state-boundaries.md: full-prompt lexical rank 177, short-need lexical rank 137
+docs/backlog/items/B-0029-investigate-reusable-agent-definition-runtime-orchestration.md: full-prompt lexical rank 117, short-need lexical rank 30
+docs/backlog/items/B-0030-investigate-provider-neutral-generative-model-interaction.md: full-prompt lexical rank 129, short-need lexical rank 64
+docs/backlog/items/B-0031-investigate-generic-execution-lifecycle-promotion.md: full-prompt lexical rank 140, short-need lexical rank 171
+docs/backlog/items/B-0032-investigate-execution-retry-mechanics.md: full-prompt lexical rank 248, short-need lexical rank 150
+docs/backlog/items/B-0033-investigate-semantic-repair-replanning.md: full-prompt lexical rank 185, short-need lexical rank 170
+docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md: full-prompt lexical rank 272, short-need lexical rank 253
+docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md: full-prompt lexical rank 78, short-need lexical rank 52
+docs/backlog/items/B-0036-investigate-action-request-semantics.md: full-prompt lexical rank 181, short-need lexical rank 28
+docs/backlog/items/B-0037-investigate-approval-semantics.md: full-prompt lexical rank 249, short-need lexical rank 155
+docs/backlog/items/B-0038-investigate-approval-workflow-orchestration.md: full-prompt lexical rank 206, short-need lexical rank 115
+docs/backlog/items/B-0039-investigate-delegated-authority.md: full-prompt lexical rank 186, short-need lexical rank 156
+docs/backlog/items/B-0040-investigate-delegated-agent-coordination.md: full-prompt lexical rank 220, short-need lexical rank 169
+docs/backlog/items/B-0041-investigate-execution-local-lifecycle-control.md: full-prompt lexical rank 222, short-need lexical rank 165
+docs/backlog/items/B-0042-investigate-workflow-lifecycle-control.md: full-prompt lexical rank 232, short-need lexical rank 168
+docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md: full-prompt lexical rank 66, short-need lexical rank 48
+docs/backlog/items/B-0044-investigate-orchestration-control-loops.md: full-prompt lexical rank 188, short-need lexical rank 45
+docs/backlog/items/B-0045-establish-minimal-model-interaction-core.md: full-prompt lexical rank 123, short-need lexical rank 81
+docs/backlog/items/B-0046-investigate-advanced-model-interaction-provider-pressure.md: full-prompt lexical rank 16, short-need lexical rank 9
+docs/backlog/metadata.md: full-prompt lexical rank 31, short-need lexical rank 14
+docs/backlog/overview.md: full-prompt lexical rank 29, short-need lexical rank 118
+docs/documentation_map.md: full-prompt lexical rank 1, short-need lexical rank 3
+docs/experiments/qwen38_llama_cpp.md: full-prompt lexical rank 46, short-need lexical rank 26
+docs/implementation_ledger.md: full-prompt lexical rank 7, short-need lexical rank 11
+docs/roadmap.md: full-prompt lexical rank 2, short-need lexical rank 2
+experiments/codex_dogfood/__init__.py: full-prompt lexical rank 148, short-need lexical rank 56
+experiments/codex_dogfood/capture.py: full-prompt lexical rank 3, short-need lexical rank 1
+pyproject.toml: full-prompt lexical rank 43, short-need lexical rank 71
+src/devtools/agents/__init__.py: full-prompt lexical rank 299, short-need lexical rank 275
+src/devtools/agents/conversation/__init__.py: full-prompt lexical rank 266, short-need lexical rank 270
+src/devtools/agents/conversation/conversation.py: full-prompt lexical rank 151, short-need lexical rank 178
+src/devtools/agents/conversation/docs/conversation.md: full-prompt lexical rank 127, short-need lexical rank 197
+src/devtools/agents/conversation/docs/history.md: full-prompt lexical rank 215, short-need lexical rank 227
+src/devtools/agents/conversation/docs/overview.md: full-prompt lexical rank 139, short-need lexical rank 92
+src/devtools/agents/conversation/history.py: full-prompt lexical rank 197, short-need lexical rank 128
+src/devtools/agents/conversation/message.py: full-prompt lexical rank 189, short-need lexical rank 201
+src/devtools/agents/integrations/__init__.py: full-prompt lexical rank 274
+src/devtools/agents/integrations/codex/__init__.py: full-prompt lexical rank 224, short-need lexical rank 99
+src/devtools/agents/integrations/codex/agent.py: full-prompt lexical rank 91, short-need lexical rank 46
+src/devtools/agents/integrations/codex/docs/cli.md: full-prompt lexical rank 23, short-need lexical rank 18
+src/devtools/agents/integrations/codex/docs/overview.md: full-prompt lexical rank 142, short-need lexical rank 78
+src/devtools/agents/integrations/codex/errors.py: full-prompt lexical rank 209, short-need lexical rank 83
+src/devtools/agents/integrations/codex/models.py: full-prompt lexical rank 210, short-need lexical rank 102
+src/devtools/agents/integrations/codex/parsing.py: full-prompt lexical rank 163, short-need lexical rank 51
+src/devtools/context/__init__.py: full-prompt lexical rank 246, short-need lexical rank 285
+src/devtools/context/python/__init__.py: full-prompt lexical rank 270
+src/devtools/context/python/function/__init__.py: full-prompt lexical rank 221, short-need lexical rank 284
+src/devtools/context/python/function/candidates.py: full-prompt lexical rank 75, short-need lexical rank 68
+src/devtools/context/python/function/declarations.py: full-prompt lexical rank 48, short-need lexical rank 91
+src/devtools/context/python/function/disclosure.py: full-prompt lexical rank 124, short-need lexical rank 208
+src/devtools/context/python/function/materialization.py: full-prompt lexical rank 76, short-need lexical rank 210
+src/devtools/context/python/function/rendering.py: full-prompt lexical rank 77, short-need lexical rank 126
+src/devtools/context/python/function/request_assembly.py: full-prompt lexical rank 133, short-need lexical rank 75
+src/devtools/context/python/function/retrieval.py: full-prompt lexical rank 68, short-need lexical rank 58
+src/devtools/context/python/imports/__init__.py: full-prompt lexical rank 267
+src/devtools/context/python/imports/declarations.py: full-prompt lexical rank 86, short-need lexical rank 183
+src/devtools/context/python/imports/members.py: full-prompt lexical rank 107, short-need lexical rank 177
+src/devtools/context/python/imports/relations.py: full-prompt lexical rank 109, short-need lexical rank 194, import-to-target from src/devtools/context/retrieval/structural.py (RI 66d3084ab82e97d81a65a4701693798a7049e1e748e8e46b731a94a6a7e703ca)
+src/devtools/context/python/imports/resolution.py: full-prompt lexical rank 128, short-need lexical rank 216
+src/devtools/context/python/modules/__init__.py: full-prompt lexical rank 250
+src/devtools/context/python/modules/docs/overview.md: full-prompt lexical rank 64, short-need lexical rank 89
+src/devtools/context/python/modules/interpretation.py: full-prompt lexical rank 93, short-need lexical rank 184
+src/devtools/context/python/modules/membership.py: full-prompt lexical rank 79, short-need lexical rank 161, import-to-target from src/devtools/context/retrieval/structural.py (RI e3097f44915a0bff9cb92f385e231388cf116e03302613be0d5198341d9cb281)
+src/devtools/context/python/references/__init__.py: full-prompt lexical rank 234, short-need lexical rank 278
+src/devtools/context/python/references/analysis.py: full-prompt lexical rank 50, short-need lexical rank 162, import-to-target from src/devtools/context/retrieval/structural.py (RI 875f31ed3d6b83381697e5986d60ada5d0bd25c48151706b7dfea720a3b87e78)
+src/devtools/context/python/references/docs/overview.md: full-prompt lexical rank 34, short-need lexical rank 114
+src/devtools/context/python/source_candidacy.py: full-prompt lexical rank 81, short-need lexical rank 69
+src/devtools/context/repository/__init__.py: full-prompt lexical rank 205, short-need lexical rank 282
+src/devtools/context/repository/corpus.py: full-prompt lexical rank 67, short-need lexical rank 179
+src/devtools/context/repository/discovery.py: full-prompt lexical rank 80, short-need lexical rank 53
+src/devtools/context/repository/document.py: full-prompt lexical rank 112, short-need lexical rank 236
+src/devtools/context/repository/identity.py: full-prompt lexical rank 230, short-need lexical rank 248
+src/devtools/context/repository/observation.py: full-prompt lexical rank 94, short-need lexical rank 108
+src/devtools/context/repository/resource.py: full-prompt lexical rank 178, short-need lexical rank 202
+src/devtools/context/repository/snapshot.py: full-prompt lexical rank 155, short-need lexical rank 245
+src/devtools/context/retrieval/__init__.py: full-prompt lexical rank 173, short-need lexical rank 120, import-to-source from src/devtools/context/retrieval/structural.py (RI 713e0aa495af181de3532453b1a203efab266927ebfe9a2d2f5b39e515bc121b), import-to-source from src/devtools/context/retrieval/structural.py (RI a1f3cdbff591634a7ea97f507653e69ab6d911b7a131edc778aaac9efbee5999), import-to-source from src/devtools/context/retrieval/structural.py (RI 2646e6c7bc20971e233d84a7149086ffb12663332a19c7e8037eab60741e03a8), import-to-source from src/devtools/context/retrieval/structural.py (RI b07a170a4d0562486e2563ab4ae6895f810bb895db9b3a807150727e49517394), import-to-source from src/devtools/context/retrieval/structural.py (RI 7c21cc405df138ed7dda77f603806015b20cdea75b3dc99f6b75b9772e6b54cf), child-to-package from src/devtools/context/retrieval/structural.py (RI 28d0da57c7a51b17a88c9b9c71da486fd3ea69289074933d69d81ca15af61465), import-to-source from src/devtools/context/retrieval/composition.py (RI d93ba65bf98ef535ba4627e7570b60647d9d00d1bbc22b0700a6ce41f5bf8304), import-to-source from src/devtools/context/retrieval/composition.py (RI a9b3044c643927195313fa443e92e3d0fda3872c405f85aca4ab11db30c34520), import-to-source from src/devtools/context/retrieval/composition.py (RI 4cbd0f900234ebe68cb238b2bd4a5e4a2264afeb26c17270d08d228c2b680cf8), child-to-package from src/devtools/context/retrieval/composition.py (RI e87c017fbba8e5c454195ee41a7fb6b5fe7fbb0ba4a6c4087bf66031243df8e3)
+src/devtools/context/retrieval/composition.py: full-prompt lexical rank 13, short-need lexical rank 49
+src/devtools/context/retrieval/docs/overview.md: full-prompt lexical rank 8, short-need lexical rank 8
+src/devtools/context/retrieval/lexical/__init__.py: full-prompt lexical rank 144, short-need lexical rank 124
+src/devtools/context/retrieval/lexical/analysis.py: full-prompt lexical rank 137, short-need lexical rank 33
+src/devtools/context/retrieval/lexical/bm25.py: full-prompt lexical rank 33, short-need lexical rank 87
+src/devtools/context/retrieval/lexical/evaluation.py: full-prompt lexical rank 21, short-need lexical rank 40
+src/devtools/context/retrieval/lexical/filename.py: full-prompt lexical rank 72, short-need lexical rank 116
+src/devtools/context/retrieval/lexical/index.py: full-prompt lexical rank 87, short-need lexical rank 132
+src/devtools/context/retrieval/lexical/scoring.py: full-prompt lexical rank 119, short-need lexical rank 134
+src/devtools/context/retrieval/lexical/statistics.py: full-prompt lexical rank 130, short-need lexical rank 112
+src/devtools/context/retrieval/structural.py: full-prompt lexical rank 37, short-need lexical rank 20
+src/devtools/core/conversion/__init__.py: full-prompt lexical rank 265
+src/devtools/core/conversion/conversion.py: full-prompt lexical rank 162, short-need lexical rank 235
+src/devtools/core/conversion/docs/overview.md: full-prompt lexical rank 27, short-need lexical rank 88
+src/devtools/core/conversion/errors.py: full-prompt lexical rank 195, short-need lexical rank 211
+src/devtools/core/identity/__init__.py: full-prompt lexical rank 284, short-need lexical rank 264
+src/devtools/core/identity/docs/overview.md: full-prompt lexical rank 104, short-need lexical rank 103
+src/devtools/core/identity/models.py: full-prompt lexical rank 259, short-need lexical rank 241
+src/devtools/core/paths/__init__.py: full-prompt lexical rank 262, short-need lexical rank 271
+src/devtools/core/paths/docs/overview.md: full-prompt lexical rank 83, short-need lexical rank 61
+src/devtools/core/paths/docs/resolution.md: full-prompt lexical rank 54, short-need lexical rank 122
+src/devtools/core/paths/errors.py: full-prompt lexical rank 227, short-need lexical rank 220
+src/devtools/core/paths/models.py: full-prompt lexical rank 172, short-need lexical rank 182
+src/devtools/core/paths/resolution.py: full-prompt lexical rank 102, short-need lexical rank 142
+src/devtools/core/regex/__init__.py: full-prompt lexical rank 281, short-need lexical rank 266
+src/devtools/core/regex/docs/overview.md: full-prompt lexical rank 59, short-need lexical rank 42
+src/devtools/core/regex/models.py: full-prompt lexical rank 194, short-need lexical rank 228
+src/devtools/core/regex/search.py: full-prompt lexical rank 165, short-need lexical rank 195
+src/devtools/core/system/__init__.py: full-prompt lexical rank 279, short-need lexical rank 265
+src/devtools/core/system/detection.py: full-prompt lexical rank 261, short-need lexical rank 262
+src/devtools/core/system/docs/overview.md: full-prompt lexical rank 101, short-need lexical rank 54
+src/devtools/core/time/__init__.py: full-prompt lexical rank 277, short-need lexical rank 269
+src/devtools/core/time/docs/overview.md: full-prompt lexical rank 182, short-need lexical rank 106
+src/devtools/core/time/docs/timestamps.md: full-prompt lexical rank 70, short-need lexical rank 95
+src/devtools/core/time/docs/timing.md: full-prompt lexical rank 121, short-need lexical rank 62
+src/devtools/core/time/errors.py: full-prompt lexical rank 269, short-need lexical rank 222
+src/devtools/core/time/models/__init__.py: full-prompt lexical rank 276, short-need lexical rank 267
+src/devtools/core/time/models/duration.py: full-prompt lexical rank 199, short-need lexical rank 238
+src/devtools/core/time/models/stopwatch.py: full-prompt lexical rank 161, short-need lexical rank 138
+src/devtools/core/time/models/timestamp.py: full-prompt lexical rank 176, short-need lexical rank 204
+src/devtools/core/time/parsing.py: full-prompt lexical rank 175, short-need lexical rank 139
+src/devtools/evaluation/__init__.py: full-prompt lexical rank 244, short-need lexical rank 277
+src/devtools/evaluation/coverage.py: full-prompt lexical rank 103, short-need lexical rank 203
+src/devtools/evaluation/docs/overview.md: full-prompt lexical rank 126, short-need lexical rank 47
+src/devtools/execution/__init__.py: full-prompt lexical rank 282, short-need lexical rank 279
+src/devtools/execution/docs/overview.md: full-prompt lexical rank 106, short-need lexical rank 101
+src/devtools/execution/interaction_attempt.py: full-prompt lexical rank 217, short-need lexical rank 212
+src/devtools/execution/protocols.py: full-prompt lexical rank 231, short-need lexical rank 250
+src/devtools/execution/runtime.py: full-prompt lexical rank 146, short-need lexical rank 244
+src/devtools/governance/__init__.py: full-prompt lexical rank 287, short-need lexical rank 258
+src/devtools/models/__init__.py: full-prompt lexical rank 297, short-need lexical rank 273
+src/devtools/models/benchmarks/__init__.py: full-prompt lexical rank 258
+src/devtools/models/benchmarks/docs/overview.md: full-prompt lexical rank 26, short-need lexical rank 39
+src/devtools/models/benchmarks/models.py: full-prompt lexical rank 164, short-need lexical rank 25
+src/devtools/models/benchmarks/runner.py: full-prompt lexical rank 132, short-need lexical rank 23
+src/devtools/models/benchmarks/storage.py: full-prompt lexical rank 154, short-need lexical rank 98
+src/devtools/models/interaction/__init__.py: full-prompt lexical rank 278, short-need lexical rank 281
+src/devtools/models/interaction/docs/overview.md: full-prompt lexical rank 22, short-need lexical rank 63
+src/devtools/models/interaction/models.py: full-prompt lexical rank 131, short-need lexical rank 181
+src/devtools/models/interaction/observation.py: full-prompt lexical rank 125, short-need lexical rank 209
+src/devtools/models/interaction/prompt.py: full-prompt lexical rank 264, short-need lexical rank 255
+src/devtools/models/interaction/protocols.py: full-prompt lexical rank 157, short-need lexical rank 153
+src/devtools/models/interaction/providers/__init__.py: full-prompt lexical rank 295
+src/devtools/models/interaction/providers/llama_cpp.py: full-prompt lexical rank 108, short-need lexical rank 136
+src/devtools/models/interaction/providers/llama_cpp_errors.py: full-prompt lexical rank 253, short-need lexical rank 218
+src/devtools/models/interaction/providers/llama_cpp_request_settings.py: full-prompt lexical rank 174, short-need lexical rank 130
+src/devtools/models/interaction/response.py: full-prompt lexical rank 191, short-need lexical rank 213
+src/devtools/models/interaction/termination.py: full-prompt lexical rank 285, short-need lexical rank 256
+src/devtools/models/interaction/tools.py: full-prompt lexical rank 136, short-need lexical rank 237
+src/devtools/models/interaction/usage.py: full-prompt lexical rank 238, short-need lexical rank 159
+src/devtools/models/serving/__init__.py: full-prompt lexical rank 251, short-need lexical rank 206
+src/devtools/models/serving/docs/overview.md: full-prompt lexical rank 30, short-need lexical rank 12
+src/devtools/models/serving/errors.py: full-prompt lexical rank 193, short-need lexical rank 231
+src/devtools/models/serving/huggingface.py: full-prompt lexical rank 89, short-need lexical rank 154
+src/devtools/models/serving/identity.py: full-prompt lexical rank 152, short-need lexical rank 164
+src/devtools/models/serving/llama_cpp.py: full-prompt lexical rank 118, short-need lexical rank 176
+src/devtools/models/serving/vllm.py: full-prompt lexical rank 113, short-need lexical rank 77
+src/devtools/observability/__init__.py: full-prompt lexical rank 298, short-need lexical rank 274
+src/devtools/observability/evidence/__init__.py: full-prompt lexical rank 280, short-need lexical rank 280
+src/devtools/observability/evidence/docs/overview.md: full-prompt lexical rank 57, short-need lexical rank 15
+src/devtools/observability/evidence/inspection.py: full-prompt lexical rank 233, short-need lexical rank 239
+src/devtools/observability/evidence/model_interaction.py: full-prompt lexical rank 88, short-need lexical rank 44
+src/devtools/observability/evidence/protocols.py: full-prompt lexical rank 204, short-need lexical rank 268
+src/devtools/observability/evidence/terminal.py: full-prompt lexical rank 243, short-need lexical rank 252
+src/devtools/orchestration/__init__.py: full-prompt lexical rank 288, short-need lexical rank 259
+src/devtools/persistence/__init__.py: full-prompt lexical rank 293
+src/devtools/persistence/_snapshot.py: full-prompt lexical rank 153, short-need lexical rank 100
+src/devtools/persistence/docs/json.md: full-prompt lexical rank 184, short-need lexical rank 119
+src/devtools/persistence/docs/overview.md: full-prompt lexical rank 145, short-need lexical rank 199
+src/devtools/persistence/docs/sqlite.md: full-prompt lexical rank 216, short-need lexical rank 224
+src/devtools/persistence/errors.py: full-prompt lexical rank 256, short-need lexical rank 254
+src/devtools/persistence/json.py: full-prompt lexical rank 208, short-need lexical rank 234
+src/devtools/persistence/sqlite.py: full-prompt lexical rank 169, short-need lexical rank 217
+src/devtools/resources/__init__.py: full-prompt lexical rank 296, short-need lexical rank 272
+src/devtools/resources/commands/__init__.py: full-prompt lexical rank 275, short-need lexical rank 276
+src/devtools/resources/commands/docs/command.md: full-prompt lexical rank 149, short-need lexical rank 121
+src/devtools/resources/commands/docs/events.md: full-prompt lexical rank 213, short-need lexical rank 123
+src/devtools/resources/commands/docs/execution.md: full-prompt lexical rank 120, short-need lexical rank 110
+src/devtools/resources/commands/docs/overview.md: full-prompt lexical rank 99, short-need lexical rank 65
+src/devtools/resources/commands/errors.py: full-prompt lexical rank 271, short-need lexical rank 246
+src/devtools/resources/commands/events.py: full-prompt lexical rank 235, short-need lexical rank 242
+src/devtools/resources/commands/execution.py: full-prompt lexical rank 190, short-need lexical rank 113
+src/devtools/resources/commands/handle.py: full-prompt lexical rank 218, short-need lexical rank 66
+src/devtools/resources/commands/models/__init__.py: full-prompt lexical rank 294
+src/devtools/resources/commands/models/command.py: full-prompt lexical rank 122, short-need lexical rank 145
+src/devtools/resources/commands/models/output.py: full-prompt lexical rank 187, short-need lexical rank 152
+src/devtools/resources/commands/models/result.py: full-prompt lexical rank 167, short-need lexical rank 221
+src/devtools/resources/filesystem/__init__.py: full-prompt lexical rank 283, short-need lexical rank 283
+src/devtools/resources/filesystem/codecs/__init__.py: full-prompt lexical rank 291
+src/devtools/resources/filesystem/codecs/csv.py: full-prompt lexical rank 203, short-need lexical rank 207
+src/devtools/resources/filesystem/codecs/json.py: full-prompt lexical rank 180, short-need lexical rank 200
+src/devtools/resources/filesystem/codecs/markdown.py: full-prompt lexical rank 179, short-need lexical rank 163
+src/devtools/resources/filesystem/codecs/text.py: full-prompt lexical rank 207, short-need lexical rank 229
+src/devtools/resources/filesystem/docs/codecs.md: full-prompt lexical rank 100, short-need lexical rank 90
+src/devtools/resources/filesystem/docs/csv.md: full-prompt lexical rank 95, short-need lexical rank 34
+src/devtools/resources/filesystem/docs/io.md: full-prompt lexical rank 47, short-need lexical rank 80
+src/devtools/resources/filesystem/docs/json.md: full-prompt lexical rank 156, short-need lexical rank 37
+src/devtools/resources/filesystem/docs/markdown.md: full-prompt lexical rank 84, short-need lexical rank 32
+src/devtools/resources/filesystem/docs/models.md: full-prompt lexical rank 135, short-need lexical rank 104
+src/devtools/resources/filesystem/docs/overview.md: full-prompt lexical rank 97, short-need lexical rank 85
+src/devtools/resources/filesystem/docs/roadmap.md: full-prompt lexical rank 52, short-need lexical rank 70
+src/devtools/resources/filesystem/errors.py: full-prompt lexical rank 228, short-need lexical rank 214
+src/devtools/resources/filesystem/models/__init__.py: full-prompt lexical rank 289
+src/devtools/resources/filesystem/models/base.py: full-prompt lexical rank 241, short-need lexical rank 263
+src/devtools/resources/filesystem/models/binary.py: full-prompt lexical rank 247, short-need lexical rank 247
+src/devtools/resources/filesystem/models/csv.py: full-prompt lexical rank 159, short-need lexical rank 117
+src/devtools/resources/filesystem/models/json/__init__.py: full-prompt lexical rank 290
+src/devtools/resources/filesystem/models/json/base.py: full-prompt lexical rank 211, short-need lexical rank 251
+src/devtools/resources/filesystem/models/json/conversion.py: full-prompt lexical rank 260, short-need lexical rank 232
+src/devtools/resources/filesystem/models/json/list.py: full-prompt lexical rank 168, short-need lexical rank 76
+src/devtools/resources/filesystem/models/json/object.py: full-prompt lexical rank 160, short-need lexical rank 60
+src/devtools/resources/filesystem/models/json/scalar.py: full-prompt lexical rank 236, short-need lexical rank 240
+src/devtools/resources/filesystem/models/markdown/__init__.py: full-prompt lexical rank 292
+src/devtools/resources/filesystem/models/markdown/file.py: full-prompt lexical rank 111, short-need lexical rank 27
+src/devtools/resources/filesystem/models/markdown/heading.py: full-prompt lexical rank 237, short-need lexical rank 233
+src/devtools/resources/filesystem/models/markdown/section.py: full-prompt lexical rank 183, short-need lexical rank 219
+src/devtools/resources/filesystem/models/text.py: full-prompt lexical rank 214, short-need lexical rank 261
+src/devtools/resources/filesystem/reading.py: full-prompt lexical rank 138, short-need lexical rank 86
+src/devtools/resources/filesystem/resolution.py: full-prompt lexical rank 171, short-need lexical rank 111
+src/devtools/resources/filesystem/writing.py: full-prompt lexical rank 105, short-need lexical rank 31
+src/devtools/tools/__init__.py: full-prompt lexical rank 245
+src/devtools/tools/command.py: full-prompt lexical rank 166, short-need lexical rank 249
+src/devtools/tools/disclosure.py: full-prompt lexical rank 141, short-need lexical rank 185
+src/devtools/tools/docs/overview.md: full-prompt lexical rank 51, short-need lexical rank 196
+src/devtools/tools/errors.py: full-prompt lexical rank 273, short-need lexical rank 225
+src/devtools/tools/execution.py: full-prompt lexical rank 268, short-need lexical rank 260
+src/devtools/tools/filesystem.py: full-prompt lexical rank 96, short-need lexical rank 133
+src/devtools/tools/protocols.py: full-prompt lexical rank 115, short-need lexical rank 146
+tests/context/__init__.py: full-prompt lexical rank 240, short-need lexical rank 160
+tests/context/python/__init__.py: full-prompt lexical rank 254, short-need lexical rank 189
+tests/context/python/function/__init__.py: full-prompt lexical rank 255, short-need lexical rank 190
+tests/context/python/function/test_candidates.py: full-prompt lexical rank 41, short-need lexical rank 131
+tests/context/python/function/test_cross_resource_pipeline.py: full-prompt lexical rank 55, short-need lexical rank 107
+tests/context/python/function/test_declaration_aggregation.py: full-prompt lexical rank 53, short-need lexical rank 97
+tests/context/python/function/test_declarations.py: full-prompt lexical rank 73, short-need lexical rank 147
+tests/context/python/function/test_disclosure.py: full-prompt lexical rank 62, short-need lexical rank 141
+tests/context/python/function/test_materialization.py: full-prompt lexical rank 58, short-need lexical rank 140
+tests/context/python/function/test_rendering.py: full-prompt lexical rank 63, short-need lexical rank 105
+tests/context/python/function/test_request_assembly.py: full-prompt lexical rank 32, short-need lexical rank 149
+tests/context/python/function/test_resource_selection.py: full-prompt lexical rank 42, short-need lexical rank 94
+tests/context/python/function/test_retrieval.py: full-prompt lexical rank 71, short-need lexical rank 93
+tests/context/python/imports/__init__.py: full-prompt lexical rank 263, short-need lexical rank 174
+tests/context/python/imports/test_declarations.py: full-prompt lexical rank 98, short-need lexical rank 186
+tests/context/python/imports/test_members.py: full-prompt lexical rank 110, short-need lexical rank 243
+tests/context/python/imports/test_relations.py: full-prompt lexical rank 92, short-need lexical rank 198
+tests/context/python/imports/test_resolution.py: full-prompt lexical rank 82, short-need lexical rank 230
+tests/context/python/modules/__init__.py: full-prompt lexical rank 239, short-need lexical rank 175
+tests/context/python/modules/test_interpretation.py: full-prompt lexical rank 65, short-need lexical rank 205
+tests/context/python/modules/test_membership.py: full-prompt lexical rank 60, short-need lexical rank 187
+tests/context/python/references/__init__.py: full-prompt lexical rank 225, short-need lexical rank 192
+tests/context/python/references/test_analysis.py: full-prompt lexical rank 116, short-need lexical rank 215
+tests/context/python/test_source_candidacy.py: full-prompt lexical rank 44, short-need lexical rank 84
+tests/context/repository/__init__.py: full-prompt lexical rank 252, short-need lexical rank 188
+tests/context/repository/test_corpus.py: full-prompt lexical rank 40, short-need lexical rank 135
+tests/context/repository/test_discovery.py: full-prompt lexical rank 39, short-need lexical rank 73
+tests/context/repository/test_document.py: full-prompt lexical rank 36, short-need lexical rank 148
+tests/context/repository/test_observation.py: full-prompt lexical rank 69, short-need lexical rank 143
+tests/context/retrieval/__init__.py: full-prompt lexical rank 223, short-need lexical rank 191
+tests/context/retrieval/lexical/__init__.py: full-prompt lexical rank 198, short-need lexical rank 79
+tests/context/retrieval/lexical/_helpers.py: full-prompt lexical rank 90, short-need lexical rank 82
+tests/context/retrieval/lexical/test_analysis.py: full-prompt lexical rank 25, short-need lexical rank 50
+tests/context/retrieval/lexical/test_bm25.py: full-prompt lexical rank 18, short-need lexical rank 13
+tests/context/retrieval/lexical/test_evaluation.py: full-prompt lexical rank 15, short-need lexical rank 22
+tests/context/retrieval/lexical/test_filename.py: full-prompt lexical rank 20, short-need lexical rank 38
+tests/context/retrieval/lexical/test_index.py: full-prompt lexical rank 24, short-need lexical rank 43
+tests/context/retrieval/lexical/test_statistics.py: full-prompt lexical rank 74, short-need lexical rank 72
+tests/context/retrieval/test_composition.py: full-prompt lexical rank 19, short-need lexical rank 55
+tests/context/retrieval/test_structural.py: full-prompt lexical rank 38, short-need lexical rank 59
+tests/experiments/test_codex_dogfood_capture.py: full-prompt lexical rank 9, short-need lexical rank 6

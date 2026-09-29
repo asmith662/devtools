@@ -1,0 +1,44 @@
+{
+  "schema": "codex-advisory-pre-agent-v1",
+  "case_id": "cde8f37ad2e0b6f05a9d9713e07f62fd8a52931c1ba0ef5686129f4aeba56ddb",
+  "full_prompt": {
+    "candidate_count": 299,
+    "lexical_only": 295,
+    "structural_only": 0,
+    "both": 4
+  },
+  "short_need": {
+    "candidate_count": 285,
+    "lexical_only": 281,
+    "structural_only": 0,
+    "both": 4
+  },
+  "query_arm_overlap": 285,
+  "full_prompt_only_addresses": [
+    "src/devtools/agents/integrations/__init__.py",
+    "src/devtools/context/python/__init__.py",
+    "src/devtools/context/python/imports/__init__.py",
+    "src/devtools/context/python/modules/__init__.py",
+    "src/devtools/core/conversion/__init__.py",
+    "src/devtools/models/benchmarks/__init__.py",
+    "src/devtools/models/interaction/providers/__init__.py",
+    "src/devtools/persistence/__init__.py",
+    "src/devtools/resources/commands/models/__init__.py",
+    "src/devtools/resources/filesystem/codecs/__init__.py",
+    "src/devtools/resources/filesystem/models/__init__.py",
+    "src/devtools/resources/filesystem/models/json/__init__.py",
+    "src/devtools/resources/filesystem/models/markdown/__init__.py",
+    "src/devtools/tools/__init__.py"
+  ],
+  "short_need_only_addresses": [],
+  "orientation_count": 299,
+  "structural_support_families": {
+    "PythonResolvedModuleImportRelation": 11,
+    "PythonImmediatePackageMembership": 2
+  },
+  "native_lexical_observations": "See retrieval.json for each arm's rank and score.",
+  "orientation_sha256": "37779c5f31131aa38a225db03d2e583cf84f215ca7676b51ef922adaca6895d1",
+  "handoff_sha256": "b1dfa4522241513126629f30c40c3c5890d992f1368f529be1481081cf545c3b",
+  "handoff_bytes": 35189,
+  "handoff_path": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-dogfood-0002\\handoff.txt"
+}

@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-"""Freeze two lexical query arms and native direct structural evidence."""
+"""Freeze two lexical query arms and any justified direct structural evidence."""
 
 from __future__ import annotations
 
@@ -7,10 +7,13 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
 from devtools.context.retrieval.composition import (
+    LexicalStructuralResourceEntry,
     LexicalStructuralResourceInventory,
     compose_lexical_structural_resource_evidence,
 )
 from devtools.context.retrieval.lexical.bm25 import (
+    RepositoryTextLexicalBm25Match,
+    RepositoryTextLexicalBm25RetrievalResult,
     RepositoryTextLexicalBm25Settings,
     analyze_repository_text_lexical_query,
     retrieve_repository_text_documents_by_bm25,
@@ -30,16 +33,25 @@ if TYPE_CHECKING:
     from devtools.context.python.references.analysis import (
         PythonFunctionReferenceKnowledge,
     )
-    from devtools.context.repository.resource import RepositoryResourceAddress
-    from devtools.context.repository.snapshot import RepositorySnapshot
+    from devtools.context.repository.resource import (
+        RepositoryResourceAddress,
+        RepositoryResourceOccurrence,
+    )
+    from devtools.context.repository.snapshot import (
+        RepositorySnapshot,
+        RepositorySnapshotId,
+    )
     from devtools.context.retrieval.lexical.index import (
         RepositoryTextLexicalInvertedIndex,
+    )
+    from devtools.context.retrieval.structural import (
+        PythonDirectStructuralResourceEvidence,
     )
 
 
 @dataclass(frozen=True, slots=True)
 class CodexDogfoodCase:
-    """Inputs frozen before retrieval for one seeded, real development task.
+    """Inputs frozen before retrieval for one real development task.
 
     The lexical work bound is the complete eligible corpus size. It is not a
     relevance cutoff or a selected file budget. RI fact inputs are already
@@ -59,14 +71,13 @@ class CodexDogfoodCase:
     )
 
     def __post_init__(self) -> None:
-        """Require a real task, distinct purpose, and qualified seed origins."""
+        """Require a real task and qualified origins for any supplied seeds."""
         if not self.full_prompt.strip() or not self.short_information_need.strip():
             msg = "Dogfood task prompt and short InformationNeed must be nonempty."
             raise ValueError(msg)
         seeds = tuple(address for address, _ in self.seed_origins)
         if (
-            not seeds
-            or len(set(seeds)) != len(seeds)
+            len(set(seeds)) != len(seeds)
             or any(not origin.strip() for _, origin in self.seed_origins)
         ):
             msg = "Dogfood requires distinct seeds with explicit origin notes."
@@ -84,33 +95,123 @@ class CodexDogfoodRetrievalCapture:
     """Keep each native query arm and a neutral, complete address handoff."""
 
     case: CodexDogfoodCase
-    full_prompt_inventory: LexicalStructuralResourceInventory
-    short_need_inventory: LexicalStructuralResourceInventory
+    full_prompt_inventory: CodexDogfoodInventory
+    short_need_inventory: CodexDogfoodInventory
     orientation_addresses: tuple[RepositoryResourceAddress, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class CodexDogfoodLexicalEntry:
+    """One snapshot resource with its native lexical match and rank."""
+
+    resource: RepositoryResourceOccurrence
+    lexical_rank: int
+    lexical_match: RepositoryTextLexicalBm25Match
+
+
+@dataclass(frozen=True, slots=True)
+class CodexDogfoodLexicalInventory:
+    """Keep a zero-seed arm's native result in neutral address order."""
+
+    snapshot_id: RepositorySnapshotId
+    purpose: str
+    lexical_result: RepositoryTextLexicalBm25RetrievalResult
+    resources: tuple[CodexDogfoodLexicalEntry, ...]
+
+
+type CodexDogfoodInventory = (
+    LexicalStructuralResourceInventory | CodexDogfoodLexicalInventory
+)
+
+
+def _require_lexical_snapshot(case: CodexDogfoodCase) -> None:
+    """Check the full observed corpus, including resources with no BM25 match."""
+    collection = case.index.corpus_statistics.collection_analysis.document_collection
+    if (
+        collection.corpus.definition.discovery.repository_id
+        != case.snapshot.repository_id
+    ):
+        msg = "Lexical corpus belongs to another repository."
+        raise ValueError(msg)
+    if collection.corpus.resources != tuple(
+        document.resource for document in collection.documents
+    ):
+        msg = "Lexical documents differ from their observed corpus."
+        raise ValueError(msg)
+    for document in collection.documents:
+        if document.repository_id != case.snapshot.repository_id:
+            msg = "Lexical document belongs to another repository."
+            raise ValueError(msg)
+        try:
+            current = case.snapshot.resource_at(document.resource.address)
+        except ValueError as error:
+            msg = "Lexical corpus resource is absent from the supplied snapshot."
+            raise ValueError(msg) from error
+        if current != document.resource:
+            msg = "Lexical corpus resource differs from the supplied snapshot."
+            raise ValueError(msg)
+    statistics = case.index.corpus_statistics.document_statistics
+    if tuple(item.analysis.document for item in statistics) != collection.documents:
+        msg = "Lexical index statistics differ from its document collection."
+        raise ValueError(msg)
+
+
+def _lexical_inventory(
+    case: CodexDogfoodCase,
+    lexical: RepositoryTextLexicalBm25RetrievalResult,
+) -> CodexDogfoodLexicalInventory:
+    """Orient matched resources without changing the native BM25 result."""
+    entries = tuple(
+        sorted(
+            (
+                CodexDogfoodLexicalEntry(
+                    resource=match.document_statistics.analysis.document.resource,
+                    lexical_rank=rank,
+                    lexical_match=match,
+                )
+                for rank, match in enumerate(lexical.matches, start=1)
+            ),
+            key=lambda entry: str(entry.resource.address),
+        ),
+    )
+    return CodexDogfoodLexicalInventory(
+        snapshot_id=case.snapshot.id,
+        purpose=case.short_information_need,
+        lexical_result=lexical,
+        resources=entries,
+    )
 
 
 def capture_codex_dogfood_retrieval(
     case: CodexDogfoodCase,
 ) -> CodexDogfoodRetrievalCapture:
     """Run production retrieval twice under identical corpus and settings."""
-    structural = retrieve_python_direct_structural_resources(
-        case.snapshot,
-        request=PythonDirectStructuralRetrievalRequest(
-            purpose=case.short_information_need,
-            seed_resources=tuple(address for address, _ in case.seed_origins),
-        ),
-        imports=case.imports,
-        references=case.references,
-        memberships=case.memberships,
-    )
+    structural = None
+    if case.seed_origins:
+        structural = retrieve_python_direct_structural_resources(
+            case.snapshot,
+            request=PythonDirectStructuralRetrievalRequest(
+                purpose=case.short_information_need,
+                seed_resources=tuple(address for address, _ in case.seed_origins),
+            ),
+            imports=case.imports,
+            references=case.references,
+            memberships=case.memberships,
+        )
+    else:
+        _require_lexical_snapshot(case)
 
-    def inventory(query_text: str) -> LexicalStructuralResourceInventory:
+    def inventory(
+        query_text: str,
+    ) -> CodexDogfoodInventory:
         lexical = retrieve_repository_text_documents_by_bm25(
             query=analyze_repository_text_lexical_query(text=query_text),
             index=case.index,
             maximum_results=case.lexical_work_bound,
             settings=case.lexical_settings,
         )
+        if structural is None:
+            return _lexical_inventory(case, lexical)
         return compose_lexical_structural_resource_evidence(
             case.snapshot,
             purpose=case.short_information_need,
@@ -162,13 +263,11 @@ def render_codex_dogfood_orientation(
             evidence.append(f"full-prompt lexical rank {full_entry.lexical_rank}")
         if short_entry is not None and short_entry.lexical_rank is not None:
             evidence.append(f"short-need lexical rank {short_entry.lexical_rank}")
-        structural = (
-            full_entry.structural_supports
-            if full_entry is not None
-            else short_entry.structural_supports
-            if short_entry is not None
-            else ()
-        )
+        structural: tuple[PythonDirectStructuralResourceEvidence, ...] = ()
+        if isinstance(full_entry, LexicalStructuralResourceEntry):
+            structural = full_entry.structural_supports
+        elif isinstance(short_entry, LexicalStructuralResourceEntry):
+            structural = short_entry.structural_supports
         evidence.extend(
             f"{support.direction} from {support.seed_resource} "
             f"(RI {support.fact.identity})"

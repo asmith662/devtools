@@ -1,0 +1,323 @@
+{
+  "schema": "codex-dogfood-case-0002-joined-analysis-v1",
+  "case_id": "cde8f37ad2e0b6f05a9d9713e07f62fd8a52931c1ba0ef5686129f4aeba56ddb",
+  "adjudication_identity": "9cfc3a6d43c8e579a1075c933782c80a6db9f189da237cb5ed82badffec00443",
+  "adjudication_artifact_sha256": "427c2936db23d1a04538c74420b565e50c7e8e480abfd1b7899a07231b2da9e2",
+  "native_inputs_sha256": "3609a652be5e9c2a4574c3cb819832fcddb362fa5105b3a110b8dbb9c3acc240",
+  "native_capture_sha256": "099f46ee2af6dba47b47951bcdd797c7831a33bb364adabad257ceda2b76de67",
+  "identity_coverage": {
+    "duplicate_expected": [],
+    "duplicate_observed": [],
+    "expected_count": 302,
+    "is_exact": true,
+    "missing": [],
+    "observed_count": 302,
+    "unexpected": []
+  },
+  "counts": {
+    "required": 10,
+    "helpful_only": 5,
+    "unnecessary": 287,
+    "unresolved": 0,
+    "alternatives": 0
+  },
+  "required": {
+    "AGENTS.md": [
+      "required_for_understanding",
+      "required_for_validation"
+    ],
+    "docs/roadmap.md": [
+      "required_for_implementation",
+      "required_for_understanding"
+    ],
+    "experiments/codex_dogfood/capture.py": [
+      "required_for_implementation"
+    ],
+    "pyproject.toml": [
+      "required_for_configuration",
+      "required_for_validation"
+    ],
+    "src/devtools/context/retrieval/composition.py": [
+      "required_for_api_contract"
+    ],
+    "src/devtools/context/retrieval/lexical/bm25.py": [
+      "required_for_api_contract"
+    ],
+    "src/devtools/context/retrieval/structural.py": [
+      "required_for_api_contract"
+    ],
+    "tests/context/retrieval/test_composition.py": [
+      "required_for_tests"
+    ],
+    "tests/context/retrieval/test_structural.py": [
+      "required_for_tests"
+    ],
+    "tests/experiments/test_codex_dogfood_capture.py": [
+      "required_for_tests"
+    ]
+  },
+  "helpful_only": [
+    "docs/architecture.md",
+    "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+    "docs/architecture/taxonomy.md",
+    "docs/documentation_map.md",
+    "src/devtools/context/retrieval/docs/overview.md"
+  ],
+  "arms": {
+    "full_prompt": {
+      "candidate_count": 299,
+      "lexical_count": 299,
+      "structural_count": 4,
+      "required_present": 10,
+      "required_absent": [],
+      "required_lexical": 10,
+      "required_structural": [],
+      "required_structural_only": [],
+      "required_both": [],
+      "required_by_structural_family": {
+        "PythonResolvedModuleImportRelation": [],
+        "PythonFunctionReferenceKnowledge": [],
+        "PythonImmediatePackageMembership": []
+      },
+      "smallest_complete_lexical_prefix": 43,
+      "prefix_roles": {
+        "required": 10,
+        "helpful_only": 5,
+        "unnecessary": 28,
+        "unresolved": 0
+      },
+      "coverage_curve": {
+        "5": "3/10",
+        "10": "4/10",
+        "20": "6/10",
+        "30": "6/10",
+        "50": "10/10",
+        "100": "10/10",
+        "complete": "10/10"
+      },
+      "required": {
+        "AGENTS.md": {
+          "lexical_rank": 5,
+          "lexical_score": 105.94173495102733,
+          "structural_supports": []
+        },
+        "docs/roadmap.md": {
+          "lexical_rank": 2,
+          "lexical_score": 135.76911711422943,
+          "structural_supports": []
+        },
+        "experiments/codex_dogfood/capture.py": {
+          "lexical_rank": 3,
+          "lexical_score": 109.17939885863385,
+          "structural_supports": []
+        },
+        "pyproject.toml": {
+          "lexical_rank": 43,
+          "lexical_score": 41.06253511916466,
+          "structural_supports": []
+        },
+        "src/devtools/context/retrieval/composition.py": {
+          "lexical_rank": 13,
+          "lexical_score": 68.9564977277528,
+          "structural_supports": []
+        },
+        "src/devtools/context/retrieval/lexical/bm25.py": {
+          "lexical_rank": 33,
+          "lexical_score": 45.91879375772543,
+          "structural_supports": []
+        },
+        "src/devtools/context/retrieval/structural.py": {
+          "lexical_rank": 37,
+          "lexical_score": 42.49784649315814,
+          "structural_supports": []
+        },
+        "tests/context/retrieval/test_composition.py": {
+          "lexical_rank": 19,
+          "lexical_score": 55.15329962358169,
+          "structural_supports": []
+        },
+        "tests/context/retrieval/test_structural.py": {
+          "lexical_rank": 38,
+          "lexical_score": 42.369584981702005,
+          "structural_supports": []
+        },
+        "tests/experiments/test_codex_dogfood_capture.py": {
+          "lexical_rank": 9,
+          "lexical_score": 97.87731365411072,
+          "structural_supports": []
+        }
+      },
+      "structural_candidates_by_role": {
+        "required": [],
+        "helpful_only": [],
+        "unnecessary": [
+          "src/devtools/context/python/imports/relations.py",
+          "src/devtools/context/python/modules/membership.py",
+          "src/devtools/context/python/references/analysis.py",
+          "src/devtools/context/retrieval/__init__.py"
+        ],
+        "unresolved": []
+      }
+    },
+    "short_need": {
+      "candidate_count": 285,
+      "lexical_count": 285,
+      "structural_count": 4,
+      "required_present": 10,
+      "required_absent": [],
+      "required_lexical": 10,
+      "required_structural": [],
+      "required_structural_only": [],
+      "required_both": [],
+      "required_by_structural_family": {
+        "PythonResolvedModuleImportRelation": [],
+        "PythonFunctionReferenceKnowledge": [],
+        "PythonImmediatePackageMembership": []
+      },
+      "smallest_complete_lexical_prefix": 87,
+      "prefix_roles": {
+        "required": 10,
+        "helpful_only": 5,
+        "unnecessary": 72,
+        "unresolved": 0
+      },
+      "coverage_curve": {
+        "5": "2/10",
+        "10": "4/10",
+        "20": "5/10",
+        "30": "5/10",
+        "50": "6/10",
+        "100": "10/10",
+        "complete": "10/10"
+      },
+      "required": {
+        "AGENTS.md": {
+          "lexical_rank": 10,
+          "lexical_score": 18.31911170705443,
+          "structural_supports": []
+        },
+        "docs/roadmap.md": {
+          "lexical_rank": 2,
+          "lexical_score": 34.539617211172946,
+          "structural_supports": []
+        },
+        "experiments/codex_dogfood/capture.py": {
+          "lexical_rank": 1,
+          "lexical_score": 36.45944711339283,
+          "structural_supports": []
+        },
+        "pyproject.toml": {
+          "lexical_rank": 71,
+          "lexical_score": 7.988457522134154,
+          "structural_supports": []
+        },
+        "src/devtools/context/retrieval/composition.py": {
+          "lexical_rank": 49,
+          "lexical_score": 9.6157666195998,
+          "structural_supports": []
+        },
+        "src/devtools/context/retrieval/lexical/bm25.py": {
+          "lexical_rank": 87,
+          "lexical_score": 6.732638384311323,
+          "structural_supports": []
+        },
+        "src/devtools/context/retrieval/structural.py": {
+          "lexical_rank": 20,
+          "lexical_score": 14.360470418583725,
+          "structural_supports": []
+        },
+        "tests/context/retrieval/test_composition.py": {
+          "lexical_rank": 55,
+          "lexical_score": 8.974755459237592,
+          "structural_supports": []
+        },
+        "tests/context/retrieval/test_structural.py": {
+          "lexical_rank": 59,
+          "lexical_score": 8.627753545207032,
+          "structural_supports": []
+        },
+        "tests/experiments/test_codex_dogfood_capture.py": {
+          "lexical_rank": 6,
+          "lexical_score": 22.12586488678261,
+          "structural_supports": []
+        }
+      },
+      "structural_candidates_by_role": {
+        "required": [],
+        "helpful_only": [],
+        "unnecessary": [
+          "src/devtools/context/python/imports/relations.py",
+          "src/devtools/context/python/modules/membership.py",
+          "src/devtools/context/python/references/analysis.py",
+          "src/devtools/context/retrieval/__init__.py"
+        ],
+        "unresolved": []
+      }
+    }
+  },
+  "orientation_count": 299,
+  "handoff_bytes": 35189,
+  "agent": {
+    "session_count": 2,
+    "interrupted_trace_truncated_lines": 1,
+    "command_count": 36,
+    "search_count": 3,
+    "searches": [
+      "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'rg -n \"Codex dogfood|seed_origins|lexical-only|dogfood\" docs/roadmap.md docs/backlog/epics/B-0002-coding-context-substrate.md src/devtools/context/retrieval/docs/overview.md docs/documentation_map.md; git diff --cached --name-only; git rev-parse HEAD'",
+      "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'rg -n \"dogfood|lexical-only|seed|snapshot\" docs/roadmap.md docs/documentation_map.md docs/backlog/epics/B-0002-coding-context-substrate.md src/devtools/context/retrieval/docs/overview.md'",
+      "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'rg -n \"CodexDogfood.*Inventory|full_prompt_inventory|short_need_inventory|seed_origins\" experiments tests scripts | Select-Object -First 90'"
+    ],
+    "direct_open_events": 30,
+    "distinct_direct_opens": 16,
+    "required_opened": [
+      "AGENTS.md",
+      "docs/roadmap.md",
+      "experiments/codex_dogfood/capture.py",
+      "src/devtools/context/retrieval/composition.py",
+      "src/devtools/context/retrieval/lexical/bm25.py",
+      "src/devtools/context/retrieval/structural.py",
+      "tests/context/retrieval/test_composition.py",
+      "tests/context/retrieval/test_structural.py",
+      "tests/experiments/test_codex_dogfood_capture.py"
+    ],
+    "required_not_opened": [
+      "pyproject.toml"
+    ],
+    "helpful_opened": [
+      "docs/architecture/taxonomy.md",
+      "docs/documentation_map.md",
+      "src/devtools/context/retrieval/docs/overview.md"
+    ],
+    "unnecessary_opened": [
+      "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+      "src/devtools/context/repository/resource.py",
+      "src/devtools/context/repository/snapshot.py"
+    ],
+    "outside_frame_opened": [
+      "experiments/codex_dogfood/case_0001/README.md"
+    ],
+    "modified_by_role": {
+      "docs/documentation_map.md": "helpful_only",
+      "docs/roadmap.md": "required",
+      "experiments/codex_dogfood/capture.py": "required",
+      "tests/experiments/test_codex_dogfood_capture.py": "required"
+    },
+    "validation_by_role": {
+      "tests/experiments/test_codex_dogfood_capture.py": "required"
+    },
+    "task_success": true,
+    "validation_success": true,
+    "model_token_usage": {
+      "interrupted_session": null,
+      "completed_continuation": {
+        "input_tokens": 305201,
+        "cached_input_tokens": 251904,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1635,
+        "reasoning_output_tokens": 456
+      }
+    },
+    "bytes_read": null,
+    "tokens_read": null
+  }
+}

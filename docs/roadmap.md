@@ -77,8 +77,21 @@ resources, but full-prompt BM25 needed 35 candidates to cover them and the
 short InformationNeed needed 132. Direct structural evidence rescued none.
 This single case identifies candidate ordering and handoff volume as measured
 pressure; it does not select a production Selection rule or establish a general
-query-formulation result. Next freeze a different bounded task as Case 0002
-under the same protocol before deciding whether step 9 has enough evidence.
+query-formulation result.
+
+[Codex dogfood Case 0002](../experiments/codex_dogfood/case_0002/README.md)
+completes a second prospectively frozen implementation task: the roadmap's
+explicit lexical-only path for future cases without justified structural
+seeds. Blind adjudication required ten resources in a 302-resource frame;
+both complete lexical inventories found all ten. Full-prompt BM25 needed 43
+candidates for complete coverage and the short InformationNeed needed 87.
+Direct structural evidence again rescued none. The edit-capable Codex host
+was interrupted and continued in a second ephemeral session; both traces and
+the resulting observation limits are retained. These two repository-local
+cases continue steps 7-8 and show measured handoff pressure, but do not
+select a production rule for step 9. Next prospectively select a different
+bounded production Python task with a natural RI-connected dependency seam
+for Case 0003; pause rather than invent such a task if none is justified.
 
 Later investigate task-conditioned structural ranking, including established
 personalized graph-ranking techniques, only after the production retrieval
@@ -91,17 +104,18 @@ do not evaluate graph-based ranking or graph-assisted Context compilation.
 
 For each bounded real task, freeze the snapshot, eligible lexical index/corpus,
 verbatim prompt, separately authored short InformationNeed, BM25 settings,
-qualified seed origins, and already-derived RI fact inputs before retrieval.
-The research capture in `experiments/codex_dogfood` runs both lexical arms over
-the same index/settings and complete positive-match work bound. It composes
-each with one direct structural result under the short purpose. The complete
-inventories retain native lexical rank, score and contributions, query text,
-structural seeds, directions and facts. The initial orientation lists all
-surfaced resource addresses by neutral address order with provenance. It is an
-advisory work aid, not a selected or sufficient file set; Codex remains free to
-search, open, edit, and validate outside it. This first capture requires
-qualified structural seeds; no-seed cases need an explicit lexical-only capture
-path before they can use this protocol.
+qualified seed origins when justified, and already-derived RI fact inputs before
+retrieval. The research capture in `experiments/codex_dogfood` runs both lexical
+arms over the same index/settings and complete positive-match work bound. With
+qualified seeds, it composes each arm with one direct structural result under
+the short purpose. With zero seeds, it checks the entire lexical corpus against
+the frozen snapshot and retains both native BM25 results in lexical-only
+inventories; it makes no structural request. The inventories retain native
+lexical rank, score and contributions, and query text. Seeded inventories also
+retain structural seeds, directions and facts. The initial orientation lists
+all surfaced resource addresses by neutral address order with provenance. It
+is an advisory work aid, not a selected or sufficient file set; Codex remains
+free to search, open, edit, and validate outside it.
 
 Record Codex searches, opened/read resources, modified resources, validation
 resources, task and validation outcomes, and bytes/tokens only where reliably

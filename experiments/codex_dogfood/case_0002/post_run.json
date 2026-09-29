@@ -1,0 +1,225 @@
+{
+  "schema": "codex-advisory-post-run-v1",
+  "case_id": "cde8f37ad2e0b6f05a9d9713e07f62fd8a52931c1ba0ef5686129f4aeba56ddb",
+  "starting_snapshot_id": "84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b",
+  "trace_sha256": {
+    "codex_trace.jsonl": "293fe43918ce63d6fe5a7f68bd63eb1211f90d40ded9cde6aaf6140c666c7ae8",
+    "codex_continuation_trace.jsonl": "c4cae74a3a32e874a8e55be54b8e39a6b5ce6f688d0a5d69dcb68044a0e98920"
+  },
+  "interrupted_trace_truncated_lines": 1,
+  "continuation_handoff_sha256": "50bf8c8ac2955a04b518affbb0a678c2fb3bfeb5e429527cc76ae35aad112e24",
+  "post_run_patch_sha256": "c003f99cde8f951d970a18b5eaacb7066cfdf7fc4468dcd197b156c29023a4f5",
+  "observation": {
+    "searches": [
+      "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'rg -n \"Codex dogfood|seed_origins|lexical-only|dogfood\" docs/roadmap.md docs/backlog/epics/B-0002-coding-context-substrate.md src/devtools/context/retrieval/docs/overview.md docs/documentation_map.md; git diff --cached --name-only; git rev-parse HEAD'",
+      "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'rg -n \"dogfood|lexical-only|seed|snapshot\" docs/roadmap.md docs/documentation_map.md docs/backlog/epics/B-0002-coding-context-substrate.md src/devtools/context/retrieval/docs/overview.md'",
+      "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'rg -n \"CodexDogfood.*Inventory|full_prompt_inventory|short_need_inventory|seed_origins\" experiments tests scripts | Select-Object -First 90'"
+    ],
+    "opened_resources": [
+      "src/devtools/context/retrieval/structural.py",
+      "src/devtools/context/retrieval/composition.py",
+      "docs/roadmap.md",
+      "experiments/codex_dogfood/capture.py",
+      "tests/experiments/test_codex_dogfood_capture.py",
+      "docs/architecture/taxonomy.md",
+      "docs/documentation_map.md",
+      "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+      "tests/experiments/test_codex_dogfood_capture.py",
+      "experiments/codex_dogfood/capture.py",
+      "src/devtools/context/retrieval/structural.py",
+      "src/devtools/context/retrieval/composition.py",
+      "docs/documentation_map.md",
+      "src/devtools/context/retrieval/docs/overview.md",
+      "experiments/codex_dogfood/case_0001/README.md",
+      "tests/context/retrieval/test_composition.py",
+      "tests/context/retrieval/test_structural.py",
+      "src/devtools/context/retrieval/lexical/bm25.py",
+      "src/devtools/context/repository/snapshot.py",
+      "src/devtools/context/repository/resource.py",
+      "tests/context/retrieval/test_structural.py",
+      "src/devtools/context/retrieval/structural.py",
+      "src/devtools/context/retrieval/composition.py",
+      "AGENTS.md",
+      "docs/architecture/taxonomy.md",
+      "docs/documentation_map.md",
+      "experiments/codex_dogfood/capture.py",
+      "docs/roadmap.md",
+      "src/devtools/context/retrieval/docs/overview.md",
+      "tests/experiments/test_codex_dogfood_capture.py"
+    ],
+    "modified_resources": [
+      "docs/documentation_map.md",
+      "docs/roadmap.md",
+      "experiments/codex_dogfood/capture.py",
+      "tests/experiments/test_codex_dogfood_capture.py"
+    ],
+    "validation_resources": [
+      "tests/experiments/test_codex_dogfood_capture.py",
+      "tests/experiments/test_codex_dogfood_capture.py",
+      "tests/experiments/test_codex_dogfood_capture.py"
+    ],
+    "task_success": true,
+    "validation_success": true,
+    "observation_source": "Two Codex CLI JSONL sessions for one task: initial ephemeral host interrupted during a completed file-change event, then a fresh continuation completed. One truncated final JSONL line is excluded. Completed commands and Get-Content paths are counted; modified paths come from the frozen Git patch. Search reads and exact file bytes are not separately measurable. First-session tokens unknown.",
+    "bytes_read": null,
+    "tokens_read": null
+  },
+  "command_count": 36,
+  "commands": [
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content src/devtools/context/retrieval/structural.py; Get-Content src/devtools/context/retrieval/composition.py; Get-Content docs/roadmap.md'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content experiments/codex_dogfood/capture.py; Get-Content tests/experiments/test_codex_dogfood_capture.py'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content docs/architecture/taxonomy.md; Get-Content docs/documentation_map.md; Get-Content docs/backlog/items/B-0008-investigate-repository-context-discovery.md'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git status --short --branch'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git diff --check'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content tests/experiments/test_codex_dogfood_capture.py'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content experiments/codex_dogfood/capture.py'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content src/devtools/context/retrieval/structural.py; Get-Content src/devtools/context/retrieval/composition.py'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'rg -n \"Codex dogfood|seed_origins|lexical-only|dogfood\" docs/roadmap.md docs/backlog/epics/B-0002-coding-context-substrate.md src/devtools/context/retrieval/docs/overview.md docs/documentation_map.md; git diff --cached --name-only; git rev-parse HEAD'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content docs/documentation_map.md | Select-Object -Skip 215 -First 32; Get-Content src/devtools/context/retrieval/docs/overview.md | Select-Object -Last 85; Get-Content experiments/codex_dogfood/case_0001/README.md | Select-Object -First 65'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content tests/context/retrieval/test_composition.py; Get-Content tests/context/retrieval/test_structural.py'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content src/devtools/context/retrieval/lexical/bm25.py'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content src/devtools/context/repository/snapshot.py | Select-Object -First 125; Get-Content src/devtools/context/repository/resource.py | Select-Object -First 125; Get-Content tests/context/retrieval/test_structural.py | Select-Object -First 95'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'uv run ruff check .'",
+      "exit_code": 1
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git diff --check; git diff --cached --check; git status --short'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'uv run mypy'",
+      "exit_code": 1
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'uv run pytest tests/experiments/test_codex_dogfood_capture.py'",
+      "exit_code": 1
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'uv run ruff check .'",
+      "exit_code": 1
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'uv run pytest -o addopts= tests/experiments/test_codex_dogfood_capture.py -q'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'uv run mypy'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git diff -- experiments/codex_dogfood/capture.py tests/experiments/test_codex_dogfood_capture.py docs/roadmap.md docs/documentation_map.md; Get-Content src/devtools/context/retrieval/structural.py; Get-Content src/devtools/context/retrieval/composition.py'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content AGENTS.md; Get-Content docs/architecture/taxonomy.md; Get-Content docs/documentation_map.md'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git status --short --branch; git diff --check; git diff --cached --check; git log -1 --oneline'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git diff -- docs/roadmap.md docs/documentation_map.md'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git diff -- experiments/codex_dogfood/capture.py'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git diff -- tests/experiments/test_codex_dogfood_capture.py'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'rg -n \"dogfood|lexical-only|seed|snapshot\" docs/roadmap.md docs/documentation_map.md docs/backlog/epics/B-0002-coding-context-substrate.md src/devtools/context/retrieval/docs/overview.md'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content experiments/codex_dogfood/capture.py'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'rg -n \"CodexDogfood.*Inventory|full_prompt_inventory|short_need_inventory|seed_origins\" experiments tests scripts | Select-Object -First 90'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content docs/roadmap.md | Select-Object -First 115; Get-Content src/devtools/context/retrieval/docs/overview.md | Select-Object -First 65'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content tests/experiments/test_codex_dogfood_capture.py'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'uv run pytest tests/experiments/test_codex_dogfood_capture.py -q --no-cov'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'uv run ruff check .'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'uv run mypy'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git status --porcelain=v1 --untracked-files=all -- experiments/codex_dogfood/case_0002 scripts/case_0002_local.py'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git diff --check; git diff --cached --check; git status --short; git diff --stat; git diff --name-only'",
+      "exit_code": 0
+    }
+  ],
+  "model_token_usage": {
+    "interrupted_session": null,
+    "completed_continuation": {
+      "input_tokens": 305201,
+      "cached_input_tokens": 251904,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1635,
+      "reasoning_output_tokens": 456
+    }
+  },
+  "codex_final_message": "Implemented the zero-seed Codex dogfood capture path. It runs both production BM25 query arms against the frozen corpus and settings, retains their native ranked results, and presents matches in neutral address order. Seeded capture still uses direct structural retrieval with its existing provenance. The roadmap and documentation map now describe both paths.\n\nFocused tests passed (4), as did Ruff, mypy, and Git diff checks. The pre-existing Case 0002 research freeze and local script remain untouched and untracked. No commit or push was made."
+}

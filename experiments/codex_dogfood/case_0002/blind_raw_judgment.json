@@ -1,0 +1,79 @@
+{
+  "required": [
+    {
+      "address": "AGENTS.md",
+      "rationale": "Defines the repository’s scope, documentation, validation, and Git rules for this change.",
+      "categories": ["required_for_understanding", "required_for_validation"]
+    },
+    {
+      "address": "docs/roadmap.md",
+      "rationale": "Defines the dogfood capture protocol and explicitly identifies the missing lexical-only path; its protocol description must be updated.",
+      "categories": ["required_for_understanding", "required_for_implementation"]
+    },
+    {
+      "address": "experiments/codex_dogfood/capture.py",
+      "rationale": "Owns case validation, both query arms, inventory capture, and the address-ordered advisory orientation being changed.",
+      "categories": ["required_for_implementation"]
+    },
+    {
+      "address": "pyproject.toml",
+      "rationale": "Configures the requested focused pytest run, Ruff, and mypy checks.",
+      "categories": ["required_for_configuration", "required_for_validation"]
+    },
+    {
+      "address": "src/devtools/context/retrieval/composition.py",
+      "rationale": "Defines the snapshot-bound composition contract, including stale-corpus rejection, that the new path must preserve.",
+      "categories": ["required_for_api_contract"]
+    },
+    {
+      "address": "src/devtools/context/retrieval/lexical/bm25.py",
+      "rationale": "Defines the production query and BM25 result APIs used for both native ranked lexical arms.",
+      "categories": ["required_for_api_contract"]
+    },
+    {
+      "address": "src/devtools/context/retrieval/structural.py",
+      "rationale": "Its direct structural request requires nonempty seeds, so the zero-seed path cannot invoke it with fabricated or empty seeds.",
+      "categories": ["required_for_api_contract"]
+    },
+    {
+      "address": "tests/context/retrieval/test_composition.py",
+      "rationale": "Provides the lexical fixture imported by the capture tests and establishes stale-snapshot composition expectations.",
+      "categories": ["required_for_tests"]
+    },
+    {
+      "address": "tests/context/retrieval/test_structural.py",
+      "rationale": "Provides the seeded RI fixture imported by the capture tests.",
+      "categories": ["required_for_tests"]
+    },
+    {
+      "address": "tests/experiments/test_codex_dogfood_capture.py",
+      "rationale": "Owns the focused capture tests for seeded behavior and stale-snapshot rejection; it is the test home for zero-seed coverage.",
+      "categories": ["required_for_tests"]
+    }
+  ],
+  "helpful_only": [
+    {
+      "address": "docs/architecture.md",
+      "rationale": "Explains experiment and retrieval boundaries, but the scoped change and production contracts are established by the roadmap and source."
+    },
+    {
+      "address": "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+      "rationale": "Provides broader retrieval and ranking semantics; the task does not change those semantics."
+    },
+    {
+      "address": "docs/architecture/taxonomy.md",
+      "rationale": "Clarifies Context and retrieval terminology without supplying a distinct implementation obligation for this bounded capture change."
+    },
+    {
+      "address": "docs/documentation_map.md",
+      "rationale": "Helps locate authoritative documentation; the task already names the relevant protocol and production files."
+    },
+    {
+      "address": "src/devtools/context/retrieval/docs/overview.md",
+      "rationale": "Summarizes the structural and composition contracts, which the production source defines directly."
+    }
+  ],
+  "unresolved": [],
+  "alternatives": [],
+  "all_unlisted_unnecessary": true
+}

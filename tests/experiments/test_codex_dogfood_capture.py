@@ -11,9 +11,15 @@ from devtools.context.repository.resource import (
     ContentIdentity,
     RepositoryResourceAddress,
 )
+from devtools.context.retrieval.composition import LexicalStructuralResourceInventory
+from devtools.context.retrieval.lexical.bm25 import (
+    analyze_repository_text_lexical_query,
+    retrieve_repository_text_documents_by_bm25,
+)
 from experiments.codex_dogfood.capture import (
     CodexDogfoodAgentObservation,
     CodexDogfoodCase,
+    CodexDogfoodLexicalInventory,
     capture_codex_dogfood_retrieval,
     render_codex_dogfood_orientation,
 )
@@ -43,6 +49,8 @@ def test_capture_preserves_comparable_query_arms_and_all_native_supports(
     capture = capture_codex_dogfood_retrieval(case)
     full = capture.full_prompt_inventory
     short = capture.short_need_inventory
+    assert isinstance(full, LexicalStructuralResourceInventory)
+    assert isinstance(short, LexicalStructuralResourceInventory)
     assert full.lexical_result.query.text == case.full_prompt
     assert short.lexical_result.query.text == case.short_information_need
     assert full.lexical_result.index is short.lexical_result.index is case.index
@@ -84,20 +92,107 @@ def test_capture_preserves_comparable_query_arms_and_all_native_supports(
     assert "RI " in orientation
 
 
+def test_zero_seed_capture_keeps_both_native_lexical_arms(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    case = replace(_case(tmp_path), seed_origins=())
+
+    def forbid_structural(*_args: object, **_kwargs: object) -> None:
+        msg = "Zero-seed capture must not invoke structural retrieval or composition."
+        raise AssertionError(msg)
+
+    monkeypatch.setattr(
+        "experiments.codex_dogfood.capture.retrieve_python_direct_structural_resources",
+        forbid_structural,
+    )
+    monkeypatch.setattr(
+        "experiments.codex_dogfood.capture.compose_lexical_structural_resource_evidence",
+        forbid_structural,
+    )
+    capture = capture_codex_dogfood_retrieval(case)
+    full = capture.full_prompt_inventory
+    short = capture.short_need_inventory
+    assert isinstance(full, CodexDogfoodLexicalInventory)
+    assert isinstance(short, CodexDogfoodLexicalInventory)
+    for inventory, query in (
+        (full, case.full_prompt),
+        (short, case.short_information_need),
+    ):
+        assert inventory.snapshot_id == case.snapshot.id
+        assert inventory.purpose == case.short_information_need
+        assert inventory.lexical_result == retrieve_repository_text_documents_by_bm25(
+            query=analyze_repository_text_lexical_query(text=query),
+            index=case.index,
+            maximum_results=case.lexical_work_bound,
+            settings=case.lexical_settings,
+        )
+        assert inventory.lexical_result.index is case.index
+        assert inventory.lexical_result.settings is case.lexical_settings
+        assert tuple(entry.resource.address for entry in inventory.resources) == tuple(
+            sorted((entry.resource.address for entry in inventory.resources), key=str),
+        )
+        assert all(
+            entry.lexical_match
+            is inventory.lexical_result.matches[entry.lexical_rank - 1]
+            for entry in inventory.resources
+        )
+    assert capture.orientation_addresses == tuple(
+        sorted(
+            {
+                entry.resource.address
+                for result in (full, short)
+                for entry in result.resources
+            },
+            key=str,
+        ),
+    )
+    orientation = render_codex_dogfood_orientation(capture)
+    assert "full-prompt lexical rank" in orientation
+    assert "short-need lexical rank" in orientation
+    assert "RI " not in orientation
+
+
 def test_capture_rejects_stale_lexical_observation(tmp_path: Path) -> None:
     case = _case(tmp_path)
+    assert all(
+        match.document_statistics.analysis.document.resource.address
+        != RepositoryResourceAddress("unrelated.py")
+        for query in (case.full_prompt, case.short_information_need)
+        for match in retrieve_repository_text_documents_by_bm25(
+            query=analyze_repository_text_lexical_query(text=query),
+            index=case.index,
+            maximum_results=case.lexical_work_bound,
+            settings=case.lexical_settings,
+        ).matches
+    )
+    unmatched = next(
+        resource for resource in case.snapshot.resources
+        if resource.address == RepositoryResourceAddress("unrelated.py")
+    )
     changed = replace(
-        case.snapshot.resources[0],
+        unmatched,
         content_identity=ContentIdentity("0" * 64),
     )
     stale = replace(
         case.snapshot,
-        resources=(changed, *case.snapshot.resources[1:]),
+        resources=tuple(
+            changed if resource is unmatched else resource
+            for resource in case.snapshot.resources
+        ),
     )
-    with pytest.raises(ValueError, match="differs from the supplied snapshot"):
-        capture_codex_dogfood_retrieval(
-            replace(case, snapshot=stale, imports=(), references=(), memberships=()),
-        )
+    for seeds in (case.seed_origins, ()):
+        with pytest.raises(ValueError, match="differs from the supplied snapshot"):
+            capture_codex_dogfood_retrieval(
+                replace(
+                    case,
+                    snapshot=stale,
+                    seed_origins=seeds,
+                    imports=(),
+                    references=(),
+                    memberships=(),
+                ),
+            )
 
 
 def test_case_keeps_observation_separate(tmp_path: Path) -> None:

@@ -230,12 +230,16 @@ defines its API and validation contract.
 The [roadmap dogfood protocol](roadmap.md#controlled-advisory-codex-dogfooding)
 owns the current evaluation sequence. Its narrow
 [`experiments/codex_dogfood` capture](../experiments/codex_dogfood/capture.py)
-compares full-prompt and short-need lexical arms with direct structural facts,
-and prepares advisory orientation. It is research orchestration, not a
-production Selector, Codex command adapter, or Context compiler.
+compares full-prompt and short-need lexical arms, adds direct structural facts
+when qualified seeds exist, and prepares advisory orientation. It is research
+orchestration, not a production Selector, Codex command adapter, or Context
+compiler.
 The [first blind dogfood case](../experiments/codex_dogfood/case_0001/README.md)
 records its frozen judgments, retrieval inventories, agent observations, and
 post-freeze analysis as development evidence.
+The [second blind dogfood case](../experiments/codex_dogfood/case_0002/README.md)
+records the lexical-only capture implementation task and its separate frozen
+judgments, inventories, agent observations, and post-freeze analysis.
 
 The `orchestration` and `governance` domains remain recognized sparse
 namespaces without reusable implementation APIs. Evaluation now provides the
