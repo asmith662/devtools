@@ -613,8 +613,21 @@ documents that can affect BM25 statistics; it requires the structural result's
 snapshot and purpose to match. The lexical query remains mechanism input, not
 an InformationNeed identity. The result retains both original mechanism results
 and iterates candidate resources by canonical address, with no cross-mechanism
-rank or budgeted file selection. Explicit Selection architecture remains open;
-Context disclosure remains downstream.
+rank or budgeted file selection. The accepted Selection sequence is
+purpose-relative resource assessment followed by a separate sufficiency
+decision; its concrete variable-cardinality admission rule and budgeted file
+set remain unresolved. Context disclosure remains downstream.
+
+The first controlled Codex dogfood uses these production results from a
+research-owned capture, with the full task prompt and a separately frozen short
+InformationNeed as comparable lexical arms. It hands over a complete, neutral
+address-oriented evidence list as advisory orientation. Codex retains normal
+repository search, open, edit, and validation access; no production Selection
+policy or Context disclosure compiler is introduced. Agent actions are recorded
+separately from later required-resource adjudication. The current read-only
+`CodexAgent` adapter returns final text and continuation but does not retain
+exhaustive tool activity, so dogfood observations require an explicit external
+recording source. The [roadmap](roadmap.md) defines the controlled protocol.
 
 Increment 23 independently validates this boundary but does not promote its
 directional-reservation-v1 realization. Canonical and practical top five each

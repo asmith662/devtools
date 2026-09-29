@@ -30,7 +30,7 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
-### Current — investigate budgeted resource Selection
+### Current — advisory Codex retrieval dogfooding
 
 The Tier-1 breadth sprint through Increment 36 is complete. The
 [breadth evidence and production gate](research/repository-retrieval-breadth-production-gate.md)
@@ -44,15 +44,22 @@ resource evidence composition are now production candidate inventory surfaces;
 no cross-mechanism ranking, graph expansion, dense model, or fusion policy is
 promoted.
 
+The production Selection architecture investigation is complete. Its accepted
+sequence is resource assessment, a separate sufficiency decision, then Context
+disclosure. No variable-cardinality admission rule, budgeted file set, or
+Selector API is selected. The first dogfood can therefore test production
+retrieval as advisory orientation while Codex keeps normal search, open, edit,
+and validation access.
+
 Proceed in dependency order: (1) bounded source-grounded Python function
 Reference/direct Call Repository Intelligence; (2) qualified immediate package
 membership; (3) a narrow cross-domain Evaluation assessment/coverage kernel;
 (4) direct retrieval candidate generation consuming production typed facts;
 (5) compose lexical and structural native evidence in one snapshot-bound
-resource inventory; (6) investigate and select an explicit, budgeted production
-resource Selection rule; (7) dogfood the resulting actionable file set with
-Codex; (8) correct retrieval/Selection only where dogfooding evidence supports
-it; (9) implement one fine-grained Context disclosure slice. Items 1-5 are
+resource inventory; (6) investigate Selection architecture; (7) dogfood
+advisory retrieval on real Codex tasks; (8) adjudicate misses and waste;
+(9) select a budgeted production rule only with evidence; (10) implement one
+fine-grained Context disclosure slice. Items 1-6 are
 complete: bounded Reference/direct Call RI, qualified immediate package
 membership RI, the
 domain-neutral expected-versus-observed identity coverage kernel, and direct
@@ -70,27 +77,44 @@ naive graph-depth refinement, family-specific retrieval refinements, and
 confirmation remain parked. The poor unranked Graph-1/Graph-2 candidate results
 do not evaluate graph-based ranking or graph-assisted Context compilation.
 
-### Planned controlled Codex dogfooding
+### Controlled advisory Codex dogfooding
 
-Dogfooding waits for an explicit, preregistered Selection rule that turns the
-inventory into a small file set under a fixed budget. It does not hand Codex
-every candidate. For each bounded real task, freeze the repository snapshot,
-complete prompt, shorter InformationNeed formulation, eligible corpus, RI
-inputs, query/seed derivation, result bounds, and selected-file budget before
-observing task outcomes. Compare complete-prompt and short-form lexical queries
-under identical bounds; extra terminology may help or dilute lexical evidence.
+For each bounded real task, freeze the snapshot, eligible lexical index/corpus,
+verbatim prompt, separately authored short InformationNeed, BM25 settings,
+qualified seed origins, and already-derived RI fact inputs before retrieval.
+The research capture in `experiments/codex_dogfood` runs both lexical arms over
+the same index/settings and complete positive-match work bound. It composes
+each with one direct structural result under the short purpose. The complete
+inventories retain native lexical rank, score and contributions, query text,
+structural seeds, directions and facts. The initial orientation lists all
+surfaced resource addresses by neutral address order with provenance. It is an
+advisory work aid, not a selected or sufficient file set; Codex remains free to
+search, open, edit, and validate outside it. This first capture requires
+qualified structural seeds; no-seed cases need an explicit lexical-only capture
+path before they can use this protocol.
 
-Use independent comparable Codex runs on the same task state, with and without
-the selected file set, while holding model, tools, and validation conditions
-fixed. Retain the initial resources and full retrieval provenance; every later
-repository search, file open, and resource read; modified resources; resources
-needed to understand or validate the task under separate review; unused surfaced
-resources; missed required resources; and task outcome with validation evidence.
-Report required-resource coverage, searches/file reads and approximate bytes or
-tokens saved, unused surfaced material, and task success separately. Modified
-files alone do not define relevance. The Evaluation identity-coverage kernel
-may audit completeness of a declared task/judgment frame, while usefulness and
-retrieval metrics remain consumer-owned.
+Record Codex searches, opened/read resources, modified resources, validation
+resources, task and validation outcomes, and bytes/tokens only where reliably
+observed. State the observation source and completeness limits. The current
+production Codex adapter is read-only and returns final text/thread identity,
+not exhaustive tool activity, so it is not an edit-capable telemetry source.
+Use an authorized normal Codex run with separately captured interaction history;
+do not infer an unobserved search/read from its final answer. Never treat opened
+or modified resources as synonymous with required resources.
+
+After task completion, pool prospectively expected resources if available,
+surfaced resources, searched/opened resources, modified resources, validation
+resources, and plausible misses for blinded adjudication. Label whether each
+resource was required for understanding, implementation, API/contract review,
+tests, configuration, or validation; helpful only; unnecessary; or unresolved.
+Record acceptable alternatives. Do not feed labels back into retrieval. Compare
+initial and eventual required-resource coverage, misses, unused surfaced
+resources, additional searches and opens, reliable file/byte/token reads, task
+success, and validation success separately. Compare full-prompt and short-query
+coverage and waste rather than assuming either wins. A later controlled
+retrieval-assisted versus unaided Codex comparison may measure exploration
+reduction under matched conditions. Production budgeted Selection remains a
+separate next decision informed by these observations. Confirmation stays sealed.
 
 ### Ongoing — documentation integrity and backlog rebase
 
