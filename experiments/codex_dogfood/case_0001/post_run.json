@@ -1,0 +1,194 @@
+{
+  "schema": "codex-advisory-post-run-v1",
+  "case_id": "38965facc88ded47e6fb7e95be19db6699772c3b6c020c08e8a63c476b83ddef",
+  "starting_snapshot_id": "c7765ae9b58ffe8153e1c88afdcf3970c4ed7ff510504efe9dad00d3204ccb78",
+  "trace_sha256": "caba9061644bb49bdb55d6d526c389649e747ecc442a67c391dea5db29b33934",
+  "post_run_patch_sha256": "ee96b015eb964d89512f323c55be290617ee7176f61ebd72d6f0d9b426bb2099",
+  "observation": {
+    "searches": [
+      "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"rg -n 'K=5|K = 5|top.?5|BM25|result bound|result_limit|top_k' docs/architecture.md docs/architecture/decisions docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md docs/documentation_map.md docs/architecture/taxonomy.md src/devtools/context/retrieval tests/context/retrieval\"",
+      "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"rg -n 'K=5|K = 5|maximum_results|max_results|result_limit' docs src/devtools/context/retrieval experiments tests/context/retrieval\"",
+      "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"rg -n 'Retrieval|Ranking|Context' docs/architecture/taxonomy.md\"",
+      "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"rg -n 'pytest|addopts|cov-fail-under|ruff|mypy' pyproject.toml\"",
+      "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"rg -n 'retains up to the caller-supplied positive|above use the experiment' docs/architecture.md\""
+    ],
+    "opened_resources": [
+      "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+      "docs/architecture/taxonomy.md",
+      "docs/architecture.md",
+      "src/devtools/context/retrieval/lexical/bm25.py",
+      "tests/context/retrieval/lexical/test_bm25.py",
+      "tests/context/retrieval/lexical/test_filename.py",
+      "docs/documentation_map.md",
+      "docs/architecture.md",
+      "src/devtools/context/retrieval/lexical/bm25.py",
+      "docs/architecture.md",
+      "docs/architecture.md",
+      "tests/context/retrieval/lexical/test_bm25.py",
+      "tests/context/retrieval/lexical/test_filename.py",
+      "src/devtools/context/retrieval/docs/overview.md",
+      "docs/backlog/epics/B-0001-architecture-documentation-integrity.md",
+      "src/devtools/context/retrieval/lexical/bm25.py",
+      "tests/context/retrieval/lexical/test_filename.py"
+    ],
+    "modified_resources": [
+      "docs/architecture.md"
+    ],
+    "validation_resources": [
+      "tests/context/retrieval/lexical/test_bm25.py",
+      "tests/context/retrieval/lexical/test_filename.py"
+    ],
+    "task_success": true,
+    "validation_success": true,
+    "observation_source": "Codex CLI JSONL completed command/file-change events; Get-Content paths count as direct opens. Search reads and exact file bytes are not separately measurable. Task completion also checked by diff.",
+    "bytes_read": null,
+    "tokens_read": null
+  },
+  "command_count": 34,
+  "commands": [
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git rev-parse HEAD'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git diff --cached --check'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git diff --check'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"rg -n 'K=5|K = 5|top.?5|BM25|result bound|result_limit|top_k' docs/architecture.md docs/architecture/decisions docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md docs/documentation_map.md docs/architecture/taxonomy.md src/devtools/context/retrieval tests/context/retrieval\"",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git status --short --branch'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content docs/architecture/taxonomy.md | Select-Object -First 150'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content docs/architecture.md | Select-Object -Skip 320 -First 60'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content src/devtools/context/retrieval/lexical/bm25.py | Select-Object -Skip 140 -First 185'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content tests/context/retrieval/lexical/test_bm25.py | Select-Object -Skip 175 -First 55'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content tests/context/retrieval/lexical/test_filename.py | Select-Object -Skip 155 -First 55'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content docs/documentation_map.md | Select-Object -First 155'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content docs/architecture.md | Select-Object -Skip 625 -First 62'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"rg -n 'K=5|K = 5|maximum_results|max_results|result_limit' docs src/devtools/context/retrieval experiments tests/context/retrieval\"",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content src/devtools/context/retrieval/lexical/bm25.py | Select-Object -Skip 245 -First 75'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content docs/architecture.md | Select-Object -Skip 628 -First 53'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content docs/architecture.md | Select-Object -Skip 330 -First 45'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content tests/context/retrieval/lexical/test_bm25.py | Select-Object -Skip 195 -First 28'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content tests/context/retrieval/lexical/test_filename.py | Select-Object -Skip 155 -First 50'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content src/devtools/context/retrieval/docs/overview.md | Select-Object -First 80'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"rg -n 'Retrieval|Ranking|Context' docs/architecture/taxonomy.md\"",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"rg -n 'pytest|addopts|cov-fail-under|ruff|mypy' pyproject.toml\"",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content docs/backlog/epics/B-0001-architecture-documentation-integrity.md | Select-Object -First 85'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content src/devtools/context/retrieval/lexical/bm25.py | Select-Object -Skip 238 -First 18'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'Get-Content tests/context/retrieval/lexical/test_filename.py | Select-Object -Skip 105 -First 45'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git diff -- docs/architecture.md'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'uv run pytest -o addopts= tests/context/retrieval/lexical/test_bm25.py tests/context/retrieval/lexical/test_filename.py'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git diff --check'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git status --short'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'uv run ruff check .'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'uv run mypy'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git diff --cached --check'",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"rg -n 'retains up to the caller-supplied positive|above use the experiment' docs/architecture.md\"",
+      "exit_code": 0
+    },
+    {
+      "command": "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command 'git status --short'",
+      "exit_code": 0
+    }
+  ],
+  "model_token_usage": {
+    "input_tokens": 315340,
+    "cached_input_tokens": 279424,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2357,
+    "reasoning_output_tokens": 726
+  },
+  "codex_final_message": "Updated [docs/architecture.md](C:/Users/recoveryadmin/Workspace/tools/devtools/docs/architecture.md:641) to describe production BM25\u2019s caller-supplied positive `maximum_results` bound. The historical `K=5` experiment findings remain intact.\n\nValidation passed: 15 focused retrieval tests, Ruff, mypy, and Git diff checks. The worktree contains only this documentation change; nothing was committed or pushed."
+}

@@ -1,0 +1,64 @@
+{
+  "required": [
+    {
+      "address": "AGENTS.md",
+      "rationale": "Sets the repository's documentation authority, validation commands, and worktree constraints.",
+      "categories": ["required_for_understanding", "required_for_validation"]
+    },
+    {
+      "address": "docs/architecture.md",
+      "rationale": "The authoritative current-state document contains the incorrect production K=5 claim alongside historical top-five experiment statements.",
+      "categories": ["required_for_understanding", "required_for_implementation"]
+    },
+    {
+      "address": "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+      "rationale": "Defines B-0006 as reconciliation of current architecture documentation with implemented APIs.",
+      "categories": ["required_for_understanding"]
+    },
+    {
+      "address": "docs/documentation_map.md",
+      "rationale": "Identifies central architecture as the current-state authority and source/tests as the final authority for implemented behavior.",
+      "categories": ["required_for_understanding"]
+    },
+    {
+      "address": "src/devtools/context/retrieval/lexical/bm25.py",
+      "rationale": "The production retrieval function requires caller-supplied maximum_results, rejects nonpositive values, and slices ranked matches to that bound.",
+      "categories": ["required_for_api_contract"]
+    },
+    {
+      "address": "tests/context/retrieval/lexical/test_filename.py",
+      "rationale": "Tests the combined production BM25 function with caller-selected bounds of 5 and 1 and rejection of 0.",
+      "categories": ["required_for_tests"]
+    },
+    {
+      "address": "pyproject.toml",
+      "rationale": "Defines the repository's Ruff, mypy, pytest, and coverage configuration used by the requested validation.",
+      "categories": ["required_for_configuration", "required_for_validation"]
+    }
+  ],
+  "helpful_only": [
+    {
+      "address": "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+      "rationale": "Corroborates that top-five statements describe bounded experiment evidence, while deferring exact production APIs to implementation."
+    },
+    {
+      "address": "docs/roadmap.md",
+      "rationale": "Provides additional historical K=5 experiment context, but the central architecture already contains the statements to preserve."
+    },
+    {
+      "address": "src/devtools/context/retrieval/docs/overview.md",
+      "rationale": "Clarifies adjacent retrieval and composition boundaries, but does not define the production BM25 result limit."
+    },
+    {
+      "address": "tests/context/retrieval/lexical/test_bm25.py",
+      "rationale": "Confirms a caller-supplied bound for the content-only helper; the combined production operation has its own direct test."
+    },
+    {
+      "address": "tests/context/retrieval/lexical/test_evaluation.py",
+      "rationale": "Can help distinguish evaluation K from the retained retrieval bound, but is not needed to establish the production API."
+    }
+  ],
+  "unresolved": [],
+  "alternatives": [],
+  "all_unlisted_unnecessary": true
+}

@@ -233,6 +233,9 @@ owns the current evaluation sequence. Its narrow
 compares full-prompt and short-need lexical arms with direct structural facts,
 and prepares advisory orientation. It is research orchestration, not a
 production Selector, Codex command adapter, or Context compiler.
+The [first blind dogfood case](../experiments/codex_dogfood/case_0001/README.md)
+records its frozen judgments, retrieval inventories, agent observations, and
+post-freeze analysis as development evidence.
 
 The `orchestration` and `governance` domains remain recognized sparse
 namespaces without reusable implementation APIs. Evaluation now provides the

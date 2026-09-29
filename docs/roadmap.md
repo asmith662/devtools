@@ -70,6 +70,16 @@ reproduction; new consumers should use production RI rather than duplicate
 its derivation or experiment-only union logic. Confirmation remains sealed; no
 shadow or independent-repository claim follows from development results.
 
+[Codex dogfood Case 0001](../experiments/codex_dogfood/case_0001/README.md)
+completes the first advisory run and blind required-resource adjudication for
+steps 7-8. Both complete lexical inventories found all seven required
+resources, but full-prompt BM25 needed 35 candidates to cover them and the
+short InformationNeed needed 132. Direct structural evidence rescued none.
+This single case identifies candidate ordering and handoff volume as measured
+pressure; it does not select a production Selection rule or establish a general
+query-formulation result. Next freeze a different bounded task as Case 0002
+under the same protocol before deciding whether step 9 has enough evidence.
+
 Later investigate task-conditioned structural ranking, including established
 personalized graph-ranking techniques, only after the production retrieval
 surface supplies trustworthy direct facts and controlled evaluation. Graph-3,

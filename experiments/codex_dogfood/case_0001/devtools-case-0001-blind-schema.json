@@ -1,0 +1,114 @@
+{
+  "type": "object",
+  "properties": {
+    "required": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "required_for_understanding",
+                "required_for_implementation",
+                "required_for_api_contract",
+                "required_for_tests",
+                "required_for_configuration",
+                "required_for_validation"
+              ]
+            }
+          }
+        },
+        "required": [
+          "address",
+          "categories",
+          "rationale"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "helpful_only": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "address",
+          "rationale"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "unresolved": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "address",
+          "rationale"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "alternatives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "obligation": {
+            "type": "string"
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rationale": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "obligation",
+          "addresses",
+          "rationale"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "all_unlisted_unnecessary": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "required",
+    "helpful_only",
+    "unresolved",
+    "alternatives",
+    "all_unlisted_unnecessary"
+  ],
+  "additionalProperties": false
+}

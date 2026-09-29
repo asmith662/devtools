@@ -1,0 +1,202 @@
+{
+  "schema": "codex-dogfood-case-0001-joined-analysis-v1",
+  "case_id": "38965facc88ded47e6fb7e95be19db6699772c3b6c020c08e8a63c476b83ddef",
+  "adjudication_identity": "d5dfbb4cfa3d31a070312b3e867a5e3a8a37200ee2e921bfc476a22add461da1",
+  "adjudication_artifact_sha256": "774a60082b407f87191cfc43aed709df92761d64bb97d4aeecae17ec5dd641ca",
+  "identity_coverage": {
+    "duplicate_expected": [],
+    "duplicate_observed": [],
+    "expected_count": 299,
+    "is_exact": true,
+    "missing": [],
+    "observed_count": 299,
+    "unexpected": []
+  },
+  "counts": {
+    "required": 7,
+    "helpful_only": 5,
+    "unnecessary": 287,
+    "unresolved": 0,
+    "alternatives": 0
+  },
+  "required": {
+    "AGENTS.md": [
+      "required_for_understanding",
+      "required_for_validation"
+    ],
+    "docs/architecture.md": [
+      "required_for_implementation",
+      "required_for_understanding"
+    ],
+    "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md": [
+      "required_for_understanding"
+    ],
+    "docs/documentation_map.md": [
+      "required_for_understanding"
+    ],
+    "pyproject.toml": [
+      "required_for_configuration",
+      "required_for_validation"
+    ],
+    "src/devtools/context/retrieval/lexical/bm25.py": [
+      "required_for_api_contract"
+    ],
+    "tests/context/retrieval/lexical/test_filename.py": [
+      "required_for_tests"
+    ]
+  },
+  "helpful_only": [
+    "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+    "docs/roadmap.md",
+    "src/devtools/context/retrieval/docs/overview.md",
+    "tests/context/retrieval/lexical/test_bm25.py",
+    "tests/context/retrieval/lexical/test_evaluation.py"
+  ],
+  "arms": {
+    "full_prompt": {
+      "candidate_count": 282,
+      "lexical_count": 282,
+      "structural_count": 4,
+      "required_present": 7,
+      "required_absent": [],
+      "required_lexical": 7,
+      "required_structural": [],
+      "required_structural_only": [],
+      "smallest_lexical_prefix_for_lexically_satisfiable_required": 35,
+      "required": {
+        "AGENTS.md": {
+          "lexical_rank": 1,
+          "lexical_score": 104.2468205230956,
+          "structural_supports": []
+        },
+        "docs/architecture.md": {
+          "lexical_rank": 5,
+          "lexical_score": 81.7110040871232,
+          "structural_supports": []
+        },
+        "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md": {
+          "lexical_rank": 21,
+          "lexical_score": 38.80572248837849,
+          "structural_supports": []
+        },
+        "docs/documentation_map.md": {
+          "lexical_rank": 4,
+          "lexical_score": 85.30405756625478,
+          "structural_supports": []
+        },
+        "pyproject.toml": {
+          "lexical_rank": 33,
+          "lexical_score": 30.56250307822411,
+          "structural_supports": []
+        },
+        "src/devtools/context/retrieval/lexical/bm25.py": {
+          "lexical_rank": 20,
+          "lexical_score": 39.503914234900954,
+          "structural_supports": []
+        },
+        "tests/context/retrieval/lexical/test_filename.py": {
+          "lexical_rank": 35,
+          "lexical_score": 29.373551874374172,
+          "structural_supports": []
+        }
+      }
+    },
+    "short_need": {
+      "candidate_count": 263,
+      "lexical_count": 263,
+      "structural_count": 4,
+      "required_present": 7,
+      "required_absent": [],
+      "required_lexical": 7,
+      "required_structural": [],
+      "required_structural_only": [],
+      "smallest_lexical_prefix_for_lexically_satisfiable_required": 132,
+      "required": {
+        "AGENTS.md": {
+          "lexical_rank": 5,
+          "lexical_score": 18.989832450700355,
+          "structural_supports": []
+        },
+        "docs/architecture.md": {
+          "lexical_rank": 2,
+          "lexical_score": 22.461527886396716,
+          "structural_supports": []
+        },
+        "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md": {
+          "lexical_rank": 18,
+          "lexical_score": 12.089305923438573,
+          "structural_supports": []
+        },
+        "docs/documentation_map.md": {
+          "lexical_rank": 1,
+          "lexical_score": 25.2165060409201,
+          "structural_supports": []
+        },
+        "pyproject.toml": {
+          "lexical_rank": 132,
+          "lexical_score": 2.8569344629883218,
+          "structural_supports": []
+        },
+        "src/devtools/context/retrieval/lexical/bm25.py": {
+          "lexical_rank": 23,
+          "lexical_score": 11.370357101566915,
+          "structural_supports": []
+        },
+        "tests/context/retrieval/lexical/test_filename.py": {
+          "lexical_rank": 57,
+          "lexical_score": 6.663101565474195,
+          "structural_supports": []
+        }
+      }
+    }
+  },
+  "orientation_count": 283,
+  "handoff_bytes": 33699,
+  "agent": {
+    "search_count": 5,
+    "searches": [
+      "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"rg -n 'K=5|K = 5|top.?5|BM25|result bound|result_limit|top_k' docs/architecture.md docs/architecture/decisions docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md docs/documentation_map.md docs/architecture/taxonomy.md src/devtools/context/retrieval tests/context/retrieval\"",
+      "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"rg -n 'K=5|K = 5|maximum_results|max_results|result_limit' docs src/devtools/context/retrieval experiments tests/context/retrieval\"",
+      "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"rg -n 'Retrieval|Ranking|Context' docs/architecture/taxonomy.md\"",
+      "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"rg -n 'pytest|addopts|cov-fail-under|ruff|mypy' pyproject.toml\"",
+      "\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\" -Command \"rg -n 'retains up to the caller-supplied positive|above use the experiment' docs/architecture.md\""
+    ],
+    "direct_open_events": 17,
+    "distinct_direct_opens": 9,
+    "required_opened": [
+      "docs/architecture.md",
+      "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+      "docs/documentation_map.md",
+      "src/devtools/context/retrieval/lexical/bm25.py",
+      "tests/context/retrieval/lexical/test_filename.py"
+    ],
+    "required_not_opened": [
+      "AGENTS.md",
+      "pyproject.toml"
+    ],
+    "helpful_opened": [
+      "src/devtools/context/retrieval/docs/overview.md",
+      "tests/context/retrieval/lexical/test_bm25.py"
+    ],
+    "unnecessary_opened": [
+      "docs/architecture/taxonomy.md",
+      "docs/backlog/epics/B-0001-architecture-documentation-integrity.md"
+    ],
+    "required_modified": [
+      "docs/architecture.md"
+    ],
+    "modified_not_required": [],
+    "validation_resources": [
+      "tests/context/retrieval/lexical/test_bm25.py",
+      "tests/context/retrieval/lexical/test_filename.py"
+    ],
+    "required_validation_resources": [
+      "AGENTS.md",
+      "pyproject.toml"
+    ],
+    "task_success": true,
+    "validation_success": true,
+    "bytes_read": null,
+    "tokens_read": null
+  }
+}

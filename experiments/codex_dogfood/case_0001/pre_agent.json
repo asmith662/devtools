@@ -1,0 +1,53 @@
+{
+  "schema": "codex-advisory-pre-agent-v1",
+  "case_id": "38965facc88ded47e6fb7e95be19db6699772c3b6c020c08e8a63c476b83ddef",
+  "full_prompt": {
+    "candidate_count": 282,
+    "lexical_only": 278,
+    "structural_only": 0,
+    "both": 4
+  },
+  "short_need": {
+    "candidate_count": 263,
+    "lexical_only": 259,
+    "structural_only": 0,
+    "both": 4
+  },
+  "query_arm_overlap": 262,
+  "full_prompt_only_addresses": [
+    "src/devtools/agents/conversation/__init__.py",
+    "src/devtools/agents/integrations/__init__.py",
+    "src/devtools/context/python/__init__.py",
+    "src/devtools/context/python/imports/__init__.py",
+    "src/devtools/context/python/modules/__init__.py",
+    "src/devtools/context/repository/identity.py",
+    "src/devtools/context/retrieval/__init__.py",
+    "src/devtools/context/retrieval/lexical/index.py",
+    "src/devtools/core/system/models.py",
+    "src/devtools/models/benchmarks/__init__.py",
+    "src/devtools/observability/evidence/terminal.py",
+    "src/devtools/persistence/__init__.py",
+    "src/devtools/persistence/errors.py",
+    "tests/context/python/__init__.py",
+    "tests/context/python/function/__init__.py",
+    "tests/context/python/imports/__init__.py",
+    "tests/context/python/imports/test_relations.py",
+    "tests/context/python/modules/__init__.py",
+    "tests/context/repository/__init__.py",
+    "tests/context/retrieval/__init__.py"
+  ],
+  "short_need_only_addresses": [
+    "src/devtools/observability/evidence/protocols.py"
+  ],
+  "orientation_count": 283,
+  "structural_support_families": {
+    "PythonResolvedModuleImportRelation": 14,
+    "PythonImmediatePackageMembership": 1,
+    "PythonFunctionReferenceKnowledge": 4
+  },
+  "native_lexical_observations": "See retrieval.json for each arm's rank and score.",
+  "orientation_sha256": "67484fbb79e3ab4d998e4a7fde4533d425e282dc037895fb8109bae6cb1b55db",
+  "handoff_sha256": "ccb13ac09e00526e27d252860c38beb4ed92b6fcf91a473f2618e90215d6c6fe",
+  "handoff_bytes": 33699,
+  "handoff_path": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-dogfood-0001\\handoff.txt"
+}

@@ -638,8 +638,9 @@ while relationships contribute only one useful resource beyond top five. The
 rule is not ready for shadow or production. At that checkpoint, this evidence
 preserved purpose-relative decision semantics and the heterogeneous portfolio
 while directing subsequent experiments toward bounded candidate generation and
-ranking. Production remains content BM25 plus `0.25 *` filename-stem BM25 at
-`K=5`.
+ranking. Production remains content BM25 plus `0.25 *` filename-stem BM25 and
+retains up to the caller-supplied positive `maximum_results`. The `K=5` results
+above use the experiment's fixed evaluation bound.
 
 Increment 24's offline comparison over the same retained six-case surface did
 not improve this result: its purpose-relative deterministic ordering recovered
