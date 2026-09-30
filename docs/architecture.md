@@ -741,8 +741,16 @@ hypothesis or authorize tuning on the same labels.
 The bounded source-grounded Python function Reference occurrence
 with direct Call specialization is now production RI with explicit uncertainty
 and coverage; no runtime dispatch or generic call graph is implied. Immediate
-qualified package membership is now a second production typed fact, while
-mirrored test paths do not establish TESTS or EXERCISES knowledge.
+qualified package membership is another production typed fact. Exact observed
+Python mirrored source/test path correspondence is now a separate production RI
+fact with source and test-side roles, snapshot-bound resource/content support,
+and bounded coverage. It asserts path convention, not TESTS, COVERS, VALIDATES,
+EXERCISES, execution, or behavioral dependency. Its weak historical incremental
+retrieval reach is independent of whether the path fact is deterministic. The
+current direct structural retriever, PPR graph view, RRF fusion, and Context
+Planning do not consume this new fact automatically. The
+[Python RI overview](../src/devtools/context/python/docs/overview.md) defines its
+contract.
 
 ## Accepted Context and disclosure semantics
 

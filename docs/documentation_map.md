@@ -216,6 +216,12 @@ selected interpretation analysis. A single fact supports child-to-package and
 package-to-child questions, with bounded missing and ambiguous assessments;
 it does not establish Imports or retrieval relevance.
 
+The [Python mirrored-path RI overview](../src/devtools/context/python/docs/overview.md)
+defines the exact observed `src/devtools/.../<stem>.py` to
+`tests/.../test_<stem>.py` convention, source/test roles, derivation identity,
+and bounded coverage. Correspondence asserts path convention only; it is not
+a semantic test or retrieval relation.
+
 Import resolution is limited to an explicit interpretation universe and retains
 resolved, unresolved-in-universe, ambiguous, or unsupported outcomes. It neither
 emulates runtime imports; the separate relation derivation records only the

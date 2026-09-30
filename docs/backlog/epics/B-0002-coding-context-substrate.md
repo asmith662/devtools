@@ -743,11 +743,18 @@ declarations and import resolution. This establishes qualified repository
 knowledge, not runtime invocation or a generic call graph. Qualified immediate
 package membership is now a separate production typed fact over one explicit
 module-root interpretation selection. Its missing and ambiguous assessments
-do not assert repository-wide absence. The next pressure is a narrow Evaluation
-assessment/coverage kernel, followed by production direct structural
-candidate use, and a first fine-grained Context disclosure slice. Class/base,
-test semantics, configuration/registration bindings, structural admission,
-and Learning remain scoped design questions. Frozen experiments and sealed
+do not assert repository-wide absence. Exact observed mirrored Python source/test
+path correspondence is now a separate production typed RI fact. It claims only
+the path convention, not TESTS, EXERCISES, COVERS, or VALIDATES. Increment 31's
+candidate reach and usefulness remain research evidence; this fact is not
+automatically projected into direct Retrieval or PPR. The next structural RI
+pressure is declaration ownership/containment, followed by bounded class/method
+declarations, direct base relationships, and broader qualified references
+before a richer graph view is evaluated. Earlier sequencing called for a narrow
+Evaluation assessment/coverage kernel, direct structural candidate use, and a
+fine-grained Context disclosure slice; those increments are complete. Richer
+test semantics, configuration/registration bindings, structural admission, and
+Learning remain scoped design questions. Frozen experiments and sealed
 confirmation retain their original identities; no held-out result is inferred.
 
 ## Query-conditioned graph-ranking checkpoint

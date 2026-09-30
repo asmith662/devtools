@@ -39,9 +39,10 @@ sequence and earlier retrieval checkpoint below remain historical. Direct
 Imports and bounded References/direct Calls supplied useful complementary
 resource reach. Unranked Graph-1/Graph-2 traversal caused large fan-out, and
 structural selection at K=5 is unresolved. Canonical lexical retrieval remains
-the production ranked baseline. Direct structural retrieval and snapshot-bound
-resource evidence composition are now production candidate inventory surfaces;
-no cross-mechanism ranking, graph expansion, dense model, or fusion policy is
+the default ranked baseline. Direct structural retrieval and snapshot-bound
+resource evidence composition are production candidate inventory surfaces.
+Query-conditioned PPR and optional rank-level RRF are also production retrieval
+evidence; no default graph fusion, dense model, or Context disclosure policy is
 promoted.
 
 The production Selection architecture investigation is complete. No universal
@@ -127,15 +128,24 @@ and fusion than BM25. Seven of ten required resources were graph-isolated.
 The graph channel remains optional; no automatic Context handoff follows.
 Confirmation remains sealed.
 
-### Next — prospective graph coverage and ranking comparison
+### Current structural RI sequence — richer repository facts before graph replay
 
-Freeze a broader development set with retained production RI and exact task
-frames before outcome inspection. Measure which task-required documents,
-configuration, tests, and implementation files lack structural edges; compare
-query conditioning and forward projection against defensible alternatives
-without tuning on the same labels. Keep BM25, PPR, and fusion rankings separate.
-Only promote default fusion or richer graph relations if new evidence improves
-required-resource depth or handoff cost without unacceptable displacement.
+1. Promote exact observed mirrored source/test path correspondence as a narrow
+   Python Repository Intelligence fact. This increment is complete. The fact
+   establishes a path convention, not a semantic test relationship. Historical
+   candidate usefulness and deterministic repository truth are separate claims.
+2. Establish declaration ownership/containment with exact resource and source
+   support. This is the next implementation boundary.
+3. Establish bounded class and method declarations.
+4. Establish bounded direct inheritance/base relationships with qualified
+   resolution and uncertainty.
+5. Extend reference/call structure only where conservative derivation supports
+   the claimed target and occurrence semantics.
+6. Construct and prospectively evaluate a substantially richer typed graph view
+   after those RI increments. Keep BM25, PPR, and fusion rankings separate;
+   do not tune the current sparse graph after each isolated fact. Freeze a
+   broader development frame before outcome inspection and measure structural
+   coverage, useful-resource depth, and displacement.
 
 ### Controlled advisory Codex dogfooding
 
