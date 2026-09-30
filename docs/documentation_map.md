@@ -153,7 +153,9 @@ also provides exact declared-name retrieval over supplied declaration knowledge,
 with purpose-relative match evidence and no ranking. A bounded projection of
 that evidence identifies distinct matching resources in first-match order while
 retaining every supporting declaration match; it does not choose resources to
-analyze or drive Context disclosure. The domain also provides a bounded all-match
+analyze or drive Context disclosure. The
+[Python function package overview](../src/devtools/context/python/function/docs/overview.md)
+documents both bounded paths. The domain also provides a bounded all-match
 Context disclosure that projects established declaration and source-location
 information. A separate bounded materializer validates explicitly supplied
 identified snapshot state and adds exact UTF-8 source segments without
@@ -163,7 +165,12 @@ preserving exact source, order, duplicates, and correlation; it does not create
 a model message or request. A bounded composition operation separately accepts
 an existing caller-owned `ModelRequest`, preserves its request semantics, and
 places that rendered Context after its distinct primary task in a new request
-without execution or Conversation mutation. The domain does not provide
+without execution or Conversation mutation. A sibling path accepts an explicit
+purpose and one caller-chosen qualified Reference/direct Call fact, validates
+its source and target against retained snapshot state, and renders the exact
+Reference Name and resolved declaration source with relationship provenance
+and navigation pointers. It does not choose the fact, infer sufficiency, or
+reacquire files. The domain does not provide
 Git-aware or language-classifying discovery, capability/execution
 infrastructure, broader retrieval, a generic Context compiler, or general
 ModelRequest assembly. Current durable

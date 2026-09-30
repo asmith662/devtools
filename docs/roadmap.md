@@ -44,12 +44,13 @@ resource evidence composition are now production candidate inventory surfaces;
 no cross-mechanism ranking, graph expansion, dense model, or fusion policy is
 promoted.
 
-The production Selection architecture investigation is complete. Its accepted
-sequence is resource assessment, a separate sufficiency decision, then Context
-disclosure. No variable-cardinality admission rule, budgeted file set, or
-Selector API is selected. The first dogfood can therefore test production
-retrieval as advisory orientation while Codex keeps normal search, open, edit,
-and validation access.
+The production Selection architecture investigation is complete. No universal
+resource-Selection stage is mandatory between Retrieval and Context. Resource
+assessment and sufficiency are distinct possible decisions, with no
+variable-cardinality admission rule, budgeted file set, or Selector API
+selected. A retrieval candidate or advisory orientation does not imply
+disclosure or sufficiency. Codex dogfood keeps normal search, open, edit, and
+validation access.
 
 Proceed in dependency order: (1) bounded source-grounded Python function
 Reference/direct Call Repository Intelligence; (2) qualified immediate package
@@ -58,17 +59,27 @@ membership; (3) a narrow cross-domain Evaluation assessment/coverage kernel;
 (5) compose lexical and structural native evidence in one snapshot-bound
 resource inventory; (6) investigate Selection architecture; (7) dogfood
 advisory retrieval on real Codex tasks; (8) adjudicate misses and waste;
-(9) select a budgeted production rule only with evidence; (10) implement one
-fine-grained Context disclosure slice. Items 1-6 are
-complete: bounded Reference/direct Call RI, qualified immediate package
-membership RI, the
-domain-neutral expected-versus-observed identity coverage kernel, and direct
+(9) consider a budgeted resource rule only with evidence; (10) implement one
+fine-grained Context disclosure slice from an explicitly supplied fact.
+Items 1-8 and 10 are complete; item 9 remains evidence-dependent. The first
+six items established bounded Reference/direct Call RI, qualified immediate
+package membership RI, the domain-neutral expected-versus-observed identity
+coverage kernel, and direct
 structural candidate projection over production RI, followed by native evidence
 composition. The inventory is not a selected file set. Assessment identity and
 outcome semantics remain consumer-owned. Preserve frozen experiments for
 reproduction; new consumers should use production RI rather than duplicate
 its derivation or experiment-only union logic. Confirmation remains sealed; no
 shadow or independent-repository claim follows from development results.
+
+The first fine-grained Context increment is an explicit qualified Python
+Reference/direct Call disclosure. A caller supplies a purpose, one established
+fact from its analysis, and the matching snapshot. Context validates both
+source dependencies, discloses the exact Reference Name and target function
+declaration with relationship provenance and pointers, and can assemble the
+result beside a task. This does not solve general Selection or sufficiency.
+Later/refined InformationNeeds and progressive disclosure remain possible
+future behavior, not a demonstrated recovery guarantee.
 
 [Codex dogfood Case 0001](../experiments/codex_dogfood/case_0001/README.md)
 completes the first advisory run and blind required-resource adjudication for

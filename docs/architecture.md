@@ -549,11 +549,23 @@ unchanged rendered Context after the unchanged task. It does not mutate
 Conversation, invoke ModelInteraction, or retain Context provenance in the
 request. General model-input assembly remains unimplemented.
 
+A sibling bounded Context path accepts an explicit purpose and one
+caller-chosen qualified Python Reference/direct Call fact from its production
+analysis. It validates fact membership, source and target dependencies, and
+qualified resolution support against an identified RepositorySnapshot. It
+extracts the exact Reference Name occurrence and resolved direct function
+declaration span from retained snapshot content, renders the relationship
+separately from both source segments with locations and navigation pointers,
+and can place the result beside an unchanged task in a copied ModelRequest.
+The Call tag describes syntax at ast.Call.func, not execution; Reference
+coverage remains non-exhaustive. No fact is chosen automatically, and invalid
+dependencies fail without whole-file fallback or filesystem reacquisition.
+
 Filesystem Resources remain access mechanisms, not Repository identity. Python
-analysis beyond that declaration scope, capability/execution infrastructure,
-broader retrieval, ranking, general Context compilation, progressive disclosure,
-storage, and evaluation remain unimplemented future responsibilities; Runtime
-remains narrow and model requests remain non-authoritative.
+analysis beyond the bounded implemented scopes, general Context compilation,
+progressive disclosure, and durable Context storage remain future
+responsibilities; Runtime remains narrow and model requests remain
+non-authoritative.
 
 These concepts describe reusable semantic relationships, not a mandatory
 runtime pipeline. ResourceOccurrence, SourceOccurrence, and RepositorySubject
@@ -601,9 +613,13 @@ explicit snapshot resource seeds under a purpose-bearing request and retains
 each native fact, seed, and direction as support for the surfaced resource.
 It does not parse source, create repository relationship truth, traverse further,
 score candidates, or disclose Context. Repository Intelligence owns deterministic
-facts; Retrieval owns purpose-relative candidate evidence; future selection
-decides which candidates deserve limited capacity; future Context compilation
-decides which facts, spans, summaries, or pointers to disclose. The
+facts; Retrieval owns purpose-relative candidate evidence; Context decides
+which supported facts, occurrences, spans, pointers, or whole resources to
+disclose for a purpose. Resource admission may later be a bounded
+purpose-specific decision, but no universal resource-Selection stage is
+mandatory between Retrieval and Context. A candidate or resource orientation
+does not require disclosure, whole-resource presentation, closed-set membership,
+or a sufficiency claim. The
 [retrieval package overview](../src/devtools/context/retrieval/docs/overview.md)
 defines the implemented API and bounds. A separate snapshot-bound composition
 operation now correlates native lexical and direct structural evidence for the
@@ -613,10 +629,10 @@ documents that can affect BM25 statistics; it requires the structural result's
 snapshot and purpose to match. The lexical query remains mechanism input, not
 an InformationNeed identity. The result retains both original mechanism results
 and iterates candidate resources by canonical address, with no cross-mechanism
-rank or budgeted file selection. The accepted Selection sequence is
-purpose-relative resource assessment followed by a separate sufficiency
-decision; its concrete variable-cardinality admission rule and budgeted file
-set remain unresolved. Context disclosure remains downstream.
+rank or budgeted file selection. Purpose-relative resource assessment and
+sufficiency remain distinct possible decisions; their owners and concrete
+policies are unresolved. An explicit caller-chosen RI fact can enter bounded
+Context disclosure without either decision.
 
 The first controlled Codex dogfood uses these production results from a
 research-owned capture, with the full task prompt and a separately frozen short
@@ -757,12 +773,14 @@ authority, uncertainty, completeness, conflict, coherence, semantic-
 transformation/synthesis validation, materialization, cache, assembly, and
 evaluation mechanisms remain unimplemented.
 
-The breadth gate makes the next Context problem concrete: after resource
-selection, identify task-relevant declarations, exact source spans, and
-qualified relationships; choose source-preserving excerpts, knowledge
-projections, explanations, or pointers under a disclosure ceiling; then
-materialize and assemble the chosen information. Later expansion may expose
-more detail for a new purpose. Lexical windows and structural supports are
+The breadth gate makes the broader Context problem concrete: use established
+facts and source spans to choose supported representations for a purpose.
+The first cross-resource slice accepts a caller-chosen qualified Reference fact
+and faithfully discloses its exact occurrence and target declaration. Future
+planning may choose among facts, spans, pointers, and whole resources under
+applicable constraints. Later or refined InformationNeeds may cause further
+retrieval and disclosure, but this slice does not establish a recovery
+guarantee or progressive controller. Lexical windows and structural supports are
 possible localization inputs, not demonstrated disclosure policies or
 permission to synthesize stronger claims than their provenance supports.
 
