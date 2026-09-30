@@ -747,10 +747,13 @@ do not assert repository-wide absence. Exact observed mirrored Python source/tes
 path correspondence is now a separate production typed RI fact. It claims only
 the path convention, not TESTS, EXERCISES, COVERS, or VALIDATES. Increment 31's
 candidate reach and usefulness remain research evidence; this fact is not
-automatically projected into direct Retrieval or PPR. The next structural RI
-pressure is declaration ownership/containment, followed by bounded class/method
-declarations, direct base relationships, and broader qualified references
-before a richer graph view is evaluated. Earlier sequencing called for a narrow
+automatically projected into direct Retrieval or PPR. Declaration
+ownership/containment is now exposed for direct module-body function and
+async-function declarations through a validated
+snapshot-bound view over intrinsic occurrence/dependency truth. No duplicate
+ownership relation was added. Next are bounded class/method declarations,
+direct base relationships, and broader qualified references before a richer
+graph view is evaluated. Earlier sequencing called for a narrow
 Evaluation assessment/coverage kernel, direct structural candidate use, and a
 fine-grained Context disclosure slice; those increments are complete. Richer
 test semantics, configuration/registration bindings, structural admission, and

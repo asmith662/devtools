@@ -135,8 +135,11 @@ Confirmation remains sealed.
    establishes a path convention, not a semantic test relationship. Historical
    candidate usefulness and deterministic repository truth are separate claims.
 2. Establish declaration ownership/containment with exact resource and source
-   support. This is the next implementation boundary.
-3. Establish bounded class and method declarations.
+   support. This increment is complete as a validated navigation view over
+   intrinsic function declaration ownership; it adds no duplicate RI fact.
+3. Establish bounded class and method declarations. This is the next
+   implementation boundary. Distinguish occurrence resource from direct lexical
+   parent declaration.
 4. Establish bounded direct inheritance/base relationships with qualified
    resolution and uncertainty.
 5. Extend reference/call structure only where conservative derivation supports

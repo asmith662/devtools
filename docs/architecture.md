@@ -435,6 +435,17 @@ caller-ordered, nonempty set of distinct selected resource addresses. It retains
 each per-resource analysis and flattens their existing knowledge in selection
 and source order for downstream retrieval. It is not a synthetic derivation or
 aggregate coverage claim; selection or parse failure returns no aggregate.
+Direct resource containment was already intrinsic to each function declaration:
+its occurrence gives the resource and exact span, and its subject binds to the
+derivation's observed resource dependency. A production
+`PythonFunctionDeclarationContainmentView` now validates an aggregate against
+one retained snapshot and navigates resource to direct declarations and
+declaration to containing resource. It derives no duplicate ownership fact,
+aggregate derivation, relevance judgment, or Context disclosure. The
+[function package overview](../src/devtools/context/python/function/docs/overview.md)
+defines its bounded contract. Classes, methods, and nested declarations remain
+outside this direct module-body function analysis; future declaration-parent
+semantics need not treat every declaration as directly resource-contained.
 
 `context.python.imports` separately derives ordered, direct module-body Python
 import aliases from one exact observed resource, retaining their source spans,

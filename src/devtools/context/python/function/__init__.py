@@ -8,6 +8,10 @@ from devtools.context.python.function.candidates import (
     PythonFunctionNameTokenCandidateEvidence,
     select_python_function_analysis_candidates,
 )
+from devtools.context.python.function.containment import (
+    PythonFunctionDeclarationContainmentView,
+    build_python_function_declaration_containment_view,
+)
 from devtools.context.python.function.declarations import (
     PythonFunctionDeclarationAnalysis,
     PythonFunctionDeclarationAnalysisAggregate,
@@ -75,6 +79,7 @@ __all__ = [
     "PythonFunctionCandidateTokenizationError",
     "PythonFunctionDeclarationAnalysis",
     "PythonFunctionDeclarationAnalysisAggregate",
+    "PythonFunctionDeclarationContainmentView",
     "PythonFunctionDeclarationCoverage",
     "PythonFunctionDeclarationDerivation",
     "PythonFunctionDeclarationDerivationDefinition",
@@ -102,6 +107,7 @@ __all__ = [
     "analyze_python_function_declaration_resources",
     "assemble_python_function_context_model_request",
     "assemble_python_qualified_reference_model_request",
+    "build_python_function_declaration_containment_view",
     "choose_python_qualified_reference_disclosure",
     "derive_python_function_declarations",
     "disclose_python_function_exact_name_retrieval",

@@ -156,9 +156,13 @@ knowledge, and zero applies only to the eligible set. The domain derives
 source-grounded knowledge from one explicitly selected occurrence for direct
 module-body Python function declarations with exhaustive bounded coverage. A
 bounded composition operation retains independent analyses for an explicit
-caller-ordered resource selection
-and exposes their existing knowledge as one sequence for retrieval. It
-also provides exact declared-name retrieval over supplied declaration knowledge,
+caller-ordered resource selection and exposes their existing knowledge as one
+sequence for retrieval. The package exposes a snapshot-validated direct
+declaration-containment view over the same function knowledge. Both navigation
+directions preserve native occurrence,
+resource dependency, derivation, and coverage; no new ownership fact or
+retrieval relevance is asserted. The package also provides exact declared-name
+retrieval over supplied declaration knowledge,
 with purpose-relative match evidence and no ranking. A bounded projection of
 that evidence identifies distinct matching resources in first-match order while
 retaining every supporting declaration match; it does not choose resources to
