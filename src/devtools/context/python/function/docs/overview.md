@@ -37,3 +37,11 @@ are navigation pointers to the identified snapshot state.
 This is Context disclosure from an explicitly resolved RI fact. It neither
 changes Retrieval nor establishes a general resource-Selection subsystem,
 sufficiency decision, summary policy, or progressive controller.
+
+choose_python_qualified_reference_disclosure now adapts this same validated
+path to the common
+[DisclosurePlan](../../../planning/docs/overview.md) boundary. A caller can
+place it beside other explicit representations, including a retained whole
+resource. The adapter calls the existing materializer and renderer; it does
+not weaken their snapshot, content, or Reference/Call semantics. The original
+narrow API remains available unchanged.

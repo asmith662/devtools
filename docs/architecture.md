@@ -561,8 +561,22 @@ The Call tag describes syntax at ast.Call.func, not execution; Reference
 coverage remains non-exhaustive. No fact is chosen automatically, and invalid
 dependencies fail without whole-file fallback or filesystem reacquisition.
 
+The first common Context Planning foundation now records a caller-directed,
+immutable DisclosurePlan under one purpose and RepositorySnapshot identity.
+It can hold multiple ordered concrete disclosure choices. One adapter
+realizes the existing qualified Reference path; another explicitly discloses
+one whole retained resource. Materialization rechecks applicability, retains
+native provenance and content identities in ContextDisclosure items, and
+fails on missing or stale state. Rendering and ModelRequest assembly happen
+after realization. This is a production plan/materialization boundary, not
+an automatic planner, resource Selector, sufficiency judgment, or retrieval
+operation. A later plan may identify a preceding plan, without claiming
+agent recovery or prior model comprehension. The
+[Context Planning package](../src/devtools/context/planning/docs/overview.md)
+describes the implemented API and limits.
+
 Filesystem Resources remain access mechanisms, not Repository identity. Python
-analysis beyond the bounded implemented scopes, general Context compilation,
+analysis beyond the bounded implemented scopes, automatic Context planning,
 progressive disclosure, and durable Context storage remain future
 responsibilities; Runtime remains narrow and model requests remain
 non-authoritative.
@@ -746,6 +760,20 @@ current. Assembly arranges already-realized disclosure and must not introduce
 new semantic assertions through formatting, placement, or budget handling.
 Planning and possession of a disclosure are not disclosure/presentation
 authority.
+
+The implemented DisclosurePlan is intentionally narrower than this accepted
+general concept: a caller chooses its purpose and concrete options. Supported
+forms are a qualified Python Reference fact with exact source and target
+declaration, and an explicit whole observed resource. The plan is bound to
+one snapshot, preserves ordered choices and optional preceding-plan lineage,
+and materializes to a ContextDisclosure with native provenance. Retrieval
+rank may inform a caller but does not automatically choose a representation,
+disclosure quantity, or claim of sufficiency. ADR-0004 continues to govern
+future planning, cost, and disclosure semantics. The
+[Context Planning and graph-assisted retrieval research](research/repository-context-planning-and-graph-assisted-retrieval.md)
+motivates this boundary and a separate query-conditioned structural-ranking
+baseline; its automatic planner, graph weighting, and fusion recommendations
+are not implemented here.
 
 Every disclosure stage preserves semantic strength: representation selection,
 projection, synthesis, compression, materialization, disclosure realization,

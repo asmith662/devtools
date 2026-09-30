@@ -49,6 +49,11 @@
   owns the completed Increment 25-36 empirical map and disposition rationale;
   central architecture owns accepted current boundaries, and the roadmap owns
   the next production sequence.
+  The [Context Planning and graph-assisted retrieval research](research/repository-context-planning-and-graph-assisted-retrieval.md)
+  compares progressive disclosure and token-efficient repository maps with
+  Aider-style/PPR graph ranking, heterogeneous retrieval, and RRF. Its
+  recommendations remain research evidence until accepted in current
+  architecture or implemented under a bounded roadmap increment.
 - Package-local documentation defines detailed implemented public APIs, package
   design, lifecycle/operational behavior, and usage. Central architecture
   summarizes system-level ownership and links outward; it does not duplicate
@@ -176,6 +181,14 @@ infrastructure, broader retrieval, a generic Context compiler, or general
 ModelRequest assembly. Current durable
 conversation semantics remain in `agents.conversation`, and `context` does not
 own former Message/History/Session semantics.
+
+The [Context Planning package](../src/devtools/context/planning/docs/overview.md)
+owns a bounded caller-directed DisclosurePlan over one explicit purpose and
+snapshot. It currently composes qualified Python Reference and whole retained
+resource representations, rejects stale dependencies, preserves native
+provenance in realized ContextDisclosure items, and renders/assembles them
+after materialization. It does not retrieve, rank, autonomously select,
+optimize budgets, or judge sufficiency.
 
 The adjacent `context.python.imports` package retains direct module-body import
 aliases as source-grounded syntax and resolves eligible module portions only

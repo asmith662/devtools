@@ -37,3 +37,6 @@ unsupported evaluation contexts are not claimed as covered.
 
 This package contains repository facts only. It has no retrieval candidate,
 ranking, usefulness judgment, Context disclosure, or model behavior.
+The Python function Context package may consume an explicitly chosen positive
+Reference fact through its bounded disclosure or a common DisclosurePlan
+adapter. That consumer does not change this package's knowledge or coverage.

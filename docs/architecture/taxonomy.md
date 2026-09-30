@@ -650,16 +650,20 @@ overlap, prior currently available information, applicability, sufficiency,
 authority, coherence, and multidimensional cost. A ContextCandidate can support
 multiple representations without selecting a fixed `DisclosureOption` type.
 
-A ContextDisclosure is a future identifiable, provenance-bearing account of
+A ContextDisclosure is an identifiable, provenance-bearing account of
 purpose-selected represented information. A DisclosurePlan is the distinct
 identified decision about what should be made available; a ContextDisclosure is
 what was actually realized with reference to that plan. Both are immutable
 artifact directions, neither is a ModelRequest, and materialization between
 them must not silently make a materially different plan. Repository, disclosure,
 and Conversation histories may reference one another but retain separate
-identities and lifecycles. Previously disclosed information need not remain
-currently available or applicable, and tracking disclosure/availability must
-not claim model comprehension or create a ModelKnowledgeState.
+identities and lifecycles. Production now has one caller-directed,
+snapshot-bound DisclosurePlan with qualified Python Reference and explicit
+whole-resource options, and a separate faithfully realized ContextDisclosure.
+That bounded implementation does not establish automatic planning, a universal
+representation taxonomy, or sufficiency. Previously disclosed information
+need not remain currently available or applicable. Tracking disclosure or
+availability must not claim model comprehension or create a ModelKnowledgeState.
 
 Disclosure selects information rather than arbitrary prompt strings. A
 DisclosureOption is a conceptual purpose-relative possibility for making

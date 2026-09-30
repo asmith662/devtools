@@ -35,6 +35,10 @@ from devtools.context.python.function.materialization import (
     PythonFunctionSourceMaterializationError,
     materialize_python_function_disclosure_source,
 )
+from devtools.context.python.function.planned_reference import (
+    PythonQualifiedReferenceDisclosureOption,
+    choose_python_qualified_reference_disclosure,
+)
 from devtools.context.python.function.qualified_reference import (
     MaterializedPythonQualifiedReferenceContext,
     PythonQualifiedReferenceDisclosure,
@@ -90,6 +94,7 @@ __all__ = [
     "PythonModuleResourceDependency",
     "PythonQualifiedReferenceDisclosure",
     "PythonQualifiedReferenceDisclosureError",
+    "PythonQualifiedReferenceDisclosureOption",
     "PythonSourceOccurrence",
     "PythonSourceRange",
     "RenderedPythonFunctionContext",
@@ -97,6 +102,7 @@ __all__ = [
     "analyze_python_function_declaration_resources",
     "assemble_python_function_context_model_request",
     "assemble_python_qualified_reference_model_request",
+    "choose_python_qualified_reference_disclosure",
     "derive_python_function_declarations",
     "disclose_python_function_exact_name_retrieval",
     "disclose_python_qualified_reference",

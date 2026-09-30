@@ -81,6 +81,15 @@ result beside a task. This does not solve general Selection or sufficiency.
 Later/refined InformationNeeds and progressive disclosure remain possible
 future behavior, not a demonstrated recovery guarantee.
 
+The current Context checkpoint establishes a caller-directed, snapshot-bound
+DisclosurePlan with multiple ordered concrete choices and a distinct realized
+ContextDisclosure. The existing qualified Reference path participates without
+losing its native checks; an explicitly chosen whole observed resource is a
+second faithful representation. This is a production planning boundary, not
+automatic ranking, budget allocation, sufficiency, or a recovery controller.
+The [Context Planning and graph-assisted retrieval research](research/repository-context-planning-and-graph-assisted-retrieval.md)
+provides comparative motivation; ADR-0003 and ADR-0004 govern accepted meaning.
+
 [Codex dogfood Case 0001](../experiments/codex_dogfood/case_0001/README.md)
 completes the first advisory run and blind required-resource adjudication for
 steps 7-8. Both complete lexical inventories found all seven required
@@ -100,16 +109,30 @@ Direct structural evidence again rescued none. The edit-capable Codex host
 was interrupted and continued in a second ephemeral session; both traces and
 the resulting observation limits are retained. These two repository-local
 cases continue steps 7-8 and show measured handoff pressure, but do not
-select a production rule for step 9. Next prospectively select a different
-bounded production Python task with a natural RI-connected dependency seam
-for Case 0003; pause rather than invent such a task if none is justified.
+select a production rule for step 9. Further dogfood needs an independently
+justified task; no Case 0003 is created by this Context checkpoint.
 
-Later investigate task-conditioned structural ranking, including established
-personalized graph-ranking techniques, only after the production retrieval
-surface supplies trustworthy direct facts and controlled evaluation. Graph-3,
-naive graph-depth refinement, family-specific retrieval refinements, and
-confirmation remain parked. The poor unranked Graph-1/Graph-2 candidate results
-do not evaluate graph-based ranking or graph-assisted Context compilation.
+### Next — graph-assisted repository ranking baseline
+
+Immediately after the Context Planning foundation, implement and evaluate a
+bounded Aider-style/repository-map-inspired **query-conditioned structural
+ranking** baseline over production Repository Intelligence. Personalized
+PageRank / random walk with restart (or a stronger research-supported
+equivalent) is the primary candidate.
+Use task/lexical or identifier evidence as prospective seeds, preserve native
+typed relation and occurrence provenance, and compare ranked structural
+evidence with the lexical baseline at matched candidate and disclosure
+budgets. Evaluate structural-only required/known-useful reach, ranks, fan-out,
+and handoff cost. Compare deterministic heterogeneous fusion with lexical
+ranking, including RRF as a research-supported control, within this increment.
+This is a separate architecture-sensitive increment:
+no Graph-3 unranked hop expansion, automatic graph traversal policy,
+unexamined relation weights, or production fusion rule follows from this
+roadmap entry. The completed Graph-1/Graph-2 experiments tested unranked
+breadth, not this ranking hypothesis. The
+[research synthesis](research/repository-context-planning-and-graph-assisted-retrieval.md)
+details the Aider/PPR comparison and RRF fusion candidate. Confirmation
+remains sealed.
 
 ### Controlled advisory Codex dogfooding
 
@@ -148,8 +171,10 @@ resources, additional searches and opens, reliable file/byte/token reads, task
 success, and validation success separately. Compare full-prompt and short-query
 coverage and waste rather than assuming either wins. A later controlled
 retrieval-assisted versus unaided Codex comparison may measure exploration
-reduction under matched conditions. Production budgeted Selection remains a
-separate next decision informed by these observations. Confirmation stays sealed.
+reduction under matched conditions. Any production resource-admission or
+budget policy remains a separate, conditional decision informed by these
+observations; no universal Selection stage is assumed. Confirmation stays
+sealed.
 
 ### Ongoing — documentation integrity and backlog rebase
 
