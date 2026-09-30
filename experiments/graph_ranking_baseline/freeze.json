@@ -1,0 +1,22 @@
+{
+  "schema": "devtools-query-conditioned-ppr-development-freeze-v1",
+  "case": "codex-dogfood-0002-development-only",
+  "input_archive_sha256": "33da750e21af0d8ff60ce4b48ca7e5d114a920f0c933a7011b784168509783eb",
+  "lexical_query_arms": ["full_prompt", "short_information_need"],
+  "lexical_maximum_results": "full observed corpus",
+  "graph_projection": "python-forward-import-reference-resource-view-equal-fact-v1",
+  "directions": ["importer-to-imported", "reference-source-to-declaration"],
+  "excluded_default_transitions": ["reverse-import", "reverse-reference", "package-containment"],
+  "weight": "one per unique RI fact, normalized by source outgoing total",
+  "personalization": "1 / (60 + one-based positive BM25 rank), normalized",
+  "damping": 0.85,
+  "tolerance": 1e-10,
+  "maximum_iterations": 200,
+  "dangling": "redistribute by personalization",
+  "empty_seeds": "empty graph ranking",
+  "fusion": "equal-channel RRF, sum(1 / (60 + rank))",
+  "ranking_ties": "lexical rank where available, then canonical address",
+  "metrics": ["required_coverage_at_5_10_20_30_50_100", "last_required_rank", "required_rank_changes", "candidate_count", "structural_nonlexical_required"],
+  "outcomes_used_to_choose_parameters": false,
+  "confirmation": "sealed"
+}

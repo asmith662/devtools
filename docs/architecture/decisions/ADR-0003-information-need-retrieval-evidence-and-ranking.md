@@ -4,7 +4,8 @@
 - Date: 2026-09-16
 - Evidence amendments: 2026-09-22 (Increment 22 purpose-relative admission),
   2026-09-22 (Increment 23 independent blinded validation),
-  2026-09-23 (structural-retrieval research reconciliation)
+  2026-09-23 (structural-retrieval research reconciliation),
+  2026-09-30 (separate query-conditioned graph-ranking baseline)
 - Scope: semantic architecture for future InformationNeed, retrieval planning,
   bounded retrieval applications, ContextCandidates, RelevanceEvidence, and
   ranking, including bounded purpose-relative admission and abstention. This
@@ -13,6 +14,14 @@
   or test.
 
 ## Research reconciliation
+
+The one-hop, no-PageRank constraint below describes the then-next direct
+structural candidate-generation hypothesis. It is not a permanent ban on a
+separate ranked structural mechanism. The later production-RI-backed PPR
+baseline remains within this ADR's distinction between RI truth, retrieval
+ranking evidence, and Context disclosure. It does not promote a universal RI
+graph or a generic retrieval planner. Its exact implementation and negative
+one-case development replay are documented in the retrieval package.
 
 The [purpose-relative Context research](../../research/purpose-relative-repository-context.md),
 [repository Context-system research](../../research/repository-context-system-architecture.md),

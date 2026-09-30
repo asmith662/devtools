@@ -112,27 +112,30 @@ cases continue steps 7-8 and show measured handoff pressure, but do not
 select a production rule for step 9. Further dogfood needs an independently
 justified task; no Case 0003 is created by this Context checkpoint.
 
-### Next — graph-assisted repository ranking baseline
+### Completed — graph-assisted repository ranking baseline
 
-Immediately after the Context Planning foundation, implement and evaluate a
-bounded Aider-style/repository-map-inspired **query-conditioned structural
-ranking** baseline over production Repository Intelligence. Personalized
-PageRank / random walk with restart (or a stronger research-supported
-equivalent) is the primary candidate.
-Use task/lexical or identifier evidence as prospective seeds, preserve native
-typed relation and occurrence provenance, and compare ranked structural
-evidence with the lexical baseline at matched candidate and disclosure
-budgets. Evaluate structural-only required/known-useful reach, ranks, fan-out,
-and handoff cost. Compare deterministic heterogeneous fusion with lexical
-ranking, including RRF as a research-supported control, within this increment.
-This is a separate architecture-sensitive increment:
-no Graph-3 unranked hop expansion, automatic graph traversal policy,
-unexamined relation weights, or production fusion rule follows from this
-roadmap entry. The completed Graph-1/Graph-2 experiments tested unranked
-breadth, not this ranking hypothesis. The
-[research synthesis](research/repository-context-planning-and-graph-assisted-retrieval.md)
-details the Aider/PPR comparison and RRF fusion candidate. Confirmation
-remains sealed.
+Immediately after the Context Planning foundation, the project implemented a
+bounded repository-map-inspired **query-conditioned structural ranking**
+baseline over production Repository Intelligence using personalized PageRank.
+The production graph view uses forward Imports and References/direct Calls,
+equal fact weights, lexical-rank personalization, weighted PPR, and optional
+equal-channel RRF. It preserves native evidence and leaves disclosure to
+Context Planning. This is not Graph-3: historical Graph-1/Graph-2 evaluated
+unranked breadth. The [development replay](../experiments/graph_ranking_baseline/README.md)
+on one frozen production-RI case found worse required-resource depth for PPR
+and fusion than BM25. Seven of ten required resources were graph-isolated.
+The graph channel remains optional; no automatic Context handoff follows.
+Confirmation remains sealed.
+
+### Next — prospective graph coverage and ranking comparison
+
+Freeze a broader development set with retained production RI and exact task
+frames before outcome inspection. Measure which task-required documents,
+configuration, tests, and implementation files lack structural edges; compare
+query conditioning and forward projection against defensible alternatives
+without tuning on the same labels. Keep BM25, PPR, and fusion rankings separate.
+Only promote default fusion or richer graph relations if new evidence improves
+required-resource depth or handoff cost without unacceptable displacement.
 
 ### Controlled advisory Codex dogfooding
 

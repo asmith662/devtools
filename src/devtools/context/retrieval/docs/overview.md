@@ -3,6 +3,19 @@
 Production retrieval owns purpose-relative use of repository information. It
 does not establish repository relationship truth or decide Context disclosure.
 
+## Query-conditioned graph ranking
+
+The [graph-ranking package](../graph/docs/overview.md) projects already-derived
+production Imports and qualified References/direct Calls into a typed forward
+resource view. It uses lexical-rank personalization and weighted PageRank to
+return snapshot-bound ranked structural evidence. A separate equal-channel RRF
+result combines native BM25 and PPR ranks while retaining both originals. It
+does not use package containment as a default transition, enumerate graph
+paths, or determine disclosure. The [development replay](../../../../../experiments/graph_ranking_baseline/README.md)
+found worse complete required-resource depth than BM25 on one retained
+production-RI dogfood case. Graph ranking is an optional evidence channel, not
+an automatic handoff policy.
+
 ## Direct Python structural projection
 
 `retrieve_python_direct_structural_resources` accepts an identified
@@ -73,11 +86,12 @@ mechanism-specific retrieval
 resource evidence composition
           |
           v
-future Selection -> future Context disclosure
+optional rank fusion -> explicit Context disclosure choices
 ```
 
 The composed result is a candidate/evidence inventory, not an actionable file
-set. Selection under a limited budget remains an explicit unresolved decision.
+set. Resource selection under a limited budget remains an explicit unresolved
+decision.
 The historical structural union experiments remain reproduction evidence;
 future production consumers use this composition operation for native direct
 facts and lexical evidence.

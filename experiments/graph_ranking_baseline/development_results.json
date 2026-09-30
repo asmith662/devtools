@@ -1,0 +1,179 @@
+{
+  "adjudication_sha256": "427c2936db23d1a04538c74420b565e50c7e8e480abfd1b7899a07231b2da9e2",
+  "arms": {
+    "full_prompt": {
+      "bm25": {
+        "candidate_count": 299,
+        "coverage": {
+          "10": 4,
+          "100": 10,
+          "20": 6,
+          "30": 6,
+          "5": 3,
+          "50": 10
+        },
+        "last_required_rank": 43,
+        "required_ranks": {
+          "AGENTS.md": 5,
+          "docs/roadmap.md": 2,
+          "experiments/codex_dogfood/capture.py": 3,
+          "pyproject.toml": 43,
+          "src/devtools/context/retrieval/composition.py": 13,
+          "src/devtools/context/retrieval/lexical/bm25.py": 33,
+          "src/devtools/context/retrieval/structural.py": 37,
+          "tests/context/retrieval/test_composition.py": 19,
+          "tests/context/retrieval/test_structural.py": 38,
+          "tests/experiments/test_codex_dogfood_capture.py": 9
+        }
+      },
+      "fusion": {
+        "candidate_count": 301,
+        "coverage": {
+          "10": 4,
+          "100": 10,
+          "20": 5,
+          "30": 7,
+          "5": 3,
+          "50": 8
+        },
+        "last_required_rank": 62,
+        "required_ranks": {
+          "AGENTS.md": 5,
+          "docs/roadmap.md": 2,
+          "experiments/codex_dogfood/capture.py": 3,
+          "pyproject.toml": 62,
+          "src/devtools/context/retrieval/composition.py": 12,
+          "src/devtools/context/retrieval/lexical/bm25.py": 30,
+          "src/devtools/context/retrieval/structural.py": 46,
+          "tests/context/retrieval/test_composition.py": 21,
+          "tests/context/retrieval/test_structural.py": 53,
+          "tests/experiments/test_codex_dogfood_capture.py": 9
+        }
+      },
+      "ppr": {
+        "candidate_count": 301,
+        "coverage": {
+          "10": 0,
+          "100": 10,
+          "20": 1,
+          "30": 4,
+          "5": 0,
+          "50": 7
+        },
+        "last_required_rank": 84,
+        "required_absent_from_bm25": [],
+        "required_ranks": {
+          "AGENTS.md": 23,
+          "docs/roadmap.md": 20,
+          "experiments/codex_dogfood/capture.py": 21,
+          "pyproject.toml": 84,
+          "src/devtools/context/retrieval/composition.py": 34,
+          "src/devtools/context/retrieval/lexical/bm25.py": 48,
+          "src/devtools/context/retrieval/structural.py": 63,
+          "tests/context/retrieval/test_composition.py": 46,
+          "tests/context/retrieval/test_structural.py": 76,
+          "tests/experiments/test_codex_dogfood_capture.py": 30
+        }
+      }
+    },
+    "short_information_need": {
+      "bm25": {
+        "candidate_count": 285,
+        "coverage": {
+          "10": 4,
+          "100": 10,
+          "20": 5,
+          "30": 5,
+          "5": 2,
+          "50": 6
+        },
+        "last_required_rank": 87,
+        "required_ranks": {
+          "AGENTS.md": 10,
+          "docs/roadmap.md": 2,
+          "experiments/codex_dogfood/capture.py": 1,
+          "pyproject.toml": 71,
+          "src/devtools/context/retrieval/composition.py": 49,
+          "src/devtools/context/retrieval/lexical/bm25.py": 87,
+          "src/devtools/context/retrieval/structural.py": 20,
+          "tests/context/retrieval/test_composition.py": 55,
+          "tests/context/retrieval/test_structural.py": 59,
+          "tests/experiments/test_codex_dogfood_capture.py": 6
+        }
+      },
+      "fusion": {
+        "candidate_count": 294,
+        "coverage": {
+          "10": 3,
+          "100": 10,
+          "20": 5,
+          "30": 5,
+          "5": 2,
+          "50": 5
+        },
+        "last_required_rank": 98,
+        "required_ranks": {
+          "AGENTS.md": 11,
+          "docs/roadmap.md": 2,
+          "experiments/codex_dogfood/capture.py": 1,
+          "pyproject.toml": 97,
+          "src/devtools/context/retrieval/composition.py": 64,
+          "src/devtools/context/retrieval/lexical/bm25.py": 98,
+          "src/devtools/context/retrieval/structural.py": 20,
+          "tests/context/retrieval/test_composition.py": 75,
+          "tests/context/retrieval/test_structural.py": 80,
+          "tests/experiments/test_codex_dogfood_capture.py": 6
+        }
+      },
+      "ppr": {
+        "candidate_count": 294,
+        "coverage": {
+          "10": 0,
+          "100": 7,
+          "20": 2,
+          "30": 4,
+          "5": 0,
+          "50": 5
+        },
+        "last_required_rank": 123,
+        "required_absent_from_bm25": [],
+        "required_ranks": {
+          "AGENTS.md": 30,
+          "docs/roadmap.md": 17,
+          "experiments/codex_dogfood/capture.py": 14,
+          "pyproject.toml": 123,
+          "src/devtools/context/retrieval/composition.py": 85,
+          "src/devtools/context/retrieval/lexical/bm25.py": 100,
+          "src/devtools/context/retrieval/structural.py": 37,
+          "tests/context/retrieval/test_composition.py": 101,
+          "tests/context/retrieval/test_structural.py": 106,
+          "tests/experiments/test_codex_dogfood_capture.py": 25
+        }
+      }
+    }
+  },
+  "confirmation_executed": false,
+  "diagnostics": {
+    "full_prompt": {
+      "converged": true,
+      "graph_positive_count": 301,
+      "iterations": 23,
+      "seed_count": 299
+    },
+    "short_information_need": {
+      "converged": true,
+      "graph_positive_count": 294,
+      "iterations": 23,
+      "seed_count": 285
+    }
+  },
+  "freeze_sha256": "219fc9fa2de177ff472445b792c849fcf1917e68e0a976fac372650a151229e9",
+  "graph_edge_count": 279,
+  "graph_node_count": 302,
+  "import_fact_count": 785,
+  "reference_fact_count": 30,
+  "required_resource_count": 10,
+  "schema": "devtools-query-conditioned-ppr-development-results-v1",
+  "snapshot_id": "84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b",
+  "snapshot_resource_count": 302
+}

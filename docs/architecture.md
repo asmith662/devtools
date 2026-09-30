@@ -715,8 +715,28 @@ selected.
 Graph-1/Graph-2 tested unranked structural neighborhood traversal for resource
 candidate generation. Sparse useful novelty in judged samples and sharp fan-out
 reject that mechanism as a strong default. Task-conditioned graph ranking and
-graph-assisted Context compilation were not tested by those traversals and
-remain later, distinct investigations.
+graph-assisted Context compilation were not tested by those traversals.
+
+Production Retrieval now has a separate, query-conditioned structural-ranking
+baseline. It projects qualified forward Imports and References/direct Calls
+from production RI onto snapshot resource nodes, retaining fact and occurrence
+provenance. Package membership and reverse edges do not propagate by default.
+Each distinct fact has equal initial edge weight; outgoing transitions are
+normalized. Positive BM25 ranks seed a personalized PageRank walk with 0.85
+damping, personalized dangling redistribution, deterministic convergence, and
+native ranked structural evidence. Optional equal-channel RRF fuses BM25 and
+PPR ranks without combining their raw scores or erasing either native result.
+The view belongs to Retrieval, not a universal repository graph or durable RI
+fact store. The [graph package documentation](../src/devtools/context/retrieval/graph/docs/overview.md)
+defines the exact contract. It does not choose Context disclosure.
+
+The [development replay](../experiments/graph_ranking_baseline/README.md) on
+one frozen production-RI dogfood snapshot found that PPR and equal RRF worsened
+complete required-resource depth relative to BM25. Seven of ten required
+resources were isolated in the forward projection. This keeps the graph as
+optional retrieval evidence and withholds any automatic ranking/disclosure
+policy. The result is case-local and does not close the broader graph-ranking
+hypothesis or authorize tuning on the same labels.
 
 The bounded source-grounded Python function Reference occurrence
 with direct Call specialization is now production RI with explicit uncertainty

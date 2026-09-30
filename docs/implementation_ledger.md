@@ -350,3 +350,20 @@ prerequisites for a future architectural domain.
   accepted or mechanically verified decision artifact. The implementation-start
   assessment is SAFE WITH PRESERVED SEAMS; later external confirmation remains
   a reopen gate, and B-0002 remains backlog work.
+
+## Query-conditioned graph-ranking checkpoint
+
+- Added a Retrieval-owned, snapshot-bound resource graph projection over
+  production qualified Imports and References/direct Calls, with exact RI fact
+  provenance, forward transitions, equal per-fact weights, and outgoing
+  normalization. Added deterministic lexical-rank-personalized PPR and optional
+  equal-channel RRF retaining both native result lists. This is ranked evidence,
+  not Graph-1/Graph-2 path expansion or Context disclosure.
+- Replayed the baseline on the retained Case 0002 development snapshot after
+  fixing mechanism parameters. BM25 covered ten required resources by full-
+  prompt rank 43; PPR required 84 and fusion 62. Seven required resources were
+  graph-isolated. The graph remains optional evidence; confirmation is sealed.
+  Exact protocol, counts, and limitations are in the graph-ranking development
+  report. Full-suite verification encountered repository discovery of `.venv`
+  over a pre-existing 10,000-resource test ceiling and the configured 100%
+  coverage threshold; focused retrieval and RI regressions passed.

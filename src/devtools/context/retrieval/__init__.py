@@ -6,6 +6,22 @@ from devtools.context.retrieval.composition import (
     LexicalStructuralResourceInventory,
     compose_lexical_structural_resource_evidence,
 )
+from devtools.context.retrieval.fusion import (
+    LexicalGraphFusedResource,
+    LexicalGraphFusionResult,
+    fuse_lexical_graph_rankings,
+)
+from devtools.context.retrieval.graph import (
+    GraphRankingSettings,
+    PythonGraphEdgeContribution,
+    PythonGraphIncomingSupport,
+    PythonGraphRankedResource,
+    PythonGraphRankingResult,
+    PythonResourceGraphEdge,
+    PythonResourceGraphView,
+    build_python_resource_graph_view,
+    rank_python_repository_resources,
+)
 from devtools.context.retrieval.lexical import (
     RepositoryTextLexicalBm25Match,
     RepositoryTextLexicalBm25RetrievalResult,
@@ -46,12 +62,21 @@ from devtools.context.retrieval.structural import (
 )
 
 __all__ = [
+    "GraphRankingSettings",
+    "LexicalGraphFusedResource",
+    "LexicalGraphFusionResult",
     "LexicalStructuralResourceEntry",
     "LexicalStructuralResourceInventory",
     "PythonDirectStructuralResourceCandidate",
     "PythonDirectStructuralResourceEvidence",
     "PythonDirectStructuralRetrievalRequest",
     "PythonDirectStructuralRetrievalResult",
+    "PythonGraphEdgeContribution",
+    "PythonGraphIncomingSupport",
+    "PythonGraphRankedResource",
+    "PythonGraphRankingResult",
+    "PythonResourceGraphEdge",
+    "PythonResourceGraphView",
     "RepositoryTextLexicalBm25Match",
     "RepositoryTextLexicalBm25RetrievalResult",
     "RepositoryTextLexicalBm25Settings",
@@ -75,10 +100,13 @@ __all__ = [
     "analyze_repository_text_document",
     "analyze_repository_text_document_collection",
     "analyze_repository_text_lexical_query",
+    "build_python_resource_graph_view",
     "build_repository_text_lexical_inverted_index",
     "calculate_repository_text_lexical_corpus_statistics",
     "compose_lexical_structural_resource_evidence",
     "evaluate_repository_text_lexical_bm25_retrieval",
+    "fuse_lexical_graph_rankings",
+    "rank_python_repository_resources",
     "retrieve_python_direct_structural_resources",
     "retrieve_repository_text_documents_by_bm25",
     "retrieve_repository_text_documents_by_content_bm25",

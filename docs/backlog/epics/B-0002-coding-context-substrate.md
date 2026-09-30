@@ -749,3 +749,17 @@ candidate use, and a first fine-grained Context disclosure slice. Class/base,
 test semantics, configuration/registration bindings, structural admission,
 and Learning remain scoped design questions. Frozen experiments and sealed
 confirmation retain their original identities; no held-out result is inferred.
+
+## Query-conditioned graph-ranking checkpoint
+
+The production Retrieval package now has a narrow forward resource graph view
+over qualified Imports and References/direct Calls, lexical-rank-personalized
+PPR, and optional rank-level RRF. This satisfies the first mechanism-level
+graph-ranking slice without promoting a universal graph or automatic Context
+selection. The [one-case development replay](../../../experiments/graph_ranking_baseline/README.md)
+found worse required-resource depth than BM25; seven of ten required resources
+were structurally isolated. Remaining pressure is a prospective broader
+production-RI evaluation frame and explicit relation-coverage diagnosis,
+particularly for tests, documentation, and configuration. Differentiated
+weights, reverse views, symbol-node diffusion, and default fusion require new
+evidence; this checkpoint does not resolve them. Confirmation remains sealed.

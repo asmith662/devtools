@@ -51,7 +51,7 @@ class LexicalStructuralResourceInventory:
     )
 
 
-def compose_lexical_structural_resource_evidence(  # noqa: C901, PLR0912
+def compose_lexical_structural_resource_evidence(  # noqa: C901
     snapshot: RepositorySnapshot,
     *,
     purpose: str,
@@ -72,30 +72,13 @@ def compose_lexical_structural_resource_evidence(  # noqa: C901, PLR0912
         msg = "Structural retrieval differs from the composition snapshot or purpose."
         raise ValueError(msg)
 
-    collection = (
-        lexical_result.index.corpus_statistics.collection_analysis.document_collection
-    )
-    if collection.corpus.definition.discovery.repository_id != snapshot.repository_id:
-        msg = "Lexical corpus belongs to another repository."
-        raise ValueError(msg)
-    if collection.corpus.resources != tuple(
-        document.resource for document in collection.documents
-    ):
-        msg = "Lexical documents differ from their observed corpus."
-        raise ValueError(msg)
-    for document in collection.documents:
-        if document.repository_id != snapshot.repository_id:
-            msg = "Lexical document belongs to another repository."
-            raise ValueError(msg)
-        _require_snapshot_resource(snapshot, document.resource)
+    require_lexical_result_snapshot(snapshot, lexical_result)
 
     statistics = lexical_result.index.corpus_statistics.document_statistics
-    if tuple(item.analysis.document for item in statistics) != collection.documents:
-        msg = "Lexical index statistics differ from its document collection."
-        raise ValueError(msg)
 
     lexical_by_address: dict[
-        RepositoryResourceAddress, tuple[int, RepositoryTextLexicalBm25Match],
+        RepositoryResourceAddress,
+        tuple[int, RepositoryTextLexicalBm25Match],
     ] = {}
     for rank, match in enumerate(lexical_result.matches, start=1):
         if not any(match.document_statistics is item for item in statistics):
@@ -110,10 +93,12 @@ def compose_lexical_structural_resource_evidence(  # noqa: C901, PLR0912
             lexical_by_address[address] = (rank, match)
 
     structural_by_address: dict[
-        RepositoryResourceAddress, list[PythonDirectStructuralResourceEvidence],
+        RepositoryResourceAddress,
+        list[PythonDirectStructuralResourceEvidence],
     ] = {}
     structural_seen: dict[
-        RepositoryResourceAddress, set[tuple[RepositoryResourceAddress, str, str]],
+        RepositoryResourceAddress,
+        set[tuple[RepositoryResourceAddress, str, str]],
     ] = {}
     for candidate in structural_result.candidates:
         if candidate.snapshot_id != snapshot.id:
@@ -152,6 +137,34 @@ def compose_lexical_structural_resource_evidence(  # noqa: C901, PLR0912
         structural_result=structural_result,
         resources=tuple(resources),
     )
+
+
+def require_lexical_result_snapshot(
+    snapshot: RepositorySnapshot,
+    lexical_result: RepositoryTextLexicalBm25RetrievalResult,
+) -> None:
+    """Validate the entire retained lexical corpus against one snapshot."""
+    collection = (
+        lexical_result.index.corpus_statistics.collection_analysis.document_collection
+    )
+    if collection.corpus.definition.discovery.repository_id != snapshot.repository_id:
+        msg = "Lexical corpus belongs to another repository."
+        raise ValueError(msg)
+    if collection.corpus.resources != tuple(
+        document.resource for document in collection.documents
+    ):
+        msg = "Lexical documents differ from their observed corpus."
+        raise ValueError(msg)
+    for document in collection.documents:
+        if document.repository_id != snapshot.repository_id:
+            msg = "Lexical document belongs to another repository."
+            raise ValueError(msg)
+        _require_snapshot_resource(snapshot, document.resource)
+
+    statistics = lexical_result.index.corpus_statistics.document_statistics
+    if tuple(item.analysis.document for item in statistics) != collection.documents:
+        msg = "Lexical index statistics differ from its document collection."
+        raise ValueError(msg)
 
 
 def _require_snapshot_resource(
