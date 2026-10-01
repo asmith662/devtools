@@ -1,7 +1,10 @@
 # Copyright (c) 2026
-"""Bounded source-grounded Python declaration references and direct calls."""
+"""Canonical bounded Python declaration Reference and Call analysis."""
 
-from devtools.context.python.references.declarations import (
+from devtools.context.python.references.declarations.analysis import (
+    derive_python_declaration_references,
+)
+from devtools.context.python.references.declarations.model import (
     PythonDeclarationReferenceAnalysis,
     PythonDeclarationReferenceAssessment,
     PythonDeclarationReferenceCoverage,
@@ -10,7 +13,6 @@ from devtools.context.python.references.declarations import (
     PythonDeclarationReferenceOutcome,
     PythonDeclarationReferenceRoute,
     PythonReferenceTarget,
-    derive_python_declaration_references,
 )
 
 __all__ = [

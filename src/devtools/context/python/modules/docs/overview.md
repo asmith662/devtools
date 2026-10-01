@@ -31,3 +31,12 @@ Membership does **not** imply Python runtime importability, execution,
 dependency, an Imports relation in either direction, transitive containment,
 namespace-package behavior, retrieval relevance, or Context selection. It
 does not read new files or create a graph/tree abstraction.
+# Direct declaration lookup
+
+`lookup_python_module_declaration` finds one uniquely supported, undecorated
+direct module-body function or class declaration by name within an explicitly
+observed module. The result retains both declaration analyses and an outcome
+for unresolved, ambiguous, or non-declaration bindings. It is a bounded
+module-containment lookup, not import semantics or runtime attribute lookup.
+Directness is relative to this module. Class-base and Reference resolution
+consume the same operation without duplicating its binding policy.

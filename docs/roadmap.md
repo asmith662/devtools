@@ -45,6 +45,21 @@ Query-conditioned PPR and optional rank-level RRF are also production retrieval
 evidence; no default graph fusion, dense model, or Context disclosure policy is
 promoted.
 
+The bounded declaration Reference increment now extends production Repository
+Intelligence to same-module functions/classes, directly imported declarations,
+module-qualified declarations, and statically class-qualified direct methods.
+The frozen Case 0002 structural replay increased forward graph edges from 279
+to 360 and connected four of seven formerly isolated required resources. The
+unchanged Personalized PageRank (PPR) replay still placed the last required
+resource at rank 87 for the full prompt (formerly 84), because documentation
+and configuration required resources remain structurally isolated. The next
+selected increment is a prospective richer Retrieval graph comparison over
+Imports, References, containment, direct bases, package membership, and
+mirrored-path correspondence, with explicit edge-family and direction choices.
+This is a Retrieval graph decision, not another unrelated RI slice or a
+change to Context admission. The single retained development case is
+diagnostic evidence, not an unbiased ranking evaluation.
+
 The production Selection architecture investigation is complete. No universal
 resource-Selection stage is mandatory between Retrieval and Context. Resource
 assessment and sufficiency are distinct possible decisions, with no

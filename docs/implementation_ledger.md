@@ -378,3 +378,15 @@ prerequisites for a future architectural domain.
   report. Full-suite verification encountered repository discovery of `.venv`
   over a pre-existing 10,000-resource test ceiling and the configured 100%
   coverage threshold; focused retrieval and RI regressions passed.
+# Broader bounded declaration References (2026-10-01)
+
+One active production derivation now resolves supported direct module functions,
+classes, and direct methods through same-module, named-import, module-qualified,
+and statically class-qualified syntax. The old function-only derivation was
+removed; its passive fact value classes remain for frozen development pickle
+replay. Module declaration lookup is shared with bounded base resolution.
+The unchanged Case 0002 forward graph replay changed 279 to 360 aggregated
+edges and 152 to 134 isolated resources. Required isolated resources fell from
+seven to three; unchanged Personalized PageRank last-required depth worsened
+from 84 to 87 on the full prompt. This establishes improved topology, not a
+ranking win. The next hypothesis is a richer typed Retrieval graph view.

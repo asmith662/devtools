@@ -22,8 +22,8 @@ from devtools.context.python.modules import (
     interpret_python_module_resources,
 )
 from devtools.context.python.references import (
-    PythonFunctionReferenceKnowledge,
-    derive_python_function_references,
+    PythonDeclarationReferenceKnowledge,
+    derive_python_declaration_references,
 )
 from devtools.context.repository.identity import Repository, RepositoryId
 from devtools.context.repository.observation import observe_repository_resources
@@ -41,7 +41,7 @@ def _facts(
 ) -> tuple[
     RepositorySnapshot,
     PythonResolvedModuleImportRelation,
-    tuple[PythonFunctionReferenceKnowledge, ...],
+    tuple[PythonDeclarationReferenceKnowledge, ...],
     PythonImmediatePackageMembership,
 ]:
     resources = {
@@ -86,7 +86,7 @@ def _facts(
         resolutions=(resolution,),
         source_interpretations=(by_address["consumer.py"],),
     ).relations[0]
-    references = derive_python_function_references(
+    references = derive_python_declaration_references(
         snapshot,
         resource_address=source,
         module_universe=universe,
@@ -206,7 +206,8 @@ def test_request_and_snapshot_mismatch_are_rejected(tmp_path: Path) -> None:
             request=request,
             imports=(
                 replace(
-                    relation, source=replace(relation.source, snapshot_id=wrong_id),
+                    relation,
+                    source=replace(relation.source, snapshot_id=wrong_id),
                 ),
             ),
         )
@@ -284,7 +285,7 @@ def test_rejects_fact_family_mixups_and_unknown_seed(tmp_path: Path) -> None:
         retrieve_python_direct_structural_resources(
             snapshot,
             request=request,
-            references=(cast("PythonFunctionReferenceKnowledge", relation),),
+            references=(cast("PythonDeclarationReferenceKnowledge", relation),),
         )
     with pytest.raises(TypeError, match="Memberships"):
         retrieve_python_direct_structural_resources(

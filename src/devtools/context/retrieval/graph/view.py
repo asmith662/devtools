@@ -14,6 +14,9 @@ from typing import TYPE_CHECKING, ClassVar
 
 from devtools.context.python.imports.relations import PythonResolvedModuleImportRelation
 from devtools.context.python.references.analysis import PythonFunctionReferenceKnowledge
+from devtools.context.python.references.declarations.model import (
+    PythonDeclarationReferenceKnowledge,
+)
 from devtools.context.retrieval.structural import _check_address, _check_endpoint
 
 if TYPE_CHECKING:
@@ -26,7 +29,9 @@ if TYPE_CHECKING:
     )
 
 type PythonGraphFact = (
-    PythonResolvedModuleImportRelation | PythonFunctionReferenceKnowledge
+    PythonResolvedModuleImportRelation
+    | PythonFunctionReferenceKnowledge
+    | PythonDeclarationReferenceKnowledge
 )
 
 
@@ -67,7 +72,9 @@ def build_python_resource_graph_view(
     snapshot: RepositorySnapshot,
     *,
     imports: Sequence[PythonResolvedModuleImportRelation] = (),
-    references: Sequence[PythonFunctionReferenceKnowledge] = (),
+    references: Sequence[
+        PythonDeclarationReferenceKnowledge | PythonFunctionReferenceKnowledge
+    ] = (),
 ) -> PythonResourceGraphView:
     """Project forward Import and Reference/Call facts, excluding self edges.
 
@@ -94,8 +101,11 @@ def build_python_resource_graph_view(
             PythonGraphEdgeContribution("import", fact, 1.0),
         )
     for reference_fact in references:
-        if not isinstance(reference_fact, PythonFunctionReferenceKnowledge):
-            msg = "References must contain qualified function reference knowledge."
+        if not isinstance(
+            reference_fact,
+            PythonDeclarationReferenceKnowledge | PythonFunctionReferenceKnowledge,
+        ):
+            msg = "References must contain supported declaration reference knowledge."
             raise TypeError(msg)
         reference_source = reference_fact.occurrence
         target = reference_fact.target_declaration.support
@@ -103,6 +113,12 @@ def build_python_resource_graph_view(
             snapshot, reference_source.snapshot_id, reference_source.resource_address
         )
         _check_address(snapshot, target.snapshot_id, target.resource_address)
+        if isinstance(reference_fact, PythonDeclarationReferenceKnowledge):
+            _check_endpoint(
+                snapshot,
+                target.snapshot_id,
+                reference_fact.target_resource,
+            )
         _add(
             grouped,
             reference_source.resource_address,

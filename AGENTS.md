@@ -41,6 +41,16 @@ persistence representation, lifecycle concept, or provider/model abstraction:
 Do not read the entire repository for bounded work. Read enough to establish
 the owner, boundary, and existing mechanism.
 
+Be conservative about **claims**, not about implementing useful capability.
+State the supported scope, retain provenance and unresolved/ambiguous outcomes,
+and implement deterministic semantics within that scope without waiting for a
+complete language or repository model. A negative experiment for one mechanism
+or configuration informs its use; it does not by itself veto further bounded
+work in that capability family. When new production semantics supersede an old
+internal implementation, migrate its consumers and remove duplicate derivation
+logic. Keep compatibility machinery only for a concrete current external or
+durable contract, and document that contract explicitly.
+
 Prefer package structure over families of repeated filename prefixes. Multiple
 sibling modules sharing a stable domain prefix are strong evidence that the
 prefix belongs in a package (for example, `lexical_analysis.py`,

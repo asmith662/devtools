@@ -13,8 +13,8 @@ from devtools.context.python.classes.containment import (
     build_python_class_method_containment_view,
 )
 from devtools.context.python.classes.declarations import (
+    PythonClassDeclarationKnowledge,
     PythonClassMethodAnalysis,
-    derive_python_class_method_declarations,
 )
 from devtools.context.python.imports.declarations import (
     PythonImportDeclarationAnalysis,
@@ -26,18 +26,21 @@ from devtools.context.python.imports.resolution import (
     PythonImportResolutionOutcome,
     resolve_python_import_declaration,
 )
+from devtools.context.python.modules.declarations import (
+    PythonModuleDeclarationLookup,
+    PythonModuleDeclarationLookupOutcome,
+    lookup_python_module_declaration,
+)
 
 if TYPE_CHECKING:
     from devtools.context.python.classes.declarations import (
         PythonClassBaseSyntax,
-        PythonClassDeclarationKnowledge,
         PythonClassMethodAnalysisAggregate,
     )
     from devtools.context.python.modules.interpretation import (
         PythonModuleInterpretation,
         PythonModuleInterpretationUniverse,
     )
-    from devtools.context.repository.resource import RepositoryResourceAddress
     from devtools.context.repository.snapshot import RepositorySnapshot
 
 _SEMANTICS = "bounded-direct-python-class-base-v1"
@@ -81,6 +84,7 @@ class PythonDirectBaseAssessment:
     target: PythonClassDeclarationKnowledge | None = None
     import_declaration: PythonImportDeclarationKnowledge | None = None
     import_resolution: PythonImportResolution | None = None
+    direct_member_resolution: PythonModuleDeclarationLookup | None = None
 
     SEMANTICS: ClassVar[str] = _SEMANTICS
 
@@ -112,6 +116,9 @@ class PythonDirectBaseAssessment:
             if self.import_declaration
             else "",
             self.import_resolution.identity if self.import_resolution else "",
+            self.direct_member_resolution.identity
+            if self.direct_member_resolution
+            else "",
         )
 
 
@@ -182,9 +189,6 @@ def derive_python_direct_bases(
     ):
         msg = "Base-resolution module universe differs from the snapshot."
         raise ValueError(msg)
-    by_address = {
-        item.derivation.dependency.resource.address: item for item in aggregate.analyses
-    }
     assessments: list[PythonDirectBaseAssessment] = []
     for analysis in aggregate.analyses:
         address = analysis.derivation.dependency.resource.address
@@ -215,7 +219,6 @@ def derive_python_direct_bases(
                     source_imports,
                     source_interpretations,
                     module_universe,
-                    by_address,
                 )
                 for base in child.base_syntax
             )
@@ -231,7 +234,6 @@ def _assess(  # noqa: C901, PLR0911, PLR0912, PLR0913, PLR0917
     source_imports: PythonImportDeclarationAnalysis,
     source_interpretations: tuple[PythonModuleInterpretation, ...],
     universe: PythonModuleInterpretationUniverse,
-    by_address: dict[RepositoryResourceAddress, PythonClassMethodAnalysis],
 ) -> PythonDirectBaseAssessment:
     expression = ast.parse(base.source_text, mode="eval").body
     names = _attribute_parts(expression)
@@ -301,57 +303,37 @@ def _assess(  # noqa: C901, PLR0911, PLR0912, PLR0913, PLR0917
     else:
         return replace(result, outcome=PythonDirectBaseOutcome.UNSUPPORTED_BINDING)
     target_module = resolution.matches[0]
-    address = target_module.resource.address
-    target_analysis = by_address.get(address)
-    if target_analysis is None:
-        target_analysis = derive_python_class_method_declarations(
-            snapshot,
-            resource_address=address,
-        )
-        by_address[address] = target_analysis
-    target_imports = derive_python_import_declarations(
+    member = lookup_python_module_declaration(
         snapshot,
-        resource_address=address,
+        module=target_module,
+        declared_name=target_name,
     )
-    target_tree = ast.parse(target_module.resource.content)
-    all_target_bindings = _bindings(
-        target_tree,
-        target_analysis,
-        target_imports.declarations,
+    target_analysis = member.class_analysis
+    result = replace(
+        result,
+        target_analysis=target_analysis,
+        direct_member_resolution=member,
     )
-    target_bindings = tuple(
-        item for item in all_target_bindings if item.name == target_name
-    )
-    if any(item.kind == "wildcard" for item in all_target_bindings):
-        return replace(
-            result,
-            outcome=PythonDirectBaseOutcome.AMBIGUOUS_TARGET,
-            target_analysis=target_analysis,
-        )
-    if not target_bindings:
-        return replace(
-            result,
-            outcome=PythonDirectBaseOutcome.UNRESOLVED_TARGET,
-            target_analysis=target_analysis,
-        )
-    if len(target_bindings) != 1:
-        return replace(
-            result,
-            outcome=PythonDirectBaseOutcome.AMBIGUOUS_TARGET,
-            target_analysis=target_analysis,
-        )
-    target = target_bindings[0].class_declaration
-    if target is None:
-        return replace(
-            result,
-            outcome=PythonDirectBaseOutcome.TARGET_NOT_CLASS,
-            target_analysis=target_analysis,
-        )
+    if member.outcome is not PythonModuleDeclarationLookupOutcome.RESOLVED:
+        outcome = {
+            PythonModuleDeclarationLookupOutcome.UNRESOLVED: (
+                PythonDirectBaseOutcome.UNRESOLVED_TARGET
+            ),
+            PythonModuleDeclarationLookupOutcome.AMBIGUOUS: (
+                PythonDirectBaseOutcome.AMBIGUOUS_TARGET
+            ),
+            PythonModuleDeclarationLookupOutcome.NOT_DECLARATION: (
+                PythonDirectBaseOutcome.TARGET_NOT_CLASS
+            ),
+        }[member.outcome]
+        return replace(result, outcome=outcome)
+    target = member.target
+    if not isinstance(target, PythonClassDeclarationKnowledge):
+        return replace(result, outcome=PythonDirectBaseOutcome.TARGET_NOT_CLASS)
     return replace(
         result,
         outcome=PythonDirectBaseOutcome.RESOLVED,
         route=route,
-        target_analysis=target_analysis,
         target=target,
     )
 

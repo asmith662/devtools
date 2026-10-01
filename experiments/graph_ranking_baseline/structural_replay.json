@@ -1,0 +1,145 @@
+{
+  "confirmation_executed": false,
+  "isolated_resources_after": 134,
+  "isolated_resources_before": 152,
+  "legacy_positive_facts_preserved": 30,
+  "legacy_positive_facts_total": 30,
+  "new_graph": {
+    "contributions_by_kind": {
+      "direct-call": 558,
+      "import": 785,
+      "reference": 11
+    },
+    "edges": 360,
+    "nodes": 302
+  },
+  "newly_connected": [
+    "experiments/codex_dogfood/capture.py",
+    "tests/context/python/imports/test_declarations.py",
+    "tests/context/python/imports/test_members.py",
+    "tests/context/python/imports/test_relations.py",
+    "tests/context/python/imports/test_resolution.py",
+    "tests/context/python/modules/test_interpretation.py",
+    "tests/context/python/modules/test_membership.py",
+    "tests/context/python/references/test_analysis.py",
+    "tests/context/retrieval/lexical/_helpers.py",
+    "tests/context/retrieval/lexical/test_analysis.py",
+    "tests/context/retrieval/lexical/test_bm25.py",
+    "tests/context/retrieval/lexical/test_evaluation.py",
+    "tests/context/retrieval/lexical/test_filename.py",
+    "tests/context/retrieval/lexical/test_index.py",
+    "tests/context/retrieval/lexical/test_statistics.py",
+    "tests/context/retrieval/test_composition.py",
+    "tests/context/retrieval/test_structural.py",
+    "tests/experiments/test_codex_dogfood_capture.py"
+  ],
+  "newly_connected_required": [
+    "experiments/codex_dogfood/capture.py",
+    "tests/context/retrieval/test_composition.py",
+    "tests/context/retrieval/test_structural.py",
+    "tests/experiments/test_codex_dogfood_capture.py"
+  ],
+  "old_graph": {
+    "contributions_by_kind": {
+      "direct-call": 30,
+      "import": 785
+    },
+    "edges": 279,
+    "nodes": 302
+  },
+  "reference_facts_after": 1311,
+  "reference_facts_before": 30,
+  "reference_routes_after": {
+    "imported-member": 388,
+    "one-facade-imported-member": 181,
+    "same-module": 742
+  },
+  "reference_source_resources_after": 97,
+  "reference_target_kinds_after": {
+    "PythonClassDeclarationKnowledge": 217,
+    "PythonFunctionDeclarationKnowledge": 1094
+  },
+  "reference_target_resources_after": 98,
+  "required_isolated_after": [
+    "AGENTS.md",
+    "docs/roadmap.md",
+    "pyproject.toml"
+  ],
+  "required_isolated_before": [
+    "AGENTS.md",
+    "docs/roadmap.md",
+    "experiments/codex_dogfood/capture.py",
+    "pyproject.toml",
+    "tests/context/retrieval/test_composition.py",
+    "tests/context/retrieval/test_structural.py",
+    "tests/experiments/test_codex_dogfood_capture.py"
+  ],
+  "schema": "development-broader-reference-topology-replay-v1",
+  "snapshot_id": "84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b",
+  "unchanged_ppr": {
+    "full_prompt": {
+      "new": {
+        "last_required_rank": 87,
+        "required_ranks": {
+          "AGENTS.md": 33,
+          "docs/roadmap.md": 28,
+          "experiments/codex_dogfood/capture.py": 12,
+          "pyproject.toml": 87,
+          "src/devtools/context/retrieval/composition.py": 23,
+          "src/devtools/context/retrieval/lexical/bm25.py": 3,
+          "src/devtools/context/retrieval/structural.py": 11,
+          "tests/context/retrieval/test_composition.py": 36,
+          "tests/context/retrieval/test_structural.py": 50,
+          "tests/experiments/test_codex_dogfood_capture.py": 38
+        }
+      },
+      "old": {
+        "last_required_rank": 84,
+        "required_ranks": {
+          "AGENTS.md": 23,
+          "docs/roadmap.md": 20,
+          "experiments/codex_dogfood/capture.py": 21,
+          "pyproject.toml": 84,
+          "src/devtools/context/retrieval/composition.py": 34,
+          "src/devtools/context/retrieval/lexical/bm25.py": 48,
+          "src/devtools/context/retrieval/structural.py": 63,
+          "tests/context/retrieval/test_composition.py": 46,
+          "tests/context/retrieval/test_structural.py": 76,
+          "tests/experiments/test_codex_dogfood_capture.py": 30
+        }
+      }
+    },
+    "short_information_need": {
+      "new": {
+        "last_required_rank": 127,
+        "required_ranks": {
+          "AGENTS.md": 38,
+          "docs/roadmap.md": 25,
+          "experiments/codex_dogfood/capture.py": 12,
+          "pyproject.toml": 127,
+          "src/devtools/context/retrieval/composition.py": 30,
+          "src/devtools/context/retrieval/lexical/bm25.py": 6,
+          "src/devtools/context/retrieval/structural.py": 9,
+          "tests/context/retrieval/test_composition.py": 73,
+          "tests/context/retrieval/test_structural.py": 67,
+          "tests/experiments/test_codex_dogfood_capture.py": 33
+        }
+      },
+      "old": {
+        "last_required_rank": 123,
+        "required_ranks": {
+          "AGENTS.md": 30,
+          "docs/roadmap.md": 17,
+          "experiments/codex_dogfood/capture.py": 14,
+          "pyproject.toml": 123,
+          "src/devtools/context/retrieval/composition.py": 85,
+          "src/devtools/context/retrieval/lexical/bm25.py": 100,
+          "src/devtools/context/retrieval/structural.py": 37,
+          "tests/context/retrieval/test_composition.py": 101,
+          "tests/context/retrieval/test_structural.py": 106,
+          "tests/experiments/test_codex_dogfood_capture.py": 25
+        }
+      }
+    }
+  }
+}

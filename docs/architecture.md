@@ -529,16 +529,20 @@ Intelligence: not runtime import behavior, public/exported API or `__all__`
 semantics, general Python reference resolution, later local-name use,
 recursive facade traversal, other target kinds, or retrieval relevance.
 
-`context.python.references` now derives bounded source-grounded Python function
-References from qualified direct module-body named imports to existing direct
-function declarations, including the supported one-facade path. Each result
-retains the exact source occurrence, target declaration/subject, native import
-and resolution support, snapshot, and derivation identity. A direct Call is the
-same Reference when the Name occupies `ast.Call.func`; it is not a runtime
-invocation or a caller/callee graph edge. Ambiguous, shadowed, dynamic, and
-unsupported bindings produce no positive fact, and coverage is explicitly
-non-exhaustive. The [package contract](../src/devtools/context/python/references/docs/overview.md)
-defines the current bounded API. Retrieval and Context behavior are unchanged.
+`context.python.references` derives bounded source-grounded References to
+supported direct module functions, classes, and direct class methods from
+same-module, named-import, module-qualified, and statically class-qualified
+expressions. A positive result retains the exact source occurrence, structural
+target declaration and resource, resolution route, import/module support where
+applicable, snapshot, and derivation identity. A direct Call is the same
+Reference when the resolved expression occupies `ast.Call.func`; it does not
+establish runtime invocation or dispatch. Ambiguous, shadowed, dynamic, and
+unsupported bindings produce inspectable assessments without positive facts;
+coverage is non-exhaustive. Direct module declaration lookup is owned by module
+interpretation and shared with class-base resolution. The
+[package contract](../src/devtools/context/python/references/docs/overview.md)
+defines the bounded API. Retrieval graph ranking and Context disclosure remain
+independent consumer decisions.
 
 The first bounded retrieval operation consumes supplied declaration knowledge
 and filters it by exact declared-name equality. Its nonempty name query is the

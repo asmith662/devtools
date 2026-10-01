@@ -33,6 +33,9 @@ if TYPE_CHECKING:
     from devtools.context.python.references.analysis import (
         PythonFunctionReferenceKnowledge,
     )
+    from devtools.context.python.references.declarations.model import (
+        PythonDeclarationReferenceKnowledge,
+    )
     from devtools.context.repository.resource import (
         RepositoryResourceAddress,
         RepositoryResourceOccurrence,
@@ -64,7 +67,10 @@ class CodexDogfoodCase:
     short_information_need: str
     seed_origins: tuple[tuple[RepositoryResourceAddress, str], ...]
     imports: tuple[PythonResolvedModuleImportRelation, ...] = ()
-    references: tuple[PythonFunctionReferenceKnowledge, ...] = ()
+    references: tuple[
+        PythonDeclarationReferenceKnowledge | PythonFunctionReferenceKnowledge,
+        ...,
+    ] = ()
     memberships: tuple[PythonImmediatePackageMembership, ...] = ()
     lexical_settings: RepositoryTextLexicalBm25Settings = field(
         default_factory=RepositoryTextLexicalBm25Settings,
@@ -76,9 +82,8 @@ class CodexDogfoodCase:
             msg = "Dogfood task prompt and short InformationNeed must be nonempty."
             raise ValueError(msg)
         seeds = tuple(address for address, _ in self.seed_origins)
-        if (
-            len(set(seeds)) != len(seeds)
-            or any(not origin.strip() for _, origin in self.seed_origins)
+        if len(set(seeds)) != len(seeds) or any(
+            not origin.strip() for _, origin in self.seed_origins
         ):
             msg = "Dogfood requires distinct seeds with explicit origin notes."
             raise ValueError(msg)
@@ -246,9 +251,10 @@ def render_codex_dogfood_orientation(
         entry.resource.address: entry
         for entry in capture.short_need_inventory.resources
     }
-    corpus_id = (
-        capture.case.index.corpus_statistics.collection_analysis.document_collection.corpus.id
-    )
+    statistics = capture.case.index.corpus_statistics
+    collection = statistics.collection_analysis.document_collection
+    corpus = collection.corpus
+    corpus_id = corpus.id
     lines = [
         "Advisory repository orientation; this list is not a sufficiency claim.",
         "Search and open any additional repository resources needed for the task.",

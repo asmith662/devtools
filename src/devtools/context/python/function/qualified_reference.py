@@ -7,16 +7,21 @@ import hashlib
 from dataclasses import dataclass, replace
 from typing import TYPE_CHECKING, ClassVar
 
-from devtools.context.python.function.declarations import PythonModuleResourceDependency
+from devtools.context.python.function.declarations import (
+    PythonFunctionDeclarationKnowledge,
+    PythonModuleResourceDependency,
+)
 from devtools.context.python.function.materialization import _extract_source_segment
-from devtools.context.python.references import PythonReferenceResolutionPath
+from devtools.context.python.references.declarations.model import (
+    PythonDeclarationReferenceRoute,
+)
 from devtools.models.interaction import ModelRequest, Prompt
 
 if TYPE_CHECKING:
     from devtools.context.python.function.declarations import PythonSourceRange
     from devtools.context.python.references import (
-        PythonFunctionReferenceAnalysis,
-        PythonFunctionReferenceKnowledge,
+        PythonDeclarationReferenceAnalysis,
+        PythonDeclarationReferenceKnowledge,
     )
     from devtools.context.repository.resource import (
         ContentIdentity,
@@ -38,8 +43,8 @@ class PythonQualifiedReferenceDisclosure:
     """Retain a caller's purpose and exact choice of one established fact."""
 
     purpose: str
-    analysis: PythonFunctionReferenceAnalysis
-    reference: PythonFunctionReferenceKnowledge
+    analysis: PythonDeclarationReferenceAnalysis
+    reference: PythonDeclarationReferenceKnowledge
 
     SEMANTICS: ClassVar[str] = "explicit-qualified-python-reference-disclosure-v1"
 
@@ -90,8 +95,8 @@ class RenderedPythonQualifiedReferenceContext:
 def disclose_python_qualified_reference(
     *,
     purpose: str,
-    analysis: PythonFunctionReferenceAnalysis,
-    reference: PythonFunctionReferenceKnowledge,
+    analysis: PythonDeclarationReferenceAnalysis,
+    reference: PythonDeclarationReferenceKnowledge,
 ) -> PythonQualifiedReferenceDisclosure:
     """Fix one caller-chosen fact; do not search for or choose another fact."""
     if not purpose.strip():
@@ -103,6 +108,15 @@ def disclose_python_qualified_reference(
         or reference not in analysis.references
     ):
         msg = "Selected reference does not belong to the supplied analysis."
+        raise PythonQualifiedReferenceDisclosureError(msg)
+    if not isinstance(
+        reference.target_declaration,
+        PythonFunctionDeclarationKnowledge,
+    ) or reference.route not in {
+        PythonDeclarationReferenceRoute.IMPORTED_MEMBER,
+        PythonDeclarationReferenceRoute.ONE_FACADE,
+    }:
+        msg = "Qualified function Context requires an imported function Name."
         raise PythonQualifiedReferenceDisclosureError(msg)
     return PythonQualifiedReferenceDisclosure(purpose, analysis, reference)
 
@@ -122,6 +136,9 @@ def materialize_python_qualified_reference_source(
     reference = selected.reference
     dependency = selected.analysis.derivation.dependency
     target = reference.target_declaration
+    if not isinstance(target, PythonFunctionDeclarationKnowledge):
+        msg = "Qualified Reference target is not a supported function."
+        raise PythonQualifiedReferenceDisclosureError(msg)
     if (
         dependency.snapshot_id != snapshot.id
         or dependency.repository_id != snapshot.repository_id
@@ -158,10 +175,16 @@ def materialize_python_qualified_reference_source(
     if target.subject.resource_dependency_identity != target_dependency.identity:
         msg = "Target declaration resource or content differs from its dependency."
         raise PythonQualifiedReferenceDisclosureError(msg)
+    if target_resource != reference.target_resource:
+        msg = "Target resource differs from the retained Reference support."
+        raise PythonQualifiedReferenceDisclosureError(msg)
     supporting_interpretation = (
-        reference.member_resolution.facade
-        if reference.resolution_path is PythonReferenceResolutionPath.DIRECT_MODULE
-        else reference.member_resolution.target
+        reference.direct_member_resolution.module
+        if reference.route is PythonDeclarationReferenceRoute.IMPORTED_MEMBER
+        and reference.direct_member_resolution is not None
+        else reference.imported_member_resolution.target
+        if reference.imported_member_resolution is not None
+        else None
     )
     if (
         supporting_interpretation is None
@@ -171,7 +194,14 @@ def materialize_python_qualified_reference_source(
     ):
         msg = "Target declaration differs from its qualified resolution support."
         raise PythonQualifiedReferenceDisclosureError(msg)
-    target_analysis = reference.member_resolution.target_function_analysis
+    target_analysis = (
+        reference.direct_member_resolution.function_analysis
+        if reference.route is PythonDeclarationReferenceRoute.IMPORTED_MEMBER
+        and reference.direct_member_resolution is not None
+        else reference.imported_member_resolution.target_function_analysis
+        if reference.imported_member_resolution is not None
+        else None
+    )
     if target_analysis is not None and (
         target not in target_analysis.declarations
         or target_analysis.derivation.dependency.snapshot_id != snapshot.id
@@ -203,6 +233,9 @@ def render_python_qualified_reference_context(
     """Render the established relationship separately from exact source text."""
     reference = context.disclosure.reference
     target = reference.target_declaration
+    if not isinstance(target, PythonFunctionDeclarationKnowledge):
+        msg = "Qualified Reference target is not a supported function."
+        raise PythonQualifiedReferenceDisclosureError(msg)
     source = reference.occurrence
     source_range = source.source_range
     target_range = target.support.source_range
@@ -222,7 +255,7 @@ def render_python_qualified_reference_context(
             f"Reference fact identity: {reference.identity}\n",
             f"Reference derivation identity: {reference.derivation_identity}\n",
             f"Qualified relationship: {reference.PROPOSITION}\n",
-            f"Resolution path: {reference.resolution_path.value}\n",
+            f"Resolution path: {reference.route.value}\n",
             f"Direct Call syntax: {call_meaning}\n",
             (
                 "Coverage: qualified positive fact only; Reference analysis is "

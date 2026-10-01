@@ -9,6 +9,9 @@ from typing import TYPE_CHECKING, ClassVar, Literal
 from devtools.context.python.imports.relations import PythonResolvedModuleImportRelation
 from devtools.context.python.modules.membership import PythonImmediatePackageMembership
 from devtools.context.python.references.analysis import PythonFunctionReferenceKnowledge
+from devtools.context.python.references.declarations.model import (
+    PythonDeclarationReferenceKnowledge,
+)
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
@@ -25,6 +28,7 @@ if TYPE_CHECKING:
 type PythonDirectStructuralFact = (
     PythonResolvedModuleImportRelation
     | PythonFunctionReferenceKnowledge
+    | PythonDeclarationReferenceKnowledge
     | PythonImmediatePackageMembership
 )
 type PythonDirectStructuralDirection = Literal[
@@ -90,7 +94,9 @@ def retrieve_python_direct_structural_resources(  # noqa: C901, PLR0912
     *,
     request: PythonDirectStructuralRetrievalRequest,
     imports: Sequence[PythonResolvedModuleImportRelation] = (),
-    references: Sequence[PythonFunctionReferenceKnowledge] = (),
+    references: Sequence[
+        PythonDeclarationReferenceKnowledge | PythonFunctionReferenceKnowledge
+    ] = (),
     memberships: Sequence[PythonImmediatePackageMembership] = (),
 ) -> PythonDirectStructuralRetrievalResult:
     """Project supplied positive RI facts one relation away from each seed.
@@ -115,10 +121,14 @@ def retrieve_python_direct_structural_resources(  # noqa: C901, PLR0912
             msg = "Imports must contain resolved module import relations."
             raise TypeError(msg)
         _check_endpoint(
-            snapshot, import_fact.source.snapshot_id, import_fact.source.resource,
+            snapshot,
+            import_fact.source.snapshot_id,
+            import_fact.source.resource,
         )
         _check_endpoint(
-            snapshot, import_fact.target.snapshot_id, import_fact.target.resource,
+            snapshot,
+            import_fact.target.snapshot_id,
+            import_fact.target.resource,
         )
         pairs.append(
             (
@@ -130,15 +140,26 @@ def retrieve_python_direct_structural_resources(  # noqa: C901, PLR0912
             ),
         )
     for reference_fact in references:
-        if not isinstance(reference_fact, PythonFunctionReferenceKnowledge):
-            msg = "References must contain qualified function reference knowledge."
+        if not isinstance(
+            reference_fact,
+            PythonDeclarationReferenceKnowledge | PythonFunctionReferenceKnowledge,
+        ):
+            msg = "References must contain supported declaration reference knowledge."
             raise TypeError(msg)
         reference_source = reference_fact.occurrence
         definition = reference_fact.target_declaration.support
         _check_address(
-            snapshot, reference_source.snapshot_id, reference_source.resource_address,
+            snapshot,
+            reference_source.snapshot_id,
+            reference_source.resource_address,
         )
         _check_address(snapshot, definition.snapshot_id, definition.resource_address)
+        if isinstance(reference_fact, PythonDeclarationReferenceKnowledge):
+            _check_endpoint(
+                snapshot,
+                definition.snapshot_id,
+                reference_fact.target_resource,
+            )
         pairs.append(
             (
                 reference_source.resource_address,
@@ -153,7 +174,9 @@ def retrieve_python_direct_structural_resources(  # noqa: C901, PLR0912
             msg = "Memberships must contain immediate package membership facts."
             raise TypeError(msg)
         _check_endpoint(
-            snapshot, membership_fact.child.snapshot_id, membership_fact.child.resource,
+            snapshot,
+            membership_fact.child.snapshot_id,
+            membership_fact.child.resource,
         )
         _check_endpoint(
             snapshot,

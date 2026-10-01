@@ -16,8 +16,8 @@ from devtools.context.python.function.qualified_reference import (
 
 if TYPE_CHECKING:
     from devtools.context.python.references import (
-        PythonFunctionReferenceAnalysis,
-        PythonFunctionReferenceKnowledge,
+        PythonDeclarationReferenceAnalysis,
+        PythonDeclarationReferenceKnowledge,
     )
     from devtools.context.repository.identity import RepositoryId
     from devtools.context.repository.snapshot import (
@@ -81,8 +81,8 @@ class PythonQualifiedReferenceDisclosureOption:
 def choose_python_qualified_reference_disclosure(
     *,
     purpose: str,
-    analysis: PythonFunctionReferenceAnalysis,
-    reference: PythonFunctionReferenceKnowledge,
+    analysis: PythonDeclarationReferenceAnalysis,
+    reference: PythonDeclarationReferenceKnowledge,
 ) -> PythonQualifiedReferenceDisclosureOption:
     """Record an exact caller choice without discovering or ranking facts."""
     return PythonQualifiedReferenceDisclosureOption(

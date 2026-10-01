@@ -33,7 +33,7 @@ from tests.context.retrieval.test_composition import _lexical
 from tests.context.retrieval.test_structural import _facts
 
 if TYPE_CHECKING:
-    from devtools.context.python.references import PythonFunctionReferenceKnowledge
+    from devtools.context.python.references import PythonDeclarationReferenceKnowledge
 
 
 def test_view_projects_forward_facts_once_and_preserves_occurrences(
@@ -213,7 +213,8 @@ def test_empty_seeds_abstain_and_snapshot_checks(tmp_path: Path) -> None:
         )
     with pytest.raises(TypeError, match="References"):
         build_python_resource_graph_view(
-            snapshot, references=(cast("PythonFunctionReferenceKnowledge", imported),)
+            snapshot,
+            references=(cast("PythonDeclarationReferenceKnowledge", imported),),
         )
     assert (
         build_python_resource_graph_view(

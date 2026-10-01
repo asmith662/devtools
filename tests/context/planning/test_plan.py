@@ -27,7 +27,7 @@ from devtools.context.python.modules import (
     define_python_module_interpretation_universe,
     interpret_python_module_resources,
 )
-from devtools.context.python.references import derive_python_function_references
+from devtools.context.python.references import derive_python_declaration_references
 from devtools.context.repository.identity import Repository, RepositoryId
 from devtools.context.repository.observation import observe_repository_resources
 from devtools.context.repository.resource import RepositoryResourceAddress
@@ -74,7 +74,7 @@ def _reference_option(
             resource_addresses=tuple(item.address for item in snapshot.resources),
         ).interpretations,
     )
-    analysis = derive_python_function_references(
+    analysis = derive_python_declaration_references(
         snapshot,
         resource_address=RepositoryResourceAddress("consumer.py"),
         module_universe=universe,

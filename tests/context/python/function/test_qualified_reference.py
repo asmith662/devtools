@@ -16,15 +16,18 @@ from devtools.context.python.function import (
     materialize_python_qualified_reference_source,
     render_python_qualified_reference_context,
 )
+from devtools.context.python.function.declarations import (
+    PythonFunctionDeclarationKnowledge,
+)
 from devtools.context.python.modules import (
     PythonModuleRoot,
     define_python_module_interpretation_universe,
     interpret_python_module_resources,
 )
 from devtools.context.python.references import (
-    PythonFunctionReferenceAnalysis,
-    PythonFunctionReferenceKnowledge,
-    derive_python_function_references,
+    PythonDeclarationReferenceAnalysis,
+    PythonDeclarationReferenceKnowledge,
+    derive_python_declaration_references,
 )
 from devtools.context.repository.identity import Repository, RepositoryId
 from devtools.context.repository.observation import observe_repository_resources
@@ -60,7 +63,7 @@ def _snapshot(tmp_path: Path, resources: dict[str, str]) -> RepositorySnapshot:
 def _analysis(
     snapshot: RepositorySnapshot,
     source: str = "consumer.py",
-) -> PythonFunctionReferenceAnalysis:
+) -> PythonDeclarationReferenceAnalysis:
     universe = define_python_module_interpretation_universe(
         repository_id=snapshot.repository_id,
         interpretations=interpret_python_module_resources(
@@ -69,7 +72,7 @@ def _analysis(
             resource_addresses=tuple(item.address for item in snapshot.resources),
         ).interpretations,
     )
-    return derive_python_function_references(
+    return derive_python_declaration_references(
         snapshot,
         resource_address=RepositoryResourceAddress(source),
         module_universe=universe,
@@ -78,8 +81,8 @@ def _analysis(
 
 def _materialized(
     snapshot: RepositorySnapshot,
-    analysis: PythonFunctionReferenceAnalysis,
-    reference: PythonFunctionReferenceKnowledge,
+    analysis: PythonDeclarationReferenceAnalysis,
+    reference: PythonDeclarationReferenceKnowledge,
 ) -> MaterializedPythonQualifiedReferenceContext:
     disclosure = disclose_python_qualified_reference(
         purpose="Understand this established reference.",
@@ -112,7 +115,7 @@ def test_cross_resource_call_exact_source_and_request(tmp_path: Path) -> None:
     )
     rendered = render_python_qualified_reference_context(materialized)
     assert "Purpose: Understand this established reference." in rendered.text
-    assert "qualified-name-load-references-direct-python-function" in rendered.text
+    assert "bounded-expression-references-python-declaration" in rendered.text
     assert "ast.Call.func; no runtime invocation is asserted" in rendered.text
     assert "Reference analysis is non-exhaustive" in rendered.text
     assert "Source resource pointer: consumer.py" in rendered.text
@@ -369,10 +372,18 @@ def test_fact_membership_derivation_and_ranges_are_checked(tmp_path: Path) -> No
             ),
         ),
     )
-    for changed in (invalid_source, invalid_target):
-        changed_analysis = replace(analysis, references=(changed,))
-        with pytest.raises(PythonFunctionSourceMaterializationError):
-            _materialized(snapshot, changed_analysis, changed)
+    with pytest.raises(PythonFunctionSourceMaterializationError):
+        _materialized(
+            snapshot,
+            replace(analysis, references=(invalid_source,)),
+            invalid_source,
+        )
+    with pytest.raises(PythonQualifiedReferenceDisclosureError, match="analysis"):
+        _materialized(
+            snapshot,
+            replace(analysis, references=(invalid_target,)),
+            invalid_target,
+        )
 
 
 def test_target_from_another_snapshot_is_rejected(tmp_path: Path) -> None:
@@ -392,6 +403,7 @@ def test_target_from_another_snapshot_is_rejected(tmp_path: Path) -> None:
             "target.py": "def f():\n    pass\n",
         },
     )
+    assert isinstance(fact.target_declaration, PythonFunctionDeclarationKnowledge)
     for changed_target in (
         replace(
             fact.target_declaration,
@@ -418,17 +430,18 @@ def test_qualified_target_support_must_match_snapshot(tmp_path: Path) -> None:
     )
     analysis = _analysis(snapshot)
     fact = analysis.references[0]
-    facade = fact.member_resolution.facade
-    assert facade is not None
+    member = fact.direct_member_resolution
+    assert member is not None
+    facade = member.module
     changed_facade = replace(
         facade,
         resource=snapshot.resource_at(RepositoryResourceAddress("other.py")),
     )
     changed = replace(
         fact,
-        member_resolution=replace(
-            fact.member_resolution,
-            facade=changed_facade,
+        direct_member_resolution=replace(
+            member,
+            module=changed_facade,
         ),
     )
     with pytest.raises(PythonQualifiedReferenceDisclosureError, match="support"):
@@ -444,12 +457,14 @@ def test_qualified_target_support_must_match_snapshot(tmp_path: Path) -> None:
     )
     facade_analysis = _analysis(facade_snapshot)
     facade_fact = facade_analysis.references[0]
-    target_analysis = facade_fact.member_resolution.target_function_analysis
+    facade_member = facade_fact.imported_member_resolution
+    assert facade_member is not None
+    target_analysis = facade_member.target_function_analysis
     assert target_analysis is not None
     changed = replace(
         facade_fact,
-        member_resolution=replace(
-            facade_fact.member_resolution,
+        imported_member_resolution=replace(
+            facade_member,
             target_function_analysis=replace(target_analysis, declarations=()),
         ),
     )

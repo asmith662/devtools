@@ -77,3 +77,24 @@ development comparison with qualified production RI snapshots and task frames,
 including explicit tests of source/test and configuration/document coverage,
 before changing directionality, family weights, seed limits, or fusion weight.
 Case 0001 and sealed confirmation remain outside this replay.
+# Broader Reference substrate replay
+
+`structural_replay.py` compares the frozen production graph input with the
+newly derived bounded declaration References over the same retained development
+snapshot. It verifies the frozen archive hash, derives rankings before reading
+required-resource labels, and leaves Personalized PageRank (PPR) parameters and
+the original forward Import/Reference projection unchanged. The result is
+`structural_replay.json`. This is a topology diagnostic and a one-case replay,
+not a prospective evaluation or a weight-tuning exercise. Confirmation remains
+sealed.
+
+The replay preserved all 30 archived positive References and produced 1,311
+new-schema References. Of those, 742 use a same-module route, so the unchanged
+resource graph drops their self transitions. The graph grew from 279 to 360
+aggregated edges and isolated resources fell from 152 to 134. Four of seven
+previously isolated required resources gained an incident edge; the remaining
+three are `AGENTS.md`, `docs/roadmap.md`, and `pyproject.toml`. The full-prompt
+last-required PPR rank changed from 84 to 87, and the short-need rank from 123
+to 127. This is a connectivity gain with no complete-depth ranking win on the
+retained case. The next graph comparison must address typed relation coverage
+and resource-only projection loss before interpreting ranking weights.

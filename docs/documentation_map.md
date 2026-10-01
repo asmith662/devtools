@@ -251,10 +251,12 @@ module-only import relation and does not provide runtime import, export or
 semantics.
 
 The [Python References package](../src/devtools/context/python/references/docs/overview.md)
-owns qualified source-occurrence-to-direct-function knowledge over existing
-import and declaration support. Its direct Call tag specializes the same
-Reference; its result coverage is non-exhaustive. It owns no retrieval or
-Context selection policy.
+owns bounded source-occurrence References to supported direct functions,
+classes, and direct methods through same-module, imported, module-qualified,
+and statically class-qualified routes. Direct Call syntax specializes that
+same Reference; coverage is non-exhaustive. Direct declaration lookup belongs
+to the [Python modules package](../src/devtools/context/python/modules/docs/overview.md).
+Neither package owns retrieval relevance or Context selection.
 
 `context.retrieval` now also exposes direct Python structural resource
 projection over supplied production Imports, References/direct Calls, and
