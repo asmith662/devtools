@@ -454,8 +454,15 @@ Class and method subjects have distinct structural identities: class ordinal
 within the exact resource, and method ordinal within the exact class subject.
 Each occurrence belongs to its observed resource; a method's direct lexical
 parent is its class declaration. These are different relationships. A class
-retains direct base-expression spans as unresolved syntax, not inheritance
-knowledge. Decorators do not imply descriptor semantics. Bounded coverage
+retains exact direct base-expression syntax and spans. A separate bounded
+direct-base derivation assesses every expression and establishes a class-to-class
+repository relation only through an unambiguous earlier local class binding,
+direct imported member, or explicitly imported module attribute. It reuses
+production module/import resolution, retains both class declarations and exact
+resource/content dependencies, and leaves unsupported or ambiguous expressions
+visible. This is a static repository relation, not runtime inheritance, Method
+Resolution Order, subtype closure, or retrieval relevance. Decorators do not
+imply descriptor semantics. Bounded coverage
 separates supported results from encountered excluded nested syntax and from
 module-body functions owned by the existing analyzer. Validated navigation
 supports both directions without duplicate containment facts, ranking, or

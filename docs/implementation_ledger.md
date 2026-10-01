@@ -351,6 +351,17 @@ prerequisites for a future architectural domain.
   assessment is SAFE WITH PRESERVED SEAMS; later external confirmation remains
   a reopen gate, and B-0002 remains backlog work.
 
+## Bounded direct-base Repository Intelligence checkpoint
+
+- After the class/method declaration checkpoint, added snapshot-bound direct
+  Python base assessments to production Repository Intelligence. The bounded
+  resolver reuses qualified module/import interpretation, accepts unambiguous
+  local class, imported class member, and imported module attribute forms, and
+  retains an outcome for every direct base expression. Positive relations are
+  structural class-to-class facts; Personalized PageRank and fusion were not
+  changed. Broader qualified References/Calls precede prospective richer graph
+  evaluation.
+
 ## Query-conditioned graph-ranking checkpoint
 
 - Added a Retrieval-owned, snapshot-bound resource graph projection over

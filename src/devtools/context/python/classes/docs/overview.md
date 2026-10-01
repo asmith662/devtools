@@ -18,8 +18,8 @@ facts. It reuses their `PythonSourceRange`, `PythonSourceOccurrence`,
 `PythonModuleResourceDependency`, and syntactic function-kind values, while
 keeping the established direct module-body function API and identity unchanged.
 Class and method declarations have separate derivation, subject, and knowledge
-identities. This Python-specific package owns their facts and is the natural
-owner for the next bounded direct-base derivation.
+identities. This Python-specific package owns their facts and the bounded
+direct-base derivation described below.
 
 ## Identity, provenance, and containment
 
@@ -34,8 +34,9 @@ Every class and method retains an exact source occurrence with one-based lines
 and zero-based UTF-8 byte columns. The per-resource derivation retains its
 repository and snapshot identities, content-bearing observed resource, parser
 version, and bounded traversal semantics. A class retains the exact occurrence
-and source text of each direct base expression as **syntax only**; no base target
-is resolved.
+and source text of each direct base expression as **syntax**. A separate
+derivation assesses possible repository class targets without changing the
+original declaration.
 AST declaration spans begin at `class`/`def`/`async def`, excluding preceding
 decorator lines. Decorators do not classify descriptor or runtime behavior.
 
@@ -71,3 +72,59 @@ existing imported-function forms. Future method References/Calls need separate
 qualified attribute and receiver/type resolution. The current resource-level
 Personalized PageRank graph does not consume these new facts. A future graph
 view may project class, method, base, and Reference relationships prospectively.
+
+## Bounded direct-base resolution
+
+```text
+Child class -> exact direct base-expression syntax and UTF-8 span
+               | bounded static module/import/member resolution
+               v
+          one assessment per expression
+               | RESOLVED only
+               v
+          supported Base class declaration
+```
+
+`derive_python_direct_bases(snapshot, aggregate=..., module_universe=...)`
+assesses every retained base expression. `PythonDirectBaseAssessment` is the
+canonical result. Only `RESOLVED` establishes a direct repository class-to-class
+relation; every other outcome preserves the syntax and reason. Identity binds
+the child declaration, base ordinal/span/text, module universe, outcome, source
+and target derivations, and supporting import facts where present. Both endpoints
+are structural class subjects, never names alone. Source and target analyses
+retain exact observed resource/content and snapshot dependencies. Derivation
+uses retained snapshot state and never reopens files.
+
+`PythonDirectBaseAnalysis.direct_bases_of(child)` preserves base syntax order;
+`direct_subclasses_of(base)` projects the *same* positive assessments backward
+in selected resource/class/base order. There is no independent reverse fact.
+
+Supported positive routes are:
+
+- A simple name bound by exactly one earlier undecorated direct module-body
+  class in the same resource, with no competing observed binding.
+- A simple name from a direct `from module import Class [as Alias]`, where
+  production import resolution identifies one observed module and that module
+  has exactly one direct undecorated class binding for the imported member.
+- An attribute chain `module.Class` or `alias.Class` matching a direct
+  `import module [as alias]` and one supported direct class in that resolved
+  module. `import pkg.module` supports `pkg.module.Class`.
+
+The bounded static binding check inspects direct module-body bindings before
+the child class. Competing/rebound names, conditional bindings, wildcard
+imports, decorated target classes, and ambiguous module or class targets
+prevent a positive result. For imported members, the target module's whole
+direct binding surface is checked. Relative imports use existing module
+interpretation facts. Facade re-exports and arbitrary attribute evaluation
+are outside this contract. `obj.Base`, calls, subscriptions such as `Base[T]`,
+builtins, and unobserved/external classes remain assessed without fabricated
+repository class subjects. One base may resolve while another does not.
+
+This is a bounded **static repository relation**, not complete Python runtime
+inheritance. It does not evaluate decorators, metaclasses, dynamic globals,
+module execution, `__getattr__`, C3 Method Resolution Order (MRO), inherited
+methods, overrides, or transitive subclass closure. Absence of a positive
+relation does not mean a class has no runtime base. Repository Intelligence
+owns the relationship; Retrieval decides whether to project it into a graph,
+and Context Planning decides what to disclose. The current Personalized
+PageRank (PPR) graph is unchanged.

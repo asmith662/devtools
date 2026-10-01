@@ -1,6 +1,13 @@
 # Copyright (c) 2026
 """Bounded Python class and direct method Repository Intelligence."""
 
+from devtools.context.python.classes.bases import (
+    PythonDirectBaseAnalysis,
+    PythonDirectBaseAssessment,
+    PythonDirectBaseOutcome,
+    PythonDirectBaseRoute,
+    derive_python_direct_bases,
+)
 from devtools.context.python.classes.containment import (
     PythonClassMethodContainmentView,
     build_python_class_method_containment_view,
@@ -34,6 +41,10 @@ __all__ = [
     "PythonClassMethodDerivationDefinition",
     "PythonClassMethodParseError",
     "PythonClassSubject",
+    "PythonDirectBaseAnalysis",
+    "PythonDirectBaseAssessment",
+    "PythonDirectBaseOutcome",
+    "PythonDirectBaseRoute",
     "PythonExcludedClassMethodSyntax",
     "PythonExcludedClassMethodSyntaxKind",
     "PythonMethodDeclarationKnowledge",
@@ -41,4 +52,5 @@ __all__ = [
     "analyze_python_class_method_resources",
     "build_python_class_method_containment_view",
     "derive_python_class_method_declarations",
+    "derive_python_direct_bases",
 ]

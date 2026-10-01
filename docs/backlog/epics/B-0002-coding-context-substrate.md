@@ -753,9 +753,11 @@ async-function declarations through a validated
 snapshot-bound view over intrinsic occurrence/dependency truth. No duplicate
 ownership relation was added. Direct module-body class and direct class-body
 method declaration knowledge is now production RI, with distinct occurrence
-resource and lexical-parent support and unresolved base-expression spans. The
-next bounded increment is qualified direct base/inheritance relationships;
-broader References/Calls and a prospective richer graph view follow. Earlier
+resource and lexical-parent support. Bounded direct-base analysis now assesses
+every retained base-expression span and establishes a direct class target only
+for supported unambiguous local or import-qualified forms; it makes no runtime
+inheritance or transitive claim. Broader References/Calls are the next RI
+boundary, coupled to preparation of a prospective richer graph view. Earlier
 sequencing called for a narrow
 Evaluation assessment/coverage kernel, direct structural candidate use, and a
 fine-grained Context disclosure slice; those increments are complete. Richer

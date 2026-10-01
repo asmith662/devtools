@@ -193,8 +193,10 @@ own former Message/History/Session semantics.
 The [Python classes package](../src/devtools/context/python/classes/docs/overview.md)
 owns direct module-body class and direct class-body method declarations over
 retained snapshot resources. It distinguishes occurrence resource from direct
-lexical class parent, retains base-expression syntax without resolving it, and
-provides validated containment navigation. It does not broaden the existing
+lexical class parent, retains exact base-expression syntax, and provides
+validated containment navigation. A separate bounded direct-base derivation
+assesses each expression and establishes a repository class target only for
+supported local or import-qualified forms. It does not broaden the existing
 direct module-body function or qualified Reference/Call contracts.
 
 The [Context Planning package](../src/devtools/context/planning/docs/overview.md)

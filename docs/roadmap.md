@@ -141,10 +141,12 @@ Confirmation remains sealed.
    for direct module-body classes and direct synchronous/async methods, with
    occurrence-resource and direct lexical-parent semantics kept distinct.
 4. Establish bounded direct inheritance/base relationships with qualified
-   resolution and uncertainty. This is the next implementation boundary;
-   retained base-expression spans are syntax, not resolved bases.
+   resolution and uncertainty. This increment is complete: every retained
+   base expression receives a snapshot-bound assessment; positive direct
+   repository class targets require an unambiguous supported binding.
 5. Extend reference/call structure only where conservative derivation supports
-   the claimed target and occurrence semantics.
+   the claimed target and occurrence semantics. This is the next production
+   boundary, coupled to the graph-representation preparation below.
 6. Construct and prospectively evaluate a substantially richer typed graph view
    after those RI increments. Keep BM25, PPR, and fusion rankings separate;
    do not tune the current sparse graph after each isolated fact. Freeze a
