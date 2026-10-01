@@ -444,8 +444,23 @@ declaration to containing resource. It derives no duplicate ownership fact,
 aggregate derivation, relevance judgment, or Context disclosure. The
 [function package overview](../src/devtools/context/python/function/docs/overview.md)
 defines its bounded contract. Classes, methods, and nested declarations remain
-outside this direct module-body function analysis; future declaration-parent
-semantics need not treat every declaration as directly resource-contained.
+outside this direct module-body function analysis. A separate production
+[`context.python.classes` package](../src/devtools/context/python/classes/docs/overview.md)
+now establishes direct `Module.body` class declarations and synchronous/async
+methods directly in each supported class body. It reuses the existing Python
+source occurrence/range and observed-resource dependency values without
+changing function declaration identity or exact-name/Reference consumers.
+Class and method subjects have distinct structural identities: class ordinal
+within the exact resource, and method ordinal within the exact class subject.
+Each occurrence belongs to its observed resource; a method's direct lexical
+parent is its class declaration. These are different relationships. A class
+retains direct base-expression spans as unresolved syntax, not inheritance
+knowledge. Decorators do not imply descriptor semantics. Bounded coverage
+separates supported results from encountered excluded nested syntax and from
+module-body functions owned by the existing analyzer. Validated navigation
+supports both directions without duplicate containment facts, ranking, or
+Context disclosure. A later declaration model may add deeper lexical parents
+without treating every declaration as directly resource-contained.
 
 `context.python.imports` separately derives ordered, direct module-body Python
 import aliases from one exact observed resource, retaining their source spans,

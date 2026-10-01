@@ -751,9 +751,12 @@ automatically projected into direct Retrieval or PPR. Declaration
 ownership/containment is now exposed for direct module-body function and
 async-function declarations through a validated
 snapshot-bound view over intrinsic occurrence/dependency truth. No duplicate
-ownership relation was added. Next are bounded class/method declarations,
-direct base relationships, and broader qualified references before a richer
-graph view is evaluated. Earlier sequencing called for a narrow
+ownership relation was added. Direct module-body class and direct class-body
+method declaration knowledge is now production RI, with distinct occurrence
+resource and lexical-parent support and unresolved base-expression spans. The
+next bounded increment is qualified direct base/inheritance relationships;
+broader References/Calls and a prospective richer graph view follow. Earlier
+sequencing called for a narrow
 Evaluation assessment/coverage kernel, direct structural candidate use, and a
 fine-grained Context disclosure slice; those increments are complete. Richer
 test semantics, configuration/registration bindings, structural admission, and

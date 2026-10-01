@@ -137,11 +137,12 @@ Confirmation remains sealed.
 2. Establish declaration ownership/containment with exact resource and source
    support. This increment is complete as a validated navigation view over
    intrinsic function declaration ownership; it adds no duplicate RI fact.
-3. Establish bounded class and method declarations. This is the next
-   implementation boundary. Distinguish occurrence resource from direct lexical
-   parent declaration.
+3. Establish bounded class and method declarations. This increment is complete
+   for direct module-body classes and direct synchronous/async methods, with
+   occurrence-resource and direct lexical-parent semantics kept distinct.
 4. Establish bounded direct inheritance/base relationships with qualified
-   resolution and uncertainty.
+   resolution and uncertainty. This is the next implementation boundary;
+   retained base-expression spans are syntax, not resolved bases.
 5. Extend reference/call structure only where conservative derivation supports
    the claimed target and occurrence semantics.
 6. Construct and prospectively evaluate a substantially richer typed graph view
