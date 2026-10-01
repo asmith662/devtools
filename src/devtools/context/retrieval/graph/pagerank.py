@@ -1,6 +1,6 @@
 # Copyright (c) 2026
 # ruff: noqa: COM812
-"""Deterministic weighted personalized PageRank of snapshot resources."""
+"""One deterministic weighted Personalized PageRank walk over Retrieval nodes."""
 
 from __future__ import annotations
 
@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, ClassVar
 
 from devtools.context.retrieval.composition import require_lexical_result_snapshot
+from devtools.context.retrieval.graph.view import PythonGraphNodeKind
 
 if TYPE_CHECKING:
     from devtools.context.repository.resource import RepositoryResourceAddress
@@ -18,7 +19,8 @@ if TYPE_CHECKING:
     )
     from devtools.context.retrieval.graph.view import (
         PythonGraphEdgeContribution,
-        PythonResourceGraphView,
+        PythonGraphNode,
+        PythonGraphView,
     )
     from devtools.context.retrieval.lexical.bm25 import (
         RepositoryTextLexicalBm25RetrievalResult,
@@ -51,7 +53,7 @@ class GraphRankingSettings:
 class PythonGraphIncomingSupport:
     """One incoming RI fact's share of stationary graph transition flow."""
 
-    source: RepositoryResourceAddress
+    source: PythonGraphNode
     contribution: PythonGraphEdgeContribution
     flow: float
 
@@ -64,7 +66,17 @@ class PythonGraphRankedResource:
     rank: int
     score: float
     personalization: float
+    winning_node: PythonGraphNode
     incoming_supports: tuple[PythonGraphIncomingSupport, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class PythonGraphNodeScore:
+    """Retain the stationary mass of one typed graph endpoint."""
+
+    node: PythonGraphNode
+    score: float
+    personalization: float
 
 
 @dataclass(frozen=True, slots=True)
@@ -74,24 +86,25 @@ class PythonGraphRankingResult:
     snapshot_id: RepositorySnapshotId
     purpose: str
     lexical_result: RepositoryTextLexicalBm25RetrievalResult
-    graph_view: PythonResourceGraphView
+    graph_view: PythonGraphView
     settings: GraphRankingSettings
     iterations: int
     converged: bool
     resources: tuple[PythonGraphRankedResource, ...]
+    node_scores: tuple[PythonGraphNodeScore, ...] = ()
 
-    MECHANISM: ClassVar[str] = "lexical-rank-personalized-weighted-ppr-v1"
+    MECHANISM: ClassVar[str] = "lexical-rank-personalized-weighted-ppr-v2"
 
 
 _DEFAULT_SETTINGS = GraphRankingSettings()
 
 
-def rank_python_repository_resources(  # noqa: C901, PLR0912
+def rank_python_repository_resources(  # noqa: C901, PLR0912, PLR0915
     snapshot: RepositorySnapshot,
     *,
     purpose: str,
     lexical_result: RepositoryTextLexicalBm25RetrievalResult,
-    graph_view: PythonResourceGraphView,
+    graph_view: PythonGraphView,
     settings: GraphRankingSettings = _DEFAULT_SETTINGS,
 ) -> PythonGraphRankingResult:
     """Diffuse query-specific lexical rank mass over forward RI transitions.
@@ -111,9 +124,39 @@ def rank_python_repository_resources(  # noqa: C901, PLR0912
         msg = "Graph view differs from the supplied snapshot."
         raise ValueError(msg)
     require_lexical_result_snapshot(snapshot, lexical_result)
-    addresses = graph_view.resources
-    positions = {address: index for index, address in enumerate(addresses)}
-    seed_weights = [0.0] * len(addresses)
+    nodes = graph_view.nodes
+    positions = {node: index for index, node in enumerate(nodes)}
+    if len(positions) != len(nodes):
+        msg = "Graph view repeats a typed node."
+        raise ValueError(msg)
+    resource_nodes = {
+        node.resource_address: node
+        for node in nodes
+        if node.kind is PythonGraphNodeKind.RESOURCE
+    }
+    if set(resource_nodes) != set(graph_view.resources):
+        msg = "Graph resource nodes differ from the supplied snapshot."
+        raise ValueError(msg)
+    if any(node.resource_address not in resource_nodes for node in nodes):
+        msg = "Graph declaration node belongs to an unobserved resource."
+        raise ValueError(msg)
+    row_sums: dict[PythonGraphNode, float] = {}
+    for edge in graph_view.edges:
+        if (
+            edge.source not in positions
+            or edge.target not in positions
+            or not math.isfinite(edge.transition_probability)
+            or edge.transition_probability <= 0
+        ):
+            msg = "Graph edge has an unknown endpoint or invalid probability."
+            raise ValueError(msg)
+        row_sums[edge.source] = (
+            row_sums.get(edge.source, 0.0) + edge.transition_probability
+        )
+    if any(not math.isclose(total, 1.0, abs_tol=1e-9) for total in row_sums.values()):
+        msg = "Graph outgoing transition probabilities must sum to one."
+        raise ValueError(msg)
+    seed_weights = [0.0] * len(nodes)
     lexical_ranks: dict[RepositoryResourceAddress, int] = {}
     for rank, match in enumerate(lexical_result.matches, start=1):
         address = match.document_statistics.analysis.document.resource.address
@@ -124,7 +167,7 @@ def rank_python_repository_resources(  # noqa: C901, PLR0912
             msg = "Graph personalization requires distinct lexical matches."
             raise ValueError(msg)
         lexical_ranks[address] = rank
-        seed_weights[positions[address]] = 1 / (
+        seed_weights[positions[resource_nodes[address]]] = 1 / (
             settings.personalization_rank_constant + rank
         )
     total = math.fsum(seed_weights)
@@ -140,7 +183,7 @@ def rank_python_repository_resources(  # noqa: C901, PLR0912
             resources=(),
         )
     seeds = [weight / total for weight in seed_weights]
-    outgoing: list[list[tuple[int, float]]] = [[] for _ in addresses]
+    outgoing: list[list[tuple[int, float]]] = [[] for _ in nodes]
     for edge in graph_view.edges:
         outgoing[positions[edge.source]].append(
             (positions[edge.target], edge.transition_probability)
@@ -165,7 +208,7 @@ def rank_python_repository_resources(  # noqa: C901, PLR0912
     # Input order and operation order are fixed; final mass is normalized once.
     mass = math.fsum(scores)
     scores = [score / mass for score in scores]
-    incoming: dict[RepositoryResourceAddress, list[PythonGraphIncomingSupport]] = {}
+    incoming: dict[PythonGraphNode, list[PythonGraphIncomingSupport]] = {}
     for edge in graph_view.edges:
         flow = (
             settings.damping
@@ -180,32 +223,40 @@ def rank_python_repository_resources(  # noqa: C901, PLR0912
                     flow * contribution.weight / edge.weight,
                 )
             )
+    winners = {
+        address: max(
+            (node for node in nodes if node.resource_address == address),
+            key=lambda node: (scores[positions[node]], -positions[node]),
+        )
+        for address in graph_view.resources
+    }
     ranked = sorted(
-        (i for i, score in enumerate(scores) if score > 0),
-        key=lambda i: (
-            -scores[i],
-            lexical_ranks.get(addresses[i], math.inf),
-            str(addresses[i]),
+        (address for address, node in winners.items() if scores[positions[node]] > 0),
+        key=lambda address: (
+            -scores[positions[winners[address]]],
+            lexical_ranks.get(address, math.inf),
+            str(address),
         ),
     )
     resources = tuple(
         PythonGraphRankedResource(
-            addresses[i],
+            address,
             rank,
-            scores[i],
-            seeds[i],
+            scores[positions[winners[address]]],
+            seeds[positions[resource_nodes[address]]],
+            winners[address],
             tuple(
                 sorted(
-                    incoming.get(addresses[i], ()),
+                    incoming.get(winners[address], ()),
                     key=lambda item: (
                         -item.flow,
-                        str(item.source),
+                        item.source.identity,
                         item.contribution.fact.identity,
                     ),
                 )
             ),
         )
-        for rank, i in enumerate(ranked, start=1)
+        for rank, address in enumerate(ranked, start=1)
     )
     return PythonGraphRankingResult(
         snapshot.id,
@@ -216,4 +267,8 @@ def rank_python_repository_resources(  # noqa: C901, PLR0912
         iterations,
         converged,
         resources,
+        tuple(
+            PythonGraphNodeScore(node, scores[index], seeds[index])
+            for index, node in enumerate(nodes)
+        ),
     )

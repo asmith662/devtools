@@ -1,0 +1,3035 @@
+{
+  "arms": {
+    "full_prompt": {
+      "bm25": {
+        "candidate_count": 299,
+        "coverage": {
+          "10": 4,
+          "100": 10,
+          "20": 6,
+          "5": 3,
+          "50": 10
+        },
+        "last_required_rank": 43,
+        "required_ranks": {
+          "AGENTS.md": 5,
+          "docs/roadmap.md": 2,
+          "experiments/codex_dogfood/capture.py": 3,
+          "pyproject.toml": 43,
+          "src/devtools/context/retrieval/composition.py": 13,
+          "src/devtools/context/retrieval/lexical/bm25.py": 33,
+          "src/devtools/context/retrieval/structural.py": 37,
+          "tests/context/retrieval/test_composition.py": 19,
+          "tests/context/retrieval/test_structural.py": 38,
+          "tests/experiments/test_codex_dogfood_capture.py": 9
+        }
+      },
+      "resource-forward-current-ri-v1": {
+        "candidate_count": 301,
+        "coverage": {
+          "10": 1,
+          "100": 10,
+          "20": 3,
+          "5": 1,
+          "50": 9
+        },
+        "last_required_rank": 87,
+        "required_absent_from_bm25": [],
+        "required_ranks": {
+          "AGENTS.md": 33,
+          "docs/roadmap.md": 28,
+          "experiments/codex_dogfood/capture.py": 12,
+          "pyproject.toml": 87,
+          "src/devtools/context/retrieval/composition.py": 23,
+          "src/devtools/context/retrieval/lexical/bm25.py": 3,
+          "src/devtools/context/retrieval/structural.py": 11,
+          "tests/context/retrieval/test_composition.py": 36,
+          "tests/context/retrieval/test_structural.py": 50,
+          "tests/experiments/test_codex_dogfood_capture.py": 38
+        }
+      },
+      "resource-forward-frozen-input-v1": {
+        "candidate_count": 301,
+        "coverage": {
+          "10": 0,
+          "100": 10,
+          "20": 1,
+          "5": 0,
+          "50": 7
+        },
+        "last_required_rank": 84,
+        "required_absent_from_bm25": [],
+        "required_ranks": {
+          "AGENTS.md": 23,
+          "docs/roadmap.md": 20,
+          "experiments/codex_dogfood/capture.py": 21,
+          "pyproject.toml": 84,
+          "src/devtools/context/retrieval/composition.py": 34,
+          "src/devtools/context/retrieval/lexical/bm25.py": 48,
+          "src/devtools/context/retrieval/structural.py": 63,
+          "tests/context/retrieval/test_composition.py": 46,
+          "tests/context/retrieval/test_structural.py": 76,
+          "tests/experiments/test_codex_dogfood_capture.py": 30
+        }
+      },
+      "rrf:typed-core-v1": {
+        "candidate_count": 301,
+        "coverage": {
+          "10": 4,
+          "100": 10,
+          "20": 6,
+          "5": 3,
+          "50": 8
+        },
+        "last_required_rank": 82,
+        "required_ranks": {
+          "AGENTS.md": 16,
+          "docs/roadmap.md": 9,
+          "experiments/codex_dogfood/capture.py": 1,
+          "pyproject.toml": 82,
+          "src/devtools/context/retrieval/composition.py": 2,
+          "src/devtools/context/retrieval/lexical/bm25.py": 23,
+          "src/devtools/context/retrieval/structural.py": 39,
+          "tests/context/retrieval/test_composition.py": 15,
+          "tests/context/retrieval/test_structural.py": 52,
+          "tests/experiments/test_codex_dogfood_capture.py": 5
+        }
+      },
+      "rrf:typed-navigation-v1": {
+        "candidate_count": 302,
+        "coverage": {
+          "10": 4,
+          "100": 10,
+          "20": 7,
+          "5": 3,
+          "50": 9
+        },
+        "last_required_rank": 96,
+        "required_ranks": {
+          "AGENTS.md": 19,
+          "docs/roadmap.md": 13,
+          "experiments/codex_dogfood/capture.py": 1,
+          "pyproject.toml": 96,
+          "src/devtools/context/retrieval/composition.py": 4,
+          "src/devtools/context/retrieval/lexical/bm25.py": 5,
+          "src/devtools/context/retrieval/structural.py": 28,
+          "tests/context/retrieval/test_composition.py": 6,
+          "tests/context/retrieval/test_structural.py": 40,
+          "tests/experiments/test_codex_dogfood_capture.py": 16
+        }
+      },
+      "typed-core-v1": {
+        "candidate_count": 301,
+        "coverage": {
+          "10": 1,
+          "100": 9,
+          "20": 2,
+          "5": 0,
+          "50": 6
+        },
+        "last_required_rank": 146,
+        "required_absent_from_bm25": [],
+        "required_ranks": {
+          "AGENTS.md": 89,
+          "docs/roadmap.md": 84,
+          "experiments/codex_dogfood/capture.py": 17,
+          "pyproject.toml": 146,
+          "src/devtools/context/retrieval/composition.py": 6,
+          "src/devtools/context/retrieval/lexical/bm25.py": 36,
+          "src/devtools/context/retrieval/structural.py": 50,
+          "tests/context/retrieval/test_composition.py": 44,
+          "tests/context/retrieval/test_structural.py": 69,
+          "tests/experiments/test_codex_dogfood_capture.py": 42
+        }
+      },
+      "typed-navigation-v1": {
+        "candidate_count": 302,
+        "coverage": {
+          "10": 1,
+          "100": 6,
+          "20": 2,
+          "5": 0,
+          "50": 4
+        },
+        "last_required_rank": 207,
+        "required_absent_from_bm25": [],
+        "required_ranks": {
+          "AGENTS.md": 150,
+          "docs/roadmap.md": 141,
+          "experiments/codex_dogfood/capture.py": 6,
+          "pyproject.toml": 207,
+          "src/devtools/context/retrieval/composition.py": 24,
+          "src/devtools/context/retrieval/lexical/bm25.py": 13,
+          "src/devtools/context/retrieval/structural.py": 54,
+          "tests/context/retrieval/test_composition.py": 26,
+          "tests/context/retrieval/test_structural.py": 69,
+          "tests/experiments/test_codex_dogfood_capture.py": 101
+        }
+      }
+    },
+    "short_information_need": {
+      "bm25": {
+        "candidate_count": 285,
+        "coverage": {
+          "10": 4,
+          "100": 10,
+          "20": 5,
+          "5": 2,
+          "50": 6
+        },
+        "last_required_rank": 87,
+        "required_ranks": {
+          "AGENTS.md": 10,
+          "docs/roadmap.md": 2,
+          "experiments/codex_dogfood/capture.py": 1,
+          "pyproject.toml": 71,
+          "src/devtools/context/retrieval/composition.py": 49,
+          "src/devtools/context/retrieval/lexical/bm25.py": 87,
+          "src/devtools/context/retrieval/structural.py": 20,
+          "tests/context/retrieval/test_composition.py": 55,
+          "tests/context/retrieval/test_structural.py": 59,
+          "tests/experiments/test_codex_dogfood_capture.py": 6
+        }
+      },
+      "resource-forward-current-ri-v1": {
+        "candidate_count": 294,
+        "coverage": {
+          "10": 2,
+          "100": 9,
+          "20": 3,
+          "5": 0,
+          "50": 7
+        },
+        "last_required_rank": 127,
+        "required_absent_from_bm25": [],
+        "required_ranks": {
+          "AGENTS.md": 38,
+          "docs/roadmap.md": 25,
+          "experiments/codex_dogfood/capture.py": 12,
+          "pyproject.toml": 127,
+          "src/devtools/context/retrieval/composition.py": 30,
+          "src/devtools/context/retrieval/lexical/bm25.py": 6,
+          "src/devtools/context/retrieval/structural.py": 9,
+          "tests/context/retrieval/test_composition.py": 73,
+          "tests/context/retrieval/test_structural.py": 67,
+          "tests/experiments/test_codex_dogfood_capture.py": 33
+        }
+      },
+      "resource-forward-frozen-input-v1": {
+        "candidate_count": 294,
+        "coverage": {
+          "10": 0,
+          "100": 7,
+          "20": 2,
+          "5": 0,
+          "50": 5
+        },
+        "last_required_rank": 123,
+        "required_absent_from_bm25": [],
+        "required_ranks": {
+          "AGENTS.md": 30,
+          "docs/roadmap.md": 17,
+          "experiments/codex_dogfood/capture.py": 14,
+          "pyproject.toml": 123,
+          "src/devtools/context/retrieval/composition.py": 85,
+          "src/devtools/context/retrieval/lexical/bm25.py": 100,
+          "src/devtools/context/retrieval/structural.py": 37,
+          "tests/context/retrieval/test_composition.py": 101,
+          "tests/context/retrieval/test_structural.py": 106,
+          "tests/experiments/test_codex_dogfood_capture.py": 25
+        }
+      },
+      "rrf:typed-core-v1": {
+        "candidate_count": 294,
+        "coverage": {
+          "10": 4,
+          "100": 9,
+          "20": 6,
+          "5": 2,
+          "50": 6
+        },
+        "last_required_rank": 129,
+        "required_ranks": {
+          "AGENTS.md": 20,
+          "docs/roadmap.md": 8,
+          "experiments/codex_dogfood/capture.py": 1,
+          "pyproject.toml": 129,
+          "src/devtools/context/retrieval/composition.py": 12,
+          "src/devtools/context/retrieval/lexical/bm25.py": 56,
+          "src/devtools/context/retrieval/structural.py": 7,
+          "tests/context/retrieval/test_composition.py": 51,
+          "tests/context/retrieval/test_structural.py": 72,
+          "tests/experiments/test_codex_dogfood_capture.py": 3
+        }
+      },
+      "rrf:typed-navigation-v1": {
+        "candidate_count": 302,
+        "coverage": {
+          "10": 4,
+          "100": 9,
+          "20": 5,
+          "5": 1,
+          "50": 9
+        },
+        "last_required_rank": 140,
+        "required_ranks": {
+          "AGENTS.md": 27,
+          "docs/roadmap.md": 10,
+          "experiments/codex_dogfood/capture.py": 1,
+          "pyproject.toml": 140,
+          "src/devtools/context/retrieval/composition.py": 28,
+          "src/devtools/context/retrieval/lexical/bm25.py": 19,
+          "src/devtools/context/retrieval/structural.py": 8,
+          "tests/context/retrieval/test_composition.py": 35,
+          "tests/context/retrieval/test_structural.py": 49,
+          "tests/experiments/test_codex_dogfood_capture.py": 7
+        }
+      },
+      "typed-core-v1": {
+        "candidate_count": 294,
+        "coverage": {
+          "10": 0,
+          "100": 9,
+          "20": 2,
+          "5": 0,
+          "50": 5
+        },
+        "last_required_rank": 175,
+        "required_absent_from_bm25": [],
+        "required_ranks": {
+          "AGENTS.md": 93,
+          "docs/roadmap.md": 76,
+          "experiments/codex_dogfood/capture.py": 11,
+          "pyproject.toml": 175,
+          "src/devtools/context/retrieval/composition.py": 15,
+          "src/devtools/context/retrieval/lexical/bm25.py": 41,
+          "src/devtools/context/retrieval/structural.py": 29,
+          "tests/context/retrieval/test_composition.py": 56,
+          "tests/context/retrieval/test_structural.py": 81,
+          "tests/experiments/test_codex_dogfood_capture.py": 28
+        }
+      },
+      "typed-navigation-v1": {
+        "candidate_count": 302,
+        "coverage": {
+          "10": 1,
+          "100": 7,
+          "20": 2,
+          "5": 1,
+          "50": 5
+        },
+        "last_required_rank": 237,
+        "required_absent_from_bm25": [],
+        "required_ranks": {
+          "AGENTS.md": 160,
+          "docs/roadmap.md": 139,
+          "experiments/codex_dogfood/capture.py": 4,
+          "pyproject.toml": 237,
+          "src/devtools/context/retrieval/composition.py": 46,
+          "src/devtools/context/retrieval/lexical/bm25.py": 14,
+          "src/devtools/context/retrieval/structural.py": 36,
+          "tests/context/retrieval/test_composition.py": 45,
+          "tests/context/retrieval/test_structural.py": 58,
+          "tests/experiments/test_codex_dogfood_capture.py": 66
+        }
+      }
+    }
+  },
+  "confirmation_executed": false,
+  "diagnostics": {
+    "full_prompt": {
+      "resource-forward-current-ri-v1": {
+        "converged": true,
+        "elapsed_seconds": 0.6933754000347108,
+        "iterations": 19,
+        "ranked_absent_from_bm25": [
+          "src/devtools/core/__init__.py",
+          "src/devtools/core/system/models.py"
+        ],
+        "ranked_resources": 301,
+        "stationary_mass_by_node_kind": {
+          "resource": 1.0
+        },
+        "winner_kinds": {
+          "resource": 301
+        }
+      },
+      "resource-forward-frozen-input-v1": {
+        "converged": true,
+        "elapsed_seconds": 0.3416568001266569,
+        "iterations": 23,
+        "ranked_absent_from_bm25": [
+          "src/devtools/core/__init__.py",
+          "src/devtools/core/system/models.py"
+        ],
+        "ranked_resources": 301,
+        "stationary_mass_by_node_kind": {
+          "resource": 1.0
+        },
+        "winner_kinds": {
+          "resource": 301
+        }
+      },
+      "typed-core-v1": {
+        "converged": true,
+        "elapsed_seconds": 0.39390209992416203,
+        "iterations": 128,
+        "ranked_absent_from_bm25": [
+          "src/devtools/core/__init__.py",
+          "src/devtools/core/system/models.py"
+        ],
+        "ranked_resources": 301,
+        "stationary_mass_by_node_kind": {
+          "direct-method": 0.05171774046495877,
+          "module-class": 0.21823870874153228,
+          "module-function": 0.18985696612942107,
+          "resource": 0.5401865846640879
+        },
+        "winner_kinds": {
+          "module-class": 17,
+          "resource": 284
+        }
+      },
+      "typed-navigation-v1": {
+        "converged": true,
+        "elapsed_seconds": 0.39936939999461174,
+        "iterations": 112,
+        "ranked_absent_from_bm25": [
+          "src/devtools/__init__.py",
+          "src/devtools/core/__init__.py",
+          "src/devtools/core/system/models.py"
+        ],
+        "ranked_resources": 302,
+        "stationary_mass_by_node_kind": {
+          "direct-method": 0.02878306977337709,
+          "module-class": 0.1056194340746066,
+          "module-function": 0.09269568284634117,
+          "resource": 0.7729018133056752
+        },
+        "winner_kinds": {
+          "resource": 302
+        }
+      }
+    },
+    "short_information_need": {
+      "resource-forward-current-ri-v1": {
+        "converged": true,
+        "elapsed_seconds": 0.7102955000009388,
+        "iterations": 20,
+        "ranked_absent_from_bm25": [
+          "src/devtools/context/python/__init__.py",
+          "src/devtools/core/__init__.py",
+          "src/devtools/core/conversion/__init__.py",
+          "src/devtools/core/system/models.py",
+          "src/devtools/resources/commands/models/__init__.py",
+          "src/devtools/resources/filesystem/codecs/__init__.py",
+          "src/devtools/resources/filesystem/models/__init__.py",
+          "src/devtools/resources/filesystem/models/json/__init__.py",
+          "src/devtools/resources/filesystem/models/markdown/__init__.py"
+        ],
+        "ranked_resources": 294,
+        "stationary_mass_by_node_kind": {
+          "resource": 0.9999999999999999
+        },
+        "winner_kinds": {
+          "resource": 294
+        }
+      },
+      "resource-forward-frozen-input-v1": {
+        "converged": true,
+        "elapsed_seconds": 0.33659700001589954,
+        "iterations": 23,
+        "ranked_absent_from_bm25": [
+          "src/devtools/context/python/__init__.py",
+          "src/devtools/core/__init__.py",
+          "src/devtools/core/conversion/__init__.py",
+          "src/devtools/core/system/models.py",
+          "src/devtools/resources/commands/models/__init__.py",
+          "src/devtools/resources/filesystem/codecs/__init__.py",
+          "src/devtools/resources/filesystem/models/__init__.py",
+          "src/devtools/resources/filesystem/models/json/__init__.py",
+          "src/devtools/resources/filesystem/models/markdown/__init__.py"
+        ],
+        "ranked_resources": 294,
+        "stationary_mass_by_node_kind": {
+          "resource": 1.0
+        },
+        "winner_kinds": {
+          "resource": 294
+        }
+      },
+      "typed-core-v1": {
+        "converged": true,
+        "elapsed_seconds": 0.39186350000090897,
+        "iterations": 128,
+        "ranked_absent_from_bm25": [
+          "src/devtools/context/python/__init__.py",
+          "src/devtools/core/__init__.py",
+          "src/devtools/core/conversion/__init__.py",
+          "src/devtools/core/system/models.py",
+          "src/devtools/resources/commands/models/__init__.py",
+          "src/devtools/resources/filesystem/codecs/__init__.py",
+          "src/devtools/resources/filesystem/models/__init__.py",
+          "src/devtools/resources/filesystem/models/json/__init__.py",
+          "src/devtools/resources/filesystem/models/markdown/__init__.py"
+        ],
+        "ranked_resources": 294,
+        "stationary_mass_by_node_kind": {
+          "direct-method": 0.05504521337202999,
+          "module-class": 0.233474420515471,
+          "module-function": 0.16035688755712468,
+          "resource": 0.5511234785553744
+        },
+        "winner_kinds": {
+          "module-class": 17,
+          "resource": 277
+        }
+      },
+      "typed-navigation-v1": {
+        "converged": true,
+        "elapsed_seconds": 0.4033167001325637,
+        "iterations": 112,
+        "ranked_absent_from_bm25": [
+          "src/devtools/__init__.py",
+          "src/devtools/agents/integrations/__init__.py",
+          "src/devtools/context/python/__init__.py",
+          "src/devtools/context/python/imports/__init__.py",
+          "src/devtools/context/python/modules/__init__.py",
+          "src/devtools/core/__init__.py",
+          "src/devtools/core/conversion/__init__.py",
+          "src/devtools/core/system/models.py",
+          "src/devtools/models/benchmarks/__init__.py",
+          "src/devtools/models/interaction/providers/__init__.py",
+          "src/devtools/persistence/__init__.py",
+          "src/devtools/resources/commands/models/__init__.py",
+          "src/devtools/resources/filesystem/codecs/__init__.py",
+          "src/devtools/resources/filesystem/models/__init__.py",
+          "src/devtools/resources/filesystem/models/json/__init__.py",
+          "src/devtools/resources/filesystem/models/markdown/__init__.py",
+          "src/devtools/tools/__init__.py"
+        ],
+        "ranked_resources": 302,
+        "stationary_mass_by_node_kind": {
+          "direct-method": 0.03032430373805201,
+          "module-class": 0.1118957701567449,
+          "module-function": 0.08444768405151898,
+          "resource": 0.7733322420536841
+        },
+        "winner_kinds": {
+          "resource": 302
+        }
+      }
+    }
+  },
+  "freeze_sha256": "c03a7705b95e6588e740fa652b82a48ed0fa0d487b0ff089e3cb4e91330af49f",
+  "required": [
+    "AGENTS.md",
+    "docs/roadmap.md",
+    "experiments/codex_dogfood/capture.py",
+    "pyproject.toml",
+    "src/devtools/context/retrieval/composition.py",
+    "src/devtools/context/retrieval/lexical/bm25.py",
+    "src/devtools/context/retrieval/structural.py",
+    "tests/context/retrieval/test_composition.py",
+    "tests/context/retrieval/test_structural.py",
+    "tests/experiments/test_codex_dogfood_capture.py"
+  ],
+  "required_provenance": {
+    "full_prompt": {
+      "resource-forward-current-ri-v1": {
+        "AGENTS.md": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:AGENTS.md",
+          "winning_node_kind": "resource"
+        },
+        "docs/roadmap.md": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:docs/roadmap.md",
+          "winning_node_kind": "resource"
+        },
+        "experiments/codex_dogfood/capture.py": {
+          "top_incoming": [
+            {
+              "direction": "source-to-target",
+              "fact": "015644ec1a37d040051313676bb16426fafac260f5ab8c02e8c589779e1cd821",
+              "family": "reference",
+              "flow": 0.0007834954879272504,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py"
+            },
+            {
+              "direction": "source-to-target",
+              "fact": "26b2de5db59cf4be80179674438746db0368f99648f25934f768d007ba4e1f85",
+              "family": "reference",
+              "flow": 0.0007834954879272504,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py"
+            },
+            {
+              "direction": "source-to-target",
+              "fact": "4d8ab009ec8f104dbb91255824fe1fa761b9b2411b58af071ed5e8781af4b996",
+              "family": "reference",
+              "flow": 0.0007834954879272504,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/capture.py",
+          "winning_node_kind": "resource"
+        },
+        "pyproject.toml": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:pyproject.toml",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/composition.py": {
+          "top_incoming": [
+            {
+              "direction": "source-to-target",
+              "fact": "76c671185d25c4b7db6ef4597b92ec809af24b040ae923ff77b2ad50a3998884",
+              "family": "reference",
+              "flow": 0.0019531423234782934,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/capture.py"
+            },
+            {
+              "direction": "source-to-target",
+              "fact": "c22a69cfda04cf824a0383500d7d8a2fd740f1e40d8b43ca5d778c113053076d",
+              "family": "reference",
+              "flow": 0.00031812561520370834,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py"
+            },
+            {
+              "direction": "forward",
+              "fact": "4cbd0f900234ebe68cb238b2bd4a5e4a2264afeb26c17270d08d228c2b680cf8",
+              "family": "import",
+              "flow": 4.538572419750293e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/composition.py",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/lexical/bm25.py": {
+          "top_incoming": [
+            {
+              "direction": "source-to-target",
+              "fact": "11db8bff30d1bf8b97ca206b21dfcbeb7d2b7fb5f3efa990d8ea12a553ef82be",
+              "family": "reference",
+              "flow": 0.0019531423234782934,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/capture.py"
+            },
+            {
+              "direction": "source-to-target",
+              "fact": "eb37563ea9575bd730cc22902f3fadd5d61364b6d9c1d95d2483d49f202b8c39",
+              "family": "reference",
+              "flow": 0.0019531423234782934,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/capture.py"
+            },
+            {
+              "direction": "source-to-target",
+              "fact": "150ff559bf62a26671b2482e6fc61a351a6dbe58d6eddc4c444d66fd1dc169cf",
+              "family": "reference",
+              "flow": 0.00031812561520370834,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/lexical/bm25.py",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/structural.py": {
+          "top_incoming": [
+            {
+              "direction": "source-to-target",
+              "fact": "6f90f5a1bd3d905cf7da8a166a2a0daf5eaa81610bfd480bcc062c70ee26ee0f",
+              "family": "reference",
+              "flow": 0.0019531423234782934,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/capture.py"
+            },
+            {
+              "direction": "source-to-target",
+              "fact": "43a9af9199bbdf5bdd6bc5be3787703f1f1ea48d958abc0f6511af204c2f4622",
+              "family": "reference",
+              "flow": 0.0003181256152037084,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py"
+            },
+            {
+              "direction": "source-to-target",
+              "fact": "599522bab69c84656d2f6b6ab6b53ebde7b6af93e8d9d4737cbd64c807c80821",
+              "family": "reference",
+              "flow": 0.0003181256152037084,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/structural.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/context/retrieval/test_composition.py": {
+          "top_incoming": [
+            {
+              "direction": "source-to-target",
+              "fact": "0708732a7501f3fbf151ac0d9fab90c635dd703bb84932f1e44fff3b9f59d484",
+              "family": "reference",
+              "flow": 0.0007834954879272504,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/context/retrieval/test_structural.py": {
+          "top_incoming": [
+            {
+              "direction": "source-to-target",
+              "fact": "30a75893b13f2b5b9828b859eb75807a951d049311af55913a762afae6b502a4",
+              "family": "reference",
+              "flow": 0.0007834954879272504,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py"
+            },
+            {
+              "direction": "source-to-target",
+              "fact": "459b4f8f4a060d7a38a186ea514d4343ef2360a6096c6b7743a406cd7c78555f",
+              "family": "reference",
+              "flow": 0.00031812561520370834,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_structural.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/experiments/test_codex_dogfood_capture.py": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py",
+          "winning_node_kind": "resource"
+        }
+      },
+      "resource-forward-frozen-input-v1": {
+        "AGENTS.md": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:AGENTS.md",
+          "winning_node_kind": "resource"
+        },
+        "docs/roadmap.md": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:docs/roadmap.md",
+          "winning_node_kind": "resource"
+        },
+        "experiments/codex_dogfood/capture.py": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/capture.py",
+          "winning_node_kind": "resource"
+        },
+        "pyproject.toml": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:pyproject.toml",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/composition.py": {
+          "top_incoming": [
+            {
+              "direction": "forward",
+              "fact": "4cbd0f900234ebe68cb238b2bd4a5e4a2264afeb26c17270d08d228c2b680cf8",
+              "family": "import",
+              "flow": 4.896092082418181e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            },
+            {
+              "direction": "forward",
+              "fact": "a9b3044c643927195313fa443e92e3d0fda3872c405f85aca4ab11db30c34520",
+              "family": "import",
+              "flow": 4.896092082418181e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            },
+            {
+              "direction": "forward",
+              "fact": "d93ba65bf98ef535ba4627e7570b60647d9d00d1bbc22b0700a6ce41f5bf8304",
+              "family": "import",
+              "flow": 4.896092082418181e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/composition.py",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/lexical/bm25.py": {
+          "top_incoming": [
+            {
+              "direction": "forward",
+              "fact": "2981d2e7a5747e428eb7d648921bfc108d5d9083895fc695505cc4abda8c5cd5",
+              "family": "import",
+              "flow": 7.492754943814914e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/lexical/__init__.py"
+            },
+            {
+              "direction": "forward",
+              "fact": "3dc12861f6dfb5c01c31a8e549338c659a85a7a0e22e07829fc11f9743704c0c",
+              "family": "import",
+              "flow": 7.492754943814914e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/lexical/__init__.py"
+            },
+            {
+              "direction": "forward",
+              "fact": "5cd1b3d26db57e5795192fcca807a76d33a4718f5d6aba4f959f70d140ae9887",
+              "family": "import",
+              "flow": 7.492754943814914e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/lexical/__init__.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/lexical/bm25.py",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/structural.py": {
+          "top_incoming": [
+            {
+              "direction": "forward",
+              "fact": "2646e6c7bc20971e233d84a7149086ffb12663332a19c7e8037eab60741e03a8",
+              "family": "import",
+              "flow": 4.896092082418181e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            },
+            {
+              "direction": "forward",
+              "fact": "713e0aa495af181de3532453b1a203efab266927ebfe9a2d2f5b39e515bc121b",
+              "family": "import",
+              "flow": 4.896092082418181e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            },
+            {
+              "direction": "forward",
+              "fact": "7c21cc405df138ed7dda77f603806015b20cdea75b3dc99f6b75b9772e6b54cf",
+              "family": "import",
+              "flow": 4.896092082418181e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/structural.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/context/retrieval/test_composition.py": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/context/retrieval/test_structural.py": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_structural.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/experiments/test_codex_dogfood_capture.py": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py",
+          "winning_node_kind": "resource"
+        }
+      },
+      "typed-core-v1": {
+        "AGENTS.md": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:AGENTS.md",
+          "winning_node_kind": "resource"
+        },
+        "docs/roadmap.md": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:docs/roadmap.md",
+          "winning_node_kind": "resource"
+        },
+        "experiments/codex_dogfood/capture.py": {
+          "top_incoming": [
+            {
+              "direction": "declaration-to-resource",
+              "fact": "a85d2b69a8b9b272eb0134608acd987b4aaf8f936b58ca7f901d3ec2d90b1a88",
+              "family": "containment-return",
+              "flow": 0.0008791389982975046,
+              "source": "module-function:f430b9c0e0d581bf13d75e1fb30ecc99c7aa61bb846771afe70197befc36a82c"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "770da87efb568b53eab1e36c7fd182f674d52359e3745b79645e2270b1b2807b",
+              "family": "containment-return",
+              "flow": 0.0008139057041173684,
+              "source": "module-class:033f07085197a8abf7abe93ef0e6e7c101eedd53e2adb1ca14b9d2e82b907848"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "ffbc72b296765cf75d6a32bae92d624f77b550e09b86492abe93abc5ad105fdb",
+              "family": "containment-return",
+              "flow": 0.0006371081832619154,
+              "source": "module-class:309784b15c81e561f8c18862e9e47b63298e35832cca7e369e5a048bf9c05252"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/capture.py",
+          "winning_node_kind": "resource"
+        },
+        "pyproject.toml": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:pyproject.toml",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/composition.py": {
+          "top_incoming": [
+            {
+              "direction": "declaration-to-resource",
+              "fact": "42512d547b6047244f65831903aff55a1f680f437c2704a0d9b2ea84bd28bd8c",
+              "family": "containment-return",
+              "flow": 0.0021539760470578907,
+              "source": "module-function:d6e7bc9bf71182f46dcd54c1cea1acb48b3b202380886aaa5eb258c2ca32a45f"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "72519c079f52d0c766ef597ef9fd5c503f1cc13a86777c8e7e889128db045cd9",
+              "family": "containment-return",
+              "flow": 0.0013945609167252768,
+              "source": "module-class:81b7c85a43014139a17ae4772aabfb89e865fe346df109e6edc6e549b7c9f1e6"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "faf96a9a99940976e693e32601a07dde5c6848e2f8e660d4fc11a8095a096c1c",
+              "family": "containment-return",
+              "flow": 0.0013945609167252768,
+              "source": "module-class:9ef28094743130d68a9a512e38246886e39af9206fd1c6bc9a7e4da6f0684c88"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/composition.py",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/lexical/bm25.py": {
+          "top_incoming": [
+            {
+              "direction": "declaration-to-resource",
+              "fact": "8593ab3e57627e0c2e1203d9b5990ee87770d130cfb182806885fc4a46fae4e6",
+              "family": "containment-return",
+              "flow": 0.0007057884392778493,
+              "source": "module-function:d6c0aea0e9f172020f8cc4ca796251bdf97681ed1f7026e0dd3b7d073298521b"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "8412bd20cfc9dece3657cc7a8bfc231903ceec40f7ff26ff0a0c8b1e7dccde32",
+              "family": "containment-return",
+              "flow": 0.0002143104655909946,
+              "source": "module-function:90711b79727a97d568d20b5fa230b6f691f508f3916a797b02515ca6d7ead435"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "f95a666aa51b59b80f5caf95733ec6e5da2b64c12c24145578567fbf1ae9ae68",
+              "family": "containment-return",
+              "flow": 0.00020576718722252702,
+              "source": "module-function:83f9be87e3476fc9ec75ae923c31af8d36991f3e233a88f7bb6010fd668b5938"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/lexical/bm25.py",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/structural.py": {
+          "top_incoming": [
+            {
+              "direction": "declaration-to-resource",
+              "fact": "1916a709754ac4d11643221c54474abf0f774873cf779704a1ac2ced38d09f72",
+              "family": "containment-return",
+              "flow": 0.00042266556124253917,
+              "source": "module-function:b78d84c706749ddc8adb76986a090defe850053b142ad624f9cf7c47ee1733d8"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "5815917b2290d3d2a09e04c3e7d1ec4c6b1581fbf890485d94fe2c14af397d04",
+              "family": "containment-return",
+              "flow": 0.00040455498729546126,
+              "source": "module-function:7acafd528bd56093dd8730e93a719b1ad0b05769c5bece4cb062103e125280fa"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "c8202119717ea7f7b6d5a207b4f1235c973d58d93cecaa8a70e705a14bf49bce",
+              "family": "containment-return",
+              "flow": 0.00028479974494350843,
+              "source": "module-function:37dc4ab8db17fd91eb98b6880db69fdf7c5bbc896b140406c5496b9ceadad97a"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/structural.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/context/retrieval/test_composition.py": {
+          "top_incoming": [
+            {
+              "direction": "declaration-to-resource",
+              "fact": "6bab8b2d7a7a1c7a2ade67bdb17ec2e10dfb02aa06ccad13a636a5ee4a5e9051",
+              "family": "containment-return",
+              "flow": 0.00032717244985917013,
+              "source": "module-function:d430ebd572054553789f50629648dc8440179e0b62ab9b1ab6236fbade0be278"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "9cdbaa7bf48c929f8718f9eb034e31a63b7646476e7032470d011ea20dcbb985",
+              "family": "containment-return",
+              "flow": 0.000293002727296151,
+              "source": "module-function:937ccc236a363c2adaeb6bb8079eace19440c3ee7e449a69f33418ba442e8002"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "d52b8bc2af602ee11eca50708671ac2f12d625b7afd7ded6d652921afcdd4ed8",
+              "family": "containment-return",
+              "flow": 0.00023276831200920014,
+              "source": "module-function:19a62e5ac9110b62586b6991d19483d684d46b451070d89879ed02fdf74a1ce5"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/context/retrieval/test_structural.py": {
+          "top_incoming": [
+            {
+              "direction": "declaration-to-resource",
+              "fact": "b9e5b5477876cb336599a1b069807518ad70a49386d78d9497205c37dc91eec7",
+              "family": "containment-return",
+              "flow": 0.0004042715869334489,
+              "source": "module-function:adbd8eeb49a9de0bfa165905639a028de981173b2098cabf3a8404fd4670d5ac"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "e0c39a247bf832bbd002dcf2e3cd97d0ae49305a18b7ba645b18fab5adfe1449",
+              "family": "containment-return",
+              "flow": 0.000152657260166283,
+              "source": "module-function:a27be6cc6bf6f4e8208c36ed474e02cbbafaa443cead21225dbd5beae9de7d0f"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "1f2169ecc9bbb2b3b339d661706d8d3c78a02910fa1f8a50cfd283707a5ed091",
+              "family": "containment-return",
+              "flow": 0.000152657260166283,
+              "source": "module-function:a32e0422ae1a9ae1acc999df56af73a661d2ab161f473094fe4b45862a7a77bf"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_structural.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/experiments/test_codex_dogfood_capture.py": {
+          "top_incoming": [
+            {
+              "direction": "declaration-to-resource",
+              "fact": "bb5708f5c6c8b7a2fb087164f6605bdd5ed5854802237c1fc79fca9c38f8f094",
+              "family": "containment-return",
+              "flow": 0.0005352967375369992,
+              "source": "module-function:52c68f8a176dcde681ce7f45f8b40436ae7bfe333e18a398f5a87b7c2c2aeef3"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "446f6158d8a0f548a624bbb61e8898b1a2c37f9b3a570cba73efd78947794b49",
+              "family": "containment-return",
+              "flow": 0.0003069802079065229,
+              "source": "module-function:940d7a87842b0eefbfd8df80737ea816f3c840c8ad924d5bf7d06b42863bcc51"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "20423dc0f973b0e56a91613c849495e96730c07378727a108c60d481f6e0a51b",
+              "family": "containment-return",
+              "flow": 0.0003069802079065229,
+              "source": "module-function:b6593d79585e6bc8badda577e22fce48c544bb250e343f055f3169644346181e"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py",
+          "winning_node_kind": "resource"
+        }
+      },
+      "typed-navigation-v1": {
+        "AGENTS.md": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:AGENTS.md",
+          "winning_node_kind": "resource"
+        },
+        "docs/roadmap.md": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:docs/roadmap.md",
+          "winning_node_kind": "resource"
+        },
+        "experiments/codex_dogfood/capture.py": {
+          "top_incoming": [
+            {
+              "direction": "package-to-child",
+              "fact": "84361557b1ac20b956cad3ce1274d366569ae9c3e5a4198b07cc00f6329fc8da",
+              "family": "package-membership",
+              "flow": 0.003399201298314693,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/__init__.py"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "a85d2b69a8b9b272eb0134608acd987b4aaf8f936b58ca7f901d3ec2d90b1a88",
+              "family": "containment-return",
+              "flow": 0.0006374433183924495,
+              "source": "module-function:f430b9c0e0d581bf13d75e1fb30ecc99c7aa61bb846771afe70197befc36a82c"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "770da87efb568b53eab1e36c7fd182f674d52359e3745b79645e2270b1b2807b",
+              "family": "containment-return",
+              "flow": 0.0005750578572088976,
+              "source": "module-class:033f07085197a8abf7abe93ef0e6e7c101eedd53e2adb1ca14b9d2e82b907848"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/capture.py",
+          "winning_node_kind": "resource"
+        },
+        "pyproject.toml": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:pyproject.toml",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/composition.py": {
+          "top_incoming": [
+            {
+              "direction": "test-to-mirrored-source",
+              "fact": "23ffacbae8f5f43e421c1388c69480a9952707fed06302c95d8dabd3c8e93ede",
+              "family": "mirrored-path",
+              "flow": 0.0014526819192077136,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "42512d547b6047244f65831903aff55a1f680f437c2704a0d9b2ea84bd28bd8c",
+              "family": "containment-return",
+              "flow": 0.0005459186632502248,
+              "source": "module-function:d6e7bc9bf71182f46dcd54c1cea1acb48b3b202380886aaa5eb258c2ca32a45f"
+            },
+            {
+              "direction": "package-to-child",
+              "fact": "e87c017fbba8e5c454195ee41a7fb6b5fe7fbb0ba4a6c4087bf66031243df8e3",
+              "family": "package-membership",
+              "flow": 0.000431670511831868,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/composition.py",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/lexical/bm25.py": {
+          "top_incoming": [
+            {
+              "direction": "test-to-mirrored-source",
+              "fact": "c7640847eb9ab581c943c271847fc58a2275fa8c897e5d524f1c0b57a2cf42a8",
+              "family": "mirrored-path",
+              "flow": 0.0014363085180285327,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/lexical/test_bm25.py"
+            },
+            {
+              "direction": "package-to-child",
+              "fact": "e9c14547186b69039261e6c135743f6e8bd4e8eba88c1206afb22636326eed66",
+              "family": "package-membership",
+              "flow": 0.0006969718845041984,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/lexical/__init__.py"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "8593ab3e57627e0c2e1203d9b5990ee87770d130cfb182806885fc4a46fae4e6",
+              "family": "containment-return",
+              "flow": 0.00045255243656722085,
+              "source": "module-function:d6c0aea0e9f172020f8cc4ca796251bdf97681ed1f7026e0dd3b7d073298521b"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/lexical/bm25.py",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/structural.py": {
+          "top_incoming": [
+            {
+              "direction": "test-to-mirrored-source",
+              "fact": "6b0bae6908ff1bd0937dbd9152cc6b3b3d2c800b2824c8bd7f0a83d9b6c2d62f",
+              "family": "mirrored-path",
+              "flow": 0.0011296848309295935,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_structural.py"
+            },
+            {
+              "direction": "package-to-child",
+              "fact": "28d0da57c7a51b17a88c9b9c71da486fd3ea69289074933d69d81ca15af61465",
+              "family": "package-membership",
+              "flow": 0.000431670511831868,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "5815917b2290d3d2a09e04c3e7d1ec4c6b1581fbf890485d94fe2c14af397d04",
+              "family": "containment-return",
+              "flow": 0.00024730762493755445,
+              "source": "module-function:7acafd528bd56093dd8730e93a719b1ad0b05769c5bece4cb062103e125280fa"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/structural.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/context/retrieval/test_composition.py": {
+          "top_incoming": [
+            {
+              "direction": "source-to-mirrored-test",
+              "fact": "23ffacbae8f5f43e421c1388c69480a9952707fed06302c95d8dabd3c8e93ede",
+              "family": "mirrored-path",
+              "flow": 0.0014812592878909487,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/composition.py"
+            },
+            {
+              "direction": "package-to-child",
+              "fact": "a3f4501687bf461def5b915c4da3f7257ab844614633a35149ed5dbc78125d15",
+              "family": "package-membership",
+              "flow": 0.0011265129930942374,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/__init__.py"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "9cdbaa7bf48c929f8718f9eb034e31a63b7646476e7032470d011ea20dcbb985",
+              "family": "containment-return",
+              "flow": 0.00019999330865880485,
+              "source": "module-function:937ccc236a363c2adaeb6bb8079eace19440c3ee7e449a69f33418ba442e8002"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/context/retrieval/test_structural.py": {
+          "top_incoming": [
+            {
+              "direction": "package-to-child",
+              "fact": "45b637aea8f10db97c342028d49f50e1ac81b68f46c22b4c6a42b03e6e6204a9",
+              "family": "package-membership",
+              "flow": 0.0011265129930942374,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/__init__.py"
+            },
+            {
+              "direction": "source-to-mirrored-test",
+              "fact": "6b0bae6908ff1bd0937dbd9152cc6b3b3d2c800b2824c8bd7f0a83d9b6c2d62f",
+              "family": "mirrored-path",
+              "flow": 0.0008917427279024736,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/structural.py"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "b9e5b5477876cb336599a1b069807518ad70a49386d78d9497205c37dc91eec7",
+              "family": "containment-return",
+              "flow": 0.00026056283499349816,
+              "source": "module-function:adbd8eeb49a9de0bfa165905639a028de981173b2098cabf3a8404fd4670d5ac"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_structural.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/experiments/test_codex_dogfood_capture.py": {
+          "top_incoming": [
+            {
+              "direction": "declaration-to-resource",
+              "fact": "bb5708f5c6c8b7a2fb087164f6605bdd5ed5854802237c1fc79fca9c38f8f094",
+              "family": "containment-return",
+              "flow": 0.0005119277550062044,
+              "source": "module-function:52c68f8a176dcde681ce7f45f8b40436ae7bfe333e18a398f5a87b7c2c2aeef3"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "446f6158d8a0f548a624bbb61e8898b1a2c37f9b3a570cba73efd78947794b49",
+              "family": "containment-return",
+              "flow": 0.0002935786408637731,
+              "source": "module-function:940d7a87842b0eefbfd8df80737ea816f3c840c8ad924d5bf7d06b42863bcc51"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "20423dc0f973b0e56a91613c849495e96730c07378727a108c60d481f6e0a51b",
+              "family": "containment-return",
+              "flow": 0.0002935786408637731,
+              "source": "module-function:b6593d79585e6bc8badda577e22fce48c544bb250e343f055f3169644346181e"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py",
+          "winning_node_kind": "resource"
+        }
+      }
+    },
+    "short_information_need": {
+      "resource-forward-current-ri-v1": {
+        "AGENTS.md": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:AGENTS.md",
+          "winning_node_kind": "resource"
+        },
+        "docs/roadmap.md": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:docs/roadmap.md",
+          "winning_node_kind": "resource"
+        },
+        "experiments/codex_dogfood/capture.py": {
+          "top_incoming": [
+            {
+              "direction": "source-to-target",
+              "fact": "015644ec1a37d040051313676bb16426fafac260f5ab8c02e8c589779e1cd821",
+              "family": "reference",
+              "flow": 0.0008485702058147059,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py"
+            },
+            {
+              "direction": "source-to-target",
+              "fact": "26b2de5db59cf4be80179674438746db0368f99648f25934f768d007ba4e1f85",
+              "family": "reference",
+              "flow": 0.0008485702058147059,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py"
+            },
+            {
+              "direction": "source-to-target",
+              "fact": "4d8ab009ec8f104dbb91255824fe1fa761b9b2411b58af071ed5e8781af4b996",
+              "family": "reference",
+              "flow": 0.0008485702058147059,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/capture.py",
+          "winning_node_kind": "resource"
+        },
+        "pyproject.toml": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:pyproject.toml",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/composition.py": {
+          "top_incoming": [
+            {
+              "direction": "source-to-target",
+              "fact": "76c671185d25c4b7db6ef4597b92ec809af24b040ae923ff77b2ad50a3998884",
+              "family": "reference",
+              "flow": 0.0020984723860195333,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/capture.py"
+            },
+            {
+              "direction": "source-to-target",
+              "fact": "c22a69cfda04cf824a0383500d7d8a2fd740f1e40d8b43ca5d778c113053076d",
+              "family": "reference",
+              "flow": 0.00024288784876585058,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py"
+            },
+            {
+              "direction": "forward",
+              "fact": "4cbd0f900234ebe68cb238b2bd4a5e4a2264afeb26c17270d08d228c2b680cf8",
+              "family": "import",
+              "flow": 5.758631625148066e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/composition.py",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/lexical/bm25.py": {
+          "top_incoming": [
+            {
+              "direction": "source-to-target",
+              "fact": "11db8bff30d1bf8b97ca206b21dfcbeb7d2b7fb5f3efa990d8ea12a553ef82be",
+              "family": "reference",
+              "flow": 0.0020984723860195333,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/capture.py"
+            },
+            {
+              "direction": "source-to-target",
+              "fact": "eb37563ea9575bd730cc22902f3fadd5d61364b6d9c1d95d2483d49f202b8c39",
+              "family": "reference",
+              "flow": 0.0020984723860195333,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/capture.py"
+            },
+            {
+              "direction": "source-to-target",
+              "fact": "150ff559bf62a26671b2482e6fc61a351a6dbe58d6eddc4c444d66fd1dc169cf",
+              "family": "reference",
+              "flow": 0.00024288784876585058,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/lexical/bm25.py",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/structural.py": {
+          "top_incoming": [
+            {
+              "direction": "source-to-target",
+              "fact": "6f90f5a1bd3d905cf7da8a166a2a0daf5eaa81610bfd480bcc062c70ee26ee0f",
+              "family": "reference",
+              "flow": 0.0020984723860195333,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/capture.py"
+            },
+            {
+              "direction": "source-to-target",
+              "fact": "43a9af9199bbdf5bdd6bc5be3787703f1f1ea48d958abc0f6511af204c2f4622",
+              "family": "reference",
+              "flow": 0.0002428878487658506,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py"
+            },
+            {
+              "direction": "source-to-target",
+              "fact": "599522bab69c84656d2f6b6ab6b53ebde7b6af93e8d9d4737cbd64c807c80821",
+              "family": "reference",
+              "flow": 0.0002428878487658506,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/structural.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/context/retrieval/test_composition.py": {
+          "top_incoming": [
+            {
+              "direction": "source-to-target",
+              "fact": "0708732a7501f3fbf151ac0d9fab90c635dd703bb84932f1e44fff3b9f59d484",
+              "family": "reference",
+              "flow": 0.0008485702058147059,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/context/retrieval/test_structural.py": {
+          "top_incoming": [
+            {
+              "direction": "source-to-target",
+              "fact": "30a75893b13f2b5b9828b859eb75807a951d049311af55913a762afae6b502a4",
+              "family": "reference",
+              "flow": 0.0008485702058147059,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py"
+            },
+            {
+              "direction": "source-to-target",
+              "fact": "459b4f8f4a060d7a38a186ea514d4343ef2360a6096c6b7743a406cd7c78555f",
+              "family": "reference",
+              "flow": 0.00024288784876585058,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_structural.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/experiments/test_codex_dogfood_capture.py": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py",
+          "winning_node_kind": "resource"
+        }
+      },
+      "resource-forward-frozen-input-v1": {
+        "AGENTS.md": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:AGENTS.md",
+          "winning_node_kind": "resource"
+        },
+        "docs/roadmap.md": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:docs/roadmap.md",
+          "winning_node_kind": "resource"
+        },
+        "experiments/codex_dogfood/capture.py": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/capture.py",
+          "winning_node_kind": "resource"
+        },
+        "pyproject.toml": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:pyproject.toml",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/composition.py": {
+          "top_incoming": [
+            {
+              "direction": "forward",
+              "fact": "4cbd0f900234ebe68cb238b2bd4a5e4a2264afeb26c17270d08d228c2b680cf8",
+              "family": "import",
+              "flow": 6.113707165628748e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            },
+            {
+              "direction": "forward",
+              "fact": "a9b3044c643927195313fa443e92e3d0fda3872c405f85aca4ab11db30c34520",
+              "family": "import",
+              "flow": 6.113707165628748e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            },
+            {
+              "direction": "forward",
+              "fact": "d93ba65bf98ef535ba4627e7570b60647d9d00d1bbc22b0700a6ce41f5bf8304",
+              "family": "import",
+              "flow": 6.113707165628748e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/composition.py",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/lexical/bm25.py": {
+          "top_incoming": [
+            {
+              "direction": "forward",
+              "fact": "2981d2e7a5747e428eb7d648921bfc108d5d9083895fc695505cc4abda8c5cd5",
+              "family": "import",
+              "flow": 8.835658438515221e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/lexical/__init__.py"
+            },
+            {
+              "direction": "forward",
+              "fact": "3dc12861f6dfb5c01c31a8e549338c659a85a7a0e22e07829fc11f9743704c0c",
+              "family": "import",
+              "flow": 8.835658438515221e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/lexical/__init__.py"
+            },
+            {
+              "direction": "forward",
+              "fact": "5cd1b3d26db57e5795192fcca807a76d33a4718f5d6aba4f959f70d140ae9887",
+              "family": "import",
+              "flow": 8.835658438515221e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/lexical/__init__.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/lexical/bm25.py",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/structural.py": {
+          "top_incoming": [
+            {
+              "direction": "forward",
+              "fact": "2646e6c7bc20971e233d84a7149086ffb12663332a19c7e8037eab60741e03a8",
+              "family": "import",
+              "flow": 6.113707165628748e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            },
+            {
+              "direction": "forward",
+              "fact": "713e0aa495af181de3532453b1a203efab266927ebfe9a2d2f5b39e515bc121b",
+              "family": "import",
+              "flow": 6.113707165628748e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            },
+            {
+              "direction": "forward",
+              "fact": "7c21cc405df138ed7dda77f603806015b20cdea75b3dc99f6b75b9772e6b54cf",
+              "family": "import",
+              "flow": 6.113707165628748e-05,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/structural.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/context/retrieval/test_composition.py": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/context/retrieval/test_structural.py": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_structural.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/experiments/test_codex_dogfood_capture.py": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py",
+          "winning_node_kind": "resource"
+        }
+      },
+      "typed-core-v1": {
+        "AGENTS.md": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:AGENTS.md",
+          "winning_node_kind": "resource"
+        },
+        "docs/roadmap.md": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:docs/roadmap.md",
+          "winning_node_kind": "resource"
+        },
+        "experiments/codex_dogfood/capture.py": {
+          "top_incoming": [
+            {
+              "direction": "declaration-to-resource",
+              "fact": "a85d2b69a8b9b272eb0134608acd987b4aaf8f936b58ca7f901d3ec2d90b1a88",
+              "family": "containment-return",
+              "flow": 0.0009994642247908424,
+              "source": "module-function:f430b9c0e0d581bf13d75e1fb30ecc99c7aa61bb846771afe70197befc36a82c"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "770da87efb568b53eab1e36c7fd182f674d52359e3745b79645e2270b1b2807b",
+              "family": "containment-return",
+              "flow": 0.0009245328671861902,
+              "source": "module-class:033f07085197a8abf7abe93ef0e6e7c101eedd53e2adb1ca14b9d2e82b907848"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "ffbc72b296765cf75d6a32bae92d624f77b550e09b86492abe93abc5ad105fdb",
+              "family": "containment-return",
+              "flow": 0.000723704788403939,
+              "source": "module-class:309784b15c81e561f8c18862e9e47b63298e35832cca7e369e5a048bf9c05252"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/capture.py",
+          "winning_node_kind": "resource"
+        },
+        "pyproject.toml": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:pyproject.toml",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/composition.py": {
+          "top_incoming": [
+            {
+              "direction": "declaration-to-resource",
+              "fact": "42512d547b6047244f65831903aff55a1f680f437c2704a0d9b2ea84bd28bd8c",
+              "family": "containment-return",
+              "flow": 0.0016831174204808101,
+              "source": "module-function:d6e7bc9bf71182f46dcd54c1cea1acb48b3b202380886aaa5eb258c2ca32a45f"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "72519c079f52d0c766ef597ef9fd5c503f1cc13a86777c8e7e889128db045cd9",
+              "family": "containment-return",
+              "flow": 0.0010776856315812084,
+              "source": "module-class:81b7c85a43014139a17ae4772aabfb89e865fe346df109e6edc6e549b7c9f1e6"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "faf96a9a99940976e693e32601a07dde5c6848e2f8e660d4fc11a8095a096c1c",
+              "family": "containment-return",
+              "flow": 0.0010776856315812084,
+              "source": "module-class:9ef28094743130d68a9a512e38246886e39af9206fd1c6bc9a7e4da6f0684c88"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/composition.py",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/lexical/bm25.py": {
+          "top_incoming": [
+            {
+              "direction": "declaration-to-resource",
+              "fact": "8593ab3e57627e0c2e1203d9b5990ee87770d130cfb182806885fc4a46fae4e6",
+              "family": "containment-return",
+              "flow": 0.0007291080766464783,
+              "source": "module-function:d6c0aea0e9f172020f8cc4ca796251bdf97681ed1f7026e0dd3b7d073298521b"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "f95a666aa51b59b80f5caf95733ec6e5da2b64c12c24145578567fbf1ae9ae68",
+              "family": "containment-return",
+              "flow": 0.00020560454166643568,
+              "source": "module-function:83f9be87e3476fc9ec75ae923c31af8d36991f3e233a88f7bb6010fd668b5938"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "8412bd20cfc9dece3657cc7a8bfc231903ceec40f7ff26ff0a0c8b1e7dccde32",
+              "family": "containment-return",
+              "flow": 0.00020434597353932436,
+              "source": "module-function:90711b79727a97d568d20b5fa230b6f691f508f3916a797b02515ca6d7ead435"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/lexical/bm25.py",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/structural.py": {
+          "top_incoming": [
+            {
+              "direction": "declaration-to-resource",
+              "fact": "5815917b2290d3d2a09e04c3e7d1ec4c6b1581fbf890485d94fe2c14af397d04",
+              "family": "containment-return",
+              "flow": 0.00043610210838704495,
+              "source": "module-function:7acafd528bd56093dd8730e93a719b1ad0b05769c5bece4cb062103e125280fa"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "1916a709754ac4d11643221c54474abf0f774873cf779704a1ac2ced38d09f72",
+              "family": "containment-return",
+              "flow": 0.00041661439027007775,
+              "source": "module-function:b78d84c706749ddc8adb76986a090defe850053b142ad624f9cf7c47ee1733d8"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "c8202119717ea7f7b6d5a207b4f1235c973d58d93cecaa8a70e705a14bf49bce",
+              "family": "containment-return",
+              "flow": 0.00031806136447728984,
+              "source": "module-function:37dc4ab8db17fd91eb98b6880db69fdf7c5bbc896b140406c5496b9ceadad97a"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/structural.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/context/retrieval/test_composition.py": {
+          "top_incoming": [
+            {
+              "direction": "declaration-to-resource",
+              "fact": "9cdbaa7bf48c929f8718f9eb034e31a63b7646476e7032470d011ea20dcbb985",
+              "family": "containment-return",
+              "flow": 0.0002703925046465638,
+              "source": "module-function:937ccc236a363c2adaeb6bb8079eace19440c3ee7e449a69f33418ba442e8002"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "6bab8b2d7a7a1c7a2ade67bdb17ec2e10dfb02aa06ccad13a636a5ee4a5e9051",
+              "family": "containment-return",
+              "flow": 0.0002550380116995704,
+              "source": "module-function:d430ebd572054553789f50629648dc8440179e0b62ab9b1ab6236fbade0be278"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "d52b8bc2af602ee11eca50708671ac2f12d625b7afd7ded6d652921afcdd4ed8",
+              "family": "containment-return",
+              "flow": 0.00018144794131365563,
+              "source": "module-function:19a62e5ac9110b62586b6991d19483d684d46b451070d89879ed02fdf74a1ce5"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/context/retrieval/test_structural.py": {
+          "top_incoming": [
+            {
+              "direction": "declaration-to-resource",
+              "fact": "b9e5b5477876cb336599a1b069807518ad70a49386d78d9497205c37dc91eec7",
+              "family": "containment-return",
+              "flow": 0.0003934158244247532,
+              "source": "module-function:adbd8eeb49a9de0bfa165905639a028de981173b2098cabf3a8404fd4670d5ac"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "e0c39a247bf832bbd002dcf2e3cd97d0ae49305a18b7ba645b18fab5adfe1449",
+              "family": "containment-return",
+              "flow": 0.00014050826055749443,
+              "source": "module-function:a27be6cc6bf6f4e8208c36ed474e02cbbafaa443cead21225dbd5beae9de7d0f"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "1f2169ecc9bbb2b3b339d661706d8d3c78a02910fa1f8a50cfd283707a5ed091",
+              "family": "containment-return",
+              "flow": 0.00014050826055749443,
+              "source": "module-function:a32e0422ae1a9ae1acc999df56af73a661d2ab161f473094fe4b45862a7a77bf"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_structural.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/experiments/test_codex_dogfood_capture.py": {
+          "top_incoming": [
+            {
+              "direction": "declaration-to-resource",
+              "fact": "bb5708f5c6c8b7a2fb087164f6605bdd5ed5854802237c1fc79fca9c38f8f094",
+              "family": "containment-return",
+              "flow": 0.0006148779050499405,
+              "source": "module-function:52c68f8a176dcde681ce7f45f8b40436ae7bfe333e18a398f5a87b7c2c2aeef3"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "446f6158d8a0f548a624bbb61e8898b1a2c37f9b3a570cba73efd78947794b49",
+              "family": "containment-return",
+              "flow": 0.0003526181534336576,
+              "source": "module-function:940d7a87842b0eefbfd8df80737ea816f3c840c8ad924d5bf7d06b42863bcc51"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "20423dc0f973b0e56a91613c849495e96730c07378727a108c60d481f6e0a51b",
+              "family": "containment-return",
+              "flow": 0.0003526181534336576,
+              "source": "module-function:b6593d79585e6bc8badda577e22fce48c544bb250e343f055f3169644346181e"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py",
+          "winning_node_kind": "resource"
+        }
+      },
+      "typed-navigation-v1": {
+        "AGENTS.md": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:AGENTS.md",
+          "winning_node_kind": "resource"
+        },
+        "docs/roadmap.md": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:docs/roadmap.md",
+          "winning_node_kind": "resource"
+        },
+        "experiments/codex_dogfood/capture.py": {
+          "top_incoming": [
+            {
+              "direction": "package-to-child",
+              "fact": "84361557b1ac20b956cad3ce1274d366569ae9c3e5a4198b07cc00f6329fc8da",
+              "family": "package-membership",
+              "flow": 0.004701631269597402,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/__init__.py"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "a85d2b69a8b9b272eb0134608acd987b4aaf8f936b58ca7f901d3ec2d90b1a88",
+              "family": "containment-return",
+              "flow": 0.0008070893894635747,
+              "source": "module-function:f430b9c0e0d581bf13d75e1fb30ecc99c7aa61bb846771afe70197befc36a82c"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "770da87efb568b53eab1e36c7fd182f674d52359e3745b79645e2270b1b2807b",
+              "family": "containment-return",
+              "flow": 0.0007362468739870932,
+              "source": "module-class:033f07085197a8abf7abe93ef0e6e7c101eedd53e2adb1ca14b9d2e82b907848"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:experiments/codex_dogfood/capture.py",
+          "winning_node_kind": "resource"
+        },
+        "pyproject.toml": {
+          "top_incoming": [],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:pyproject.toml",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/composition.py": {
+          "top_incoming": [
+            {
+              "direction": "test-to-mirrored-source",
+              "fact": "23ffacbae8f5f43e421c1388c69480a9952707fed06302c95d8dabd3c8e93ede",
+              "family": "mirrored-path",
+              "flow": 0.0012282126994440264,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "42512d547b6047244f65831903aff55a1f680f437c2704a0d9b2ea84bd28bd8c",
+              "family": "containment-return",
+              "flow": 0.00046724984600589423,
+              "source": "module-function:d6e7bc9bf71182f46dcd54c1cea1acb48b3b202380886aaa5eb258c2ca32a45f"
+            },
+            {
+              "direction": "package-to-child",
+              "fact": "e87c017fbba8e5c454195ee41a7fb6b5fe7fbb0ba4a6c4087bf66031243df8e3",
+              "family": "package-membership",
+              "flow": 0.00043792713790027546,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/composition.py",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/lexical/bm25.py": {
+          "top_incoming": [
+            {
+              "direction": "test-to-mirrored-source",
+              "fact": "c7640847eb9ab581c943c271847fc58a2275fa8c897e5d524f1c0b57a2cf42a8",
+              "family": "mirrored-path",
+              "flow": 0.0015339449190443107,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/lexical/test_bm25.py"
+            },
+            {
+              "direction": "package-to-child",
+              "fact": "e9c14547186b69039261e6c135743f6e8bd4e8eba88c1206afb22636326eed66",
+              "family": "package-membership",
+              "flow": 0.0007155359636272455,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/lexical/__init__.py"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "8593ab3e57627e0c2e1203d9b5990ee87770d130cfb182806885fc4a46fae4e6",
+              "family": "containment-return",
+              "flow": 0.0004734145156446345,
+              "source": "module-function:d6c0aea0e9f172020f8cc4ca796251bdf97681ed1f7026e0dd3b7d073298521b"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/lexical/bm25.py",
+          "winning_node_kind": "resource"
+        },
+        "src/devtools/context/retrieval/structural.py": {
+          "top_incoming": [
+            {
+              "direction": "test-to-mirrored-source",
+              "fact": "6b0bae6908ff1bd0937dbd9152cc6b3b3d2c800b2824c8bd7f0a83d9b6c2d62f",
+              "family": "mirrored-path",
+              "flow": 0.001119393545478068,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_structural.py"
+            },
+            {
+              "direction": "package-to-child",
+              "fact": "28d0da57c7a51b17a88c9b9c71da486fd3ea69289074933d69d81ca15af61465",
+              "family": "package-membership",
+              "flow": 0.00043792713790027546,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/__init__.py"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "5815917b2290d3d2a09e04c3e7d1ec4c6b1581fbf890485d94fe2c14af397d04",
+              "family": "containment-return",
+              "flow": 0.0002668260070230344,
+              "source": "module-function:7acafd528bd56093dd8730e93a719b1ad0b05769c5bece4cb062103e125280fa"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/structural.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/context/retrieval/test_composition.py": {
+          "top_incoming": [
+            {
+              "direction": "source-to-mirrored-test",
+              "fact": "23ffacbae8f5f43e421c1388c69480a9952707fed06302c95d8dabd3c8e93ede",
+              "family": "mirrored-path",
+              "flow": 0.0012230719552232764,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/composition.py"
+            },
+            {
+              "direction": "package-to-child",
+              "fact": "a3f4501687bf461def5b915c4da3f7257ab844614633a35149ed5dbc78125d15",
+              "family": "package-membership",
+              "flow": 0.0011113614279220456,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/__init__.py"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "9cdbaa7bf48c929f8718f9eb034e31a63b7646476e7032470d011ea20dcbb985",
+              "family": "containment-return",
+              "flow": 0.00020064668399556883,
+              "source": "module-function:937ccc236a363c2adaeb6bb8079eace19440c3ee7e449a69f33418ba442e8002"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_composition.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/context/retrieval/test_structural.py": {
+          "top_incoming": [
+            {
+              "direction": "package-to-child",
+              "fact": "45b637aea8f10db97c342028d49f50e1ac81b68f46c22b4c6a42b03e6e6204a9",
+              "family": "package-membership",
+              "flow": 0.0011113614279220456,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/__init__.py"
+            },
+            {
+              "direction": "source-to-mirrored-test",
+              "fact": "6b0bae6908ff1bd0937dbd9152cc6b3b3d2c800b2824c8bd7f0a83d9b6c2d62f",
+              "family": "mirrored-path",
+              "flow": 0.0010012970580181796,
+              "source": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:src/devtools/context/retrieval/structural.py"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "b9e5b5477876cb336599a1b069807518ad70a49386d78d9497205c37dc91eec7",
+              "family": "containment-return",
+              "flow": 0.00027148731373683176,
+              "source": "module-function:adbd8eeb49a9de0bfa165905639a028de981173b2098cabf3a8404fd4670d5ac"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/context/retrieval/test_structural.py",
+          "winning_node_kind": "resource"
+        },
+        "tests/experiments/test_codex_dogfood_capture.py": {
+          "top_incoming": [
+            {
+              "direction": "declaration-to-resource",
+              "fact": "bb5708f5c6c8b7a2fb087164f6605bdd5ed5854802237c1fc79fca9c38f8f094",
+              "family": "containment-return",
+              "flow": 0.0005813253475864215,
+              "source": "module-function:52c68f8a176dcde681ce7f45f8b40436ae7bfe333e18a398f5a87b7c2c2aeef3"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "446f6158d8a0f548a624bbb61e8898b1a2c37f9b3a570cba73efd78947794b49",
+              "family": "containment-return",
+              "flow": 0.00033337654341873636,
+              "source": "module-function:940d7a87842b0eefbfd8df80737ea816f3c840c8ad924d5bf7d06b42863bcc51"
+            },
+            {
+              "direction": "declaration-to-resource",
+              "fact": "20423dc0f973b0e56a91613c849495e96730c07378727a108c60d481f6e0a51b",
+              "family": "containment-return",
+              "flow": 0.00033337654341873636,
+              "source": "module-function:b6593d79585e6bc8badda577e22fce48c544bb250e343f055f3169644346181e"
+            }
+          ],
+          "winning_node": "resource:84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b:tests/experiments/test_codex_dogfood_capture.py",
+          "winning_node_kind": "resource"
+        }
+      }
+    }
+  },
+  "schema": "devtools-typed-graph-development-results-v1",
+  "snapshot_id": "84de83c23708c42a1a845787934ac42e423aea3295dcaea5a7fb53d0add0ee3b",
+  "topology": {
+    "resource-forward-current-ri-v1": {
+      "contributions_by_family_direction": {
+        "import:forward": 785,
+        "reference:source-to-target": 569
+      },
+      "cross_resource_isolated": [
+        "AGENTS.md",
+        "docs/architecture.md",
+        "docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md",
+        "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+        "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+        "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+        "docs/architecture/taxonomy.md",
+        "docs/backlog/epics/B-0001-architecture-documentation-integrity.md",
+        "docs/backlog/epics/B-0002-coding-context-substrate.md",
+        "docs/backlog/epics/B-0003-local-coding-worker-harness.md",
+        "docs/backlog/epics/B-0004-governed-execution-evolution.md",
+        "docs/backlog/epics/B-0005-effect-governance.md",
+        "docs/backlog/epics/B-0015-framework-acceptance-harness-validation.md",
+        "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+        "docs/backlog/items/B-0007-correct-model-serving-documentation-drift.md",
+        "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+        "docs/backlog/items/B-0009-build-bounded-local-coding-worker-harness.md",
+        "docs/backlog/items/B-0010-investigate-work-execution-attempt-semantics.md",
+        "docs/backlog/items/B-0011-investigate-durable-execution-evidence.md",
+        "docs/backlog/items/B-0012-investigate-governed-effect-semantics.md",
+        "docs/backlog/items/B-0013-investigate-authority-grants-approval.md",
+        "docs/backlog/items/B-0014-investigate-retry-repair-reconciliation.md",
+        "docs/backlog/items/B-0016-define-framework-live-harness-acceptance.md",
+        "docs/backlog/items/B-0017-investigate-runtime-occurrence-observability-boundaries.md",
+        "docs/backlog/items/B-0018-investigate-operational-data-minimization-disclosure.md",
+        "docs/backlog/items/B-0019-investigate-typed-configuration-ownership.md",
+        "docs/backlog/items/B-0020-investigate-capability-operation-model-action-substrate.md",
+        "docs/backlog/items/B-0021-investigate-approval-human-governance-workflow.md",
+        "docs/backlog/items/B-0022-investigate-delegation-acting-authority.md",
+        "docs/backlog/items/B-0023-investigate-observability-architecture.md",
+        "docs/backlog/items/B-0024-investigate-audit-durable-accountability.md",
+        "docs/backlog/items/B-0025-investigate-scoped-runtime-context.md",
+        "docs/backlog/items/B-0026-investigate-runtime-control-lifecycle.md",
+        "docs/backlog/items/B-0027-investigate-serialization-representation-boundaries.md",
+        "docs/backlog/items/B-0028-investigate-persistence-durable-state-boundaries.md",
+        "docs/backlog/items/B-0029-investigate-reusable-agent-definition-runtime-orchestration.md",
+        "docs/backlog/items/B-0030-investigate-provider-neutral-generative-model-interaction.md",
+        "docs/backlog/items/B-0031-investigate-generic-execution-lifecycle-promotion.md",
+        "docs/backlog/items/B-0032-investigate-execution-retry-mechanics.md",
+        "docs/backlog/items/B-0033-investigate-semantic-repair-replanning.md",
+        "docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md",
+        "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+        "docs/backlog/items/B-0036-investigate-action-request-semantics.md",
+        "docs/backlog/items/B-0037-investigate-approval-semantics.md",
+        "docs/backlog/items/B-0038-investigate-approval-workflow-orchestration.md",
+        "docs/backlog/items/B-0039-investigate-delegated-authority.md",
+        "docs/backlog/items/B-0040-investigate-delegated-agent-coordination.md",
+        "docs/backlog/items/B-0041-investigate-execution-local-lifecycle-control.md",
+        "docs/backlog/items/B-0042-investigate-workflow-lifecycle-control.md",
+        "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+        "docs/backlog/items/B-0044-investigate-orchestration-control-loops.md",
+        "docs/backlog/items/B-0045-establish-minimal-model-interaction-core.md",
+        "docs/backlog/items/B-0046-investigate-advanced-model-interaction-provider-pressure.md",
+        "docs/backlog/metadata.md",
+        "docs/backlog/overview.md",
+        "docs/documentation_map.md",
+        "docs/experiments/qwen38_llama_cpp.md",
+        "docs/implementation_ledger.md",
+        "docs/roadmap.md",
+        "experiments/codex_dogfood/__init__.py",
+        "pyproject.toml",
+        "src/devtools/__init__.py",
+        "src/devtools/agents/__init__.py",
+        "src/devtools/agents/conversation/docs/conversation.md",
+        "src/devtools/agents/conversation/docs/history.md",
+        "src/devtools/agents/conversation/docs/overview.md",
+        "src/devtools/agents/integrations/__init__.py",
+        "src/devtools/agents/integrations/codex/docs/cli.md",
+        "src/devtools/agents/integrations/codex/docs/overview.md",
+        "src/devtools/context/python/modules/docs/overview.md",
+        "src/devtools/context/python/references/docs/overview.md",
+        "src/devtools/context/retrieval/docs/overview.md",
+        "src/devtools/core/conversion/docs/overview.md",
+        "src/devtools/core/identity/docs/overview.md",
+        "src/devtools/core/paths/docs/overview.md",
+        "src/devtools/core/paths/docs/resolution.md",
+        "src/devtools/core/regex/docs/overview.md",
+        "src/devtools/core/system/docs/overview.md",
+        "src/devtools/core/time/docs/overview.md",
+        "src/devtools/core/time/docs/timestamps.md",
+        "src/devtools/core/time/docs/timing.md",
+        "src/devtools/evaluation/docs/overview.md",
+        "src/devtools/execution/docs/overview.md",
+        "src/devtools/governance/__init__.py",
+        "src/devtools/models/__init__.py",
+        "src/devtools/models/benchmarks/__init__.py",
+        "src/devtools/models/benchmarks/docs/overview.md",
+        "src/devtools/models/interaction/docs/overview.md",
+        "src/devtools/models/serving/docs/overview.md",
+        "src/devtools/observability/__init__.py",
+        "src/devtools/observability/evidence/docs/overview.md",
+        "src/devtools/orchestration/__init__.py",
+        "src/devtools/persistence/docs/json.md",
+        "src/devtools/persistence/docs/overview.md",
+        "src/devtools/persistence/docs/sqlite.md",
+        "src/devtools/resources/__init__.py",
+        "src/devtools/resources/commands/docs/command.md",
+        "src/devtools/resources/commands/docs/events.md",
+        "src/devtools/resources/commands/docs/execution.md",
+        "src/devtools/resources/commands/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/codecs.md",
+        "src/devtools/resources/filesystem/docs/csv.md",
+        "src/devtools/resources/filesystem/docs/io.md",
+        "src/devtools/resources/filesystem/docs/json.md",
+        "src/devtools/resources/filesystem/docs/markdown.md",
+        "src/devtools/resources/filesystem/docs/models.md",
+        "src/devtools/resources/filesystem/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/roadmap.md",
+        "src/devtools/tools/command.py",
+        "src/devtools/tools/docs/overview.md",
+        "tests/context/__init__.py",
+        "tests/context/python/__init__.py",
+        "tests/context/python/function/__init__.py",
+        "tests/context/python/function/test_candidates.py",
+        "tests/context/python/function/test_cross_resource_pipeline.py",
+        "tests/context/python/function/test_declaration_aggregation.py",
+        "tests/context/python/function/test_declarations.py",
+        "tests/context/python/function/test_disclosure.py",
+        "tests/context/python/function/test_materialization.py",
+        "tests/context/python/function/test_rendering.py",
+        "tests/context/python/function/test_request_assembly.py",
+        "tests/context/python/function/test_resource_selection.py",
+        "tests/context/python/function/test_retrieval.py",
+        "tests/context/python/imports/__init__.py",
+        "tests/context/python/modules/__init__.py",
+        "tests/context/python/references/__init__.py",
+        "tests/context/python/test_source_candidacy.py",
+        "tests/context/repository/__init__.py",
+        "tests/context/repository/test_corpus.py",
+        "tests/context/repository/test_discovery.py",
+        "tests/context/repository/test_document.py",
+        "tests/context/repository/test_observation.py",
+        "tests/context/retrieval/__init__.py",
+        "tests/context/retrieval/lexical/__init__.py"
+      ],
+      "edge_count": 360,
+      "isolated_resource_nodes": [
+        "AGENTS.md",
+        "docs/architecture.md",
+        "docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md",
+        "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+        "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+        "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+        "docs/architecture/taxonomy.md",
+        "docs/backlog/epics/B-0001-architecture-documentation-integrity.md",
+        "docs/backlog/epics/B-0002-coding-context-substrate.md",
+        "docs/backlog/epics/B-0003-local-coding-worker-harness.md",
+        "docs/backlog/epics/B-0004-governed-execution-evolution.md",
+        "docs/backlog/epics/B-0005-effect-governance.md",
+        "docs/backlog/epics/B-0015-framework-acceptance-harness-validation.md",
+        "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+        "docs/backlog/items/B-0007-correct-model-serving-documentation-drift.md",
+        "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+        "docs/backlog/items/B-0009-build-bounded-local-coding-worker-harness.md",
+        "docs/backlog/items/B-0010-investigate-work-execution-attempt-semantics.md",
+        "docs/backlog/items/B-0011-investigate-durable-execution-evidence.md",
+        "docs/backlog/items/B-0012-investigate-governed-effect-semantics.md",
+        "docs/backlog/items/B-0013-investigate-authority-grants-approval.md",
+        "docs/backlog/items/B-0014-investigate-retry-repair-reconciliation.md",
+        "docs/backlog/items/B-0016-define-framework-live-harness-acceptance.md",
+        "docs/backlog/items/B-0017-investigate-runtime-occurrence-observability-boundaries.md",
+        "docs/backlog/items/B-0018-investigate-operational-data-minimization-disclosure.md",
+        "docs/backlog/items/B-0019-investigate-typed-configuration-ownership.md",
+        "docs/backlog/items/B-0020-investigate-capability-operation-model-action-substrate.md",
+        "docs/backlog/items/B-0021-investigate-approval-human-governance-workflow.md",
+        "docs/backlog/items/B-0022-investigate-delegation-acting-authority.md",
+        "docs/backlog/items/B-0023-investigate-observability-architecture.md",
+        "docs/backlog/items/B-0024-investigate-audit-durable-accountability.md",
+        "docs/backlog/items/B-0025-investigate-scoped-runtime-context.md",
+        "docs/backlog/items/B-0026-investigate-runtime-control-lifecycle.md",
+        "docs/backlog/items/B-0027-investigate-serialization-representation-boundaries.md",
+        "docs/backlog/items/B-0028-investigate-persistence-durable-state-boundaries.md",
+        "docs/backlog/items/B-0029-investigate-reusable-agent-definition-runtime-orchestration.md",
+        "docs/backlog/items/B-0030-investigate-provider-neutral-generative-model-interaction.md",
+        "docs/backlog/items/B-0031-investigate-generic-execution-lifecycle-promotion.md",
+        "docs/backlog/items/B-0032-investigate-execution-retry-mechanics.md",
+        "docs/backlog/items/B-0033-investigate-semantic-repair-replanning.md",
+        "docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md",
+        "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+        "docs/backlog/items/B-0036-investigate-action-request-semantics.md",
+        "docs/backlog/items/B-0037-investigate-approval-semantics.md",
+        "docs/backlog/items/B-0038-investigate-approval-workflow-orchestration.md",
+        "docs/backlog/items/B-0039-investigate-delegated-authority.md",
+        "docs/backlog/items/B-0040-investigate-delegated-agent-coordination.md",
+        "docs/backlog/items/B-0041-investigate-execution-local-lifecycle-control.md",
+        "docs/backlog/items/B-0042-investigate-workflow-lifecycle-control.md",
+        "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+        "docs/backlog/items/B-0044-investigate-orchestration-control-loops.md",
+        "docs/backlog/items/B-0045-establish-minimal-model-interaction-core.md",
+        "docs/backlog/items/B-0046-investigate-advanced-model-interaction-provider-pressure.md",
+        "docs/backlog/metadata.md",
+        "docs/backlog/overview.md",
+        "docs/documentation_map.md",
+        "docs/experiments/qwen38_llama_cpp.md",
+        "docs/implementation_ledger.md",
+        "docs/roadmap.md",
+        "experiments/codex_dogfood/__init__.py",
+        "pyproject.toml",
+        "src/devtools/__init__.py",
+        "src/devtools/agents/__init__.py",
+        "src/devtools/agents/conversation/docs/conversation.md",
+        "src/devtools/agents/conversation/docs/history.md",
+        "src/devtools/agents/conversation/docs/overview.md",
+        "src/devtools/agents/integrations/__init__.py",
+        "src/devtools/agents/integrations/codex/docs/cli.md",
+        "src/devtools/agents/integrations/codex/docs/overview.md",
+        "src/devtools/context/python/modules/docs/overview.md",
+        "src/devtools/context/python/references/docs/overview.md",
+        "src/devtools/context/retrieval/docs/overview.md",
+        "src/devtools/core/conversion/docs/overview.md",
+        "src/devtools/core/identity/docs/overview.md",
+        "src/devtools/core/paths/docs/overview.md",
+        "src/devtools/core/paths/docs/resolution.md",
+        "src/devtools/core/regex/docs/overview.md",
+        "src/devtools/core/system/docs/overview.md",
+        "src/devtools/core/time/docs/overview.md",
+        "src/devtools/core/time/docs/timestamps.md",
+        "src/devtools/core/time/docs/timing.md",
+        "src/devtools/evaluation/docs/overview.md",
+        "src/devtools/execution/docs/overview.md",
+        "src/devtools/governance/__init__.py",
+        "src/devtools/models/__init__.py",
+        "src/devtools/models/benchmarks/__init__.py",
+        "src/devtools/models/benchmarks/docs/overview.md",
+        "src/devtools/models/interaction/docs/overview.md",
+        "src/devtools/models/serving/docs/overview.md",
+        "src/devtools/observability/__init__.py",
+        "src/devtools/observability/evidence/docs/overview.md",
+        "src/devtools/orchestration/__init__.py",
+        "src/devtools/persistence/docs/json.md",
+        "src/devtools/persistence/docs/overview.md",
+        "src/devtools/persistence/docs/sqlite.md",
+        "src/devtools/resources/__init__.py",
+        "src/devtools/resources/commands/docs/command.md",
+        "src/devtools/resources/commands/docs/events.md",
+        "src/devtools/resources/commands/docs/execution.md",
+        "src/devtools/resources/commands/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/codecs.md",
+        "src/devtools/resources/filesystem/docs/csv.md",
+        "src/devtools/resources/filesystem/docs/io.md",
+        "src/devtools/resources/filesystem/docs/json.md",
+        "src/devtools/resources/filesystem/docs/markdown.md",
+        "src/devtools/resources/filesystem/docs/models.md",
+        "src/devtools/resources/filesystem/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/roadmap.md",
+        "src/devtools/tools/command.py",
+        "src/devtools/tools/docs/overview.md",
+        "tests/context/__init__.py",
+        "tests/context/python/__init__.py",
+        "tests/context/python/function/__init__.py",
+        "tests/context/python/function/test_candidates.py",
+        "tests/context/python/function/test_cross_resource_pipeline.py",
+        "tests/context/python/function/test_declaration_aggregation.py",
+        "tests/context/python/function/test_declarations.py",
+        "tests/context/python/function/test_disclosure.py",
+        "tests/context/python/function/test_materialization.py",
+        "tests/context/python/function/test_rendering.py",
+        "tests/context/python/function/test_request_assembly.py",
+        "tests/context/python/function/test_resource_selection.py",
+        "tests/context/python/function/test_retrieval.py",
+        "tests/context/python/imports/__init__.py",
+        "tests/context/python/modules/__init__.py",
+        "tests/context/python/references/__init__.py",
+        "tests/context/python/test_source_candidacy.py",
+        "tests/context/repository/__init__.py",
+        "tests/context/repository/test_corpus.py",
+        "tests/context/repository/test_discovery.py",
+        "tests/context/repository/test_document.py",
+        "tests/context/repository/test_observation.py",
+        "tests/context/retrieval/__init__.py",
+        "tests/context/retrieval/lexical/__init__.py"
+      ],
+      "node_count": 302,
+      "nodes_by_kind": {
+        "resource": 302
+      }
+    },
+    "resource-forward-frozen-input-v1": {
+      "contributions_by_family_direction": {
+        "import:forward": 785,
+        "reference:source-to-target": 30
+      },
+      "cross_resource_isolated": [
+        "AGENTS.md",
+        "docs/architecture.md",
+        "docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md",
+        "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+        "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+        "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+        "docs/architecture/taxonomy.md",
+        "docs/backlog/epics/B-0001-architecture-documentation-integrity.md",
+        "docs/backlog/epics/B-0002-coding-context-substrate.md",
+        "docs/backlog/epics/B-0003-local-coding-worker-harness.md",
+        "docs/backlog/epics/B-0004-governed-execution-evolution.md",
+        "docs/backlog/epics/B-0005-effect-governance.md",
+        "docs/backlog/epics/B-0015-framework-acceptance-harness-validation.md",
+        "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+        "docs/backlog/items/B-0007-correct-model-serving-documentation-drift.md",
+        "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+        "docs/backlog/items/B-0009-build-bounded-local-coding-worker-harness.md",
+        "docs/backlog/items/B-0010-investigate-work-execution-attempt-semantics.md",
+        "docs/backlog/items/B-0011-investigate-durable-execution-evidence.md",
+        "docs/backlog/items/B-0012-investigate-governed-effect-semantics.md",
+        "docs/backlog/items/B-0013-investigate-authority-grants-approval.md",
+        "docs/backlog/items/B-0014-investigate-retry-repair-reconciliation.md",
+        "docs/backlog/items/B-0016-define-framework-live-harness-acceptance.md",
+        "docs/backlog/items/B-0017-investigate-runtime-occurrence-observability-boundaries.md",
+        "docs/backlog/items/B-0018-investigate-operational-data-minimization-disclosure.md",
+        "docs/backlog/items/B-0019-investigate-typed-configuration-ownership.md",
+        "docs/backlog/items/B-0020-investigate-capability-operation-model-action-substrate.md",
+        "docs/backlog/items/B-0021-investigate-approval-human-governance-workflow.md",
+        "docs/backlog/items/B-0022-investigate-delegation-acting-authority.md",
+        "docs/backlog/items/B-0023-investigate-observability-architecture.md",
+        "docs/backlog/items/B-0024-investigate-audit-durable-accountability.md",
+        "docs/backlog/items/B-0025-investigate-scoped-runtime-context.md",
+        "docs/backlog/items/B-0026-investigate-runtime-control-lifecycle.md",
+        "docs/backlog/items/B-0027-investigate-serialization-representation-boundaries.md",
+        "docs/backlog/items/B-0028-investigate-persistence-durable-state-boundaries.md",
+        "docs/backlog/items/B-0029-investigate-reusable-agent-definition-runtime-orchestration.md",
+        "docs/backlog/items/B-0030-investigate-provider-neutral-generative-model-interaction.md",
+        "docs/backlog/items/B-0031-investigate-generic-execution-lifecycle-promotion.md",
+        "docs/backlog/items/B-0032-investigate-execution-retry-mechanics.md",
+        "docs/backlog/items/B-0033-investigate-semantic-repair-replanning.md",
+        "docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md",
+        "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+        "docs/backlog/items/B-0036-investigate-action-request-semantics.md",
+        "docs/backlog/items/B-0037-investigate-approval-semantics.md",
+        "docs/backlog/items/B-0038-investigate-approval-workflow-orchestration.md",
+        "docs/backlog/items/B-0039-investigate-delegated-authority.md",
+        "docs/backlog/items/B-0040-investigate-delegated-agent-coordination.md",
+        "docs/backlog/items/B-0041-investigate-execution-local-lifecycle-control.md",
+        "docs/backlog/items/B-0042-investigate-workflow-lifecycle-control.md",
+        "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+        "docs/backlog/items/B-0044-investigate-orchestration-control-loops.md",
+        "docs/backlog/items/B-0045-establish-minimal-model-interaction-core.md",
+        "docs/backlog/items/B-0046-investigate-advanced-model-interaction-provider-pressure.md",
+        "docs/backlog/metadata.md",
+        "docs/backlog/overview.md",
+        "docs/documentation_map.md",
+        "docs/experiments/qwen38_llama_cpp.md",
+        "docs/implementation_ledger.md",
+        "docs/roadmap.md",
+        "experiments/codex_dogfood/__init__.py",
+        "experiments/codex_dogfood/capture.py",
+        "pyproject.toml",
+        "src/devtools/__init__.py",
+        "src/devtools/agents/__init__.py",
+        "src/devtools/agents/conversation/docs/conversation.md",
+        "src/devtools/agents/conversation/docs/history.md",
+        "src/devtools/agents/conversation/docs/overview.md",
+        "src/devtools/agents/integrations/__init__.py",
+        "src/devtools/agents/integrations/codex/docs/cli.md",
+        "src/devtools/agents/integrations/codex/docs/overview.md",
+        "src/devtools/context/python/modules/docs/overview.md",
+        "src/devtools/context/python/references/docs/overview.md",
+        "src/devtools/context/retrieval/docs/overview.md",
+        "src/devtools/core/conversion/docs/overview.md",
+        "src/devtools/core/identity/docs/overview.md",
+        "src/devtools/core/paths/docs/overview.md",
+        "src/devtools/core/paths/docs/resolution.md",
+        "src/devtools/core/regex/docs/overview.md",
+        "src/devtools/core/system/docs/overview.md",
+        "src/devtools/core/time/docs/overview.md",
+        "src/devtools/core/time/docs/timestamps.md",
+        "src/devtools/core/time/docs/timing.md",
+        "src/devtools/evaluation/docs/overview.md",
+        "src/devtools/execution/docs/overview.md",
+        "src/devtools/governance/__init__.py",
+        "src/devtools/models/__init__.py",
+        "src/devtools/models/benchmarks/__init__.py",
+        "src/devtools/models/benchmarks/docs/overview.md",
+        "src/devtools/models/interaction/docs/overview.md",
+        "src/devtools/models/serving/docs/overview.md",
+        "src/devtools/observability/__init__.py",
+        "src/devtools/observability/evidence/docs/overview.md",
+        "src/devtools/orchestration/__init__.py",
+        "src/devtools/persistence/docs/json.md",
+        "src/devtools/persistence/docs/overview.md",
+        "src/devtools/persistence/docs/sqlite.md",
+        "src/devtools/resources/__init__.py",
+        "src/devtools/resources/commands/docs/command.md",
+        "src/devtools/resources/commands/docs/events.md",
+        "src/devtools/resources/commands/docs/execution.md",
+        "src/devtools/resources/commands/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/codecs.md",
+        "src/devtools/resources/filesystem/docs/csv.md",
+        "src/devtools/resources/filesystem/docs/io.md",
+        "src/devtools/resources/filesystem/docs/json.md",
+        "src/devtools/resources/filesystem/docs/markdown.md",
+        "src/devtools/resources/filesystem/docs/models.md",
+        "src/devtools/resources/filesystem/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/roadmap.md",
+        "src/devtools/tools/command.py",
+        "src/devtools/tools/docs/overview.md",
+        "tests/context/__init__.py",
+        "tests/context/python/__init__.py",
+        "tests/context/python/function/__init__.py",
+        "tests/context/python/function/test_candidates.py",
+        "tests/context/python/function/test_cross_resource_pipeline.py",
+        "tests/context/python/function/test_declaration_aggregation.py",
+        "tests/context/python/function/test_declarations.py",
+        "tests/context/python/function/test_disclosure.py",
+        "tests/context/python/function/test_materialization.py",
+        "tests/context/python/function/test_rendering.py",
+        "tests/context/python/function/test_request_assembly.py",
+        "tests/context/python/function/test_resource_selection.py",
+        "tests/context/python/function/test_retrieval.py",
+        "tests/context/python/imports/__init__.py",
+        "tests/context/python/imports/test_declarations.py",
+        "tests/context/python/imports/test_members.py",
+        "tests/context/python/imports/test_relations.py",
+        "tests/context/python/imports/test_resolution.py",
+        "tests/context/python/modules/__init__.py",
+        "tests/context/python/modules/test_interpretation.py",
+        "tests/context/python/modules/test_membership.py",
+        "tests/context/python/references/__init__.py",
+        "tests/context/python/references/test_analysis.py",
+        "tests/context/python/test_source_candidacy.py",
+        "tests/context/repository/__init__.py",
+        "tests/context/repository/test_corpus.py",
+        "tests/context/repository/test_discovery.py",
+        "tests/context/repository/test_document.py",
+        "tests/context/repository/test_observation.py",
+        "tests/context/retrieval/__init__.py",
+        "tests/context/retrieval/lexical/__init__.py",
+        "tests/context/retrieval/lexical/_helpers.py",
+        "tests/context/retrieval/lexical/test_analysis.py",
+        "tests/context/retrieval/lexical/test_bm25.py",
+        "tests/context/retrieval/lexical/test_evaluation.py",
+        "tests/context/retrieval/lexical/test_filename.py",
+        "tests/context/retrieval/lexical/test_index.py",
+        "tests/context/retrieval/lexical/test_statistics.py",
+        "tests/context/retrieval/test_composition.py",
+        "tests/context/retrieval/test_structural.py",
+        "tests/experiments/test_codex_dogfood_capture.py"
+      ],
+      "edge_count": 279,
+      "isolated_resource_nodes": [
+        "AGENTS.md",
+        "docs/architecture.md",
+        "docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md",
+        "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+        "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+        "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+        "docs/architecture/taxonomy.md",
+        "docs/backlog/epics/B-0001-architecture-documentation-integrity.md",
+        "docs/backlog/epics/B-0002-coding-context-substrate.md",
+        "docs/backlog/epics/B-0003-local-coding-worker-harness.md",
+        "docs/backlog/epics/B-0004-governed-execution-evolution.md",
+        "docs/backlog/epics/B-0005-effect-governance.md",
+        "docs/backlog/epics/B-0015-framework-acceptance-harness-validation.md",
+        "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+        "docs/backlog/items/B-0007-correct-model-serving-documentation-drift.md",
+        "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+        "docs/backlog/items/B-0009-build-bounded-local-coding-worker-harness.md",
+        "docs/backlog/items/B-0010-investigate-work-execution-attempt-semantics.md",
+        "docs/backlog/items/B-0011-investigate-durable-execution-evidence.md",
+        "docs/backlog/items/B-0012-investigate-governed-effect-semantics.md",
+        "docs/backlog/items/B-0013-investigate-authority-grants-approval.md",
+        "docs/backlog/items/B-0014-investigate-retry-repair-reconciliation.md",
+        "docs/backlog/items/B-0016-define-framework-live-harness-acceptance.md",
+        "docs/backlog/items/B-0017-investigate-runtime-occurrence-observability-boundaries.md",
+        "docs/backlog/items/B-0018-investigate-operational-data-minimization-disclosure.md",
+        "docs/backlog/items/B-0019-investigate-typed-configuration-ownership.md",
+        "docs/backlog/items/B-0020-investigate-capability-operation-model-action-substrate.md",
+        "docs/backlog/items/B-0021-investigate-approval-human-governance-workflow.md",
+        "docs/backlog/items/B-0022-investigate-delegation-acting-authority.md",
+        "docs/backlog/items/B-0023-investigate-observability-architecture.md",
+        "docs/backlog/items/B-0024-investigate-audit-durable-accountability.md",
+        "docs/backlog/items/B-0025-investigate-scoped-runtime-context.md",
+        "docs/backlog/items/B-0026-investigate-runtime-control-lifecycle.md",
+        "docs/backlog/items/B-0027-investigate-serialization-representation-boundaries.md",
+        "docs/backlog/items/B-0028-investigate-persistence-durable-state-boundaries.md",
+        "docs/backlog/items/B-0029-investigate-reusable-agent-definition-runtime-orchestration.md",
+        "docs/backlog/items/B-0030-investigate-provider-neutral-generative-model-interaction.md",
+        "docs/backlog/items/B-0031-investigate-generic-execution-lifecycle-promotion.md",
+        "docs/backlog/items/B-0032-investigate-execution-retry-mechanics.md",
+        "docs/backlog/items/B-0033-investigate-semantic-repair-replanning.md",
+        "docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md",
+        "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+        "docs/backlog/items/B-0036-investigate-action-request-semantics.md",
+        "docs/backlog/items/B-0037-investigate-approval-semantics.md",
+        "docs/backlog/items/B-0038-investigate-approval-workflow-orchestration.md",
+        "docs/backlog/items/B-0039-investigate-delegated-authority.md",
+        "docs/backlog/items/B-0040-investigate-delegated-agent-coordination.md",
+        "docs/backlog/items/B-0041-investigate-execution-local-lifecycle-control.md",
+        "docs/backlog/items/B-0042-investigate-workflow-lifecycle-control.md",
+        "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+        "docs/backlog/items/B-0044-investigate-orchestration-control-loops.md",
+        "docs/backlog/items/B-0045-establish-minimal-model-interaction-core.md",
+        "docs/backlog/items/B-0046-investigate-advanced-model-interaction-provider-pressure.md",
+        "docs/backlog/metadata.md",
+        "docs/backlog/overview.md",
+        "docs/documentation_map.md",
+        "docs/experiments/qwen38_llama_cpp.md",
+        "docs/implementation_ledger.md",
+        "docs/roadmap.md",
+        "experiments/codex_dogfood/__init__.py",
+        "experiments/codex_dogfood/capture.py",
+        "pyproject.toml",
+        "src/devtools/__init__.py",
+        "src/devtools/agents/__init__.py",
+        "src/devtools/agents/conversation/docs/conversation.md",
+        "src/devtools/agents/conversation/docs/history.md",
+        "src/devtools/agents/conversation/docs/overview.md",
+        "src/devtools/agents/integrations/__init__.py",
+        "src/devtools/agents/integrations/codex/docs/cli.md",
+        "src/devtools/agents/integrations/codex/docs/overview.md",
+        "src/devtools/context/python/modules/docs/overview.md",
+        "src/devtools/context/python/references/docs/overview.md",
+        "src/devtools/context/retrieval/docs/overview.md",
+        "src/devtools/core/conversion/docs/overview.md",
+        "src/devtools/core/identity/docs/overview.md",
+        "src/devtools/core/paths/docs/overview.md",
+        "src/devtools/core/paths/docs/resolution.md",
+        "src/devtools/core/regex/docs/overview.md",
+        "src/devtools/core/system/docs/overview.md",
+        "src/devtools/core/time/docs/overview.md",
+        "src/devtools/core/time/docs/timestamps.md",
+        "src/devtools/core/time/docs/timing.md",
+        "src/devtools/evaluation/docs/overview.md",
+        "src/devtools/execution/docs/overview.md",
+        "src/devtools/governance/__init__.py",
+        "src/devtools/models/__init__.py",
+        "src/devtools/models/benchmarks/__init__.py",
+        "src/devtools/models/benchmarks/docs/overview.md",
+        "src/devtools/models/interaction/docs/overview.md",
+        "src/devtools/models/serving/docs/overview.md",
+        "src/devtools/observability/__init__.py",
+        "src/devtools/observability/evidence/docs/overview.md",
+        "src/devtools/orchestration/__init__.py",
+        "src/devtools/persistence/docs/json.md",
+        "src/devtools/persistence/docs/overview.md",
+        "src/devtools/persistence/docs/sqlite.md",
+        "src/devtools/resources/__init__.py",
+        "src/devtools/resources/commands/docs/command.md",
+        "src/devtools/resources/commands/docs/events.md",
+        "src/devtools/resources/commands/docs/execution.md",
+        "src/devtools/resources/commands/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/codecs.md",
+        "src/devtools/resources/filesystem/docs/csv.md",
+        "src/devtools/resources/filesystem/docs/io.md",
+        "src/devtools/resources/filesystem/docs/json.md",
+        "src/devtools/resources/filesystem/docs/markdown.md",
+        "src/devtools/resources/filesystem/docs/models.md",
+        "src/devtools/resources/filesystem/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/roadmap.md",
+        "src/devtools/tools/command.py",
+        "src/devtools/tools/docs/overview.md",
+        "tests/context/__init__.py",
+        "tests/context/python/__init__.py",
+        "tests/context/python/function/__init__.py",
+        "tests/context/python/function/test_candidates.py",
+        "tests/context/python/function/test_cross_resource_pipeline.py",
+        "tests/context/python/function/test_declaration_aggregation.py",
+        "tests/context/python/function/test_declarations.py",
+        "tests/context/python/function/test_disclosure.py",
+        "tests/context/python/function/test_materialization.py",
+        "tests/context/python/function/test_rendering.py",
+        "tests/context/python/function/test_request_assembly.py",
+        "tests/context/python/function/test_resource_selection.py",
+        "tests/context/python/function/test_retrieval.py",
+        "tests/context/python/imports/__init__.py",
+        "tests/context/python/imports/test_declarations.py",
+        "tests/context/python/imports/test_members.py",
+        "tests/context/python/imports/test_relations.py",
+        "tests/context/python/imports/test_resolution.py",
+        "tests/context/python/modules/__init__.py",
+        "tests/context/python/modules/test_interpretation.py",
+        "tests/context/python/modules/test_membership.py",
+        "tests/context/python/references/__init__.py",
+        "tests/context/python/references/test_analysis.py",
+        "tests/context/python/test_source_candidacy.py",
+        "tests/context/repository/__init__.py",
+        "tests/context/repository/test_corpus.py",
+        "tests/context/repository/test_discovery.py",
+        "tests/context/repository/test_document.py",
+        "tests/context/repository/test_observation.py",
+        "tests/context/retrieval/__init__.py",
+        "tests/context/retrieval/lexical/__init__.py",
+        "tests/context/retrieval/lexical/_helpers.py",
+        "tests/context/retrieval/lexical/test_analysis.py",
+        "tests/context/retrieval/lexical/test_bm25.py",
+        "tests/context/retrieval/lexical/test_evaluation.py",
+        "tests/context/retrieval/lexical/test_filename.py",
+        "tests/context/retrieval/lexical/test_index.py",
+        "tests/context/retrieval/lexical/test_statistics.py",
+        "tests/context/retrieval/test_composition.py",
+        "tests/context/retrieval/test_structural.py",
+        "tests/experiments/test_codex_dogfood_capture.py"
+      ],
+      "node_count": 302,
+      "nodes_by_kind": {
+        "resource": 302
+      }
+    },
+    "typed-core-v1": {
+      "contributions_by_family_direction": {
+        "containment-return:declaration-to-resource": 791,
+        "containment-return:method-to-class": 419,
+        "containment:class-to-method": 419,
+        "containment:resource-to-declaration": 791,
+        "direct-base:child-to-base": 32,
+        "import:forward": 785,
+        "reference:source-to-target": 1310
+      },
+      "cross_resource_isolated": [
+        "AGENTS.md",
+        "docs/architecture.md",
+        "docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md",
+        "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+        "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+        "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+        "docs/architecture/taxonomy.md",
+        "docs/backlog/epics/B-0001-architecture-documentation-integrity.md",
+        "docs/backlog/epics/B-0002-coding-context-substrate.md",
+        "docs/backlog/epics/B-0003-local-coding-worker-harness.md",
+        "docs/backlog/epics/B-0004-governed-execution-evolution.md",
+        "docs/backlog/epics/B-0005-effect-governance.md",
+        "docs/backlog/epics/B-0015-framework-acceptance-harness-validation.md",
+        "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+        "docs/backlog/items/B-0007-correct-model-serving-documentation-drift.md",
+        "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+        "docs/backlog/items/B-0009-build-bounded-local-coding-worker-harness.md",
+        "docs/backlog/items/B-0010-investigate-work-execution-attempt-semantics.md",
+        "docs/backlog/items/B-0011-investigate-durable-execution-evidence.md",
+        "docs/backlog/items/B-0012-investigate-governed-effect-semantics.md",
+        "docs/backlog/items/B-0013-investigate-authority-grants-approval.md",
+        "docs/backlog/items/B-0014-investigate-retry-repair-reconciliation.md",
+        "docs/backlog/items/B-0016-define-framework-live-harness-acceptance.md",
+        "docs/backlog/items/B-0017-investigate-runtime-occurrence-observability-boundaries.md",
+        "docs/backlog/items/B-0018-investigate-operational-data-minimization-disclosure.md",
+        "docs/backlog/items/B-0019-investigate-typed-configuration-ownership.md",
+        "docs/backlog/items/B-0020-investigate-capability-operation-model-action-substrate.md",
+        "docs/backlog/items/B-0021-investigate-approval-human-governance-workflow.md",
+        "docs/backlog/items/B-0022-investigate-delegation-acting-authority.md",
+        "docs/backlog/items/B-0023-investigate-observability-architecture.md",
+        "docs/backlog/items/B-0024-investigate-audit-durable-accountability.md",
+        "docs/backlog/items/B-0025-investigate-scoped-runtime-context.md",
+        "docs/backlog/items/B-0026-investigate-runtime-control-lifecycle.md",
+        "docs/backlog/items/B-0027-investigate-serialization-representation-boundaries.md",
+        "docs/backlog/items/B-0028-investigate-persistence-durable-state-boundaries.md",
+        "docs/backlog/items/B-0029-investigate-reusable-agent-definition-runtime-orchestration.md",
+        "docs/backlog/items/B-0030-investigate-provider-neutral-generative-model-interaction.md",
+        "docs/backlog/items/B-0031-investigate-generic-execution-lifecycle-promotion.md",
+        "docs/backlog/items/B-0032-investigate-execution-retry-mechanics.md",
+        "docs/backlog/items/B-0033-investigate-semantic-repair-replanning.md",
+        "docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md",
+        "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+        "docs/backlog/items/B-0036-investigate-action-request-semantics.md",
+        "docs/backlog/items/B-0037-investigate-approval-semantics.md",
+        "docs/backlog/items/B-0038-investigate-approval-workflow-orchestration.md",
+        "docs/backlog/items/B-0039-investigate-delegated-authority.md",
+        "docs/backlog/items/B-0040-investigate-delegated-agent-coordination.md",
+        "docs/backlog/items/B-0041-investigate-execution-local-lifecycle-control.md",
+        "docs/backlog/items/B-0042-investigate-workflow-lifecycle-control.md",
+        "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+        "docs/backlog/items/B-0044-investigate-orchestration-control-loops.md",
+        "docs/backlog/items/B-0045-establish-minimal-model-interaction-core.md",
+        "docs/backlog/items/B-0046-investigate-advanced-model-interaction-provider-pressure.md",
+        "docs/backlog/metadata.md",
+        "docs/backlog/overview.md",
+        "docs/documentation_map.md",
+        "docs/experiments/qwen38_llama_cpp.md",
+        "docs/implementation_ledger.md",
+        "docs/roadmap.md",
+        "experiments/codex_dogfood/__init__.py",
+        "pyproject.toml",
+        "src/devtools/__init__.py",
+        "src/devtools/agents/__init__.py",
+        "src/devtools/agents/conversation/docs/conversation.md",
+        "src/devtools/agents/conversation/docs/history.md",
+        "src/devtools/agents/conversation/docs/overview.md",
+        "src/devtools/agents/integrations/__init__.py",
+        "src/devtools/agents/integrations/codex/docs/cli.md",
+        "src/devtools/agents/integrations/codex/docs/overview.md",
+        "src/devtools/context/python/modules/docs/overview.md",
+        "src/devtools/context/python/references/docs/overview.md",
+        "src/devtools/context/retrieval/docs/overview.md",
+        "src/devtools/core/conversion/docs/overview.md",
+        "src/devtools/core/identity/docs/overview.md",
+        "src/devtools/core/paths/docs/overview.md",
+        "src/devtools/core/paths/docs/resolution.md",
+        "src/devtools/core/regex/docs/overview.md",
+        "src/devtools/core/system/docs/overview.md",
+        "src/devtools/core/time/docs/overview.md",
+        "src/devtools/core/time/docs/timestamps.md",
+        "src/devtools/core/time/docs/timing.md",
+        "src/devtools/evaluation/docs/overview.md",
+        "src/devtools/execution/docs/overview.md",
+        "src/devtools/governance/__init__.py",
+        "src/devtools/models/__init__.py",
+        "src/devtools/models/benchmarks/__init__.py",
+        "src/devtools/models/benchmarks/docs/overview.md",
+        "src/devtools/models/interaction/docs/overview.md",
+        "src/devtools/models/serving/docs/overview.md",
+        "src/devtools/observability/__init__.py",
+        "src/devtools/observability/evidence/docs/overview.md",
+        "src/devtools/orchestration/__init__.py",
+        "src/devtools/persistence/docs/json.md",
+        "src/devtools/persistence/docs/overview.md",
+        "src/devtools/persistence/docs/sqlite.md",
+        "src/devtools/resources/__init__.py",
+        "src/devtools/resources/commands/docs/command.md",
+        "src/devtools/resources/commands/docs/events.md",
+        "src/devtools/resources/commands/docs/execution.md",
+        "src/devtools/resources/commands/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/codecs.md",
+        "src/devtools/resources/filesystem/docs/csv.md",
+        "src/devtools/resources/filesystem/docs/io.md",
+        "src/devtools/resources/filesystem/docs/json.md",
+        "src/devtools/resources/filesystem/docs/markdown.md",
+        "src/devtools/resources/filesystem/docs/models.md",
+        "src/devtools/resources/filesystem/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/roadmap.md",
+        "src/devtools/tools/command.py",
+        "src/devtools/tools/docs/overview.md",
+        "tests/context/__init__.py",
+        "tests/context/python/__init__.py",
+        "tests/context/python/function/__init__.py",
+        "tests/context/python/function/test_candidates.py",
+        "tests/context/python/function/test_cross_resource_pipeline.py",
+        "tests/context/python/function/test_declaration_aggregation.py",
+        "tests/context/python/function/test_declarations.py",
+        "tests/context/python/function/test_disclosure.py",
+        "tests/context/python/function/test_materialization.py",
+        "tests/context/python/function/test_rendering.py",
+        "tests/context/python/function/test_request_assembly.py",
+        "tests/context/python/function/test_resource_selection.py",
+        "tests/context/python/function/test_retrieval.py",
+        "tests/context/python/imports/__init__.py",
+        "tests/context/python/modules/__init__.py",
+        "tests/context/python/references/__init__.py",
+        "tests/context/python/test_source_candidacy.py",
+        "tests/context/repository/__init__.py",
+        "tests/context/repository/test_corpus.py",
+        "tests/context/repository/test_discovery.py",
+        "tests/context/repository/test_document.py",
+        "tests/context/repository/test_observation.py",
+        "tests/context/retrieval/__init__.py",
+        "tests/context/retrieval/lexical/__init__.py"
+      ],
+      "edge_count": 3598,
+      "isolated_resource_nodes": [
+        "AGENTS.md",
+        "docs/architecture.md",
+        "docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md",
+        "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+        "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+        "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+        "docs/architecture/taxonomy.md",
+        "docs/backlog/epics/B-0001-architecture-documentation-integrity.md",
+        "docs/backlog/epics/B-0002-coding-context-substrate.md",
+        "docs/backlog/epics/B-0003-local-coding-worker-harness.md",
+        "docs/backlog/epics/B-0004-governed-execution-evolution.md",
+        "docs/backlog/epics/B-0005-effect-governance.md",
+        "docs/backlog/epics/B-0015-framework-acceptance-harness-validation.md",
+        "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+        "docs/backlog/items/B-0007-correct-model-serving-documentation-drift.md",
+        "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+        "docs/backlog/items/B-0009-build-bounded-local-coding-worker-harness.md",
+        "docs/backlog/items/B-0010-investigate-work-execution-attempt-semantics.md",
+        "docs/backlog/items/B-0011-investigate-durable-execution-evidence.md",
+        "docs/backlog/items/B-0012-investigate-governed-effect-semantics.md",
+        "docs/backlog/items/B-0013-investigate-authority-grants-approval.md",
+        "docs/backlog/items/B-0014-investigate-retry-repair-reconciliation.md",
+        "docs/backlog/items/B-0016-define-framework-live-harness-acceptance.md",
+        "docs/backlog/items/B-0017-investigate-runtime-occurrence-observability-boundaries.md",
+        "docs/backlog/items/B-0018-investigate-operational-data-minimization-disclosure.md",
+        "docs/backlog/items/B-0019-investigate-typed-configuration-ownership.md",
+        "docs/backlog/items/B-0020-investigate-capability-operation-model-action-substrate.md",
+        "docs/backlog/items/B-0021-investigate-approval-human-governance-workflow.md",
+        "docs/backlog/items/B-0022-investigate-delegation-acting-authority.md",
+        "docs/backlog/items/B-0023-investigate-observability-architecture.md",
+        "docs/backlog/items/B-0024-investigate-audit-durable-accountability.md",
+        "docs/backlog/items/B-0025-investigate-scoped-runtime-context.md",
+        "docs/backlog/items/B-0026-investigate-runtime-control-lifecycle.md",
+        "docs/backlog/items/B-0027-investigate-serialization-representation-boundaries.md",
+        "docs/backlog/items/B-0028-investigate-persistence-durable-state-boundaries.md",
+        "docs/backlog/items/B-0029-investigate-reusable-agent-definition-runtime-orchestration.md",
+        "docs/backlog/items/B-0030-investigate-provider-neutral-generative-model-interaction.md",
+        "docs/backlog/items/B-0031-investigate-generic-execution-lifecycle-promotion.md",
+        "docs/backlog/items/B-0032-investigate-execution-retry-mechanics.md",
+        "docs/backlog/items/B-0033-investigate-semantic-repair-replanning.md",
+        "docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md",
+        "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+        "docs/backlog/items/B-0036-investigate-action-request-semantics.md",
+        "docs/backlog/items/B-0037-investigate-approval-semantics.md",
+        "docs/backlog/items/B-0038-investigate-approval-workflow-orchestration.md",
+        "docs/backlog/items/B-0039-investigate-delegated-authority.md",
+        "docs/backlog/items/B-0040-investigate-delegated-agent-coordination.md",
+        "docs/backlog/items/B-0041-investigate-execution-local-lifecycle-control.md",
+        "docs/backlog/items/B-0042-investigate-workflow-lifecycle-control.md",
+        "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+        "docs/backlog/items/B-0044-investigate-orchestration-control-loops.md",
+        "docs/backlog/items/B-0045-establish-minimal-model-interaction-core.md",
+        "docs/backlog/items/B-0046-investigate-advanced-model-interaction-provider-pressure.md",
+        "docs/backlog/metadata.md",
+        "docs/backlog/overview.md",
+        "docs/documentation_map.md",
+        "docs/experiments/qwen38_llama_cpp.md",
+        "docs/implementation_ledger.md",
+        "docs/roadmap.md",
+        "experiments/codex_dogfood/__init__.py",
+        "pyproject.toml",
+        "src/devtools/__init__.py",
+        "src/devtools/agents/__init__.py",
+        "src/devtools/agents/conversation/docs/conversation.md",
+        "src/devtools/agents/conversation/docs/history.md",
+        "src/devtools/agents/conversation/docs/overview.md",
+        "src/devtools/agents/integrations/__init__.py",
+        "src/devtools/agents/integrations/codex/docs/cli.md",
+        "src/devtools/agents/integrations/codex/docs/overview.md",
+        "src/devtools/context/python/modules/docs/overview.md",
+        "src/devtools/context/python/references/docs/overview.md",
+        "src/devtools/context/retrieval/docs/overview.md",
+        "src/devtools/core/conversion/docs/overview.md",
+        "src/devtools/core/identity/docs/overview.md",
+        "src/devtools/core/paths/docs/overview.md",
+        "src/devtools/core/paths/docs/resolution.md",
+        "src/devtools/core/regex/docs/overview.md",
+        "src/devtools/core/system/docs/overview.md",
+        "src/devtools/core/time/docs/overview.md",
+        "src/devtools/core/time/docs/timestamps.md",
+        "src/devtools/core/time/docs/timing.md",
+        "src/devtools/evaluation/docs/overview.md",
+        "src/devtools/execution/docs/overview.md",
+        "src/devtools/governance/__init__.py",
+        "src/devtools/models/__init__.py",
+        "src/devtools/models/benchmarks/__init__.py",
+        "src/devtools/models/benchmarks/docs/overview.md",
+        "src/devtools/models/interaction/docs/overview.md",
+        "src/devtools/models/serving/docs/overview.md",
+        "src/devtools/observability/__init__.py",
+        "src/devtools/observability/evidence/docs/overview.md",
+        "src/devtools/orchestration/__init__.py",
+        "src/devtools/persistence/docs/json.md",
+        "src/devtools/persistence/docs/overview.md",
+        "src/devtools/persistence/docs/sqlite.md",
+        "src/devtools/resources/__init__.py",
+        "src/devtools/resources/commands/docs/command.md",
+        "src/devtools/resources/commands/docs/events.md",
+        "src/devtools/resources/commands/docs/execution.md",
+        "src/devtools/resources/commands/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/codecs.md",
+        "src/devtools/resources/filesystem/docs/csv.md",
+        "src/devtools/resources/filesystem/docs/io.md",
+        "src/devtools/resources/filesystem/docs/json.md",
+        "src/devtools/resources/filesystem/docs/markdown.md",
+        "src/devtools/resources/filesystem/docs/models.md",
+        "src/devtools/resources/filesystem/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/roadmap.md",
+        "src/devtools/tools/docs/overview.md",
+        "tests/context/__init__.py",
+        "tests/context/python/__init__.py",
+        "tests/context/python/function/__init__.py",
+        "tests/context/python/imports/__init__.py",
+        "tests/context/python/modules/__init__.py",
+        "tests/context/python/references/__init__.py",
+        "tests/context/repository/__init__.py",
+        "tests/context/retrieval/__init__.py",
+        "tests/context/retrieval/lexical/__init__.py"
+      ],
+      "node_count": 1512,
+      "nodes_by_kind": {
+        "direct-method": 419,
+        "module-class": 282,
+        "module-function": 509,
+        "resource": 302
+      }
+    },
+    "typed-navigation-v1": {
+      "contributions_by_family_direction": {
+        "containment-return:declaration-to-resource": 791,
+        "containment-return:method-to-class": 419,
+        "containment:class-to-method": 419,
+        "containment:resource-to-declaration": 791,
+        "direct-base:child-to-base": 32,
+        "import:forward": 785,
+        "mirrored-path:source-to-mirrored-test": 27,
+        "mirrored-path:test-to-mirrored-source": 27,
+        "package-membership:child-to-package": 199,
+        "package-membership:package-to-child": 199,
+        "reference:source-to-target": 1310
+      },
+      "cross_resource_isolated": [
+        "AGENTS.md",
+        "docs/architecture.md",
+        "docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md",
+        "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+        "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+        "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+        "docs/architecture/taxonomy.md",
+        "docs/backlog/epics/B-0001-architecture-documentation-integrity.md",
+        "docs/backlog/epics/B-0002-coding-context-substrate.md",
+        "docs/backlog/epics/B-0003-local-coding-worker-harness.md",
+        "docs/backlog/epics/B-0004-governed-execution-evolution.md",
+        "docs/backlog/epics/B-0005-effect-governance.md",
+        "docs/backlog/epics/B-0015-framework-acceptance-harness-validation.md",
+        "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+        "docs/backlog/items/B-0007-correct-model-serving-documentation-drift.md",
+        "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+        "docs/backlog/items/B-0009-build-bounded-local-coding-worker-harness.md",
+        "docs/backlog/items/B-0010-investigate-work-execution-attempt-semantics.md",
+        "docs/backlog/items/B-0011-investigate-durable-execution-evidence.md",
+        "docs/backlog/items/B-0012-investigate-governed-effect-semantics.md",
+        "docs/backlog/items/B-0013-investigate-authority-grants-approval.md",
+        "docs/backlog/items/B-0014-investigate-retry-repair-reconciliation.md",
+        "docs/backlog/items/B-0016-define-framework-live-harness-acceptance.md",
+        "docs/backlog/items/B-0017-investigate-runtime-occurrence-observability-boundaries.md",
+        "docs/backlog/items/B-0018-investigate-operational-data-minimization-disclosure.md",
+        "docs/backlog/items/B-0019-investigate-typed-configuration-ownership.md",
+        "docs/backlog/items/B-0020-investigate-capability-operation-model-action-substrate.md",
+        "docs/backlog/items/B-0021-investigate-approval-human-governance-workflow.md",
+        "docs/backlog/items/B-0022-investigate-delegation-acting-authority.md",
+        "docs/backlog/items/B-0023-investigate-observability-architecture.md",
+        "docs/backlog/items/B-0024-investigate-audit-durable-accountability.md",
+        "docs/backlog/items/B-0025-investigate-scoped-runtime-context.md",
+        "docs/backlog/items/B-0026-investigate-runtime-control-lifecycle.md",
+        "docs/backlog/items/B-0027-investigate-serialization-representation-boundaries.md",
+        "docs/backlog/items/B-0028-investigate-persistence-durable-state-boundaries.md",
+        "docs/backlog/items/B-0029-investigate-reusable-agent-definition-runtime-orchestration.md",
+        "docs/backlog/items/B-0030-investigate-provider-neutral-generative-model-interaction.md",
+        "docs/backlog/items/B-0031-investigate-generic-execution-lifecycle-promotion.md",
+        "docs/backlog/items/B-0032-investigate-execution-retry-mechanics.md",
+        "docs/backlog/items/B-0033-investigate-semantic-repair-replanning.md",
+        "docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md",
+        "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+        "docs/backlog/items/B-0036-investigate-action-request-semantics.md",
+        "docs/backlog/items/B-0037-investigate-approval-semantics.md",
+        "docs/backlog/items/B-0038-investigate-approval-workflow-orchestration.md",
+        "docs/backlog/items/B-0039-investigate-delegated-authority.md",
+        "docs/backlog/items/B-0040-investigate-delegated-agent-coordination.md",
+        "docs/backlog/items/B-0041-investigate-execution-local-lifecycle-control.md",
+        "docs/backlog/items/B-0042-investigate-workflow-lifecycle-control.md",
+        "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+        "docs/backlog/items/B-0044-investigate-orchestration-control-loops.md",
+        "docs/backlog/items/B-0045-establish-minimal-model-interaction-core.md",
+        "docs/backlog/items/B-0046-investigate-advanced-model-interaction-provider-pressure.md",
+        "docs/backlog/metadata.md",
+        "docs/backlog/overview.md",
+        "docs/documentation_map.md",
+        "docs/experiments/qwen38_llama_cpp.md",
+        "docs/implementation_ledger.md",
+        "docs/roadmap.md",
+        "pyproject.toml",
+        "src/devtools/agents/conversation/docs/conversation.md",
+        "src/devtools/agents/conversation/docs/history.md",
+        "src/devtools/agents/conversation/docs/overview.md",
+        "src/devtools/agents/integrations/codex/docs/cli.md",
+        "src/devtools/agents/integrations/codex/docs/overview.md",
+        "src/devtools/context/python/modules/docs/overview.md",
+        "src/devtools/context/python/references/docs/overview.md",
+        "src/devtools/context/retrieval/docs/overview.md",
+        "src/devtools/core/conversion/docs/overview.md",
+        "src/devtools/core/identity/docs/overview.md",
+        "src/devtools/core/paths/docs/overview.md",
+        "src/devtools/core/paths/docs/resolution.md",
+        "src/devtools/core/regex/docs/overview.md",
+        "src/devtools/core/system/docs/overview.md",
+        "src/devtools/core/time/docs/overview.md",
+        "src/devtools/core/time/docs/timestamps.md",
+        "src/devtools/core/time/docs/timing.md",
+        "src/devtools/evaluation/docs/overview.md",
+        "src/devtools/execution/docs/overview.md",
+        "src/devtools/models/benchmarks/docs/overview.md",
+        "src/devtools/models/interaction/docs/overview.md",
+        "src/devtools/models/serving/docs/overview.md",
+        "src/devtools/observability/evidence/docs/overview.md",
+        "src/devtools/persistence/docs/json.md",
+        "src/devtools/persistence/docs/overview.md",
+        "src/devtools/persistence/docs/sqlite.md",
+        "src/devtools/resources/commands/docs/command.md",
+        "src/devtools/resources/commands/docs/events.md",
+        "src/devtools/resources/commands/docs/execution.md",
+        "src/devtools/resources/commands/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/codecs.md",
+        "src/devtools/resources/filesystem/docs/csv.md",
+        "src/devtools/resources/filesystem/docs/io.md",
+        "src/devtools/resources/filesystem/docs/json.md",
+        "src/devtools/resources/filesystem/docs/markdown.md",
+        "src/devtools/resources/filesystem/docs/models.md",
+        "src/devtools/resources/filesystem/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/roadmap.md",
+        "src/devtools/tools/docs/overview.md"
+      ],
+      "edge_count": 3935,
+      "isolated_resource_nodes": [
+        "AGENTS.md",
+        "docs/architecture.md",
+        "docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md",
+        "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+        "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+        "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+        "docs/architecture/taxonomy.md",
+        "docs/backlog/epics/B-0001-architecture-documentation-integrity.md",
+        "docs/backlog/epics/B-0002-coding-context-substrate.md",
+        "docs/backlog/epics/B-0003-local-coding-worker-harness.md",
+        "docs/backlog/epics/B-0004-governed-execution-evolution.md",
+        "docs/backlog/epics/B-0005-effect-governance.md",
+        "docs/backlog/epics/B-0015-framework-acceptance-harness-validation.md",
+        "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+        "docs/backlog/items/B-0007-correct-model-serving-documentation-drift.md",
+        "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+        "docs/backlog/items/B-0009-build-bounded-local-coding-worker-harness.md",
+        "docs/backlog/items/B-0010-investigate-work-execution-attempt-semantics.md",
+        "docs/backlog/items/B-0011-investigate-durable-execution-evidence.md",
+        "docs/backlog/items/B-0012-investigate-governed-effect-semantics.md",
+        "docs/backlog/items/B-0013-investigate-authority-grants-approval.md",
+        "docs/backlog/items/B-0014-investigate-retry-repair-reconciliation.md",
+        "docs/backlog/items/B-0016-define-framework-live-harness-acceptance.md",
+        "docs/backlog/items/B-0017-investigate-runtime-occurrence-observability-boundaries.md",
+        "docs/backlog/items/B-0018-investigate-operational-data-minimization-disclosure.md",
+        "docs/backlog/items/B-0019-investigate-typed-configuration-ownership.md",
+        "docs/backlog/items/B-0020-investigate-capability-operation-model-action-substrate.md",
+        "docs/backlog/items/B-0021-investigate-approval-human-governance-workflow.md",
+        "docs/backlog/items/B-0022-investigate-delegation-acting-authority.md",
+        "docs/backlog/items/B-0023-investigate-observability-architecture.md",
+        "docs/backlog/items/B-0024-investigate-audit-durable-accountability.md",
+        "docs/backlog/items/B-0025-investigate-scoped-runtime-context.md",
+        "docs/backlog/items/B-0026-investigate-runtime-control-lifecycle.md",
+        "docs/backlog/items/B-0027-investigate-serialization-representation-boundaries.md",
+        "docs/backlog/items/B-0028-investigate-persistence-durable-state-boundaries.md",
+        "docs/backlog/items/B-0029-investigate-reusable-agent-definition-runtime-orchestration.md",
+        "docs/backlog/items/B-0030-investigate-provider-neutral-generative-model-interaction.md",
+        "docs/backlog/items/B-0031-investigate-generic-execution-lifecycle-promotion.md",
+        "docs/backlog/items/B-0032-investigate-execution-retry-mechanics.md",
+        "docs/backlog/items/B-0033-investigate-semantic-repair-replanning.md",
+        "docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md",
+        "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+        "docs/backlog/items/B-0036-investigate-action-request-semantics.md",
+        "docs/backlog/items/B-0037-investigate-approval-semantics.md",
+        "docs/backlog/items/B-0038-investigate-approval-workflow-orchestration.md",
+        "docs/backlog/items/B-0039-investigate-delegated-authority.md",
+        "docs/backlog/items/B-0040-investigate-delegated-agent-coordination.md",
+        "docs/backlog/items/B-0041-investigate-execution-local-lifecycle-control.md",
+        "docs/backlog/items/B-0042-investigate-workflow-lifecycle-control.md",
+        "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+        "docs/backlog/items/B-0044-investigate-orchestration-control-loops.md",
+        "docs/backlog/items/B-0045-establish-minimal-model-interaction-core.md",
+        "docs/backlog/items/B-0046-investigate-advanced-model-interaction-provider-pressure.md",
+        "docs/backlog/metadata.md",
+        "docs/backlog/overview.md",
+        "docs/documentation_map.md",
+        "docs/experiments/qwen38_llama_cpp.md",
+        "docs/implementation_ledger.md",
+        "docs/roadmap.md",
+        "pyproject.toml",
+        "src/devtools/agents/conversation/docs/conversation.md",
+        "src/devtools/agents/conversation/docs/history.md",
+        "src/devtools/agents/conversation/docs/overview.md",
+        "src/devtools/agents/integrations/codex/docs/cli.md",
+        "src/devtools/agents/integrations/codex/docs/overview.md",
+        "src/devtools/context/python/modules/docs/overview.md",
+        "src/devtools/context/python/references/docs/overview.md",
+        "src/devtools/context/retrieval/docs/overview.md",
+        "src/devtools/core/conversion/docs/overview.md",
+        "src/devtools/core/identity/docs/overview.md",
+        "src/devtools/core/paths/docs/overview.md",
+        "src/devtools/core/paths/docs/resolution.md",
+        "src/devtools/core/regex/docs/overview.md",
+        "src/devtools/core/system/docs/overview.md",
+        "src/devtools/core/time/docs/overview.md",
+        "src/devtools/core/time/docs/timestamps.md",
+        "src/devtools/core/time/docs/timing.md",
+        "src/devtools/evaluation/docs/overview.md",
+        "src/devtools/execution/docs/overview.md",
+        "src/devtools/models/benchmarks/docs/overview.md",
+        "src/devtools/models/interaction/docs/overview.md",
+        "src/devtools/models/serving/docs/overview.md",
+        "src/devtools/observability/evidence/docs/overview.md",
+        "src/devtools/persistence/docs/json.md",
+        "src/devtools/persistence/docs/overview.md",
+        "src/devtools/persistence/docs/sqlite.md",
+        "src/devtools/resources/commands/docs/command.md",
+        "src/devtools/resources/commands/docs/events.md",
+        "src/devtools/resources/commands/docs/execution.md",
+        "src/devtools/resources/commands/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/codecs.md",
+        "src/devtools/resources/filesystem/docs/csv.md",
+        "src/devtools/resources/filesystem/docs/io.md",
+        "src/devtools/resources/filesystem/docs/json.md",
+        "src/devtools/resources/filesystem/docs/markdown.md",
+        "src/devtools/resources/filesystem/docs/models.md",
+        "src/devtools/resources/filesystem/docs/overview.md",
+        "src/devtools/resources/filesystem/docs/roadmap.md",
+        "src/devtools/tools/docs/overview.md"
+      ],
+      "node_count": 1512,
+      "nodes_by_kind": {
+        "direct-method": 419,
+        "module-class": 282,
+        "module-function": 509,
+        "resource": 302
+      }
+    }
+  }
+}

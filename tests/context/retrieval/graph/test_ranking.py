@@ -2,6 +2,8 @@
 # ruff: noqa: COM812, D103, PLR2004
 """Production RI projection, PPR, and native rank fusion."""
 
+import gzip
+import pickle
 from dataclasses import replace
 from pathlib import Path
 from typing import TYPE_CHECKING, cast
@@ -19,6 +21,9 @@ from devtools.context.python.modules import (
     define_python_module_interpretation_universe,
     interpret_python_module_resources,
 )
+from devtools.context.python.references.analysis import (
+    PythonFunctionReferenceKnowledge,
+)
 from devtools.context.repository.identity import Repository, RepositoryId
 from devtools.context.repository.observation import observe_repository_resources
 from devtools.context.repository.resource import RepositoryResourceAddress
@@ -29,6 +34,7 @@ from devtools.context.retrieval.graph import (
     rank_python_repository_resources,
 )
 from devtools.core.paths import ResolvedPath
+from experiments.graph_ranking_baseline.evaluate import ARCHIVE
 from tests.context.retrieval.test_composition import _lexical
 from tests.context.retrieval.test_structural import _facts
 
@@ -49,7 +55,10 @@ def test_view_projects_forward_facts_once_and_preserves_occurrences(
     assert len(view.resources) == 4
     assert len(view.edges) == 1
     edge = view.edges[0]
-    assert (str(edge.source), str(edge.target)) == ("consumer.py", "pkg/target.py")
+    assert (str(edge.source.resource_address), str(edge.target.resource_address)) == (
+        "consumer.py",
+        "pkg/target.py",
+    )
     assert edge.weight == 4
     assert edge.transition_probability == 1
     assert [item.kind for item in edge.contributions] == [
@@ -63,11 +72,23 @@ def test_view_projects_forward_facts_once_and_preserves_occurrences(
         *(item.identity for item in references),
     }
     assert not any(
-        edge.source == RepositoryResourceAddress("pkg/target.py") for edge in view.edges
+        edge.source.resource_address == RepositoryResourceAddress("pkg/target.py")
+        for edge in view.edges
     )
     assert view == build_python_resource_graph_view(
         snapshot, imports=(imported,), references=references
     )
+
+
+def test_resource_view_accepts_frozen_function_reference_value() -> None:
+    # Historical input is development-only and tests old-view reproducibility.
+    with gzip.open(ARCHIVE, "rb") as stream:
+        case = pickle.load(stream)  # noqa: S301
+    legacy = case.references[0]
+    assert isinstance(legacy, PythonFunctionReferenceKnowledge)
+    view = build_python_resource_graph_view(case.snapshot, references=(legacy,))
+    assert len(view.edges) == 1
+    assert view.edges[0].contributions[0].fact == legacy
 
 
 def test_weighted_transitions_normalize_distinct_fact_counts(tmp_path: Path) -> None:
@@ -115,11 +136,14 @@ def test_weighted_transitions_normalize_distinct_fact_counts(tmp_path: Path) -> 
     ).relations
     view = build_python_resource_graph_view(snapshot, imports=imports)
     assert len(view.edges) == 2
-    assert {str(edge.target): edge.weight for edge in view.edges} == {
+    assert {str(edge.target.resource_address): edge.weight for edge in view.edges} == {
         "left.py": 2,
         "right.py": 1,
     }
-    assert {str(edge.target): edge.transition_probability for edge in view.edges} == {
+    assert {
+        str(edge.target.resource_address): edge.transition_probability
+        for edge in view.edges
+    } == {
         "left.py": pytest.approx(2 / 3),
         "right.py": pytest.approx(1 / 3),
     }

@@ -89,9 +89,10 @@
 - Evaluation: [identity coverage](../src/devtools/evaluation/docs/overview.md).
 - Retrieval: [production mechanisms](../src/devtools/context/retrieval/docs/overview.md).
   The [query-conditioned graph ranking view](../src/devtools/context/retrieval/graph/docs/overview.md)
-  specifies its projection and PPR/RRF evidence semantics; the
-  [development replay](../experiments/graph_ranking_baseline/README.md) owns
-  the one-case outcome and limitations.
+  specifies its resource-only and typed projection and PPR/RRF evidence
+  semantics. The [first baseline replay](../experiments/graph_ranking_baseline/README.md)
+  and [typed-view replay](../experiments/typed_graph_baseline/README.md) own
+  their respective development outcomes and limitations.
 
 The `context` domain exposes narrow Repository Intelligence APIs. Its current
 implementation can recursively discover regular-file addresses beneath an

@@ -6,15 +6,18 @@ does not establish repository relationship truth or decide Context disclosure.
 ## Query-conditioned graph ranking
 
 The [graph-ranking package](../graph/docs/overview.md) projects already-derived
-production Imports and qualified References/direct Calls into a typed forward
-resource view. It uses lexical-rank personalization and weighted PageRank to
-return snapshot-bound ranked structural evidence. A separate equal-channel RRF
-result combines native BM25 and PPR ranks while retaining both originals. It
-does not use package containment as a default transition, enumerate graph
-paths, or determine disclosure. The [development replay](../../../../../experiments/graph_ranking_baseline/README.md)
+Repository Intelligence (RI) facts into either the reproducible resource-only
+view or typed resource/declaration views. Query-derived lexical rank mass seeds
+weighted Personalized PageRank (PPR), which returns snapshot-bound structural
+evidence. Optional equal-channel Reciprocal Rank Fusion (RRF) combines native
+BM25 and PPR ranks while retaining both originals. The typed core view includes
+declaration containment and direct bases; an additional navigation view
+includes qualified package membership and weak mirrored paths. Neither
+enumerates graph paths nor determines disclosure. The
+[first replay](../../../../../experiments/graph_ranking_baseline/README.md)
+and [typed replay](../../../../../experiments/typed_graph_baseline/README.md)
 found worse complete required-resource depth than BM25 on one retained
-production-RI dogfood case. Graph ranking is an optional evidence channel, not
-an automatic handoff policy.
+development case. Graph ranking remains optional evidence.
 
 ## Direct Python structural projection
 

@@ -390,3 +390,20 @@ edges and 152 to 134 isolated resources. Required isolated resources fell from
 seven to three; unchanged Personalized PageRank last-required depth worsened
 from 84 to 87 on the full prompt. This establishes improved topology, not a
 ranking win. The next hypothesis is a richer typed Retrieval graph view.
+
+# Typed Retrieval graph development checkpoint (2026-10-01)
+
+One canonical production graph builder now supports the historical
+resource-forward configuration and typed resource/function/class/method views
+over retained Repository Intelligence. Typed edges retain exact fact provenance,
+declaration containment, forward References/Imports, direct bases, and optional
+package and mirrored-path navigation. The unchanged PPR kernel uses resource
+lexical seeds; typed resource ranking takes the maximum node mass per resource.
+The prospective [development replay](../experiments/typed_graph_baseline/README.md)
+increased graph size from 302 nodes/279 edges to 1,512 nodes/3,598 core edges
+(3,935 with navigation). It preserved same-resource Reference topology but
+worsened full-prompt last-required rank from BM25 43 and resource PPR 84 to
+typed core 146 and navigation 207. No lexical required miss was rescued.
+The result withholds a default graph policy and motivates an independently
+frozen comparison of structural priors and resource aggregation. Confirmation
+remains sealed.

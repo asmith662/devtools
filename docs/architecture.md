@@ -775,6 +775,22 @@ optional retrieval evidence and withholds any automatic ranking/disclosure
 policy. The result is case-local and does not close the broader graph-ranking
 hypothesis or authorize tuning on the same labels.
 
+The subsequent typed Retrieval graph view projects production Repository
+Intelligence onto observed resources and supported function, class, and method
+declarations. Containment in both navigational directions, forward Imports
+and References, and resolved direct bases form its core; an optional navigation
+view also projects qualified immediate package membership and weak mirrored
+source/test path correspondence. Retrieval owns these transition directions
+and balanced outgoing-family normalization. RI still owns the exact underlying
+facts. The same Personalized PageRank kernel ranks every view, lexical mass
+enters only resource nodes, and the maximum node mass in a resource becomes
+its structural resource score. This neither selects nor discloses Context.
+The [typed-view development replay](../experiments/typed_graph_baseline/README.md)
+restored same-resource declaration topology but worsened complete required
+depth against BM25 on the retained development case. This does not establish a
+default graph ranking policy. Documentation/governance and configuration
+resources remain without supported structural relations in this graph.
+
 The bounded source-grounded Python function Reference occurrence
 with direct Call specialization is now production RI with explicit uncertainty
 and coverage; no runtime dispatch or generic call graph is implied. Immediate
@@ -784,8 +800,9 @@ fact with source and test-side roles, snapshot-bound resource/content support,
 and bounded coverage. It asserts path convention, not TESTS, COVERS, VALIDATES,
 EXERCISES, execution, or behavioral dependency. Its weak historical incremental
 retrieval reach is independent of whether the path fact is deterministic. The
-current direct structural retriever, PPR graph view, RRF fusion, and Context
-Planning do not consume this new fact automatically. The
+direct structural retriever and Context Planning do not consume this fact
+automatically. The optional typed navigation graph projects it as a weak,
+explicitly labeled path correspondence; the typed core view omits it. The
 [Python RI overview](../src/devtools/context/python/docs/overview.md) defines its
 contract.
 

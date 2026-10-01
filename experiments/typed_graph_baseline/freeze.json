@@ -1,0 +1,39 @@
+{
+  "schema": "devtools-typed-graph-development-freeze-v1",
+  "case": "codex-dogfood-0002-development-only",
+  "input_archive_sha256": "33da750e21af0d8ff60ce4b48ca7e5d114a920f0c933a7011b784168509783eb",
+  "views": [
+    "resource-forward-frozen-input-v1",
+    "resource-forward-current-ri-v1",
+    "typed-core-v1",
+    "typed-navigation-v1"
+  ],
+  "typed_nodes": ["resource", "module-function", "module-class", "direct-method"],
+  "core_edges": [
+    "importer-resource-to-imported-resource",
+    "reference-containing-declaration-or-resource-to-target-declaration",
+    "resource-to-direct-module-declaration",
+    "direct-module-declaration-to-resource",
+    "class-to-direct-method",
+    "direct-method-to-class",
+    "child-class-to-direct-base-class"
+  ],
+  "navigation_additions": [
+    "immediate-package-resource-to-child-resource",
+    "child-resource-to-immediate-package-resource",
+    "mirrored-source-resource-to-test-resource",
+    "mirrored-test-resource-to-source-resource"
+  ],
+  "excluded": ["reverse-import", "reverse-reference", "transitive-base", "runtime-dispatch", "reference-occurrence-nodes"],
+  "typed_weighting": "each active outgoing relation family receives equal total transition mass; unique RI facts divide mass within family; duplicate fact IDs count once",
+  "resource_only_weighting": "unchanged equal unique fact weight, normalized by source outgoing total",
+  "personalization": "positive BM25 reciprocal rank 1/(60+rank), normalized, resource nodes only",
+  "resource_aggregation": "maximum stationary mass of the resource node and its directly or indirectly contained supported declaration nodes",
+  "damping": 0.85,
+  "tolerance": 1e-10,
+  "maximum_iterations": 200,
+  "dangling": "redistribute by personalization",
+  "fusion": "equal-channel RRF sum(1/(60+rank))",
+  "outcomes_used_to_choose_configuration": false,
+  "confirmation": "sealed"
+}

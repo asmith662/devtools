@@ -33,7 +33,7 @@ from devtools.context.retrieval.lexical import (
 from experiments.graph_ranking_baseline.evaluate import ADJUDICATION, ARCHIVE, FREEZE
 
 if TYPE_CHECKING:
-    from devtools.context.retrieval.graph.view import PythonResourceGraphView
+    from devtools.context.retrieval.graph.view import PythonGraphView
 
 OUTPUT = Path(__file__).with_name("structural_replay.json")
 EXPECTED_REQUIRED = 10
@@ -43,9 +43,9 @@ def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def _topology(view: PythonResourceGraphView) -> dict[str, Any]:
-    incident = {str(edge.source) for edge in view.edges} | {
-        str(edge.target) for edge in view.edges
+def _topology(view: PythonGraphView) -> dict[str, Any]:
+    incident = {str(edge.source.resource_address) for edge in view.edges} | {
+        str(edge.target.resource_address) for edge in view.edges
     }
     return {
         "nodes": len(view.resources),

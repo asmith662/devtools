@@ -52,13 +52,16 @@ The frozen Case 0002 structural replay increased forward graph edges from 279
 to 360 and connected four of seven formerly isolated required resources. The
 unchanged Personalized PageRank (PPR) replay still placed the last required
 resource at rank 87 for the full prompt (formerly 84), because documentation
-and configuration required resources remain structurally isolated. The next
-selected increment is a prospective richer Retrieval graph comparison over
+and configuration required resources remain structurally isolated. The
+subsequent richer Retrieval graph comparison projected
 Imports, References, containment, direct bases, package membership, and
-mirrored-path correspondence, with explicit edge-family and direction choices.
-This is a Retrieval graph decision, not another unrelated RI slice or a
-change to Context admission. The single retained development case is
-diagnostic evidence, not an unbiased ranking evaluation.
+mirrored-path correspondence with explicit edge-family and direction choices.
+On the retained development case, typed
+declaration topology was restored, but complete required-resource depth
+worsened. The next comparison requires an independently frozen task before
+testing resource aggregation or a global structural prior. This is a
+Retrieval decision, not a change to Context admission. The single retained
+case is diagnostic evidence, not an unbiased ranking evaluation.
 
 The production Selection architecture investigation is complete. No universal
 resource-Selection stage is mandatory between Retrieval and Context. Resource
@@ -159,14 +162,20 @@ Confirmation remains sealed.
    resolution and uncertainty. This increment is complete: every retained
    base expression receives a snapshot-bound assessment; positive direct
    repository class targets require an unambiguous supported binding.
-5. Extend reference/call structure only where conservative derivation supports
-   the claimed target and occurrence semantics. This is the next production
-   boundary, coupled to the graph-representation preparation below.
-6. Construct and prospectively evaluate a substantially richer typed graph view
-   after those RI increments. Keep BM25, PPR, and fusion rankings separate;
-   do not tune the current sparse graph after each isolated fact. Freeze a
-   broader development frame before outcome inspection and measure structural
-   coverage, useful-resource depth, and displacement.
+5. Extend Reference/direct Call structure under bounded, source-grounded
+   resolution. Complete: supported functions, classes, and direct methods now
+   have one canonical production Reference derivation.
+6. Construct and prospectively evaluate a richer typed Retrieval graph over
+   that RI. Complete: the [fixed development replay](../experiments/typed_graph_baseline/README.md)
+   restores declaration topology, but typed PPR and equal-channel fusion do
+   not beat BM25 complete required depth on retained Case 0002. Confirmation
+   is sealed. Graph ranking remains optional evidence.
+7. Next: freeze a new independent development task/frame before comparing a
+   repository-map-style structural prior and alternative typed-node resource
+   aggregation. The retained Case 0002 result diagnoses missing
+   documentation/configuration relationships and resource-biased aggregation;
+   it must not be reused to tune those choices. Keep Selection and Context
+   disclosure decisions separate from Retrieval ranking.
 
 ### Controlled advisory Codex dogfooding
 

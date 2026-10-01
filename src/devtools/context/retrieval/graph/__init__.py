@@ -4,25 +4,35 @@
 from devtools.context.retrieval.graph.pagerank import (
     GraphRankingSettings,
     PythonGraphIncomingSupport,
+    PythonGraphNodeScore,
     PythonGraphRankedResource,
     PythonGraphRankingResult,
     rank_python_repository_resources,
 )
 from devtools.context.retrieval.graph.view import (
+    PythonGraphEdge,
     PythonGraphEdgeContribution,
-    PythonResourceGraphEdge,
-    PythonResourceGraphView,
+    PythonGraphNode,
+    PythonGraphNodeKind,
+    PythonGraphProjection,
+    PythonGraphView,
+    build_python_graph_view,
     build_python_resource_graph_view,
 )
 
 __all__ = [
     "GraphRankingSettings",
+    "PythonGraphEdge",
     "PythonGraphEdgeContribution",
     "PythonGraphIncomingSupport",
+    "PythonGraphNode",
+    "PythonGraphNodeKind",
+    "PythonGraphNodeScore",
+    "PythonGraphProjection",
     "PythonGraphRankedResource",
     "PythonGraphRankingResult",
-    "PythonResourceGraphEdge",
-    "PythonResourceGraphView",
+    "PythonGraphView",
+    "build_python_graph_view",
     "build_python_resource_graph_view",
     "rank_python_repository_resources",
 ]
