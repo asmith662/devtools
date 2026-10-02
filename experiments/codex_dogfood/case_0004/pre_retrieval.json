@@ -1,0 +1,2401 @@
+{
+  "schema": "codex-obligation-lexical-protocol-v1",
+  "status": "FROZEN BEFORE RETRIEVAL",
+  "case": "case_0004",
+  "starting_head": "3cfda0a81ae95f578f42b8fd6b17cc8bcf751bc1",
+  "task_identity": "codex-dogfood-case-0004-repository-role-intelligence",
+  "task_full_prompt": "Implement the first production repository-role intelligence needed for obligation-relative Localization. Add deterministic, snapshot-bound repository facts and bounded recognized configuration semantics that can later support soft role-aware routing, while preserving the distinction between repository truth and task-relative role evidence. The increment should cover the strongest currently justified facts such as exact resource path characteristics and recognized Python project/test configuration semantics where repository evidence supports them, integrate them with existing Repository Intelligence ownership rather than inventing relevance labels, add strong tests and appropriate architecture/development documentation, preserve existing package/API conventions where applicable, and pass the repository's protected development validation. Do not implement hard `src/`, `tests/`, or `docs/` filtering, automatic obligation resolution, candidate elimination, learned roles, or a generic cross-framework role ontology.",
+  "task_sha256": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+  "purpose": "Acquire repository information needed to implement bounded repository-role intelligence, with obligation-relative reach assessed independently of native lexical ranks.",
+  "anchors": [
+    {
+      "identity": "roles",
+      "text": "repository-role intelligence",
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "explanation": "Shared task concept explicitly present in the frozen development task."
+      }
+    },
+    {
+      "identity": "ri",
+      "text": "Repository Intelligence",
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "explanation": "Shared task concept explicitly present in the frozen development task."
+      }
+    },
+    {
+      "identity": "paths",
+      "text": "resource path characteristics",
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "explanation": "Shared task concept explicitly present in the frozen development task."
+      }
+    },
+    {
+      "identity": "configuration",
+      "text": "Python project/test configuration",
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "explanation": "Shared task concept explicitly present in the frozen development task."
+      }
+    },
+    {
+      "identity": "localization",
+      "text": "obligation-relative Localization",
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "explanation": "Shared task concept explicitly present in the frozen development task."
+      }
+    },
+    {
+      "identity": "validation",
+      "text": "protected development validation",
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "explanation": "Shared task concept explicitly present in the frozen development task."
+      }
+    }
+  ],
+  "obligations": [
+    {
+      "identity": "ri-ownership",
+      "predicate": "Locate the supported Repository Intelligence ownership and extension contracts for deterministic snapshot-bound facts.",
+      "anchors": [
+        "ri",
+        "roles",
+        "localization"
+      ],
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "task_phrase": "integrate them with existing Repository Intelligence ownership",
+        "explanation": "Caller interpretation of task phrase: integrate them with existing Repository Intelligence ownership; governed by existing repository operating requirements."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "ri-extension-contract",
+        "statement": "Information identifies the supported RI extension ownership, snapshot/provenance/coverage contracts and boundaries excluding task-relative relevance."
+      },
+      "witness_alternatives": [],
+      "initial_state": "open"
+    },
+    {
+      "identity": "resource-path",
+      "predicate": "Locate existing resource and path identity semantics required to derive exact resource path characteristics without duplicating primitives.",
+      "anchors": [
+        "paths",
+        "ri"
+      ],
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "task_phrase": "exact resource path characteristics",
+        "explanation": "Caller interpretation of task phrase: exact resource path characteristics; governed by existing repository operating requirements."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "native-path-contract",
+        "statement": "Information establishes native resource/path identity, normalization, containment and retained snapshot semantics needed for exact characteristics."
+      },
+      "witness_alternatives": [],
+      "initial_state": "open"
+    },
+    {
+      "identity": "python-configuration",
+      "predicate": "Locate existing bounded Python project configuration declaration and resolution semantics that the new facts must reuse or extend.",
+      "anchors": [
+        "configuration",
+        "ri"
+      ],
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "task_phrase": "recognized Python project/test configuration semantics where repository evidence supports them",
+        "explanation": "Caller interpretation of task phrase: recognized Python project/test configuration semantics where repository evidence supports them; governed by existing repository operating requirements."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "python-project-config-contract",
+        "statement": "Information establishes supported project configuration syntax, declaration identity, source provenance, repository resolution and unsupported or ambiguous coverage."
+      },
+      "witness_alternatives": [],
+      "initial_state": "open"
+    },
+    {
+      "identity": "test-configuration",
+      "predicate": "Determine the current supported test configuration semantics and declared test discovery or selection behavior that can soundly become repository facts.",
+      "anchors": [
+        "configuration",
+        "roles"
+      ],
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "task_phrase": "recognized Python project/test configuration semantics where repository evidence supports them",
+        "explanation": "Caller interpretation of task phrase: recognized Python project/test configuration semantics where repository evidence supports them; governed by existing repository operating requirements."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "bounded-test-config-contract",
+        "statement": "Information establishes declared test configuration and existing recognized semantics, separating static selection from actual test execution; supported absence is an acceptable finding."
+      },
+      "witness_alternatives": [],
+      "initial_state": "open"
+    },
+    {
+      "identity": "package-integration",
+      "predicate": "Locate package and public API integration conventions governing addition of this RI capability.",
+      "anchors": [
+        "ri",
+        "roles"
+      ],
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "task_phrase": "preserve existing package/API conventions where applicable",
+        "explanation": "Caller interpretation of task phrase: preserve existing package/API conventions where applicable; governed by existing repository operating requirements."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "package-integration-contract",
+        "statement": "Information establishes applicable package organization and public API exposure conventions without assuming a particular export mechanism or registration."
+      },
+      "witness_alternatives": [],
+      "initial_state": "open"
+    },
+    {
+      "identity": "tests",
+      "predicate": "Locate existing tests and test conventions needed to specify strong regression coverage for the new deterministic facts and configuration semantics.",
+      "anchors": [
+        "ri",
+        "paths",
+        "configuration"
+      ],
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "task_phrase": "add strong tests",
+        "explanation": "Caller interpretation of task phrase: add strong tests; governed by existing repository operating requirements."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "test-extension-contract",
+        "statement": "Information establishes relevant test patterns and behavioral obligations for identity, provenance, snapshots, supported and unresolved configuration and reproducibility."
+      },
+      "witness_alternatives": [],
+      "initial_state": "open"
+    },
+    {
+      "identity": "documentation",
+      "predicate": "Locate authoritative architecture and development documentation ownership needed to document this bounded capability consistently.",
+      "anchors": [
+        "ri",
+        "roles",
+        "localization"
+      ],
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "task_phrase": "appropriate architecture/development documentation",
+        "explanation": "Caller interpretation of task phrase: appropriate architecture/development documentation; governed by existing repository operating requirements."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "documentation-authority-contract",
+        "statement": "Information establishes architecture, package documentation, documentation navigation and roadmap/backlog ownership relevant to this capability and its non-goals."
+      },
+      "witness_alternatives": [],
+      "initial_state": "open"
+    },
+    {
+      "identity": "validation",
+      "predicate": "Locate the supported protected development validation contract and remaining required static quality gates.",
+      "anchors": [
+        "validation"
+      ],
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "task_phrase": "pass the repository's protected development validation",
+        "explanation": "Caller interpretation of task phrase: pass the repository's protected development validation; governed by existing repository operating requirements."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "protected-validation-contract",
+        "statement": "Information establishes ordinary protected test selection, confirmation isolation, coverage requirements and applicable lint, formatting, typing and diff gates; execution itself is not localization."
+      },
+      "witness_alternatives": [],
+      "initial_state": "open"
+    }
+  ],
+  "global_lane": {
+    "identity": "global-full-task",
+    "query_text": "Implement the first production repository-role intelligence needed for obligation-relative Localization. Add deterministic, snapshot-bound repository facts and bounded recognized configuration semantics that can later support soft role-aware routing, while preserving the distinction between repository truth and task-relative role evidence. The increment should cover the strongest currently justified facts such as exact resource path characteristics and recognized Python project/test configuration semantics where repository evidence supports them, integrate them with existing Repository Intelligence ownership rather than inventing relevance labels, add strong tests and appropriate architecture/development documentation, preserve existing package/API conventions where applicable, and pass the repository's protected development validation. Do not implement hard `src/`, `tests/`, or `docs/` filtering, automatic obligation resolution, candidate elimination, learned roles, or a generic cross-framework role ontology."
+  },
+  "obligation_lanes": [
+    {
+      "identity": "query-ri-ownership",
+      "obligation": "ri-ownership",
+      "query_text": "Repository Intelligence deterministic facts snapshot identity provenance coverage ownership extension"
+    },
+    {
+      "identity": "query-resource-path",
+      "obligation": "resource-path",
+      "query_text": "repository resource path address identity normalization containment snapshot characteristics"
+    },
+    {
+      "identity": "query-python-configuration",
+      "obligation": "python-configuration",
+      "query_text": "Python project configuration declarations selectors TOML resolution provenance coverage ambiguity"
+    },
+    {
+      "identity": "query-test-configuration",
+      "obligation": "test-configuration",
+      "query_text": "Python test configuration pytest discovery selection options declared semantics"
+    },
+    {
+      "identity": "query-package-integration",
+      "obligation": "package-integration",
+      "query_text": "Repository Intelligence package public API exports integration conventions"
+    },
+    {
+      "identity": "query-tests",
+      "obligation": "tests",
+      "query_text": "Repository Intelligence tests snapshot mismatch identity provenance configuration unsupported deterministic coverage"
+    },
+    {
+      "identity": "query-documentation",
+      "obligation": "documentation",
+      "query_text": "Repository Intelligence Localization repository roles architecture documentation authority taxonomy roadmap backlog"
+    },
+    {
+      "identity": "query-validation",
+      "obligation": "validation",
+      "query_text": "protected development validation pytest confirmation exclusion branch coverage Ruff formatting mypy"
+    }
+  ],
+  "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+  "snapshot_id": "3d994888fb7dc9cc1303b958acc0e6f6372f6e723a0791a6a0947a4acd5157ed",
+  "eligible_corpus_id": "80005a4a8b2a95a14018868bdc085d3339e86d3669a8c405b13e7857f48c7313",
+  "frame_resource_count": 498,
+  "snapshot_resources": [
+    {
+      "address": "AGENTS.md",
+      "content_identity": "096fc5fe252684225386aeb3acd48781733286a51f9b27af142eb6d54797fa9a"
+    },
+    {
+      "address": "README.md",
+      "content_identity": "f7080e9cb6b51bc1795dbd54719c69e230fd737e47a2bcd0d608d5ba57db92f9"
+    },
+    {
+      "address": "docs/architecture.md",
+      "content_identity": "ba3e423844a06cfd09b1aed812b0bfdfeb791b77f18dedd61706d2bcb931e503"
+    },
+    {
+      "address": "docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md",
+      "content_identity": "270a3fddbbbc84c6e4bbbb9d109343a4027316182364f1282885b8868374fcfe"
+    },
+    {
+      "address": "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+      "content_identity": "33c954239327f6dd04a9c8b690b7f34577cdf32685ced4719820dfa0b4c133f7"
+    },
+    {
+      "address": "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+      "content_identity": "1978bad723268d286560db009f6ef5aeff4a6186563711b1571813c71166e127"
+    },
+    {
+      "address": "docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md",
+      "content_identity": "d0290dfb94b0f778386c2c3b49ec6794e74af6ada402d260c34221bbf267a63f"
+    },
+    {
+      "address": "docs/architecture/decisions/ADR-0005-obligation-driven-repository-localization.md",
+      "content_identity": "5331ecb16bbc2b822893d1a784a729cbd3f72677110cada5dbe6309cbc5b4238"
+    },
+    {
+      "address": "docs/architecture/taxonomy.md",
+      "content_identity": "dfa678bfc02b287da2412d83ed882e5cacb91e0496df2a2925c055372b0f331c"
+    },
+    {
+      "address": "docs/backlog/epics/B-0001-architecture-documentation-integrity.md",
+      "content_identity": "26decfd05b4f21d68488734f07dfd79d0511321b160c63308dfcd253b04a07aa"
+    },
+    {
+      "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "content_identity": "7d33fe82f790f0b1838ded4b437af129085260a0aa61ba54beb92a3e34812fe1"
+    },
+    {
+      "address": "docs/backlog/epics/B-0003-local-coding-worker-harness.md",
+      "content_identity": "3db4afb3931ab9a48f48c099dac1fd18448c5629e58bc1a3f7fcdae746987849"
+    },
+    {
+      "address": "docs/backlog/epics/B-0004-governed-execution-evolution.md",
+      "content_identity": "8e1261b374b65455580b22201067c633d40d2daa63fa6783b03d4e88563e637a"
+    },
+    {
+      "address": "docs/backlog/epics/B-0005-effect-governance.md",
+      "content_identity": "7a528fa22e45763986051340c0d609fe1636cf6046780514ccdbf10a06c83a5d"
+    },
+    {
+      "address": "docs/backlog/epics/B-0015-framework-acceptance-harness-validation.md",
+      "content_identity": "21fdf484e58679f9731bacd6cf22f4f2635eb70d137fb0f4eeca8d1e61e4d449"
+    },
+    {
+      "address": "docs/backlog/items/B-0006-reconcile-authoritative-architecture-documentation.md",
+      "content_identity": "ab260ebf43cd617cf724e076198adeaa94a0d9c0137e691cfa4c513a4ca5e064"
+    },
+    {
+      "address": "docs/backlog/items/B-0007-correct-model-serving-documentation-drift.md",
+      "content_identity": "2c909bfd1050ed958e1d86a5cb7b057c967c06ba3d5183821b5042e44c7d60d3"
+    },
+    {
+      "address": "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+      "content_identity": "b6fba18919857fdcc652ba3147fdae731f1fd4a2e2e37b8ec3880baf47eefa04"
+    },
+    {
+      "address": "docs/backlog/items/B-0009-build-bounded-local-coding-worker-harness.md",
+      "content_identity": "99df09b180f72681a3a8c12489e6054edbd4119701b153cf94b992a74eaa8baf"
+    },
+    {
+      "address": "docs/backlog/items/B-0010-investigate-work-execution-attempt-semantics.md",
+      "content_identity": "39fe4f602aa3f1fa2591688355a0f3da50a79adc23faa4e0a8e72c418a747802"
+    },
+    {
+      "address": "docs/backlog/items/B-0011-investigate-durable-execution-evidence.md",
+      "content_identity": "16d7c3af19f795f4fb1cfeff45939f511c2c281f33f3f84eff1a7decef7491ca"
+    },
+    {
+      "address": "docs/backlog/items/B-0012-investigate-governed-effect-semantics.md",
+      "content_identity": "27922033df5cb70819286d39b97da02a3f22d733a83fb026eae4d1df43c7299a"
+    },
+    {
+      "address": "docs/backlog/items/B-0013-investigate-authority-grants-approval.md",
+      "content_identity": "2f66b3f9bf1a7f5659644bf4ac2ba0dc9b0a749eeb3274793deb1812ab6ec291"
+    },
+    {
+      "address": "docs/backlog/items/B-0014-investigate-retry-repair-reconciliation.md",
+      "content_identity": "1611cec84f3095564b8faa6821c4ba2d6e673b7b6b96a63ee64c2d739995d7c8"
+    },
+    {
+      "address": "docs/backlog/items/B-0016-define-framework-live-harness-acceptance.md",
+      "content_identity": "6f1b241a03cf8d8f3870ecbdce3e4295ec7702b51241d9af58e3d260e46cd6fc"
+    },
+    {
+      "address": "docs/backlog/items/B-0017-investigate-runtime-occurrence-observability-boundaries.md",
+      "content_identity": "90ecb1d597582ea7a2f8214254fea27bb06b2eff7ad101e14d066641c5a0d905"
+    },
+    {
+      "address": "docs/backlog/items/B-0018-investigate-operational-data-minimization-disclosure.md",
+      "content_identity": "7680ca97d41b1bd7a21e3f6a06d07ff12a059aa72521046876eade9dffef021e"
+    },
+    {
+      "address": "docs/backlog/items/B-0019-investigate-typed-configuration-ownership.md",
+      "content_identity": "bf7de7678b9254d375920e1629742023568c61ee8b9f53cf3eff47d60c649e79"
+    },
+    {
+      "address": "docs/backlog/items/B-0020-investigate-capability-operation-model-action-substrate.md",
+      "content_identity": "eb9b4794c6612d5190cc85f508175a7a2b17fed694bb53afb53886dfa999197d"
+    },
+    {
+      "address": "docs/backlog/items/B-0021-investigate-approval-human-governance-workflow.md",
+      "content_identity": "dce6f2bee03d94f67651fdb40bc78aded0a2cb788e0923be0870d1efaa54f4a9"
+    },
+    {
+      "address": "docs/backlog/items/B-0022-investigate-delegation-acting-authority.md",
+      "content_identity": "bd1e1a3f36e6d27289f6dc2f6e9635fabd31267a337bdc577370498b48f75964"
+    },
+    {
+      "address": "docs/backlog/items/B-0023-investigate-observability-architecture.md",
+      "content_identity": "cc3d2b86e4fc0d8ee3a53740296881d64c171c378d516dccbceddcea2da68568"
+    },
+    {
+      "address": "docs/backlog/items/B-0024-investigate-audit-durable-accountability.md",
+      "content_identity": "335a5cfed8a2810a04396a0fefa781887a8111975dcc4baa2aa7bfc60d751845"
+    },
+    {
+      "address": "docs/backlog/items/B-0025-investigate-scoped-runtime-context.md",
+      "content_identity": "86719aceecb953f29070727d93b23d5d3fcf75d55e87c0c13534911618eda636"
+    },
+    {
+      "address": "docs/backlog/items/B-0026-investigate-runtime-control-lifecycle.md",
+      "content_identity": "4ba71c7b1235ab6fb8cd9c8576f2e641494daa542b3fc7bce3b28d46c29cd32d"
+    },
+    {
+      "address": "docs/backlog/items/B-0027-investigate-serialization-representation-boundaries.md",
+      "content_identity": "9fdd1fafcc4d4da78d13d705bfa32c82733ec6601d1ed9d78580d5c8ec74fb83"
+    },
+    {
+      "address": "docs/backlog/items/B-0028-investigate-persistence-durable-state-boundaries.md",
+      "content_identity": "ce009190944b2c1097e90b9bc140fc8a2bf6f66f770d22fafe4ba29a922a25c3"
+    },
+    {
+      "address": "docs/backlog/items/B-0029-investigate-reusable-agent-definition-runtime-orchestration.md",
+      "content_identity": "1275ab8fea28bc86cfa108c47c6f2d8bec2929773762757467abed537aed184d"
+    },
+    {
+      "address": "docs/backlog/items/B-0030-investigate-provider-neutral-generative-model-interaction.md",
+      "content_identity": "a1e5907ba724a02fae6fd68878554f2decfe0aad95f7845c5e9cf60d0d6e33d6"
+    },
+    {
+      "address": "docs/backlog/items/B-0031-investigate-generic-execution-lifecycle-promotion.md",
+      "content_identity": "19766960271a3b2abc942f2819c6f18d9f711f787cf8bc1b9292f41b95f91b57"
+    },
+    {
+      "address": "docs/backlog/items/B-0032-investigate-execution-retry-mechanics.md",
+      "content_identity": "1a118ed2bc983be285228f4e344b05319c9a30c557cd566185335f031df1ad21"
+    },
+    {
+      "address": "docs/backlog/items/B-0033-investigate-semantic-repair-replanning.md",
+      "content_identity": "45b5b7dce00bba17351b7c3a2bdfd1893e29afdca4bc12a4343c88af2a932479"
+    },
+    {
+      "address": "docs/backlog/items/B-0034-investigate-uncertain-effect-reconciliation.md",
+      "content_identity": "ae8815ddbb0fb077de87fc943ded7e554d3d6307a57004ad60a5cba03621f7e5"
+    },
+    {
+      "address": "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+      "content_identity": "acee48b767ae4d30136ffc2ae4044e3b5be9fd2999846dd99869b3ee44287602"
+    },
+    {
+      "address": "docs/backlog/items/B-0036-investigate-action-request-semantics.md",
+      "content_identity": "fc7964dce78bad2613289d602a87f9722c056582a904cc637ead7988b4e2fe60"
+    },
+    {
+      "address": "docs/backlog/items/B-0037-investigate-approval-semantics.md",
+      "content_identity": "31e5bf262d8abb9ddc48f98f37afb76fc992a0e23a2a5924a58ac0b7bac6bcfe"
+    },
+    {
+      "address": "docs/backlog/items/B-0038-investigate-approval-workflow-orchestration.md",
+      "content_identity": "e3e3ad4882d08755e699c531af2d6d5ed2d3745c34c975b1db820dc9d42cf5a5"
+    },
+    {
+      "address": "docs/backlog/items/B-0039-investigate-delegated-authority.md",
+      "content_identity": "8193feadd92d47c375fb26107d3d0effe8aa5efcc019ba171d5d3db377d94177"
+    },
+    {
+      "address": "docs/backlog/items/B-0040-investigate-delegated-agent-coordination.md",
+      "content_identity": "aa16494dfd078ac3237894b5115df58f23f7b76595858c013a53e8f4ddc61c6d"
+    },
+    {
+      "address": "docs/backlog/items/B-0041-investigate-execution-local-lifecycle-control.md",
+      "content_identity": "14851858f7f864dccb6e09511db38f2f0ac2588047d97043ab98b4fc3357d78c"
+    },
+    {
+      "address": "docs/backlog/items/B-0042-investigate-workflow-lifecycle-control.md",
+      "content_identity": "dc2dd48764facda363aa6dbf6595b30a36966bca04b6288e9c89830fe29dd56a"
+    },
+    {
+      "address": "docs/backlog/items/B-0043-investigate-reusable-agent-semantics.md",
+      "content_identity": "b152561861cef5bd6fa83a3cd8581e77b22d3fb11f77635c0c8b102ea6aaaaf9"
+    },
+    {
+      "address": "docs/backlog/items/B-0044-investigate-orchestration-control-loops.md",
+      "content_identity": "e894821d26525ed4ac14bf484ebcd2d3524c5afc94530c71e71809c90eb2f15a"
+    },
+    {
+      "address": "docs/backlog/items/B-0045-establish-minimal-model-interaction-core.md",
+      "content_identity": "2027d6c33a43aaa8058dda068d9555659c9f4453e4b3ff4f4f1e3ee395ed2417"
+    },
+    {
+      "address": "docs/backlog/items/B-0046-investigate-advanced-model-interaction-provider-pressure.md",
+      "content_identity": "519c04b8ac5bb3ffddb591a7429d464b2805f84ca82787d93c05638c1a60a34f"
+    },
+    {
+      "address": "docs/backlog/items/B-0047-protected-development-validation-profile.md",
+      "content_identity": "68f8e62f69b0daa0dbb7aaca08db787a51e2bb910ae3c21c5c27f8e8ac10f0e6"
+    },
+    {
+      "address": "docs/backlog/metadata.md",
+      "content_identity": "e6d3384a4dba6ba54e4c2525ea36eb692b6c8f16fc9a33a458203d68bbe14aeb"
+    },
+    {
+      "address": "docs/backlog/overview.md",
+      "content_identity": "4be97fc28f085ca44602c2fa0a1c27148a91feb185606040c22220408dc263b4"
+    },
+    {
+      "address": "docs/development/validation.md",
+      "content_identity": "474b6742cbc1675e8edc369e9319560b2827c013aa2311313e8759ee74e00371"
+    },
+    {
+      "address": "docs/documentation_map.md",
+      "content_identity": "0ffec4d44b97561e67e2bcb710a361c073d4ae45bee6bcc4121839dcd2c7874e"
+    },
+    {
+      "address": "docs/experiments/qwen38_llama_cpp.md",
+      "content_identity": "26c402d7fb85446b66cd0c9b014c30ab35574486483bf206b2b6b8b0f1bc4b98"
+    },
+    {
+      "address": "docs/research/README.md",
+      "content_identity": "5d968f018965274e0210027ecfca36d62334b6c351f8fcdda2071194514ffe04"
+    },
+    {
+      "address": "docs/research/architecture-adversarial-review.md",
+      "content_identity": "cd7d400119905f5bed6a65576afbb653ce456cac3e4a6b77468bf2bf25603e25"
+    },
+    {
+      "address": "docs/research/framework-domain-boundaries.md",
+      "content_identity": "7e5738278323dbe24b036790302217cb6a05d62393eff55a8734f5c437ca8546"
+    },
+    {
+      "address": "docs/research/heterogeneous-context-admission-and-recovery.md",
+      "content_identity": "55934ded83a63f0e4fc04c6b6b4c82729e26e86e464d7e37c6b227b646cb0f6f"
+    },
+    {
+      "address": "docs/research/obligation-driven-repository-localization.md",
+      "content_identity": "0f44f6b95e4202a41b7fb8b27247da20dd502d11cb50652e44b8b72cf8539f47"
+    },
+    {
+      "address": "docs/research/purpose-relative-repository-context.md",
+      "content_identity": "9b73317f95a664ad998793405ee859c3b177ea1b206611da18d4c71d77e5bd7e"
+    },
+    {
+      "address": "docs/research/repository-context-planning-and-graph-assisted-retrieval.md",
+      "content_identity": "a272e3573058ab1c4edb8fe8b442fdb4eaab1d298d3503d3eff9b0a3addc3339"
+    },
+    {
+      "address": "docs/research/repository-context-system-architecture.md",
+      "content_identity": "2cd28c22d68b8fa233956cdac372b250fd7587ffd01a9fe39d72298fe28e9d26"
+    },
+    {
+      "address": "docs/research/repository-derived-knowledge-boundary.md",
+      "content_identity": "ef66eb17f838033a505263ca79249d1d5397a20ff777a80f53bdc8b833eb492f"
+    },
+    {
+      "address": "docs/research/repository-information-boundaries.md",
+      "content_identity": "0d02399541d284fa245b4fb6bf79c375a58700a0ad3c60216bf119bd317efcb1"
+    },
+    {
+      "address": "docs/research/repository-intelligence-architecture-review.md",
+      "content_identity": "2422ab7b0f805eef2d9f9b6e87c43fcd867cd4153ba6623e7fec35f59f35a724"
+    },
+    {
+      "address": "docs/research/repository-retrieval-algorithm-landscape.md",
+      "content_identity": "948d2c5758e21a332dddddfae59204a22529bfea698bb3b7d849015af0212c86"
+    },
+    {
+      "address": "docs/research/repository-retrieval-breadth-production-gate.md",
+      "content_identity": "474ea34a1b667ddff52724cc60e3d588f8f83b184d91da94f54328742b36c75e"
+    },
+    {
+      "address": "docs/research/repository-snapshot-identity.md",
+      "content_identity": "9f4c91cd37d608be53d0cc514b1375f1a6187a3657bf7c355bc1ef70c1361f6f"
+    },
+    {
+      "address": "docs/research/repository-subject-identity-and-decomposition.md",
+      "content_identity": "9ea395f34ed4ef3c9e49db78cdb6cf9c2bd0d3c9f4684152978927c192675133"
+    },
+    {
+      "address": "docs/research/retrieval-architecture-synthesis.md",
+      "content_identity": "c1a91ff77951784fba64999da67a35e826374ac277c9377ef67f1d35fc405fda"
+    },
+    {
+      "address": "docs/research/runtime-evidence-governance.md",
+      "content_identity": "f4537927bf97878a01f0885cb3766dab68183651bc05e6df713896aefa7de664"
+    },
+    {
+      "address": "docs/research/structural-repository-retrieval.md",
+      "content_identity": "396c5b117855249e956f329d249edc8ec66cc50123e67cf0f5e48b3e0167eda9"
+    },
+    {
+      "address": "docs/roadmap.md",
+      "content_identity": "464047a9cfd6eba40be903b5621083d0fb25cac45b4d33899b641f8bfb668d2a"
+    },
+    {
+      "address": "experiments/codex_dogfood/__init__.py",
+      "content_identity": "01e80c4aff23a10caf1cb879749b5c12c0f8d5ef003e54e92c9dfeb861c32169"
+    },
+    {
+      "address": "experiments/codex_dogfood/capture.py",
+      "content_identity": "219d06e9476350440297b5900f557739082857f731c0f0084c30d56d5206f05f"
+    },
+    {
+      "address": "pyproject.toml",
+      "content_identity": "e013670bd2a7ea0dc22304788444ac0f1106f179a1e2af7d1b96ee7e1548b145"
+    },
+    {
+      "address": "scripts/validate_development.py",
+      "content_identity": "425a9c8f8d2b9408ed8952cc71494ef7c213ee89a64f341d0966352fd87d4bb5"
+    },
+    {
+      "address": "src/devtools/__init__.py",
+      "content_identity": "a75866ef0a6cf072e848a36ed646aec382888688263e7a7c469387cd9bdc446d"
+    },
+    {
+      "address": "src/devtools/agents/__init__.py",
+      "content_identity": "eb779ab47d81c35e1ef711d588d03959324c175d12df9960f788f31ce29b8744"
+    },
+    {
+      "address": "src/devtools/agents/conversation/__init__.py",
+      "content_identity": "f2293aaf6e9dcba7b9296e033843e6c436f6beb10733ee287b4b3061d96190d2"
+    },
+    {
+      "address": "src/devtools/agents/conversation/conversation.py",
+      "content_identity": "cf5d3a46b219f33a3ea7f2f7808e4b8a3c3c09341d5a66f1b6e107e050f1c8a7"
+    },
+    {
+      "address": "src/devtools/agents/conversation/docs/conversation.md",
+      "content_identity": "4e3efd18c04125aa129a58ef15fa0b42935c646788bfa1c5dd3fe9f8724afdc6"
+    },
+    {
+      "address": "src/devtools/agents/conversation/docs/history.md",
+      "content_identity": "8f13b37857d1ba351e1cb5ab859bf7b879cbfac9060f73759da6808a41fce21a"
+    },
+    {
+      "address": "src/devtools/agents/conversation/docs/overview.md",
+      "content_identity": "b83cbdb84ae5d216481d0544256cbc8b4bc520b73e071a5d02bbba13fde39ee9"
+    },
+    {
+      "address": "src/devtools/agents/conversation/history.py",
+      "content_identity": "25db610d54eeb1bed527bff6839a977374ef218d84e5729743fe063a09a3d1aa"
+    },
+    {
+      "address": "src/devtools/agents/conversation/message.py",
+      "content_identity": "48bce3f036e3f1aaeb4e340ac78f57cb12f37ee8e90399abcd410ac39e9a4922"
+    },
+    {
+      "address": "src/devtools/agents/integrations/__init__.py",
+      "content_identity": "d1cb45e4d005bae5b364c2f310de702096bcaf77149d634d759df82837c6457d"
+    },
+    {
+      "address": "src/devtools/agents/integrations/codex/__init__.py",
+      "content_identity": "a1a7d27e543172933a53a5f2e4b507f15d1ee1fcca84b3923ed6b3df617e147f"
+    },
+    {
+      "address": "src/devtools/agents/integrations/codex/agent.py",
+      "content_identity": "11b5d1a5510bc24338ed2aab4efd3362cfe8a523423e7c23f12dc438aa8eca41"
+    },
+    {
+      "address": "src/devtools/agents/integrations/codex/docs/cli.md",
+      "content_identity": "30da5294ca3dd463bf205be41bc2b59f793b6ca4a833c87fc31a55b05f5a5294"
+    },
+    {
+      "address": "src/devtools/agents/integrations/codex/docs/overview.md",
+      "content_identity": "76e1a5aca9a166ad5d55cdd8870ea5d83488edc89b480490b9e713ba2308072d"
+    },
+    {
+      "address": "src/devtools/agents/integrations/codex/errors.py",
+      "content_identity": "efbdeba3848aef33b7d210052496447c9d5fb190674178cebed08405a58074ff"
+    },
+    {
+      "address": "src/devtools/agents/integrations/codex/models.py",
+      "content_identity": "b8ef93dea4e2d85e83c282eb31ab8908a4ada43b1e31496a399d0bc8a42b2d90"
+    },
+    {
+      "address": "src/devtools/agents/integrations/codex/parsing.py",
+      "content_identity": "be4f337ef1023dabca12dbd38dcb842b9cfc51cbabada50fb9584924b7a7266d"
+    },
+    {
+      "address": "src/devtools/context/__init__.py",
+      "content_identity": "e2392c9351df7a0f17f23f2ccd15e3fd1436c4e59eb7e0ee9eb7d0d0c32a445c"
+    },
+    {
+      "address": "src/devtools/context/localization/__init__.py",
+      "content_identity": "977699ca7ee96922804aa819ba363e2c30d8a25f3229a6a49bfb20568abc16c5"
+    },
+    {
+      "address": "src/devtools/context/localization/assessment.py",
+      "content_identity": "3c796d50ec978b427e202943f888cec87af69032ffc5bf0e2cd618e271bec952"
+    },
+    {
+      "address": "src/devtools/context/localization/docs/overview.md",
+      "content_identity": "eef53f142d710db70d3dfccf0155f4f5dc331c807c7e63f3655e1cfcb4504aea"
+    },
+    {
+      "address": "src/devtools/context/localization/identity.py",
+      "content_identity": "0bbb3a2b019f9e3e70d5cfc6a847128a72057461a3c9d14f4453e90bbb882de4"
+    },
+    {
+      "address": "src/devtools/context/localization/lexical.py",
+      "content_identity": "ded32a7159c72ef9065950139d5958997955011b397359e560ec1d2e7770540a"
+    },
+    {
+      "address": "src/devtools/context/localization/obligation.py",
+      "content_identity": "1373d651853c6b921690f8c46d3158f4f54e8becd2c0dd26f6a063fb16825920"
+    },
+    {
+      "address": "src/devtools/context/localization/readiness.py",
+      "content_identity": "47c026ec869ed8872d1ef2ba9ba7f9a7bbac5dc5414395b4ef8fbc6c0930b083"
+    },
+    {
+      "address": "src/devtools/context/localization/task.py",
+      "content_identity": "16bc9d74d1efe4c3d4f30b4b09312bb104607403cb276164f230cc45a923f295"
+    },
+    {
+      "address": "src/devtools/context/planning/__init__.py",
+      "content_identity": "f0a22d1b55645d1c428dd456c527cbe41e36ebbcaab3ca09229498d3e2f7f8d3"
+    },
+    {
+      "address": "src/devtools/context/planning/docs/overview.md",
+      "content_identity": "2de71e1226d3487097ba9e9abe4163b08d0e37beff0ee97937cbdec5f99a1d82"
+    },
+    {
+      "address": "src/devtools/context/planning/materialization.py",
+      "content_identity": "8c7b2c0dd17e5c8a4f79f3ff48403b92b3ecce5cf4845d85a8723da296cb3315"
+    },
+    {
+      "address": "src/devtools/context/planning/plan.py",
+      "content_identity": "8e1ccfa2286a3bad1f832a2611770b6c655e65ff4c39adde07f9757d47253998"
+    },
+    {
+      "address": "src/devtools/context/planning/rendering.py",
+      "content_identity": "741a33e77ec223f64a1b381a156cb25db53473d818bb556432c3b36cbec75ea7"
+    },
+    {
+      "address": "src/devtools/context/planning/resource.py",
+      "content_identity": "f05d554cc5e81d1584c463f37c9d05801293c4a6cf74c839c5ea650a26c6123b"
+    },
+    {
+      "address": "src/devtools/context/python/__init__.py",
+      "content_identity": "cd35d0507149f671265687329dc54bdec1ce419062d59cad5f64b1c5ea7c1027"
+    },
+    {
+      "address": "src/devtools/context/python/classes/__init__.py",
+      "content_identity": "500b061306b30215b2f5f1e5c212205dd9848a21b15fa6f5c4d0123e486722e5"
+    },
+    {
+      "address": "src/devtools/context/python/classes/bases.py",
+      "content_identity": "13be09426b77df3a86f828502a51e2ed876d22a22d476d1360af8d99b3ffd9d5"
+    },
+    {
+      "address": "src/devtools/context/python/classes/containment.py",
+      "content_identity": "47a4bec4b1e0d9ba2449efbe3bf5aa9e381660ca22eb3c904006e796d3316c4f"
+    },
+    {
+      "address": "src/devtools/context/python/classes/declarations.py",
+      "content_identity": "f283a78b7bebb29f155653b03f47be9f0d74f55593b30a3e4b2f552c91cf4a73"
+    },
+    {
+      "address": "src/devtools/context/python/classes/docs/overview.md",
+      "content_identity": "0e2e68b77c7faea963f7c59d68c7b84d0876e1cb1d4e6e85bc16b662b148fb60"
+    },
+    {
+      "address": "src/devtools/context/python/docs/overview.md",
+      "content_identity": "d146eaf1eaae1659c6b443918ac19da71caf3a9bdb8088c94aa1810e0b5c9b47"
+    },
+    {
+      "address": "src/devtools/context/python/function/__init__.py",
+      "content_identity": "a5b192dc8871a314b4298fc98214a094b6ee7c58e8ff76580ce47316ac044c41"
+    },
+    {
+      "address": "src/devtools/context/python/function/candidates.py",
+      "content_identity": "7011e4bec1b143a6ce891a7df1eaf7dde774d299039c98da26ccf09938626350"
+    },
+    {
+      "address": "src/devtools/context/python/function/containment.py",
+      "content_identity": "7af4524a28e61dc608e35c9ab4ff34c0bc486fb1ef54a3521f9fb0735eb25d69"
+    },
+    {
+      "address": "src/devtools/context/python/function/declarations.py",
+      "content_identity": "2521087e439f635cd05993cfcbb282fcbaef4f2ddfd569e6c6fee277f1e25a66"
+    },
+    {
+      "address": "src/devtools/context/python/function/disclosure.py",
+      "content_identity": "1e552d51a60cfc13211b111b624e81c9c164fe4da97efbc880719f2919c76a53"
+    },
+    {
+      "address": "src/devtools/context/python/function/docs/overview.md",
+      "content_identity": "bb1d0dfda1af7911311fdd41b33f1263efda9894e4554a1fde4c40e48234ae4e"
+    },
+    {
+      "address": "src/devtools/context/python/function/materialization.py",
+      "content_identity": "d914b5e736e7cf1e2d6af3762c6348c6a98882aa69b4fd96b65aca0833ba17a5"
+    },
+    {
+      "address": "src/devtools/context/python/function/planned_reference.py",
+      "content_identity": "a1e96fb89604e70bc163fa267a3a53a03ed24515ce4b00d421d1f0dda5d17381"
+    },
+    {
+      "address": "src/devtools/context/python/function/qualified_reference.py",
+      "content_identity": "f38207363dcef35c196eac7dd5ab939335e73a9aec507886af7bbdcee7008c69"
+    },
+    {
+      "address": "src/devtools/context/python/function/rendering.py",
+      "content_identity": "eb65b07b1992b931b19178e1b0d78ac08199a97a465d7cc06f17824fb1a62e74"
+    },
+    {
+      "address": "src/devtools/context/python/function/request_assembly.py",
+      "content_identity": "27bfd8eb7c177577cc410c7e19c47cd8724a6b93200dd15e2ac8d55d4bb4d152"
+    },
+    {
+      "address": "src/devtools/context/python/function/retrieval.py",
+      "content_identity": "edbb1905df9fcf9c03fa045772200a719855b3cec38dfd8ecfb486935e91a33a"
+    },
+    {
+      "address": "src/devtools/context/python/imports/__init__.py",
+      "content_identity": "7f55740c0ed8d0854be3f8df6cdf2ea66bd3cd2facb13c7c68e5aca67874268e"
+    },
+    {
+      "address": "src/devtools/context/python/imports/declarations.py",
+      "content_identity": "8dd7599da30693e1cdd2270f0b6b3ad3c0d48ebb8cbe81ca072211171ed62b72"
+    },
+    {
+      "address": "src/devtools/context/python/imports/members.py",
+      "content_identity": "90c9aa6fa6648f68f6b39b17d3b72296875e07fb1587ec75ee69742dfd1bea62"
+    },
+    {
+      "address": "src/devtools/context/python/imports/relations.py",
+      "content_identity": "ddf8459b36826be75daf50f1532a58fbd407bfac29d72ae2849da3a0739a07fc"
+    },
+    {
+      "address": "src/devtools/context/python/imports/resolution.py",
+      "content_identity": "b2186e5be30348dd0a7b305a66fac42f4a9ab8bd394a82719fcc533eb8e98299"
+    },
+    {
+      "address": "src/devtools/context/python/mirrored_paths.py",
+      "content_identity": "bd267c18766fe86cd4cd324078625e5d216a55ec3596909d4300d6188676dcaa"
+    },
+    {
+      "address": "src/devtools/context/python/modules/__init__.py",
+      "content_identity": "6b54968fc52823cea896f4e2d53c6e74f95256b941e51a32cfd070b5215316f7"
+    },
+    {
+      "address": "src/devtools/context/python/modules/declarations.py",
+      "content_identity": "e54171b465bb78a21c1c380321d1f04f69771982db02f4cd1b140b36423283be"
+    },
+    {
+      "address": "src/devtools/context/python/modules/docs/overview.md",
+      "content_identity": "1dccbcf26dd8347a2912bf76808f7f77edade24068e134b31c9d733fea5858eb"
+    },
+    {
+      "address": "src/devtools/context/python/modules/interpretation.py",
+      "content_identity": "b858bbdd8ea4d0a8e9a3193ae29176947ef0796f949025a6bf3866ea7caf9dbd"
+    },
+    {
+      "address": "src/devtools/context/python/modules/lookup.py",
+      "content_identity": "abc10781e8b458d4622a7103e6f47d6908b3412b6e6be5169899081499803b59"
+    },
+    {
+      "address": "src/devtools/context/python/modules/membership.py",
+      "content_identity": "fba7ea5f4c8907567c3d7e22308bb9d4712936a2246e0ae87afb4de363be2a31"
+    },
+    {
+      "address": "src/devtools/context/python/project_configuration/__init__.py",
+      "content_identity": "19a0a7b18a46b2a7e42521e0611eae26eb14ed37505e4ca993123b9ee80d489c"
+    },
+    {
+      "address": "src/devtools/context/python/project_configuration/declarations.py",
+      "content_identity": "5d72229b3316d883ce1bd812aa28ae1fa151de41aee41193531150a57652e369"
+    },
+    {
+      "address": "src/devtools/context/python/project_configuration/docs/overview.md",
+      "content_identity": "68e7304ee65e28f1aa1cddfabf65b4ca3006d966d9bfe400dfcd2916bbfc35c6"
+    },
+    {
+      "address": "src/devtools/context/python/project_configuration/models.py",
+      "content_identity": "a730c993acc9458f12883d351ee0b8ca29fc36620c33a860ec6527b15fd1a07e"
+    },
+    {
+      "address": "src/devtools/context/python/project_configuration/resolution.py",
+      "content_identity": "261d7d5e2016b4d53962560a448ca5293c05159b44777b4954f5f9f4d63686bc"
+    },
+    {
+      "address": "src/devtools/context/python/references/__init__.py",
+      "content_identity": "a2e75f8a6fde9b6e847902f79a65d85954fd7d5e241156acedd3062c2289cb7b"
+    },
+    {
+      "address": "src/devtools/context/python/references/analysis.py",
+      "content_identity": "6656a7d232cf8efe45b9afc70ddd5f9ac73217cbe75cfd87d67e796c8bca79a0"
+    },
+    {
+      "address": "src/devtools/context/python/references/declarations/__init__.py",
+      "content_identity": "5e524557d5453145450295d35aa6bfafffb6b4a8a6b2cc40e4ea2b3ce6bb15b8"
+    },
+    {
+      "address": "src/devtools/context/python/references/declarations/analysis.py",
+      "content_identity": "c94503aac4d901cebb4e4b9f978475f33fe2f3ff886ae48caba814aa7940e4aa"
+    },
+    {
+      "address": "src/devtools/context/python/references/declarations/bindings.py",
+      "content_identity": "8da31e7971f59d707e1340b3afa63153436696bd39c18968d6461c7d828788a4"
+    },
+    {
+      "address": "src/devtools/context/python/references/declarations/model.py",
+      "content_identity": "abd12a881ad3be0e58f6ea65dbb0801ab2436ab547b243e436f8d5541f17470a"
+    },
+    {
+      "address": "src/devtools/context/python/references/declarations/resolution.py",
+      "content_identity": "45a2a9df2e5f36014b0f01ca787afc5be5b8d8092f14e1d111aed3eab140d6f1"
+    },
+    {
+      "address": "src/devtools/context/python/references/docs/overview.md",
+      "content_identity": "0ae3376a220816620d2dd9d86b310a9f5b5edf3831fb0e4a2aeec7e20246d1f7"
+    },
+    {
+      "address": "src/devtools/context/python/source_candidacy.py",
+      "content_identity": "577710fa500280cdacaa7e81aee93dfe2a7886b1a511d4fbbb094b4afe66752c"
+    },
+    {
+      "address": "src/devtools/context/repository/__init__.py",
+      "content_identity": "cc738de755c71f67cd21ebd290d1865996dd078387a38004d4e6a5106ae18c4b"
+    },
+    {
+      "address": "src/devtools/context/repository/corpus.py",
+      "content_identity": "3424ce325df02cd6fdca1e7a3344cb5ddfa6d48c8692777bf17dcff3f4eb0477"
+    },
+    {
+      "address": "src/devtools/context/repository/discovery.py",
+      "content_identity": "1e5d07bddab1549f1a0852d9ba82186721f662d61434fafdfbbda9f8c13ec198"
+    },
+    {
+      "address": "src/devtools/context/repository/document.py",
+      "content_identity": "7282f290f5b5b78c3d2014097aac5cc1cc6012ef6d4489ea83d2411deb980daf"
+    },
+    {
+      "address": "src/devtools/context/repository/identity.py",
+      "content_identity": "ce3420ce5eaa9ddf87a9aff64ffaa58c7368efdaea17631d690a91067e100c0b"
+    },
+    {
+      "address": "src/devtools/context/repository/observation.py",
+      "content_identity": "84b0893b289fd613f3ecd441b4f963ef15c5269f3e6fcfe98ac1f52de4fe7b51"
+    },
+    {
+      "address": "src/devtools/context/repository/resource.py",
+      "content_identity": "a1d3fbdcff843b2a2b672307a4b204bf4d4ea8fca96b2cf2cfc0533b28e1421c"
+    },
+    {
+      "address": "src/devtools/context/repository/snapshot.py",
+      "content_identity": "492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098"
+    },
+    {
+      "address": "src/devtools/context/retrieval/__init__.py",
+      "content_identity": "84f52385f27664446823acd3a3ebfed4c772b56d15c71f4e85e7cb5ae3178bfb"
+    },
+    {
+      "address": "src/devtools/context/retrieval/composition.py",
+      "content_identity": "be803bffdcc9f7fe1acda005b1d15b24eac2e097ec2da08662c9e829cbc9d7a2"
+    },
+    {
+      "address": "src/devtools/context/retrieval/docs/overview.md",
+      "content_identity": "8e7f8e8092255942e00aaeb31187b661a578a9b9ab4d5846b2e5a2f59de98dbb"
+    },
+    {
+      "address": "src/devtools/context/retrieval/fusion.py",
+      "content_identity": "8463110923baba47a02f0fb540b22273fafdcb48c7827d1f6c86525c139975a0"
+    },
+    {
+      "address": "src/devtools/context/retrieval/graph/__init__.py",
+      "content_identity": "cd735b8aabd00c8f595c3dff67dc842e1191d5e097ebb63707294928f3c80ac5"
+    },
+    {
+      "address": "src/devtools/context/retrieval/graph/docs/overview.md",
+      "content_identity": "05d6a433360b3407652265503ec1114c8dffd767ccc59f388e3fbf1ead132254"
+    },
+    {
+      "address": "src/devtools/context/retrieval/graph/pagerank.py",
+      "content_identity": "b4bbeb30f25a70025b3e01723ab1764705fad2703eebe66421a6b0aef048597d"
+    },
+    {
+      "address": "src/devtools/context/retrieval/graph/view.py",
+      "content_identity": "d3afc6e28aa6ac0517369388c096e4162b66d53106b21ada6c538ba324a78d65"
+    },
+    {
+      "address": "src/devtools/context/retrieval/graph/walk.py",
+      "content_identity": "23f0c6fdd13926a4544c4491cd3cf56ef9a89c98d5311be4c8d5ff944215c9d6"
+    },
+    {
+      "address": "src/devtools/context/retrieval/lexical/__init__.py",
+      "content_identity": "82d31b213169b124810dc4751f6e79ac6b65f1d12debda657ff08ccd6ec638d2"
+    },
+    {
+      "address": "src/devtools/context/retrieval/lexical/analysis.py",
+      "content_identity": "f54c2b0cc9b603a931423a3e9f6933565cc9503e0cf1a75d50743590d1dfab42"
+    },
+    {
+      "address": "src/devtools/context/retrieval/lexical/bm25.py",
+      "content_identity": "65a1127673d01d713e165266ef211d0f714d5388f0fe243b29f2c1f8aadcf96b"
+    },
+    {
+      "address": "src/devtools/context/retrieval/lexical/evaluation.py",
+      "content_identity": "3f823c38b4e5485cc7ee989cf8313a453552e70c932419f716bf10ad7da062d0"
+    },
+    {
+      "address": "src/devtools/context/retrieval/lexical/filename.py",
+      "content_identity": "2ba444e8bdec7fbdb18835b5065a8795a1bb51ee9e21d8958dd5350606c028dd"
+    },
+    {
+      "address": "src/devtools/context/retrieval/lexical/index.py",
+      "content_identity": "6e705dfab283ef6bc6aa837b19572ba2d438b9e3279fef56e3e346d803464721"
+    },
+    {
+      "address": "src/devtools/context/retrieval/lexical/scoring.py",
+      "content_identity": "8ec8d571427e29608b604295df6c95fbc2fda31723ee8ea4ab55895af93d8855"
+    },
+    {
+      "address": "src/devtools/context/retrieval/lexical/statistics.py",
+      "content_identity": "3b0ced2c68c13e5c11621e222107bc6fb288a1459f58c2055f3949cdba20bcce"
+    },
+    {
+      "address": "src/devtools/context/retrieval/repository_map/__init__.py",
+      "content_identity": "b1fd582618f5902b0d8709a4bad390f07b8df0db34d4b1782736c5cc91a76bb5"
+    },
+    {
+      "address": "src/devtools/context/retrieval/repository_map/docs/overview.md",
+      "content_identity": "f6cf631f527344e2e68ac48a5995fc074ba93ac6fb069f7e4d3951a9c59e12e6"
+    },
+    {
+      "address": "src/devtools/context/retrieval/repository_map/importance.py",
+      "content_identity": "d0f4f26b6c287f28d59ea8bc36e79cf3ea40560b40901ced5a14fc72744b8f7c"
+    },
+    {
+      "address": "src/devtools/context/retrieval/repository_map/ranking.py",
+      "content_identity": "eac82e5a01b0533d45e4f0ae32caf552a4aa52b76cea70f6dde9a0bb9827b616"
+    },
+    {
+      "address": "src/devtools/context/retrieval/repository_map/relevance.py",
+      "content_identity": "459c85531a66a391a0f0759d0877e0208d10954a00e50b49bf08d0be874109ac"
+    },
+    {
+      "address": "src/devtools/context/retrieval/repository_map/view.py",
+      "content_identity": "e25814030b6badf5e943402afb2c19ac2dd6eee4d4ec410609716be3bf720bf7"
+    },
+    {
+      "address": "src/devtools/context/retrieval/structural.py",
+      "content_identity": "a429623434838554e284ace136248f22b6541071299980506ffcb069e7e4f889"
+    },
+    {
+      "address": "src/devtools/core/__init__.py",
+      "content_identity": "c21c3e3a03c9a714a4d04b7309251576f23bd70ac9c7869d517bce064b05d7f5"
+    },
+    {
+      "address": "src/devtools/core/conversion/__init__.py",
+      "content_identity": "04efec168619eb2b93db71dfd5b5a34f68725cad97e1231642f4987477b305eb"
+    },
+    {
+      "address": "src/devtools/core/conversion/conversion.py",
+      "content_identity": "0af4ad387dbf34e649b2da8f2245e5272ae7a72592021f3cbb4f85f197e74abf"
+    },
+    {
+      "address": "src/devtools/core/conversion/docs/overview.md",
+      "content_identity": "7068d7046cc793f13cf7e3ca039b2e5a1cfe7f2cac16e8441776a3b2d54a1c60"
+    },
+    {
+      "address": "src/devtools/core/conversion/errors.py",
+      "content_identity": "dbac90d1b8454d004d95f4dd61d5cbc43ede986377b483f2a7861b653060ccd9"
+    },
+    {
+      "address": "src/devtools/core/identity/__init__.py",
+      "content_identity": "2932678678a9369d4d55d8e1b33d4e43504c5b5d6d687c91f73c63b4e8c178f4"
+    },
+    {
+      "address": "src/devtools/core/identity/docs/overview.md",
+      "content_identity": "49232ef5c3a6fca94691bd6dfe84468497d1e17958a349d56dfcd731730cd3b4"
+    },
+    {
+      "address": "src/devtools/core/identity/models.py",
+      "content_identity": "e8a65769606ff11f98848952253e5ca7ab542829b992d437636c7aed785868e1"
+    },
+    {
+      "address": "src/devtools/core/paths/__init__.py",
+      "content_identity": "4ac7423f19f33fbc7fa92627c72f9fec596ebb62230121a8ef1f5f06197a130b"
+    },
+    {
+      "address": "src/devtools/core/paths/docs/overview.md",
+      "content_identity": "53d7bb1029bae9ba866dc7a72f1e9c7a35f455e2b5441f678065921eadea1112"
+    },
+    {
+      "address": "src/devtools/core/paths/docs/resolution.md",
+      "content_identity": "fa40ca033450a10898e69600e81e7e4246280aa9a9eff6ea68da740d6cd932a5"
+    },
+    {
+      "address": "src/devtools/core/paths/errors.py",
+      "content_identity": "a4f91179859cba77a2ae9b3aebbd12d35c6fb0ab710ac0da896a8a5fa08ea408"
+    },
+    {
+      "address": "src/devtools/core/paths/models.py",
+      "content_identity": "b2dd2079ca43e7c470834f3bd1f6362e4d2b9f119dd7b304f7759be65cd6567b"
+    },
+    {
+      "address": "src/devtools/core/paths/resolution.py",
+      "content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b"
+    },
+    {
+      "address": "src/devtools/core/regex/__init__.py",
+      "content_identity": "ee40b678a236e2c4cc3dc785532ed3ce039f2f985119db1630e3fab5b0e8223c"
+    },
+    {
+      "address": "src/devtools/core/regex/docs/overview.md",
+      "content_identity": "80793fc954738ca10680ea80ae7b5031ef303b295b307fb5f342d1befe290af5"
+    },
+    {
+      "address": "src/devtools/core/regex/models.py",
+      "content_identity": "aeea94f7e37d16c6b755c752cd449f7dfddc91a80bedff98c01c9cd84b9b754d"
+    },
+    {
+      "address": "src/devtools/core/regex/search.py",
+      "content_identity": "3c70edf56b4cac0ca79f45900f46cc2126153bb39092ee19a0dc5d52fc513248"
+    },
+    {
+      "address": "src/devtools/core/system/__init__.py",
+      "content_identity": "b6de33c2a6348fd14421f485a99694e45500a487433a3ae690b9726df34c7bb3"
+    },
+    {
+      "address": "src/devtools/core/system/detection.py",
+      "content_identity": "af034fbaecdf97680a7d6745336028ce10306daa0e3b7bce5cd8c10340e601c7"
+    },
+    {
+      "address": "src/devtools/core/system/docs/overview.md",
+      "content_identity": "777767fe86bb38d70e731abb4befa1418f889eacbf6de6bf4992e53b029ff6fa"
+    },
+    {
+      "address": "src/devtools/core/system/models.py",
+      "content_identity": "7c16b78f1616fa8b6dd89ef3a8be7db70121aa4af243a6f586ff4489e88523e9"
+    },
+    {
+      "address": "src/devtools/core/time/__init__.py",
+      "content_identity": "5e024007c519ef7ac02f1bf00ccad7993a7a413fb5a7325a1638c419d0b50df8"
+    },
+    {
+      "address": "src/devtools/core/time/docs/overview.md",
+      "content_identity": "daa473a3ef6b9b9f6b33c6f2090cdf3da7b43848bb62bd6a7457ee84494a81e6"
+    },
+    {
+      "address": "src/devtools/core/time/docs/timestamps.md",
+      "content_identity": "91c782d7d5011301e7a921d01057951d8f39ac3d2332bb60b3146b7059035941"
+    },
+    {
+      "address": "src/devtools/core/time/docs/timing.md",
+      "content_identity": "0349bd4861d12ee808b498dd3b4df0ac03ece9c19242c3ac3bb0948e8e56eb27"
+    },
+    {
+      "address": "src/devtools/core/time/errors.py",
+      "content_identity": "a3f8e91b9d655e15c6c37329d1072f88eff53a42b71a6634f07e4e52bccf88f4"
+    },
+    {
+      "address": "src/devtools/core/time/models/__init__.py",
+      "content_identity": "40bb7631e333049efe4b92be0d47fe65422074a9691e2197948a88217ce1b799"
+    },
+    {
+      "address": "src/devtools/core/time/models/duration.py",
+      "content_identity": "69baac5a2120f0c503d4db9bf454331394921e5a606fcc7288f143380ff79241"
+    },
+    {
+      "address": "src/devtools/core/time/models/stopwatch.py",
+      "content_identity": "5306df1e288b79df32e8f607cb151d008213a5fd53fc2eaadba05c5c08c94476"
+    },
+    {
+      "address": "src/devtools/core/time/models/timestamp.py",
+      "content_identity": "05d1ceeae68fa3e7c8c20c0ccc85aa38d9b8d3f7002127fee6687143ef935669"
+    },
+    {
+      "address": "src/devtools/core/time/parsing.py",
+      "content_identity": "457df61541f03242a6b29008d6fa4db77b6774b14c3646a83d7f1c2aa2de2d9c"
+    },
+    {
+      "address": "src/devtools/evaluation/__init__.py",
+      "content_identity": "f2da84a229b3c040a390929e7bdefb52cdb426ae16fb6c2f893499cca5591d35"
+    },
+    {
+      "address": "src/devtools/evaluation/coverage.py",
+      "content_identity": "bdb5dab088872ac8c7f8f52f7b188e83f165e3413ee293c6af9031a5e95ee866"
+    },
+    {
+      "address": "src/devtools/evaluation/docs/overview.md",
+      "content_identity": "f4bf6befadb975bc67b23dad16e10b41765327f1866d19d8521c0e5efbfcf7bf"
+    },
+    {
+      "address": "src/devtools/execution/__init__.py",
+      "content_identity": "af8fb9a8dfb764de86e2b7ab5e31914870547bca3721b9c0ba87c2090fdca9cb"
+    },
+    {
+      "address": "src/devtools/execution/docs/overview.md",
+      "content_identity": "d635c383c9bb86d0c3781b19256d884dbabe818d37c875c9d104a6e8629e9927"
+    },
+    {
+      "address": "src/devtools/execution/interaction_attempt.py",
+      "content_identity": "0bb14eb1cd824d6833705cde37c4b5b95bf4989fa6ef95c689712b0f303d9dae"
+    },
+    {
+      "address": "src/devtools/execution/protocols.py",
+      "content_identity": "bc469de2d63848fa2df6dc5931f1a8dc8ead6f0286dfb10cb28967a4f12dc52f"
+    },
+    {
+      "address": "src/devtools/execution/runtime.py",
+      "content_identity": "e44dac75f0315e3555825ce66cea9c14c32f5d388793ad0dae5869718ddead7d"
+    },
+    {
+      "address": "src/devtools/governance/__init__.py",
+      "content_identity": "4e7003f8dcfc88a2e71a3c66fb261c2d569609cdc38da2376f2bffaf71328b42"
+    },
+    {
+      "address": "src/devtools/models/__init__.py",
+      "content_identity": "79e6b4bed73870e6b444cb0700086d4dc99cdbf87af53dd2d237300034a10f40"
+    },
+    {
+      "address": "src/devtools/models/benchmarks/__init__.py",
+      "content_identity": "7e1196c8fc0c352fb65a5cb3d784ef1e7fb3c3acbfa57bdde17e0e77b4f736de"
+    },
+    {
+      "address": "src/devtools/models/benchmarks/docs/overview.md",
+      "content_identity": "e06e6abd5f9c3422bbe5159810f443048d2b896174d4c3fcd756b21706bc6973"
+    },
+    {
+      "address": "src/devtools/models/benchmarks/models.py",
+      "content_identity": "856e9cb0a4355718d4bd7599c1a9ba038f44eacdcfeceda48958facb56b670f5"
+    },
+    {
+      "address": "src/devtools/models/benchmarks/runner.py",
+      "content_identity": "f3d508c393972700e34e285252dcfba5a154d358d01fa42e12fae283d7d6a35c"
+    },
+    {
+      "address": "src/devtools/models/benchmarks/storage.py",
+      "content_identity": "6c88cf637871971b04df0e3bf30a0fe62e1398e22053cce435ad6051a9508130"
+    },
+    {
+      "address": "src/devtools/models/interaction/__init__.py",
+      "content_identity": "02bb3bd10525416adf831bd39fc90b801a522b7d1afcb8cb9375cb2bb00ceae0"
+    },
+    {
+      "address": "src/devtools/models/interaction/docs/overview.md",
+      "content_identity": "0e21114ed3c5afcbd745202deb7cbacc21440d36bb6baf96b21139e5a827b1e7"
+    },
+    {
+      "address": "src/devtools/models/interaction/models.py",
+      "content_identity": "6eb9d64480b0c9ab9ad6e0185f63006d0b7635e824cac8d7c111211d9926466f"
+    },
+    {
+      "address": "src/devtools/models/interaction/observation.py",
+      "content_identity": "0d9f1a0763f123c8e6da9fb55ead3e317d1ad82d894c19d3dbe56c3d2b10f2ef"
+    },
+    {
+      "address": "src/devtools/models/interaction/prompt.py",
+      "content_identity": "39cb6fee3466d10d96f263871246453ab95137459390d0f2553642c965b731f4"
+    },
+    {
+      "address": "src/devtools/models/interaction/protocols.py",
+      "content_identity": "b228e70528c49f9e6573cc1d030733453d2f7d6740ae70283a4f19e3df5f226c"
+    },
+    {
+      "address": "src/devtools/models/interaction/providers/__init__.py",
+      "content_identity": "6fd0bc84dbfee165e6bf04773bf1e66bdf5665a57173afc823dfe8ab1c4db1ea"
+    },
+    {
+      "address": "src/devtools/models/interaction/providers/llama_cpp.py",
+      "content_identity": "565429b2a31457b4450465072539d1587dd3a191cfd13df988467f8be0901a3d"
+    },
+    {
+      "address": "src/devtools/models/interaction/providers/llama_cpp_errors.py",
+      "content_identity": "baee34c3a8038cd49265c3d688c394de86785e02a3e272dcef3643c3198af0a5"
+    },
+    {
+      "address": "src/devtools/models/interaction/providers/llama_cpp_request_settings.py",
+      "content_identity": "4d2f6cc4afb5b20e6d3319ae7179ba6319e54ad586ce66d0f4106e2f8a4b762c"
+    },
+    {
+      "address": "src/devtools/models/interaction/response.py",
+      "content_identity": "536e64ebaac96249d6c41a108269046524afba3d1858d5c2803385e53275b73b"
+    },
+    {
+      "address": "src/devtools/models/interaction/termination.py",
+      "content_identity": "7f91fb45b0e97858e42c59bd91e7850df4967defe1cc44d13b66c6e7749d6e01"
+    },
+    {
+      "address": "src/devtools/models/interaction/tools.py",
+      "content_identity": "2bcb7b82f86a58c250d1cf672094fc7302677c68d5f00ec4b17583b9138fc093"
+    },
+    {
+      "address": "src/devtools/models/interaction/usage.py",
+      "content_identity": "5251b417ed840245decda59fdc2940975cf1e25e2ef85a936aee8049b9d3e89a"
+    },
+    {
+      "address": "src/devtools/models/serving/__init__.py",
+      "content_identity": "cab99be95d3cf56856b7746cfd8403fd309109fc166d537f2d43934e4138e53a"
+    },
+    {
+      "address": "src/devtools/models/serving/docs/overview.md",
+      "content_identity": "4910894bb88b8a4c8b1a965af1ed74e16319a2d6fad50a66b6a25fe9e931e991"
+    },
+    {
+      "address": "src/devtools/models/serving/errors.py",
+      "content_identity": "b9e4cc3638e6cfc5ab46d8e90d4406cc657a1510955fd485e3988f8275383430"
+    },
+    {
+      "address": "src/devtools/models/serving/huggingface.py",
+      "content_identity": "69f8095b6883dc2d8cdf556d73f9913d89b49e2c0689d6e12f1e496c48415d1c"
+    },
+    {
+      "address": "src/devtools/models/serving/identity.py",
+      "content_identity": "21687dac15413101d0d68fbb95916f87d25a1ef04f3ea4d7b00a2d0a037c3d8c"
+    },
+    {
+      "address": "src/devtools/models/serving/llama_cpp.py",
+      "content_identity": "c2da6456aebb93647f46b839f6fcc25cbe1b07696f9a4d0a2c44da96f70d620e"
+    },
+    {
+      "address": "src/devtools/models/serving/vllm.py",
+      "content_identity": "bb7f8c016464fd19407031de00636dd0578982324ef9f62cb51b8844339fbc43"
+    },
+    {
+      "address": "src/devtools/observability/__init__.py",
+      "content_identity": "ab135864d1620486182acb1a99cc486d920f011dedd3779a764276bef4613446"
+    },
+    {
+      "address": "src/devtools/observability/evidence/__init__.py",
+      "content_identity": "18976a7c8d735f97e56781791c7167ae24592f438a517591d41f781adbbc9cd2"
+    },
+    {
+      "address": "src/devtools/observability/evidence/docs/overview.md",
+      "content_identity": "98431aec7bfdfc9c7a4396d6921a5f4174312ccb791b93741b03f8eb0b27c4e7"
+    },
+    {
+      "address": "src/devtools/observability/evidence/inspection.py",
+      "content_identity": "f41a7ea923b1ae87c804cee8a3863d92b755b3170f39446f72ed3748aa3b1f51"
+    },
+    {
+      "address": "src/devtools/observability/evidence/model_interaction.py",
+      "content_identity": "6791cab34092a26f1742c01d9ec807f488282fd41ef874538a02dc89a4b65e20"
+    },
+    {
+      "address": "src/devtools/observability/evidence/protocols.py",
+      "content_identity": "98343cfa242da1ef4f6a14593c300d58d3060bea5647616f261ba5a8c8399fa8"
+    },
+    {
+      "address": "src/devtools/observability/evidence/terminal.py",
+      "content_identity": "ca45ee1c0c49f49c8c6d30f36c0102ebb53c3d9f65bdaf73cdec032c187673df"
+    },
+    {
+      "address": "src/devtools/orchestration/__init__.py",
+      "content_identity": "9906a7f49f303df1bd0bb6dc62acfc785973f8a671e6191de0ac06a2019c86a5"
+    },
+    {
+      "address": "src/devtools/persistence/__init__.py",
+      "content_identity": "9d5d049d1bb65ee9091e94134c1c62aa93710c65baaa70cd27d06c5406feaedd"
+    },
+    {
+      "address": "src/devtools/persistence/_snapshot.py",
+      "content_identity": "af6023231d04fbd2fffeac73c1fc1296665f360612c5ab1b21cf536ff618c65a"
+    },
+    {
+      "address": "src/devtools/persistence/docs/json.md",
+      "content_identity": "85a248d3aba710365dbda906dcf1bd318352c67a726961760e8dd7f14399ccab"
+    },
+    {
+      "address": "src/devtools/persistence/docs/overview.md",
+      "content_identity": "907c737ace884fa0b840921ed3610d712d31693bd82a5e4931641012bcdc3987"
+    },
+    {
+      "address": "src/devtools/persistence/docs/sqlite.md",
+      "content_identity": "9662f99ff8f8eea4e1a9a08e37d5d87dca99690ea2fcb9f720cb5d087d2f37de"
+    },
+    {
+      "address": "src/devtools/persistence/errors.py",
+      "content_identity": "0770fe3a683ee24c2de947a0ed9ae98a97e9daab61068d2e9aeadd26d9c04151"
+    },
+    {
+      "address": "src/devtools/persistence/json.py",
+      "content_identity": "cf5624d0f4d6c2fea576105cecaa0df5753cf088e2c4f2063167ca2d0f171264"
+    },
+    {
+      "address": "src/devtools/persistence/sqlite.py",
+      "content_identity": "1c7948a64811c6f37f9d7070f612e60f02fc19ac2c2346c0ec66bd37082886d2"
+    },
+    {
+      "address": "src/devtools/resources/__init__.py",
+      "content_identity": "f1a94bae12acf7b57b5bd89a72e02cf1dfcbc0ed3dd4c53d086adda4dadbd4ff"
+    },
+    {
+      "address": "src/devtools/resources/commands/__init__.py",
+      "content_identity": "7cbc6f6b95697b5c664eb09d2779fe854fedb8d868e046e913bed2ce2fbb30b3"
+    },
+    {
+      "address": "src/devtools/resources/commands/docs/command.md",
+      "content_identity": "dcd243222036d0e93f9714a24354fb59fc7f90b82b063d1f9697d48b7de2c219"
+    },
+    {
+      "address": "src/devtools/resources/commands/docs/events.md",
+      "content_identity": "376647e8d3f3e9923e8c09bdfd55023c724abedd76d0d23596ebd8172162150c"
+    },
+    {
+      "address": "src/devtools/resources/commands/docs/execution.md",
+      "content_identity": "0494eb9c87561cd8bf45aa19d956edab17d7fe1b89abae5e5aa672e4949eb1f9"
+    },
+    {
+      "address": "src/devtools/resources/commands/docs/overview.md",
+      "content_identity": "7c4f2d93bb5f4033f94d22de5cab4da43a1838e8909b6347ecfa972d8fd71df8"
+    },
+    {
+      "address": "src/devtools/resources/commands/errors.py",
+      "content_identity": "9f9b4159a7d8209d3cbd5101f6d1d5530b0768e6e72b61d8a64aecfa3ba55d7f"
+    },
+    {
+      "address": "src/devtools/resources/commands/events.py",
+      "content_identity": "7bfe93cebfef47011047122901ad9756b95d28dfd82a228993d46eb8670344a6"
+    },
+    {
+      "address": "src/devtools/resources/commands/execution.py",
+      "content_identity": "5b1a3412c6fc3b4b5d0f0d3e4491d01c48d6dd89e47b4495dc714d0dede36f22"
+    },
+    {
+      "address": "src/devtools/resources/commands/handle.py",
+      "content_identity": "c9825687577803f98911494be5c86ddd84af006d627acdbacbc2b28d9c82b06c"
+    },
+    {
+      "address": "src/devtools/resources/commands/models/__init__.py",
+      "content_identity": "663fbad9d358d6ebb6f849fe60b189a4fc48bbf688ec809f3122929d7c68836f"
+    },
+    {
+      "address": "src/devtools/resources/commands/models/command.py",
+      "content_identity": "b35fc0c06f23ba27f318af7f62f9dd0f84ed6d0d3a77a97a6eadb9c338579473"
+    },
+    {
+      "address": "src/devtools/resources/commands/models/output.py",
+      "content_identity": "bd7b139009ad69f8bc0f5326c26eaa5d651a60cf534eef3994d0d1d5269a5336"
+    },
+    {
+      "address": "src/devtools/resources/commands/models/result.py",
+      "content_identity": "9bccad0fff2036c7f3059bbd3a449d51ec0faf8093d393dc48a105dae0b3fc23"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/__init__.py",
+      "content_identity": "97cb3d29f27274b9c32be47b2e84b3ec51a8f4af978e0c6f022e32544819fa5e"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/codecs/__init__.py",
+      "content_identity": "7c815bc2e91f3150ebd9e5551dd30c947ba6313c1a65b9cf310d5d468133b659"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/codecs/csv.py",
+      "content_identity": "d9ddfd29e02486d5f88d36ee9f7e88f466eaa068fc22b2513afb907018717a90"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/codecs/json.py",
+      "content_identity": "1ed913e313d22fe9e38fe68da1d2f948b6f19ef23421ebb951efabc988885e93"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/codecs/markdown.py",
+      "content_identity": "3662893e3f5974d201e647f00d32ac4acdac70530920847e0f5b171c1515970c"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/codecs/text.py",
+      "content_identity": "e408f6ca75508acc25debc8023d15d78e03665c509e7e0c478fddea8ce46b303"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/docs/codecs.md",
+      "content_identity": "69b1c8f5a7e4a5bd6d248285868c2c178b20f12718f06d672507a23569a29da0"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/docs/csv.md",
+      "content_identity": "dc61f29ab6a82f2dde97fc7e965cfdbd52812327e2adcc6e4614009b59007be7"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/docs/io.md",
+      "content_identity": "ddacd421164e1bd27440d320d6bb7b84d70d5c018d40492b05a8b23ed5da1af0"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/docs/json.md",
+      "content_identity": "7e2637e483989a226f345ae02f5e04e6c766fe8cc62151082dfd71374eaaaf5b"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/docs/markdown.md",
+      "content_identity": "9cc457eebfad885e0c469a4a9eb129be94f35c85d0f2a1b2e82e33da19598ca7"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/docs/models.md",
+      "content_identity": "b1e25f71b411c4bdcfddedfe4106ed50c759ec61d4816ea81a9eceeab38f820b"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/docs/overview.md",
+      "content_identity": "480fc3dedeb480d2b72ddc2c2c6086b9acc4452ee5166cb2fd54e7ee6943056e"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/docs/roadmap.md",
+      "content_identity": "4be3018df37a3eab8f292f352e619dbbb218fe1bb1ac52abadb759a0c51b1f1e"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/errors.py",
+      "content_identity": "bbdcbcaac0bdfec082c4f459b1cd2829b6747c95fc3226e68e5ad9aa00c61caf"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/models/__init__.py",
+      "content_identity": "e09ae5eeb0da9afd9f4921634debfd2af6e9fbcf84a98450526c62f52e5fcf5c"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/models/base.py",
+      "content_identity": "ada2cec083ac5e9dd101a357401c7d7f18091fbb4c45ddaf8cf09d37b31caa3c"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/models/binary.py",
+      "content_identity": "abd051ba906097ca7e0296d86cfc7c08a4eed82d32a8d3b1cb42c212e17c9337"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/models/csv.py",
+      "content_identity": "0cade3699fe596ba492a6509405496cba9b3e2b616d8c0de6f19b47ca0ba9d40"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/models/json/__init__.py",
+      "content_identity": "d8a21f64b411c028266d7a1ca352772f32418f839c548d3acf266d0bef827c47"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/models/json/base.py",
+      "content_identity": "89fba795bd6520450dd333141f6b9c79d77e27549026642f901f7bf07a817cc7"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/models/json/conversion.py",
+      "content_identity": "9a148a223a70a44c419373bd5d51e2f25f9531416d33877b6d9378f50f1e9455"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/models/json/list.py",
+      "content_identity": "b855a01565970c7c0cf19e77c796713ed08ddf8905fa1beb37d3cabe85811424"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/models/json/object.py",
+      "content_identity": "6a5b17b886fdb64baf279da53a8e07a78be8bdc38a590fce40f20979ede87891"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/models/json/scalar.py",
+      "content_identity": "adb1025a200bdce3fb68c5fd4f082ce102b3b5691774b84212d59da3555da6a7"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/models/markdown/__init__.py",
+      "content_identity": "4d484bc44eca79b50625b6708a632eeca1da653bdf140edd868f2c137cb3855d"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/models/markdown/file.py",
+      "content_identity": "3be01d5cb97e24f38004f176980c510a17abf2ef420a1c312ea8664f138fa76b"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/models/markdown/heading.py",
+      "content_identity": "7b3c441f3efe098c1444eca1107b10387f08601be5e5ca3e26a73ec3f01c97af"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/models/markdown/section.py",
+      "content_identity": "be459c6f8ddc32dacfa1c70451caabced3ea2658ee078e505ef629642e7cce9f"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/models/text.py",
+      "content_identity": "beffe8d57eaed9c504a35747390aa3b6006ed87ac8e2cf4c2f9cecb8aa4e634b"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/reading.py",
+      "content_identity": "9ffd4595f59e0402287b4493741254b9814e7e8d27b01576a6236179c2afec01"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/resolution.py",
+      "content_identity": "195138aa122ce3559164610b53a7b14663433af90dc3fd29c2dd670474dce2c6"
+    },
+    {
+      "address": "src/devtools/resources/filesystem/writing.py",
+      "content_identity": "f9e3cc418c545297432601f5ac7072d7688e0c9be2ce07a9df81131852c2e527"
+    },
+    {
+      "address": "src/devtools/tools/__init__.py",
+      "content_identity": "19a9a85c035e6167f6cd738941eae1df10c2c022d1bf8445fee518b612b69ce2"
+    },
+    {
+      "address": "src/devtools/tools/command.py",
+      "content_identity": "3789e24a217058dbe0ae76fe2596c8d92c4f6e7caef71d20141494a4a129b608"
+    },
+    {
+      "address": "src/devtools/tools/disclosure.py",
+      "content_identity": "be277ea5d808cd52a1c9ab4bceae9e2f7be92bfd46c75ed84da3dba15b8f5e08"
+    },
+    {
+      "address": "src/devtools/tools/docs/overview.md",
+      "content_identity": "103cefbd4c6e21813ea33773d77b0e197498878bdac36acdd281429ef07e3f1a"
+    },
+    {
+      "address": "src/devtools/tools/errors.py",
+      "content_identity": "a29d962c7cc09a25221ef15e94cf85f473c0fc5cf66cacbc95fb7881c3d02e07"
+    },
+    {
+      "address": "src/devtools/tools/execution.py",
+      "content_identity": "83f76f63eb0214d03451ca47a806ef5e5dd70ef2bfa1b43754fe60032823c00e"
+    },
+    {
+      "address": "src/devtools/tools/filesystem.py",
+      "content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c"
+    },
+    {
+      "address": "src/devtools/tools/protocols.py",
+      "content_identity": "f615d6d2601e48e1f7c4631873ea3d2bae26e177e73f08c3ff81833687535172"
+    },
+    {
+      "address": "tests/__init__.py",
+      "content_identity": "2c61ee4780759ed36faca97833d22f864b655703396d47ee8b9251955cf39835"
+    },
+    {
+      "address": "tests/agents/__init__.py",
+      "content_identity": "95cb59fa30a936329c46138d6d327cb5ece9753d4c3419617e61529f519add89"
+    },
+    {
+      "address": "tests/agents/conversation/__init__.py",
+      "content_identity": "e9c90fef7a2be899ab41d3d384bc2f24da729af15655ad1269467fac307391fd"
+    },
+    {
+      "address": "tests/agents/conversation/history/__init__.py",
+      "content_identity": "5669d0bd69cf02e91c6cc32ea2626b873d9849ef1e588e7e4f14138bfb4a39be"
+    },
+    {
+      "address": "tests/agents/conversation/history/test_history.py",
+      "content_identity": "724c331ef5d9d8098a5138ea8721668f3af7977ca44569970e58220409e96075"
+    },
+    {
+      "address": "tests/agents/conversation/message/__init__.py",
+      "content_identity": "3b2f62df3dc1d659a4cbc8d341c15e4e7c2f44dbe0cf385e2908ef3b598f7461"
+    },
+    {
+      "address": "tests/agents/conversation/message/test_message.py",
+      "content_identity": "018edd9fec6141cd06971551c60343ee4502df935dd5133ed64396386043c941"
+    },
+    {
+      "address": "tests/agents/conversation/test_live.py",
+      "content_identity": "8d785c1dd2043953ec624b38a3f7875ed56523421666f0cdabdadf3ff468bf20"
+    },
+    {
+      "address": "tests/agents/conversation/test_session.py",
+      "content_identity": "65cef479981456b043a3bbbb834a69aa1084381c39a405316f2507e487bf9959"
+    },
+    {
+      "address": "tests/agents/conversation/test_session_id.py",
+      "content_identity": "a84c2db17af8824845875aa28311978a30c75aa83bb488c6586e371b95194860"
+    },
+    {
+      "address": "tests/agents/integrations/__init__.py",
+      "content_identity": "f795f63f0889aac4105ffce4a230a03af26eb8d872be78707b3a9d31ec7ec8de"
+    },
+    {
+      "address": "tests/agents/integrations/codex/__init__.py",
+      "content_identity": "d07cee53ec0bacf855455f5cf90cdd5139befbb2c127902bcea94fb2bf821c06"
+    },
+    {
+      "address": "tests/agents/integrations/codex/test_agent.py",
+      "content_identity": "4c3636ded84b2b1feeebc2b27132308a34c2827098bde9be25d13450a647d607"
+    },
+    {
+      "address": "tests/agents/integrations/codex/test_live.py",
+      "content_identity": "b705ab7d34b2b7327ec5e86563123101bb9f293b15260a627905fd8524549e64"
+    },
+    {
+      "address": "tests/agents/integrations/codex/test_parsing.py",
+      "content_identity": "439b45154cc05f2121215643bef2b65528ac21882205864c96bfa03c8e0387b1"
+    },
+    {
+      "address": "tests/context/__init__.py",
+      "content_identity": "3572c092e02fdfe637dd358503b0f6d6f987a86cdc480a31e0a24757c4a6b3b7"
+    },
+    {
+      "address": "tests/context/localization/__init__.py",
+      "content_identity": "adbf3d1d7661b3f88c1cb1cb040ce36734c27d2b80f75f01ce99c9a4d4cb7807"
+    },
+    {
+      "address": "tests/context/localization/test_kernel.py",
+      "content_identity": "58d0404d46dd986aaa3c7efd943f9c34497913388912f6bfa3dc9b4c45e9dbd7"
+    },
+    {
+      "address": "tests/context/localization/test_lexical.py",
+      "content_identity": "4f782f37ba0b70bff6892f87a056cac86004b4c517ba572d6cd1788648c94b44"
+    },
+    {
+      "address": "tests/context/planning/__init__.py",
+      "content_identity": "ae777ca2134368651003785d1acda1d655395f377ef69cd35307dd179220c4f3"
+    },
+    {
+      "address": "tests/context/planning/test_plan.py",
+      "content_identity": "641a5ffab748722ab2118dec73331c88dbbe16b2bf9500876cc5e117871be492"
+    },
+    {
+      "address": "tests/context/python/__init__.py",
+      "content_identity": "2e25d9a33df0dd911114ef812a22f7a16a3a4418014d70b982c75def2b9177fd"
+    },
+    {
+      "address": "tests/context/python/classes/__init__.py",
+      "content_identity": "b74957a18cbf289b64707317e2d232a1c28da5fd793805b4ca398286dc3331da"
+    },
+    {
+      "address": "tests/context/python/classes/test_bases.py",
+      "content_identity": "b364aad82c4e059f6865f16a2030bbeba994b45f5b3ad7b81e5b197e34c88616"
+    },
+    {
+      "address": "tests/context/python/classes/test_declarations.py",
+      "content_identity": "40acd74906703279d4d9251d72820354d488dabb5603c2bbd265d761755a726c"
+    },
+    {
+      "address": "tests/context/python/function/__init__.py",
+      "content_identity": "e8a87f81600afd1533894bf2dbee71582d94365ac2a7143caba44516e0d33b08"
+    },
+    {
+      "address": "tests/context/python/function/test_candidates.py",
+      "content_identity": "71203dab41b8c017cd280d1bfd1097ca3abe63f7be2215c8e8749bf5a5225f0d"
+    },
+    {
+      "address": "tests/context/python/function/test_containment.py",
+      "content_identity": "d67c0d0abc7a00d2562441144fd3f2176a14c61b15aac86420e9cede1b06c2e2"
+    },
+    {
+      "address": "tests/context/python/function/test_cross_resource_pipeline.py",
+      "content_identity": "3e1385c11ca543d63d7871103573a38d54df4bce21a197c9d4acb429407e9f86"
+    },
+    {
+      "address": "tests/context/python/function/test_declaration_aggregation.py",
+      "content_identity": "ee6ccca5470a6387d5efcfe23d8b13248fde8e0af262de2e0eb16db11c1861ab"
+    },
+    {
+      "address": "tests/context/python/function/test_declarations.py",
+      "content_identity": "9b90a073bec97217be0312199d82de5d5aab94ccb2666b7de5cd5bda78688e50"
+    },
+    {
+      "address": "tests/context/python/function/test_disclosure.py",
+      "content_identity": "800ae8fb61b7af70b2c3dd0e48eb9147e0a3e93beef98a9e1d269b212e469151"
+    },
+    {
+      "address": "tests/context/python/function/test_materialization.py",
+      "content_identity": "d71c206e1b8df47bbb23c1be65177148ee98a0757acd0e789e4e1ee5e2906dc7"
+    },
+    {
+      "address": "tests/context/python/function/test_qualified_reference.py",
+      "content_identity": "d8ede2921942e6f4acabc9e4176190781eae10fba4c7e0d894aedbb831b2dafb"
+    },
+    {
+      "address": "tests/context/python/function/test_rendering.py",
+      "content_identity": "473398e3a37c321aa451e97f00bef61bf7794a822d95e6f6e3916e4af43eede6"
+    },
+    {
+      "address": "tests/context/python/function/test_request_assembly.py",
+      "content_identity": "2e630467829d7e324b7778ed17666113786a6c483b033f8e0b97c92d99bd9b2b"
+    },
+    {
+      "address": "tests/context/python/function/test_resource_selection.py",
+      "content_identity": "0aff6abae3a77e9e3b186c9bcad44483c40db0bbf0e29908020044e9e319506f"
+    },
+    {
+      "address": "tests/context/python/function/test_retrieval.py",
+      "content_identity": "9f34ccca57fce7274073fe508ea8ce5d98ac799e316097a9cb6501fae8802b35"
+    },
+    {
+      "address": "tests/context/python/imports/__init__.py",
+      "content_identity": "524f373dd9ab8a0bf1560bfd54556137cdbfe3512d114a992941fd06791189f4"
+    },
+    {
+      "address": "tests/context/python/imports/test_declarations.py",
+      "content_identity": "a10f487e0b5593f434e70281175a0f9da22fbd0a2cd4129e1b1281597678d441"
+    },
+    {
+      "address": "tests/context/python/imports/test_members.py",
+      "content_identity": "58488f0d72dac9a1465ca2bc552c109a5dff9dbf93d56366d189bb6ddc128267"
+    },
+    {
+      "address": "tests/context/python/imports/test_relations.py",
+      "content_identity": "3073e4d26786060a5ff2d9376dfab54804dbea13146850f9a7e22065e330eb88"
+    },
+    {
+      "address": "tests/context/python/imports/test_resolution.py",
+      "content_identity": "39d32d2b28781888e23117130f50fcd7242f74793fabd7c7944b54c326af439a"
+    },
+    {
+      "address": "tests/context/python/modules/__init__.py",
+      "content_identity": "2245a7328be955a9e3d03a36c7468206a91242adf0e0ebdd2e6c19b33b67c10e"
+    },
+    {
+      "address": "tests/context/python/modules/test_interpretation.py",
+      "content_identity": "e751e2d401edd907095eadd2dd057a0e8687b9c97dd4383c25837f3b14a3ce0b"
+    },
+    {
+      "address": "tests/context/python/modules/test_membership.py",
+      "content_identity": "347bb424a727936972a5079b2a0801bf33245d6261f96e194955a54a0ff3f34c"
+    },
+    {
+      "address": "tests/context/python/project_configuration/__init__.py",
+      "content_identity": "8eeef9d5c61ec90897db8275b51d8bfa49b167b3188825a9fc4b18bd8c804339"
+    },
+    {
+      "address": "tests/context/python/project_configuration/test_configuration.py",
+      "content_identity": "dcc9f7d6661e6f3341f15de0cd43da61f61f447249b2dc19056fee0573ae0c59"
+    },
+    {
+      "address": "tests/context/python/references/__init__.py",
+      "content_identity": "1a52feb486040090b4b233e04a5799ceeb66c8312d3539f4ab9f9716e7eaf985"
+    },
+    {
+      "address": "tests/context/python/references/declarations/__init__.py",
+      "content_identity": "557d5f0e3517b303934c3263c53027ef22cb560be4449802bba387989d6517a9"
+    },
+    {
+      "address": "tests/context/python/references/declarations/test_analysis.py",
+      "content_identity": "ff6e3565f83269f739ca52410a72438e1a78506a4669c1ccf980b2ab988d41a7"
+    },
+    {
+      "address": "tests/context/python/references/declarations/test_bindings.py",
+      "content_identity": "c344abff8a82a784d0ffc8dca26727eeebf98e2ab1fb91b848b85e45adc64738"
+    },
+    {
+      "address": "tests/context/python/test_mirrored_paths.py",
+      "content_identity": "608a3defd9ee9107ca690be9c140a4eb7da8c46bb3e9800c5cc2cdd76255d16b"
+    },
+    {
+      "address": "tests/context/python/test_source_candidacy.py",
+      "content_identity": "5b03f561a6f3b381907c8f953b4908ca59a9b7219f3c6c1b2fbde0ad02d26a6a"
+    },
+    {
+      "address": "tests/context/repository/__init__.py",
+      "content_identity": "a4ddb695661c9f434550d390ce57e64c963c257b60c158db9fe481753701b0af"
+    },
+    {
+      "address": "tests/context/repository/test_corpus.py",
+      "content_identity": "21c37c52abdccaf1c01ced1932de242cd21025511cc2bf63b883454d3ddb29a0"
+    },
+    {
+      "address": "tests/context/repository/test_discovery.py",
+      "content_identity": "504d86f0d3f8395f67d20431c527a5836663688feb0b96fa3f1a45cc10aeee68"
+    },
+    {
+      "address": "tests/context/repository/test_document.py",
+      "content_identity": "7e7cb4070c95a1927abe18a6f1a0dc1aa4473bf0f99273947b468263c96cf934"
+    },
+    {
+      "address": "tests/context/repository/test_observation.py",
+      "content_identity": "ba74f3a4ddf68f48057fa57da9f00208d291842545817db4b145371604c66016"
+    },
+    {
+      "address": "tests/context/retrieval/__init__.py",
+      "content_identity": "8d3f6a78566b854569d2feb7e41a240158556b0c2e8143e1a88a128102e7b16d"
+    },
+    {
+      "address": "tests/context/retrieval/graph/__init__.py",
+      "content_identity": "bfee503a2a485ec1671e943cacc19b131d60f47d724867330da66e01098cc755"
+    },
+    {
+      "address": "tests/context/retrieval/graph/test_ranking.py",
+      "content_identity": "ef65342956f3850174944516e1e32c566b04543cb05b476cb6f97a10289b6fc6"
+    },
+    {
+      "address": "tests/context/retrieval/graph/test_typed.py",
+      "content_identity": "2c225e16e1cc664648e55c31b833898963aed678c0ce22473f7337953efb2fcf"
+    },
+    {
+      "address": "tests/context/retrieval/lexical/__init__.py",
+      "content_identity": "ba3c47424b5e02aad0f97f9a14cd39a94252fa8951677648a7ce6d3586f1ae80"
+    },
+    {
+      "address": "tests/context/retrieval/lexical/_helpers.py",
+      "content_identity": "02036f53e34933d806415512b4e66bf886c2a6722f4c8fcd589031eda44bb3da"
+    },
+    {
+      "address": "tests/context/retrieval/lexical/test_analysis.py",
+      "content_identity": "ff1953c36a25655257f5b3ab39c7f4c0b342011e26b6370824324126020b9030"
+    },
+    {
+      "address": "tests/context/retrieval/lexical/test_bm25.py",
+      "content_identity": "3aa8e9bee063327e0f87500fc824ba13515e41a8b47117849ff55abd4282f97f"
+    },
+    {
+      "address": "tests/context/retrieval/lexical/test_evaluation.py",
+      "content_identity": "277bcad2e6174f351c5b93e1ae7e09c01492ce2834e93b27acc96f0ff9be8155"
+    },
+    {
+      "address": "tests/context/retrieval/lexical/test_filename.py",
+      "content_identity": "b4a210ed6a4d196233700d223c3793c635fbb422becd624a5941c34e94be3c6d"
+    },
+    {
+      "address": "tests/context/retrieval/lexical/test_index.py",
+      "content_identity": "50cafbcaede0c499cbffc96c26e4c61bb7a2263a5652a5d213d2730c56273e0e"
+    },
+    {
+      "address": "tests/context/retrieval/lexical/test_statistics.py",
+      "content_identity": "3f5953e9bc5dfb00eee460b8485e2875c3af9ea60b7b5710f72fbae7534eedd0"
+    },
+    {
+      "address": "tests/context/retrieval/repository_map/__init__.py",
+      "content_identity": "0d990aa932e3274d8b11e6e189973285a6d4b824bbab0267abf45ad2d65571d6"
+    },
+    {
+      "address": "tests/context/retrieval/repository_map/test_ranking.py",
+      "content_identity": "b83e843407d3c70e46932c6d8b7ce532c54126cccdc94821079734f8a037c4fd"
+    },
+    {
+      "address": "tests/context/retrieval/test_composition.py",
+      "content_identity": "5104ea58d7b2688470d6ad0cbd82ec161987ef7433e7a2c4335a99dc5d7bc60c"
+    },
+    {
+      "address": "tests/context/retrieval/test_structural.py",
+      "content_identity": "c19db3903a3c25f9063af216a26d559eba473b6b44683497d82ab957c70c64c7"
+    },
+    {
+      "address": "tests/core/__init__.py",
+      "content_identity": "83ab60e0b4499fac83e4e651ca33d984aa52ec0e33a06a751073108ba8100728"
+    },
+    {
+      "address": "tests/core/conversion/__init__.py",
+      "content_identity": "dd56c70d043fa64eb4f375989b1c5536b234c0b37fdf7009a44955cda33def1b"
+    },
+    {
+      "address": "tests/core/conversion/test_conversion.py",
+      "content_identity": "2ec54b402be934e923753e7e92554fcc974ea330d3172e74b9aa08f3cd97cd98"
+    },
+    {
+      "address": "tests/core/identity/__init__.py",
+      "content_identity": "318fe561871bac625099c7ec765f72d50cde7864749d33f99f94b088425fdb12"
+    },
+    {
+      "address": "tests/core/identity/test_models.py",
+      "content_identity": "0cf0d9523fbbf65faf921bf427eab8c7e824ede3c89b4e50a3eaddbb73d9b66a"
+    },
+    {
+      "address": "tests/core/paths/__init__.py",
+      "content_identity": "112b94984c3496a1b7b06dd0cbb40e3a542c54d32e54ef132770bf73844a4f22"
+    },
+    {
+      "address": "tests/core/paths/test_errors.py",
+      "content_identity": "965280ee5e8b8f4477e99820f7c0f434ac72b0c2f10edaa8f80d2841ad5e790c"
+    },
+    {
+      "address": "tests/core/paths/test_resolution.py",
+      "content_identity": "5f34ec0ac3a2580a7a75533d98c503e65084bf00f49f9d736b8c11f0b3ecbeb2"
+    },
+    {
+      "address": "tests/core/paths/test_resolved_path.py",
+      "content_identity": "73a33d57bf507dd3c4406a1c4b537fb7322222ff13f5c9366c74743403f9e767"
+    },
+    {
+      "address": "tests/core/regex/__init__.py",
+      "content_identity": "42b00e65be97c2eab3e15b11883b4d62713d53628284936c1e267ad57917156a"
+    },
+    {
+      "address": "tests/core/regex/test_models.py",
+      "content_identity": "78ba9f42850dea03e85d0d70567cae40a4fdadd6af0c59d3aee9332f61111a8f"
+    },
+    {
+      "address": "tests/core/regex/test_search.py",
+      "content_identity": "1843c27fc42cd38efa94309884e7e84b26f864d578dc1e215e2e85e0a4e8d0d6"
+    },
+    {
+      "address": "tests/core/system/__init__.py",
+      "content_identity": "879a8d83b877842bb5884828375b7858051aef530e6956484ad4506ac1d157f2"
+    },
+    {
+      "address": "tests/core/system/test_detection.py",
+      "content_identity": "3ae8419b24fb1a1e9564690664a354148a78ba51ae0658c602f455a6c412d3ae"
+    },
+    {
+      "address": "tests/core/system/test_models.py",
+      "content_identity": "eb127a1712e6a79e7678f774793354c74db08513b081e76a8f83a049323d99ab"
+    },
+    {
+      "address": "tests/core/time/__init__.py",
+      "content_identity": "ab3d3080eb977f91154f659e95d5f6b4af74df4a692c5154c10ac24ac7f7a017"
+    },
+    {
+      "address": "tests/core/time/test_models.py",
+      "content_identity": "0738320772b65625e0085212c949e34b4185fcf58ebe093ed4d45a8d358b6660"
+    },
+    {
+      "address": "tests/core/time/test_parsing.py",
+      "content_identity": "de9b7a2ba6d7c57112f2c0f82fb58165ee5b774ef6020051d927d9200a88cf63"
+    },
+    {
+      "address": "tests/core/time/test_timing.py",
+      "content_identity": "71f916d9862a9ef526637f8c1540f30367ddde7bf8dc7895b99c572ff196446f"
+    },
+    {
+      "address": "tests/evaluation/__init__.py",
+      "content_identity": "7b2ba91a1ed4b1b4e3416ef7323831b088a2ed08174d46e8727dc09ad718f69d"
+    },
+    {
+      "address": "tests/evaluation/test_coverage.py",
+      "content_identity": "fbb77952c5514c2a932cc3adf2fd2ead8a4446e67b96ec8bae57c384d0924696"
+    },
+    {
+      "address": "tests/execution/__init__.py",
+      "content_identity": "d7e4439ed88f2edf74503d5f95e355dc6f8b9a17a104acc159d0489ae3aab26c"
+    },
+    {
+      "address": "tests/execution/test_interaction_attempt.py",
+      "content_identity": "332d1f723e5435ab3c90c1b8ddc9b46391d7c86af571efd512da2a40c8b67aa9"
+    },
+    {
+      "address": "tests/execution/test_runtime.py",
+      "content_identity": "8f4bdbf3044c5a84a7c85bf4780e54f10ca8da669b2fed8ac2f5815669a3d42c"
+    },
+    {
+      "address": "tests/experiments/test_codex_dogfood_capture.py",
+      "content_identity": "98fbbd5ad8badd443210e9809a637dbf21e11d03f9a41eb2e803d22784222bb9"
+    },
+    {
+      "address": "tests/models/__init__.py",
+      "content_identity": "5d07456e2c21e78ac7e77cb193c9fa55e2ed2f429f7c2fe7e07c752bb35f2d0e"
+    },
+    {
+      "address": "tests/models/benchmarks/__init__.py",
+      "content_identity": "15e003260ce96077c0604a88d1b238e972c2a5a22e0d729b756c6084a9a445ff"
+    },
+    {
+      "address": "tests/models/benchmarks/test_models.py",
+      "content_identity": "582423270354ce5925f1c493a10062f906204462e976712730d51cde04f9a1df"
+    },
+    {
+      "address": "tests/models/benchmarks/test_runner.py",
+      "content_identity": "14ee7d72d179a7b5ce3dfdc722944833986a2f16abb549d48dc92906f3e2ceb8"
+    },
+    {
+      "address": "tests/models/benchmarks/test_storage.py",
+      "content_identity": "a9fcf22fcb76814c755cbcba819c0e8947c082f772b5a7cc9bd0c6c6f6ef8a66"
+    },
+    {
+      "address": "tests/models/interaction/__init__.py",
+      "content_identity": "03845fa419576eb82b4c37f6351c5c716c77590c473eb26de51c7348d3f7e86b"
+    },
+    {
+      "address": "tests/models/interaction/providers/__init__.py",
+      "content_identity": "0e89c5fb746cafd96b282d84be2c2e77ea9d57b038615de658be94c75ae4e37b"
+    },
+    {
+      "address": "tests/models/interaction/providers/test_llama_cpp.py",
+      "content_identity": "9afd330cd214f11fe7c6d14cf125d24099b5e26d600804b5141419348885c8ce"
+    },
+    {
+      "address": "tests/models/interaction/test_models.py",
+      "content_identity": "03eb423890b8178020859d436d5cfb6e1aefdfd26b44036eccda1435206d234d"
+    },
+    {
+      "address": "tests/models/interaction/test_protocols.py",
+      "content_identity": "0c92cb6200c3c86604983272429298aa0c03cf16f8fa8e10fb8759970fc2d5a3"
+    },
+    {
+      "address": "tests/models/interaction/test_tools.py",
+      "content_identity": "6e3ab9f9b1779c387b72e6230b41ee76fed695f40eb55610240c9eecea85f596"
+    },
+    {
+      "address": "tests/models/serving/__init__.py",
+      "content_identity": "356dbed695c9205f3c2d84b1a5531529d2df170690310700f0364e851456cdeb"
+    },
+    {
+      "address": "tests/models/serving/test_huggingface.py",
+      "content_identity": "9b7b273b3c1fa39ba2eef3158a8c248e1f8546815441314ffe39c9b9c404acc2"
+    },
+    {
+      "address": "tests/models/serving/test_llama_cpp.py",
+      "content_identity": "2de258ff8b06e27cb3a0642c77839aef7a6511a39b5809a3dad19029b32c13df"
+    },
+    {
+      "address": "tests/models/serving/test_vllm.py",
+      "content_identity": "66510589d97c1ec89bc405e4aed376407e606215c2bb8fecf89cf36b1ea0beb8"
+    },
+    {
+      "address": "tests/observability/__init__.py",
+      "content_identity": "6be82c27ba3ce25dc49ea89660304b9c0771f03e6bcadb4c70010390d7024c27"
+    },
+    {
+      "address": "tests/observability/evidence/__init__.py",
+      "content_identity": "3da89ca2ca4351ec7917dfe8968829b6eec8b7c99a4b5d0fbec90191a90f9591"
+    },
+    {
+      "address": "tests/observability/evidence/test_inspection.py",
+      "content_identity": "0defcec8dd2a18f934899e1ffe4d4789bb7ddb0f0f3d7d24f87c4ebb0ef5939a"
+    },
+    {
+      "address": "tests/observability/evidence/test_model_interaction.py",
+      "content_identity": "b736d5348b8c5a9aa918cc53c46405399c1506092b79acf8a2102cdc5862a812"
+    },
+    {
+      "address": "tests/observability/evidence/test_protocols.py",
+      "content_identity": "e0f5600f06a37bceed0f1ee3ccb7c1120e485458a11c8c456800b1530d8470d1"
+    },
+    {
+      "address": "tests/observability/evidence/test_terminal.py",
+      "content_identity": "3b68af25c442cc55cd15f703b733984f7801695d34fe4720b8de0f04c5a92167"
+    },
+    {
+      "address": "tests/persistence/__init__.py",
+      "content_identity": "edb967950ec1437b730ec9317b1ddf71b553e84dcc71fff66825f0afa8f6ee5e"
+    },
+    {
+      "address": "tests/persistence/test_json.py",
+      "content_identity": "e4aac80c8b2fbb70694dbb3cd678ecc9d2a996bcd71836c557d6745539b72d7f"
+    },
+    {
+      "address": "tests/persistence/test_sqlite.py",
+      "content_identity": "1d86b79eeb94ebefca84c2b5ab0453290d211c2d6f1b614548dad6de1ccacbaf"
+    },
+    {
+      "address": "tests/resources/__init__.py",
+      "content_identity": "4d1ff59b18a129f0df9a8ded62185ecb13330f11dde0f1c08620bad2c5eba50e"
+    },
+    {
+      "address": "tests/resources/commands/__init__.py",
+      "content_identity": "512f63ddf73c412067cb1c8eff784d005d70202fdae5200bd08ee33309fe67d3"
+    },
+    {
+      "address": "tests/resources/commands/test_errors.py",
+      "content_identity": "16db7e62541ee215137cacf568e3631473a1ae31de96f0c998ddb73bb7cdf3ac"
+    },
+    {
+      "address": "tests/resources/commands/test_events.py",
+      "content_identity": "229c76e8ba2d20feec3734c5a62f02b1c08941aa09daa90702d41cdafc6669ee"
+    },
+    {
+      "address": "tests/resources/commands/test_execution.py",
+      "content_identity": "aee4e76977a7fbd06feaf1142e32aa6c5aaab740075f32e93613da388b10a283"
+    },
+    {
+      "address": "tests/resources/commands/test_handle.py",
+      "content_identity": "a7b72589aeec4bd1da1568909589e998544da2173da5aad1fa55e18be6710712"
+    },
+    {
+      "address": "tests/resources/commands/test_models.py",
+      "content_identity": "c12ab32a475a94769120d17d1fedf7b497d8f961e080b29b5274dacf01808f28"
+    },
+    {
+      "address": "tests/resources/filesystem/__init__.py",
+      "content_identity": "4240eddd87df34f3412dede0acb7700e2cae0d0c227a48387a218f58cc5273af"
+    },
+    {
+      "address": "tests/resources/filesystem/codecs/__init__.py",
+      "content_identity": "70a9ca92be20c4c09ee6bfe45d22e53fe190f7941f433c41120500ac890b7933"
+    },
+    {
+      "address": "tests/resources/filesystem/codecs/test_csv.py",
+      "content_identity": "03c6c0354c2f9bd810f4c4bee2f626c7eaed64999bacd3d68ea4a054d9a2c988"
+    },
+    {
+      "address": "tests/resources/filesystem/codecs/test_json.py",
+      "content_identity": "1b03c4f7a0c8a8da3c91f921e9a58743a0674e185b2b1b7e479a583e90ebf7e4"
+    },
+    {
+      "address": "tests/resources/filesystem/codecs/test_markdown.py",
+      "content_identity": "a1a56af67b293df9d5fd6bafbf91dbc0b8d011e891b50529a629e3ebb219ac0d"
+    },
+    {
+      "address": "tests/resources/filesystem/codecs/test_text.py",
+      "content_identity": "b8f9cc0b3d2ab072dafffca15ce6fe2f507cf6b8e3d8b94bbdf350d86395a3bc"
+    },
+    {
+      "address": "tests/resources/filesystem/models/__init__.py",
+      "content_identity": "76b2736bb28edb7484c63fb8bed213e99b1cb9e50fc3db45c965238bb6e54063"
+    },
+    {
+      "address": "tests/resources/filesystem/models/csv/__init__.py",
+      "content_identity": "35f61202fe77fed04ffe0db8d2b53a6be7d7bbdff668c95fc9f355d5b04a3a43"
+    },
+    {
+      "address": "tests/resources/filesystem/models/csv/test_dialect.py",
+      "content_identity": "b11253de0b821b7840e1164edcaa3e7055385e418694cbb5671ef6578d8cc5a7"
+    },
+    {
+      "address": "tests/resources/filesystem/models/csv/test_file.py",
+      "content_identity": "85401a1769cd653c8cefa839ab916e069a591a511849264f853bfd4d753db298"
+    },
+    {
+      "address": "tests/resources/filesystem/models/csv/test_row.py",
+      "content_identity": "8d63f6babe5f23ccda12074cb4945e18975502f6f4b930ca8182314e16b8e99b"
+    },
+    {
+      "address": "tests/resources/filesystem/models/markdown/__init__.py",
+      "content_identity": "6b9f9de506cce6e898f7615d1a9e281049b49a5e38dc9d972448026723e131d0"
+    },
+    {
+      "address": "tests/resources/filesystem/models/markdown/test_file.py",
+      "content_identity": "4baafbfb0b8ed4829bb5ae9d6243ccf0a739f4560187bc3ed64938d4ceb3d5d0"
+    },
+    {
+      "address": "tests/resources/filesystem/models/markdown/test_heading.py",
+      "content_identity": "bb40d08eb579f1f0227b8eb5700da64b870455748d0497ebbfa11fb00c997b85"
+    },
+    {
+      "address": "tests/resources/filesystem/models/markdown/test_section.py",
+      "content_identity": "4aabb3f8affeefe4cc1cc66e2a363d8a7f6aa356ecc0babc88702742717dcd97"
+    },
+    {
+      "address": "tests/resources/filesystem/test_json_conversion.py",
+      "content_identity": "9757259e385ae2a84440d34809686a6dbb7854b2f475bded7f409f81c87278ce"
+    },
+    {
+      "address": "tests/resources/filesystem/test_json_models.py",
+      "content_identity": "7c29e52ea97ad5929477d5e835913bb6fa1852f7f5ed9d1b2fe12085257c598f"
+    },
+    {
+      "address": "tests/resources/filesystem/test_models.py",
+      "content_identity": "5a9a3f3c1611790e5141d512c75ffe72e106eeff303c9512fa9e5332288bba58"
+    },
+    {
+      "address": "tests/resources/filesystem/test_reading.py",
+      "content_identity": "e0265fd4fe72d258cce383f0b607bfda687c0ae489bf015ba9e8d906f80647d5"
+    },
+    {
+      "address": "tests/resources/filesystem/test_resolution.py",
+      "content_identity": "8bb3b243a8f60360c4fc35aafcf04d6eda81d5dbc4db7600dc06f8759c7a0be8"
+    },
+    {
+      "address": "tests/resources/filesystem/test_writing.py",
+      "content_identity": "de8cff71e66e5e6a0830eef1bcd6471b22562e05eb5a4963841409ecb58c80c7"
+    },
+    {
+      "address": "tests/scripts/qwen/test_llama_cpp_profile.py",
+      "content_identity": "f05049563bff24f129a9c1afb629b31bf5f02c2d100cf05a32a8ebbe9d441db8"
+    },
+    {
+      "address": "tests/scripts/qwen/test_llama_cpp_service.py",
+      "content_identity": "d91be75d45780bd76e9606526e6d391c07e7dcc729c73fc4e62d0b6a5181b848"
+    },
+    {
+      "address": "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+      "content_identity": "39d7968ad73e318294da9a5e479e28c23736f2eb3857bcbf761109a9385be5ba"
+    },
+    {
+      "address": "tests/scripts/qwen/test_python_function_context_acceptance.py",
+      "content_identity": "3514b02dc85d278a0800cca66340247d63cfc5bf00630909cbffb61423553ade"
+    },
+    {
+      "address": "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+      "content_identity": "10fc867f673b0db841d41f18acb33e810fb6c53eb6347d2a428714d9c545ef3d"
+    },
+    {
+      "address": "tests/scripts/qwen/test_two_read_acceptance.py",
+      "content_identity": "06bc002a1bc83452150e618d4392cf624baa9f71a02cc9e95422ffe0e7500883"
+    },
+    {
+      "address": "tests/scripts/test_retrieval_bm25_baseline.py",
+      "content_identity": "bad05da26cee696ee573abe7dd832d15c0d6b44c81b05d1dba64e5fbcd0ec3b1"
+    },
+    {
+      "address": "tests/scripts/test_validate_development.py",
+      "content_identity": "861a78969a6f400c46635f938806475cb587e083eafea9e38241b6a44d802e7b"
+    },
+    {
+      "address": "tests/scripts/test_vllm_benchmark_driver.py",
+      "content_identity": "2a5ade1094032b7b54c428459a461dcac86a507bd031ac15a2694a53115fe3cf"
+    },
+    {
+      "address": "tests/tools/__init__.py",
+      "content_identity": "726ac7b7eaccd4faa8c34c92b0aabf4908155cb121acca9d9f6e1b5a7af37a86"
+    },
+    {
+      "address": "tests/tools/test_command.py",
+      "content_identity": "19fd42287878a7aba3c710bf3749466449119cd8fdb0a3307064b56048156bd6"
+    },
+    {
+      "address": "tests/tools/test_execution.py",
+      "content_identity": "ca795dd35424539b29e091e66f20e67a66c99f9b2902729a49d1f8264555c5c2"
+    },
+    {
+      "address": "tests/tools/test_filesystem.py",
+      "content_identity": "efdc0111f7a8d7f0b07cd504ddc2e08e243285143ca0afa1dab2fb333b2b1b96"
+    },
+    {
+      "address": "tests/tools/test_runtime_integration.py",
+      "content_identity": "82979c703980afb5f5508789155c45bb06adc7a5a7d6a973c74c251b602cde1e"
+    }
+  ],
+  "eligible_frame": {
+    "source": "tracked regular UTF-8 blobs at starting_head, exported without reading excluded blobs",
+    "suffixes": [
+      ".md",
+      ".py",
+      ".toml",
+      ".yaml",
+      ".yml"
+    ],
+    "include_prefixes": [
+      "src/",
+      "docs/",
+      "tests/"
+    ],
+    "exclude_prefixes": [
+      "tests/experiments/"
+    ],
+    "exclude_exact": [
+      "docs/implementation_ledger.md"
+    ],
+    "exclude_path_component": [
+      "__pycache__"
+    ],
+    "exact_inclusions": [
+      "AGENTS.md",
+      "README.md",
+      "experiments/codex_dogfood/__init__.py",
+      "experiments/codex_dogfood/capture.py",
+      "pyproject.toml",
+      "scripts/validate_development.py",
+      "tests/experiments/test_codex_dogfood_capture.py"
+    ],
+    "case3_difference": "Add canonical scripts/validate_development.py because the task explicitly requires protected development validation; otherwise retain Case 0003 selection. New protocol files are outside the starting snapshot.",
+    "maximum_resource_count": 10000,
+    "maximum_traversal_entry_count": 20000,
+    "maximum_resource_bytes": 1048576
+  },
+  "bm25": {
+    "implementation": "devtools.context.retrieval.lexical.bm25.retrieve_repository_text_documents_by_bm25",
+    "adapter": "devtools.context.localization.lexical.acquire_localization_lexical_evidence",
+    "implementation_commit": "3cfda0a81ae95f578f42b8fd6b17cc8bcf751bc1",
+    "k1": 1.2,
+    "b": 0.75,
+    "filename_weight": 0.25,
+    "maximum_results": 498,
+    "query_semantics": "unicode-word-span-casefold-v1; distinct terms in encounter order",
+    "score_semantics": "positive content BM25 + 0.25 filename stem BM25; no lane fusion",
+    "tie_breaking": "descending native score then original corpus order (lexical resource address)",
+    "index_construction": "production corpus representation -> document collection analysis -> corpus statistics -> inverted index",
+    "bound_semantics": "all positive eligible matches; acquisition bound, not admission or satisfaction"
+  },
+  "inputs_archive": "inputs.pkl.gz",
+  "inputs_archive_sha256": "142b87e6b3fe72166c5af2863baa255ff96e181a25098fa0cc58eaa679a13330",
+  "implementation_sha256": {
+    "src/devtools/context/localization/__init__.py": "18ce27921730138d4356af0a001e28d99c1cdd3560a80e60cb3f249fe2aa05aa",
+    "src/devtools/context/localization/assessment.py": "a6f483e796f1b0095662326cf94652b3cd5ce1281e38e0725269f84af424abc0",
+    "src/devtools/context/localization/identity.py": "8a5c154197fdc3e73dcc7a3dc57d10d9754da35f272cf0d362400494ff79890f",
+    "src/devtools/context/localization/lexical.py": "f838667d8bfa144d33032e267a7ad92383ef8bbec8b75f1d04795c11f1891cac",
+    "src/devtools/context/localization/obligation.py": "95a04139555323ac65bd280fbb2e8899de683bc5af8097a8597bfb10021d3a86",
+    "src/devtools/context/localization/readiness.py": "a2ccc02f341b294a8fd1738f8d5ccadf23932ca662ef6f6badb002934db211f9",
+    "src/devtools/context/localization/task.py": "49d295a2fe7ca536e016145c8e9534b9bf0c9a25482ba25c30e07f1a6009a2e5",
+    "src/devtools/context/repository/__init__.py": "e9f3a881cb2765fc41bc698b9d44f8fd36d0676251f99894fa286f7c862bf372",
+    "src/devtools/context/repository/corpus.py": "6349146f827ce240d0957fcaf59e025726c69f252e0fcd62559d63f1240b6a69",
+    "src/devtools/context/repository/discovery.py": "188d5098e657de92fc1b9863da9822109ac9d8cb2f52f55ab5a61ddad172d542",
+    "src/devtools/context/repository/document.py": "5f0c2be4f0c22c685c556b3ab614f0a54247cfdb79cb0ae1116654b834995510",
+    "src/devtools/context/repository/identity.py": "81f9128f127192b402c7d9f05c196d7678071e38f4847a6a865fddc70b3765c3",
+    "src/devtools/context/repository/observation.py": "d2e4d911f1f8363e5ec2a1a582f291c9d8a2fe8f95864fc2d58962e0ee53fc0b",
+    "src/devtools/context/repository/resource.py": "16d420cf39a665e4da42cd48869f6e0b778c2e853bc3fd159feb043c3e5b4d89",
+    "src/devtools/context/repository/snapshot.py": "bca32b4c24b7258ff9190e2ae3c64ff57b3a9022e8bb71c3e6f56b0a81859d3f",
+    "src/devtools/context/retrieval/composition.py": "2a4d681acf7b9e7c8d22b08ab1b2e61becd9c04e1dcf786eeaae7b6701375623",
+    "src/devtools/context/retrieval/lexical/__init__.py": "232343c8c0a8b7fee929c2d20763b3d663596a22eb2dac422c834a7f4a1897d5",
+    "src/devtools/context/retrieval/lexical/analysis.py": "513700230fce83db2769df3940e75921b768d109f443f951aeb81a2b85b666d4",
+    "src/devtools/context/retrieval/lexical/bm25.py": "6a546966288ea1503c0e97ea95a079e3e3e550e2ee36dd062015a94f9ee1e9d8",
+    "src/devtools/context/retrieval/lexical/evaluation.py": "e3baa644a355e45169874a72eab7a562457596e99b70d728a5c9b676d86c8184",
+    "src/devtools/context/retrieval/lexical/filename.py": "a28f8720bf88bb77e7e1a324bd021b3a6ec6c183637ff4602ca5df8ae879fe41",
+    "src/devtools/context/retrieval/lexical/index.py": "53f2ab4d43ee3932061ac5f5624e387138e4b9ce6739e771cfe383119797844c",
+    "src/devtools/context/retrieval/lexical/scoring.py": "23ea9f7ab2a0066d588167fc7e0ef9d696e063c6e096075858a62bd41699b12e",
+    "src/devtools/context/retrieval/lexical/statistics.py": "eb6486935ed1957602853e216d35e2edfa572029033b2cee5453d48abd4d95a9"
+  },
+  "metrics": [
+    "global native rank and bound reach of each independently required resource",
+    "global last-required rank and required recall within bound",
+    "per-obligation native ranks in every query and best native obligation-lane rank",
+    "per-obligation conjunctive witness completion depth and accepted alternative reach",
+    "complete applicable mandatory obligation coverage",
+    "number of query lanes; sum of native lane candidate counts; candidate union and unique resources",
+    "required resources global-only, obligation-only, both, neither",
+    "diagnostic zero-result lanes, overlap, duplication, native lexical contributions, per-lane and total runtime"
+  ],
+  "adjudication": {
+    "blind_inputs": [
+      "frozen task",
+      "frozen obligation frame without query text",
+      "eligible resource identities and retained content",
+      "accepted governing architecture"
+    ],
+    "forbidden": [
+      "ranks",
+      "scores",
+      "lexical contributions",
+      "queries and lane membership",
+      "retrieval provenance",
+      "retrieved flags",
+      "agent exploration or modification flags"
+    ],
+    "outcomes": [
+      "applicability",
+      "required",
+      "helpful_only",
+      "unnecessary",
+      "unresolved",
+      "acceptable alternative satisfaction sets",
+      "task-start inferability or named inherent discovery"
+    ]
+  },
+  "prohibited_post_freeze_changes": [
+    "task or purpose rewriting",
+    "anchor/obligation/query changes",
+    "corpus/frame or index changes",
+    "settings/result-bound changes",
+    "metrics or adjudication-rule changes",
+    "tuning from ranks, gold labels or repository searches"
+  ],
+  "retrieval_executed": false,
+  "confirmation_accessed": false
+}

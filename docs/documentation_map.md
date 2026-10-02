@@ -318,6 +318,12 @@ pre-task frame, protocol metadata correction, native rankings, advisory handoff,
 independent adjudication, exploration limits, protected validation and cross-case
 synthesis. Production configuration facts remain outside Retrieval projection.
 
+The [fourth prospective case protocol](../experiments/codex_dogfood/case_0004/README.md)
+freezes the repository-role intelligence task, caller-authored obligations and
+explicit lexical queries before Retrieval. It owns the fixed corpus, native
+input archive, acquisition settings, blind adjudication and measurement rules;
+this checkpoint contains no retrieval outputs or resource judgments.
+
 The `orchestration` and `governance` domains remain recognized sparse
 namespaces without reusable implementation APIs. Evaluation now provides the
 bounded expected-versus-observed identity coverage API documented in its

@@ -501,6 +501,15 @@ rank depth, along with global required-resource reach. Report empty lanes as
 acquisition misses only, not negative evidence. Do not tune query wording from
 retrieval output or historical required-resource labels.
 
+[Case 0004 Stage A](../experiments/codex_dogfood/case_0004/README.md) now freezes
+that treatment for the upcoming repository-role intelligence task: one complete
+task lane and eight caller-authored obligation-query lanes over the same retained
+498-resource corpus. No Retrieval or adjudication has run for this case. The
+next checkpoint is Stage B native BM25 acquisition and output freezing, then
+independent blind obligation-relative adjudication before joined analysis.
+Repository-role implementation remains subsequent work; no acquisition-quality
+claim follows from the protocol freeze.
+
 Automatic task interpretation, repository-role inference, graph traversal,
 sequential acquisition, fine-grained Context linkage, calibrated confidence,
 information-gain planning, and Learning remain later work. Historical cases remain
