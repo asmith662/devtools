@@ -855,27 +855,31 @@ facade participation remain separate Retrieval pressure.
 ## Obligation-driven Localization reconciliation
 
 [ADR-0005](../../architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
-accepts an unimplemented Localization responsibility between native Retrieval
-evidence and Context representation planning. The
+accepts a Localization responsibility between native Retrieval evidence and
+Context representation planning. The
 [supplied research](../../research/obligation-driven-repository-localization.md)
 is retained intact as evidence; it does not pre-approve its proposed class list.
-Localization records satisfaction/applicability for explicit task-relative
-obligations, competing alternatives, native witnesses, coverage limits and
-bounded follow-up requests. Context preserves representation, availability and
-capacity ownership. An abstention is not mandatory coverage.
+The semantic kernel is implemented in `src/devtools/context/localization/`.
+It provides task-local shared anchors, caller-authored mandatory/helpful
+obligations with separate applicability conditions, alternatives of conjunctive
+native/caller witness identities, snapshot-qualified evidence references, and a
+deterministic readiness assessment over the supplied obligation frame. It does
+not infer tasks, acquire repository evidence, or integrate with Context Planning.
+An abstention is not mandatory coverage; accepted deferred discovery permits only
+explicitly conditional handoff, not full readiness.
 
-The exact next increment is snapshot-bound obligation Localization and assessment
-version 1: explicit caller obligations, global/scoped BM25 adapters, bounded
-exact owner evidence, soft existing role support, satisfaction/stop account and
-provenance handoff. Blind obligation/alternative-set assessment accompanies the
-kernel. No universal TaskModel, FileRole, evidence ontology, confidence ladder,
-hard directory filter or autonomous loop is selected. The preceding question-lane
-floors/weights are historical proposals, not the next implementation policy.
+The exact next increment is Localization Retrieval evidence adapters: retain a
+full-task lexical escape lane and add obligation-scoped acquisition while
+preserving native channel provenance. Existing Repository Intelligence relations
+can be surfaced as evidence but may not resolve obligations by rank alone. No
+universal TaskModel, FileRole, evidence ontology, confidence ladder, hard directory
+filter or autonomous loop is selected. Earlier question-lane floors/weights remain
+historical proposals, not implementation policy.
 
 Reuse current Reference/Call, containment, mirrored-path and configuration facts;
 historical experimental derivations are not new production implementations.
 Targeted navigation and additional bounded roles/RI follow diagnosed gaps.
 Measure complete applicable mandatory coverage, acquisition/disclosure cost and
 false elimination prospectively. Learning and general sequential policies need
-independent traces. This records design progress, not epic completion or a new
-retrieval-quality claim; no Localization source or experiment runs are added.
+independent traces. This records a bounded semantic capability, not epic
+completion or a retrieval-quality claim; no Retrieval behavior changed.

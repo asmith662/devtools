@@ -512,3 +512,20 @@ remains sealed.
   [protocol, native results and cross-case synthesis](../experiments/codex_dogfood/case_0003/README.md)
   remain reproducible with immutable artifact byte handling. One checkpoint
   commit is authorized; no push or next increment is begun.
+
+## Localization semantic kernel (2026-10-02)
+
+- Implemented `devtools.context.localization` as a caller-authored semantic
+  kernel: deterministic task-local anchors/obligations; separate mandatory,
+  helpful, and conditional applicability semantics; alternative conjunctive
+  witness sets using native/caller target identities; and snapshot-qualified
+  evidence/dispositions.
+- Readiness uses the Evaluation identity-coverage primitive for exact supplied
+  frame accounting. It reports resolved, non-applicable, open, abstained,
+  deferred, and helpful states. Accepted deferred discovery permits conditional
+  handoff only; it is not full readiness. Full statement and branch coverage
+  for the new package is 100% (30 focused tests).
+- No Retrieval acquisition, task inference, repository-role inference, graph
+  traversal, Context integration, or agent execution was added. The next
+  production slice is full-task and obligation-scoped Retrieval evidence
+  adapters, with native provenance and no satisfaction from rank alone.

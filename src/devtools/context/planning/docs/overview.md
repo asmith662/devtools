@@ -68,9 +68,9 @@ plan/materialization distinction. Retrieval rank does not itself decide
 representation, quantity, or adequacy.
 
 [ADR-0005](../../../../../docs/architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
-accepts an unimplemented Localization boundary before this package. It will
-associate native witnesses with task-relative information obligations and retain
-applicability/unresolved limits. Context Planning will preserve those links while
-choosing representations and checking actual disclosure coverage/capacity.
-Current `plan_disclosures` remains caller-directed; it does not resolve obligations
-or establish sufficiency. No Localization or automatic admission code exists yet.
+places Localization before this package. The semantic kernel at
+`devtools.context.localization` represents caller obligations, native witness
+identities, snapshot-qualified assessments, and bounded frame readiness. It does
+not yet provide Retrieval adapters or Context links. Current `plan_disclosures`
+remains caller-directed; it does not resolve obligations, transfer obligation
+provenance, or establish representation coverage/capacity.

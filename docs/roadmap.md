@@ -474,43 +474,30 @@ this comparison.
 The obligation-driven Localization investigation is complete. The
 [supplied research](research/obligation-driven-repository-localization.md) remains
 research evidence; [ADR-0005](architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
-owns its reconciled minimum semantics. The next production increment is
-**snapshot-bound obligation Localization and assessment version 1** under
-`context.localization`:
+owns its reconciled semantics. The semantic kernel is implemented under
+`src/devtools/context/localization/`: caller-authored task anchors and obligations,
+alternative all-of witness sets, snapshot-qualified assessment references, and
+frame readiness with open, resolved, non-applicable, deferred, and abstained
+diagnostics. Its readiness claim covers only the supplied obligation frame.
 
-1. Caller-authored task-relative obligations with shared anchors, source
-   provenance, requirement/applicability criteria and exact native identities.
-2. Full-task BM25 safety evidence plus explicit obligation-query adapters;
-   existing path/package/mirrored/configuration facts as soft role support.
-3. Candidate associations, alternative/conjunctive witnesses, bounded exact Python
-   owner resolution, unresolved competition and scoped contradiction safeguards.
-4. Mandatory-coverage/stop account and bounded follow-up requests, with provenance
-   handoff to current explicit Context choices. Abstention is not completeness.
-5. Experiment-owned blind obligation/alternative-set assessment alongside the
-   kernel; Evaluation's identity kernel checks frame completeness only.
+The next production increment is **Localization Retrieval evidence adapters**:
+retain full-task BM25 as a global escape lane and add obligation-scoped acquisition
+using native channel evidence. Keep acquisition evidence separate from obligation
+satisfaction; no rank alone resolves or eliminates a candidate. The adapter should
+project existing repository-role and structural facts only as typed provenance,
+without changing retrieval scoring, introducing hard path filters, or making
+Context Planning choose representations. Evaluate obligation and alternative-set
+coverage prospectively before adding bounded navigation actions or Context linkage.
 
-This is one coherent usable kernel, not a declaration-only TaskModel increment.
-Do not add a generic role ontology, all new RI facts or a sequential Agent before
-testing its central invariant. No hard path filters, score floors, arbitrary
-fusion weights or automatic satisfaction from rank. Existing Retrieval ranking
-and Context materialization stay intact.
-
-Freeze task interpretation, query arms, role rules, witness criteria, elimination
-rules and limits before a naturally justified prospective task. Historical cases
-remain diagnostic. Measure complete applicable mandatory coverage, false
-elimination, avoidable/inherent discovery and separate acquisition/Context cost;
-representation correctness and matched worker controls remain necessary.
-
-Then expand bounded roles/RI where unresolved obligations diagnose missing facts;
-add targeted owner/export/referencer/dependency/base navigation with explicit
-frontier/cycle/coverage limits; execute bounded requests under an authorized
-consumer; and build obligation-linked fine-grained Context policy. Automatic
-task interpretation, calibrated confidence, information-gain planning and Learning
-await prospective observations. No Localization code is implemented here.
+Automatic task interpretation, repository-role inference, graph traversal,
+sequential acquisition, fine-grained Context linkage, calibrated confidence,
+information-gain planning, and Learning remain later work. Historical cases remain
+diagnostic; no ranking/fusion parameters are tuned from them.
 
 Configuration RI projection remains a separate Retrieval decision: selector
 families, direction, prefix fan-out, duplicate handling and resource/symbol
 eligibility need explicit treatment. Do not turn all 1,026 prefix facts into
 equally persuasive relevance votes. Keep the lexical channel available for
 governance/docs and declaration-free facades; current evidence does not justify
-default resource RRF. This documentation checkpoint begins no production build.
+default resource RRF. This Localization increment did not change Retrieval or
+configuration graph projection.

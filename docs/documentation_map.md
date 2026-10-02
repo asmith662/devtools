@@ -25,8 +25,10 @@
   explicitly planned transformations, semantic-strength preservation,
   representation-origin, and model-input assembly semantics.
   [ADR-0005](architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
-  defines accepted, unimplemented repository Localization: stated task obligations,
+  defines accepted repository Localization semantics: stated task obligations,
   bounded satisfaction/applicability, proof-scoped elimination and handoff limits.
+  Its caller-authored obligation/witness assessment kernel is implemented; native
+  Retrieval adapters and Context integration remain future work.
 - [AGENTS.md](../AGENTS.md) defines repository-operating rules.
 - [Research evidence](research/README.md) preserves investigations, alternatives,
   criticisms, recommendations, and deferred/rejected possibilities. Research is
@@ -67,11 +69,14 @@
   is the supplied report retained intact, including citation identifiers and
   qualifications. ADR-0005 owns accepted reconciliation, concrete experiment
   inventory, minimum contracts and next-increment boundaries. The roadmap owns
-  implementation sequencing; neither document claims Localization is implemented.
+  implementation sequencing; the research is not an implementation specification.
 - Package-local documentation defines detailed implemented public APIs, package
   design, lifecycle/operational behavior, and usage. Central architecture
   summarizes system-level ownership and links outward; it does not duplicate
   every package contract.
+- The [Localization package overview](../src/devtools/context/localization/docs/overview.md)
+  documents the implemented semantic kernel and its boundaries from Retrieval,
+  Context Planning, agent execution, and Evaluation.
 - Source and tests define the final implemented behavior where documentation is
   incomplete.
 - Backlog records unresolved/future pressure; [roadmap](roadmap.md) records

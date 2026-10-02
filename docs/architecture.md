@@ -834,12 +834,15 @@ contract.
 ## Accepted repository Localization semantics
 
 [ADR-0005](architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
-accepts **Localization**, currently unimplemented, between native Retrieval
-evidence and Context Planning. Localization determines supported satisfaction,
-applicability and unresolved alternatives for stated task-relative information
-obligations. Its account retains task provenance, shared anchors, criteria,
-native witnesses, snapshot/frame coverage and discovery prerequisites.
-Stopping acquisition does not prove mandatory coverage or safe task execution.
+accepts **Localization** between native Retrieval evidence and Context Planning.
+The semantic kernel is implemented in
+[`devtools.context.localization`](../src/devtools/context/localization/docs/overview.md):
+it represents caller-authored obligations and shared task anchors, alternative
+conjunctive witness sets, snapshot-qualified assessments, and deterministic
+frame readiness. Retrieval adapters, automatic task interpretation, acquisition
+execution, and Context integration remain unimplemented. Localization readiness
+is scoped to the supplied obligation frame; it does not establish that the frame
+is exhaustive or that the task will succeed.
 
 ```text
 task interpretation: shared anchors + obligations + constraints
@@ -877,10 +880,11 @@ is the next structural direction, not another universal ranking experiment.
 A complete handoff requires supported satisfaction of every applicable mandatory
 obligation within the stated frame. Named inherent discovery allows an explicitly
 conditional handoff; abstention or budget exhaustion leaves coverage incomplete.
-Localization requests bounded acquisition; an authorized Agent/caller executes
-it and owns retries/escalation. Context chooses faithful representations and
-preserves obligation provenance without redefining satisfaction or repository
-truth. No autonomous Localization subsystem is implemented by this checkpoint.
+Future Localization adapters may request bounded acquisition; an authorized
+Agent/caller executes it and owns retries/escalation. Context chooses faithful
+representations and will preserve obligation provenance without redefining
+satisfaction or repository truth. The current package is a semantic kernel, not
+an autonomous Localization subsystem.
 
 ## Accepted Context and disclosure semantics
 

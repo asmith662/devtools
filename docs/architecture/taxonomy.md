@@ -640,22 +640,24 @@ are enabled without selecting formulas, models, or execution technology. See
 
 ### Repository Localization
 
-**Status: ACCEPTED DIRECTION; UNIMPLEMENTED.**
+**Status: ACCEPTED DIRECTION; SEMANTIC KERNEL IMPLEMENTED.**
 
-Localization resolves stated task-relative information obligations against native
-repository referents and evidence, recording applicability, satisfaction,
-competing alternatives and unresolved acquisition/discovery requirements.
+Localization assesses caller-stated task-relative information obligations against
+caller-supplied native repository referents and snapshot-qualified evidence,
+recording applicability, witness satisfaction, alternatives and unresolved
+discovery requirements. The current semantic kernel does not perform acquisition.
 A LocalizationObligation is a task-local desired-information predicate with
 provenance and bounded satisfaction semantics; it is not a query, Task, RI fact,
 disclosure option or evaluator gold label. Shared anchors identify subjects of
 several predicates and need not already resolve to repository identities.
 
-Localization ends with a scoped resolution/handoff account, not a universally
-sufficient Context. Acquisition stop, mandatory coverage and representation
-completeness differ. Abstention is incomplete coverage. Context still couples
-representation admission to availability and capacity. These distinctions do
-not require TaskModel, CandidateAssignment identity or a parallel evidence
-ontology. See [ADR-0005](decisions/ADR-0005-obligation-driven-repository-localization.md).
+Localization readiness is scoped to the caller-supplied obligation frame, not a
+claim that the task interpretation is exhaustive or the resulting Context is
+sufficient. Acquisition stop, mandatory coverage and representation completeness
+differ. Abstention is incomplete coverage. Context still owns representation
+choice, availability and capacity. These distinctions do not require TaskModel,
+CandidateAssignment identity or a parallel evidence ontology. See
+[ADR-0005](decisions/ADR-0005-obligation-driven-repository-localization.md).
 
 ### Context disclosure and assembly
 
