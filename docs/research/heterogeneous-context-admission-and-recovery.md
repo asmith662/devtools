@@ -1,5 +1,18 @@
 # Heterogeneous evidence admission and Context recovery
 
+## Later disposition: obligation-driven Localization
+
+[ADR-0005](../architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
+and the [supplied Localization research](obligation-driven-repository-localization.md)
+now distinguish task-obligation resolution from representation admission.
+Context retains concrete option choice, availability and cost. Localization
+owns stated obligation satisfaction, applicability and acquisition frontier.
+The question-lane policy below, including its one-tenth floors and 2:1 weights,
+is preserved historical research; it is no longer the next production baseline
+and has never been implemented or evaluated. The native-evidence, fidelity,
+identity, scoped-assessment and recovery distinctions remain useful. The roadmap
+now starts with a bounded obligation kernel rather than this policy.
+
 Investigation date: 2026-10-02. Starting point: clean `main` at
 `0d5d3050664f8ff38b8ac1823bd0dc23b528aa38`. This record contains design reasoning
 and an implementation specification, not implemented behavior or a new experiment.
@@ -589,7 +602,7 @@ recorded-range fidelity, recovery completion and matched worker outcomes.
   projection hypothesis and prospective diagnosis showing remaining candidate
   reach/representation loss after consuming current evidence.
 
-The next implementation increment is **evidence-guided repository disclosure
+The then-next implementation proposal was **evidence-guided repository disclosure
 planning version 1** under `devtools.context.planning`, with Python-specific
 recorded-range/qualified-fact options under Python Context ownership. Implement
 native evidence adapters, request/proposal/result records, exact byte measurement,

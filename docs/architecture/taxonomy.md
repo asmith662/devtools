@@ -638,6 +638,25 @@ budgeting. Deterministic and future learned/task-conditioned interpretations
 are enabled without selecting formulas, models, or execution technology. See
 [ADR-0003](decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md).
 
+### Repository Localization
+
+**Status: ACCEPTED DIRECTION; UNIMPLEMENTED.**
+
+Localization resolves stated task-relative information obligations against native
+repository referents and evidence, recording applicability, satisfaction,
+competing alternatives and unresolved acquisition/discovery requirements.
+A LocalizationObligation is a task-local desired-information predicate with
+provenance and bounded satisfaction semantics; it is not a query, Task, RI fact,
+disclosure option or evaluator gold label. Shared anchors identify subjects of
+several predicates and need not already resolve to repository identities.
+
+Localization ends with a scoped resolution/handoff account, not a universally
+sufficient Context. Acquisition stop, mandatory coverage and representation
+completeness differ. Abstention is incomplete coverage. Context still couples
+representation admission to availability and capacity. These distinctions do
+not require TaskModel, CandidateAssignment identity or a parallel evidence
+ontology. See [ADR-0005](decisions/ADR-0005-obligation-driven-repository-localization.md).
+
 ### Context disclosure and assembly
 
 **Status: EMERGING.**
@@ -665,13 +684,16 @@ representation taxonomy, or sufficiency. Previously disclosed information
 need not remain currently available or applicable. Tracking disclosure or
 availability must not claim model comprehension or create a ModelKnowledgeState.
 
-The accepted, unimplemented next planning direction admits concrete disclosure
+The accepted, unimplemented planning direction admits concrete disclosure
 options through a Context-owned policy and records bounded coverage, constraints,
 deferrals and recovery targets beside the plan. Native information referents
 remain distinct from representations. No mandatory resource-Selection service
 or boolean ContextSufficiency follows. Acquisition for a question and expansion
 of an exact disclosure target are Context request semantics; successive attempts
-and escalation remain Agent/orchestration decisions. See ADR-0004's refinement.
+and escalation remain Agent/orchestration decisions. ADR-0005 now assigns
+task-obligation resolution and acquisition requests to Localization; Context
+retains representation admission and exact expansion. The earlier question-lane
+policy is not the next production baseline. See ADR-0004's refinement.
 
 Disclosure selects information rather than arbitrary prompt strings. A
 DisclosureOption is a conceptual purpose-relative possibility for making

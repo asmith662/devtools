@@ -15,8 +15,15 @@
 
 ## Research reconciliation
 
+[ADR-0005](ADR-0005-obligation-driven-repository-localization.md) now accepts
+Localization as the distinct obligation-resolution responsibility consuming
+native evidence before Context representation planning. This does not move
+ranking or query execution out of Retrieval, turn InformationNeed into TaskModel,
+or promote a universal resource-selection service. The following earlier
+question/evidence-lane policy remains historical, unimplemented research.
+
 The 2026-10-02 [heterogeneous admission and recovery investigation](../../research/heterogeneous-context-admission-and-recovery.md)
-now selects Context-owned option admission as the next practical planning
+selected Context-owned option admission as the then-next practical planning
 direction under ADR-0004. It leaves native rankings independent and does not
 promote resource RRF, the historical directional-reservation rule or a
 standalone Selection service. Its concrete policy is a frozen development

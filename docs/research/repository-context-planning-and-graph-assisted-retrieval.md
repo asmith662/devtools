@@ -1,5 +1,17 @@
 # Architecture for Repository Context Planning, Progressive Disclosure, and Graph-Assisted Retrieval in `devtools`
 
+## Later Localization disposition
+
+[ADR-0005](../architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
+now accepts a distinct obligation-resolution responsibility before Context
+representation planning, based on the
+[supplied Localization research](obligation-driven-repository-localization.md)
+and inspected production/experimental contracts. This is not the universal
+resource-Selection gate rejected below. Context retains representation choice,
+capacity and materialization; Localization owns stated information obligations,
+applicability, witnesses and unresolved acquisition frontier. The research below
+remains historical reasoning, not authority for the current next increment.
+
 ## Executive conclusion and architectural decisions
 
 The central architectural decision is this:

@@ -24,6 +24,9 @@
   Context/disclosure planning, purpose-relative synthesis, materialization of
   explicitly planned transformations, semantic-strength preservation,
   representation-origin, and model-input assembly semantics.
+  [ADR-0005](architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
+  defines accepted, unimplemented repository Localization: stated task obligations,
+  bounded satisfaction/applicability, proof-scoped elimination and handoff limits.
 - [AGENTS.md](../AGENTS.md) defines repository-operating rules.
 - [Research evidence](research/README.md) preserves investigations, alternatives,
   criticisms, recommendations, and deferred/rejected possibilities. Research is
@@ -55,10 +58,16 @@
   recommendations remain research evidence until accepted in current
   architecture or implemented under a bounded roadmap increment.
   The [heterogeneous Context admission and recovery investigation](research/heterogeneous-context-admission-and-recovery.md)
-  owns the current alternatives, concrete deterministic development policy,
+  preserves the earlier alternatives and deterministic development policy,
   sufficiency limits, recovery contract and prospective measurement plan.
   ADR-0004 dispositions its Context-owned semantic decisions; its policy is not
   implemented or empirically validated by this documentation checkpoint.
+  Its question-lane policy is now historical rather than the next build.
+  The [obligation-driven Localization research](research/obligation-driven-repository-localization.md)
+  is the supplied report retained intact, including citation identifiers and
+  qualifications. ADR-0005 owns accepted reconciliation, concrete experiment
+  inventory, minimum contracts and next-increment boundaries. The roadmap owns
+  implementation sequencing; neither document claims Localization is implemented.
 - Package-local documentation defines detailed implemented public APIs, package
   design, lifecycle/operational behavior, and usage. Central architecture
   summarizes system-level ownership and links outward; it does not duplicate

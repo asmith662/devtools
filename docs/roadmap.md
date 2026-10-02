@@ -67,15 +67,17 @@ case is diagnostic evidence, not an unbiased ranking evaluation.
 The earlier resource-Selection investigation established that no universal
 resource-Selection stage is mandatory between Retrieval and Context. The
 [heterogeneous admission and recovery investigation](research/heterogeneous-context-admission-and-recovery.md)
-now specifies the next practical policy: Context-owned concrete option admission,
-question-directed lexical/structural evidence lanes, bounded coverage/constraint
-assessments and explicit progressive requests. This is accepted design and
-frozen development policy, not implemented automatic planning or demonstrated
-sufficiency. A retrieval candidate or advisory orientation does not imply
+specified Context-owned concrete option admission and bounded assessments.
+The later [Localization decision](architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
+now separates task-obligation resolution from Context representation admission.
+The prior question-lane floors/weights remain historical research rather than
+the next production policy. Neither decision implements automatic planning or
+demonstrates sufficiency. A retrieval candidate or advisory orientation does
+not imply
 disclosure or adequacy. Codex dogfood keeps normal search, open, edit and
 validation access.
 
-Proceed in dependency order: (1) bounded source-grounded Python function
+The earlier foundational sequence was: (1) bounded source-grounded Python function
 Reference/direct Call Repository Intelligence; (2) qualified immediate package
 membership; (3) a narrow cross-domain Evaluation assessment/coverage kernel;
 (4) direct retrieval candidate generation consuming production typed facts;
@@ -84,7 +86,8 @@ resource inventory; (6) investigate Selection architecture; (7) dogfood
 advisory retrieval on real Codex tasks; (8) adjudicate misses and waste;
 (9) consider a budgeted resource rule only with evidence; (10) implement one
 fine-grained Context disclosure slice from an explicitly supplied fact.
-Items 1-8 and 10 are complete; item 9 remains evidence-dependent. The first
+Items 1-8 and 10 are complete; item 9 is now refined by ADR-0005's obligation
+direction rather than a standalone budgeted file rule. The first
 six items established bounded Reference/direct Call RI, qualified immediate
 package membership RI, the domain-neutral expected-versus-observed identity
 coverage kernel, and direct
@@ -468,22 +471,42 @@ this case; the short need improves lexical depth here after hurting Cases 0001
 and 0002. Configuration facts were deliberately not added to Retrieval during
 this comparison.
 
-The architecture investigation of heterogeneous evidence admission and Context
-sufficiency is complete. The next implementation increment is **evidence-guided
-repository disclosure planning version 1**, as specified in the
-[investigation record](research/heterogeneous-context-admission-and-recovery.md).
-Build Context-owned native evidence adapters, concrete proposal/decision records,
-exact byte cost and source/fact coverage accounting, supported pointer/recorded-
-declaration/qualified-fact options, deterministic evidence lanes and scoped
-expansion targets. Reuse the existing DisclosurePlan and materializers. Preserve
-separate snapshot integrity, explicit requirement coverage and open questions;
-neither budget exhaustion nor a completed plan proves sufficient Context.
+The obligation-driven Localization investigation is complete. The
+[supplied research](research/obligation-driven-repository-localization.md) remains
+research evidence; [ADR-0005](architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
+owns its reconciled minimum semantics. The next production increment is
+**snapshot-bound obligation Localization and assessment version 1** under
+`context.localization`:
 
-Freeze the policy before a new natural-task comparison, including its question
-formulation, floors, allocation and actual presentation budget. Measure sufficient
-representations and recovery against matched controls; Cases 0001-0003 are
-diagnostic. Do not implement a retrieval executor, autonomous recovery controller,
-learned policy or transport in that first slice.
+1. Caller-authored task-relative obligations with shared anchors, source
+   provenance, requirement/applicability criteria and exact native identities.
+2. Full-task BM25 safety evidence plus explicit obligation-query adapters;
+   existing path/package/mirrored/configuration facts as soft role support.
+3. Candidate associations, alternative/conjunctive witnesses, bounded exact Python
+   owner resolution, unresolved competition and scoped contradiction safeguards.
+4. Mandatory-coverage/stop account and bounded follow-up requests, with provenance
+   handoff to current explicit Context choices. Abstention is not completeness.
+5. Experiment-owned blind obligation/alternative-set assessment alongside the
+   kernel; Evaluation's identity kernel checks frame completeness only.
+
+This is one coherent usable kernel, not a declaration-only TaskModel increment.
+Do not add a generic role ontology, all new RI facts or a sequential Agent before
+testing its central invariant. No hard path filters, score floors, arbitrary
+fusion weights or automatic satisfaction from rank. Existing Retrieval ranking
+and Context materialization stay intact.
+
+Freeze task interpretation, query arms, role rules, witness criteria, elimination
+rules and limits before a naturally justified prospective task. Historical cases
+remain diagnostic. Measure complete applicable mandatory coverage, false
+elimination, avoidable/inherent discovery and separate acquisition/Context cost;
+representation correctness and matched worker controls remain necessary.
+
+Then expand bounded roles/RI where unresolved obligations diagnose missing facts;
+add targeted owner/export/referencer/dependency/base navigation with explicit
+frontier/cycle/coverage limits; execute bounded requests under an authorized
+consumer; and build obligation-linked fine-grained Context policy. Automatic
+task interpretation, calibrated confidence, information-gain planning and Learning
+await prospective observations. No Localization code is implemented here.
 
 Configuration RI projection remains a separate Retrieval decision: selector
 families, direction, prefix fan-out, duplicate handling and resource/symbol

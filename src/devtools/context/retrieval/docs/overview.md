@@ -93,8 +93,11 @@ optional rank fusion -> explicit Context disclosure choices
 ```
 
 The composed result is a candidate/evidence inventory, not an actionable file
-set. Resource selection under a limited budget remains an explicit unresolved
-decision.
+set. [ADR-0005](../../../../../docs/architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
+accepts a future Localization consumer for stated obligation satisfaction;
+Context Planning retains disclosure representation and capacity decisions.
+Neither automatic consumer is implemented. Retrieval still ends at native
+candidate evidence, not task completeness.
 The historical structural union experiments remain reproduction evidence;
 future production consumers use this composition operation for native direct
 facts and lexical evidence.

@@ -831,27 +831,79 @@ explicitly labeled path correspondence; the typed core view omits it. The
 [Python RI overview](../src/devtools/context/python/docs/overview.md) defines its
 contract.
 
+## Accepted repository Localization semantics
+
+[ADR-0005](architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
+accepts **Localization**, currently unimplemented, between native Retrieval
+evidence and Context Planning. Localization determines supported satisfaction,
+applicability and unresolved alternatives for stated task-relative information
+obligations. Its account retains task provenance, shared anchors, criteria,
+native witnesses, snapshot/frame coverage and discovery prerequisites.
+Stopping acquisition does not prove mandatory coverage or safe task execution.
+
+```text
+task interpretation: shared anchors + obligations + constraints
+                        |
+RI + full-task/scoped Retrieval evidence
+                        |
+                        v
+Localization: witnesses, alternatives, applicability, open frontier
+                        |
+                        v
+Context Planning: representation + availability + capacity
+                        |
+                        v
+materialization / assembly -> Agent
+```
+
+InformationNeed remains purpose-relative desired-information semantics; queries
+remain acquisition inputs. Localization does not require a generic TaskModel,
+parallel evidence ontology, universal FileRole or scalar confidence. Obligations
+have task-local identity, source provenance, subject anchors, required/helpful
+status, applicability conditions and bounded satisfaction criteria. Assessments
+record resolution states. Candidates compete within a unique-owner criterion
+and complement across obligations; acceptable alternatives can contain several
+native referents. Validation-location obligations do not execute validation.
+
+Full-task BM25 remains a global safety lane alongside obligation-scoped queries
+and soft role routing. Repository Intelligence (RI) owns facts and bounded
+coverage; path conventions are hints, not exclusions. Low score, absent support
+and graph disconnection never justify elimination. Hard elimination requires an
+obligation-scoped proof with exact referent, rule, snapshot/frame and adequate
+coverage. Existing Personalized PageRank (PPR), repository-map ranking and
+Reciprocal Rank Fusion (RRF) remain available; targeted relationship navigation
+is the next structural direction, not another universal ranking experiment.
+
+A complete handoff requires supported satisfaction of every applicable mandatory
+obligation within the stated frame. Named inherent discovery allows an explicitly
+conditional handoff; abstention or budget exhaustion leaves coverage incomplete.
+Localization requests bounded acquisition; an authorized Agent/caller executes
+it and owns retries/escalation. Context chooses faithful representations and
+preserves obligation provenance without redefining satisfaction or repository
+truth. No autonomous Localization subsystem is implemented by this checkpoint.
+
 ## Accepted Context and disclosure semantics
 
 The [heterogeneous evidence admission and recovery investigation](research/heterogeneous-context-admission-and-recovery.md)
-and ADR-0004's 2026-10-02 refinement select an accepted, **unimplemented** next
-direction: evidence-guided option admission inside Context Planning, with a
+and ADR-0004's 2026-10-02 refinement selected an **unimplemented** direction:
+evidence-guided option admission inside Context Planning, with a
 separate observable decision/coverage account alongside the selected plan.
 Native resource, declaration, occurrence and relationship identities remain
 referents; concrete representations consume disclosure capacity. There is no
 mandatory intermediate file-admission service or universal evidence score.
 
-The deterministic development baseline gives exact caller-required forms first
-consideration, then allocates bounded byte capacity across question-specific
-lexical and structural evidence lanes. It preserves native provenance, source
-and fact coverage separately, deferred expansion targets and explicit stop
-reasons. The research record owns its replaceable floors/weights and detailed
-algorithm; no measured superiority or production policy exists yet.
+ADR-0005 now separates obligation resolution from representation admission. The
+earlier question-lane score floors/capacity weights remain historical development
+research, not the next implementation policy. Context retains concrete option
+choice, exact materialization, representation-relative coverage and capacity;
+Localization supplies obligation witnesses and unresolved requirements.
 
 Bounded planning assessments distinguish integrity, applicability, cost,
 currently available requested representations and open questions. They do not
 establish general Context sufficiency. Requests may acquire information for a
-question or expand an exact target; Context plans/materializes, while
+question or expand an exact target; obligation acquisition is interpreted by
+Localization and exact representation expansion by Context. Context
+plans/materializes, while
 Agent/orchestration decides successive attempts, validation, recovery limits
 and escalation. Previous plan lineage does not establish current availability.
 This accepts request semantics, not a transport, Tool registry or recovery loop.

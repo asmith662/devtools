@@ -830,14 +830,14 @@ weight, graph transition or default fusion is promoted from these outcomes.
 ## Evidence-guided disclosure planning design checkpoint
 
 The [heterogeneous admission and recovery investigation](../../research/heterogeneous-context-admission-and-recovery.md)
-now specifies a coherent bounded implementation slice: Context-owned concrete
+specified a coherent bounded implementation slice: Context-owned concrete
 option admission, question-directed native evidence lanes, exact rendered byte
 accounting, source/fact coverage and observable planning assessments. ADR-0004
 refines its semantic ownership; the research record owns replaceable development
 parameters. No new Selection domain or universal candidate hierarchy is needed.
 
-The roadmap selects this planner as the next build, reusing explicit plans and
-snapshot materialization while supporting pointers, recorded Python declaration
+The roadmap then selected this planner as the next build, reusing explicit plans
+and snapshot materialization while supporting pointers, recorded Python declaration
 ranges and the existing qualified relationship disclosure semantics. Current
 AST spans can omit decorators and module surroundings; a compact range is not
 a complete behavioral definition. Mandatory forms and current availability must
@@ -851,3 +851,31 @@ at actual presentation cost and recovery against matched controls. Existing
 Cases 0001-0003 are diagnostic and cannot calibrate the new policy. B-0047's
 protected validation profile is implemented; configuration graph projection and
 facade participation remain separate Retrieval pressure.
+
+## Obligation-driven Localization reconciliation
+
+[ADR-0005](../../architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
+accepts an unimplemented Localization responsibility between native Retrieval
+evidence and Context representation planning. The
+[supplied research](../../research/obligation-driven-repository-localization.md)
+is retained intact as evidence; it does not pre-approve its proposed class list.
+Localization records satisfaction/applicability for explicit task-relative
+obligations, competing alternatives, native witnesses, coverage limits and
+bounded follow-up requests. Context preserves representation, availability and
+capacity ownership. An abstention is not mandatory coverage.
+
+The exact next increment is snapshot-bound obligation Localization and assessment
+version 1: explicit caller obligations, global/scoped BM25 adapters, bounded
+exact owner evidence, soft existing role support, satisfaction/stop account and
+provenance handoff. Blind obligation/alternative-set assessment accompanies the
+kernel. No universal TaskModel, FileRole, evidence ontology, confidence ladder,
+hard directory filter or autonomous loop is selected. The preceding question-lane
+floors/weights are historical proposals, not the next implementation policy.
+
+Reuse current Reference/Call, containment, mirrored-path and configuration facts;
+historical experimental derivations are not new production implementations.
+Targeted navigation and additional bounded roles/RI follow diagnosed gaps.
+Measure complete applicable mandatory coverage, acquisition/disclosure cost and
+false elimination prospectively. Learning and general sequential policies need
+independent traces. This records design progress, not epic completion or a new
+retrieval-quality claim; no Localization source or experiment runs are added.

@@ -37,6 +37,24 @@ semantics and this ADR does not select a future package location.
 
 ## Decision
 
+### Localization reconciliation
+
+[ADR-0005](ADR-0005-obligation-driven-repository-localization.md) accepts a
+distinct task-obligation resolution boundary before Context Planning. It refines
+the earlier evidence-guided admission direction below: Localization owns whether
+native witnesses satisfy stated information obligations and what remains
+unresolved; Context owns representation admission, current availability,
+capacity, materialization and assembly. Obligation provenance must survive the
+handoff. There is no duplicated question-satisfaction engine or mandatory file
+gate. The earlier one-tenth floors and 2:1 evidence-lane allocation remain
+unimplemented historical research, not the next production policy.
+
+Localization generates obligation-directed acquisition requests; Context can
+request exact representation expansion. Agent/orchestration executes either
+under authorization. Scoped mandatory coverage is not Context sufficiency,
+model comprehension or passing validation. No existing plan identity or
+materialization contract changes in this documentation reconciliation.
+
 ### Evidence-guided admission and assessed recovery
 
 The [heterogeneous evidence investigation](../../research/heterogeneous-context-admission-and-recovery.md)
