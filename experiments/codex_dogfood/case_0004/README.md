@@ -142,9 +142,44 @@ and left both hashes unchanged. There are no adjudication, judgment or joined
 analysis artifacts. No semantic retrieval-quality interpretation was performed.
 Confirmation outcomes remain sealed.
 
-Commit this capture and record before any blind adjudication. Stage C receives
-the frozen task/frame and eligible content without queries, lane membership,
-ranks, scores, contributions, Retrieval provenance or retrieved flags.
+The Stage B capture and record are committed before any blind adjudication.
+Stage C receives the frozen task/frame and eligible content without queries,
+lane membership, ranks, scores, contributions, Retrieval provenance or retrieved
+flags.
+
+## Blind adjudication packet frozen
+
+**BLIND ADJUDICATION PACKET FROZEN.** This is packet preparation only; no
+adjudication or Retrieval analysis has occurred.
+
+- [`adjudication/blind_manifest.json`](adjudication/blind_manifest.json),
+  SHA-256 `7810e71a91fb9d5327aeb20d00629f1347049993aff15544b5139529c9f777d5`.
+- [`adjudication/blind_resources.json.gz`](adjudication/blind_resources.json.gz),
+  SHA-256 `4d472717ba3e3306e81f96953c8fd9e6ab04e0d59fb698bd021386a40bcf147f`.
+
+`build_adjudication_packet.py` verifies the frozen Stage A protocol, committed
+request archive, source digests, task semantics and resource frame, then reads
+only `inputs.pkl.gz`. It projects an allowlisted manifest and retained snapshot
+resources in frozen order, preserving exact addresses, content identities and
+UTF-8 contents. The manifest includes task and purpose, repository and
+snapshot/frame identities, shared anchors with task provenance, obligations
+with criteria/applicability/witness information, and bounded adjudication
+instructions. The resource archive contains exactly 498 eligible resources.
+
+The packet omits acquisition query fields and identities, lanes, results, ranks,
+scores, contributions, retrieval membership/provenance/timing and all outcome
+or agent-use labels. The manifest schema and nested records use explicit field
+allowlists. Deterministic reconstruction passed against the Stage A request and
+snapshot, including every address, content identity and content payload. A
+repeated `build` attempt refused to overwrite; `verify` confirmed both artifact
+digests remained unchanged.
+
+During packet construction, Stage B result artifacts were not opened or
+deserialized. The builder has no read path for them. No Stage C judgment or
+joined analysis exists. For adjudication, use only these two packet files in a
+fresh session; do not provide the full Case 0004 directory or treatment/result
+artifacts. The adjudicator may inspect governing architecture resources in the
+packet and must freeze judgments before any later join.
 
 ## Later blind adjudication and analysis
 

@@ -1,0 +1,244 @@
+{
+  "schema": "codex-case-0004-blind-adjudication-v1",
+  "case_identity": "case_0004",
+  "task_identity": "codex-dogfood-case-0004-repository-role-intelligence",
+  "task_text": "Implement the first production repository-role intelligence needed for obligation-relative Localization. Add deterministic, snapshot-bound repository facts and bounded recognized configuration semantics that can later support soft role-aware routing, while preserving the distinction between repository truth and task-relative role evidence. The increment should cover the strongest currently justified facts such as exact resource path characteristics and recognized Python project/test configuration semantics where repository evidence supports them, integrate them with existing Repository Intelligence ownership rather than inventing relevance labels, add strong tests and appropriate architecture/development documentation, preserve existing package/API conventions where applicable, and pass the repository's protected development validation. Do not implement hard `src/`, `tests/`, or `docs/` filtering, automatic obligation resolution, candidate elimination, learned roles, or a generic cross-framework role ontology.",
+  "purpose": "Acquire repository information needed to implement bounded repository-role intelligence, with obligation-relative reach assessed independently of native lexical ranks.",
+  "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+  "snapshot_id": "3d994888fb7dc9cc1303b958acc0e6f6372f6e723a0791a6a0947a4acd5157ed",
+  "eligible_frame_identity": "80005a4a8b2a95a14018868bdc085d3339e86d3669a8c405b13e7857f48c7313",
+  "eligible_resource_count": 498,
+  "anchors": [
+    {
+      "identity": "roles",
+      "text": "repository-role intelligence",
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "explanation": "Shared task concept explicitly present in the frozen development task."
+      }
+    },
+    {
+      "identity": "ri",
+      "text": "Repository Intelligence",
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "explanation": "Shared task concept explicitly present in the frozen development task."
+      }
+    },
+    {
+      "identity": "paths",
+      "text": "resource path characteristics",
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "explanation": "Shared task concept explicitly present in the frozen development task."
+      }
+    },
+    {
+      "identity": "configuration",
+      "text": "Python project/test configuration",
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "explanation": "Shared task concept explicitly present in the frozen development task."
+      }
+    },
+    {
+      "identity": "localization",
+      "text": "obligation-relative Localization",
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "explanation": "Shared task concept explicitly present in the frozen development task."
+      }
+    },
+    {
+      "identity": "validation",
+      "text": "protected development validation",
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "explanation": "Shared task concept explicitly present in the frozen development task."
+      }
+    }
+  ],
+  "obligations": [
+    {
+      "identity": "ri-ownership",
+      "predicate": "Locate the supported Repository Intelligence ownership and extension contracts for deterministic snapshot-bound facts.",
+      "anchors": [
+        "ri",
+        "roles",
+        "localization"
+      ],
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "task_phrase": "integrate them with existing Repository Intelligence ownership",
+        "explanation": "Caller interpretation of task phrase: integrate them with existing Repository Intelligence ownership; governed by existing repository operating requirements."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "ri-extension-contract",
+        "statement": "Information identifies the supported RI extension ownership, snapshot/provenance/coverage contracts and boundaries excluding task-relative relevance."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "identity": "resource-path",
+      "predicate": "Locate existing resource and path identity semantics required to derive exact resource path characteristics without duplicating primitives.",
+      "anchors": [
+        "paths",
+        "ri"
+      ],
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "task_phrase": "exact resource path characteristics",
+        "explanation": "Caller interpretation of task phrase: exact resource path characteristics; governed by existing repository operating requirements."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "native-path-contract",
+        "statement": "Information establishes native resource/path identity, normalization, containment and retained snapshot semantics needed for exact characteristics."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "identity": "python-configuration",
+      "predicate": "Locate existing bounded Python project configuration declaration and resolution semantics that the new facts must reuse or extend.",
+      "anchors": [
+        "configuration",
+        "ri"
+      ],
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "task_phrase": "recognized Python project/test configuration semantics where repository evidence supports them",
+        "explanation": "Caller interpretation of task phrase: recognized Python project/test configuration semantics where repository evidence supports them; governed by existing repository operating requirements."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "python-project-config-contract",
+        "statement": "Information establishes supported project configuration syntax, declaration identity, source provenance, repository resolution and unsupported or ambiguous coverage."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "identity": "test-configuration",
+      "predicate": "Determine the current supported test configuration semantics and declared test discovery or selection behavior that can soundly become repository facts.",
+      "anchors": [
+        "configuration",
+        "roles"
+      ],
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "task_phrase": "recognized Python project/test configuration semantics where repository evidence supports them",
+        "explanation": "Caller interpretation of task phrase: recognized Python project/test configuration semantics where repository evidence supports them; governed by existing repository operating requirements."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "bounded-test-config-contract",
+        "statement": "Information establishes declared test configuration and existing recognized semantics, separating static selection from actual test execution; supported absence is an acceptable finding."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "identity": "package-integration",
+      "predicate": "Locate package and public API integration conventions governing addition of this RI capability.",
+      "anchors": [
+        "ri",
+        "roles"
+      ],
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "task_phrase": "preserve existing package/API conventions where applicable",
+        "explanation": "Caller interpretation of task phrase: preserve existing package/API conventions where applicable; governed by existing repository operating requirements."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "package-integration-contract",
+        "statement": "Information establishes applicable package organization and public API exposure conventions without assuming a particular export mechanism or registration."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "identity": "tests",
+      "predicate": "Locate existing tests and test conventions needed to specify strong regression coverage for the new deterministic facts and configuration semantics.",
+      "anchors": [
+        "ri",
+        "paths",
+        "configuration"
+      ],
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "task_phrase": "add strong tests",
+        "explanation": "Caller interpretation of task phrase: add strong tests; governed by existing repository operating requirements."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "test-extension-contract",
+        "statement": "Information establishes relevant test patterns and behavioral obligations for identity, provenance, snapshots, supported and unresolved configuration and reproducibility."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "identity": "documentation",
+      "predicate": "Locate authoritative architecture and development documentation ownership needed to document this bounded capability consistently.",
+      "anchors": [
+        "ri",
+        "roles",
+        "localization"
+      ],
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "task_phrase": "appropriate architecture/development documentation",
+        "explanation": "Caller interpretation of task phrase: appropriate architecture/development documentation; governed by existing repository operating requirements."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "documentation-authority-contract",
+        "statement": "Information establishes architecture, package documentation, documentation navigation and roadmap/backlog ownership relevant to this capability and its non-goals."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "identity": "validation",
+      "predicate": "Locate the supported protected development validation contract and remaining required static quality gates.",
+      "anchors": [
+        "validation"
+      ],
+      "provenance": {
+        "source_identity": "053e625127367c920e5e7d941e7f4c7ab086afaeeba9aa1cacf9c841b56c5bec",
+        "task_phrase": "pass the repository's protected development validation",
+        "explanation": "Caller interpretation of task phrase: pass the repository's protected development validation; governed by existing repository operating requirements."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "protected-validation-contract",
+        "statement": "Information establishes ordinary protected test selection, confirmation isolation, coverage requirements and applicable lint, formatting, typing and diff gates; execution itself is not localization."
+      },
+      "witness_alternatives": []
+    }
+  ],
+  "adjudication_instructions": {
+    "judge_applicability_from_bounded_repository_evidence": true,
+    "resource_categories": [
+      "REQUIRED",
+      "HELPFUL_ONLY",
+      "UNNECESSARY",
+      "UNRESOLVED"
+    ],
+    "record_acceptable_alternative_witness_sets": true,
+    "distinguish_task_start_inferability_from_named_inherent_discovery": true,
+    "freeze_judgments_before_any_evaluation_join": true,
+    "do_not_treat_missing_evidence_as_non_applicability": true,
+    "scope_claims_to_the_supplied_obligation_frame_and_snapshot": true
+  },
+  "resource_archive": {
+    "path": "blind_resources.json.gz",
+    "sha256": "4d472717ba3e3306e81f96953c8fd9e6ab04e0d59fb698bd021386a40bcf147f",
+    "format": "gzip-compressed UTF-8 JSON; deterministic resource order"
+  }
+}
