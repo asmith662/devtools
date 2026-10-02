@@ -1495,8 +1495,9 @@ This document is canonical research evidence, not an ADR or a production API
 specification. ADR-0003 and ADR-0004 remain authoritative for retrieval and
 Context semantics. Production now adopts an explicit, snapshot-bound disclosure-planning
 boundary and independently inspectable query-conditioned PPR and repository-map
-ranking channels. Their retained development replays remain diagnostic; a new
-prospectively frozen task is still required for a prospective usefulness claim. Specific graph weights, RRF policy, automatic planning/stopping,
+ranking channels. Their retained development replays remain diagnostic; the
+later independently frozen Case 0003 supplies bounded prospective evidence,
+not a general usefulness claim. Specific graph weights, RRF policy, automatic planning/stopping,
 repository-map rendering, recovery tools, learned policies, and universal
 representation types remain research recommendations until separately justified.
 
@@ -1521,5 +1522,16 @@ and lexical/map fusion worsens complete required coverage. The richer typed
 view and repository map do not invalidate graphs or make PPR obsolete. Compact
 map rendering remains Context-owned and unimplemented; automatic planning,
 stopping, three-channel fusion and learned policies remain unpromoted.
-Prospective evaluation awaits the next legitimate independent task; the
-algorithm is frozen without selecting parameters from Case 0002 outcomes.
+That prospective evaluation is now complete in
+[Case 0003](../../experiments/codex_dogfood/case_0003/README.md), on a real Python
+configuration RI task with nineteen blind-required resources. Structural
+importance promotes weak-lexical repository primitives; compact symbol relevance
+also promotes a required snapshot resource without positive global importance.
+The map misses fourteen required resources, and equal resource RRF worsens
+complete coverage in both query arms. Typed PPR modestly improves full-prompt
+complete depth but has poor early recall. Thus evidence supports specialized
+native channels and falsifies a general map replacement/default fusion claim
+for this case. It does not reject graph architecture or tune parameters.
+The handwritten filename-weight manifest typo/capture race is transparently
+retained; the unchanged production scorer was prospectively fixed at 0.25.
+The new static configuration facts are not yet Retrieval transitions.

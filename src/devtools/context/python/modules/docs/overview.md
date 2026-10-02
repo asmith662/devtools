@@ -1,5 +1,12 @@
 # Explicit-root Python modules and immediate package membership
 
+`lookup_python_modules(universe, dotted_name)` owns bounded exact dotted-name
+lookup. It retains every match in supplied universe order, with no root
+precedence, member lookup, runtime discovery or new import declaration.
+Import resolution uses this shared operation with unchanged outcomes and order;
+the [project configuration package](../../project_configuration/docs/overview.md)
+uses it for Coverage module alternatives, preserving competing interpretations.
+
 `devtools.context.python.modules` interprets caller-selected observed `.py`
 resources under one explicit repository-relative `PythonModuleRoot`. An
 ordinary module and an `__init__.py` package module have distinct

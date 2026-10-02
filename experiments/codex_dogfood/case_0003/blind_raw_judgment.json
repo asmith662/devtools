@@ -1,0 +1,157 @@
+{
+  "snapshot_id": "7cbfc03c47323c8486b9cf30be945a23ed82f462af26288de0a6fa996c798d3b",
+  "judgments": [
+    {
+      "address": "AGENTS.md",
+      "states": ["required_for_understanding", "required_for_validation"],
+      "rationale": "Defines mandatory architecture inspection, canonical substrate reuse, documentation-impact review, deterministic checks, and checkpoint safety. The task-specific protected profile must qualify its normal validation instructions."
+    },
+    {
+      "address": "pyproject.toml",
+      "states": ["required_for_understanding", "required_for_configuration", "required_for_tests", "required_for_validation"],
+      "rationale": "Primary declaration evidence: project README, Hatch wheel package selection, pytest testpaths and coverage module selector, coverage source, Ruff per-file pattern, and mypy files/module-path selectors. It declares no entry points. Also defines dependencies and validation settings that a protected development profile must account for."
+    },
+    {
+      "address": "README.md",
+      "states": ["required_for_understanding"],
+      "rationale": "Explicit target of project.readme. Its retained occurrence establishes the repository-resolvable README relationship and exact target provenance; its prose does not establish tooling behavior."
+    },
+    {
+      "address": "docs/architecture/taxonomy.md",
+      "states": ["required_for_understanding", "required_for_api_contract"],
+      "rationale": "Authoritative distinctions among repository identity, snapshot, subject, declaration, derivation, knowledge, coverage, Retrieval, and Context constrain the new production concepts."
+    },
+    {
+      "address": "docs/documentation_map.md",
+      "states": ["required_for_understanding", "required_for_implementation"],
+      "rationale": "Identifies documentation authority and existing package ownership. Explicitly requested integration requires adding navigation and accurate current capability claims."
+    },
+    {
+      "address": "docs/architecture.md",
+      "states": ["required_for_understanding", "required_for_api_contract", "required_for_implementation"],
+      "rationale": "Canonical cross-package ownership and epistemic boundaries govern configuration RI. Must document the resulting production capability without extending Retrieval or Context policy."
+    },
+    {
+      "address": "docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md",
+      "states": ["required_for_understanding", "required_for_api_contract"],
+      "rationale": "Accepted identity, derivation, dependency, provenance, coverage, and qualified relationship semantics directly govern declarations and resolved configuration targets."
+    },
+    {
+      "address": "docs/roadmap.md",
+      "states": ["required_for_understanding", "required_for_implementation"],
+      "rationale": "Explicit documentation deliverable; must distinguish completed bounded configuration RI from subsequent retrieval experiments and preserve sealed confirmation boundaries."
+    },
+    {
+      "address": "docs/backlog/epics/B-0002-coding-context-substrate.md",
+      "states": ["required_for_understanding", "required_for_implementation"],
+      "rationale": "Canonical owner of remaining configuration-to-code RI pressure. The task requires updating backlog evidence while retaining unresolved tooling/runtime and broader relationship scope."
+    },
+    {
+      "address": "docs/backlog/overview.md",
+      "states": ["required_for_understanding"],
+      "rationale": "Repository instructions require locating canonical backlog ownership and dependencies through this index before promoting a reusable capability."
+    },
+    {
+      "address": "docs/backlog/metadata.md",
+      "states": ["required_for_understanding"],
+      "rationale": "Defines backlog status, maturity, ownership, dependency, and promotion semantics needed to update the requested backlog accurately."
+    },
+    {
+      "address": "src/devtools/context/repository/resource.py",
+      "states": ["required_for_implementation", "required_for_api_contract"],
+      "rationale": "Owns canonical repository-relative addresses, content identities, and retained resource occurrences. Configuration sources and resource targets must reuse these rather than introduce parallel identities."
+    },
+    {
+      "address": "src/devtools/context/repository/snapshot.py",
+      "states": ["required_for_implementation", "required_for_api_contract"],
+      "rationale": "Defines retained snapshot scope and exact resource lookup. Derivation must operate on this state, preserve bounded absence, and avoid working-tree reacquisition."
+    },
+    {
+      "address": "src/devtools/context/repository/identity.py",
+      "states": ["required_for_api_contract"],
+      "rationale": "Owns nominal logical repository identity independently of location and contents; configuration analyses and targets must retain this existing identity."
+    },
+    {
+      "address": "src/devtools/context/python/modules/interpretation.py",
+      "states": ["required_for_implementation", "required_for_api_contract"],
+      "rationale": "Canonical explicit-root module identities, interpretation universe, exclusions, duplicate-name preservation, and lack of root precedence are essential for declared module selectors."
+    },
+    {
+      "address": "src/devtools/context/python/modules/__init__.py",
+      "states": ["required_for_api_contract"],
+      "rationale": "Defines supported public imports for module interpretation and universe construction, allowing configuration RI to consume the canonical module API."
+    },
+    {
+      "address": "src/devtools/context/python/modules/docs/overview.md",
+      "states": ["required_for_understanding", "required_for_api_contract"],
+      "rationale": "Documents explicit-root selected-resource semantics, qualified missing/ambiguous outcomes, and the prohibition on interpreting these as runtime importability."
+    },
+    {
+      "address": "src/devtools/context/python/docs/overview.md",
+      "states": ["required_for_implementation"],
+      "rationale": "Existing Python-wide RI documentation is a necessary documentation-impact surface for introducing an adjacent configuration capability and linking its package contract."
+    },
+    {
+      "address": "src/devtools/context/python/__init__.py",
+      "states": ["helpful_only"],
+      "rationale": "Shows current Python-wide public export conventions. A dedicated configuration subpackage can expose its own API without modifying this facade."
+    },
+    {
+      "address": "src/devtools/context/__init__.py",
+      "states": ["helpful_only"],
+      "rationale": "Shows the existing broad Context/RI facade. Reviewing it helps maintain export consistency, but new subpackage APIs need not be re-exported here."
+    },
+    {
+      "address": "src/devtools/context/repository/__init__.py",
+      "states": ["helpful_only"],
+      "rationale": "Convenient public import inventory for the repository substrate; the owning resource, snapshot, and identity modules already establish the necessary contracts."
+    },
+    {
+      "address": "src/devtools/context/repository/observation.py",
+      "states": ["helpful_only"],
+      "rationale": "Provides canonical bounded snapshot construction for fixtures and explains content/snapshot identity computation. Production configuration derivation should consume retained state rather than observe files."
+    },
+    {
+      "address": "tests/context/repository/test_observation.py",
+      "states": ["helpful_only"],
+      "rationale": "Existing examples verify address validation, content-sensitive identity, selected snapshot completeness, and bounded fixture observation. They support new tests but need not be modified."
+    },
+    {
+      "address": "tests/context/python/modules/test_interpretation.py",
+      "states": ["required_for_tests"],
+      "rationale": "Executable contracts cover multiple roots, name collisions, exclusions, dependency-sensitive identity, and explicit selection. Configuration module-target tests must preserve these established semantics."
+    },
+    {
+      "address": "src/devtools/context/python/modules/membership.py",
+      "states": ["helpful_only"],
+      "rationale": "Adjacent production example of snapshot-validated relationships, deterministic derivation identities, per-input assessments, and bounded coverage; package selection does not require immediate membership derivation."
+    },
+    {
+      "address": "src/devtools/context/python/mirrored_paths.py",
+      "states": ["helpful_only"],
+      "rationale": "Demonstrates retained-snapshot-only derivation with canonical ordering and exact resource provenance, while separating a declared convention from stronger semantic behavior."
+    },
+    {
+      "address": "src/devtools/context/python/imports/resolution.py",
+      "states": ["helpful_only"],
+      "rationale": "Shows established module-universe ambiguity and unresolved conventions. Its import-specific resolver cannot directly substitute for configuration selector resolution."
+    },
+    {
+      "address": "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+      "states": ["helpful_only"],
+      "rationale": "Historical navigation confirms that ADR-0002 supersedes the original investigation and B-0002 owns remaining pressure; it is not a required update target."
+    },
+    {
+      "address": "docs/backlog/items/B-0019-investigate-typed-configuration-ownership.md",
+      "states": ["helpful_only"],
+      "rationale": "Clarifies that shared runtime/provider configuration ownership is separate from source-grounded project configuration relationships. Its deferred concern need not be promoted or edited."
+    }
+  ],
+  "unlisted_resources_are_unnecessary": true,
+  "acceptable_alternatives": [
+    "A dedicated context.python configuration subpackage with its own public exports and package documentation satisfies API integration without adding exports to the broad context or python facades.",
+    "Focused new tests may construct retained snapshots directly or use canonical bounded observation on temporary fixtures; neither approach requires changing existing observation tests.",
+    "Backlog integration can update B-0002's established scope and remaining pressure without changing unrelated configuration-ownership or documentation-integrity records."
+  ],
+  "limitations": "Assessment uses only the pre-task export and supplied frame; no edits or validation were performed. Required labels describe obligations, not mandatory modifications. New configuration implementation, focused tests, package documentation, and any protected validation-profile artifacts have no eligible pre-task addresses. The frame does not identify the protected profile or sealed-material exclusion manifest, so their exact resource requirements cannot be resolved here. Unlisted resources are unnecessary as task-specific evidence or change targets; this does not imply excluding ordinary dependency loading or admissible regression tests during future validation."
+}

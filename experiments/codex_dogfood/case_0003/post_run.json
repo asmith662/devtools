@@ -1,0 +1,74 @@
+{
+  "blind_adjudication_started": false,
+  "configuration_ri_summary": {
+    "assessments": 8,
+    "declarations": 8,
+    "facts": 1026,
+    "facts_by_route": {
+      "command-cwd-relative-directory-prefix": 630,
+      "configuration-relative-directory-prefix": 234,
+      "configuration-relative-exact-resource": 1,
+      "coverage-exact-module": 1,
+      "pytest-root-relative-directory-prefix": 160
+    },
+    "facts_by_selector": {
+      "project.readme": 1,
+      "tool.coverage.run.source": 1,
+      "tool.hatch.build.targets.wheel.packages": 234,
+      "tool.mypy.files": 396,
+      "tool.mypy.mypy_path": 234,
+      "tool.pytest.ini_options.testpaths": 160
+    },
+    "result_archive_sha256": "dff9d9bc668280be2aae7381cb04dfeb2d17fc74926c1796c3a9d8b9fa0def39",
+    "retrieval_consumes_facts": false,
+    "snapshot_id": "7cbfc03c47323c8486b9cf30be945a23ed82f462af26288de0a6fa996c798d3b",
+    "statuses": {
+      "resolved": 8
+    }
+  },
+  "confirmation_accessed": false,
+  "exclusion": "Entire tests/experiments tree excluded from recursive collection; only two explicit test files admitted. No historical outcomes accessed.",
+  "host_review": "Source/API/ownership reviewed; host formatting change only in fixture and full acronym names clarified in package docs. No algorithm tuning or production behavior change after worker.",
+  "implementation_complete": true,
+  "implementation_files_sha256": {
+    "docs/architecture.md": "f3e96825682b29f69a5d88eb56074f5b4fecb3ccd4e356851db13e48d839155a",
+    "docs/backlog/epics/B-0002-coding-context-substrate.md": "86177c9e5d6e900121717f26460d3d624ceecbb89a2ec602df6888f75a26fc85",
+    "docs/backlog/items/B-0047-protected-development-validation-profile.md": "dda12aca741e7d201da36a297b1af3c59e7301ba141686b809f1663ab05be3cb",
+    "docs/backlog/overview.md": "0d932df22318dcb156431add689a2fe57478bc36f1f727ab0abcaa65d4cf314d",
+    "docs/documentation_map.md": "b5c016a1ab2888fe960ae697bba88a743a24e0bb2a257d84beeb7259da771826",
+    "docs/implementation_ledger.md": "47f97824a6995a88a0fdc7c964b05d29b49849ab58d069e73e430fc88bf58384",
+    "docs/roadmap.md": "00e6b96d7af6d62919c5846ff33fdde26db6092bc8cf078e4360a5d0be928be3",
+    "src/devtools/context/python/docs/overview.md": "5e387a823cc2796a9281a76e7a7a6e9ce5e03fb90cb24544916a4bdfa3edfd73",
+    "src/devtools/context/python/imports/resolution.py": "cf9765ec33be751b4f21b652827d4cc4d82855e2bea8d9a26427382c167a21fd",
+    "src/devtools/context/python/modules/__init__.py": "57cd2a7b085eb0fafbd60fdec01a9f3592f64a6f352932534e9bccab87d2e038",
+    "src/devtools/context/python/modules/docs/overview.md": "326c9abe8b42eada9cc3b08d9418f78a65b8047f02d4ec6cc18f42b0074abcba",
+    "src/devtools/context/python/modules/lookup.py": "896eb1b0da70da2a5181771b087073cb839800ae29e5a0cb513252ee61458cfd",
+    "src/devtools/context/python/project_configuration/__init__.py": "bfcbb1586ad890aac9c7230f6702360b53b0c446386d153b7b49e10a5f56f49f",
+    "src/devtools/context/python/project_configuration/declarations.py": "3cbe2d0549af58769c07dd5445789fc8dd48bd9a993badbabac63e3cfe25effd",
+    "src/devtools/context/python/project_configuration/docs/overview.md": "cf95f808eaff06a54a7311958091e4bd6c5322a427bf36ea72e86396748d3ebe",
+    "src/devtools/context/python/project_configuration/models.py": "86b4328be3286c06feb7f13694d804a3d3878bf9afeeda134ae05ecfef985922",
+    "src/devtools/context/python/project_configuration/resolution.py": "24f10e69026f612d9cab8a2be2d629d6997751dccff6295c8ea9df8521d530ec",
+    "tests/context/python/project_configuration/__init__.py": "507158801af46477b8bc5fdbebea10f730de8350066613c70d5cb354abee3c52",
+    "tests/context/python/project_configuration/test_configuration.py": "26c16a4a3348b546fe105c26a98f18e03a4cbbc744b49e1ed132fe6309000e7d"
+  },
+  "implementation_trace_sha256": "8768a0282b8e4e9cedd14058e76ff9e4d5fcc052f7c9876243956a90a94d5d10",
+  "production_patch_sha256": "b0ba4281b967349fb080cf9ab9760b65109f844943bb536c8df50f4b4c71e4b2",
+  "protected_command": "uv run pytest tests --ignore=tests/experiments tests/experiments/test_codex_dogfood_capture.py tests/experiments/codex_dogfood/test_case_0003.py",
+  "quality_gates": {
+    "diff_check": "passed",
+    "focused_worker_tests": 50,
+    "live_skips": 2,
+    "mypy": "passed582sourcefiles",
+    "neighbor_worker_tests": 248,
+    "production_branch_coverage": 100,
+    "production_branches": 1902,
+    "production_statement_coverage": 100,
+    "production_statements": 8226,
+    "protected_host_tests": 1299,
+    "ruff": "passed repository-wide",
+    "touched_format": "16filespassed;hostformattedonefixture"
+  },
+  "snapshot_id": "7cbfc03c47323c8486b9cf30be945a23ed82f462af26288de0a6fa996c798d3b",
+  "starting_head": "0bcb2caaf7ae4b6a776bd9505efa1dc87e8325a5",
+  "validation_log_sha256": "417875fdd65e981f12a18b8c9512fda0b246a99000a2a065b181c3f6aaa6b146"
+}

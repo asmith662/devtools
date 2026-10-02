@@ -436,3 +436,79 @@ remains sealed.
   comparative diagnostics and source hashes are in the
   [retained baseline](../experiments/repository_map_baseline/README.md).
 - One checkpoint commit; no push or subsequent production increment.
+
+## Bounded Python project configuration RI (2026-10-01)
+
+- Implemented the authorized frozen Case 0003 task from clean main
+  `0bcb2caaf7ae4b6a776bd9505efa1dc87e8325a5`, preserving host-owned experiment
+  artifacts. No staging, commit or push is part of this implementation.
+- Added `context.python.project_configuration` with separate models,
+  retained-`tomllib` declaration analysis and qualified observed resolution for
+  project README, Hatch wheel packages, pytest testpaths, Coverage source,
+  mypy files and mypy search paths. Semantic TOML key/item anchors preserve
+  duplicate ordinals and exact configuration provenance without invented spans.
+- Explicit command cwd and pytest rootdir assumptions remain separate from
+  README/Hatch configuration-parent routes. Native resource/module dependencies
+  and versioned identities support deterministic facts and explicit missing,
+  ambiguous and unsupported assessments. Prefix membership implies neither
+  directory existence nor execution. Coverage retains competing path/module/root
+  readings. Entrypoint presence is unsupported, without speculative bindings.
+- Extracted bounded exact dotted-name lookup into modules and migrated imports
+  without changed lookup order/outcomes. No Retrieval ranking, graph projection,
+  fusion or Context policy changed. Package docs include ownership, rejected
+  universal configuration/entrypoint machinery and a separate future relation
+  decision boundary. B-0019 stays deferred; B-0047 records protected development
+  validation-profile pressure without designing a harness.
+- Focused new-package/shared-lookup suite: 50 passed, 100% branch coverage.
+  Final Python RI and Evaluation run: 248 passed, retaining 100% new-package
+  and shared-lookup branch coverage. Ruff and mypy pass across `src`,
+  `tests/context` and `tests/evaluation`; diff whitespace checks pass.
+  Tests use explicit safe directories, coverage overrides and writable
+  `.devtools` temporary locations. Initial cache and default temporary-directory
+  access were denied by the sandbox before test execution; existing virtualenv
+  executables and explicit local basetemp resolved those operational limits.
+- Default repository-wide pytest, live services and sealed confirmation files
+  were not accessed. Host-owned protected comprehensive validation and blind
+  evaluation remain separate. No retrieval-quality or cross-case conclusion is
+  drawn from advisory suggestions or implementation tests.
+
+## Case 0003 prospective retrieval evaluation and checkpoint (2026-10-01)
+
+- Frozen real configuration task and separately authored InformationNeed before
+  retrieval; retained 472 pre-task resources and all eight unchanged BM25,
+  typed Personalized PageRank (PPR), repository-map and Reciprocal Rank Fusion
+  (RRF) ranking arms. Candidate frames differ from earlier cases. A handwritten
+  filename-weight metadata typo and capture/correction race are retained in
+  initial/corrected manifests; the prospectively fixed scorer used 0.25 and no
+  ranking parameter changed. Host architecture guidance is recorded intervention.
+- Implementation and validation frozen before an independent read-only
+  adjudicator saw only the pre-task export and neutral frame. Production
+  Evaluation identity accounting is exact: 472 judged, nineteen required, ten
+  helpful only, 443 unnecessary, no unresolved judgments. No labels changed after
+  provenance joining. No sealed confirmation outcomes were accessed.
+- Complete full/short BM25 depths: 348/180; typed PPR: 314/278; map incomplete
+  at five required resources; BM25/map RRF: 372/279. Full PPR's depth gain comes
+  with lower early recall. Structural channels rescued no required lexical miss.
+  Thirteen map omissions lack supported structural evidence; one import-only
+  facade has structural evidence but no eligible symbol. Centrality/private
+  helper and compact-lexical promotions retain distinct provenance.
+- Codex trace: 22 completed commands, one search, 39 direct-open events across
+  24 resources. Nine required resources opened outside the compact advisory
+  display demonstrate recovery from handoff omissions, not lexical misses.
+  Opens/edits do not define requiredness; there is no unaided control or savings
+  claim. Root review adds one fixture formatting correction and documentation
+  clarifications; production behavior remains frozen.
+- Host validation excludes the entire retained experiment test tree before
+  collection and admits only capture/new protocol files: 1,299 passed, two live
+  skips, 100% of 8,226 production statements and 1,902 branches. Repository Ruff,
+  mypy (582 source files), sixteen touched Python formatting checks and diff
+  checks pass. The earlier 22-test/7-benchmark profile remains planned evidence,
+  not the actual invocation. B-0047 retains supported-profile pressure.
+- The new configuration RI yields eight resolved declarations and 1,026
+  qualified target facts on the original snapshot, but remains unconsumed by
+  Retrieval. The next recommendation is a separate bounded selector/target
+  projection and resource-participation decision, accounting for prefix fan-out;
+  no default fusion or production Selection rule is promoted. Detailed
+  [protocol, native results and cross-case synthesis](../experiments/codex_dogfood/case_0003/README.md)
+  remain reproducible with immutable artifact byte handling. One checkpoint
+  commit is authorized; no push or next increment is begun.

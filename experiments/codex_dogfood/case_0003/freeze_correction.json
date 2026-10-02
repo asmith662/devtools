@@ -1,0 +1,6 @@
+{
+  "initial_freeze_sha256": "5b58b4c1c83f84bb6865b66436f0fc9192046ebe305335ee55685d940d752945",
+  "corrected_freeze_sha256": "0a5781bd81f7ce18bb89bdfe8b5edc48ad8712511897142c4778b3efc3040620",
+  "correction": "Handwritten filename_weight metadata 1.0 corrected to production constant 0.25. Production algorithm and frozen implementation hashes unchanged. Host and helper commands overlapped during correction; capture bound initial freeze. Corrected manifest was confirmed before host inspected handoff/rankings. No output was used to choose parameters. Native capture retained without modification.",
+  "effective_configuration": "Frozen production defaults, content BM25 + 0.25 filename BM25; metadata does not set algorithm parameters."
+}

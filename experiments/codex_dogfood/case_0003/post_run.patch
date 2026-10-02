@@ -1,0 +1,1696 @@
+diff --git a/docs/architecture.md b/docs/architecture.md
+index f21063a..62dfa3f 100644
+--- a/docs/architecture.md
++++ b/docs/architecture.md
+@@ -501,6 +501,31 @@ universe that supports its bounded absence claim. Relative imports consume an
+ explicit source interpretation, while absolute imports do not. This is neither
+ runtime import resolution nor generic dependency semantics.
+ 
++`context.python.project_configuration` separately owns six bounded retained-TOML
++selectors: project README, Hatch wheel packages, pytest testpaths, Coverage
++source, mypy files and mypy search paths. Declaration analysis uses `tomllib`
++and semantic key/item anchors with the exact configuration resource, not
++fabricated character spans. Resolution uses canonical repository addresses,
++explicit command-cwd/pytest-root assumptions and native module interpretations.
++README/Hatch configuration-parent routes remain distinct. Shared exact dotted
++name lookup now belongs to `context.python.modules.lookup`; imports migrate to
++it without changed behavior. Configuration does not manufacture import syntax.
++
++Positive configuration facts assert only observed exact-resource correlation,
++directory-prefix membership or an exact native module target. Many directory
++members are multiple facts under one reading, not ambiguity. Competing observed
++Coverage path/module readings and module roots remain ambiguous; missing means
++only no match in the retained frame. Unsupported forms and invalid/duplicate-key
++TOML establish no targets. Source and target occurrence/content, snapshot,
++repository, universe and assumptions are validated dependencies. No tool
++execution, directory existence, packaging outcome, runtime binding or general
++entrypoint machinery is established. See the
++[package contract and ownership diagram](../src/devtools/context/python/project_configuration/docs/overview.md).
++Future Retrieval consumption needs a separate explicit selector/relation,
++direction, applicability and aggregation decision retaining native fact support;
++current ranking, projections and Context policy are unchanged. This static RI
++does not promote B-0019 framework runtime configuration ownership.
++
+ The adjacent `context.python.imports.relations` operation derives one directed
+ `PythonResolvedModuleImportRelation` for each supplied `RESOLVED` declaration
+ resolution when exactly one matching source module interpretation is available.
+diff --git a/docs/backlog/epics/B-0002-coding-context-substrate.md b/docs/backlog/epics/B-0002-coding-context-substrate.md
+index e8893b8..c39bb97 100644
+--- a/docs/backlog/epics/B-0002-coding-context-substrate.md
++++ b/docs/backlog/epics/B-0002-coding-context-substrate.md
+@@ -788,7 +788,30 @@ ownership. See the [contract](../../../src/devtools/context/retrieval/repository
+ and [development-only diagnostic](../../../experiments/repository_map_baseline/README.md).
+ This changes implemented capability evidence, not this epic's overall status
+ or unresolved Context/RI promotion triggers. Documentation/governance and
+-configuration-to-code relationships remain unestablished RI pressure; no
++configuration-to-code relationships remained unestablished at that checkpoint; no
+ relationship is invented for ranking. Prospective usefulness awaits an
+ independent natural development task, and compact map disclosure remains
+ Context representation work.
++
++## Bounded Python configuration capability evidence
++
++The Case 0003 implementation adds production
++[project configuration RI](../../../src/devtools/context/python/project_configuration/docs/overview.md):
++README, Hatch wheel packages, pytest testpaths, Coverage source, mypy files and
++mypy search paths from retained TOML. Declarations have semantic key/ordinal
++anchors and exact configuration provenance; resolution preserves explicit
++configuration-parent/tool frames, observed prefix membership and competing
++module/path/root interpretations. Facts assert observed relationships rather
++than execution or runtime behavior. Unsupported entrypoint presence is assessed
++without bindings; the real project has none. Existing canonical addresses and
++module lookup are reused with import behavior preserved.
++
++Focused tests cover the six real selectors, duplicate ordinals, invalid TOML,
++frames, competing readings and stale dependencies at 100% new-package branch
++coverage. This changes bounded capability evidence, not the epic's overall
++status, general configuration/entrypoint coverage or promotion triggers.
++Retrieval relation admission, ranking usefulness and Context consumption remain
++separate decisions. The host owns blind case evaluation; advisory suggestions
++establish no quality claim. B-0019 is unrelated runtime configuration pressure
++and remains deferred. [B-0047](../items/B-0047-protected-development-validation-profile.md)
++records protected development validation isolation without a general harness.
+diff --git a/docs/backlog/overview.md b/docs/backlog/overview.md
+index 11a5bc1..97e0b47 100644
+--- a/docs/backlog/overview.md
++++ b/docs/backlog/overview.md
+@@ -124,5 +124,6 @@ provide dependency navigation without duplicating a second dependency graph.
+ | [B-0044](items/B-0044-investigate-orchestration-control-loops.md) | Investigate orchestration control loops | DEFERRED | orchestration |
+ | [B-0045](items/B-0045-establish-minimal-model-interaction-core.md) | Establish minimal ModelInteraction core | IMPLEMENTED | models |
+ | [B-0046](items/B-0046-investigate-advanced-model-interaction-provider-pressure.md) | Investigate advanced model-interaction/provider pressure | BACKLOG | models |
++| [B-0047](items/B-0047-protected-development-validation-profile.md) | Protected development validation profile | BACKLOG | evaluation |
+ 
+ See [metadata.md](metadata.md) for record semantics and promotion discipline.
+diff --git a/docs/documentation_map.md b/docs/documentation_map.md
+index 6a9cde9..17be4c1 100644
+--- a/docs/documentation_map.md
++++ b/docs/documentation_map.md
+@@ -93,6 +93,11 @@
+   semantics. The [first baseline replay](../experiments/graph_ranking_baseline/README.md)
+   and [typed-view replay](../experiments/typed_graph_baseline/README.md) own
+   their respective development outcomes and limitations.
++- Python configuration RI: [declarations, resolution, provenance, ownership and
++  future Retrieval boundary](../src/devtools/context/python/project_configuration/docs/overview.md).
++  The [Python overview](../src/devtools/context/python/docs/overview.md) navigates
++  this capability and mirrored-path facts. Shared exact module-name lookup
++  belongs to the [modules package](../src/devtools/context/python/modules/docs/overview.md).
+ 
+ The `context` domain exposes narrow Repository Intelligence APIs. Its current
+ implementation can recursively discover regular-file addresses beneath an
+diff --git a/docs/implementation_ledger.md b/docs/implementation_ledger.md
+index bd22efd..a5372f9 100644
+--- a/docs/implementation_ledger.md
++++ b/docs/implementation_ledger.md
+@@ -436,3 +436,38 @@ remains sealed.
+   comparative diagnostics and source hashes are in the
+   [retained baseline](../experiments/repository_map_baseline/README.md).
+ - One checkpoint commit; no push or subsequent production increment.
++
++## Bounded Python project configuration RI (2026-10-01)
++
++- Implemented the authorized frozen Case 0003 task from clean main
++  `0bcb2caaf7ae4b6a776bd9505efa1dc87e8325a5`, preserving host-owned experiment
++  artifacts. No staging, commit or push is part of this implementation.
++- Added `context.python.project_configuration` with separate models,
++  retained-`tomllib` declaration analysis and qualified observed resolution for
++  project README, Hatch wheel packages, pytest testpaths, Coverage source,
++  mypy files and mypy search paths. Semantic TOML key/item anchors preserve
++  duplicate ordinals and exact configuration provenance without invented spans.
++- Explicit command cwd and pytest rootdir assumptions remain separate from
++  README/Hatch configuration-parent routes. Native resource/module dependencies
++  and versioned identities support deterministic facts and explicit missing,
++  ambiguous and unsupported assessments. Prefix membership implies neither
++  directory existence nor execution. Coverage retains competing path/module/root
++  readings. Entrypoint presence is unsupported, without speculative bindings.
++- Extracted bounded exact dotted-name lookup into modules and migrated imports
++  without changed lookup order/outcomes. No Retrieval ranking, graph projection,
++  fusion or Context policy changed. Package docs include ownership, rejected
++  universal configuration/entrypoint machinery and a separate future relation
++  decision boundary. B-0019 stays deferred; B-0047 records protected development
++  validation-profile pressure without designing a harness.
++- Focused new-package/shared-lookup suite: 50 passed, 100% branch coverage.
++  Final Python RI and Evaluation run: 248 passed, retaining 100% new-package
++  and shared-lookup branch coverage. Ruff and mypy pass across `src`,
++  `tests/context` and `tests/evaluation`; diff whitespace checks pass.
++  Tests use explicit safe directories, coverage overrides and writable
++  `.devtools` temporary locations. Initial cache and default temporary-directory
++  access were denied by the sandbox before test execution; existing virtualenv
++  executables and explicit local basetemp resolved those operational limits.
++- Default repository-wide pytest, live services and sealed confirmation files
++  were not accessed. Host-owned protected comprehensive validation and blind
++  evaluation remain separate. No retrieval-quality or cross-case conclusion is
++  drawn from advisory suggestions or implementation tests.
+diff --git a/docs/roadmap.md b/docs/roadmap.md
+index dca9b8c..0401950 100644
+--- a/docs/roadmap.md
++++ b/docs/roadmap.md
+@@ -180,6 +180,22 @@ Confirmation remains sealed.
+ 
+ ### Controlled advisory Codex dogfooding
+ 
++The authorized Case 0003 implementation establishes bounded
++[Python configuration RI](../src/devtools/context/python/project_configuration/docs/overview.md)
++for the six selectors actually declared by this project. This adds static
++observed relationships and explicit assessments, without changing ranking,
++graph projection or Context policy. Future relation admission requires its own
++explicit Retrieval decision and prospective evidence. Entrypoint machinery is
++not justified by this project, and B-0019 runtime configuration remains deferred.
++The host owns Case 0003 blind adjudication and cross-case findings; implementation
++and advisory suggestions imply no retrieval-quality conclusion.
++
++[B-0047](backlog/items/B-0047-protected-development-validation-profile.md)
++records current pressure for supported development validation isolation before
++collection. This increment uses explicit safe test directories and focused
++coverage overrides; host-owned protected comprehensive validation remains a
++separate gate. No general harness is designed or promoted here.
++
+ For each bounded real task, freeze the snapshot, eligible lexical index/corpus,
+ verbatim prompt, separately authored short InformationNeed, BM25 settings,
+ qualified seed origins when justified, and already-derived RI fact inputs before
+diff --git a/src/devtools/context/python/docs/overview.md b/src/devtools/context/python/docs/overview.md
+index d021246..1e59a4a 100644
+--- a/src/devtools/context/python/docs/overview.md
++++ b/src/devtools/context/python/docs/overview.md
+@@ -1,4 +1,14 @@
+-# Python mirrored-path Repository Intelligence
++# Python Repository Intelligence
++
++The [project configuration package](../project_configuration/docs/overview.md)
++owns retained-TOML declarations and qualified observed targets for README,
++Hatch wheel packages, pytest testpaths, Coverage source and mypy files/search
++paths. It separates configuration-relative routes from explicit tool frames,
++retains competing module/path interpretations, and makes no execution/runtime
++claim. This Python-owned RI is independent of Retrieval and framework runtime
++configuration. Modules own shared exact name lookup; config creates no imports.
++
++## Mirrored source/test paths
+ 
+ `derive_python_mirrored_path_correspondences(snapshot)` derives exact path
+ correspondence from **observed resources in one `RepositorySnapshot`**. The
+diff --git a/src/devtools/context/python/imports/resolution.py b/src/devtools/context/python/imports/resolution.py
+index fe98c96..0e0542e 100644
+--- a/src/devtools/context/python/imports/resolution.py
++++ b/src/devtools/context/python/imports/resolution.py
+@@ -8,6 +8,8 @@ from dataclasses import dataclass
+ from enum import Enum
+ from typing import TYPE_CHECKING, ClassVar, cast
+ 
++from devtools.context.python.modules.lookup import lookup_python_modules
++
+ if TYPE_CHECKING:
+     from collections.abc import Sequence
+ 
+@@ -118,11 +120,7 @@ def resolve_python_import_declaration(
+             matches=(),
+             unsupported_reason=requested_module,
+         )
+-    matches = tuple(
+-        item
+-        for item in target_universe.interpretations
+-        if item.dotted_name == requested_module
+-    )
++    matches = lookup_python_modules(target_universe, requested_module)
+     outcome = (
+         PythonImportResolutionOutcome.UNRESOLVED_IN_UNIVERSE
+         if not matches
+diff --git a/src/devtools/context/python/modules/__init__.py b/src/devtools/context/python/modules/__init__.py
+index 2700cbd..4c2d063 100644
+--- a/src/devtools/context/python/modules/__init__.py
++++ b/src/devtools/context/python/modules/__init__.py
+@@ -12,6 +12,7 @@ from devtools.context.python.modules.interpretation import (
+     define_python_module_interpretation_universe,
+     interpret_python_module_resources,
+ )
++from devtools.context.python.modules.lookup import lookup_python_modules
+ from devtools.context.python.modules.membership import (
+     PythonImmediatePackageMembership,
+     PythonImmediatePackageMembershipAnalysis,
+@@ -39,4 +40,5 @@ __all__ = [
+     "define_python_module_interpretation_universe",
+     "derive_python_immediate_package_memberships",
+     "interpret_python_module_resources",
++    "lookup_python_modules",
+ ]
+diff --git a/src/devtools/context/python/modules/docs/overview.md b/src/devtools/context/python/modules/docs/overview.md
+index f365296..2d66cd1 100644
+--- a/src/devtools/context/python/modules/docs/overview.md
++++ b/src/devtools/context/python/modules/docs/overview.md
+@@ -1,5 +1,12 @@
+ # Explicit-root Python modules and immediate package membership
+ 
++`lookup_python_modules(universe, dotted_name)` owns bounded exact dotted-name
++lookup. It retains every match in supplied universe order, with no root
++precedence, member lookup, runtime discovery or new import declaration.
++Import resolution uses this shared operation with unchanged outcomes and order;
++the [project configuration package](../../project_configuration/docs/overview.md)
++uses it for Coverage module alternatives, preserving competing interpretations.
++
+ `devtools.context.python.modules` interprets caller-selected observed `.py`
+ resources under one explicit repository-relative `PythonModuleRoot`. An
+ ordinary module and an `__init__.py` package module have distinct
+diff --git a/docs/backlog/items/B-0047-protected-development-validation-profile.md b/docs/backlog/items/B-0047-protected-development-validation-profile.md
+new file mode 100644
+--- /dev/null
++++ b/docs/backlog/items/B-0047-protected-development-validation-profile.md
+@@ -0,0 +1,44 @@
++# B-0047 — Protected development validation profile
++
++- id: B-0047
++- type: INVESTIGATION
++- status: BACKLOG
++- decision_maturity: NEEDS_INVESTIGATION
++- necessity: REQUIRED
++- architectural_significance: SUPPORTING
++- urgency: SOON
++- evidence_basis: REAL_USE
++- primary_domain: evaluation
++- supporting_domains: context
++- scope: explicit supported deterministic development validation isolation
++
++## Problem and evidence
++
++Prospectively frozen dogfood work needs development checks that cannot collect
++sealed confirmation or retained outcome tests. Case 0003 development uses
++explicit production-neighbor directories and a new-package coverage override.
++The ordinary project has `testpaths = ["tests"]` and production-wide 100%
++coverage; that default does not express this protected boundary. Local
++cache/temp restrictions also need writable operational destinations, distinct
++from semantic test selection.
++
++## Scope and invariants
++
++Investigate a documented supported profile declaring eligible development tests,
++excluding sealed/retained outcomes and preserving meaningful coverage gates.
++Host-owned comprehensive validation stays separate. Selection must precede
++collection; filtering after a sealed test executes is insufficient. Confirmation
++contents are unnecessary to establish isolation. Preserve repository artifacts
++and other workers' files. This pressure authorizes no universal harness,
++sandbox framework, registry, runner or production RI/Retrieval changes.
++
++- consumers: protected development agents and host validators
++- hard_dependencies: none
++- pressure_dependencies: B-0015, B-0002
++- operational_dependencies: host-owned separation of development and sealed material
++- risk_if_deferred: default discovery can invalidate prospective isolation
++- risk_if_implemented_early: local experiment policy becomes framework semantics
++- unresolved_semantics: supported selection/exclusion mechanism, artifact boundaries, coverage accounting and host/developer responsibilities
++- promotion_trigger: repeated protected work requires an explicit profile whose isolation can be validated without reading sealed material
++- validation_level: NONE
++- live_validation_trigger: none; deterministic development isolation
+diff --git a/src/devtools/context/python/modules/lookup.py b/src/devtools/context/python/modules/lookup.py
+new file mode 100644
+--- /dev/null
++++ b/src/devtools/context/python/modules/lookup.py
+@@ -0,0 +1,22 @@
++# Copyright (c) 2026
++"""Bounded exact dotted-name lookup without root precedence."""
++
++from __future__ import annotations
++
++from typing import TYPE_CHECKING
++
++if TYPE_CHECKING:
++    from devtools.context.python.modules.interpretation import (
++        PythonModuleInterpretation,
++        PythonModuleInterpretationUniverse,
++    )
++
++
++def lookup_python_modules(
++    universe: PythonModuleInterpretationUniverse,
++    dotted_name: str,
++) -> tuple[PythonModuleInterpretation, ...]:
++    """Retain every exact name match in supplied universe order."""
++    return tuple(
++        item for item in universe.interpretations if item.dotted_name == dotted_name
++    )
+diff --git a/src/devtools/context/python/project_configuration/__init__.py b/src/devtools/context/python/project_configuration/__init__.py
+new file mode 100644
+--- /dev/null
++++ b/src/devtools/context/python/project_configuration/__init__.py
+@@ -0,0 +1,34 @@
++# Copyright (c) 2026
++"""Bounded Python-project configuration Repository Intelligence."""
++
++from devtools.context.python.project_configuration.declarations import (
++    analyze_python_project_configuration,
++)
++from devtools.context.python.project_configuration.models import (
++    PythonConfigurationAlternative,
++    PythonConfigurationAssessment,
++    PythonConfigurationDeclaration,
++    PythonConfigurationDeclarationAnalysis,
++    PythonConfigurationFrame,
++    PythonConfigurationResolutionAnalysis,
++    PythonConfigurationSelector,
++    PythonConfigurationStatus,
++    PythonConfigurationTargetFact,
++)
++from devtools.context.python.project_configuration.resolution import (
++    resolve_python_project_configuration,
++)
++
++__all__ = [
++    "PythonConfigurationAlternative",
++    "PythonConfigurationAssessment",
++    "PythonConfigurationDeclaration",
++    "PythonConfigurationDeclarationAnalysis",
++    "PythonConfigurationFrame",
++    "PythonConfigurationResolutionAnalysis",
++    "PythonConfigurationSelector",
++    "PythonConfigurationStatus",
++    "PythonConfigurationTargetFact",
++    "analyze_python_project_configuration",
++    "resolve_python_project_configuration",
++]
+diff --git a/src/devtools/context/python/project_configuration/declarations.py b/src/devtools/context/python/project_configuration/declarations.py
+new file mode 100644
+--- /dev/null
++++ b/src/devtools/context/python/project_configuration/declarations.py
+@@ -0,0 +1,143 @@
++# Copyright (c) 2026
++"""Parse six Python-project selector keys from exact retained TOML content."""
++
++from __future__ import annotations
++
++import tomllib
++from dataclasses import replace
++from typing import TYPE_CHECKING
++
++from devtools.context.python.project_configuration.models import (
++    PythonConfigurationDeclaration,
++    PythonConfigurationDeclarationAnalysis,
++    PythonConfigurationSelector,
++    digest,
++)
++
++if TYPE_CHECKING:
++    from devtools.context.repository.resource import RepositoryResourceAddress
++    from devtools.context.repository.snapshot import RepositorySnapshot
++
++
++def analyze_python_project_configuration(
++    snapshot: RepositorySnapshot,
++    *,
++    address: RepositoryResourceAddress,
++) -> PythonConfigurationDeclarationAnalysis:
++    """Observe declarations using tomllib, with key/item anchors and bounded coverage.
++
++    Unsupported value forms are assessed, not interpreted. Malformed TOML,
++    including duplicate keys, produces no declarations or absence claims.
++    """
++    resource = snapshot.resource_at(address)
++    derivation = digest(
++        "python-project-config-tomllib-declarations-v1",
++        str(snapshot.repository_id),
++        str(snapshot.id),
++        address.value,
++        resource.content_identity.value,
++        resource.content,
++    )
++    declarations: list[PythonConfigurationDeclaration] = []
++    absent: list[PythonConfigurationSelector] = []
++    parse_error = None
++    try:
++        data = tomllib.loads(resource.content)
++    except tomllib.TOMLDecodeError:
++        parse_error = "malformed-toml"
++    else:
++        for selector in PythonConfigurationSelector:
++            key = tuple(selector.value.split("."))
++            value = _at(data, key)
++            if value is None:
++                absent.append(selector)
++                continue
++            declarations.extend(
++                _selector_declarations(derivation, key, selector, value),
++            )
++        dynamic = _at(data, ("project", "dynamic"))
++        if isinstance(dynamic, list) and "readme" in dynamic:
++            declarations = [
++                replace(item, unsupported_reason="dynamic-readme")
++                if item.selector == PythonConfigurationSelector.README
++                else item
++                for item in declarations
++            ]
++            declarations.extend(
++                PythonConfigurationDeclaration(
++                    derivation,
++                    ("project", "dynamic"),
++                    ordinal,
++                    PythonConfigurationSelector.README,
++                    "readme",
++                    "dynamic-readme",
++                )
++                for ordinal, item in enumerate(dynamic)
++                if item == "readme"
++            )
++            absent = [
++                item for item in absent if item != PythonConfigurationSelector.README
++            ]
++        for name in ("scripts", "gui-scripts", "entry-points"):
++            key = ("project", name)
++            if _at(data, key) is not None:
++                declarations.append(
++                    PythonConfigurationDeclaration(
++                        derivation,
++                        key,
++                        None,
++                        None,
++                        None,
++                        "unsupported-entrypoints",
++                    ),
++                )
++    return PythonConfigurationDeclarationAnalysis(
++        snapshot.repository_id,
++        snapshot.id,
++        resource,
++        derivation,
++        tuple(declarations),
++        tuple(absent),
++        parse_error,
++    )
++
++
++def _at(data: object, key: tuple[str, ...]) -> object:
++    for part in key:
++        if not isinstance(data, dict):
++            return None
++        data = data.get(part)
++    return data
++
++
++def _selector_declarations(
++    derivation: str,
++    key: tuple[str, ...],
++    selector: PythonConfigurationSelector,
++    value: object,
++) -> tuple[PythonConfigurationDeclaration, ...]:
++    items: list[tuple[int | None, object]]
++    if selector == PythonConfigurationSelector.README:
++        items = [(None, value)]
++    elif isinstance(value, list):
++        items = list(enumerate(value))
++    else:
++        items = [(None, value)]
++    declarations = []
++    for ordinal, item in items:
++        reason = None
++        if not isinstance(item, str):
++            reason = "unsupported-value-form"
++        elif selector != PythonConfigurationSelector.README and ordinal is None:
++            reason = "expected-array"
++        declarations.append(
++            PythonConfigurationDeclaration(
++                derivation,
++                key,
++                ordinal,
++                selector,
++                item if isinstance(item, str) else None,
++                reason,
++            ),
++        )
++    return tuple(declarations)
+diff --git a/src/devtools/context/python/project_configuration/docs/overview.md b/src/devtools/context/python/project_configuration/docs/overview.md
+new file mode 100644
+--- /dev/null
++++ b/src/devtools/context/python/project_configuration/docs/overview.md
+@@ -0,0 +1,169 @@
++# Python project configuration Repository Intelligence
++
++`context.python.project_configuration` owns bounded static Python-project
++Repository Intelligence (RI).
++`analyze_python_project_configuration(snapshot, address=...)` parses one exact
++retained TOML resource with stdlib `tomllib`. The separate
++`resolve_python_project_configuration(snapshot, declarations, universe=...,
++frame=...)` derives qualified observed target relationships. Neither operation
++reopens the working tree, discovers configuration, executes tools, installs a
++project or establishes runtime behavior.
++
++## Ownership and dependencies
++
++```mermaid
++flowchart TD
++    S[repository: retained snapshot and addresses] --> D[project_configuration.declarations: tomllib syntax]
++    D --> R[project_configuration.resolution: observed relationships]
++    M[modules: explicit roots and universe] --> L[modules.lookup: exact dotted name]
++    L --> R
++    L --> I[imports.resolution]
++    F[caller: explicit cwd and pytest rootdir] --> R
++    R --> A[assessments and native target facts]
++    A -. separate future relation decision .-> T[Retrieval]
++```
++
++This is supported framework Repository Intelligence, not experiment composition
++or framework runtime configuration. Models, declarations and resolution have
++separate modules. Dependencies are existing repository state/address values and
++Python module interpretation/lookup. Potential dependents are RI consumers and
++future Retrieval relations; Retrieval and Context policy do not participate in
++derivation. Python-specific keys and routes justify this ownership rather than
++a universal configuration package. ADR-0002 already admits configuration anchors
++and qualified DerivedKnowledge; no new ADR or durable schema is required.
++
++## Syntax and routes
++
++| Selector | Supported syntax | Frame |
++| --- | --- | --- |
++| `project.readme` | Literal string | Exact resource relative to configuration parent |
++| `tool.hatch.build.targets.wheel.packages` | Literal-string array | Configuration parent |
++| `tool.pytest.ini_options.testpaths` | Literal-string array | Explicit `frame.pytest_root` |
++| `tool.coverage.run.source` | Literal-string array | Explicit `frame.working_directory` path and eligible exact module-name alternatives |
++| `tool.mypy.files` | Literal-string array | Explicit command cwd |
++| `tool.mypy.mypy_path` | Literal-string array | Explicit command cwd |
++
++Except README, path selectors correlate exact observed resources or strict
++component-prefix members under their frame. `PythonConfigurationFrame` uses
++existing `PythonModuleRoot` values: `.` means repository root and a canonical
++relative directory names another explicit frame. Frame values also pass
++`RepositoryResourceAddress` validation, including Windows drive rejection.
++No tool cwd or pytest rootdir is inferred from the configuration parent.
++Literal `.` selects the framed prefix. Other paths use canonical address
++validation. Absolute, traversing, backslash/noncanonical, glob, environment,
++home-expansion, interpolation and control-character forms are unsupported;
++they are not expanded or normalized into different declarations.
++
++These are observed selector relationships, not complete emulations of packaging,
++discovery, measurement or typing. An exact-resource fact only correlates the
++literal with a retained address; it does not validate that a tool accepts that
++resource kind. Prefix facts assert observed membership, never directory
++existence, execution, final wheel inclusion, exclusions, command precedence,
++test execution, typing, measurement or importability. README never selects
++prefix members.
++
++Coverage retains path and exact dotted-module readings separately. Lookup
++belongs to `modules.lookup_python_modules`; imports use the same lookup without
++changed behavior. Distinct roots/names remain distinct module interpretations,
++without precedence. One positive observed reading with a missing alternative
++resolves **within the supplied frame**; the missing reading remains recorded
++and is not ruled out in a larger filesystem/runtime environment. Two positive
++readings, multiple module matches or exact-address/prefix collisions remain
++ambiguous and publish no facts. A missing tool frame remains unsupported even
++if a module matches. Package/ordinary module targets are existing exact native
++interpretations; package descendants, namespace packages, runtime discovery and
++module/member bindings are not invented here.
++
++## Provenance, identity and coverage
++
++Declarations retain semantic TOML key tuples and optional zero-based array
++ordinals. `tomllib` handles quoted/dotted keys and multiline arrays; no second
++TOML parser or exact source span is fabricated. The containing analysis retains
++the exact configuration occurrence/content, repository, snapshot and versioned
++derivation identity. Duplicate array items have distinct occurrence/fact
++identities. Anchors are semantic provenance within that exact retained resource.
++Unsupported tables (including README file/text tables), non-string items and
++scalar array-selector values are assessed without target derivation.
++
++Dynamic README and presence of project scripts, GUI scripts or entrypoint tables
++produce unsupported assessments. Object references are not resolved into
++runtime bindings. Static README syntax remains retained when marked dynamic,
++and repeated dynamic README entries retain their own array ordinals.
++The real project declares no entrypoints. Absent selectors
++are listed; present empty arrays have zero declarations and are not absent.
++Coverage is exhaustive only for the six named keys and assessed dynamic/entrypoint
++presence in valid input; unknown keys have no relationship claim. Malformed
++TOML, including duplicate keys, yields a parse error, no declarations, no facts
++and no selector-absence claims.
++
++Resolution validates repository/snapshot IDs, the exact retained configuration
++occurrence including content, reproducible declaration analysis, and each
++module's repository, snapshot and exact retained occurrence/content. It retains
++the full canonical observed resource frame, universe and explicit assumptions
++as dependencies. Derivation, occurrence and fact definitions are versioned;
++source/target edits, frames, universes and snapshots affect appropriate identity.
++Order is selector order, array ordinal, then target address or module identity.
++Supplied ordering never chooses a competing interpretation.
++
++Every declaration has a resolved, missing-in-frame, ambiguous or unsupported
++assessment. Alternatives retain all matches and route-specific outcomes.
++Many members under one directory reading produce many facts without ambiguity.
++Facts retain declaration, exact config resource, route, requested framed
++selector, target occurrence and optional module interpretation. Missing means
++only no match in the supplied frame, never filesystem absence or an external
++target. Parse failure and unsupported syntax are not negative target knowledge.
++
++## Alternatives and future Retrieval
++
++A universal configuration loader/registry or runtime-binding framework would
++combine unrelated tooling and ambient state without a consumer; it is rejected
++for this increment. Speculative entrypoint resolution and manufactured import
++declarations are also rejected: this project has no such declarations. Other
++README forms/selectors require separately versioned semantics and a concrete
++consumer. Native module lookup is reused rather than copying module/member
++policy. B-0019 remains deferred framework runtime-configuration pressure.
++
++Future Retrieval could consume `PythonConfigurationTargetFact` under a separate
++explicit relation decision: config resource to observed target, chosen selector
++families and admissible routes, forward/reverse direction, duplicate handling,
++module-to-resource projection and snapshot applicability checks. Fact support
++must remain native and prefix membership distinct from semantic execution or
++dependency. Ambiguous/missing/unsupported assessments can inform coverage
++diagnosis rather than edges. BM25, Personalized PageRank (PPR), repository-map,
++Reciprocal Rank Fusion (RRF), graph projections
++and Context policy do not consume this capability now. No retrieval quality
++conclusion follows from these facts or advisory suggestions.
++
++## References and validation
++
++Semantic references: [PyPA README](https://packaging.python.org/en/latest/specifications/pyproject-toml/#readme),
++[Hatch packages](https://hatch.pypa.io/dev/config/build/#packages),
++[pytest testpaths](https://docs.pytest.org/en/stable/reference/reference.html#confval-testpaths),
++[Coverage source](https://coverage.readthedocs.io/en/latest/config.html#run-source)
++and [mypy paths](https://mypy.readthedocs.io/en/stable/config_file.html).
++Tool documentation defines actual execution semantics; this contract defines
++only supported static observed relationships.
++
++Focused tests include the actual project declarations over a small explicit
++resource selection, frames, duplicates, malformed TOML, unsupported forms,
++competing readings/roots, stale dependencies and retained-content behavior.
++New-package and shared-lookup branch coverage is 100%. Protected development
++checks use explicit test directories and a focused coverage override, avoiding
++retained experiment/confirmation collection. B-0047 records pressure for a
++supported validation-isolation profile; no general harness is designed here.
++
++The final focused/neighbor invocation (248 passing tests) was:
++
++```powershell
++.venv/Scripts/python.exe -m pytest tests/context/python tests/evaluation `
++  -o addopts='' -p no:cacheprovider --basetemp=.devtools/case0003-final `
++  --cov=devtools.context.python.project_configuration `
++  --cov=devtools.context.python.modules.lookup --cov-branch `
++  --cov-report=term-missing --cov-fail-under=100
++```
++
++`.devtools` is an ignored writable operational directory. This command overrides
++the repository-wide coverage scope for the new capability and never invokes
++default repository-wide test collection. Host comprehensive validation remains
++separate. Ruff and mypy additionally passed over `src`, `tests/context` and
++`tests/evaluation`.
+diff --git a/src/devtools/context/python/project_configuration/models.py b/src/devtools/context/python/project_configuration/models.py
+new file mode 100644
+--- /dev/null
++++ b/src/devtools/context/python/project_configuration/models.py
+@@ -0,0 +1,161 @@
++# Copyright (c) 2026
++"""Python project configuration syntax and qualified observed relationships."""
++
++from __future__ import annotations
++
++import hashlib
++from dataclasses import dataclass
++from enum import Enum
++from typing import TYPE_CHECKING, ClassVar
++
++if TYPE_CHECKING:
++    from devtools.context.python.modules.interpretation import (
++        PythonModuleInterpretation,
++        PythonModuleInterpretationUniverse,
++        PythonModuleRoot,
++    )
++    from devtools.context.repository.identity import RepositoryId
++    from devtools.context.repository.resource import RepositoryResourceOccurrence
++    from devtools.context.repository.snapshot import RepositorySnapshotId
++
++
++class PythonConfigurationSelector(Enum):
++    """Name the six supported Python-project selectors."""
++
++    README = "project.readme"
++    HATCH_PACKAGES = "tool.hatch.build.targets.wheel.packages"
++    PYTEST_TESTPATHS = "tool.pytest.ini_options.testpaths"
++    COVERAGE_SOURCE = "tool.coverage.run.source"
++    MYPY_FILES = "tool.mypy.files"
++    MYPY_PATH = "tool.mypy.mypy_path"
++
++
++class PythonConfigurationStatus(Enum):
++    """Qualify resolution within retained resources and explicit assumptions."""
++
++    RESOLVED = "resolved"
++    MISSING_IN_FRAME = "missing-in-frame"
++    AMBIGUOUS = "ambiguous"
++    UNSUPPORTED = "unsupported"
++
++
++@dataclass(frozen=True, slots=True)
++class PythonConfigurationDeclaration:
++    """Retain a semantic TOML key/item anchor, never a fabricated source span."""
++
++    derivation_identity: str
++    key: tuple[str, ...]
++    item_ordinal: int | None
++    selector: PythonConfigurationSelector | None
++    value: str | None
++    unsupported_reason: str | None
++
++    @property
++    def identity(self) -> str:
++        """Version and distinguish key and duplicate array occurrences."""
++        return digest(
++            "python-project-config-occurrence-v1",
++            self.derivation_identity,
++            *self.key,
++            str(self.item_ordinal),
++            self.selector.value if self.selector else "",
++            self.value or "",
++            self.unsupported_reason or "",
++        )
++
++
++@dataclass(frozen=True, slots=True)
++class PythonConfigurationDeclarationAnalysis:
++    """Account for supported keys and explicitly assessed unsupported syntax."""
++
++    repository_id: RepositoryId
++    snapshot_id: RepositorySnapshotId
++    resource: RepositoryResourceOccurrence
++    derivation_identity: str
++    declarations: tuple[PythonConfigurationDeclaration, ...]
++    absent_selectors: tuple[PythonConfigurationSelector, ...]
++    parse_error: str | None
++
++    SCOPE: ClassVar[str] = "six-selector-keys-and-project-entrypoint-presence"
++
++
++@dataclass(frozen=True, slots=True)
++class PythonConfigurationFrame:
++    """Declare repository-relative tool frames without ambient cwd inference."""
++
++    working_directory: PythonModuleRoot | None = None
++    pytest_root: PythonModuleRoot | None = None
++
++
++@dataclass(frozen=True, slots=True)
++class PythonConfigurationAlternative:
++    """Retain one selector interpretation and all its observed targets."""
++
++    route: str
++    requested: str | None
++    status: PythonConfigurationStatus
++    resources: tuple[RepositoryResourceOccurrence, ...] = ()
++    modules: tuple[PythonModuleInterpretation, ...] = ()
++    reason: str | None = None
++
++
++@dataclass(frozen=True, slots=True)
++class PythonConfigurationAssessment:
++    """Separate a declaration from its competing interpretations."""
++
++    declaration: PythonConfigurationDeclaration
++    status: PythonConfigurationStatus
++    alternatives: tuple[PythonConfigurationAlternative, ...]
++    reason: str | None = None
++
++
++@dataclass(frozen=True, slots=True)
++class PythonConfigurationTargetFact:
++    """Assert a qualified exact-resource, prefix-member, or module relationship."""
++
++    derivation_identity: str
++    declaration: PythonConfigurationDeclaration
++    configuration: RepositoryResourceOccurrence
++    route: str
++    requested: str
++    target: RepositoryResourceOccurrence
++    module: PythonModuleInterpretation | None = None
++
++    @property
++    def identity(self) -> str:
++        """Version relationship identity including source and target dependencies."""
++        return digest(
++            "python-project-config-target-fact-v1",
++            self.derivation_identity,
++            self.declaration.identity,
++            self.route,
++            self.requested,
++            self.target.address.value,
++            self.target.content_identity.value,
++            self.module.identity if self.module else "",
++        )
++
++
++@dataclass(frozen=True, slots=True)
++class PythonConfigurationResolutionAnalysis:
++    """Retain every assessment, native fact and direct resolution dependency."""
++
++    declarations: PythonConfigurationDeclarationAnalysis
++    frame: PythonConfigurationFrame
++    universe: PythonModuleInterpretationUniverse
++    resource_dependencies: tuple[RepositoryResourceOccurrence, ...]
++    derivation_identity: str
++    assessments: tuple[PythonConfigurationAssessment, ...]
++    facts: tuple[PythonConfigurationTargetFact, ...]
++
++    SCOPE: ClassVar[str] = "all-declarations-in-explicit-observed-snapshot-and-universe"
++
++
++def digest(*values: str) -> str:
++    """Hash length-framed semantic values for this bounded family."""
++    result = hashlib.sha256()
++    for value in values:
++        encoded = value.encode("utf-8")
++        result.update(len(encoded).to_bytes(8, "big"))
++        result.update(encoded)
++    return result.hexdigest()
+diff --git a/src/devtools/context/python/project_configuration/resolution.py b/src/devtools/context/python/project_configuration/resolution.py
+new file mode 100644
+--- /dev/null
++++ b/src/devtools/context/python/project_configuration/resolution.py
+@@ -0,0 +1,306 @@
++# Copyright (c) 2026
++"""Resolve literal selectors only against retained resources and module knowledge."""
++
++from __future__ import annotations
++
++from typing import TYPE_CHECKING
++
++from devtools.context.python.modules.lookup import lookup_python_modules
++from devtools.context.python.project_configuration.declarations import (
++    analyze_python_project_configuration,
++)
++from devtools.context.python.project_configuration.models import (
++    PythonConfigurationAlternative,
++    PythonConfigurationAssessment,
++    PythonConfigurationFrame,
++    PythonConfigurationResolutionAnalysis,
++    PythonConfigurationSelector,
++    PythonConfigurationStatus,
++    PythonConfigurationTargetFact,
++    digest,
++)
++from devtools.context.repository.resource import RepositoryResourceAddress
++
++if TYPE_CHECKING:
++    from devtools.context.python.modules.interpretation import (
++        PythonModuleInterpretationUniverse,
++        PythonModuleRoot,
++    )
++    from devtools.context.python.project_configuration.models import (
++        PythonConfigurationDeclaration,
++        PythonConfigurationDeclarationAnalysis,
++    )
++    from devtools.context.repository.snapshot import RepositorySnapshot
++
++_S = PythonConfigurationStatus
++_K = PythonConfigurationSelector
++_EMPTY_FRAME = PythonConfigurationFrame()
++_FIRST_PRINTABLE_ASCII = 32
++_ASCII_DELETE = 127
++
++
++def resolve_python_project_configuration(
++    snapshot: RepositorySnapshot,
++    declarations: PythonConfigurationDeclarationAnalysis,
++    *,
++    universe: PythonModuleInterpretationUniverse,
++    frame: PythonConfigurationFrame = _EMPTY_FRAME,
++) -> PythonConfigurationResolutionAnalysis:
++    """Derive qualified observed target facts without acquisition or tool execution.
++
++    Many members of one directory selection are not ambiguous. Coverage path
++    and module alternatives and distinct module roots are competing readings.
++    Only unambiguous supported readings publish facts. Missing means only no
++    match in the retained frame, never filesystem absence or an external target.
++    """
++    _validate(snapshot, declarations, universe, frame)
++    resources = tuple(sorted(snapshot.resources, key=lambda item: item.address.value))
++    derivation = digest(
++        "python-project-config-observed-resolution-v1",
++        declarations.derivation_identity,
++        universe.identity,
++        frame.working_directory.value if frame.working_directory else "",
++        frame.pytest_root.value if frame.pytest_root else "",
++        *(
++            value
++            for item in resources
++            for value in (
++                item.address.value,
++                item.content_identity.value,
++                item.content,
++            )
++        ),
++    )
++    assessments: list[PythonConfigurationAssessment] = []
++    facts: list[PythonConfigurationTargetFact] = []
++    for declaration in declarations.declarations:
++        alternatives = _alternatives(
++            snapshot,
++            declarations,
++            declaration,
++            universe,
++            frame,
++        )
++        status = _status(declaration, alternatives)
++        assessments.append(
++            PythonConfigurationAssessment(
++                declaration,
++                status,
++                alternatives,
++                declaration.unsupported_reason,
++            ),
++        )
++        if status != _S.RESOLVED:
++            continue
++        alternative = next(item for item in alternatives if item.status == _S.RESOLVED)
++        facts.extend(
++            PythonConfigurationTargetFact(
++                derivation,
++                declaration,
++                declarations.resource,
++                alternative.route,
++                alternative.requested or "",
++                target,
++            )
++            for target in alternative.resources
++        )
++        facts.extend(
++            PythonConfigurationTargetFact(
++                derivation,
++                declaration,
++                declarations.resource,
++                alternative.route,
++                alternative.requested or "",
++                module.resource,
++                module,
++            )
++            for module in alternative.modules
++        )
++    return PythonConfigurationResolutionAnalysis(
++        declarations,
++        frame,
++        universe,
++        resources,
++        derivation,
++        tuple(assessments),
++        tuple(facts),
++    )
++
++
++def _validate(
++    snapshot: RepositorySnapshot,
++    declarations: PythonConfigurationDeclarationAnalysis,
++    universe: PythonModuleInterpretationUniverse,
++    frame: PythonConfigurationFrame,
++) -> None:
++    if (
++        snapshot.repository_id != declarations.repository_id
++        or snapshot.id != declarations.snapshot_id
++        or snapshot.resource_at(declarations.resource.address) != declarations.resource
++        or analyze_python_project_configuration(
++            snapshot,
++            address=declarations.resource.address,
++        )
++        != declarations
++    ):
++        msg = "Configuration declarations do not match exact retained snapshot content."
++        raise ValueError(msg)
++    if universe.repository_id != snapshot.repository_id:
++        msg = "Configuration universe does not match repository."
++        raise ValueError(msg)
++    for module in universe.interpretations:
++        if (
++            module.repository_id != snapshot.repository_id
++            or module.snapshot_id != snapshot.id
++            or snapshot.resource_at(module.resource.address) != module.resource
++        ):
++            msg = "Configuration module interpretation has stale dependencies."
++            raise ValueError(msg)
++    for root in (frame.working_directory, frame.pytest_root):
++        if root is not None and root.value != ".":
++            RepositoryResourceAddress(root.value)
++
++
++def _status(
++    declaration: PythonConfigurationDeclaration,
++    alternatives: tuple[PythonConfigurationAlternative, ...],
++) -> PythonConfigurationStatus:
++    supported = tuple(item for item in alternatives if item.status == _S.RESOLVED)
++    if declaration.unsupported_reason:
++        return _S.UNSUPPORTED
++    if any(item.status == _S.AMBIGUOUS for item in alternatives) or len(supported) > 1:
++        return _S.AMBIGUOUS
++    if any(item.status == _S.UNSUPPORTED for item in alternatives):
++        return _S.UNSUPPORTED
++    return _S.RESOLVED if supported else _S.MISSING_IN_FRAME
++
++
++def _alternatives(
++    snapshot: RepositorySnapshot,
++    analysis: PythonConfigurationDeclarationAnalysis,
++    declaration: PythonConfigurationDeclaration,
++    universe: PythonModuleInterpretationUniverse,
++    frame: PythonConfigurationFrame,
++) -> tuple[PythonConfigurationAlternative, ...]:
++    if declaration.unsupported_reason:
++        return ()
++    value = declaration.value
++    assert value is not None  # noqa: S101  # validated declaration analysis
++    if any(character in value for character in "*?[]${}~") or any(
++        ord(character) < _FIRST_PRINTABLE_ASCII or ord(character) == _ASCII_DELETE
++        for character in value
++    ):
++        return (
++            PythonConfigurationAlternative(
++                "literal",
++                value,
++                _S.UNSUPPORTED,
++                reason="glob-env-or-dynamic-value",
++            ),
++        )
++    try:
++        if value != ".":
++            RepositoryResourceAddress(value)
++    except ValueError:
++        return (
++            PythonConfigurationAlternative(
++                "literal",
++                value,
++                _S.UNSUPPORTED,
++                reason="noncanonical-relative-path",
++            ),
++        )
++    selector = declaration.selector
++    if selector in {_K.README, _K.HATCH_PACKAGES}:
++        parent = analysis.resource.address.parts[:-1]
++        path = _path(
++            snapshot,
++            value,
++            parent,
++            "configuration-relative",
++            selector == _K.README,
++        )
++    elif selector == _K.PYTEST_TESTPATHS:
++        path = _framed_path(snapshot, value, frame.pytest_root, "pytest-root-relative")
++    else:
++        path = _framed_path(
++            snapshot,
++            value,
++            frame.working_directory,
++            "command-cwd-relative",
++        )
++    if selector != _K.COVERAGE_SOURCE or not all(
++        part.isidentifier() for part in value.split(".")
++    ):
++        return (path,)
++    matches = tuple(
++        sorted(lookup_python_modules(universe, value), key=lambda item: item.identity),
++    )
++    module = PythonConfigurationAlternative(
++        "coverage-exact-module",
++        value,
++        _S.MISSING_IN_FRAME
++        if not matches
++        else _S.RESOLVED
++        if len(matches) == 1
++        else _S.AMBIGUOUS,
++        modules=matches,
++    )
++    return path, module
++
++
++def _framed_path(
++    snapshot: RepositorySnapshot,
++    value: str,
++    root: PythonModuleRoot | None,
++    route: str,
++) -> PythonConfigurationAlternative:
++    if root is None:
++        return PythonConfigurationAlternative(
++            route,
++            None,
++            _S.UNSUPPORTED,
++            reason="explicit-tool-frame-required",
++        )
++    return _path(snapshot, value, root.parts, route, exact_only=False)
++
++
++def _path(
++    snapshot: RepositorySnapshot,
++    value: str,
++    parent: tuple[str, ...],
++    route: str,
++    exact_only: bool,  # noqa: FBT001
++) -> PythonConfigurationAlternative:
++    parts = (*parent, *(() if value == "." else RepositoryResourceAddress(value).parts))
++    requested = "/".join(parts) or "."
++    exact = tuple(item for item in snapshot.resources if item.address.parts == parts)
++    members = (
++        ()
++        if exact_only
++        else tuple(
++            sorted(
++                (
++                    item
++                    for item in snapshot.resources
++                    if item.address.parts[: len(parts)] == parts
++                    and len(item.address.parts) > len(parts)
++                ),
++                key=lambda item: item.address.value,
++            ),
++        )
++    )
++    if exact and members:
++        return PythonConfigurationAlternative(
++            route,
++            requested,
++            _S.AMBIGUOUS,
++            exact + members,
++            reason="competing-exact-resource-and-directory-prefix",
++        )
++    return PythonConfigurationAlternative(
++        route + ("-exact-resource" if exact_only or exact else "-directory-prefix"),
++        requested,
++        _S.RESOLVED if exact or members else _S.MISSING_IN_FRAME,
++        exact or members,
++    )
+diff --git a/tests/context/python/project_configuration/__init__.py b/tests/context/python/project_configuration/__init__.py
+new file mode 100644
+--- /dev/null
++++ b/tests/context/python/project_configuration/__init__.py
+@@ -0,0 +1,2 @@
++# Copyright (c) 2026
++"""Python project configuration RI tests."""
+diff --git a/tests/context/python/project_configuration/test_configuration.py b/tests/context/python/project_configuration/test_configuration.py
+new file mode 100644
+--- /dev/null
++++ b/tests/context/python/project_configuration/test_configuration.py
+@@ -0,0 +1,520 @@
++# Copyright (c) 2026
++# ruff: noqa: D103, PLR2004
++"""Exercise configuration syntax, frames, provenance and competing readings."""
++
++import json
++from dataclasses import replace
++from pathlib import Path
++
++import pytest
++
++from devtools.context.python.modules import (
++    PythonModuleRoot,
++    define_python_module_interpretation_universe,
++    interpret_python_module_resources,
++)
++from devtools.context.python.project_configuration import (
++    PythonConfigurationFrame,
++    PythonConfigurationResolutionAnalysis,
++    PythonConfigurationSelector,
++    PythonConfigurationStatus,
++    analyze_python_project_configuration,
++    resolve_python_project_configuration,
++)
++from devtools.context.repository.identity import Repository, RepositoryId
++from devtools.context.repository.observation import observe_repository_resources
++from devtools.context.repository.resource import RepositoryResourceAddress
++from devtools.context.repository.snapshot import (
++    RepositorySnapshot,
++    RepositorySnapshotId,
++)
++from devtools.core.paths import ResolvedPath
++
++_ROOT = PythonModuleRoot(".")
++_FRAME = PythonConfigurationFrame(_ROOT, _ROOT)
++_S = PythonConfigurationStatus
++
++
++def _snapshot(tmp_path: Path, resources: dict[str, str]) -> RepositorySnapshot:
++    for address, content in resources.items():
++        path = tmp_path / address
++        path.parent.mkdir(parents=True, exist_ok=True)
++        path.write_text(content, encoding="utf-8")
++    return observe_repository_resources(
++        repository=Repository(
++            RepositoryId.parse("00000000-0000-4000-8000-000000000047"),
++        ),
++        root=ResolvedPath(tmp_path),
++        addresses=tuple(RepositoryResourceAddress(address) for address in resources),
++        maximum_resource_bytes=1024 * 1024,
++    )
++
++
++def _resolve(
++    snapshot: RepositorySnapshot,
++    *,
++    config: str = "pyproject.toml",
++    roots: tuple[PythonModuleRoot, ...] = (_ROOT,),
++    frame: PythonConfigurationFrame = _FRAME,
++) -> PythonConfigurationResolutionAnalysis:
++    declarations = analyze_python_project_configuration(
++        snapshot,
++        address=RepositoryResourceAddress(config),
++    )
++    universe = define_python_module_interpretation_universe(
++        repository_id=snapshot.repository_id,
++        interpretations=tuple(
++            module
++            for root in roots
++            for module in interpret_python_module_resources(
++                snapshot,
++                module_root=root,
++                resource_addresses=tuple(item.address for item in snapshot.resources),
++            ).interpretations
++        ),
++    )
++    return resolve_python_project_configuration(
++        snapshot,
++        declarations,
++        universe=universe,
++        frame=frame,
++    )
++
++
++def test_actual_project_selectors_retained_content_and_coverage(tmp_path: Path) -> None:
++    project = Path("pyproject.toml").read_text(encoding="utf-8")
++    snapshot = _snapshot(
++        tmp_path,
++        {
++            "pyproject.toml": project,
++            "README.md": "project readme",
++            "src/devtools/__init__.py": "",
++            "src/devtools/a.py": "",
++            "tests/test_a.py": "",
++            "experiments/example.py": "",
++            "testsmith/test_a.py": "distractor",
++        },
++    )
++    (tmp_path / "pyproject.toml").write_text("broken [", encoding="utf-8")
++    result = _resolve(snapshot, roots=(PythonModuleRoot("src"),))
++    assert len(result.assessments) == 8
++    assert all(item.status == _S.RESOLVED for item in result.assessments)
++    assert not result.declarations.absent_selectors
++    assert result.declarations.parse_error is None
++    assert {item.declaration.selector for item in result.facts} == set(
++        PythonConfigurationSelector,
++    )
++    assert all(
++        item.configuration
++        == snapshot.resource_at(RepositoryResourceAddress("pyproject.toml"))
++        for item in result.facts
++    )
++    assert not any(
++        item.target.address.value.startswith("testsmith/") for item in result.facts
++    )
++    coverage = next(
++        item
++        for item in result.assessments
++        if item.declaration.selector == PythonConfigurationSelector.COVERAGE_SOURCE
++    )
++    assert [item.status for item in coverage.alternatives] == [
++        _S.MISSING_IN_FRAME,
++        _S.RESOLVED,
++    ]
++    assert result.facts[-1].requested == "src"
++    assert len({item.identity for item in result.facts}) == len(result.facts)
++    assert result == _resolve(snapshot, roots=(PythonModuleRoot("src"),))
++
++
++def test_separate_nested_config_and_command_frames_and_duplicates(
++    tmp_path: Path,
++) -> None:
++    snapshot = _snapshot(
++        tmp_path,
++        {
++            "nested/pyproject.toml": """[project]
++readme = "README.md"
++[tool.hatch.build.targets.wheel]
++packages = ["pkg", "pkg"]
++[tool.pytest.ini_options]
++testpaths = ["tests"]
++[tool.mypy]
++files = ["file.py", ".", "missing"]
++mypy_path = ["src"]
++""",
++            "nested/README.md": "",
++            "nested/pkg/a.py": "",
++            "nested/pkg/b.py": "",
++            "nested/src/a.py": "",
++            "command/file.py": "",
++            "command/src/a.py": "",
++            "testroot/tests/test_a.py": "",
++        },
++    )
++    result = _resolve(
++        snapshot,
++        config="nested/pyproject.toml",
++        frame=PythonConfigurationFrame(
++            PythonModuleRoot("command"),
++            PythonModuleRoot("testroot"),
++        ),
++    )
++    assert [item.status for item in result.assessments] == [
++        _S.RESOLVED,
++        _S.RESOLVED,
++        _S.RESOLVED,
++        _S.RESOLVED,
++        _S.RESOLVED,
++        _S.RESOLVED,
++        _S.MISSING_IN_FRAME,
++        _S.RESOLVED,
++    ]
++    packages = [
++        item
++        for item in result.assessments
++        if item.declaration.selector == PythonConfigurationSelector.HATCH_PACKAGES
++    ]
++    assert [item.declaration.item_ordinal for item in packages] == [0, 1]
++    assert packages[0].declaration.identity != packages[1].declaration.identity
++    assert len(packages[0].alternatives[0].resources) == 2
++    assert result.facts[0].target.address.value == "nested/README.md"
++    assert result.facts[-1].target.address.value == "command/src/a.py"
++    missing_frames = _resolve(
++        snapshot,
++        config="nested/pyproject.toml",
++        frame=PythonConfigurationFrame(),
++    )
++    assert all(item.status == _S.UNSUPPORTED for item in missing_frames.assessments[3:])
++    changed = _resolve(snapshot, config="nested/pyproject.toml", frame=_FRAME)
++    assert result.derivation_identity != changed.derivation_identity
++
++
++@pytest.mark.parametrize(
++    "value",
++    [
++        "*.py",
++        "$ROOT/src",
++        "~/src",
++        "{src}",
++        "a?",
++        "a[b]",
++        "/src",
++        "C:/src",
++        "../src",
++        "./src",
++        "",
++        "a//b",
++        "a\\b",
++        "a\nb",
++        "a\tb",
++        "a\x00b",
++        "a\x7fb",
++    ],
++)
++def test_unsupported_literals(tmp_path: Path, value: str) -> None:
++    # JSON string escaping is compatible for these TOML basic-string fixtures.
++    snapshot = _snapshot(
++        tmp_path,
++        {"pyproject.toml": "[tool.mypy]\nfiles = [" + json.dumps(value) + "]"},
++    )
++    result = _resolve(snapshot)
++    assert result.assessments[0].status == _S.UNSUPPORTED
++    assert result.assessments[0].alternatives[0].reason
++    assert not result.facts
++
++
++@pytest.mark.parametrize("content", ["[project", '[project]\nreadme="a"\nreadme="b"'])
++def test_invalid_toml_never_publishes_declarations_or_facts(
++    tmp_path: Path,
++    content: str,
++) -> None:
++    result = _resolve(_snapshot(tmp_path, {"pyproject.toml": content}))
++    assert result.declarations.parse_error == "malformed-toml"
++    assert not result.declarations.declarations
++    assert not result.declarations.absent_selectors
++    assert not result.assessments
++    assert not result.facts
++
++
++@pytest.mark.parametrize(
++    "content",
++    [
++        '[project]\nreadme={file="README.md", "content-type"="text/markdown"}',
++        "[project]\nreadme=42",
++        '[tool.mypy]\nfiles="src"',
++        '[tool.mypy]\nfiles=[42, false, {path="src"}]',
++        '[project]\ndynamic=["readme"]',
++        '[project]\nreadme="README.md"\ndynamic=["readme"]',
++        '[project.scripts]\nmain="pkg:main"\n[project.gui-scripts]\nui="pkg:ui"\n[project.entry-points.group]\nplugin="pkg:plugin"',
++    ],
++)
++def test_unsupported_forms_dynamic_and_entrypoints(
++    tmp_path: Path,
++    content: str,
++) -> None:
++    result = _resolve(_snapshot(tmp_path, {"pyproject.toml": content, "README.md": ""}))
++    assert result.assessments
++    assert all(item.status == _S.UNSUPPORTED for item in result.assessments)
++    assert not result.facts
++    assert all(item.declaration.identity for item in result.assessments)
++
++
++def test_empty_arrays_absent_keys_and_non_table_nodes(tmp_path: Path) -> None:
++    result = _resolve(
++        _snapshot(
++            tmp_path,
++            {"pyproject.toml": "[tool.mypy]\nfiles=[]\n[project]\ndynamic=[]"},
++        ),
++    )
++    assert not result.assessments
++    assert (
++        PythonConfigurationSelector.MYPY_FILES
++        not in result.declarations.absent_selectors
++    )
++    assert len(result.declarations.absent_selectors) == 5
++    assert (
++        len(
++            _resolve(
++                _snapshot(tmp_path, {"pyproject.toml": "tool=42"}),
++            ).declarations.absent_selectors,
++        )
++        == 6
++    )
++
++
++@pytest.mark.parametrize(
++    ("targets", "roots", "expected"),
++    [
++        ({"pkg/__init__.py": "", "pkg/a.py": ""}, (_ROOT,), _S.AMBIGUOUS),
++        (
++            {"src/pkg/__init__.py": "", "other/pkg.py": ""},
++            (PythonModuleRoot("src"), PythonModuleRoot("other")),
++            _S.AMBIGUOUS,
++        ),
++        ({"pkg": "", "pkg/a.txt": ""}, (_ROOT,), _S.AMBIGUOUS),
++        ({"pkg/a.txt": "", "pkg/b.txt": ""}, (_ROOT,), _S.RESOLVED),
++        ({}, (_ROOT,), _S.MISSING_IN_FRAME),
++    ],
++)
++def test_coverage_competing_routes_roots_and_many_members(
++    tmp_path: Path,
++    targets: dict[str, str],
++    roots: tuple[PythonModuleRoot, ...],
++    expected: PythonConfigurationStatus,
++) -> None:
++    # Exact-resource/prefix collision is a representable retained state; it
++    # cannot be acquired from one physical filesystem tree.
++    collision = "pkg" in targets and "pkg/a.txt" in targets
++    resources = {key: value for key, value in targets.items() if key != "pkg"}
++    snapshot = _snapshot(
++        tmp_path,
++        {"pyproject.toml": '[tool.coverage.run]\nsource=["pkg"]', **resources},
++    )
++    if collision:
++        occurrence = replace(
++            snapshot.resources[-1],
++            address=RepositoryResourceAddress("pkg"),
++        )
++        snapshot = replace(snapshot, resources=(*snapshot.resources, occurrence))
++    result = _resolve(snapshot, roots=roots)
++    assert result.assessments[0].status == expected
++    assert bool(result.facts) == (expected == _S.RESOLVED)
++    if expected == _S.AMBIGUOUS:
++        assert not result.facts
++
++
++def test_coverage_path_only_and_module_without_path_frame(tmp_path: Path) -> None:
++    snapshot = _snapshot(
++        tmp_path,
++        {
++            "pyproject.toml": '[tool.coverage.run]\nsource=["src/pkg", "pkg"]',
++            "src/pkg/__init__.py": "",
++        },
++    )
++    result = _resolve(snapshot, roots=(PythonModuleRoot("src"),))
++    assert all(item.status == _S.RESOLVED for item in result.assessments)
++    assert result.facts[1].module is not None
++    assert result.facts[1].identity
++    unsupported = _resolve(
++        snapshot,
++        roots=(PythonModuleRoot("src"),),
++        frame=PythonConfigurationFrame(),
++    )
++    assert all(item.status == _S.UNSUPPORTED for item in unsupported.assessments)
++
++
++@pytest.mark.parametrize(
++    "mutation",
++    [
++        "repository",
++        "snapshot",
++        "occurrence",
++        "declaration",
++        "derivation",
++        "module-repository",
++        "module-snapshot",
++        "module-content",
++        "universe",
++        "absolute-cwd",
++        "absolute-pytest",
++    ],
++)
++def test_reject_foreign_or_stale_dependencies(  # noqa: C901
++    tmp_path: Path,
++    mutation: str,
++) -> None:
++    snapshot = _snapshot(
++        tmp_path,
++        {
++            "pyproject.toml": '[project]\nreadme="README.md"',
++            "README.md": "",
++            "pkg.py": "",
++        },
++    )
++    result = _resolve(snapshot)
++    declarations, universe, frame = result.declarations, result.universe, result.frame
++    foreign = RepositoryId.parse("00000000-0000-4000-8000-000000000048")
++    wrong_id = RepositorySnapshotId("0" * 64)
++    if mutation == "repository":
++        declarations = replace(declarations, repository_id=foreign)
++    elif mutation == "snapshot":
++        declarations = replace(declarations, snapshot_id=wrong_id)
++    elif mutation == "occurrence":
++        declarations = replace(
++            declarations,
++            resource=replace(declarations.resource, content="changed"),
++        )
++    elif mutation == "declaration":
++        declarations = replace(
++            declarations,
++            declarations=(replace(declarations.declarations[0], value=None),),
++        )
++    elif mutation == "derivation":
++        declarations = replace(declarations, derivation_identity="invalid")
++    elif mutation == "universe":
++        universe = replace(universe, repository_id=foreign)
++    elif mutation == "absolute-cwd":
++        frame = PythonConfigurationFrame(PythonModuleRoot("C:/absolute"))
++    elif mutation == "absolute-pytest":
++        frame = PythonConfigurationFrame(pytest_root=PythonModuleRoot("C:/absolute"))
++    else:
++        module = universe.interpretations[0]
++        if mutation == "module-repository":
++            module = replace(module, repository_id=foreign)
++        elif mutation == "module-snapshot":
++            module = replace(module, snapshot_id=wrong_id)
++        else:
++            module = replace(
++                module,
++                resource=replace(module.resource, content="changed"),
++            )
++        universe = replace(universe, interpretations=(module,))
++    with pytest.raises(ValueError, match=r"Configuration|Repository resource"):
++        resolve_python_project_configuration(
++            snapshot,
++            declarations,
++            universe=universe,
++            frame=frame,
++        )
++
++
++def test_default_frame_missing_address_and_dependency_changes(tmp_path: Path) -> None:
++    snapshot = _snapshot(
++        tmp_path,
++        {"pyproject.toml": '[tool.mypy]\nfiles=["src"]', "src/a.py": ""},
++    )
++    result = _resolve(snapshot)
++    assert (
++        resolve_python_project_configuration(
++            snapshot,
++            result.declarations,
++            universe=result.universe,
++        )
++        .assessments[0]
++        .status
++        == _S.UNSUPPORTED
++    )
++    with pytest.raises(ValueError, match="does not contain"):
++        analyze_python_project_configuration(
++            snapshot,
++            address=RepositoryResourceAddress("absent.toml"),
++        )
++    changed = _resolve(
++        _snapshot(
++            tmp_path,
++            {"pyproject.toml": '[tool.mypy]\nfiles=["src"]', "src/a.py": "changed"},
++        ),
++    )
++    assert result.derivation_identity != changed.derivation_identity
++    assert result.facts[0].identity != changed.facts[0].identity
++    assert (
++        result.declarations.declarations[0].identity
++        != changed.declarations.declarations[0].identity
++    )
++
++
++def test_dynamic_readme_preserves_static_syntax_and_ordinals(tmp_path: Path) -> None:
++    result = _resolve(
++        _snapshot(
++            tmp_path,
++            {
++                "pyproject.toml": (
++                    '[project]\nreadme="README.md"\n'
++                    'dynamic=["version", "readme", "readme"]'
++                ),
++                "README.md": "",
++            },
++        ),
++    )
++    assert [item.declaration.value for item in result.assessments] == [
++        "README.md",
++        "readme",
++        "readme",
++    ]
++    assert [item.declaration.item_ordinal for item in result.assessments] == [
++        None,
++        1,
++        2,
++    ]
++    assert len({item.declaration.identity for item in result.assessments}) == 3
++    assert all(item.status == _S.UNSUPPORTED for item in result.assessments)
++    assert not result.facts
++
++
++def test_readme_missing_exact_target_never_selects_prefix(tmp_path: Path) -> None:
++    result = _resolve(
++        _snapshot(
++            tmp_path,
++            {
++                "pyproject.toml": '[project]\nreadme="docs"',
++                "docs/readme.md": "",
++            },
++        ),
++    )
++    assert result.assessments[0].status == _S.MISSING_IN_FRAME
++    assert (
++        result.assessments[0].alternatives[0].route
++        == "configuration-relative-exact-resource"
++    )
++    assert not result.facts
++
++
++def test_frame_order_does_not_change_derivation_or_fact_order(tmp_path: Path) -> None:
++    snapshot = _snapshot(
++        tmp_path,
++        {
++            "pyproject.toml": (
++                '[tool.coverage.run]\nsource=["pkg"]\n[tool.mypy]\nfiles=["src"]'
++            ),
++            "src/pkg.py": "",
++            "src/other.py": "",
++        },
++    )
++    result = _resolve(snapshot, roots=(PythonModuleRoot("src"),))
++    reordered = _resolve(
++        replace(snapshot, resources=tuple(reversed(snapshot.resources))),
++        roots=(PythonModuleRoot("src"),),
++    )
++    assert result.derivation_identity == reordered.derivation_identity
++    assert result.assessments == reordered.assessments
++    assert result.facts == reordered.facts

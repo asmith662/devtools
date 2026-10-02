@@ -171,7 +171,7 @@ Confirmation remains sealed.
    restores declaration topology, but typed PPR and equal-channel fusion do
    not beat BM25 complete required depth on retained Case 0002. Confirmation
    is sealed. Graph ranking remains optional evidence.
-7. Next: freeze a new independent development task/frame before comparing a
+7. Completed in Case 0003: freeze a new independent development task/frame before comparing a
    repository-map-style structural prior and alternative typed-node resource
    aggregation. The retained Case 0002 result diagnoses missing
    documentation/configuration relationships and resource-biased aggregation;
@@ -179,6 +179,30 @@ Confirmation remains sealed.
    disclosure decisions separate from Retrieval ranking.
 
 ### Controlled advisory Codex dogfooding
+
+The authorized Case 0003 implementation establishes bounded
+[Python configuration RI](../src/devtools/context/python/project_configuration/docs/overview.md)
+for the six selectors actually declared by this project. This adds static
+observed relationships and explicit assessments, without changing ranking,
+graph projection or Context policy. Future relation admission requires its own
+explicit Retrieval decision and prospective evidence. Entrypoint machinery is
+not justified by this project, and B-0019 runtime configuration remains deferred.
+The [Case 0003 record](../experiments/codex_dogfood/case_0003/README.md) now owns
+the completed independent blind adjudication and cross-case findings. Nineteen
+resources were required in a 472-resource pre-task frame. Full/short BM25 complete
+depths were 348/180, typed Personalized PageRank (PPR) 314/278, and BM25/map
+Reciprocal Rank Fusion (RRF) 372/279. Repository map found five required resources
+and omitted fourteen in both arms. No required lexical miss was rescued. The
+broader frame and task differ from earlier cases; no pooled ranking or exploration
+savings claim is made. Ranking parameters and Context policy remain unchanged.
+
+[B-0047](backlog/items/B-0047-protected-development-validation-profile.md)
+records current pressure for supported development validation isolation before
+collection. This increment uses explicit safe test directories and focused
+coverage overrides. Host validation passed 1,299 tests with two live skips and
+100% production branch coverage using `tests --ignore=tests/experiments` plus
+explicit capture and Case 0003 protocol files. All retained experiment tests
+were excluded before recursive collection. No general harness is promoted here.
 
 For each bounded real task, freeze the snapshot, eligible lexical index/corpus,
 verbatim prompt, separately authored short InformationNeed, BM25 settings,
@@ -425,10 +449,23 @@ it from query-conditioned PPR. Case 0002 remains diagnostic: improved
 implementation ranks do not overcome absent governance/configuration symbols,
 and fusion worsens complete coverage depth. No default fusion is selected.
 
-The exact next increment is a prospective advisory retrieval comparison on the
-next naturally occurring, independently justified development task. Freeze the
-snapshot/frame, real prompt, separately written InformationNeed, channels and
-this algorithm before retrieval; adjudicate the full resource frame without
-retrieval/agent provenance, then join outcomes. No task is invented and no Case
-0003 exists yet. Broader RI relations or compact Context-map disclosure remain
-separate later work, selected only from actual task pressure and evidence.
+That prospective gate is complete in
+[Case 0003](../experiments/codex_dogfood/case_0003/README.md), whose independently
+justified production task establishes Python-project configuration RI. It
+confirms complementary implementation-resource ordering, not a universal map
+ranker or default fusion. Full-prompt PPR modestly improves complete depth in
+this case; the short need improves lexical depth here after hurting Cases 0001
+and 0002. Configuration facts were deliberately not added to Retrieval during
+this comparison.
+
+The exact next recommended architectural increment is an explicit bounded
+Retrieval projection of configuration declarations and qualified target facts,
+with selector families, direction, prefix fan-out, duplicate handling and
+resource/symbol eligibility fixed before a new natural-task comparison. Do not
+turn all 1,026 prefix facts into equally persuasive relevance votes. Keep the
+lexical channel available for governance/docs and declaration-free facades;
+current evidence does not justify a universal admission or default RRF policy.
+B-0047 is an operational prerequisite for further autonomous evaluation work:
+retain a supported protected development-validation invocation. Broader RI or
+compact Context-map disclosure remain separate decisions. No next increment
+is begun by this checkpoint.

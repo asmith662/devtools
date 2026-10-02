@@ -84,6 +84,13 @@ retained Case 0002. That tests these projections and aggregation rules, not
 all graph ranking. The [original baseline](../../../../../../experiments/graph_ranking_baseline/README.md)
 remains reproducible. Confirmation stays sealed.
 
+The [first prospective multi-channel case](../../../../../../experiments/codex_dogfood/case_0003/README.md)
+uses unchanged typed core PPR before configuration RI implementation. Its full
+prompt complete depth improves to 314 versus BM25 348, while early recall is
+lower; its short arm needs 278 versus BM25 180. No required lexical miss is
+rescued. This is query/task-dependent complementary ordering, not obsolete PPR
+or a universal ranking advantage. Configuration facts remain unprojected.
+
 
 ## Separate global importance hypothesis
 

@@ -788,7 +788,41 @@ ownership. See the [contract](../../../src/devtools/context/retrieval/repository
 and [development-only diagnostic](../../../experiments/repository_map_baseline/README.md).
 This changes implemented capability evidence, not this epic's overall status
 or unresolved Context/RI promotion triggers. Documentation/governance and
-configuration-to-code relationships remain unestablished RI pressure; no
-relationship is invented for ranking. Prospective usefulness awaits an
-independent natural development task, and compact map disclosure remains
-Context representation work.
+configuration-to-code relationships remained unestablished at that checkpoint; no
+relationship is invented for ranking. The later prospective
+[Case 0003](../../../experiments/codex_dogfood/case_0003/README.md) now supplies
+independent natural-task evidence; compact map disclosure remains Context
+representation work.
+
+## Bounded Python configuration capability evidence
+
+The Case 0003 implementation adds production
+[project configuration RI](../../../src/devtools/context/python/project_configuration/docs/overview.md):
+README, Hatch wheel packages, pytest testpaths, Coverage source, mypy files and
+mypy search paths from retained TOML. Declarations have semantic key/ordinal
+anchors and exact configuration provenance; resolution preserves explicit
+configuration-parent/tool frames, observed prefix membership and competing
+module/path/root interpretations. Facts assert observed relationships rather
+than execution or runtime behavior. Unsupported entrypoint presence is assessed
+without bindings; the real project has none. Existing canonical addresses and
+module lookup are reused with import behavior preserved.
+
+Focused tests cover the six real selectors, duplicate ordinals, invalid TOML,
+frames, competing readings and stale dependencies at 100% new-package branch
+coverage. This changes bounded capability evidence, not the epic's overall
+status, general configuration/entrypoint coverage or promotion triggers.
+Retrieval relation admission, ranking usefulness and Context consumption remain
+separate decisions. The host owns blind case evaluation; advisory suggestions
+establish no quality claim. B-0019 is unrelated runtime configuration pressure
+and remains deferred. [B-0047](../items/B-0047-protected-development-validation-profile.md)
+records protected development validation isolation without a general harness.
+
+Case 0003 blind adjudication identified nineteen required resources. Full/short
+lexical complete depths were 348/180; typed PPR 314/278; map incomplete at five
+required resources; equal lexical/map RRF 372/279. No required lexical miss was
+rescued. This strengthens the need for independently inspectable specialized
+channels and qualified relation coverage, not one universal ranker. Governance,
+docs and non-declaration resource eligibility remain unresolved alongside
+configuration-fact Retrieval admission. Prefix membership creates substantial
+fan-out and is not semantic dependency or relevance. No Selection rule, relation
+weight, graph transition or default fusion is promoted from these outcomes.

@@ -1,0 +1,263 @@
+# Development task
+
+Investigate and implement production Repository Intelligence for deterministic Python-project configuration relationships actually declared in this repository. Derive bounded configuration declarations and repository-resolvable resource or module targets from retained snapshot content, including project README, package selection and tool resource/module selectors where static evidence supports them. Preserve identity, provenance, bounded coverage, ambiguity and unresolved assessments. Do not invent entry-point relationships when no entry points are declared; distinguish syntax and declared selection from actual tooling or runtime behavior. Reuse existing repository resource and Python module identities and resolution semantics. Integrate focused tests and package, architecture, documentation-map, roadmap and backlog documentation. Do not modify Retrieval ranking, graph projection, fusion or Context policy. Validate using a protected development profile excluding sealed confirmation material, then retain a coherent checkpoint without pushing.
+
+# Advisory retrieval suggestions
+
+These ranked suggestions are not guaranteed complete. Search and open any repository resource needed, including unlisted resources. Recover from missing evidence. This experiment presentation is not production Selection.
+
+Protocol note: a handwritten filename-weight typo in the captured manifest was corrected transparently; unchanged production BM25 used its canonical 0.25 default throughout. See retained freeze_correction.json.
+
+## full_prompt: bm25
+
+1. docs/roadmap.md
+
+2. docs/research/repository-retrieval-breadth-production-gate.md
+
+3. docs/architecture.md
+
+4. docs/backlog/epics/B-0002-coding-context-substrate.md
+
+5. docs/documentation_map.md
+
+6. docs/research/repository-context-planning-and-graph-assisted-retrieval.md
+
+7. docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md
+
+8. docs/research/retrieval-architecture-synthesis.md
+
+9. docs/research/purpose-relative-repository-context.md
+
+10. docs/research/structural-repository-retrieval.md
+
+## full_prompt: bm25_map_rrf
+
+1. src/devtools/context/python/function/declarations.py
+
+2. src/devtools/context/python/imports/resolution.py
+
+3. src/devtools/context/retrieval/fusion.py
+
+4. src/devtools/context/python/modules/interpretation.py
+
+5. src/devtools/context/python/imports/declarations.py
+
+6. src/devtools/context/retrieval/repository_map/ranking.py
+
+7. src/devtools/context/python/references/declarations/model.py
+
+8. src/devtools/context/python/classes/declarations.py
+
+9. src/devtools/context/repository/resource.py
+
+10. src/devtools/context/retrieval/graph/pagerank.py
+
+## full_prompt: repository_map
+
+1. src/devtools/context/repository/resource.py
+
+2. src/devtools/evaluation/coverage.py
+
+3. src/devtools/context/python/function/declarations.py
+
+4. src/devtools/context/python/imports/resolution.py
+
+5. src/devtools/context/python/references/declarations/resolution.py
+
+6. src/devtools/context/repository/snapshot.py
+
+7. src/devtools/resources/filesystem/errors.py
+
+8. src/devtools/context/python/references/declarations/bindings.py
+
+9. src/devtools/tools/protocols.py
+
+10. src/devtools/core/time/errors.py
+
+## full_prompt: typed_ppr
+
+1. src/devtools/context/python/function/declarations.py
+
+2. src/devtools/core/identity/models.py
+
+3. src/devtools/context/python/modules/interpretation.py
+
+4. src/devtools/context/repository/resource.py
+
+5. src/devtools/context/python/imports/resolution.py
+
+6. src/devtools/core/paths/errors.py
+
+7. src/devtools/context/retrieval/composition.py
+
+8. src/devtools/resources/filesystem/errors.py
+
+9. src/devtools/context/__init__.py
+
+10. src/devtools/context/python/imports/declarations.py
+
+## short_information_need: bm25
+
+1. docs/roadmap.md
+
+2. docs/research/repository-retrieval-breadth-production-gate.md
+
+3. docs/architecture.md
+
+4. src/devtools/context/python/classes/docs/overview.md
+
+5. tests/context/retrieval/lexical/test_evaluation.py
+
+6. docs/backlog/epics/B-0002-coding-context-substrate.md
+
+7. src/devtools/context/python/references/docs/overview.md
+
+8. docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md
+
+9. docs/research/repository-context-planning-and-graph-assisted-retrieval.md
+
+10. docs/documentation_map.md
+
+## short_information_need: bm25_map_rrf
+
+1. src/devtools/context/python/function/declarations.py
+
+2. src/devtools/context/python/imports/declarations.py
+
+3. src/devtools/context/python/imports/resolution.py
+
+4. src/devtools/context/python/references/declarations/model.py
+
+5. tests/context/repository/test_document.py
+
+6. src/devtools/context/python/references/analysis.py
+
+7. src/devtools/context/python/references/declarations/resolution.py
+
+8. src/devtools/context/python/classes/declarations.py
+
+9. src/devtools/context/python/modules/interpretation.py
+
+10. src/devtools/context/repository/resource.py
+
+## short_information_need: repository_map
+
+1. src/devtools/context/repository/resource.py
+
+2. src/devtools/evaluation/coverage.py
+
+3. src/devtools/context/python/imports/resolution.py
+
+4. src/devtools/context/python/function/declarations.py
+
+5. src/devtools/context/python/references/declarations/resolution.py
+
+6. src/devtools/context/python/references/declarations/bindings.py
+
+7. src/devtools/context/python/imports/declarations.py
+
+8. src/devtools/resources/filesystem/errors.py
+
+9. src/devtools/context/python/modules/interpretation.py
+
+10. src/devtools/context/planning/resource.py
+
+## short_information_need: typed_ppr
+
+1. src/devtools/context/python/function/declarations.py
+
+2. src/devtools/context/repository/resource.py
+
+3. src/devtools/core/identity/models.py
+
+4. src/devtools/context/python/imports/resolution.py
+
+5. src/devtools/context/python/modules/interpretation.py
+
+6. src/devtools/context/__init__.py
+
+7. src/devtools/context/python/imports/declarations.py
+
+8. src/devtools/core/paths/errors.py
+
+9. src/devtools/context/python/classes/declarations.py
+
+10. src/devtools/context/retrieval/lexical/analysis.py
+
+# Deduplicated suggestion notes (native ranks)
+
+docs/architecture.md: full_prompt/bm25 3, short_information_need/bm25 3
+
+docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md: full_prompt/bm25 7, short_information_need/bm25 8
+
+docs/backlog/epics/B-0002-coding-context-substrate.md: full_prompt/bm25 4, short_information_need/bm25 6
+
+docs/documentation_map.md: full_prompt/bm25 5, short_information_need/bm25 10
+
+docs/research/purpose-relative-repository-context.md: full_prompt/bm25 9
+
+docs/research/repository-context-planning-and-graph-assisted-retrieval.md: full_prompt/bm25 6, short_information_need/bm25 9
+
+docs/research/repository-retrieval-breadth-production-gate.md: full_prompt/bm25 2, short_information_need/bm25 2
+
+docs/research/retrieval-architecture-synthesis.md: full_prompt/bm25 8
+
+docs/research/structural-repository-retrieval.md: full_prompt/bm25 10
+
+docs/roadmap.md: full_prompt/bm25 1, short_information_need/bm25 1
+
+src/devtools/context/__init__.py: full_prompt/typed_ppr 9, short_information_need/typed_ppr 6
+
+src/devtools/context/planning/resource.py: short_information_need/repository_map 10
+
+src/devtools/context/python/classes/declarations.py: full_prompt/bm25_map_rrf 8, short_information_need/bm25_map_rrf 8, short_information_need/typed_ppr 9
+
+src/devtools/context/python/classes/docs/overview.md: short_information_need/bm25 4
+
+src/devtools/context/python/function/declarations.py: full_prompt/bm25_map_rrf 1, full_prompt/repository_map 3, full_prompt/typed_ppr 1, short_information_need/bm25_map_rrf 1, short_information_need/repository_map 4, short_information_need/typed_ppr 1
+
+src/devtools/context/python/imports/declarations.py: full_prompt/bm25_map_rrf 5, full_prompt/typed_ppr 10, short_information_need/bm25_map_rrf 2, short_information_need/repository_map 7, short_information_need/typed_ppr 7
+
+src/devtools/context/python/imports/resolution.py: full_prompt/bm25_map_rrf 2, full_prompt/repository_map 4, full_prompt/typed_ppr 5, short_information_need/bm25_map_rrf 3, short_information_need/repository_map 3, short_information_need/typed_ppr 4
+
+src/devtools/context/python/modules/interpretation.py: full_prompt/bm25_map_rrf 4, full_prompt/typed_ppr 3, short_information_need/bm25_map_rrf 9, short_information_need/repository_map 9, short_information_need/typed_ppr 5
+
+src/devtools/context/python/references/analysis.py: short_information_need/bm25_map_rrf 6
+
+src/devtools/context/python/references/declarations/bindings.py: full_prompt/repository_map 8, short_information_need/repository_map 6
+
+src/devtools/context/python/references/declarations/model.py: full_prompt/bm25_map_rrf 7, short_information_need/bm25_map_rrf 4
+
+src/devtools/context/python/references/declarations/resolution.py: full_prompt/repository_map 5, short_information_need/bm25_map_rrf 7, short_information_need/repository_map 5
+
+src/devtools/context/python/references/docs/overview.md: short_information_need/bm25 7
+
+src/devtools/context/repository/resource.py: full_prompt/bm25_map_rrf 9, full_prompt/repository_map 1, full_prompt/typed_ppr 4, short_information_need/bm25_map_rrf 10, short_information_need/repository_map 1, short_information_need/typed_ppr 2
+
+src/devtools/context/repository/snapshot.py: full_prompt/repository_map 6
+
+src/devtools/context/retrieval/composition.py: full_prompt/typed_ppr 7
+
+src/devtools/context/retrieval/fusion.py: full_prompt/bm25_map_rrf 3
+
+src/devtools/context/retrieval/graph/pagerank.py: full_prompt/bm25_map_rrf 10
+
+src/devtools/context/retrieval/lexical/analysis.py: short_information_need/typed_ppr 10
+
+src/devtools/context/retrieval/repository_map/ranking.py: full_prompt/bm25_map_rrf 6
+
+src/devtools/core/identity/models.py: full_prompt/typed_ppr 2, short_information_need/typed_ppr 3
+
+src/devtools/core/paths/errors.py: full_prompt/typed_ppr 6, short_information_need/typed_ppr 8
+
+src/devtools/core/time/errors.py: full_prompt/repository_map 10
+
+src/devtools/evaluation/coverage.py: full_prompt/repository_map 2, short_information_need/repository_map 2
+
+src/devtools/resources/filesystem/errors.py: full_prompt/repository_map 7, full_prompt/typed_ppr 8, short_information_need/repository_map 8
+
+src/devtools/tools/protocols.py: full_prompt/repository_map 9
+
+tests/context/repository/test_document.py: short_information_need/bm25_map_rrf 5
+
+tests/context/retrieval/lexical/test_evaluation.py: short_information_need/bm25 5

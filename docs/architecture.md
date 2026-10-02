@@ -501,6 +501,31 @@ universe that supports its bounded absence claim. Relative imports consume an
 explicit source interpretation, while absolute imports do not. This is neither
 runtime import resolution nor generic dependency semantics.
 
+`context.python.project_configuration` separately owns six bounded retained-TOML
+selectors: project README, Hatch wheel packages, pytest testpaths, Coverage
+source, mypy files and mypy search paths. Declaration analysis uses `tomllib`
+and semantic key/item anchors with the exact configuration resource, not
+fabricated character spans. Resolution uses canonical repository addresses,
+explicit command-cwd/pytest-root assumptions and native module interpretations.
+README/Hatch configuration-parent routes remain distinct. Shared exact dotted
+name lookup now belongs to `context.python.modules.lookup`; imports migrate to
+it without changed behavior. Configuration does not manufacture import syntax.
+
+Positive configuration facts assert only observed exact-resource correlation,
+directory-prefix membership or an exact native module target. Many directory
+members are multiple facts under one reading, not ambiguity. Competing observed
+Coverage path/module readings and module roots remain ambiguous; missing means
+only no match in the retained frame. Unsupported forms and invalid/duplicate-key
+TOML establish no targets. Source and target occurrence/content, snapshot,
+repository, universe and assumptions are validated dependencies. No tool
+execution, directory existence, packaging outcome, runtime binding or general
+entrypoint machinery is established. See the
+[package contract and ownership diagram](../src/devtools/context/python/project_configuration/docs/overview.md).
+Future Retrieval consumption needs a separate explicit selector/relation,
+direction, applicability and aggregation decision retaining native fact support;
+current ranking, projections and Context policy are unchanged. This static RI
+does not promote B-0019 framework runtime configuration ownership.
+
 The adjacent `context.python.imports.relations` operation derives one directed
 `PythonResolvedModuleImportRelation` for each supplied `RESOLVED` declaration
 resolution when exactly one matching source module interpretation is available.
@@ -1114,5 +1139,12 @@ materialization remain after explicit representation choice. See the
 for algorithms, provenance, supported scope and diagram, and the
 [frozen development diagnosis](../experiments/repository_map_baseline/README.md).
 No new domain, dependency direction, durable schema or ADR is introduced.
-Prospective evidence awaits the next independent natural task; Case 0002 is
-strictly diagnostic and does not select parameters or promote default fusion.
+The [first prospective multi-channel case](../experiments/codex_dogfood/case_0003/README.md)
+is now complete on the independently justified configuration RI task. It
+preserves ranking parameters and evaluates the pre-implementation structural
+coverage: map promotes several repository primitives but omits fourteen of
+nineteen required resources; lexical/map fusion worsens complete coverage.
+Typed PPR improves full-prompt complete depth while hurting early recall.
+These are local development observations, not a universal ranking/Selection
+policy. Case 0002 remains strictly diagnostic. New configuration RI facts are
+not projected into any ranking channel without a separate Retrieval decision.

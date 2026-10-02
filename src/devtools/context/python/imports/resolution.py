@@ -8,6 +8,8 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import TYPE_CHECKING, ClassVar, cast
 
+from devtools.context.python.modules.lookup import lookup_python_modules
+
 if TYPE_CHECKING:
     from collections.abc import Sequence
 
@@ -118,11 +120,7 @@ def resolve_python_import_declaration(
             matches=(),
             unsupported_reason=requested_module,
         )
-    matches = tuple(
-        item
-        for item in target_universe.interpretations
-        if item.dotted_name == requested_module
-    )
+    matches = lookup_python_modules(target_universe, requested_module)
     outcome = (
         PythonImportResolutionOutcome.UNRESOLVED_IN_UNIVERSE
         if not matches

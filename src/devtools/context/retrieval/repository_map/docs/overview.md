@@ -148,6 +148,14 @@ Case 0002 diagnostics and the pending prospective protocol. The diagnostic map
 improves several implementation ranks relative to typed PPR, but misses required
 governance/configuration and fusion worsens complete depth relative to resource
 BM25. These findings do not tune this policy or establish general usefulness.
-The next naturally occurring task must be independently frozen and blindly
-adjudicated before any relevance claim is promoted. Confirmation stays outside
-the retrieval/evaluation consumer.
+The [first prospective case](../../../../../../experiments/codex_dogfood/case_0003/README.md)
+now evaluates unchanged channels on a real configuration RI task. The map
+promotes five required implementation/test resources, including global-supported
+hashing helpers and a compact-lexical snapshot symbol with zero global importance,
+but misses fourteen required resources. Governance/configuration/docs have no
+eligible map declaration; an import-only module facade is structurally connected
+yet ineligible for this symbol-to-resource projection. These are different gaps.
+Equal BM25/map RRF worsens complete depth in both arms. No parameters or default
+fusion policy change. New configuration facts need an explicit future projection;
+ranked winning symbols do not prescribe sufficient Context representations.
+Confirmation stays outside the retrieval/evaluation consumer.

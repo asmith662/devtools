@@ -12,6 +12,7 @@ from devtools.context.python.modules.interpretation import (
     define_python_module_interpretation_universe,
     interpret_python_module_resources,
 )
+from devtools.context.python.modules.lookup import lookup_python_modules
 from devtools.context.python.modules.membership import (
     PythonImmediatePackageMembership,
     PythonImmediatePackageMembershipAnalysis,
@@ -39,4 +40,5 @@ __all__ = [
     "define_python_module_interpretation_universe",
     "derive_python_immediate_package_memberships",
     "interpret_python_module_resources",
+    "lookup_python_modules",
 ]

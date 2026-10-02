@@ -1,4 +1,14 @@
-# Python mirrored-path Repository Intelligence
+# Python Repository Intelligence
+
+The [project configuration package](../project_configuration/docs/overview.md)
+owns retained-TOML declarations and qualified observed targets for README,
+Hatch wheel packages, pytest testpaths, Coverage source and mypy files/search
+paths. It separates configuration-relative routes from explicit tool frames,
+retains competing module/path interpretations, and makes no execution/runtime
+claim. This Python-owned RI is independent of Retrieval and framework runtime
+configuration. Modules own shared exact name lookup; config creates no imports.
+
+## Mirrored source/test paths
 
 `derive_python_mirrored_path_correspondences(snapshot)` derives exact path
 correspondence from **observed resources in one `RepositorySnapshot`**. The

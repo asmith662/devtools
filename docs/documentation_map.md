@@ -93,6 +93,11 @@
   semantics. The [first baseline replay](../experiments/graph_ranking_baseline/README.md)
   and [typed-view replay](../experiments/typed_graph_baseline/README.md) own
   their respective development outcomes and limitations.
+- Python configuration RI: [declarations, resolution, provenance, ownership and
+  future Retrieval boundary](../src/devtools/context/python/project_configuration/docs/overview.md).
+  The [Python overview](../src/devtools/context/python/docs/overview.md) navigates
+  this capability and mirrored-path facts. Shared exact module-name lookup
+  belongs to the [modules package](../src/devtools/context/python/modules/docs/overview.md).
 
 The `context` domain exposes narrow Repository Intelligence APIs. Its current
 implementation can recursively discover regular-file addresses beneath an
@@ -286,6 +291,12 @@ post-freeze analysis as development evidence.
 The [second blind dogfood case](../experiments/codex_dogfood/case_0002/README.md)
 records the lexical-only capture implementation task and its separate frozen
 judgments, inventories, agent observations, and post-freeze analysis.
+The [third blind dogfood case](../experiments/codex_dogfood/case_0003/README.md)
+owns the prospective full/short BM25, typed PPR, repository-map and RRF
+comparison preceding configuration RI implementation. It retains the expanded
+pre-task frame, protocol metadata correction, native rankings, advisory handoff,
+independent adjudication, exploration limits, protected validation and cross-case
+synthesis. Production configuration facts remain outside Retrieval projection.
 
 The `orchestration` and `governance` domains remain recognized sparse
 namespaces without reusable implementation APIs. Evaluation now provides the
