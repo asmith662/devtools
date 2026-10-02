@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING, cast
 
 import pytest
 
+from devtools.context.python.function.declarations import PythonModuleResourceDependency
 from devtools.context.python.imports import (
     PythonResolvedModuleImportRelation,
     derive_python_import_declarations,
@@ -22,6 +23,7 @@ from devtools.context.python.modules import (
     interpret_python_module_resources,
 )
 from devtools.context.python.references.analysis import (
+    PythonFunctionReferenceDerivation,
     PythonFunctionReferenceKnowledge,
 )
 from devtools.context.repository.identity import Repository, RepositoryId
@@ -32,6 +34,10 @@ from devtools.context.retrieval.graph import (
     GraphRankingSettings,
     build_python_resource_graph_view,
     rank_python_repository_resources,
+)
+from devtools.context.retrieval.structural import (
+    PythonDirectStructuralRetrievalRequest,
+    retrieve_python_direct_structural_resources,
 )
 from devtools.core.paths import ResolvedPath
 from experiments.graph_ranking_baseline.evaluate import ARCHIVE
@@ -351,3 +357,30 @@ def test_ranker_rejects_unusable_matches_and_reports_iteration_bound(
 def test_settings_validate(kwargs: dict[str, float | int], message: str) -> None:
     with pytest.raises(ValueError, match=message):
         GraphRankingSettings(**kwargs)  # type: ignore[arg-type]
+
+
+def test_retained_function_reference_identity_and_direct_projection() -> None:
+
+    with gzip.open(ARCHIVE, "rb") as stream:
+        case = pickle.load(stream)  # noqa: S301
+    fact = case.references[0]
+    assert fact.target_subject == fact.target_declaration.subject
+    dependency = PythonModuleResourceDependency(
+        case.snapshot.id,
+        case.snapshot.repository_id,
+        case.snapshot.resource_at(fact.occurrence.resource_address),
+    )
+    derivation = PythonFunctionReferenceDerivation(dependency, "retained-universe", ())
+    assert (
+        derivation.identity
+        != replace(derivation, module_universe_identity="different-universe").identity
+    )
+    result = retrieve_python_direct_structural_resources(
+        case.snapshot,
+        request=PythonDirectStructuralRetrievalRequest(
+            "Inspect retained Reference", (fact.occurrence.resource_address,)
+        ),
+        references=(fact,),
+    )
+    assert result.candidates
+    assert result.candidates[0].supports[0].fact is fact

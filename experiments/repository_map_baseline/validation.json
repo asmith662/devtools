@@ -1,0 +1,59 @@
+{
+  "ruff": "uv run ruff check .: passed",
+  "formatting": "uv run ruff format --check on all 18 touched Python files: passed",
+  "mypy": "uv run mypy: success, 568 source files",
+  "default_pytest": {
+    "passed": 1759,
+    "failed": 7,
+    "skipped": 2,
+    "cause": "local .venv exceeds 10000-resource discovery bound; initial invocation also executes existing retained-confirmation audit tests"
+  },
+  "protected_pytest": {
+    "passed": 1749,
+    "skipped_live": 2,
+    "deselected_retained_artifact": 22,
+    "coverage_percent": 100.0,
+    "statements": 7992,
+    "branches": 1838,
+    "command": "uv run pytest -q -p repository_map_validation --cov-report=term-missing",
+    "conditions": "Temporary ignored validation plugin only changes cwd for seven existing repository benchmarks and deselects 22 retained-confirmation-dependent artifact tests. Test code and production algorithms run from original checkout; bounded corpus copy omits .git, local environments/caches, and confirmation JSON. No production behavior patched.",
+    "excluded_nodeids": [
+      "tests/experiments/increment_25/test_confirmation_judgments.py::test_retained_confirmation_artifacts_cover_only_frozen_confirmation",
+      "tests/experiments/increment_26/test_development_judgments.py::test_actual_increment_25_frozen_population_has_no_reusable_pair",
+      "tests/experiments/increment_27/structural_imports/test_analysis.py::test_frozen_development_result_reproduces_exact_join",
+      "tests/experiments/increment_27/structural_imports/test_population.py::test_saved_population_is_exact_reuse_union_and_blind",
+      "tests/experiments/increment_27/test_evidence_diagnostic.py::test_diagnostic_preserves_missingness_and_oracle_boundary",
+      "tests/experiments/increment_27/test_evidence_diagnostic.py::test_exact_evidence_population_and_three_states_reproduce",
+      "tests/experiments/increment_27/test_fusion.py::test_result_reuses_exact_judgments_and_accounts_for_substitutions",
+      "tests/experiments/increment_27/test_lexical_top5_judgment_pool.py::test_blinded_input_has_only_new_pairs_and_neutral_fields",
+      "tests/experiments/increment_27/test_lexical_top5_judgment_pool.py::test_exact_reuse_sources_and_three_state_counts",
+      "tests/experiments/increment_27/test_lexical_top5_judgment_pool.py::test_freeze_identities_are_deterministic_and_phase1_is_untouched",
+      "tests/experiments/increment_27/test_lexical_top5_judgment_pool.py::test_parent_snapshot_content_and_sealed_case_boundary",
+      "tests/experiments/increment_27/test_lexical_top5_judgment_pool.py::test_union_and_diagnostics_use_exact_saved_top_five_rankings",
+      "tests/experiments/increment_27/test_phase1_population.py::test_artifact_identities_and_serialization_are_deterministic",
+      "tests/experiments/increment_27/test_phase1_population.py::test_blinded_input_contains_only_new_pairs_and_parent_snapshot_content",
+      "tests/experiments/increment_27/test_phase1_population.py::test_exact_reuse_preserves_three_states_and_excludes_reused_targets",
+      "tests/experiments/increment_27/test_phase1_population.py::test_pool_is_exactly_the_development_top_50_or_exhaustion_union",
+      "tests/experiments/increment_29/test_population.py::test_neutral_input_exact_new_population_and_blinding",
+      "tests/experiments/increment_30/test_population.py::test_frozen_population_is_exact_and_neutral",
+      "tests/experiments/increment_31/test_analysis.py::test_completed_join_preserves_frozen_mechanics_and_three_states",
+      "tests/experiments/increment_31/test_population.py::test_frozen_population_and_blinding",
+      "tests/experiments/increment_32/test_population.py::test_frozen_graph_one_population_and_neutral_boundary",
+      "tests/experiments/increment_33/test_population_sampling.py::test_prior_reuse_and_neutral_population_reproduce_exactly"
+    ],
+    "bounded_cwd_nodeids": [
+      "tests/experiments/purpose_relative_import/test_cases.py::test_judged_addresses_are_in_the_selected_benchmark_corpus",
+      "tests/experiments/test_address_lexical.py::test_filename_promotion_gate_keeps_the_fixed_sets_and_zero_weight_baseline",
+      "tests/experiments/test_address_lexical.py::test_real_repository_comparison_is_paired_and_writes_only_selected_report",
+      "tests/experiments/test_address_lexical.py::test_weight_calibration_preserves_content_baseline_at_zero_weight",
+      "tests/experiments/test_import_relationship_cases.py::test_cases_belong_to_the_selected_real_repository_benchmark_corpus",
+      "tests/experiments/test_retrieval_identifier.py::test_real_repository_comparison_is_paired_and_report_is_caller_selected",
+      "tests/experiments/test_structural_expansion.py::test_structural_case_addresses_are_in_the_benchmark_corpus_selection"
+    ]
+  },
+  "new_code_coverage": "repository_map, graph.walk and resource fusion: 100% statements and branches",
+  "diagnostic_reproducibility": "all saved channel rankings and assessed metrics reproduced exactly after formatting-only changes",
+  "live_models_or_docker": "not run",
+  "confirmation": "No confirmation outcome joined into ranking/evaluation. Initial default suite automatically ran existing historical artifact audits; subsequent protected runs exclude retained-confirmation-dependent tests.",
+  "diff_check": "passed; staged check performed before checkpoint commit"
+}

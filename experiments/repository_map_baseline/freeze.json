@@ -1,0 +1,103 @@
+{
+  "schema": "repository-map-design-freeze-v1",
+  "starting_head": "a24a70cc0511ce6fc56969ea7d46b438f79a7df0",
+  "prospective_status": "awaiting next naturally occurring independently justified task; no Case 0003 created",
+  "case_0002_role": "diagnostic replay only, no parameter selection",
+  "input_archive_sha256": "33da750e21af0d8ff60ce4b48ca7e5d114a920f0c933a7011b784168509783eb",
+  "adjudication_sha256": "427c2936db23d1a04538c74420b565e50c7e8e480abfd1b7899a07231b2da9e2",
+  "parameters": {
+    "damping": 0.85,
+    "tolerance": 1e-10,
+    "maximum_iterations": 200,
+    "rrf_constant": 60,
+    "bm25_k1": 1.2,
+    "bm25_b": 0.75
+  },
+  "importance": "uniform resource teleport; reference/direct-base sources projected to resource, exact declaration targets; owner return; active families equal, distinct native supports equally divided; no outward containment",
+  "symbol_lexical": "canonical Unicode word/casefold BM25 over declared name or direct Class.method plus resource path; no bodies or new tokenizer",
+  "ranking": "equal symbol lexical/global importance RRF; positive importance or positive lexical candidates; abstain without any symbol lexical match",
+  "resource_aggregation": "maximum symbol RRF, winning symbol and all symbol ranks retained; no summation",
+  "families": [
+    "import",
+    "reference",
+    "direct-base",
+    "containment-return"
+  ],
+  "excluded": [
+    "outward containment",
+    "package membership",
+    "mirrored paths",
+    "reverse dependencies",
+    "inferred docs/config edges"
+  ],
+  "arms": [
+    "full-prompt BM25",
+    "short-InformationNeed BM25",
+    "typed-core PPR for each query",
+    "repository-map for each query",
+    "equal BM25 + repository-map RRF for each query"
+  ],
+  "three_channel_fusion": "not tested",
+  "depths": [
+    5,
+    10,
+    20,
+    50,
+    100
+  ],
+  "measurements": [
+    "actual required count",
+    "recall at depths",
+    "last required rank or incomplete",
+    "helpful/unnecessary/unjudged before completion",
+    "lexical misses rescued",
+    "required rank movements",
+    "native reference/base/owner supports",
+    "construction/runtime seconds",
+    "node/edge/symbol/resource counts"
+  ],
+  "implementation_sha256": {
+    "src/devtools/context/retrieval/repository_map/__init__.py": "1571716818a0d717c8fb2a1b342cf850ff0a23575bf89718c6225620f5f164e0",
+    "src/devtools/context/retrieval/repository_map/importance.py": "2f0a6f4219102a65929af2f29d297bf890c3d0585f6b7a363cfd0aad9ce89399",
+    "src/devtools/context/retrieval/repository_map/ranking.py": "3f5045019b7bfb7313e5d96a2f2df46b2e1dabb03b638b5e77ad977a6c1a25c4",
+    "src/devtools/context/retrieval/repository_map/relevance.py": "16d63d46ad8de09a08e4d52adb4e07e4018dd575bf170aa1253b798bc321ac8f",
+    "src/devtools/context/retrieval/repository_map/view.py": "c9bb784718224688f09f2c5a7d69d68540ef3b66f7a8ae894cb831911af08be2",
+    "src/devtools/context/retrieval/graph/walk.py": "8ea55b8ad64fd0d0340be4d1c65bab2b50fd4d4dbdf2d58bdc39eaa64ae53e41",
+    "src/devtools/context/retrieval/fusion.py": "e71ad800334ee723b8b8a5dd823b88fb818999baccd62367a2a6771b63b051f3"
+  },
+  "confirmation_accessed": false,
+  "diagnostic_ablations": [
+    "global-symbol importance alone (maximum symbol mass per resource)",
+    "symbol metadata BM25 alone (maximum symbol score per resource)"
+  ],
+  "pre_formatting_freeze_sha256": "1cb7a08f9bf773994014fa4b4c336223b3cb67c4c9a669d7c42d799d8d57cbcd",
+  "pre_formatting_implementation_sha256": {
+    "src/devtools/context/retrieval/repository_map/__init__.py": "1571716818a0d717c8fb2a1b342cf850ff0a23575bf89718c6225620f5f164e0",
+    "src/devtools/context/retrieval/repository_map/importance.py": "2f0a6f4219102a65929af2f29d297bf890c3d0585f6b7a363cfd0aad9ce89399",
+    "src/devtools/context/retrieval/repository_map/ranking.py": "d52f2f829502d7f7ac6531c6687477fe1d748e8c1e7019a9775ddc243f79c6fc",
+    "src/devtools/context/retrieval/repository_map/relevance.py": "15511bc5c06331153c9d2c70ab9c824985541a45a6c1f793edd0d6856100349c",
+    "src/devtools/context/retrieval/repository_map/view.py": "a0e8047b1adb9846e45ffd0661672e7bd15c9a8a7e6727a6c15d67062edd6d58",
+    "src/devtools/context/retrieval/graph/walk.py": "8ea55b8ad64fd0d0340be4d1c65bab2b50fd4d4dbdf2d58bdc39eaa64ae53e41",
+    "src/devtools/context/retrieval/fusion.py": "e71ad800334ee723b8b8a5dd823b88fb818999baccd62367a2a6771b63b051f3"
+  },
+  "implementation_ast_sha256": {
+    "src/devtools/context/retrieval/repository_map/__init__.py": "2c47f482158190e26e5776463856dca03a19bf3c42492bcf1eee4a36553bca6c",
+    "src/devtools/context/retrieval/repository_map/importance.py": "a89335792322715eadbdede821f6b0a4086e0d3e20958610bd0d66425732615a",
+    "src/devtools/context/retrieval/repository_map/ranking.py": "f214a441790d50c404afed4da8087dd420964e23380d58d964cfef303b3dbd19",
+    "src/devtools/context/retrieval/repository_map/relevance.py": "f1bcf321fdc4c37a7398dda8e3d71493a5a895352f30dc87ce44110b1997c5d0",
+    "src/devtools/context/retrieval/repository_map/view.py": "3b2e248a310da96535ff40f8727d6a1420b39619ad178e30e96def450f9da356",
+    "src/devtools/context/retrieval/graph/walk.py": "4966b71757804e6c361b596034adf344fed8c2a92c5b6198fe9477183b80f772",
+    "src/devtools/context/retrieval/fusion.py": "dc66d0e3893de98a35f2fe7959f53b28f1d5028cb550620ed7840eed761b19e1"
+  },
+  "post_diagnostic_change": "Formatting only; algorithm AST remains identical.",
+  "implementation_newline_normalized_sha256": {
+    "src/devtools/context/retrieval/repository_map/__init__.py": "f2eb6b846914a32151c61fab4f2c4dc2096b27d070b5e403e50eb491587b189d",
+    "src/devtools/context/retrieval/repository_map/importance.py": "a4038e47e573d695044211461efa9b99f09b524b804de27b8ca1ca8d0729d2f0",
+    "src/devtools/context/retrieval/repository_map/ranking.py": "6c3dcb933efcf20904c4f5a2f4145fc448e145dcdbe206f17f6aaa97bcecf93c",
+    "src/devtools/context/retrieval/repository_map/relevance.py": "b21c0a0cc78a0387541705aa3d9c8acf08ddd108f239a68192d2328ed2af961d",
+    "src/devtools/context/retrieval/repository_map/view.py": "c3a6d7b9385431d808c3f45806c4a3a23622690e8d2b0e0df303f8b024ca71d3",
+    "src/devtools/context/retrieval/graph/walk.py": "8ea55b8ad64fd0d0340be4d1c65bab2b50fd4d4dbdf2d58bdc39eaa64ae53e41",
+    "src/devtools/context/retrieval/fusion.py": "521325637fd88dfd8e9b8d55a11bd9b61c0f2b20670f9e607c97dcfbb52a7605"
+  },
+  "implementation_hash_policy": "Final replay compares UTF-8 source with LF-normalized newlines; raw original/checkpoint hashes remain provenance. Git CRLF checkout conversion does not change the algorithm."
+}

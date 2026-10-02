@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+import ast
 from dataclasses import replace
 from typing import TYPE_CHECKING
 
@@ -20,6 +21,7 @@ from devtools.context.python.classes import (
 from devtools.context.python.classes import (
     PythonDirectBaseRoute as Route,
 )
+from devtools.context.python.classes.bases import _bindings
 from devtools.context.python.modules.interpretation import (
     PythonModuleRoot,
     define_python_module_interpretation_universe,
@@ -417,3 +419,26 @@ def test_ambiguous_module_interpretation_and_competing_nested_binding(
         module_universe=universe,
     )
     assert ambiguous.assessments[1].outcome is Outcome.AMBIGUOUS_MODULE
+
+
+def test_imported_base_absent_from_empty_observed_module(tmp_path: Path) -> None:
+    snapshot = _snapshot(
+        tmp_path,
+        {
+            "src/empty.py": "",
+            "src/child.py": "from empty import Base\nclass Child(Base):\n    pass\n",
+        },
+    )
+    analysis = _derive(snapshot)
+    assert len(analysis.assessments) == 1
+    assert analysis.assessments[0].target is None
+    assert analysis.assessments[0].outcome is Outcome.UNRESOLVED_TARGET
+
+
+def test_empty_complete_binding_frame_produces_no_base_support(tmp_path: Path) -> None:
+    snapshot = _snapshot(tmp_path, {"src/empty.py": ""})
+    aggregate = analyze_python_class_method_resources(
+        snapshot,
+        resource_addresses=(RepositoryResourceAddress("src/empty.py"),),
+    )
+    assert _bindings(ast.parse(""), aggregate.analyses[0], ()) == ()

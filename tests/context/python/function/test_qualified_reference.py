@@ -7,6 +7,9 @@ from pathlib import Path
 
 import pytest
 
+from devtools.context.python.classes.declarations import (
+    derive_python_class_method_declarations,
+)
 from devtools.context.python.function import (
     MaterializedPythonQualifiedReferenceContext,
     PythonFunctionSourceMaterializationError,
@@ -18,6 +21,9 @@ from devtools.context.python.function import (
 )
 from devtools.context.python.function.declarations import (
     PythonFunctionDeclarationKnowledge,
+)
+from devtools.context.python.function.qualified_reference import (
+    PythonQualifiedReferenceDisclosure,
 )
 from devtools.context.python.modules import (
     PythonModuleRoot,
@@ -490,3 +496,69 @@ def test_materialization_does_not_reacquire_files(tmp_path: Path) -> None:
     materialized = _materialized(snapshot, analysis, analysis.references[0])
     assert materialized.reference_name_text == "f"
     assert materialized.target_declaration_text == "def f():\n    pass"
+
+
+def test_nonfunction_and_redirected_retained_support_are_rejected(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    snapshot = _snapshot(
+        tmp_path,
+        {
+            "consumer.py": "from target import f\nf()\n",
+            "target.py": "def f():\n    pass\nclass C:\n    pass\n",
+        },
+    )
+    analysis = _analysis(snapshot)
+    fact = analysis.references[0]
+    class_declaration = derive_python_class_method_declarations(
+        snapshot,
+        resource_address=RepositoryResourceAddress("target.py"),
+    ).classes[0]
+    nonfunction = replace(fact, target_declaration=class_declaration)
+    altered = replace(analysis, references=(nonfunction,))
+    with pytest.raises(
+        PythonQualifiedReferenceDisclosureError,
+        match="imported function",
+    ):
+        disclose_python_qualified_reference(
+            purpose="Inspect class",
+            analysis=altered,
+            reference=nonfunction,
+        )
+    materialized = _materialized(snapshot, analysis, fact)
+    constructed = PythonQualifiedReferenceDisclosure(
+        "Inspect class",
+        altered,
+        nonfunction,
+    )
+    with pytest.raises(
+        PythonQualifiedReferenceDisclosureError,
+        match="supported function",
+    ):
+        render_python_qualified_reference_context(
+            replace(materialized, disclosure=constructed),
+        )
+    redirected = replace(
+        fact,
+        target_resource=snapshot.resource_at(RepositoryResourceAddress("consumer.py")),
+    )
+    with pytest.raises(
+        PythonQualifiedReferenceDisclosureError,
+        match="retained Reference support",
+    ):
+        _materialized(snapshot, replace(analysis, references=(redirected,)), redirected)
+    # Independently exercise the materializer's defensive check after the
+    # disclosure validation boundary is deliberately bypassed by a fault.
+    monkeypatch.setattr(
+        "devtools.context.python.function.qualified_reference.disclose_python_qualified_reference",
+        lambda **_kwargs: constructed,
+    )
+    with pytest.raises(
+        PythonQualifiedReferenceDisclosureError,
+        match="supported function",
+    ):
+        materialize_python_qualified_reference_source(
+            disclosure=constructed,
+            snapshot=snapshot,
+        )

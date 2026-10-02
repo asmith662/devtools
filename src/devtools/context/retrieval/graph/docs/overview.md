@@ -72,13 +72,26 @@ span, sufficiency, or stopping rule. They operate on retained snapshot state
 without reopening the working tree.
 
 Graph-1/Graph-2 enumerated unranked reachable neighborhoods with large
-candidate fan-out. This is query-conditioned ranking, not Graph-3. It is
-also not Aider's repository map: no global symbol prior, symbol rendering,
-or compact disclosure policy is implemented. Global structural centrality
-is a separate prospective hypothesis.
+candidate fan-out. This is query-conditioned ranking, not Graph-3. This PPR channel is
+also not a complete Aider repository map: symbol rendering and compact
+disclosure policy remain unimplemented. Global structural importance is now
+implemented by the separate repository-map channel documented below, with
+prospective usefulness still unestablished.
 
 The [typed-view development replay](../../../../../../experiments/typed_graph_baseline/README.md)
 finds restored declaration topology but no complete-depth gain over BM25 on
 retained Case 0002. That tests these projections and aggregation rules, not
 all graph ranking. The [original baseline](../../../../../../experiments/graph_ranking_baseline/README.md)
 remains reproducible. Confirmation stays sealed.
+
+
+## Separate global importance hypothesis
+
+The [repository-map channel](../../repository_map/docs/overview.md) now uses
+query-independent resource-uniform global PageRank on a dependency projection,
+then combines it with compact symbol/path lexical relevance. Its transition
+semantics and restart vector differ from PPR; both use the canonical stationary
+walk arithmetic in `graph.walk`. Typed PPR remains available with unchanged
+query personalization and resource projection. Aider itself can use personalized
+PageRank; separating global importance and symbol relevance is an explicit
+devtools adaptation, not a claim that Aider avoids diffusion.

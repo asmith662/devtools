@@ -98,3 +98,14 @@ decision.
 The historical structural union experiments remain reproduction evidence;
 future production consumers use this composition operation for native direct
 facts and lexical evidence.
+
+
+## Repository-map structural relevance
+
+The [repository-map package](../repository_map/docs/overview.md) provides an
+independently inspectable channel: global structural importance, compact
+symbol/path BM25, symbol rank combination and maximum-symbol resource ranking.
+Resource BM25 and query-conditioned Personalized PageRank (PPR) remain separate.
+Optional Reciprocal Rank Fusion (RRF) preserves native channel evidence.
+Ranks and declaration spans can later support Context Planning's compact
+representations, without Retrieval rendering or selecting disclosure.

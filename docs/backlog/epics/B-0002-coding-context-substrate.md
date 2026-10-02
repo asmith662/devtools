@@ -778,3 +778,17 @@ production-RI evaluation frame and explicit relation-coverage diagnosis,
 particularly for tests, documentation, and configuration. Differentiated
 weights, reverse views, symbol-node diffusion, and default fusion require new
 evidence; this checkpoint does not resolve them. Confirmation remains sealed.
+
+
+## Repository-map checkpoint evidence
+
+The authorized repository-map increment now supplies global dependency
+importance and task-relative compact symbol ranking within existing Retrieval
+ownership. See the [contract](../../../src/devtools/context/retrieval/repository_map/docs/overview.md)
+and [development-only diagnostic](../../../experiments/repository_map_baseline/README.md).
+This changes implemented capability evidence, not this epic's overall status
+or unresolved Context/RI promotion triggers. Documentation/governance and
+configuration-to-code relationships remain unestablished RI pressure; no
+relationship is invented for ranking. Prospective usefulness awaits an
+independent natural development task, and compact map disclosure remains
+Context representation work.

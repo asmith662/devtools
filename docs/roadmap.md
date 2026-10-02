@@ -58,8 +58,9 @@ Imports, References, containment, direct bases, package membership, and
 mirrored-path correspondence with explicit edge-family and direction choices.
 On the retained development case, typed
 declaration topology was restored, but complete required-resource depth
-worsened. The next comparison requires an independently frozen task before
-testing resource aggregation or a global structural prior. This is a
+worsened. Prospective evaluation of resource aggregation or a global structural prior
+requires an independently frozen task. The separate repository-map checkpoint
+below implements that channel and retains Case 0002 only as diagnostic replay. This is a
 Retrieval decision, not a change to Context admission. The single retained
 case is diagnostic evidence, not an unbiased ranking evaluation.
 
@@ -411,3 +412,23 @@ owns qualified typed facts; whether future structural navigation uses independen
 views, a unified typed substrate, or relation/index projections remains an
 operational question. Shadow execution, if later justified, follows offline and
 independent validation and remains non-controlling until separately promoted.
+
+
+## Repository-map checkpoint and next evidence gate
+
+The separate repository-map increment is implemented: global dependency
+importance, compact declaration/path BM25, symbol RRF and maximum-symbol
+resource projection, with optional lexical-resource RRF and retained provenance.
+The [package contract](../src/devtools/context/retrieval/repository_map/docs/overview.md)
+and [diagnostic record](../experiments/repository_map_baseline/README.md) distinguish
+it from query-conditioned PPR. Case 0002 remains diagnostic: improved
+implementation ranks do not overcome absent governance/configuration symbols,
+and fusion worsens complete coverage depth. No default fusion is selected.
+
+The exact next increment is a prospective advisory retrieval comparison on the
+next naturally occurring, independently justified development task. Freeze the
+snapshot/frame, real prompt, separately written InformationNeed, channels and
+this algorithm before retrieval; adjudicate the full resource frame without
+retrieval/agent provenance, then join outcomes. No task is invented and no Case
+0003 exists yet. Broader RI relations or compact Context-map disclosure remain
+separate later work, selected only from actual task pressure and evidence.

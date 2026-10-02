@@ -407,3 +407,32 @@ typed core 146 and navigation 207. No lexical required miss was rescued.
 The result withholds a default graph policy and motivates an independently
 frozen comparison of structural priors and resource aggregation. Confirmation
 remains sealed.
+
+
+## Repository-map structural retrieval checkpoint (2026-10-01)
+
+- Started from clean main at `a24a70cc0511ce6fc56969ea7d46b438f79a7df0`.
+- Inspected governing architecture/research and Aider's public implementation;
+  distinguished its task-weighted file PageRank, definition flow and compact
+  rendering from a separately inspectable devtools global-importance channel.
+- Implemented `context.retrieval.repository_map`: dependency-only global
+  importance, compact symbol/path BM25 relevance, symbol RRF, maximum-symbol
+  resource projection and optional lexical-resource RRF. Preserved exact RI
+  subjects/spans and incoming fact supports, without adding repository truth or
+  Context rendering. Shared canonical walk/resource-fusion arithmetic with PPR.
+- Froze algorithm/parameters before Case 0002 diagnostic retrieval; retained
+  initial hashes and AST-identical final formatting provenance. Full-prompt map
+  omits three required non-symbol resources; BM25/map fusion needs rank 139 for
+  complete coverage versus BM25 43. Short-need fusion needs 152 versus 87.
+  No parameter is tuned and no general usefulness/default fusion is promoted.
+- No legitimate fresh independent task was established; prospective evaluation
+  awaits the next naturally occurring task. No Case 0003 was manufactured.
+- Validation: Ruff, touched-file formatting, mypy and diff checks pass. Default
+  pytest has seven local virtualenv discovery-bound failures. Protected run uses
+  a bounded cwd corpus for those seven benchmarks, excludes 22 retained-artifact
+  tests, and passes 1,749 tests with two live skips and 100% production branch
+  coverage. Initial default tests automatically ran old confirmation audits;
+  those outcomes were not used in algorithm choice or replay. Full conditions,
+  comparative diagnostics and source hashes are in the
+  [retained baseline](../experiments/repository_map_baseline/README.md).
+- One checkpoint commit; no push or subsequent production increment.

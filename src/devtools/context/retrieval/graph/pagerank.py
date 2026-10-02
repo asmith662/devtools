@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING, ClassVar
 
 from devtools.context.retrieval.composition import require_lexical_result_snapshot
 from devtools.context.retrieval.graph.view import PythonGraphNodeKind
+from devtools.context.retrieval.graph.walk import stationary_distribution
 
 if TYPE_CHECKING:
     from devtools.context.repository.resource import RepositoryResourceAddress
@@ -99,7 +100,7 @@ class PythonGraphRankingResult:
 _DEFAULT_SETTINGS = GraphRankingSettings()
 
 
-def rank_python_repository_resources(  # noqa: C901, PLR0912, PLR0915
+def rank_python_repository_resources(
     snapshot: RepositorySnapshot,
     *,
     purpose: str,
@@ -118,44 +119,15 @@ def rank_python_repository_resources(  # noqa: C901, PLR0912, PLR0915
     if not purpose.strip():
         msg = "Graph ranking requires a nonempty purpose."
         raise ValueError(msg)
-    if graph_view.snapshot_id != snapshot.id or graph_view.resources != tuple(
-        sorted((item.address for item in snapshot.resources), key=str),
-    ):
-        msg = "Graph view differs from the supplied snapshot."
-        raise ValueError(msg)
+    require_graph_view_snapshot(snapshot, graph_view)
     require_lexical_result_snapshot(snapshot, lexical_result)
     nodes = graph_view.nodes
     positions = {node: index for index, node in enumerate(nodes)}
-    if len(positions) != len(nodes):
-        msg = "Graph view repeats a typed node."
-        raise ValueError(msg)
     resource_nodes = {
         node.resource_address: node
         for node in nodes
         if node.kind is PythonGraphNodeKind.RESOURCE
     }
-    if set(resource_nodes) != set(graph_view.resources):
-        msg = "Graph resource nodes differ from the supplied snapshot."
-        raise ValueError(msg)
-    if any(node.resource_address not in resource_nodes for node in nodes):
-        msg = "Graph declaration node belongs to an unobserved resource."
-        raise ValueError(msg)
-    row_sums: dict[PythonGraphNode, float] = {}
-    for edge in graph_view.edges:
-        if (
-            edge.source not in positions
-            or edge.target not in positions
-            or not math.isfinite(edge.transition_probability)
-            or edge.transition_probability <= 0
-        ):
-            msg = "Graph edge has an unknown endpoint or invalid probability."
-            raise ValueError(msg)
-        row_sums[edge.source] = (
-            row_sums.get(edge.source, 0.0) + edge.transition_probability
-        )
-    if any(not math.isclose(total, 1.0, abs_tol=1e-9) for total in row_sums.values()):
-        msg = "Graph outgoing transition probabilities must sum to one."
-        raise ValueError(msg)
     seed_weights = [0.0] * len(nodes)
     lexical_ranks: dict[RepositoryResourceAddress, int] = {}
     for rank, match in enumerate(lexical_result.matches, start=1):
@@ -188,26 +160,13 @@ def rank_python_repository_resources(  # noqa: C901, PLR0912, PLR0915
         outgoing[positions[edge.source]].append(
             (positions[edge.target], edge.transition_probability)
         )
-    scores = seeds.copy()
-    converged = False
-    iterations = 0
-    for _ in range(settings.maximum_iterations):
-        iterations += 1
-        next_scores = [(1 - settings.damping) * seed for seed in seeds]
-        dangling = math.fsum(scores[i] for i, edges in enumerate(outgoing) if not edges)
-        for i, seed in enumerate(seeds):
-            next_scores[i] += settings.damping * dangling * seed
-        for i, edges in enumerate(outgoing):
-            for target, probability in edges:
-                next_scores[target] += settings.damping * scores[i] * probability
-        delta = math.fsum(abs(a - b) for a, b in zip(scores, next_scores, strict=True))
-        scores = next_scores
-        if delta <= settings.tolerance:
-            converged = True
-            break
-    # Input order and operation order are fixed; final mass is normalized once.
-    mass = math.fsum(scores)
-    scores = [score / mass for score in scores]
+    scores, iterations, converged = stationary_distribution(
+        outgoing,
+        seeds,
+        damping=settings.damping,
+        tolerance=settings.tolerance,
+        maximum_iterations=settings.maximum_iterations,
+    )
     incoming: dict[PythonGraphNode, list[PythonGraphIncomingSupport]] = {}
     for edge in graph_view.edges:
         flow = (
@@ -272,3 +231,47 @@ def rank_python_repository_resources(  # noqa: C901, PLR0912, PLR0915
             for index, node in enumerate(nodes)
         ),
     )
+
+
+def require_graph_view_snapshot(
+    snapshot: RepositorySnapshot,
+    graph_view: PythonGraphView,
+) -> None:
+    """Validate a graph's snapshot frame, typed endpoints, and stochastic rows."""
+    if graph_view.snapshot_id != snapshot.id or graph_view.resources != tuple(
+        sorted((item.address for item in snapshot.resources), key=str),
+    ):
+        msg = "Graph view differs from the supplied snapshot."
+        raise ValueError(msg)
+    nodes = graph_view.nodes
+    positions = {node: index for index, node in enumerate(nodes)}
+    if len(positions) != len(nodes):
+        msg = "Graph view repeats a typed node."
+        raise ValueError(msg)
+    resource_nodes = {
+        node.resource_address: node
+        for node in nodes
+        if node.kind is PythonGraphNodeKind.RESOURCE
+    }
+    if set(resource_nodes) != set(graph_view.resources):
+        msg = "Graph resource nodes differ from the supplied snapshot."
+        raise ValueError(msg)
+    if any(node.resource_address not in resource_nodes for node in nodes):
+        msg = "Graph declaration node belongs to an unobserved resource."
+        raise ValueError(msg)
+    row_sums: dict[PythonGraphNode, float] = {}
+    for edge in graph_view.edges:
+        if (
+            edge.source not in positions
+            or edge.target not in positions
+            or not math.isfinite(edge.transition_probability)
+            or edge.transition_probability <= 0
+        ):
+            msg = "Graph edge has an unknown endpoint or invalid probability."
+            raise ValueError(msg)
+        row_sums[edge.source] = (
+            row_sums.get(edge.source, 0.0) + edge.transition_probability
+        )
+    if any(not math.isclose(total, 1.0, abs_tol=1e-9) for total in row_sums.values()):
+        msg = "Graph outgoing transition probabilities must sum to one."
+        raise ValueError(msg)

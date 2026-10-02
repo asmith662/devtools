@@ -1095,3 +1095,24 @@ See [documentation_map.md](documentation_map.md) for current package
 documentation, [taxonomy.md](architecture/taxonomy.md) for definitions, and
 [ADR-0001](architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
 for the approved future boundary.
+
+
+### Repository-map structural retrieval
+
+Production Retrieval now also exposes a separate repository-map channel over
+Repository Intelligence (RI): query-independent dependency PageRank importance,
+compact symbol/path BM25 relevance, symbol rank combination, and maximum-symbol
+resource projection. It retains exact declaration identity, source support and
+native incoming fact flow. Uniform resource restart and exclusion of outward
+containment avoid creating importance merely through declaration count.
+This is distinct from lexical-resource-seeded Personalized PageRank (PPR).
+Optional Reciprocal Rank Fusion (RRF) combines resource ranks while retaining
+native evidence. Neither channel chooses Context, budget or sufficiency.
+Selection remains an operation within Context Planning; map rendering and
+materialization remain after explicit representation choice. See the
+[repository-map package contract](../src/devtools/context/retrieval/repository_map/docs/overview.md)
+for algorithms, provenance, supported scope and diagram, and the
+[frozen development diagnosis](../experiments/repository_map_baseline/README.md).
+No new domain, dependency direction, durable schema or ADR is introduced.
+Prospective evidence awaits the next independent natural task; Case 0002 is
+strictly diagnostic and does not select parameters or promote default fusion.

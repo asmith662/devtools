@@ -226,3 +226,54 @@ def test_snapshot_or_root_mismatch_is_rejected(tmp_path: Path) -> None:
             snapshot,
             interpretation_analysis=wrong_root,
         )
+
+
+def test_constructed_interpretations_and_exclusions_cannot_redirect_membership(
+    tmp_path: Path,
+) -> None:
+    snapshot = _snapshot(
+        tmp_path,
+        {"pkg/__init__.py": "", "pkg/a.py": "", "bad-name.py": ""},
+    )
+    interpreted = _interpret(snapshot)
+    package = next(
+        item for item in interpreted.interpretations if item.dotted_name == "pkg"
+    )
+    child = next(
+        item for item in interpreted.interpretations if item.dotted_name == "pkg.a"
+    )
+    wrong_root = PythonModuleRoot("src")
+    for altered, message in (
+        (
+            replace(interpreted, interpretations=(child, child)),
+            "repeats an interpretation",
+        ),
+        (
+            replace(
+                interpreted,
+                interpretations=(replace(child, module_root=wrong_root),),
+            ),
+            "interpretation differs",
+        ),
+        (
+            replace(
+                interpreted,
+                exclusions=(
+                    replace(interpreted.exclusions[0], module_root=wrong_root),
+                ),
+            ),
+            "exclusion differs",
+        ),
+        (
+            replace(
+                interpreted,
+                interpretations=(package, replace(child, resource=package.resource)),
+            ),
+            "contain itself",
+        ),
+    ):
+        with pytest.raises(ValueError, match=message):
+            derive_python_immediate_package_memberships(
+                snapshot,
+                interpretation_analysis=altered,
+            )

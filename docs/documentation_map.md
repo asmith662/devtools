@@ -312,3 +312,15 @@ this map and architecture documentation when navigation or cross-package
 ownership changes. Update an accepted ADR when an approved cross-package
 decision changes. Preserve historical records as history rather than rewriting
 them to conceal a former architecture.
+
+
+## Repository-map retrieval navigation
+
+The [repository-map package contract](../src/devtools/context/retrieval/repository_map/docs/overview.md)
+owns current global importance, symbol metadata relevance, symbol ranking,
+resource aggregation and compact disclosure ingredients. The
+[frozen repository-map investigation and diagnostic replay](../experiments/repository_map_baseline/README.md)
+owns external Aider implementation evidence, alternatives, Case 0002 results,
+and the pending prospective evaluation protocol. ADR-0003 and ADR-0004 continue
+to govern Retrieval/Context ownership; the research disposition distinguishes
+this devtools adaptation from Aider's task-weighted PageRank/rendering pipeline.

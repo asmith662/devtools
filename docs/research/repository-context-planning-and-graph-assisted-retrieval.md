@@ -1493,9 +1493,33 @@ And, most importantly, **build the Context Planning substrate now**. That is the
 
 This document is canonical research evidence, not an ADR or a production API
 specification. ADR-0003 and ADR-0004 remain authoritative for retrieval and
-Context semantics. The present production checkpoint adopts an explicit,
-snapshot-bound disclosure-planning boundary and schedules a separate
-query-conditioned Aider-style/PPR graph-ranking baseline for prospective
-evaluation. Specific graph weights, RRF policy, automatic planning/stopping,
+Context semantics. Production now adopts an explicit, snapshot-bound disclosure-planning
+boundary and independently inspectable query-conditioned PPR and repository-map
+ranking channels. Their retained development replays remain diagnostic; a new
+prospectively frozen task is still required for a prospective usefulness claim. Specific graph weights, RRF policy, automatic planning/stopping,
 repository-map rendering, recovery tools, learned policies, and universal
 representation types remain research recommendations until separately justified.
+
+
+### Repository-map hypothesis disposition (2026-10-01)
+
+The subsequent repository-map increment implements a distinct bounded
+hypothesis: global resource-uniform structural importance plus compact
+symbol/path lexical relevance, preserving symbol identities before resource
+projection. Inspection of Aider's public `aider/repomap.py` confirms that its
+actual map uses symbol-labelled file edges, task-dependent weights and optional
+PageRank personalization, definition-flow ranking and budgeted source-tree
+rendering. Aider does not require a separately computed global symbol prior;
+that separation is a devtools adaptation. See the
+[external evidence and alternatives](../../experiments/repository_map_baseline/README.md)
+and [production contract](../../src/devtools/context/retrieval/repository_map/docs/overview.md).
+
+Production confirms feasibility of independently inspectable importance,
+symbol relevance and exact RI support. Retained Case 0002 diagnostics do not
+confirm a generally better retrieval channel: structural blind spots persist
+and lexical/map fusion worsens complete required coverage. The richer typed
+view and repository map do not invalidate graphs or make PPR obsolete. Compact
+map rendering remains Context-owned and unimplemented; automatic planning,
+stopping, three-channel fusion and learned policies remain unpromoted.
+Prospective evaluation awaits the next legitimate independent task; the
+algorithm is frozen without selecting parameters from Case 0002 outcomes.
