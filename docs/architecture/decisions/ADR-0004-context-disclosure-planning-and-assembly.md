@@ -2,6 +2,8 @@
 
 - Status: Accepted
 - Date: 2026-09-16
+- Refinement: 2026-10-02 (Context-owned evidence admission, bounded assessment
+  and progressive request semantics; accepted direction, not implemented)
 - Scope: semantic architecture after ranking: Context/disclosure planning,
   representation, coverage, prior information, sufficiency, budgeting,
   DisclosurePlan, ContextDisclosure, materialization, model-input assembly, and
@@ -34,6 +36,50 @@ Current conversation behavior belongs to `agents.conversation`; the sparse
 semantics and this ADR does not select a future package location.
 
 ## Decision
+
+### Evidence-guided admission and assessed recovery
+
+The [heterogeneous evidence investigation](../../research/heterogeneous-context-admission-and-recovery.md)
+refines the next practical realization of this decision. Admission chooses
+concrete disclosure options inside Context Planning, coupled to representation,
+current availability and cost. It is an observable policy boundary, not a
+mandatory separate resource-Selection service or new domain. Native resource,
+subject, occurrence and fact identities remain evidence referents; no universal
+InformationUnit superclass is selected. Retrieval keeps native evidence and
+ranking ownership, and Context may consume graph/map results alongside the
+existing lexical/direct inventory without requiring a universal fused score.
+
+An accepted future planning result records an optional nonempty DisclosurePlan
+alongside considered choices, reasons, exact source/fact coverage, costs,
+mandatory requirement conflicts, open questions, input/work limits and scoped
+expansion targets. An abstaining or blocked result need not invent an empty
+DisclosurePlan. The plan identifies selected information; the decision account
+separately identifies its policy and input basis. This refines artifact direction
+without changing existing plan identities or selecting a durable schema.
+
+Explicit requested-representation presence, applicability, materialization
+integrity, evidence-frame coverage and task sufficiency are distinct assessments.
+Neither completed planning nor covered caller-declared requirements establishes
+all unknown task obligations or model comprehension. Do not introduce a general
+boolean ContextSufficiency or infer current availability from disclosure history.
+A consumer supplies the currently available information and its constraints;
+learned predicted sufficiency would require scoped calibration and outcome evidence.
+
+Accept request semantics for acquisition under a stated question and expansion
+of an exact disclosure target to a permitted form. Each subsequent request keeps
+purpose, dependencies, currently available information and trigger/lineage basis.
+Exact expansion need not run relevance discovery. Context returns a new plan
+and assessment; Agent/orchestration owns whether to execute, request more,
+validate, retry, escalate or stop. Validation failure is an investigation trigger,
+not proof of missing Context. No Tool transport, recovery loop, generic Runtime
+orchestration, persistent need graph or autonomous-controller implementation is
+selected here.
+
+The research record specifies question-directed evidence lanes as the next
+deterministic development policy, preserving lexical access and differentiated
+structural use. Floors, allocation shares and budgets are replaceable frozen
+development parameters. Their usefulness must be measured prospectively;
+no existing case is reused to tune or establish superiority of the new policy.
 
 ### Disclosure planning is conditional composition
 

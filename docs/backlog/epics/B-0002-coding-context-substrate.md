@@ -826,3 +826,28 @@ docs and non-declaration resource eligibility remain unresolved alongside
 configuration-fact Retrieval admission. Prefix membership creates substantial
 fan-out and is not semantic dependency or relevance. No Selection rule, relation
 weight, graph transition or default fusion is promoted from these outcomes.
+
+## Evidence-guided disclosure planning design checkpoint
+
+The [heterogeneous admission and recovery investigation](../../research/heterogeneous-context-admission-and-recovery.md)
+now specifies a coherent bounded implementation slice: Context-owned concrete
+option admission, question-directed native evidence lanes, exact rendered byte
+accounting, source/fact coverage and observable planning assessments. ADR-0004
+refines its semantic ownership; the research record owns replaceable development
+parameters. No new Selection domain or universal candidate hierarchy is needed.
+
+The roadmap selects this planner as the next build, reusing explicit plans and
+snapshot materialization while supporting pointers, recorded Python declaration
+ranges and the existing qualified relationship disclosure semantics. Current
+AST spans can omit decorators and module surroundings; a compact range is not
+a complete behavioral definition. Mandatory forms and current availability must
+be explicit, with unsupported/budget-blocked choices and recovery targets retained.
+General sufficiency probabilities and an autonomous recovery controller remain
+unimplemented and need representation/outcome and worker-integration evidence.
+
+This settles the next bounded design direction, not its usefulness or this epic's
+overall lifecycle. Prospectively measure representation-level adequacy, coverage
+at actual presentation cost and recovery against matched controls. Existing
+Cases 0001-0003 are diagnostic and cannot calibrate the new policy. B-0047's
+protected validation profile is implemented; configuration graph projection and
+facade participation remain separate Retrieval pressure.

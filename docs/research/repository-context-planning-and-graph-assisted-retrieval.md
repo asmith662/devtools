@@ -1491,6 +1491,17 @@ And, most importantly, **build the Context Planning substrate now**. That is the
 
 ## Disposition
 
+The 2026-10-02 [heterogeneous admission and recovery investigation](heterogeneous-context-admission-and-recovery.md)
+now refines the next planning build under ADR-0004. It selects Context-owned
+concrete option admission, bounded assessments and explicit request semantics.
+Its question-directed native evidence lanes replace this record's proposed
+default weighted resource RRF and scalar greedy utility as the next development
+baseline. A universal InformationUnit class, signature spans and independently
+identified persistent InformationNeeds are not required by the selected slice.
+The older recommendations remain reasoning/history, not current API contracts.
+The new policy is specified but unimplemented and has no prospective utility
+result. Recovery reliability and sufficient representations must still be measured.
+
 This document is canonical research evidence, not an ADR or a production API
 specification. ADR-0003 and ADR-0004 remain authoritative for retrieval and
 Context semantics. Production now adopts an explicit, snapshot-bound disclosure-planning

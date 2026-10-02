@@ -54,6 +54,11 @@
   Aider-style/PPR graph ranking, heterogeneous retrieval, and RRF. Its
   recommendations remain research evidence until accepted in current
   architecture or implemented under a bounded roadmap increment.
+  The [heterogeneous Context admission and recovery investigation](research/heterogeneous-context-admission-and-recovery.md)
+  owns the current alternatives, concrete deterministic development policy,
+  sufficiency limits, recovery contract and prospective measurement plan.
+  ADR-0004 dispositions its Context-owned semantic decisions; its policy is not
+  implemented or empirically validated by this documentation checkpoint.
 - Package-local documentation defines detailed implemented public APIs, package
   design, lifecycle/operational behavior, and usage. Central architecture
   summarizes system-level ownership and links outward; it does not duplicate

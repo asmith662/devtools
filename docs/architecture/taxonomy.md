@@ -665,6 +665,14 @@ representation taxonomy, or sufficiency. Previously disclosed information
 need not remain currently available or applicable. Tracking disclosure or
 availability must not claim model comprehension or create a ModelKnowledgeState.
 
+The accepted, unimplemented next planning direction admits concrete disclosure
+options through a Context-owned policy and records bounded coverage, constraints,
+deferrals and recovery targets beside the plan. Native information referents
+remain distinct from representations. No mandatory resource-Selection service
+or boolean ContextSufficiency follows. Acquisition for a question and expansion
+of an exact disclosure target are Context request semantics; successive attempts
+and escalation remain Agent/orchestration decisions. See ADR-0004's refinement.
+
 Disclosure selects information rather than arbitrary prompt strings. A
 DisclosureOption is a conceptual purpose-relative possibility for making
 identified information about one or more subjects available through a

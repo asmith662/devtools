@@ -15,6 +15,13 @@
 
 ## Research reconciliation
 
+The 2026-10-02 [heterogeneous admission and recovery investigation](../../research/heterogeneous-context-admission-and-recovery.md)
+now selects Context-owned option admission as the next practical planning
+direction under ADR-0004. It leaves native rankings independent and does not
+promote resource RRF, the historical directional-reservation rule or a
+standalone Selection service. Its concrete policy is a frozen development
+hypothesis, not measured relevance truth or an implemented planner.
+
 The one-hop, no-PageRank constraint below describes the then-next direct
 structural candidate-generation hypothesis. It is not a permanent ban on a
 separate ranked structural mechanism. The later production-RI-backed PPR

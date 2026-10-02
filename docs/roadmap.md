@@ -64,12 +64,15 @@ below implements that channel and retains Case 0002 only as diagnostic replay. T
 Retrieval decision, not a change to Context admission. The single retained
 case is diagnostic evidence, not an unbiased ranking evaluation.
 
-The production Selection architecture investigation is complete. No universal
-resource-Selection stage is mandatory between Retrieval and Context. Resource
-assessment and sufficiency are distinct possible decisions, with no
-variable-cardinality admission rule, budgeted file set, or Selector API
-selected. A retrieval candidate or advisory orientation does not imply
-disclosure or sufficiency. Codex dogfood keeps normal search, open, edit, and
+The earlier resource-Selection investigation established that no universal
+resource-Selection stage is mandatory between Retrieval and Context. The
+[heterogeneous admission and recovery investigation](research/heterogeneous-context-admission-and-recovery.md)
+now specifies the next practical policy: Context-owned concrete option admission,
+question-directed lexical/structural evidence lanes, bounded coverage/constraint
+assessments and explicit progressive requests. This is accepted design and
+frozen development policy, not implemented automatic planning or demonstrated
+sufficiency. A retrieval candidate or advisory orientation does not imply
+disclosure or adequacy. Codex dogfood keeps normal search, open, edit and
 validation access.
 
 Proceed in dependency order: (1) bounded source-grounded Python function
@@ -465,14 +468,26 @@ this case; the short need improves lexical depth here after hurting Cases 0001
 and 0002. Configuration facts were deliberately not added to Retrieval during
 this comparison.
 
-The next roadmap step after this operational checkpoint is an architecture
-investigation of heterogeneous candidate admission and Context sufficiency.
-It should distinguish broad candidate reach, ordering quality, and useful
-information per disclosure budget before selecting a production policy. The
-configuration RI projection remains a separate Retrieval decision: selector
+The architecture investigation of heterogeneous evidence admission and Context
+sufficiency is complete. The next implementation increment is **evidence-guided
+repository disclosure planning version 1**, as specified in the
+[investigation record](research/heterogeneous-context-admission-and-recovery.md).
+Build Context-owned native evidence adapters, concrete proposal/decision records,
+exact byte cost and source/fact coverage accounting, supported pointer/recorded-
+declaration/qualified-fact options, deterministic evidence lanes and scoped
+expansion targets. Reuse the existing DisclosurePlan and materializers. Preserve
+separate snapshot integrity, explicit requirement coverage and open questions;
+neither budget exhaustion nor a completed plan proves sufficient Context.
+
+Freeze the policy before a new natural-task comparison, including its question
+formulation, floors, allocation and actual presentation budget. Measure sufficient
+representations and recovery against matched controls; Cases 0001-0003 are
+diagnostic. Do not implement a retrieval executor, autonomous recovery controller,
+learned policy or transport in that first slice.
+
+Configuration RI projection remains a separate Retrieval decision: selector
 families, direction, prefix fan-out, duplicate handling and resource/symbol
-eligibility need explicit treatment before another natural-task comparison.
-Do not turn all 1,026 prefix facts into equally persuasive relevance votes.
-Keep the lexical channel available for governance/docs and declaration-free
-facades; current evidence does not justify a universal admission or default RRF
-policy. This checkpoint does not begin either investigation.
+eligibility need explicit treatment. Do not turn all 1,026 prefix facts into
+equally persuasive relevance votes. Keep the lexical channel available for
+governance/docs and declaration-free facades; current evidence does not justify
+default resource RRF. This documentation checkpoint begins no production build.

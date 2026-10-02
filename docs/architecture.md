@@ -833,6 +833,29 @@ contract.
 
 ## Accepted Context and disclosure semantics
 
+The [heterogeneous evidence admission and recovery investigation](research/heterogeneous-context-admission-and-recovery.md)
+and ADR-0004's 2026-10-02 refinement select an accepted, **unimplemented** next
+direction: evidence-guided option admission inside Context Planning, with a
+separate observable decision/coverage account alongside the selected plan.
+Native resource, declaration, occurrence and relationship identities remain
+referents; concrete representations consume disclosure capacity. There is no
+mandatory intermediate file-admission service or universal evidence score.
+
+The deterministic development baseline gives exact caller-required forms first
+consideration, then allocates bounded byte capacity across question-specific
+lexical and structural evidence lanes. It preserves native provenance, source
+and fact coverage separately, deferred expansion targets and explicit stop
+reasons. The research record owns its replaceable floors/weights and detailed
+algorithm; no measured superiority or production policy exists yet.
+
+Bounded planning assessments distinguish integrity, applicability, cost,
+currently available requested representations and open questions. They do not
+establish general Context sufficiency. Requests may acquire information for a
+question or expand an exact target; Context plans/materializes, while
+Agent/orchestration decides successive attempts, validation, recovery limits
+and escalation. Previous plan lineage does not establish current availability.
+This accepts request semantics, not a transport, Tool registry or recovery loop.
+
 [ADR-0004](architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)
 accepts the post-ranking Context layer. Context compilation is conditional
 information composition, not top-K retrieval or automatic budget filling.
