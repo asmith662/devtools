@@ -124,6 +124,6 @@ provide dependency navigation without duplicating a second dependency graph.
 | [B-0044](items/B-0044-investigate-orchestration-control-loops.md) | Investigate orchestration control loops | DEFERRED | orchestration |
 | [B-0045](items/B-0045-establish-minimal-model-interaction-core.md) | Establish minimal ModelInteraction core | IMPLEMENTED | models |
 | [B-0046](items/B-0046-investigate-advanced-model-interaction-provider-pressure.md) | Investigate advanced model-interaction/provider pressure | BACKLOG | models |
-| [B-0047](items/B-0047-protected-development-validation-profile.md) | Protected development validation profile | BACKLOG | evaluation |
+| [B-0047](items/B-0047-protected-development-validation-profile.md) | Protected development validation profile | VALIDATED | evaluation |
 
 See [metadata.md](metadata.md) for record semantics and promotion discipline.

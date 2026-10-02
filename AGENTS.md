@@ -225,19 +225,18 @@ applicable. Update behavior claims where behavior changes. Update authoritative
 architecture only for actual architectural changes. Do not rewrite historical
 records as if older terminology never existed.
 
-The normal deterministic validation suite is:
+The canonical protected development test profile is documented in
+[docs/development/validation.md](docs/development/validation.md). Run it with:
 
 ```text
-uv run ruff check .
-uv run mypy
-uv run pytest
-git diff --check
+uv run python scripts/validate_development.py
 ```
 
-Pytest is configured for branch coverage with `--cov-fail-under=100`. When
-finalizing staged work, also run `git diff --cached --check`. Do not run live
-model/Docker tests for ordinary work; live tests require explicit authorization
-and are reported separately.
+It excludes `tests/experiments/` before collection to avoid retained
+outcome-dependent tests. Keep the configured production branch-coverage gate.
+Run Ruff, formatting, mypy, and diff checks separately as documented. Do not
+run confirmation validation or live model/Docker tests for ordinary work;
+those require explicit authorization and are reported separately.
 
 For read-only audits: do not fix while inspecting; list evidence inspected,
 separate fact from interpretation, report findings by severity, and do not

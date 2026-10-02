@@ -308,7 +308,9 @@ package overview. Broader Evaluation architecture remains unimplemented.
 `experiments/` is non-installable composition and may depend on `devtools`;
 reusable source must not import it. [Qwen experiment documentation](../experiments/qwen/docs/overview.md)
 describes the bounded read-only experiments. Operational entry points remain
-under `scripts/`.
+under `scripts/`. The [protected development validation contract](development/validation.md)
+documents the canonical test command, its pre-collection experiment-tree
+exclusion, and the separate confirmation-validation boundary.
 
 ## Backlog navigation
 

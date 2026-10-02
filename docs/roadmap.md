@@ -196,13 +196,20 @@ and omitted fourteen in both arms. No required lexical miss was rescued. The
 broader frame and task differ from earlier cases; no pooled ranking or exploration
 savings claim is made. Ranking parameters and Context policy remain unchanged.
 
-[B-0047](backlog/items/B-0047-protected-development-validation-profile.md)
-records current pressure for supported development validation isolation before
-collection. This increment uses explicit safe test directories and focused
-coverage overrides. Host validation passed 1,299 tests with two live skips and
-100% production branch coverage using `tests --ignore=tests/experiments` plus
-explicit capture and Case 0003 protocol files. All retained experiment tests
-were excluded before recursive collection. No general harness is promoted here.
+[B-0047](backlog/items/B-0047-protected-development-validation-profile.md) is
+validated. The canonical command is:
+
+```text
+uv run python scripts/validate_development.py
+```
+
+It excludes `tests/experiments/` before collection and preserves the configured
+100% production coverage threshold.
+The Case 0003 run remains the evidence for the boundary: 1,299 tests passed,
+two were skipped, and the retained experiment tree was excluded before
+collection. The profile is documented in
+[development validation](development/validation.md). Confirmation validation
+remains a separately authorized activity.
 
 For each bounded real task, freeze the snapshot, eligible lexical index/corpus,
 verbatim prompt, separately authored short InformationNeed, BM25 settings,
@@ -458,14 +465,14 @@ this case; the short need improves lexical depth here after hurting Cases 0001
 and 0002. Configuration facts were deliberately not added to Retrieval during
 this comparison.
 
-The exact next recommended architectural increment is an explicit bounded
-Retrieval projection of configuration declarations and qualified target facts,
-with selector families, direction, prefix fan-out, duplicate handling and
-resource/symbol eligibility fixed before a new natural-task comparison. Do not
-turn all 1,026 prefix facts into equally persuasive relevance votes. Keep the
-lexical channel available for governance/docs and declaration-free facades;
-current evidence does not justify a universal admission or default RRF policy.
-B-0047 is an operational prerequisite for further autonomous evaluation work:
-retain a supported protected development-validation invocation. Broader RI or
-compact Context-map disclosure remain separate decisions. No next increment
-is begun by this checkpoint.
+The next roadmap step after this operational checkpoint is an architecture
+investigation of heterogeneous candidate admission and Context sufficiency.
+It should distinguish broad candidate reach, ordering quality, and useful
+information per disclosure budget before selecting a production policy. The
+configuration RI projection remains a separate Retrieval decision: selector
+families, direction, prefix fan-out, duplicate handling and resource/symbol
+eligibility need explicit treatment before another natural-task comparison.
+Do not turn all 1,026 prefix facts into equally persuasive relevance votes.
+Keep the lexical channel available for governance/docs and declaration-free
+facades; current evidence does not justify a universal admission or default RRF
+policy. This checkpoint does not begin either investigation.
