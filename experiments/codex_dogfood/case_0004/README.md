@@ -1,6 +1,7 @@
 # Case 0004: obligation-specific lexical acquisition
 
-**FROZEN BEFORE RETRIEVAL. Stage A only.**
+**STAGE B CAPTURED — NOT ADJUDICATED.** The treatment below was committed at
+Stage A before Retrieval. Stage C has not started.
 
 This prospective acquisition experiment precedes implementation of bounded
 repository-role intelligence. The complete task, purpose, shared anchors,
@@ -96,50 +97,54 @@ record. Their capture functions are not called. Native repository observation,
 corpus/index and Localization identity/task/query/request constructors are
 reused directly. No new experiment framework or production schema is added.
 
-## Stage B: later acquisition procedure
+## Stage B capture (complete)
 
-**Do not execute this stage as part of the protocol-freeze task.**
+The case-specific script [capture.py](capture.py) verified the Stage A commit,
+committed README/protocol/archive, input digest, every retained request field,
+all source digests, snapshot/corpus membership, lane text/order and settings
+before acquisition. It uses the trusted native request without rebuilding it
+from current repository contents. It refuses to run if either frozen output
+already exists.
 
-1. Identify the Stage A commit in Git history. Require that it contains exactly
-   the protocol, native archive and this record, with no Case 0004 outputs.
-   Compare the local protocol/archive against those committed blobs. Require
-   a clean checkout and validate the archive SHA-256 against the manifest.
-2. Use the same locked environment and original production implementation.
-   Check every `implementation_sha256` entry against the canonical Git blob
-   at `starting_head` and current source text normalized to LF. Fail on any
-   difference. Check the loaded request against every manifest field: exact
-   task/purpose/queries, identities, anchors, obligations, settings, snapshot,
-   corpus membership/content and bound. Do not reconstruct queries from
-   predicates or use current repository content as the corpus.
-3. In a reviewed case-specific capture script, load the trusted frozen request
-   and execute exactly this acquisition call once:
+The invoked entry point was:
 
-   ```python
-   import gzip
-   import pickle
-   from devtools.context.localization.lexical import acquire_localization_lexical_evidence
+```text
+uv run python experiments/codex_dogfood/case_0004/capture.py
+```
 
-   request = pickle.loads(gzip.decompress(archive_bytes))
-   acquisition = acquire_localization_lexical_evidence(request)
-   ```
+Two initial launches stopped during preflight, before the acquisition call:
+first due to Windows text line endings, then due to confusing the original task
+snapshot commit with the later Stage A commit. The script was corrected to
+compare canonical text content and keep those commit identities distinct. The
+adapter was then invoked exactly once. No treatment field changed.
 
-   The script must perform the preceding checks before this call. Invoke the
-   reviewed script with `uv run python <capture-script-path>`. There is no
-   Stage B executable in this checkpoint; this procedure specifies the exact
-   production operation and inputs rather than advertising a nonexistent
-   command. Adding capture/serialization code later must not change treatment.
-4. Preserve the complete native acquisition as `capture.pkl.gz`; serialize
-   `retrieval.json` with the protocol/archive hashes, snapshot/corpus IDs,
-   ordered lane/query/obligation identities, exact query text, settings, native
-   one-based ranks, resource/content identities, scores and lexical
-   contributions. Retain zero-result lanes. Refuse to overwrite existing
-   outputs. Do not join judgments, fuse lanes or produce a selected Context.
-   Record total acquisition runtime with a monotonic clock. Per-lane runtime
-   is optional if it cannot be captured without changing native behavior;
-   report it unavailable rather than timing a different algorithm.
-5. Freeze and commit those outputs before independent adjudication. A failure
-   or necessary protocol correction must be recorded openly and cannot be
-   retroactively described as an unchanged prospective treatment.
+The script retained the complete native request/result pair in
+[`capture.pkl.gz`](capture.pkl.gz) and its field-by-field deterministic JSON
+serialization in [`retrieval.json`](retrieval.json). JSON preserves every lane,
+including empty lanes, exact query observations, native rank/order, resource
+and content identities, native scores and content/filename contributions.
+It records the total acquisition runtime; it contains no usefulness labels,
+satisfaction claims, winner labels, fusion or cross-lane ranks.
+
+Frozen output identities:
+
+| Artifact | SHA-256 |
+| --- | --- |
+| `capture.pkl.gz` | `e4cde5de6ed3fc3d8ea2a74eed40772972eebd4edb910c4091b7359276587f93` |
+| `retrieval.json` | `37fa5b7a53efbe326b9cfc9d0da4e7761fed0d83607bc184ba09b4765f548848` |
+
+Verified: nine lanes (one global, eight obligation), 498 eligible resources,
+native-to-JSON correspondence for every match and evidence contribution,
+protocol/archive/source identities, settings and result bound. A separate
+read-only verification loaded the retained aggregate; it did not call
+Retrieval. A second script launch confirmed overwrite refusal before acquisition
+and left both hashes unchanged. There are no adjudication, judgment or joined
+analysis artifacts. No semantic retrieval-quality interpretation was performed.
+Confirmation outcomes remain sealed.
+
+Commit this capture and record before any blind adjudication. Stage C receives
+the frozen task/frame and eligible content without queries, lane membership,
+ranks, scores, contributions, Retrieval provenance or retrieved flags.
 
 ## Later blind adjudication and analysis
 
