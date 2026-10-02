@@ -242,6 +242,14 @@ For read-only audits: do not fix while inspecting; list evidence inspected,
 separate fact from interpretation, report findings by severity, and do not
 stage or commit.
 
+At the end of a substantial Codex task, overwrite `.local/codex-result.md`
+with the same substantive completion report provided in the terminal response.
+Create `.local/` if needed. This is a local, ephemeral, non-authoritative
+handoff; it is ignored by Git and must never be committed. Do not use it as the
+only location for durable architectural decisions or empirical evidence. Put
+those in their proper authoritative documentation, ADR, backlog record,
+research artifact, experiment record, or production implementation.
+
 ## Git and external-state safety
 
 - Inspect HEAD, branch, index, worktree, and `git diff --check` before edits.
