@@ -480,14 +480,26 @@ alternative all-of witness sets, snapshot-qualified assessment references, and
 frame readiness with open, resolved, non-applicable, deferred, and abstained
 diagnostics. Its readiness claim covers only the supplied obligation frame.
 
-The next production increment is **Localization Retrieval evidence adapters**:
-retain full-task BM25 as a global escape lane and add obligation-scoped acquisition
-using native channel evidence. Keep acquisition evidence separate from obligation
-satisfaction; no rank alone resolves or eliminates a candidate. The adapter should
-project existing repository-role and structural facts only as typed provenance,
-without changing retrieval scoring, introducing hard path filters, or making
-Context Planning choose representations. Evaluate obligation and alternative-set
-coverage prospectively before adding bounded navigation actions or Context linkage.
+The Localization-side BM25 adapter is implemented. It retains the complete
+caller-supplied task query as a global safety lane and executes caller-authored
+obligation-specific queries as separate native BM25 results. It retains purpose
+apart from query text and exact query-to-obligation association. It adds no role
+scoping, fusion, candidate elimination, or rank-to-satisfaction rule.
+
+The next step is a prospective evaluation of explicit obligation-query
+acquisition, before adding more Retrieval behavior. Select a naturally occurring
+task without inspecting retrieval output; freeze the repository snapshot and
+eligible corpus, complete prompt and overall purpose, caller-authored obligation
+frame, each explicit obligation query and identity, BM25 settings/result limit,
+and comparison measurements before running retrieval. Then retain the native
+full-task and per-obligation rankings. An independent adjudicator should receive
+the frozen task/frame and resource identities/content, but no query-lane labels,
+ranks, scores, or provenance; freeze obligation-relative required/helpful/
+unnecessary judgments and acceptable alternatives before joining them to
+retrieval results. Compare per-obligation required coverage and complete-coverage
+rank depth, along with global required-resource reach. Report empty lanes as
+acquisition misses only, not negative evidence. Do not tune query wording from
+retrieval output or historical required-resource labels.
 
 Automatic task interpretation, repository-role inference, graph traversal,
 sequential acquisition, fine-grained Context linkage, calibrated confidence,
@@ -499,5 +511,5 @@ families, direction, prefix fan-out, duplicate handling and resource/symbol
 eligibility need explicit treatment. Do not turn all 1,026 prefix facts into
 equally persuasive relevance votes. Keep the lexical channel available for
 governance/docs and declaration-free facades; current evidence does not justify
-default resource RRF. This Localization increment did not change Retrieval or
-configuration graph projection.
+default resource RRF. The Localization adapter did not change core Retrieval
+scoring or configuration graph projection.

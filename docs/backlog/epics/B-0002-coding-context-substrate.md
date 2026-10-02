@@ -864,17 +864,23 @@ It provides task-local shared anchors, caller-authored mandatory/helpful
 obligations with separate applicability conditions, alternatives of conjunctive
 native/caller witness identities, snapshot-qualified evidence references, and a
 deterministic readiness assessment over the supplied obligation frame. It does
-not infer tasks, acquire repository evidence, or integrate with Context Planning.
-An abstention is not mandatory coverage; accepted deferred discovery permits only
-explicitly conditional handoff, not full readiness.
+not infer tasks, generate obligation queries, or integrate with Context Planning.
+Its bounded lexical adapter runs the complete caller-supplied task query and
+explicit obligation-associated queries through existing BM25, retaining each
+native result separately. An abstention is not mandatory coverage; accepted
+deferred discovery permits only explicitly conditional handoff, not full readiness.
 
-The exact next increment is Localization Retrieval evidence adapters: retain a
-full-task lexical escape lane and add obligation-scoped acquisition while
-preserving native channel provenance. Existing Repository Intelligence relations
-can be surfaced as evidence but may not resolve obligations by rank alone. No
-universal TaskModel, FileRole, evidence ontology, confidence ladder, hard directory
-filter or autonomous loop is selected. Earlier question-lane floors/weights remain
-historical proposals, not implementation policy.
+The next step is a prospective evaluation of explicit obligation-query
+acquisition. Freeze the snapshot, eligible corpus, task/purpose, obligation frame,
+caller-authored query identities and text, BM25 settings/result limit, and
+measurements before retrieval. Independently adjudicate obligation-relative
+required/helpful/unnecessary resources and acceptable alternatives without lane
+labels, ranks, scores, or provenance; freeze judgments before joining. Compare
+per-obligation coverage and complete-coverage rank depth, plus global required
+resource reach. An empty query lane is only an acquisition miss. No universal
+TaskModel, FileRole, evidence ontology, confidence ladder, hard directory filter,
+fusion policy, or autonomous loop is selected. Earlier question-lane
+floors/weights remain historical proposals, not implementation policy.
 
 Reuse current Reference/Call, containment, mirrored-path and configuration facts;
 historical experimental derivations are not new production implementations.
@@ -882,4 +888,5 @@ Targeted navigation and additional bounded roles/RI follow diagnosed gaps.
 Measure complete applicable mandatory coverage, acquisition/disclosure cost and
 false elimination prospectively. Learning and general sequential policies need
 independent traces. This records a bounded semantic capability, not epic
-completion or a retrieval-quality claim; no Retrieval behavior changed.
+completion or a retrieval-quality claim. Core Retrieval behavior and scoring
+remain unchanged.

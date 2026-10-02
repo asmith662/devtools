@@ -839,10 +839,12 @@ The semantic kernel is implemented in
 [`devtools.context.localization`](../src/devtools/context/localization/docs/overview.md):
 it represents caller-authored obligations and shared task anchors, alternative
 conjunctive witness sets, snapshot-qualified assessments, and deterministic
-frame readiness. Retrieval adapters, automatic task interpretation, acquisition
-execution, and Context integration remain unimplemented. Localization readiness
-is scoped to the supplied obligation frame; it does not establish that the frame
-is exhaustive or that the task will succeed.
+frame readiness. A bounded one-way lexical adapter also executes the full-task
+BM25 safety lane and caller-authored obligation queries while retaining native
+ranked results. Automatic task interpretation, nonlexical acquisition, and
+Context integration remain unimplemented. Localization readiness is scoped to
+the supplied obligation frame; it does not establish that the frame is exhaustive
+or that the task will succeed.
 
 ```text
 task interpretation: shared anchors + obligations + constraints
@@ -880,11 +882,11 @@ is the next structural direction, not another universal ranking experiment.
 A complete handoff requires supported satisfaction of every applicable mandatory
 obligation within the stated frame. Named inherent discovery allows an explicitly
 conditional handoff; abstention or budget exhaustion leaves coverage incomplete.
-Future Localization adapters may request bounded acquisition; an authorized
-Agent/caller executes it and owns retries/escalation. Context chooses faithful
+The current adapter executes only the bounded BM25 lanes and retains native
+results; it does not assess satisfaction. An authorized Agent/caller owns any
+further acquisition, retries, and escalation. Context chooses faithful
 representations and will preserve obligation provenance without redefining
-satisfaction or repository truth. The current package is a semantic kernel, not
-an autonomous Localization subsystem.
+satisfaction or repository truth. Localization is not an autonomous subsystem.
 
 ## Accepted Context and disclosure semantics
 

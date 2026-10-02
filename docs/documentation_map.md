@@ -27,8 +27,9 @@
   [ADR-0005](architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
   defines accepted repository Localization semantics: stated task obligations,
   bounded satisfaction/applicability, proof-scoped elimination and handoff limits.
-  Its caller-authored obligation/witness assessment kernel is implemented; native
-  Retrieval adapters and Context integration remain future work.
+  Its caller-authored obligation/witness kernel and one-way full-task/obligation
+  BM25 evidence adapter are implemented; other acquisition and Context integration
+  remain future work.
 - [AGENTS.md](../AGENTS.md) defines repository-operating rules.
 - [Research evidence](research/README.md) preserves investigations, alternatives,
   criticisms, recommendations, and deferred/rejected possibilities. Research is

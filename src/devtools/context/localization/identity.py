@@ -52,6 +52,20 @@ class LocalizationObligationIdentity:
 
 
 @dataclass(frozen=True, slots=True)
+class LocalizationQueryIdentity:
+    """Name one caller-authored acquisition query within a task."""
+
+    task: LocalizationTaskIdentity
+    value: str
+
+    def __post_init__(self) -> None:
+        """Reject empty local query keys."""
+        if not self.value.strip():
+            msg = "Localization query key must not be blank."
+            raise ValueError(msg)
+
+
+@dataclass(frozen=True, slots=True)
 class TaskTextSpan:
     """Retain a caller-supplied half-open character span in task text."""
 

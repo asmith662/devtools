@@ -645,7 +645,8 @@ are enabled without selecting formulas, models, or execution technology. See
 Localization assesses caller-stated task-relative information obligations against
 caller-supplied native repository referents and snapshot-qualified evidence,
 recording applicability, witness satisfaction, alternatives and unresolved
-discovery requirements. The current semantic kernel does not perform acquisition.
+discovery requirements. Its lexical adapter acquires native BM25 evidence, but
+does not resolve obligations from that evidence.
 A LocalizationObligation is a task-local desired-information predicate with
 provenance and bounded satisfaction semantics; it is not a query, Task, RI fact,
 disclosure option or evaluator gold label. Shared anchors identify subjects of

@@ -103,6 +103,18 @@ The historical structural union experiments remain reproduction evidence;
 future production consumers use this composition operation for native direct
 facts and lexical evidence.
 
+Localization now has a one-way consumer adapter in
+`devtools.context.localization.lexical`. It invokes this package's canonical
+content-plus-filename BM25 API once for the complete caller-supplied task query
+and independently for each explicit obligation query. Each result remains a
+native `RepositoryTextLexicalBm25RetrievalResult`; query-to-obligation association
+is owned by Localization. This package does not depend on Localization types.
+The full-task lane preserves global lexical reach over the authorized corpus,
+while obligation lanes add caller-directed queries. There is no role scoping or
+cross-lane fusion. Query association, rank, score, and absence do not establish
+obligation satisfaction, confidence, irrelevance, or non-applicability. See the
+[Localization package contract](../../localization/docs/overview.md).
+
 
 ## Repository-map structural relevance
 

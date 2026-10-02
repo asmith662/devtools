@@ -12,9 +12,17 @@ from devtools.context.localization.assessment import (
 from devtools.context.localization.identity import (
     LocalizationAnchorIdentity,
     LocalizationObligationIdentity,
+    LocalizationQueryIdentity,
     LocalizationTaskIdentity,
     TaskProvenance,
     TaskTextSpan,
+)
+from devtools.context.localization.lexical import (
+    LocalizationLexicalAcquisition,
+    LocalizationLexicalAcquisitionRequest,
+    ObligationLexicalEvidence,
+    ObligationLexicalQuery,
+    acquire_localization_lexical_evidence,
 )
 from devtools.context.localization.obligation import (
     LocalizationObligation,
@@ -43,16 +51,22 @@ __all__ = [
     "LocalizationAnchorIdentity",
     "LocalizationAssessment",
     "LocalizationEvidenceReference",
+    "LocalizationLexicalAcquisition",
+    "LocalizationLexicalAcquisitionRequest",
     "LocalizationObligation",
     "LocalizationObligationIdentity",
+    "LocalizationQueryIdentity",
     "LocalizationReadiness",
     "LocalizationTaskIdentity",
     "LocalizationTaskInterpretation",
+    "ObligationLexicalEvidence",
+    "ObligationLexicalQuery",
     "RequirementStatus",
     "SatisfactionCriterion",
     "SupportedWitness",
     "TaskProvenance",
     "TaskTextSpan",
     "WitnessSet",
+    "acquire_localization_lexical_evidence",
     "assess_localization_readiness",
 ]

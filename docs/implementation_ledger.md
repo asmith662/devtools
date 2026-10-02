@@ -529,3 +529,23 @@ remains sealed.
   traversal, Context integration, or agent execution was added. The next
   production slice is full-task and obligation-scoped Retrieval evidence
   adapters, with native provenance and no satisfaction from rank alone.
+
+## Localization BM25 evidence adapter (2026-10-02)
+
+- Added a one-way Localization-side adapter that retains the complete caller
+  task text as a global lexical safety query and runs each explicitly authored
+  obligation query independently through production content-plus-filename BM25.
+- Each obligation lane carries its task-local query identity, obligation identity,
+  exact query string, and untouched native BM25 result. Lane order follows caller
+  query order. Repeated resources remain independently surfaced; no cross-lane
+  ranking, score normalization, fusion, role filter, or rank-to-satisfaction rule
+  was introduced. Snapshot and eligible-resource correspondence are validated
+  with Retrieval's existing corpus/snapshot check.
+- The adapter is owned by `devtools.context.localization`; Retrieval has no
+  dependency on Localization. Focused Localization/Retrieval tests pass with
+  100% statement and branch coverage across the Localization package. No
+  historical retrieval outcomes were used for tuning or replay.
+- Next: prospectively freeze a naturally justified task, caller-authored
+  obligation queries, snapshot/frame, BM25 settings and measurements; obtain
+  blind obligation-relative resource judgments before joining lane provenance.
+  This evaluates acquisition coverage, not satisfaction from rank.
