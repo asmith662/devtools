@@ -1,0 +1,469 @@
+{
+  "schema": "codex-role-routed-localization-treatment-v1",
+  "case": "case_0005",
+  "status": "FROZEN BEFORE RETRIEVAL AND ROUTING",
+  "starting_head": "1bd2c7a5676ba78edd46879f2c06625c13c12d17",
+  "task_identity": "codex-dogfood-case-0005-evidence-witness-association",
+  "task_full_prompt": "Implement the first production evidence-to-witness association capability for Localization, so native Retrieval and repository-role evidence can be associated with caller-authored obligation witness alternatives without treating rank, routing tier, or role support as satisfaction. The increment should preserve native evidence provenance and snapshot identity, distinguish competing alternatives from complementary witness members, expose unresolved candidate hypotheses for later resolution, integrate coherently with the existing Localization obligation kernel and routing views, add rigorous tests and architecture/development documentation, preserve package/API conventions where applicable, and pass protected development validation. Do not implement candidate elimination, numeric confidence, automatic obligation decomposition, learned ranking, Context Planning admission, or autonomous sequential acquisition.",
+  "purpose": "Acquire repository information needed to implement the frozen first production evidence-to-witness association capability while independently measuring global native lexical, own-obligation native lexical and own-obligation role-routed localization.",
+  "anchors": [
+    {
+      "identity": "localization",
+      "text": "Localization obligation kernel",
+      "provenance": {
+        "source": "frozen-task",
+        "explanation": "Caller-authored shared concept from the frozen task; no repository target asserted."
+      }
+    },
+    {
+      "identity": "witnesses",
+      "text": "caller-authored obligation witness alternatives",
+      "provenance": {
+        "source": "frozen-task",
+        "explanation": "Caller-authored shared concept from the frozen task; no repository target asserted."
+      }
+    },
+    {
+      "identity": "evidence",
+      "text": "native Retrieval and repository-role evidence",
+      "provenance": {
+        "source": "frozen-task",
+        "explanation": "Caller-authored shared concept from the frozen task; no repository target asserted."
+      }
+    },
+    {
+      "identity": "identity",
+      "text": "native evidence provenance and snapshot identity",
+      "provenance": {
+        "source": "frozen-task",
+        "explanation": "Caller-authored shared concept from the frozen task; no repository target asserted."
+      }
+    },
+    {
+      "identity": "integration",
+      "text": "routing views and package/API conventions",
+      "provenance": {
+        "source": "frozen-task",
+        "explanation": "Caller-authored shared concept from the frozen task; no repository target asserted."
+      }
+    },
+    {
+      "identity": "quality",
+      "text": "rigorous tests and architecture/development documentation and protected development validation",
+      "provenance": {
+        "source": "frozen-task",
+        "explanation": "Caller-authored shared concept from the frozen task; no repository target asserted."
+      }
+    }
+  ],
+  "obligations": [
+    {
+      "identity": "semantic-ownership",
+      "predicate": "Establish existing Localization ownership, semantic boundaries and integration contracts for the new association capability.",
+      "anchors": [
+        "localization",
+        "integration"
+      ],
+      "provenance": {
+        "source": "frozen-task",
+        "explanation": "Caller-authored task information requirement, independent of repository search and outcomes."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "owner-and-boundaries",
+        "statement": "Identify the governing owner and implemented kernel contracts needed to add association without changing satisfaction, readiness or acquisition semantics."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    },
+    {
+      "identity": "witness-algebra",
+      "predicate": "Establish the existing representation and semantics of obligation witness alternatives, complementary members, competing alternatives and unresolved candidate hypotheses.",
+      "anchors": [
+        "localization",
+        "witnesses"
+      ],
+      "provenance": {
+        "source": "frozen-task",
+        "explanation": "Caller-authored task information requirement, independent of repository search and outcomes."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "witness-algebra-and-unresolved",
+        "statement": "Identify the contracts needed to associate hypotheses while preserving conjunction within a witness set, alternatives between sets and unresolved status."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    },
+    {
+      "identity": "native-evidence",
+      "predicate": "Establish native Retrieval evidence representation and provenance needed for faithful evidence-to-witness association.",
+      "anchors": [
+        "evidence",
+        "identity"
+      ],
+      "provenance": {
+        "source": "frozen-task",
+        "explanation": "Caller-authored task information requirement, independent of repository search and outcomes."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "native-provenance-preservation",
+        "statement": "Identify the native result, candidate and provenance contracts needed to retain evidence without treating rank as satisfaction."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    },
+    {
+      "identity": "role-routing-integration",
+      "predicate": "Establish role-evidence and routing-view contracts needed to associate supported observations without treating role support or routing tier as satisfaction.",
+      "anchors": [
+        "evidence",
+        "integration"
+      ],
+      "provenance": {
+        "source": "frozen-task",
+        "explanation": "Caller-authored task information requirement, independent of repository search and outcomes."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "role-and-routing-preservation",
+        "statement": "Identify role support provenance and native/routed view integration contracts needed to preserve positive support, escape and native evidence."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    },
+    {
+      "identity": "snapshot-frame",
+      "predicate": "Establish repository, snapshot, resource and task-frame identity contracts required to reject foreign or stale association inputs.",
+      "anchors": [
+        "identity",
+        "localization"
+      ],
+      "provenance": {
+        "source": "frozen-task",
+        "explanation": "Caller-authored task information requirement, independent of repository search and outcomes."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "snapshot-frame-compatibility",
+        "statement": "Identify identity and compatibility contracts sufficient to bind associations to the correct repository snapshot and caller obligation frame."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    },
+    {
+      "identity": "package-integration",
+      "predicate": "Establish applicable package/API conventions for exposing the association capability coherently.",
+      "anchors": [
+        "integration",
+        "localization"
+      ],
+      "provenance": {
+        "source": "frozen-task",
+        "explanation": "Caller-authored task information requirement, independent of repository search and outcomes."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "coherent-package-api",
+        "statement": "Identify the existing package ownership and public integration conventions that govern the new API, if applicable."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": "Existing package/API conventions govern integration of the new association capability."
+    },
+    {
+      "identity": "tests",
+      "predicate": "Establish test patterns and boundary cases needed to validate association, provenance, witness algebra, unresolved outcomes and semantic non-claims.",
+      "anchors": [
+        "quality",
+        "witnesses",
+        "identity"
+      ],
+      "provenance": {
+        "source": "frozen-task",
+        "explanation": "Caller-authored task information requirement, independent of repository search and outcomes."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "rigorous-association-tests",
+        "statement": "Identify testing contracts and relevant precedent sufficient to design rigorous positive, invalid-input and boundary tests for the requested capability."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    },
+    {
+      "identity": "documentation",
+      "predicate": "Establish authoritative architecture and development documentation requirements for the new capability and its explicit boundaries.",
+      "anchors": [
+        "quality",
+        "localization",
+        "evidence"
+      ],
+      "provenance": {
+        "source": "frozen-task",
+        "explanation": "Caller-authored task information requirement, independent of repository search and outcomes."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "authoritative-documentation",
+        "statement": "Identify governing documentation and update conventions needed to explain association separately from role support, rank, satisfaction and elimination."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    },
+    {
+      "identity": "validation",
+      "predicate": "Establish the protected development validation command and static quality gates required by the task.",
+      "anchors": [
+        "quality"
+      ],
+      "provenance": {
+        "source": "frozen-task",
+        "explanation": "Caller-authored task information requirement, independent of repository search and outcomes."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "protected-validation-contract",
+        "statement": "Identify required commands, profile semantics and quality gates; successful future execution is not a repository witness."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    }
+  ],
+  "global_lane": {
+    "identity": "global-full-task",
+    "query_text": "Implement the first production evidence-to-witness association capability for Localization, so native Retrieval and repository-role evidence can be associated with caller-authored obligation witness alternatives without treating rank, routing tier, or role support as satisfaction. The increment should preserve native evidence provenance and snapshot identity, distinguish competing alternatives from complementary witness members, expose unresolved candidate hypotheses for later resolution, integrate coherently with the existing Localization obligation kernel and routing views, add rigorous tests and architecture/development documentation, preserve package/API conventions where applicable, and pass protected development validation. Do not implement candidate elimination, numeric confidence, automatic obligation decomposition, learned ranking, Context Planning admission, or autonomous sequential acquisition.",
+    "routed": false
+  },
+  "obligation_queries": [
+    {
+      "identity": "q-semantic-ownership",
+      "obligation": "semantic-ownership",
+      "text": "Localization obligation kernel evidence association ownership satisfaction readiness unresolved",
+      "ordinal": 1,
+      "preferred_roles": [
+        "PYTHON_CODE"
+      ],
+      "preference_rationale": "Explicit caller preference justified by the semantic-ownership information need, not observed role assignments."
+    },
+    {
+      "identity": "q-witness-algebra",
+      "obligation": "witness-algebra",
+      "text": "Localization obligation witness alternatives complementary members competing alternatives unresolved candidate hypotheses",
+      "ordinal": 2,
+      "preferred_roles": [
+        "PYTHON_CODE"
+      ],
+      "preference_rationale": "Explicit caller preference justified by the witness-algebra information need, not observed role assignments."
+    },
+    {
+      "identity": "q-native-evidence",
+      "obligation": "native-evidence",
+      "text": "native Retrieval evidence provenance result candidate lexical rank association witness",
+      "ordinal": 3,
+      "preferred_roles": [
+        "PYTHON_CODE"
+      ],
+      "preference_rationale": "Explicit caller preference justified by the native-evidence information need, not observed role assignments."
+    },
+    {
+      "identity": "q-role-routing-integration",
+      "obligation": "role-routing-integration",
+      "text": "repository-role evidence routing views preferred support escape native rank routed position provenance",
+      "ordinal": 4,
+      "preferred_roles": [
+        "PYTHON_CODE"
+      ],
+      "preference_rationale": "Explicit caller preference justified by the role-routing-integration information need, not observed role assignments."
+    },
+    {
+      "identity": "q-snapshot-frame",
+      "obligation": "snapshot-frame",
+      "text": "repository snapshot resource identity Localization task obligation frame compatibility stale evidence",
+      "ordinal": 5,
+      "preferred_roles": [
+        "PYTHON_CODE"
+      ],
+      "preference_rationale": "Explicit caller preference justified by the snapshot-frame information need, not observed role assignments."
+    },
+    {
+      "identity": "q-package-integration",
+      "obligation": "package-integration",
+      "text": "Localization package API public integration exports association capability",
+      "ordinal": 6,
+      "preferred_roles": [
+        "PACKAGE_SURFACE",
+        "PACKAGE_MEMBER"
+      ],
+      "preference_rationale": "Package surface OR package membership supports package/API integration information."
+    },
+    {
+      "identity": "q-tests",
+      "obligation": "tests",
+      "text": "Localization evidence witness alternatives association tests provenance snapshot mismatch unresolved satisfaction routing",
+      "ordinal": 7,
+      "preferred_roles": [
+        "TEST"
+      ],
+      "preference_rationale": "Explicit caller preference justified by the tests information need, not observed role assignments."
+    },
+    {
+      "identity": "q-documentation",
+      "obligation": "documentation",
+      "text": "Localization architecture development documentation evidence witness association satisfaction boundaries",
+      "ordinal": 8,
+      "preferred_roles": [
+        "DOCUMENTATION"
+      ],
+      "preference_rationale": "Explicit caller preference justified by the documentation information need, not observed role assignments."
+    },
+    {
+      "identity": "q-validation",
+      "obligation": "validation",
+      "text": "protected development validation command pytest coverage Ruff mypy format quality gates",
+      "ordinal": 9,
+      "preferred_roles": [],
+      "preference_rationale": "Empty: no supported VALIDATION role covers the cross-resource command/documentation/configuration contract. Avoid privileging one partial resource family."
+    }
+  ],
+  "constraints": [
+    "No candidate elimination",
+    "No numeric confidence",
+    "No automatic obligation decomposition",
+    "No learned ranking",
+    "No Context Planning admission",
+    "No autonomous sequential acquisition",
+    "Rank, routing tier and role support are not satisfaction"
+  ],
+  "eligibility": {
+    "areas": [
+      "src/",
+      "docs/",
+      "tests/"
+    ],
+    "suffixes": [
+      ".py",
+      ".md",
+      ".toml",
+      ".yaml",
+      ".yml"
+    ],
+    "explicit_inclusions": [
+      "README.md",
+      "AGENTS.md",
+      "pyproject.toml",
+      "scripts/validate_development.py"
+    ],
+    "exclusions": [
+      "docs/implementation_ledger.md",
+      "tests/experiments/",
+      "cache components",
+      "all other experiments/",
+      "untracked and local files",
+      "binaries"
+    ],
+    "rationale": "Retain prior prospective source/documentation/ordinary-test selection and protected validation entry point. Omit prior experimental capture exceptions: they are not governing information for this production association task. All eligible bytes come from the starting commit, never current untracked content."
+  },
+  "role_inputs_recipe": {
+    "module_roots": [
+      "src",
+      "tests"
+    ],
+    "resource_selection": "Every eligible .py resource beneath each declared root; lexical address order.",
+    "memberships": "Production immediate membership derivation for each module analysis.",
+    "mirrors": "Production mirrored-path derivation over the exact frozen frame.",
+    "configuration_resources": [
+      "pyproject.toml"
+    ],
+    "configuration_resolution": "Production declarations and selectors, module universe from both root analyses, explicit working_directory='.' and pytest_root='.'.",
+    "retention": "Retain native RI analyses and the production-derived role view itself. No role assignments are inspected to optimize treatment."
+  },
+  "routing": {
+    "identity": "caller-role-or-stable-two-tier-v1",
+    "owner": "devtools.context.localization.routing",
+    "tiers": [
+      "PREFERRED_ROLE_SUPPORTED",
+      "ESCAPE"
+    ],
+    "matching": "ANY selected role with positive evidence; empty preference is escape-only.",
+    "order": "Preferred before escape; original native order within each; one-based routed presentation position; native rank retained.",
+    "global": "Exactly native and unrouted.",
+    "candidate_retention": "Every native candidate survives.",
+    "non_claims": [
+      "No role-count bonus",
+      "No support-kind weighting",
+      "No negative evidence",
+      "No confidence",
+      "No satisfaction",
+      "No elimination",
+      "No lane fusion"
+    ]
+  },
+  "measurements": {
+    "surfaces": [
+      "A: global full-task native BM25 rank",
+      "B: own-obligation native BM25 rank",
+      "C: own-obligation routed presentation position"
+    ],
+    "required_reach": "For every adjudicated REQUIRED information unit and unique resource: global rank, own rank, own routed position, tier and reach within bound; absence of positive lexical match is distinct from deep rank.",
+    "alternatives": "For each acceptable conjunctive witness alternative compute all three completion depths/positions as maximum member position, only if every member is reachable. An incomplete alternative has no finite completion. Any one complete alternative suffices; preserve raw required-unit judgments separately.",
+    "obligations": "Report each alternative separately and the best finite acceptable completion on each surface for each applicable mandatory obligation. Multiple query lanes remain independent; if later added only through a distinct treatment, no merged ranking is inferred.",
+    "whole_case": [
+      "Global complete all-REQUIRED unique-resource depth",
+      "Obligation-wise maximum of best native acceptable-alternative completion depths",
+      "Obligation-wise maximum of best routed acceptable-alternative completion positions",
+      "Complete mandatory acquisition coverage ratios separately for global/native-own/routed-own"
+    ],
+    "review_surface": "For each obligation count native prefix through best finite own completion and routed prefix through best finite routed completion. Report summed occurrences and unique resource unions separately. If an obligation lacks finite completion, report incomplete review surface rather than silently omit it or invent a finite whole-case surface.",
+    "tiers": "Per lane preferred/escape totals; REQUIRED, HELPFUL_ONLY and UNNECESSARY unit/resource counts per tier (obligation-relative, separate units and resources). Report unresolved judgments separately. REQUIRED in ESCAPE is a routing limitation, not candidate loss.",
+    "safety": "Identify globally reachable witnesses poorly routed, deep escape witnesses, routed worse than own native, own native worse than global, empty-preference unchanged lanes. Poorly/deep are descriptive exact position comparisons, not an invented numeric threshold.",
+    "structural": "Lane/result counts, summed native occurrences, all-lane unique union, duplicates, global/obligation overlap, zero-result lanes; unique required resources shared across obligations; own/cross/global reach; rank/position improvement, worsening and equality counts.",
+    "helpful": "Separate helpful-only rank/position/tier diagnostics; never include helpful evidence in mandatory witness completion.",
+    "lexical_diagnosis": "After primary metrics only, native content/filename contributions may explain conspicuous differences; no raw score comparison across lanes or causal assertion.",
+    "interpretation": "No numeric pass/fail superiority threshold. Observations separate from architectural interpretation; one case cannot establish general superiority."
+  },
+  "blind_adjudication": {
+    "allowed": [
+      "Frozen task and purpose",
+      "Anchors",
+      "Obligations including named criteria and provenance",
+      "Eligible resource identities and retained contents",
+      "Governing architecture within the snapshot"
+    ],
+    "forbidden": [
+      "Lexical query identities/text as treatment",
+      "Preferred-role mappings",
+      "Role-evidence view and assignments",
+      "Routing results and tiers",
+      "Native ranks",
+      "Routed positions",
+      "BM25 scores",
+      "Retrieval provenance",
+      "Retrieved flags",
+      "Acquisition runtime"
+    ],
+    "judgments": [
+      "Applicability with affirmative non-applicability evidence",
+      "REQUIRED narrowly",
+      "HELPFUL_ONLY",
+      "UNNECESSARY with deterministic complete identity coverage",
+      "Unresolved",
+      "Minimal acceptable witness alternatives",
+      "Task-start inferability",
+      "Inherent discovery with prerequisites",
+      "Obvious task-interpretation gaps without silently changing frozen obligations"
+    ],
+    "method": "Fresh independent blind Stage C session after a structurally verified treatment-free packet; no implementation/opened-file behavior used as gold."
+  },
+  "firewall": {
+    "lexical_acquisition_executed": false,
+    "role_routing_executed": false,
+    "adjudication_performed": false,
+    "development_task_implemented": false,
+    "queries_tuned_from_outcomes": false,
+    "preferences_tuned_from_outcomes": false,
+    "case_0004_gold_used": false,
+    "confirmation_accessed": false
+  },
+  "post_freeze_changes": "No mutation of task, frame, queries, preferences, settings, role recipe/implementation or measurements. Material corrections preserve this original and require an explicitly distinct treatment/version."
+}
