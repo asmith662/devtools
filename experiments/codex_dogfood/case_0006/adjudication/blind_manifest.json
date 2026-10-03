@@ -1,0 +1,321 @@
+{
+  "schema": "case-0006-blind-adjudication-v1",
+  "case_identity": "case_0006",
+  "task_identity": "codex-dogfood-case-0006-resolution-recording",
+  "development_task": "Implement the first production candidate-witness resolution-recording capability for Localization around `CandidateWitnessHypothesis` and generated witness candidates. The capability should let callers record explicit evidence-based dispositions for unresolved competing hypotheses and complementary members while preserving native evidence provenance, repository/snapshot identity, and the distinction between candidate hypotheses and accepted witnesses. Provide a validated seam for promoting a completely supported candidate hypothesis into the existing `WitnessSet`, `SupportedWitness`, `LocalizationAssessment`, and readiness flow without inferring support from rank, routing tier, role evidence, or evidence count. Integrate coherently with the existing `CandidateWitnessView`, `WitnessGenerationView`, and `AnchorGroundingView`, add rigorous tests and authoritative architecture/development documentation, preserve package/API conventions where applicable, and pass protected development validation. Do not implement an automatic resolution policy, candidate elimination, numeric confidence, learned ranking, autonomous sequential acquisition, or Context Planning admission.",
+  "purpose": "Acquire and generate repository information needed to implement the frozen candidate-witness resolution-recording capability while independently measuring global lexical, obligation lexical, role-routed and bounded structurally generated candidate surfaces.",
+  "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+  "repository_snapshot_id": "ba654221b65584aebdd98804369864162ac3f7da1bf8862abee06ce4d2127a55",
+  "eligible_frame_identity": "49c69d2db7c6616731d9c24519a48d47a13a2ee991d46aaaf33d1f5d55b212b9",
+  "eligible_resource_count": 531,
+  "shared_anchors": [
+    {
+      "identity": "hypothesis",
+      "text": "CandidateWitnessHypothesis",
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      }
+    },
+    {
+      "identity": "candidate-view",
+      "text": "CandidateWitnessView",
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      }
+    },
+    {
+      "identity": "generation-view",
+      "text": "WitnessGenerationView",
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      }
+    },
+    {
+      "identity": "grounding-view",
+      "text": "AnchorGroundingView",
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      }
+    },
+    {
+      "identity": "witness-set",
+      "text": "WitnessSet",
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      }
+    },
+    {
+      "identity": "supported-witness",
+      "text": "SupportedWitness",
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      }
+    },
+    {
+      "identity": "assessment",
+      "text": "LocalizationAssessment",
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      }
+    },
+    {
+      "identity": "readiness",
+      "text": "readiness flow",
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      }
+    },
+    {
+      "identity": "provenance",
+      "text": "native evidence provenance and repository/snapshot identity",
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      }
+    },
+    {
+      "identity": "quality",
+      "text": "rigorous tests, authoritative documentation and protected validation",
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      }
+    }
+  ],
+  "obligations": [
+    {
+      "identity": "hypothesis-records",
+      "desired_information_predicate": "Establish unresolved candidate hypothesis and view contracts needed for explicit evidence-based disposition records without automatic resolution.",
+      "anchor_references": [
+        "hypothesis",
+        "candidate-view"
+      ],
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "unresolved-disposition-contract",
+        "statement": "Identify hypothesis and view identity, membership, competition and unresolved boundaries needed to record explicit caller dispositions."
+      },
+      "pre_execution_witness_alternatives": []
+    },
+    {
+      "identity": "member-complementarity",
+      "desired_information_predicate": "Establish how complementary hypothesis members and competing alternatives relate to accepted WitnessSet algebra.",
+      "anchor_references": [
+        "hypothesis",
+        "witness-set"
+      ],
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "complementary-member-algebra",
+        "statement": "Identify the all-members/any-alternative contracts and the evidence needed to avoid partial promotion."
+      },
+      "pre_execution_witness_alternatives": []
+    },
+    {
+      "identity": "generated-integration",
+      "desired_information_predicate": "Establish integration of generated candidates and grounded task anchors with explicit resolution records.",
+      "anchor_references": [
+        "generation-view",
+        "grounding-view",
+        "hypothesis"
+      ],
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "generated-grounded-seam",
+        "statement": "Identify how generation attempts, hypotheses and grounding outcomes retain task-relative provenance without implying resolution."
+      },
+      "pre_execution_witness_alternatives": []
+    },
+    {
+      "identity": "accepted-promotion",
+      "desired_information_predicate": "Establish a validated seam from a completely supported candidate hypothesis to WitnessSet and SupportedWitness without inference from rank, tier, role or evidence count.",
+      "anchor_references": [
+        "hypothesis",
+        "witness-set",
+        "supported-witness"
+      ],
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "complete-supported-promotion",
+        "statement": "Identify accepted target and evidence contracts sufficient to require every complementary member's explicit support before promotion."
+      },
+      "pre_execution_witness_alternatives": []
+    },
+    {
+      "identity": "assessment-readiness",
+      "desired_information_predicate": "Establish LocalizationAssessment disposition and readiness contracts governing promotion into satisfaction flow.",
+      "anchor_references": [
+        "assessment",
+        "readiness",
+        "supported-witness"
+      ],
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "assessment-readiness-boundary",
+        "statement": "Identify assessment and readiness validation such that a candidate record alone does not satisfy an obligation."
+      },
+      "pre_execution_witness_alternatives": []
+    },
+    {
+      "identity": "provenance-frame",
+      "desired_information_predicate": "Establish native evidence and repository/snapshot/task-frame compatibility for candidate dispositions and promoted supports.",
+      "anchor_references": [
+        "provenance",
+        "hypothesis",
+        "supported-witness"
+      ],
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "native-evidence-frame",
+        "statement": "Identify native evidence references and identity checks needed to reject foreign or stale candidate and promotion data."
+      },
+      "pre_execution_witness_alternatives": []
+    },
+    {
+      "identity": "package-integration",
+      "desired_information_predicate": "Establish applicable Localization package/API conventions for the resolution-recording capability.",
+      "anchor_references": [
+        "candidate-view",
+        "generation-view",
+        "grounding-view"
+      ],
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": "Existing package/API conventions govern exposure of the new capability.",
+      "satisfaction_criterion": {
+        "name": "coherent-package-api",
+        "statement": "Identify governing public package conventions if they apply to exposing this capability."
+      },
+      "pre_execution_witness_alternatives": []
+    },
+    {
+      "identity": "tests",
+      "desired_information_predicate": "Establish test conventions and cases for complementary and competing dispositions, promotion, native provenance, snapshot failures and semantic non-claims.",
+      "anchor_references": [
+        "hypothesis",
+        "generation-view",
+        "quality"
+      ],
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "resolution-boundary-tests",
+        "statement": "Identify rigorous neighboring tests and conventions for valid, invalid, unresolved and no-inference behavior."
+      },
+      "pre_execution_witness_alternatives": []
+    },
+    {
+      "identity": "documentation",
+      "desired_information_predicate": "Establish authoritative Localization architecture and development documentation ownership for the new capability and exclusions.",
+      "anchor_references": [
+        "quality",
+        "hypothesis"
+      ],
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "authoritative-resolution-documentation",
+        "statement": "Identify governing documentation and update conventions for resolution records and their boundary with accepted witnesses."
+      },
+      "pre_execution_witness_alternatives": []
+    },
+    {
+      "identity": "validation",
+      "desired_information_predicate": "Establish protected development validation and static quality-gate contract.",
+      "anchor_references": [
+        "quality"
+      ],
+      "task_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "protected-validation-contract",
+        "statement": "Identify canonical command, profile and static gates; future pass/fail execution is not a repository witness."
+      },
+      "pre_execution_witness_alternatives": []
+    }
+  ],
+  "adjudication_instructions": [
+    "Use only the frozen task and frozen repository resource frame to judge the information target.",
+    "Determine applicability for each obligation, including conditional applicability, using affirmative repository evidence.",
+    "Classify obligation-relative information as REQUIRED, HELPFUL_ONLY, UNNECESSARY, or unresolved.",
+    "For applicable mandatory obligations, identify the smallest defensible acceptable witness alternatives; all members within one alternative are complementary and any complete alternative may suffice.",
+    "For REQUIRED information, classify whether its need is INFERABLE_AT_START or INHERENT_DISCOVERY; document the exact prerequisite and later observation for any inherent discovery.",
+    "Record any obvious mandatory task-interpretation gap separately without changing the frozen obligation frame.",
+    "Do not infer non-applicability from missing evidence. Preserve unresolved judgments where the frozen contents do not support a defensible conclusion."
+  ],
+  "resource_archive": "blind_resources.json.gz",
+  "resource_archive_sha256": "a03cdd8dc39d56b4a719be43ca38f2ced8f4df6e0b304ec8187914040b3ebb2a"
+}
