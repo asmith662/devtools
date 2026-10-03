@@ -1,0 +1,281 @@
+{
+  "schema": "codex-case-0005-blind-adjudication-v1",
+  "case": "case_0005",
+  "task_identity": "codex-dogfood-case-0005-evidence-witness-association",
+  "task_text": "Implement the first production evidence-to-witness association capability for Localization, so native Retrieval and repository-role evidence can be associated with caller-authored obligation witness alternatives without treating rank, routing tier, or role support as satisfaction. The increment should preserve native evidence provenance and snapshot identity, distinguish competing alternatives from complementary witness members, expose unresolved candidate hypotheses for later resolution, integrate coherently with the existing Localization obligation kernel and routing views, add rigorous tests and architecture/development documentation, preserve package/API conventions where applicable, and pass protected development validation. Do not implement candidate elimination, numeric confidence, automatic obligation decomposition, learned ranking, Context Planning admission, or autonomous sequential acquisition.",
+  "purpose": "Acquire repository information needed to implement the frozen first production evidence-to-witness association capability while independently measuring global native lexical, own-obligation native lexical and own-obligation role-routed localization.",
+  "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+  "snapshot_id": "0705f0e5ef729d28ed044f36b929a2c9436ad38c821c154bd11430f5fb58989a",
+  "eligible_frame_identity": "12fe8c45e9b90ad9142a2700e6a4c258e222ceb64d719df4e7cb06bc8e2b4d7b",
+  "eligible_resource_count": 515,
+  "anchors": [
+    {
+      "identity": "localization",
+      "text": "Localization obligation kernel",
+      "provenance": {
+        "source_identity": "b2d16844deea7f9f65b29a65064a1f0a9fc167a8cebcd39fc28e04bc68f335ec",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      }
+    },
+    {
+      "identity": "witnesses",
+      "text": "caller-authored obligation witness alternatives",
+      "provenance": {
+        "source_identity": "b2d16844deea7f9f65b29a65064a1f0a9fc167a8cebcd39fc28e04bc68f335ec",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      }
+    },
+    {
+      "identity": "evidence",
+      "text": "native Retrieval and repository-role evidence",
+      "provenance": {
+        "source_identity": "b2d16844deea7f9f65b29a65064a1f0a9fc167a8cebcd39fc28e04bc68f335ec",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      }
+    },
+    {
+      "identity": "identity",
+      "text": "native evidence provenance and snapshot identity",
+      "provenance": {
+        "source_identity": "b2d16844deea7f9f65b29a65064a1f0a9fc167a8cebcd39fc28e04bc68f335ec",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      }
+    },
+    {
+      "identity": "integration",
+      "text": "routing views and package/API conventions",
+      "provenance": {
+        "source_identity": "b2d16844deea7f9f65b29a65064a1f0a9fc167a8cebcd39fc28e04bc68f335ec",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      }
+    },
+    {
+      "identity": "quality",
+      "text": "rigorous tests and architecture/development documentation and protected development validation",
+      "provenance": {
+        "source_identity": "b2d16844deea7f9f65b29a65064a1f0a9fc167a8cebcd39fc28e04bc68f335ec",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      }
+    }
+  ],
+  "obligations": [
+    {
+      "identity": "semantic-ownership",
+      "predicate": "Establish existing Localization ownership, semantic boundaries and integration contracts for the new association capability.",
+      "anchor_references": [
+        "localization",
+        "integration"
+      ],
+      "provenance": {
+        "source_identity": "b2d16844deea7f9f65b29a65064a1f0a9fc167a8cebcd39fc28e04bc68f335ec",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement_status": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "owner-and-boundaries",
+        "statement": "Identify the governing owner and implemented kernel contracts needed to add association without changing satisfaction, readiness or acquisition semantics."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "identity": "witness-algebra",
+      "predicate": "Establish the existing representation and semantics of obligation witness alternatives, complementary members, competing alternatives and unresolved candidate hypotheses.",
+      "anchor_references": [
+        "localization",
+        "witnesses"
+      ],
+      "provenance": {
+        "source_identity": "b2d16844deea7f9f65b29a65064a1f0a9fc167a8cebcd39fc28e04bc68f335ec",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement_status": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "witness-algebra-and-unresolved",
+        "statement": "Identify the contracts needed to associate hypotheses while preserving conjunction within a witness set, alternatives between sets and unresolved status."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "identity": "native-evidence",
+      "predicate": "Establish native Retrieval evidence representation and provenance needed for faithful evidence-to-witness association.",
+      "anchor_references": [
+        "evidence",
+        "identity"
+      ],
+      "provenance": {
+        "source_identity": "b2d16844deea7f9f65b29a65064a1f0a9fc167a8cebcd39fc28e04bc68f335ec",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement_status": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "native-provenance-preservation",
+        "statement": "Identify the native result, candidate and provenance contracts needed to retain evidence without treating rank as satisfaction."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "identity": "role-routing-integration",
+      "predicate": "Establish role-evidence and routing-view contracts needed to associate supported observations without treating role support or routing tier as satisfaction.",
+      "anchor_references": [
+        "evidence",
+        "integration"
+      ],
+      "provenance": {
+        "source_identity": "b2d16844deea7f9f65b29a65064a1f0a9fc167a8cebcd39fc28e04bc68f335ec",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement_status": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "role-and-routing-preservation",
+        "statement": "Identify role support provenance and native/routed view integration contracts needed to preserve positive support, escape and native evidence."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "identity": "snapshot-frame",
+      "predicate": "Establish repository, snapshot, resource and task-frame identity contracts required to reject foreign or stale association inputs.",
+      "anchor_references": [
+        "identity",
+        "localization"
+      ],
+      "provenance": {
+        "source_identity": "b2d16844deea7f9f65b29a65064a1f0a9fc167a8cebcd39fc28e04bc68f335ec",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement_status": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "snapshot-frame-compatibility",
+        "statement": "Identify identity and compatibility contracts sufficient to bind associations to the correct repository snapshot and caller obligation frame."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "identity": "package-integration",
+      "predicate": "Establish applicable package/API conventions for exposing the association capability coherently.",
+      "anchor_references": [
+        "integration",
+        "localization"
+      ],
+      "provenance": {
+        "source_identity": "b2d16844deea7f9f65b29a65064a1f0a9fc167a8cebcd39fc28e04bc68f335ec",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement_status": "mandatory",
+      "applicability_condition": "Existing package/API conventions govern integration of the new association capability.",
+      "satisfaction_criterion": {
+        "name": "coherent-package-api",
+        "statement": "Identify the existing package ownership and public integration conventions that govern the new API, if applicable."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "identity": "tests",
+      "predicate": "Establish test patterns and boundary cases needed to validate association, provenance, witness algebra, unresolved outcomes and semantic non-claims.",
+      "anchor_references": [
+        "quality",
+        "witnesses",
+        "identity"
+      ],
+      "provenance": {
+        "source_identity": "b2d16844deea7f9f65b29a65064a1f0a9fc167a8cebcd39fc28e04bc68f335ec",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement_status": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "rigorous-association-tests",
+        "statement": "Identify testing contracts and relevant precedent sufficient to design rigorous positive, invalid-input and boundary tests for the requested capability."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "identity": "documentation",
+      "predicate": "Establish authoritative architecture and development documentation requirements for the new capability and its explicit boundaries.",
+      "anchor_references": [
+        "quality",
+        "localization",
+        "evidence"
+      ],
+      "provenance": {
+        "source_identity": "b2d16844deea7f9f65b29a65064a1f0a9fc167a8cebcd39fc28e04bc68f335ec",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement_status": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "authoritative-documentation",
+        "statement": "Identify governing documentation and update conventions needed to explain association separately from role support, rank, satisfaction and elimination."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "identity": "validation",
+      "predicate": "Establish the protected development validation command and static quality gates required by the task.",
+      "anchor_references": [
+        "quality"
+      ],
+      "provenance": {
+        "source_identity": "b2d16844deea7f9f65b29a65064a1f0a9fc167a8cebcd39fc28e04bc68f335ec",
+        "span": null,
+        "explanation": "Frozen caller-authored task interpretation."
+      },
+      "requirement_status": "mandatory",
+      "applicability_condition": null,
+      "satisfaction_criterion": {
+        "name": "protected-validation-contract",
+        "statement": "Identify required commands, profile semantics and quality gates; successful future execution is not a repository witness."
+      },
+      "witness_alternatives": []
+    }
+  ],
+  "adjudication_semantics": {
+    "applicability": [
+      "APPLICABLE",
+      "SUPPORTED_NOT_APPLICABLE",
+      "UNRESOLVED_APPLICABILITY"
+    ],
+    "information_judgments": [
+      "REQUIRED",
+      "HELPFUL_ONLY",
+      "UNNECESSARY",
+      "UNRESOLVED"
+    ],
+    "witness_algebra": "All members of one complete witness alternative are conjunctive; any one complete acceptable alternative can satisfy its obligation.",
+    "required_scope": "Mark information REQUIRED only when correctness could not reasonably be achieved without it. Keep finer defensible units distinct from whole-resource identity.",
+    "inferability": [
+      "INFERABLE_AT_START",
+      "INHERENT_DISCOVERY"
+    ],
+    "inherent_discovery_record": [
+      "exact later observation",
+      "prerequisite",
+      "why it could not reasonably be inferred at task start"
+    ],
+    "interpretation_gaps": "Record obvious omitted mandatory task requirements separately; do not change the frozen obligation frame.",
+    "coverage": "Account deterministically for every eligible resource identity; use UNRESOLVED where packet evidence is insufficient.",
+    "independence": "Judge repository information needs from the frozen task, obligations and snapshot contents. Do not use files merely because they were later opened or modified."
+  },
+  "resource_archive": {
+    "filename": "blind_resources.json.gz",
+    "sha256": "01c786e7c74ae72ffd93e6d861fb080fb613d941788d0c6ea987c2dcb67889b7"
+  }
+}
