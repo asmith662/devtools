@@ -85,14 +85,16 @@ identities. Anchors are semantic provenance within that exact retained resource.
 Unsupported tables (including README file/text tables), non-string items and
 scalar array-selector values are assessed without target derivation.
 
-Dynamic README and presence of project scripts, GUI scripts or entrypoint tables
-produce unsupported assessments. Object references are not resolved into
-runtime bindings. Static README syntax remains retained when marked dynamic,
+Dynamic README produces unsupported selector assessments. Project scripts, GUI
+scripts and entry points now have named static setting declarations in
+`analysis.settings`, replacing the former presence-only unsupported selector
+assessment. Object references are not resolved into runtime bindings.
+Static README syntax remains retained when marked dynamic,
 and repeated dynamic README entries retain their own array ordinals.
 The real project declares no entrypoints. Absent selectors
 are listed; present empty arrays have zero declarations and are not absent.
-Coverage is exhaustive only for the six named keys and assessed dynamic/entrypoint
-presence in valid input; unknown keys have no relationship claim. Malformed
+Selector coverage is exhaustive only for the six named keys and assessed dynamic
+README syntax in valid input; unknown keys have no relationship claim. Malformed
 TOML, including duplicate keys, yields a parse error, no declarations, no facts
 and no selector-absence claims.
 
@@ -118,7 +120,8 @@ target. Parse failure and unsupported syntax are not negative target knowledge.
 A universal configuration loader/registry or runtime-binding framework would
 combine unrelated tooling and ambient state without a consumer; it is rejected
 for this increment. Speculative entrypoint resolution and manufactured import
-declarations are also rejected: this project has no such declarations. Other
+declarations remain rejected. Static entry-point syntax is retained under the
+bounded setting contract below. Other
 README forms/selectors require separately versioned semantics and a concrete
 consumer. Native module lookup is reused rather than copying module/member
 policy. B-0019 remains deferred framework runtime-configuration pressure.
@@ -134,9 +137,123 @@ Reciprocal Rank Fusion (RRF), graph projections
 and Context policy do not consume this capability now. No retrieval quality
 conclusion follows from these facts or advisory suggestions.
 
+## Static project and pytest settings
+
+The same `analyze_python_project_configuration` invocation now returns
+`analysis.settings: PythonConfigurationSettings | None`. `settings.py` owns
+recognition of the following declarations; `models.py` owns their immutable
+representation. `declarations.py` parses retained TOML once and composes selector
+and setting coverage. `resolution.py` continues to resolve only the six selectors;
+setting strings do not become path targets or import declarations.
+
+| Semantic keys | Retained syntax |
+| --- | --- |
+| `build-system.build-backend` | String |
+| `build-system.requires`, `build-system.backend-path` | String arrays |
+| `project.name`, `version`, `description`, `requires-python` | Strings |
+| `project.dependencies`, `project.dynamic` | String arrays |
+| `project.scripts.<name>`, `project.gui-scripts.<name>` | Declared object-reference strings |
+| `project.entry-points.<group>.<name>` | Declared object-reference strings |
+| `tool.pytest.ini_options.python_files`, `python_classes`, `python_functions` | String or string array |
+| `tool.pytest.ini_options.norecursedirs` | String or string array of declared recursion patterns |
+| `tool.pytest.ini_options.addopts` | Opaque string or string array; no option interpretation |
+
+README and pytest `testpaths` remain owned by existing selector declarations;
+they are not duplicated as settings. `testpaths` supports string arrays, with
+semantic item ordinals. Scalar-string `testpaths` remains explicitly unsupported
+in that bounded selector model. No tool defaults or effective configurations are
+materialized. Strings are not split, normalized, pattern-expanded, validated as
+version/requirement specifiers, or resolved as runtime object references.
+Declared syntax is not a full packaging-specification validator.
+
+Arrays become immutable tuples preserving order, duplicates and empty values.
+Invalid shapes have an unsupported reason and the exact containing source as
+provenance; a string in an array-required field is retained as an unsupported
+string. Other unsupported shapes have no interpreted value. A declared empty
+script or entry-point table has an empty-tuple presence declaration, not an
+entry-point binding. Reserved `console_scripts`/`gui_scripts` groups under
+`project.entry-points` are unsupported rather than competing inferred bindings.
+Declared static metadata also named in `project.dynamic` retains its syntax and
+is marked `dynamic-project-field`. Absent means no static declaration in this
+named scope, never absence of dynamically supplied metadata or registration.
+
+`absent_keys` accounts for these named settings and three entry-point tables.
+An unsupported non-table ancestor produces an assessment, not a setting-absence
+claim. Missing keys below valid tables support bounded absence. Malformed TOML
+produces `settings=None`, with no positive settings or absence claims.
+`recognized_tool_tables` reports only actual table presence for Coverage
+run/report, Hatch wheel, mypy, pytest ini options, Ruff and Ruff lint. It assigns
+no meaning to arbitrary keys in those tables. Other tools and keys remain outside
+coverage. No universal TOML registry or configuration framework is introduced.
+
+Each setting retains its exact tuple key, declared supported value, reason and
+versioned derivation identity. The containing analysis retains repository,
+snapshot, exact resource/content and parser scope. Quoted keys containing dots
+remain single tuple components. The v2 declaration derivation changes with
+repository, snapshot, resource address or retained content. Setting identity
+includes framed key/value shape and reason. Output is sorted by semantic key;
+array order is retained. No source byte offset or line range is fabricated.
+Resolution rederives and checks the complete analysis, including settings, so
+forged, duplicated, foreign or stale input is rejected. No durable-schema or
+compatibility layer is added, and frozen experimental artifacts are unchanged.
+
+Declared pytest configuration is **not complete pytest collection behavior**.
+`testpaths` targets are observed prefix membership, not proof of test role.
+Naming/recursion declarations do not establish that a particular resource will
+be collected, excluded or executed. CLI precedence, configuration selection,
+plugins, hooks, `conftest.py`, `unittest`, runtime imports and collection remain
+outside this RI. In particular, `addopts` can contain ignore flags but this
+analysis does not turn arbitrary argument strings into exclusion facts.
+
+## Substrate inventory and role boundary
+
+| Proposed role input | Disposition and canonical source |
+| --- | --- |
+| Repository/resource/snapshot identity and exact address equality | ALREADY CANONICAL: repository identity, snapshot and occurrence models |
+| Relative path and components | ALREADY CANONICAL: `RepositoryResourceAddress.value` and `.parts` |
+| Basename, suffixes, parent, component-prefix containment and depth | DERIVABLE FROM EXISTING CANONICAL FACTS: `PurePosixPath(address.value)` and address components |
+| Explicit-root Python module/package interpretation and immediate membership | ALREADY CANONICAL: `python.modules` |
+| Mirrored source/test paths and six selector target relationships | ALREADY CANONICAL: `python.mirrored_paths` and existing configuration RI |
+| Static project metadata, entry-point syntax and pytest naming/recursion declarations | MISSING DETERMINISTIC FACT: implemented by this setting increment |
+| Direct imports and one-facade imported-function member resolution | ALREADY CANONICAL: `python.imports` |
+| Static `__all__` and richer bounded export sets | MISSING DETERMINISTIC FACT: separate public-surface slice deferred; dynamic exports remain outside static scope |
+| Test/configuration/documentation/public API/validation relevance | TASK-RELATIVE EVIDENCE — DO NOT PUT IN RI |
+| Universal `src/`, `tests/`, `docs/` roles or a validation filename rule | WEAK HEURISTIC — DO NOT PROMOTE |
+
+Canonical addresses already answer path questions. For example,
+`PurePosixPath(address.value).name`, `.suffix`, `.suffixes`, `.parent` and
+`.is_relative_to(...)` are intrinsic operations over validated POSIX-relative
+addresses. Component slicing answers prefix membership; exact address equality
+is typed value equality. Parent depth is `len(address.parts) - 1`, while the
+resource's component depth is `len(address.parts)`. The root parent is `.` in
+the standard-library view. No ResourcePathFact, ExtensionFact or BasenameFact is
+needed. A resource under `tests/` is not thereby proven to be a test.
+
+Existing one-facade member resolution establishes a bounded direct imported
+function target. It explicitly does not establish public exports; neither
+non-underscore names nor `__all__` are public-API truth in this model. Extending
+that claim needs its own binding/coverage contract and dynamic-form abstention.
+
+`docs/development/validation.md` connects this repository's protected development
+command to pytest and separate Ruff/mypy gates; `scripts/validate_development.py`
+explicitly ignores the retained experiment test tree. No standardized declaration
+connects its filename to a universal validation role. Recognized table presence,
+pytest `addopts` syntax and existing selectors remain native facts. The command
+relationship remains documented repository convention, not invented RI.
+
+Next: derive obligation-relative soft repository-role evidence from these
+deterministic facts and intrinsic paths, retain the global lexical safety lane,
+and avoid hard path filters. No role enum, routing, relevance label, score,
+candidate elimination or obligation-satisfaction rule is implemented here.
+Case 0004 supplies the architectural diagnosis of broad lexical candidate sets;
+its judgments, gold resources and ranks do not define these semantics. A future
+replay would be retrospective; performance claims require a new prospective case.
+
 ## References and validation
 
 Semantic references: [PyPA README](https://packaging.python.org/en/latest/specifications/pyproject-toml/#readme),
+[PyPA build/project metadata and entry points](https://packaging.python.org/en/latest/specifications/pyproject-toml/),
+[pytest naming and recursion configuration](https://docs.pytest.org/en/stable/reference/reference.html#configuration-options),
 [Hatch packages](https://hatch.pypa.io/dev/config/build/#packages),
 [pytest testpaths](https://docs.pytest.org/en/stable/reference/reference.html#confval-testpaths),
 [Coverage source](https://coverage.readthedocs.io/en/latest/config.html#run-source)
@@ -152,7 +269,19 @@ checks use explicit test directories and a focused coverage override, avoiding
 retained experiment/confirmation collection. B-0047 records pressure for a
 supported validation-isolation profile; no general harness is designed here.
 
-The final focused/neighbor invocation (248 passing tests) was:
+The setting increment adds synthetic declarations, quoted entry-point names,
+empty/missing/invalid tables and arrays, dynamic metadata, malformed TOML,
+deterministic identities/order, exact snapshot provenance and rejection of forged
+or duplicate settings. Intrinsic-path tests prove existing canonical semantics
+without adding path facts. Focused validation: 72 passed; neighboring Python
+RI/repository validation: 329 passed; configuration statement/branch coverage:
+100%. The canonical protected profile passed with 1,364 tests and two live skips,
+100% of 8,727 production statements and 2,036 branches. No confirmation outcomes
+were accessed. Scoped Ruff, touched-file format and `mypy src tests` pass.
+Repository-wide Ruff/mypy remain failing only on unchanged frozen Case 0004
+experiment helpers (459 lint findings; 41 typing errors in six files).
+
+The earlier selector-slice focused/neighbor invocation (248 passing tests) was:
 
 ```powershell
 .venv/Scripts/python.exe -m pytest tests/context/python tests/evaluation `

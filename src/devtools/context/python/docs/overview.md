@@ -7,6 +7,12 @@ paths. It separates configuration-relative routes from explicit tool frames,
 retains competing module/path interpretations, and makes no execution/runtime
 claim. This Python-owned RI is independent of Retrieval and framework runtime
 configuration. Modules own shared exact name lookup; config creates no imports.
+The same retained-TOML analysis also exposes bounded build/project metadata,
+named script/entry-point strings and pytest naming/recursion declarations.
+Recognized tool-table presence is syntax, not tool execution. Strings and ordered
+arrays remain declared values; no defaults, complete test collection or runtime
+registration are inferred. See the configuration contract's substrate inventory
+for intrinsic address semantics and deliberately deferred public-export facts.
 
 ## Mirrored source/test paths
 

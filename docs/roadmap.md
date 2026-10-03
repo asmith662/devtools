@@ -30,6 +30,29 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
+### Current — deterministic substrate for repository-role evidence
+
+The bounded [configuration RI increment](../src/devtools/context/python/project_configuration/docs/overview.md#static-project-and-pytest-settings)
+adds declared build/project metadata, named scripts/entry points, pytest naming
+and recursion settings, and recognized tool-table presence. Existing address,
+module/package, import/member, mirrored-path and selector facts are reused;
+intrinsic path properties are not duplicated. Static declarations do not model
+tool execution, complete collection, dynamic exports or obligation satisfaction.
+Public `__all__`/richer export coverage remains a separate RI slice. The canonical
+development validation command remains documented repository convention.
+
+Case 0004's committed joined diagnosis is architectural motivation: obligation
+lexical acquisition improves discrimination but retains a broad candidate set.
+Its gold identities were not a design or tuning input, and no replay informs this
+increment. Existing snapshots, treatment, judgments and queries remain frozen.
+No production role routing, elimination or ranking change is implemented.
+
+Next derive obligation-relative soft repository-role evidence from deterministic
+RI and intrinsic resource semantics, while retaining the global lexical safety
+lane and avoiding hard path filters. Define scope/provenance and applicability
+before interpreting these facts. Any retrospective Case 0004 replay is diagnosis;
+the first role-aware performance claim requires a new prospective case.
+
 ### Current — advisory Codex retrieval dogfooding
 
 The Tier-1 breadth sprint through Increment 36 is complete. The

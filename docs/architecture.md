@@ -505,7 +505,14 @@ runtime import resolution nor generic dependency semantics.
 selectors: project README, Hatch wheel packages, pytest testpaths, Coverage
 source, mypy files and mypy search paths. Declaration analysis uses `tomllib`
 and semantic key/item anchors with the exact configuration resource, not
-fabricated character spans. Resolution uses canonical repository addresses,
+fabricated character spans.
+Declaration analysis also retains bounded build/project metadata, named script
+and entry-point strings, pytest naming/recursion settings and recognized
+tool-table presence. These are static declarations, not effective configuration,
+full test discovery or runtime registration. Existing README/testpaths selectors
+remain their sole declaration owners. Intrinsic basename, suffix, parent and
+prefix membership derive from canonical addresses without parallel RI facts.
+Resolution uses canonical repository addresses,
 explicit command-cwd/pytest-root assumptions and native module interpretations.
 README/Hatch configuration-parent routes remain distinct. Shared exact dotted
 name lookup now belongs to `context.python.modules.lookup`; imports migrate to

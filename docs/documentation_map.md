@@ -113,7 +113,9 @@
   semantics. The [first baseline replay](../experiments/graph_ranking_baseline/README.md)
   and [typed-view replay](../experiments/typed_graph_baseline/README.md) own
   their respective development outcomes and limitations.
-- Python configuration RI: [declarations, resolution, provenance, ownership and
+- Python configuration RI: [static build/project metadata, script/entry-point
+  declarations, pytest naming/recursion settings, intrinsic path inventory,
+  declarations, resolution, provenance, ownership and
   future Retrieval boundary](../src/devtools/context/python/project_configuration/docs/overview.md).
   The [Python overview](../src/devtools/context/python/docs/overview.md) navigates
   this capability and mirrored-path facts. Shared exact module-name lookup

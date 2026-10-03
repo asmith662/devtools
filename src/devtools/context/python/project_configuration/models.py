@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from dataclasses import dataclass
 from enum import Enum
 from typing import TYPE_CHECKING, ClassVar
@@ -75,8 +76,39 @@ class PythonConfigurationDeclarationAnalysis:
     declarations: tuple[PythonConfigurationDeclaration, ...]
     absent_selectors: tuple[PythonConfigurationSelector, ...]
     parse_error: str | None
+    settings: PythonConfigurationSettings | None
 
-    SCOPE: ClassVar[str] = "six-selector-keys-and-project-entrypoint-presence"
+    SCOPE: ClassVar[str] = "six-selector-keys-and-bounded-project-pytest-settings-v2"
+
+
+@dataclass(frozen=True, slots=True)
+class PythonConfigurationSetting:
+    """Retain one declared setting; supported syntax is not effective behavior."""
+
+    derivation_identity: str
+    key: tuple[str, ...]
+    value: str | tuple[str, ...] | None
+    unsupported_reason: str | None
+
+    @property
+    def identity(self) -> str:
+        """Identify the exact semantic key and retained supported value shape."""
+        return digest(
+            "python-project-setting-v1",
+            self.derivation_identity,
+            json.dumps(self.key, ensure_ascii=True),
+            json.dumps(self.value, ensure_ascii=True),
+            self.unsupported_reason or "",
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class PythonConfigurationSettings:
+    """Account for the named setting scope and recognized tool-table presence."""
+
+    declarations: tuple[PythonConfigurationSetting, ...]
+    absent_keys: tuple[tuple[str, ...], ...]
+    recognized_tool_tables: tuple[tuple[str, ...], ...]
 
 
 @dataclass(frozen=True, slots=True)

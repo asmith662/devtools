@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-"""Parse six Python-project selector keys from exact retained TOML content."""
+"""Parse bounded Python-project declarations from exact retained TOML content."""
 
 from __future__ import annotations
 
@@ -13,6 +13,7 @@ from devtools.context.python.project_configuration.models import (
     PythonConfigurationSelector,
     digest,
 )
+from devtools.context.python.project_configuration.settings import analyze_settings
 
 if TYPE_CHECKING:
     from devtools.context.repository.resource import RepositoryResourceAddress
@@ -31,7 +32,7 @@ def analyze_python_project_configuration(
     """
     resource = snapshot.resource_at(address)
     derivation = digest(
-        "python-project-config-tomllib-declarations-v1",
+        "python-project-config-tomllib-declarations-v2",
         str(snapshot.repository_id),
         str(snapshot.id),
         address.value,
@@ -41,11 +42,13 @@ def analyze_python_project_configuration(
     declarations: list[PythonConfigurationDeclaration] = []
     absent: list[PythonConfigurationSelector] = []
     parse_error = None
+    settings = None
     try:
         data = tomllib.loads(resource.content)
     except tomllib.TOMLDecodeError:
         parse_error = "malformed-toml"
     else:
+        settings = analyze_settings(data, derivation)
         for selector in PythonConfigurationSelector:
             key = tuple(selector.value.split("."))
             value = _at(data, key)
@@ -78,19 +81,6 @@ def analyze_python_project_configuration(
             absent = [
                 item for item in absent if item != PythonConfigurationSelector.README
             ]
-        for name in ("scripts", "gui-scripts", "entry-points"):
-            key = ("project", name)
-            if _at(data, key) is not None:
-                declarations.append(
-                    PythonConfigurationDeclaration(
-                        derivation,
-                        key,
-                        None,
-                        None,
-                        None,
-                        "unsupported-entrypoints",
-                    ),
-                )
     return PythonConfigurationDeclarationAnalysis(
         snapshot.repository_id,
         snapshot.id,
@@ -99,6 +89,7 @@ def analyze_python_project_configuration(
         tuple(declarations),
         tuple(absent),
         parse_error,
+        settings,
     )
 
 

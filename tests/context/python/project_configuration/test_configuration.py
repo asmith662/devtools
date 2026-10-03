@@ -245,10 +245,9 @@ def test_invalid_toml_never_publishes_declarations_or_facts(
         '[tool.mypy]\nfiles=[42, false, {path="src"}]',
         '[project]\ndynamic=["readme"]',
         '[project]\nreadme="README.md"\ndynamic=["readme"]',
-        '[project.scripts]\nmain="pkg:main"\n[project.gui-scripts]\nui="pkg:ui"\n[project.entry-points.group]\nplugin="pkg:plugin"',
     ],
 )
-def test_unsupported_forms_dynamic_and_entrypoints(
+def test_unsupported_selector_forms_and_dynamic_readme(
     tmp_path: Path,
     content: str,
 ) -> None:

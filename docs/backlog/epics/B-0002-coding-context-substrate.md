@@ -870,7 +870,7 @@ explicit obligation-associated queries through existing BM25, retaining each
 native result separately. An abstention is not mandatory coverage; accepted
 deferred discovery permits only explicitly conditional handoff, not full readiness.
 
-The next step is a prospective evaluation of explicit obligation-query
+The then-next step was a prospective evaluation of explicit obligation-query
 acquisition. Freeze the snapshot, eligible corpus, task/purpose, obligation frame,
 caller-authored query identities and text, BM25 settings/result limit, and
 measurements before retrieval. Independently adjudicate obligation-relative
@@ -890,3 +890,29 @@ false elimination prospectively. Learning and general sequential policies need
 independent traces. This records a bounded semantic capability, not epic
 completion or a retrieval-quality claim. Core Retrieval behavior and scoring
 remain unchanged.
+
+## Deterministic repository-role substrate increment
+
+The caller-authorized production slice extends existing Python project
+configuration RI with bounded declared build/project metadata, script/entry-point
+syntax, pytest naming/recursion settings and recognized tool-table presence.
+Repository/snapshot/resource dependencies, semantic key anchors, unsupported
+forms and bounded absence remain explicit. The six selector declarations and
+their qualified targets remain canonical; the old presence-only unsupported
+entry-point assessment is superseded by named declarations. No runtime binding
+or full tool configuration is inferred.
+
+Canonical addresses already provide paths/components; standard-library path
+operations provide basename, suffix, parent, depth and containment without new
+RI identities. Explicit-root module/package membership, bounded imports/member
+resolution and mirrored paths remain native support. `__all__` and richer public
+exports remain a separate missing RI contract. The protected development command
+is a documented repository convention, not universal filename-based truth.
+
+Case 0004 is now joined; its broad lexical candidate set motivates further
+evidence discrimination, not tuning against its gold resources. This increment
+does not add role labels, routing, scores, filters or obligation satisfaction.
+Next: obligation-relative soft role evidence consuming native facts and intrinsic
+paths with a global lexical safety lane. New prospective evidence is required
+before any performance claim. B-0019 runtime configuration remains deferred;
+the epic remains open and no universal role system is selected.

@@ -12,6 +12,8 @@ from devtools.context.python.project_configuration.models import (
     PythonConfigurationFrame,
     PythonConfigurationResolutionAnalysis,
     PythonConfigurationSelector,
+    PythonConfigurationSetting,
+    PythonConfigurationSettings,
     PythonConfigurationStatus,
     PythonConfigurationTargetFact,
 )
@@ -27,6 +29,8 @@ __all__ = [
     "PythonConfigurationFrame",
     "PythonConfigurationResolutionAnalysis",
     "PythonConfigurationSelector",
+    "PythonConfigurationSetting",
+    "PythonConfigurationSettings",
     "PythonConfigurationStatus",
     "PythonConfigurationTargetFact",
     "analyze_python_project_configuration",

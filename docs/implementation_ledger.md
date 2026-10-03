@@ -549,3 +549,36 @@ remains sealed.
   obligation queries, snapshot/frame, BM25 settings and measurements; obtain
   blind obligation-relative resource judgments before joining lane provenance.
   This evaluates acquisition coverage, not satisfaction from rank.
+
+## Deterministic project/test configuration substrate (2026-10-02)
+
+- Extended `context.python.project_configuration` declaration analysis with
+  bounded build/project metadata, named script/GUI-script/entry-point strings,
+  pytest filename/class/function naming, recursion patterns and opaque addopts.
+  Recognized tool-table presence is retained separately. Existing README and
+  testpaths selector declarations remain canonical rather than duplicated.
+- Added `settings.py` within the established package, immutable setting models
+  and explicit absence/unsupported coverage. Semantic key anchors retain exact
+  repository/snapshot/resource provenance without invented offsets. The v2
+  derivation identifies expanded semantics. Named entry-point declarations
+  replace the old unsupported presence-only derivation; no runtime binding or
+  configuration execution is implemented.
+- Documented intrinsic address/path operations, existing module/package,
+  import/member and mirrored-path facts. Added path tests without parallel path
+  facts. Public export/`__all__` intelligence remains deferred; validation-command
+  ownership remains documented repository convention. No role labels, Retrieval
+  routing, filtering, elimination, ranking changes or Case 0004 replay/tuning.
+- Focused checks: 72 passed, including 21 setting tests and two intrinsic-path
+  tests. Neighboring Python RI/repository checks: 329 passed. Configuration
+  package coverage is 100% statements and branches (309 statements, 94 branches).
+  Protected development: 1,364 passed, two live skips, 100% of 8,727 production
+  statements and 2,036 branches; retained experiment tests excluded.
+- Ruff passes for `src`, `tests`, `scripts` and touched-file formatting. Mypy
+  passes for `src`/`tests` (463 files). Repository-wide Ruff/mypy were run and
+  remain blocked by unchanged Case 0004 experiment helpers (459 lint findings;
+  41 typing errors in six files). Frozen experiments remain untouched; these
+  unrelated failures are reported rather than repaired in this increment.
+- Next: obligation-relative soft repository-role evidence consuming deterministic
+  RI and intrinsic resource semantics, retaining the global lexical safety lane
+  and avoiding hard path filters. Performance claims require a new prospective
+  case; no next-slice implementation is included. Confirmation remains sealed.
