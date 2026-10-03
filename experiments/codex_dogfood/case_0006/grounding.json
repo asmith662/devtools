@@ -1,0 +1,278 @@
+{
+  "case": "case_0006",
+  "execution_kind": "RECOVERY",
+  "recovery_id": "case-0006-stage-b-recovery-1",
+  "prior_failed_execution_count": 1,
+  "invocation_count": 9,
+  "runtime_seconds": 0.19767749999300577,
+  "requests": [
+    {
+      "request_identity": "g-hypothesis",
+      "task_identity": "codex-dogfood-case-0006-resolution-recording",
+      "anchor_identity": "hypothesis",
+      "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+      "snapshot_id": "ba654221b65584aebdd98804369864162ac3f7da1bf8862abee06ce4d2127a55",
+      "locator": {
+        "kind": "PYTHON_DECLARATION",
+        "module": "devtools.context.localization.association.hypothesis",
+        "name": "CandidateWitnessHypothesis",
+        "declaration_kind": "CLASS"
+      },
+      "interpretation_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "explanation": "association/__init__.py exports the class from its direct declaration module"
+      },
+      "resolver": "python-direct-module-declaration-lookup",
+      "disposition": "unsupported",
+      "reason": "Relevant syntax cannot establish the requested direct declaration.",
+      "candidates": [],
+      "native_evidence": [
+        {
+          "type": "PythonModuleDeclarationLookup",
+          "identity": "41ae48e780e5d0a0ac1b0d7570d416e40156ee71d9766d1222a9c0a9e556d070"
+        }
+      ],
+      "module_universe_identity": "3922cdc5a41c3f8f16bc91a429f3bf63bc34de3d31a683f2d55742cf9a579afa"
+    },
+    {
+      "request_identity": "g-candidate-view",
+      "task_identity": "codex-dogfood-case-0006-resolution-recording",
+      "anchor_identity": "candidate-view",
+      "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+      "snapshot_id": "ba654221b65584aebdd98804369864162ac3f7da1bf8862abee06ce4d2127a55",
+      "locator": {
+        "kind": "PYTHON_DECLARATION",
+        "module": "devtools.context.localization.association.hypothesis",
+        "name": "CandidateWitnessView",
+        "declaration_kind": "CLASS"
+      },
+      "interpretation_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "explanation": "association/__init__.py exports the class from its direct declaration module"
+      },
+      "resolver": "python-direct-module-declaration-lookup",
+      "disposition": "unsupported",
+      "reason": "Relevant syntax cannot establish the requested direct declaration.",
+      "candidates": [],
+      "native_evidence": [
+        {
+          "type": "PythonModuleDeclarationLookup",
+          "identity": "1d6fa6877d43aaa5696ce7117cbdd8c489d8819def5120b6d13e9364e3333f71"
+        }
+      ],
+      "module_universe_identity": "3922cdc5a41c3f8f16bc91a429f3bf63bc34de3d31a683f2d55742cf9a579afa"
+    },
+    {
+      "request_identity": "g-generation-view",
+      "task_identity": "codex-dogfood-case-0006-resolution-recording",
+      "anchor_identity": "generation-view",
+      "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+      "snapshot_id": "ba654221b65584aebdd98804369864162ac3f7da1bf8862abee06ce4d2127a55",
+      "locator": {
+        "kind": "PYTHON_DECLARATION",
+        "module": "devtools.context.localization.generation.contract",
+        "name": "WitnessGenerationView",
+        "declaration_kind": "CLASS"
+      },
+      "interpretation_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "explanation": "generation/__init__.py exports the class from its direct declaration module"
+      },
+      "resolver": "python-direct-module-declaration-lookup",
+      "disposition": "unsupported",
+      "reason": "Relevant syntax cannot establish the requested direct declaration.",
+      "candidates": [],
+      "native_evidence": [
+        {
+          "type": "PythonModuleDeclarationLookup",
+          "identity": "8df0ac4ca71dc43658678cb61c47c06e2fc0bfbcfbe21074a95128a1d280f956"
+        }
+      ],
+      "module_universe_identity": "3922cdc5a41c3f8f16bc91a429f3bf63bc34de3d31a683f2d55742cf9a579afa"
+    },
+    {
+      "request_identity": "g-grounding-view",
+      "task_identity": "codex-dogfood-case-0006-resolution-recording",
+      "anchor_identity": "grounding-view",
+      "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+      "snapshot_id": "ba654221b65584aebdd98804369864162ac3f7da1bf8862abee06ce4d2127a55",
+      "locator": {
+        "kind": "PYTHON_DECLARATION",
+        "module": "devtools.context.localization.grounding.view",
+        "name": "AnchorGroundingView",
+        "declaration_kind": "CLASS"
+      },
+      "interpretation_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "explanation": "grounding/__init__.py exports the class from its direct declaration module"
+      },
+      "resolver": "python-direct-module-declaration-lookup",
+      "disposition": "unsupported",
+      "reason": "Relevant syntax cannot establish the requested direct declaration.",
+      "candidates": [],
+      "native_evidence": [
+        {
+          "type": "PythonModuleDeclarationLookup",
+          "identity": "76925bc50654c0bb353245a6e4fdd86caf97f389840a62509ffecb63061aadd6"
+        }
+      ],
+      "module_universe_identity": "3922cdc5a41c3f8f16bc91a429f3bf63bc34de3d31a683f2d55742cf9a579afa"
+    },
+    {
+      "request_identity": "g-witness-set",
+      "task_identity": "codex-dogfood-case-0006-resolution-recording",
+      "anchor_identity": "witness-set",
+      "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+      "snapshot_id": "ba654221b65584aebdd98804369864162ac3f7da1bf8862abee06ce4d2127a55",
+      "locator": {
+        "kind": "PYTHON_DECLARATION",
+        "module": "devtools.context.localization.obligation",
+        "name": "WitnessSet",
+        "declaration_kind": "CLASS"
+      },
+      "interpretation_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "explanation": "localization/__init__.py exports the class from its direct declaration module"
+      },
+      "resolver": "python-direct-module-declaration-lookup",
+      "disposition": "unsupported",
+      "reason": "Relevant syntax cannot establish the requested direct declaration.",
+      "candidates": [],
+      "native_evidence": [
+        {
+          "type": "PythonModuleDeclarationLookup",
+          "identity": "503ed7ee76109c2f3fd2a300360023d1a4a596b4b70f06c57e11b1a9072b961f"
+        }
+      ],
+      "module_universe_identity": "3922cdc5a41c3f8f16bc91a429f3bf63bc34de3d31a683f2d55742cf9a579afa"
+    },
+    {
+      "request_identity": "g-supported-witness",
+      "task_identity": "codex-dogfood-case-0006-resolution-recording",
+      "anchor_identity": "supported-witness",
+      "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+      "snapshot_id": "ba654221b65584aebdd98804369864162ac3f7da1bf8862abee06ce4d2127a55",
+      "locator": {
+        "kind": "PYTHON_DECLARATION",
+        "module": "devtools.context.localization.assessment",
+        "name": "SupportedWitness",
+        "declaration_kind": "CLASS"
+      },
+      "interpretation_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "explanation": "localization/__init__.py exports the class from its direct declaration module"
+      },
+      "resolver": "python-direct-module-declaration-lookup",
+      "disposition": "unsupported",
+      "reason": "Relevant syntax cannot establish the requested direct declaration.",
+      "candidates": [],
+      "native_evidence": [
+        {
+          "type": "PythonModuleDeclarationLookup",
+          "identity": "fc32df3731c3be9cfc478e23a85b00fb92655951b6aac4318e680f5835dbf04f"
+        }
+      ],
+      "module_universe_identity": "3922cdc5a41c3f8f16bc91a429f3bf63bc34de3d31a683f2d55742cf9a579afa"
+    },
+    {
+      "request_identity": "g-assessment",
+      "task_identity": "codex-dogfood-case-0006-resolution-recording",
+      "anchor_identity": "assessment",
+      "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+      "snapshot_id": "ba654221b65584aebdd98804369864162ac3f7da1bf8862abee06ce4d2127a55",
+      "locator": {
+        "kind": "PYTHON_DECLARATION",
+        "module": "devtools.context.localization.assessment",
+        "name": "LocalizationAssessment",
+        "declaration_kind": "CLASS"
+      },
+      "interpretation_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "explanation": "localization/__init__.py exports the class from its direct declaration module"
+      },
+      "resolver": "python-direct-module-declaration-lookup",
+      "disposition": "unsupported",
+      "reason": "Relevant syntax cannot establish the requested direct declaration.",
+      "candidates": [],
+      "native_evidence": [
+        {
+          "type": "PythonModuleDeclarationLookup",
+          "identity": "0c81ae9d54d437eef5b3d4477979ea54d5d65d43322662c4989acf48d7aeda0f"
+        }
+      ],
+      "module_universe_identity": "3922cdc5a41c3f8f16bc91a429f3bf63bc34de3d31a683f2d55742cf9a579afa"
+    },
+    {
+      "request_identity": "g-readiness",
+      "task_identity": "codex-dogfood-case-0006-resolution-recording",
+      "anchor_identity": "readiness",
+      "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+      "snapshot_id": "ba654221b65584aebdd98804369864162ac3f7da1bf8862abee06ce4d2127a55",
+      "locator": {
+        "kind": "PYTHON_DECLARATION",
+        "module": "devtools.context.localization.readiness",
+        "name": "LocalizationReadiness",
+        "declaration_kind": "CLASS"
+      },
+      "interpretation_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "explanation": "localization/__init__.py exports the public readiness value; task explicitly requires its flow"
+      },
+      "resolver": "python-direct-module-declaration-lookup",
+      "disposition": "unsupported",
+      "reason": "Relevant syntax cannot establish the requested direct declaration.",
+      "candidates": [],
+      "native_evidence": [
+        {
+          "type": "PythonModuleDeclarationLookup",
+          "identity": "8a0e44bcf34ae2e8658b323412e6c487bcd51f661c0781a10d5da7b3b16956fd"
+        }
+      ],
+      "module_universe_identity": "3922cdc5a41c3f8f16bc91a429f3bf63bc34de3d31a683f2d55742cf9a579afa"
+    },
+    {
+      "request_identity": "g-validation",
+      "task_identity": "codex-dogfood-case-0006-resolution-recording",
+      "anchor_identity": "quality",
+      "repository_id": "d0e7c9e0-0c4f-4ea7-a345-3eb793ab6eb8",
+      "snapshot_id": "ba654221b65584aebdd98804369864162ac3f7da1bf8862abee06ce4d2127a55",
+      "locator": {
+        "kind": "RESOURCE_ADDRESS",
+        "address": "scripts/validate_development.py"
+      },
+      "interpretation_provenance": {
+        "source_identity": "0e60b29b163ba150ab2bb901d0d2189fabf0cc9a93e9aa1887b95e4e0f9572ed",
+        "explanation": "AGENTS.md gives the exact protected validation entry point"
+      },
+      "resolver": "repository-snapshot-resource-at",
+      "disposition": "resolved",
+      "reason": "Exact address identifies one observed resource occurrence.",
+      "candidates": [
+        {
+          "referent": {
+            "type": "RepositoryResourceOccurrence",
+            "resource": {
+              "address": "scripts/validate_development.py",
+              "content_identity": "4ad77142c8a62c203a4cf1f8b4610018ef4ec06f642db6da42fe466267a9efe9"
+            }
+          },
+          "evidence": {
+            "type": "RepositoryResourceOccurrence"
+          }
+        }
+      ],
+      "native_evidence": [
+        {
+          "type": "RepositoryResourceOccurrence"
+        }
+      ],
+      "module_universe_identity": null
+    }
+  ],
+  "disposition_counts": {
+    "unsupported": 8,
+    "resolved": 1
+  },
+  "generator_grounding_cache_hits": 14,
+  "generator_fresh_resolution_count": 0
+}
