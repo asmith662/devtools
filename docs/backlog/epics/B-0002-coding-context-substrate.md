@@ -936,6 +936,25 @@ does not implement that policy or demonstrate performance. Case 0004 gold
 resources, judgments and resource-level results were not consulted or replayed.
 The epic remains open; B-0019 runtime configuration remains separate.
 
+## Candidate witness association increment
+
+Case 0005's committed joined analysis found that positive role routing can
+reduce repeated review while increasing the unique resource review surface.
+The 22-resource minimum semantically sufficient union and 151/160-resource
+native/routed completion-prefix unions motivate explicit evidence-to-witness
+association. These gold identities were not used to choose production rules.
+
+Localization now accepts caller-authored unresolved candidate witness
+hypotheses over exact observed resource occurrences. Each member names an
+association reason and retains exact native lexical, role or routing support.
+Members within a hypothesis complement; hypotheses within an obligation
+compete. The view validates task, repository, snapshot, lane and support
+membership and exposes deterministic obligation/target queries. It does not
+generate candidates, infer satisfaction, mutate accepted witness sets, assign
+confidence or eliminate candidates. B-0002 remains open. The next pressure is
+which bounded native-evidence policy, if any, can generate and resolve these
+hypotheses while retaining unresolved competitors and measuring review cost.
+
 ## Caller-directed lexical role routing increment
 
 The [routing contract](../../../src/devtools/context/localization/routing/docs/overview.md)

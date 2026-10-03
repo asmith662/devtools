@@ -27,8 +27,9 @@
   [ADR-0005](architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
   defines accepted repository Localization semantics: stated task obligations,
   bounded satisfaction/applicability, proof-scoped elimination and handoff limits.
-  Its caller-authored obligation/witness kernel and one-way full-task/obligation
-  BM25 evidence adapter are implemented; other acquisition and Context integration
+  Its caller-authored obligation/witness kernel, one-way full-task/obligation
+  BM25 adapter and unresolved candidate association view are implemented;
+  other acquisition and Context integration
   remain future work.
 - [AGENTS.md](../AGENTS.md) defines repository-operating rules.
 - [Research evidence](research/README.md) preserves investigations, alternatives,
@@ -83,6 +84,8 @@
   pattern scope and future routing seam; RI retains deterministic fact ownership.
   Its [routing package](../src/devtools/context/localization/routing/docs/overview.md) documents
   caller-authored per-query role preferences and lossless preferred/escape views.
+  The [Localization package overview](../src/devtools/context/localization/docs/overview.md#candidate-witness-association)
+  also owns the bounded candidate-hypothesis contract and its native provenance.
 - Source and tests define the final implemented behavior where documentation is
   incomplete.
 - Backlog records unresolved/future pressure; [roadmap](roadmap.md) records

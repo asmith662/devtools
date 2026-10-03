@@ -8,7 +8,7 @@ It executes no Retrieval and changes none of the lexical adapter's ordering.
 
 The `devtools.context.localization` package owns caller-authored task information
 obligations and a deterministic assessment of the supplied obligation frame. It
-does not retrieve repository information, infer task obligations, choose Context
+does not infer task obligations, choose Context
 representations, or execute agent work.
 
 ```text
@@ -158,3 +158,55 @@ results with caller-authored obligations, but it does not create witnesses,
 assess applicability, or change readiness. Context Planning may later use
 obligation provenance when selecting representations; that integration is not
 part of this package's current contract.
+
+## Candidate witness association
+
+`devtools.context.localization.association` holds caller-supplied, unresolved
+`CandidateWitnessHypothesis` alternatives for one task obligation. A hypothesis
+contains one or more `CandidateWitnessMember` values: every member is proposed
+together, while several hypotheses for the same obligation compete. The
+`WitnessHypothesisIdentity` is a caller-named task-obligation-local key for
+inspection and replay, not a second repository identity or scored assignment.
+One observed resource may appear in hypotheses for several obligations.
+
+```text
+native Retrieval / role / routing evidence
+                 |
+                 v
+candidate witness members + explicit caller reasons
+                 |
+                 v
+unresolved competing or complementary hypotheses
+                 |
+                 v
+future evidence resolution (not implemented)
+                 |
+                 v
+accepted WitnessSet alternatives -> LocalizationAssessment -> readiness
+```
+
+The current member target is an exact `RepositoryResourceOccurrence` in the
+supplied `RepositorySnapshot`. This bounded target admits exact frame checking;
+finer declarations and source occurrences require their own native identity and
+containment validation before joining this API. It does not create a universal
+information-unit model. Members retain an explicit human-readable association
+reason and individual native supports: a `LexicalMatchSupport` references the
+actual BM25 match, its global or obligation query lane and native rank;
+`ResourceRoleEvidence` retains its native support kinds and derivation identity;
+`RoutedMatchSupport` references the original routed candidate and its native
+rank, routed position, tier and selected role evidence. The builder checks the
+task, repository, snapshot, target, query/obligation lane and exact native
+support membership against the supplied acquisition, role view and routed view.
+It retains those native input views beside the hypotheses, so original query
+text, index semantics, role derivation and routing explanation remain inspectable.
+Several supports remain separate and are never aggregated into a number.
+
+`build_candidate_witness_view` only validates and orders caller-supplied
+hypotheses. Member, support and hypothesis ordering use stable native keys,
+not evidence strength or relevance. `for_obligation`, `for_target`, and
+`cross_obligation_targets` inspect them without ranking. It generates no
+hypothesis from rank, role, tier, path or score. The view neither mutates
+accepted witness sets nor produces a `SupportedWitness` or
+`LocalizationAssessment`. Candidate association is thus
+distinct from Retrieval, ranking, accepted witness satisfaction and readiness.
+There is no confidence, rejection, elimination or automatic resolution.

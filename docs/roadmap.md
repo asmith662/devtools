@@ -30,7 +30,23 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
-### Current — caller-directed lexical role routing
+### Current — unresolved candidate witness association
+
+Prospective Case 0005 joined analysis found 24 distinct resources in its
+accepted witness universe and a minimum semantically sufficient union of 22;
+native and role-routed completion prefixes exposed 151 and 160 unique resources
+respectively. Positive role routing helped several obligations but remained
+coarse and delayed some cross-role witnesses. These are case-specific diagnosis,
+not a calibrated association policy.
+
+Localization now has a caller-supplied, snapshot-bound candidate witness
+association view. It preserves native lexical, role and routing supports for
+unresolved alternatives and complementary members. It does not infer hypotheses,
+accept witnesses, score confidence, eliminate candidates or change readiness.
+Next test a bounded deterministic generation and resolution policy against
+prospectively frozen obligations without recreating a universal ranking.
+
+### Completed — caller-directed lexical role routing
 
 The bounded [configuration RI increment](../src/devtools/context/python/project_configuration/docs/overview.md#static-project-and-pytest-settings)
 adds declared build/project metadata, named scripts/entry points, pytest naming
@@ -61,11 +77,10 @@ lane into preferred-support and complete escape tiers, and retains exact native
 matches and ordering within each tier. The global full-task lane stays native.
 No acquisition, score, satisfaction, filter or elimination is added.
 
-Next freeze a new prospective Case 0005 using a naturally occurring development
-task, with caller-authored obligations, lexical queries, and role-routing
-preferences all committed before Retrieval; then compare native obligation-lane
-depth against routed depth under independent blind adjudication. Do not tune
-from Case 0004 outcomes. Any retrospective replay remains diagnosis only.
+The then-next prospective Case 0005 froze a naturally occurring development
+task, caller-authored obligations, lexical queries and role preferences before
+Retrieval. Its joined analysis is recorded above as case-specific diagnosis.
+Any retrospective replay remains diagnosis only.
 
 ### Current — advisory Codex retrieval dogfooding
 

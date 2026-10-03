@@ -657,6 +657,11 @@ each existing obligation lexical lane into preferred-support and escape tiers.
 It retains the native full-task lane and all candidates, exposing explanations
 and native/routed positions. Routing is attention order, not relevance truth,
 negative evidence, obligation satisfaction or elimination.
+A bounded Localization association view retains caller-supplied unresolved
+candidate witness hypotheses. Native lexical, role and routing supports explain
+why an observed resource is considered for a particular obligation; they do not
+establish an accepted witness or change readiness. Multiple members can be
+complementary and multiple hypotheses can compete without rank or confidence.
 A LocalizationObligation is a task-local desired-information predicate with
 provenance and bounded satisfaction semantics; it is not a query, Task, RI fact,
 disclosure option or evaluator gold label. Shared anchors identify subjects of

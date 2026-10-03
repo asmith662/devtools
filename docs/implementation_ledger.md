@@ -618,6 +618,24 @@ remains sealed.
   path, then freeze a new prospective case before measurement. That slice is
   not implemented here.
 
+## Candidate witness association (2026-10-02)
+
+- Added a Localization-owned immutable view of caller-supplied unresolved
+  candidate witness hypotheses. Alternative hypotheses compete per obligation;
+  their individually supported resource members complement one another. One
+  observed resource can participate across obligations.
+- Kept native BM25 match/lane/rank, repository-role evidence and routed candidate
+  provenance intact; checked task, snapshot and exact lane/support membership.
+  The association view does not generate hypotheses, rank them, accept witnesses,
+  change readiness, assign confidence or eliminate candidates. Finer native
+  targets await a native validation contract.
+- Case 0005 aggregate evidence motivated the increment; no gold resource or
+  witness identity was encoded or replayed. Confirmation remains sealed.
+- The focused association suite passes 26 tests with 100% of 132 new
+  statements and 52 branches covered. Adjacent Localization/Retrieval/Evaluation
+  tests pass (173). Protected development passes 1,418 tests with two live
+  skips and 100% of 9,276 production statements and 2,216 branches.
+
 ## Caller-directed lexical role routing (2026-10-02)
 
 - Added `context.localization.routing` as a pure view over existing native

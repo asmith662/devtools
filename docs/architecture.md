@@ -865,7 +865,13 @@ router takes caller-authored per-query preferred roles and projects existing
 obligation BM25 lanes into positive-support and complete escape tiers. It retains
 the native full-task lane, every candidate, native rank and support explanation.
 Routing changes attention order only; no score, filtering, elimination or
-obligation judgment is produced.
+obligation judgment is produced. The Localization association package additionally
+validates caller-supplied, unresolved candidate witness hypotheses against the
+task and snapshot. Each member retains an observed resource, explicit reason and
+native lexical, role or routing support. Several members may complement one
+another and hypotheses may compete, without becoming accepted witness sets or
+changing readiness. This slice supplies no automatic generation or resolution
+policy.
 
 ```text
 task interpretation: shared anchors + obligations + constraints
