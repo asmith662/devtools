@@ -666,6 +666,11 @@ A LocalizationObligation is a task-local desired-information predicate with
 provenance and bounded satisfaction semantics; it is not a query, Task, RI fact,
 disclosure option or evaluator gold label. Shared anchors identify subjects of
 several predicates and need not already resolve to repository identities.
+Explicit grounding requests can connect an anchor to a native resource, Python
+module, direct declaration or directly contained method through bounded RI
+resolution. Grounding retains ambiguity and snapshot provenance; it is neither
+repository truth nor an obligation witness. A locator miss does not establish
+semantic absence or negative evidence.
 
 Localization readiness is scoped to the caller-supplied obligation frame, not a
 claim that the task interpretation is exhaustive or the resulting Context is

@@ -666,3 +666,22 @@ remains sealed.
   and role preferences committed before Retrieval; independently adjudicate and
   compare native obligation-lane depth with routed depth. No Case 0005 work or
   effectiveness claim is part of this increment.
+
+## Exact task-anchor grounding (2026-10-03)
+
+- Added caller-authored exact grounding locators under Localization for observed
+  resource addresses, explicit-root Python modules, supported direct module
+  declarations and directly contained methods. Requests retain task/anchor,
+  interpretation provenance and repository/snapshot frame.
+- Results retain native referents and RI analysis/lookup evidence, including
+  ambiguous, unresolved and unsupported outcomes. The immutable view supports
+  deterministic anchor and referent inspection. No free-text inference,
+  ranking, witness generation, acceptance, confidence or elimination was added.
+- The implementation uses existing RI resolvers and changes no Retrieval,
+  routing, Context Planning or repository truth. Case 0005 resource-level gold
+  and confirmation outcomes were not accessed.
+- Focused grounding tests pass (7); new modules cover all 267 statements and
+  70 branches. Neighboring Localization and Python RI tests pass (104). The
+  protected development profile passes 1,425 tests, skips two live tests and
+  covers all 9,543 production statements and 2,286 branches. Ruff, touched
+  formatting, mypy and diff checks pass.

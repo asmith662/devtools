@@ -938,6 +938,14 @@ The epic remains open; B-0019 runtime configuration remains separate.
 
 ## Candidate witness association increment
 
+The subsequent exact anchor-grounding increment lets callers bind shared task
+anchors to explicit resource addresses, Python modules, direct declarations and
+direct methods through snapshot-checked native RI. Ambiguous and unsupported
+results remain visible. It creates no candidate witness hypothesis or accepted
+witness, and does not close this epic. The next pressure is bounded hypothesis
+generation from grounded anchors, typed RI relationships and native Retrieval
+evidence, measured prospectively before resolution or elimination claims.
+
 Case 0005's committed joined analysis found that positive role routing can
 reduce repeated review while increasing the unique resource review surface.
 The 22-resource minimum semantically sufficient union and 151/160-resource

@@ -30,7 +30,7 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
-### Current — unresolved candidate witness association
+### Current — exact anchor grounding and unresolved witness association
 
 Prospective Case 0005 joined analysis found 24 distinct resources in its
 accepted witness universe and a minimum semantically sufficient union of 22;
@@ -43,8 +43,12 @@ Localization now has a caller-supplied, snapshot-bound candidate witness
 association view. It preserves native lexical, role and routing supports for
 unresolved alternatives and complementary members. It does not infer hypotheses,
 accept witnesses, score confidence, eliminate candidates or change readiness.
-Next test a bounded deterministic generation and resolution policy against
-prospectively frozen obligations without recreating a universal ranking.
+Localization now also has exact, caller-interpreted anchor grounding to native
+snapshot resource and bounded Python RI identities. It preserves ambiguity and
+does not generate hypotheses. Next test a bounded deterministic hypothesis
+generation policy from grounded anchors, typed RI relations and native Retrieval
+evidence against prospectively frozen obligations; resolution and elimination
+remain separate questions.
 
 ### Completed — caller-directed lexical role routing
 

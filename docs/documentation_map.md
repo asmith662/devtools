@@ -84,6 +84,9 @@
   pattern scope and future routing seam; RI retains deterministic fact ownership.
   Its [routing package](../src/devtools/context/localization/routing/docs/overview.md) documents
   caller-authored per-query role preferences and lossless preferred/escape views.
+  Its [exact grounding contract](../src/devtools/context/localization/docs/overview.md#exact-task-anchor-grounding)
+  owns explicit task-anchor locators, bounded native RI resolution and
+  unresolved/ambiguous provenance without witness satisfaction.
   The [Localization package overview](../src/devtools/context/localization/docs/overview.md#candidate-witness-association)
   also owns the bounded candidate-hypothesis contract and its native provenance.
 - Source and tests define the final implemented behavior where documentation is

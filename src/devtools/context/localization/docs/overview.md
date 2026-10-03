@@ -159,6 +159,51 @@ assess applicability, or change readiness. Context Planning may later use
 obligation provenance when selecting representations; that integration is not
 part of this package's current contract.
 
+## Exact task-anchor grounding
+
+`devtools.context.localization.grounding` connects a shared task anchor to
+native RI referents only through a caller-authored `AnchorGroundingRequest`.
+Anchor text is task interpretation, not a Python symbol, module, path or
+repository fact. The request names its task and anchor, repository and snapshot,
+an explicit typed locator, and the caller's interpretation provenance. No
+locator kind is inferred from anchor text.
+
+```text
+SharedAnchor -> GroundingRequest -> bounded native resolver
+                                    |-> RESOLVED native referent
+                                    |-> AMBIGUOUS native candidates
+                                    |-> UNRESOLVED exact locator miss
+                                    +-> UNSUPPORTED current RI scope
+                                      -> future witness-hypothesis generation
+```
+
+V1 locators are an exact `RepositoryResourceAddress`; a canonical dotted
+Python module name in an explicitly supplied, snapshot-checked module universe
+(optionally constrained to ordinary module or package); a directly supported
+module-body function/class declaration under that module locator; and an exact
+direct method name under an already identified native class declaration. The
+resolver delegates to snapshot resource lookup, Python module lookup, direct
+declaration lookup and class-method containment. It preserves native
+`RepositoryResourceOccurrence`, module interpretation, declaration knowledge,
+and analysis/lookup evidence. It invents neither spans nor a universal entity
+identity. Multiple exact module or declaration matches remain unranked and
+ambiguous. Dynamic/decorated or otherwise unsupported declaration binding
+abstains. A miss is bounded to that locator and supplied native frame; it is
+not evidence that the task concept is absent from the repository.
+
+The immutable `AnchorGroundingView` orders explicit requests deterministically,
+finds results by anchor or disposition, and maps a native referent back to all
+task anchors that grounded to it. It also lists anchors with no resolved locator,
+including those with no request. It does not assign a referent to an obligation,
+create a candidate witness hypothesis, accept a witness, change assessment or
+readiness, rank candidates, eliminate alternatives or produce confidence.
+Grounding is language-neutral task-relative state; its Python adapters consume
+Python RI. Imported-member and configuration declaration locators, free-text
+semantic matching, and automatic locator inference are outside this bounded
+contract. Future hypothesis generation may combine grounded anchors with typed
+RI relationships and Retrieval evidence, but must preserve its own association
+evidence and unresolved status.
+
 ## Candidate witness association
 
 `devtools.context.localization.association` holds caller-supplied, unresolved

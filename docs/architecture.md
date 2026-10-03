@@ -872,6 +872,10 @@ native lexical, role or routing support. Several members may complement one
 another and hypotheses may compete, without becoming accepted witness sets or
 changing readiness. This slice supplies no automatic generation or resolution
 policy.
+Localization also accepts caller-authored exact anchor-grounding requests.
+Its bounded resolvers consume snapshot resource and Python RI identities,
+retaining ambiguous, unresolved and unsupported outcomes. Grounding does not
+infer an obligation witness or produce repository truth.
 
 ```text
 task interpretation: shared anchors + obligations + constraints
