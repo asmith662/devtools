@@ -200,9 +200,8 @@ readiness, rank candidates, eliminate alternatives or produce confidence.
 Grounding is language-neutral task-relative state; its Python adapters consume
 Python RI. Imported-member and configuration declaration locators, free-text
 semantic matching, and automatic locator inference are outside this bounded
-contract. Future hypothesis generation may combine grounded anchors with typed
-RI relationships and Retrieval evidence, but must preserve its own association
-evidence and unresolved status.
+contract. The bounded generator below consumes successful groundings; the
+grounding contract itself still creates no hypothesis.
 
 ## Candidate witness association
 
@@ -239,7 +238,9 @@ reason and individual native supports: a `LexicalMatchSupport` references the
 actual BM25 match, its global or obligation query lane and native rank;
 `ResourceRoleEvidence` retains its native support kinds and derivation identity;
 `RoutedMatchSupport` references the original routed candidate and its native
-rank, routed position, tier and selected role evidence. The builder checks the
+rank, routed position, tier and selected role evidence. `OwnerResourceSupport`
+and `MirroredResourceSupport` retain exact grounding and, for mirrors, the
+native source/test correspondence. The builder checks the
 task, repository, snapshot, target, query/obligation lane and exact native
 support membership against the supplied acquisition, role view and routed view.
 It retains those native input views beside the hypotheses, so original query
@@ -255,3 +256,66 @@ accepted witness sets nor produces a `SupportedWitness` or
 `LocalizationAssessment`. Candidate association is thus
 distinct from Retrieval, ranking, accepted witness satisfaction and readiness.
 There is no confidence, rejection, elimination or automatic resolution.
+
+## Bounded candidate-witness generation
+
+`devtools.context.localization.generation` instantiates caller-authored
+`WitnessGenerationRecipe` alternatives. Every `GroundedMemberRecipe` names an
+exact grounding result, one operator, a caller key, reason and interpretation
+provenance. Members within one recipe are caller-proposed complements; distinct
+named recipes compete. Neither relationship, anchor text, obligation predicate,
+lexical query nor role preference invents this shape.
+
+```text
+SharedAnchor -> exact Grounding -> caller recipe -> typed RI projection
+                                           |             |
+                                           |             + native relationship support
+                                           v
+                         unresolved CandidateWitnessHypothesis
+                                           + native lexical/role/routing support
+                                           |
+                                           v
+                                  FUTURE resolution
+```
+
+| Native relation inspected | Classification | V1 use |
+| --- | --- | --- |
+| Referent to its observed owner resource | Low-fanout exact projection | `OWNER_RESOURCE`: resource, module, direct declaration or method to one resource |
+| Exact observed Python source/test mirror | Low-fanout exact projection | `MIRRORED_RESOURCE`: one supported counterpart in either direction; correspondence is a path fact, not test coverage |
+| Immediate package membership / initializer surface | Bounded direct relation | Deferred: its explicit selected module-analysis frame and surface meaning need a separate input contract; initializer presence is not public API proof |
+| Exact direct containment and declaration ownership | Low-fanout exact projection | Already represented by owner projection |
+| Configuration declarations/selectors and import/member binding | Bounded multi-target or qualified relation | Deferred pending a task-relative target and operator contract |
+| References, calls/callers, direct bases and package children | Potentially high-fanout | Deferred; no implicit incident-edge expansion |
+| Recursive containment, import closure, graph neighbors/PPR/RRF | High-fanout or semantically unsafe as a witness | Excluded from v1 |
+
+When a mirror recipe has resolved grounding, the mirror operator runs the
+canonical RI derivation over the explicitly supplied snapshot. Each attempt
+retains that native analysis, including coverage, and any exact
+`PythonMirroredPathCorrespondence`; unresolved sources do not trigger it.
+Each v1 member accepts **one** target. No target yields `NO_TARGET`; ambiguous,
+unresolved or unsupported grounding abstains; more than one result yields
+`MULTI_TARGET` and no candidate hypothesis. A multi-member recipe with any
+failed member creates no partial hypothesis and no Cartesian product. Two
+member recipes reaching the same resource within one complementary recipe
+yield `DUPLICATE_TARGET`; separate caller-named competing recipes retain their
+distinct explanations and may share a target. Exact duplicate structural
+support is rejected rather than counted twice.
+
+`MemberProjectionAttempt` records source referent, target count, accepted
+cardinality bound of one, examined resource count, truncation flag and frontier
+(empty for these exhaustive exact operators). Owner projection examines its
+one resource; mirror derivation examines the supplied snapshot resource set.
+No hidden graph walk or candidate rank is performed. The immutable view keeps
+all recipe and member outcomes and exposes obligation, anchor, target,
+no-target and cross-obligation queries. Zero target is a bounded projection
+miss, never an irrelevance or repository-absence claim.
+
+For a generated target, existing global and owning-obligation lexical matches,
+positive role records and own-obligation routed candidates are attached by
+exact resource identity when supplied. They are supplemental native evidence;
+lexical-only results never create a hypothesis, and ESCAPE remains eligible.
+The association builder validates all native supports and replays grounding
+and mirror relationships. Generation changes neither accepted `WitnessSet`
+alternatives nor `LocalizationAssessment`/readiness. It does no scoring,
+confidence assignment, ranking, resolution or elimination. Effectiveness and
+coverage remain untested pending a new prospective case.

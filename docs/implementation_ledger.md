@@ -685,3 +685,29 @@ remains sealed.
   protected development profile passes 1,425 tests, skips two live tests and
   covers all 9,543 production statements and 2,286 branches. Ruff, touched
   formatting, mypy and diff checks pass.
+
+## Bounded candidate-witness generation (2026-10-03)
+
+- Added Localization-owned, caller-authored hypothesis and member generation
+  recipes. Each member names an already bounded grounding and one explicit
+  operator; each hypothesis recipe supplies complementary shape and a stable
+  competing alternative identity. No operator is inferred from task text,
+  obligation, query or role preference.
+- V1 projects only exact owner resource and canonical observed Python
+  source/test mirror. Existing association members now retain validated native
+  owner or mirrored-path support. Matching global/own-obligation lexical,
+  positive role and own-obligation routed records supplement structural targets
+  without generating candidates. ESCAPE remains eligible.
+- Single-target admission prevents Cartesian expansion. No target, ambiguous,
+  unsupported and unresolved groundings, multi-target results and duplicate
+  complementary targets retain attempt diagnostics without partial hypotheses.
+  Generated hypotheses remain unresolved. No graph expansion, ranking,
+  confidence, acceptance, elimination, or readiness change was added.
+- Nine focused generation tests and 26 adjacent association tests cover all
+  227 new generation/structural-support statements and 52 branches. The
+  focused generation/grounding/association/mirror/membership selection passes
+  54 tests. Protected development passes 1,434 tests, skips two live tests and
+  covers all 9,779 production statements and 2,342 branches. No Case 0005
+  resource-level gold or confirmation outcome was accessed; no prospective
+  effectiveness claim follows. Next freeze a new prospective Case 0006 before
+  comparing generated-hypothesis coverage and candidate-set size.

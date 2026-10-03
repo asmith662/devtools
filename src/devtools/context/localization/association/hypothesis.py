@@ -7,9 +7,16 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from devtools.context.localization.association.structural import (
+    structural_support_key,
+    validate_structural_support,
+)
 from devtools.context.retrieval.composition import require_lexical_result_snapshot
 
 if TYPE_CHECKING:
+    from devtools.context.localization.association.structural import (
+        StructuralMemberSupport,
+    )
     from devtools.context.localization.identity import (
         LocalizationObligationIdentity,
         LocalizationQueryIdentity,
@@ -69,10 +76,13 @@ class CandidateWitnessMember:
     lexical: tuple[LexicalMatchSupport, ...] = ()
     roles: tuple[ResourceRoleEvidence, ...] = ()
     routed: tuple[RoutedMatchSupport, ...] = ()
+    structural: tuple[StructuralMemberSupport, ...] = ()
 
     def __post_init__(self) -> None:
         """Require a reason, support, and unambiguous support membership."""
-        if not self.reason.strip() or not (self.lexical or self.roles or self.routed):
+        if not self.reason.strip() or not (
+            self.lexical or self.roles or self.routed or self.structural
+        ):
             msg = "Candidate member needs a reason and positive native support."
             raise ValueError(msg)
         if len({(item.query, item.native_rank) for item in self.lexical}) != len(
@@ -84,6 +94,9 @@ class CandidateWitnessMember:
             raise ValueError(msg)
         if len({item.identity for item in self.roles}) != len(self.roles):
             msg = "Candidate member repeats role evidence."
+            raise ValueError(msg)
+        if len(set(self.structural)) != len(self.structural):
+            msg = "Candidate member repeats structural support."
             raise ValueError(msg)
         object.__setattr__(
             self,
@@ -115,6 +128,11 @@ class CandidateWitnessMember:
                     key=lambda item: (item.query.value, item.candidate.routed_position),
                 )
             ),
+        )
+        object.__setattr__(
+            self,
+            "structural",
+            tuple(sorted(self.structural, key=structural_support_key)),
         )
 
 
@@ -252,6 +270,13 @@ def build_candidate_witness_view(  # noqa: C901, PLR0913
                 role_evidence,
                 routing,
             )
+            for support in member.structural:
+                validate_structural_support(
+                    task=task,
+                    snapshot=snapshot,
+                    target=member.target,
+                    support=support,
+                )
     ordered = tuple(
         sorted(
             hypotheses,

@@ -30,7 +30,7 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
-### Current — exact anchor grounding and unresolved witness association
+### Current — bounded hypothesis generation, prospective evidence next
 
 Prospective Case 0005 joined analysis found 24 distinct resources in its
 accepted witness universe and a minimum semantically sufficient union of 22;
@@ -45,10 +45,13 @@ unresolved alternatives and complementary members. It does not infer hypotheses,
 accept witnesses, score confidence, eliminate candidates or change readiness.
 Localization now also has exact, caller-interpreted anchor grounding to native
 snapshot resource and bounded Python RI identities. It preserves ambiguity and
-does not generate hypotheses. Next test a bounded deterministic hypothesis
-generation policy from grounded anchors, typed RI relations and native Retrieval
-evidence against prospectively frozen obligations; resolution and elimination
-remain separate questions.
+does not itself generate hypotheses. A caller-directed generator now projects
+resolved grounded anchors through exact owner-resource and observed mirror RI
+relations into unresolved hypotheses. Native lexical/role/routing evidence may
+supplement each target; it cannot create one. The next gate is a newly frozen
+prospective Case 0006 with recipes committed before execution, independent
+witness adjudication, and coverage/size comparison against lexical and routed
+baselines. Resolution and elimination remain separate questions.
 
 ### Completed — caller-directed lexical role routing
 

@@ -10,12 +10,18 @@ from devtools.context.localization.association.hypothesis import (
     WitnessHypothesisIdentity,
     build_candidate_witness_view,
 )
+from devtools.context.localization.association.structural import (
+    MirroredResourceSupport,
+    OwnerResourceSupport,
+)
 
 __all__ = [
     "CandidateWitnessHypothesis",
     "CandidateWitnessMember",
     "CandidateWitnessView",
     "LexicalMatchSupport",
+    "MirroredResourceSupport",
+    "OwnerResourceSupport",
     "RoutedMatchSupport",
     "WitnessHypothesisIdentity",
     "build_candidate_witness_view",

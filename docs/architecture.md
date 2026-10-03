@@ -876,6 +876,12 @@ Localization also accepts caller-authored exact anchor-grounding requests.
 Its bounded resolvers consume snapshot resource and Python RI identities,
 retaining ambiguous, unresolved and unsupported outcomes. Grounding does not
 infer an obligation witness or produce repository truth.
+The bounded Localization generator consumes explicit caller recipes and only
+exact owner-resource or observed mirrored-path RI relations. It retains native
+structural provenance, attaches matching lexical/role/routing evidence, and
+constructs unresolved candidate hypotheses through the association validator.
+Ambiguous or missing projection members abstain without partial acceptance.
+No graph expansion, score, witness resolution or candidate elimination occurs.
 
 ```text
 task interpretation: shared anchors + obligations + constraints

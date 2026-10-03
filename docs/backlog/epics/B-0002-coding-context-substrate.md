@@ -938,13 +938,22 @@ The epic remains open; B-0019 runtime configuration remains separate.
 
 ## Candidate witness association increment
 
+The bounded generation increment now instantiates caller-authored complementary
+member recipes and competing hypothesis recipes from resolved task anchors.
+It uses exact owner-resource and observed source/test mirror RI facts, retains
+native structural provenance, and attaches existing lexical/role/routing support
+only after structural generation. Ambiguous, missing and unsupported source
+outcomes abstain; duplicate targets within one complementary recipe do not
+silently collapse. No rank, confidence, acceptance, elimination or readiness
+change follows. B-0002 remains open: prospectively measure this candidate
+surface in a new frozen case before considering resolution or broader relations.
+
 The subsequent exact anchor-grounding increment lets callers bind shared task
 anchors to explicit resource addresses, Python modules, direct declarations and
 direct methods through snapshot-checked native RI. Ambiguous and unsupported
-results remain visible. It creates no candidate witness hypothesis or accepted
-witness, and does not close this epic. The next pressure is bounded hypothesis
-generation from grounded anchors, typed RI relationships and native Retrieval
-evidence, measured prospectively before resolution or elimination claims.
+results remain visible. Grounding itself creates no candidate witness hypothesis
+or accepted witness and does not close this epic. The subsequent generation
+increment below consumes those exact results; its performance remains untested.
 
 Case 0005's committed joined analysis found that positive role routing can
 reduce repeated review while increasing the unique resource review surface.
@@ -959,9 +968,9 @@ Members within a hypothesis complement; hypotheses within an obligation
 compete. The view validates task, repository, snapshot, lane and support
 membership and exposes deterministic obligation/target queries. It does not
 generate candidates, infer satisfaction, mutate accepted witness sets, assign
-confidence or eliminate candidates. B-0002 remains open. The next pressure is
-which bounded native-evidence policy, if any, can generate and resolve these
-hypotheses while retaining unresolved competitors and measuring review cost.
+confidence or eliminate candidates. B-0002 remains open. The bounded generator
+above supplies one policy without claiming coverage or review-cost improvement;
+resolution requires separate prospective evidence.
 
 ## Caller-directed lexical role routing increment
 
