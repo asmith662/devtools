@@ -1,0 +1,938 @@
+{
+  "schema": "codex-bounded-generation-treatment-v1",
+  "case": "case_0006",
+  "status": "FROZEN BEFORE RETRIEVAL, ROUTING, GROUNDING, GENERATION AND ADJUDICATION",
+  "starting_head": "492229e0e0d4661cf5287c26d18c6488a80fe8ce",
+  "task_identity": "codex-dogfood-case-0006-resolution-recording",
+  "task_full_prompt": "Implement the first production candidate-witness resolution-recording capability for Localization around `CandidateWitnessHypothesis` and generated witness candidates. The capability should let callers record explicit evidence-based dispositions for unresolved competing hypotheses and complementary members while preserving native evidence provenance, repository/snapshot identity, and the distinction between candidate hypotheses and accepted witnesses. Provide a validated seam for promoting a completely supported candidate hypothesis into the existing `WitnessSet`, `SupportedWitness`, `LocalizationAssessment`, and readiness flow without inferring support from rank, routing tier, role evidence, or evidence count. Integrate coherently with the existing `CandidateWitnessView`, `WitnessGenerationView`, and `AnchorGroundingView`, add rigorous tests and authoritative architecture/development documentation, preserve package/API conventions where applicable, and pass protected development validation. Do not implement an automatic resolution policy, candidate elimination, numeric confidence, learned ranking, autonomous sequential acquisition, or Context Planning admission.",
+  "purpose": "Acquire and generate repository information needed to implement the frozen candidate-witness resolution-recording capability while independently measuring global lexical, obligation lexical, role-routed and bounded structurally generated candidate surfaces.",
+  "anchors": [
+    {
+      "identity": "hypothesis",
+      "text": "CandidateWitnessHypothesis",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      }
+    },
+    {
+      "identity": "candidate-view",
+      "text": "CandidateWitnessView",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      }
+    },
+    {
+      "identity": "generation-view",
+      "text": "WitnessGenerationView",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      }
+    },
+    {
+      "identity": "grounding-view",
+      "text": "AnchorGroundingView",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      }
+    },
+    {
+      "identity": "witness-set",
+      "text": "WitnessSet",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      }
+    },
+    {
+      "identity": "supported-witness",
+      "text": "SupportedWitness",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      }
+    },
+    {
+      "identity": "assessment",
+      "text": "LocalizationAssessment",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      }
+    },
+    {
+      "identity": "readiness",
+      "text": "readiness flow",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      }
+    },
+    {
+      "identity": "provenance",
+      "text": "native evidence provenance and repository/snapshot identity",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      }
+    },
+    {
+      "identity": "quality",
+      "text": "rigorous tests, authoritative documentation and protected validation",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      }
+    }
+  ],
+  "obligations": [
+    {
+      "identity": "hypothesis-records",
+      "predicate": "Establish unresolved candidate hypothesis and view contracts needed for explicit evidence-based disposition records without automatic resolution.",
+      "anchors": [
+        "hypothesis",
+        "candidate-view"
+      ],
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "unresolved-disposition-contract",
+        "statement": "Identify hypothesis and view identity, membership, competition and unresolved boundaries needed to record explicit caller dispositions."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    },
+    {
+      "identity": "member-complementarity",
+      "predicate": "Establish how complementary hypothesis members and competing alternatives relate to accepted WitnessSet algebra.",
+      "anchors": [
+        "hypothesis",
+        "witness-set"
+      ],
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "complementary-member-algebra",
+        "statement": "Identify the all-members/any-alternative contracts and the evidence needed to avoid partial promotion."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    },
+    {
+      "identity": "generated-integration",
+      "predicate": "Establish integration of generated candidates and grounded task anchors with explicit resolution records.",
+      "anchors": [
+        "generation-view",
+        "grounding-view",
+        "hypothesis"
+      ],
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "generated-grounded-seam",
+        "statement": "Identify how generation attempts, hypotheses and grounding outcomes retain task-relative provenance without implying resolution."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    },
+    {
+      "identity": "accepted-promotion",
+      "predicate": "Establish a validated seam from a completely supported candidate hypothesis to WitnessSet and SupportedWitness without inference from rank, tier, role or evidence count.",
+      "anchors": [
+        "hypothesis",
+        "witness-set",
+        "supported-witness"
+      ],
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "complete-supported-promotion",
+        "statement": "Identify accepted target and evidence contracts sufficient to require every complementary member's explicit support before promotion."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    },
+    {
+      "identity": "assessment-readiness",
+      "predicate": "Establish LocalizationAssessment disposition and readiness contracts governing promotion into satisfaction flow.",
+      "anchors": [
+        "assessment",
+        "readiness",
+        "supported-witness"
+      ],
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "assessment-readiness-boundary",
+        "statement": "Identify assessment and readiness validation such that a candidate record alone does not satisfy an obligation."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    },
+    {
+      "identity": "provenance-frame",
+      "predicate": "Establish native evidence and repository/snapshot/task-frame compatibility for candidate dispositions and promoted supports.",
+      "anchors": [
+        "provenance",
+        "hypothesis",
+        "supported-witness"
+      ],
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "native-evidence-frame",
+        "statement": "Identify native evidence references and identity checks needed to reject foreign or stale candidate and promotion data."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    },
+    {
+      "identity": "package-integration",
+      "predicate": "Establish applicable Localization package/API conventions for the resolution-recording capability.",
+      "anchors": [
+        "candidate-view",
+        "generation-view",
+        "grounding-view"
+      ],
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "coherent-package-api",
+        "statement": "Identify governing public package conventions if they apply to exposing this capability."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": "Existing package/API conventions govern exposure of the new capability."
+    },
+    {
+      "identity": "tests",
+      "predicate": "Establish test conventions and cases for complementary and competing dispositions, promotion, native provenance, snapshot failures and semantic non-claims.",
+      "anchors": [
+        "hypothesis",
+        "generation-view",
+        "quality"
+      ],
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "resolution-boundary-tests",
+        "statement": "Identify rigorous neighboring tests and conventions for valid, invalid, unresolved and no-inference behavior."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    },
+    {
+      "identity": "documentation",
+      "predicate": "Establish authoritative Localization architecture and development documentation ownership for the new capability and exclusions.",
+      "anchors": [
+        "quality",
+        "hypothesis"
+      ],
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "authoritative-resolution-documentation",
+        "statement": "Identify governing documentation and update conventions for resolution records and their boundary with accepted witnesses."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    },
+    {
+      "identity": "validation",
+      "predicate": "Establish protected development validation and static quality-gate contract.",
+      "anchors": [
+        "quality"
+      ],
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "requirement": "mandatory",
+      "satisfaction": {
+        "name": "protected-validation-contract",
+        "statement": "Identify canonical command, profile and static gates; future pass/fail execution is not a repository witness."
+      },
+      "witness_alternatives": [],
+      "applicability_condition": null
+    }
+  ],
+  "global_lane": {
+    "identity": "global-full-task",
+    "query_text": "Implement the first production candidate-witness resolution-recording capability for Localization around `CandidateWitnessHypothesis` and generated witness candidates. The capability should let callers record explicit evidence-based dispositions for unresolved competing hypotheses and complementary members while preserving native evidence provenance, repository/snapshot identity, and the distinction between candidate hypotheses and accepted witnesses. Provide a validated seam for promoting a completely supported candidate hypothesis into the existing `WitnessSet`, `SupportedWitness`, `LocalizationAssessment`, and readiness flow without inferring support from rank, routing tier, role evidence, or evidence count. Integrate coherently with the existing `CandidateWitnessView`, `WitnessGenerationView`, and `AnchorGroundingView`, add rigorous tests and authoritative architecture/development documentation, preserve package/API conventions where applicable, and pass protected development validation. Do not implement an automatic resolution policy, candidate elimination, numeric confidence, learned ranking, autonomous sequential acquisition, or Context Planning admission.",
+    "routed": false
+  },
+  "obligation_queries": [
+    {
+      "identity": "q-hypothesis-records",
+      "obligation": "hypothesis-records",
+      "text": "CandidateWitnessHypothesis CandidateWitnessView unresolved competing hypotheses explicit evidence disposition",
+      "ordinal": 1,
+      "preferred_roles": [
+        "PYTHON_CODE"
+      ],
+      "preference_rationale": "Caller preference follows the information requirement, before role evidence."
+    },
+    {
+      "identity": "q-member-complementarity",
+      "obligation": "member-complementarity",
+      "text": "CandidateWitnessHypothesis complementary members competing alternatives WitnessSet all members any alternative",
+      "ordinal": 2,
+      "preferred_roles": [
+        "PYTHON_CODE"
+      ],
+      "preference_rationale": "Caller preference follows the information requirement, before role evidence."
+    },
+    {
+      "identity": "q-generated-integration",
+      "obligation": "generated-integration",
+      "text": "WitnessGenerationView AnchorGroundingView generated witness candidates grounding attempts provenance",
+      "ordinal": 3,
+      "preferred_roles": [
+        "PYTHON_CODE"
+      ],
+      "preference_rationale": "Caller preference follows the information requirement, before role evidence."
+    },
+    {
+      "identity": "q-accepted-promotion",
+      "obligation": "accepted-promotion",
+      "text": "WitnessSet SupportedWitness completely supported candidate hypothesis evidence promotion",
+      "ordinal": 4,
+      "preferred_roles": [
+        "PYTHON_CODE"
+      ],
+      "preference_rationale": "Caller preference follows the information requirement, before role evidence."
+    },
+    {
+      "identity": "q-assessment-readiness",
+      "obligation": "assessment-readiness",
+      "text": "LocalizationAssessment readiness resolved supported witnesses obligation disposition",
+      "ordinal": 5,
+      "preferred_roles": [
+        "PYTHON_CODE"
+      ],
+      "preference_rationale": "Caller preference follows the information requirement, before role evidence."
+    },
+    {
+      "identity": "q-provenance-frame",
+      "obligation": "provenance-frame",
+      "text": "native evidence provenance repository snapshot task frame candidate witness support compatibility",
+      "ordinal": 6,
+      "preferred_roles": [
+        "PYTHON_CODE"
+      ],
+      "preference_rationale": "Caller preference follows the information requirement, before role evidence."
+    },
+    {
+      "identity": "q-package-integration",
+      "obligation": "package-integration",
+      "text": "Localization package API exports CandidateWitnessView WitnessGenerationView AnchorGroundingView",
+      "ordinal": 7,
+      "preferred_roles": [
+        "PACKAGE_SURFACE",
+        "PACKAGE_MEMBER"
+      ],
+      "preference_rationale": "Caller preference follows the information requirement, before role evidence."
+    },
+    {
+      "identity": "q-tests",
+      "obligation": "tests",
+      "text": "Localization candidate witness resolution generated hypotheses complementary competing provenance snapshot tests",
+      "ordinal": 8,
+      "preferred_roles": [
+        "TEST"
+      ],
+      "preference_rationale": "Caller preference follows the information requirement, before role evidence."
+    },
+    {
+      "identity": "q-documentation",
+      "obligation": "documentation",
+      "text": "Localization candidate witness resolution architecture development documentation accepted witness boundaries",
+      "ordinal": 9,
+      "preferred_roles": [
+        "DOCUMENTATION"
+      ],
+      "preference_rationale": "Caller preference follows the information requirement, before role evidence."
+    },
+    {
+      "identity": "q-validation",
+      "obligation": "validation",
+      "text": "protected development validation command coverage Ruff mypy format quality gates",
+      "ordinal": 10,
+      "preferred_roles": [],
+      "preference_rationale": "Caller preference follows the information requirement, before role evidence; empty when no single supported role covers the contract."
+    }
+  ],
+  "grounding_requests": [
+    {
+      "identity": "g-hypothesis",
+      "anchor": "hypothesis",
+      "locator_kind": "PYTHON_DECLARATION",
+      "locator": {
+        "module": "devtools.context.localization.association.hypothesis",
+        "name": "CandidateWitnessHypothesis",
+        "declaration_kind": "CLASS"
+      },
+      "interpretation_provenance": {
+        "source": "public-surface-or-repository-policy",
+        "explanation": "association/__init__.py exports the class from its direct declaration module"
+      }
+    },
+    {
+      "identity": "g-candidate-view",
+      "anchor": "candidate-view",
+      "locator_kind": "PYTHON_DECLARATION",
+      "locator": {
+        "module": "devtools.context.localization.association.hypothesis",
+        "name": "CandidateWitnessView",
+        "declaration_kind": "CLASS"
+      },
+      "interpretation_provenance": {
+        "source": "public-surface-or-repository-policy",
+        "explanation": "association/__init__.py exports the class from its direct declaration module"
+      }
+    },
+    {
+      "identity": "g-generation-view",
+      "anchor": "generation-view",
+      "locator_kind": "PYTHON_DECLARATION",
+      "locator": {
+        "module": "devtools.context.localization.generation.contract",
+        "name": "WitnessGenerationView",
+        "declaration_kind": "CLASS"
+      },
+      "interpretation_provenance": {
+        "source": "public-surface-or-repository-policy",
+        "explanation": "generation/__init__.py exports the class from its direct declaration module"
+      }
+    },
+    {
+      "identity": "g-grounding-view",
+      "anchor": "grounding-view",
+      "locator_kind": "PYTHON_DECLARATION",
+      "locator": {
+        "module": "devtools.context.localization.grounding.view",
+        "name": "AnchorGroundingView",
+        "declaration_kind": "CLASS"
+      },
+      "interpretation_provenance": {
+        "source": "public-surface-or-repository-policy",
+        "explanation": "grounding/__init__.py exports the class from its direct declaration module"
+      }
+    },
+    {
+      "identity": "g-witness-set",
+      "anchor": "witness-set",
+      "locator_kind": "PYTHON_DECLARATION",
+      "locator": {
+        "module": "devtools.context.localization.obligation",
+        "name": "WitnessSet",
+        "declaration_kind": "CLASS"
+      },
+      "interpretation_provenance": {
+        "source": "public-surface-or-repository-policy",
+        "explanation": "localization/__init__.py exports the class from its direct declaration module"
+      }
+    },
+    {
+      "identity": "g-supported-witness",
+      "anchor": "supported-witness",
+      "locator_kind": "PYTHON_DECLARATION",
+      "locator": {
+        "module": "devtools.context.localization.assessment",
+        "name": "SupportedWitness",
+        "declaration_kind": "CLASS"
+      },
+      "interpretation_provenance": {
+        "source": "public-surface-or-repository-policy",
+        "explanation": "localization/__init__.py exports the class from its direct declaration module"
+      }
+    },
+    {
+      "identity": "g-assessment",
+      "anchor": "assessment",
+      "locator_kind": "PYTHON_DECLARATION",
+      "locator": {
+        "module": "devtools.context.localization.assessment",
+        "name": "LocalizationAssessment",
+        "declaration_kind": "CLASS"
+      },
+      "interpretation_provenance": {
+        "source": "public-surface-or-repository-policy",
+        "explanation": "localization/__init__.py exports the class from its direct declaration module"
+      }
+    },
+    {
+      "identity": "g-readiness",
+      "anchor": "readiness",
+      "locator_kind": "PYTHON_DECLARATION",
+      "locator": {
+        "module": "devtools.context.localization.readiness",
+        "name": "LocalizationReadiness",
+        "declaration_kind": "CLASS"
+      },
+      "interpretation_provenance": {
+        "source": "public-surface-or-repository-policy",
+        "explanation": "localization/__init__.py exports the public readiness value; task explicitly requires its flow"
+      }
+    },
+    {
+      "identity": "g-validation",
+      "anchor": "quality",
+      "locator_kind": "RESOURCE_ADDRESS",
+      "locator": {
+        "address": "scripts/validate_development.py"
+      },
+      "interpretation_provenance": {
+        "source": "public-surface-or-repository-policy",
+        "explanation": "AGENTS.md gives the exact protected validation entry point"
+      }
+    }
+  ],
+  "generation_recipes": [
+    {
+      "obligation": "hypothesis-records",
+      "identity": "hypothesis-contract",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "members": [
+        {
+          "identity": "hypothesis",
+          "grounding_request": "g-hypothesis",
+          "projection": "OWNER_RESOURCE",
+          "reason": "The named hypothesis declaration can explain unresolved identity and membership.",
+          "provenance": {
+            "source": "exact-frozen-task",
+            "explanation": "Caller interpretation before treatment execution."
+          }
+        }
+      ]
+    },
+    {
+      "obligation": "hypothesis-records",
+      "identity": "view-contract",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "members": [
+        {
+          "identity": "view",
+          "grounding_request": "g-candidate-view",
+          "projection": "OWNER_RESOURCE",
+          "reason": "The named candidate view declaration can explain unresolved collection semantics.",
+          "provenance": {
+            "source": "exact-frozen-task",
+            "explanation": "Caller interpretation before treatment execution."
+          }
+        }
+      ]
+    },
+    {
+      "obligation": "member-complementarity",
+      "identity": "hypothesis-plus-accepted-algebra",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "members": [
+        {
+          "identity": "hypothesis",
+          "grounding_request": "g-hypothesis",
+          "projection": "OWNER_RESOURCE",
+          "reason": "Candidate complementarity must be understood.",
+          "provenance": {
+            "source": "exact-frozen-task",
+            "explanation": "Caller interpretation before treatment execution."
+          }
+        },
+        {
+          "identity": "accepted",
+          "grounding_request": "g-witness-set",
+          "projection": "OWNER_RESOURCE",
+          "reason": "Accepted witness conjunction must be understood separately.",
+          "provenance": {
+            "source": "exact-frozen-task",
+            "explanation": "Caller interpretation before treatment execution."
+          }
+        }
+      ]
+    },
+    {
+      "obligation": "generated-integration",
+      "identity": "generation-plus-grounding",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "members": [
+        {
+          "identity": "generation",
+          "grounding_request": "g-generation-view",
+          "projection": "OWNER_RESOURCE",
+          "reason": "Generated candidate view contract is relevant.",
+          "provenance": {
+            "source": "exact-frozen-task",
+            "explanation": "Caller interpretation before treatment execution."
+          }
+        },
+        {
+          "identity": "grounding",
+          "grounding_request": "g-grounding-view",
+          "projection": "OWNER_RESOURCE",
+          "reason": "Grounding view outcome contract is relevant.",
+          "provenance": {
+            "source": "exact-frozen-task",
+            "explanation": "Caller interpretation before treatment execution."
+          }
+        }
+      ]
+    },
+    {
+      "obligation": "accepted-promotion",
+      "identity": "accepted-types",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "members": [
+        {
+          "identity": "set",
+          "grounding_request": "g-witness-set",
+          "projection": "OWNER_RESOURCE",
+          "reason": "Accepted alternative membership contract is relevant.",
+          "provenance": {
+            "source": "exact-frozen-task",
+            "explanation": "Caller interpretation before treatment execution."
+          }
+        },
+        {
+          "identity": "support",
+          "grounding_request": "g-supported-witness",
+          "projection": "OWNER_RESOURCE",
+          "reason": "Supported member evidence contract is relevant.",
+          "provenance": {
+            "source": "exact-frozen-task",
+            "explanation": "Caller interpretation before treatment execution."
+          }
+        }
+      ]
+    },
+    {
+      "obligation": "assessment-readiness",
+      "identity": "assessment-plus-readiness",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "members": [
+        {
+          "identity": "assessment",
+          "grounding_request": "g-assessment",
+          "projection": "OWNER_RESOURCE",
+          "reason": "Assessment disposition contract is relevant.",
+          "provenance": {
+            "source": "exact-frozen-task",
+            "explanation": "Caller interpretation before treatment execution."
+          }
+        },
+        {
+          "identity": "readiness",
+          "grounding_request": "g-readiness",
+          "projection": "OWNER_RESOURCE",
+          "reason": "Readiness contract is relevant.",
+          "provenance": {
+            "source": "exact-frozen-task",
+            "explanation": "Caller interpretation before treatment execution."
+          }
+        }
+      ]
+    },
+    {
+      "obligation": "provenance-frame",
+      "identity": "candidate-plus-evidence",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "members": [
+        {
+          "identity": "candidate",
+          "grounding_request": "g-hypothesis",
+          "projection": "OWNER_RESOURCE",
+          "reason": "Candidate frame validation is relevant.",
+          "provenance": {
+            "source": "exact-frozen-task",
+            "explanation": "Caller interpretation before treatment execution."
+          }
+        },
+        {
+          "identity": "support",
+          "grounding_request": "g-supported-witness",
+          "projection": "OWNER_RESOURCE",
+          "reason": "Accepted evidence frame is relevant.",
+          "provenance": {
+            "source": "exact-frozen-task",
+            "explanation": "Caller interpretation before treatment execution."
+          }
+        }
+      ]
+    },
+    {
+      "obligation": "tests",
+      "identity": "association-mirror",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "members": [
+        {
+          "identity": "association-test",
+          "grounding_request": "g-hypothesis",
+          "projection": "MIRRORED_RESOURCE",
+          "reason": "An observed mirror may expose analogous hypothesis tests.",
+          "provenance": {
+            "source": "exact-frozen-task",
+            "explanation": "Caller interpretation before treatment execution."
+          }
+        }
+      ]
+    },
+    {
+      "obligation": "tests",
+      "identity": "generation-mirror",
+      "provenance": {
+        "source": "exact-frozen-task",
+        "explanation": "Caller interpretation before treatment execution."
+      },
+      "members": [
+        {
+          "identity": "generation-test",
+          "grounding_request": "g-generation-view",
+          "projection": "MIRRORED_RESOURCE",
+          "reason": "An observed mirror may expose analogous generation tests.",
+          "provenance": {
+            "source": "exact-frozen-task",
+            "explanation": "Caller interpretation before treatment execution."
+          }
+        }
+      ]
+    }
+  ],
+  "ungrounded_anchors": {
+    "provenance": "No exact single task-named RI referent follows from the abstract evidence/frame requirement."
+  },
+  "no_recipe_obligations": {
+    "package-integration": "Owner/mirror projections do not establish public API convention.",
+    "documentation": "No exact task-named documentation locator or documentation projection exists.",
+    "validation": "Exact validation entry point is grounded, but owner/mirror projection does not establish the full validation contract."
+  },
+  "eligibility": {
+    "areas": [
+      "src/",
+      "docs/",
+      "tests/"
+    ],
+    "suffixes": [
+      ".py",
+      ".md",
+      ".toml",
+      ".yaml",
+      ".yml"
+    ],
+    "explicit_inclusions": [
+      "README.md",
+      "AGENTS.md",
+      "pyproject.toml",
+      "scripts/validate_development.py"
+    ],
+    "exclusions": [
+      "docs/implementation_ledger.md",
+      "tests/experiments/",
+      "all experiments/",
+      "other scripts/",
+      "caches",
+      "untracked/local",
+      "binaries"
+    ],
+    "rationale": "Established broad prospective source, ordinary-test, documentation and configuration frame, selected from starting commit only."
+  },
+  "role_inputs_recipe": {
+    "module_roots": [
+      "src",
+      "tests"
+    ],
+    "resource_selection": "Every eligible Python resource beneath each root in lexical address order.",
+    "memberships": "Canonical immediate package membership per root analysis.",
+    "mirrors": "Canonical observed Python source/test path correspondences over frozen snapshot.",
+    "configuration_resources": [
+      "pyproject.toml"
+    ],
+    "configuration_resolution": "Canonical project declarations/selectors, module universe from both roots, explicit working-directory and pytest root '.'.",
+    "retention": "Retain native analyses and derived role view; do not inspect assignments to tune treatment."
+  },
+  "routing": {
+    "identity": "caller-role-or-stable-two-tier-v1",
+    "owner": "devtools.context.localization.routing",
+    "tiers": [
+      "PREFERRED_ROLE_SUPPORTED",
+      "ESCAPE"
+    ],
+    "matching": "ANY selected positive role; empty preference is escape-only.",
+    "order": "Preferred before escape, native order within tiers; preserve native rank and every candidate.",
+    "global": "Native and unrouted.",
+    "candidate_retention": "All native candidates survive."
+  },
+  "generation_execution": {
+    "grounding": "Execute each frozen request exactly once with retained native module universe.",
+    "binding": "Bind exact result to each member specification without repair. Construct production GroundedMemberRecipe and WitnessGenerationRecipe values for all syntactically valid specifications; unresolved/ambiguous/unsupported results remain production attempt outcomes. If construction fails, retain explicit abstention.",
+    "plan": "Run one production WitnessGenerationPlan per task/frame with all frozen recipes, acquisition, role view and routed view; no lexical-only generation.",
+    "operator_vocabulary": [
+      "OWNER_RESOURCE",
+      "MIRRORED_RESOURCE"
+    ],
+    "multi_target": "Single-target admission; no Cartesian expansion or selection among ambiguous results."
+  },
+  "measurements": {
+    "surfaces": [
+      "A global native lexical BM25",
+      "B own-obligation native lexical BM25",
+      "C own-obligation positive role-routed presentation",
+      "D unranked generated hypothesis targets"
+    ],
+    "generated_size": [
+      "requests",
+      "grounding dispositions",
+      "recipes attempted",
+      "member projection attempts",
+      "successful and abstained recipes",
+      "hypotheses",
+      "members",
+      "obligation/resource occurrences",
+      "unique generated resources"
+    ],
+    "gold_coverage": [
+      "required occurrence coverage by obligation",
+      "unique required-resource coverage",
+      "per-obligation required-resource coverage",
+      "complete mandatory obligation alternative coverage"
+    ],
+    "structure": "Separately report resource presence and exact generated hypothesis containing one complete acceptable adjudicated alternative with correct complementary members; no credit from mere resource presence for structure.",
+    "precision": "Required generated obligation/resource occurrences divided by all generated obligation/resource occurrences; report helpful, unnecessary and unresolved separately with competing alternatives preserved.",
+    "baselines": "For each applicable mandatory obligation calculate every acceptable alternative's complete global/native/routed depth or miss; choose best finite separately by surface. Report global task-complete depth, obligation-wise native/routed maxima and finite completion-prefix summed occurrences and unique unions. An incomplete obligation makes whole-case prefix comparison incomplete.",
+    "sufficient_union": "Minimum unique adjudicated resource union over one complete accepted alternative per applicable mandatory obligation, independent of rank; report candidate union divided by and minus this bound only if defined. This is not an implementation file set.",
+    "miss_categories": [
+      "NO_GROUNDING_REQUEST",
+      "GROUNDING_UNRESOLVED",
+      "GROUNDING_AMBIGUOUS",
+      "GROUNDING_UNSUPPORTED",
+      "NO_RECIPE",
+      "PROJECTION_NO_TARGET",
+      "PROJECTION_ABSTAINED",
+      "WRONG_STRUCTURAL_TARGET",
+      "OPERATOR_CAPABILITY_GAP",
+      "CROSS_ROLE_NONSTRUCTURAL",
+      "TASK_INTERPRETATION_GAP",
+      "OTHER_WITH_EXPLANATION"
+    ],
+    "support_attachment": [
+      "global lexical",
+      "own-obligation lexical",
+      "positive role evidence",
+      "preferred routing",
+      "escape routing",
+      "structural only"
+    ],
+    "work_fanout": [
+      "grounding request count/dispositions",
+      "projection counts",
+      "examined resources",
+      "result counts",
+      "truncation/frontier",
+      "hypotheses per obligation",
+      "targets per hypothesis"
+    ],
+    "interpretation": "Descriptive candidate size versus coverage only; no numeric pass threshold or generated rank/depth."
+  },
+  "blind_adjudication": {
+    "allowed": [
+      "exact task",
+      "purpose",
+      "anchors",
+      "obligations and criteria",
+      "eligible resource identities/content",
+      "governing architecture in frozen contents"
+    ],
+    "forbidden": [
+      "lexical queries",
+      "role preferences or assignments",
+      "retrieval/routing results",
+      "grounding requests/locators/results",
+      "recipe specs/operators",
+      "generated targets/hypotheses/outcomes",
+      "ranks/scores/positions",
+      "treatment provenance"
+    ],
+    "judgments": [
+      "applicability",
+      "REQUIRED",
+      "HELPFUL_ONLY",
+      "UNNECESSARY",
+      "unresolved",
+      "acceptable witness alternatives",
+      "task-start inferability",
+      "inherent discovery prerequisites",
+      "task-interpretation gaps"
+    ],
+    "method": "Fresh-session independent blind Stage C after treatment-free packet; no implementation or treatment outcomes used as gold."
+  },
+  "authoring_surfaces": [
+    "AGENTS.md",
+    "src/devtools/context/localization/docs/overview.md",
+    "src/devtools/context/localization/__init__.py",
+    "src/devtools/context/localization/association/__init__.py",
+    "src/devtools/context/localization/generation/__init__.py",
+    "src/devtools/context/localization/grounding/__init__.py"
+  ],
+  "firewall": {
+    "lexical_acquisition_executed": false,
+    "role_routing_executed": false,
+    "exact_grounding_executed": false,
+    "witness_generation_executed": false,
+    "adjudication_performed": false,
+    "development_task_implemented": false,
+    "historical_gold_used": false,
+    "confirmation_accessed": false
+  },
+  "post_freeze_changes": "Never repair this treatment after results. Material correction requires a separately named treatment preserving this original case."
+}
