@@ -860,8 +860,12 @@ convention, structural, declaration/table and bounded target-match bases via
 distinct support kinds and native references. The immutable view retains the
 whole observed frame; missing support is not negative evidence. Configuration
 matching is bounded and does not emulate tool execution or pytest collection.
-RI and core Retrieval do not depend on this package. No score, filter,
-elimination, obligation judgment or role-aware routing is implemented.
+RI and core Retrieval do not depend on this package. The optional Localization
+router takes caller-authored per-query preferred roles and projects existing
+obligation BM25 lanes into positive-support and complete escape tiers. It retains
+the native full-task lane, every candidate, native rank and support explanation.
+Routing changes attention order only; no score, filtering, elimination or
+obligation judgment is produced.
 
 ```text
 task interpretation: shared anchors + obligations + constraints

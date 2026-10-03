@@ -617,3 +617,34 @@ remains sealed.
   routing policy retaining the global BM25 safety lane and an unfiltered escape
   path, then freeze a new prospective case before measurement. That slice is
   not implemented here.
+
+## Caller-directed lexical role routing (2026-10-02)
+
+- Added `context.localization.routing` as a pure view over existing native
+  Localization lexical acquisition and soft role evidence. Every acquired
+  obligation query requires one caller-authored preferred-role preference,
+  including an explicit empty set. No mapping is inferred from obligation or
+  query language. Multiple queries for one obligation remain separate.
+- Routing uses exactly `PREFERRED_ROLE_SUPPORTED` and `ESCAPE`. Any selected
+  positive role qualifies; multi-role support adds no priority. Original BM25
+  matches and role-evidence records are referenced, not regenerated. Native
+  order/rank/score remain available; routed position identifies presentation
+  order. Every obligation candidate appears once in one tier. The global lane
+  and complete acquisition remain directly available.
+- Validates repository/snapshot scope, role evidence and source frame, lexical
+  corpora, query/obligation associations, exact preference coverage and
+  acquisition index/settings/bound consistency. No BM25 rerun, score change,
+  query fusion, readiness/satisfaction, elimination or candidate filtering.
+- Nine focused routing tests pass with 100% of 137 new statements and 42
+  branches covered. The focused routing/roles/lexical set passes all 39 tests.
+  Protected development passes 1,392 tests, has two live skips, and covers all
+  9,144 production statements and 2,164 branches. Production Ruff, touched-file
+  formatting and `mypy src tests` (478 files) pass; both diff checks pass.
+  Documentation updated in Localization package docs,
+  architecture/taxonomy, documentation map, roadmap and B-0002. ADR-0005 is
+  unchanged. Case 0004 details were not accessed for tuning; confirmation is
+  sealed.
+- Next freeze a naturally occurring Case 0005 with obligations, lexical queries
+  and role preferences committed before Retrieval; independently adjudicate and
+  compare native obligation-lane depth with routed depth. No Case 0005 work or
+  effectiveness claim is part of this increment.

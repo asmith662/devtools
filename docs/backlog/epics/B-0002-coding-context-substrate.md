@@ -935,3 +935,23 @@ path, then prospectively freeze a new case before measurement. This increment
 does not implement that policy or demonstrate performance. Case 0004 gold
 resources, judgments and resource-level results were not consulted or replayed.
 The epic remains open; B-0019 runtime configuration remains separate.
+
+## Caller-directed lexical role routing increment
+
+The [routing contract](../../../src/devtools/context/localization/routing/docs/overview.md)
+is implemented in Localization as an optional pure routed view over an
+existing lexical acquisition and role-evidence view. Every acquired query lane has one explicit
+caller preference (including empty); role matching is OR across selected roles.
+Each lane retains native BM25 order within exactly two tiers: preferred positive
+support and complete escape. Native query/result references and matches remain
+available, preferred explanations reference original role evidence, and routed
+positions are presentation positions only. The global full-task lane remains
+unchanged. Foreign/stale frame and query/preference mismatches are rejected.
+
+This is attention ordering only. It does not modify BM25, rank scores, fuse
+queries, satisfy obligations, infer mappings, filter candidates or eliminate
+anything. No Case 0004 tuning or performance experiment occurred. Next freeze a
+naturally occurring Case 0005 with obligations, queries and role preferences
+before Retrieval, then compare native and routed depths using independent blind
+adjudication. B-0002 remains open pending prospective evidence and further
+architecture work.

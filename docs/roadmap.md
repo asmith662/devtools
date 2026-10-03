@@ -30,7 +30,7 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
-### Current — soft repository-role evidence
+### Current — caller-directed lexical role routing
 
 The bounded [configuration RI increment](../src/devtools/context/python/project_configuration/docs/overview.md#static-project-and-pytest-settings)
 adds declared build/project metadata, named scripts/entry points, pytest naming
@@ -45,7 +45,7 @@ Case 0004's committed joined diagnosis is architectural motivation: obligation
 lexical acquisition improves discrimination but retains a broad candidate set.
 Its gold identities were not a design or tuning input, and no replay informs this
 increment. Existing snapshots, treatment, judgments and queries remain frozen.
-No production role routing, elimination or ranking change is implemented.
+No production candidate elimination or Retrieval ranking change is implemented.
 
 The [Localization role-evidence package](../src/devtools/context/localization/roles/docs/overview.md)
 now consumes those native analyses and intrinsic resource semantics. Its bounded
@@ -55,11 +55,17 @@ or target provenance without numerical confidence. Static pytest pattern
 observations retain their limited scope. The full observed frame is preserved;
 missing support is not exclusion. No routing or acquisition order is changed.
 
-Next consume these deterministic soft role supports in a caller-directed
-obligation-aware lexical routing policy that preserves the global BM25 safety
-lane and an unfiltered escape path, then freeze a new prospective case before
-measuring it. Any retrospective Case 0004 replay is diagnosis; the first
-role-aware performance claim requires a new prospective case.
+The [routing package](../src/devtools/context/localization/routing/docs/overview.md) accepts one
+caller-authored role set per query lane, partitions each existing obligation
+lane into preferred-support and complete escape tiers, and retains exact native
+matches and ordering within each tier. The global full-task lane stays native.
+No acquisition, score, satisfaction, filter or elimination is added.
+
+Next freeze a new prospective Case 0005 using a naturally occurring development
+task, with caller-authored obligations, lexical queries, and role-routing
+preferences all committed before Retrieval; then compare native obligation-lane
+depth against routed depth under independent blind adjudication. Do not tune
+from Case 0004 outcomes. Any retrospective replay remains diagnosis only.
 
 ### Current — advisory Codex retrieval dogfooding
 

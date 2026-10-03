@@ -78,6 +78,54 @@ scoping is applied. Acquisition validates obligation/query task identity and
 membership, unique query identities, and the indexed resource occurrences
 against the supplied repository snapshot before publishing the result.
 
+## Caller-directed role routing
+
+The optional `devtools.context.localization.routing` package transforms an
+already acquired `LocalizationLexicalAcquisition` into a routed view. For each
+query identity the caller supplies exactly one `ObligationRolePreference`,
+including an explicit empty role tuple when no role is preferred. The preference
+also names that lane's obligation. No mapping is inferred from obligation text,
+identity, anchors or query wording. Several query lanes for one obligation keep
+separate preferences and separate views.
+
+```text
+native obligation lane ----+-------------------------+
+                           |                         |
+                           v                         v
+                 any preferred role?             escape
+                           |                         |
+                           +------ routed view -------+
+
+native global full-task lane ---- retained unchanged
+```
+
+There are exactly two tiers: `PREFERRED_ROLE_SUPPORTED` and `ESCAPE`. Any
+positive support for any caller-preferred role places that candidate in the
+preferred tier. A candidate supporting several selected roles gets no extra
+priority. The tier exposes the matching `ResourceRoleEvidence` records, which
+retain their original support kinds and provenance. Candidates without a
+matching role support remain in the complete escape tier. This means only “no
+positive support for this preference”; it is not negative evidence.
+
+Within each tier candidates keep their native BM25 order. Each view entry points
+to the original match and exposes its one-based native rank, one-based routed
+position and tier. A routed position is a presentation position, not a score or
+new rank estimate. The full-task retrieval stays the exact original result, and
+the complete acquisition plus each native obligation lane remain available.
+Routing performs no retrieval, score calculation or comparison across lanes.
+It preserves every candidate and does not alter Localization assessments,
+witnesses, applicability, satisfaction or readiness. Tier order changes
+attention only; it is neither filtering nor elimination.
+
+The router checks repository/snapshot identity, retained role-frame entries and
+support provenance, verifies native lexical corpora against that frame, and
+requires preferences to cover exactly the acquired query lanes with matching
+obligation identities and supported role enum values. Routing remains an
+interpretation layer over the caller-authorized lexical corpus, not a new
+Retrieval channel or success claim. Any effectiveness evaluation must be
+prospective and freeze its obligations, queries and preferences before
+Retrieval.
+
 `LocalizationTaskIdentity`, `LocalizationAnchorIdentity`, and
 `LocalizationObligationIdentity` use caller-named stable keys. Anchors retain
 task-local text and optional task-source provenance; they do not assert that a

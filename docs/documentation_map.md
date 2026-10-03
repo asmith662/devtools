@@ -81,6 +81,8 @@
   Its [role-evidence contract](../src/devtools/context/localization/roles/docs/overview.md)
   owns the bounded vocabulary, positive supports, native provenance, static
   pattern scope and future routing seam; RI retains deterministic fact ownership.
+  Its [routing package](../src/devtools/context/localization/routing/docs/overview.md) documents
+  caller-authored per-query role preferences and lossless preferred/escape views.
 - Source and tests define the final implemented behavior where documentation is
   incomplete.
 - Backlog records unresolved/future pressure; [roadmap](roadmap.md) records

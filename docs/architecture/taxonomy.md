@@ -652,6 +652,11 @@ facts as positive, overlapping support families. These supports are distinct
 from repository truth, task-relative relevance, obligation satisfaction and
 candidate elimination. Explicit support kinds carry the basis; no numeric
 confidence, negative inference or routing policy is implied.
+An optional Localization router projects caller-selected role preferences over
+each existing obligation lexical lane into preferred-support and escape tiers.
+It retains the native full-task lane and all candidates, exposing explanations
+and native/routed positions. Routing is attention order, not relevance truth,
+negative evidence, obligation satisfaction or elimination.
 A LocalizationObligation is a task-local desired-information predicate with
 provenance and bounded satisfaction semantics; it is not a query, Task, RI fact,
 disclosure option or evaluator gold label. Shared anchors identify subjects of
