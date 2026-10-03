@@ -853,6 +853,16 @@ Context integration remain unimplemented. Localization readiness is scoped to
 the supplied obligation frame; it does not establish that the frame is exhaustive
 or that the task will succeed.
 
+The [Localization role-evidence package](../src/devtools/context/localization/roles/docs/overview.md)
+now derives query-independent, multi-label positive supports from canonical
+resource addresses and explicitly supplied native RI analyses. It retains
+convention, structural, declaration/table and bounded target-match bases via
+distinct support kinds and native references. The immutable view retains the
+whole observed frame; missing support is not negative evidence. Configuration
+matching is bounded and does not emulate tool execution or pytest collection.
+RI and core Retrieval do not depend on this package. No score, filter,
+elimination, obligation judgment or role-aware routing is implemented.
+
 ```text
 task interpretation: shared anchors + obligations + constraints
                         |

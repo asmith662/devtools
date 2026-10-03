@@ -582,3 +582,38 @@ remains sealed.
   RI and intrinsic resource semantics, retaining the global lexical safety lane
   and avoiding hard path filters. Performance claims require a new prospective
   case; no next-slice implementation is included. Confirmation remains sealed.
+
+## Soft repository-role evidence (2026-10-02)
+
+- Added `context.localization.roles` with responsibility-specific models,
+  native-input validation, configuration interpretation and deterministic
+  derivation. Its immutable view exposes resource/role explanations and retains
+  the complete observed frame. RI and core Retrieval do not depend on it.
+- Implemented overlapping Python code, test, documentation, project/test/build/
+  tool configuration, package surface and package member support families.
+  Exact support kinds distinguish address conventions, native structural facts,
+  declaration/table presence and observed configuration targets; no strength
+  scale, numeric confidence, relevance judgment or satisfaction rule is added.
+- Consumed existing canonical facts rather than duplicating path/configuration
+  RI. Bounded array-only case-sensitive basename glob observations reference
+  both naming declaration and supplied testpaths target facts. Unsupported
+  forms retain limitations. No pytest collection, ignore application, negative
+  inference, candidate elimination, BM25 execution or routing is implemented.
+  Validation roles, dynamic public exports and semantic document subtypes remain
+  deferred. Snapshot provenance and native owner reproduction reject stale,
+  foreign and altered analyses; repeated presentation is deterministic.
+- Focused tests: 19 passed; new package coverage: 100% of 280 statements and
+  86 branches. Neighboring Localization/Python RI/repository tests: 389 passed.
+  Protected development: 1,383 passed, two live skips, 100% of 9,007 production
+  statements and 2,122 branches. Ruff for `src tests scripts`, touched-file
+  formatting and `mypy src tests` pass (473 files); both Git diff checks pass.
+  Repository-wide frozen experiment lint/type gates were not rerun or repaired.
+- Documented vocabulary, support provenance, static pattern scope, non-claims
+  and future routing seam in package docs, architecture/taxonomy, documentation
+  map, roadmap and B-0002. ADR-0005 is unchanged. Case 0004 gold/resource-level
+  artifacts were not read, replayed or used for tuning; confirmation remains
+  sealed. No performance claim follows from this semantic increment.
+- Next: consume soft supports in a caller-directed obligation-aware lexical
+  routing policy retaining the global BM25 safety lane and an unfiltered escape
+  path, then freeze a new prospective case before measurement. That slice is
+  not implemented here.

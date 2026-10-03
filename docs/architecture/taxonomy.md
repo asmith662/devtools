@@ -647,6 +647,11 @@ caller-supplied native repository referents and snapshot-qualified evidence,
 recording applicability, witness satisfaction, alternatives and unresolved
 discovery requirements. Its lexical adapter acquires native BM25 evidence, but
 does not resolve obligations from that evidence.
+Its role-evidence package interprets intrinsic resource semantics and native RI
+facts as positive, overlapping support families. These supports are distinct
+from repository truth, task-relative relevance, obligation satisfaction and
+candidate elimination. Explicit support kinds carry the basis; no numeric
+confidence, negative inference or routing policy is implied.
 A LocalizationObligation is a task-local desired-information predicate with
 provenance and bounded satisfaction semantics; it is not a query, Task, RI fact,
 disclosure option or evaluator gold label. Shared anchors identify subjects of

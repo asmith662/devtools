@@ -2,6 +2,11 @@
 
 `context.python.project_configuration` owns bounded static Python-project
 Repository Intelligence (RI).
+The one-way [Localization role-evidence consumer](../../../localization/roles/docs/overview.md)
+interprets supplied declarations, recognized tables and target facts as positive
+soft supports. It owns that interpretation; this package owns static facts and
+does not depend on Localization. Presence, matching, role support, relevance and
+obligation satisfaction remain distinct.
 `analyze_python_project_configuration(snapshot, address=...)` parses one exact
 retained TOML resource with stdlib `tomllib`. The separate
 `resolve_python_project_configuration(snapshot, declarations, universe=...,

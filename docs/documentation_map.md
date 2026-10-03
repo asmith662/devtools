@@ -78,6 +78,9 @@
 - The [Localization package overview](../src/devtools/context/localization/docs/overview.md)
   documents the implemented semantic kernel and its boundaries from Retrieval,
   Context Planning, agent execution, and Evaluation.
+  Its [role-evidence contract](../src/devtools/context/localization/roles/docs/overview.md)
+  owns the bounded vocabulary, positive supports, native provenance, static
+  pattern scope and future routing seam; RI retains deterministic fact ownership.
 - Source and tests define the final implemented behavior where documentation is
   incomplete.
 - Backlog records unresolved/future pressure; [roadmap](roadmap.md) records

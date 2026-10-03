@@ -916,3 +916,22 @@ Next: obligation-relative soft role evidence consuming native facts and intrinsi
 paths with a global lexical safety lane. New prospective evidence is required
 before any performance claim. B-0019 runtime configuration remains deferred;
 the epic remains open and no universal role system is selected.
+
+## Soft repository-role evidence increment
+
+The caller-authorized Localization slice now derives snapshot-bound, positive,
+multi-label [role supports](../../../src/devtools/context/localization/roles/docs/overview.md)
+from intrinsic addresses and supplied native module/package, mirrored-path and
+configuration analyses. Explicit support kinds distinguish convention,
+structural, declaration/table and bounded target-match observations. Native
+scope and provenance are retained; absent evidence is not negative evidence.
+There are no weights, calibrated confidence claims, hard filters, elimination,
+obligation judgments or Retrieval changes. Validation/public-API claims remain
+deferred. The RI substrate and core Retrieval have no Localization dependency.
+
+Next consume these supports in a caller-directed obligation-aware lexical
+routing policy retaining the global BM25 safety lane and an unfiltered escape
+path, then prospectively freeze a new case before measurement. This increment
+does not implement that policy or demonstrate performance. Case 0004 gold
+resources, judgments and resource-level results were not consulted or replayed.
+The epic remains open; B-0019 runtime configuration remains separate.

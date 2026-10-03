@@ -1,5 +1,11 @@
 # Repository Localization semantic kernel
 
+The independent [soft repository-role evidence package](../roles/docs/overview.md)
+also provides snapshot-bound, multi-label positive supports from intrinsic
+addresses and supplied native RI analyses. Explicit support kinds explain the
+basis without scores, negative inference, hard filters or obligation satisfaction.
+It executes no Retrieval and changes none of the lexical adapter's ordering.
+
 The `devtools.context.localization` package owns caller-authored task information
 obligations and a deterministic assessment of the supplied obligation frame. It
 does not retrieve repository information, infer task obligations, choose Context

@@ -30,7 +30,7 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
-### Current — deterministic substrate for repository-role evidence
+### Current — soft repository-role evidence
 
 The bounded [configuration RI increment](../src/devtools/context/python/project_configuration/docs/overview.md#static-project-and-pytest-settings)
 adds declared build/project metadata, named scripts/entry points, pytest naming
@@ -47,11 +47,19 @@ Its gold identities were not a design or tuning input, and no replay informs thi
 increment. Existing snapshots, treatment, judgments and queries remain frozen.
 No production role routing, elimination or ranking change is implemented.
 
-Next derive obligation-relative soft repository-role evidence from deterministic
-RI and intrinsic resource semantics, while retaining the global lexical safety
-lane and avoiding hard path filters. Define scope/provenance and applicability
-before interpreting these facts. Any retrospective Case 0004 replay is diagnosis;
-the first role-aware performance claim requires a new prospective case.
+The [Localization role-evidence package](../src/devtools/context/localization/roles/docs/overview.md)
+now consumes those native analyses and intrinsic resource semantics. Its bounded
+Python/repository vocabulary is multi-label, positive and query-independent.
+Explicit support kinds retain conventions, native relationships and declaration
+or target provenance without numerical confidence. Static pytest pattern
+observations retain their limited scope. The full observed frame is preserved;
+missing support is not exclusion. No routing or acquisition order is changed.
+
+Next consume these deterministic soft role supports in a caller-directed
+obligation-aware lexical routing policy that preserves the global BM25 safety
+lane and an unfiltered escape path, then freeze a new prospective case before
+measuring it. Any retrospective Case 0004 replay is diagnosis; the first
+role-aware performance claim requires a new prospective case.
 
 ### Current — advisory Codex retrieval dogfooding
 
