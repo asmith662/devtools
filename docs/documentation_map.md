@@ -379,3 +379,10 @@ owns external Aider implementation evidence, alternatives, Case 0002 results,
 and the pending prospective evaluation protocol. ADR-0003 and ADR-0004 continue
 to govern Retrieval/Context ownership; the research disposition distinguishes
 this devtools adaptation from Aider's task-weighted PageRank/rendering pipeline.
+
+
+The [Python modules source selector](../src/devtools/context/python/modules/docs/overview.md#exact-source-declaration-selection)
+owns exact native class/function selection independently of conservative direct
+binding lookup. [Localization grounding](../src/devtools/context/localization/docs/overview.md#exact-task-anchor-grounding)
+consumes that selection for static declaration identities, including decorated
+declarations, without runtime/import identity or witness acceptance claims.

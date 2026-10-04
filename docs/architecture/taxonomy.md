@@ -670,7 +670,11 @@ Explicit grounding requests can connect an anchor to a native resource, Python
 module, direct declaration or directly contained method through bounded RI
 resolution. Grounding retains ambiguity and snapshot provenance; it is neither
 repository truth nor an obligation witness. A locator miss does not establish
-semantic absence or negative evidence.
+semantic absence or negative evidence. Exact Python declaration grounding
+selects native source declaration identities, including represented decorated
+declarations. Source declaration identity differs from static name-binding
+resolution and post-decoration runtime/import object identity; grounding
+establishes neither of the latter.
 A caller-authored generation recipe may project one resolved grounding through
 an exact owner-resource or observed mirrored-path RI relation into an unresolved
 candidate witness hypothesis. Lexical, role and routing records supplement the

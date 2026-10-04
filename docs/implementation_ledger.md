@@ -711,3 +711,39 @@ remains sealed.
   resource-level gold or confirmation outcome was accessed; no prospective
   effectiveness claim follows. Next freeze a new prospective Case 0006 before
   comparing generated-hypothesis coverage and candidate-set size.
+
+
+## Separate source declaration grounding from binding semantics (2026-10-04)
+
+- Preserved `lookup_python_module_declaration`: its native analyses support a
+  conservative static direct-binding target, with decorator/rebinding/dynamic
+  guards consumed by Reference and class-base resolution. Grounding previously
+  misused NOT_DECLARATION as inability to identify an existing source subject.
+- Added package-local `python.modules.selection` over canonical class/function
+  RI. Exact module, declaration kind and name retain every matching native
+  source declaration and both analyses, without a new parser or subject.
+  Decorated ClassDef, FunctionDef and AsyncFunctionDef remain represented;
+  repeated same-kind declarations retain ambiguity. Method grounding already
+  uses native lexical containment and remains unchanged.
+- Localization now consumes source selection, retaining the explicit request,
+  native module/subject, snapshot frame, resolver semantics, provenance and
+  reason. No runtime/import object identity, callability, public export,
+  Retrieval, automatic hypothesis, satisfaction or readiness claim follows.
+- Generic regressions cover decorated/rebound declarations, exact kinds,
+  duplicate names, methods (plain, staticmethod, classmethod and arbitrary
+  decorators), native provenance, frame rejection and imported/member binding
+  abstention. The focused selector/grounding tests pass (32); all neighboring
+  Python RI and Localization tests pass (402), including association/generation
+  and imported-member tests. Protected development passes 1,462 tests with two
+  live skips and 100% of 9,798 production statements and 2,340 branches covered.
+  Ruff `src tests scripts`, mypy `src tests` (496 files), touched-file formatting
+  and worktree/index diff checks pass.
+- Updated Python and Localization package contracts, taxonomy clarification,
+  documentation map, roadmap and B-0002. ADR-0002/ADR-0005 remain unchanged;
+  no accepted-semantic contradiction or durable-schema change was found.
+- Case 0006 remains frozen: no Retrieval/routing/grounding/generation replay,
+  performance measurement or improved coverage claim. Confirmation outcomes
+  remain sealed. Broader candidate-generation relations remain deferred.
+- Next reassess the Case 0006 blind-gold diagnosis and choose the smallest
+  empirically justified missing candidate-generation relation before freezing
+  Case 0007; that relation is not implemented in this checkpoint.

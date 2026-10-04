@@ -51,7 +51,13 @@ from devtools.context.python.modules import (
     define_python_module_interpretation_universe,
     interpret_python_module_resources,
 )
-from devtools.context.python.modules.declarations import PythonModuleDeclarationLookup
+from devtools.context.python.modules.declarations import (
+    PythonModuleDeclarationLookupOutcome,
+    lookup_python_module_declaration,
+)
+from devtools.context.python.modules.selection import (
+    PythonModuleSourceDeclarationSelection,
+)
 from devtools.context.repository.identity import RepositoryId
 from devtools.context.repository.resource import (
     ContentIdentity,
@@ -265,9 +271,9 @@ def test_direct_declarations_and_methods_retain_native_analysis() -> None:
     function_referent = function.candidates[0].referent
     function_evidence = function.candidates[0].evidence
     assert isinstance(function_referent, PythonFunctionDeclarationKnowledge)
-    assert isinstance(function_evidence, PythonModuleDeclarationLookup)
+    assert isinstance(function_evidence, PythonModuleSourceDeclarationSelection)
     assert function_referent.declared_name == "target"
-    assert function_evidence.target == function_referent
+    assert function_evidence.declarations == (function_referent,)
     cls = ground("pkg", "Thing", PythonDirectDeclarationKind.CLASS)
     assert cls.disposition is D.RESOLVED
     class_referent = cls.candidates[0].referent
@@ -283,7 +289,7 @@ def test_direct_declarations_and_methods_retain_native_analysis() -> None:
     )
     assert (
         ground("decorated", "target", PythonDirectDeclarationKind.FUNCTION).disposition
-        is D.UNSUPPORTED
+        is D.RESOLVED
     )
     assert (
         ground("broken", "target", PythonDirectDeclarationKind.FUNCTION).disposition
@@ -291,7 +297,7 @@ def test_direct_declarations_and_methods_retain_native_analysis() -> None:
     )
     assert (
         ground("dynamic", "target", PythonDirectDeclarationKind.FUNCTION).disposition
-        is D.AMBIGUOUS
+        is D.UNRESOLVED
     )
     assert (
         ground("pkg", "target", PythonDirectDeclarationKind.CLASS).disposition
@@ -299,7 +305,7 @@ def test_direct_declarations_and_methods_retain_native_analysis() -> None:
     )
     assert (
         ground("value", "target", PythonDirectDeclarationKind.FUNCTION).disposition
-        is D.UNSUPPORTED
+        is D.UNRESOLVED
     )
 
     parent = derive_python_class_method_declarations(
@@ -581,3 +587,142 @@ def test_deterministic_view_many_to_many_without_witness_or_readiness() -> None:
         requests=(first,),
     )
     assert partial.anchors_without_resolved_locator == (task.anchors[1].identity,)
+
+
+@pytest.mark.parametrize(
+    "syntax",
+    ["class Decorated: pass", "def Decorated(): pass", "async def Decorated(): pass"],
+)
+def test_decorated_source_grounding_preserves_binding_abstention(syntax: str) -> None:
+    task, frame = _frame()
+    original = frame.resource_at(Address("src/decorated.py"))
+    content = "@decorator\n" + syntax + "\nDecorated = replacement\n"
+    resource = replace(
+        original,
+        content=content,
+        content_identity=ContentIdentity(hashlib.sha256(content.encode()).hexdigest()),
+        byte_size=len(content.encode()),
+    )
+    snapshot = replace(
+        frame,
+        resources=tuple(
+            resource if item == original else item for item in frame.resources
+        ),
+    )
+    universe = _universe(snapshot)
+    kind = (
+        PythonDirectDeclarationKind.CLASS
+        if syntax.startswith("class")
+        else PythonDirectDeclarationKind.FUNCTION
+    )
+    request = _request(
+        task,
+        snapshot,
+        PythonDirectDeclarationLocator(
+            PythonModuleLocator("decorated"),
+            "Decorated",
+            kind,
+        ),
+    )
+    result = ground_task_anchor(
+        task=task,
+        snapshot=snapshot,
+        request=request,
+        module_universe=universe,
+    )
+    assert result.disposition is D.RESOLVED
+    assert result.request == request
+    evidence = result.candidates[0].evidence
+    assert isinstance(evidence, PythonModuleSourceDeclarationSelection)
+    assert result.native_evidence == (evidence,)
+    assert evidence.module.resource == resource
+    assert evidence.declarations == (result.candidates[0].referent,)
+    assert (
+        evidence.function_analysis.derivation.dependency.repository_id
+        == snapshot.repository_id
+    )
+    assert evidence.class_analysis.derivation.dependency.snapshot_id == snapshot.id
+    binding = lookup_python_module_declaration(
+        snapshot,
+        module=evidence.module,
+        declared_name="Decorated",
+    )
+    assert binding.outcome is PythonModuleDeclarationLookupOutcome.AMBIGUOUS
+    assert binding.target is None
+    view = build_anchor_grounding_view(
+        task=task,
+        snapshot=snapshot,
+        requests=(request,),
+        module_universe=universe,
+    )
+    for attribute in (
+        "runtime_binding",
+        "candidate_hypotheses",
+        "witness_alternatives",
+        "satisfaction",
+        "readiness",
+    ):
+        assert not hasattr(result, attribute)
+        assert not hasattr(view, attribute)
+    assert "runtime binding identity is not established" in result.reason
+
+
+@pytest.mark.parametrize(
+    "decorator",
+    ["", "@staticmethod\n    ", "@classmethod\n    ", "@arbitrary\n    "],
+)
+def test_method_source_grounding_retains_decorated_parent_and_method(
+    decorator: str,
+) -> None:
+    task, frame = _frame()
+    original = frame.resources[0]
+    content = "@decorate\nclass Thing:\n    " + decorator + "def run(self): pass\n"
+    resource = replace(
+        original,
+        content=content,
+        content_identity=ContentIdentity(hashlib.sha256(content.encode()).hexdigest()),
+        byte_size=len(content.encode()),
+    )
+    snapshot = replace(frame, resources=(resource, *frame.resources[1:]))
+    analysis = derive_python_class_method_declarations(
+        snapshot,
+        resource_address=resource.address,
+    )
+    parent = analysis.classes[0]
+    result = ground_task_anchor(
+        task=task,
+        snapshot=snapshot,
+        request=_request(task, snapshot, PythonDirectMethodLocator(parent, "run")),
+    )
+    assert result.disposition is D.RESOLVED
+    assert result.candidates[0].referent == analysis.methods[0]
+    assert result.candidates[0].evidence == analysis
+
+
+def test_declaration_partial_parse_failure_cannot_claim_uniqueness() -> None:
+    task, frame = _frame()
+    original = frame.resources[0]
+    content = "class Broken(\n"
+    resource = replace(
+        original,
+        content=content,
+        content_identity=ContentIdentity(hashlib.sha256(content.encode()).hexdigest()),
+        byte_size=len(content.encode()),
+    )
+    snapshot = replace(frame, resources=(resource, *frame.resources[1:]))
+    result = ground_task_anchor(
+        task=task,
+        snapshot=snapshot,
+        request=_request(
+            task,
+            snapshot,
+            PythonDirectDeclarationLocator(
+                PythonModuleLocator("pkg"),
+                "target",
+                PythonDirectDeclarationKind.FUNCTION,
+            ),
+        ),
+        module_universe=_universe(snapshot),
+    )
+    assert result.disposition is D.AMBIGUOUS
+    assert len(result.candidates) == 1

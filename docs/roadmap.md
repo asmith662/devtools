@@ -30,7 +30,7 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
-### Current — bounded hypothesis generation, prospective evidence next
+### Current — exact declaration grounding correction, relation reassessment next
 
 Prospective Case 0005 joined analysis found 24 distinct resources in its
 accepted witness universe and a minimum semantically sufficient union of 22;
@@ -48,10 +48,13 @@ snapshot resource and bounded Python RI identities. It preserves ambiguity and
 does not itself generate hypotheses. A caller-directed generator now projects
 resolved grounded anchors through exact owner-resource and observed mirror RI
 relations into unresolved hypotheses. Native lexical/role/routing evidence may
-supplement each target; it cannot create one. The next gate is a newly frozen
-prospective Case 0006 with recipes committed before execution, independent
-witness adjudication, and coverage/size comparison against lexical and routed
-baselines. Resolution and elimination remain separate questions.
+supplement each target; it cannot create one. Prospective Case 0006 remains
+frozen. Its diagnosed decorated-declaration grounding boundary is corrected
+through exact native source selection, preserving binding conservatism; no
+Case 0006 replay or improved coverage claim follows. Reassess its blind-gold
+diagnosis and choose the next smallest empirically justified missing candidate
+generation relation before freezing Case 0007. This increment implements no
+next relation. Resolution and elimination remain separate questions.
 
 ### Completed — caller-directed lexical role routing
 

@@ -577,3 +577,26 @@ def test_incomplete_internal_binding_support_never_establishes_reference(
             (),
         )
         assert result.outcome is expected
+
+
+@pytest.mark.parametrize(
+    "syntax",
+    ["class Target: pass", "def Target(): pass", "async def Target(): pass"],
+)
+def test_decorated_imported_and_module_members_remain_unsupported(
+    tmp_path: Path,
+    syntax: str,
+) -> None:
+    snapshot = _snapshot(
+        tmp_path,
+        {
+            "src/native.py": "@decorator\n" + syntax + "\n",
+            "src/use.py": (
+                "from native import Target\nimport native as m\nTarget\nm.Target\n"
+            ),
+        },
+    )
+    analysis = _analysis(snapshot, "src/use.py")
+    assert _outcome(analysis, "Target") is Outcome.TARGET_NOT_DECLARATION
+    assert _outcome(analysis, "m.Target") is Outcome.TARGET_NOT_DECLARATION
+    assert not analysis.references

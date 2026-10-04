@@ -991,3 +991,19 @@ naturally occurring Case 0005 with obligations, queries and role preferences
 before Retrieval, then compare native and routed depths using independent blind
 adjudication. B-0002 remains open pending prospective evidence and further
 architecture work.
+
+
+## Exact source declaration grounding correction
+
+Localization now selects exact direct native class/function declarations through
+Python modules RI independently of conservative binding lookup. Decorated
+ClassDef, FunctionDef and AsyncFunctionDef remain declaration subjects; direct
+methods retain their existing lexical parent contract. Multiple matching native
+subjects remain ambiguous. No runtime/import object, public-export, callability,
+obligation satisfaction or readiness claim is added. B-0002 remains open.
+
+Case 0006's prospective diagnosis motivates this bounded correction; its outcome
+remains frozen and was not replayed. Next reassess that blind-gold diagnosis and
+choose the smallest empirically justified missing candidate-generation relation
+before freezing Case 0007. Broader relations and generation operators remain
+deferred; this correction alone has no prospective effectiveness measurement.

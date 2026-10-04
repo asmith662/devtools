@@ -12,21 +12,18 @@ from devtools.context.localization.grounding.contract import (
     AnchorGroundingDisposition,
     AnchorGroundingRequest,
     GroundingResolver,
-    PythonDirectDeclarationKind,
     PythonDirectDeclarationLocator,
     PythonDirectMethodLocator,
     PythonModuleLocator,
     ResourceAddressLocator,
 )
 from devtools.context.python.classes import (
-    PythonClassDeclarationKnowledge,
     PythonClassMethodAnalysisAggregate,
     PythonClassMethodParseError,
     build_python_class_method_containment_view,
     derive_python_class_method_declarations,
 )
 from devtools.context.python.function.declarations import (
-    PythonFunctionDeclarationKnowledge,
     PythonModuleParseError,
 )
 from devtools.context.python.modules import (
@@ -36,9 +33,9 @@ from devtools.context.python.modules import (
     interpret_python_module_resources,
     lookup_python_modules,
 )
-from devtools.context.python.modules.declarations import (
-    PythonModuleDeclarationLookupOutcome,
-    lookup_python_module_declaration,
+from devtools.context.python.modules.selection import (
+    PythonSourceDeclarationKind,
+    select_python_module_source_declarations,
 )
 from devtools.context.repository.resource import RepositoryResourceOccurrence
 
@@ -48,10 +45,6 @@ if TYPE_CHECKING:
         NativeGroundingReferent,
     )
     from devtools.context.localization.task import LocalizationTaskInterpretation
-    from devtools.context.python.modules.declarations import (
-        PythonDirectModuleDeclaration,
-        PythonModuleDeclarationLookup,
-    )
     from devtools.context.python.modules.interpretation import (
         PythonModuleInterpretation,
     )
@@ -86,7 +79,7 @@ def ground_task_anchor(
         resolver = (
             GroundingResolver.PYTHON_MODULE_LOOKUP
             if isinstance(locator, PythonModuleLocator)
-            else GroundingResolver.PYTHON_MODULE_DECLARATION_LOOKUP
+            else GroundingResolver.PYTHON_SOURCE_DECLARATION_SELECTION
         )
         return _account(
             request,
@@ -169,42 +162,37 @@ def _ground_declaration(
     )
     observations: list[NativeGroundingEvidence] = []
     candidates: list[AnchorGroundingCandidate] = []
-    ambiguous = False
     unsupported = False
     for module in modules:
         try:
-            lookup = lookup_python_module_declaration(
+            selection = select_python_module_source_declarations(
                 snapshot,
                 module=module,
                 declared_name=locator.declared_name,
+                kind=PythonSourceDeclarationKind(locator.kind.value),
             )
         except (PythonModuleParseError, PythonClassMethodParseError, SyntaxError):
             unsupported = True
             continue
-        observations.append(lookup)
-        if lookup.outcome is PythonModuleDeclarationLookupOutcome.AMBIGUOUS:
-            ambiguous = True
-            # Retain positive direct syntax facts without claiming a unique binding.
-            candidates.extend(_direct_candidates(lookup, locator.kind))
-        elif lookup.outcome is PythonModuleDeclarationLookupOutcome.NOT_DECLARATION:
-            unsupported = True
-        elif lookup.outcome is PythonModuleDeclarationLookupOutcome.RESOLVED:
-            target = lookup.target
-            if target is not None and _is_requested_kind(target, locator.kind):
-                candidates.append(AnchorGroundingCandidate(target, lookup))
+        observations.append(selection)
+        candidates.extend(
+            AnchorGroundingCandidate(item, selection) for item in selection.declarations
+        )
     disposition = (
         AnchorGroundingDisposition.AMBIGUOUS
-        if ambiguous or len(candidates) > 1 or (unsupported and bool(candidates))
+        if len(candidates) > 1 or (unsupported and bool(candidates))
         else AnchorGroundingDisposition.UNSUPPORTED
         if unsupported
         else _candidate_disposition(tuple(candidates))
     )
     reason = {
         AnchorGroundingDisposition.RESOLVED: (
-            "One bounded direct declaration is supported in the supplied modules."
+            "Exactly one native source declaration matches the exact locator; "
+            "runtime binding identity is not established."
         ),
         AnchorGroundingDisposition.AMBIGUOUS: (
-            "Competing modules or bindings prevent unique direct declaration lookup."
+            "Multiple native declarations or incompletely interpreted modules prevent "
+            "unique source declaration selection."
         ),
         AnchorGroundingDisposition.UNRESOLVED: (
             "No requested direct declaration was found in the supplied modules."
@@ -215,7 +203,7 @@ def _ground_declaration(
     }[disposition]
     return _account(
         request,
-        GroundingResolver.PYTHON_MODULE_DECLARATION_LOOKUP,
+        GroundingResolver.PYTHON_SOURCE_DECLARATION_SELECTION,
         tuple(candidates),
         tuple(observations),
         universe,
@@ -275,33 +263,6 @@ def _ground_method(
         "Exact direct class-body method syntax matched in the observed class."
         if methods
         else "No exact direct method syntax matched in the observed class.",
-    )
-
-
-def _direct_candidates(
-    lookup: PythonModuleDeclarationLookup,
-    kind: PythonDirectDeclarationKind,
-) -> tuple[AnchorGroundingCandidate, ...]:
-    declarations = (
-        lookup.function_analysis.declarations
-        if kind is PythonDirectDeclarationKind.FUNCTION
-        else lookup.class_analysis.classes
-    )
-    return tuple(
-        AnchorGroundingCandidate(item, lookup)
-        for item in declarations
-        if item.declared_name == lookup.declared_name
-    )
-
-
-def _is_requested_kind(
-    target: PythonDirectModuleDeclaration,
-    kind: PythonDirectDeclarationKind,
-) -> bool:
-    return (
-        isinstance(target, PythonFunctionDeclarationKnowledge)
-        if kind is PythonDirectDeclarationKind.FUNCTION
-        else isinstance(target, PythonClassDeclarationKnowledge)
     )
 
 

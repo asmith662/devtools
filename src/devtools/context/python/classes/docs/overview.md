@@ -38,7 +38,12 @@ and source text of each direct base expression as **syntax**. A separate
 derivation assesses possible repository class targets without changing the
 original declaration.
 AST declaration spans begin at `class`/`def`/`async def`, excluding preceding
-decorator lines. Decorators do not classify descriptor or runtime behavior.
+decorator lines. Decorators do not erase class or direct method declaration knowledge and do
+not classify descriptor or runtime behavior. Exact source grounding may select
+these native subjects even for staticmethod, classmethod or arbitrary method
+decorators. Subject identity does not identify the runtime object after
+decorators, descriptors, metaclass behavior or rebinding; binding-oriented
+Reference/base checks retain their separate conservative semantics.
 
 ```text
 method occurrence resource ──→ observed module resource

@@ -22,11 +22,13 @@ if TYPE_CHECKING:
     )
     from devtools.context.python.modules.declarations import (
         PythonDirectModuleDeclaration,
-        PythonModuleDeclarationLookup,
     )
     from devtools.context.python.modules.interpretation import (
         PythonModuleInterpretation,
         PythonModuleInterpretationUniverse,
+    )
+    from devtools.context.python.modules.selection import (
+        PythonModuleSourceDeclarationSelection,
     )
     from devtools.context.repository.identity import RepositoryId
     from devtools.context.repository.resource import (
@@ -50,7 +52,9 @@ class GroundingResolver(Enum):
 
     SNAPSHOT_RESOURCE_AT = "repository-snapshot-resource-at"
     PYTHON_MODULE_LOOKUP = "python-module-exact-name-lookup"
-    PYTHON_MODULE_DECLARATION_LOOKUP = "python-direct-module-declaration-lookup"
+    PYTHON_SOURCE_DECLARATION_SELECTION = (
+        "exact-python-module-source-declaration-selection-v1"
+    )
     PYTHON_METHOD_CONTAINMENT = "python-direct-method-containment"
 
 
@@ -87,7 +91,7 @@ class PythonModuleLocator:
 
 @dataclass(frozen=True, slots=True)
 class PythonDirectDeclarationLocator:
-    """Ask for direct syntax of one class/function in an explicit module."""
+    """Ask for native source identity of a direct class/function, not its binding."""
 
     module: PythonModuleLocator
     declared_name: str
@@ -163,7 +167,7 @@ type NativeGroundingReferent = (
 type NativeGroundingEvidence = (
     RepositoryResourceOccurrence
     | PythonModuleInterpretation
-    | PythonModuleDeclarationLookup
+    | PythonModuleSourceDeclarationSelection
     | PythonClassMethodAnalysis
 )
 
@@ -178,7 +182,7 @@ class AnchorGroundingCandidate:
 
 @dataclass(frozen=True, slots=True)
 class AnchorGrounding:
-    """Report a bounded locator result, never task-semantic acceptance."""
+    """Report native source grounding, without runtime identity or task acceptance."""
 
     request: AnchorGroundingRequest
     disposition: AnchorGroundingDisposition

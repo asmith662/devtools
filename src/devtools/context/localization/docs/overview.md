@@ -183,13 +183,30 @@ Python module name in an explicitly supplied, snapshot-checked module universe
 module-body function/class declaration under that module locator; and an exact
 direct method name under an already identified native class declaration. The
 resolver delegates to snapshot resource lookup, Python module lookup, direct
-declaration lookup and class-method containment. It preserves native
+source declaration selection and class-method containment. It preserves native
 `RepositoryResourceOccurrence`, module interpretation, declaration knowledge,
 and analysis/lookup evidence. It invents neither spans nor a universal entity
 identity. Multiple exact module or declaration matches remain unranked and
-ambiguous. Dynamic/decorated or otherwise unsupported declaration binding
-abstains. A miss is bounded to that locator and supplied native frame; it is
-not evidence that the task concept is absent from the repository.
+ambiguous. Declaration locators consume
+`select_python_module_source_declarations`, independently of direct-binding
+lookup. Decorated direct ClassDef, FunctionDef and AsyncFunctionDef resolve
+when exactly one native source declaration matches the requested kind/name.
+Direct method grounding preserves its known native class-parent contract,
+including decorated methods; it makes no descriptor or callability claim.
+
+For declaration locators, RESOLVED means exactly one supported native source
+declaration satisfies the locator. AMBIGUOUS retains multiple matching native
+declarations or an incompletely interpreted competing module that prevents
+uniqueness. UNRESOLVED means no supported direct declaration matches; a kind
+mismatch, assignment, nested declaration or dynamic construction is not silently
+coerced. UNSUPPORTED means the requested frame/form cannot be soundly interpreted
+by current RI (for example, source parse failure or no explicit module universe).
+Runtime binding uncertainty alone does not cause UNSUPPORTED. A source result
+does not identify the post-decoration module attribute or imported runtime
+object, including effects of descriptors, metaclasses and rebinding. Binding
+and imported-member resolution retain their independent existing contracts.
+A miss is bounded to that locator and supplied native frame; it is not evidence
+that the task concept is absent from the repository.
 
 The immutable `AnchorGroundingView` orders explicit requests deterministically,
 finds results by anchor or disposition, and maps a native referent back to all

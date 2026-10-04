@@ -35,6 +35,12 @@ observed resource
   └── direct module-body AsyncFunctionDef
 ```
 
+Decorated direct FunctionDef and AsyncFunctionDef have the same supported
+source-declaration status as plain declarations. The exact source selector in
+[modules](../../modules/docs/overview.md#exact-source-declaration-selection)
+retains native identities and provenance without establishing post-decoration
+binding values, imported object identity or callability.
+
 The occurrence belongs to the resource and is directly in `Module.body` under
 the current parser contract. This says nothing about runtime ownership,
 importability, public API status, usefulness, or graph importance. Class,
