@@ -88,8 +88,9 @@
   owns explicit task-anchor locators, bounded native RI resolution and
   unresolved/ambiguous provenance without witness satisfaction.
   Its [bounded generation contract](../src/devtools/context/localization/docs/overview.md#bounded-candidate-witness-generation)
-  owns caller-shaped hypothesis recipes, exact owner/mirror projection,
-  structural support and bounded abstention diagnostics.
+  owns caller-shaped fixed recipes and optional single-branch families, exact
+  owner/mirror projection, child lineage, target-specific structural support,
+  independent work/result bounds and bounded abstention diagnostics.
   The [Localization package overview](../src/devtools/context/localization/docs/overview.md#candidate-witness-association)
   also owns the bounded candidate-hypothesis contract and its native provenance.
 - Source and tests define the final implemented behavior where documentation is

@@ -1007,3 +1007,21 @@ remains frozen and was not replayed. Next reassess that blind-gold diagnosis and
 choose the smallest empirically justified missing candidate-generation relation
 before freezing Case 0007. Broader relations and generation operators remain
 deferred; this correction alone has no prospective effectiveness measurement.
+
+
+## Bounded branching generation prerequisite
+
+Localization generation now supports at most one explicit caller-authored
+branching member per family. Complete in-bound targets instantiate separate
+ordinary unresolved candidate hypotheses, preserving all fixed complementary
+members, target-specific native support, deterministic family/child identity and
+independent per-branch outcomes. Fixed failure, incomplete projection work and
+whole-set result overflow produce no children; no Cartesian product or arbitrary
+prefix is admitted. Existing fixed recipes and OWNER/MIRRORED remain unchanged.
+
+This implements the multiplicity prerequisite diagnosed by the
+[direct-Reference investigation](../../research/direct-reference-witness-generation.md).
+It adds no Reference operator, ranking, acceptance, satisfaction or readiness
+semantics and does not close this epic. Reference RI and frozen experiments are
+unchanged; confirmation remains sealed. The next bounded request is the narrow
+exact Reference-to-referencing-resource adapter, before any Case 0007 freeze.

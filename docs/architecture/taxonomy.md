@@ -680,6 +680,14 @@ an exact owner-resource or observed mirrored-path RI relation into an unresolved
 candidate witness hypothesis. Lexical, role and routing records supplement the
 structural candidate; they do not generate or accept it. Complementarity and
 competition are caller-authored recipe semantics, not inferred from co-occurrence.
+A fixed recipe admits one target per member. A caller may instead authorize one
+bounded branching member in a named recipe family: each complete, in-bound
+exact target instantiates one unresolved child with all fixed complementary
+members. Children compete within the family; families can compete within the
+obligation. Family identity, branch target, generated child identity, accepted
+witness and satisfied obligation differ. Incomplete native work or result-bound
+overflow admits no arbitrary prefix. Ordering is reproducibility only; no
+Cartesian product, automatic relation expansion or new ranking is implied.
 
 Localization readiness is scoped to the caller-supplied obligation frame, not a
 claim that the task interpretation is exhaustive or the resulting Context is

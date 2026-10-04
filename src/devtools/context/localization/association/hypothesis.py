@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
@@ -31,8 +32,12 @@ if TYPE_CHECKING:
         RoutedLexicalCandidate,
     )
     from devtools.context.localization.task import LocalizationTaskInterpretation
+    from devtools.context.repository.identity import RepositoryId
     from devtools.context.repository.resource import RepositoryResourceOccurrence
-    from devtools.context.repository.snapshot import RepositorySnapshot
+    from devtools.context.repository.snapshot import (
+        RepositorySnapshot,
+        RepositorySnapshotId,
+    )
     from devtools.context.retrieval.lexical.bm25 import RepositoryTextLexicalBm25Match
 
 
@@ -48,6 +53,71 @@ class WitnessHypothesisIdentity:
         if not self.value.strip():
             msg = "Candidate witness hypothesis identity must not be blank."
             raise ValueError(msg)
+
+
+@dataclass(frozen=True, slots=True)
+class WitnessHypothesisFamilyIdentity:
+    """Caller-name a competing recipe family within one task obligation."""
+
+    obligation: LocalizationObligationIdentity
+    value: str
+
+    def __post_init__(self) -> None:
+        """Reject unnamed families."""
+        if not self.value.strip():
+            msg = "Candidate witness family identity must not be blank."
+            raise ValueError(msg)
+
+
+@dataclass(frozen=True, slots=True)
+class GeneratedWitnessHypothesisIdentity:
+    """Identify a concrete unresolved child by frozen family, slot and target."""
+
+    family: WitnessHypothesisFamilyIdentity
+    member_key: str
+    repository_id: RepositoryId
+    snapshot_id: RepositorySnapshotId
+    target: RepositoryResourceOccurrence
+
+    def __post_init__(self) -> None:
+        """Require an explicitly named branching slot."""
+        if not self.member_key.strip():
+            msg = "Generated witness identity needs a branching member key."
+            raise ValueError(msg)
+
+    @property
+    def obligation(self) -> LocalizationObligationIdentity:
+        """Retain the caller-owned task and obligation scope."""
+        return self.family.obligation
+
+    @property
+    def value(self) -> str:
+        """Encode a collision-safe canonical key, without rank or ordinals."""
+        return json.dumps(
+            (
+                "generated-witness-v1",
+                self.obligation.task.value,
+                self.obligation.value,
+                self.family.value,
+                self.member_key,
+                str(self.repository_id),
+                self.snapshot_id.value,
+                self.target.address.value,
+                self.target.content_identity.value,
+            ),
+            ensure_ascii=True,
+            separators=(",", ":"),
+        )
+
+
+type CandidateHypothesisIdentity = (
+    WitnessHypothesisIdentity | GeneratedWitnessHypothesisIdentity
+)
+
+
+def hypothesis_identity_key(identity: CandidateHypothesisIdentity) -> tuple[str, str]:
+    """Separate caller literals from generated keys in reproducibility order."""
+    return type(identity).__name__, identity.value
 
 
 @dataclass(frozen=True, slots=True)
@@ -140,7 +210,7 @@ class CandidateWitnessMember:
 class CandidateWitnessHypothesis:
     """One unresolved all-member explanation competing with same-obligation peers."""
 
-    identity: WitnessHypothesisIdentity
+    identity: CandidateHypothesisIdentity
     members: tuple[CandidateWitnessMember, ...]
 
     def __post_init__(self) -> None:
@@ -250,7 +320,7 @@ def build_candidate_witness_view(  # noqa: C901, PLR0913
         msg = "Routing view differs from its native association inputs."
         raise ValueError(msg)
     known = {item.identity: position for position, item in enumerate(task.obligations)}
-    seen: set[WitnessHypothesisIdentity] = set()
+    seen: set[CandidateHypothesisIdentity] = set()
     for hypothesis in hypotheses:
         if hypothesis.identity.obligation not in known:
             msg = "Candidate hypothesis names an unknown obligation."
@@ -259,6 +329,16 @@ def build_candidate_witness_view(  # noqa: C901, PLR0913
             msg = "Candidate hypothesis identity is duplicated."
             raise ValueError(msg)
         seen.add(hypothesis.identity)
+        identity = hypothesis.identity
+        if isinstance(identity, GeneratedWitnessHypothesisIdentity) and (
+            identity.repository_id != snapshot.repository_id
+            or identity.snapshot_id != snapshot.id
+            or not any(
+                member.target == identity.target for member in hypothesis.members
+            )
+        ):
+            msg = "Generated child identity differs from its frame or branch target."
+            raise ValueError(msg)
         for member in hypothesis.members:
             if snapshot.resource_at(member.target.address) != member.target:
                 msg = "Candidate target differs from the association snapshot."
@@ -280,7 +360,10 @@ def build_candidate_witness_view(  # noqa: C901, PLR0913
     ordered = tuple(
         sorted(
             hypotheses,
-            key=lambda item: (known[item.identity.obligation], item.identity.value),
+            key=lambda item: (
+                known[item.identity.obligation],
+                hypothesis_identity_key(item.identity),
+            ),
         )
     )
     return CandidateWitnessView(

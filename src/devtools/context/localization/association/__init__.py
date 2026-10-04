@@ -5,8 +5,10 @@ from devtools.context.localization.association.hypothesis import (
     CandidateWitnessHypothesis,
     CandidateWitnessMember,
     CandidateWitnessView,
+    GeneratedWitnessHypothesisIdentity,
     LexicalMatchSupport,
     RoutedMatchSupport,
+    WitnessHypothesisFamilyIdentity,
     WitnessHypothesisIdentity,
     build_candidate_witness_view,
 )
@@ -19,10 +21,12 @@ __all__ = [
     "CandidateWitnessHypothesis",
     "CandidateWitnessMember",
     "CandidateWitnessView",
+    "GeneratedWitnessHypothesisIdentity",
     "LexicalMatchSupport",
     "MirroredResourceSupport",
     "OwnerResourceSupport",
     "RoutedMatchSupport",
+    "WitnessHypothesisFamilyIdentity",
     "WitnessHypothesisIdentity",
     "build_candidate_witness_view",
 ]

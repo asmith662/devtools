@@ -30,7 +30,7 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
-### Current — exact declaration grounding correction, relation reassessment next
+### Current — bounded branching prerequisite, exact Reference adapter next
 
 Prospective Case 0005 joined analysis found 24 distinct resources in its
 accepted witness universe and a minimum semantically sufficient union of 22;
@@ -51,10 +51,16 @@ relations into unresolved hypotheses. Native lexical/role/routing evidence may
 supplement each target; it cannot create one. Prospective Case 0006 remains
 frozen. Its diagnosed decorated-declaration grounding boundary is corrected
 through exact native source selection, preserving binding conservatism; no
-Case 0006 replay or improved coverage claim follows. Reassess its blind-gold
-diagnosis and choose the next smallest empirically justified missing candidate
-generation relation before freezing Case 0007. This increment implements no
-next relation. Resolution and elimination remain separate questions.
+Case 0006 replay or improved coverage claim follows. The completed
+[direct-Reference investigation](research/direct-reference-witness-generation.md)
+identified generation multiplicity as the immediate prerequisite. Production now
+supports one explicitly caller-authored bounded branching member per recipe
+family, deterministic child lineage, per-branch failures and independent
+work/result abstention. No Reference relation is implemented by this increment.
+The next smallest request is the narrow exact direct-Reference to
+referencing-resource generation adapter using this settled branching contract.
+Do not freeze Case 0007 until that separate adapter increment is complete.
+Resolution and elimination remain separate questions.
 
 ### Completed — caller-directed lexical role routing
 

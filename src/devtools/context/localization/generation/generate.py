@@ -3,22 +3,31 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from dataclasses import replace
+from typing import TYPE_CHECKING, cast
 
 from devtools.context.localization.association import (
     CandidateWitnessHypothesis,
     CandidateWitnessMember,
+    GeneratedWitnessHypothesisIdentity,
     LexicalMatchSupport,
     MirroredResourceSupport,
     OwnerResourceSupport,
     RoutedMatchSupport,
+    WitnessHypothesisFamilyIdentity,
     build_candidate_witness_view,
 )
-from devtools.context.localization.association.structural import owner_resource
+from devtools.context.localization.association.structural import (
+    owner_resource,
+    validate_structural_support,
+)
 from devtools.context.localization.generation.contract import (
+    BranchGenerationAttempt,
+    BranchingGroundedMemberRecipe,
     GenerationDisposition,
     HypothesisGenerationAttempt,
     MemberProjectionAttempt,
+    ProjectedMemberTarget,
     ProjectionKind,
     WitnessGenerationPlan,
     WitnessGenerationRecipe,
@@ -72,15 +81,14 @@ def generate_witness_hypotheses(plan: WitnessGenerationPlan) -> WitnessGeneratio
         plan.recipes,
         key=lambda item: (
             obligation_order[item.identity.obligation],
+            type(item.identity).__name__,
             item.identity.value,
         ),
     )
     attempts = tuple(
         _attempt_recipe(plan, recipe, mirrors) for recipe in ordered_recipes
     )
-    hypotheses = tuple(
-        item.hypothesis for item in attempts if item.hypothesis is not None
-    )
+    hypotheses = tuple(child for item in attempts for child in item.children)
     association = build_candidate_witness_view(
         task=plan.task,
         snapshot=plan.snapshot,
@@ -121,11 +129,13 @@ def _attempt_recipe(
     mirrors: PythonMirroredPathAnalysis | None,
 ) -> HypothesisGenerationAttempt:
     attempts = tuple(_project(plan, member, mirrors) for member in recipe.members)
+    if isinstance(recipe.identity, WitnessHypothesisFamilyIdentity):
+        return _attempt_family(plan, recipe, attempts)
     failure = next(
         (
-            item.disposition
+            _fixed_disposition(item)
             for item in attempts
-            if item.disposition is not GenerationDisposition.GENERATED
+            if _fixed_disposition(item) is not GenerationDisposition.GENERATED
         ),
         None,
     )
@@ -142,12 +152,173 @@ def _attempt_recipe(
     members = tuple(
         _make_member(plan, recipe.identity.obligation, attempt) for attempt in attempts
     )
-    hypothesis = CandidateWitnessHypothesis(recipe.identity, members)
+    hypothesis = CandidateWitnessHypothesis(
+        recipe.identity,
+        members,
+    )
     return HypothesisGenerationAttempt(
         recipe,
         GenerationDisposition.GENERATED,
         attempts,
         hypothesis,
+    )
+
+
+def _fixed_disposition(attempt: MemberProjectionAttempt) -> GenerationDisposition:
+    if not attempt.complete:
+        return GenerationDisposition.WORK_BOUND_EXCEEDED
+    return attempt.disposition
+
+
+def _attempt_family(
+    plan: WitnessGenerationPlan,
+    recipe: WitnessGenerationRecipe,
+    attempts: tuple[MemberProjectionAttempt, ...],
+) -> HypothesisGenerationAttempt:
+    attempts = tuple(
+        item
+        if isinstance(item.recipe, BranchingGroundedMemberRecipe)
+        else _admit_fixed_member(plan, recipe, item)
+        for item in attempts
+    )
+    fixed = tuple(
+        item
+        for item in attempts
+        if not isinstance(item.recipe, BranchingGroundedMemberRecipe)
+    )
+    if any(
+        _fixed_disposition(item) is not GenerationDisposition.GENERATED
+        for item in fixed
+    ):
+        return HypothesisGenerationAttempt(
+            recipe,
+            GenerationDisposition.FIXED_MEMBER_FAILED,
+            attempts,
+            None,
+        )
+    if len({item.targets[0].address for item in fixed}) != len(fixed):
+        return HypothesisGenerationAttempt(
+            recipe,
+            GenerationDisposition.DUPLICATE_TARGET,
+            attempts,
+            None,
+        )
+    branch = next(
+        item
+        for item in attempts
+        if isinstance(item.recipe, BranchingGroundedMemberRecipe)
+    )
+    failure = None
+    if not branch.complete:
+        failure = GenerationDisposition.WORK_BOUND_EXCEEDED
+    elif branch.disposition not in (
+        GenerationDisposition.GENERATED,
+        GenerationDisposition.MULTI_TARGET,
+        GenerationDisposition.NO_TARGET,
+    ):
+        failure = branch.disposition
+    elif not branch.projections:
+        failure = GenerationDisposition.NO_TARGET
+    elif len(branch.projections) > branch.result_limit:
+        failure = GenerationDisposition.RESULT_BOUND_EXCEEDED
+    if failure is not None:
+        return HypothesisGenerationAttempt(recipe, failure, attempts, None)
+    # Enumeration is complete and admitted as a whole before any child is built.
+    outcomes = tuple(
+        _attempt_branch(plan, recipe, fixed, branch, target)
+        for target in branch.projections
+    )
+    successful = sum(item.hypothesis is not None for item in outcomes)
+    disposition = (
+        GenerationDisposition.GENERATED
+        if successful == len(outcomes)
+        else GenerationDisposition.GENERATED_WITH_BRANCH_FAILURES
+        if successful
+        else GenerationDisposition.ABSTAINED
+    )
+    return HypothesisGenerationAttempt(recipe, disposition, attempts, None, outcomes)
+
+
+def _admit_fixed_member(
+    plan: WitnessGenerationPlan,
+    recipe: WitnessGenerationRecipe,
+    attempt: MemberProjectionAttempt,
+) -> MemberProjectionAttempt:
+    if _fixed_disposition(attempt) is not GenerationDisposition.GENERATED:
+        return attempt
+    try:
+        member = _make_member(plan, recipe.identity.obligation, attempt)
+        if plan.snapshot.resource_at(member.target.address) != member.target:
+            msg = "Fixed member target differs from the generation snapshot."
+            raise ValueError(msg)  # noqa: TRY301 - retained as member failure
+        for support in member.structural:
+            validate_structural_support(
+                task=plan.task,
+                snapshot=plan.snapshot,
+                target=member.target,
+                support=support,
+            )
+    except ValueError as error:
+        return replace(
+            attempt,
+            disposition=GenerationDisposition.INVALID_MEMBER,
+            failure_reason=str(error),
+        )
+    return attempt
+
+
+def _attempt_branch(
+    plan: WitnessGenerationPlan,
+    recipe: WitnessGenerationRecipe,
+    fixed: tuple[MemberProjectionAttempt, ...],
+    branch: MemberProjectionAttempt,
+    projection: ProjectedMemberTarget,
+) -> BranchGenerationAttempt:
+    identity = GeneratedWitnessHypothesisIdentity(
+        cast("WitnessHypothesisFamilyIdentity", recipe.identity),
+        branch.recipe.key,
+        plan.snapshot.repository_id,
+        plan.snapshot.id,
+        projection.target,
+    )
+    targets = (*tuple(item.targets[0] for item in fixed), projection.target)
+    if len({item.address for item in targets}) != len(targets):
+        return BranchGenerationAttempt(
+            identity,
+            projection,
+            GenerationDisposition.DUPLICATE_TARGET,
+            None,
+            "Branch combination repeats a complementary resource target.",
+        )
+    try:
+        members = (
+            *(_make_member(plan, recipe.identity.obligation, item) for item in fixed),
+            _make_member(plan, recipe.identity.obligation, branch, projection),
+        )
+        hypothesis = CandidateWitnessHypothesis(identity, members)
+        build_candidate_witness_view(
+            task=plan.task,
+            snapshot=plan.snapshot,
+            hypotheses=(hypothesis,),
+            acquisition=plan.acquisition,
+            role_evidence=plan.role_evidence,
+            routing=plan.routing,
+        )
+    except ValueError as error:
+        # A fully enumerated target may fail exact frame/support validation.
+        return BranchGenerationAttempt(
+            identity,
+            projection,
+            GenerationDisposition.INVALID_BRANCH,
+            None,
+            str(error),
+        )
+    return BranchGenerationAttempt(
+        identity,
+        projection,
+        GenerationDisposition.GENERATED,
+        hypothesis,
+        "Exact branch combination passed unresolved candidate association validation.",
     )
 
 
@@ -165,7 +336,7 @@ def _project(
         ),
     }.get(grounding.disposition)
     if source_disposition is not None:
-        return MemberProjectionAttempt(member, source_disposition, None, (), (), 0)
+        return MemberProjectionAttempt(member, source_disposition, None, (), 0)
     source = grounding.candidates[0].referent
     owner = owner_resource(plan.snapshot, source)
     if member.projection is ProjectionKind.OWNER_RESOURCE:
@@ -173,8 +344,7 @@ def _project(
             member,
             GenerationDisposition.GENERATED,
             source,
-            (owner,),
-            (OwnerResourceSupport(grounding),),
+            (ProjectedMemberTarget(owner, (OwnerResourceSupport(grounding),)),),
             1,
         )
     if mirrors is None:
@@ -200,8 +370,10 @@ def _project(
         member,
         disposition,
         source,
-        targets,
-        supports,
+        tuple(
+            ProjectedMemberTarget(target, (support,))
+            for target, support in zip(targets, supports, strict=True)
+        ),
         len(plan.snapshot.resources),
         mirror_analysis=mirrors,
     )
@@ -211,8 +383,10 @@ def _make_member(
     plan: WitnessGenerationPlan,
     obligation: LocalizationObligationIdentity,
     attempt: MemberProjectionAttempt,
+    projection: ProjectedMemberTarget | None = None,
 ) -> CandidateWitnessMember:
-    target = attempt.targets[0]
+    selected = attempt.projections[0] if projection is None else projection
+    target = selected.target
     lexical: list[LexicalMatchSupport] = []
     if plan.acquisition is not None:
         lexical.extend(
@@ -252,7 +426,7 @@ def _make_member(
         lexical=tuple(lexical),
         roles=roles,
         routed=routed,
-        structural=attempt.structural,
+        structural=selected.structural,
     )
 
 

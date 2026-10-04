@@ -309,30 +309,115 @@ When a mirror recipe has resolved grounding, the mirror operator runs the
 canonical RI derivation over the explicitly supplied snapshot. Each attempt
 retains that native analysis, including coverage, and any exact
 `PythonMirroredPathCorrespondence`; unresolved sources do not trigger it.
-Each v1 member accepts **one** target. No target yields `NO_TARGET`; ambiguous,
-unresolved or unsupported grounding abstains; more than one result yields
-`MULTI_TARGET` and no candidate hypothesis. A multi-member recipe with any
-failed member creates no partial hypothesis and no Cartesian product. Two
-member recipes reaching the same resource within one complementary recipe
-yield `DUPLICATE_TARGET`; separate caller-named competing recipes retain their
-distinct explanations and may share a target. Exact duplicate structural
-support is rejected rather than counted twice.
+Fixed `GroundedMemberRecipe` values still accept **one** target. No target yields
+`NO_TARGET`; ambiguous, unresolved or unsupported grounding abstains; more than
+one result yields `MULTI_TARGET` and no candidate hypothesis. Every fixed member
+must succeed. Repeated complementary resource targets yield `DUPLICATE_TARGET`.
+OWNER and MIRRORED remain the only operators, with their existing single-target
+semantics. Branching adds no relation or automatic fanout policy.
 
-`MemberProjectionAttempt` records source referent, target count, accepted
-cardinality bound of one, examined resource count, truncation flag and frontier
-(empty for these exhaustive exact operators). Owner projection examines its
-one resource; mirror derivation examines the supplied snapshot resource set.
-No hidden graph walk or candidate rank is performed. The immutable view keeps
-all recipe and member outcomes and exposes obligation, anchor, target,
-no-target and cross-obligation queries. Zero target is a bounded projection
-miss, never an irrelevance or repository-absence claim.
+### Caller-authorized branching families
 
-For a generated target, existing global and owning-obligation lexical matches,
-positive role records and own-obligation routed candidates are attached by
-exact resource identity when supplied. They are supplemental native evidence;
-lexical-only results never create a hypothesis, and ESCAPE remains eligible.
-The association builder validates all native supports and replays grounding
-and mirror relationships. Generation changes neither accepted `WitnessSet`
-alternatives nor `LocalizationAssessment`/readiness. It does no scoring,
-confidence assignment, ranking, resolution or elimination. Effectiveness and
-coverage remain untested pending a new prospective case.
+A caller may supply one `BranchingGroundedMemberRecipe`, including an explicit
+positive `max_results`, alongside zero or more fixed members. Two branching
+members are rejected. There is no Cartesian expansion. A branching recipe must
+use `WitnessHypothesisFamilyIdentity`; a fixed recipe retains its caller-named
+`WitnessHypothesisIdentity`. These task-local identities are distinct from RI
+identities and accepted witness identities.
+
+For example, a future relation could support this caller-authored shape:
+
+```text
+family: owner + one-of(reference targets)
+complete targets: T1, T2, T3
+children: (owner, T1), (owner, T2), (owner, T3)
+```
+
+No Reference operator exists yet. The example explains shape authorization.
+It never produces `(owner, T1, T2, T3)`. Members within each child are proposed
+complements; children within a family compete as unresolved explanations.
+Other caller-authored families may also compete for the same obligation.
+Competition neither proves sufficiency nor requires exactly one child to be
+accepted. The family, branch target, concrete child, accepted witness alternative
+and satisfied obligation remain distinct.
+
+Every concrete child is an ordinary `CandidateWitnessHypothesis` constructed
+through the existing association validation. Its distinct
+`GeneratedWitnessHypothesisIdentity` retains the caller family, branching member
+key, repository/snapshot and exact native resource occurrence. Its canonical JSON
+key encodes task, obligation, family, slot, repository, snapshot, address and
+content identity with explicit versioning. It uses no ordinal, random value,
+rank or execution order. Caller literal and generated identity types have
+separate namespaces. Duplicate candidate identities are rejected. Unequal target
+or structural support values colliding under canonical native keys are rejected
+rather than selected by insertion order. Caller keys continue to own the meaning
+of their frozen task/recipe; no durable serialization schema is introduced.
+
+### Complete enumeration and independent bounds
+
+`MemberProjectionAttempt.projections` retains `ProjectedMemberTarget` values:
+one exact resource with only its supporting native structural facts. Repeated
+identical targets are grouped; identical support is retained once, and distinct
+support is preserved in canonical order. Its legacy `targets` and `structural`
+queries expose diagnostics; child construction uses target-specific support.
+A child never receives other branches' support. Fixed support is retained in
+every successful child.
+
+The projection owns `work_performed`, optional relation-specific `work_limit`,
+`complete`, and `uncovered_frontier`. Work units are operator-owned: OWNER
+examines one resource; MIRRORED examines the supplied snapshot resource set and
+retains its native analysis. Generation does not interpret relation scan
+mechanics or impose a hidden work quota. Projection accounting must stay within
+the declared work limit. `examined_resources` preserves existing operator
+work diagnostics; `truncated` reports incomplete enumeration.
+
+The branching member owns the independent result admission bound. After complete
+enumeration, `result_count` is the exact distinct projected target count; when
+work is incomplete it is `None`, even if diagnostic targets are retained.
+Incomplete work yields `WORK_BOUND_EXCEEDED` and **zero children**. A complete
+set exceeding `max_results` yields `RESULT_BOUND_EXCEEDED`, retains the exact
+count and yields **zero children**. No first-K, path prefix, source prefix or
+insertion prefix is admitted. Deterministic ordering is reproducibility order,
+never relevance rank. A result cap is not a computational work bound.
+
+### Family outcomes and failure atomicity
+
+A `HypothesisGenerationAttempt` retains one attempted recipe/family and all
+member diagnostics. `hypothesis` remains singular for fixed recipes and is
+`None` for branching families; `children` exposes successful hypotheses for
+both paths. A branching family retains independent `BranchGenerationAttempt`
+values containing exact child identity, target-specific projection, disposition,
+hypothesis when generated, and diagnostic reason.
+
+Before branch instantiation, any fixed member failure yields
+`FIXED_MEMBER_FAILED` with its exact member outcome and zero children. Invalid
+fixed frame/support is retained as `INVALID_MEMBER` with its reason. Repeated
+fixed complementary targets yield `DUPLICATE_TARGET` and zero children. Source
+failure, incomplete work and result overflow also admit no branches. A complete
+zero-target branch yields `NO_TARGET`; it remains visible as an attempted empty
+family. One target takes the same child identity path as several targets.
+
+After complete, in-bound enumeration, branch-specific duplicate complementary
+targets yield `DUPLICATE_TARGET`; invalid frame/support combinations yield
+`INVALID_BRANCH` and retain the validation reason. Valid siblings may succeed.
+Family disposition is `GENERATED`, `GENERATED_WITH_BRANCH_FAILURES`, or
+`ABSTAINED` when every enumerated combination fails. No incomplete child is
+emitted. Zero children never prove that no satisfying witness exists.
+
+The immutable view retains all families, children and failures. Existing
+obligation, anchor, target, no-target and cross-obligation queries remain;
+`for_family` exposes the attempted family, `children` and `failed_branches`
+inspect its results, and `parent_family` resolves successful or failed child
+lineage. Plan, recipe, member, grounding, native support and frame remain
+available through that lineage. Flat `generated` convenience queries preserve
+ordinary association semantics without losing family provenance.
+
+For generated targets, existing global and owning-obligation lexical matches,
+positive role records and own-obligation routed candidates attach by exact
+resource identity. They cannot prune branches or alter cardinality; ESCAPE
+remains eligible. The association builder validates native supports and replays
+grounding and mirror relationships. Generation changes neither accepted
+`WitnessSet` alternatives nor `LocalizationAssessment`/readiness. It performs no
+scoring, ranking, acceptance, satisfaction, resolution or elimination. Reference
+RI remains unchanged; Case 0007 is neither frozen nor executed. Effectiveness
+requires a later prospective case after the narrow relation adapter.

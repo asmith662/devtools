@@ -747,3 +747,44 @@ remains sealed.
 - Next reassess the Case 0006 blind-gold diagnosis and choose the smallest
   empirically justified missing candidate-generation relation before freezing
   Case 0007; that relation is not implemented in this checkpoint.
+
+
+## Bounded branching witness generation (2026-10-04)
+
+- Preserved fixed generation recipes, their caller-named hypothesis identities,
+  exactly-one-target admission, and current OWNER/MIRRORED operators. Added one
+  explicitly caller-authored `BranchingGroundedMemberRecipe` per recipe family,
+  with a positive result bound; two branching members are rejected.
+- Separated caller family identity from generated concrete child identity.
+  Canonical child keys retain task/obligation/family/member, repository/snapshot
+  and native addressed content identity. Typed namespaces, duplicate identity
+  checks and canonical native support/target collision checks prevent overwrite
+  or order-dependent selection. No random/ordinal identity or durable schema.
+- Complete in-bound targets instantiate ordinary unresolved hypotheses with all
+  fixed complementary members and exactly one branch target per child. Children
+  compete within a retained family; several families can compete per obligation.
+  Per-branch duplicate or invalid combinations retain reasons while valid siblings
+  may succeed. Fixed failure blocks all children. Empty families remain visible.
+- Projection work accounting/completeness/frontier is distinct from the branching
+  result bound. Incomplete work admits no child and reports unknown total;
+  complete overflow retains exact count and admits no arbitrary prefix. Repeated
+  exact targets group their native support, without evidence votes. Each child
+  retains only its branch support and identical fixed support. Native lexical,
+  role and routing support attaches afterwards without changing cardinality.
+- Extended the immutable generation view with family/child lineage and failed
+  branch inspection, preserving existing obligation/anchor/target/cross-obligation
+  queries. Existing validated association remains the candidate construction path.
+  No Reference operator, RI change, Cartesian expansion, graph, score, ranking,
+  accepted witness, satisfaction, elimination or readiness change was introduced.
+- Added 27 controlled-projection test cases without a fake production relation.
+  All 146 neighboring Localization tests pass. After the final production edit,
+  protected development passes 1,489 tests with two live skips and covers all
+  9,987 production statements and 2,398 branches (100%). Ruff `src tests scripts`,
+  mypy `src tests` (497 files), six touched Python format checks and worktree/index
+  diff checks pass. ADR-0005 remains unchanged: no accepted boundary contradiction
+  or persistence change was found.
+- Updated the Localization contract, taxonomy, documentation map, roadmap and
+  B-0002; the epic remains open. Frozen experiments and confirmation outcomes
+  remain untouched, and Case 0007 is neither frozen nor executed. Next implement
+  the narrow exact direct-Reference to referencing-resource generation adapter
+  under the settled branching contract; do not freeze Case 0007 in that request.

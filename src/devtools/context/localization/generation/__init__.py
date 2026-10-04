@@ -2,10 +2,13 @@
 """Caller-directed bounded generation of unresolved witness hypotheses."""
 
 from devtools.context.localization.generation.contract import (
+    BranchGenerationAttempt,
+    BranchingGroundedMemberRecipe,
     GenerationDisposition,
     GroundedMemberRecipe,
     HypothesisGenerationAttempt,
     MemberProjectionAttempt,
+    ProjectedMemberTarget,
     ProjectionKind,
     WitnessGenerationPlan,
     WitnessGenerationRecipe,
@@ -16,10 +19,13 @@ from devtools.context.localization.generation.generate import (
 )
 
 __all__ = [
+    "BranchGenerationAttempt",
+    "BranchingGroundedMemberRecipe",
     "GenerationDisposition",
     "GroundedMemberRecipe",
     "HypothesisGenerationAttempt",
     "MemberProjectionAttempt",
+    "ProjectedMemberTarget",
     "ProjectionKind",
     "WitnessGenerationPlan",
     "WitnessGenerationRecipe",
