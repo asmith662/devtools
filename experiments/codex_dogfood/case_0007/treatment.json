@@ -1,0 +1,884 @@
+{
+  "case": "case_0007",
+  "status": "FROZEN BEFORE RETRIEVAL, ROUTING, GROUNDING, GENERATION AND ADJUDICATION",
+  "task_identity": "case-0007-python-public-export-ri",
+  "task": "Implement the first bounded deterministic Python public-export and re-export Repository Intelligence capability for explicit module and package API surfaces. The capability should distinguish source declaration identity, import binding, package membership, and public API exposure; represent direct package-facade re-exports and statically explicit `__all__` declarations where they can be established soundly; preserve native repository/snapshot identity and provenance; retain ambiguity or abstention for dynamic or unsupported export behavior rather than overclaiming; integrate coherently with the existing Python module, declaration, import/member, package, and Reference Repository Intelligence contracts; expose a clean deterministic foundation for future Localization use without introducing a Localization generation operator in this increment; add rigorous tests and authoritative architecture/development documentation; preserve package/API conventions where applicable; and pass protected development validation. Do not implement runtime import execution, dynamic module `__getattr__` resolution, unrestricted star-import closure, inferred popularity or relevance, learned ranking, graph expansion, or automatic witness resolution.",
+  "purpose": "Acquire and generate repository information needed to implement the frozen explicit Python public-export/re-export RI capability while prospectively comparing global lexical, obligation lexical, role-routed and bounded structural witness-generation surfaces.",
+  "provenance": {
+    "source_identity": "case-0007-verbatim-user-development-task",
+    "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+  },
+  "anchors": [
+    {
+      "identity": "declarations",
+      "text": "Source declaration identity, independently of runtime binding"
+    },
+    {
+      "identity": "bindings",
+      "text": "Import/member bindings and direct package-facade re-exports"
+    },
+    {
+      "identity": "packages",
+      "text": "Explicit module interpretation and immediate package membership"
+    },
+    {
+      "identity": "exposure",
+      "text": "Public API exposure and statically explicit __all__ declarations"
+    },
+    {
+      "identity": "abstention",
+      "text": "Dynamic or unsupported exports retain ambiguity or abstention"
+    },
+    {
+      "identity": "provenance",
+      "text": "Native repository/snapshot identity and derivation provenance"
+    },
+    {
+      "identity": "references",
+      "text": "Integration with existing exact Reference RI contracts"
+    },
+    {
+      "identity": "api",
+      "text": "Coherent package/API ownership and future Localization foundation"
+    },
+    {
+      "identity": "verification",
+      "text": "Rigorous tests, authoritative documentation, protected validation"
+    }
+  ],
+  "obligations": [
+    {
+      "identity": "declaration-identity",
+      "predicate": "Understand native declaration identities and their separation from binding so export facts can retain canonical source subjects without runtime claims.",
+      "anchors": [
+        "declarations",
+        "provenance"
+      ],
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "native-source-identity-boundary",
+        "statement": "Information establishes existing function/class subjects, occurrence and declaration provenance, including decoration and rebinding nonclaims."
+      },
+      "witness_alternatives": [],
+      "query_identity": "q-declaration-identity",
+      "query": "PythonFunctionDeclarationKnowledge PythonClassDeclarationKnowledge source declaration identity decorated binding provenance",
+      "preferred_roles": [
+        "PYTHON_CODE"
+      ]
+    },
+    {
+      "identity": "binding-reexports",
+      "predicate": "Understand existing import/member and direct facade resolution contracts to distinguish a declared re-export binding from source declaration identity.",
+      "anchors": [
+        "bindings",
+        "declarations"
+      ],
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "binding-and-facade-contract",
+        "statement": "Information establishes exact import/member resolution, one-facade limits, competing bindings and retained resolution provenance."
+      },
+      "witness_alternatives": [],
+      "query_identity": "q-binding-reexports",
+      "query": "resolve_python_imported_member direct facade re-export import binding ambiguous unsupported declaration",
+      "preferred_roles": [
+        "PYTHON_CODE",
+        "PACKAGE_SURFACE"
+      ]
+    },
+    {
+      "identity": "module-membership",
+      "predicate": "Understand explicit module/package identity and immediate membership without conflating containment, importability and public exposure.",
+      "anchors": [
+        "packages",
+        "exposure"
+      ],
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "module-and-membership-boundary",
+        "statement": "Information establishes explicit-root module/package interpretations, bounded membership and missing/competing interpretations."
+      },
+      "witness_alternatives": [],
+      "query_identity": "q-module-membership",
+      "query": "PythonModuleInterpretation interpret_python_module_resources derive_python_immediate_package_memberships package membership public API",
+      "preferred_roles": [
+        "PYTHON_CODE",
+        "PACKAGE_MEMBER"
+      ]
+    },
+    {
+      "identity": "explicit-exposure",
+      "predicate": "Determine sound static public-exposure semantics for direct facade re-exports and explicit __all__, separately from declaration and binding.",
+      "anchors": [
+        "exposure",
+        "bindings",
+        "packages"
+      ],
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "explicit-export-semantic-foundation",
+        "statement": "Information supplies accepted RI scope and static interpretation limits needed to design explicit exposure without dynamic or star-import closure."
+      },
+      "witness_alternatives": [],
+      "query_identity": "q-explicit-exposure",
+      "query": "public API exposure explicit __all__ package-facade re-exports source declaration import binding package membership Repository Intelligence",
+      "preferred_roles": [
+        "DOCUMENTATION"
+      ]
+    },
+    {
+      "identity": "unsupported-behavior",
+      "predicate": "Understand ambiguity, abstention and coverage conventions for dynamic or unsupported syntax without asserting runtime absence.",
+      "anchors": [
+        "abstention",
+        "bindings",
+        "exposure"
+      ],
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "qualified-static-outcomes",
+        "statement": "Information establishes supported/unsupported outcome ownership and nonclaims needed for dynamic __all__, __getattr__ and competing exports."
+      },
+      "witness_alternatives": [],
+      "query_identity": "q-unsupported-behavior",
+      "query": "PythonImportedMemberResolution ambiguity unsupported abstention dynamic __all__ __getattr__ wildcard coverage runtime import",
+      "preferred_roles": [
+        "PYTHON_CODE",
+        "DOCUMENTATION"
+      ]
+    },
+    {
+      "identity": "snapshot-provenance",
+      "predicate": "Understand repository/snapshot dependency identity and native provenance needed for deterministic export facts and replay/freshness validation.",
+      "anchors": [
+        "provenance",
+        "declarations",
+        "packages"
+      ],
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "dependency-qualified-export-truth",
+        "statement": "Information establishes canonical identity, dependency and provenance contracts and their bounded applicability/freshness requirements."
+      },
+      "witness_alternatives": [],
+      "query_identity": "q-snapshot-provenance",
+      "query": "RepositorySnapshot RepositorySubject SourceOccurrence Derivation PythonModuleInterpretation provenance dependency snapshot identity",
+      "preferred_roles": [
+        "PYTHON_CODE",
+        "DOCUMENTATION"
+      ]
+    },
+    {
+      "identity": "reference-integration",
+      "predicate": "Understand Reference consumers and exact target resolution boundaries to integrate new export RI coherently without changing Reference truth.",
+      "anchors": [
+        "references",
+        "bindings",
+        "declarations"
+      ],
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "reference-consumer-boundary",
+        "statement": "Information establishes current Reference targets, routes and consumer contracts; export exposure remains distinct from Reference and Call syntax."
+      },
+      "witness_alternatives": [],
+      "query_identity": "q-reference-integration",
+      "query": "derive_python_declaration_references PythonDeclarationReferenceKnowledge exact target facade import binding direct_call public export",
+      "preferred_roles": [
+        "PYTHON_CODE"
+      ]
+    },
+    {
+      "identity": "package-api",
+      "predicate": "Understand public Python RI package/API conventions and ownership for a deterministic foundation with no Localization operator in this increment.",
+      "anchors": [
+        "api",
+        "packages",
+        "exposure"
+      ],
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "public-api-and-dependency-integration",
+        "statement": "Information establishes package surfaces, dependency direction and public API conventions relevant to adding Python-owned export RI."
+      },
+      "witness_alternatives": [],
+      "query_identity": "q-package-api",
+      "query": "Python Repository Intelligence package API public exports __init__ dependency direction Localization generation foundation",
+      "preferred_roles": [
+        "PACKAGE_SURFACE",
+        "DOCUMENTATION"
+      ]
+    },
+    {
+      "identity": "tests",
+      "predicate": "Understand native RI test patterns for exact identity, bounded static resolution, ambiguity, unsupported forms and freshness regressions.",
+      "anchors": [
+        "verification",
+        "declarations",
+        "bindings",
+        "packages",
+        "references"
+      ],
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "rigorous-native-ri-test-patterns",
+        "statement": "Information supplies relevant fixture/assertion conventions for supported and rejected export forms and neighboring RI regressions."
+      },
+      "witness_alternatives": [],
+      "query_identity": "q-tests",
+      "query": "Python public export re-export __all__ import member package Reference declaration ambiguity unsupported snapshot provenance tests",
+      "preferred_roles": [
+        "TEST"
+      ]
+    },
+    {
+      "identity": "documentation",
+      "predicate": "Understand authoritative architecture/development documentation and taxonomy updates required by the new supported capability.",
+      "anchors": [
+        "verification",
+        "api",
+        "exposure"
+      ],
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "authoritative-documentation-impact",
+        "statement": "Information establishes documentation authority, architectural terminology and development update policy for the new static exposure capability."
+      },
+      "witness_alternatives": [],
+      "query_identity": "q-documentation",
+      "query": "Repository Intelligence source declaration import binding public API exposure architecture taxonomy documentation authority development",
+      "preferred_roles": [
+        "DOCUMENTATION"
+      ]
+    },
+    {
+      "identity": "validation",
+      "predicate": "Understand protected development validation and package/API checks required to validate the future implementation without confirmation access.",
+      "anchors": [
+        "verification",
+        "api"
+      ],
+      "requirement": "mandatory",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "protected-development-checks",
+        "statement": "Information establishes canonical protected validation, coverage, typing, format/lint and confirmation exclusion requirements."
+      },
+      "witness_alternatives": [],
+      "query_identity": "q-validation",
+      "query": "protected development validation validate_development coverage mypy Ruff package API confirmation excluded",
+      "preferred_roles": [
+        "DOCUMENTATION",
+        "TOOL_CONFIGURATION",
+        "TEST_CONFIGURATION"
+      ]
+    }
+  ],
+  "global_query": "Implement the first bounded deterministic Python public-export and re-export Repository Intelligence capability for explicit module and package API surfaces. The capability should distinguish source declaration identity, import binding, package membership, and public API exposure; represent direct package-facade re-exports and statically explicit `__all__` declarations where they can be established soundly; preserve native repository/snapshot identity and provenance; retain ambiguity or abstention for dynamic or unsupported export behavior rather than overclaiming; integrate coherently with the existing Python module, declaration, import/member, package, and Reference Repository Intelligence contracts; expose a clean deterministic foundation for future Localization use without introducing a Localization generation operator in this increment; add rigorous tests and authoritative architecture/development documentation; preserve package/API conventions where applicable; and pass protected development validation. Do not implement runtime import execution, dynamic module `__getattr__` resolution, unrestricted star-import closure, inferred popularity or relevance, learned ranking, graph expansion, or automatic witness resolution.",
+  "global_routed": false,
+  "groundings": [
+    {
+      "identity": "g-function",
+      "anchor": "declarations",
+      "locator_kind": "PYTHON_DECLARATION",
+      "declaration_kind": "CLASS",
+      "module": "devtools.context.python.function.declarations",
+      "name": "PythonFunctionDeclarationKnowledge",
+      "module_kind": null
+    },
+    {
+      "identity": "g-class",
+      "anchor": "declarations",
+      "locator_kind": "PYTHON_DECLARATION",
+      "declaration_kind": "CLASS",
+      "module": "devtools.context.python.classes.declarations",
+      "name": "PythonClassDeclarationKnowledge",
+      "module_kind": null
+    },
+    {
+      "identity": "g-binding",
+      "anchor": "bindings",
+      "locator_kind": "PYTHON_DECLARATION",
+      "declaration_kind": "FUNCTION",
+      "module": "devtools.context.python.imports.members",
+      "name": "resolve_python_imported_member",
+      "module_kind": null
+    },
+    {
+      "identity": "g-module",
+      "anchor": "packages",
+      "locator_kind": "PYTHON_DECLARATION",
+      "declaration_kind": "FUNCTION",
+      "module": "devtools.context.python.modules.interpretation",
+      "name": "interpret_python_module_resources",
+      "module_kind": null
+    },
+    {
+      "identity": "g-membership",
+      "anchor": "packages",
+      "locator_kind": "PYTHON_DECLARATION",
+      "declaration_kind": "FUNCTION",
+      "module": "devtools.context.python.modules.membership",
+      "name": "derive_python_immediate_package_memberships",
+      "module_kind": null
+    },
+    {
+      "identity": "g-module-identity",
+      "anchor": "provenance",
+      "locator_kind": "PYTHON_DECLARATION",
+      "declaration_kind": "CLASS",
+      "module": "devtools.context.python.modules.interpretation",
+      "name": "PythonModuleInterpretation",
+      "module_kind": null
+    },
+    {
+      "identity": "g-reference",
+      "anchor": "references",
+      "locator_kind": "PYTHON_DECLARATION",
+      "declaration_kind": "FUNCTION",
+      "module": "devtools.context.python.references.declarations.analysis",
+      "name": "derive_python_declaration_references",
+      "module_kind": null
+    },
+    {
+      "identity": "g-reference-fact",
+      "anchor": "references",
+      "locator_kind": "PYTHON_DECLARATION",
+      "declaration_kind": "CLASS",
+      "module": "devtools.context.python.references.declarations.model",
+      "name": "PythonDeclarationReferenceKnowledge",
+      "module_kind": null
+    },
+    {
+      "identity": "g-python-api",
+      "anchor": "api",
+      "locator_kind": "PYTHON_MODULE",
+      "declaration_kind": null,
+      "module": "devtools.context.python",
+      "name": null,
+      "module_kind": "PACKAGE"
+    }
+  ],
+  "deliberately_ungrounded_anchors": [
+    "exposure",
+    "abstention",
+    "verification"
+  ],
+  "recipe_specifications": [
+    {
+      "obligation": "declaration-identity",
+      "identity": "owner-g-function",
+      "identity_kind": "caller-hypothesis",
+      "members": [
+        {
+          "key": "owner",
+          "grounding_request": "g-function",
+          "operator": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "The exact native owner's declaration/operation contract is a plausible information witness."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "declaration-identity",
+      "identity": "owner-g-class",
+      "identity_kind": "caller-hypothesis",
+      "members": [
+        {
+          "key": "owner",
+          "grounding_request": "g-class",
+          "operator": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "The exact native owner's declaration/operation contract is a plausible information witness."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "binding-reexports",
+      "identity": "owner-g-binding",
+      "identity_kind": "caller-hypothesis",
+      "members": [
+        {
+          "key": "owner",
+          "grounding_request": "g-binding",
+          "operator": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "The exact native owner's declaration/operation contract is a plausible information witness."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "module-membership",
+      "identity": "owner-g-module",
+      "identity_kind": "caller-hypothesis",
+      "members": [
+        {
+          "key": "owner",
+          "grounding_request": "g-module",
+          "operator": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "The exact native owner's declaration/operation contract is a plausible information witness."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "module-membership",
+      "identity": "owner-g-membership",
+      "identity_kind": "caller-hypothesis",
+      "members": [
+        {
+          "key": "owner",
+          "grounding_request": "g-membership",
+          "operator": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "The exact native owner's declaration/operation contract is a plausible information witness."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "unsupported-behavior",
+      "identity": "owner-g-binding",
+      "identity_kind": "caller-hypothesis",
+      "members": [
+        {
+          "key": "owner",
+          "grounding_request": "g-binding",
+          "operator": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "The exact native owner's declaration/operation contract is a plausible information witness."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "snapshot-provenance",
+      "identity": "owner-g-module-identity",
+      "identity_kind": "caller-hypothesis",
+      "members": [
+        {
+          "key": "owner",
+          "grounding_request": "g-module-identity",
+          "operator": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "The exact native owner's declaration/operation contract is a plausible information witness."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "snapshot-provenance",
+      "identity": "owner-g-function",
+      "identity_kind": "caller-hypothesis",
+      "members": [
+        {
+          "key": "owner",
+          "grounding_request": "g-function",
+          "operator": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "The exact native owner's declaration/operation contract is a plausible information witness."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "reference-integration",
+      "identity": "owner-g-reference",
+      "identity_kind": "caller-hypothesis",
+      "members": [
+        {
+          "key": "owner",
+          "grounding_request": "g-reference",
+          "operator": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "The exact native owner's declaration/operation contract is a plausible information witness."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "reference-integration",
+      "identity": "owner-g-reference-fact",
+      "identity_kind": "caller-hypothesis",
+      "members": [
+        {
+          "key": "owner",
+          "grounding_request": "g-reference-fact",
+          "operator": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "The exact native owner's declaration/operation contract is a plausible information witness."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "package-api",
+      "identity": "owner-g-python-api",
+      "identity_kind": "caller-hypothesis",
+      "members": [
+        {
+          "key": "owner",
+          "grounding_request": "g-python-api",
+          "operator": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "The exact native owner's declaration/operation contract is a plausible information witness."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "binding-reexports",
+      "identity": "references-g-binding",
+      "identity_kind": "family",
+      "members": [
+        {
+          "key": "referencer",
+          "grounding_request": "g-binding",
+          "operator": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "work_limit": 4096,
+          "reason": "One exact referencer may supply a complementary consumer or integration contract; no sufficiency claim."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "binding-reexports",
+      "identity": "owner-plus-reference-g-binding",
+      "identity_kind": "family",
+      "members": [
+        {
+          "key": "owner",
+          "grounding_request": "g-binding",
+          "operator": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "An owner contract plus one exact consumer is a plausible complementary integration shape."
+        },
+        {
+          "key": "referencer",
+          "grounding_request": "g-binding",
+          "operator": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "work_limit": 4096,
+          "reason": "One exact referencer may supply a complementary consumer or integration contract; no sufficiency claim."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "module-membership",
+      "identity": "references-g-membership",
+      "identity_kind": "family",
+      "members": [
+        {
+          "key": "referencer",
+          "grounding_request": "g-membership",
+          "operator": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "work_limit": 4096,
+          "reason": "One exact referencer may supply a complementary consumer or integration contract; no sufficiency claim."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "module-membership",
+      "identity": "owner-plus-reference-g-membership",
+      "identity_kind": "family",
+      "members": [
+        {
+          "key": "owner",
+          "grounding_request": "g-membership",
+          "operator": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "An owner contract plus one exact consumer is a plausible complementary integration shape."
+        },
+        {
+          "key": "referencer",
+          "grounding_request": "g-membership",
+          "operator": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "work_limit": 4096,
+          "reason": "One exact referencer may supply a complementary consumer or integration contract; no sufficiency claim."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "snapshot-provenance",
+      "identity": "references-g-module",
+      "identity_kind": "family",
+      "members": [
+        {
+          "key": "referencer",
+          "grounding_request": "g-module",
+          "operator": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "work_limit": 4096,
+          "reason": "One exact referencer may supply a complementary consumer or integration contract; no sufficiency claim."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "snapshot-provenance",
+      "identity": "owner-plus-reference-g-module",
+      "identity_kind": "family",
+      "members": [
+        {
+          "key": "owner",
+          "grounding_request": "g-module",
+          "operator": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "An owner contract plus one exact consumer is a plausible complementary integration shape."
+        },
+        {
+          "key": "referencer",
+          "grounding_request": "g-module",
+          "operator": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "work_limit": 4096,
+          "reason": "One exact referencer may supply a complementary consumer or integration contract; no sufficiency claim."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "reference-integration",
+      "identity": "references-g-reference",
+      "identity_kind": "family",
+      "members": [
+        {
+          "key": "referencer",
+          "grounding_request": "g-reference",
+          "operator": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "work_limit": 4096,
+          "reason": "One exact referencer may supply a complementary consumer or integration contract; no sufficiency claim."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "reference-integration",
+      "identity": "owner-plus-reference-g-reference",
+      "identity_kind": "family",
+      "members": [
+        {
+          "key": "owner",
+          "grounding_request": "g-reference",
+          "operator": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "An owner contract plus one exact consumer is a plausible complementary integration shape."
+        },
+        {
+          "key": "referencer",
+          "grounding_request": "g-reference",
+          "operator": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "work_limit": 4096,
+          "reason": "One exact referencer may supply a complementary consumer or integration contract; no sufficiency claim."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "package-api",
+      "identity": "package-plus-module-consumer",
+      "identity_kind": "family",
+      "members": [
+        {
+          "key": "package",
+          "grounding_request": "g-python-api",
+          "operator": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "The public Python package surface may complement one module-interpretation API consumer."
+        },
+        {
+          "key": "referencer",
+          "grounding_request": "g-module",
+          "operator": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "work_limit": 4096,
+          "reason": "One exact referencer may supply a complementary consumer or integration contract; no sufficiency claim."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "tests",
+      "identity": "mirror-g-function",
+      "identity_kind": "caller-hypothesis",
+      "members": [
+        {
+          "key": "test",
+          "grounding_request": "g-function",
+          "operator": "MIRRORED_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "An exact source/test naming counterpart may supply neighboring native RI fixture and assertion conventions; path correspondence does not prove test coverage."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "tests",
+      "identity": "mirror-g-class",
+      "identity_kind": "caller-hypothesis",
+      "members": [
+        {
+          "key": "test",
+          "grounding_request": "g-class",
+          "operator": "MIRRORED_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "An exact source/test naming counterpart may supply neighboring native RI fixture and assertion conventions; path correspondence does not prove test coverage."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "tests",
+      "identity": "mirror-g-binding",
+      "identity_kind": "caller-hypothesis",
+      "members": [
+        {
+          "key": "test",
+          "grounding_request": "g-binding",
+          "operator": "MIRRORED_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "An exact source/test naming counterpart may supply neighboring native RI fixture and assertion conventions; path correspondence does not prove test coverage."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "tests",
+      "identity": "mirror-g-membership",
+      "identity_kind": "caller-hypothesis",
+      "members": [
+        {
+          "key": "test",
+          "grounding_request": "g-membership",
+          "operator": "MIRRORED_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "An exact source/test naming counterpart may supply neighboring native RI fixture and assertion conventions; path correspondence does not prove test coverage."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    },
+    {
+      "obligation": "tests",
+      "identity": "mirror-g-reference",
+      "identity_kind": "caller-hypothesis",
+      "members": [
+        {
+          "key": "test",
+          "grounding_request": "g-reference",
+          "operator": "MIRRORED_RESOURCE",
+          "multiplicity": "fixed",
+          "reason": "An exact source/test naming counterpart may supply neighboring native RI fixture and assertion conventions; path correspondence does not prove test coverage."
+        }
+      ],
+      "provenance": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+    }
+  ],
+  "no_recipe_obligations": {
+    "explicit-exposure": "New exposure/__all__ truth has no existing exact native locator or allowed projection; no fabricated relation.",
+    "documentation": "Documentation authority is not an owner, mirror or Reference relation.",
+    "validation": "Protected validation policy is not an allowed declaration-owner, mirror or Reference relation."
+  },
+  "reference_bounds": {
+    "max_results": 16,
+    "result_rationale": "Shared budget of at most sixteen unresolved children per family bounds human review; no target fanout was inspected. Complete overflow abstains, never truncates.",
+    "work_limit": 4096,
+    "work_unit": "distinct supplied source analyses authorized for replay/enumeration",
+    "work_rationale": "Shared finite 4096-analysis budget permits a broad ordinary checkout frame; validate frame count fits before freeze without examining any seed's referencers."
+  },
+  "authoring_surfaces": [
+    "AGENTS.md",
+    "docs/documentation_map.md",
+    "docs/architecture/taxonomy.md",
+    "docs/architecture/decisions/ADR-0005-obligation-driven-repository-localization.md",
+    "docs/backlog/overview.md",
+    "docs/backlog/metadata.md",
+    "docs/backlog/epics/B-0002-coding-context-substrate.md",
+    "src/devtools/context/localization/docs/overview.md",
+    "src/devtools/context/python/docs/overview.md",
+    "src/devtools/context/python/modules/docs/overview.md",
+    "src/devtools/context/python/references/docs/overview.md",
+    "src/devtools/context/python/__init__.py",
+    "src/devtools/context/python/modules/__init__.py",
+    "src/devtools/context/python/imports/__init__.py",
+    "src/devtools/context/python/function/__init__.py",
+    "src/devtools/context/python/classes/__init__.py",
+    "src/devtools/context/python/references/declarations/__init__.py"
+  ],
+  "mechanical_inspection_surfaces": [
+    "experiments/codex_dogfood/capture.py",
+    "experiments/codex_dogfood/case_0004/capture.py",
+    "src/devtools/context/localization/__init__.py",
+    "src/devtools/context/localization/task.py",
+    "src/devtools/context/localization/obligation.py",
+    "src/devtools/context/localization/lexical.py",
+    "src/devtools/context/localization/grounding/contract.py",
+    "src/devtools/context/localization/grounding/resolve.py",
+    "src/devtools/context/localization/generation/__init__.py",
+    "src/devtools/context/localization/generation/contract.py",
+    "src/devtools/context/localization/association/references.py",
+    "src/devtools/context/localization/roles/__init__.py",
+    "src/devtools/context/localization/roles/models.py",
+    "src/devtools/context/localization/roles/derivation.py",
+    "src/devtools/context/localization/roles/inputs.py",
+    "src/devtools/context/localization/routing/__init__.py",
+    "src/devtools/context/localization/routing/models.py",
+    "src/devtools/context/python/modules/interpretation.py",
+    "src/devtools/context/python/modules/membership.py",
+    "src/devtools/context/python/mirrored_paths.py",
+    "src/devtools/context/python/references/declarations/analysis.py",
+    "src/devtools/context/python/function/declarations.py",
+    "src/devtools/context/python/classes/declarations.py",
+    "src/devtools/context/python/project_configuration/__init__.py",
+    "src/devtools/context/python/project_configuration/declarations.py",
+    "src/devtools/context/repository/observation.py",
+    "src/devtools/context/repository/corpus.py",
+    "src/devtools/context/repository/discovery.py",
+    "src/devtools/context/repository/document.py",
+    "src/devtools/context/repository/identity.py",
+    "src/devtools/context/repository/resource.py",
+    "src/devtools/context/repository/snapshot.py",
+    "src/devtools/context/retrieval/lexical/analysis.py",
+    "src/devtools/context/retrieval/lexical/statistics.py",
+    "src/devtools/context/retrieval/lexical/index.py",
+    "src/devtools/context/retrieval/lexical/bm25.py",
+    "src/devtools/context/retrieval/lexical/filename.py",
+    "src/devtools/resources/commands/__init__.py",
+    "src/devtools/resources/commands/docs/overview.md",
+    "src/devtools/resources/commands/models/command.py",
+    "src/devtools/resources/commands/models/result.py",
+    "src/devtools/resources/commands/execution.py"
+  ],
+  "historical_firewall": "No Case 0006 treatment/results/gold or historical Reference gold inspected. Aggregate motivation supplied by the user only.",
+  "no_treatment_repair": true
+}
