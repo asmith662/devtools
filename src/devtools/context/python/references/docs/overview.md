@@ -56,3 +56,17 @@ disclosure, or assert a runtime call graph. Retrieval may project these facts
 to resource edges; Context Planning may disclose an explicitly chosen fact
 using retained source spans. Personalized PageRank (PPR) and Reciprocal Rank
 Fusion (RRF) remain separate Retrieval mechanisms.
+
+
+## Localization consumer boundary
+
+Localization's explicit `REFERENCING_RESOURCE` projection consumes these native
+facts from a caller-supplied frozen analysis/universe frame. It selects exact
+grounded declaration targets, groups occurrences by referencing resource and
+retains native fact/route/Call provenance for unresolved branching candidates.
+It adds no RI proposition and does not weaken decorated or dynamic binding
+guards. A decorated source declaration can ground without any positive binding
+Reference. Imports alone, inheritance, runtime invocation and public export are
+not inferred by that projection. RI remains independent of Localization; see the
+[Localization contract](../../../localization/docs/overview.md#exact-python-referencing-resource-projection)
+for frame validation, independent work/result bounds and nonclaims.

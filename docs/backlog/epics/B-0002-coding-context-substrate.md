@@ -1025,3 +1025,24 @@ It adds no Reference operator, ranking, acceptance, satisfaction or readiness
 semantics and does not close this epic. Reference RI and frozen experiments are
 unchanged; confirmation remains sealed. The next bounded request is the narrow
 exact Reference-to-referencing-resource adapter, before any Case 0007 freeze.
+
+
+## Exact direct-Reference generation adapter
+
+Localization now explicitly projects positive Python declaration Reference facts
+from a supplied frozen native analysis frame into distinct referencing-resource
+candidates. Function, class and supported method subjects are matched exactly;
+class/method targets remain distinct. All matching occurrence/route/Call support
+is retained, including same-owner resources. Native binding/decorator guards
+remain unchanged. Imports, inheritance, exports and runtime invocation are not
+new candidate relations or claims.
+
+The adapter uses the settled branching contract with an explicit source-analysis
+work bound and the existing independent branch result bound. Whole-frame work
+preflight, canonical native replay and association validation prevent arbitrary
+prefix admission and forged support. No ranking, recursive graph, acceptance,
+satisfaction or readiness policy is added. This implements the relation slice
+motivated by the [direct-Reference investigation](../../research/direct-reference-witness-generation.md);
+it does not close this epic. Next freeze prospective Case 0007 to evaluate
+independently adjudicated witness coverage and candidate-surface size. No case
+replay, effectiveness treatment or confirmation access occurred here.

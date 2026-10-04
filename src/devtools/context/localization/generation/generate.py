@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-"""Instantiate caller recipes through two bounded native RI projections."""
+"""Instantiate caller recipes through explicit bounded native RI projections."""
 
 from __future__ import annotations
 
@@ -17,6 +17,9 @@ from devtools.context.localization.association import (
     WitnessHypothesisFamilyIdentity,
     build_candidate_witness_view,
 )
+from devtools.context.localization.association.references import (
+    validate_reference_frame,
+)
 from devtools.context.localization.association.structural import (
     owner_resource,
     validate_structural_support,
@@ -33,6 +36,9 @@ from devtools.context.localization.generation.contract import (
     WitnessGenerationRecipe,
     WitnessGenerationView,
 )
+from devtools.context.localization.generation.references import (
+    project_referencing_resources,
+)
 from devtools.context.localization.grounding import (
     AnchorGroundingDisposition,
     ground_task_anchor,
@@ -42,6 +48,9 @@ from devtools.context.python.mirrored_paths import (
 )
 
 if TYPE_CHECKING:
+    from devtools.context.localization.association.references import (
+        PythonReferenceProjectionRequest,
+    )
     from devtools.context.localization.association.structural import (
         StructuralMemberSupport,
     )
@@ -101,6 +110,8 @@ def generate_witness_hypotheses(plan: WitnessGenerationPlan) -> WitnessGeneratio
 
 
 def _validate_recipes(plan: WitnessGenerationPlan) -> None:
+    if plan.python_references is not None:
+        validate_reference_frame(plan.python_references, plan.snapshot)
     obligations = {item.identity: item for item in plan.task.obligations}
     for recipe in plan.recipes:
         obligation = obligations.get(recipe.identity.obligation)
@@ -108,6 +119,13 @@ def _validate_recipes(plan: WitnessGenerationPlan) -> None:
             msg = "Generation recipe names an unknown task obligation."
             raise ValueError(msg)
         for member in recipe.members:
+            if member.projection is ProjectionKind.REFERENCING_RESOURCE:
+                if plan.python_references is None:
+                    msg = "Reference projection requires explicit native inputs."
+                    raise ValueError(msg)
+                if not isinstance(member, BranchingGroundedMemberRecipe):
+                    msg = "Reference projection requires a branching member."
+                    raise ValueError(msg)
             grounding = member.grounding
             if grounding.request.anchor not in obligation.anchors:
                 msg = "Generation member anchor is not linked to its obligation."
@@ -337,6 +355,12 @@ def _project(
     }.get(grounding.disposition)
     if source_disposition is not None:
         return MemberProjectionAttempt(member, source_disposition, None, (), 0)
+    if member.projection is ProjectionKind.REFERENCING_RESOURCE:
+        return project_referencing_resources(
+            plan.snapshot,
+            member,
+            cast("PythonReferenceProjectionRequest", plan.python_references),
+        )
     source = grounding.candidates[0].referent
     owner = owner_resource(plan.snapshot, source)
     if member.projection is ProjectionKind.OWNER_RESOURCE:

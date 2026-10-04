@@ -89,7 +89,8 @@
   unresolved/ambiguous provenance without witness satisfaction.
   Its [bounded generation contract](../src/devtools/context/localization/docs/overview.md#bounded-candidate-witness-generation)
   owns caller-shaped fixed recipes and optional single-branch families, exact
-  owner/mirror projection, child lineage, target-specific structural support,
+  owner/mirror and explicit Python Reference projection, child lineage,
+  target-specific structural support,
   independent work/result bounds and bounded abstention diagnostics.
   The [Localization package overview](../src/devtools/context/localization/docs/overview.md#candidate-witness-association)
   also owns the bounded candidate-hypothesis contract and its native provenance.

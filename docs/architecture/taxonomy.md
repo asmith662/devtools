@@ -688,6 +688,13 @@ obligation. Family identity, branch target, generated child identity, accepted
 witness and satisfied obligation differ. Incomplete native work or result-bound
 overflow admits no arbitrary prefix. Ordering is reproducibility only; no
 Cartesian product, automatic relation expansion or new ranking is implied.
+An explicitly selected Python referencing-resource projection consumes positive
+native Reference facts for an exact grounded declaration subject in a supplied
+frozen analysis frame. It groups occurrence support into resource candidates
+and uses the existing branching contract. Native Call tags remain syntax;
+import provenance, base expressions and source declaration identity establish
+neither runtime binding nor invocation, inheritance, export or witness truth.
+No generic graph or recursive traversal is implied.
 
 Localization readiness is scoped to the caller-supplied obligation frame, not a
 claim that the task interpretation is exhaustive or the resulting Context is

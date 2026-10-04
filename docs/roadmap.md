@@ -30,7 +30,7 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
-### Current — bounded branching prerequisite, exact Reference adapter next
+### Current — exact Reference generation landed, prospective Case 0007 next
 
 Prospective Case 0005 joined analysis found 24 distinct resources in its
 accepted witness universe and a minimum semantically sufficient union of 22;
@@ -56,11 +56,16 @@ Case 0006 replay or improved coverage claim follows. The completed
 identified generation multiplicity as the immediate prerequisite. Production now
 supports one explicitly caller-authored bounded branching member per recipe
 family, deterministic child lineage, per-branch failures and independent
-work/result abstention. No Reference relation is implemented by this increment.
-The next smallest request is the narrow exact direct-Reference to
-referencing-resource generation adapter using this settled branching contract.
-Do not freeze Case 0007 until that separate adapter increment is complete.
-Resolution and elimination remain separate questions.
+work/result abstention. The narrow `REFERENCING_RESOURCE` adapter now consumes
+an explicit frozen Python Reference frame and selects exact grounded declaration
+subjects into grouped referencing-resource candidates. It uses branching
+unchanged, retains native support and same-owner candidates, and abstains on
+incomplete work or whole-set result overflow. Reference RI truth remains unchanged.
+The next task is to freeze a new prospective Case 0007 evaluating exact grounding
+and OWNER_RESOURCE, MIRRORED_RESOURCE and direct-Reference branching against
+independently adjudicated witness coverage and candidate-surface size. No Case
+0007 freeze or effectiveness experiment occurred in this checkpoint. Resolution
+and elimination remain separate questions.
 
 ### Completed — caller-directed lexical role routing
 

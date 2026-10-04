@@ -788,3 +788,50 @@ remains sealed.
   remain untouched, and Case 0007 is neither frozen nor executed. Next implement
   the narrow exact direct-Reference to referencing-resource generation adapter
   under the settled branching contract; do not freeze Case 0007 in that request.
+
+
+## Exact direct-Reference witness generation (2026-10-04)
+
+- Added explicit `REFERENCING_RESOURCE` projection over supplied frozen Python
+  declaration Reference analyses. Only exact positive native target subject and
+  declaration matches qualify. Native function/class/supported method identities
+  remain distinct; resource/module groundings are not guessed into declarations.
+- Added immutable source-analysis/universe/work inputs and exact native Reference
+  structural support under Localization association, with the narrow projection
+  adapter under generation. Native RI and Retrieval remain independent. No
+  universal reference model, index, cache, graph or new parser was introduced.
+- Grouped all matching facts by referencing resource, preserving source spans,
+  native analysis/route/import provenance and direct Call tags. Same-owner facts
+  remain eligible and use existing duplicate-complement branch failures. Calls
+  are not a second relation; imports alone, inheritance and exports are not new
+  generation semantics. Decorated source grounding preserves native binding guards.
+- Canonical native replay over retained snapshot content validates supplied
+  analyses without replacing them or reopening files. Association replays native
+  seed/fact membership and exact referencing-resource ownership. Foreign/stale
+  metadata, forged facts, inconsistent coverage and identity collisions are
+  rejected. Native universe/source interpretation provenance remains intact.
+- Work is explicitly bounded by distinct supplied source analyses. Whole-frame
+  preflight abstains before replay/enumeration if oversized, retaining zero work,
+  unknown target total, full source frontier and its native analysis identities.
+  This is not a byte/fact-count/time budget; metadata and association integrity
+  replay remain distinct validation costs. The settled branching member alone
+  owns the result bound: complete overflow admits no arbitrary prefix.
+- Existing branching family/child identity, outcome and complementarity semantics
+  remain unchanged, as do OWNER_RESOURCE and MIRRORED_RESOURCE. Reference targets
+  produce unresolved child hypotheses only; lexical/role/routing support attaches
+  afterward. No relevance, rank, confidence, accepted witness, satisfaction,
+  runtime binding/invocation, inheritance, export or readiness claim was added.
+- Added 44 adapter/frame/support/integration test cases. The 266-test focused
+  Localization/Reference/imported-member regression selection passes. Protected
+  validation after the final production edit passes 1,533 tests with two live
+  skips and covers all 10,110 production statements and 2,446 branches (100%).
+  Both new modules cover all 103 statements and 36 branches (100%). Ruff
+  `src tests scripts`, mypy `src tests` (500 files), seven touched Python format
+  checks and worktree/index diff checks pass; the protected gate is unchanged.
+- Updated Localization and Python Reference consumer documentation, taxonomy,
+  documentation map, roadmap and B-0002. ADRs remain unchanged and B-0002 remains
+  open. Frozen experiments and confirmation outcomes remain untouched. No Case
+  0006 replay/coverage claim or Case 0007 freeze/effectiveness treatment occurred.
+- Next freeze prospective Case 0007 evaluating exact declaration grounding plus
+  OWNER_RESOURCE, MIRRORED_RESOURCE and direct-Reference branching against
+  independently adjudicated witness coverage and candidate-surface size.

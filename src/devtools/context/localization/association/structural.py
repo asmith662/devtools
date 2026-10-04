@@ -6,6 +6,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from devtools.context.localization.association.references import (
+    PythonReferenceResourceSupport,
+    validate_reference_support,
+)
 from devtools.context.localization.grounding import (
     AnchorGrounding,
     AnchorGroundingDisposition,
@@ -39,7 +43,9 @@ class MirroredResourceSupport:
     correspondence: PythonMirroredPathCorrespondence
 
 
-type StructuralMemberSupport = OwnerResourceSupport | MirroredResourceSupport
+type StructuralMemberSupport = (
+    OwnerResourceSupport | MirroredResourceSupport | PythonReferenceResourceSupport
+)
 
 
 def owner_resource(
@@ -77,6 +83,9 @@ def validate_structural_support(
     ):
         msg = "Structural support has no current unique native grounding."
         raise ValueError(msg)
+    if isinstance(support, PythonReferenceResourceSupport):
+        validate_reference_support(support, snapshot, target)
+        return
     source = owner_resource(snapshot, grounding.candidates[0].referent)
     if isinstance(support, OwnerResourceSupport):
         if target != source:
@@ -103,6 +112,8 @@ def structural_support_key(support: StructuralMemberSupport) -> tuple[str, ...]:
         _referent_key(grounding),
         support.correspondence.identity
         if isinstance(support, MirroredResourceSupport)
+        else support.identity
+        if isinstance(support, PythonReferenceResourceSupport)
         else "",
     )
 

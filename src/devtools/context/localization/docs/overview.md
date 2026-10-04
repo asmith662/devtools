@@ -302,7 +302,8 @@ SharedAnchor -> exact Grounding -> caller recipe -> typed RI projection
 | Immediate package membership / initializer surface | Bounded direct relation | Deferred: its explicit selected module-analysis frame and surface meaning need a separate input contract; initializer presence is not public API proof |
 | Exact direct containment and declaration ownership | Low-fanout exact projection | Already represented by owner projection |
 | Configuration declarations/selectors and import/member binding | Bounded multi-target or qualified relation | Deferred pending a task-relative target and operator contract |
-| References, calls/callers, direct bases and package children | Potentially high-fanout | Deferred; no implicit incident-edge expansion |
+| Exact declaration References, including direct Call tags | Bounded explicit inverse relation | `REFERENCING_RESOURCE`: caller-supplied Python native analyses to distinct referencing resources; requires explicit branching |
+| Direct bases and package children | Potentially high-fanout | Deferred; no implicit incident-edge expansion |
 | Recursive containment, import closure, graph neighbors/PPR/RRF | High-fanout or semantically unsafe as a witness | Excluded from v1 |
 
 When a mirror recipe has resolved grounding, the mirror operator runs the
@@ -313,8 +314,10 @@ Fixed `GroundedMemberRecipe` values still accept **one** target. No target yield
 `NO_TARGET`; ambiguous, unresolved or unsupported grounding abstains; more than
 one result yields `MULTI_TARGET` and no candidate hypothesis. Every fixed member
 must succeed. Repeated complementary resource targets yield `DUPLICATE_TARGET`.
-OWNER and MIRRORED remain the only operators, with their existing single-target
-semantics. Branching adds no relation or automatic fanout policy.
+OWNER and MIRRORED retain their existing single-target semantics.
+REFERENCING_RESOURCE consumes the explicit Python Reference input described
+below and requires a branching member. Branching itself adds no automatic
+relation selection or fanout policy.
 
 ### Caller-authorized branching families
 
@@ -333,7 +336,7 @@ complete targets: T1, T2, T3
 children: (owner, T1), (owner, T2), (owner, T3)
 ```
 
-No Reference operator exists yet. The example explains shape authorization.
+REFERENCING_RESOURCE now supports this shape when explicitly selected.
 It never produces `(owner, T1, T2, T3)`. Members within each child are proposed
 complements; children within a family compete as unresolved explanations.
 Other caller-authored families may also compete for the same obligation.
@@ -420,4 +423,71 @@ grounding and mirror relationships. Generation changes neither accepted
 `WitnessSet` alternatives nor `LocalizationAssessment`/readiness. It performs no
 scoring, ranking, acceptance, satisfaction, resolution or elimination. Reference
 RI remains unchanged; Case 0007 is neither frozen nor executed. Effectiveness
-requires a later prospective case after the narrow relation adapter.
+requires a later prospective case.
+
+
+### Exact Python referencing-resource projection
+
+`REFERENCING_RESOURCE` selects only positive native
+`PythonDeclarationReferenceKnowledge` facts whose exact `target_subject` and
+`target_declaration` match the resolved grounded function, class or supported
+direct method declaration. Resource/module groundings are not guessed into
+seeds. Existing ambiguous, unresolved and unsupported grounding outcomes remain.
+Class seeds never absorb references targeting their methods. Decorated source
+declarations can ground while binding-oriented Reference RI yields no matching
+facts; no decorator guard is weakened.
+
+The caller supplies `WitnessGenerationPlan.python_references`: an immutable
+`PythonReferenceProjectionRequest` containing the exact module interpretation
+universe, finite `PythonReferenceSourceInput` analyses with their original source
+interpretations, and an explicit nonnegative `work_limit`. There is no filesystem
+scan, implicit universe acquisition, cache or inverse index. Native input order
+inside universe/source interpretation provenance is preserved for exact replay;
+analysis, fact and target presentation use canonical identities without ranking.
+
+Work units are **distinct supplied source analyses** authorized for canonical
+replay and complete positive-fact enumeration. The adapter preflights the entire
+source-analysis count: if it exceeds `work_limit`, no native analysis is replayed
+or enumerated, work performed is zero, completeness is false, target count is
+unknown and all source resources remain an uncovered frontier. The retained
+request identifies every unexamined native analysis, including multiple analyses
+of one resource. Metadata/frame checks are independent integrity checks. This
+analysis-count bound is not a byte, fact-count, CPU-time or total validation-cost
+budget; one analysis can contain many assessments and facts. Acquisition happened
+before projection and is not represented as projection work. Association may
+replay native support again for integrity, without acquiring or replacing truth.
+
+When the whole frame is authorized, each supplied analysis is compared to
+`derive_python_declaration_references` replay over retained snapshot content and
+the exact supplied native inputs. Foreign repository/snapshot/resource/universe
+metadata, missing interpretations, altered coverage/assessments or forged facts
+are rejected. Replay validates supplied RI; it does not silently replace it or
+reopen the working tree. Enumeration considers all positive facts and excludes
+unresolved/ambiguous/unsupported assessments, textual matches and imports alone.
+
+Several matching References in one source resource become one
+`ProjectedMemberTarget`, retaining all distinct exact facts in
+`PythonReferenceResourceSupport`. Support preserves grounding/request, native
+source analysis, occurrence/span, declaration/subject, resolution route, import
+provenance, Call tag, frame and operator identity. Association replays grounding
+and native analysis, checks authorized-frame membership, exact fact membership,
+seed equality and source occurrence/resource ownership. Duplicate facts are
+canonicalized; conflicting equal identities are rejected. Children receive only
+support establishing their own target. No occurrence-count score is computed.
+
+`direct_call` remains a syntax tag on a Reference, not another candidate or
+operator and not runtime invocation. An import may participate in retained
+resolution provenance but does not itself generate a target. A base-expression
+Reference can qualify as a Reference without asserting inheritance. Existing
+one-facade Reference resolution may qualify without adding a public-export or
+facade-generation relation. There is no package, `__all__`, recursive import or
+neighbor traversal.
+
+Same-owner exact References remain eligible. A fixed owner and identical branch
+resource are handled by existing `DUPLICATE_TARGET` branch outcomes; the adapter
+never filters that resource. Complete zero targets yields scoped `NO_TARGET`,
+not a claim that the declaration is unused at runtime. One or several in-bound
+targets use existing family/child identities and branching unchanged. The sole
+result bound is the branching member's `max_results`: complete overflow retains
+the exact count and creates no children or first-K subset. Lexical/role/routing
+support attaches afterward and cannot determine Reference eligibility or fanout.

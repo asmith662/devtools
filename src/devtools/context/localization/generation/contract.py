@@ -17,6 +17,9 @@ if TYPE_CHECKING:
         GeneratedWitnessHypothesisIdentity,
         WitnessHypothesisIdentity,
     )
+    from devtools.context.localization.association.references import (
+        PythonReferenceProjectionRequest,
+    )
     from devtools.context.localization.association.structural import (
         StructuralMemberSupport,
     )
@@ -37,10 +40,11 @@ if TYPE_CHECKING:
 
 
 class ProjectionKind(Enum):
-    """The two exact, single-target native projection policies in v1."""
+    """Name exact native projections, with caller-authored member multiplicity."""
 
     OWNER_RESOURCE = "owner-resource"
     MIRRORED_RESOURCE = "mirrored-resource"
+    REFERENCING_RESOURCE = "referencing-resource"
 
 
 class GenerationDisposition(Enum):
@@ -143,6 +147,7 @@ class WitnessGenerationPlan:
     acquisition: LocalizationLexicalAcquisition | None = None
     role_evidence: RepositoryRoleEvidenceView | None = None
     routing: LocalizationRoleRoutingView | None = None
+    python_references: PythonReferenceProjectionRequest | None = None
 
     def __post_init__(self) -> None:
         """Reject duplicate alternatives before running any native projection."""
