@@ -17,6 +17,9 @@ from devtools.context.localization.association import (
     WitnessHypothesisFamilyIdentity,
     build_candidate_witness_view,
 )
+from devtools.context.localization.association.imports import (
+    validate_import_dependency_frame,
+)
 from devtools.context.localization.association.references import (
     validate_reference_frame,
 )
@@ -36,6 +39,9 @@ from devtools.context.localization.generation.contract import (
     WitnessGenerationRecipe,
     WitnessGenerationView,
 )
+from devtools.context.localization.generation.imports import (
+    project_direct_import_dependencies,
+)
 from devtools.context.localization.generation.references import (
     project_referencing_resources,
 )
@@ -48,6 +54,9 @@ from devtools.context.python.mirrored_paths import (
 )
 
 if TYPE_CHECKING:
+    from devtools.context.localization.association.imports import (
+        PythonImportDependencyProjectionRequest,
+    )
     from devtools.context.localization.association.references import (
         PythonReferenceProjectionRequest,
     )
@@ -109,7 +118,29 @@ def generate_witness_hypotheses(plan: WitnessGenerationPlan) -> WitnessGeneratio
     return WitnessGenerationView(plan, attempts, association)
 
 
+def _validate_projection_inputs(
+    plan: WitnessGenerationPlan,
+    member: GroundedMemberRecipe,
+) -> None:
+    if member.projection is ProjectionKind.DIRECT_IMPORT_DEPENDENCY_RESOURCE:
+        if plan.python_import_dependencies is None:
+            msg = "Import dependency projection requires explicit native inputs."
+            raise ValueError(msg)
+        if not isinstance(member, BranchingGroundedMemberRecipe):
+            msg = "Import dependency projection requires a branching member."
+            raise ValueError(msg)
+    if member.projection is ProjectionKind.REFERENCING_RESOURCE:
+        if plan.python_references is None:
+            msg = "Reference projection requires explicit native inputs."
+            raise ValueError(msg)
+        if not isinstance(member, BranchingGroundedMemberRecipe):
+            msg = "Reference projection requires a branching member."
+            raise ValueError(msg)
+
+
 def _validate_recipes(plan: WitnessGenerationPlan) -> None:
+    if plan.python_import_dependencies is not None:
+        validate_import_dependency_frame(plan.python_import_dependencies, plan.snapshot)
     if plan.python_references is not None:
         validate_reference_frame(plan.python_references, plan.snapshot)
     obligations = {item.identity: item for item in plan.task.obligations}
@@ -119,13 +150,7 @@ def _validate_recipes(plan: WitnessGenerationPlan) -> None:
             msg = "Generation recipe names an unknown task obligation."
             raise ValueError(msg)
         for member in recipe.members:
-            if member.projection is ProjectionKind.REFERENCING_RESOURCE:
-                if plan.python_references is None:
-                    msg = "Reference projection requires explicit native inputs."
-                    raise ValueError(msg)
-                if not isinstance(member, BranchingGroundedMemberRecipe):
-                    msg = "Reference projection requires a branching member."
-                    raise ValueError(msg)
+            _validate_projection_inputs(plan, member)
             grounding = member.grounding
             if grounding.request.anchor not in obligation.anchors:
                 msg = "Generation member anchor is not linked to its obligation."
@@ -355,6 +380,15 @@ def _project(
     }.get(grounding.disposition)
     if source_disposition is not None:
         return MemberProjectionAttempt(member, source_disposition, None, (), 0)
+    if member.projection is ProjectionKind.DIRECT_IMPORT_DEPENDENCY_RESOURCE:
+        return project_direct_import_dependencies(
+            plan.snapshot,
+            member,
+            cast(
+                "PythonImportDependencyProjectionRequest",
+                plan.python_import_dependencies,
+            ),
+        )
     if member.projection is ProjectionKind.REFERENCING_RESOURCE:
         return project_referencing_resources(
             plan.snapshot,

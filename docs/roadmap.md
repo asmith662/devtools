@@ -30,7 +30,7 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
-### Current — exact Reference generation landed, prospective Case 0007 next
+### Current — direct import dependency generation landed, prospective Case 0008 next
 
 Prospective Case 0005 joined analysis found 24 distinct resources in its
 accepted witness universe and a minimum semantically sufficient union of 22;
@@ -61,11 +61,17 @@ an explicit frozen Python Reference frame and selects exact grounded declaration
 subjects into grouped referencing-resource candidates. It uses branching
 unchanged, retains native support and same-owner candidates, and abstains on
 incomplete work or whole-set result overflow. Reference RI truth remains unchanged.
-The next task is to freeze a new prospective Case 0007 evaluating exact grounding
-and OWNER_RESOURCE, MIRRORED_RESOURCE and direct-Reference branching against
-independently adjudicated witness coverage and candidate-surface size. No Case
-0007 freeze or effectiveness experiment occurred in this checkpoint. Resolution
-and elimination remain separate questions.
+Prospective Case 0007 is frozen. Its aggregate diagnosis motivates a new bounded
+direct import dependency hypothesis. Localization now consumes existing native
+resolved module-import relations for one forward step into exact target-module
+resources, with no member-binding/export claim or facade/recursive expansion.
+Explicit frozen inputs, replay validation and the existing branching contract
+retain independent source-analysis work and distinct-result bounds.
+Next freeze a NEW prospective Case 0008 testing OWNER_RESOURCE,
+MIRRORED_RESOURCE, REFERENCING_RESOURCE and DIRECT_IMPORT_DEPENDENCY_RESOURCE
+together against independently adjudicated witnesses. No Case 0007 replay,
+gold-identity tuning or Case 0008 freeze occurred in this increment. Resolution
+and elimination remain separate questions requiring prospective evidence.
 
 ### Completed — caller-directed lexical role routing
 

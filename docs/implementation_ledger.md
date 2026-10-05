@@ -835,3 +835,46 @@ remains sealed.
 - Next freeze prospective Case 0007 evaluating exact declaration grounding plus
   OWNER_RESOURCE, MIRRORED_RESOURCE and direct-Reference branching against
   independently adjudicated witness coverage and candidate-surface size.
+
+## Direct static Python import dependency generation
+
+- Inspected canonical Python declaration, module interpretation, resolved
+  module-import relation, direct binding, one-facade member and Reference RI,
+  Localization grounding/association/generation and ADR-0002/ADR-0005. Existing
+  `PythonResolvedModuleImportRelation` already supplies the exact directed
+  source/declaration/resolution/target chain. No native RI semantic change was
+  needed or made.
+- Added `DIRECT_IMPORT_DEPENDENCY_RESOURCE` with explicit frozen native source
+  analyses and exhaustive module resolutions. It projects one forward step to
+  the exact target module resource. `ImportFrom` targets the resolved module
+  portion, without asserting member identity or following facade imports.
+  Relative imports and aliases retain native semantics; nonpositive module
+  outcomes and star declarations produce no target. Dynamic/nested imports
+  remain outside direct module-body coverage. Ordinary/package resource
+  ownership remains exact, with no initializer substitution or recursion.
+- Association retains grounding, request, source and all positive native import
+  relations per resource. Replay over retained snapshot content verifies native
+  analyses/resolutions, module interpretation, frame and target; no current
+  filesystem acquisition or independent parser duplicates RI. Repeated imports
+  group once with all support; self-import candidates retain fixed/branch
+  duplicate-target behavior. Reference provenance remains a separate support.
+- One selected source-analysis replay is one per-member work unit; insufficient
+  authorization retains an incomplete frontier and no children. This is not a
+  declaration/byte/time or total integrity-validation budget. Complete distinct
+  resource overflow uses existing `max_results` and admits no prefix. Existing
+  family/child, OWNER, MIRROR and REFERENCE semantics remain unchanged.
+- Added 46 generic adapter/frame/support/boundary test cases. The 356-test
+  focused Localization/import/module/Reference selection passes. Protected
+  development validation after the final production edit passes 1,579 tests
+  with two live skips, covering all 10,251 production statements and 2,502
+  branches (100%). The two new modules cover 119 statements and 44 branches
+  (100%). Ruff `src tests scripts`, mypy `src tests` (503 files), seven
+  touched-file format checks and worktree/index diff checks pass.
+- Updated Localization/import/module consumer docs, taxonomy, documentation
+  map, roadmap and B-0002. ADRs remain unchanged; B-0002 remains open. Candidates
+  imply no exports, runtime imports, Reference, relevance, ranking, acceptance,
+  obligation satisfaction or readiness. Aggregate Case 0007 motivation was used
+  without gold-identity/path/obligation tuning or replay; confirmation is sealed.
+- Next freeze a NEW prospective Case 0008 evaluating OWNER_RESOURCE,
+  MIRRORED_RESOURCE, REFERENCING_RESOURCE and direct import dependency generation
+  together. No effectiveness claim or Case 0008 freeze occurs in this increment.

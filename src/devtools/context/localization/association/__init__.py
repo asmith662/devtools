@@ -12,6 +12,11 @@ from devtools.context.localization.association.hypothesis import (
     WitnessHypothesisIdentity,
     build_candidate_witness_view,
 )
+from devtools.context.localization.association.imports import (
+    PythonImportDependencyProjectionRequest,
+    PythonImportDependencyResourceSupport,
+    PythonImportDependencySourceInput,
+)
 from devtools.context.localization.association.references import (
     PythonReferenceProjectionRequest,
     PythonReferenceResourceSupport,
@@ -30,6 +35,9 @@ __all__ = [
     "LexicalMatchSupport",
     "MirroredResourceSupport",
     "OwnerResourceSupport",
+    "PythonImportDependencyProjectionRequest",
+    "PythonImportDependencyResourceSupport",
+    "PythonImportDependencySourceInput",
     "PythonReferenceProjectionRequest",
     "PythonReferenceResourceSupport",
     "PythonReferenceSourceInput",

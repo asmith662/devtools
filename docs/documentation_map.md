@@ -251,7 +251,14 @@ provenance in realized ContextDisclosure items, and renders/assembles them
 after materialization. It does not retrieve, rank, autonomously select,
 optimize budgets, or judge sufficiency.
 
-The adjacent `context.python.imports` package retains direct module-body import
+The adjacent `context.python.imports`
+[package contract](../src/devtools/context/python/imports/docs/overview.md)
+documents native module-only relations and the separate one-facade member slice.
+The Localization direct import dependency consumer takes one forward module
+relation step with exact provenance, branching and independent work/result
+bounds. Imported-module candidates do not claim successful member bindings,
+exports, runtime dependencies, relevance or witness acceptance.
+The package retains direct module-body import
 aliases as source-grounded syntax and resolves eligible module portions only
 within an explicit interpretation universe. Its `relations.py` derives directed,
 declaration-grounded relations only for uniquely resolved outcomes with one

@@ -1046,3 +1046,25 @@ motivated by the [direct-Reference investigation](../../research/direct-referenc
 it does not close this epic. Next freeze prospective Case 0007 to evaluate
 independently adjudicated witness coverage and candidate-surface size. No case
 replay, effectiveness treatment or confirmation access occurred here.
+
+## Direct static import dependency generation adapter
+
+Localization now consumes the existing directed, declaration-grounded resolved
+module-import relation for exactly one forward import step. The target is the
+native imported module resource, including for `ImportFrom` syntax; this does
+not claim member binding, facade re-export, public API or runtime importability.
+The RI layer is unchanged and has no reverse dependency on Localization.
+
+Explicit frozen source analyses and all declaration resolutions retain positive
+and nonpositive outcomes. Canonical replay, repository/snapshot checks and exact
+relation/resource validation reject forged support. A selected source-analysis
+work bound and independent branching result bound admit no incomplete or
+oversized prefix. Repeated imports group all support into one resource target;
+self-imports retain existing fixed/branch collision behavior. No reverse imports,
+recursive expansion, ranking, acceptance, satisfaction or readiness is added.
+
+Aggregate prospective Case 0007 evidence motivates this hypothesis only. No
+gold paths, resource identities or obligation assignments tune the adapter,
+and Case 0007 is not replayed. This leaves B-0002 open. Next freeze a NEW
+prospective Case 0008 testing OWNER, MIRROR, REFERENCE and direct import dependency
+generation together before deciding whether structural breadth is finished.

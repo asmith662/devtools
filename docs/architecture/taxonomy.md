@@ -696,6 +696,15 @@ import provenance, base expressions and source declaration identity establish
 neither runtime binding nor invocation, inheritance, export or witness truth.
 No generic graph or recursive traversal is implied.
 
+An explicitly selected direct Python import dependency resource projection
+consumes a source module's uniquely resolved native module-import relations in
+the forward direction for one import step. Imported-member syntax identifies
+the resolved module portion, without claiming member binding, public exposure,
+facade closure or runtime import results. Exact resource support retains all
+declarations resolving to that resource; duplication is not a relevance vote.
+Source-analysis work and distinct-result admission remain independently bounded.
+Candidate generation adds no RI dependency truth, ranking or witness acceptance.
+
 Localization readiness is scoped to the caller-supplied obligation frame, not a
 claim that the task interpretation is exhaustive or the resulting Context is
 sufficient. Acquisition stop, mandatory coverage and representation completeness

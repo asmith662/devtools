@@ -303,6 +303,7 @@ SharedAnchor -> exact Grounding -> caller recipe -> typed RI projection
 | Exact direct containment and declaration ownership | Low-fanout exact projection | Already represented by owner projection |
 | Configuration declarations/selectors and import/member binding | Bounded multi-target or qualified relation | Deferred pending a task-relative target and operator contract |
 | Exact declaration References, including direct Call tags | Bounded explicit inverse relation | `REFERENCING_RESOURCE`: caller-supplied Python native analyses to distinct referencing resources; requires explicit branching |
+| Exact resolved module-import relations | One forward static import step | `DIRECT_IMPORT_DEPENDENCY_RESOURCE`: caller-supplied import analyses and resolutions to target module resources; requires explicit branching |
 | Direct bases and package children | Potentially high-fanout | Deferred; no implicit incident-edge expansion |
 | Recursive containment, import closure, graph neighbors/PPR/RRF | High-fanout or semantically unsafe as a witness | Excluded from v1 |
 
@@ -491,3 +492,79 @@ targets use existing family/child identities and branching unchanged. The sole
 result bound is the branching member's `max_results`: complete overflow retains
 the exact count and creates no children or first-K subset. Lexical/role/routing
 support attaches afterward and cannot determine Reference eligibility or fanout.
+
+### Direct static Python import dependency resources
+
+`DIRECT_IMPORT_DEPENDENCY_RESOURCE` consumes the existing qualified
+`PythonResolvedModuleImportRelation`, in the forward direction only. The native
+chain is an explicit-root source module, direct `Module.body` import declaration,
+unique `PythonImportResolution`, exact target module interpretation and that
+module's observed resource. Localization defines candidate use of this fact;
+it adds no Python binding or dependency truth. See the
+[import RI contract](../../python/imports/docs/overview.md).
+
+The caller supplies `WitnessGenerationPlan.python_import_dependencies`, a
+`PythonImportDependencyProjectionRequest` with the exact module universe,
+`PythonImportDependencySourceInput` records and a nonnegative `work_limit`.
+Each source record retains its module, exhaustive native declaration analysis
+and one canonical resolution for every declaration, including nonpositive
+outcomes. Sources are canonicalized by native module identity. There is no
+implicit acquisition, working-tree read, source-root discovery or text search.
+
+Module groundings use their exact interpretation; direct class/function
+groundings use the module retained by native source selection. Direct method
+groundings require exactly one owner-resource interpretation in the supplied
+universe. Arbitrary resource groundings are unsupported. Missing source inputs
+abstain as unsupported; competing method owner interpretations are ambiguous.
+Grounding replay remains mandatory before generation and association.
+
+Targets are deliberately **module-level**: `import P.M` and its alias select
+the exact interpreted `P.M` resource; `from P.M import Name` selects the same
+module resource. This asserts only resolved module-portion import provenance,
+even if `Name` has no supported declaration binding. It does not assert that
+Name exists, is importable or exported. `from . import Name` targets the resolved
+package module, with no member-to-submodule fallback. Relative imports use RI's
+source-package interpretation and beyond-package guards. A package target owns
+its actual interpreted initializer resource; an ordinary module is never
+redirected to an initializer. One-facade imported-member RI remains separate:
+the operator does not follow facade imports or select a final defining member.
+
+Only unique positive native module resolutions create candidates. Missing,
+ambiguous and unsupported module resolutions yield no target. Star declarations
+are explicitly excluded even when their module portion resolves. Dynamic calls,
+module `__getattr__`, nested and control-flow imports are outside direct
+module-body coverage. These boundaries do not claim exhaustive runtime imports.
+Target modules are never expanded: A importing B and B importing C produces B
+from A, with no C unless A directly imports C itself.
+
+Several declarations resolving to one resource yield one projected target with
+all exact native relation support. `PythonImportDependencyResourceSupport`
+retains grounding, request, source analysis and every positive relation, including
+declaration ordinal/span, alias, relative qualification, source/target module,
+universe, resource/content and repository/snapshot provenance. Association checks
+authorized membership and replays the canonical import analysis, resolutions
+and relation derivation against retained snapshot content. Foreign frames,
+forged resolutions, altered coverage, wrong subjects and mismatched target
+resources fail validation. Ordering uses native resource/identity keys only.
+
+One work unit is the exact selected source-module analysis replayed in full,
+including every declaration resolution. Work quota is per member projection,
+not cumulative across a plan. A limit below one performs no source replay,
+returns incomplete work with the source resource as frontier, and admits no
+children. Metadata/frame checks and subsequent integrity replay are separate
+from this analysis-count bound; it is not a declaration, byte or CPU budget.
+
+The existing branching `max_results` is the independent result bound. Complete
+zero results produces `NO_TARGET`; one or several in-bound resources create one
+competing child each, optionally with fixed complementary members. Complete
+overflow retains all diagnostic targets and the exact distinct count, with no
+children or first-K prefix. Self-import targets are preserved, so fixed-owner
+collisions retain the existing duplicate-target branch disposition. No family
+model or automatic complementary structure is introduced.
+
+Import dependency support stays distinct from Reference support. Neither creates
+export/public-API truth, runtime import results, relevance, scores, ranks,
+accepted witnesses, obligation satisfaction or readiness. Aggregate Case 0007
+evidence motivates this hypothesis only; this increment neither replays that
+case nor claims effectiveness. Next freeze a new prospective Case 0008 comparing
+OWNER, MIRROR, REFERENCE and direct import dependency generation together.

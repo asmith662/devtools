@@ -77,3 +77,11 @@ descriptors, metaclass behavior or rebinding, public exports, callability or
 runtime importability. Binding-oriented References and class-base resolution
 continue using `lookup_python_module_declaration` with its unchanged guards.
 Localization exact declaration grounding consumes this source selection.
+
+Localization's [direct import dependency adapter](../../../localization/docs/overview.md#direct-static-python-import-dependency-resources)
+uses these exact interpretations as endpoints of existing resolved module-import
+relations. Module and class/function seeds retain their native owner module;
+method seeds require a unique supplied owner-resource interpretation. Target
+ownership is the actual interpreted resource, with ordinary/package distinctions
+preserved. Membership supplies no import, export or candidate relation. The
+adapter neither follows facades nor changes declaration/binding lookup policy.

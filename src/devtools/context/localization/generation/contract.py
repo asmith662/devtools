@@ -17,6 +17,9 @@ if TYPE_CHECKING:
         GeneratedWitnessHypothesisIdentity,
         WitnessHypothesisIdentity,
     )
+    from devtools.context.localization.association.imports import (
+        PythonImportDependencyProjectionRequest,
+    )
     from devtools.context.localization.association.references import (
         PythonReferenceProjectionRequest,
     )
@@ -45,6 +48,7 @@ class ProjectionKind(Enum):
     OWNER_RESOURCE = "owner-resource"
     MIRRORED_RESOURCE = "mirrored-resource"
     REFERENCING_RESOURCE = "referencing-resource"
+    DIRECT_IMPORT_DEPENDENCY_RESOURCE = "direct-import-dependency-resource"
 
 
 class GenerationDisposition(Enum):
@@ -148,6 +152,7 @@ class WitnessGenerationPlan:
     role_evidence: RepositoryRoleEvidenceView | None = None
     routing: LocalizationRoleRoutingView | None = None
     python_references: PythonReferenceProjectionRequest | None = None
+    python_import_dependencies: PythonImportDependencyProjectionRequest | None = None
 
     def __post_init__(self) -> None:
         """Reject duplicate alternatives before running any native projection."""
