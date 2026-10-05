@@ -1,0 +1,331 @@
+{
+  "schema": "case-0007-blind-adjudication-v1",
+  "case_identity": "case_0007",
+  "task_identity": "case-0007-python-public-export-ri",
+  "task": "Implement the first bounded deterministic Python public-export and re-export Repository Intelligence capability for explicit module and package API surfaces. The capability should distinguish source declaration identity, import binding, package membership, and public API exposure; represent direct package-facade re-exports and statically explicit `__all__` declarations where they can be established soundly; preserve native repository/snapshot identity and provenance; retain ambiguity or abstention for dynamic or unsupported export behavior rather than overclaiming; integrate coherently with the existing Python module, declaration, import/member, package, and Reference Repository Intelligence contracts; expose a clean deterministic foundation for future Localization use without introducing a Localization generation operator in this increment; add rigorous tests and authoritative architecture/development documentation; preserve package/API conventions where applicable; and pass protected development validation. Do not implement runtime import execution, dynamic module `__getattr__` resolution, unrestricted star-import closure, inferred popularity or relevance, learned ranking, graph expansion, or automatic witness resolution.",
+  "purpose": "Acquire and generate repository information needed to implement the frozen explicit Python public-export/re-export RI capability while prospectively comparing global lexical, obligation lexical, role-routed and bounded structural witness-generation surfaces.",
+  "repository_id": "fe2c8984-a021-4342-9e31-404a6cf07707",
+  "snapshot_id": "404104e498a8d33118b52d5bad41c0ff4a8792d4ae23a2790628b796b91f34fd",
+  "corpus_id": "a2aaec768f650e9d8928fc1ed1a79eb5650472537b1d3538d740480c6a1b1f87",
+  "eligible_resource_count": 521,
+  "shared_anchors": [
+    {
+      "identity": "declarations",
+      "text": "Source declaration identity, independently of runtime binding",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      }
+    },
+    {
+      "identity": "bindings",
+      "text": "Import/member bindings and direct package-facade re-exports",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      }
+    },
+    {
+      "identity": "packages",
+      "text": "Explicit module interpretation and immediate package membership",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      }
+    },
+    {
+      "identity": "exposure",
+      "text": "Public API exposure and statically explicit __all__ declarations",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      }
+    },
+    {
+      "identity": "abstention",
+      "text": "Dynamic or unsupported exports retain ambiguity or abstention",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      }
+    },
+    {
+      "identity": "provenance",
+      "text": "Native repository/snapshot identity and derivation provenance",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      }
+    },
+    {
+      "identity": "references",
+      "text": "Integration with existing exact Reference RI contracts",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      }
+    },
+    {
+      "identity": "api",
+      "text": "Coherent package/API ownership and future Localization foundation",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      }
+    },
+    {
+      "identity": "verification",
+      "text": "Rigorous tests, authoritative documentation, protected validation",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      }
+    }
+  ],
+  "obligations": [
+    {
+      "identity": "declaration-identity",
+      "desired_information": "Understand native declaration identities and their separation from binding so export facts can retain canonical source subjects without runtime claims.",
+      "anchors": [
+        "declarations",
+        "provenance"
+      ],
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "requirement": "mandatory",
+      "applicability": null,
+      "satisfaction_criterion": {
+        "name": "native-source-identity-boundary",
+        "statement": "Information establishes existing function/class subjects, occurrence and declaration provenance, including decoration and rebinding nonclaims."
+      },
+      "pre_execution_accepted_witness_alternatives": []
+    },
+    {
+      "identity": "binding-reexports",
+      "desired_information": "Understand existing import/member and direct facade resolution contracts to distinguish a declared re-export binding from source declaration identity.",
+      "anchors": [
+        "bindings",
+        "declarations"
+      ],
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "requirement": "mandatory",
+      "applicability": null,
+      "satisfaction_criterion": {
+        "name": "binding-and-facade-contract",
+        "statement": "Information establishes exact import/member resolution, one-facade limits, competing bindings and retained resolution provenance."
+      },
+      "pre_execution_accepted_witness_alternatives": []
+    },
+    {
+      "identity": "module-membership",
+      "desired_information": "Understand explicit module/package identity and immediate membership without conflating containment, importability and public exposure.",
+      "anchors": [
+        "packages",
+        "exposure"
+      ],
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "requirement": "mandatory",
+      "applicability": null,
+      "satisfaction_criterion": {
+        "name": "module-and-membership-boundary",
+        "statement": "Information establishes explicit-root module/package interpretations, bounded membership and missing/competing interpretations."
+      },
+      "pre_execution_accepted_witness_alternatives": []
+    },
+    {
+      "identity": "explicit-exposure",
+      "desired_information": "Determine sound static public-exposure semantics for direct facade re-exports and explicit __all__, separately from declaration and binding.",
+      "anchors": [
+        "exposure",
+        "bindings",
+        "packages"
+      ],
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "requirement": "mandatory",
+      "applicability": null,
+      "satisfaction_criterion": {
+        "name": "explicit-export-semantic-foundation",
+        "statement": "Information supplies accepted RI scope and static interpretation limits needed to design explicit exposure without dynamic or star-import closure."
+      },
+      "pre_execution_accepted_witness_alternatives": []
+    },
+    {
+      "identity": "unsupported-behavior",
+      "desired_information": "Understand ambiguity, abstention and coverage conventions for dynamic or unsupported syntax without asserting runtime absence.",
+      "anchors": [
+        "abstention",
+        "bindings",
+        "exposure"
+      ],
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "requirement": "mandatory",
+      "applicability": null,
+      "satisfaction_criterion": {
+        "name": "qualified-static-outcomes",
+        "statement": "Information establishes supported/unsupported outcome ownership and nonclaims needed for dynamic __all__, __getattr__ and competing exports."
+      },
+      "pre_execution_accepted_witness_alternatives": []
+    },
+    {
+      "identity": "snapshot-provenance",
+      "desired_information": "Understand repository/snapshot dependency identity and native provenance needed for deterministic export facts and replay/freshness validation.",
+      "anchors": [
+        "provenance",
+        "declarations",
+        "packages"
+      ],
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "requirement": "mandatory",
+      "applicability": null,
+      "satisfaction_criterion": {
+        "name": "dependency-qualified-export-truth",
+        "statement": "Information establishes canonical identity, dependency and provenance contracts and their bounded applicability/freshness requirements."
+      },
+      "pre_execution_accepted_witness_alternatives": []
+    },
+    {
+      "identity": "reference-integration",
+      "desired_information": "Understand Reference consumers and exact target resolution boundaries to integrate new export RI coherently without changing Reference truth.",
+      "anchors": [
+        "references",
+        "bindings",
+        "declarations"
+      ],
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "requirement": "mandatory",
+      "applicability": null,
+      "satisfaction_criterion": {
+        "name": "reference-consumer-boundary",
+        "statement": "Information establishes current Reference targets, routes and consumer contracts; export exposure remains distinct from Reference and Call syntax."
+      },
+      "pre_execution_accepted_witness_alternatives": []
+    },
+    {
+      "identity": "package-api",
+      "desired_information": "Understand public Python RI package/API conventions and ownership for a deterministic foundation with no Localization operator in this increment.",
+      "anchors": [
+        "api",
+        "packages",
+        "exposure"
+      ],
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "requirement": "mandatory",
+      "applicability": null,
+      "satisfaction_criterion": {
+        "name": "public-api-and-dependency-integration",
+        "statement": "Information establishes package surfaces, dependency direction and public API conventions relevant to adding Python-owned export RI."
+      },
+      "pre_execution_accepted_witness_alternatives": []
+    },
+    {
+      "identity": "tests",
+      "desired_information": "Understand native RI test patterns for exact identity, bounded static resolution, ambiguity, unsupported forms and freshness regressions.",
+      "anchors": [
+        "verification",
+        "declarations",
+        "bindings",
+        "packages",
+        "references"
+      ],
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "requirement": "mandatory",
+      "applicability": null,
+      "satisfaction_criterion": {
+        "name": "rigorous-native-ri-test-patterns",
+        "statement": "Information supplies relevant fixture/assertion conventions for supported and rejected export forms and neighboring RI regressions."
+      },
+      "pre_execution_accepted_witness_alternatives": []
+    },
+    {
+      "identity": "documentation",
+      "desired_information": "Understand authoritative architecture/development documentation and taxonomy updates required by the new supported capability.",
+      "anchors": [
+        "verification",
+        "api",
+        "exposure"
+      ],
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "requirement": "mandatory",
+      "applicability": null,
+      "satisfaction_criterion": {
+        "name": "authoritative-documentation-impact",
+        "statement": "Information establishes documentation authority, architectural terminology and development update policy for the new static exposure capability."
+      },
+      "pre_execution_accepted_witness_alternatives": []
+    },
+    {
+      "identity": "validation",
+      "desired_information": "Understand protected development validation and package/API checks required to validate the future implementation without confirmation access.",
+      "anchors": [
+        "verification",
+        "api"
+      ],
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "span": null,
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "requirement": "mandatory",
+      "applicability": null,
+      "satisfaction_criterion": {
+        "name": "protected-development-checks",
+        "statement": "Information establishes canonical protected validation, coverage, typing, format/lint and confirmation exclusion requirements."
+      },
+      "pre_execution_accepted_witness_alternatives": []
+    }
+  ],
+  "adjudication_instructions": "Independently assess the repository evidence against the frozen task and each obligation. For every obligation, judge applicability and identify information that is REQUIRED, HELPFUL_ONLY, UNNECESSARY, or unresolved. Record acceptable witness alternatives and which information must be complementary within each alternative; distinguish competing alternatives. Assess what could be inferred at task start, inherent discovery prerequisites, and any task-interpretation gaps. Base judgments on evidence in the supplied snapshot. Do not infer runtime behavior beyond what the repository establishes.",
+  "resource_archive": {
+    "filename": "blind_resources.json.gz",
+    "sha256": "b3f435ded07aef88bbb9b374788d8357870d22d6c18853b28e0fa9ce8f6cf855",
+    "format": "gzip-compressed UTF-8 JSON array"
+  }
+}
