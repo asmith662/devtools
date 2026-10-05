@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: ANN001, ANN201, ARG001, D103, E501, EM101, EM102, INP001, PERF401, PLR0911, T201, TRY003
+# ruff: noqa: ANN001, ANN201, ARG001, C901, D103, E501, EM101, EM102, INP001, PERF401, PLR0911, PLR0912, PLR2004, PLR0913, PLR0917, T201, TRY003
 """Execute the frozen Case 0008 treatment with durable native checkpoints."""
 
 from __future__ import annotations
@@ -16,6 +16,7 @@ import pickle
 import platform
 import sys
 import time
+import traceback
 import uuid
 from collections import Counter
 from pathlib import Path
@@ -25,6 +26,9 @@ import freeze
 from devtools.context.localization.association import (
     WitnessHypothesisFamilyIdentity,
     WitnessHypothesisIdentity,
+)
+from devtools.context.localization.association.structural import (
+    validate_structural_support,
 )
 from devtools.context.localization.generation import (
     BranchingGroundedMemberRecipe,
@@ -48,6 +52,9 @@ RAW = CASE / "stage_b_raw.pkl.gz"
 RECOVERY_RAW = CASE / "stage_b_generation_recovery_raw.pkl.gz"
 RECOVERY_ID = "case-0008-stage-b-generation-recovery-1"
 ORIGINAL_EXECUTION_ID = "2fed596a-f43d-4d35-9e32-e8a609366a6f"
+INITIAL_RECOVERY_RAW_SHA256 = (
+    "6ca629c93233493d0cd701544297b0175ab4f9fdb7917bada75d0367f90963e2"
+)
 CANONICAL = (
     "capture.pkl.gz",
     "retrieval.json",
@@ -428,6 +435,7 @@ def initial_recovery_state(attempt1: dict, plan) -> dict:
         "upstream_source": str(RAW.name),
         "upstream_sha256": digest(RAW.read_bytes()),
         "generation_invocations": 0,
+        "generation_attempted_calls": 0,
         "generation_state": "NOT_STARTED",
         "plan": plan,
         "generation_result": None,
@@ -457,25 +465,58 @@ def durable_recovery(state: dict) -> str:
 
 
 def record_recovery_generation(state: dict, operation, post_validate) -> object:
-    """Future generation-only entry point; this checkpoint must not call it."""
+    """Consume the one recovery call and durably retain any returned view."""
     validate_recovery_checkpoint(state)
-    if state["generation_state"] != "NOT_STARTED" or state["generation_invocations"]:
+    if (
+        state["generation_state"] != "NOT_STARTED"
+        or state["generation_invocations"]
+        or state.get("generation_attempted_calls", 0)
+    ):
         raise RuntimeError("The single generation recovery allowance is exhausted.")
-    state["generation_state"] = "IN_PROGRESS"
+    state["generation_attempted_calls"] = 1
+    state["generation_state"] = "GENERATION_RECOVERY_IN_PROGRESS"
+    state["stage"] = "GENERATION_RECOVERY_IN_PROGRESS"
     durable_recovery(state)
-    result = operation()
+    started = time.perf_counter()
+    try:
+        result = operation()
+    except BaseException as error:
+        state["generation_state"] = "GENERATION_RECOVERY_FAILED"
+        state["stage"] = "CAPTURE_FAILED"
+        state["generation_error"] = {
+            "type": type(error).__name__,
+            "message": str(error),
+            "traceback": traceback.format_exc(),
+        }
+        state["history"].append(
+            {
+                "state": "GENERATION_RECOVERY_FAILED",
+                "type": type(error).__name__,
+                "message": str(error),
+            },
+        )
+        durable_recovery(state)
+        raise
     state["generation_result"] = result
-    state["generation_state"] = "CAPTURED"
+    state["generation_state"] = "GENERATION_RETURN_CAPTURED_UNVALIDATED"
+    state["stage"] = "GENERATION_RETURN_CAPTURED_UNVALIDATED"
     state["generation_invocations"] = 1
-    state["history"].append({"state": "GENERATION_RECOVERY_RETURNED"})
+    state["generation_seconds"] = time.perf_counter() - started
+    state["history"].append(
+        {
+            "state": "GENERATION_RETURN_CAPTURED_UNVALIDATED",
+            "successful_return": 1,
+        },
+    )
     durable_recovery(state)
     post_validate(result)
-    state["stage"] = "GENERATION_RECOVERY_CAPTURED"
+    state["generation_state"] = "GENERATION_RECOVERY_VALIDATED"
+    state["stage"] = "GENERATION_RECOVERY_VALIDATED"
     durable_recovery(state)
     return result
 
 
-def validate_partial_checkpoint() -> tuple[dict, dict]:
+def validate_partial_checkpoint(*, allow_canonical: bool = False) -> tuple[dict, dict]:
     """Verify immutable Attempt 1 bytes and the single-call authorization."""
     attempt_path = CASE / "stage_b_attempt_1.json"
     authorization_path = CASE / "recovery_authorization.json"
@@ -487,6 +528,15 @@ def validate_partial_checkpoint() -> tuple[dict, dict]:
         raise ValueError("Attempt 1 raw checkpoint digest differs.")
     if digest(marker_bytes) != attempt["start_marker_sha256"]:
         raise ValueError("Attempt 1 execution marker digest differs.")
+    if (
+        attempt["status"] != "PARTIAL STAGE B — NOT CANONICAL"
+        or attempt["generation_status"] != "GENERATION NOT CAPTURED"
+        or attempt["adjudication_status"] != "NOT ADJUDICATED"
+        or attempt["generation_attempt"]["combined_api_attempted"] != 1
+        or attempt["generation_attempt"]["returned_successfully"]
+        or attempt["generation_attempt"]["structural_projection_reached"]
+    ):
+        raise ValueError("Attempt 1 audit record differs from observed failure.")
     if (
         digest(freeze.binary(CASE / "inputs.pkl.gz"))
         != authorization["stage_a_archive_sha256"]
@@ -524,23 +574,261 @@ def validate_partial_checkpoint() -> tuple[dict, dict]:
         "other_treatment_operations": 0,
     }:
         raise ValueError("Recovery authorization exceeds the frozen allowance.")
-    if any((CASE / name).exists() for name in CANONICAL):
+    if not allow_canonical and any((CASE / name).exists() for name in CANONICAL):
         raise ValueError("Canonical Stage B output exists for a partial attempt.")
     return raw, authorization
 
 
 def validate_recovery_checkpoint(state: dict) -> None:
     """Reject recovery state that changes its upstream or spends allowance."""
-    _, authorization = validate_partial_checkpoint()
+    _, authorization = validate_partial_checkpoint(allow_canonical=True)
     if (
         state["recovery_id"] != RECOVERY_ID
         or state["original_execution_id"] != ORIGINAL_EXECUTION_ID
         or state["upstream_sha256"] != authorization["raw_sha256"]
         or state["generation_invocations"] not in (0, 1)
+        or state.get("generation_attempted_calls", 0) not in (0, 1)
         or state["prior_generation_attempts"] != 1
     ):
         raise ValueError("Generation recovery checkpoint differs from authorization.")
     validate_plan_aliases(state["plan"], state["plan"].routing)
+
+
+def recovered_execution_state(original: dict, plan, view, recovery_state: dict) -> dict:
+    """Join captured upstream values with the durably returned generation view."""
+    result = dict(original)
+    result["stage"] = "GENERATION_RECOVERY_CAPTURED"
+    result["execution_kind"] = "GENERATION_RECOVERY"
+    result["recovery_id"] = RECOVERY_ID
+    result["operations"] = {
+        name: dict(value) for name, value in original["operations"].items()
+    }
+    result["operations"]["generation"] = {
+        "state": "CAPTURED",
+        "invocations": 1,
+        "seconds": recovery_state["generation_seconds"],
+        "prior_failed_attempts": 1,
+    }
+    result["results"] = dict(original["results"])
+    result["results"]["lexical"] = plan.acquisition
+    result["results"]["routing"] = plan.routing
+    result["results"]["generation"] = view
+    result["bindings"] = plan
+    if not all(
+        (
+            plan.routing is result["results"]["routing"],
+            plan.acquisition is plan.routing.acquisition,
+            plan.role_evidence is plan.routing.role_evidence,
+            plan.routing.global_retrieval is plan.acquisition.full_task_retrieval,
+            view.plan is plan,
+            view.association.routing is plan.routing,
+            view.association.acquisition is plan.acquisition,
+            view.association.role_evidence is plan.role_evidence,
+        ),
+    ):
+        raise ValueError("Recovered execution state lost required object aliases.")
+    return result
+
+
+def validate_recovered_generation(state: dict, native: dict, treatment: dict) -> None:
+    """Replay exact target/support origins after the native result is durable."""
+    plan = state["bindings"]
+    view = state["results"]["generation"]
+    validate_plan_aliases(plan, state["results"]["routing"])
+    validate_generation(state, native, treatment)
+    if (
+        len(plan.recipes) != 29
+        or sum(
+            isinstance(item.recipe.identity, WitnessHypothesisFamilyIdentity)
+            for item in view.attempts
+        )
+        != 14
+        or sum(
+            not isinstance(item.recipe.identity, WitnessHypothesisFamilyIdentity)
+            for item in view.attempts
+        )
+        != 15
+    ):
+        raise ValueError("Recovered recipe/family count differs from frozen specs.")
+    for attempt in view.attempts:
+        for member_attempt in attempt.members:
+            for projected in member_attempt.projections:
+                if (
+                    native["request"].snapshot.resource_at(
+                        projected.target.address,
+                    )
+                    != projected.target
+                ):
+                    raise ValueError("Recovered target is outside frozen snapshot.")
+                for support in projected.structural:
+                    validate_structural_support(
+                        task=plan.task,
+                        snapshot=plan.snapshot,
+                        target=projected.target,
+                        support=support,
+                    )
+    acquisition = plan.acquisition
+    routing = plan.routing
+    if (
+        len(acquisition.obligation_retrievals) != 13
+        or len(routing.obligation_lanes) != 13
+        or routing.global_retrieval is not acquisition.full_task_retrieval
+    ):
+        raise ValueError("Captured lexical/routing lane correspondence differs.")
+    for lane in routing.obligation_lanes:
+        native_lane = next(
+            (
+                item
+                for item in acquisition.obligation_retrievals
+                if item.request.identity == lane.preference.query
+                and item.request.obligation == lane.preference.obligation
+            ),
+            None,
+        )
+        if native_lane is None or len(lane.candidates) != len(
+            native_lane.retrieval.matches,
+        ):
+            raise ValueError("Routed lane lost a native lexical candidate.")
+        expected_ranks = set(range(1, len(native_lane.retrieval.matches) + 1))
+        observed_ranks = {item.native_rank for item in lane.candidates}
+        if observed_ranks != expected_ranks:
+            raise ValueError("Routed lane lost native candidate ranks.")
+        if any(
+            not (1 <= item.native_rank <= len(native_lane.retrieval.matches))
+            or native_lane.retrieval.matches[item.native_rank - 1] is not item.match
+            for item in lane.candidates
+        ):
+            raise ValueError("Routed candidate is not its exact native match object.")
+        tier_order: dict[str, list[int]] = {}
+        for candidate in lane.candidates:
+            tier_order.setdefault(candidate.tier.name, []).append(
+                candidate.native_rank,
+            )
+        if any(ranks != sorted(ranks) for ranks in tier_order.values()):
+            raise ValueError("Routed within-tier native ordering changed.")
+
+
+def execute_generation_recovery() -> dict:
+    """Run the only authorized combined generation API call, at most once."""
+    freeze.validate(allow_stage_b=True)
+    original, _ = validate_partial_checkpoint()
+    recovery = pickle.loads(gzip.decompress(freeze.binary(RECOVERY_RAW)))  # noqa: S301
+    validate_recovery_checkpoint(recovery)
+    if (
+        recovery["generation_state"] == "NOT_STARTED"
+        and digest(freeze.binary(RECOVERY_RAW)) != INITIAL_RECOVERY_RAW_SHA256
+    ):
+        raise ValueError("Unstarted recovery raw digest differs from authorization.")
+    if recovery["stage"] == "CANONICAL_COMPLETE":
+        verify_recovery_canonical(recovery)
+        return {"stage": recovery["stage"], "generation_calls": 1}
+    if recovery["generation_state"] != "NOT_STARTED":
+        if recovery["generation_state"] == "GENERATION_RETURN_CAPTURED_UNVALIDATED":
+            return finalize_captured_recovery(original, recovery)
+        raise RuntimeError(
+            "The generation recovery allowance is consumed or ambiguous; do not rerun.",
+        )
+    native = pickle.loads(gzip.decompress(freeze.binary(CASE / "inputs.pkl.gz")))  # noqa: S301
+    treatment = json.loads(freeze.binary(CASE / "treatment.json"))
+    plan = make_recovery_plan(original, native, treatment)
+    retained_plan = recovery["plan"]
+    if (
+        plan.recipes != retained_plan.recipes
+        or plan.task.identity != retained_plan.task.identity
+        or plan.snapshot.repository_id != retained_plan.snapshot.repository_id
+        or plan.snapshot.id != retained_plan.snapshot.id
+        or len(plan.python_references.sources)
+        != len(retained_plan.python_references.sources)
+        or len(plan.python_import_dependencies.sources)
+        != len(retained_plan.python_import_dependencies.sources)
+    ):
+        raise ValueError(
+            "Reconstructed recovery plan differs from its preflight state.",
+        )
+    validate_plan_aliases(plan, original["results"]["routing"])
+    recovery["plan"] = plan
+    durable_recovery(recovery)
+    merged: dict = {}
+
+    def validate_return(view) -> None:
+        merged_state = recovered_execution_state(original, plan, view, recovery)
+        validate_recovered_generation(merged_state, native, treatment)
+        merged["state"] = merged_state
+
+    result = record_recovery_generation(
+        recovery,
+        lambda: generate_witness_hypotheses(plan),
+        validate_return,
+    )
+    if (
+        merged.get("state") is None
+        or merged["state"]["results"]["generation"] is not result
+    ):
+        raise ValueError(
+            "Recovered generation return was not joined to captured state.",
+        )
+    finalize(merged["state"], native, treatment, recovery_state=recovery)
+    verify_recovery_canonical(recovery)
+    return {
+        "stage": recovery["stage"],
+        "execution_id": ORIGINAL_EXECUTION_ID,
+        "recovery_id": RECOVERY_ID,
+        "generation_calls": recovery["generation_attempted_calls"],
+        "generation_seconds": recovery["generation_seconds"],
+        "canonical_digests": recovery["canonical_digests"],
+    }
+
+
+def finalize_captured_recovery(original: dict, recovery: dict) -> dict:
+    """Resume validation/finalization from a durable generation return."""
+    native = pickle.loads(gzip.decompress(freeze.binary(CASE / "inputs.pkl.gz")))  # noqa: S301
+    treatment = json.loads(freeze.binary(CASE / "treatment.json"))
+    state = recovered_execution_state(
+        original,
+        recovery["plan"],
+        recovery["generation_result"],
+        recovery,
+    )
+    validate_recovered_generation(state, native, treatment)
+    recovery["stage"] = "GENERATION_RECOVERY_VALIDATED"
+    durable_recovery(recovery)
+    finalize(state, native, treatment, recovery_state=recovery)
+    verify_recovery_canonical(recovery)
+    return {"stage": recovery["stage"], "generation_calls": 1}
+
+
+def verify_recovery_canonical(recovery: dict) -> bool:
+    """Read-only canonical reentry check; never invokes a treatment operation."""
+    validate_partial_checkpoint(allow_canonical=True)
+    if (
+        recovery["stage"] != "CANONICAL_COMPLETE"
+        or recovery["generation_state"] != "GENERATION_RECOVERY_VALIDATED"
+        or recovery["generation_attempted_calls"] != 1
+        or recovery["generation_invocations"] != 1
+    ):
+        raise ValueError("Canonical recovery invocation history is incomplete.")
+    validate_plan_aliases(recovery["plan"], recovery["plan"].routing)
+    for name, expected in recovery["canonical_digests"].items():
+        if digest(freeze.binary(CASE / name)) != expected:
+            raise ValueError(f"Canonical recovery artifact digest differs: {name}")
+    return True
+
+
+def load_recovery_state() -> dict:
+    return pickle.loads(gzip.decompress(freeze.binary(RECOVERY_RAW)))  # noqa: S301
+
+
+def resume_recovery() -> dict:
+    """Finalize only a captured generation return; never enter generation."""
+    recovery = load_recovery_state()
+    validate_recovery_checkpoint(recovery)
+    if recovery["stage"] == "CANONICAL_COMPLETE":
+        verify_recovery_canonical(recovery)
+        return {"stage": recovery["stage"], "generation_calls": 1}
+    if recovery["generation_state"] != "GENERATION_RETURN_CAPTURED_UNVALIDATED":
+        raise RuntimeError("No durable generation return is available to resume.")
+    original, _ = validate_partial_checkpoint()
+    return finalize_captured_recovery(original, recovery)
 
 
 def validate_generation(state: dict, native: dict, treatment: dict) -> None:
@@ -807,7 +1095,22 @@ def hypothesis_report(hypothesis):
     }
 
 
-def finalize(state, native, treatment):
+def finalize(state, native, treatment, recovery_state=None):
+    recovery_metadata = (
+        {
+            "execution_kind": "GENERATION_RECOVERY",
+            "original_execution_id": ORIGINAL_EXECUTION_ID,
+            "recovery_id": RECOVERY_ID,
+            "prior_generation_attempts": 1,
+            "lexical_source": RAW.name,
+            "routing_source": RAW.name,
+            "grounding_source": RAW.name,
+            "recovery_generation_invocations": 1,
+            "recovery_generation_seconds": recovery_state["generation_seconds"],
+        }
+        if recovery_state is not None
+        else None
+    )
     acquisition = state["results"]["lexical"]
     routing = state["results"]["routing"]
     groundings = [state["results"][f"grounding:{key}"] for key in GROUNDING_IDS]
@@ -827,6 +1130,8 @@ def finalize(state, native, treatment):
             for lane in acquisition.obligation_retrievals
         ],
     }
+    if recovery_metadata is not None:
+        retrieval["recovery_provenance"] = recovery_metadata
     routed = {
         "global_unchanged": retrieval_lane(
             None,
@@ -860,6 +1165,8 @@ def finalize(state, native, treatment):
             for lane in routing.obligation_lanes
         ],
     }
+    if recovery_metadata is not None:
+        routed["recovery_provenance"] = recovery_metadata
     grounding_json = {
         "groundings": [
             grounding_report(key, item)
@@ -871,11 +1178,19 @@ def finalize(state, native, treatment):
         ),
         "resolver_replay_invocations": "not exposed as a separate production counter; generation freshness validation may replay grounding",
     }
+    if recovery_metadata is not None:
+        grounding_json["recovery_provenance"] = recovery_metadata
     generation_json = generation_report(generation)
-    raw_bytes = freeze.binary(RAW)
+    if recovery_metadata is not None:
+        generation_json["recovery_provenance"] = recovery_metadata
+    raw_bytes = freeze.binary(RECOVERY_RAW if recovery_state is not None else RAW)
     capture_payload = gzip.compress(
         pickle.dumps(
-            {"state": state, "native": native},
+            {
+                "state": state,
+                "native": native,
+                "recovery_provenance": recovery_metadata,
+            },
             protocol=pickle.HIGHEST_PROTOCOL,
         ),
         mtime=0,
@@ -899,6 +1214,7 @@ def finalize(state, native, treatment):
         "stage_a_commit": STAGE_A_COMMIT,
         "execution_id": state["execution_id"],
         "stage_a_digests": json.loads(freeze.binary(CASE / "integrity.json"))["sha256"],
+        "recovery_provenance": recovery_metadata,
         "artifacts": {
             name: digest(freeze.binary(CASE / name))
             for name in (
@@ -927,13 +1243,27 @@ def finalize(state, native, treatment):
     )
     put_text_once(
         CASE / "stage_b.md",
-        human_report(state, native, counts, invocation_counts, integrity["artifacts"]),
+        human_report(
+            state,
+            native,
+            counts,
+            invocation_counts,
+            integrity["artifacts"],
+            recovery_metadata,
+        ),
     )
     state["stage"] = "CANONICAL_COMPLETE"
     state["canonical_digests"] = {
-        name: digest(freeze.binary(CASE / name)) for name in (*CANONICAL, RAW)
+        name: digest(freeze.binary(CASE / name)) for name in CANONICAL
     }
-    durable_raw(state)
+    if recovery_state is not None:
+        recovery_state["stage"] = "CANONICAL_COMPLETE"
+        recovery_state["canonical_digests"] = state["canonical_digests"]
+        recovery_state["history"].append({"state": "CANONICAL_COMPLETE"})
+        durable_recovery(recovery_state)
+    else:
+        state["canonical_digests"][RAW.name] = digest(freeze.binary(RAW))
+        durable_raw(state)
 
 
 def put_binary(path: Path, content: bytes) -> None:
@@ -1121,11 +1451,21 @@ def summarize_families(items):
     }
 
 
-def human_report(state, native, counts, invocations, digests):
+def human_report(state, native, counts, invocations, digests, recovery_metadata=None):
+    title = (
+        "# Case 0008 Stage B — generation-only recovery"
+        if recovery_metadata is not None
+        else "# Case 0008 Stage B"
+    )
+    status = (
+        "**CAPTURED VIA GENERATION-ONLY RECOVERY — NOT ADJUDICATED**"
+        if recovery_metadata is not None
+        else "**CAPTURED - NOT ADJUDICATED**"
+    )
     lines = [
-        "# Case 0008 Stage B",
+        title,
         "",
-        "**CAPTURED - NOT ADJUDICATED**",
+        status,
         "",
         f"Execution identity: `{state['execution_id']}`.",
         f"Repository / snapshot / corpus: `{native['request'].snapshot.repository_id}` / `{native['request'].snapshot.id}` / `{native['corpus'].id}`.",
@@ -1133,6 +1473,12 @@ def human_report(state, native, counts, invocations, digests):
         "## Invocation accounting",
         "",
     ]
+    if recovery_metadata is not None:
+        lines += [
+            "Attempt 1 failed during candidate-association alias validation before any projection. The frozen recovery used the original durable lexical, routing, and grounding capture; none was rerun. One combined generation API call returned and was durably captured before correspondence validation and canonicalization.",
+            f"Recovery identity: `{recovery_metadata['recovery_id']}`; prior failed attempts: 1; successful recovery call: 1 ({recovery_metadata['recovery_generation_seconds']:.6f}s).",
+            "",
+        ]
     lines.extend(
         f"- {key}: {value['invocations']} invocation(s), {value['seconds']:.6f}s"
         for key, value in invocations.items()
@@ -1211,7 +1557,15 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "command",
-        choices=("execute", "resume", "verify", "recover-preinvocation"),
+        choices=(
+            "execute",
+            "resume",
+            "verify",
+            "recover-preinvocation",
+            "recover-generation",
+            "resume-recovery",
+            "verify-recovery",
+        ),
     )
     parser.add_argument("--operation")
     parser.add_argument("--explanation")
@@ -1223,6 +1577,22 @@ def main():
             )
         recover_known_preinvocation_failure(args.operation, args.explanation)
         print(json.dumps({"recovered": args.operation, "production_invocation": 0}))
+        return
+    if args.command == "recover-generation":
+        print(json.dumps(execute_generation_recovery(), indent=2, sort_keys=True))
+        return
+    if args.command == "resume-recovery":
+        print(json.dumps(resume_recovery(), indent=2, sort_keys=True))
+        return
+    if args.command == "verify-recovery":
+        recovery = load_recovery_state()
+        print(
+            json.dumps(
+                {"verified": verify_recovery_canonical(recovery)},
+                indent=2,
+                sort_keys=True,
+            ),
+        )
         return
     result = (
         execute()

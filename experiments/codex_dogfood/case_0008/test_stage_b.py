@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: ANN001, ANN201, ANN202, ARG005, D103, INP001, PLR2004, S101, S301
+# ruff: noqa: ANN001, ANN201, ANN202, ARG005, D103, EM101, INP001, PLR2004, S101, S301, TRY003
 """Focused durable execution-state tests without treatment operations."""
 
 from __future__ import annotations
@@ -117,13 +117,44 @@ def test_recovery_result_is_persisted_before_validation_and_never_retried(
         saved = pickle.loads(
             gzip.decompress(stage_b.RECOVERY_RAW.read_bytes()),
         )
-        assert saved["generation_state"] == "CAPTURED"
+        assert saved["generation_state"] == ("GENERATION_RETURN_CAPTURED_UNVALIDATED")
         assert saved["generation_result"] is not None
         assert result == saved["generation_result"]
 
     stage_b.record_recovery_generation(current, operation, validate)
     with pytest.raises(RuntimeError, match="allowance is exhausted"):
         stage_b.record_recovery_generation(current, operation, validate)
+    assert calls == 1
+
+
+def test_failed_recovery_call_is_recorded_and_cannot_be_reentered(
+    tmp_path,
+    monkeypatch,
+):
+    monkeypatch.setattr(stage_b, "RECOVERY_RAW", tmp_path / "failed.pkl.gz")
+    monkeypatch.setattr(stage_b, "validate_recovery_checkpoint", lambda state: None)
+    current = {
+        "generation_state": "NOT_STARTED",
+        "generation_invocations": 0,
+        "generation_attempted_calls": 0,
+        "history": [],
+    }
+    calls = 0
+
+    def operation():
+        nonlocal calls
+        calls += 1
+        raise ValueError("synthetic generation failure")
+
+    with pytest.raises(ValueError, match="synthetic generation failure"):
+        stage_b.record_recovery_generation(current, operation, lambda _: None)
+    saved = pickle.loads(gzip.decompress(stage_b.RECOVERY_RAW.read_bytes()))
+    assert saved["generation_state"] == "GENERATION_RECOVERY_FAILED"
+    assert saved["stage"] == "CAPTURE_FAILED"
+    assert saved["generation_attempted_calls"] == 1
+    assert saved["generation_error"]["type"] == "ValueError"
+    with pytest.raises(RuntimeError, match="allowance is exhausted"):
+        stage_b.record_recovery_generation(current, operation, lambda _: None)
     assert calls == 1
 
 
@@ -141,7 +172,7 @@ def test_recovery_state_preserves_attempt_and_recovery_identity(tmp_path, monkey
 
 def test_captured_recovery_plan_preserves_required_aliases_and_frozen_recipe_shape():
     case = Path(__file__).parent
-    raw, _ = stage_b.validate_partial_checkpoint()
+    raw, _ = stage_b.validate_partial_checkpoint(allow_canonical=True)
     native = pickle.loads(gzip.decompress((case / "inputs.pkl.gz").read_bytes()))
     treatment = json.loads((case / "treatment.json").read_bytes())
     plan = stage_b.make_recovery_plan(raw, native, treatment)

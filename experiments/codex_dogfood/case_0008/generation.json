@@ -1,0 +1,4395 @@
+{
+  "attempts": [
+    {
+      "branches": [],
+      "disposition": "NO_TARGET",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "NO_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "assessment",
+          "grounding_locator": {
+            "declared_name": "LocalizationAssessment",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "related",
+          "projection": "REFERENCING_RESOURCE",
+          "result_count": 0,
+          "result_limit": 16,
+          "source_identity": "3f7f558dbdf2fe78a3c02ccaa9e015bab2537e95230c0953233da6223ecbfb34",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [],
+          "uncovered_frontier": [],
+          "work_limit": 410,
+          "work_performed": 410
+        }
+      ],
+      "obligation": "frontier-semantics",
+      "recipe_identity": "frontier-consumers",
+      "recipe_kind": "family"
+    },
+    {
+      "branches": [],
+      "disposition": "NO_TARGET",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "assessment",
+          "grounding_locator": {
+            "declared_name": "LocalizationAssessment",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "owner",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "3f7f558dbdf2fe78a3c02ccaa9e015bab2537e95230c0953233da6223ecbfb34",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/assessment.py",
+                "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "assessment",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        },
+        {
+          "complete": true,
+          "disposition": "NO_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "assessment",
+          "grounding_locator": {
+            "declared_name": "LocalizationAssessment",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "related",
+          "projection": "DIRECT_IMPORT_DEPENDENCY_RESOURCE",
+          "result_count": 0,
+          "result_limit": 16,
+          "source_identity": "3f7f558dbdf2fe78a3c02ccaa9e015bab2537e95230c0953233da6223ecbfb34",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [],
+          "uncovered_frontier": [],
+          "work_limit": 410,
+          "work_performed": 1
+        }
+      ],
+      "obligation": "frontier-semantics",
+      "recipe_identity": "frontier-dependencies",
+      "recipe_kind": "family"
+    },
+    {
+      "branches": [],
+      "disposition": "GENERATED",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "assessment",
+          "grounding_locator": {
+            "declared_name": "LocalizationAssessment",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "member-0",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "3f7f558dbdf2fe78a3c02ccaa9e015bab2537e95230c0953233da6223ecbfb34",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/assessment.py",
+                "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "assessment",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        },
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "task",
+          "grounding_locator": {
+            "declared_name": "LocalizationObligation",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.obligation",
+              "kind": null
+            }
+          },
+          "key": "member-1",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "eee5beaa27e3ec0b7c83a255b05fd7a0f9e2c7f53a9d797ad57b3c7fee4634c1",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/obligation.py",
+                "content_identity": "89a99701f4f8805381ba5e1619e6e0ac998dd0cde7a09f27e4ce8de80e14bd22"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "task",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        }
+      ],
+      "obligation": "frontier-semantics",
+      "recipe_identity": "frontier-existing-contracts",
+      "recipe_kind": "fixed"
+    },
+    {
+      "branches": [],
+      "disposition": "NO_TARGET",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "assessment",
+          "grounding_locator": {
+            "declared_name": "LocalizationAssessment",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "owner",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "3f7f558dbdf2fe78a3c02ccaa9e015bab2537e95230c0953233da6223ecbfb34",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/assessment.py",
+                "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "assessment",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        },
+        {
+          "complete": true,
+          "disposition": "NO_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "assessment",
+          "grounding_locator": {
+            "declared_name": "LocalizationAssessment",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "related",
+          "projection": "REFERENCING_RESOURCE",
+          "result_count": 0,
+          "result_limit": 16,
+          "source_identity": "3f7f558dbdf2fe78a3c02ccaa9e015bab2537e95230c0953233da6223ecbfb34",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [],
+          "uncovered_frontier": [],
+          "work_limit": 410,
+          "work_performed": 410
+        }
+      ],
+      "obligation": "assessment-applicability",
+      "recipe_identity": "assessment-consumers",
+      "recipe_kind": "family"
+    },
+    {
+      "branches": [],
+      "disposition": "NO_TARGET",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "assessment",
+          "grounding_locator": {
+            "declared_name": "LocalizationAssessment",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "owner",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "3f7f558dbdf2fe78a3c02ccaa9e015bab2537e95230c0953233da6223ecbfb34",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/assessment.py",
+                "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "assessment",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        },
+        {
+          "complete": true,
+          "disposition": "NO_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "assessment",
+          "grounding_locator": {
+            "declared_name": "LocalizationAssessment",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "related",
+          "projection": "DIRECT_IMPORT_DEPENDENCY_RESOURCE",
+          "result_count": 0,
+          "result_limit": 16,
+          "source_identity": "3f7f558dbdf2fe78a3c02ccaa9e015bab2537e95230c0953233da6223ecbfb34",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [],
+          "uncovered_frontier": [],
+          "work_limit": 410,
+          "work_performed": 1
+        }
+      ],
+      "obligation": "assessment-applicability",
+      "recipe_identity": "assessment-dependencies",
+      "recipe_kind": "family"
+    },
+    {
+      "branches": [],
+      "disposition": "NO_TARGET",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "NO_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "assessment",
+          "grounding_locator": {
+            "declared_name": "LocalizationAssessment",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "member-0",
+          "projection": "MIRRORED_RESOURCE",
+          "result_count": 0,
+          "result_limit": 1,
+          "source_identity": "3f7f558dbdf2fe78a3c02ccaa9e015bab2537e95230c0953233da6223ecbfb34",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 523
+        }
+      ],
+      "obligation": "assessment-applicability",
+      "recipe_identity": "assessment-mirror",
+      "recipe_kind": "fixed"
+    },
+    {
+      "branches": [],
+      "disposition": "GENERATED",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "assessment",
+          "grounding_locator": {
+            "declared_name": "LocalizationAssessment",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "member-0",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "3f7f558dbdf2fe78a3c02ccaa9e015bab2537e95230c0953233da6223ecbfb34",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/assessment.py",
+                "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "assessment",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        }
+      ],
+      "obligation": "assessment-applicability",
+      "recipe_identity": "assessment-owner",
+      "recipe_kind": "fixed"
+    },
+    {
+      "branches": [],
+      "disposition": "NO_TARGET",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "candidate",
+          "grounding_locator": {
+            "declared_name": "CandidateWitnessHypothesis",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.association.hypothesis",
+              "kind": null
+            }
+          },
+          "key": "owner",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "f385cf6d87ce1e303aa133983ad1a5459523d8ce473f082a7e07fd454382c539",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/association/hypothesis.py",
+                "content_identity": "0791a84658e9535d5b3ac2ef35e9e464bf5198c145db7769a64b6ae57f12ceb6"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "candidate",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        },
+        {
+          "complete": true,
+          "disposition": "NO_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "candidate",
+          "grounding_locator": {
+            "declared_name": "CandidateWitnessHypothesis",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.association.hypothesis",
+              "kind": null
+            }
+          },
+          "key": "related",
+          "projection": "REFERENCING_RESOURCE",
+          "result_count": 0,
+          "result_limit": 16,
+          "source_identity": "f385cf6d87ce1e303aa133983ad1a5459523d8ce473f082a7e07fd454382c539",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [],
+          "uncovered_frontier": [],
+          "work_limit": 410,
+          "work_performed": 410
+        }
+      ],
+      "obligation": "candidate-integration",
+      "recipe_identity": "candidate-consumers",
+      "recipe_kind": "family"
+    },
+    {
+      "branches": [
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"candidate-integration\",\"candidate-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/localization/association/structural.py\",\"c3995b60572ae2c0f5ba66a8649e163c1a2292792bd579d249ae939a7ecd41bd\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"candidate-integration\",\"candidate-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/localization/association/structural.py\",\"c3995b60572ae2c0f5ba66a8649e163c1a2292792bd579d249ae939a7ecd41bd\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "src/devtools/context/localization/association/structural.py",
+            "content_identity": "c3995b60572ae2c0f5ba66a8649e163c1a2292792bd579d249ae939a7ecd41bd"
+          }
+        },
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"candidate-integration\",\"candidate-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/retrieval/composition.py\",\"df190b8724613c9a57e5c6d2e06d819ddb36de6b6cca8f5dae2955bbd888b837\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"candidate-integration\",\"candidate-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/retrieval/composition.py\",\"df190b8724613c9a57e5c6d2e06d819ddb36de6b6cca8f5dae2955bbd888b837\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "src/devtools/context/retrieval/composition.py",
+            "content_identity": "df190b8724613c9a57e5c6d2e06d819ddb36de6b6cca8f5dae2955bbd888b837"
+          }
+        }
+      ],
+      "disposition": "GENERATED",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "candidate",
+          "grounding_locator": {
+            "declared_name": "CandidateWitnessHypothesis",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.association.hypothesis",
+              "kind": null
+            }
+          },
+          "key": "owner",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "f385cf6d87ce1e303aa133983ad1a5459523d8ce473f082a7e07fd454382c539",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/association/hypothesis.py",
+                "content_identity": "0791a84658e9535d5b3ac2ef35e9e464bf5198c145db7769a64b6ae57f12ceb6"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "candidate",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        },
+        {
+          "complete": true,
+          "disposition": "MULTI_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "candidate",
+          "grounding_locator": {
+            "declared_name": "CandidateWitnessHypothesis",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.association.hypothesis",
+              "kind": null
+            }
+          },
+          "key": "related",
+          "projection": "DIRECT_IMPORT_DEPENDENCY_RESOURCE",
+          "result_count": 2,
+          "result_limit": 16,
+          "source_identity": "f385cf6d87ce1e303aa133983ad1a5459523d8ce473f082a7e07fd454382c539",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/association/structural.py",
+                "content_identity": "c3995b60572ae2c0f5ba66a8649e163c1a2292792bd579d249ae939a7ecd41bd"
+              },
+              "support": [
+                {
+                  "dependency_targets": [
+                    {
+                      "address": "src/devtools/context/localization/association/structural.py",
+                      "content_identity": "c3995b60572ae2c0f5ba66a8649e163c1a2292792bd579d249ae939a7ecd41bd"
+                    },
+                    {
+                      "address": "src/devtools/context/localization/association/structural.py",
+                      "content_identity": "c3995b60572ae2c0f5ba66a8649e163c1a2292792bd579d249ae939a7ecd41bd"
+                    }
+                  ],
+                  "grounding_anchor": "candidate",
+                  "operator_support_type": "PythonImportDependencyResourceSupport",
+                  "resolved_import_relation_identities": [
+                    "05d2717c821e5c7df20e1f5eaafa861a0e2b2f32f234789a7ff22d5bf859eb66",
+                    "3bb8a231afaeda39ae1f0d346063fe17da40be6c43de15df76e6656644f3d199"
+                  ],
+                  "source_analysis": "dfeaf4fc983ae107d8ebf006e374654de79a52893d03b0d042a6d12f73b375e7",
+                  "source_module": "3e77a2052b6bd9c0a1d0d5ef54f38aef29a4ff996329dbaf408a5e48251cca29"
+                }
+              ]
+            },
+            {
+              "resource": {
+                "address": "src/devtools/context/retrieval/composition.py",
+                "content_identity": "df190b8724613c9a57e5c6d2e06d819ddb36de6b6cca8f5dae2955bbd888b837"
+              },
+              "support": [
+                {
+                  "dependency_targets": [
+                    {
+                      "address": "src/devtools/context/retrieval/composition.py",
+                      "content_identity": "df190b8724613c9a57e5c6d2e06d819ddb36de6b6cca8f5dae2955bbd888b837"
+                    }
+                  ],
+                  "grounding_anchor": "candidate",
+                  "operator_support_type": "PythonImportDependencyResourceSupport",
+                  "resolved_import_relation_identities": [
+                    "542375f2a41df9e427e609344ca2d6b62b0ceb9738a3df7857717262711b2156"
+                  ],
+                  "source_analysis": "dfeaf4fc983ae107d8ebf006e374654de79a52893d03b0d042a6d12f73b375e7",
+                  "source_module": "3e77a2052b6bd9c0a1d0d5ef54f38aef29a4ff996329dbaf408a5e48251cca29"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": 410,
+          "work_performed": 1
+        }
+      ],
+      "obligation": "candidate-integration",
+      "recipe_identity": "candidate-dependencies",
+      "recipe_kind": "family"
+    },
+    {
+      "branches": [],
+      "disposition": "GENERATED",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "candidate",
+          "grounding_locator": {
+            "declared_name": "CandidateWitnessHypothesis",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.association.hypothesis",
+              "kind": null
+            }
+          },
+          "key": "member-0",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "f385cf6d87ce1e303aa133983ad1a5459523d8ce473f082a7e07fd454382c539",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/association/hypothesis.py",
+                "content_identity": "0791a84658e9535d5b3ac2ef35e9e464bf5198c145db7769a64b6ae57f12ceb6"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "candidate",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        },
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "generation",
+          "grounding_locator": {
+            "declared_name": "WitnessGenerationView",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.generation.contract",
+              "kind": null
+            }
+          },
+          "key": "member-1",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "d4ad70644291d58860ddb6f6fbe8049a889c5a0d68bf779d3a7ecec29102e90f",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/generation/contract.py",
+                "content_identity": "b5629e1262e83ba17876ff558276ca40a60c1e30564f82867bdff0588f7edfdd"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "generation",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        }
+      ],
+      "obligation": "candidate-integration",
+      "recipe_identity": "candidate-generation-contracts",
+      "recipe_kind": "fixed"
+    },
+    {
+      "branches": [],
+      "disposition": "NO_TARGET",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "NO_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "witness",
+          "grounding_locator": {
+            "declared_name": "SupportedWitness",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "related",
+          "projection": "REFERENCING_RESOURCE",
+          "result_count": 0,
+          "result_limit": 16,
+          "source_identity": "bca4a635f72dc21bf9900edbbd8a022e67c9733264d2bf57f7a1ba26f0b30302",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [],
+          "uncovered_frontier": [],
+          "work_limit": 410,
+          "work_performed": 410
+        }
+      ],
+      "obligation": "witness-boundary",
+      "recipe_identity": "accepted-witness-consumers",
+      "recipe_kind": "family"
+    },
+    {
+      "branches": [],
+      "disposition": "GENERATED",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "witness",
+          "grounding_locator": {
+            "declared_name": "WitnessSet",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.obligation",
+              "kind": null
+            }
+          },
+          "key": "member-0",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "f92c16b0700db44679631d07c25ee8bb18f9c169ee721317d87c9a4010cf58de",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/obligation.py",
+                "content_identity": "89a99701f4f8805381ba5e1619e6e0ac998dd0cde7a09f27e4ce8de80e14bd22"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "witness",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        },
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "witness",
+          "grounding_locator": {
+            "declared_name": "SupportedWitness",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "member-1",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "bca4a635f72dc21bf9900edbbd8a022e67c9733264d2bf57f7a1ba26f0b30302",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/assessment.py",
+                "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "witness",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        }
+      ],
+      "obligation": "witness-boundary",
+      "recipe_identity": "accepted-witness-contracts",
+      "recipe_kind": "fixed"
+    },
+    {
+      "branches": [],
+      "disposition": "NO_TARGET",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "NO_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "grounding",
+          "grounding_locator": {
+            "declared_name": "AnchorGroundingView",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.grounding.view",
+              "kind": null
+            }
+          },
+          "key": "related",
+          "projection": "REFERENCING_RESOURCE",
+          "result_count": 0,
+          "result_limit": 16,
+          "source_identity": "b4224af6a1833d2259adebb6f40dab85998e8df86b07ba042a8c95cd631b6f8d",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [],
+          "uncovered_frontier": [],
+          "work_limit": 410,
+          "work_performed": 410
+        }
+      ],
+      "obligation": "grounding-provenance",
+      "recipe_identity": "grounding-consumers",
+      "recipe_kind": "family"
+    },
+    {
+      "branches": [
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"grounding-provenance\",\"grounding-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/localization/grounding/contract.py\",\"b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"grounding-provenance\",\"grounding-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/localization/grounding/contract.py\",\"b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "src/devtools/context/localization/grounding/contract.py",
+            "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+          }
+        },
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"grounding-provenance\",\"grounding-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/localization/grounding/resolve.py\",\"2ac07f3bbf0350e9c443aefba7ee6209aa6f830d367ac7429236078e22f229d3\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"grounding-provenance\",\"grounding-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/localization/grounding/resolve.py\",\"2ac07f3bbf0350e9c443aefba7ee6209aa6f830d367ac7429236078e22f229d3\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "src/devtools/context/localization/grounding/resolve.py",
+            "content_identity": "2ac07f3bbf0350e9c443aefba7ee6209aa6f830d367ac7429236078e22f229d3"
+          }
+        }
+      ],
+      "disposition": "GENERATED",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "grounding",
+          "grounding_locator": {
+            "declared_name": "AnchorGroundingView",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.grounding.view",
+              "kind": null
+            }
+          },
+          "key": "owner",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "b4224af6a1833d2259adebb6f40dab85998e8df86b07ba042a8c95cd631b6f8d",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/grounding/view.py",
+                "content_identity": "bda068a8b6a45a9a61b6908c0b263399f75b88aa68061aef8c9480ba0b625728"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "grounding",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        },
+        {
+          "complete": true,
+          "disposition": "MULTI_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "grounding",
+          "grounding_locator": {
+            "declared_name": "AnchorGroundingView",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.grounding.view",
+              "kind": null
+            }
+          },
+          "key": "related",
+          "projection": "DIRECT_IMPORT_DEPENDENCY_RESOURCE",
+          "result_count": 2,
+          "result_limit": 16,
+          "source_identity": "b4224af6a1833d2259adebb6f40dab85998e8df86b07ba042a8c95cd631b6f8d",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/grounding/contract.py",
+                "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+              },
+              "support": [
+                {
+                  "dependency_targets": [
+                    {
+                      "address": "src/devtools/context/localization/grounding/contract.py",
+                      "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+                    },
+                    {
+                      "address": "src/devtools/context/localization/grounding/contract.py",
+                      "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+                    },
+                    {
+                      "address": "src/devtools/context/localization/grounding/contract.py",
+                      "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+                    },
+                    {
+                      "address": "src/devtools/context/localization/grounding/contract.py",
+                      "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+                    },
+                    {
+                      "address": "src/devtools/context/localization/grounding/contract.py",
+                      "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+                    },
+                    {
+                      "address": "src/devtools/context/localization/grounding/contract.py",
+                      "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+                    },
+                    {
+                      "address": "src/devtools/context/localization/grounding/contract.py",
+                      "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+                    }
+                  ],
+                  "grounding_anchor": "grounding",
+                  "operator_support_type": "PythonImportDependencyResourceSupport",
+                  "resolved_import_relation_identities": [
+                    "28d49317977d2783d24dce49bfc3e3fb96db354f2ec71c75e87eb9cd57b544c3",
+                    "321c7345c940c659f63073d40ca1a60c488b3336e87b55e6f94620765f4dcc1f",
+                    "5a1d8f994c0aa2dcfd87e8221cc96bdf175788e56fdcd754355e4c5cd7546a8f",
+                    "90e097e07e3120f95cfe28c69a9328047921f7a2c8fe2a853e9e2ca824eb9b12",
+                    "a1f5ca3f6363e4e68c3b54de0554b8d80d945a4aa1770184045d62cf0c7e5556",
+                    "d85c117796d1a9ef7dd1a2199a6e6ad9cecc761ecf4084319b91a5465c3ee252",
+                    "fb276857f76972e4f924b00bdd67746371469f84a5bfa8a4d5d4c218c664862d"
+                  ],
+                  "source_analysis": "a1a0967be56eee31ec8ebd6722897ae868902ea840ce8065d075d87403ecefa8",
+                  "source_module": "e2d6803c7778ce0c227b69bcbb11ae8787feddf465f7abc65f0f7feb21f9e43d"
+                }
+              ]
+            },
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/grounding/resolve.py",
+                "content_identity": "2ac07f3bbf0350e9c443aefba7ee6209aa6f830d367ac7429236078e22f229d3"
+              },
+              "support": [
+                {
+                  "dependency_targets": [
+                    {
+                      "address": "src/devtools/context/localization/grounding/resolve.py",
+                      "content_identity": "2ac07f3bbf0350e9c443aefba7ee6209aa6f830d367ac7429236078e22f229d3"
+                    }
+                  ],
+                  "grounding_anchor": "grounding",
+                  "operator_support_type": "PythonImportDependencyResourceSupport",
+                  "resolved_import_relation_identities": [
+                    "cf59403415e2afb933f067bda4cdf13711ac4be8bb711de082317e1384eedcb6"
+                  ],
+                  "source_analysis": "a1a0967be56eee31ec8ebd6722897ae868902ea840ce8065d075d87403ecefa8",
+                  "source_module": "e2d6803c7778ce0c227b69bcbb11ae8787feddf465f7abc65f0f7feb21f9e43d"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": 410,
+          "work_performed": 1
+        }
+      ],
+      "obligation": "grounding-provenance",
+      "recipe_identity": "grounding-dependencies",
+      "recipe_kind": "family"
+    },
+    {
+      "branches": [],
+      "disposition": "GENERATED",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "grounding",
+          "grounding_locator": {
+            "declared_name": "AnchorGroundingView",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.grounding.view",
+              "kind": null
+            }
+          },
+          "key": "member-0",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "b4224af6a1833d2259adebb6f40dab85998e8df86b07ba042a8c95cd631b6f8d",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/grounding/view.py",
+                "content_identity": "bda068a8b6a45a9a61b6908c0b263399f75b88aa68061aef8c9480ba0b625728"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "grounding",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        },
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "frame",
+          "grounding_locator": {
+            "declared_name": "LocalizationEvidenceReference",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "member-1",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "52aa3813982fb2f5b57fbd3e20a144ad59854e53994198f710993d409792fcc3",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/assessment.py",
+                "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "frame",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        }
+      ],
+      "obligation": "grounding-provenance",
+      "recipe_identity": "grounding-evidence-contracts",
+      "recipe_kind": "fixed"
+    },
+    {
+      "branches": [],
+      "disposition": "NO_TARGET",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "NO_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "frame",
+          "grounding_locator": {
+            "declared_name": "LocalizationEvidenceReference",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "related",
+          "projection": "REFERENCING_RESOURCE",
+          "result_count": 0,
+          "result_limit": 16,
+          "source_identity": "52aa3813982fb2f5b57fbd3e20a144ad59854e53994198f710993d409792fcc3",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [],
+          "uncovered_frontier": [],
+          "work_limit": 410,
+          "work_performed": 410
+        }
+      ],
+      "obligation": "frame-identity",
+      "recipe_identity": "frame-consumers",
+      "recipe_kind": "family"
+    },
+    {
+      "branches": [],
+      "disposition": "NO_TARGET",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "frame",
+          "grounding_locator": {
+            "declared_name": "LocalizationEvidenceReference",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "owner",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "52aa3813982fb2f5b57fbd3e20a144ad59854e53994198f710993d409792fcc3",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/assessment.py",
+                "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "frame",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        },
+        {
+          "complete": true,
+          "disposition": "NO_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "frame",
+          "grounding_locator": {
+            "declared_name": "LocalizationEvidenceReference",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "related",
+          "projection": "DIRECT_IMPORT_DEPENDENCY_RESOURCE",
+          "result_count": 0,
+          "result_limit": 16,
+          "source_identity": "52aa3813982fb2f5b57fbd3e20a144ad59854e53994198f710993d409792fcc3",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [],
+          "uncovered_frontier": [],
+          "work_limit": 410,
+          "work_performed": 1
+        }
+      ],
+      "obligation": "frame-identity",
+      "recipe_identity": "frame-dependencies",
+      "recipe_kind": "family"
+    },
+    {
+      "branches": [],
+      "disposition": "GENERATED",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "task",
+          "grounding_locator": {
+            "declared_name": "LocalizationTaskInterpretation",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.task",
+              "kind": null
+            }
+          },
+          "key": "member-0",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "8815dba8332344fcffe00f01960fb77bf847fd35d9e939bec0be848736044058",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/task.py",
+                "content_identity": "e12453604d33eb17259ba4e34377db59abe4c8352aa85a67ab1b2c2b736b0d8f"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "task",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        },
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "frame",
+          "grounding_locator": {
+            "declared_name": "LocalizationEvidenceReference",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "member-1",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "52aa3813982fb2f5b57fbd3e20a144ad59854e53994198f710993d409792fcc3",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/assessment.py",
+                "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "frame",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        }
+      ],
+      "obligation": "frame-identity",
+      "recipe_identity": "task-evidence-contracts",
+      "recipe_kind": "fixed"
+    },
+    {
+      "branches": [
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/association/test_hypothesis.py\",\"e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/association/test_hypothesis.py\",\"e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "tests/context/localization/association/test_hypothesis.py",
+            "content_identity": "e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56"
+          }
+        },
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_branching.py\",\"16672281cc2b4d684c029c63d1dcef54c4c9756f8bbe821bfeeae80446291b1a\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_branching.py\",\"16672281cc2b4d684c029c63d1dcef54c4c9756f8bbe821bfeeae80446291b1a\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "tests/context/localization/generation/test_branching.py",
+            "content_identity": "16672281cc2b4d684c029c63d1dcef54c4c9756f8bbe821bfeeae80446291b1a"
+          }
+        },
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_generation.py\",\"b2a881d7d24e0a45d2bca46c7d50ddccbf12b67c4b455588003bd79f3f436ae3\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_generation.py\",\"b2a881d7d24e0a45d2bca46c7d50ddccbf12b67c4b455588003bd79f3f436ae3\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "tests/context/localization/generation/test_generation.py",
+            "content_identity": "b2a881d7d24e0a45d2bca46c7d50ddccbf12b67c4b455588003bd79f3f436ae3"
+          }
+        },
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_imports.py\",\"07232e4e8d6074ac065a5c971b81d6e75d67be7aa41970256d6a49cc714a40b8\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_imports.py\",\"07232e4e8d6074ac065a5c971b81d6e75d67be7aa41970256d6a49cc714a40b8\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "tests/context/localization/generation/test_imports.py",
+            "content_identity": "07232e4e8d6074ac065a5c971b81d6e75d67be7aa41970256d6a49cc714a40b8"
+          }
+        },
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_references.py\",\"cdb789ed1f5ab3ba00095f2c452e445d514defbf8df5a5649f5ff0d8d77fe1b3\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_references.py\",\"cdb789ed1f5ab3ba00095f2c452e445d514defbf8df5a5649f5ff0d8d77fe1b3\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "tests/context/localization/generation/test_references.py",
+            "content_identity": "cdb789ed1f5ab3ba00095f2c452e445d514defbf8df5a5649f5ff0d8d77fe1b3"
+          }
+        },
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/test_kernel.py\",\"2e2de0efc3db8bbca0db64d3315d8f4bb0a935842ecc106237fbc909c7b72c74\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/test_kernel.py\",\"2e2de0efc3db8bbca0db64d3315d8f4bb0a935842ecc106237fbc909c7b72c74\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "tests/context/localization/test_kernel.py",
+            "content_identity": "2e2de0efc3db8bbca0db64d3315d8f4bb0a935842ecc106237fbc909c7b72c74"
+          }
+        }
+      ],
+      "disposition": "GENERATED",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "readiness",
+          "grounding_locator": {
+            "declared_name": "assess_localization_readiness",
+            "kind": "FUNCTION",
+            "module": {
+              "dotted_name": "devtools.context.localization.readiness",
+              "kind": null
+            }
+          },
+          "key": "owner",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "4680ef3e7f0a7bbf875a1b535569ef5aea6f76f7c8885d4c1ad949cf93ef96d0",
+          "source_type": "PythonFunctionDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/readiness.py",
+                "content_identity": "9eec380c864f13ae37ef23729c1424eb9499a7a282937f340ecf9e3246d27545"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonFunctionDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        },
+        {
+          "complete": true,
+          "disposition": "MULTI_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "readiness",
+          "grounding_locator": {
+            "declared_name": "assess_localization_readiness",
+            "kind": "FUNCTION",
+            "module": {
+              "dotted_name": "devtools.context.localization.readiness",
+              "kind": null
+            }
+          },
+          "key": "related",
+          "projection": "REFERENCING_RESOURCE",
+          "result_count": 6,
+          "result_limit": 16,
+          "source_identity": "4680ef3e7f0a7bbf875a1b535569ef5aea6f76f7c8885d4c1ad949cf93ef96d0",
+          "source_type": "PythonFunctionDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "tests/context/localization/association/test_hypothesis.py",
+                "content_identity": "e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "PythonReferenceResourceSupport",
+                  "reference_fact_identities": [
+                    "48907eb013551d3c6c9ccfe61fc423dec2ded8b9e87a4fdfff2f6fb74a19089c"
+                  ],
+                  "referencing_source": {
+                    "address": "tests/context/localization/association/test_hypothesis.py",
+                    "content_identity": "e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56"
+                  }
+                }
+              ]
+            },
+            {
+              "resource": {
+                "address": "tests/context/localization/generation/test_branching.py",
+                "content_identity": "16672281cc2b4d684c029c63d1dcef54c4c9756f8bbe821bfeeae80446291b1a"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "PythonReferenceResourceSupport",
+                  "reference_fact_identities": [
+                    "3201308f043e86aad75e150c0eedd5bd82d0243259cafe8292523aaffb1a4cc5",
+                    "ec095751b941f9855ed866137c9875e4392ff5fd54e6e406101e25893fe97b49"
+                  ],
+                  "referencing_source": {
+                    "address": "tests/context/localization/generation/test_branching.py",
+                    "content_identity": "16672281cc2b4d684c029c63d1dcef54c4c9756f8bbe821bfeeae80446291b1a"
+                  }
+                }
+              ]
+            },
+            {
+              "resource": {
+                "address": "tests/context/localization/generation/test_generation.py",
+                "content_identity": "b2a881d7d24e0a45d2bca46c7d50ddccbf12b67c4b455588003bd79f3f436ae3"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "PythonReferenceResourceSupport",
+                  "reference_fact_identities": [
+                    "b42daabb5712786e000b20b1d06c7d37f4af018264f4d250d2df353ed2d217c3"
+                  ],
+                  "referencing_source": {
+                    "address": "tests/context/localization/generation/test_generation.py",
+                    "content_identity": "b2a881d7d24e0a45d2bca46c7d50ddccbf12b67c4b455588003bd79f3f436ae3"
+                  }
+                }
+              ]
+            },
+            {
+              "resource": {
+                "address": "tests/context/localization/generation/test_imports.py",
+                "content_identity": "07232e4e8d6074ac065a5c971b81d6e75d67be7aa41970256d6a49cc714a40b8"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "PythonReferenceResourceSupport",
+                  "reference_fact_identities": [
+                    "b99279085abd27385f596880395c2813f6a8bfa9982c43c9e45d7695c42ba332",
+                    "d1666e2958c35c7a1f6de8229669a5dc825a09f884324bdcb4c468510667039e"
+                  ],
+                  "referencing_source": {
+                    "address": "tests/context/localization/generation/test_imports.py",
+                    "content_identity": "07232e4e8d6074ac065a5c971b81d6e75d67be7aa41970256d6a49cc714a40b8"
+                  }
+                }
+              ]
+            },
+            {
+              "resource": {
+                "address": "tests/context/localization/generation/test_references.py",
+                "content_identity": "cdb789ed1f5ab3ba00095f2c452e445d514defbf8df5a5649f5ff0d8d77fe1b3"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "PythonReferenceResourceSupport",
+                  "reference_fact_identities": [
+                    "1bb7b3818f83c2d99a768205bb0da76295bc47e78bb7f84214ece2be0f3a12a9",
+                    "aa3e14c75a292654f7fbe9db77a5f003da1f9d195dbaeb34ab69b4b346590903"
+                  ],
+                  "referencing_source": {
+                    "address": "tests/context/localization/generation/test_references.py",
+                    "content_identity": "cdb789ed1f5ab3ba00095f2c452e445d514defbf8df5a5649f5ff0d8d77fe1b3"
+                  }
+                }
+              ]
+            },
+            {
+              "resource": {
+                "address": "tests/context/localization/test_kernel.py",
+                "content_identity": "2e2de0efc3db8bbca0db64d3315d8f4bb0a935842ecc106237fbc909c7b72c74"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "PythonReferenceResourceSupport",
+                  "reference_fact_identities": [
+                    "7365df9d534151a822556ce51429dd151fe7d50c9e61e2fe408d50f460decd52"
+                  ],
+                  "referencing_source": {
+                    "address": "tests/context/localization/test_kernel.py",
+                    "content_identity": "2e2de0efc3db8bbca0db64d3315d8f4bb0a935842ecc106237fbc909c7b72c74"
+                  }
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": 410,
+          "work_performed": 410
+        }
+      ],
+      "obligation": "readiness-integration",
+      "recipe_identity": "readiness-consumers",
+      "recipe_kind": "family"
+    },
+    {
+      "branches": [
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/localization/assessment.py\",\"5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/localization/assessment.py\",\"5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "src/devtools/context/localization/assessment.py",
+            "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+          }
+        },
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/localization/obligation.py\",\"89a99701f4f8805381ba5e1619e6e0ac998dd0cde7a09f27e4ce8de80e14bd22\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/localization/obligation.py\",\"89a99701f4f8805381ba5e1619e6e0ac998dd0cde7a09f27e4ce8de80e14bd22\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "src/devtools/context/localization/obligation.py",
+            "content_identity": "89a99701f4f8805381ba5e1619e6e0ac998dd0cde7a09f27e4ce8de80e14bd22"
+          }
+        },
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/evaluation/coverage.py\",\"f6fb335dee42a13ff55e70fe8031d76b39a74c3da5ba17360035ca3db319070a\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/evaluation/coverage.py\",\"f6fb335dee42a13ff55e70fe8031d76b39a74c3da5ba17360035ca3db319070a\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "src/devtools/evaluation/coverage.py",
+            "content_identity": "f6fb335dee42a13ff55e70fe8031d76b39a74c3da5ba17360035ca3db319070a"
+          }
+        }
+      ],
+      "disposition": "GENERATED",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "readiness",
+          "grounding_locator": {
+            "declared_name": "assess_localization_readiness",
+            "kind": "FUNCTION",
+            "module": {
+              "dotted_name": "devtools.context.localization.readiness",
+              "kind": null
+            }
+          },
+          "key": "owner",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "4680ef3e7f0a7bbf875a1b535569ef5aea6f76f7c8885d4c1ad949cf93ef96d0",
+          "source_type": "PythonFunctionDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/readiness.py",
+                "content_identity": "9eec380c864f13ae37ef23729c1424eb9499a7a282937f340ecf9e3246d27545"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonFunctionDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        },
+        {
+          "complete": true,
+          "disposition": "MULTI_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "readiness",
+          "grounding_locator": {
+            "declared_name": "assess_localization_readiness",
+            "kind": "FUNCTION",
+            "module": {
+              "dotted_name": "devtools.context.localization.readiness",
+              "kind": null
+            }
+          },
+          "key": "related",
+          "projection": "DIRECT_IMPORT_DEPENDENCY_RESOURCE",
+          "result_count": 3,
+          "result_limit": 16,
+          "source_identity": "4680ef3e7f0a7bbf875a1b535569ef5aea6f76f7c8885d4c1ad949cf93ef96d0",
+          "source_type": "PythonFunctionDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/assessment.py",
+                "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+              },
+              "support": [
+                {
+                  "dependency_targets": [
+                    {
+                      "address": "src/devtools/context/localization/assessment.py",
+                      "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+                    },
+                    {
+                      "address": "src/devtools/context/localization/assessment.py",
+                      "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+                    }
+                  ],
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "PythonImportDependencyResourceSupport",
+                  "resolved_import_relation_identities": [
+                    "5c753fc5edf45bd70d414d92d7f2627bb0df99cb7392505899d8bb5a35e0c860",
+                    "eaf79aca61713061b3c7e4ba88ff35b55e8e06f8a534561e710ea574f022bb4d"
+                  ],
+                  "source_analysis": "cac926b541dd56a92872644bf888d0e6e45235c4304ef224cc62c469d7b648b3",
+                  "source_module": "b2f08af47a5c08a0f07019f58625890c351ba25a9b2a4f93714b6b633a1ac1a6"
+                }
+              ]
+            },
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/obligation.py",
+                "content_identity": "89a99701f4f8805381ba5e1619e6e0ac998dd0cde7a09f27e4ce8de80e14bd22"
+              },
+              "support": [
+                {
+                  "dependency_targets": [
+                    {
+                      "address": "src/devtools/context/localization/obligation.py",
+                      "content_identity": "89a99701f4f8805381ba5e1619e6e0ac998dd0cde7a09f27e4ce8de80e14bd22"
+                    }
+                  ],
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "PythonImportDependencyResourceSupport",
+                  "resolved_import_relation_identities": [
+                    "43510cf3e3f0741e6db224d5a711fac790747a88cb2701d3a208d96b17ffc757"
+                  ],
+                  "source_analysis": "cac926b541dd56a92872644bf888d0e6e45235c4304ef224cc62c469d7b648b3",
+                  "source_module": "b2f08af47a5c08a0f07019f58625890c351ba25a9b2a4f93714b6b633a1ac1a6"
+                }
+              ]
+            },
+            {
+              "resource": {
+                "address": "src/devtools/evaluation/coverage.py",
+                "content_identity": "f6fb335dee42a13ff55e70fe8031d76b39a74c3da5ba17360035ca3db319070a"
+              },
+              "support": [
+                {
+                  "dependency_targets": [
+                    {
+                      "address": "src/devtools/evaluation/coverage.py",
+                      "content_identity": "f6fb335dee42a13ff55e70fe8031d76b39a74c3da5ba17360035ca3db319070a"
+                    },
+                    {
+                      "address": "src/devtools/evaluation/coverage.py",
+                      "content_identity": "f6fb335dee42a13ff55e70fe8031d76b39a74c3da5ba17360035ca3db319070a"
+                    }
+                  ],
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "PythonImportDependencyResourceSupport",
+                  "resolved_import_relation_identities": [
+                    "98044a18064d9b8d04269f8ba2e5cde7fa97baf8b3cd119c642145d6b3445516",
+                    "f9472d25b448d6862084ded423e36f2c07ea8203c8f3f079425d3f601dd59e20"
+                  ],
+                  "source_analysis": "cac926b541dd56a92872644bf888d0e6e45235c4304ef224cc62c469d7b648b3",
+                  "source_module": "b2f08af47a5c08a0f07019f58625890c351ba25a9b2a4f93714b6b633a1ac1a6"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": 410,
+          "work_performed": 1
+        }
+      ],
+      "obligation": "readiness-integration",
+      "recipe_identity": "readiness-dependencies",
+      "recipe_kind": "family"
+    },
+    {
+      "branches": [],
+      "disposition": "GENERATED",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "readiness",
+          "grounding_locator": {
+            "declared_name": "assess_localization_readiness",
+            "kind": "FUNCTION",
+            "module": {
+              "dotted_name": "devtools.context.localization.readiness",
+              "kind": null
+            }
+          },
+          "key": "member-0",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "4680ef3e7f0a7bbf875a1b535569ef5aea6f76f7c8885d4c1ad949cf93ef96d0",
+          "source_type": "PythonFunctionDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/readiness.py",
+                "content_identity": "9eec380c864f13ae37ef23729c1424eb9499a7a282937f340ecf9e3246d27545"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonFunctionDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        },
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "assessment",
+          "grounding_locator": {
+            "declared_name": "LocalizationAssessment",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "member-1",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "3f7f558dbdf2fe78a3c02ccaa9e015bab2537e95230c0953233da6223ecbfb34",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/assessment.py",
+                "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "assessment",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonClassDeclarationKnowledge"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        }
+      ],
+      "obligation": "readiness-integration",
+      "recipe_identity": "readiness-assessment-contracts",
+      "recipe_kind": "fixed"
+    },
+    {
+      "branches": [],
+      "disposition": "NO_TARGET",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "NO_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "readiness",
+          "grounding_locator": {
+            "declared_name": "assess_localization_readiness",
+            "kind": "FUNCTION",
+            "module": {
+              "dotted_name": "devtools.context.localization.readiness",
+              "kind": null
+            }
+          },
+          "key": "member-0",
+          "projection": "MIRRORED_RESOURCE",
+          "result_count": 0,
+          "result_limit": 1,
+          "source_identity": "4680ef3e7f0a7bbf875a1b535569ef5aea6f76f7c8885d4c1ad949cf93ef96d0",
+          "source_type": "PythonFunctionDeclarationKnowledge",
+          "targets": [],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 523
+        }
+      ],
+      "obligation": "readiness-integration",
+      "recipe_identity": "readiness-mirror",
+      "recipe_kind": "fixed"
+    },
+    {
+      "branches": [],
+      "disposition": "GENERATED",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "package",
+          "grounding_locator": {
+            "dotted_name": "devtools.context.localization",
+            "kind": "PACKAGE"
+          },
+          "key": "member-0",
+          "projection": "OWNER_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "fa1a792e5382bfe6a989211da1106e3e8566b6e7f1a2c60ed2631a3fd38131fe",
+          "source_type": "PythonModuleInterpretation",
+          "targets": [
+            {
+              "resource": {
+                "address": "src/devtools/context/localization/__init__.py",
+                "content_identity": "e474ecd929bb3d0d741a14bd7f5d3f6ab65581137c51b62cb3727982f57490b6"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "package",
+                  "operator_support_type": "OwnerResourceSupport",
+                  "referent_type": "PythonModuleInterpretation"
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 1
+        }
+      ],
+      "obligation": "package-api",
+      "recipe_identity": "localization-facade",
+      "recipe_kind": "fixed"
+    },
+    {
+      "branches": [
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/association/test_hypothesis.py\",\"e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/association/test_hypothesis.py\",\"e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "tests/context/localization/association/test_hypothesis.py",
+            "content_identity": "e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56"
+          }
+        },
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_branching.py\",\"16672281cc2b4d684c029c63d1dcef54c4c9756f8bbe821bfeeae80446291b1a\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_branching.py\",\"16672281cc2b4d684c029c63d1dcef54c4c9756f8bbe821bfeeae80446291b1a\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "tests/context/localization/generation/test_branching.py",
+            "content_identity": "16672281cc2b4d684c029c63d1dcef54c4c9756f8bbe821bfeeae80446291b1a"
+          }
+        },
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_generation.py\",\"b2a881d7d24e0a45d2bca46c7d50ddccbf12b67c4b455588003bd79f3f436ae3\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_generation.py\",\"b2a881d7d24e0a45d2bca46c7d50ddccbf12b67c4b455588003bd79f3f436ae3\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "tests/context/localization/generation/test_generation.py",
+            "content_identity": "b2a881d7d24e0a45d2bca46c7d50ddccbf12b67c4b455588003bd79f3f436ae3"
+          }
+        },
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_imports.py\",\"07232e4e8d6074ac065a5c971b81d6e75d67be7aa41970256d6a49cc714a40b8\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_imports.py\",\"07232e4e8d6074ac065a5c971b81d6e75d67be7aa41970256d6a49cc714a40b8\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "tests/context/localization/generation/test_imports.py",
+            "content_identity": "07232e4e8d6074ac065a5c971b81d6e75d67be7aa41970256d6a49cc714a40b8"
+          }
+        },
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_references.py\",\"cdb789ed1f5ab3ba00095f2c452e445d514defbf8df5a5649f5ff0d8d77fe1b3\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_references.py\",\"cdb789ed1f5ab3ba00095f2c452e445d514defbf8df5a5649f5ff0d8d77fe1b3\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "tests/context/localization/generation/test_references.py",
+            "content_identity": "cdb789ed1f5ab3ba00095f2c452e445d514defbf8df5a5649f5ff0d8d77fe1b3"
+          }
+        },
+        {
+          "disposition": "GENERATED",
+          "hypothesis_identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/test_kernel.py\",\"2e2de0efc3db8bbca0db64d3315d8f4bb0a935842ecc106237fbc909c7b72c74\"]",
+          "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/test_kernel.py\",\"2e2de0efc3db8bbca0db64d3315d8f4bb0a935842ecc106237fbc909c7b72c74\"]",
+          "reason": "Exact branch combination passed unresolved candidate association validation.",
+          "target": {
+            "address": "tests/context/localization/test_kernel.py",
+            "content_identity": "2e2de0efc3db8bbca0db64d3315d8f4bb0a935842ecc106237fbc909c7b72c74"
+          }
+        }
+      ],
+      "disposition": "GENERATED",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "MULTI_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "readiness",
+          "grounding_locator": {
+            "declared_name": "assess_localization_readiness",
+            "kind": "FUNCTION",
+            "module": {
+              "dotted_name": "devtools.context.localization.readiness",
+              "kind": null
+            }
+          },
+          "key": "related",
+          "projection": "REFERENCING_RESOURCE",
+          "result_count": 6,
+          "result_limit": 16,
+          "source_identity": "4680ef3e7f0a7bbf875a1b535569ef5aea6f76f7c8885d4c1ad949cf93ef96d0",
+          "source_type": "PythonFunctionDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "tests/context/localization/association/test_hypothesis.py",
+                "content_identity": "e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "PythonReferenceResourceSupport",
+                  "reference_fact_identities": [
+                    "48907eb013551d3c6c9ccfe61fc423dec2ded8b9e87a4fdfff2f6fb74a19089c"
+                  ],
+                  "referencing_source": {
+                    "address": "tests/context/localization/association/test_hypothesis.py",
+                    "content_identity": "e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56"
+                  }
+                }
+              ]
+            },
+            {
+              "resource": {
+                "address": "tests/context/localization/generation/test_branching.py",
+                "content_identity": "16672281cc2b4d684c029c63d1dcef54c4c9756f8bbe821bfeeae80446291b1a"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "PythonReferenceResourceSupport",
+                  "reference_fact_identities": [
+                    "3201308f043e86aad75e150c0eedd5bd82d0243259cafe8292523aaffb1a4cc5",
+                    "ec095751b941f9855ed866137c9875e4392ff5fd54e6e406101e25893fe97b49"
+                  ],
+                  "referencing_source": {
+                    "address": "tests/context/localization/generation/test_branching.py",
+                    "content_identity": "16672281cc2b4d684c029c63d1dcef54c4c9756f8bbe821bfeeae80446291b1a"
+                  }
+                }
+              ]
+            },
+            {
+              "resource": {
+                "address": "tests/context/localization/generation/test_generation.py",
+                "content_identity": "b2a881d7d24e0a45d2bca46c7d50ddccbf12b67c4b455588003bd79f3f436ae3"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "PythonReferenceResourceSupport",
+                  "reference_fact_identities": [
+                    "b42daabb5712786e000b20b1d06c7d37f4af018264f4d250d2df353ed2d217c3"
+                  ],
+                  "referencing_source": {
+                    "address": "tests/context/localization/generation/test_generation.py",
+                    "content_identity": "b2a881d7d24e0a45d2bca46c7d50ddccbf12b67c4b455588003bd79f3f436ae3"
+                  }
+                }
+              ]
+            },
+            {
+              "resource": {
+                "address": "tests/context/localization/generation/test_imports.py",
+                "content_identity": "07232e4e8d6074ac065a5c971b81d6e75d67be7aa41970256d6a49cc714a40b8"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "PythonReferenceResourceSupport",
+                  "reference_fact_identities": [
+                    "b99279085abd27385f596880395c2813f6a8bfa9982c43c9e45d7695c42ba332",
+                    "d1666e2958c35c7a1f6de8229669a5dc825a09f884324bdcb4c468510667039e"
+                  ],
+                  "referencing_source": {
+                    "address": "tests/context/localization/generation/test_imports.py",
+                    "content_identity": "07232e4e8d6074ac065a5c971b81d6e75d67be7aa41970256d6a49cc714a40b8"
+                  }
+                }
+              ]
+            },
+            {
+              "resource": {
+                "address": "tests/context/localization/generation/test_references.py",
+                "content_identity": "cdb789ed1f5ab3ba00095f2c452e445d514defbf8df5a5649f5ff0d8d77fe1b3"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "PythonReferenceResourceSupport",
+                  "reference_fact_identities": [
+                    "1bb7b3818f83c2d99a768205bb0da76295bc47e78bb7f84214ece2be0f3a12a9",
+                    "aa3e14c75a292654f7fbe9db77a5f003da1f9d195dbaeb34ab69b4b346590903"
+                  ],
+                  "referencing_source": {
+                    "address": "tests/context/localization/generation/test_references.py",
+                    "content_identity": "cdb789ed1f5ab3ba00095f2c452e445d514defbf8df5a5649f5ff0d8d77fe1b3"
+                  }
+                }
+              ]
+            },
+            {
+              "resource": {
+                "address": "tests/context/localization/test_kernel.py",
+                "content_identity": "2e2de0efc3db8bbca0db64d3315d8f4bb0a935842ecc106237fbc909c7b72c74"
+              },
+              "support": [
+                {
+                  "grounding_anchor": "readiness",
+                  "operator_support_type": "PythonReferenceResourceSupport",
+                  "reference_fact_identities": [
+                    "7365df9d534151a822556ce51429dd151fe7d50c9e61e2fe408d50f460decd52"
+                  ],
+                  "referencing_source": {
+                    "address": "tests/context/localization/test_kernel.py",
+                    "content_identity": "2e2de0efc3db8bbca0db64d3315d8f4bb0a935842ecc106237fbc909c7b72c74"
+                  }
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": 410,
+          "work_performed": 410
+        }
+      ],
+      "obligation": "tests",
+      "recipe_identity": "tests-readiness-consumers",
+      "recipe_kind": "family"
+    },
+    {
+      "branches": [],
+      "disposition": "NO_TARGET",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "NO_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "assessment",
+          "grounding_locator": {
+            "declared_name": "LocalizationAssessment",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.assessment",
+              "kind": null
+            }
+          },
+          "key": "member-0",
+          "projection": "MIRRORED_RESOURCE",
+          "result_count": 0,
+          "result_limit": 1,
+          "source_identity": "3f7f558dbdf2fe78a3c02ccaa9e015bab2537e95230c0953233da6223ecbfb34",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 523
+        }
+      ],
+      "obligation": "tests",
+      "recipe_identity": "tests-assessment",
+      "recipe_kind": "fixed"
+    },
+    {
+      "branches": [],
+      "disposition": "GENERATED",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "GENERATED",
+          "failure_reason": null,
+          "grounding_anchor": "candidate",
+          "grounding_locator": {
+            "declared_name": "CandidateWitnessHypothesis",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.association.hypothesis",
+              "kind": null
+            }
+          },
+          "key": "member-0",
+          "projection": "MIRRORED_RESOURCE",
+          "result_count": 1,
+          "result_limit": 1,
+          "source_identity": "f385cf6d87ce1e303aa133983ad1a5459523d8ce473f082a7e07fd454382c539",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [
+            {
+              "resource": {
+                "address": "tests/context/localization/association/test_hypothesis.py",
+                "content_identity": "e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56"
+              },
+              "support": [
+                {
+                  "correspondence_identity": "56c7944685fc436ec83c2cd5e367df62c7b3d012d0e51af88b6754b4e77a91e5",
+                  "grounding_anchor": "candidate",
+                  "operator_support_type": "MirroredResourceSupport",
+                  "source": {
+                    "address": "src/devtools/context/localization/association/hypothesis.py",
+                    "content_identity": "0791a84658e9535d5b3ac2ef35e9e464bf5198c145db7769a64b6ae57f12ceb6"
+                  },
+                  "test": {
+                    "address": "tests/context/localization/association/test_hypothesis.py",
+                    "content_identity": "e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56"
+                  }
+                }
+              ]
+            }
+          ],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 523
+        }
+      ],
+      "obligation": "tests",
+      "recipe_identity": "tests-candidate",
+      "recipe_kind": "fixed"
+    },
+    {
+      "branches": [],
+      "disposition": "NO_TARGET",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "NO_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "generation",
+          "grounding_locator": {
+            "declared_name": "WitnessGenerationView",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.generation.contract",
+              "kind": null
+            }
+          },
+          "key": "member-0",
+          "projection": "MIRRORED_RESOURCE",
+          "result_count": 0,
+          "result_limit": 1,
+          "source_identity": "d4ad70644291d58860ddb6f6fbe8049a889c5a0d68bf779d3a7ecec29102e90f",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 523
+        }
+      ],
+      "obligation": "tests",
+      "recipe_identity": "tests-generation",
+      "recipe_kind": "fixed"
+    },
+    {
+      "branches": [],
+      "disposition": "NO_TARGET",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "NO_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "grounding",
+          "grounding_locator": {
+            "declared_name": "AnchorGroundingView",
+            "kind": "CLASS",
+            "module": {
+              "dotted_name": "devtools.context.localization.grounding.view",
+              "kind": null
+            }
+          },
+          "key": "member-0",
+          "projection": "MIRRORED_RESOURCE",
+          "result_count": 0,
+          "result_limit": 1,
+          "source_identity": "b4224af6a1833d2259adebb6f40dab85998e8df86b07ba042a8c95cd631b6f8d",
+          "source_type": "PythonClassDeclarationKnowledge",
+          "targets": [],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 523
+        }
+      ],
+      "obligation": "tests",
+      "recipe_identity": "tests-grounding",
+      "recipe_kind": "fixed"
+    },
+    {
+      "branches": [],
+      "disposition": "NO_TARGET",
+      "members": [
+        {
+          "complete": true,
+          "disposition": "NO_TARGET",
+          "failure_reason": null,
+          "grounding_anchor": "readiness",
+          "grounding_locator": {
+            "declared_name": "assess_localization_readiness",
+            "kind": "FUNCTION",
+            "module": {
+              "dotted_name": "devtools.context.localization.readiness",
+              "kind": null
+            }
+          },
+          "key": "member-0",
+          "projection": "MIRRORED_RESOURCE",
+          "result_count": 0,
+          "result_limit": 1,
+          "source_identity": "4680ef3e7f0a7bbf875a1b535569ef5aea6f76f7c8885d4c1ad949cf93ef96d0",
+          "source_type": "PythonFunctionDeclarationKnowledge",
+          "targets": [],
+          "uncovered_frontier": [],
+          "work_limit": null,
+          "work_performed": 523
+        }
+      ],
+      "obligation": "tests",
+      "recipe_identity": "tests-readiness",
+      "recipe_kind": "fixed"
+    }
+  ],
+  "generated_hypotheses": [
+    {
+      "identity": "frontier-existing-contracts",
+      "identity_type": "WitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 28,
+              "query": null
+            },
+            {
+              "native_rank": 6,
+              "query": "frontier-semantics-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 6,
+              "position": 4,
+              "query": "frontier-semantics-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "assessment",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonClassDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/assessment.py",
+            "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 51,
+              "query": null
+            },
+            {
+              "native_rank": 62,
+              "query": "frontier-semantics-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 62,
+              "position": 40,
+              "query": "frontier-semantics-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "task",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonClassDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/obligation.py",
+            "content_identity": "89a99701f4f8805381ba5e1619e6e0ac998dd0cde7a09f27e4ce8de80e14bd22"
+          }
+        }
+      ],
+      "obligation": "frontier-semantics"
+    },
+    {
+      "identity": "assessment-owner",
+      "identity_type": "WitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 28,
+              "query": null
+            },
+            {
+              "native_rank": 1,
+              "query": "assessment-applicability-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 1,
+              "position": 1,
+              "query": "assessment-applicability-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "assessment",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonClassDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/assessment.py",
+            "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+          }
+        }
+      ],
+      "obligation": "assessment-applicability"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"candidate-integration\",\"candidate-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/localization/association/structural.py\",\"c3995b60572ae2c0f5ba66a8649e163c1a2292792bd579d249ae939a7ecd41bd\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 23,
+              "query": null
+            },
+            {
+              "native_rank": 2,
+              "query": "candidate-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 2,
+              "position": 2,
+              "query": "candidate-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "candidate",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonClassDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/association/hypothesis.py",
+            "content_identity": "0791a84658e9535d5b3ac2ef35e9e464bf5198c145db7769a64b6ae57f12ceb6"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 44,
+              "query": null
+            },
+            {
+              "native_rank": 43,
+              "query": "candidate-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact direct import dependency resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 43,
+              "position": 25,
+              "query": "candidate-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "dependency_targets": [
+                {
+                  "address": "src/devtools/context/localization/association/structural.py",
+                  "content_identity": "c3995b60572ae2c0f5ba66a8649e163c1a2292792bd579d249ae939a7ecd41bd"
+                },
+                {
+                  "address": "src/devtools/context/localization/association/structural.py",
+                  "content_identity": "c3995b60572ae2c0f5ba66a8649e163c1a2292792bd579d249ae939a7ecd41bd"
+                }
+              ],
+              "grounding_anchor": "candidate",
+              "operator_support_type": "PythonImportDependencyResourceSupport",
+              "resolved_import_relation_identities": [
+                "05d2717c821e5c7df20e1f5eaafa861a0e2b2f32f234789a7ff22d5bf859eb66",
+                "3bb8a231afaeda39ae1f0d346063fe17da40be6c43de15df76e6656644f3d199"
+              ],
+              "source_analysis": "dfeaf4fc983ae107d8ebf006e374654de79a52893d03b0d042a6d12f73b375e7",
+              "source_module": "3e77a2052b6bd9c0a1d0d5ef54f38aef29a4ff996329dbaf408a5e48251cca29"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/association/structural.py",
+            "content_identity": "c3995b60572ae2c0f5ba66a8649e163c1a2292792bd579d249ae939a7ecd41bd"
+          }
+        }
+      ],
+      "obligation": "candidate-integration"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"candidate-integration\",\"candidate-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/retrieval/composition.py\",\"df190b8724613c9a57e5c6d2e06d819ddb36de6b6cca8f5dae2955bbd888b837\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 23,
+              "query": null
+            },
+            {
+              "native_rank": 2,
+              "query": "candidate-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 2,
+              "position": 2,
+              "query": "candidate-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "candidate",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonClassDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/association/hypothesis.py",
+            "content_identity": "0791a84658e9535d5b3ac2ef35e9e464bf5198c145db7769a64b6ae57f12ceb6"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 97,
+              "query": null
+            }
+          ],
+          "reason": "Caller proposes exact direct import dependency resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [],
+          "structural_supports": [
+            {
+              "dependency_targets": [
+                {
+                  "address": "src/devtools/context/retrieval/composition.py",
+                  "content_identity": "df190b8724613c9a57e5c6d2e06d819ddb36de6b6cca8f5dae2955bbd888b837"
+                }
+              ],
+              "grounding_anchor": "candidate",
+              "operator_support_type": "PythonImportDependencyResourceSupport",
+              "resolved_import_relation_identities": [
+                "542375f2a41df9e427e609344ca2d6b62b0ceb9738a3df7857717262711b2156"
+              ],
+              "source_analysis": "dfeaf4fc983ae107d8ebf006e374654de79a52893d03b0d042a6d12f73b375e7",
+              "source_module": "3e77a2052b6bd9c0a1d0d5ef54f38aef29a4ff996329dbaf408a5e48251cca29"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/retrieval/composition.py",
+            "content_identity": "df190b8724613c9a57e5c6d2e06d819ddb36de6b6cca8f5dae2955bbd888b837"
+          }
+        }
+      ],
+      "obligation": "candidate-integration"
+    },
+    {
+      "identity": "candidate-generation-contracts",
+      "identity_type": "WitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 23,
+              "query": null
+            },
+            {
+              "native_rank": 2,
+              "query": "candidate-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 2,
+              "position": 2,
+              "query": "candidate-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "candidate",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonClassDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/association/hypothesis.py",
+            "content_identity": "0791a84658e9535d5b3ac2ef35e9e464bf5198c145db7769a64b6ae57f12ceb6"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 16,
+              "query": null
+            },
+            {
+              "native_rank": 1,
+              "query": "candidate-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 1,
+              "position": 1,
+              "query": "candidate-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "generation",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonClassDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/generation/contract.py",
+            "content_identity": "b5629e1262e83ba17876ff558276ca40a60c1e30564f82867bdff0588f7edfdd"
+          }
+        }
+      ],
+      "obligation": "candidate-integration"
+    },
+    {
+      "identity": "accepted-witness-contracts",
+      "identity_type": "WitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 28,
+              "query": null
+            },
+            {
+              "native_rank": 3,
+              "query": "witness-boundary-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 3,
+              "position": 3,
+              "query": "witness-boundary-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "witness",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonClassDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/assessment.py",
+            "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 51,
+              "query": null
+            },
+            {
+              "native_rank": 5,
+              "query": "witness-boundary-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 5,
+              "position": 5,
+              "query": "witness-boundary-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "witness",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonClassDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/obligation.py",
+            "content_identity": "89a99701f4f8805381ba5e1619e6e0ac998dd0cde7a09f27e4ce8de80e14bd22"
+          }
+        }
+      ],
+      "obligation": "witness-boundary"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"grounding-provenance\",\"grounding-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/localization/grounding/contract.py\",\"b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 46,
+              "query": null
+            },
+            {
+              "native_rank": 9,
+              "query": "grounding-provenance-query"
+            }
+          ],
+          "reason": "Caller proposes exact direct import dependency resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 9,
+              "position": 7,
+              "query": "grounding-provenance-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "dependency_targets": [
+                {
+                  "address": "src/devtools/context/localization/grounding/contract.py",
+                  "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+                },
+                {
+                  "address": "src/devtools/context/localization/grounding/contract.py",
+                  "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+                },
+                {
+                  "address": "src/devtools/context/localization/grounding/contract.py",
+                  "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+                },
+                {
+                  "address": "src/devtools/context/localization/grounding/contract.py",
+                  "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+                },
+                {
+                  "address": "src/devtools/context/localization/grounding/contract.py",
+                  "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+                },
+                {
+                  "address": "src/devtools/context/localization/grounding/contract.py",
+                  "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+                },
+                {
+                  "address": "src/devtools/context/localization/grounding/contract.py",
+                  "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+                }
+              ],
+              "grounding_anchor": "grounding",
+              "operator_support_type": "PythonImportDependencyResourceSupport",
+              "resolved_import_relation_identities": [
+                "28d49317977d2783d24dce49bfc3e3fb96db354f2ec71c75e87eb9cd57b544c3",
+                "321c7345c940c659f63073d40ca1a60c488b3336e87b55e6f94620765f4dcc1f",
+                "5a1d8f994c0aa2dcfd87e8221cc96bdf175788e56fdcd754355e4c5cd7546a8f",
+                "90e097e07e3120f95cfe28c69a9328047921f7a2c8fe2a853e9e2ca824eb9b12",
+                "a1f5ca3f6363e4e68c3b54de0554b8d80d945a4aa1770184045d62cf0c7e5556",
+                "d85c117796d1a9ef7dd1a2199a6e6ad9cecc761ecf4084319b91a5465c3ee252",
+                "fb276857f76972e4f924b00bdd67746371469f84a5bfa8a4d5d4c218c664862d"
+              ],
+              "source_analysis": "a1a0967be56eee31ec8ebd6722897ae868902ea840ce8065d075d87403ecefa8",
+              "source_module": "e2d6803c7778ce0c227b69bcbb11ae8787feddf465f7abc65f0f7feb21f9e43d"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/grounding/contract.py",
+            "content_identity": "b327b49e1ba2f854eb10e1eff2e584efb7fcdcaaf52e1d43425bbf41ff8c8190"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 39,
+              "query": null
+            },
+            {
+              "native_rank": 2,
+              "query": "grounding-provenance-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 2,
+              "position": 2,
+              "query": "grounding-provenance-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "grounding",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonClassDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/grounding/view.py",
+            "content_identity": "bda068a8b6a45a9a61b6908c0b263399f75b88aa68061aef8c9480ba0b625728"
+          }
+        }
+      ],
+      "obligation": "grounding-provenance"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"grounding-provenance\",\"grounding-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/localization/grounding/resolve.py\",\"2ac07f3bbf0350e9c443aefba7ee6209aa6f830d367ac7429236078e22f229d3\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 55,
+              "query": null
+            },
+            {
+              "native_rank": 7,
+              "query": "grounding-provenance-query"
+            }
+          ],
+          "reason": "Caller proposes exact direct import dependency resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 7,
+              "position": 6,
+              "query": "grounding-provenance-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "dependency_targets": [
+                {
+                  "address": "src/devtools/context/localization/grounding/resolve.py",
+                  "content_identity": "2ac07f3bbf0350e9c443aefba7ee6209aa6f830d367ac7429236078e22f229d3"
+                }
+              ],
+              "grounding_anchor": "grounding",
+              "operator_support_type": "PythonImportDependencyResourceSupport",
+              "resolved_import_relation_identities": [
+                "cf59403415e2afb933f067bda4cdf13711ac4be8bb711de082317e1384eedcb6"
+              ],
+              "source_analysis": "a1a0967be56eee31ec8ebd6722897ae868902ea840ce8065d075d87403ecefa8",
+              "source_module": "e2d6803c7778ce0c227b69bcbb11ae8787feddf465f7abc65f0f7feb21f9e43d"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/grounding/resolve.py",
+            "content_identity": "2ac07f3bbf0350e9c443aefba7ee6209aa6f830d367ac7429236078e22f229d3"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 39,
+              "query": null
+            },
+            {
+              "native_rank": 2,
+              "query": "grounding-provenance-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 2,
+              "position": 2,
+              "query": "grounding-provenance-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "grounding",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonClassDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/grounding/view.py",
+            "content_identity": "bda068a8b6a45a9a61b6908c0b263399f75b88aa68061aef8c9480ba0b625728"
+          }
+        }
+      ],
+      "obligation": "grounding-provenance"
+    },
+    {
+      "identity": "grounding-evidence-contracts",
+      "identity_type": "WitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 28,
+              "query": null
+            },
+            {
+              "native_rank": 47,
+              "query": "grounding-provenance-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 47,
+              "position": 23,
+              "query": "grounding-provenance-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "frame",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonClassDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/assessment.py",
+            "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 39,
+              "query": null
+            },
+            {
+              "native_rank": 2,
+              "query": "grounding-provenance-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 2,
+              "position": 2,
+              "query": "grounding-provenance-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "grounding",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonClassDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/grounding/view.py",
+            "content_identity": "bda068a8b6a45a9a61b6908c0b263399f75b88aa68061aef8c9480ba0b625728"
+          }
+        }
+      ],
+      "obligation": "grounding-provenance"
+    },
+    {
+      "identity": "task-evidence-contracts",
+      "identity_type": "WitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 28,
+              "query": null
+            },
+            {
+              "native_rank": 4,
+              "query": "frame-identity-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 4,
+              "position": 4,
+              "query": "frame-identity-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "frame",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonClassDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/assessment.py",
+            "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 49,
+              "query": null
+            },
+            {
+              "native_rank": 7,
+              "query": "frame-identity-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 7,
+              "position": 7,
+              "query": "frame-identity-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "task",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonClassDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/task.py",
+            "content_identity": "e12453604d33eb17259ba4e34377db59abe4c8352aa85a67ab1b2c2b736b0d8f"
+          }
+        }
+      ],
+      "obligation": "frame-identity"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/association/test_hypothesis.py\",\"e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 22,
+              "query": null
+            },
+            {
+              "native_rank": 1,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 1,
+              "position": 1,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonFunctionDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/readiness.py",
+            "content_identity": "9eec380c864f13ae37ef23729c1424eb9499a7a282937f340ecf9e3246d27545"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 25,
+              "query": null
+            },
+            {
+              "native_rank": 11,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE",
+            "TEST"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 11,
+              "position": 6,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "PythonReferenceResourceSupport",
+              "reference_fact_identities": [
+                "48907eb013551d3c6c9ccfe61fc423dec2ded8b9e87a4fdfff2f6fb74a19089c"
+              ],
+              "referencing_source": {
+                "address": "tests/context/localization/association/test_hypothesis.py",
+                "content_identity": "e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56"
+              }
+            }
+          ],
+          "target": {
+            "address": "tests/context/localization/association/test_hypothesis.py",
+            "content_identity": "e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56"
+          }
+        }
+      ],
+      "obligation": "readiness-integration"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_branching.py\",\"16672281cc2b4d684c029c63d1dcef54c4c9756f8bbe821bfeeae80446291b1a\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 22,
+              "query": null
+            },
+            {
+              "native_rank": 1,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 1,
+              "position": 1,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonFunctionDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/readiness.py",
+            "content_identity": "9eec380c864f13ae37ef23729c1424eb9499a7a282937f340ecf9e3246d27545"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 37,
+              "query": null
+            },
+            {
+              "native_rank": 25,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE",
+            "TEST"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 25,
+              "position": 14,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "PythonReferenceResourceSupport",
+              "reference_fact_identities": [
+                "3201308f043e86aad75e150c0eedd5bd82d0243259cafe8292523aaffb1a4cc5",
+                "ec095751b941f9855ed866137c9875e4392ff5fd54e6e406101e25893fe97b49"
+              ],
+              "referencing_source": {
+                "address": "tests/context/localization/generation/test_branching.py",
+                "content_identity": "16672281cc2b4d684c029c63d1dcef54c4c9756f8bbe821bfeeae80446291b1a"
+              }
+            }
+          ],
+          "target": {
+            "address": "tests/context/localization/generation/test_branching.py",
+            "content_identity": "16672281cc2b4d684c029c63d1dcef54c4c9756f8bbe821bfeeae80446291b1a"
+          }
+        }
+      ],
+      "obligation": "readiness-integration"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_generation.py\",\"b2a881d7d24e0a45d2bca46c7d50ddccbf12b67c4b455588003bd79f3f436ae3\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 22,
+              "query": null
+            },
+            {
+              "native_rank": 1,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 1,
+              "position": 1,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonFunctionDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/readiness.py",
+            "content_identity": "9eec380c864f13ae37ef23729c1424eb9499a7a282937f340ecf9e3246d27545"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 24,
+              "query": null
+            },
+            {
+              "native_rank": 33,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE",
+            "TEST"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 33,
+              "position": 18,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "PythonReferenceResourceSupport",
+              "reference_fact_identities": [
+                "b42daabb5712786e000b20b1d06c7d37f4af018264f4d250d2df353ed2d217c3"
+              ],
+              "referencing_source": {
+                "address": "tests/context/localization/generation/test_generation.py",
+                "content_identity": "b2a881d7d24e0a45d2bca46c7d50ddccbf12b67c4b455588003bd79f3f436ae3"
+              }
+            }
+          ],
+          "target": {
+            "address": "tests/context/localization/generation/test_generation.py",
+            "content_identity": "b2a881d7d24e0a45d2bca46c7d50ddccbf12b67c4b455588003bd79f3f436ae3"
+          }
+        }
+      ],
+      "obligation": "readiness-integration"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_imports.py\",\"07232e4e8d6074ac065a5c971b81d6e75d67be7aa41970256d6a49cc714a40b8\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 22,
+              "query": null
+            },
+            {
+              "native_rank": 1,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 1,
+              "position": 1,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonFunctionDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/readiness.py",
+            "content_identity": "9eec380c864f13ae37ef23729c1424eb9499a7a282937f340ecf9e3246d27545"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 50,
+              "query": null
+            },
+            {
+              "native_rank": 21,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE",
+            "TEST"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 21,
+              "position": 13,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "PythonReferenceResourceSupport",
+              "reference_fact_identities": [
+                "b99279085abd27385f596880395c2813f6a8bfa9982c43c9e45d7695c42ba332",
+                "d1666e2958c35c7a1f6de8229669a5dc825a09f884324bdcb4c468510667039e"
+              ],
+              "referencing_source": {
+                "address": "tests/context/localization/generation/test_imports.py",
+                "content_identity": "07232e4e8d6074ac065a5c971b81d6e75d67be7aa41970256d6a49cc714a40b8"
+              }
+            }
+          ],
+          "target": {
+            "address": "tests/context/localization/generation/test_imports.py",
+            "content_identity": "07232e4e8d6074ac065a5c971b81d6e75d67be7aa41970256d6a49cc714a40b8"
+          }
+        }
+      ],
+      "obligation": "readiness-integration"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_references.py\",\"cdb789ed1f5ab3ba00095f2c452e445d514defbf8df5a5649f5ff0d8d77fe1b3\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 22,
+              "query": null
+            },
+            {
+              "native_rank": 1,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 1,
+              "position": 1,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonFunctionDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/readiness.py",
+            "content_identity": "9eec380c864f13ae37ef23729c1424eb9499a7a282937f340ecf9e3246d27545"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 42,
+              "query": null
+            },
+            {
+              "native_rank": 26,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE",
+            "TEST"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 26,
+              "position": 15,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "PythonReferenceResourceSupport",
+              "reference_fact_identities": [
+                "1bb7b3818f83c2d99a768205bb0da76295bc47e78bb7f84214ece2be0f3a12a9",
+                "aa3e14c75a292654f7fbe9db77a5f003da1f9d195dbaeb34ab69b4b346590903"
+              ],
+              "referencing_source": {
+                "address": "tests/context/localization/generation/test_references.py",
+                "content_identity": "cdb789ed1f5ab3ba00095f2c452e445d514defbf8df5a5649f5ff0d8d77fe1b3"
+              }
+            }
+          ],
+          "target": {
+            "address": "tests/context/localization/generation/test_references.py",
+            "content_identity": "cdb789ed1f5ab3ba00095f2c452e445d514defbf8df5a5649f5ff0d8d77fe1b3"
+          }
+        }
+      ],
+      "obligation": "readiness-integration"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/test_kernel.py\",\"2e2de0efc3db8bbca0db64d3315d8f4bb0a935842ecc106237fbc909c7b72c74\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 22,
+              "query": null
+            },
+            {
+              "native_rank": 1,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 1,
+              "position": 1,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonFunctionDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/readiness.py",
+            "content_identity": "9eec380c864f13ae37ef23729c1424eb9499a7a282937f340ecf9e3246d27545"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 18,
+              "query": null
+            },
+            {
+              "native_rank": 2,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE",
+            "TEST"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 2,
+              "position": 2,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "PythonReferenceResourceSupport",
+              "reference_fact_identities": [
+                "7365df9d534151a822556ce51429dd151fe7d50c9e61e2fe408d50f460decd52"
+              ],
+              "referencing_source": {
+                "address": "tests/context/localization/test_kernel.py",
+                "content_identity": "2e2de0efc3db8bbca0db64d3315d8f4bb0a935842ecc106237fbc909c7b72c74"
+              }
+            }
+          ],
+          "target": {
+            "address": "tests/context/localization/test_kernel.py",
+            "content_identity": "2e2de0efc3db8bbca0db64d3315d8f4bb0a935842ecc106237fbc909c7b72c74"
+          }
+        }
+      ],
+      "obligation": "readiness-integration"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/localization/assessment.py\",\"5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 28,
+              "query": null
+            },
+            {
+              "native_rank": 4,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact direct import dependency resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 4,
+              "position": 4,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "dependency_targets": [
+                {
+                  "address": "src/devtools/context/localization/assessment.py",
+                  "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+                },
+                {
+                  "address": "src/devtools/context/localization/assessment.py",
+                  "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+                }
+              ],
+              "grounding_anchor": "readiness",
+              "operator_support_type": "PythonImportDependencyResourceSupport",
+              "resolved_import_relation_identities": [
+                "5c753fc5edf45bd70d414d92d7f2627bb0df99cb7392505899d8bb5a35e0c860",
+                "eaf79aca61713061b3c7e4ba88ff35b55e8e06f8a534561e710ea574f022bb4d"
+              ],
+              "source_analysis": "cac926b541dd56a92872644bf888d0e6e45235c4304ef224cc62c469d7b648b3",
+              "source_module": "b2f08af47a5c08a0f07019f58625890c351ba25a9b2a4f93714b6b633a1ac1a6"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/assessment.py",
+            "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 22,
+              "query": null
+            },
+            {
+              "native_rank": 1,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 1,
+              "position": 1,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonFunctionDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/readiness.py",
+            "content_identity": "9eec380c864f13ae37ef23729c1424eb9499a7a282937f340ecf9e3246d27545"
+          }
+        }
+      ],
+      "obligation": "readiness-integration"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/context/localization/obligation.py\",\"89a99701f4f8805381ba5e1619e6e0ac998dd0cde7a09f27e4ce8de80e14bd22\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 51,
+              "query": null
+            },
+            {
+              "native_rank": 6,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact direct import dependency resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 6,
+              "position": 5,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "dependency_targets": [
+                {
+                  "address": "src/devtools/context/localization/obligation.py",
+                  "content_identity": "89a99701f4f8805381ba5e1619e6e0ac998dd0cde7a09f27e4ce8de80e14bd22"
+                }
+              ],
+              "grounding_anchor": "readiness",
+              "operator_support_type": "PythonImportDependencyResourceSupport",
+              "resolved_import_relation_identities": [
+                "43510cf3e3f0741e6db224d5a711fac790747a88cb2701d3a208d96b17ffc757"
+              ],
+              "source_analysis": "cac926b541dd56a92872644bf888d0e6e45235c4304ef224cc62c469d7b648b3",
+              "source_module": "b2f08af47a5c08a0f07019f58625890c351ba25a9b2a4f93714b6b633a1ac1a6"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/obligation.py",
+            "content_identity": "89a99701f4f8805381ba5e1619e6e0ac998dd0cde7a09f27e4ce8de80e14bd22"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 22,
+              "query": null
+            },
+            {
+              "native_rank": 1,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 1,
+              "position": 1,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonFunctionDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/readiness.py",
+            "content_identity": "9eec380c864f13ae37ef23729c1424eb9499a7a282937f340ecf9e3246d27545"
+          }
+        }
+      ],
+      "obligation": "readiness-integration"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"readiness-integration\",\"readiness-dependencies\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"src/devtools/evaluation/coverage.py\",\"f6fb335dee42a13ff55e70fe8031d76b39a74c3da5ba17360035ca3db319070a\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 22,
+              "query": null
+            },
+            {
+              "native_rank": 1,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 1,
+              "position": 1,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonFunctionDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/readiness.py",
+            "content_identity": "9eec380c864f13ae37ef23729c1424eb9499a7a282937f340ecf9e3246d27545"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 266,
+              "query": null
+            }
+          ],
+          "reason": "Caller proposes exact direct import dependency resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [],
+          "structural_supports": [
+            {
+              "dependency_targets": [
+                {
+                  "address": "src/devtools/evaluation/coverage.py",
+                  "content_identity": "f6fb335dee42a13ff55e70fe8031d76b39a74c3da5ba17360035ca3db319070a"
+                },
+                {
+                  "address": "src/devtools/evaluation/coverage.py",
+                  "content_identity": "f6fb335dee42a13ff55e70fe8031d76b39a74c3da5ba17360035ca3db319070a"
+                }
+              ],
+              "grounding_anchor": "readiness",
+              "operator_support_type": "PythonImportDependencyResourceSupport",
+              "resolved_import_relation_identities": [
+                "98044a18064d9b8d04269f8ba2e5cde7fa97baf8b3cd119c642145d6b3445516",
+                "f9472d25b448d6862084ded423e36f2c07ea8203c8f3f079425d3f601dd59e20"
+              ],
+              "source_analysis": "cac926b541dd56a92872644bf888d0e6e45235c4304ef224cc62c469d7b648b3",
+              "source_module": "b2f08af47a5c08a0f07019f58625890c351ba25a9b2a4f93714b6b633a1ac1a6"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/evaluation/coverage.py",
+            "content_identity": "f6fb335dee42a13ff55e70fe8031d76b39a74c3da5ba17360035ca3db319070a"
+          }
+        }
+      ],
+      "obligation": "readiness-integration"
+    },
+    {
+      "identity": "readiness-assessment-contracts",
+      "identity_type": "WitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 28,
+              "query": null
+            },
+            {
+              "native_rank": 4,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 4,
+              "position": 4,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "assessment",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonClassDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/assessment.py",
+            "content_identity": "5e7910961451bb87dd90e55a52d1baa3a7079b8b4b0351f8816e84fd88c51b08"
+          }
+        },
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 22,
+              "query": null
+            },
+            {
+              "native_rank": 1,
+              "query": "readiness-integration-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 1,
+              "position": 1,
+              "query": "readiness-integration-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonFunctionDeclarationKnowledge"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/readiness.py",
+            "content_identity": "9eec380c864f13ae37ef23729c1424eb9499a7a282937f340ecf9e3246d27545"
+          }
+        }
+      ],
+      "obligation": "readiness-integration"
+    },
+    {
+      "identity": "localization-facade",
+      "identity_type": "WitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 115,
+              "query": null
+            },
+            {
+              "native_rank": 47,
+              "query": "package-api-query"
+            }
+          ],
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PACKAGE_SURFACE",
+            "PYTHON_CODE"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 47,
+              "position": 18,
+              "query": "package-api-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "package",
+              "operator_support_type": "OwnerResourceSupport",
+              "referent_type": "PythonModuleInterpretation"
+            }
+          ],
+          "target": {
+            "address": "src/devtools/context/localization/__init__.py",
+            "content_identity": "e474ecd929bb3d0d741a14bd7f5d3f6ab65581137c51b62cb3727982f57490b6"
+          }
+        }
+      ],
+      "obligation": "package-api"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/association/test_hypothesis.py\",\"e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 25,
+              "query": null
+            },
+            {
+              "native_rank": 19,
+              "query": "tests-query"
+            }
+          ],
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE",
+            "TEST"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 19,
+              "position": 4,
+              "query": "tests-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "PythonReferenceResourceSupport",
+              "reference_fact_identities": [
+                "48907eb013551d3c6c9ccfe61fc423dec2ded8b9e87a4fdfff2f6fb74a19089c"
+              ],
+              "referencing_source": {
+                "address": "tests/context/localization/association/test_hypothesis.py",
+                "content_identity": "e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56"
+              }
+            }
+          ],
+          "target": {
+            "address": "tests/context/localization/association/test_hypothesis.py",
+            "content_identity": "e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56"
+          }
+        }
+      ],
+      "obligation": "tests"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_branching.py\",\"16672281cc2b4d684c029c63d1dcef54c4c9756f8bbe821bfeeae80446291b1a\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 37,
+              "query": null
+            },
+            {
+              "native_rank": 17,
+              "query": "tests-query"
+            }
+          ],
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE",
+            "TEST"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 17,
+              "position": 3,
+              "query": "tests-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "PythonReferenceResourceSupport",
+              "reference_fact_identities": [
+                "3201308f043e86aad75e150c0eedd5bd82d0243259cafe8292523aaffb1a4cc5",
+                "ec095751b941f9855ed866137c9875e4392ff5fd54e6e406101e25893fe97b49"
+              ],
+              "referencing_source": {
+                "address": "tests/context/localization/generation/test_branching.py",
+                "content_identity": "16672281cc2b4d684c029c63d1dcef54c4c9756f8bbe821bfeeae80446291b1a"
+              }
+            }
+          ],
+          "target": {
+            "address": "tests/context/localization/generation/test_branching.py",
+            "content_identity": "16672281cc2b4d684c029c63d1dcef54c4c9756f8bbe821bfeeae80446291b1a"
+          }
+        }
+      ],
+      "obligation": "tests"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_generation.py\",\"b2a881d7d24e0a45d2bca46c7d50ddccbf12b67c4b455588003bd79f3f436ae3\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 24,
+              "query": null
+            },
+            {
+              "native_rank": 15,
+              "query": "tests-query"
+            }
+          ],
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE",
+            "TEST"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 15,
+              "position": 2,
+              "query": "tests-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "PythonReferenceResourceSupport",
+              "reference_fact_identities": [
+                "b42daabb5712786e000b20b1d06c7d37f4af018264f4d250d2df353ed2d217c3"
+              ],
+              "referencing_source": {
+                "address": "tests/context/localization/generation/test_generation.py",
+                "content_identity": "b2a881d7d24e0a45d2bca46c7d50ddccbf12b67c4b455588003bd79f3f436ae3"
+              }
+            }
+          ],
+          "target": {
+            "address": "tests/context/localization/generation/test_generation.py",
+            "content_identity": "b2a881d7d24e0a45d2bca46c7d50ddccbf12b67c4b455588003bd79f3f436ae3"
+          }
+        }
+      ],
+      "obligation": "tests"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_imports.py\",\"07232e4e8d6074ac065a5c971b81d6e75d67be7aa41970256d6a49cc714a40b8\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 50,
+              "query": null
+            },
+            {
+              "native_rank": 25,
+              "query": "tests-query"
+            }
+          ],
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE",
+            "TEST"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 25,
+              "position": 7,
+              "query": "tests-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "PythonReferenceResourceSupport",
+              "reference_fact_identities": [
+                "b99279085abd27385f596880395c2813f6a8bfa9982c43c9e45d7695c42ba332",
+                "d1666e2958c35c7a1f6de8229669a5dc825a09f884324bdcb4c468510667039e"
+              ],
+              "referencing_source": {
+                "address": "tests/context/localization/generation/test_imports.py",
+                "content_identity": "07232e4e8d6074ac065a5c971b81d6e75d67be7aa41970256d6a49cc714a40b8"
+              }
+            }
+          ],
+          "target": {
+            "address": "tests/context/localization/generation/test_imports.py",
+            "content_identity": "07232e4e8d6074ac065a5c971b81d6e75d67be7aa41970256d6a49cc714a40b8"
+          }
+        }
+      ],
+      "obligation": "tests"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/generation/test_references.py\",\"cdb789ed1f5ab3ba00095f2c452e445d514defbf8df5a5649f5ff0d8d77fe1b3\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 42,
+              "query": null
+            },
+            {
+              "native_rank": 21,
+              "query": "tests-query"
+            }
+          ],
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE",
+            "TEST"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 21,
+              "position": 5,
+              "query": "tests-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "PythonReferenceResourceSupport",
+              "reference_fact_identities": [
+                "1bb7b3818f83c2d99a768205bb0da76295bc47e78bb7f84214ece2be0f3a12a9",
+                "aa3e14c75a292654f7fbe9db77a5f003da1f9d195dbaeb34ab69b4b346590903"
+              ],
+              "referencing_source": {
+                "address": "tests/context/localization/generation/test_references.py",
+                "content_identity": "cdb789ed1f5ab3ba00095f2c452e445d514defbf8df5a5649f5ff0d8d77fe1b3"
+              }
+            }
+          ],
+          "target": {
+            "address": "tests/context/localization/generation/test_references.py",
+            "content_identity": "cdb789ed1f5ab3ba00095f2c452e445d514defbf8df5a5649f5ff0d8d77fe1b3"
+          }
+        }
+      ],
+      "obligation": "tests"
+    },
+    {
+      "identity": "[\"generated-witness-v1\",\"case-0008-unresolved-frontier-acquisition\",\"tests\",\"tests-readiness-consumers\",\"related\",\"fe2c8984-a021-4342-9e31-404a6cf07707\",\"72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa\",\"tests/context/localization/test_kernel.py\",\"2e2de0efc3db8bbca0db64d3315d8f4bb0a935842ecc106237fbc909c7b72c74\"]",
+      "identity_type": "GeneratedWitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 18,
+              "query": null
+            },
+            {
+              "native_rank": 10,
+              "query": "tests-query"
+            }
+          ],
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE",
+            "TEST"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 10,
+              "position": 1,
+              "query": "tests-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "grounding_anchor": "readiness",
+              "operator_support_type": "PythonReferenceResourceSupport",
+              "reference_fact_identities": [
+                "7365df9d534151a822556ce51429dd151fe7d50c9e61e2fe408d50f460decd52"
+              ],
+              "referencing_source": {
+                "address": "tests/context/localization/test_kernel.py",
+                "content_identity": "2e2de0efc3db8bbca0db64d3315d8f4bb0a935842ecc106237fbc909c7b72c74"
+              }
+            }
+          ],
+          "target": {
+            "address": "tests/context/localization/test_kernel.py",
+            "content_identity": "2e2de0efc3db8bbca0db64d3315d8f4bb0a935842ecc106237fbc909c7b72c74"
+          }
+        }
+      ],
+      "obligation": "tests"
+    },
+    {
+      "identity": "tests-candidate",
+      "identity_type": "WitnessHypothesisIdentity",
+      "members": [
+        {
+          "lexical_supports": [
+            {
+              "native_rank": 25,
+              "query": null
+            },
+            {
+              "native_rank": 19,
+              "query": "tests-query"
+            }
+          ],
+          "reason": "Caller proposes exact mirrored resource support for this obligation; no satisfaction claim.",
+          "role_supports": [
+            "PACKAGE_MEMBER",
+            "PYTHON_CODE",
+            "TEST"
+          ],
+          "routed_supports": [
+            {
+              "native_rank": 19,
+              "position": 4,
+              "query": "tests-query",
+              "tier": "PREFERRED_ROLE_SUPPORTED"
+            }
+          ],
+          "structural_supports": [
+            {
+              "correspondence_identity": "56c7944685fc436ec83c2cd5e367df62c7b3d012d0e51af88b6754b4e77a91e5",
+              "grounding_anchor": "candidate",
+              "operator_support_type": "MirroredResourceSupport",
+              "source": {
+                "address": "src/devtools/context/localization/association/hypothesis.py",
+                "content_identity": "0791a84658e9535d5b3ac2ef35e9e464bf5198c145db7769a64b6ae57f12ceb6"
+              },
+              "test": {
+                "address": "tests/context/localization/association/test_hypothesis.py",
+                "content_identity": "e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56"
+              }
+            }
+          ],
+          "target": {
+            "address": "tests/context/localization/association/test_hypothesis.py",
+            "content_identity": "e7bb04c5acacb59b41cdb33803cd98bce227be48d3ab3b676e6cf7e291098b56"
+          }
+        }
+      ],
+      "obligation": "tests"
+    }
+  ],
+  "recovery_provenance": {
+    "execution_kind": "GENERATION_RECOVERY",
+    "grounding_source": "stage_b_raw.pkl.gz",
+    "lexical_source": "stage_b_raw.pkl.gz",
+    "original_execution_id": "2fed596a-f43d-4d35-9e32-e8a609366a6f",
+    "prior_generation_attempts": 1,
+    "recovery_generation_invocations": 1,
+    "recovery_generation_seconds": 1316.8408681,
+    "recovery_id": "case-0008-stage-b-generation-recovery-1",
+    "routing_source": "stage_b_raw.pkl.gz"
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "artifacts": {
+    "capture.pkl.gz": "0ad8b7b48274ca67d9ee669cecbf2ae553a89c3476b80a8ea3bf413ae8bcaf30",
+    "generation.json": "b12f519e214382ce1fd76b19e0af995342f20a71b6fb32d4563cf64fe4a0709f",
+    "grounding.json": "1211f59ce778da4c1badd57d7b65b45a953780af2856177dbeb00cf31ddd75a4",
+    "retrieval.json": "6ae883a05393120c2da7df442bb9ef704b8fb7d2c9ebf6f2e3cdae7c6e415f58",
+    "routing.json": "6c68dd32d2b6047c426e59b0731229225eefd1d99b115539391a60d8847ef24f"
+  },
+  "case": "case_0008",
+  "correspondence": {
+    "generation_plan_equal_capture": true,
+    "recipes": "29/29",
+    "targets_in_snapshot": true
+  },
+  "counts": {
+    "branching_children": 19,
+    "branching_families": 14,
+    "family_outcomes": {
+      "DIRECT_IMPORT_DEPENDENCY_RESOURCE": {
+        "children": 7,
+        "dispositions": {
+          "GENERATED": 3,
+          "NO_TARGET": 3
+        },
+        "duplicate_branch_failures": 0,
+        "families": 6,
+        "fixed_owner_target_collisions": 0,
+        "maximum_complete_fanout": 3,
+        "median_complete_fanout": 1.0,
+        "one_target": 0,
+        "result_overflow": 0,
+        "several_targets": 3,
+        "unique_targets": 7,
+        "work_overflow": 0,
+        "zero_target": 3
+      },
+      "REFERENCING_RESOURCE": {
+        "children": 12,
+        "dispositions": {
+          "GENERATED": 2,
+          "NO_TARGET": 6
+        },
+        "duplicate_branch_failures": 0,
+        "families": 8,
+        "fixed_owner_target_collisions": 0,
+        "maximum_complete_fanout": 6,
+        "median_complete_fanout": 0.0,
+        "one_target": 0,
+        "result_overflow": 0,
+        "several_targets": 2,
+        "unique_targets": 6,
+        "work_overflow": 0,
+        "zero_target": 6
+      }
+    },
+    "fixed_hypotheses": 15,
+    "fixed_outcomes": {
+      "GENERATED": 9,
+      "NO_TARGET": 6
+    },
+    "member_occurrences": 47,
+    "obligation_resource_cells": 32,
+    "operator_obligation_resource_cells": {
+      "DIRECT_IMPORT_DEPENDENCY_RESOURCE": 7,
+      "MIRRORED_RESOURCE": 1,
+      "OWNER_RESOURCE": 14,
+      "REFERENCING_RESOURCE": 12
+    },
+    "operator_unique_resources": {
+      "DIRECT_IMPORT_DEPENDENCY_RESOURCE": 7,
+      "MIRRORED_RESOURCE": 1,
+      "OWNER_RESOURCE": 8,
+      "REFERENCING_RESOURCE": 6
+    },
+    "structural_unions": {
+      "ALL": 19,
+      "OWNER_MIRROR": 9,
+      "OWNER_MIRROR_IMPORT": 14,
+      "OWNER_MIRROR_REFERENCE": 14
+    },
+    "support_member_counts": {
+      "members_structural_only": 0,
+      "members_with_global_lexical": 47,
+      "members_with_own_lexical": 45,
+      "members_with_role": 47,
+      "members_with_routed_escape": 0,
+      "members_with_routed_preferred": 45
+    },
+    "total_hypotheses": 28,
+    "unique_generated_resources": 19
+  },
+  "execution_id": "2fed596a-f43d-4d35-9e32-e8a609366a6f",
+  "invocations": {
+    "generation": {
+      "invocations": 1,
+      "seconds": 1316.8408681
+    },
+    "grounding:g-assessment": {
+      "invocations": 1,
+      "seconds": 0.33591530000558123
+    },
+    "grounding:g-candidate": {
+      "invocations": 1,
+      "seconds": 0.16398069995921105
+    },
+    "grounding:g-evidence": {
+      "invocations": 1,
+      "seconds": 0.02262679999694228
+    },
+    "grounding:g-generation": {
+      "invocations": 1,
+      "seconds": 0.025897499988786876
+    },
+    "grounding:g-grounding": {
+      "invocations": 1,
+      "seconds": 0.024052000022493303
+    },
+    "grounding:g-obligation": {
+      "invocations": 1,
+      "seconds": 0.023385999957099557
+    },
+    "grounding:g-package": {
+      "invocations": 1,
+      "seconds": 0.022565999999642372
+    },
+    "grounding:g-readiness": {
+      "invocations": 1,
+      "seconds": 0.026976000051945448
+    },
+    "grounding:g-supported-witness": {
+      "invocations": 1,
+      "seconds": 0.023746799968648702
+    },
+    "grounding:g-task": {
+      "invocations": 1,
+      "seconds": 0.02236790000461042
+    },
+    "grounding:g-witness-set": {
+      "invocations": 1,
+      "seconds": 0.023611699987668544
+    },
+    "lexical": {
+      "invocations": 1,
+      "seconds": 1.3604104000260122
+    },
+    "routing": {
+      "invocations": 1,
+      "seconds": 1.665974399948027
+    }
+  },
+  "raw_checkpoint_before_canonicalization_sha256": "85ddcf05b9f5c4aceb89da8ed4d47edbb05218c2c4b40513cc2e286b58088bb3",
+  "recovery_provenance": {
+    "execution_kind": "GENERATION_RECOVERY",
+    "grounding_source": "stage_b_raw.pkl.gz",
+    "lexical_source": "stage_b_raw.pkl.gz",
+    "original_execution_id": "2fed596a-f43d-4d35-9e32-e8a609366a6f",
+    "prior_generation_attempts": 1,
+    "recovery_generation_invocations": 1,
+    "recovery_generation_seconds": 1316.8408681,
+    "recovery_id": "case-0008-stage-b-generation-recovery-1",
+    "routing_source": "stage_b_raw.pkl.gz"
+  },
+  "schema": "case-0008-stage-b-integrity-v1",
+  "stage_a_commit": "3eda8c6027f72a51109ed78f5684a6bbb59c65bd",
+  "stage_a_digests": {
+    "README.md": "7d808ba66b899c027782debc04ba763d7c169cab63f89cc4409141972ccead3f",
+    "freeze.py": "a99607f697e00cdd75bc53ed99072879ce3787a2a5cceeda7b28d2068456f8fa",
+    "inputs.pkl.gz": "9eb0f6de7c9150390807ab872d159bbcf4c8853632b48c8395d3dd9d347be5d5",
+    "pre_execution.json": "850f0448b35a1eff836102c7e3a75c3d9acd651cae6299666effe1a1c7b31b4f",
+    "test_freeze.py": "cd2b8200b4ee0db6c0d51c2b4675d88f6b6fc519d9df31e644cf65524b80265b",
+    "treatment.json": "18574564badfc568e8e7ab8834775c7a9b5a7d15ffe87885f23352ba73a0c60a"
+  }
+}

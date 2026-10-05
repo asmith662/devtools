@@ -1,0 +1,370 @@
+{
+  "disposition_counts": {
+    "RESOLVED": 11
+  },
+  "explicit_grounding_invocations": 11,
+  "groundings": [
+    {
+      "anchor": "assessment",
+      "candidates": [
+        {
+          "evidence_type": "PythonModuleSourceDeclarationSelection",
+          "referent": {
+            "identity": "3f7f558dbdf2fe78a3c02ccaa9e015bab2537e95230c0953233da6223ecbfb34",
+            "resource_address": "src/devtools/context/localization/assessment.py",
+            "subject_identity": "3a598284c3ba770c5786e7459ff8c1a979872135dc8944d5000a4608ee2ec463",
+            "type": "PythonClassDeclarationKnowledge"
+          }
+        }
+      ],
+      "disposition": "RESOLVED",
+      "locator": {
+        "declared_name": "LocalizationAssessment",
+        "kind": "CLASS",
+        "module": {
+          "dotted_name": "devtools.context.localization.assessment",
+          "kind": null
+        }
+      },
+      "native_evidence": [
+        {
+          "identity": null,
+          "type": "PythonModuleSourceDeclarationSelection"
+        }
+      ],
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "request_identity": "g-assessment",
+      "resolver": "PYTHON_SOURCE_DECLARATION_SELECTION"
+    },
+    {
+      "anchor": "candidate",
+      "candidates": [
+        {
+          "evidence_type": "PythonModuleSourceDeclarationSelection",
+          "referent": {
+            "identity": "f385cf6d87ce1e303aa133983ad1a5459523d8ce473f082a7e07fd454382c539",
+            "resource_address": "src/devtools/context/localization/association/hypothesis.py",
+            "subject_identity": "6b2a27cb80da535b3f7aa28de11f3c217e7a33d07bac846e58d7d402e4f25d13",
+            "type": "PythonClassDeclarationKnowledge"
+          }
+        }
+      ],
+      "disposition": "RESOLVED",
+      "locator": {
+        "declared_name": "CandidateWitnessHypothesis",
+        "kind": "CLASS",
+        "module": {
+          "dotted_name": "devtools.context.localization.association.hypothesis",
+          "kind": null
+        }
+      },
+      "native_evidence": [
+        {
+          "identity": null,
+          "type": "PythonModuleSourceDeclarationSelection"
+        }
+      ],
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "request_identity": "g-candidate",
+      "resolver": "PYTHON_SOURCE_DECLARATION_SELECTION"
+    },
+    {
+      "anchor": "generation",
+      "candidates": [
+        {
+          "evidence_type": "PythonModuleSourceDeclarationSelection",
+          "referent": {
+            "identity": "d4ad70644291d58860ddb6f6fbe8049a889c5a0d68bf779d3a7ecec29102e90f",
+            "resource_address": "src/devtools/context/localization/generation/contract.py",
+            "subject_identity": "178fe6d7222a385cc56cae2202c76a07bc62275fffd522b19f6fa2c4b5a26332",
+            "type": "PythonClassDeclarationKnowledge"
+          }
+        }
+      ],
+      "disposition": "RESOLVED",
+      "locator": {
+        "declared_name": "WitnessGenerationView",
+        "kind": "CLASS",
+        "module": {
+          "dotted_name": "devtools.context.localization.generation.contract",
+          "kind": null
+        }
+      },
+      "native_evidence": [
+        {
+          "identity": null,
+          "type": "PythonModuleSourceDeclarationSelection"
+        }
+      ],
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "request_identity": "g-generation",
+      "resolver": "PYTHON_SOURCE_DECLARATION_SELECTION"
+    },
+    {
+      "anchor": "grounding",
+      "candidates": [
+        {
+          "evidence_type": "PythonModuleSourceDeclarationSelection",
+          "referent": {
+            "identity": "b4224af6a1833d2259adebb6f40dab85998e8df86b07ba042a8c95cd631b6f8d",
+            "resource_address": "src/devtools/context/localization/grounding/view.py",
+            "subject_identity": "1f2a8a55659f8efe3128e12ca4c654cc1a01c82a50b58fc01817aa38a270a7b4",
+            "type": "PythonClassDeclarationKnowledge"
+          }
+        }
+      ],
+      "disposition": "RESOLVED",
+      "locator": {
+        "declared_name": "AnchorGroundingView",
+        "kind": "CLASS",
+        "module": {
+          "dotted_name": "devtools.context.localization.grounding.view",
+          "kind": null
+        }
+      },
+      "native_evidence": [
+        {
+          "identity": null,
+          "type": "PythonModuleSourceDeclarationSelection"
+        }
+      ],
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "request_identity": "g-grounding",
+      "resolver": "PYTHON_SOURCE_DECLARATION_SELECTION"
+    },
+    {
+      "anchor": "witness",
+      "candidates": [
+        {
+          "evidence_type": "PythonModuleSourceDeclarationSelection",
+          "referent": {
+            "identity": "f92c16b0700db44679631d07c25ee8bb18f9c169ee721317d87c9a4010cf58de",
+            "resource_address": "src/devtools/context/localization/obligation.py",
+            "subject_identity": "5b73676638d1245f13d0d48e1233226b53cfdf28f0739054343ccbe35632c91a",
+            "type": "PythonClassDeclarationKnowledge"
+          }
+        }
+      ],
+      "disposition": "RESOLVED",
+      "locator": {
+        "declared_name": "WitnessSet",
+        "kind": "CLASS",
+        "module": {
+          "dotted_name": "devtools.context.localization.obligation",
+          "kind": null
+        }
+      },
+      "native_evidence": [
+        {
+          "identity": null,
+          "type": "PythonModuleSourceDeclarationSelection"
+        }
+      ],
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "request_identity": "g-witness-set",
+      "resolver": "PYTHON_SOURCE_DECLARATION_SELECTION"
+    },
+    {
+      "anchor": "witness",
+      "candidates": [
+        {
+          "evidence_type": "PythonModuleSourceDeclarationSelection",
+          "referent": {
+            "identity": "bca4a635f72dc21bf9900edbbd8a022e67c9733264d2bf57f7a1ba26f0b30302",
+            "resource_address": "src/devtools/context/localization/assessment.py",
+            "subject_identity": "d9827803665ec4662e3650a06afb62509f146a27243e3d189da3da261b2c82ce",
+            "type": "PythonClassDeclarationKnowledge"
+          }
+        }
+      ],
+      "disposition": "RESOLVED",
+      "locator": {
+        "declared_name": "SupportedWitness",
+        "kind": "CLASS",
+        "module": {
+          "dotted_name": "devtools.context.localization.assessment",
+          "kind": null
+        }
+      },
+      "native_evidence": [
+        {
+          "identity": null,
+          "type": "PythonModuleSourceDeclarationSelection"
+        }
+      ],
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "request_identity": "g-supported-witness",
+      "resolver": "PYTHON_SOURCE_DECLARATION_SELECTION"
+    },
+    {
+      "anchor": "task",
+      "candidates": [
+        {
+          "evidence_type": "PythonModuleSourceDeclarationSelection",
+          "referent": {
+            "identity": "8815dba8332344fcffe00f01960fb77bf847fd35d9e939bec0be848736044058",
+            "resource_address": "src/devtools/context/localization/task.py",
+            "subject_identity": "c69b14a6f97c986ece32a7f3d20936994f416ae6a55bf80e25b9af7cef79ebe1",
+            "type": "PythonClassDeclarationKnowledge"
+          }
+        }
+      ],
+      "disposition": "RESOLVED",
+      "locator": {
+        "declared_name": "LocalizationTaskInterpretation",
+        "kind": "CLASS",
+        "module": {
+          "dotted_name": "devtools.context.localization.task",
+          "kind": null
+        }
+      },
+      "native_evidence": [
+        {
+          "identity": null,
+          "type": "PythonModuleSourceDeclarationSelection"
+        }
+      ],
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "request_identity": "g-task",
+      "resolver": "PYTHON_SOURCE_DECLARATION_SELECTION"
+    },
+    {
+      "anchor": "task",
+      "candidates": [
+        {
+          "evidence_type": "PythonModuleSourceDeclarationSelection",
+          "referent": {
+            "identity": "eee5beaa27e3ec0b7c83a255b05fd7a0f9e2c7f53a9d797ad57b3c7fee4634c1",
+            "resource_address": "src/devtools/context/localization/obligation.py",
+            "subject_identity": "31123c4607aae90697a4438274b3d8ad991a1c7c309fa189d0f418e0dc4d1b6f",
+            "type": "PythonClassDeclarationKnowledge"
+          }
+        }
+      ],
+      "disposition": "RESOLVED",
+      "locator": {
+        "declared_name": "LocalizationObligation",
+        "kind": "CLASS",
+        "module": {
+          "dotted_name": "devtools.context.localization.obligation",
+          "kind": null
+        }
+      },
+      "native_evidence": [
+        {
+          "identity": null,
+          "type": "PythonModuleSourceDeclarationSelection"
+        }
+      ],
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "request_identity": "g-obligation",
+      "resolver": "PYTHON_SOURCE_DECLARATION_SELECTION"
+    },
+    {
+      "anchor": "readiness",
+      "candidates": [
+        {
+          "evidence_type": "PythonModuleSourceDeclarationSelection",
+          "referent": {
+            "identity": "4680ef3e7f0a7bbf875a1b535569ef5aea6f76f7c8885d4c1ad949cf93ef96d0",
+            "resource_address": "src/devtools/context/localization/readiness.py",
+            "subject_identity": "f64423d2881e94d7e6a6887b47d2f91c0373ac2d20f99d9baa87dd5dc4d25213",
+            "type": "PythonFunctionDeclarationKnowledge"
+          }
+        }
+      ],
+      "disposition": "RESOLVED",
+      "locator": {
+        "declared_name": "assess_localization_readiness",
+        "kind": "FUNCTION",
+        "module": {
+          "dotted_name": "devtools.context.localization.readiness",
+          "kind": null
+        }
+      },
+      "native_evidence": [
+        {
+          "identity": null,
+          "type": "PythonModuleSourceDeclarationSelection"
+        }
+      ],
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "request_identity": "g-readiness",
+      "resolver": "PYTHON_SOURCE_DECLARATION_SELECTION"
+    },
+    {
+      "anchor": "frame",
+      "candidates": [
+        {
+          "evidence_type": "PythonModuleSourceDeclarationSelection",
+          "referent": {
+            "identity": "52aa3813982fb2f5b57fbd3e20a144ad59854e53994198f710993d409792fcc3",
+            "resource_address": "src/devtools/context/localization/assessment.py",
+            "subject_identity": "9f792c73cb958d8d7a005cb92a4e0ef868a0073a327136cdb26036f440d7a66e",
+            "type": "PythonClassDeclarationKnowledge"
+          }
+        }
+      ],
+      "disposition": "RESOLVED",
+      "locator": {
+        "declared_name": "LocalizationEvidenceReference",
+        "kind": "CLASS",
+        "module": {
+          "dotted_name": "devtools.context.localization.assessment",
+          "kind": null
+        }
+      },
+      "native_evidence": [
+        {
+          "identity": null,
+          "type": "PythonModuleSourceDeclarationSelection"
+        }
+      ],
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "request_identity": "g-evidence",
+      "resolver": "PYTHON_SOURCE_DECLARATION_SELECTION"
+    },
+    {
+      "anchor": "package",
+      "candidates": [
+        {
+          "evidence_type": "PythonModuleInterpretation",
+          "referent": {
+            "identity": "fa1a792e5382bfe6a989211da1106e3e8566b6e7f1a2c60ed2631a3fd38131fe",
+            "resource": {
+              "address": "src/devtools/context/localization/__init__.py",
+              "content_identity": "e474ecd929bb3d0d741a14bd7f5d3f6ab65581137c51b62cb3727982f57490b6"
+            },
+            "type": "PythonModuleInterpretation"
+          }
+        }
+      ],
+      "disposition": "RESOLVED",
+      "locator": {
+        "dotted_name": "devtools.context.localization",
+        "kind": "PACKAGE"
+      },
+      "native_evidence": [
+        {
+          "identity": "fa1a792e5382bfe6a989211da1106e3e8566b6e7f1a2c60ed2631a3fd38131fe",
+          "type": "PythonModuleInterpretation"
+        }
+      ],
+      "reason": "Exact dotted name matched within the supplied explicit-root universe.",
+      "request_identity": "g-package",
+      "resolver": "PYTHON_MODULE_LOOKUP"
+    }
+  ],
+  "recovery_provenance": {
+    "execution_kind": "GENERATION_RECOVERY",
+    "grounding_source": "stage_b_raw.pkl.gz",
+    "lexical_source": "stage_b_raw.pkl.gz",
+    "original_execution_id": "2fed596a-f43d-4d35-9e32-e8a609366a6f",
+    "prior_generation_attempts": 1,
+    "recovery_generation_invocations": 1,
+    "recovery_generation_seconds": 1316.8408681,
+    "recovery_id": "case-0008-stage-b-generation-recovery-1",
+    "routing_source": "stage_b_raw.pkl.gz"
+  },
+  "resolver_replay_invocations": "not exposed as a separate production counter; generation freshness validation may replay grounding"
+}
