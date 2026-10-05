@@ -1,0 +1,27 @@
+{
+  "schema": "case-0008-generation-recovery-authorization-v1",
+  "case": "case_0008",
+  "stage_a_commit": "3eda8c6027f72a51109ed78f5684a6bbb59c65bd",
+  "original_execution_id": "2fed596a-f43d-4d35-9e32-e8a609366a6f",
+  "recovery_id": "case-0008-stage-b-generation-recovery-1",
+  "raw_sha256": "3c2cdf45a72d470e2f8c38a6d99f2940add6a9546e5177a8d0dca13f7de6765d",
+  "stage_a_archive_sha256": "9eb0f6de7c9150390807ab872d159bbcf4c8853632b48c8395d3dd9d347be5d5",
+  "allowance": {
+    "additional_lexical_executions": 0,
+    "additional_routing_executions": 0,
+    "additional_grounding_executions": 0,
+    "additional_combined_generation_api_executions": 1,
+    "other_treatment_operations": 0
+  },
+  "generation_treatment": "Unchanged Stage A recipes, bounds, frames, and exact captured lexical, routing, and grounding results.",
+  "durability": "If generation returns, persist its native return in stage_b_generation_recovery_raw.pkl.gz before validation or serialization. An in-progress or failed call is never retried.",
+  "failure_consequence": "If the authorized call is entered and fails before returning, do not call generation again. If no returned view can be durably captured, Case 0008 is CAPTURE_FAILED and a new prospective case is required for effectiveness evidence.",
+  "canonical_provenance": {
+    "execution_kind": "GENERATION_RECOVERY",
+    "original_execution_id": "2fed596a-f43d-4d35-9e32-e8a609366a6f",
+    "recovery_id": "case-0008-stage-b-generation-recovery-1",
+    "prior_generation_attempts": 1,
+    "lexical_routing_grounding_source": "original durable Stage B capture"
+  },
+  "blindness": "Future Stage B.5 packet must be generated from Stage A inputs only; recovery metadata is excluded."
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "case-0008-stage-b-attempt-v1",
+  "status": "PARTIAL STAGE B — NOT CANONICAL",
+  "generation_status": "GENERATION NOT CAPTURED",
+  "adjudication_status": "NOT ADJUDICATED",
+  "case": "case_0008",
+  "stage_a_commit": "3eda8c6027f72a51109ed78f5684a6bbb59c65bd",
+  "repository_id": "fe2c8984-a021-4342-9e31-404a6cf07707",
+  "snapshot_id": "72a021a8a4778ffdc7f37152b5d31efb6a2ea93de82edc8c940ec76be5e641aa",
+  "corpus_id": "8843f263c69d0d1b07b1fa343e63c07873827f0c3a842e7a28e50d1c8b65b93b",
+  "execution_id": "2fed596a-f43d-4d35-9e32-e8a609366a6f",
+  "raw_sha256": "3c2cdf45a72d470e2f8c38a6d99f2940add6a9546e5177a8d0dca13f7de6765d",
+  "start_marker_sha256": "e4f202319a2e3920ee997966112f71ef04dc59310a5185a2b64148db2c90c7e8",
+  "completed_operations": {
+    "lexical_successful_invocations": 1,
+    "routing_successful_invocations": 1,
+    "grounding_requests": 11,
+    "each_grounding_successful_invocations": 1,
+    "frozen_specifications_bound": 29
+  },
+  "generation_attempt": {
+    "combined_api_attempted": 1,
+    "returned_successfully": false,
+    "structural_projection_reached": false,
+    "fixed_projection_outcome_produced": false,
+    "reference_projection_reached": false,
+    "import_projection_reached": false,
+    "hypothesis_produced": false,
+    "candidate_target_produced": false,
+    "failure_type": "ValueError",
+    "failure_message": "Routing view differs from its native association inputs.",
+    "failure_path": "src/devtools/context/localization/generation/generate.py: generate_witness_hypotheses -> build_candidate_witness_view; src/devtools/context/localization/association/hypothesis.py: routing identity checks",
+    "cause": "The resumed harness constructed WitnessGenerationPlan.role_evidence using an equivalent but distinct role-evidence object from the exact instance retained by the captured routing view. Production candidate-association validation requires the plan role-evidence object to be the same retained instance as the routing view role evidence. The mismatch caused generation to raise before any recipe projection executed.",
+    "classification": "HARNESS_OBJECT_BINDING_DEFECT"
+  },
+  "prior_pre_invocation_lookup_error": "AttributeError: module 'freeze' has no attribute 'acquire_localization_lexical_evidence'; this occurred before production function entry and was recovered before lexical acquisition returned successfully once.",
+  "persistence_note": "A grounding return was captured in a fully flushed temporary checkpoint after Windows denied replacement of the raw file; the captured temporary bytes were promoted without repeating grounding.",
+  "recovery_authorized": "case-0008-stage-b-generation-recovery-1",
+  "canonical_stage_b_artifacts_created": false,
+  "treatment_operations_rerun_in_recovery_checkpoint": 0
+}
