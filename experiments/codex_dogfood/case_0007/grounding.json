@@ -1,0 +1,334 @@
+{
+  "case": "case_0007",
+  "requests": [
+    {
+      "request_identity": "g-function",
+      "anchor": "declarations",
+      "locator": {
+        "kind": "PythonDirectDeclarationLocator",
+        "module": "devtools.context.python.function.declarations",
+        "name": "PythonFunctionDeclarationKnowledge",
+        "declaration_kind": "CLASS"
+      },
+      "repository_id": "fe2c8984-a021-4342-9e31-404a6cf07707",
+      "snapshot_id": "404104e498a8d33118b52d5bad41c0ff4a8792d4ae23a2790628b796b91f34fd",
+      "disposition": "resolved",
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "resolver": "GroundingResolver.PYTHON_SOURCE_DECLARATION_SELECTION",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "referents": [
+        {
+          "type": "PythonClassDeclarationKnowledge",
+          "identity": "56966fe5963ffb5e2cae8adf1ace97d758815a39607e4f558bee9226d0d852f3",
+          "resource": null,
+          "module": null,
+          "name": "PythonFunctionDeclarationKnowledge"
+        }
+      ],
+      "native_provenance": [
+        {
+          "type": "PythonModuleSourceDeclarationSelection",
+          "identity": null,
+          "derivation_identity": null,
+          "resource": null
+        }
+      ]
+    },
+    {
+      "request_identity": "g-class",
+      "anchor": "declarations",
+      "locator": {
+        "kind": "PythonDirectDeclarationLocator",
+        "module": "devtools.context.python.classes.declarations",
+        "name": "PythonClassDeclarationKnowledge",
+        "declaration_kind": "CLASS"
+      },
+      "repository_id": "fe2c8984-a021-4342-9e31-404a6cf07707",
+      "snapshot_id": "404104e498a8d33118b52d5bad41c0ff4a8792d4ae23a2790628b796b91f34fd",
+      "disposition": "resolved",
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "resolver": "GroundingResolver.PYTHON_SOURCE_DECLARATION_SELECTION",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "referents": [
+        {
+          "type": "PythonClassDeclarationKnowledge",
+          "identity": "17cc6b8f205c610ab3855da4f9803922c5da6cfe0f704a3579192bd44cc6d695",
+          "resource": null,
+          "module": null,
+          "name": "PythonClassDeclarationKnowledge"
+        }
+      ],
+      "native_provenance": [
+        {
+          "type": "PythonModuleSourceDeclarationSelection",
+          "identity": null,
+          "derivation_identity": null,
+          "resource": null
+        }
+      ]
+    },
+    {
+      "request_identity": "g-binding",
+      "anchor": "bindings",
+      "locator": {
+        "kind": "PythonDirectDeclarationLocator",
+        "module": "devtools.context.python.imports.members",
+        "name": "resolve_python_imported_member",
+        "declaration_kind": "FUNCTION"
+      },
+      "repository_id": "fe2c8984-a021-4342-9e31-404a6cf07707",
+      "snapshot_id": "404104e498a8d33118b52d5bad41c0ff4a8792d4ae23a2790628b796b91f34fd",
+      "disposition": "resolved",
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "resolver": "GroundingResolver.PYTHON_SOURCE_DECLARATION_SELECTION",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "referents": [
+        {
+          "type": "PythonFunctionDeclarationKnowledge",
+          "identity": "979a4a1689eadce7c1683226e40f8fb6d58cd0dfdf315ef9800aa3b1ce497c00",
+          "resource": null,
+          "module": null,
+          "name": "resolve_python_imported_member"
+        }
+      ],
+      "native_provenance": [
+        {
+          "type": "PythonModuleSourceDeclarationSelection",
+          "identity": null,
+          "derivation_identity": null,
+          "resource": null
+        }
+      ]
+    },
+    {
+      "request_identity": "g-module",
+      "anchor": "packages",
+      "locator": {
+        "kind": "PythonDirectDeclarationLocator",
+        "module": "devtools.context.python.modules.interpretation",
+        "name": "interpret_python_module_resources",
+        "declaration_kind": "FUNCTION"
+      },
+      "repository_id": "fe2c8984-a021-4342-9e31-404a6cf07707",
+      "snapshot_id": "404104e498a8d33118b52d5bad41c0ff4a8792d4ae23a2790628b796b91f34fd",
+      "disposition": "resolved",
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "resolver": "GroundingResolver.PYTHON_SOURCE_DECLARATION_SELECTION",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "referents": [
+        {
+          "type": "PythonFunctionDeclarationKnowledge",
+          "identity": "152835b336bccc2e6a0cd281152fb584a52f97710cc6e169eb566b7e81aa9277",
+          "resource": null,
+          "module": null,
+          "name": "interpret_python_module_resources"
+        }
+      ],
+      "native_provenance": [
+        {
+          "type": "PythonModuleSourceDeclarationSelection",
+          "identity": null,
+          "derivation_identity": null,
+          "resource": null
+        }
+      ]
+    },
+    {
+      "request_identity": "g-membership",
+      "anchor": "packages",
+      "locator": {
+        "kind": "PythonDirectDeclarationLocator",
+        "module": "devtools.context.python.modules.membership",
+        "name": "derive_python_immediate_package_memberships",
+        "declaration_kind": "FUNCTION"
+      },
+      "repository_id": "fe2c8984-a021-4342-9e31-404a6cf07707",
+      "snapshot_id": "404104e498a8d33118b52d5bad41c0ff4a8792d4ae23a2790628b796b91f34fd",
+      "disposition": "resolved",
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "resolver": "GroundingResolver.PYTHON_SOURCE_DECLARATION_SELECTION",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "referents": [
+        {
+          "type": "PythonFunctionDeclarationKnowledge",
+          "identity": "8f7cb11b3416108157a2eb305bd0fa6f2e8eb697966a031865ae0a433b034072",
+          "resource": null,
+          "module": null,
+          "name": "derive_python_immediate_package_memberships"
+        }
+      ],
+      "native_provenance": [
+        {
+          "type": "PythonModuleSourceDeclarationSelection",
+          "identity": null,
+          "derivation_identity": null,
+          "resource": null
+        }
+      ]
+    },
+    {
+      "request_identity": "g-module-identity",
+      "anchor": "provenance",
+      "locator": {
+        "kind": "PythonDirectDeclarationLocator",
+        "module": "devtools.context.python.modules.interpretation",
+        "name": "PythonModuleInterpretation",
+        "declaration_kind": "CLASS"
+      },
+      "repository_id": "fe2c8984-a021-4342-9e31-404a6cf07707",
+      "snapshot_id": "404104e498a8d33118b52d5bad41c0ff4a8792d4ae23a2790628b796b91f34fd",
+      "disposition": "resolved",
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "resolver": "GroundingResolver.PYTHON_SOURCE_DECLARATION_SELECTION",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "referents": [
+        {
+          "type": "PythonClassDeclarationKnowledge",
+          "identity": "30663483b0d3be5b392232ee488e98bfc1142260cd1378450a75795bba4d623b",
+          "resource": null,
+          "module": null,
+          "name": "PythonModuleInterpretation"
+        }
+      ],
+      "native_provenance": [
+        {
+          "type": "PythonModuleSourceDeclarationSelection",
+          "identity": null,
+          "derivation_identity": null,
+          "resource": null
+        }
+      ]
+    },
+    {
+      "request_identity": "g-reference",
+      "anchor": "references",
+      "locator": {
+        "kind": "PythonDirectDeclarationLocator",
+        "module": "devtools.context.python.references.declarations.analysis",
+        "name": "derive_python_declaration_references",
+        "declaration_kind": "FUNCTION"
+      },
+      "repository_id": "fe2c8984-a021-4342-9e31-404a6cf07707",
+      "snapshot_id": "404104e498a8d33118b52d5bad41c0ff4a8792d4ae23a2790628b796b91f34fd",
+      "disposition": "resolved",
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "resolver": "GroundingResolver.PYTHON_SOURCE_DECLARATION_SELECTION",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "referents": [
+        {
+          "type": "PythonFunctionDeclarationKnowledge",
+          "identity": "ffa756f55b9adc4f2c1a5d8c2762755ea50625179288ca6b3052d11dd23e21fb",
+          "resource": null,
+          "module": null,
+          "name": "derive_python_declaration_references"
+        }
+      ],
+      "native_provenance": [
+        {
+          "type": "PythonModuleSourceDeclarationSelection",
+          "identity": null,
+          "derivation_identity": null,
+          "resource": null
+        }
+      ]
+    },
+    {
+      "request_identity": "g-reference-fact",
+      "anchor": "references",
+      "locator": {
+        "kind": "PythonDirectDeclarationLocator",
+        "module": "devtools.context.python.references.declarations.model",
+        "name": "PythonDeclarationReferenceKnowledge",
+        "declaration_kind": "CLASS"
+      },
+      "repository_id": "fe2c8984-a021-4342-9e31-404a6cf07707",
+      "snapshot_id": "404104e498a8d33118b52d5bad41c0ff4a8792d4ae23a2790628b796b91f34fd",
+      "disposition": "resolved",
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "resolver": "GroundingResolver.PYTHON_SOURCE_DECLARATION_SELECTION",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "referents": [
+        {
+          "type": "PythonClassDeclarationKnowledge",
+          "identity": "b9dabe03bc4f1a3c60ed6b85b6a46a16b35214cb58ad2af4c82f71f76cb591a6",
+          "resource": null,
+          "module": null,
+          "name": "PythonDeclarationReferenceKnowledge"
+        }
+      ],
+      "native_provenance": [
+        {
+          "type": "PythonModuleSourceDeclarationSelection",
+          "identity": null,
+          "derivation_identity": null,
+          "resource": null
+        }
+      ]
+    },
+    {
+      "request_identity": "g-python-api",
+      "anchor": "api",
+      "locator": {
+        "kind": "PythonModuleLocator",
+        "module": "devtools.context.python",
+        "module_kind": "PACKAGE"
+      },
+      "repository_id": "fe2c8984-a021-4342-9e31-404a6cf07707",
+      "snapshot_id": "404104e498a8d33118b52d5bad41c0ff4a8792d4ae23a2790628b796b91f34fd",
+      "disposition": "resolved",
+      "reason": "Exact dotted name matched within the supplied explicit-root universe.",
+      "resolver": "GroundingResolver.PYTHON_MODULE_LOOKUP",
+      "provenance": {
+        "source_identity": "case-0007-verbatim-user-development-task",
+        "explanation": "Stage A caller interpretation of the exact task and accepted public architecture; no retrieved candidates or historical gold."
+      },
+      "referents": [
+        {
+          "type": "PythonModuleInterpretation",
+          "identity": "d4526dc8baeae82587c357b784544aa5e9e4d45a12df9927130890fd54cbcc22",
+          "resource": {
+            "address": "src/devtools/context/python/__init__.py",
+            "content_identity": "cd35d0507149f671265687329dc54bdec1ce419062d59cad5f64b1c5ea7c1027"
+          },
+          "module": "devtools.context.python",
+          "name": null
+        }
+      ],
+      "native_provenance": [
+        {
+          "type": "PythonModuleInterpretation",
+          "identity": "d4526dc8baeae82587c357b784544aa5e9e4d45a12df9927130890fd54cbcc22",
+          "derivation_identity": null,
+          "resource": {
+            "address": "src/devtools/context/python/__init__.py",
+            "content_identity": "cd35d0507149f671265687329dc54bdec1ce419062d59cad5f64b1c5ea7c1027"
+          }
+        }
+      ]
+    }
+  ]
+}
