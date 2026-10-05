@@ -1,0 +1,10 @@
+target-version = "py312"
+line-length = 88
+
+[lint]
+select = ["ALL"]
+# COM812 conflicts with Ruff's formatter; all other frozen select=ALL rules apply.
+ignore = ["D203", "D213", "COM812"]
+
+[lint.per-file-ignores]
+"test_stage_c.py" = ["S101", "D103"]

@@ -1,0 +1,67 @@
+{
+  "checks": {
+    "alternative_structure": true,
+    "applicability_completeness": true,
+    "blind_packet_digests": true,
+    "closed_schema_and_forbidden_fields": true,
+    "deterministic_encoder_and_seal_replay": true,
+    "exact_5731_cell_coverage": true,
+    "frozen_task_anchors_obligations": true,
+    "inferability_and_discovery_prerequisites": true,
+    "native_content_snapshot_corpus_identity_recomputation": true,
+    "overwrite_refusal": true,
+    "required_unit_targets_and_excerpts": true,
+    "scoped_ruff_format": true,
+    "scoped_ruff_lint": true,
+    "task_gap_representation": true
+  },
+  "confirmation_accessed": false,
+  "focused_tests": {
+    "command": ".venv/Scripts/python.exe -m pytest -c experiments/codex_dogfood/case_0007/adjudication/pytest.ini --confcutdir=experiments/codex_dogfood/case_0007/adjudication --basetemp=experiments/codex_dogfood/case_0007/adjudication/.pytest-tmp -p no:cacheprovider --no-cov experiments/codex_dogfood/case_0007/adjudication/test_stage_c.py -q",
+    "failed": 0,
+    "passed": 41
+  },
+  "gold_statistics": {
+    "alternative_combinations": 432,
+    "distinct_required_units": 30,
+    "helpful_by_obligation": {
+      "binding-reexports": 8,
+      "declaration-identity": 5,
+      "documentation": 9,
+      "explicit-exposure": 9,
+      "module-membership": 3,
+      "package-api": 6,
+      "reference-integration": 5,
+      "snapshot-provenance": 11,
+      "tests": 13,
+      "unsupported-behavior": 6,
+      "validation": 3
+    },
+    "helpful_resource_cells": 78,
+    "inferable_at_start_units": 30,
+    "inherent_discovery_units": 0,
+    "maximum_sufficient_unique_resource_count": 24,
+    "minimum_sufficient_unique_resource_count": 19,
+    "obligation_relative_required_units": 56,
+    "required_resource_cells": 55,
+    "required_units_by_obligation": {
+      "binding-reexports": 4,
+      "declaration-identity": 3,
+      "documentation": 4,
+      "explicit-exposure": 8,
+      "module-membership": 2,
+      "package-api": 4,
+      "reference-integration": 4,
+      "snapshot-provenance": 8,
+      "tests": 13,
+      "unsupported-behavior": 5,
+      "validation": 1
+    },
+    "unique_required_resources": 27,
+    "unresolved_resource_cells": 0
+  },
+  "production_source_changed": false,
+  "schema": "case-0007-stage-c-validation-v1",
+  "stage_d_performed": false,
+  "static_configuration": "Case-local ruff.toml uses frozen Python 3.12 / 88-column / ALL settings with formatter-conflicting COM812 excluded; no live project configuration was read. Scoped files: inspect_blind.py, build_judgments.py, freeze_judgments.py, test_stage_c.py. Tests use new isolated pytest.ini to prevent live repository collection."
+}
