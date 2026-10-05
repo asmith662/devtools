@@ -442,12 +442,26 @@ and independent blind claim judgments. No confirmation outcomes are inspected.
 
 ## Exact first bounded slice and next step
 
-Separately authorize a non-production external decision adapter/probe over a
-caller-frozen `CandidateWitnessView`. Give it one member at a time, explicit claim,
-criterion and bounded frozen-content citations. Preserve exact native supports;
-validate proposals and require explicit human semantic acceptance before recording
-SUPPORTED/CONTRADICTED. Reuse current records/views; keep promotion separately
-explicit. No general associator or proof DSL is prerequisite to this small slice.
+### Experimental adapter implementation status
+
+The non-production [external decision adapter](../../experiments/codex_dogfood/semantic_resolution/README.md)
+now packages existing members, caller-authored claims, exact criteria and explicit
+bounded target-resource excerpts. It validates structured proposals and exact
+citations/support lineage, retains separate human ACCEPT/REJECT reviews and permits
+only explicit ACCEPT-gated materialization into existing kernel records. Pilot
+proposals exclude contradiction. Stable JSON artifacts support contextual replay
+and overwrite refusal. No model, automatic policy, association, promotion,
+effectiveness-case freeze/execution or production semantic change accompanies it.
+This is experimental support, not accepted resolution behavior or evidence of
+semantic accuracy. The next step is the separately frozen prospective evaluation.
+
+The implemented experimental adapter supplies the bounded slice over a
+caller-frozen `CandidateWitnessView`: one member, explicit claim, criterion and
+bounded frozen-content citations. It preserves exact native supports and requires
+human semantic acceptance before recording. This initial pilot excludes
+CONTRADICTED proposals entirely; explicit human contradiction remains available
+outside the pilot through the kernel. Promotion remains separately explicit.
+No general associator or proof DSL is prerequisite to this small slice.
 
 Freeze a new prospective evaluation protocol before running this adapter. Test
 whether a constrained external semantic policy improves safe supported precision,
