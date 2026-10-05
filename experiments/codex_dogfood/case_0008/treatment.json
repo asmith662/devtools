@@ -1,0 +1,1321 @@
+{
+  "schema": "case-0008-stage-a-treatment-v1",
+  "case": "case_0008",
+  "stage": "A",
+  "status": "FROZEN BEFORE RETRIEVAL, ROUTING, GROUNDING, STRUCTURAL GENERATION AND ADJUDICATION",
+  "starting_head": "6a121f4b2f3391565df36f1ab2c0975e303cb2c5",
+  "task_identity": "case-0008-unresolved-frontier-acquisition",
+  "task_full_prompt": "Implement the first production unresolved-frontier and bounded acquisition-request capability for Localization. The capability should let an incomplete Localization assessment represent exactly what repository observation or evidence is still missing for an applicable obligation, preserve task, obligation, repository/snapshot, candidate-hypothesis and native evidence provenance, distinguish unresolved evidence from accepted witness support and from justified non-applicability, and express bounded follow-up acquisition requests without selecting Retrieval algorithms or claiming that requested evidence will satisfy the obligation. Integrate coherently with the existing task interpretation, anchor grounding, candidate witness association, witness generation, accepted witness alternatives, LocalizationAssessment and readiness contracts; preserve deterministic identity and replay validation; expose enough structure for future autonomous orchestration to request additional repository evidence without moving orchestration policy into Localization; add rigorous tests and authoritative architecture/development documentation; preserve package/API conventions where applicable; and pass protected development validation. Do not implement automatic hypothesis resolution, candidate elimination, numeric confidence, learned ranking, autonomous acquisition execution, Context Planning admission, or agent retry policy.",
+  "purpose": "Acquire and generate repository information needed to implement the frozen unresolved-frontier and bounded acquisition-request capability while prospectively comparing global lexical, obligation lexical, role-routed and bounded structural witness-generation surfaces.",
+  "anchors": [
+    {
+      "id": "frontier-request",
+      "text": "Unresolved repository-observation/evidence frontier and bounded follow-up acquisition requests",
+      "provenance": "exact-task and accepted public architecture"
+    },
+    {
+      "id": "assessment",
+      "text": "Incomplete LocalizationAssessment and obligation applicability dispositions",
+      "provenance": "exact-task and accepted public architecture"
+    },
+    {
+      "id": "candidate",
+      "text": "Unresolved CandidateWitnessHypothesis association",
+      "provenance": "exact-task and accepted public architecture"
+    },
+    {
+      "id": "generation",
+      "text": "WitnessGenerationView and existing bounded generation contract",
+      "provenance": "exact-task and accepted public architecture"
+    },
+    {
+      "id": "grounding",
+      "text": "AnchorGroundingView and exact native evidence provenance",
+      "provenance": "exact-task and accepted public architecture"
+    },
+    {
+      "id": "witness",
+      "text": "Accepted SupportedWitness and WitnessSet alternatives",
+      "provenance": "exact-task and accepted public architecture"
+    },
+    {
+      "id": "task",
+      "text": "LocalizationTaskInterpretation and LocalizationObligation predicates",
+      "provenance": "exact-task and accepted public architecture"
+    },
+    {
+      "id": "readiness",
+      "text": "Localization readiness and conditional handoff",
+      "provenance": "exact-task and accepted public architecture"
+    },
+    {
+      "id": "frame",
+      "text": "Repository/snapshot-qualified LocalizationEvidenceReference and deterministic identity",
+      "provenance": "exact-task and accepted public architecture"
+    },
+    {
+      "id": "orchestration",
+      "text": "Authorized orchestration owns acquisition execution and retry policy",
+      "provenance": "exact-task and accepted public architecture"
+    },
+    {
+      "id": "package",
+      "text": "Localization public package/API integration",
+      "provenance": "exact-task and accepted public architecture"
+    }
+  ],
+  "obligations": [
+    {
+      "id": "frontier-semantics",
+      "predicate": "Establish the current contracts needed to represent exactly the missing repository observation or evidence for an applicable obligation, with an explicit unresolved frontier.",
+      "anchors": [
+        "frontier-request",
+        "assessment",
+        "task"
+      ],
+      "provenance": "exact-task-clause interpretation",
+      "requirement": "MANDATORY",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "frontier-semantics-contract",
+        "statement": "Current unresolved assessment and obligation-predicate contracts constrain the new frontier without asserting evidence absence or satisfaction."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "id": "assessment-applicability",
+      "predicate": "Establish incomplete assessment/disposition and justified non-applicability semantics so a frontier cannot convert missing evidence into non-applicability.",
+      "anchors": [
+        "assessment",
+        "task"
+      ],
+      "provenance": "exact-task-clause interpretation",
+      "requirement": "MANDATORY",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "assessment-applicability-contract",
+        "statement": "Assessment applicability, open/abstained/deferred states and non-applicability evidence remain distinguishable."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "id": "candidate-integration",
+      "predicate": "Establish how unresolved frontier information can preserve candidate-hypothesis and generation provenance without resolving or eliminating candidate hypotheses.",
+      "anchors": [
+        "candidate",
+        "generation",
+        "frontier-request"
+      ],
+      "provenance": "exact-task-clause interpretation",
+      "requirement": "MANDATORY",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "candidate-integration-contract",
+        "statement": "Unresolved hypothesis identities, complementary members, competing alternatives and generation lineage remain explicit."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "id": "witness-boundary",
+      "predicate": "Establish accepted-witness alternatives and positive support semantics that must remain distinct from unresolved evidence and acquisition requests.",
+      "anchors": [
+        "witness",
+        "assessment",
+        "frontier-request"
+      ],
+      "provenance": "exact-task-clause interpretation",
+      "requirement": "MANDATORY",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "witness-boundary-contract",
+        "statement": "Frontiers and requests cannot become SupportedWitness values or satisfy WitnessSet alternatives by themselves."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "id": "acquisition-contract",
+      "predicate": "Establish architectural constraints for bounded follow-up acquisition requests describing missing evidence without selecting Retrieval algorithms, executing acquisition or promising satisfaction.",
+      "anchors": [
+        "frontier-request",
+        "orchestration",
+        "task"
+      ],
+      "provenance": "exact-task-clause interpretation",
+      "requirement": "MANDATORY",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "acquisition-contract-contract",
+        "statement": "Requests preserve purpose, obligation, missing observation and explicit bounds while remaining algorithm-independent non-authorizing representations."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "id": "grounding-provenance",
+      "predicate": "Establish grounding and native evidence contracts needed to retain exact source provenance through unresolved frontier and acquisition representation.",
+      "anchors": [
+        "grounding",
+        "frame",
+        "candidate"
+      ],
+      "provenance": "exact-task-clause interpretation",
+      "requirement": "MANDATORY",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "grounding-provenance-contract",
+        "statement": "Retained grounding/native referents and evidence provenance remain exact and independently replayable."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "id": "frame-identity",
+      "predicate": "Establish task/obligation and repository/snapshot qualification and deterministic identity/replay constraints for all frontier/request links.",
+      "anchors": [
+        "task",
+        "frame",
+        "assessment",
+        "candidate"
+      ],
+      "provenance": "exact-task-clause interpretation",
+      "requirement": "MANDATORY",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "frame-identity-contract",
+        "statement": "Foreign, stale, duplicate and mismatched task/obligation/snapshot/evidence links are rejected without current-filesystem substitution."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "id": "readiness-integration",
+      "predicate": "Establish readiness and deferred-discovery behavior that new unresolved frontiers and requests must preserve.",
+      "anchors": [
+        "readiness",
+        "assessment",
+        "witness",
+        "frontier-request"
+      ],
+      "provenance": "exact-task-clause interpretation",
+      "requirement": "MANDATORY",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "readiness-integration-contract",
+        "statement": "An unresolved mandatory obligation remains blocking; accepted conditional discovery is separate from resolved witness coverage and full readiness."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "id": "orchestration-boundary",
+      "predicate": "Establish ownership boundaries between Localization acquisition-request representation and future autonomous acquisition execution, retries and Context Planning.",
+      "anchors": [
+        "orchestration",
+        "frontier-request",
+        "readiness"
+      ],
+      "provenance": "exact-task-clause interpretation",
+      "requirement": "MANDATORY",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "orchestration-boundary-contract",
+        "statement": "Execution, authorization, retry policy and Context admission remain outside Localization; requests carry no execution authority."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "id": "package-api",
+      "predicate": "Establish package ownership, public facade and allowed dependency conventions for the reusable frontier/acquisition capability where applicable.",
+      "anchors": [
+        "package",
+        "frontier-request",
+        "task"
+      ],
+      "provenance": "exact-task-clause interpretation",
+      "requirement": "MANDATORY",
+      "applicability_condition": "Applicable when the new reusable capability requires public package/API exposure or changes existing package/dependency conventions.",
+      "satisfaction": {
+        "name": "package-api-contract",
+        "statement": "New public capability follows existing package/facade conventions and dependency direction with no experiment dependency in production."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "id": "tests",
+      "predicate": "Establish repository test contracts needed to validate frontier/request semantics, boundaries, provenance, frame rejection and readiness integration rigorously.",
+      "anchors": [
+        "assessment",
+        "candidate",
+        "generation",
+        "grounding",
+        "readiness",
+        "frontier-request"
+      ],
+      "provenance": "exact-task-clause interpretation",
+      "requirement": "MANDATORY",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "tests-contract",
+        "statement": "Tests exercise positive/negative state and frame behavior, deterministic replay and nonclaims using existing supported test conventions."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "id": "documentation",
+      "predicate": "Establish authoritative architecture and development documentation requiring updates for the new frontier/request capability.",
+      "anchors": [
+        "frontier-request",
+        "orchestration",
+        "package"
+      ],
+      "provenance": "exact-task-clause interpretation",
+      "requirement": "MANDATORY",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "documentation-contract",
+        "statement": "Current semantic/package/architecture claims and documentation authority are updated coherently without rewriting historical evidence."
+      },
+      "witness_alternatives": []
+    },
+    {
+      "id": "validation",
+      "predicate": "Establish protected development validation and static-quality requirements for the implementation.",
+      "anchors": [
+        "frontier-request",
+        "package"
+      ],
+      "provenance": "exact-task-clause interpretation",
+      "requirement": "MANDATORY",
+      "applicability_condition": null,
+      "satisfaction": {
+        "name": "validation-contract",
+        "statement": "Canonical protected tests, coverage gate, Ruff, formatting, mypy and diff checks pass; confirmation is excluded."
+      },
+      "witness_alternatives": []
+    }
+  ],
+  "queries": [
+    {
+      "id": "frontier-semantics-query",
+      "obligation": "frontier-semantics",
+      "text": "unresolved frontier missing repository observation evidence LocalizationAssessment LocalizationObligation"
+    },
+    {
+      "id": "assessment-applicability-query",
+      "obligation": "assessment-applicability",
+      "text": "LocalizationAssessment ApplicabilityStatus Disposition OPEN ABSTAINED DEFERRED_DISCOVERY NOT_APPLICABLE"
+    },
+    {
+      "id": "candidate-integration-query",
+      "obligation": "candidate-integration",
+      "text": "CandidateWitnessHypothesis CandidateWitnessMember WitnessGenerationView family child unresolved provenance"
+    },
+    {
+      "id": "witness-boundary-query",
+      "obligation": "witness-boundary",
+      "text": "SupportedWitness WitnessSet witness_alternatives LocalizationEvidenceReference accepted unresolved support"
+    },
+    {
+      "id": "acquisition-contract-query",
+      "obligation": "acquisition-contract",
+      "text": "Localization bounded acquisition request unresolved frontier InformationNeed purpose observation work result bounds"
+    },
+    {
+      "id": "grounding-provenance-query",
+      "obligation": "grounding-provenance",
+      "text": "AnchorGroundingView AnchorGrounding native evidence provenance source declaration snapshot replay"
+    },
+    {
+      "id": "frame-identity-query",
+      "obligation": "frame-identity",
+      "text": "LocalizationTaskInterpretation LocalizationObligation LocalizationEvidenceReference RepositoryId RepositorySnapshotId deterministic identity replay frame"
+    },
+    {
+      "id": "readiness-integration-query",
+      "obligation": "readiness-integration",
+      "text": "assess_localization_readiness LocalizationReadiness HandoffReadiness DeferredDiscovery conditional blocked mandatory witness"
+    },
+    {
+      "id": "orchestration-boundary-query",
+      "obligation": "orchestration-boundary",
+      "text": "Localization targeted acquisition requests Agent orchestration authorization execution retry Context Planning ownership ADR"
+    },
+    {
+      "id": "package-api-query",
+      "obligation": "package-api",
+      "text": "Localization package public API __all__ frontier acquisition dependency ownership"
+    },
+    {
+      "id": "tests-query",
+      "obligation": "tests",
+      "text": "Localization tests assessment applicability witness candidate grounding generation readiness snapshot replay invalid bounded acquisition"
+    },
+    {
+      "id": "documentation-query",
+      "obligation": "documentation",
+      "text": "Localization unresolved frontier acquisition architecture taxonomy documentation map development package documentation"
+    },
+    {
+      "id": "validation-query",
+      "obligation": "validation",
+      "text": "protected development validation validate_development coverage Ruff mypy formatting confirmation exclusion"
+    }
+  ],
+  "role_preferences": [
+    {
+      "query": "frontier-semantics-query",
+      "obligation": "frontier-semantics",
+      "roles": [
+        "PYTHON_CODE"
+      ]
+    },
+    {
+      "query": "assessment-applicability-query",
+      "obligation": "assessment-applicability",
+      "roles": [
+        "PYTHON_CODE"
+      ]
+    },
+    {
+      "query": "candidate-integration-query",
+      "obligation": "candidate-integration",
+      "roles": [
+        "PYTHON_CODE"
+      ]
+    },
+    {
+      "query": "witness-boundary-query",
+      "obligation": "witness-boundary",
+      "roles": [
+        "PYTHON_CODE"
+      ]
+    },
+    {
+      "query": "acquisition-contract-query",
+      "obligation": "acquisition-contract",
+      "roles": []
+    },
+    {
+      "query": "grounding-provenance-query",
+      "obligation": "grounding-provenance",
+      "roles": [
+        "PYTHON_CODE"
+      ]
+    },
+    {
+      "query": "frame-identity-query",
+      "obligation": "frame-identity",
+      "roles": [
+        "PYTHON_CODE"
+      ]
+    },
+    {
+      "query": "readiness-integration-query",
+      "obligation": "readiness-integration",
+      "roles": [
+        "PYTHON_CODE"
+      ]
+    },
+    {
+      "query": "orchestration-boundary-query",
+      "obligation": "orchestration-boundary",
+      "roles": [
+        "DOCUMENTATION"
+      ]
+    },
+    {
+      "query": "package-api-query",
+      "obligation": "package-api",
+      "roles": [
+        "PACKAGE_SURFACE",
+        "PYTHON_CODE"
+      ]
+    },
+    {
+      "query": "tests-query",
+      "obligation": "tests",
+      "roles": [
+        "TEST"
+      ]
+    },
+    {
+      "query": "documentation-query",
+      "obligation": "documentation",
+      "roles": [
+        "DOCUMENTATION"
+      ]
+    },
+    {
+      "query": "validation-query",
+      "obligation": "validation",
+      "roles": [
+        "DOCUMENTATION",
+        "TEST_CONFIGURATION",
+        "TOOL_CONFIGURATION"
+      ]
+    }
+  ],
+  "deliberate_no_query_obligations": [],
+  "grounding_specs": [
+    {
+      "id": "g-assessment",
+      "anchor": "assessment",
+      "locator": {
+        "kind": "direct-declaration",
+        "module": "devtools.context.localization.assessment",
+        "name": "LocalizationAssessment",
+        "declaration_kind": "CLASS"
+      },
+      "provenance": "explicit task-named public API locator; not resolved at Stage A"
+    },
+    {
+      "id": "g-candidate",
+      "anchor": "candidate",
+      "locator": {
+        "kind": "direct-declaration",
+        "module": "devtools.context.localization.association.hypothesis",
+        "name": "CandidateWitnessHypothesis",
+        "declaration_kind": "CLASS"
+      },
+      "provenance": "explicit task-named public API locator; not resolved at Stage A"
+    },
+    {
+      "id": "g-generation",
+      "anchor": "generation",
+      "locator": {
+        "kind": "direct-declaration",
+        "module": "devtools.context.localization.generation.contract",
+        "name": "WitnessGenerationView",
+        "declaration_kind": "CLASS"
+      },
+      "provenance": "explicit task-named public API locator; not resolved at Stage A"
+    },
+    {
+      "id": "g-grounding",
+      "anchor": "grounding",
+      "locator": {
+        "kind": "direct-declaration",
+        "module": "devtools.context.localization.grounding.view",
+        "name": "AnchorGroundingView",
+        "declaration_kind": "CLASS"
+      },
+      "provenance": "explicit task-named public API locator; not resolved at Stage A"
+    },
+    {
+      "id": "g-witness-set",
+      "anchor": "witness",
+      "locator": {
+        "kind": "direct-declaration",
+        "module": "devtools.context.localization.obligation",
+        "name": "WitnessSet",
+        "declaration_kind": "CLASS"
+      },
+      "provenance": "explicit task-named public API locator; not resolved at Stage A"
+    },
+    {
+      "id": "g-supported-witness",
+      "anchor": "witness",
+      "locator": {
+        "kind": "direct-declaration",
+        "module": "devtools.context.localization.assessment",
+        "name": "SupportedWitness",
+        "declaration_kind": "CLASS"
+      },
+      "provenance": "explicit task-named public API locator; not resolved at Stage A"
+    },
+    {
+      "id": "g-task",
+      "anchor": "task",
+      "locator": {
+        "kind": "direct-declaration",
+        "module": "devtools.context.localization.task",
+        "name": "LocalizationTaskInterpretation",
+        "declaration_kind": "CLASS"
+      },
+      "provenance": "explicit task-named public API locator; not resolved at Stage A"
+    },
+    {
+      "id": "g-obligation",
+      "anchor": "task",
+      "locator": {
+        "kind": "direct-declaration",
+        "module": "devtools.context.localization.obligation",
+        "name": "LocalizationObligation",
+        "declaration_kind": "CLASS"
+      },
+      "provenance": "explicit task-named public API locator; not resolved at Stage A"
+    },
+    {
+      "id": "g-readiness",
+      "anchor": "readiness",
+      "locator": {
+        "kind": "direct-declaration",
+        "module": "devtools.context.localization.readiness",
+        "name": "assess_localization_readiness",
+        "declaration_kind": "FUNCTION"
+      },
+      "provenance": "explicit task-named public API locator; not resolved at Stage A"
+    },
+    {
+      "id": "g-evidence",
+      "anchor": "frame",
+      "locator": {
+        "kind": "direct-declaration",
+        "module": "devtools.context.localization.assessment",
+        "name": "LocalizationEvidenceReference",
+        "declaration_kind": "CLASS"
+      },
+      "provenance": "explicit task-named public API locator; not resolved at Stage A"
+    },
+    {
+      "id": "g-package",
+      "anchor": "package",
+      "locator": {
+        "kind": "module",
+        "module": "devtools.context.localization",
+        "module_kind": "PACKAGE"
+      },
+      "provenance": "task package/API clause; public Localization package module"
+    }
+  ],
+  "ungrounded_anchors": [
+    "frontier-request",
+    "orchestration"
+  ],
+  "recipes": [
+    {
+      "id": "frontier-existing-contracts",
+      "obligation": "frontier-semantics",
+      "kind": "fixed",
+      "members": [
+        {
+          "key": "member-0",
+          "grounding": "g-assessment",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        },
+        {
+          "key": "member-1",
+          "grounding": "g-obligation",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "All named existing contracts are proposed complements.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "frontier-consumers",
+      "obligation": "frontier-semantics",
+      "kind": "family",
+      "members": [
+        {
+          "key": "related",
+          "grounding": "g-assessment",
+          "projection": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "Each related resource is an independent competing integration witness candidate.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "frontier-dependencies",
+      "obligation": "frontier-semantics",
+      "kind": "family",
+      "members": [
+        {
+          "key": "owner",
+          "grounding": "g-assessment",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        },
+        {
+          "key": "related",
+          "grounding": "g-assessment",
+          "projection": "DIRECT_IMPORT_DEPENDENCY_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "reason": "Caller proposes exact direct import dependency resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "Seed contract plus one related consumer/dependency contract are proposed complements; target children compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "assessment-owner",
+      "obligation": "assessment-applicability",
+      "kind": "fixed",
+      "members": [
+        {
+          "key": "member-0",
+          "grounding": "g-assessment",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "One existing contract or test counterpart is proposed; recipes compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "assessment-mirror",
+      "obligation": "assessment-applicability",
+      "kind": "fixed",
+      "members": [
+        {
+          "key": "member-0",
+          "grounding": "g-assessment",
+          "projection": "MIRRORED_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact mirrored resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "One existing contract or test counterpart is proposed; recipes compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "assessment-consumers",
+      "obligation": "assessment-applicability",
+      "kind": "family",
+      "members": [
+        {
+          "key": "owner",
+          "grounding": "g-assessment",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        },
+        {
+          "key": "related",
+          "grounding": "g-assessment",
+          "projection": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "Seed contract plus one related consumer/dependency contract are proposed complements; target children compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "assessment-dependencies",
+      "obligation": "assessment-applicability",
+      "kind": "family",
+      "members": [
+        {
+          "key": "owner",
+          "grounding": "g-assessment",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        },
+        {
+          "key": "related",
+          "grounding": "g-assessment",
+          "projection": "DIRECT_IMPORT_DEPENDENCY_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "reason": "Caller proposes exact direct import dependency resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "Seed contract plus one related consumer/dependency contract are proposed complements; target children compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "candidate-generation-contracts",
+      "obligation": "candidate-integration",
+      "kind": "fixed",
+      "members": [
+        {
+          "key": "member-0",
+          "grounding": "g-candidate",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        },
+        {
+          "key": "member-1",
+          "grounding": "g-generation",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "All named existing contracts are proposed complements.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "candidate-consumers",
+      "obligation": "candidate-integration",
+      "kind": "family",
+      "members": [
+        {
+          "key": "owner",
+          "grounding": "g-candidate",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        },
+        {
+          "key": "related",
+          "grounding": "g-candidate",
+          "projection": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "Seed contract plus one related consumer/dependency contract are proposed complements; target children compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "candidate-dependencies",
+      "obligation": "candidate-integration",
+      "kind": "family",
+      "members": [
+        {
+          "key": "owner",
+          "grounding": "g-candidate",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        },
+        {
+          "key": "related",
+          "grounding": "g-candidate",
+          "projection": "DIRECT_IMPORT_DEPENDENCY_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "reason": "Caller proposes exact direct import dependency resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "Seed contract plus one related consumer/dependency contract are proposed complements; target children compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "accepted-witness-contracts",
+      "obligation": "witness-boundary",
+      "kind": "fixed",
+      "members": [
+        {
+          "key": "member-0",
+          "grounding": "g-witness-set",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        },
+        {
+          "key": "member-1",
+          "grounding": "g-supported-witness",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "All named existing contracts are proposed complements.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "accepted-witness-consumers",
+      "obligation": "witness-boundary",
+      "kind": "family",
+      "members": [
+        {
+          "key": "related",
+          "grounding": "g-supported-witness",
+          "projection": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "Each related resource is an independent competing integration witness candidate.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "grounding-evidence-contracts",
+      "obligation": "grounding-provenance",
+      "kind": "fixed",
+      "members": [
+        {
+          "key": "member-0",
+          "grounding": "g-grounding",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        },
+        {
+          "key": "member-1",
+          "grounding": "g-evidence",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "All named existing contracts are proposed complements.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "grounding-consumers",
+      "obligation": "grounding-provenance",
+      "kind": "family",
+      "members": [
+        {
+          "key": "related",
+          "grounding": "g-grounding",
+          "projection": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "Each related resource is an independent competing integration witness candidate.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "grounding-dependencies",
+      "obligation": "grounding-provenance",
+      "kind": "family",
+      "members": [
+        {
+          "key": "owner",
+          "grounding": "g-grounding",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        },
+        {
+          "key": "related",
+          "grounding": "g-grounding",
+          "projection": "DIRECT_IMPORT_DEPENDENCY_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "reason": "Caller proposes exact direct import dependency resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "Seed contract plus one related consumer/dependency contract are proposed complements; target children compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "task-evidence-contracts",
+      "obligation": "frame-identity",
+      "kind": "fixed",
+      "members": [
+        {
+          "key": "member-0",
+          "grounding": "g-task",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        },
+        {
+          "key": "member-1",
+          "grounding": "g-evidence",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "All named existing contracts are proposed complements.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "frame-consumers",
+      "obligation": "frame-identity",
+      "kind": "family",
+      "members": [
+        {
+          "key": "related",
+          "grounding": "g-evidence",
+          "projection": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "Each related resource is an independent competing integration witness candidate.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "frame-dependencies",
+      "obligation": "frame-identity",
+      "kind": "family",
+      "members": [
+        {
+          "key": "owner",
+          "grounding": "g-evidence",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        },
+        {
+          "key": "related",
+          "grounding": "g-evidence",
+          "projection": "DIRECT_IMPORT_DEPENDENCY_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "reason": "Caller proposes exact direct import dependency resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "Seed contract plus one related consumer/dependency contract are proposed complements; target children compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "readiness-assessment-contracts",
+      "obligation": "readiness-integration",
+      "kind": "fixed",
+      "members": [
+        {
+          "key": "member-0",
+          "grounding": "g-readiness",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        },
+        {
+          "key": "member-1",
+          "grounding": "g-assessment",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "All named existing contracts are proposed complements.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "readiness-mirror",
+      "obligation": "readiness-integration",
+      "kind": "fixed",
+      "members": [
+        {
+          "key": "member-0",
+          "grounding": "g-readiness",
+          "projection": "MIRRORED_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact mirrored resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "One existing contract or test counterpart is proposed; recipes compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "readiness-consumers",
+      "obligation": "readiness-integration",
+      "kind": "family",
+      "members": [
+        {
+          "key": "owner",
+          "grounding": "g-readiness",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        },
+        {
+          "key": "related",
+          "grounding": "g-readiness",
+          "projection": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "Seed contract plus one related consumer/dependency contract are proposed complements; target children compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "readiness-dependencies",
+      "obligation": "readiness-integration",
+      "kind": "family",
+      "members": [
+        {
+          "key": "owner",
+          "grounding": "g-readiness",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        },
+        {
+          "key": "related",
+          "grounding": "g-readiness",
+          "projection": "DIRECT_IMPORT_DEPENDENCY_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "reason": "Caller proposes exact direct import dependency resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "Seed contract plus one related consumer/dependency contract are proposed complements; target children compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "localization-facade",
+      "obligation": "package-api",
+      "kind": "fixed",
+      "members": [
+        {
+          "key": "member-0",
+          "grounding": "g-package",
+          "projection": "OWNER_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact owner resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "One existing contract or test counterpart is proposed; recipes compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "tests-assessment",
+      "obligation": "tests",
+      "kind": "fixed",
+      "members": [
+        {
+          "key": "member-0",
+          "grounding": "g-assessment",
+          "projection": "MIRRORED_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact mirrored resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "One existing contract or test counterpart is proposed; recipes compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "tests-candidate",
+      "obligation": "tests",
+      "kind": "fixed",
+      "members": [
+        {
+          "key": "member-0",
+          "grounding": "g-candidate",
+          "projection": "MIRRORED_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact mirrored resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "One existing contract or test counterpart is proposed; recipes compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "tests-generation",
+      "obligation": "tests",
+      "kind": "fixed",
+      "members": [
+        {
+          "key": "member-0",
+          "grounding": "g-generation",
+          "projection": "MIRRORED_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact mirrored resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "One existing contract or test counterpart is proposed; recipes compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "tests-grounding",
+      "obligation": "tests",
+      "kind": "fixed",
+      "members": [
+        {
+          "key": "member-0",
+          "grounding": "g-grounding",
+          "projection": "MIRRORED_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact mirrored resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "One existing contract or test counterpart is proposed; recipes compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "tests-readiness",
+      "obligation": "tests",
+      "kind": "fixed",
+      "members": [
+        {
+          "key": "member-0",
+          "grounding": "g-readiness",
+          "projection": "MIRRORED_RESOURCE",
+          "multiplicity": "fixed",
+          "max_results": null,
+          "reason": "Caller proposes exact mirrored resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "One existing contract or test counterpart is proposed; recipes compete.",
+      "provenance": "Stage A caller-authored task interpretation"
+    },
+    {
+      "id": "tests-readiness-consumers",
+      "obligation": "tests",
+      "kind": "family",
+      "members": [
+        {
+          "key": "related",
+          "grounding": "g-readiness",
+          "projection": "REFERENCING_RESOURCE",
+          "multiplicity": "branching",
+          "max_results": 16,
+          "reason": "Caller proposes exact referencing resource support for this obligation; no satisfaction claim."
+        }
+      ],
+      "shape_rationale": "Each related resource is an independent competing integration witness candidate.",
+      "provenance": "Stage A caller-authored task interpretation"
+    }
+  ],
+  "no_recipe_obligations": [
+    "acquisition-contract",
+    "orchestration-boundary",
+    "documentation",
+    "validation"
+  ],
+  "bounds": {
+    "reference_work": "full frozen Reference source-analysis count per projection",
+    "import_work": "full frozen Import source-analysis count per projection; production examines only the selected exact source",
+    "branch_max_results": 16,
+    "rationale": "Uniform maximum of sixteen competing children per family is an explicit review budget, independent of task-specific fanout or gold. Work authorizes the complete supplied frame; result admission is separate and never first-K."
+  },
+  "operators": [
+    "OWNER_RESOURCE",
+    "MIRRORED_RESOURCE",
+    "REFERENCING_RESOURCE",
+    "DIRECT_IMPORT_DEPENDENCY_RESOURCE"
+  ],
+  "authoring_surfaces": [
+    "AGENTS.md (user-supplied operating guide)",
+    "docs/development/validation.md",
+    "docs/architecture/decisions/ADR-0005-obligation-driven-repository-localization.md",
+    "docs/architecture/taxonomy.md (Localization section)",
+    "docs/documentation_map.md (Localization/native RI/navigation sections)",
+    "docs/backlog/metadata.md",
+    "src/devtools/context/localization/docs/overview.md",
+    "src/devtools/context/localization/__init__.py",
+    "src/devtools/context/localization/association/__init__.py",
+    "src/devtools/context/localization/generation/__init__.py",
+    "src/devtools/context/localization/generation/contract.py (projection/recipe public contracts)",
+    "src/devtools/context/localization/grounding/__init__.py",
+    "src/devtools/context/localization/assessment.py",
+    "src/devtools/context/localization/obligation.py",
+    "src/devtools/context/localization/task.py",
+    "src/devtools/context/localization/readiness.py (public readiness API and source)",
+    "src/devtools/context/localization/roles/__init__.py",
+    "src/devtools/context/localization/roles/models.py (current role vocabulary)"
+  ],
+  "preparation_conventions": [
+    "experiments/codex_dogfood/case_0005/freeze.py (imports, eligible frame, query-independent preparation/archive/integrity sections only; no outputs or gold)"
+  ],
+  "firewall": "Only aggregate prior-case lessons from the user prompt; no Case 0006/0007 contents inspected during this Stage A task.",
+  "treatment_operations": {
+    "lexical": "NOT EXECUTED",
+    "routing": "NOT EXECUTED",
+    "grounding": "NOT EXECUTED",
+    "OWNER": "NOT EXECUTED",
+    "MIRROR": "NOT EXECUTED",
+    "REFERENCE": "NOT EXECUTED",
+    "IMPORT_DEPENDENCY": "NOT EXECUTED",
+    "adjudication": "NOT PERFORMED",
+    "task_implementation": "NOT PERFORMED",
+    "confirmation": "NOT ACCESSED"
+  },
+  "primary_surfaces": [
+    "global lexical",
+    "own-obligation lexical",
+    "role-routed lexical",
+    "OWNER/MIRROR",
+    "OWNER/MIRROR/REFERENCE",
+    "OWNER/MIRROR/IMPORT",
+    "OWNER/MIRROR/REFERENCE/IMPORT"
+  ],
+  "structural_subsurfaces": [
+    "OWNER",
+    "MIRROR",
+    "REFERENCE",
+    "IMPORT",
+    "OWNER/MIRROR",
+    "OWNER/MIRROR/REFERENCE",
+    "OWNER/MIRROR/IMPORT",
+    "OWNER/MIRROR/REFERENCE/IMPORT"
+  ],
+  "miss_taxonomy": [
+    "NO_GROUNDING_REQUEST",
+    "GROUNDING_UNRESOLVED",
+    "GROUNDING_AMBIGUOUS",
+    "GROUNDING_UNSUPPORTED",
+    "NO_RECIPE",
+    "PROJECTION_NO_TARGET",
+    "PROJECTION_ABSTAINED",
+    "WORK_BOUND_EXCEEDED",
+    "RESULT_BOUND_EXCEEDED",
+    "DUPLICATE_TARGET",
+    "WRONG_STRUCTURAL_TARGET",
+    "OPERATOR_CAPABILITY_GAP",
+    "CROSS_ROLE_NONSTRUCTURAL",
+    "TASK_INTERPRETATION_GAP",
+    "OTHER_WITH_EXPLANATION"
+  ],
+  "import_miss_subcategories": [
+    "NO_IMPORT_RECIPE",
+    "WRONG_IMPORT_SEED",
+    "IMPORT_PROJECTION_NO_TARGET",
+    "IMPORT_WORK_BOUND_EXCEEDED",
+    "IMPORT_RESULT_BOUND_EXCEEDED",
+    "EXACT_IMPORT_RELATION_ABSENT",
+    "WITNESS_NOT_DIRECT_DEPENDENCY",
+    "REQUIRES_OTHER_RELATION"
+  ],
+  "structure_classes": [
+    "EXACT_STRUCTURAL_MATCH",
+    "PARTIAL_MATCH",
+    "RESOURCE_MATCH_WRONG_STRUCTURE",
+    "NO_GOLD_MATCH"
+  ],
+  "decision_rule": {
+    "numeric_pass_threshold": null,
+    "choices": [
+      "MOVE_TO_EVIDENCE_RESOLUTION",
+      "CONTINUE_STRUCTURAL_BREADTH",
+      "FIX_RECIPE_AUTHORING",
+      "OTHER_PREREQUISITE"
+    ],
+    "default_expected_direction": "Decide from prospective gold. Weak marginal import gain, incomplete structure, poor identities or predominantly nonstructural misses support evidence resolution. Continue breadth only with substantial import gain AND one specific additional relation justified by blind gold. Recipe-shape dominance supports authoring correction; a concrete semantic blocker supports another prerequisite."
+  },
+  "preparation_surfaces": [
+    "src/devtools/context/localization/lexical.py (public acquisition-request fields only)",
+    "src/devtools/context/localization/routing/__init__.py and routing/models.py (public preference fields only)",
+    "src/devtools/context/retrieval/lexical/bm25.py (public settings and native filename-weight constant only)",
+    "src/devtools/context/retrieval/lexical/index.py and statistics.py (index/corpus schema only)",
+    "src/devtools/context/python/references/__init__.py (native preparation exports)",
+    "src/devtools/resources/filesystem/__init__.py (canonical I/O exports)",
+    "experiments/codex_dogfood/case_0005/freeze.py (static input integrity validation section)"
+  ]
+}
