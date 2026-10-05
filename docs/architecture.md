@@ -876,12 +876,24 @@ Localization also accepts caller-authored exact anchor-grounding requests.
 Its bounded resolvers consume snapshot resource and Python RI identities,
 retaining ambiguous, unresolved and unsupported outcomes. Grounding does not
 infer an obligation witness or produce repository truth.
-The bounded Localization generator consumes explicit caller recipes and only
-exact owner-resource or observed mirrored-path RI relations. It retains native
-structural provenance, attaches matching lexical/role/routing evidence, and
+The bounded Localization generator consumes explicit caller recipes and exact
+owner, observed mirror, Reference or direct import dependency RI relations. It
+retains native structural provenance, attaches matching lexical/role/routing evidence, and
 constructs unresolved candidate hypotheses through the association validator.
 Ambiguous or missing projection members abstain without partial acceptance.
-No graph expansion, score, witness resolution or candidate elimination occurs.
+No graph expansion, score, witness resolution or candidate elimination occurs
+inside generation. The stable relation set also includes bounded exact Reference
+and one-hop direct import dependency projections; neither establishes satisfaction.
+
+The language-neutral [resolution kernel](../src/devtools/context/localization/docs/overview.md#explicit-evidence-to-witness-resolution)
+now records explicit caller decisions over validated associated candidates from
+any acquisition channel. Native support lineage and the obligation criterion
+remain exact. Partial immutable views distinguish missing records, unresolved
+judgments, abstention and explicit contradiction. Contradiction retains candidates;
+all complementary members must be supported before explicit promotion produces
+existing WitnessSet/SupportedWitness values. Assessment and readiness remain
+downstream caller operations. No automatic policy, elimination, frontier requests
+or Context Planning integration is implemented.
 
 ```text
 task interpretation: shared anchors + obligations + constraints
@@ -914,7 +926,10 @@ and graph disconnection never justify elimination. Hard elimination requires an
 obligation-scoped proof with exact referent, rule, snapshot/frame and adequate
 coverage. Existing Personalized PageRank (PPR), repository-map ranking and
 Reciprocal Rank Fusion (RRF) remain available; targeted relationship navigation
-is the next structural direction, not another universal ranking experiment.
+remains available as bounded candidate evidence. Aggregate prospective evidence
+has closed the current relation-breadth phase; the next investigation concerns
+automatic evidence-resolution policy over the explicit recording kernel, with
+lexical safety candidates retained. Structural acquisition alone is insufficient.
 
 A complete handoff requires supported satisfaction of every applicable mandatory
 obligation within the stated frame. Named inherent discovery allows an explicitly

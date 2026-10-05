@@ -274,6 +274,79 @@ accepted witness sets nor produces a `SupportedWitness` or
 distinct from Retrieval, ranking, accepted witness satisfaction and readiness.
 There is no confidence, rejection, elimination or automatic resolution.
 
+## Explicit evidence-to-witness resolution
+
+The language-neutral `devtools.context.localization.resolution` package records
+explicit caller judgments over an existing validated `CandidateWitnessView`.
+Caller-associated lexical candidates and generated structural candidates use
+the same contract. It does not associate every lexical match automatically.
+
+```text
+candidate association / generation
+        |
+        v
+explicit member decisions with exact native evidence
+        |
+        v
+completely supported candidate hypothesis
+        |
+        v
+explicit promotion: WitnessSet + SupportedWitness values
+        |
+        v
+caller-created assessment -> existing readiness
+```
+
+`CandidateMemberResolution` retains the exact candidate view, hypothesis and
+member, the obligation's `SatisfactionCriterion`, a claim, reason, named caller
+and `TaskProvenance`. Task, obligation, repository and snapshot identities derive
+from that retained context. `basis` uses existing `LocalizationEvidenceReference`
+values whose identities are exact support objects attached to that member:
+lexical, role, routed or structural support. Foreign frames, substituted support,
+equal-but-copied support and duplicate references are rejected. Basis order follows
+the member's canonical native support order. No new universal evidence identity
+is introduced. This is an in-memory contract, not a durable serialization format.
+
+Member dispositions are `SUPPORTED`, `UNRESOLVED`, `ABSTAINED` and `CONTRADICTED`.
+Support and contradiction require nonempty explicit evidence bases. Unresolved
+means current evidence does not establish the member; it is not negative evidence.
+Abstention records a caller declining to decide. Contradiction records the caller's
+explicit incompatible-fact claim and cited basis; absent support never implies it.
+The kernel validates evidence lineage, not the logical truth of a caller's claim.
+V1 bases cite attached native candidate evidence; it does not introduce an external
+repository-evidence ontology. Rank, routing tier, relation kind and support count
+never determine a decision. Contradiction does not remove a candidate.
+
+`WitnessResolutionView` validates the retained association frame and admits an
+explicit subset with at most one decision per candidate/member. An empty view is
+valid over a nonempty candidate frame. `for_member` and `for_hypothesis` return
+`None` when no decision exists, separately from explicitly unresolved records.
+For recorded hypotheses, any contradicted member yields `CONTRADICTED`; every
+complementary member explicitly supported yields `COMPLETELY_SUPPORTED`; all
+other shapes yield `UNRESOLVED`, including abstentions and unrecorded members.
+The immutable view canonicalizes by association order and member resource address.
+It exposes complete, unresolved, contradicted and unrecorded hypotheses, supported
+obligation presence and concrete child decisions by family. Competing hypotheses
+and siblings remain independent. Family identity stays on each generated child;
+no family-level judgment is inferred.
+
+`promote_supported_hypothesis(view, identity)` is an explicit operation requiring
+complete all-member support. Its `PromotedWitnessHypothesis` retains the resolution
+and exposes the existing complementary `WitnessSet` plus `SupportedWitness` values
+with native targets. Each witness retains the cited native evidence references
+and a snapshot-qualified reference to its immutable member decision. The criterion,
+caller, provenance and candidate lineage remain available through that decision.
+Promotion neither registers a new accepted alternative nor mutates an assessment.
+The caller uses existing assessment APIs and accepted alternatives; readiness
+still checks normal applicability and mandatory witness coverage. Supporting a
+candidate alone does not satisfy an obligation or make a task ready.
+
+There is no automatic resolver, ranking, scoring, elimination, temporal event
+history, frontier/acquisition request, autonomous execution or Context admission.
+The four existing structural operators remain bounded candidate channels.
+Aggregate prospective evidence motivates this semantic seam, without replay or
+an effectiveness claim for the new kernel.
+
 ## Bounded candidate-witness generation
 
 `devtools.context.localization.generation` instantiates caller-authored
@@ -566,5 +639,6 @@ Import dependency support stays distinct from Reference support. Neither creates
 export/public-API truth, runtime import results, relevance, scores, ranks,
 accepted witnesses, obligation satisfaction or readiness. Aggregate Case 0007
 evidence motivates this hypothesis only; this increment neither replays that
-case nor claims effectiveness. Next freeze a new prospective Case 0008 comparing
-OWNER, MIRROR, REFERENCE and direct import dependency generation together.
+case nor claims effectiveness. The subsequent prospective Case 0008 closed the
+current structural-breadth phase; aggregate conclusions motivate explicit
+resolution while retaining lexical safety and the four bounded operators.

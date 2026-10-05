@@ -1068,3 +1068,23 @@ gold paths, resource identities or obligation assignments tune the adapter,
 and Case 0007 is not replayed. This leaves B-0002 open. Next freeze a NEW
 prospective Case 0008 testing OWNER, MIRROR, REFERENCE and direct import dependency
 generation together before deciding whether structural breadth is finished.
+
+## Explicit evidence-to-witness resolution recording
+
+The subsequent prospective Case 0008 aggregate conclusions close the current
+structural-relation breadth phase. Structural candidates alone do not supply a
+sufficient witness universe; lexical safety and other evidence channels remain
+necessary. The four bounded operators remain unchanged. This is architectural
+motivation, not a replay, gold-identity tuning or effectiveness claim.
+
+Localization now records explicit caller judgments over exact associated member
+evidence: supported, unresolved, abstained or contradicted. Immutable partial views
+derive complete support only from all complementary members; competitors and
+generated siblings stay independent. Contradiction retains candidates. Explicit
+complete-support promotion reuses WitnessSet, SupportedWitness and existing
+evidence references without changing assessment/readiness automatically.
+
+B-0002 remains open. Next investigate and prospectively test the smallest automatic
+evidence-resolution policy producing these records from criteria and native/lexical
+evidence. No numeric confidence, global ranking, candidate elimination, autonomous
+acquisition, frontier requests or Context Planning integration is promoted here.

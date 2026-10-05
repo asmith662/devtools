@@ -30,7 +30,7 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
-### Current — direct import dependency generation landed, prospective Case 0008 next
+### Current — explicit evidence-to-witness resolution recording implemented
 
 Prospective Case 0005 joined analysis found 24 distinct resources in its
 accepted witness universe and a minimum semantically sufficient union of 22;
@@ -67,11 +67,24 @@ resolved module-import relations for one forward step into exact target-module
 resources, with no member-binding/export claim or facade/recursive expansion.
 Explicit frozen inputs, replay validation and the existing branching contract
 retain independent source-analysis work and distinct-result bounds.
-Next freeze a NEW prospective Case 0008 testing OWNER_RESOURCE,
-MIRRORED_RESOURCE, REFERENCING_RESOURCE and DIRECT_IMPORT_DEPENDENCY_RESOURCE
-together against independently adjudicated witnesses. No Case 0007 replay,
-gold-identity tuning or Case 0008 freeze occurred in this increment. Resolution
-and elimination remain separate questions requiring prospective evidence.
+Prospective Case 0008 subsequently closed the current structural-relation breadth
+phase. Its aggregate conclusions support retaining lexical safety and the four
+bounded structural operators while moving to evidence resolution. No further
+relation is selected. Routing remains available but parked as a primary
+discriminator. Structural acquisition alone is insufficient.
+
+Localization now records explicit member support, unresolved evidence, abstention
+and contradiction over any validated associated candidate. Immutable partial
+views preserve exact native lineage, independent competitors and generated child
+identities. Complete complementary support permits explicit promotion into existing
+accepted witness values; assessment and readiness remain downstream. The kernel
+does not perform automatic resolution, elimination, ranking or frontier acquisition.
+No case replay or effectiveness claim accompanies this increment.
+
+Next investigate and prospectively test the minimum automatic evidence-resolution
+policy capable of producing these explicit records from obligation criteria plus
+native/lexical candidate evidence, without numeric confidence or global ranking
+prematurely. Frontier/acquisition and candidate elimination remain later questions.
 
 ### Completed — caller-directed lexical role routing
 

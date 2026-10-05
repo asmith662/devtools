@@ -28,7 +28,8 @@
   defines accepted repository Localization semantics: stated task obligations,
   bounded satisfaction/applicability, proof-scoped elimination and handoff limits.
   Its caller-authored obligation/witness kernel, one-way full-task/obligation
-  BM25 adapter and unresolved candidate association view are implemented;
+  BM25 adapter, unresolved candidate association and explicit resolution-recording
+  kernel are implemented;
   other acquisition and Context integration
   remain future work.
 - [AGENTS.md](../AGENTS.md) defines repository-operating rules.
@@ -94,6 +95,10 @@
   independent work/result bounds and bounded abstention diagnostics.
   The [Localization package overview](../src/devtools/context/localization/docs/overview.md#candidate-witness-association)
   also owns the bounded candidate-hypothesis contract and its native provenance.
+  Its [resolution contract](../src/devtools/context/localization/docs/overview.md#explicit-evidence-to-witness-resolution)
+  owns explicit member judgments, partial immutable views, exact evidence lineage
+  and complete-support promotion into existing accepted witness values. Automatic
+  resolution policy and assessment/readiness mutation are outside that kernel.
 - Source and tests define the final implemented behavior where documentation is
   incomplete.
 - Backlog records unresolved/future pressure; [roadmap](roadmap.md) records

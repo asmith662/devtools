@@ -705,6 +705,17 @@ declarations resolving to that resource; duplication is not a relevance vote.
 Source-analysis work and distinct-result admission remain independently bounded.
 Candidate generation adds no RI dependency truth, ranking or witness acceptance.
 
+Explicit candidate member resolution is a caller-owned judgment over exact
+attached native evidence, distinct from why a candidate was proposed. Supported,
+unresolved, abstained and contradicted decisions retain criterion, provenance and
+frame; contradiction does not eliminate. A hypothesis is completely supported
+only when every complementary member is explicitly supported. Competing hypotheses
+and generated siblings retain independent decisions. Complete candidate support
+permits explicit promotion into existing accepted witness values, without itself
+satisfying an obligation or changing assessment/readiness. Partial recording and
+an absent record differ from explicit unresolved judgment. The implemented kernel
+records and validates judgments; it performs no automatic semantic resolution.
+
 Localization readiness is scoped to the caller-supplied obligation frame, not a
 claim that the task interpretation is exhaustive or the resulting Context is
 sufficient. Acquisition stop, mandatory coverage and representation completeness

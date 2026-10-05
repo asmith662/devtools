@@ -878,3 +878,39 @@ remains sealed.
 - Next freeze a NEW prospective Case 0008 evaluating OWNER_RESOURCE,
   MIRRORED_RESOURCE, REFERENCING_RESOURCE and direct import dependency generation
   together. No effectiveness claim or Case 0008 freeze occurs in this increment.
+
+## Explicit evidence-to-witness resolution-recording kernel
+
+- Inspected accepted Localization/ADR-0005 contracts, native association support,
+  caller/generated identities, family lineage, accepted witness algebra,
+  assessment/readiness and aggregate Case 0008 stopping conclusions. No case
+  replay, gold-resource tuning or confirmation access occurred.
+- Added language-neutral `localization.resolution` with immutable member decisions,
+  hypothesis aggregates, partial views and explicit complete-support promotion.
+  Member decisions retain criterion, caller claim/reason, TaskProvenance and exact
+  attached native supports through existing LocalizationEvidenceReference values.
+  View admission revalidates association frames; copied/stale/foreign contexts,
+  substituted supports and duplicate decisions fail.
+- Supported and contradicted decisions require explicit evidence. Missing records,
+  unresolved evidence and abstention remain distinct. Contradiction dominates the
+  aggregate without deleting candidates; complete support needs every complementary
+  member. Competing hypotheses and concrete generated children remain independent.
+- Explicit promotion reuses native targets, WitnessSet and SupportedWitness,
+  retaining both native basis and immutable decision references. Assessment and
+  readiness change only through their existing caller-created flow. No automatic
+  policy, rank/score, support-count inference, channel preference, elimination,
+  frontier/acquisition or Context Planning integration was implemented. Structural
+  operators and bounds remain unchanged.
+- Nine focused resolution cases exercise lexical-only, OWNER, Reference and Import
+  channels, complementarity, competition, sibling lineage, exact frame/basis guards
+  and downstream promotion. New production code covers 202 statements and 48
+  branches (100%). The 245-test Localization regression selection passes. Protected
+  development validation passes 1,588 tests with two live skips and 100% production
+  statement/branch coverage. Ruff `src tests scripts`, mypy `src tests` (509 files),
+  six touched Python format checks and worktree/index diff checks pass.
+- Updated Localization overview, central architecture, taxonomy, documentation map,
+  roadmap and B-0002. ADR-0005 remains unchanged; B-0002 remains open. This kernel
+  has no prospective automatic-resolution effectiveness claim or durable schema.
+- Next investigate and prospectively test the minimum automatic evidence-resolution
+  policy producing explicit records from obligation criteria plus native/lexical
+  evidence, without numeric confidence or global ranking prematurely.
