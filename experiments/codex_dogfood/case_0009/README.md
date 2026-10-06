@@ -133,5 +133,8 @@ Use the project interpreter. Build regenerates only derived Stage D outputs;
 verify compares deterministic bytes. Neither reruns Stage B rankings or changes
 sealed inputs. Run only the focused `test_analysis.py` with coverage options
 disabled, plugin autoload disabled and `--noconftest`; frozen Stage C retains its
-separate sterile validation environment. Mandatory R2 is next; semantic-resolution
+separate sterile validation environment. R1.6 sensitivity is next, after the
+[R1.5 diagnostic dogfood](../../retrieval_diagnostics/case_0009.md); R1.7 then
+mandatory R2 follow. The new diagnostics consume these frozen results and preserve
+the original Stage D helper's replay contract. Semantic-resolution
 effectiveness remains paused.

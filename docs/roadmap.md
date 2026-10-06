@@ -40,7 +40,7 @@ replacement. Experimental execution is governed by each frozen prospective proto
 
 ### Retrieval / Search track
 
-#### R1 — Code-aware lexical representation — MANDATORY
+#### R1 — Code-aware lexical representation — DONE, retain separate view
 
 Build a bounded experimental sparse view preserving **whole identifiers +
 identifier subtokens**, and prospectively compare it with canonical production
@@ -60,15 +60,44 @@ evidence; mixed ranking changes fail promotion's no-worse-completion and
 
 [Case 0009 Stage B](../experiments/codex_dogfood/case_0009/stage_b.md) now records
 one A/B execution and the frozen full-frame blind packet. Clean Stage C and the
-Stage D join are complete. **Mandatory R2 true BM25F is the next checkpoint**;
+Stage D join are complete. **R1.6 canonical BM25 parameter sensitivity is next**;
 canonical production BM25 remains unchanged and semantic-resolution effectiveness
 does not resume yet.
+
+#### R1.5 — Retrieval Diagnostics and Failure Attribution — DONE
+
+The [experimental diagnostic facility](../experiments/retrieval_diagnostics/README.md)
+replays exact query/field statistics, scores, overtakers and treatment pairs with
+optional independent obligation gold. [Case 0009 dogfood](../experiments/retrieval_diagnostics/case_0009.md)
+covers all 37 REQUIRED cells under both arms. Mechanical truth, evidenced support,
+possible interpretation and outside-scope states remain distinct. This is
+evaluation/instrumentation, not a production ranking or Localization policy.
+
+Future retrieval experiments must diagnose observed failures by class rather than
+reporting only aggregate metric movement. This foundation precedes parameter
+sensitivity, query-representation experiments, BM25F evaluation, semantic retrieval
+comparison and learned reranking.
+
+#### R1.6 — Canonical BM25 parameter sensitivity — NEXT
+
+Design and freeze a scientifically valid sensitivity study covering at minimum
+`k1`, `b` and filename-field weighting. Use R1.5 diagnostics to explain score,
+ranking, overtaker and completion effects; do not merely select the best score.
+No parameter grid or new canonical defaults are authorized by R1.5.
+
+#### R1.7 — Query-term discrimination / weighting investigation
+
+Follow R1.6, or combine only if parameter and query effects remain cleanly
+attributable. Use term DF/IDF, footprint and independently judged yields as
+descriptive evidence, not automatic removal/downweighting rules. No query weights
+change in R1.5. Query formulation remains the separate R3 question.
 
 #### R2 — True BM25F / field-aware sparse retrieval — MANDATORY
 
 **R2 — Implement and evaluate a true BM25F / field-aware sparse retrieval
 formulation regardless of the outcome of R1.** R2 is unconditional: it follows
-R1 whether R1 improves, ties or worsens the baseline. It is not gated on R1
+R1 and the R1.5–R1.7 diagnostic/sensitivity checkpoints whether R1 improves,
+ties or worsens the baseline. It is not gated on R1
 failure and must not be removed because R1 performs well.
 
 Implement a separate experimental formulation initially, keeping production
@@ -103,6 +132,10 @@ Primary failure classes: **REPRESENTATION_FAILURE** and/or
 **RANKING_DISCRIMINATION_FAILURE** through field-aware evidence; the protocol
 must select and state its actual primary target.
 
+BM25F evaluation must use the diagnostic facility to explain field/parameter
+effects. Do not tune field weights from Case 0009 gold; it informs hypotheses,
+not a post-hoc optimizer.
+
 Preserve required-resource recall, obligation-relative completion depth,
 completion-prefix candidate size, candidate precision/yield, unique useful
 candidates beyond canonical BM25, representation-failure recoveries and
@@ -112,6 +145,7 @@ and incremental complexity. Top-K usefulness alone is insufficient.
 ```text
 canonical baseline
     -> R1 identifier-aware representation
+    -> R1.5 diagnostics (done) -> R1.6 sensitivity (next) -> R1.7 query terms
     -> R2 BM25F canonical terms + R2 BM25F identifier-aware terms
        (representation gain, fielding gain and interaction separately measured)
 ```

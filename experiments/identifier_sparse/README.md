@@ -5,7 +5,9 @@ API changes. [Case 0009](../codex_dogfood/case_0009/README.md) owns the first
 prospective protocol. [Case 0009 Stage D](../codex_dogfood/case_0009/analysis.md)
 is now **prospectively evaluated: RETAIN AS SEPARATE RETRIEVAL VIEW**. REQUIRED
 positive reach is unchanged; mixed ranking gains/regressions fail the frozen
-promotion gates. Canonical production BM25 is unchanged; mandatory R2 is next.
+promotion gates. Canonical production BM25 is unchanged. [R1.5 diagnostics](../retrieval_diagnostics/README.md)
+now explains frozen outcomes; R1.6 sensitivity is next, followed by R1.7 and
+mandatory R2. No frozen R1 treatment or conclusion changes.
 The [roadmap](../../docs/roadmap.md#current-sequencing) remains authoritative.
 
 ## Frozen representation

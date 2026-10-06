@@ -39,7 +39,11 @@ implement the bounded representation hypothesis.
 [Case 0009 Stage D](../../../experiments/codex_dogfood/case_0009/analysis.md)
 prospectively evaluates it: **RETAIN AS SEPARATE RETRIEVAL VIEW**, with unchanged
 REQUIRED positive reach and mixed ranking gains/regressions. This does not close
-the epic, change canonical production retrieval or cancel mandatory R2 next.
+the epic, change canonical production retrieval or cancel mandatory R2.
+[R1.5 diagnostics](../../../experiments/retrieval_diagnostics/README.md) now
+provides experimental score/failure instrumentation. Current sequencing is R1.6
+canonical parameter sensitivity next, R1.7 query-term investigation, then mandatory
+R2. These checkpoints leave the epic open and Localization continuation intact.
 
 ADR-0005, grounding, witness generation/association, explicit resolution recording
 and external semantic-resolution research remain intact. Prospective semantic

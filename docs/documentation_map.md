@@ -13,13 +13,18 @@
   Retrieval/RI/Localization capability status, lexical representation and fielding,
   empirical limits, retrieval-family hypotheses and the label constraint.
   [Roadmap](roadmap.md#current-sequencing) owns the coordinated tracks and mandatory
-  R1 then unconditional R2 BM25F experiments; neither is production behavior.
+  R1, R1.5 diagnostics, R1.6 sensitivity, R1.7 query terms, then unconditional
+  R2 BM25F experiments; these are not production behavior.
   The taxonomy owns governing retrieval/localization failure classes.
   [R1 experimental method](../experiments/identifier_sparse/README.md) owns its
   frozen whole-identifier/subtoken semantics; [prospective Case 0009](../experiments/codex_dogfood/case_0009/README.md)
   owns treatment, execution and the independent blind-adjudication boundary;
   [Case 0009 Stage D](../experiments/codex_dogfood/case_0009/analysis.md) owns the
-  joined prospective result (retain separate view; mandatory R2 next).
+  joined prospective result (retain separate view; R2 remains mandatory).
+  [R1.5 diagnostics](../experiments/retrieval_diagnostics/README.md) owns reusable
+  experimental mechanical diagnostics and conservative failure assertions;
+  [Case 0009 dogfood](../experiments/retrieval_diagnostics/case_0009.md) owns its
+  deterministic 37-cell development capture. R1.6 is the next study.
   An implementation or treatment capture is not an effectiveness claim.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),

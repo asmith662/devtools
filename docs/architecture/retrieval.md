@@ -261,6 +261,9 @@ sufficiency.** Both research tracks remain necessary.
 
 [EXPERIMENTAL] bounded external proposal --> human review --> explicit record
 [EXPERIMENTAL; EVALUATED] R1 whole identifiers + subtokens (retain separate view)
+[EXPERIMENTAL; INSTRUMENTATION] R1.5 exact retrieval/failure diagnostics
+[NEXT ROADMAP; NOT EXECUTED] R1.6 canonical BM25 parameter sensitivity
+[ROADMAP; NOT EXECUTED] R1.7 query-term discrimination investigation
 [MANDATORY ROADMAP; NOT IMPLEMENTED] R2 true BM25F, regardless of R1 outcome
 
 [PRODUCTION, CALLER-DIRECTED] explicit Context choices --> plan
@@ -290,7 +293,21 @@ VIEW**. Both arms reach all 37 REQUIRED cells; global depth improves 342 to 331,
 maximum own depth worsens 185 to 231, and union burden falls only 1.9455% (257
 to 252). The frozen promotion gates fail; the separate-view criterion passes.
 This is one mixed prospective case, not production adoption. **R2 remains
-mandatory next regardless of this result.**
+mandatory regardless of this result.** R1.5 now provides reusable experimental
+[retrieval diagnostics](../../experiments/retrieval_diagnostics/README.md), with
+[all 37 Case 0009 REQUIRED cells](../../experiments/retrieval_diagnostics/case_0009.md)
+replayed under both arms. It consumes native lexical/exact/structural/role evidence
+and optional gold without making judgments a production dependency. Current
+generic evaluation retains its identity-coverage responsibility.
+
+**Future retrieval experiments must diagnose observed failures by class rather
+than reporting only aggregate metric movement. BM25F evaluation must use the
+diagnostic facility to explain field/parameter effects.** Exact mechanics do not
+prove semantic equivalence or relational necessity; Context and obligation
+failures require independent evidence outside lexical diagnosis. The roadmap now
+orders R1.6 canonical parameter sensitivity next, R1.7 query-term investigation,
+then mandatory R2 before R3–R6. No parameter or query-weight tuning is included
+in R1.5, and Localization's continuation remains unchanged.
 
 Open adjudications include the placement of identifier evidence, the smallest
 scientifically useful BM25F field schema, semantic retrieval granularity,

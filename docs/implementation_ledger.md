@@ -1081,3 +1081,32 @@ remains sealed.
 - Mandatory **R2 true BM25F / field-aware sparse retrieval is next regardless
   of R1 outcome**. No production adoption, fusion, BM25F implementation or
   semantic-resolution resumption is authorized by this checkpoint.
+
+## R1.5 Retrieval Diagnostics and Failure Attribution (2026-10-06)
+
+- Added [experimental retrieval diagnostics](../experiments/retrieval_diagnostics/README.md)
+  over existing native lexical scoring/statistics and optional independent
+  obligation judgments. Native repository/snapshot/corpus/resource identities,
+  exact query/lane, treatment/index identity and explicit settings are retained.
+  Production Retrieval, RI and Localization gain no dependency on evaluation gold.
+- Query footprints/yields, field/term decomposition, source/query identifier
+  lineage, zero-score/bounded/excluded states, overtakers and paired treatments
+  serialize deterministically. Captured scores and contributions are checked
+  against the existing canonical arithmetic. Failure certainty and multi-factor
+  observations remain explicit; lexical evidence cannot prove semantic equivalence
+  or why a structural relation makes a witness necessary.
+- [Case 0009 dogfood](../experiments/retrieval_diagnostics/case_0009.md) covers all
+  37 REQUIRED cells in each arm with 74 reproduced required scores and the original
+  paired ranks/overtaker sets. At the descriptive threshold of 20 unnecessary
+  overtakers, ranking burden is established for 8 A cells and 7 B cells. Twelve
+  partial hidden identifier-match cells provide zero positive REQUIRED reach
+  rescues. Frozen R1 conclusions and its original replay helper remain unchanged.
+- 41 focused tests pass; reusable diagnostic modules have 100% branch coverage,
+  overall package coverage is 99% including the dogfood CLI. Deterministic capture
+  replay, score reconstruction, partition/identity/tamper checks, scoped
+  Ruff/format/mypy and worktree/index whitespace checks pass. Production source,
+  frozen gold/treatments, quarantine and confirmation remain untouched.
+- Current roadmap: R1 done, retain separate view; R1.5 done; **R1.6 canonical
+  BM25 parameter sensitivity next**, then R1.7 query-term investigation, mandatory
+  R2 true BM25F, R3–R6 and the preserved Localization continuation. No parameter
+  tuning, query weighting, BM25F or semantic-resolution experiment in this increment.

@@ -686,7 +686,8 @@ value. The [failure taxonomy](architecture/taxonomy.md#retrieval-and-localizatio
 separates these surfaces from obligation formulation and Context disclosure.
 
 The [coordinated roadmap](roadmap.md#current-sequencing) mandates R1 additive
-identifier/subtoken representation, then **R2 true BM25F regardless of R1's
+identifier/subtoken representation, diagnostic/sensitivity checkpoints R1.5–R1.7,
+then **R2 true BM25F regardless of R1's
 outcome**, with representation and fielding separately attributable. No production
 algorithm or accepted Localization semantics change in this checkpoint.
 
@@ -694,7 +695,10 @@ algorithm or accepted Localization semantics change in this checkpoint.
 prospectively evaluates R1 against clean independent gold and selects **RETAIN
 AS SEPARATE RETRIEVAL VIEW**. REQUIRED positive reach is unchanged; mixed ranking
 gains/regressions fail the frozen promotion gates. Canonical production BM25
-remains unchanged, and mandatory R2 BM25F is next.
+remains unchanged. [R1.5 experimental diagnostics](../experiments/retrieval_diagnostics/README.md)
+now validates mechanical score/failure evidence with optional independent gold,
+without a production dependency. R1.6 parameter sensitivity is next; R2 BM25F
+remains mandatory after R1.7. Localization's reasoning continuation is unchanged.
 
 ### Accepted boundaries and implemented composition
 
