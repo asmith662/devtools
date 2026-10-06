@@ -15,6 +15,10 @@
   [Roadmap](roadmap.md#current-sequencing) owns the coordinated tracks and mandatory
   R1 then unconditional R2 BM25F experiments; neither is production behavior.
   The taxonomy owns governing retrieval/localization failure classes.
+  [R1 experimental method](../experiments/identifier_sparse/README.md) owns its
+  frozen whole-identifier/subtoken semantics; [prospective Case 0009](../experiments/codex_dogfood/case_0009/README.md)
+  owns treatment, execution and the independent blind-adjudication boundary.
+  An implementation or treatment capture is not an effectiveness claim.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),
   [Cases 0004–0008 history](architecture/localization.md#prospective-cases-0004-0008-and-structural-breadth-closure)

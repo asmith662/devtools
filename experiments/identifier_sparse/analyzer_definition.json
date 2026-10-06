@@ -1,0 +1,19 @@
+{
+  "frozen_before": "historical diagnostic and prospective execution; no tuning from outcomes",
+  "parameters": {
+    "b": 0.75,
+    "filename_weight": 0.25,
+    "k1": 1.2
+  },
+  "rules": "Canonical Unicode word spans; whole casefold first; underscore pieces; lower-to-upper, acronym-before-Capitalized and alpha/digit boundaries; unique casefold terms per span; independent occurrence frequency retained; distinct query terms; no semantic rewriting.",
+  "schema": "r1-analyzer-definition-v1",
+  "semantics": "r1-unicode-word-whole-plus-unique-identifier-components-v1",
+  "source_sha256": {
+    "experiments/identifier_sparse/__init__.py": "ba9c760c2431f7d9ff984386d5b2b9086787e7fd463189899312796ec8cae56e",
+    "experiments/identifier_sparse/analysis.py": "64cd4265ced9c41c95e67d94b776802e219362710310e38aaa458fea21fba07a",
+    "experiments/identifier_sparse/index.py": "4a5ad4d5f0bd68b26fd8d57fb22c5136c4d52111cc547f0e8360d129bf8e0e07",
+    "experiments/identifier_sparse/retrieval.py": "0afaf3cfde30c1590cdbc833c5c1f7c0fd3276710028686a72d0cd0b1739e3a1",
+    "experiments/retrieval_identifier.py": "a4e9dabdb0993275479550ef89bbaf76ae8207e555d0debb4f31eba6dcff25f4"
+  },
+  "unicode_version": "16.0.0"
+}

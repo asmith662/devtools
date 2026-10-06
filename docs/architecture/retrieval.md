@@ -260,7 +260,8 @@ sufficiency.** Both research tracks remain necessary.
                    --> caller assessment / frame readiness
 
 [EXPERIMENTAL] bounded external proposal --> human review --> explicit record
-[MANDATORY ROADMAP; NOT IMPLEMENTED] R1 identifiers --> R2 true BM25F
+[EXPERIMENTAL] R1 whole identifiers + subtokens (effectiveness UNKNOWN)
+[MANDATORY ROADMAP; NOT IMPLEMENTED] R2 true BM25F, regardless of R1 outcome
 
 [PRODUCTION, CALLER-DIRECTED] explicit Context choices --> plan
                      --> exact materialization --> rendering / assembly
@@ -280,7 +281,11 @@ Future protocols must declare their primary [failure class](taxonomy.md#retrieva
 before treatment execution. Report representation versus fielding gains
 separately. The [two-track roadmap](../roadmap.md#current-sequencing) freezes R1
 and unconditional R2, comparison arms, metrics and the reasoning-evaluation pause.
-It does not authorize implementation in this checkpoint.
+The [R1 experimental view](../../experiments/identifier_sparse/README.md) and
+[Case 0009 protocol](../../experiments/codex_dogfood/case_0009/README.md) now
+implement and freeze the representation hypothesis. Canonical production
+retrieval remains unchanged. No effectiveness or production-adoption claim is
+made before independent blind adjudication and join; R2 remains mandatory.
 
 Open adjudications include the placement of identifier evidence, the smallest
 scientifically useful BM25F field schema, semantic retrieval granularity,

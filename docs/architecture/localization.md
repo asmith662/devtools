@@ -185,7 +185,7 @@ distinguish an available contract from its unproven policy or evaluation.
 | Iterative sufficiency loop | FUTURE, unproven | Frame readiness is implemented; complete acquire/resolve/stop semantics are not |
 | Localization-to-Context handoff | FUTURE | Explicit Context plans/materializers exist; automatic obligation provenance transfer does not |
 | End-to-end autonomous coding-agent evaluation | FUTURE, unproven | Dogfood acquisition/generation evidence is not agent success/cost evidence |
-| R1 code-aware sparse representation | FUTURE; MANDATORY | Experimental view, canonical BM25 unchanged |
+| R1 code-aware sparse representation | EXPERIMENTAL; evaluation pending | [Whole-plus-subtokens view and Case 0009](../../experiments/identifier_sparse/README.md); canonical BM25 unchanged, effectiveness UNKNOWN |
 | R2 true BM25F | FUTURE; MANDATORY regardless of R1 | Separate representation/fielding attribution, not production replacement |
 | R3-R6 retrieval work | FUTURE, governed hypotheses | Query formulation, verified mismatch, discrimination and complementary fusion |
 

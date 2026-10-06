@@ -33,6 +33,12 @@ authorization. Fixed windows did not settle semantic granularity; CodeRankEmbed
 did not disprove dense retrieval; poor blind graph yield did not negate direct
 relations. Unknown labels cannot be treated as negative training examples.
 
+R1's [experimental view](../../../experiments/identifier_sparse/README.md) and
+[Case 0009 protocol](../../../experiments/codex_dogfood/case_0009/README.md) now
+implement the bounded representation hypothesis. Effectiveness remains UNKNOWN
+pending independent blind gold and join. This does not close the epic, change
+canonical production retrieval or cancel mandatory R2.
+
 ADR-0005, grounding, witness generation/association, explicit resolution recording
 and external semantic-resolution research remain intact. Prospective semantic
 resolution effectiveness pauses pending R1/R2 progress unless a concrete earlier

@@ -1011,3 +1011,29 @@ remains sealed.
 - Next work remains R1's bounded experimental whole-identifier-plus-subtoken
   sparse view with canonical BM25 unchanged, then true BM25F R2 regardless of
   R1 outcome. This checkpoint implements neither.
+
+## Experimental R1 implementation and prospective protocol (2026-10-06)
+
+- Started from clean `main` at
+  `d71d741f3a91bf4c4a2b40619d1b8042853f6881`. Added an experiment-owned
+  [whole-identifier-plus-subtoken view](../experiments/identifier_sparse/README.md)
+  and [prospective Case 0009](../experiments/codex_dogfood/case_0009/README.md).
+  No production source, existing production test, dependency or public API changed.
+- Reused Increment 27's deterministic splitter (already whole plus subtokens)
+  and production BM25 IDF/contribution arithmetic. Experiment-owned indexes
+  preserve whole-resource granularity, independent content/filename statistics,
+  `k1=1.2`, `b=0.75` and filename weight `0.25`. Content, filename and query
+  analysis change together; no BM25F, expansion, tuning or structural/fusion arm.
+- Pinned analyzer source bytes before checking three saved development query
+  strings. Exact historical term-stream parity is a mechanical diagnostic,
+  not a historical effectiveness replay or new effectiveness claim.
+- Case 0009 selects a realistic future explicit assessment-bridge task, with
+  nine caller-authored obligation queries plus the complete task lane. No gold
+  resource selection. Its Stage A pins native snapshot/corpus/document identities,
+  implementation and representation-record digests, unchanged scoring parameters,
+  paired gain/loss metrics, cost limits and the pre-result decision rule.
+- Stage B execution and full-frame treatment-free packet are separate checkpoints;
+  independent blind judgments and joined effectiveness are not part of this
+  implementation freeze. Effectiveness remains UNKNOWN. No production promotion,
+  sealed confirmation access, model call or push. R2 true BM25F remains mandatory
+  whether R1 improves, ties or worsens; Localization's resumption point is unchanged.

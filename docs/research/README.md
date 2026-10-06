@@ -13,6 +13,12 @@ because later evidence may justify reconsideration.
 
 ## Current retrieval research checkpoint
 
+[Experimental R1 method](../../experiments/identifier_sparse/README.md) and
+[prospective Case 0009](../../experiments/codex_dogfood/case_0009/README.md) now
+freeze the whole-identifier-plus-subtoken treatment. Canonical BM25 is unchanged;
+effectiveness is UNKNOWN before independent blind gold and join. Mandatory R2
+true BM25F proceeds regardless of the R1 result.
+
 The [retrieval foundation](../architecture/retrieval.md) owns current production
 status and reconciled empirical interpretation. The
 [two-track roadmap](../roadmap.md#current-sequencing) mandates **R1 additive

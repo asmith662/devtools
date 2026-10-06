@@ -1,0 +1,72 @@
+{
+  "R2": "Mandatory regardless of R1 outcome.",
+  "analyzer_definition_sha256": "52fc9054985add191ac0f1066f694aa74d6c8b82066863ebbc09aea1b770e79d",
+  "interpretation": "Exact query-term parity with retained Increment 27. No labels joined, no historical retrieval re-executed and no effectiveness claim. Increment 27 already used whole plus subtokens, not split-only. R1 replaces bm25s with canonical shared arithmetic; no numerical historical replay claimed.",
+  "rows": [
+    {
+      "canonical_terms": [
+        "implement",
+        "direct",
+        "python",
+        "function",
+        "declaration",
+        "derivation"
+      ],
+      "case_id": "i25-66ed2049de72",
+      "historical_term_stream_equal": true,
+      "identifier_terms": [
+        "implement",
+        "direct",
+        "python",
+        "function",
+        "declaration",
+        "derivation"
+      ],
+      "query": "Implement direct Python function declaration derivation"
+    },
+    {
+      "canonical_terms": [
+        "implement",
+        "repository",
+        "text",
+        "document",
+        "representation"
+      ],
+      "case_id": "i25-858bfa85787e",
+      "historical_term_stream_equal": true,
+      "identifier_terms": [
+        "implement",
+        "repository",
+        "text",
+        "document",
+        "representation"
+      ],
+      "query": "Implement repository text document representation"
+    },
+    {
+      "canonical_terms": [
+        "implement",
+        "adr",
+        "0001",
+        "modelinteraction",
+        "request",
+        "boundary"
+      ],
+      "case_id": "i25-6f304a8c737c",
+      "historical_term_stream_equal": true,
+      "identifier_terms": [
+        "implement",
+        "adr",
+        "0001",
+        "modelinteraction",
+        "model",
+        "interaction",
+        "request",
+        "boundary"
+      ],
+      "query": "Implement ADR-0001 ModelInteraction request boundary"
+    }
+  ],
+  "schema": "r1-retrospective-mechanical-diagnostic-v1",
+  "source_sha256": "7d566ba0e402d180b2ddfc0840f3002ec8c8337edbed0e3d14e391b717b5f46e"
+}

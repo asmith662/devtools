@@ -36,7 +36,7 @@ contracts while correcting retrieval-foundation sequencing. The
 inventory, empirical limits and open algorithm families; the
 [failure taxonomy](architecture/taxonomy.md#retrieval-and-localization-failure-classes)
 governs future protocols. This roadmap selects experiments, not production
-replacement. No effectiveness experiment executes in this checkpoint.
+replacement. Experimental execution is governed by each frozen prospective protocol.
 
 ### Retrieval / Search track
 
@@ -49,6 +49,12 @@ identifier useful@5 gain (68 versus 63) includes gains and losses; it establishe
 unused lexical signal, not a replacement decision. Primary failure class:
 **REPRESENTATION_FAILURE**. Placement in canonical content, a separate field,
 a separate channel or a hybrid remains open.
+
+The [experimental R1 view](../experiments/identifier_sparse/README.md) is now
+implemented without production changes. [Case 0009](../experiments/codex_dogfood/case_0009/README.md)
+freezes its first prospective paired protocol; execution and independent blind
+adjudication remain separately recorded stages. Effectiveness is UNKNOWN until
+blind gold is frozen and joined. R1 is not yet an evaluated or promoted default.
 
 #### R2 — True BM25F / field-aware sparse retrieval — MANDATORY
 
