@@ -1,9 +1,11 @@
 # Case 0009: prospective R1 assessment-bridge localization
 
-Stage A freezes the first R1 evaluation. Stage B executes the paired treatments
-and exports a full-frame blind packet. **STOP before Stage C blind judgments**;
-effectiveness is UNKNOWN until an independent adjudicator freezes gold and a
-later join evaluates it. No production tokenizer replacement or BM25F is here.
+R1 is now **prospectively evaluated** against clean independent Stage C gold.
+[Stage D](analysis.md) selects **RETAIN AS SEPARATE RETRIEVAL VIEW**: both arms
+reach all REQUIRED evidence; global completion improves 342 to 331, but maximum
+own completion worsens 185 to 231 and prefix-union reduction is only 1.9455%.
+The frozen separate-view criterion passes via a required readiness top-20 gain
+and three improved obligation completions. No production adoption or BM25F is here.
 
 ## Task selection and ownership
 
@@ -111,3 +113,25 @@ reach and exact representation attribution. This increment does not adjudicate.
 **R2: true BM25F / field-aware sparse retrieval proceeds regardless of whether
 R1 improves, ties or worsens canonical BM25.** No Stage C or effectiveness claim
 is implied by committing Stage A/B artifacts.
+
+## Stage D replay
+
+Clean gold was committed at `092f9a760c1ec1ec29db5986a97b702ba5e1eff2` after
+sterile isolated validation. [Analysis JSON](analysis.json) retains exact joins,
+all positive universes, accepted alternatives, paired ranks, source/term
+attribution and frozen cost-rule calculations. [Analysis report](analysis.md)
+records the full provenance and gain/loss interpretation. Invalid quarantined
+provisional gold is excluded. Stage D intentionally lifts the blind; confirmation
+and reserve outcomes remain untouched.
+
+```text
+python -m experiments.codex_dogfood.case_0009.analyze build
+python -m experiments.codex_dogfood.case_0009.analyze verify
+```
+
+Use the project interpreter. Build regenerates only derived Stage D outputs;
+verify compares deterministic bytes. Neither reruns Stage B rankings or changes
+sealed inputs. Run only the focused `test_analysis.py` with coverage options
+disabled, plugin autoload disabled and `--noconftest`; frozen Stage C retains its
+separate sterile validation environment. Mandatory R2 is next; semantic-resolution
+effectiveness remains paused.

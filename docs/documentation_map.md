@@ -17,7 +17,9 @@
   The taxonomy owns governing retrieval/localization failure classes.
   [R1 experimental method](../experiments/identifier_sparse/README.md) owns its
   frozen whole-identifier/subtoken semantics; [prospective Case 0009](../experiments/codex_dogfood/case_0009/README.md)
-  owns treatment, execution and the independent blind-adjudication boundary.
+  owns treatment, execution and the independent blind-adjudication boundary;
+  [Case 0009 Stage D](../experiments/codex_dogfood/case_0009/analysis.md) owns the
+  joined prospective result (retain separate view; mandatory R2 next).
   An implementation or treatment capture is not an effectiveness claim.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),

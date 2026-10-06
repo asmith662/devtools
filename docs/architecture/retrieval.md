@@ -260,7 +260,7 @@ sufficiency.** Both research tracks remain necessary.
                    --> caller assessment / frame readiness
 
 [EXPERIMENTAL] bounded external proposal --> human review --> explicit record
-[EXPERIMENTAL] R1 whole identifiers + subtokens (effectiveness UNKNOWN)
+[EXPERIMENTAL; EVALUATED] R1 whole identifiers + subtokens (retain separate view)
 [MANDATORY ROADMAP; NOT IMPLEMENTED] R2 true BM25F, regardless of R1 outcome
 
 [PRODUCTION, CALLER-DIRECTED] explicit Context choices --> plan
@@ -284,8 +284,13 @@ and unconditional R2, comparison arms, metrics and the reasoning-evaluation paus
 The [R1 experimental view](../../experiments/identifier_sparse/README.md) and
 [Case 0009 protocol](../../experiments/codex_dogfood/case_0009/README.md) now
 implement and freeze the representation hypothesis. Canonical production
-retrieval remains unchanged. No effectiveness or production-adoption claim is
-made before independent blind adjudication and join; R2 remains mandatory.
+retrieval remains unchanged. [Case 0009 Stage D](../../experiments/codex_dogfood/case_0009/analysis.md)
+now evaluates R1 against clean independent gold: **RETAIN AS SEPARATE RETRIEVAL
+VIEW**. Both arms reach all 37 REQUIRED cells; global depth improves 342 to 331,
+maximum own depth worsens 185 to 231, and union burden falls only 1.9455% (257
+to 252). The frozen promotion gates fail; the separate-view criterion passes.
+This is one mixed prospective case, not production adoption. **R2 remains
+mandatory next regardless of this result.**
 
 Open adjudications include the placement of identifier evidence, the smallest
 scientifically useful BM25F field schema, semantic retrieval granularity,

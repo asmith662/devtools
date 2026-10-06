@@ -690,6 +690,12 @@ identifier/subtoken representation, then **R2 true BM25F regardless of R1's
 outcome**, with representation and fielding separately attributable. No production
 algorithm or accepted Localization semantics change in this checkpoint.
 
+[Case 0009 Stage D](../experiments/codex_dogfood/case_0009/analysis.md) now
+prospectively evaluates R1 against clean independent gold and selects **RETAIN
+AS SEPARATE RETRIEVAL VIEW**. REQUIRED positive reach is unchanged; mixed ranking
+gains/regressions fail the frozen promotion gates. Canonical production BM25
+remains unchanged, and mandatory R2 BM25F is next.
+
 ### Accepted boundaries and implemented composition
 
 [ADR-0003](architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md)

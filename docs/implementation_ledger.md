@@ -1056,3 +1056,28 @@ remains sealed.
   Next is independent blind adjudication from packet files only, then paired
   gain/loss and representation-attribution analysis. R2 remains unconditional;
   Localization's resumption point and sealed confirmation remain untouched.
+
+## R1 Case 0009 Stage D joined evaluation (2026-10-06)
+
+- Verified ordered Stage A/B/packet-repair/clean Stage C ancestry and immutable
+  committed gold bytes. Joined 531 resources, 9 obligations and 10 frozen lanes
+  with exact repository/snapshot/corpus/task/resource/query identities.
+- [Stage D](../experiments/codex_dogfood/case_0009/analysis.md) prospectively
+  evaluates R1: **RETAIN AS SEPARATE RETRIEVAL VIEW**. Both arms reach all 23
+  REQUIRED resources, 37 cells, 42 obligation-relative unit judgments and 40
+  distinct units; positive-reach gains/losses/rescues are zero.
+- Global completion improves 342 to 331, but maximum own completion worsens
+  185 to 231. Own prefix occurrences fall 454 to 423 and union 257 to 252:
+  only 5/257 = 1.9455%, below the frozen 20% promotion threshold. Paired required
+  ranks: 13 improved, 9 tied, 15 worsened. One required top-20 entry and three
+  improved obligation completions satisfy the frozen separate-view rule.
+- Exact source/query/filename attribution and captured-statistic verification
+  distinguish ranking gains from representation rescues and record regressions.
+  Captured costs pass all frozen 3x gates; different provenance representations
+  prevent attributing footprint differences solely to lexical expansion.
+- 15 focused Stage D tests pass; deterministic JSON/Markdown replay, scoped
+  Ruff/format and diff checks pass. Frozen gold/treatment and production code
+  remain unchanged. Invalid quarantined gold and confirmation were not accessed.
+- Mandatory **R2 true BM25F / field-aware sparse retrieval is next regardless
+  of R1 outcome**. No production adoption, fusion, BM25F implementation or
+  semantic-resolution resumption is authorized by this checkpoint.

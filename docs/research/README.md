@@ -15,9 +15,11 @@ because later evidence may justify reconsideration.
 
 [Experimental R1 method](../../experiments/identifier_sparse/README.md) and
 [prospective Case 0009](../../experiments/codex_dogfood/case_0009/README.md) now
-freeze the whole-identifier-plus-subtoken treatment. Canonical BM25 is unchanged;
-effectiveness is UNKNOWN before independent blind gold and join. Mandatory R2
-true BM25F proceeds regardless of the R1 result.
+record the whole-identifier-plus-subtoken treatment and its
+[Stage D evaluation](../../experiments/codex_dogfood/case_0009/analysis.md):
+**RETAIN AS SEPARATE RETRIEVAL VIEW**, with unchanged REQUIRED positive reach and
+mixed ranking gains/regressions. Canonical BM25 is unchanged. Mandatory R2
+true BM25F is next regardless of the R1 result.
 
 The [retrieval foundation](../architecture/retrieval.md) owns current production
 status and reconciled empirical interpretation. The

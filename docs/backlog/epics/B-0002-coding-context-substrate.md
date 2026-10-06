@@ -35,9 +35,11 @@ relations. Unknown labels cannot be treated as negative training examples.
 
 R1's [experimental view](../../../experiments/identifier_sparse/README.md) and
 [Case 0009 protocol](../../../experiments/codex_dogfood/case_0009/README.md) now
-implement the bounded representation hypothesis. Effectiveness remains UNKNOWN
-pending independent blind gold and join. This does not close the epic, change
-canonical production retrieval or cancel mandatory R2.
+implement the bounded representation hypothesis.
+[Case 0009 Stage D](../../../experiments/codex_dogfood/case_0009/analysis.md)
+prospectively evaluates it: **RETAIN AS SEPARATE RETRIEVAL VIEW**, with unchanged
+REQUIRED positive reach and mixed ranking gains/regressions. This does not close
+the epic, change canonical production retrieval or cancel mandatory R2 next.
 
 ADR-0005, grounding, witness generation/association, explicit resolution recording
 and external semantic-resolution research remain intact. Prospective semantic

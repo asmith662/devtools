@@ -2,7 +2,10 @@
 
 Experimental consumer-owned retrieval view; no production caller or canonical
 API changes. [Case 0009](../codex_dogfood/case_0009/README.md) owns the first
-prospective protocol. Effectiveness is **UNKNOWN pending blind adjudication**.
+prospective protocol. [Case 0009 Stage D](../codex_dogfood/case_0009/analysis.md)
+is now **prospectively evaluated: RETAIN AS SEPARATE RETRIEVAL VIEW**. REQUIRED
+positive reach is unchanged; mixed ranking gains/regressions fail the frozen
+promotion gates. Canonical production BM25 is unchanged; mandatory R2 is next.
 The [roadmap](../../docs/roadmap.md#current-sequencing) remains authoritative.
 
 ## Frozen representation

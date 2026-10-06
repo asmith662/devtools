@@ -52,14 +52,17 @@ a separate channel or a hybrid remains open.
 
 The [experimental R1 view](../experiments/identifier_sparse/README.md) is now
 implemented without production changes. [Case 0009](../experiments/codex_dogfood/case_0009/README.md)
-freezes its first prospective paired protocol; execution and independent blind
-adjudication remain separately recorded stages. Effectiveness is UNKNOWN until
-blind gold is frozen and joined. R1 is not yet an evaluated or promoted default.
+records its first prospective paired evaluation, with clean independent gold.
+[Stage D](../experiments/codex_dogfood/case_0009/analysis.md) selects **RETAIN AS
+SEPARATE RETRIEVAL VIEW**, not production replacement. Both arms reach all REQUIRED
+evidence; mixed ranking changes fail promotion's no-worse-completion and
+20%-burden-or-rescue gates. R1 is prospectively evaluated, not a promoted default.
 
 [Case 0009 Stage B](../experiments/codex_dogfood/case_0009/stage_b.md) now records
-one A/B execution and the frozen full-frame blind packet. The next R1 step is
-independent Stage C adjudication, then a treatment/gold join; no judgments or
-effectiveness conclusion have been recorded.
+one A/B execution and the frozen full-frame blind packet. Clean Stage C and the
+Stage D join are complete. **Mandatory R2 true BM25F is the next checkpoint**;
+canonical production BM25 remains unchanged and semantic-resolution effectiveness
+does not resume yet.
 
 #### R2 — True BM25F / field-aware sparse retrieval — MANDATORY
 
