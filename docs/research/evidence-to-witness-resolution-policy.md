@@ -4,6 +4,16 @@
 
 **Proposed architecture; investigation complete; no policy implemented.**
 
+Current sequencing qualification: the bounded
+[external decision adapter](../../experiments/codex_dogfood/semantic_resolution/README.md)
+is implemented as non-production review-gated infrastructure; it executes no
+resolver or effectiveness experiment. The semantic-resolution direction remains
+open and intact. Under the [coordinated roadmap](../roadmap.md#current-sequencing),
+prospective effectiveness evaluation pauses until mandatory R1 and unconditional
+R2 true BM25F progress unless a concrete earlier parallel justification is
+recorded. The original recommendation below does not override that order or
+establish that retrieval representation, fielding or query formulation is adequate.
+
 Primary recommendation: **IMPLEMENT EXTERNAL SEMANTIC RESOLVER FIRST**.
 Start with a bounded, caller-owned, review-gated experimental policy over existing
 associated hypotheses. A human may be the semantic resolver; a model may propose

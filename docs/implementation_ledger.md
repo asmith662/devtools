@@ -914,3 +914,47 @@ remains sealed.
 - Next investigate and prospectively test the minimum automatic evidence-resolution
   policy producing explicit records from obligation criteria plus native/lexical
   evidence, without numeric confidence or global ranking prematurely.
+
+## Retrieval-foundation reconciliation and roadmap checkpoint (2026-10-05)
+
+- Started from clean `main` at
+  `1ec0d2f44267f6034b8981bba1b30d72aa86e6e1`, `Add external semantic resolution
+  decision adapter`. Inspected taxonomy/map, central architecture, ADR-0002 through
+  ADR-0005, roadmap, B-0002, package contracts, production source and published
+  development aggregates. No production source or accepted ADR semantics changed.
+- Added [current retrieval foundation](architecture/retrieval.md) as the bounded
+  detailed architecture owner, linked from central architecture/documentation map.
+  Documented exact/lexical/direct structural/PPR/map/RRF and Localization surfaces,
+  canonical unsplit Unicode word/casefold representation, independent content plus
+  0.25 filename BM25 (not BM25F), absence of production dense/learned sparse/learned
+  ranking, granularity limits, query and discrimination gaps, native provenance
+  and Retrieval/Localization/Context boundaries. Corrected stale package statuses.
+- Retained verified historical identifier counts 63/63/68/31/74, direct relation
+  novelty, weak fixed-window result, sampled graph fan-out, Case 0002 negative
+  complete-depth diagnostics, narrow CodeRankEmbed interpretation and prospective
+  Localization completion/prefix evidence. No frozen result or judgment was edited.
+  Union counts distinguish never-adjudicated pairs from explicit UNJUDGED; neither
+  becomes NOT_USEFUL without a scientifically justified labeling/sampling protocol.
+- Added six governing failure classes to taxonomy. Future protocols declare the
+  primary class before treatment. Preserved open algorithm families and a future
+  obligation/resource usefulness formulation without choosing a learning model.
+- Rewrote [current roadmap](roadmap.md#current-sequencing) into coordinated tracks:
+  mandatory R1 additive whole identifiers/subtokens, then unconditional R2 true
+  BM25F irrespective of R1 outcome, A–D comparison arms, independent attribution,
+  explicit candidate field investigation and coverage/discrimination/cost metrics;
+  then query representation, verified mismatch, valid-label reranking and
+  complementary fusion. No algorithm or experimental treatment was implemented.
+- Preserved ADR-0005, grounding, candidate/witness contracts, generation, explicit
+  resolution recording and the experimental external decision adapter. Prospective
+  semantic-resolution effectiveness pauses pending R1/R2 progress unless a concrete
+  earlier parallel justification is recorded. Stronger retrieval and semantic
+  witness sufficiency remain separate. ADR review found no semantic contradiction
+  requiring an ADR change; adoption-time status/next language remains historical.
+- Documentation link inspection across architecture/research/backlog and package
+  Markdown passes; worktree/index whitespace checks pass. Historical numbers were
+  checked against committed published summaries/development records, without
+  rerunning retrieval or accessing sealed confirmation outcomes. No effectiveness
+  experiment, production test suite, dependency installation or push occurred.
+- B-0002 remains open. Next implementation is R1's bounded experimental code-aware
+  sparse view, preserving canonical BM25; after its evaluation, benchmark true
+  BM25F in R2 whether R1 improves, ties or worsens the baseline.

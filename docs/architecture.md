@@ -664,6 +664,34 @@ acquisition episode. A request need not traverse every concept or view.
 
 ## Accepted retrieval and ranking semantics
 
+### Current retrieval-foundation checkpoint
+
+The [retrieval foundation](architecture/retrieval.md) owns the detailed current
+inventory, empirical evidence, demonstrated limitations and open retrieval
+hypotheses. Production is more than BM25 plus graph: whole-resource content
+BM25 plus independent filename-stem BM25, exact symbolic acquisition/grounding,
+direct typed structural candidates, PPR, repository-map ranking, optional RRF,
+and Localization task/obligation lexical lanes, role routing and bounded
+structural witness generation all exist. They are separate callable surfaces,
+not one automatic pipeline or a default fusion policy. Production has no dense,
+learned sparse, learned ranking/reranking or BM25F implementation.
+
+Canonical Unicode-word/casefold terms do not split code identifiers. Independent
+`content BM25 + 0.25 × filename-stem BM25` is **not BM25F**. Lower-level
+representation, fielding, query formulation, semantic mismatch handling,
+ranking/discrimination and candidate selection remain materially underexplored.
+Fixed-window and CodeRankEmbed results did not settle semantic granularity or
+disprove embeddings. Negative graph evidence does not negate direct structural
+value. The [failure taxonomy](architecture/taxonomy.md#retrieval-and-localization-failure-classes)
+separates these surfaces from obligation formulation and Context disclosure.
+
+The [coordinated roadmap](roadmap.md#current-sequencing) mandates R1 additive
+identifier/subtoken representation, then **R2 true BM25F regardless of R1's
+outcome**, with representation and fielding separately attributable. No production
+algorithm or accepted Localization semantics change in this checkpoint.
+
+### Accepted boundaries and implemented composition
+
 [ADR-0003](architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md)
 accepts InformationNeed as purpose-relative desired-information semantics,
 bounded retrieval planning/applications,
@@ -927,9 +955,16 @@ obligation-scoped proof with exact referent, rule, snapshot/frame and adequate
 coverage. Existing Personalized PageRank (PPR), repository-map ranking and
 Reciprocal Rank Fusion (RRF) remain available; targeted relationship navigation
 remains available as bounded candidate evidence. Aggregate prospective evidence
-has closed the current relation-breadth phase; the next investigation concerns
-automatic evidence-resolution policy over the explicit recording kernel, with
-lexical safety candidates retained. Structural acquisition alone is insufficient.
+has closed the current relation-breadth phase, without establishing retrieval
+adequacy. Structural acquisition alone is insufficient. Retrieval/Search acquires
+candidate evidence; Localization defines obligation-relative needs and candidate
+witness semantics; semantic resolution judges task-relative member/witness claims.
+Semantic resolution must not compensate for avoidable representation, fielding
+or query defects; stronger retrieval cannot establish semantic witness sufficiency.
+The experimental external decision adapter retains the resolution direction.
+Prospective semantic-resolution effectiveness evaluation is paused until R1 and
+R2 progress, unless a concrete reason justifies an earlier parallel experiment
+under the roadmap. No automatic production resolution policy is added.
 
 A complete handoff requires supported satisfaction of every applicable mandatory
 obligation within the stated frame. Named inherent discovery allows an explicitly

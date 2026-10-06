@@ -2,6 +2,14 @@
 
 ## Purpose
 
+Current disposition: this is a historical recovery synthesis. The
+[retrieval foundation](../architecture/retrieval.md) owns current inventory,
+empirical qualification and open questions; the
+[roadmap](../roadmap.md#current-sequencing) mandates R1 then unconditional R2 true
+BM25F. Original evidence and deferred hypotheses below remain historical and do
+not imply that lexical retrieval is sufficiently explored or supersede current
+production structural/Localization capabilities.
+
 This is durable research synthesis, not an ADR and not implementation
 authorization. It reconciles the recovered research corpus, accepted ADRs,
 current source, B-0002's empirical lineage, the retained Increment 22 Pass 4

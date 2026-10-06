@@ -13,6 +13,34 @@
 
 ## Problem / value
 
+### Current retrieval-foundation pressure
+
+This epic remains **BACKLOG / open**. The
+[retrieval foundation](../../architecture/retrieval.md) owns current capability
+status and empirical interpretation; the
+[two-track roadmap](../../roadmap.md#current-sequencing) governs next work.
+Below, increment-specific implementation and "next" statements preserve the
+historical checkpoints at which they were recorded; they do not override that
+current sequence or imply that Retrieval is solved.
+
+Representation, fielding, query formulation, semantic mismatch, ranking and
+candidate selection remain materially underexplored. Canonical unsplit Unicode
+word terms can hide source concepts. Independent content BM25 plus 0.25 filename
+BM25 is not BM25F. R1 additive whole identifiers/subtokens and **R2 true BM25F
+regardless of R1 outcome** are mandatory empirical checkpoints, with separately
+attributable representation and fielding arms. Neither is production replacement
+authorization. Fixed windows did not settle semantic granularity; CodeRankEmbed
+did not disprove dense retrieval; poor blind graph yield did not negate direct
+relations. Unknown labels cannot be treated as negative training examples.
+
+ADR-0005, grounding, witness generation/association, explicit resolution recording
+and external semantic-resolution research remain intact. Prospective semantic
+resolution effectiveness pauses pending R1/R2 progress unless a concrete earlier
+parallel justification is recorded. Retrieval defects and witness sufficiency
+remain distinct. The governing [failure classes](../../architecture/taxonomy.md#retrieval-and-localization-failure-classes)
+must be stated in future experiment protocols. This reconciliation does not close
+the epic or resolve Context handoff, automatic planning, elimination or sufficiency.
+
 [ADR-0002](../../architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md)
 now settles the semantic foundation that this epic originally investigated:
 Repository identity is distinct from location and Git identity; snapshots are
@@ -1084,7 +1112,9 @@ generated siblings stay independent. Contradiction retains candidates. Explicit
 complete-support promotion reuses WitnessSet, SupportedWitness and existing
 evidence references without changing assessment/readiness automatically.
 
-B-0002 remains open. Next investigate and prospectively test the smallest automatic
-evidence-resolution policy producing these records from criteria and native/lexical
-evidence. No numeric confidence, global ranking, candidate elimination, autonomous
+B-0002 remains open. The then-next investigation produced the retained external
+semantic-resolution proposal direction and experimental decision adapter.
+Current sequencing instead prioritizes mandatory R1 and unconditional R2;
+prospective semantic-resolution effectiveness follows the coordinated roadmap.
+No numeric confidence, learned ranking, candidate elimination, autonomous
 acquisition, frontier requests or Context Planning integration is promoted here.

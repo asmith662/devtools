@@ -1,5 +1,29 @@
 # Repository Localization semantic kernel
 
+## Retrieval-foundation reconciliation
+
+The [current retrieval foundation](../../../../../docs/architecture/retrieval.md)
+and [coordinated roadmap](../../../../../docs/roadmap.md#current-sequencing)
+preserve this package's accepted ADR-0005 semantics. Retrieval/Search supplies
+candidate evidence; Localization defines obligation-relative needs and witness
+semantics; semantic resolution judges bounded task-relative member/witness
+claims. Resolution must not compensate for avoidable retrieval representation,
+fielding or query defects, while stronger retrieval cannot establish semantic
+witness sufficiency. Current full-task and obligation lexical queries are
+caller-authored and executed largely as supplied; no automatic query formulation,
+extraction, reformulation, expansion or relevance feedback is implemented.
+
+Cases 0004–0008 diagnose large plausible candidate surfaces around small
+sufficient sets. They do not establish lexical/field/query/semantic adequacy.
+Mandatory R1 whole identifiers plus subtokens precedes unconditional R2 true
+BM25F, with separate attribution. Prospective semantic-resolution effectiveness
+evaluation pauses until those checkpoints progress, unless a concrete reason
+justifies an earlier parallel experiment. The review-gated external decision
+adapter remains experimental; explicit production resolution records,
+grounding and the four bounded generation operators remain unchanged.
+
+## Semantic kernel and positive evidence
+
 The independent [soft repository-role evidence package](../roles/docs/overview.md)
 also provides snapshot-bound, multi-label positive supports from intrinsic
 addresses and supplied native RI analyses. Explicit support kinds explain the
@@ -45,7 +69,8 @@ obligation identity + explicit query ------> obligation BM25 lane(s)
                       separate native ranked BM25 results
                                              |
                                              v
-                  later Localization evidence resolution
+                  explicit caller resolution recording
+                  (automatic policy remains unimplemented)
 ```
 
 `LocalizationLexicalAcquisitionRequest` binds the caller's task interpretation,
@@ -137,7 +162,9 @@ an acceptable alternative. Targets remain native or caller-owned hashable
 identities rather than being wrapped in a new universal information-unit type.
 
 Assessment evidence references and obligation assessments bind to a repository
-and retained snapshot identity. The package stores no repository content. The
+and retained snapshot identity. Native acquisition/association views retain
+snapshot/index objects and their observed content; Localization does not own a
+separate content store or renderer. The
 task interpretation itself may precede snapshot selection; only assessments
 derived from repository evidence are snapshot-bound. Frame assessment rejects
 missing, duplicate, unexpected, stale, cross-repository, or internally
@@ -174,7 +201,7 @@ SharedAnchor -> GroundingRequest -> bounded native resolver
                                     |-> AMBIGUOUS native candidates
                                     |-> UNRESOLVED exact locator miss
                                     +-> UNSUPPORTED current RI scope
-                                      -> future witness-hypothesis generation
+                                      -> caller-directed witness generation
 ```
 
 V1 locators are an exact `RepositoryResourceAddress`; a canonical dotted
@@ -240,7 +267,7 @@ candidate witness members + explicit caller reasons
 unresolved competing or complementary hypotheses
                  |
                  v
-future evidence resolution (not implemented)
+explicit resolution recording (automatic decisions not implemented)
                  |
                  v
 accepted WitnessSet alternatives -> LocalizationAssessment -> readiness
@@ -365,7 +392,7 @@ SharedAnchor -> exact Grounding -> caller recipe -> typed RI projection
                                            + native lexical/role/routing support
                                            |
                                            v
-                                  FUTURE resolution
+                                  explicit resolution recording
 ```
 
 | Native relation inspected | Classification | V1 use |
@@ -496,8 +523,9 @@ remains eligible. The association builder validates native supports and replays
 grounding and mirror relationships. Generation changes neither accepted
 `WitnessSet` alternatives nor `LocalizationAssessment`/readiness. It performs no
 scoring, ranking, acceptance, satisfaction, resolution or elimination. Reference
-RI remains unchanged; Case 0007 is neither frozen nor executed. Effectiveness
-requires a later prospective case.
+RI remains unchanged. The subsequent prospective Cases 0007 and 0008 are
+frozen and analyzed; their aggregate conclusions do not change this contract
+or establish retrieval-foundation adequacy.
 
 
 ### Exact Python referencing-resource projection
@@ -642,3 +670,6 @@ evidence motivates this hypothesis only; this increment neither replays that
 case nor claims effectiveness. The subsequent prospective Case 0008 closed the
 current structural-breadth phase; aggregate conclusions motivate explicit
 resolution while retaining lexical safety and the four bounded operators.
+That historical next-step conclusion is qualified by the current two-track
+roadmap: retrieval representation and fielding remain open, with R1 and R2
+mandatory before prospective semantic-resolution effectiveness by default.

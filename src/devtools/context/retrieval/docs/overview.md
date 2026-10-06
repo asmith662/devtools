@@ -3,6 +3,15 @@
 Production retrieval owns purpose-relative use of repository information. It
 does not establish repository relationship truth or decide Context disclosure.
 
+The [current retrieval foundation](../../../../../docs/architecture/retrieval.md)
+owns the reconciled inventory, canonical lexical behavior, empirical limits and
+open retrieval hypotheses. Production has whole-resource content BM25 plus an
+independent filename-stem contribution at weight 0.25: **not BM25F**. Unicode
+word/casefold terms do not split snake/camel/Pascal/acronym identifiers. There
+is no production dense, learned sparse or learned ranking/reranking path.
+Identifier/subtoken evidence and true BM25F are separately attributable mandatory
+roadmap experiments; canonical production behavior is unchanged.
+
 ## Query-conditioned graph ranking
 
 The [graph-ranking package](../graph/docs/overview.md) projects already-derived
@@ -25,7 +34,8 @@ development case. Graph ranking remains optional evidence.
 `RepositorySnapshot`, a `PythonDirectStructuralRetrievalRequest` containing a
 nonempty purpose and distinct seed resource addresses, and already-derived
 production RI facts: `PythonResolvedModuleImportRelation`,
-`PythonFunctionReferenceKnowledge`, and `PythonImmediatePackageMembership`.
+`PythonDeclarationReferenceKnowledge` (or archived
+`PythonFunctionReferenceKnowledge` values), and `PythonImmediatePackageMembership`.
 All seeds and fact endpoints must belong to the supplied snapshot. The caller
 chooses and bounds the RI fact inputs; an omitted fact family produces no
 negative knowledge.
@@ -95,8 +105,9 @@ optional rank fusion -> explicit Context disclosure choices
 The composed result is a candidate/evidence inventory, not an actionable file
 set. [ADR-0005](../../../../../docs/architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
 places Localization after native Retrieval evidence and before Context Planning.
-The `devtools.context.localization` semantic kernel exists, but Retrieval has no
-obligation-scoped adapter yet. Context Planning retains disclosure representation
+The `devtools.context.localization` semantic kernel and its one-way lexical
+consumer adapter exist. Core Retrieval does not own obligation semantics.
+Context Planning retains disclosure representation
 and capacity decisions. Retrieval still ends at native candidate evidence, not
 task completeness.
 The historical structural union experiments remain reproduction evidence;
@@ -110,8 +121,10 @@ and independently for each explicit obligation query. Each result remains a
 native `RepositoryTextLexicalBm25RetrievalResult`; query-to-obligation association
 is owned by Localization. This package does not depend on Localization types.
 The full-task lane preserves global lexical reach over the authorized corpus,
-while obligation lanes add caller-directed queries. There is no role scoping or
-cross-lane fusion. Query association, rank, score, and absence do not establish
+while obligation lanes add caller-directed queries. Acquisition has no role
+scoping or cross-lane fusion. Localization's separate implemented routing package
+provides lossless preferred/escape presentation after acquisition. Query
+association, rank, score, and absence do not establish
 obligation satisfaction, confidence, irrelevance, or non-applicability. See the
 [Localization package contract](../../localization/docs/overview.md).
 

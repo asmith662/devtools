@@ -30,61 +30,138 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
-### Current — explicit evidence-to-witness resolution recording implemented
+Two coordinated tracks preserve ADR-0005 and the implemented Localization
+contracts while correcting retrieval-foundation sequencing. The
+[current retrieval foundation](architecture/retrieval.md) owns the production
+inventory, empirical limits and open algorithm families; the
+[failure taxonomy](architecture/taxonomy.md#retrieval-and-localization-failure-classes)
+governs future protocols. This roadmap selects experiments, not production
+replacement. No effectiveness experiment executes in this checkpoint.
 
-Prospective Case 0005 joined analysis found 24 distinct resources in its
-accepted witness universe and a minimum semantically sufficient union of 22;
-native and role-routed completion prefixes exposed 151 and 160 unique resources
-respectively. Positive role routing helped several obligations but remained
-coarse and delayed some cross-role witnesses. These are case-specific diagnosis,
-not a calibrated association policy.
+### Retrieval / Search track
 
-Localization now has a caller-supplied, snapshot-bound candidate witness
-association view. It preserves native lexical, role and routing supports for
-unresolved alternatives and complementary members. It does not infer hypotheses,
-accept witnesses, score confidence, eliminate candidates or change readiness.
-Localization now also has exact, caller-interpreted anchor grounding to native
-snapshot resource and bounded Python RI identities. It preserves ambiguity and
-does not itself generate hypotheses. A caller-directed generator now projects
-resolved grounded anchors through exact owner-resource and observed mirror RI
-relations into unresolved hypotheses. Native lexical/role/routing evidence may
-supplement each target; it cannot create one. Prospective Case 0006 remains
-frozen. Its diagnosed decorated-declaration grounding boundary is corrected
-through exact native source selection, preserving binding conservatism; no
-Case 0006 replay or improved coverage claim follows. The completed
-[direct-Reference investigation](research/direct-reference-witness-generation.md)
-identified generation multiplicity as the immediate prerequisite. Production now
-supports one explicitly caller-authored bounded branching member per recipe
-family, deterministic child lineage, per-branch failures and independent
-work/result abstention. The narrow `REFERENCING_RESOURCE` adapter now consumes
-an explicit frozen Python Reference frame and selects exact grounded declaration
-subjects into grouped referencing-resource candidates. It uses branching
-unchanged, retains native support and same-owner candidates, and abstains on
-incomplete work or whole-set result overflow. Reference RI truth remains unchanged.
-Prospective Case 0007 is frozen. Its aggregate diagnosis motivates a new bounded
-direct import dependency hypothesis. Localization now consumes existing native
-resolved module-import relations for one forward step into exact target-module
-resources, with no member-binding/export claim or facade/recursive expansion.
-Explicit frozen inputs, replay validation and the existing branching contract
-retain independent source-analysis work and distinct-result bounds.
-Prospective Case 0008 subsequently closed the current structural-relation breadth
-phase. Its aggregate conclusions support retaining lexical safety and the four
-bounded structural operators while moving to evidence resolution. No further
-relation is selected. Routing remains available but parked as a primary
-discriminator. Structural acquisition alone is insufficient.
+#### R1 — Code-aware lexical representation — MANDATORY
 
-Localization now records explicit member support, unresolved evidence, abstention
-and contradiction over any validated associated candidate. Immutable partial
-views preserve exact native lineage, independent competitors and generated child
-identities. Complete complementary support permits explicit promotion into existing
-accepted witness values; assessment and readiness remain downstream. The kernel
-does not perform automatic resolution, elimination, ranking or frontier acquisition.
-No case replay or effectiveness claim accompanies this increment.
+Build a bounded experimental sparse view preserving **whole identifiers +
+identifier subtokens**, and prospectively compare it with canonical production
+BM25. Keep production tokenization unchanged before evidence. Increment 27's
+identifier useful@5 gain (68 versus 63) includes gains and losses; it establishes
+unused lexical signal, not a replacement decision. Primary failure class:
+**REPRESENTATION_FAILURE**. Placement in canonical content, a separate field,
+a separate channel or a hybrid remains open.
 
-Next investigate and prospectively test the minimum automatic evidence-resolution
-policy capable of producing these explicit records from obligation criteria plus
-native/lexical candidate evidence, without numeric confidence or global ranking
-prematurely. Frontier/acquisition and candidate elimination remain later questions.
+#### R2 — True BM25F / field-aware sparse retrieval — MANDATORY
+
+**R2 — Implement and evaluate a true BM25F / field-aware sparse retrieval
+formulation regardless of the outcome of R1.** R2 is unconditional: it follows
+R1 whether R1 improves, ties or worsens the baseline. It is not gated on R1
+failure and must not be removed because R1 performs well.
+
+Implement a separate experimental formulation initially, keeping production
+`content BM25 + 0.25 × filename-stem BM25` unchanged. That production sum uses
+independent field statistics and is **not BM25F**. The purpose is to determine
+how true field-aware sparse scoring performs for repository localization
+compared with canonical BM25 and identifier-aware sparse retrieval. Evaluation
+does not imply replacement, removal of existing views, compatibility rewrites
+or immediate production adoption.
+
+Before freezing the treatment, inspect available deterministic representations
+and choose the smallest scientifically useful field schema. Investigate path,
+filename, module/package, declaration/symbol, whole identifiers, identifier
+subtokens, imports, docstrings, comments and body/content. Not every candidate
+field belongs in BM25F v1. Identifier representation asks **what terms exist**;
+BM25F asks **where terms occur and how field evidence contributes**. They may
+complement rather than compete.
+
+At minimum, where technically possible, freeze these comparison arms:
+
+| Arm | Representation / scoring |
+| --- | --- |
+| A | Canonical production BM25 |
+| B | Identifier-aware sparse retrieval from R1 |
+| C | BM25F using canonical lexical terms |
+| D | BM25F using identifier-aware lexical evidence |
+
+Report representation improvement separately from field-aware scoring and their
+interaction. Do not merge R1 and R2 into one treatment that prevents attribution.
+A later fusion arm is considered only after A–D establish complementary signal.
+Primary failure classes: **REPRESENTATION_FAILURE** and/or
+**RANKING_DISCRIMINATION_FAILURE** through field-aware evidence; the protocol
+must select and state its actual primary target.
+
+Preserve required-resource recall, obligation-relative completion depth,
+completion-prefix candidate size, candidate precision/yield, unique useful
+candidates beyond canonical BM25, representation-failure recoveries and
+ranking/discrimination effects, plus latency, indexing cost, memory, index size
+and incremental complexity. Top-K usefulness alone is insufficient.
+
+```text
+canonical baseline
+    -> R1 identifier-aware representation
+    -> R2 BM25F canonical terms + R2 BM25F identifier-aware terms
+       (representation gain, fielding gain and interaction separately measured)
+```
+
+#### R3 — Query representation
+
+Investigate bounded task/obligation query formulation and alternative lexical
+views. Current lanes execute caller-authored queries largely as supplied, with
+no automatic extraction, prose removal, expansion or feedback. Separate query
+representation from document representation. Primary class: query-side
+**REPRESENTATION_FAILURE**, potentially **VOCABULARY_SEMANTIC_MISMATCH**.
+
+#### R4 — Vocabulary / semantic mismatch
+
+After stronger code-aware sparse retrieval exists, construct explicit verified
+**VOCABULARY_SEMANTIC_MISMATCH** cases. Evaluate query expansion, learned sparse,
+dense retrieval, late interaction or semantic reranking only as justified by
+those cases. The narrow CodeRankEmbed result did not disprove dense retrieval.
+No model, vector index or implementation family is selected now.
+
+#### R5 — Candidate discrimination / reranking
+
+Investigate deterministic or learned obligation-relative reranking with
+scientifically valid judged labels. Primary class:
+**RANKING_DISCRIMINATION_FAILURE**. UNJUDGED and never-adjudicated are not
+NOT_USEFUL; no negative-label conversion without a justified labeling/sampling
+protocol. No learning model is chosen.
+
+#### R6 — Fusion
+
+Compare union, score/rank fusion, evidence-conditioned or learned fusion only
+where prior arms establish complementary signal. Do not assume RRF exhausts
+fusion. State the actual failure class and retain native evidence/provenance;
+correlated lexical views are not automatically independent evidence.
+
+### Localization / Reasoning track
+
+Retain obligation-driven Localization, exact grounding, competing/complementary
+candidate hypotheses, bounded structural evidence and generation, the explicit
+resolution-recording kernel, witness promotion and frame readiness. The
+[external semantic-resolution decision adapter](../experiments/codex_dogfood/semantic_resolution/README.md)
+remains experimental and review-gated; it has no prospective effectiveness claim
+and introduces no automatic production semantic decisions.
+
+**Pause prospective semantic-resolution effectiveness evaluation until the
+immediate retrieval-foundation checkpoint has progressed through R1 and R2,
+unless a concrete reason justifies an earlier parallel experiment.** Such an
+exception must be recorded explicitly; it does not waive either mandatory
+retrieval experiment. Semantic resolution must not compensate for avoidable
+representation, fielding or query defects. Stronger retrieval cannot by itself
+establish semantic witness sufficiency.
+
+Future reasoning work remains bounded lexical candidate association, semantic
+resolution evaluation, safe contradiction/elimination, unresolved frontier,
+bounded reacquisition, sufficiency, Context handoff and end-to-end agent
+evaluation. These are separate failure surfaces, not accepted new production
+semantics or an autonomous search controller. Confirmation remains sealed.
+
+## Historical checkpoints
+
+The following sections preserve prior evidence and sequencing checkpoints.
+Their "next" language is historical; the two tracks above govern current work.
+Completed structural breadth did not establish lexical adequacy, settle
+semantic granularity or make semantic resolution the sole remaining problem.
 
 ### Completed — caller-directed lexical role routing
 
@@ -119,10 +196,11 @@ No acquisition, score, satisfaction, filter or elimination is added.
 
 The then-next prospective Case 0005 froze a naturally occurring development
 task, caller-authored obligations, lexical queries and role preferences before
-Retrieval. Its joined analysis is recorded above as case-specific diagnosis.
+Retrieval. Its completed joined analysis is summarized in the retrieval foundation
+as case-specific diagnosis.
 Any retrospective replay remains diagnosis only.
 
-### Current — advisory Codex retrieval dogfooding
+### Historical — advisory Codex retrieval dogfooding
 
 The Tier-1 breadth sprint through Increment 36 is complete. The
 [breadth evidence and production gate](research/repository-retrieval-breadth-production-gate.md)
@@ -543,7 +621,7 @@ operational question. Shadow execution, if later justified, follows offline and
 independent validation and remains non-controlling until separately promoted.
 
 
-## Repository-map checkpoint and next evidence gate
+## Historical repository-map checkpoint and evidence gate
 
 The separate repository-map increment is implemented: global dependency
 importance, compact declaration/path BM25, symbol RRF and maximum-symbol
@@ -578,9 +656,9 @@ obligation-specific queries as separate native BM25 results. It retains purpose
 apart from query text and exact query-to-obligation association. It adds no role
 scoping, fusion, candidate elimination, or rank-to-satisfaction rule.
 
-The next step is a prospective evaluation of explicit obligation-query
-acquisition, before adding more Retrieval behavior. Select a naturally occurring
-task without inspecting retrieval output; freeze the repository snapshot and
+At that checkpoint, the next step was a prospective evaluation of explicit
+obligation-query acquisition, before adding more Retrieval behavior. Select a
+naturally occurring task without inspecting retrieval output; freeze the repository snapshot and
 eligible corpus, complete prompt and overall purpose, caller-authored obligation
 frame, each explicit obligation query and identity, BM25 settings/result limit,
 and comparison measurements before running retrieval. Then retain the native
@@ -593,14 +671,14 @@ rank depth, along with global required-resource reach. Report empty lanes as
 acquisition misses only, not negative evidence. Do not tune query wording from
 retrieval output or historical required-resource labels.
 
-[Case 0004 Stage A](../experiments/codex_dogfood/case_0004/README.md) now freezes
+[Case 0004 Stage A](../experiments/codex_dogfood/case_0004/README.md) froze
 that treatment for the upcoming repository-role intelligence task: one complete
 task lane and eight caller-authored obligation-query lanes over the same retained
-498-resource corpus. No Retrieval or adjudication has run for this case. The
-next checkpoint is Stage B native BM25 acquisition and output freezing, then
-independent blind obligation-relative adjudication before joined analysis.
-Repository-role implementation remains subsequent work; no acquisition-quality
-claim follows from the protocol freeze.
+498-resource corpus. That Stage A checkpoint preceded acquisition and adjudication.
+The completed
+[Case 0004 analysis](../experiments/codex_dogfood/case_0004/analysis.md) and
+subsequent production role/routing work now supersede that pending status.
+The protocol freeze alone made no acquisition-quality claim.
 
 Automatic task interpretation, repository-role inference, graph traversal,
 sequential acquisition, fine-grained Context linkage, calibrated confidence,

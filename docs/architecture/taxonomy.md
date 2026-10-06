@@ -638,6 +638,36 @@ budgeting. Deterministic and future learned/task-conditioned interpretations
 are enabled without selecting formulas, models, or execution technology. See
 [ADR-0003](decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md).
 
+### Retrieval and Localization failure classes
+
+**Status: GOVERNING ANALYSIS VOCABULARY.** These classes identify failure
+surfaces; they do not introduce runtime enums, a planner or new package owners.
+Every future retrieval/localization experimental protocol must name its primary
+failure class before treatment execution. Analyses may identify multiple classes
+and must not collapse them into an unexplained "retrieval failed" conclusion.
+
+| Class | Meaning | Possible mechanisms / primary boundary |
+| --- | --- | --- |
+| **REPRESENTATION_FAILURE** | Relevant lexical concepts exist in source, but tokenization, fields or granularity hide or dilute them | Identifier splitting/subtokens, fields/BM25F, alternate sparse views, different granularity; Retrieval representation |
+| **VOCABULARY_SEMANTIC_MISMATCH** | Task and repository express the same concept using genuinely different language | Query expansion, relevance feedback, learned sparse, dense or semantic reranking; hypotheses, not selected algorithms |
+| **RELATIONAL_RELEVANCE** | A resource matters through a repository relationship rather than textual similarity | Imports, References, Calls, containment, inheritance, tests, configuration/binding and bounded structural navigation, where qualified native facts exist |
+| **RANKING_DISCRIMINATION_FAILURE** | Useful candidates exist but rank or select too poorly | Deterministic purpose-relative scoring/reranking, learning-to-rank or learned evidence combination; selection remains owner-specific |
+| **CONTEXT_DISCLOSURE_FAILURE** | Correct resource is known, but the wrong information form or amount is supplied downstream | Context owns faithful representation, expansion, admission and budgeting |
+| **INFORMATION_NEED_OBLIGATION_FAILURE** | The information requirement necessary to find evidence was never formulated | Localization / search planning; stronger scoring cannot supply an omitted obligation |
+
+Unsplit code identifiers are possible representation failures, not automatically
+semantic mismatch. Query-side representation and document-side representation
+are separate research questions. A correct candidate identity does not establish
+adequate Context disclosure or semantic witness sufficiency. The narrower term
+REPRESENTATION_FAILURE here concerns retrieval representation; the historical
+ADR-0003 "right subject, wrong detail" distinction is captured downstream as
+CONTEXT_DISCLOSURE_FAILURE. Model-utilization and task-execution failures remain
+separate from these six acquisition/disclosure classes.
+
+See the [current retrieval foundation](retrieval.md) for production support,
+empirical limitations and open hypotheses. Potential mechanisms in this table
+are a hypothesis vocabulary, not implementation commitments.
+
 ### Repository Localization
 
 **Status: ACCEPTED DIRECTION; SEMANTIC KERNEL IMPLEMENTED.**

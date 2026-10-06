@@ -2,7 +2,14 @@
 
 ## Disposition
 
-Status: Current research recommendation, reconciled into the roadmap and B-0002.
+Status: Historical prospective recommendation, reconciled into the roadmap and B-0002.
+
+Current qualification: the [retrieval foundation](../architecture/retrieval.md)
+owns implemented state and empirical limits. The
+[roadmap](../roadmap.md#current-sequencing) now mandates R1 code-aware
+representation followed by unconditional R2 true BM25F, with separately
+attributable comparison arms. The original body below remains research evidence;
+its conditional future sequence does not override current mandatory experiments.
 
 Accepted / current direction: Investigate foundational retrieval variables
 before further evidence-family escalation. Diagnose candidate coverage, ranking,

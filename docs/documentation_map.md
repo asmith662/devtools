@@ -9,6 +9,12 @@
   ADRs.
 - [Architecture taxonomy](architecture/taxonomy.md) defines semantic vocabulary
   and non-equivalence. It does not replace the architecture overview.
+- [Retrieval foundation](architecture/retrieval.md) owns detailed current
+  Retrieval/RI/Localization capability status, lexical representation and fielding,
+  empirical limits, retrieval-family hypotheses and the label constraint.
+  [Roadmap](roadmap.md#current-sequencing) owns the coordinated tracks and mandatory
+  R1 then unconditional R2 BM25F experiments; neither is production behavior.
+  The taxonomy owns governing retrieval/localization failure classes.
 - [Accepted architecture decisions](architecture/decisions/) preserve decision
   rationale, alternatives, consequences, and historical evolution. They explain
   why architecture was chosen; they are not the sole current-state specification.
@@ -30,8 +36,10 @@
   Its caller-authored obligation/witness kernel, one-way full-task/obligation
   BM25 adapter, unresolved candidate association and explicit resolution-recording
   kernel are implemented;
-  other acquisition and Context integration
-  remain future work.
+  exact grounding, bounded owner/mirror/Reference/import generation and role
+  routing are also implemented; automatic acquisition planning, semantic
+  decisions, elimination and Context integration remain future work. ADR status
+  and next-increment language describe adoption checkpoints, not today's API.
 - [AGENTS.md](../AGENTS.md) defines repository-operating rules.
 - [Research evidence](research/README.md) preserves investigations, alternatives,
   criticisms, recommendations, and deferred/rejected possibilities. Research is
@@ -56,7 +64,9 @@
   [breadth production gate](research/repository-retrieval-breadth-production-gate.md)
   owns the completed Increment 25-36 empirical map and disposition rationale;
   central architecture owns accepted current boundaries, and the roadmap owns
-  the next production sequence.
+  the next research/implementation sequence. Its current retrieval-state claims
+  are qualified by the retrieval foundation; historical gates do not imply
+  retrieval is solved.
   The [Context Planning and graph-assisted retrieval research](research/repository-context-planning-and-graph-assisted-retrieval.md)
   compares progressive disclosure and token-efficient repository maps with
   Aider-style/PPR graph ranking, heterogeneous retrieval, and RRF. Its
@@ -82,7 +92,8 @@
   Context Planning, agent execution, and Evaluation.
   Its [role-evidence contract](../src/devtools/context/localization/roles/docs/overview.md)
   owns the bounded vocabulary, positive supports, native provenance, static
-  pattern scope and future routing seam; RI retains deterministic fact ownership.
+  pattern scope; the separate routing package implements post-acquisition views.
+  RI retains deterministic fact ownership.
   Its [routing package](../src/devtools/context/localization/routing/docs/overview.md) documents
   caller-authored per-query role preferences and lossless preferred/escape views.
   Its [exact grounding contract](../src/devtools/context/localization/docs/overview.md#exact-task-anchor-grounding)
@@ -90,7 +101,7 @@
   unresolved/ambiguous provenance without witness satisfaction.
   Its [bounded generation contract](../src/devtools/context/localization/docs/overview.md#bounded-candidate-witness-generation)
   owns caller-shaped fixed recipes and optional single-branch families, exact
-  owner/mirror and explicit Python Reference projection, child lineage,
+  owner/mirror, explicit Python Reference and direct import projection, child lineage,
   target-specific structural support,
   independent work/result bounds and bounded abstention diagnostics.
   The [Localization package overview](../src/devtools/context/localization/docs/overview.md#candidate-witness-association)

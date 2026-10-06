@@ -2,6 +2,14 @@
 
 ## Status and scope
 
+Current-state qualification: the [retrieval foundation](../architecture/retrieval.md)
+owns today's implemented inventory and retrieval-maturity interpretation;
+[roadmap](../roadmap.md#current-sequencing) mandates R1 and unconditional R2 true
+BM25F. The completed breadth sprint below did not adequately explore lexical
+representation, fielding, query formulation, semantic mismatch or discrimination.
+Its production-gate and "next" statements are historical checkpoints, not
+current sequencing. Detailed frozen evidence is retained unchanged.
+
 This is the completed, development-only Tier-1 breadth synthesis through
 Increment 36. The production dispositions are recorded concisely in
 [architecture](../architecture.md); [roadmap](../roadmap.md) owns their order and

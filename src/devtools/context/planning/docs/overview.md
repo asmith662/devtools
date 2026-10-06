@@ -71,6 +71,8 @@ representation, quantity, or adequacy.
 places Localization before this package. The semantic kernel at
 `devtools.context.localization` represents caller obligations, native witness
 identities, snapshot-qualified assessments, and bounded frame readiness. It does
-not yet provide Retrieval adapters or Context links. Current `plan_disclosures`
+not provide automatic Context links. Its one-way BM25 acquisition adapter, grounding,
+bounded structural generation and explicit resolution recording are implemented.
+Current `plan_disclosures`
 remains caller-directed; it does not resolve obligations, transfer obligation
 provenance, or establish representation coverage/capacity.

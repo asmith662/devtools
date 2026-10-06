@@ -13,14 +13,15 @@ RI / intrinsic resource semantics
         Resource role evidence
                  |
                  v
-       future routing policy
+       caller-directed routing
                  |
                  v
-              Retrieval
+       preferred/escape lane views
 ```
 
-The latter two steps are a future seam. This increment changes no Retrieval
-ordering or existing Localization lexical acquisition. Repository fact, role
+The separate [routing package](../../routing/docs/overview.md) implements the
+latter steps after lexical acquisition. Role derivation changes no native
+Retrieval ordering or Localization lexical acquisition. Repository fact, role
 support, obligation-relative relevance, witness satisfaction and candidate
 elimination remain distinct.
 
@@ -135,7 +136,8 @@ facts. Address conventions are not universal repository truths:
 - PACKAGE_SURFACE support is not public-API ownership or obligation satisfaction.
 
 No negative evidence, hard filter, elimination, satisfaction assessment or routing
-policy is emitted. A later caller-directed obligation policy may consume these
+policy is emitted. The separate caller-directed routing policy consumes these
 supports while retaining the global lexical safety lane and an unfiltered escape
-path. Its usefulness requires a new prospective experiment; historical Case 0004
-gold resources and outcomes were not rule-design inputs.
+path. Prospective Cases 0005 and 0008 show mixed routing effects; the current
+roadmap parks it as a primary discriminator. Historical Case 0004 gold resources
+and outcomes were not rule-design inputs.
