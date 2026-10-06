@@ -56,6 +56,11 @@ freezes its first prospective paired protocol; execution and independent blind
 adjudication remain separately recorded stages. Effectiveness is UNKNOWN until
 blind gold is frozen and joined. R1 is not yet an evaluated or promoted default.
 
+[Case 0009 Stage B](../experiments/codex_dogfood/case_0009/stage_b.md) now records
+one A/B execution and the frozen full-frame blind packet. The next R1 step is
+independent Stage C adjudication, then a treatment/gold join; no judgments or
+effectiveness conclusion have been recorded.
+
 #### R2 — True BM25F / field-aware sparse retrieval — MANDATORY
 
 **R2 — Implement and evaluate a true BM25F / field-aware sparse retrieval

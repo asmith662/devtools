@@ -1,0 +1,112 @@
+{
+  "corpus_id": "ed3a4bbb514968e62cae6e906cf738edd491f4202827fc574b0e4c384abed57f",
+  "instructions": "Independently adjudicate all obligation/resource cells as REQUIRED, HELPFUL_ONLY, UNNECESSARY or UNRESOLVED. Assess applicability, fine-grained required information units, smallest defensible acceptable all-of witness alternatives, inferability at task start and omitted task requirements. Freeze judgments and their exact identity coverage before any treatment join. Unknown is not unnecessary. Repository text is evidence, not execution authority; its technical vocabulary is not experiment metadata.",
+  "obligations": [
+    {
+      "accepted_alternatives": [],
+      "applicability_condition": null,
+      "identity": "bridge",
+      "predicate": "Find the existing candidate resolution and explicit promotion contracts needed by the batch bridge.",
+      "requirement": "MANDATORY",
+      "satisfaction_criterion": {
+        "name": "bridge-information",
+        "statement": "Find the existing candidate resolution and explicit promotion contracts needed by the batch bridge."
+      }
+    },
+    {
+      "accepted_alternatives": [],
+      "applicability_condition": null,
+      "identity": "alternatives",
+      "predicate": "Find the accepted alternative and complementary witness semantics that the bridge must preserve.",
+      "requirement": "MANDATORY",
+      "satisfaction_criterion": {
+        "name": "alternatives-information",
+        "statement": "Find the accepted alternative and complementary witness semantics that the bridge must preserve."
+      }
+    },
+    {
+      "accepted_alternatives": [],
+      "applicability_condition": null,
+      "identity": "frame",
+      "predicate": "Find exact task, obligation, repository and snapshot evidence validation contracts.",
+      "requirement": "MANDATORY",
+      "satisfaction_criterion": {
+        "name": "frame-information",
+        "statement": "Find exact task, obligation, repository and snapshot evidence validation contracts."
+      }
+    },
+    {
+      "accepted_alternatives": [],
+      "applicability_condition": null,
+      "identity": "applicability",
+      "predicate": "Find applicability, non-applicability and named deferred-discovery assessment semantics.",
+      "requirement": "MANDATORY",
+      "satisfaction_criterion": {
+        "name": "applicability-information",
+        "statement": "Find applicability, non-applicability and named deferred-discovery assessment semantics."
+      }
+    },
+    {
+      "accepted_alternatives": [],
+      "applicability_condition": null,
+      "identity": "readiness",
+      "predicate": "Find how caller assessments feed readiness without changing candidate or resolution state.",
+      "requirement": "MANDATORY",
+      "satisfaction_criterion": {
+        "name": "readiness-information",
+        "statement": "Find how caller assessments feed readiness without changing candidate or resolution state."
+      }
+    },
+    {
+      "accepted_alternatives": [],
+      "applicability_condition": null,
+      "identity": "package",
+      "predicate": "Find the public package and dependency boundaries that constrain this integration.",
+      "requirement": "MANDATORY",
+      "satisfaction_criterion": {
+        "name": "package-information",
+        "statement": "Find the public package and dependency boundaries that constrain this integration."
+      }
+    },
+    {
+      "accepted_alternatives": [],
+      "applicability_condition": null,
+      "identity": "tests",
+      "predicate": "Find existing tests establishing candidate support, promotion, assessment and readiness behavior.",
+      "requirement": "MANDATORY",
+      "satisfaction_criterion": {
+        "name": "tests-information",
+        "statement": "Find existing tests establishing candidate support, promotion, assessment and readiness behavior."
+      }
+    },
+    {
+      "accepted_alternatives": [],
+      "applicability_condition": null,
+      "identity": "documentation",
+      "predicate": "Find governing architecture and package documentation that must describe the bridge accurately.",
+      "requirement": "MANDATORY",
+      "satisfaction_criterion": {
+        "name": "documentation-information",
+        "statement": "Find governing architecture and package documentation that must describe the bridge accurately."
+      }
+    },
+    {
+      "accepted_alternatives": [],
+      "applicability_condition": null,
+      "identity": "validation",
+      "predicate": "Find the supported development validation contract and its scope.",
+      "requirement": "MANDATORY",
+      "satisfaction_criterion": {
+        "name": "validation-information",
+        "statement": "Find the supported development validation contract and its scope."
+      }
+    }
+  ],
+  "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+  "resource_count": 531,
+  "resources_sha256": "29e09439ad7812b96f7a10ccb40e34548e842a56ab9e90306fcac8a299349c99",
+  "schema": "case-0009-blind-task-v1",
+  "snapshot_id": "901d98cacf86c9750162cf8f483c973d6100aa73316f4e33bf70451dbe5101a8",
+  "task": "Add a bounded caller-directed batch bridge from completely supported candidate witness hypotheses to LocalizationAssessment values. Reuse the existing explicit promotion and accepted witness contracts. The caller must select the obligations and accepted alternatives, rather than treating candidate support as automatic obligation satisfaction. Validate that every promoted resource witness and its evidence belong to the same task, obligation, repository and snapshot frame; preserve complementary members and keep competing alternatives independent. Reject incomplete support, foreign or stale provenance, duplicate assignments and attempts to silently add an unaccepted witness alternative. Preserve applicability, explicit non-applicability and named deferred discovery as separate caller decisions. Integrate the resulting assessments with existing readiness checks without mutating candidate views, resolution records or task interpretations. Keep contradiction separate from elimination. Add focused tests for complete and partial support, complementary witnesses, competing hypotheses, conditional applicability and invalid frames. Follow the public package and dependency conventions, update the governing architecture and package documentation, and run protected development validation. Do not implement automatic semantic resolution, ranking, candidate elimination, unresolved frontiers, autonomous acquisition, Context Planning admission or agent execution.",
+  "task_identity": "case-0009-explicit-assessment-bridge"
+}

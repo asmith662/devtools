@@ -1037,3 +1037,22 @@ remains sealed.
   implementation freeze. Effectiveness remains UNKNOWN. No production promotion,
   sealed confirmation access, model call or push. R2 true BM25F remains mandatory
   whether R1 improves, ties or worsens; Localization's resumption point is unchanged.
+
+## R1 Case 0009 Stage B capture (2026-10-06)
+
+- Committed Stage A at `eb4060ff8ffd1ff0bf18e11c47d162a6c02bd0f2` before
+  executing either arm. Then executed each arm once, across ten identical query
+  lanes over the native frozen 531-resource frame. No retries, tuning, fusion,
+  structural arm or production change.
+- [Stage B record](../experiments/codex_dogfood/case_0009/stage_b.md) links
+  costs and the independent full-frame packet. Capture replay verifies digests,
+  identities, positive rank ordering and field contributions without reranking.
+  The packet exports 531 contents and nine obligation criteria, no treatment
+  ranks/scores/terms or membership. Leakage/coverage and integrity checks pass.
+- R1 and existing lexical tests: 66 pass. Scoped Ruff, format and mypy pass;
+  documentation links/anchors and worktree/index whitespace checks pass. Full
+  protected development validation is not required: production code is unchanged.
+- **Effectiveness UNKNOWN**: no Stage C judgments, gold join or promotion decision.
+  Next is independent blind adjudication from packet files only, then paired
+  gain/loss and representation-attribution analysis. R2 remains unconditional;
+  Localization's resumption point and sealed confirmation remain untouched.

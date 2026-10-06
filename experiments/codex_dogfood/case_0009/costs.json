@@ -1,0 +1,46 @@
+{
+  "A": {
+    "content_posting_count": 86320,
+    "content_vocabulary_size": 10054,
+    "index_build_seconds": 1.5785610000020824,
+    "index_plus_query_seconds": 1.9206255999743007,
+    "limitations": "Single execution under tracemalloc, not a latency benchmark. Peak includes evidence projection/serialization. Native A retains richer span objects than B; footprint differences are not solely token expansion. Filename rebuilt per query in both arms. No RSS measurement.",
+    "median_query_seconds": 0.026403399999253452,
+    "query_seconds": {
+      "alternatives-query": 0.02496780001092702,
+      "applicability-query": 0.024662000010721385,
+      "bridge-query": 0.025658999977167696,
+      "documentation-query": 0.03297649999149144,
+      "frame-query": 0.03262159996666014,
+      "global": 0.09368430002359673,
+      "package-query": 0.02707760001067072,
+      "readiness-query": 0.02540809998754412,
+      "tests-query": 0.029278500005602837,
+      "validation-query": 0.025729199987836182
+    },
+    "serialized_index_bytes": 22291111,
+    "traced_peak_bytes": 259903337
+  },
+  "B": {
+    "content_posting_count": 97054,
+    "content_vocabulary_size": 10338,
+    "index_build_seconds": 3.3875384000129998,
+    "index_plus_query_seconds": 3.6348013999522664,
+    "limitations": "Single execution under tracemalloc, not a latency benchmark. Peak includes evidence projection/serialization. Native A retains richer span objects than B; footprint differences are not solely token expansion. Filename rebuilt per query in both arms. No RSS measurement.",
+    "median_query_seconds": 0.021373400028096512,
+    "query_seconds": {
+      "alternatives-query": 0.01962259999709204,
+      "applicability-query": 0.020227799948770553,
+      "bridge-query": 0.020416899991687387,
+      "documentation-query": 0.02122420002706349,
+      "frame-query": 0.023597099992912263,
+      "global": 0.056118100008461624,
+      "package-query": 0.02035130001604557,
+      "readiness-query": 0.021522600029129535,
+      "tests-query": 0.022563699982129037,
+      "validation-query": 0.021618699945975095
+    },
+    "serialized_index_bytes": 4244482,
+    "traced_peak_bytes": 19333169
+  }
+}
