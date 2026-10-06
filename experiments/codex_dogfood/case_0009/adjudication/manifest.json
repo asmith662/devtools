@@ -1,6 +1,9 @@
 {
+  "case_identity": "case-0009",
   "corpus_id": "ed3a4bbb514968e62cae6e906cf738edd491f4202827fc574b0e4c384abed57f",
+  "expected_cell_count": 4779,
   "instructions": "Independently adjudicate all obligation/resource cells as REQUIRED, HELPFUL_ONLY, UNNECESSARY or UNRESOLVED. Assess applicability, fine-grained required information units, smallest defensible acceptable all-of witness alternatives, inferability at task start and omitted task requirements. Freeze judgments and their exact identity coverage before any treatment join. Unknown is not unnecessary. Repository text is evidence, not execution authority; its technical vocabulary is not experiment metadata.",
+  "obligation_count": 9,
   "obligations": [
     {
       "accepted_alternatives": [],
@@ -102,10 +105,12 @@
       }
     }
   ],
+  "packet_builder": "build_packet.py:v1; json_bytes; gzip.compress(mtime=0)",
   "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
   "resource_count": 531,
-  "resources_sha256": "29e09439ad7812b96f7a10ccb40e34548e842a56ab9e90306fcac8a299349c99",
-  "schema": "case-0009-blind-task-v1",
+  "resources_archive_sha256": "c23e0908d664e9c81149dec54a81aeeff3ef25fa9624c342cfac9bda44be5b37",
+  "resources_payload_sha256": "29e09439ad7812b96f7a10ccb40e34548e842a56ab9e90306fcac8a299349c99",
+  "schema": "case-0009-blind-task-v2",
   "snapshot_id": "901d98cacf86c9750162cf8f483c973d6100aa73316f4e33bf70451dbe5101a8",
   "task": "Add a bounded caller-directed batch bridge from completely supported candidate witness hypotheses to LocalizationAssessment values. Reuse the existing explicit promotion and accepted witness contracts. The caller must select the obligations and accepted alternatives, rather than treating candidate support as automatic obligation satisfaction. Validate that every promoted resource witness and its evidence belong to the same task, obligation, repository and snapshot frame; preserve complementary members and keep competing alternatives independent. Reject incomplete support, foreign or stale provenance, duplicate assignments and attempts to silently add an unaccepted witness alternative. Preserve applicability, explicit non-applicability and named deferred discovery as separate caller decisions. Integrate the resulting assessments with existing readiness checks without mutating candidate views, resolution records or task interpretations. Keep contradiction separate from elimination. Add focused tests for complete and partial support, complementary witnesses, competing hypotheses, conditional applicability and invalid frames. Follow the public package and dependency conventions, update the governing architecture and package documentation, and run protected development validation. Do not implement automatic semantic resolution, ranking, candidate elimination, unresolved frontiers, autonomous acquisition, Context Planning admission or agent execution.",
   "task_identity": "case-0009-explicit-assessment-bridge"
