@@ -41,6 +41,22 @@ remain distinct. The governing [failure classes](../../architecture/taxonomy.md#
 must be stated in future experiment protocols. This reconciliation does not close
 the epic or resolve Context handoff, automatic planning, elimination or sufficiency.
 
+The [Localization continuity owner](../../architecture/localization.md) now keeps
+the current status matrix, completed Cases 0004–0008 and four-operator
+structural-breadth closure discoverable. Association, exact grounding and its
+source/binding correction, branching, Reference/Import generation and resolution
+recording are completed milestones. Resolution research and the external decision
+adapter are respectively proposed policy and non-production infrastructure, not
+an evaluated automatic resolver.
+
+After immediate R1/R2 work, resume at the new prospective claim-level semantic
+resolution effectiveness boundary under the [current roadmap](../../roadmap.md#localization-resumption-after-the-retrieval-checkpoints).
+Bounded lexical association may be a prerequisite. Safe contradiction/negative
+evidence and elimination, unresolved frontier, bounded acquisition requests,
+iterative reacquisition, sufficiency, Context handoff and autonomous coding-agent
+evaluation remain future. Generation's incomplete-search diagnostics and the
+Case 0008 workload implement none of those contracts. This epic remains open.
+
 [ADR-0002](../../architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md)
 now settles the semantic foundation that this epic originally investigated:
 Repository identity is distinct from location and Git identity; snapshots are

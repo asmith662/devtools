@@ -672,6 +672,12 @@ are a hypothesis vocabulary, not implementation commitments.
 
 **Status: ACCEPTED DIRECTION; SEMANTIC KERNEL IMPLEMENTED.**
 
+The [Localization continuity view](localization.md) owns detailed implementation
+status, empirical history and future frontier/acquisition distinctions. This
+taxonomy's accepted concepts do not imply that every named future capability
+exists as an API. The governing failure classes above apply to future
+Localization protocols as well as Retrieval experiments.
+
 Localization assesses caller-stated task-relative information obligations against
 caller-supplied native repository referents and snapshot-qualified evidence,
 recording applicability, witness satisfaction, alternatives and unresolved

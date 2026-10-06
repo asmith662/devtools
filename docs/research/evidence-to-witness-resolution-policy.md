@@ -14,6 +14,11 @@ R2 true BM25F progress unless a concrete earlier parallel justification is
 recorded. The original recommendation below does not override that order or
 establish that retrieval representation, fielding or query formulation is adequate.
 
+The [Localization continuity view](../architecture/localization.md#external-semantic-resolution-boundary-and-resumption)
+now preserves the exact prospective resumption chain and separates this research
+recommendation from production recording, experimental adapter support and
+unimplemented frontier/acquisition/sufficiency. The roadmap owns current timing.
+
 Primary recommendation: **IMPLEMENT EXTERNAL SEMANTIC RESOLVER FIRST**.
 Start with a bounded, caller-owned, review-gated experimental policy over existing
 associated hypotheses. A human may be the semantic resolver; a model may propose

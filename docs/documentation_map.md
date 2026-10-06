@@ -15,6 +15,15 @@
   [Roadmap](roadmap.md#current-sequencing) owns the coordinated tracks and mandatory
   R1 then unconditional R2 BM25F experiments; neither is production behavior.
   The taxonomy owns governing retrieval/localization failure classes.
+- [Localization continuity](architecture/localization.md) owns the single
+  current [status matrix](architecture/localization.md#capability-status-matrix),
+  [Cases 0004–0008 history](architecture/localization.md#prospective-cases-0004-0008-and-structural-breadth-closure)
+  and downstream [resumption boundary](architecture/localization.md#external-semantic-resolution-boundary-and-resumption).
+  Start here to distinguish implemented contracts, parked structural breadth,
+  experimental semantic decisions and future frontier/acquisition/sufficiency.
+  It links the [resolution research](research/evidence-to-witness-resolution-policy.md),
+  [external experimental adapter](../experiments/codex_dogfood/semantic_resolution/README.md)
+  and frozen case summaries; prior conversation history is not needed.
 - [Accepted architecture decisions](architecture/decisions/) preserve decision
   rationale, alternatives, consequences, and historical evolution. They explain
   why architecture was chosen; they are not the sole current-state specification.

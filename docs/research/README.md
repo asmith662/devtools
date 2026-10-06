@@ -30,6 +30,13 @@ resolution effectiveness is paused pending R1/R2 progress unless an explicit
 concrete reason justifies earlier parallel work. Historical "next" recommendations
 below and in retained bodies do not override the current roadmap.
 
+For downstream continuity, the [Localization status/history owner](../architecture/localization.md)
+links Cases 0004–0008, the production resolution kernel, experimental external
+adapter and future frontier/acquisition/sufficiency chain. The
+[roadmap resumption point](../roadmap.md#localization-resumption-after-the-retrieval-checkpoints)
+returns to a new prospective claim-level semantic-resolution case after R1/R2
+by default. Structural breadth is closed for now; its operators remain available.
+
 ## Research inventory
 
 | Research document | Subject | Status | Principal findings | Related ADRs | Implemented evidence | Deferred / rejected for now | Superseded/refined by | Revisit triggers |

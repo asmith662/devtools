@@ -135,6 +135,13 @@ correlated lexical views are not automatically independent evidence.
 
 ### Localization / Reasoning track
 
+The [Localization continuity view](architecture/localization.md) owns the single
+status matrix, prospective case history and structural-breadth disposition.
+Obligation decomposition is currently caller-authored, not automatic. All four
+generation operators are retained; Case 0008 closed further structural breadth
+for now and did not justify a fifth deterministic relation. New evidence is
+required before another relation-breadth increment.
+
 Retain obligation-driven Localization, exact grounding, competing/complementary
 candidate hypotheses, bounded structural evidence and generation, the explicit
 resolution-recording kernel, witness promotion and frame readiness. The
@@ -150,10 +157,52 @@ retrieval experiment. Semantic resolution must not compensate for avoidable
 representation, fielding or query defects. Stronger retrieval cannot by itself
 establish semantic witness sufficiency.
 
+#### Localization resumption after the retrieval checkpoints
+
+**After the immediate retrieval-foundation work, at minimum R1 and mandatory R2
+BM25F, resume Localization reasoning from the semantic-resolution effectiveness
+boundary unless retrieval findings materially alter prerequisites.** The current
+intended next Localization experiment is a NEW prospective claim-level case:
+caller-associated candidate batch and explicit member claims, exact obligation
+criteria, bounded frozen content disclosure, policy/version identity, external
+proposal and citations, human review, explicit CandidateMemberResolution
+materialization, then support precision/recall/abstention/inspection-cost
+evaluation. Freeze protocol, review procedure and independent blind claim/witness
+gold before external execution; candidate inclusion and conditional resolution
+are measured separately. The [continuity resumption contract](architecture/localization.md#external-semantic-resolution-boundary-and-resumption)
+links existing research and adapter detail; no model or effectiveness claim is
+selected by this documentation checkpoint.
+
+Stronger retrieval can alter inclusion, batch size, content burden and association
+policy. Bounded lexical candidate association may therefore be a prerequisite;
+record that dependency explicitly rather than quietly skipping the resolution
+boundary or designing inclusion from historical gold.
+
+#### Downstream Localization work remains future
+
+Explicit CONTRADICTED recording exists, but automatic contradiction policy,
+proof-carrying negative evidence and candidate elimination do not. Contradiction
+does not eliminate; low rank/absent relation is not negative proof.
+Unresolved frontier, bounded acquisition requests and autonomous acquisition
+execution are **NOT IMPLEMENTED**. Case 0008 used this work as a prospective task;
+it did not implement the task. The accepted future sequence remains:
+
+```text
+resolution state -> unresolved obligation/evidence frontier
+    -> bounded missing-observation request -> authorized orchestration
+    -> acquisition -> reassociate / resolve -> sufficiency
+    -> Context handoff -> autonomous coding-agent evaluation
+```
+
+Current assessment/readiness checks the supplied frame, not an iterative
+sufficiency loop or minimal sufficient Context. Context Planning owns faithful
+representation, ordering, availability and capacity; Localization retains
+obligation/witness semantics. Execution/retries stay with Agent/orchestration.
+
 Future reasoning work remains bounded lexical candidate association, semantic
 resolution evaluation, safe contradiction/elimination, unresolved frontier,
-bounded reacquisition, sufficiency, Context handoff and end-to-end agent
-evaluation. These are separate failure surfaces, not accepted new production
+bounded acquisition requests, iterative reacquisition, sufficiency, Context
+handoff and end-to-end agent evaluation. These are separate failure surfaces, not accepted new production
 semantics or an autonomous search controller. Confirmation remains sealed.
 
 ## Historical checkpoints

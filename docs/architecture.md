@@ -868,6 +868,12 @@ contract.
 
 ## Accepted repository Localization semantics
 
+The [Localization continuity view](architecture/localization.md) owns the single
+current capability-status matrix, Cases 0004–0008 history, structural-breadth
+closure and downstream resumption point. Package contracts retain API detail;
+the roadmap retains sequencing. Accepted future frontier, acquisition and
+Context handoff concepts must not be read as implemented behavior.
+
 [ADR-0005](architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)
 accepts **Localization** between native Retrieval evidence and Context Planning.
 The semantic kernel is implemented in
@@ -876,8 +882,9 @@ it represents caller-authored obligations and shared task anchors, alternative
 conjunctive witness sets, snapshot-qualified assessments, and deterministic
 frame readiness. A bounded one-way lexical adapter also executes the full-task
 BM25 safety lane and caller-authored obligation queries while retaining native
-ranked results. Automatic task interpretation, nonlexical acquisition, and
-Context integration remain unimplemented. Localization readiness is scoped to
+ranked results. Automatic task interpretation, autonomous acquisition planning/execution,
+and Context integration remain unimplemented; bounded nonlexical candidate
+generation is implemented as described below. Localization readiness is scoped to
 the supplied obligation frame; it does not establish that the frame is exhaustive
 or that the task will succeed.
 
@@ -929,14 +936,22 @@ task interpretation: shared anchors + obligations + constraints
 RI + full-task/scoped Retrieval evidence
                         |
                         v
-Localization: witnesses, alternatives, applicability, open frontier
+Localization: witnesses, alternatives, applicability, readiness
                         |
                         v
-Context Planning: representation + availability + capacity
+FUTURE obligation handoff -> Context Planning: representation + capacity
                         |
                         v
 materialization / assembly -> Agent
 ```
+
+The implemented Context plans/materializers are caller-directed. A reusable
+unresolved frontier, bounded acquisition requests, iterative reacquisition and
+the automatic obligation-to-Context handoff are future work; generation-local
+incomplete-enumeration diagnostics are not that frontier. Localization may
+describe missing evidence under the accepted direction; Agent/orchestration
+owns whether/how/when to acquire, retry or stop. No end-to-end sufficiency or
+autonomous coding-agent effectiveness is established.
 
 InformationNeed remains purpose-relative desired-information semantics; queries
 remain acquisition inputs. Localization does not require a generic TaskModel,

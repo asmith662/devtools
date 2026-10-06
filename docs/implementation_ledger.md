@@ -958,3 +958,56 @@ remains sealed.
 - B-0002 remains open. Next implementation is R1's bounded experimental code-aware
   sparse view, preserving canonical BM25; after its evaluation, benchmark true
   BM25F in R2 whether R1 improves, ties or worsens the baseline.
+
+## Localization continuity audit before retrieval R1 (2026-10-06)
+
+- Started from clean `main` at
+  `e136d16d9a746243f3b9a95fee2a296e19b02b53`, `Reconcile retrieval foundation and
+  roadmap`. Inspected current architecture/taxonomy/map/roadmap/backlog, accepted
+  ADR-0002 through ADR-0005, package contracts, current source and committed
+  prospective analysis summaries. No production, test, dependency or frozen
+  experiment file changed. No treatment was executed or confirmation outcome accessed.
+- Found continuity gaps rather than a new semantic decision: no single
+  Localization status/history view, insufficiently explicit resumed experiment
+  boundary, central architecture's stale broad nonlexical-acquisition absence,
+  and a frontier/handoff diagram without future-status qualification.
+- Added [Localization continuity](architecture/localization.md) as the one
+  status-matrix/history owner, with caller-directed current flow, resolution
+  rationale, Cases 0004-0008 links and source/binding, promotion, assessment and
+  readiness distinctions. Central architecture/map/taxonomy/Retrieval/research
+  link to it; package API detail remains in existing package documentation.
+- Existing earlier entries preserve completed candidate association, grounding,
+  decorated-source selection correction, branching, Reference and Import
+  generation, and resolution recording. The subsequent
+  [semantic-resolution investigation](research/evidence-to-witness-resolution-policy.md)
+  is completed research, not accepted automatic policy. The
+  [external semantic decision adapter](../experiments/codex_dogfood/semantic_resolution/README.md)
+  already implemented at `1ec0d2f44267f6034b8981bba1b30d72aa86e6e1` is
+  non-production, model-free, human-review-gated infrastructure. Its three pilot
+  dispositions exclude contradiction; no effectiveness case exists yet.
+- Preserved Case 0008's structural-breadth stopping decision: retain OWNER,
+  MIRROR, REFERENCE and direct Import; no fifth family justified. Prospective
+  Reference marginal REQUIRED-cell gain was zero in Cases 0007/0008, while
+  Import added a small real Case 0008 gain. Case 0006's repaired-grounding numbers
+  remain counterfactual, not a replay. Frozen artifacts and digest qualifications
+  remain with their existing summaries.
+- Made the [Localization resumption point](roadmap.md#localization-resumption-after-the-retrieval-checkpoints)
+  explicit after immediate R1 and unconditional R2 BM25F: a new prospective
+  claim-level semantic-resolution case, with candidate inclusion distinct from
+  conditional judgments, frozen bounded disclosure/policy/review/gold, proposals,
+  human review, explicit materialization and support/abstention/cost evaluation.
+  Retrieval findings may change batch/association prerequisites; the semantic
+  problem remains. No model or automatic trust policy is selected.
+- B-0002 remains open. Proof-scoped contradiction/elimination, unresolved
+  frontier, bounded acquisition requests, iterative reacquisition/sufficiency,
+  automatic Context handoff and autonomous coding-agent evaluation remain future.
+  Case 0008's task and generation-local enumeration diagnostics implement none
+  of those APIs. Agent/orchestration retains execution/retry ownership; Context
+  retains representation/capacity; unknown labels are not negatives.
+- Documentation link/heading checks, roadmap/status/source consistency inspection
+  and worktree/index whitespace checks pass. ADR semantics remain consistent and
+  unchanged; historical adoption-time/next statements remain historical. No
+  production test suite, effectiveness experiment, model call or push occurred.
+- Next work remains R1's bounded experimental whole-identifier-plus-subtoken
+  sparse view with canonical BM25 unchanged, then true BM25F R2 regardless of
+  R1 outcome. This checkpoint implements neither.

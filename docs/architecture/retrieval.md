@@ -227,6 +227,11 @@ means no retained effectiveness comparison establishes the family here.
 
 ## Retrieval, Localization, resolution and Context
 
+The [Localization continuity owner](localization.md) records its current status
+matrix, Cases 0004–0008, structural-breadth closure and exact reasoning resumption
+after the immediate retrieval checkpoints. This retrieval inventory does not
+replace that downstream history or imply additional relation breadth is next.
+
 Retrieval/Search acquires or generates candidate evidence. Localization defines
 obligation-relative information needs and candidate witness semantics. Semantic
 resolution judges whether bounded evidence establishes a task-relative
