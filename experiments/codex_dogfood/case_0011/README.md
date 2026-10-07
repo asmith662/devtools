@@ -23,3 +23,7 @@ Focused tests live under tests/experiments/codex_dogfood/acquisition/.
 STOP at the prepared external Stage C workspace. No gold, C.5 packet, Stage D,
 automatic need/query generation, exact routing, mechanism selector, BM25F or
 semantic-resolution experiment. Production parameters/contracts remain unchanged.
+
+Stage B is captured and the external Stage C packet is prepared. Use
+`python -m experiments.codex_dogfood.case_0011.replay` for capture replay;
+see [REPLAY_ERRATUM](REPLAY_ERRATUM.md). The original verifier remains frozen.

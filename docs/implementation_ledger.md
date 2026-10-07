@@ -1214,3 +1214,34 @@ remains sealed.
 - Pre-execution validation: 17 focused tests pass (one retained Stage B check
   awaits capture); scoped Ruff/format and strict mypy pass. Protected development
   profile: 1,588 passed, two opt-in live tests skipped, 100% branch coverage.
+
+
+### Case 0011 U1 Stage B ? pre-adjudication capture
+
+The pre-execution freeze was committed and pushed as `9b8f0f6`. All 28 native
+canonical resource BM25 queries executed once: A=1, B=9, C=18. Full positive
+occurrences/unions are A=529/529, B=2523/484, C=4766/497. These counts are
+unjudged; no effectiveness or mixed-intent conclusion is asserted. Exact queries,
+terms, routes, scores, field/term explanations, overlap and costs are inspectable
+in the Case 0011 machine trace and Stage B review. Human comments belong to a
+separate MANUAL_AUDIT and do not become independent gold.
+
+A terminal replay defect was diagnosed after complete capture: canonical JSON
+sorted query keys while the original overlap builder depended on insertion order.
+The separately committed `replay.py` restores frozen query order for derived
+trace replay, without modifying the sealed executor/captures or rerunning any
+query. REPLAY_ERRATUM.md preserves the diagnostic and correction boundary.
+
+The six-file Stage C task/obligation/full-resource packet was deterministically
+double-built and copied byte-for-byte to a fresh external sterile directory;
+all bindings, leakage restrictions, regular-file whitelist and overwrite refusal
+are checked. There is no need/query/result data in this packet. Stage C is NOT
+PERFORMED, C.5 is NOT BUILT and Stage D is NOT PERFORMED. Effectiveness is UNKNOWN.
+Production contracts, parameters and source are unchanged. U2/U3 remain future;
+R2 true BM25F remains mandatory and downstream Localization is preserved.
+
+Validation: 18 focused U1 tests passed, including no-rescoring corrected replay,
+all original Stage A seals, full R1.5 score/profile reconstruction and sterile
+packet checks. Scoped Ruff, formatting and strict mypy passed. Before execution,
+the protected development profile passed 1588 tests (2 skipped), with 100%
+production branch coverage. No confirmation or live-service validation ran.

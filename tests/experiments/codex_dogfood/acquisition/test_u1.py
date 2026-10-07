@@ -42,6 +42,7 @@ from experiments.codex_dogfood.case_0009.artifacts import (
 )
 from experiments.codex_dogfood.case_0009.freeze import REPOSITORY
 from experiments.codex_dogfood.case_0011 import execute, freeze, packet, protocol
+from experiments.codex_dogfood.case_0011.replay import verify
 from experiments.retrieval_diagnostics.models import Configuration
 
 
@@ -299,7 +300,9 @@ def test_retained_stage_b_and_sterile_packet_without_scoring(
     monkeypatch.setattr(
         execute, "retrieve_repository_text_documents_by_bm25", forbidden
     )
-    assert execute.verify() == {
+    with pytest.raises(ValueError, match="Trace replay"):
+        execute.verify()
+    assert verify() == {
         "status": "R1.5/trace replay PASSED",
         "queries": 28,
         "effectiveness": "UNKNOWN",
