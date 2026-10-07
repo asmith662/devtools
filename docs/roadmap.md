@@ -60,7 +60,8 @@ evidence; mixed ranking changes fail promotion's no-worse-completion and
 
 [Case 0009 Stage B](../experiments/codex_dogfood/case_0009/stage_b.md) now records
 one A/B execution and the frozen full-frame blind packet. Clean Stage C and the
-Stage D join are complete. **R1.6 canonical BM25 parameter sensitivity is next**;
+Stage D join are complete. **R1.6 development and prospective capture are complete;
+fresh Case 0010 Stage C is next**;
 canonical production BM25 remains unchanged and semantic-resolution effectiveness
 does not resume yet.
 
@@ -78,16 +79,32 @@ reporting only aggregate metric movement. This foundation precedes parameter
 sensitivity, query-representation experiments, BM25F evaluation, semantic retrieval
 comparison and learned reranking.
 
-#### R1.6 — Canonical BM25 parameter sensitivity — NEXT
+#### R1.6 — Canonical BM25 parameter sensitivity — DEVELOPMENT COMPLETE, prospective Stage C pending
 
 Design and freeze a scientifically valid sensitivity study covering at minimum
 `k1`, `b` and filename-field weighting. Use R1.5 diagnostics to explain score,
 ranking, overtaker and completion effects; do not merely select the best score.
-No parameter grid or new canonical defaults are authorized by R1.5.
+The [frozen 180-point protocol](../experiments/bm25_sensitivity/PROTOCOL.md)
+and [development analysis](../experiments/bm25_sensitivity/analysis.md) now replay
+six historical frozen frames. Cases 0004–0007/0009 are selection-eligible; Case
+0008 remains supplementary because two own-lane required witnesses have no
+canonical overlap and full completion is undefined. All 180 points preserve
+baseline required reach across all six; five complete cases select three
+challengers with mixed tradeoffs, not new production defaults.
+[Case 0010](../experiments/codex_dogfood/case_0010/README.md) freezes the new
+line-range disclosure task, baseline plus three challengers, and ten identical
+caller-authored obligation queries. Stage B executed each arm once and prepared
+the full-frame blind packet and external sterile workspace. **Effectiveness is
+UNKNOWN: fresh independent Stage C and joined analysis remain required.**
+
+The [BM25+/BM25L audit](../experiments/bm25_sensitivity/VARIANTS.md) retains exact
+formulation/library differences and unresolved questions. Audited evidence does
+not justify an additional variant prerequisite before BM25F; **R1.6b is not
+required**. This does not establish that untested variants cannot help.
 
 #### R1.7 — Query-term discrimination / weighting investigation
 
-Follow R1.6, or combine only if parameter and query effects remain cleanly
+Follow completed prospective R1.6, or combine only if parameter and query effects remain cleanly
 attributable. Use term DF/IDF, footprint and independently judged yields as
 descriptive evidence, not automatic removal/downweighting rules. No query weights
 change in R1.5. Query formulation remains the separate R3 question.
@@ -145,7 +162,7 @@ and incremental complexity. Top-K usefulness alone is insufficient.
 ```text
 canonical baseline
     -> R1 identifier-aware representation
-    -> R1.5 diagnostics (done) -> R1.6 sensitivity (next) -> R1.7 query terms
+    -> R1.5 diagnostics (done) -> R1.6 sensitivity (Stage C pending) -> R1.7 query terms
     -> R2 BM25F canonical terms + R2 BM25F identifier-aware terms
        (representation gain, fielding gain and interaction separately measured)
 ```

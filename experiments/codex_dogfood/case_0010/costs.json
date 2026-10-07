@@ -1,0 +1,83 @@
+{
+  "arms": {
+    "A": {
+      "diagnostic_validation_seconds": 3.78447979997145,
+      "median_query_seconds": 0.004120900004636496,
+      "p95_query_seconds": 0.01702640001894906,
+      "query_seconds": {
+        "assembly-query": 0.003992100013419986,
+        "documentation-query": 0.004327000002376735,
+        "frame-query": 0.0044917999766767025,
+        "global": 0.01702640001894906,
+        "identity-query": 0.0034318999969400465,
+        "materialization-query": 0.004120900004636496,
+        "ownership-query": 0.004176899965386838,
+        "package-query": 0.003834300034213811,
+        "range-query": 0.004488800012040883,
+        "tests-query": 0.004025899979751557,
+        "validation-query": 0.003307199978735298
+      },
+      "sum_query_seconds": 0.057223199983127415
+    },
+    "B": {
+      "diagnostic_validation_seconds": 3.95288660004735,
+      "median_query_seconds": 0.003920199989806861,
+      "p95_query_seconds": 0.01707369997166097,
+      "query_seconds": {
+        "assembly-query": 0.00388329999987036,
+        "documentation-query": 0.0037821000441908836,
+        "frame-query": 0.004331899981480092,
+        "global": 0.01707369997166097,
+        "identity-query": 0.0036848000017926097,
+        "materialization-query": 0.003920199989806861,
+        "ownership-query": 0.004197699949145317,
+        "package-query": 0.003390599973499775,
+        "range-query": 0.004195299989078194,
+        "tests-query": 0.00470849999692291,
+        "validation-query": 0.0034218999790027738
+      },
+      "sum_query_seconds": 0.05658999987645075
+    },
+    "C": {
+      "diagnostic_validation_seconds": 3.7941938998992555,
+      "median_query_seconds": 0.004206900019198656,
+      "p95_query_seconds": 0.01718949998030439,
+      "query_seconds": {
+        "assembly-query": 0.004014000005554408,
+        "documentation-query": 0.004206900019198656,
+        "frame-query": 0.004490100021939725,
+        "global": 0.01718949998030439,
+        "identity-query": 0.0035017000045627356,
+        "materialization-query": 0.004662799998186529,
+        "ownership-query": 0.004400799982249737,
+        "package-query": 0.003709400014486164,
+        "range-query": 0.004890199983492494,
+        "tests-query": 0.004110900044906884,
+        "validation-query": 0.0037344000302255154
+      },
+      "sum_query_seconds": 0.05891070008510724
+    },
+    "D": {
+      "diagnostic_validation_seconds": 3.79140039999038,
+      "median_query_seconds": 0.004068199952598661,
+      "p95_query_seconds": 0.01641929999459535,
+      "query_seconds": {
+        "assembly-query": 0.003979099972639233,
+        "documentation-query": 0.004010899981949478,
+        "frame-query": 0.005058699985966086,
+        "global": 0.01641929999459535,
+        "identity-query": 0.003729599993675947,
+        "materialization-query": 0.004398200020659715,
+        "ownership-query": 0.004068199952598661,
+        "package-query": 0.0034709000028669834,
+        "range-query": 0.0047005999949760735,
+        "tests-query": 0.004159800009801984,
+        "validation-query": 0.0033956000115722418
+      },
+      "sum_query_seconds": 0.05739089992130175
+    }
+  },
+  "diagnostics_excluded_from_query_cost": true,
+  "index_reused_all_arms": true,
+  "shared_index_build_seconds": 0.4245589000056498
+}

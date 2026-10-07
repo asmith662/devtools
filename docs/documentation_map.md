@@ -24,7 +24,15 @@
   [R1.5 diagnostics](../experiments/retrieval_diagnostics/README.md) owns reusable
   experimental mechanical diagnostics and conservative failure assertions;
   [Case 0009 dogfood](../experiments/retrieval_diagnostics/case_0009.md) owns its
-  deterministic 37-cell development capture. R1.6 is the next study.
+  deterministic 37-cell development capture.
+  [R1.6 protocol](../experiments/bm25_sensitivity/PROTOCOL.md) owns eligibility,
+  the frozen full factorial grid and deterministic challenger rules;
+  [development analysis](../experiments/bm25_sensitivity/analysis.md) and
+  [interpretation](../experiments/bm25_sensitivity/interpretation.md) own surfaces,
+  diagnostics and limits; [variant audit](../experiments/bm25_sensitivity/VARIANTS.md)
+  owns BM25+/BM25L evidence and the no-R1.6b-prerequisite decision.
+  [Case 0010](../experiments/codex_dogfood/case_0010/README.md) owns the prospective
+  treatment and sterile blind packet; effectiveness is UNKNOWN pending fresh gold.
   An implementation or treatment capture is not an effectiveness claim.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),

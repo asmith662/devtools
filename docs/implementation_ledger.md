@@ -1110,3 +1110,36 @@ remains sealed.
   BM25 parameter sensitivity next**, then R1.7 query-term investigation, mandatory
   R2 true BM25F, R3–R6 and the preserved Localization continuation. No parameter
   tuning, query weighting, BM25F or semantic-resolution experiment in this increment.
+
+## R1.6 canonical BM25 parameter sensitivity, through prospective Stage B (2026-10-06)
+
+- Precommitted the full 6 x 5 x 6 parameter protocol, native frozen-input audit,
+  normalized multi-objective selection, safety/tie rules and prospective thresholds.
+  A pre-grid baseline check found two Case 0008 own-lane lexical misses; corrected
+  eligibility before historical nonbaseline outcomes. Five complete cases select
+  challengers; all six participate in required-reach safety and 180-point replay.
+- All 180 configurations preserve required reach. Native historical scores/order,
+  parameter scoring oracles and R1.5 decomposition agree. Complete grid/surfaces,
+  98 Pareto configurations, losing points, exact alternatives and representative
+  deterministic diagnostics are retained under `experiments/bm25_sensitivity/`.
+  Three unique challengers: completion (2.4, 0, 2), burden (2.4, 0.5, 1), robust
+  (2.4, 0.75, 0.25). Cross-case effects remain mixed, including global regressions;
+  no development point is adopted into production.
+- Audited retained BM25+ evidence and available BM25L/other library formulas;
+  no additional variant prerequisite is justified before BM25F. Open variant
+  hypotheses remain in the audit; no new variant benchmark was run.
+- Selected Case 0010's realistic unimplemented caller line-range disclosure task
+  after development freeze. Committed Stage A over the starting R1.5 Git snapshot,
+  531 resources and ten obligations; then executed four arms x eleven queries
+  once using identical canonical representation and shared native indexes.
+  Captured timing excludes diagnostic construction; evidence replay does not
+  rerun treatments. Full-frame deterministic blind packet and external sterile
+  workspace contain only blind inputs. Stage C NOT PERFORMED; effectiveness UNKNOWN.
+- Production parameters, historical treatment/gold and Localization continuation
+  remain unchanged. R1.7 follows completed prospective R1.6, then mandatory true
+  BM25F R2. No query weighting, BM25F or semantic-resolution work in this checkpoint.
+- Validation: 62 focused experimental tests, exact deterministic diagnostic
+  replay, 44-lane captured score/universe reconstruction, cross-case partitions,
+  challenger/tie/alternative checks, packet double-build/leakage/overwrite checks,
+  scoped Ruff/format and strict mypy pass. No production source changes;
+  protected production and confirmation profiles were not invoked.

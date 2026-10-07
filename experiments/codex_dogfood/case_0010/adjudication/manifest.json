@@ -1,0 +1,66 @@
+{
+  "archive_sha256": "f3f2d88383f09233d6de33820732b20c3b2e62262f3b0170878313c0edcc3373",
+  "canonical_payload_sha256": "101a722662773a047c0f1641d7940ebdddcee247e43babde2e9573720c17c297",
+  "case_identity": "case-0010",
+  "corpus_id": "3eb6d9cb1b253e56ae6f6b7a8c898ec5417371b5f305cca2ee6efe6d571d1e70",
+  "expected_cell_count": 5310,
+  "obligation_count": 10,
+  "obligations": [
+    {
+      "identity": "ownership",
+      "predicate": "Find the explicit planning and disclosure ownership contracts and dependency boundaries.",
+      "requirement": "mandatory"
+    },
+    {
+      "identity": "range",
+      "predicate": "Find retained text and exact bounded line extraction semantics that the new option must respect.",
+      "requirement": "mandatory"
+    },
+    {
+      "identity": "identity",
+      "predicate": "Find deterministic choice and plan identity, purpose, order and lineage semantics.",
+      "requirement": "mandatory"
+    },
+    {
+      "identity": "frame",
+      "predicate": "Find repository snapshot resource occurrence and content identity validation contracts.",
+      "requirement": "mandatory"
+    },
+    {
+      "identity": "materialization",
+      "predicate": "Find materialized item and source provenance contracts for realizing the caller range.",
+      "requirement": "mandatory"
+    },
+    {
+      "identity": "assembly",
+      "predicate": "Find deterministic rendering and copied ModelRequest assembly behavior.",
+      "requirement": "mandatory"
+    },
+    {
+      "identity": "package",
+      "predicate": "Find public exports and package boundaries for adding the explicit choice.",
+      "requirement": "mandatory"
+    },
+    {
+      "identity": "tests",
+      "predicate": "Find tests and fixtures establishing disclosure extraction, frame rejection and assembly behavior.",
+      "requirement": "mandatory"
+    },
+    {
+      "identity": "documentation",
+      "predicate": "Find governing architecture and package documentation that must describe the new representation.",
+      "requirement": "mandatory"
+    },
+    {
+      "identity": "validation",
+      "predicate": "Find protected development validation and configuration constraints.",
+      "requirement": "mandatory"
+    }
+  ],
+  "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+  "resource_count": 531,
+  "schema": "case-0010-blind-task-v1",
+  "snapshot_id": "3728b26c92d4a3e20e8860b226d843d8dcf35d454b1e6f0951a92f728f90f032",
+  "task": "Add a bounded caller-directed line-range resource disclosure option to explicit repository Context Planning. The caller selects an observed text resource and inclusive one-based start/end lines; do not infer ranges from retrieval. Represent the choice alongside existing whole-resource and Python-qualified-reference options. Bind its deterministic identity to repository, snapshot, resource occurrence, exact content identity and bounds, preserving plan order, purpose and preceding-plan lineage. Materialize only from retained snapshot content, with explicit line boundaries and faithful UTF-8/newline handling, including empty lines, non-ASCII text and a final line without a newline. Retain exact source address, content identity, selected range and native provenance in the materialized item. Reject nonpositive, reversed or out-of-range bounds, unavailable text and foreign or stale snapshot/content frames. Preserve deterministic rendering and copied ModelRequest assembly without changing the caller task or other options. Follow public package and dependency conventions, add focused valid/invalid/boundary tests, update governing architecture and package documentation, and run protected development validation. Do not implement automatic range selection, token-budget optimization, retrieval ranking, semantic resolution, an option registry or agent execution.",
+  "task_identity": "case-0010-line-range-disclosure"
+}

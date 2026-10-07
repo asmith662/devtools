@@ -262,7 +262,7 @@ sufficiency.** Both research tracks remain necessary.
 [EXPERIMENTAL] bounded external proposal --> human review --> explicit record
 [EXPERIMENTAL; EVALUATED] R1 whole identifiers + subtokens (retain separate view)
 [EXPERIMENTAL; INSTRUMENTATION] R1.5 exact retrieval/failure diagnostics
-[NEXT ROADMAP; NOT EXECUTED] R1.6 canonical BM25 parameter sensitivity
+[EXPERIMENTAL; DEVELOPMENT COMPLETE, PROSPECTIVE GOLD PENDING] R1.6 BM25 sensitivity
 [ROADMAP; NOT EXECUTED] R1.7 query-term discrimination investigation
 [MANDATORY ROADMAP; NOT IMPLEMENTED] R2 true BM25F, regardless of R1 outcome
 
@@ -305,9 +305,20 @@ than reporting only aggregate metric movement. BM25F evaluation must use the
 diagnostic facility to explain field/parameter effects.** Exact mechanics do not
 prove semantic equivalence or relational necessity; Context and obligation
 failures require independent evidence outside lexical diagnosis. The roadmap now
-orders R1.6 canonical parameter sensitivity next, R1.7 query-term investigation,
+orders R1.6 canonical parameter sensitivity, R1.7 query-term investigation,
 then mandatory R2 before R3–R6. No parameter or query-weight tuning is included
 in R1.5, and Localization's continuation remains unchanged.
+
+R1.6 now has a [precommitted protocol](../../experiments/bm25_sensitivity/PROTOCOL.md),
+complete 180-configuration development surfaces over six frozen historical cases,
+R1.5 native-score-validated diagnostics, and three deterministically selected
+challengers. [Case 0010](../../experiments/codex_dogfood/case_0010/README.md) has
+committed Stage A and one-time Stage B capture; independent sterile gold and
+effectiveness are pending. Production `k1=1.2`, `b=0.75`, filename weight `0.25`
+remain unchanged. The [variant audit](../../experiments/bm25_sensitivity/VARIANTS.md)
+does not justify an R1.6b prerequisite before BM25F; open variant hypotheses remain.
+R1.7 follows prospective R1.6 completion, then mandatory R2. No field aggregation,
+query weighting or semantic-resolution experiment is implemented here.
 
 Open adjudications include the placement of identifier evidence, the smallest
 scientifically useful BM25F field schema, semantic retrieval granularity,

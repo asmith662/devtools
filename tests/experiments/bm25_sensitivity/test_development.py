@@ -9,6 +9,7 @@ import math
 from experiments.bm25_sensitivity.protocol import BASELINE, GRID, select
 from experiments.bm25_sensitivity.storage import HERE, get
 from experiments.bm25_sensitivity.study import pareto, report, surfaces
+from experiments.bm25_sensitivity.summary import summarize
 from experiments.codex_dogfood.case_0009.artifacts import binary
 
 
@@ -55,3 +56,14 @@ def test_diagnostic_score_reconstruction_and_parameter_only_effects() -> None:
         for term in record["pair"]["mechanics"]["term_deltas"]:
             if term["A"] and term["B"]:
                 assert term["tf_delta"] == term["df_delta"] == term["idf_delta"] == 0
+
+
+def test_sensitivity_details_replay_and_baseline_interaction_zero() -> None:
+    """Derived cross-case slices/ranges/contrasts retain undefined completions."""
+    details = get(HERE / "sensitivity_details.json")
+    assert summarize(get(HERE / "development.json.gz")) == details
+    for record in details["interactions"]:
+        if tuple(record["parameters"]) == BASELINE:
+            assert all(
+                v in (0, None) for v in record["finite_interaction_contrast"].values()
+            )
