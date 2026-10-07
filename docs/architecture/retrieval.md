@@ -263,7 +263,9 @@ sufficiency.** Both research tracks remain necessary.
 [EXPERIMENTAL; EVALUATED] R1 whole identifiers + subtokens (retain separate view)
 [EXPERIMENTAL; INSTRUMENTATION] R1.5 exact retrieval/failure diagnostics
 [EXPERIMENTAL; PROSPECTIVE COMPLETE, MIXED / NO SAFE REPLACEMENT] R1.6 BM25 sensitivity
-[ROADMAP; NOT EXECUTED] R1.7 query-term discrimination investigation
+[EXPERIMENTAL; PRE-GOLD] U1 manual need decomposition, inspectable acquisition trace
+[ROADMAP; NOT EXECUTED] U2 exact hints/routing; U3 need/mechanism routing
+[ROADMAP; RETAINED AFTER UPSTREAM EVIDENCE] R1.7 query-term discrimination investigation
 [MANDATORY ROADMAP; NOT IMPLEMENTED] R2 true BM25F, regardless of R1 outcome
 
 [PRODUCTION, CALLER-DIRECTED] explicit Context choices --> plan
@@ -321,7 +323,12 @@ one 1.25x obligation-regression bound. No adoption checkpoint is earned.
 Production `k1=1.2`, `b=0.75`, filename weight `0.25`
 remain unchanged. The [variant audit](../../experiments/bm25_sensitivity/VARIANTS.md)
 does not justify an R1.6b prerequisite before BM25F; open variant hypotheses remain.
-R1.6 is complete; R1.7 is next, then mandatory R2. No field aggregation,
+R1.6 is complete; U1 manual information-need formulation is next, before query
+weighting, with U2/U3 retained as future routing experiments. Task != obligation
+!= information need != query/acquisition intent != retrieval action. Case 0011
+uses the same production ranker and a human-inspectable experimental trace;
+SEARCH_POLICY_FAILURE is separately defined and not implemented by U1. R1.7
+and mandatory R2 remain on the roadmap. No field aggregation,
 query weighting or semantic-resolution experiment is implemented here.
 
 Open adjudications include the placement of identifier evidence, the smallest

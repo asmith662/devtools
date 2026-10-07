@@ -1180,3 +1180,37 @@ remains sealed.
   R1.7 query-term discrimination is next, then mandatory R2 true BM25F, R3–R6 and
   preserved Localization continuation. R1.6b is still not required before BM25F;
   no query weighting, BM25F or R1.7 implementation occurred.
+
+## U1 manual information-need formulation — Case 0011 Stage A (2026-10-07)
+
+- Reconciled task != obligation != information need != query/acquisition intent
+  != retrieval action. U1 tests manual formulation before automation or query
+  weighting; U2 exact-hint routing and U3 need/mechanism routing remain future.
+  Added governing SEARCH_POLICY_FAILURE for correct needs/capabilities with effort
+  spent on the wrong frontier/action, without implementing search policy.
+- Selected a realistic future caller-directed UTF-8 Context assembly byte ceiling
+  from accepted capacity pressure, not gold or resource-answer selection. Preserved
+  the original task verbatim. Sealed nine mandatory obligations, eighteen manual
+  needs and twenty-eight literal queries before source/fixture/capture inspection.
+  AUTHORING.md explicitly discloses prior Case 0010 exposure in the conversation;
+  treatment authoring is not claimed to be independent sterile adjudication.
+- Experimental acquisition/ owns the native-scoped purpose value and inspectable
+  provenance projection; Case 0011 owns its finite protocol and captured frame.
+  Production task/query/Context contracts, parameters and source remain unchanged.
+  Archived the starting 85f9f08 Git snapshot under broad established eligibility:
+  531 resources, nine obligations, 4,779 future gold cells. New U1 metadata and
+  course-correction docs do not enter the starting corpus.
+- Frozen Stage A review/trace displays original task, exact task spans, manual
+  obligation/need provenance, every literal query and native analyzer terms,
+  fixed canonical route, and three obvious literal symbols left unrouted.
+  Quantitative decision semantics require complete independent need coverage,
+  REQUIRED reach safety, 20% burden improvement with the other metric at most
+  1.05x baseline, and mandatory-obligation burden at most 1.25x baseline.
+- Independent C task gold, then separate blind C.5 need coverage, must precede D.
+  Human input/result inspection is encouraged but is not gold; MANUAL_AUDIT stays
+  separate. Stage A is committed before official query execution. R1/R1.5/R1.6
+  remain complete; R1.7 is retained, true BM25F mandatory, and Localization's
+  continuation unchanged. No future task implementation, routing or gold here.
+- Pre-execution validation: 17 focused tests pass (one retained Stage B check
+  awaits capture); scoped Ruff/format and strict mypy pass. Protected development
+  profile: 1,588 passed, two opt-in live tests skipped, 100% branch coverage.

@@ -701,7 +701,11 @@ without a production dependency. R1.6's
 [Case 0010 Stage D](../experiments/codex_dogfood/case_0010/analysis.md) is complete:
 **MIXED / NO SAFE REPLACEMENT**. Required reach is complete, but no selected
 parameter configuration passes the frozen improvement and obligation-safety gates.
-Production remains (1.2, 0.75, 0.25). R1.7 is next; R2 BM25F remains mandatory
+Production remains (1.2, 0.75, 0.25). U1 manual information-need decomposition
+is now the next upstream experiment under the [roadmap](roadmap.md): task,
+obligation, information need, query/acquisition intent and retrieval action are
+distinct. U2 exact-hint routing and U3 need/mechanism routing remain future.
+R1.7 is retained after upstream evidence; R2 BM25F remains mandatory
 after R1.7. Localization's reasoning continuation is unchanged.
 
 ### Accepted boundaries and implemented composition

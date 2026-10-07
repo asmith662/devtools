@@ -61,7 +61,7 @@ evidence; mixed ranking changes fail promotion's no-worse-completion and
 [Case 0009 Stage B](../experiments/codex_dogfood/case_0009/stage_b.md) now records
 one A/B execution and the frozen full-frame blind packet. Clean Stage C and the
 Stage D join are complete. **R1.6 development and Case 0010 Stage D are complete;
-R1.7 query-term discrimination is next**;
+U1 manual information-need decomposition is next**;
 canonical production BM25 remains unchanged and semantic-resolution effectiveness
 does not resume yet.
 
@@ -101,14 +101,47 @@ Stage C and [Stage D](../experiments/codex_dogfood/case_0010/analysis.md) are co
 union 257 to 232 (9.728%); D reduces maximum-own completion 192 to 178 (7.292%).
 Neither reaches the frozen 10% threshold; every challenger also exceeds the
 1.25x per-obligation bound. No configuration earns an adoption checkpoint.
-Production stays (1.2, 0.75, 0.25); R1.7 is next, then mandatory R2.
+Production stays (1.2, 0.75, 0.25). The upstream U1–U3 course correction below
+precedes further query weighting; mandatory R2 is preserved.
 
 The [BM25+/BM25L audit](../experiments/bm25_sensitivity/VARIANTS.md) retains exact
 formulation/library differences and unresolved questions. Audited evidence does
 not justify an additional variant prerequisite before BM25F; **R1.6b is not
 required**. This does not establish that untested variants cannot help.
 
-#### R1.7 — Query-term discrimination / weighting investigation
+#### Upstream course correction — U1, U2, U3
+
+Task interpretation, obligations, witness semantics, resolution, readiness and
+Context boundaries exist. The obligation → information need → acquisition intent
+transformation is comparatively underdeveloped. Preserve:
+
+```text
+task != obligation != information need != query / acquisition intent != retrieval action
+```
+
+Case 0010 reached all REQUIRED information under every tested parameter arm,
+yet its smallest completion-prefix union was 232 resources versus a sufficient
+22. Global parameter tuning did not safely solve ranking discrimination. Test
+whether ranking is compensating for weak or mixed upstream intents before
+automating them or changing production query weights.
+
+- **U1 — manual information-need decomposition:** compare exact task, current
+  obligation queries and manually authored need-specific literal queries using
+  unchanged production canonical BM25. Case 0011 freezes human-inspectable
+  task → obligation → need → query → route → result provenance. Independent
+  task gold (C), then separate blind need-coverage review (C.5), precede D.
+- **U2 — exact-hint extraction + deterministic routing:** future experiment;
+  U1 records obvious literal task hints but leaves every hint lexical-only.
+- **U3 — information-need × acquisition-mechanism routing:** future experiment;
+  no general mechanism selector, autonomous search framework or search policy
+  is implemented by U1. SEARCH_POLICY_FAILURE has its own taxonomy boundary.
+
+Human treatment inspection is not blind adjudication; maintainer labels belong
+in MANUAL_AUDIT. R1/R1.5/R1.6 remain complete. R1.7 remains a later query-term
+investigation, R2 true BM25F remains unconditional and mandatory, and downstream
+Localization continuation is unchanged. U1 success is not a condition for R2.
+
+#### R1.7 — Query-term discrimination / weighting investigation — retained, after upstream evidence
 
 Follow completed prospective R1.6, or combine only if parameter and query effects remain cleanly
 attributable. Use term DF/IDF, footprint and independently judged yields as
@@ -168,7 +201,9 @@ and incremental complexity. Top-K usefulness alone is insufficient.
 ```text
 canonical baseline
     -> R1 identifier-aware representation
-    -> R1.5 diagnostics (done) -> R1.6 sensitivity (done) -> R1.7 query terms (next)
+    -> R1.5 diagnostics (done) -> R1.6 sensitivity (done)
+    -> U1 manual formulation (now) -> U2/U3 future upstream routing evidence
+    -> R1.7 query terms (retained)
     -> R2 BM25F canonical terms + R2 BM25F identifier-aware terms
        (representation gain, fielding gain and interaction separately measured)
 ```

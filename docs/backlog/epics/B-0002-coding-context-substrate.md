@@ -45,8 +45,12 @@ provides experimental score/failure instrumentation. R1.6's
 [Case 0010 Stage D](../../../experiments/codex_dogfood/case_0010/analysis.md) is complete:
 **MIXED / NO SAFE REPLACEMENT**. All required evidence is reached, but candidate
 burden and unsafe obligation regressions remain; production parameters are
-unchanged. Current sequencing is R1.7 query-term investigation next, then mandatory
-R2. These checkpoints leave the epic open and Localization continuation intact.
+unchanged. Current sequencing now tests U1 manual information-need formulation
+upstream of query weighting, with U2 exact-hint routing and U3 need/mechanism
+routing retained as future experiments. R1.7 and unconditional mandatory R2
+remain. Task, obligation, information need, query and retrieval action are distinct;
+SEARCH_POLICY_FAILURE does not follow merely from poor ranking. These
+checkpoints leave the epic open and Localization continuation intact.
 
 ADR-0005, grounding, witness generation/association, explicit resolution recording
 and external semantic-resolution research remain intact. Prospective semantic

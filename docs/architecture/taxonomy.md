@@ -604,6 +604,19 @@ purpose remains distinct from mechanism-specific query material. Changed
 uncertainty or acquired information can justify a later purpose. Exact addressed
 acquisition remains distinct from relevance discovery.
 
+Preserve the upstream distinctions explicitly:
+
+```text
+task != obligation != information need != query / acquisition intent != retrieval action
+```
+
+An obligation states what must be established. An information need states what
+must be learned to progress on it. A query/acquisition intent is a concrete
+purpose-derived input; a retrieval action applies an authorized capability.
+Caller-authored obligations and a valid satisfaction criterion do not establish
+that an adequate retrieval-oriented information need has been formulated.
+U1 evaluates manual formulation, without promoting a universal runtime ontology.
+
 A ContextCandidate is an addressable repository-intelligence referent that
 might help satisfy a need, not its eventual model-visible representation. The
 referent can be a RepositorySubject, ResourceOccurrence, SourceOccurrence,
@@ -653,7 +666,8 @@ and must not collapse them into an unexplained "retrieval failed" conclusion.
 | **RELATIONAL_RELEVANCE** | A resource matters through a repository relationship rather than textual similarity | Imports, References, Calls, containment, inheritance, tests, configuration/binding and bounded structural navigation, where qualified native facts exist |
 | **RANKING_DISCRIMINATION_FAILURE** | Useful candidates exist but rank or select too poorly | Deterministic purpose-relative scoring/reranking, learning-to-rank or learned evidence combination; selection remains owner-specific |
 | **CONTEXT_DISCLOSURE_FAILURE** | Correct resource is known, but the wrong information form or amount is supplied downstream | Context owns faithful representation, expansion, admission and budgeting |
-| **INFORMATION_NEED_OBLIGATION_FAILURE** | The information requirement necessary to find evidence was never formulated | Localization / search planning; stronger scoring cannot supply an omitted obligation |
+| **INFORMATION_NEED_OBLIGATION_FAILURE** | Necessary information was omitted or inadequately formulated, including retrieval-oriented needs under an otherwise valid obligation | Task interpretation / information-need formulation; stronger scoring cannot supply an omitted requirement |
+| **SEARCH_POLICY_FAILURE** | The correct information need and acquisition capabilities exist, but acquisition effort is spent on the wrong frontier/action | Acquisition planning / search policy; distinct from need formulation, capability availability, ranking and authorization |
 
 Unsplit code identifiers are possible representation failures, not automatically
 semantic mismatch. Query-side representation and document-side representation
@@ -662,7 +676,9 @@ adequate Context disclosure or semantic witness sufficiency. The narrower term
 REPRESENTATION_FAILURE here concerns retrieval representation; the historical
 ADR-0003 "right subject, wrong detail" distinction is captured downstream as
 CONTEXT_DISCLOSURE_FAILURE. Model-utilization and task-execution failures remain
-separate from these six acquisition/disclosure classes.
+separate from these seven acquisition/disclosure classes. QUERY_DILUTION /
+MIXED_INTENT is a possible diagnosed contributor, not an additional top-level
+class. U1 does not implement search policy, routing or an autonomous planner.
 
 See the [current retrieval foundation](retrieval.md) for production support,
 empirical limitations and open hypotheses. Potential mechanisms in this table

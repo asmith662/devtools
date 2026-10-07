@@ -1,0 +1,10 @@
+Add an optional caller-directed UTF-8 byte ceiling to copied ModelRequest assembly for explicitly planned repository Context.
+The caller supplies an already materialized ContextDisclosure from a DisclosurePlan and an optional maximum Context byte count; None retains existing unlimited behavior.
+Count the exact rendered Context text that would be appended, including its headings and separators, encoded as UTF-8; exclude the caller's original task text from this count and preserve existing newline handling.
+Accept a nonnegative integer ceiling, reject booleans and other invalid values, allow equality at the boundary, and reject an oversized disclosure before creating a modified request.
+Reject rather than truncate, omit items, change representation, or silently select a smaller plan; a zero ceiling permits only zero-byte rendered Context.
+Preserve item order, exact item text, native disclosure provenance, repository/snapshot/content frame checks, the original task, Prompt role, and every other ModelRequest field; failure must leave the caller's objects unchanged.
+Keep capacity checking in common Context Planning without a dependency on a language-specific adapter or Retrieval, and preserve existing whole-resource and qualified-reference choices.
+Follow public package exports and existing validation/error conventions. Add focused tests for unlimited behavior, exact byte boundaries, non-ASCII text, newline handling, invalid ceilings, foreign or stale frames, and copied-request preservation.
+Update governing architecture and package documentation and run protected development validation with the established tooling configuration.
+Do not implement automatic selection, token estimation, truncation, query changes, semantic resolution, persistence, or agent execution.

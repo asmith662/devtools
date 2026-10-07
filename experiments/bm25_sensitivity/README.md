@@ -31,6 +31,7 @@ one-time treatment capture. Independent clean Stage C and the
 [Stage D join](../codex_dogfood/case_0010/analysis.md) are complete:
 **MIXED / NO SAFE REPLACEMENT**. All REQUIRED reach is retained, but all three
 challengers fail the frozen 10% meaningful-improvement and per-obligation safety
-gates. Production remains (1.2, 0.75, 0.25). R1.6 is DONE; R1.7 is next; R2 true BM25F remains
+gates. Production remains (1.2, 0.75, 0.25). R1.6 is DONE; the roadmap now places
+U1 manual upstream formulation next, with R1.7 retained and R2 true BM25F still
 mandatory. The [variant audit](VARIANTS.md) explicitly preserves open BM25+/BM25L
 questions without requiring an additional pre-BM25F variant experiment.

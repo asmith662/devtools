@@ -34,7 +34,12 @@
   [Case 0010](../experiments/codex_dogfood/case_0010/README.md) owns the prospective
   treatment and sterile blind packet; [Case 0010 Stage D](../experiments/codex_dogfood/case_0010/analysis.md)
   owns the clean-gold prospective join: MIXED / NO SAFE REPLACEMENT, with production
-  parameters unchanged. R1.6 is complete; R1.7 is next, then mandatory R2.
+  parameters unchanged. R1.6 is complete. The roadmap now sequences upstream
+  U1 manual decomposition before query weighting, preserving U2/U3 and mandatory R2.
+  [U1 acquisition contracts](../experiments/codex_dogfood/acquisition/README.md)
+  own experimental InformationNeed and inspectable trace semantics;
+  [Case 0011](../experiments/codex_dogfood/case_0011/README.md) owns its manual
+  treatment, Stage A/B review and separate C/C.5 blindness protocols.
   An implementation or treatment capture is not an effectiveness claim.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),
