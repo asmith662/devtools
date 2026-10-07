@@ -1,5 +1,6 @@
 # Copyright (c) 2026
-# ruff: noqa: COM812, PLR2004 -- frozen protocol fixture values
+# ruff: noqa: COM812, PLR2004 -- exact frozen fixture values
+
 """Grid/configuration identities and precommitted selection, without outcomes."""
 
 from __future__ import annotations
@@ -81,3 +82,19 @@ def test_safety_completeness_distance_and_final_tie() -> None:
         select([row(BASELINE, Fraction(1), Fraction(1)), unsafe, incomplete])["roles"]
         == {}
     )
+
+
+def test_partial_case_cannot_manufacture_full_completion_ratios() -> None:
+    """Retain supplementary safety while excluding undefined metrics from medians."""
+    r = row((0.9, 0.75, 0.25), Fraction(1), Fraction(1))
+    r["cases"].append(
+        {
+            "selection_eligible": False,
+            "normalized_exact": {
+                "max_own": None,
+                "prefix_union": None,
+                "global": [1, 1],
+            },
+        }
+    )
+    assert select([r])["unique_challengers"] == [[0.9, 0.75, 0.25]]

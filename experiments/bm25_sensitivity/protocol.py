@@ -1,5 +1,6 @@
 # Copyright (c) 2026
 # ruff: noqa: COM812 -- formatter convention
+
 """Pre-outcome parameter frame and deterministic multi-objective selection."""
 
 from __future__ import annotations
@@ -47,7 +48,11 @@ def select(rows: list[dict[str, Any]]) -> dict[str, Any]:
         return {"roles": {}, "unique_challengers": []}
 
     def ratios(row: dict[str, Any], name: str) -> list[Fraction]:
-        return [Fraction(*c["normalized_exact"][name]) for c in row["cases"]]
+        return [
+            Fraction(*c["normalized_exact"][name])
+            for c in row["cases"]
+            if c.get("selection_eligible", True)
+        ]
 
     def tie(row: dict[str, Any]) -> tuple[Fraction, tuple[float, ...]]:
         return distance(tuple(row["parameters"])), tuple(row["parameters"])

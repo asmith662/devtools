@@ -7,7 +7,7 @@ not independent semantic relevance or witness satisfaction.
 
 ## Historical eligibility and frame
 
-Cases 0004–0009 are ELIGIBLE: each completed independently judged experiment
+Cases 0004–0007 and 0009 are ELIGIBLE: each completed independently judged experiment
 retains exact native snapshot/corpus/index inputs, full-task and every obligation
 query, whole-resource canonical BM25 captures, complete obligation-relative gold,
 unit linkage and acceptable ALL alternatives. The input audit pins the exact
@@ -21,7 +21,18 @@ PARTIALLY_ELIGIBLE for top-K variant context only, INELIGIBLE for this study's
 full obligation/completion selection: their judged useful pools do not provide
 the same complete REQUIRED-cell/unit/alternative contract. No confirmation or
 reserve artifacts are opened. No current content substitutes for historical text.
-Six related in-repository tasks are not independent samples of all coding work.
+Case 0008 is PARTIALLY_ELIGIBLE: its native baseline reproduces, but assessment-
+applicability lacks obligation.py and grounding-provenance lacks resource.py in
+their respective positive universes. Full max-own and full-prefix baseline ratios
+are undefined. Canonical k1/b and positive filename weights cannot create absent
+lexical overlap; disabling filename can only lose overlap. Keep all 180 Case 0008
+points for global/reach/partial diagnostics and require reach safety there, but
+omit it from complete-metric medians/minimax. The historical maximum 177 applies
+only to completable obligations. This correction supersedes the initial protocol
+at 985088576bbe6493e87d3be1b3ca5d012cbe9780, after baseline eligibility validation
+and before any nonbaseline configuration was scored. Five selection cases plus
+one supplementary case are related development tasks, not independent samples
+of all coding work.
 
 ## Fixed scoring and grid
 
@@ -56,7 +67,9 @@ report bounded observed prefixes separately and exclude from challenger selectio
 
 Normalize global, max-own, prefix-union and prefix-occurrence metrics by that
 case's current baseline. Retain exact rational numerator/denominator for selection
-and absolute values. No raw cross-case rank sum or single quality scalar.
+and absolute values. Five complete-baseline cases drive selection; Case 0008
+retains available ratios only and participates in safety checks. No raw
+cross-case rank sum or single quality scalar.
 Report full surfaces, Pareto relationships, worst-case ratios and per-case effects.
 
 ## Challenger selection, committed code in protocol.py

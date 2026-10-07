@@ -1,5 +1,6 @@
 # Copyright (c) 2026
-# ruff: noqa: C901, COM812, E501, EM101, PLR0912, PLR0915, TRY003 -- bounded experimental JSON diagnostics
+# ruff: noqa: C901, COM812, E501, EM101, PLR0912, PLR0915, TRY003, SLF001 -- bounded diagnostics and same-class validated cache projection
+
 """Replay independent-field BM25 mechanics from evidence, without reranking."""
 
 from __future__ import annotations
@@ -7,7 +8,7 @@ from __future__ import annotations
 import math
 from collections import Counter
 from copy import deepcopy
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from pathlib import PurePosixPath
 from typing import TYPE_CHECKING, Any
 
@@ -21,11 +22,14 @@ from devtools.evaluation.coverage import compare_identity_coverage
 from experiments.identifier_sparse.analysis import iter_terms
 from experiments.retrieval_diagnostics.attribution import classify
 from experiments.retrieval_diagnostics.models import (
+    Configuration,
     DiagnosticPolicy,
     DiagnosticSubject,
     Judgment,
     LaneCapture,
+    RankedCapture,
     SupportReference,
+    TermCapture,
 )
 from experiments.retrieval_identifier import expand_identifier_terms
 
@@ -319,6 +323,115 @@ class Mechanics:
                 )
         self._term_cache[resource.address.value] = result
         return deepcopy(result)
+
+    def reconfigured(self, configuration: Configuration) -> Mechanics:
+        """Replay only scoring parameters over this already validated representation.
+
+        Reuse immutable source/posting evidence instead of retokenizing a frozen
+        corpus for each parameter point. This evaluation replay is not production
+        ranking policy. Actual native scorer parity is tested independently.
+        """
+        old = self.capture.configuration
+        if (
+            configuration.analyzer != old.analyzer
+            or configuration.index_identity != old.index_identity
+        ):
+            raise ValueError("Parameter replay cannot change representation/index.")
+        settings = RepositoryTextLexicalBm25Settings(
+            k1=configuration.k1, b=configuration.b
+        )
+        clone = object.__new__(Mechanics)
+        clone.__dict__ = self.__dict__.copy()
+        clone._term_cache = {}
+        fields = tuple(
+            replace(
+                f,
+                weight=configuration.filename_weight
+                if f.name == "filename"
+                else f.weight,
+            )
+            for f in self.capture.fields
+        )
+        scores = []
+        for resource in self.capture.resources:
+            address = resource.address.value
+            if address not in self._term_cache:
+                self.terms(resource)
+            terms = []
+            for original in self._term_cache[address]:
+                t = original.copy()
+                factor = (
+                    1
+                    - configuration.b
+                    + configuration.b * t["length"] / t["average_length"]
+                )
+                numerator = t["tf"] * (configuration.k1 + 1)
+                denominator = t["tf"] + configuration.k1 * factor
+                contribution = calculate_bm25_term_contribution(
+                    term_frequency=t["tf"],
+                    inverse_document_frequency=t["idf"],
+                    document_length=t["length"],
+                    average_document_length=t["average_length"],
+                    settings=settings,
+                )
+                weight = (
+                    configuration.filename_weight
+                    if t["field"] == "filename"
+                    else t["field_weight"]
+                )
+                t.update(
+                    normalized_length_factor=factor,
+                    tf_numerator=numerator,
+                    tf_denominator=denominator,
+                    tf_saturation=numerator / denominator,
+                    contribution=contribution,
+                    field_weight=weight,
+                    weighted_contribution=weight * contribution,
+                )
+                terms.append(t)
+            clone._term_cache[address] = terms
+            content = sum(t["contribution"] for t in terms if t["field"] == "content")
+            filename = sum(t["contribution"] for t in terms if t["field"] == "filename")
+            score = content + configuration.filename_weight * filename
+            if not math.isclose(
+                sum(t["weighted_contribution"] for t in terms), score, abs_tol=TOLERANCE
+            ):
+                raise ValueError("Reconfigured score decomposition differs.")
+            if score > 0:
+                scores.append(
+                    (
+                        resource,
+                        score,
+                        tuple(
+                            TermCapture(
+                                t["field"],
+                                t["term"],
+                                t["tf"],
+                                t["df"],
+                                t["length"],
+                                t["average_length"],
+                                t["idf"],
+                                t["contribution"],
+                            )
+                            for t in terms
+                        ),
+                    )
+                )
+        scores.sort(key=lambda r: -r[1])
+        rows = tuple(
+            RankedCapture(resource, rank, score, terms)
+            for rank, (resource, score, terms) in enumerate(scores, 1)
+        )
+        clone.capture = replace(
+            self.capture,
+            configuration=configuration,
+            fields=fields,
+            rows=rows,
+            complete_positive_universe=True,
+        )
+        clone.fields = {f.name: f for f in fields}
+        clone.rows = {r.resource.address.value: r for r in rows}
+        return clone
 
     def query_profile(self) -> list[dict[str, Any]]:
         """Describe term footprint and optional independent judged yields."""

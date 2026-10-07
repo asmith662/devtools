@@ -38,6 +38,7 @@ statistics. Construct `Mechanics(capture, judgments=(), policy=...)` once, then:
 engine.query_profile()
 engine.explain(resource, supports=())
 engine.overtaker(required_target, overtaking_resource)
+engine.reconfigured(configuration)
 compare(engine_a, engine_b, resource)
 encode(diagnostic_record)
 ```
@@ -145,3 +146,10 @@ and scorer-qualified adapters allow later field TF/length/average/weight/normali
 and aggregated-TF evidence to extend the representation. No BM25F aggregation,
 field-specific b, IDF or scorer is implemented, and current Mechanics rejects
 unsupported scoring semantics rather than pretending to reconstruct them.
+
+R1.6 adds `Mechanics.reconfigured`: deterministic full-positive-universe scoring
+replay over the already validated immutable source/statistics frame. Only k1, b
+and independent filename combination weight may change; analyzer/index changes
+are rejected. Source/lineage/postings are reused, scores use native arithmetic,
+and output diagnostics retain the same decomposition. This is experimental
+parameter instrumentation; the production ranker and defaults remain unchanged.
