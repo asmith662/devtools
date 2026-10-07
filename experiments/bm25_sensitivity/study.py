@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import gc
+import json
 import math
 import statistics
 import time
@@ -355,7 +356,7 @@ def report(data: dict[str, Any]) -> str:
         "",
         f"Protocol frozen at `{data['protocol_commit']}`; 180 configurations x six frozen cases, five selection-eligible and Case 0008 supplementary. Required-reach-safe configurations: {sum(r['reach_safe'] for r in data['rows'])}/180. Pareto configurations: {len(data['pareto'])}.",
         "",
-        f"Selected roles: `{data['selection']['roles']}`. Deduplicated challengers: `{data['selection']['unique_challengers']}`.",
+        f"Selected roles: `{json.dumps(data['selection']['roles'], sort_keys=True)}`. Deduplicated challengers: `{data['selection']['unique_challengers']}`.",
         "",
         "## Per-case primary metrics",
         "",
