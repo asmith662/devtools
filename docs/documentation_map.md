@@ -32,7 +32,9 @@
   diagnostics and limits; [variant audit](../experiments/bm25_sensitivity/VARIANTS.md)
   owns BM25+/BM25L evidence and the no-R1.6b-prerequisite decision.
   [Case 0010](../experiments/codex_dogfood/case_0010/README.md) owns the prospective
-  treatment and sterile blind packet; effectiveness is UNKNOWN pending fresh gold.
+  treatment and sterile blind packet; [Case 0010 Stage D](../experiments/codex_dogfood/case_0010/analysis.md)
+  owns the clean-gold prospective join: MIXED / NO SAFE REPLACEMENT, with production
+  parameters unchanged. R1.6 is complete; R1.7 is next, then mandatory R2.
   An implementation or treatment capture is not an effectiveness claim.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),

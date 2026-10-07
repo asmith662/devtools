@@ -697,8 +697,12 @@ AS SEPARATE RETRIEVAL VIEW**. REQUIRED positive reach is unchanged; mixed rankin
 gains/regressions fail the frozen promotion gates. Canonical production BM25
 remains unchanged. [R1.5 experimental diagnostics](../experiments/retrieval_diagnostics/README.md)
 now validates mechanical score/failure evidence with optional independent gold,
-without a production dependency. R1.6 parameter sensitivity is next; R2 BM25F
-remains mandatory after R1.7. Localization's reasoning continuation is unchanged.
+without a production dependency. R1.6's
+[Case 0010 Stage D](../experiments/codex_dogfood/case_0010/analysis.md) is complete:
+**MIXED / NO SAFE REPLACEMENT**. Required reach is complete, but no selected
+parameter configuration passes the frozen improvement and obligation-safety gates.
+Production remains (1.2, 0.75, 0.25). R1.7 is next; R2 BM25F remains mandatory
+after R1.7. Localization's reasoning continuation is unchanged.
 
 ### Accepted boundaries and implemented composition
 

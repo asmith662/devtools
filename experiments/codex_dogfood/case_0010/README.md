@@ -26,7 +26,17 @@ is performed before independent gold. Decision thresholds are frozen in
 blind packet with explicit archive/payload digest scopes and strict metadata
 whitelists. The prepared external sterile workspace contains exactly the five
 blind inputs, no Git checkout, links, treatments or gold. Fresh Stage C must run
-there with isolated validation. **Effectiveness remains UNKNOWN. Stop before
-independent adjudication.** Production parameters are unchanged; R1.7 follows
-completed R1.6, and true BM25F remains mandatory after R1.7. No R1.6b prerequisite
-is justified by the retained variant audit; Localization continuation is preserved.
+there with isolated validation. Clean independent Stage C is now committed and
+the intentionally unblinded [Stage D analysis](analysis.md) is complete:
+**MIXED / NO SAFE REPLACEMENT**. All arms reach the complete REQUIRED universe;
+no challenger passes the exact frozen improvement and obligation-safety gates.
+Production parameters remain unchanged. R1.7 is next, followed by mandatory R2
+true BM25F. No R1.6b prerequisite is justified; Localization continuation remains.
+
+`python -m experiments.codex_dogfood.case_0010.analyze verify` verifies committed
+chain/input hashes, replays all 44 R1.5 capture lanes, validates clean gold and
+alternative completions, and reproduces `analysis.json` and `analysis.md` exactly.
+It never reruns treatment queries. Focused validation is
+`uv run pytest --no-cov tests/experiments/bm25_sensitivity/test_analysis.py`.
+The eight sealed Stage C files are immutable and excluded from formatting checks;
+their historical blindness attestations are unchanged by this later Stage D join.

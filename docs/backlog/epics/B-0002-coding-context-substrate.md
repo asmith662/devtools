@@ -41,8 +41,11 @@ prospectively evaluates it: **RETAIN AS SEPARATE RETRIEVAL VIEW**, with unchange
 REQUIRED positive reach and mixed ranking gains/regressions. This does not close
 the epic, change canonical production retrieval or cancel mandatory R2.
 [R1.5 diagnostics](../../../experiments/retrieval_diagnostics/README.md) now
-provides experimental score/failure instrumentation. Current sequencing is R1.6
-canonical parameter sensitivity next, R1.7 query-term investigation, then mandatory
+provides experimental score/failure instrumentation. R1.6's
+[Case 0010 Stage D](../../../experiments/codex_dogfood/case_0010/analysis.md) is complete:
+**MIXED / NO SAFE REPLACEMENT**. All required evidence is reached, but candidate
+burden and unsafe obligation regressions remain; production parameters are
+unchanged. Current sequencing is R1.7 query-term investigation next, then mandatory
 R2. These checkpoints leave the epic open and Localization continuation intact.
 
 ADR-0005, grounding, witness generation/association, explicit resolution recording

@@ -27,7 +27,10 @@ selection/tie/safety/alternative/identity rules. No production default changes.
 
 [Case 0010](../codex_dogfood/case_0010/README.md) tests baseline against the three
 unique selected challengers after development freeze. Stage A precedes the
-one-time treatment capture. **Stop before independent Stage C; effectiveness
-remains UNKNOWN.** R1.7 follows prospective R1.6 completion; R2 true BM25F remains
+one-time treatment capture. Independent clean Stage C and the
+[Stage D join](../codex_dogfood/case_0010/analysis.md) are complete:
+**MIXED / NO SAFE REPLACEMENT**. All REQUIRED reach is retained, but all three
+challengers fail the frozen 10% meaningful-improvement and per-obligation safety
+gates. Production remains (1.2, 0.75, 0.25). R1.6 is DONE; R1.7 is next; R2 true BM25F remains
 mandatory. The [variant audit](VARIANTS.md) explicitly preserves open BM25+/BM25L
 questions without requiring an additional pre-BM25F variant experiment.

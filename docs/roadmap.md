@@ -60,8 +60,8 @@ evidence; mixed ranking changes fail promotion's no-worse-completion and
 
 [Case 0009 Stage B](../experiments/codex_dogfood/case_0009/stage_b.md) now records
 one A/B execution and the frozen full-frame blind packet. Clean Stage C and the
-Stage D join are complete. **R1.6 development and prospective capture are complete;
-fresh Case 0010 Stage C is next**;
+Stage D join are complete. **R1.6 development and Case 0010 Stage D are complete;
+R1.7 query-term discrimination is next**;
 canonical production BM25 remains unchanged and semantic-resolution effectiveness
 does not resume yet.
 
@@ -79,7 +79,7 @@ reporting only aggregate metric movement. This foundation precedes parameter
 sensitivity, query-representation experiments, BM25F evaluation, semantic retrieval
 comparison and learned reranking.
 
-#### R1.6 — Canonical BM25 parameter sensitivity — DEVELOPMENT COMPLETE, prospective Stage C pending
+#### R1.6 — Canonical BM25 parameter sensitivity — DONE
 
 Design and freeze a scientifically valid sensitivity study covering at minimum
 `k1`, `b` and filename-field weighting. Use R1.5 diagnostics to explain score,
@@ -94,8 +94,14 @@ challengers with mixed tradeoffs, not new production defaults.
 [Case 0010](../experiments/codex_dogfood/case_0010/README.md) freezes the new
 line-range disclosure task, baseline plus three challengers, and ten identical
 caller-authored obligation queries. Stage B executed each arm once and prepared
-the full-frame blind packet and external sterile workspace. **Effectiveness is
-UNKNOWN: fresh independent Stage C and joined analysis remain required.**
+the full-frame blind packet and external sterile workspace. Independent clean
+Stage C and [Stage D](../experiments/codex_dogfood/case_0010/analysis.md) are complete:
+**MIXED / NO SAFE REPLACEMENT**. All arms reach 22 REQUIRED resources, 39 cells,
+45 obligation-relative unit judgments and 40 distinct units. C reduces the prefix
+union 257 to 232 (9.728%); D reduces maximum-own completion 192 to 178 (7.292%).
+Neither reaches the frozen 10% threshold; every challenger also exceeds the
+1.25x per-obligation bound. No configuration earns an adoption checkpoint.
+Production stays (1.2, 0.75, 0.25); R1.7 is next, then mandatory R2.
 
 The [BM25+/BM25L audit](../experiments/bm25_sensitivity/VARIANTS.md) retains exact
 formulation/library differences and unresolved questions. Audited evidence does
@@ -162,7 +168,7 @@ and incremental complexity. Top-K usefulness alone is insufficient.
 ```text
 canonical baseline
     -> R1 identifier-aware representation
-    -> R1.5 diagnostics (done) -> R1.6 sensitivity (Stage C pending) -> R1.7 query terms
+    -> R1.5 diagnostics (done) -> R1.6 sensitivity (done) -> R1.7 query terms (next)
     -> R2 BM25F canonical terms + R2 BM25F identifier-aware terms
        (representation gain, fielding gain and interaction separately measured)
 ```

@@ -1143,3 +1143,40 @@ remains sealed.
   challenger/tie/alternative checks, packet double-build/leakage/overwrite checks,
   scoped Ruff/format and strict mypy pass. No production source changes;
   protected production and confirmation profiles were not invoked.
+
+## Case 0010 Stage D joined BM25 parameter sensitivity (2026-10-07)
+
+- Intentionally lifted the blind after independently adjudicated clean Stage C
+  was committed. Verified the six-checkpoint ancestry and committed input bytes,
+  eight immutable gold hashes, full native repository/snapshot/corpus/task/content
+  join, 531 resources, ten obligations and 5,310 cells. Fourteen witness alternatives
+  and nine complete combinations all have the same complete 22-resource REQUIRED
+  union. Stage A/B/C artifacts and all historical blindness attestations remain
+  unchanged; no confirmation/reserve artifacts were accessed.
+- All four arms reach all 22 REQUIRED resources, 39 cells, 45 obligation-relative
+  unit judgments and 40 distinct units. Canonical positive membership is identical:
+  529 global resources, 497 own-lane union resources and 3,178 own-lane cells.
+  Global completion A/B/C/D = 360/363/360/366; maximum-own = 192/196/183/178;
+  completion-prefix union = 257/243/232/243; occurrences = 556/623/506/509.
+- Exact prospective outcome: **MIXED / NO SAFE REPLACEMENT**. Every challenger
+  misses 10% meaningful improvement and exceeds at least one 1.25x obligation
+  bound. B also fails half-obligations-nonworse. All pass reach, global/max-own
+  1.05x bounds, captured-cost 3x limits and historical own/union 1.25x safety.
+  No candidate earns a production-adoption checkpoint. BASELINE_ROBUST is not
+  the protocol outcome because C/D improvements leave its 0.95–1.05 ratio band.
+- Deterministic joined JSON/Markdown retains primary measurements before
+  development comparison, exact gate arithmetic, paired REQUIRED rank partitions,
+  complete term profiles and representative R1.5 score/saturation/filename/overtaker
+  explanations. The k1-only arm directionally replicates own/union gains, but
+  documentation completion regresses 15 to 19. Remaining observed weakness is
+  ranking discrimination with excessive candidate burden, not REQUIRED reach.
+- Focused Stage D and capture tests, deterministic joined replay and R1.5
+  diagnostics-only replay, scoped Ruff/formatter/strict mypy and Git whitespace
+  checks validate the checkpoint. The retained Stage B whitelist test reconstructs
+  its five-input boundary in isolation now that clean Stage C outputs coexist in
+  the repository directory; frozen packet code is unchanged. No production suite
+  or confirmation profile was invoked.
+- Production remains k1=1.2, b=0.75, filename weight=0.25. R1/R1.5/R1.6 are done;
+  R1.7 query-term discrimination is next, then mandatory R2 true BM25F, R3–R6 and
+  preserved Localization continuation. R1.6b is still not required before BM25F;
+  no query weighting, BM25F or R1.7 implementation occurred.

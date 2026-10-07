@@ -262,7 +262,7 @@ sufficiency.** Both research tracks remain necessary.
 [EXPERIMENTAL] bounded external proposal --> human review --> explicit record
 [EXPERIMENTAL; EVALUATED] R1 whole identifiers + subtokens (retain separate view)
 [EXPERIMENTAL; INSTRUMENTATION] R1.5 exact retrieval/failure diagnostics
-[EXPERIMENTAL; DEVELOPMENT COMPLETE, PROSPECTIVE GOLD PENDING] R1.6 BM25 sensitivity
+[EXPERIMENTAL; PROSPECTIVE COMPLETE, MIXED / NO SAFE REPLACEMENT] R1.6 BM25 sensitivity
 [ROADMAP; NOT EXECUTED] R1.7 query-term discrimination investigation
 [MANDATORY ROADMAP; NOT IMPLEMENTED] R2 true BM25F, regardless of R1 outcome
 
@@ -313,11 +313,15 @@ R1.6 now has a [precommitted protocol](../../experiments/bm25_sensitivity/PROTOC
 complete 180-configuration development surfaces over six frozen historical cases,
 R1.5 native-score-validated diagnostics, and three deterministically selected
 challengers. [Case 0010](../../experiments/codex_dogfood/case_0010/README.md) has
-committed Stage A and one-time Stage B capture; independent sterile gold and
-effectiveness are pending. Production `k1=1.2`, `b=0.75`, filename weight `0.25`
+committed independent clean gold and [Stage D analysis](../../experiments/codex_dogfood/case_0010/analysis.md):
+**MIXED / NO SAFE REPLACEMENT**. All REQUIRED reach remains complete; ranking
+burden is still excessive. C's 9.728% union improvement and D's 7.292% maximum-own
+improvement miss the frozen 10% threshold, and every challenger violates at least
+one 1.25x obligation-regression bound. No adoption checkpoint is earned.
+Production `k1=1.2`, `b=0.75`, filename weight `0.25`
 remain unchanged. The [variant audit](../../experiments/bm25_sensitivity/VARIANTS.md)
 does not justify an R1.6b prerequisite before BM25F; open variant hypotheses remain.
-R1.7 follows prospective R1.6 completion, then mandatory R2. No field aggregation,
+R1.6 is complete; R1.7 is next, then mandatory R2. No field aggregation,
 query weighting or semantic-resolution experiment is implemented here.
 
 Open adjudications include the placement of identifier evidence, the smallest
