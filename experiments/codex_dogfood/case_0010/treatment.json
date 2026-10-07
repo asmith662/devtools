@@ -1,0 +1,144 @@
+{
+  "arms": [
+    {
+      "analyzer": "canonical",
+      "architecture": "independent content BM25 + filename_weight * independent filename-stem BM25",
+      "arm": "A",
+      "parameters": [
+        1.2,
+        0.75,
+        0.25
+      ]
+    },
+    {
+      "analyzer": "canonical",
+      "architecture": "independent content BM25 + filename_weight * independent filename-stem BM25",
+      "arm": "B",
+      "parameters": [
+        2.4,
+        0.0,
+        2.0
+      ]
+    },
+    {
+      "analyzer": "canonical",
+      "architecture": "independent content BM25 + filename_weight * independent filename-stem BM25",
+      "arm": "C",
+      "parameters": [
+        2.4,
+        0.5,
+        1.0
+      ]
+    },
+    {
+      "analyzer": "canonical",
+      "architecture": "independent content BM25 + filename_weight * independent filename-stem BM25",
+      "arm": "D",
+      "parameters": [
+        2.4,
+        0.75,
+        0.25
+      ]
+    }
+  ],
+  "blind_protocol": "Fresh independent sterile full-frame obligation gold; no treatment, query lanes, arms, parameters, rankings, scores or costs. Explicit compressed/archive and canonical-payload scopes. Stage C is not performed in this increment.",
+  "decision_rule": "No required resource/cell/unit loss; global/max-own <=1.05 baseline; >=10% union OR max-own improvement; each own depth <=1.25 baseline; >=half obligations nonworse; median/p95 query scoring <=3x; development worst max-own/union <=1.25. Candidate is later adoption consideration only. BASELINE_ROBUST if all challengers reach-safe and all global/max-own/union ratios within [0.95,1.05] without meaningful improvement; otherwise MIXED / NO SAFE REPLACEMENT. Concrete scorer defect stops.",
+  "development_commit": "7edac3604cbfe83b811daa716ddde5427816ae46",
+  "development_sha256": "bb29cd234d5440925d89f2f3d73cec7513b59aa28487fc29821d83cbed2daf06",
+  "eligibility": "Case 0009 broad policy over starting R1.5 Git snapshot; excludes experiments, research/reports, confirmation/reserve, ledger; no current content substitution",
+  "execution": "Every arm/query exactly once using shared canonical indexes; actual score timing excludes diagnostics; no second scoring execution for replay.",
+  "full_task_query": "Add a bounded caller-directed line-range resource disclosure option to explicit repository Context Planning. The caller selects an observed text resource and inclusive one-based start/end lines; do not infer ranges from retrieval. Represent the choice alongside existing whole-resource and Python-qualified-reference options. Bind its deterministic identity to repository, snapshot, resource occurrence, exact content identity and bounds, preserving plan order, purpose and preceding-plan lineage. Materialize only from retained snapshot content, with explicit line boundaries and faithful UTF-8/newline handling, including empty lines, non-ASCII text and a final line without a newline. Retain exact source address, content identity, selected range and native provenance in the materialized item. Reject nonpositive, reversed or out-of-range bounds, unavailable text and foreign or stale snapshot/content frames. Preserve deterministic rendering and copied ModelRequest assembly without changing the caller task or other options. Follow public package and dependency conventions, add focused valid/invalid/boundary tests, update governing architecture and package documentation, and run protected development validation. Do not implement automatic range selection, token-budget optimization, retrieval ranking, semantic resolution, an option registry or agent execution.",
+  "metrics": [
+    "required resource/cell/unit reach",
+    "best all-member accepted-alternative global/own completion",
+    "maximum own completion",
+    "prefix occurrences/union/excess/composition",
+    "top5/10/20",
+    "R1.5 mechanics",
+    "cost"
+  ],
+  "obligations": [
+    {
+      "identity": "ownership",
+      "predicate": "Find the explicit planning and disclosure ownership contracts and dependency boundaries.",
+      "query": "context planning disclosure option representation ownership dependency boundary",
+      "query_identity": "ownership-query"
+    },
+    {
+      "identity": "range",
+      "predicate": "Find retained text and exact bounded line extraction semantics that the new option must respect.",
+      "query": "resource text line range start end UTF-8 newline boundaries snapshot content extraction",
+      "query_identity": "range-query"
+    },
+    {
+      "identity": "identity",
+      "predicate": "Find deterministic choice and plan identity, purpose, order and lineage semantics.",
+      "query": "disclosure option identity plan purpose order preceding plan lineage deterministic",
+      "query_identity": "identity-query"
+    },
+    {
+      "identity": "frame",
+      "predicate": "Find repository snapshot resource occurrence and content identity validation contracts.",
+      "query": "repository snapshot resource occurrence content identity provenance stale foreign frame validation",
+      "query_identity": "frame-query"
+    },
+    {
+      "identity": "materialization",
+      "predicate": "Find materialized item and source provenance contracts for realizing the caller range.",
+      "query": "materialize disclosure plan resource text native provenance content identities addresses representation",
+      "query_identity": "materialization-query"
+    },
+    {
+      "identity": "assembly",
+      "predicate": "Find deterministic rendering and copied ModelRequest assembly behavior.",
+      "query": "render context disclosure assemble model request copied task plan order",
+      "query_identity": "assembly-query"
+    },
+    {
+      "identity": "package",
+      "predicate": "Find public exports and package boundaries for adding the explicit choice.",
+      "query": "context planning public exports package option protocol materialization",
+      "query_identity": "package-query"
+    },
+    {
+      "identity": "tests",
+      "predicate": "Find tests and fixtures establishing disclosure extraction, frame rejection and assembly behavior.",
+      "query": "tests planning disclosure materialization invalid snapshot identity Unicode newline range boundaries",
+      "query_identity": "tests-query"
+    },
+    {
+      "identity": "documentation",
+      "predicate": "Find governing architecture and package documentation that must describe the new representation.",
+      "query": "architecture context disclosure planning representation materialization documentation explicit caller",
+      "query_identity": "documentation-query"
+    },
+    {
+      "identity": "validation",
+      "predicate": "Find protected development validation and configuration constraints.",
+      "query": "protected development validation pytest branch coverage experimental exclusion ruff mypy configuration",
+      "query_identity": "validation-query"
+    }
+  ],
+  "schema": "case-0010-parameter-treatment-v1",
+  "selected_roles": {
+    "burden": [
+      2.4,
+      0.5,
+      1.0
+    ],
+    "completion": [
+      2.4,
+      0.0,
+      2.0
+    ],
+    "robust": [
+      2.4,
+      0.75,
+      0.25
+    ]
+  },
+  "selection_rationale": "Documented planning supports whole resources and qualified Python references; explicit bounded text ranges are a realistic missing caller choice. Selected from package contracts after development freeze, without prospective gold or ranks; task is not implemented.",
+  "task": "Add a bounded caller-directed line-range resource disclosure option to explicit repository Context Planning. The caller selects an observed text resource and inclusive one-based start/end lines; do not infer ranges from retrieval. Represent the choice alongside existing whole-resource and Python-qualified-reference options. Bind its deterministic identity to repository, snapshot, resource occurrence, exact content identity and bounds, preserving plan order, purpose and preceding-plan lineage. Materialize only from retained snapshot content, with explicit line boundaries and faithful UTF-8/newline handling, including empty lines, non-ASCII text and a final line without a newline. Retain exact source address, content identity, selected range and native provenance in the materialized item. Reject nonpositive, reversed or out-of-range bounds, unavailable text and foreign or stale snapshot/content frames. Preserve deterministic rendering and copied ModelRequest assembly without changing the caller task or other options. Follow public package and dependency conventions, add focused valid/invalid/boundary tests, update governing architecture and package documentation, and run protected development validation. Do not implement automatic range selection, token-budget optimization, retrieval ranking, semantic resolution, an option registry or agent execution.",
+  "task_identity": "case-0010-line-range-disclosure",
+  "tie_order": "descending positive score, stable frozen corpus order"
+}
