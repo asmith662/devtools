@@ -27,3 +27,14 @@ semantic-resolution experiment. Production parameters/contracts remain unchanged
 Stage B is captured and the external Stage C packet is prepared. Use
 `python -m experiments.codex_dogfood.case_0011.replay` for capture replay;
 see [REPLAY_ERRATUM](REPLAY_ERRATUM.md). The original verifier remains frozen.
+
+## Current reviewed checkpoint
+
+Primary Stage C, independent Stage C-R, reliability comparison, reconciliation
+and reviewed gold are COMPLETE. Source adjudications remain immutable. The
+[reviewed reliability conclusion](adjudication/reviewed/REVIEWED_GOLD.md) is the
+architecture-grade Case 0011 target; primary-only conclusions were unsafe.
+The separate [C.5 packet transparency document](adjudication/stage_c5/C5_PACKET_REVIEW.md)
+is PREPARED only. C.5 adjudication and Stage D are NOT PERFORMED; U1 effectiveness
+is UNKNOWN. [Current status](adjudication/STATUS.md) supersedes historical status
+wording above; no treatment result has been joined.

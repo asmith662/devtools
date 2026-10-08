@@ -1,29 +1,37 @@
 # Case 0011 adjudication status
 
-Primary Stage C gold = COMPLETE and immutable.
-Independent Stage C-R gold = COMPLETE and immutable.
+Primary Stage C = COMPLETE and immutable.
+Independent Stage C-R = COMPLETE and immutable.
 Reliability comparison = COMPLETE.
-Reviewed/reconciled gold = PENDING; not yet available.
-Stage C.5 = BLOCKED.
-Stage D = BLOCKED.
+Reconciliation = COMPLETE.
+Reviewed gold = COMPLETE.
+Stage C.5 packet = PREPARED.
+Stage C.5 adjudication = NOT PERFORMED.
+Stage D = NOT PERFORMED.
 U1 effectiveness = UNKNOWN.
 
-The original primary publication is historical evidence of its earlier checkpoint.
-This note is the current adjudication status. Neither adjudication is truth.
-See [comparison](reliability/reliability_comparison.md), its full machine-readable
-[set and structural evidence](reliability/reliability_comparison.json), and
-[publication and validation](reliability/PUBLICATION.md).
+The [reviewed reliability conclusion](reviewed/REVIEWED_GOLD.md) publishes the
+architecture-grade Case 0011 target. Earlier primary/independent publications and
+comparison conclusions remain immutable historical evidence of their checkpoints.
+Primary gold alone was unsafe for architecture conclusions; independent review
+exposed material necessity and witness-structure instability. No cross-case
+generality is claimed and no treatment result may be joined yet.
 
-The treatment-free [reconciliation packet](reconciliation/INSTRUCTIONS.md) is
-ready for a fresh third adjudicator. Source identity mapping is deliberately
-outside the packet in `reliability/packet_audit.json`; never give that audit record
-or the repository comparison to the reconciliation reviewer.
+The [C.5 pre-review transparency document](stage_c5/C5_PACKET_REVIEW.md) shows
+only the future semantic review inputs. It is not adjudication gold. The sterile
+workspace and digest scopes are documented in reviewed/REVIEWED_GOLD.md.
 
-The 98.64% aggregate agreement is dominated by unnecessary cells. Required-cell
-Jaccard is 0.55, only 22 of 38 primary required cells are retained by the independent
-adjudication, and minimum sufficient unions differ by eight resources. Task gaps,
-alternative structures and indispensability differ. This is severe architecture-
-relevant disagreement. Reviewed gold is required before C.5; Stage D architecture
-conclusions remain blocked, and primary-only conclusions would be unsafe.
+The [construction operator access disclosure](OPERATOR_ACCESS_DISCLOSURE.md)
+records prior exposure to A/B/C arm wiring. It is outside the packet and does not
+indicate that reviewed gold or the treatment-free C.5 packet was contaminated.
+The prior operator cannot attest that no arm identities were accessed. The fresh
+C.5 adjudicator receives only the independently checked sterile packet.
 
-No reconciliation, C.5, Stage D or effectiveness evaluation occurred here.
+Next step: Start a completely fresh treatment-blind Stage C.5 session from the
+prepared sterile workspace and adjudicate only InformationNeed-to-reviewed-unit
+semantic coverage. Do not access lexical queries, result resources, ranks, scores,
+acquisition costs, treatment arms, or Stage D outcomes.
+
+Checkpoint publication was previously paused for the construction operator access
+disclosure. The access event and scoped non-access attestations are recorded in
+OPERATOR_ACCESS_DISCLOSURE.md. Mechanical packet and gold integrity remain intact.

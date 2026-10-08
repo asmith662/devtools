@@ -1,0 +1,55 @@
+{
+  "checks": {
+    "agreed-cell inheritance seal": "PASS",
+    "deterministic byte replay": "PASS",
+    "exact source support": "PASS",
+    "exact sufficient products and intersections": "PASS",
+    "formatter": "PASS",
+    "full frozen frame": "PASS",
+    "overwrite refusal": "PASS",
+    "reconciled-cell provenance": "PASS",
+    "reconciliation input scopes": "PASS",
+    "scoped Ruff": "PASS",
+    "strict mypy": "PASS",
+    "task-gap and six limitations": "PASS",
+    "unit identity and source provenance": "PASS",
+    "unit/cell/alternative consistency": "PASS"
+  },
+  "documentation_impact": "Case-local status/protocol/publication only; no production source, package authority, architecture decision, backlog or historical-ledger change.",
+  "operator_access_boundary": {
+    "cause": "protocol.py inspected for frozen InformationNeed identities; output exposed A/B/C query wiring",
+    "confirmation": "NOT ACCESSED",
+    "retrieval_results": "NOT ACCESSED",
+    "semantic_adjudication": "NOT PERFORMED",
+    "status": "VIOLATED"
+  },
+  "original_reconciliation_tests": {
+    "reason": "Temporary authored suite removed by original reviewer; imported decisions independently reverified.",
+    "rerun": false,
+    "sealed_attestation_passed": 10
+  },
+  "protected_development_validation": {
+    "command": "uv run python scripts/validate_development.py",
+    "confirmation": "not performed",
+    "experiment_tree": "excluded before collection",
+    "failed": 0,
+    "passed": 1588,
+    "production_branch_coverage_percent": 100,
+    "skipped": 2
+  },
+  "publication_status": "VALIDATED_FOR_COMMIT",
+  "reviewed_gold_sha256": "0d6f54a4ab1eed68b2deb4f4557ef767ff9f2a7771eebde534527c425ae34430",
+  "reviewed_statistics_sha256": "3b04391f5977dd4ce09bfe8255c9302b6cd02036308462592eec5c4baf131596",
+  "reviewed_tests": {
+    "cache": "disabled",
+    "conftest": "disabled",
+    "failed": 0,
+    "passed": 11,
+    "plugins": "autoload disabled"
+  },
+  "schema": "case-0011-reviewed-validation-v1",
+  "source_support_assertions": 592,
+  "stage_c5": "NOT PERFORMED",
+  "stage_d": "NOT PERFORMED",
+  "u1_effectiveness": "UNKNOWN"
+}
