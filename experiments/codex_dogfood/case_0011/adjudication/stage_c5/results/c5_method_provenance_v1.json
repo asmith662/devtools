@@ -1,0 +1,79 @@
+{
+  "alternative_semantics": "ALL complementary units per alternative; ANY complete alternative per obligation. Original memberships preserved.",
+  "artifact_policy": "Scientific outputs, local generator and local tests only. Operational .local/codex-result.md is created after scientific validation and excluded from all scientific hashes and evidence.",
+  "bindings": {
+    "frozen_needs_sha256": "8e951bc42ee08db656717ffb494880de26007c087d31f38657b421b8793c54aa",
+    "reviewed_gold_sha256": "0d6f54a4ab1eed68b2deb4f4557ef767ff9f2a7771eebde534527c425ae34430",
+    "verification": "The exact-hashed manifest binds the exact-hashed archive and decompressed payload to these opaque source identifiers. Packet/manifest frames, counts, need/unit identities and full alternative membership are consistent. No source serialization/preimage scope is declared; neither opaque identifier is recomputed from a guessed subset or JSON encoding."
+  },
+  "blindness_attestation": {
+    "Git history accessed": "NO",
+    "Stage D outcomes accessed": "NO",
+    "acquisition costs accessed": "NO",
+    "analyzed terms accessed": "NO",
+    "arm identities accessed": "NO",
+    "confirmation accessed": "NO",
+    "lexical query strings accessed": "NO",
+    "parent/sibling filesystem accessed": "NO",
+    "ranks/scores accessed": "NO",
+    "repository checkout accessed": "NO",
+    "resource paths for gold answers accessed": "NO",
+    "result resources accessed": "NO",
+    "retrieval routes accessed": "NO",
+    "treatment results accessed": "NO"
+  },
+  "decompressed_payload_sha256": "c7b0236c21b1cf6168f6eac123f412dd8e90df8dad7058829b99107d7be2ebe3",
+  "direct_requirement": "U1 requires at least one DIRECTLY_COVERS mapping for every required unit.",
+  "evidence_inputs": [
+    "C5_INSTRUCTIONS.md",
+    "manifest.json",
+    "integrity.json",
+    "packet.json.gz"
+  ],
+  "frame": {
+    "case_identity": "case-0011",
+    "corpus_id": "1e9d78ac0f6c2ca788c161649450bc70f953ea084b97b5f403344655f78721e4",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "981d67d6678d538776f2e400d79156b6e92fed048ee9af57b5a3a0a6e5f4cd17",
+    "task_identity": "case-0011-context-utf8-ceiling"
+  },
+  "input_sha256": {
+    "C5_INSTRUCTIONS.md": "728ef0710539c8531e816a334a6ac6baee17ca1f0a3c514c4bb4bc50f76a74a7",
+    "integrity.json": "d85c45a838586fead1ba25791a5f6d9c5d69db97b249d2a0ba3f3571695bfd66",
+    "manifest.json": "b39d7b9121d07f5a842bbed40f5a876d828d0fa7a82d3900b05f428a622892f1",
+    "packet.json.gz": "da77c2a3e32129eabd3ffe4331ae2a1caef91cffffbd21b728420a953ad7e6f1"
+  },
+  "limits": "This assesses acquisition intent only. It does not establish retrieval success, treatment comparisons or U1 effectiveness.",
+  "need_classification": "Reviewer first explicitly excludes MISFORMULATED/AMBIGUOUS on semantic grounds for each need, then derives NECESSARY/USEFUL_REDUNDANT/PARTIAL_ONLY/UNNECESSARY using direct/partial and unique-unit support. No frozen needs are repaired.",
+  "output_serialization": "Versioned UTF-8 JSON, sorted object keys, two-space indentation, one terminal LF, original packet order for need/unit arrays. This output rule imposes no additional input integrity rule.",
+  "procedure": "Independent reviewer compared all 18 need meanings with all 32 unit meanings, including cross-obligation pairs. Direct decisions require the complete unit under the counterfactual; partial decisions specify sought and missing components. Noncoverage is defended with the distinct facts sought and established. The frozen statement, reason and task basis provide intent; labels are not assigned by lexical matching or obligation pruning.",
+  "schema": "case-0011-c5-semantic-v1/method-provenance",
+  "sterile_preexisting_files": [
+    "C5_INSTRUCTIONS.md",
+    "integrity.json",
+    "manifest.json",
+    "packet.json.gz"
+  ],
+  "sterile_preflight": {
+    "git_present": false,
+    "junctions_or_reparse_points_present": false,
+    "prior_c5_gold_present": false,
+    "repository_checkout_present": false,
+    "symlinks_present": false,
+    "treatment_outputs_present": false,
+    "unexpected_preexisting_files": 0
+  },
+  "strict_scope_examples": [
+    "Knowing assembly ownership alone does not establish the complete ordered-plan/realization/selection boundary.",
+    "Knowing forbidden dependencies alone does not establish actual permitted imports or type-only dependencies.",
+    "Knowing exports exposing assembly alone does not establish every rendering companion or the separate outer facade.",
+    "Identifying the protected entry point alone does not establish every execution and authorization rule.",
+    "Production behavior and test-existence/construction facts are distinguished; partial overlap does not establish a full regression-test unit."
+  ],
+  "unit_precedence": [
+    "COVERED",
+    "PARTIAL_ONLY",
+    "AMBIGUOUS_ONLY",
+    "UNCOVERED"
+  ]
+}

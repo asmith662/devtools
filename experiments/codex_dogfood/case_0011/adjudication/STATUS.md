@@ -5,9 +5,10 @@ Independent Stage C-R = COMPLETE and immutable.
 Reliability comparison = COMPLETE.
 Reconciliation = COMPLETE.
 Reviewed gold = COMPLETE.
-Stage C.5 packet = PREPARED.
-Stage C.5 adjudication = NOT PERFORMED.
-Stage D = NOT PERFORMED.
+Primary Stage C.5 = COMPLETE; immutable primary semantic mapping published.
+Independent Stage C.5-R = PENDING.
+Reviewed/reconciled C.5 mapping = NOT AVAILABLE.
+Stage D = BLOCKED pending independent C.5-R and reliability comparison.
 U1 effectiveness = UNKNOWN.
 
 The [reviewed reliability conclusion](reviewed/REVIEWED_GOLD.md) publishes the
@@ -27,10 +28,22 @@ indicate that reviewed gold or the treatment-free C.5 packet was contaminated.
 The prior operator cannot attest that no arm identities were accessed. The fresh
 C.5 adjudicator receives only the independently checked sterile packet.
 
-Next step: Start a completely fresh treatment-blind Stage C.5 session from the
-prepared sterile workspace and adjudicate only InformationNeed-to-reviewed-unit
-semantic coverage. Do not access lexical queries, result resources, ranks, scores,
-acquisition costs, treatment arms, or Stage D outcomes.
+The primary semantic mapping supports INFORMATION-NEED COVERAGE FAILURE. It does
+not yet distinguish conclusively between under-decomposed/under-specified needs
+and a need-to-unit granularity mismatch, because a reviewed required unit may
+combine several semantic contracts while InformationNeeds intentionally ask
+narrow questions. Do not assign INFORMATION_NEED_AUTHORING_DEFECT before the
+independent reliability and granularity review.
+
+Primary C.5 does not establish U1 effectiveness. No reviewed/reconciled C.5
+mapping is available. The independent C.5-R packet is prepared in a new sterile
+workspace; its reviewer must not receive primary labels, statistics, coverage,
+classifications or uncovered-unit identities.
+
+Next step: Start a completely fresh Codex Astra session from the prepared C.5-R
+sterile workspace and independently adjudicate all 576 need-to-unit mappings,
+plus the supplementary unit-granularity and collective-coverage audits. Do not
+perform Stage D.
 
 Checkpoint publication was previously paused for the construction operator access
 disclosure. The access event and scoped non-access attestations are recorded in

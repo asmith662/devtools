@@ -1,0 +1,27 @@
+{
+  "checks": {
+    "all_18_needs_classified": "PASS",
+    "all_32_units_accounted_for": "PASS",
+    "alternative_membership_preservation": "PASS",
+    "blindness_all_no": "PASS",
+    "decompressed_payload_hash": "PASS",
+    "deterministic_replay": "PASS",
+    "direct_rationale_completeness": "PASS",
+    "duplicate_pairs_zero": "PASS",
+    "exact_packet_input_hashes": "PASS",
+    "manifest_payload_source_identity_binding": "PASS",
+    "missing_pairs_zero": "PASS",
+    "need_classification_consistency": "PASS",
+    "no_forbidden_fields": "PASS",
+    "overwrite_refusal": "PASS",
+    "pair_coverage_576_of_576": "PASS",
+    "partial_rationale_completeness": "PASS",
+    "scientific_workspace_whitelist": "PASS",
+    "sterile_preflight": "PASS",
+    "unexpected_pairs_zero": "PASS",
+    "unit_coverage_derivation": "PASS"
+  },
+  "digest_manifest_policy": "The digest manifest excludes itself to avoid recursive hashing, and excludes the operational handoff. Its own hash is reported externally.",
+  "schema": "case-0011-c5-semantic-v1/validation",
+  "verification_method": "Self-contained local pytest suite with plugin autoload disabled, --noconftest and an explicit local test path. Checks recompute derivations and replay in memory; overwrite is refused before any output is written."
+}
