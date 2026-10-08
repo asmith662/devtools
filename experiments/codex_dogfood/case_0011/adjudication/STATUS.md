@@ -8,8 +8,11 @@ Reviewed gold = COMPLETE.
 Primary Stage C.5 = COMPLETE; immutable primary semantic mapping published.
 Independent Stage C.5-R = COMPLETE; immutable independent adjudication published.
 C.5 reliability comparison = COMPLETE.
-Reconciled C.5 mapping = PENDING.
-Stage D = BLOCKED pending fresh treatment-blind C.5 reconciliation.
+Reconciliation v1 = CONTRACT DEFECT / NO DECISIONS.
+Reconciliation v2 packet = PREPARED.
+Reconciliation v2 adjudication = NOT PERFORMED.
+Final reviewed C.5 mapping = NOT AVAILABLE.
+Stage D = BLOCKED pending bounded v2 reconciliation and later repository-root materialization.
 U1 effectiveness = UNKNOWN.
 
 The [reviewed reliability conclusion](reviewed/REVIEWED_GOLD.md) publishes the
@@ -42,16 +45,20 @@ diagnostic to 26/32 covered units. These are structurally validated semantic
 propositions awaiting confirmation, not reviewed truth or a revised U1 rule.
 No final U1 outcome or INFORMATION_NEED_AUTHORING_DEFECT is selected.
 
-The [neutral reconciliation packet](stage_c5/reconciliation/PUBLICATION.md)
-contains only frozen semantic inputs and anonymized competing claims, with all
-granularity and collective propositions requiring confirmation. The outside
-source audit and comparison publications must not reach the fresh adjudicator.
-No reconciliation or Stage D has been performed in this checkpoint. No treatment
-or confirmation data was accessed.
+The [v1 contract erratum](stage_c5/reconciliation_v2/V1_CONTRACT_ERRATUM.md)
+records EXPERIMENTAL_CONTRACT_DEFECT, with zero semantic decisions and no output.
+The intact treatment-blind v1 packet must not be used for reconciliation.
+The [v2 packet review](stage_c5/reconciliation_v2/RECONCILIATION_V2_PACKET_REVIEW.md)
+corrects the output scope while preserving all 110 scientific propositions.
+The fresh reviewer emits bounded decisions only; agreed pairs are inherited later
+by a separate deterministic repository-root materializer. No absent-pair default
+exists. No reconciliation or Stage D was performed in this correction checkpoint.
+No treatment or confirmation data was accessed.
 
-Next step: Start a fresh treatment-blind C.5 reconciliation session from the
-prepared sterile workspace and resolve only anonymized mapping, coverage, need
-classification, granularity and collective-coverage disagreements.
+Next step: Start a fresh treatment-blind reconciliation-v2 session from the
+prepared stable sterile workspace and resolve only the 110 anonymized propositions.
+Produce bounded reconciliation decisions only. Do not construct the complete
+576-pair mapping and do not assign defaults to omitted pairs.
 
 Checkpoint publication was previously paused for the construction operator access
 disclosure. The access event and scoped non-access attestations are recorded in

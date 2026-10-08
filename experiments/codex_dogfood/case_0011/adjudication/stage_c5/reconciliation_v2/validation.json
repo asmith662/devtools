@@ -1,0 +1,72 @@
+{
+  "absent_pair_default": null,
+  "confirmation_access": "NONE",
+  "final_reviewed_c5_mapping": "NOT AVAILABLE",
+  "git_packet_bytes": "Packet files marked -text to preserve scientific byte hashes across checkouts.",
+  "handoff": "Operational only, excluded from hashes, packets and evidence.",
+  "reconciliation_v2_adjudication": "NOT PERFORMED",
+  "schema": "case-0011-c5-reconciliation-preparation-v2",
+  "semantic_propositions_unchanged": true,
+  "stage_d": "BLOCKED / NOT PERFORMED",
+  "standalone_validator": {
+    "archive_sha256": "376046d8921e8590a31829df467bdf6901b1784a0cf68d1783793155bc6ae489",
+    "integrity_sha256": "d6fd3e99fdb5df407d1c039aabb96359e69bb9588cbdd84bb6f73cff3acb13d7",
+    "manifest_sha256": "49bfb1d579fbe23b54828396c3313774badeccac36fafbebb1c9e5224f958792",
+    "payload_sha256": "c1ecca8aec6bb9cbfb09668a79054262d91e22cfad4adda686bdf97016476b9f",
+    "proposition_counts": {
+      "ALTERNATIVE_COMPLETENESS": 10,
+      "COLLECTIVE_COVERAGE": 6,
+      "DIRECT_RATIONALE": 12,
+      "NEED_CLASSIFICATION": 7,
+      "PAIR_LABEL": 32,
+      "UNIT_GRANULARITY": 32,
+      "UNIT_STATUS": 11
+    },
+    "status": "PASS",
+    "whitelist": [
+      "INSTRUCTIONS.md",
+      "integrity.json",
+      "manifest.json",
+      "packet.json.gz",
+      "reconcile_c5_v2.py",
+      "test_reconcile_c5_v2.py",
+      "validate_packet.py"
+    ]
+  },
+  "starting_head": "53e1681d2bbea393bdf7233a279dd176f0d780ee",
+  "status": "PASS",
+  "sterile_workspace": "C:\\Users\\recoveryadmin\\CodexSterile\\case_0011_c5_reconciliation_v2_c1ecca8aec6b",
+  "test_scope": "Explicit semantic protocol tests only; no broad profile or live validation that could cross the access boundary.",
+  "treatment_access": "NONE",
+  "u1_effectiveness": "UNKNOWN",
+  "v1_decisions": 0,
+  "v1_integrity": "PASS",
+  "v1_omitted_pairs": 526,
+  "v1_pairs_with_explicit_labels": 50,
+  "v1_status": "EXPERIMENTAL_CONTRACT_DEFECT",
+  "validation": {
+    "bounded_schema_no_full_mapping": "PASS",
+    "deterministic_double_build": "PASS",
+    "formatter": "PASS: ruff format --isolated --check",
+    "integrity_corruption_and_reparse_rejection": "PASS",
+    "leakage_injection_and_source_anonymization": "PASS",
+    "omitted_pair_no_default": "PASS",
+    "overwrite_refusal": "PASS",
+    "packet_coverage": "PASS: exact 110 identities and category counts",
+    "packet_schema_tests": "PASS: 12 unittest tests; repository and stable workspace",
+    "repository_construction_tests": "PASS: 3 unittest tests",
+    "scoped_ruff": "PASS: --isolated --select E,F,I,B",
+    "strict_mypy": "PASS: five files; explicit MYPYPATH for standalone modules",
+    "workspace_exact_whitelist": "PASS: seven regular files, no directories or outputs"
+  },
+  "workspace_checkpoint": "canonical payload c1ecca8aec6b",
+  "workspace_files_sha256": {
+    "INSTRUCTIONS.md": "da6a406b5b49d81edc47b02378396a07e0fd8744a5b52659a3db9166e79dc600",
+    "integrity.json": "d6fd3e99fdb5df407d1c039aabb96359e69bb9588cbdd84bb6f73cff3acb13d7",
+    "manifest.json": "49bfb1d579fbe23b54828396c3313774badeccac36fafbebb1c9e5224f958792",
+    "packet.json.gz": "376046d8921e8590a31829df467bdf6901b1784a0cf68d1783793155bc6ae489",
+    "reconcile_c5_v2.py": "a0e43c829b4174e2776ced80f0e628272a2a3c67deeacbdf9a5830ebfeda4d6e",
+    "test_reconcile_c5_v2.py": "4168796f73720e595c4ec422ceb50652337c9f730e71421bc7eb37f951e80292",
+    "validate_packet.py": "3673544961a5107c1e14ee651520aa15077efa3cd7d5f925450f55a1d87c1161"
+  }
+}
