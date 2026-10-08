@@ -1,5 +1,12 @@
 # Primary Case 0011 Stage C.5 publication
 
+Current status: independent C.5-R and the reliability comparison are COMPLETE.
+The [reliability checkpoint](../reliability/PUBLICATION.md) reports severe
+architecture-relevant disagreement and prepares a neutral reconciliation packet.
+Reconciled C.5 mapping is PENDING; Stage D remains BLOCKED; U1 effectiveness is
+UNKNOWN. The primary-checkpoint account below is historical, including its
+then-pending independent review. Its immutable artifacts and claims are preserved.
+
 Primary C.5 semantic mapping is COMPLETE and immutable. The independently
 reviewed C.5-R adjudication is PENDING; a reviewed/reconciled C.5 mapping is NOT
 AVAILABLE. Stage D is BLOCKED. U1 effectiveness is UNKNOWN. This primary result

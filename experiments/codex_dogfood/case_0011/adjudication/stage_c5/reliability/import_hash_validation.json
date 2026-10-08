@@ -1,0 +1,23 @@
+{
+  "authority": "Sealed ledger for test file; frozen expected digests for other four outputs.",
+  "correction": "Prior operator prompt test digest was a transcription defect; the sealed ledger is verified, the test matches it, and no immutable artifact was modified or regenerated.",
+  "git_verification": "Byte-level stage and commit verification is required and recorded in the final operator report; no self-referential commit identity is included.",
+  "required_equality_scopes": [
+    "sterile_source",
+    "authoritative_expected",
+    "repository_destination",
+    "staged_git_blob_content",
+    "committed_worktree"
+  ],
+  "schema": "case-0011-c5r-import-hash-validation-v1",
+  "sealed_ledger_sha256": "aaf48937463afae41ee13d7cf2ea6dcb88a8128e2d556da841aabc1f5da4ef27",
+  "sha256": {
+    "c5r_v1.py": "5f4b95b6581daf3748843f81445547aa177a9aca9ca0446ccbcc3a2160a19826",
+    "c5r_v1_adjudication.json": "c357ec905f38460ac66c15110296f7cd26102955ddfeabfe00cb88792ee4b888",
+    "c5r_v1_hashes.json": "aaf48937463afae41ee13d7cf2ea6dcb88a8128e2d556da841aabc1f5da4ef27",
+    "c5r_v1_validation.json": "f80e6d990949995b7a88883651034ffedaebe610f56efe1232e7994295b46942",
+    "test_c5r_v1.py": "24d7076918c32504dab8bb8fef2fa2581464d5d714a19b3212348aec950c7d41"
+  },
+  "source_workspace": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\case_0011_stage_c5_reliability_astra_918e90bc",
+  "validation_record_consistency": "PASS"
+}

@@ -1,0 +1,73 @@
+{
+  "adjudication_sha256": "c357ec905f38460ac66c15110296f7cd26102955ddfeabfe00cb88792ee4b888",
+  "blindness_attestation": {
+    "Git history accessed": "NO",
+    "Stage D outcomes accessed": "NO",
+    "acquisition costs accessed": "NO",
+    "analyzed terms accessed": "NO",
+    "arm identities accessed": "NO",
+    "confirmation accessed": "NO",
+    "gold-answer resource paths accessed": "NO",
+    "lexical queries accessed": "NO",
+    "parent/sibling filesystem accessed": "NO",
+    "primary C.5 outputs accessed": "NO",
+    "primary C.5 statistics accessed": "NO",
+    "ranks/scores accessed": "NO",
+    "repository checkout accessed": "NO",
+    "result resources accessed": "NO",
+    "retrieval routes accessed": "NO",
+    "treatment results accessed": "NO"
+  },
+  "checks": {
+    "12_alternative_audits": "PASS",
+    "18_need_classifications": "PASS",
+    "32_granularity_judgments": "PASS",
+    "576_unique_pairs": "PASS",
+    "collective_minimal_sets": "PASS",
+    "coverage_derivation": "PASS",
+    "declared_archive_and_payload_hashes": "PASS",
+    "deterministic_replay": "PASS",
+    "exact_input_hashes": "PASS",
+    "frozen_statement_identity": "PASS",
+    "label_and_rationale_completeness": "PASS",
+    "no_forbidden_fields": "PASS",
+    "overwrite_refusal": "PASS",
+    "packet_manifest_frame_counts_and_memberships": "PASS",
+    "scientific_workspace_whitelist": "PASS"
+  },
+  "deterministic_replay": "Fresh-process replay and repeated in-process construction exactly equal frozen adjudication bytes; no timestamps or environment-dependent fields.",
+  "handoff_exclusion": ".local/codex-result.md is operational and excluded from scientific hashes, evidence and whitelist checks.",
+  "input_sha256": {
+    "C5_INSTRUCTIONS.md": "728ef0710539c8531e816a334a6ac6baee17ca1f0a3c514c4bb4bc50f76a74a7",
+    "C5_R_INSTRUCTIONS.md": "9e03ff5059b56590bde97019010ad9230fc81fc6023fd8fe81a42010939d2852",
+    "integrity.json": "d85c45a838586fead1ba25791a5f6d9c5d69db97b249d2a0ba3f3571695bfd66",
+    "manifest.json": "b39d7b9121d07f5a842bbed40f5a876d828d0fa7a82d3900b05f428a622892f1",
+    "packet.json.gz": "da77c2a3e32129eabd3ffe4331ae2a1caef91cffffbd21b728420a953ad7e6f1"
+  },
+  "local_tests": {
+    "command": "python -B -m pytest ./test_c5r_v1.py --noconftest -p no:cacheprovider -o addopts= -q",
+    "environment": {
+      "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "failed": 0,
+    "passed": 12,
+    "repository_imports": false
+  },
+  "overwrite_refusal": "Second CLI --freeze exited 2 with OVERWRITE_REFUSED; original adjudication bytes unchanged.",
+  "schema": "case-0011-c5r-validation-v1",
+  "scientific_whitelist": [
+    "C5_INSTRUCTIONS.md",
+    "C5_R_INSTRUCTIONS.md",
+    "c5r_v1.py",
+    "c5r_v1_adjudication.json",
+    "c5r_v1_hashes.json",
+    "c5r_v1_validation.json",
+    "integrity.json",
+    "manifest.json",
+    "packet.json.gz",
+    "test_c5r_v1.py"
+  ],
+  "source_provenance_hashes": "Authenticated manifest declarations retained; no invented pre-packet reconstruction or serialization requirement.",
+  "status": "PASS"
+}

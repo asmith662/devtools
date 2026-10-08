@@ -1,0 +1,94 @@
+{
+  "access": {
+    "confirmation_accessed": false,
+    "prohibited_files_opened": false,
+    "reconciliation_performed": false,
+    "stage_d_performed": false,
+    "treatment_accessed": false
+  },
+  "comparison_checks": {
+    "12_alternatives": "PASS",
+    "18_need_classifications": "PASS",
+    "32_granularity_judgments": "PASS",
+    "32_unit_statuses": "PASS",
+    "576_pair_partition": "PASS",
+    "6_collective_units_7_minimal_sets_structure": "PASS",
+    "deterministic_replay": "PASS",
+    "direct_partial_noncoverage_partitions": "PASS",
+    "frame_alignment": "PASS",
+    "semantic_minimality_confirmation": "PENDING"
+  },
+  "comparison_tests": {
+    "bytecode": false,
+    "cacheprovider": false,
+    "conftest": false,
+    "failed": 0,
+    "file": "test_c5_comparison.py",
+    "passed": 61,
+    "plugin_autoload": false,
+    "project_addopts": ""
+  },
+  "documentation_impact": "Case status and publication only; no framework, taxonomy, architecture or backlog changes.",
+  "double_build": "PASS",
+  "formatter": {
+    "immutable_outputs_excluded": true,
+    "repository_authored_files": 4,
+    "status": "PASS"
+  },
+  "isolated_c5r": {
+    "environment": {
+      "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "failed": 0,
+    "flags": [
+      "--noconftest",
+      "-p no:cacheprovider",
+      "-o addopts="
+    ],
+    "passed": 12,
+    "workspace": "C:\\Users\\RECOVE~1\\AppData\\Local\\Temp\\case_0011_c5r_verified_54ruq7qi"
+  },
+  "leakage_rejection": "PASS",
+  "overwrite_refusal": "PASS",
+  "packet": {
+    "archive_sha256": "da7caf25860f4803838e850f7b3d06d696e95a50ab39cc4ee2635e794961f550",
+    "integrity_sha256": "a88d5a22e19b2b1ce8366c2bb25ff7954066921352e2f8024e4d014bf6e419db",
+    "manifest_sha256": "a753ec0fa40818fd236ff980bca0724390661f73a9704fe0cbdb8a72527d57c8",
+    "payload_sha256": "4f5357b3c35eec80c338c03559bf4a1f97e9d34746a77291af9d18365100a2a9",
+    "proposition_counts": {
+      "ALTERNATIVE_COMPLETENESS": 10,
+      "COLLECTIVE_COVERAGE": 6,
+      "DIRECT_RATIONALE": 12,
+      "NEED_CLASSIFICATION": 7,
+      "PAIR_LABEL": 32,
+      "UNIT_GRANULARITY": 32,
+      "UNIT_STATUS": 11
+    },
+    "status": "PASS",
+    "whitelist": [
+      "INSTRUCTIONS.md",
+      "integrity.json",
+      "manifest.json",
+      "packet.json.gz",
+      "validate_packet.py"
+    ]
+  },
+  "schema": "case-0011-c5-reliability-validation-v1",
+  "scope": "Explicit semantic tests only; no broad profile or live validation that could cross the access boundary.",
+  "scoped_ruff": {
+    "immutable_outputs_excluded": true,
+    "profile": "--isolated --select E4,E7,E9,F,I",
+    "status": "PASS"
+  },
+  "source_anonymization": "PASS; per-proposition canonical claim digest, source mapping outside packet",
+  "source_gate": "Authoritative sealed ledger verified; all five immutable hashes match. Prompt transcription correction recorded outside immutable outputs.",
+  "status": "PASS",
+  "sterile_reconciliation_workspace": "C:\\Users\\RECOVE~1\\AppData\\Local\\Temp\\case_0011_c5_reconciliation_final_z8s60abm",
+  "strict_mypy": {
+    "arguments": "--strict --follow-imports=normal --no-incremental",
+    "source_files": 4,
+    "status": "PASS"
+  },
+  "validation_record_consistency": "PASS"
+}
