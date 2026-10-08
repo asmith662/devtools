@@ -1,0 +1,454 @@
+{
+  "packet_identity": "c1ecca8aec6bb9cbfb09668a79054262d91e22cfad4adda686bdf97016476b9f",
+  "schema": "case-0011-reviewed-c5-v1/statistics",
+  "statistics": {
+    "collective_sets": {
+      "AMBIGUOUS": 0,
+      "INSUFFICIENT": 4,
+      "VALID_BUT_NOT_MINIMAL": 0,
+      "VALID_MINIMAL_COLLECTIVE_SET": 3
+    },
+    "comparisons": {
+      "independent": {
+        "need_changes": [
+          {
+            "from": "NECESSARY",
+            "need": "case-0011-context-utf8-ceiling/ownership/assembly-owner",
+            "to": "PARTIAL_ONLY"
+          },
+          {
+            "from": "NECESSARY",
+            "need": "case-0011-context-utf8-ceiling/ownership/dependencies",
+            "to": "PARTIAL_ONLY"
+          },
+          {
+            "from": "NECESSARY",
+            "need": "case-0011-context-utf8-ceiling/ceiling/rejection",
+            "to": "PARTIAL_ONLY"
+          },
+          {
+            "from": "USEFUL_REDUNDANT",
+            "need": "case-0011-context-utf8-ceiling/request/prompt",
+            "to": "PARTIAL_ONLY"
+          }
+        ],
+        "pair_changes": [
+          {
+            "from": "DIRECTLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/ceiling/rejection",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-722d29ab3964ccc9a263e022b8048cf7f868ecc1a00128f96a56b05b56274605"
+          },
+          {
+            "from": "DIRECTLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/exports/public-boundary",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-8ad51eaf88aadfa2dd3d6fff7c23390b4bec7f204bc74d276ba759e0e6b3aa14"
+          },
+          {
+            "from": "PARTIALLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/frame/binding",
+            "to": "DOES_NOT_COVER",
+            "unit": "unit-08b960311265498f39d05f67308e78088d73f0324966eb42952517809e530aa2"
+          },
+          {
+            "from": "DIRECTLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/frame/binding",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-ab36d70f1deecd237ce4358ffb3258f71b19a55589c1815c3a99545581e8cbdf"
+          },
+          {
+            "from": "DIRECTLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/ownership/assembly-owner",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-b92a7483c7e27b953e8533887d3a5a4dc664b57dd6859cb12fc7c742ae6eeca2"
+          },
+          {
+            "from": "DIRECTLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/ownership/dependencies",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-60afd810dde9fbb0e5702b55bb3429a416665eddb2af840cc0eff247b801e7c7"
+          },
+          {
+            "from": "PARTIALLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/request/prompt",
+            "to": "DOES_NOT_COVER",
+            "unit": "unit-5bf714afea56a8406609fdff47f7aa1db5a9fed50ba652b39884aca7ddf7c8c7"
+          },
+          {
+            "from": "DIRECTLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/request/prompt",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-a090f45af360240ad7ce7630ffd09098a6a1b7887839d5266196a6f645880702"
+          },
+          {
+            "from": "DOES_NOT_COVER",
+            "need": "case-0011-context-utf8-ceiling/tests/frame-rejection",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-21e7319918686d72a7f9e79f31bc68ed4922858fa7bfa299d351ea43ef3b0b87"
+          },
+          {
+            "from": "DOES_NOT_COVER",
+            "need": "case-0011-context-utf8-ceiling/tests/frame-rejection",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-4b3c320635122396ffe052357de8b5f96f074e35017c0331a650de95844eaccd"
+          },
+          {
+            "from": "DOES_NOT_COVER",
+            "need": "case-0011-context-utf8-ceiling/tests/frame-rejection",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-5e58e7852d6acb8027c97bf0d6ccc3deede219f1c229e52225d0b31b7ed29af6"
+          },
+          {
+            "from": "DOES_NOT_COVER",
+            "need": "case-0011-context-utf8-ceiling/tests/frame-rejection",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-a2c6080b9a63cdbb8cb2057c41ba2c618614bc672246ada53ce1f470cf4d7fca"
+          },
+          {
+            "from": "DOES_NOT_COVER",
+            "need": "case-0011-context-utf8-ceiling/tests/frame-rejection",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-ab36d70f1deecd237ce4358ffb3258f71b19a55589c1815c3a99545581e8cbdf"
+          },
+          {
+            "from": "DOES_NOT_COVER",
+            "need": "case-0011-context-utf8-ceiling/tests/frame-rejection",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-eac315eb2a9f6a5634e094a5d4ef2960559030b62385b832a57f0f8d893b72de"
+          },
+          {
+            "from": "DOES_NOT_COVER",
+            "need": "case-0011-context-utf8-ceiling/tests/request-preservation",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-5bf714afea56a8406609fdff47f7aa1db5a9fed50ba652b39884aca7ddf7c8c7"
+          },
+          {
+            "from": "DOES_NOT_COVER",
+            "need": "case-0011-context-utf8-ceiling/tests/request-preservation",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-722d29ab3964ccc9a263e022b8048cf7f868ecc1a00128f96a56b05b56274605"
+          },
+          {
+            "from": "DOES_NOT_COVER",
+            "need": "case-0011-context-utf8-ceiling/tests/request-preservation",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-a090f45af360240ad7ce7630ffd09098a6a1b7887839d5266196a6f645880702"
+          },
+          {
+            "from": "DOES_NOT_COVER",
+            "need": "case-0011-context-utf8-ceiling/tests/request-preservation",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-f7ba939e852e8f0f8e89d99664675a3cd8f8c1d48ac0acdc0bc9b4ebb7d22c50"
+          },
+          {
+            "from": "DOES_NOT_COVER",
+            "need": "case-0011-context-utf8-ceiling/tests/text-boundaries",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-7a4fab44afff20a76dbc7edba7d33f2895f0cd322bdc37d5626f2ca74a792e0c"
+          },
+          {
+            "from": "PARTIALLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/tests/text-boundaries",
+            "to": "DOES_NOT_COVER",
+            "unit": "unit-87f78f68bcbaca8cbda3d9fc4b8f1daee88e66a1ed350ec6441d5861cbb400fc"
+          },
+          {
+            "from": "DOES_NOT_COVER",
+            "need": "case-0011-context-utf8-ceiling/tests/text-boundaries",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-e3c24d637a4dca9783a7b6b86dbe1abcda4ad0117b8933cc798af53004501e08"
+          },
+          {
+            "from": "PARTIALLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/validation/protected-entry",
+            "to": "DOES_NOT_COVER",
+            "unit": "unit-7ec311946c51700e892b24d725de3a5b89904e240505c5e5e79e4d1736e56bb9"
+          }
+        ],
+        "pair_label_counts": {
+          "AMBIGUOUS": 0,
+          "DIRECTLY_COVERS": 21,
+          "DOES_NOT_COVER": 514,
+          "PARTIALLY_COVERS": 41
+        },
+        "unit_changes": [
+          {
+            "from": "PARTIAL_ONLY",
+            "to": "UNCOVERED",
+            "unit": "unit-08b960311265498f39d05f67308e78088d73f0324966eb42952517809e530aa2"
+          },
+          {
+            "from": "COVERED",
+            "to": "PARTIAL_ONLY",
+            "unit": "unit-60afd810dde9fbb0e5702b55bb3429a416665eddb2af840cc0eff247b801e7c7"
+          },
+          {
+            "from": "COVERED",
+            "to": "PARTIAL_ONLY",
+            "unit": "unit-722d29ab3964ccc9a263e022b8048cf7f868ecc1a00128f96a56b05b56274605"
+          },
+          {
+            "from": "PARTIAL_ONLY",
+            "to": "UNCOVERED",
+            "unit": "unit-87f78f68bcbaca8cbda3d9fc4b8f1daee88e66a1ed350ec6441d5861cbb400fc"
+          },
+          {
+            "from": "COVERED",
+            "to": "PARTIAL_ONLY",
+            "unit": "unit-8ad51eaf88aadfa2dd3d6fff7c23390b4bec7f204bc74d276ba759e0e6b3aa14"
+          },
+          {
+            "from": "COVERED",
+            "to": "PARTIAL_ONLY",
+            "unit": "unit-ab36d70f1deecd237ce4358ffb3258f71b19a55589c1815c3a99545581e8cbdf"
+          },
+          {
+            "from": "COVERED",
+            "to": "PARTIAL_ONLY",
+            "unit": "unit-b92a7483c7e27b953e8533887d3a5a4dc664b57dd6859cb12fc7c742ae6eeca2"
+          }
+        ]
+      },
+      "primary": {
+        "need_changes": [
+          {
+            "from": "NECESSARY",
+            "need": "case-0011-context-utf8-ceiling/frame/items",
+            "to": "PARTIAL_ONLY"
+          },
+          {
+            "from": "PARTIAL_ONLY",
+            "need": "case-0011-context-utf8-ceiling/exports/public-boundary",
+            "to": "NECESSARY"
+          },
+          {
+            "from": "PARTIAL_ONLY",
+            "need": "case-0011-context-utf8-ceiling/documentation/architecture",
+            "to": "NECESSARY"
+          }
+        ],
+        "pair_changes": [
+          {
+            "from": "DOES_NOT_COVER",
+            "need": "case-0011-context-utf8-ceiling/ceiling/rejection",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-5bf714afea56a8406609fdff47f7aa1db5a9fed50ba652b39884aca7ddf7c8c7"
+          },
+          {
+            "from": "PARTIALLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/documentation/architecture",
+            "to": "DOES_NOT_COVER",
+            "unit": "unit-183296beacda118e38a058b6d2588e582fd74639627706768ea3eb9396cc4580"
+          },
+          {
+            "from": "PARTIALLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/documentation/architecture",
+            "to": "DIRECTLY_COVERS",
+            "unit": "unit-33a494497198cadf88145cc45dc05ca55e09e6405588ce5cdd12c4f2c65e8371"
+          },
+          {
+            "from": "PARTIALLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/documentation/package",
+            "to": "DOES_NOT_COVER",
+            "unit": "unit-33a494497198cadf88145cc45dc05ca55e09e6405588ce5cdd12c4f2c65e8371"
+          },
+          {
+            "from": "PARTIALLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/documentation/package",
+            "to": "DOES_NOT_COVER",
+            "unit": "unit-7a4fab44afff20a76dbc7edba7d33f2895f0cd322bdc37d5626f2ca74a792e0c"
+          },
+          {
+            "from": "PARTIALLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/documentation/package",
+            "to": "DOES_NOT_COVER",
+            "unit": "unit-e3c24d637a4dca9783a7b6b86dbe1abcda4ad0117b8933cc798af53004501e08"
+          },
+          {
+            "from": "PARTIALLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/exports/public-boundary",
+            "to": "DIRECTLY_COVERS",
+            "unit": "unit-0057f1c75647a0b3e2d678bb704888665ee7ffbfeec0e56f27c501027a03c027"
+          },
+          {
+            "from": "DIRECTLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/frame/items",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-f2f60cee7a81549ef3634c65a08ec026019e35505a0b7457ff348af70571ace3"
+          },
+          {
+            "from": "DOES_NOT_COVER",
+            "need": "case-0011-context-utf8-ceiling/ownership/assembly-owner",
+            "to": "PARTIALLY_COVERS",
+            "unit": "unit-722d29ab3964ccc9a263e022b8048cf7f868ecc1a00128f96a56b05b56274605"
+          },
+          {
+            "from": "PARTIALLY_COVERS",
+            "need": "case-0011-context-utf8-ceiling/request/copy",
+            "to": "DIRECTLY_COVERS",
+            "unit": "unit-5bf714afea56a8406609fdff47f7aa1db5a9fed50ba652b39884aca7ddf7c8c7"
+          }
+        ],
+        "pair_label_counts": {
+          "AMBIGUOUS": 0,
+          "DIRECTLY_COVERS": 13,
+          "DOES_NOT_COVER": 504,
+          "PARTIALLY_COVERS": 59
+        },
+        "unit_changes": [
+          {
+            "from": "PARTIAL_ONLY",
+            "to": "COVERED",
+            "unit": "unit-0057f1c75647a0b3e2d678bb704888665ee7ffbfeec0e56f27c501027a03c027"
+          },
+          {
+            "from": "PARTIAL_ONLY",
+            "to": "COVERED",
+            "unit": "unit-33a494497198cadf88145cc45dc05ca55e09e6405588ce5cdd12c4f2c65e8371"
+          },
+          {
+            "from": "PARTIAL_ONLY",
+            "to": "COVERED",
+            "unit": "unit-5bf714afea56a8406609fdff47f7aa1db5a9fed50ba652b39884aca7ddf7c8c7"
+          },
+          {
+            "from": "COVERED",
+            "to": "PARTIAL_ONLY",
+            "unit": "unit-f2f60cee7a81549ef3634c65a08ec026019e35505a0b7457ff348af70571ace3"
+          }
+        ]
+      }
+    },
+    "failure_causes": {
+      "C5_SEMANTIC_ADJUDICATION_INSTABILITY": {
+        "metrics": {
+          "need_disagreements": 7,
+          "pair_disagreements": 32,
+          "shared_direct_pairs": 12,
+          "unit_disagreements": 11,
+          "unresolved_decisions": 0
+        },
+        "provenance": {
+          "origin": "DETERMINISTIC_DERIVATION",
+          "scope": "descriptive_synthesis_of_reconciled_semantic_evidence"
+        },
+        "rationale": "Historical source disagreement materially affected direct facts and classifications. Exact bounded reconciliation resolves this checkpoint with zero unresolved decisions; it does not erase the observed instability or establish general reliability.",
+        "status": "ESTABLISHED"
+      },
+      "INFORMATION_NEED_COVERAGE_FAILURE": {
+        "metrics": {
+          "missing_direct": 17,
+          "required_units": 32,
+          "strict_complete_alternatives": 0,
+          "strict_covered": 15
+        },
+        "provenance": {
+          "origin": "DETERMINISTIC_DERIVATION",
+          "scope": "descriptive_synthesis_of_reconciled_semantic_evidence"
+        },
+        "rationale": "The final semantic mapping fails the frozen every-required-unit direct rule. This establishes a coverage failure before retrieval, without selecting treatment effectiveness.",
+        "status": "ESTABLISHED"
+      },
+      "NEED_TO_UNIT_GRANULARITY_MISMATCH": {
+        "metrics": {
+          "accepted_minimal_sets": 3,
+          "collectively_coverable_units": 6,
+          "diagnostic_covered": 18,
+          "rejected_sets": 4,
+          "strict_covered": 15
+        },
+        "provenance": {
+          "origin": "DETERMINISTIC_DERIVATION",
+          "scope": "descriptive_synthesis_of_reconciled_semantic_evidence"
+        },
+        "rationale": "Three validated N09/N10 collective sets establish full units without a direct pair. Four proposed sets are insufficient. This diagnostic does not replace frozen direct coverage.",
+        "status": "SUPPORTED"
+      },
+      "UNDER_DECOMPOSED_NEED_SET": {
+        "metrics": {
+          "atomic_not_directly_covered": 11,
+          "atomic_remaining_units": [
+            "unit-08b960311265498f39d05f67308e78088d73f0324966eb42952517809e530aa2",
+            "unit-1466ea6b2b7b8cdc077c41ad15c6baf8087b6e7a230723f83b9911815a09a10c",
+            "unit-183296beacda118e38a058b6d2588e582fd74639627706768ea3eb9396cc4580",
+            "unit-5e58e7852d6acb8027c97bf0d6ccc3deede219f1c229e52225d0b31b7ed29af6",
+            "unit-60afd810dde9fbb0e5702b55bb3429a416665eddb2af840cc0eff247b801e7c7",
+            "unit-722d29ab3964ccc9a263e022b8048cf7f868ecc1a00128f96a56b05b56274605",
+            "unit-87f78f68bcbaca8cbda3d9fc4b8f1daee88e66a1ed350ec6441d5861cbb400fc",
+            "unit-8ad51eaf88aadfa2dd3d6fff7c23390b4bec7f204bc74d276ba759e0e6b3aa14",
+            "unit-ab36d70f1deecd237ce4358ffb3258f71b19a55589c1815c3a99545581e8cbdf",
+            "unit-b92a7483c7e27b953e8533887d3a5a4dc664b57dd6859cb12fc7c742ae6eeca2",
+            "unit-fddd6c59fb1d485b6e4a6a749f66062c76ddd58df987a692ae75827e2f9b8329"
+          ],
+          "diagnostic_missing": 14
+        },
+        "provenance": {
+          "origin": "DETERMINISTIC_DERIVATION",
+          "scope": "descriptive_synthesis_of_reconciled_semantic_evidence"
+        },
+        "rationale": "Reconciled atomic targets remain incomplete after the supplied complete collective sets. Missing focused acquisition questions are supported; no repaired need set or causal treatment attribution is tested.",
+        "status": "SUPPORTED"
+      },
+      "UNDER_SPECIFIED_INFORMATION_NEEDS": {
+        "metrics": {
+          "ambiguous": 0,
+          "misformulated": 0,
+          "partial_only_needs": 8
+        },
+        "provenance": {
+          "origin": "DETERMINISTIC_DERIVATION",
+          "scope": "descriptive_synthesis_of_reconciled_semantic_evidence"
+        },
+        "rationale": "Usable narrow questions leave complete-unit components unrequested. No need is adjudicated misformulated or ambiguous; a formulation defect is not established by partial coverage alone.",
+        "status": "POSSIBLE"
+      }
+    },
+    "granularity": {
+      "AMBIGUOUS_GRANULARITY": 0,
+      "ATOMIC_FOR_NEED_MAPPING": 26,
+      "COLLECTIVELY_COVERABLE": 6,
+      "OVERCOMPOUND_FOR_PAIRWISE_MAPPING": 0
+    },
+    "granularity_aware_alternatives": {
+      "AMBIGUOUS": 0,
+      "FULLY_COVERED_ONLY_COLLECTIVELY": 0,
+      "FULLY_DIRECTLY_COVERED": 0,
+      "INCOMPLETE": 12
+    },
+    "granularity_aware_units": {
+      "GRANULARITY_AWARE_AMBIGUOUS": 0,
+      "GRANULARITY_AWARE_COVERED": 18,
+      "GRANULARITY_AWARE_PARTIAL": 12,
+      "GRANULARITY_AWARE_UNCOVERED": 2
+    },
+    "needs": {
+      "AMBIGUOUS": 0,
+      "MISFORMULATED": 0,
+      "NECESSARY": 10,
+      "PARTIAL_ONLY": 8,
+      "UNNECESSARY": 0,
+      "USEFUL_REDUNDANT": 0
+    },
+    "pair_labels": {
+      "AMBIGUOUS": 0,
+      "DIRECTLY_COVERS": 15,
+      "DOES_NOT_COVER": 506,
+      "PARTIALLY_COVERS": 55
+    },
+    "provenance": {
+      "origin": "DETERMINISTIC_DERIVATION"
+    },
+    "strict_alternatives": {
+      "AMBIGUOUS": 0,
+      "FULLY_DIRECTLY_COVERED": 0,
+      "INCOMPLETE": 12
+    },
+    "strict_units": {
+      "AMBIGUOUS_ONLY": 0,
+      "COVERED": 15,
+      "PARTIAL_ONLY": 15,
+      "UNCOVERED": 2
+    }
+  }
+}

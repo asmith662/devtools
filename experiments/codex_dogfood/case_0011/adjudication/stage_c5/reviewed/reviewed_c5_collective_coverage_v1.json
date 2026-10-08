@@ -1,0 +1,223 @@
+{
+  "collective_coverage": [
+    {
+      "classification": "VALID_MINIMAL_COLLECTIVE_SET",
+      "contributions": [
+        {
+          "distinct_contribution": "Delegation through validated qualified materialization and retention of source/target addresses and content identities.",
+          "need": "case-0011-context-utf8-ceiling/frame/binding",
+          "removal_analysis": "Removing N09 leaves validated materialization and complete source/target identity handoff unestablished; N10's text/native-value contract does not require those bindings."
+        },
+        {
+          "distinct_contribution": "Renderer-to-item rendered text and native materialized-value retention.",
+          "need": "case-0011-context-utf8-ceiling/frame/items",
+          "removal_analysis": "Removing N10 leaves renderer text handoff and native materialized-value retention unestablished; N09's frame-binding answer does not require them."
+        }
+      ],
+      "minimality_analysis": "Both members are necessary within this supplied set: the frame-binding singleton leaves text/native-value retention unknown, while the item-retention singleton leaves the complete validated source/target binding unknown. Thus neither member can be removed; no claim is made about unproposed sets.",
+      "needs": [
+        "case-0011-context-utf8-ceiling/frame/binding",
+        "case-0011-context-utf8-ceiling/frame/items"
+      ],
+      "provenance": {
+        "decision": "CONFIRM_PROPOSITION",
+        "evidence_references": [
+          "proposition:1a6050e226c4a9fd5dffe61d0325844cfc5dad60624303a52fc9213be497061f/position_1"
+        ],
+        "origin": "RECONCILED_SINGLE_POSITION",
+        "proposition": "1a6050e226c4a9fd5dffe61d0325844cfc5dad60624303a52fc9213be497061f"
+      },
+      "rationale": "The complete frame-binding answer supplies validated source/target address and content-identity handoff, and the complete item-retention answer supplies the renderer-to-item text and native materialized-value handoff. Together these establish the entire qualified adapter bridge.",
+      "unit": "unit-1bb99811c2a45a9ce6d5dc32206e23d64f9fffa2d10fa642ca5f4ea6ce518c69",
+      "unit_rationale": "Each supplied set is independently judged against the complete unchanged unit. Sufficiency requires every clause; minimality requires a distinct necessary contribution from each retained member. The complete frame-binding answer supplies validated source/target address and content-identity handoff, and the complete item-retention answer supplies the renderer-to-item text and native materialized-value handoff. Together these establish the entire qualified adapter bridge."
+    },
+    {
+      "classification": "INSUFFICIENT",
+      "contributions": [
+        {
+          "distinct_contribution": "UTF-8 and newline handling that preserve exact rendered strings.",
+          "need": "case-0011-context-utf8-ceiling/bytes/encoding",
+          "removal_analysis": "Removing N04 loses encoding/newline-fidelity rules; N03 can give a textual layout without those handling rules. Neither member requires the existing context-only length report."
+        },
+        {
+          "distinct_contribution": "Exact appended Context text and its heading/separator boundaries.",
+          "need": "case-0011-context-utf8-ceiling/bytes/rendered-boundary",
+          "removal_analysis": "Removing N03 loses exact appended payload/boundary knowledge; N04's encoding fidelity need does not supply the complete layout."
+        }
+      ],
+      "minimality_analysis": "The set is not sufficient, so no valid minimality claim follows. Removing N03 loses exact appended-payload boundaries; removing N04 loses encoding/newline-fidelity rules. Even retaining both leaves independent reporting and complete task-envelope facts unknown.",
+      "needs": [
+        "case-0011-context-utf8-ceiling/bytes/rendered-boundary",
+        "case-0011-context-utf8-ceiling/bytes/encoding"
+      ],
+      "provenance": {
+        "decision": "REPLACE_WITH_RECONCILED_JUDGMENT",
+        "evidence_references": [
+          "proposition:2889ac09d69f243c1bbdfdfb902bfa83c271e5f400790fefae4ef432b0f43f4a/position_1"
+        ],
+        "origin": "RECONCILED_SINGLE_POSITION",
+        "proposition": "2889ac09d69f243c1bbdfdfb902bfa83c271e5f400790fefae4ef432b0f43f4a"
+      },
+      "rationale": "N03 establishes the exact appended rendered payload and its headings/separators; N04 establishes UTF-8/newline fidelity. Their complete answers do not require the existing independent len(context.text.encode('utf-8')) report or the complete original-task outer envelope. Knowing what should be counted is not knowing what the assembler reports.",
+      "unit": "unit-7a4fab44afff20a76dbc7edba7d33f2895f0cd322bdc37d5626f2ca74a792e0c",
+      "unit_rationale": "Each supplied set is independently judged against the complete unchanged unit. Sufficiency requires every clause; minimality requires a distinct necessary contribution from each retained member. N03 establishes the exact appended rendered payload and its headings/separators; N04 establishes UTF-8/newline fidelity. Their complete answers do not require the existing independent len(context.text.encode('utf-8')) report or the complete original-task outer envelope. Knowing what should be counted is not knowing what the assembler reports. N08 supplies original-task/Prompt-role preservation and N04 supplies rendered-text UTF-8/newline fidelity. The pair still does not require the independent context-only byte-length report; task/role preservation also need not inventory the full separate Context envelope."
+    },
+    {
+      "classification": "INSUFFICIENT",
+      "contributions": [
+        {
+          "distinct_contribution": "Rendered-text UTF-8 and exact newline preservation contracts.",
+          "need": "case-0011-context-utf8-ceiling/bytes/encoding",
+          "removal_analysis": "Removing N04 leaves Context encoding/newline handling unknown; original-task/role preservation does not establish it."
+        },
+        {
+          "distinct_contribution": "Unchanged original-task embedding and original Prompt-role preservation.",
+          "need": "case-0011-context-utf8-ceiling/request/prompt",
+          "removal_analysis": "Removing N08 leaves original-task/role preservation unknown. N04's rendered-text handling does not establish those prompt facts or the complete task envelope."
+        }
+      ],
+      "minimality_analysis": "Both members contribute distinct facts, but sufficiency fails before minimality can be certified. Removing N04 loses encoding/newline handling; removing N08 loses original-task/role preservation. Retaining both leaves the existing length-reporting expression and complete envelope structure unestablished.",
+      "needs": [
+        "case-0011-context-utf8-ceiling/bytes/encoding",
+        "case-0011-context-utf8-ceiling/request/prompt"
+      ],
+      "provenance": {
+        "decision": "REPLACE_WITH_RECONCILED_JUDGMENT",
+        "evidence_references": [
+          "proposition:2889ac09d69f243c1bbdfdfb902bfa83c271e5f400790fefae4ef432b0f43f4a/position_1"
+        ],
+        "origin": "RECONCILED_SINGLE_POSITION",
+        "proposition": "2889ac09d69f243c1bbdfdfb902bfa83c271e5f400790fefae4ef432b0f43f4a"
+      },
+      "rationale": "N08 supplies original-task/Prompt-role preservation and N04 supplies rendered-text UTF-8/newline fidelity. The pair still does not require the independent context-only byte-length report; task/role preservation also need not inventory the full separate Context envelope.",
+      "unit": "unit-7a4fab44afff20a76dbc7edba7d33f2895f0cd322bdc37d5626f2ca74a792e0c",
+      "unit_rationale": "Each supplied set is independently judged against the complete unchanged unit. Sufficiency requires every clause; minimality requires a distinct necessary contribution from each retained member. N03 establishes the exact appended rendered payload and its headings/separators; N04 establishes UTF-8/newline fidelity. Their complete answers do not require the existing independent len(context.text.encode('utf-8')) report or the complete original-task outer envelope. Knowing what should be counted is not knowing what the assembler reports. N08 supplies original-task/Prompt-role preservation and N04 supplies rendered-text UTF-8/newline fidelity. The pair still does not require the independent context-only byte-length report; task/role preservation also need not inventory the full separate Context envelope."
+    },
+    {
+      "classification": "INSUFFICIENT",
+      "contributions": [
+        {
+          "distinct_contribution": "Established test/type/style tooling constraints.",
+          "need": "case-0011-context-utf8-ceiling/validation/configuration",
+          "removal_analysis": "Removing N18 loses configuration constraints. Its presence still does not require the guide's separate commands or applicable staged diff checking."
+        },
+        {
+          "distinct_contribution": "The established protected development entry point and its tests scope.",
+          "need": "case-0011-context-utf8-ceiling/validation/protected-entry",
+          "removal_analysis": "Removing N17 loses which protected entry point runs tests; tooling configuration alone does not identify it."
+        }
+      ],
+      "minimality_analysis": "The complete prescribed workflow, particularly separate working/staged whitespace checks, remains missing with both members. Removing N17 loses the protected entry-point scope; removing N18 loses configuration constraints. Distinct usefulness cannot establish a valid minimal collective set when the workflow clause remains unknown.",
+      "needs": [
+        "case-0011-context-utf8-ceiling/validation/protected-entry",
+        "case-0011-context-utf8-ceiling/validation/configuration"
+      ],
+      "provenance": {
+        "decision": "REPLACE_WITH_RECONCILED_JUDGMENT",
+        "evidence_references": [
+          "proposition:6ce0b8f7b0daddfda48fb70bae8c9a3265c38a90615c2a06b5f283479ea756e2/position_1"
+        ],
+        "origin": "RECONCILED_SINGLE_POSITION",
+        "proposition": "6ce0b8f7b0daddfda48fb70bae8c9a3265c38a90615c2a06b5f283479ea756e2"
+      },
+      "rationale": "N17 identifies the established protected validation entry point and its tests scope. N18 establishes tooling configuration. These answers need not establish the guide's separately prescribed uv lint/format/type and working/staged diff-whitespace workflow. Configuration facts do not necessarily establish required command sequences.",
+      "unit": "unit-5991a5afbd7d664372fc5b2357e8fbcacfa5d73d5560dcd97f853aa279e36b1c",
+      "unit_rationale": "Each supplied set is independently judged against the complete unchanged unit. Sufficiency requires every clause; minimality requires a distinct necessary contribution from each retained member. N17 identifies the established protected validation entry point and its tests scope. N18 establishes tooling configuration. These answers need not establish the guide's separately prescribed uv lint/format/type and working/staged diff-whitespace workflow. Configuration facts do not necessarily establish required command sequences."
+    },
+    {
+      "classification": "VALID_MINIMAL_COLLECTIVE_SET",
+      "contributions": [
+        {
+          "distinct_contribution": "Foreign/stale snapshot-frame, missing-resource and unequal-occurrence rejection, with resource/content identity bindings.",
+          "need": "case-0011-context-utf8-ceiling/frame/binding",
+          "removal_analysis": "Removing N09 leaves the whole-resource rejection and identity-binding contract unknown; unchanged text/native provenance alone does not establish admission checks."
+        },
+        {
+          "distinct_contribution": "Unchanged retained item content and original-occurrence native provenance.",
+          "need": "case-0011-context-utf8-ceiling/frame/items",
+          "removal_analysis": "Removing N10 leaves exact content retention and native original-occurrence provenance unknown; frame/content checks alone do not establish the item's representation."
+        }
+      ],
+      "minimality_analysis": "Removing the frame need leaves rejection and complete resource/content binding unknown. Removing the item need leaves unchanged text and original-occurrence provenance unknown. Both distinct necessary components are present, and either singleton leaves the unit incomplete.",
+      "needs": [
+        "case-0011-context-utf8-ceiling/frame/binding",
+        "case-0011-context-utf8-ceiling/frame/items"
+      ],
+      "provenance": {
+        "decision": "CONFIRM_PROPOSITION",
+        "evidence_references": [
+          "proposition:816d58f4ff034fb9c59eac294a831fd8ead41bd21f34e947e18e4cb16a5af0db/position_1"
+        ],
+        "origin": "RECONCILED_SINGLE_POSITION",
+        "proposition": "816d58f4ff034fb9c59eac294a831fd8ead41bd21f34e947e18e4cb16a5af0db"
+      },
+      "rationale": "The frame-binding answer establishes foreign/stale frame, missing-resource and unequal retained-occurrence rejection plus resource/content bindings. The item-retention answer establishes unchanged content and original-occurrence native provenance. The combined answers establish every admission and representation clause of whole-resource realization.",
+      "unit": "unit-eac315eb2a9f6a5634e094a5d4ef2960559030b62385b832a57f0f8d893b72de",
+      "unit_rationale": "Each supplied set is independently judged against the complete unchanged unit. Sufficiency requires every clause; minimality requires a distinct necessary contribution from each retained member. The frame-binding answer establishes foreign/stale frame, missing-resource and unequal retained-occurrence rejection plus resource/content bindings. The item-retention answer establishes unchanged content and original-occurrence native provenance. The combined answers establish every admission and representation clause of whole-resource realization."
+    },
+    {
+      "classification": "INSUFFICIENT",
+      "contributions": [
+        {
+          "distinct_contribution": "Repository/snapshot binding and returned option-identity/representation consistency.",
+          "need": "case-0011-context-utf8-ceiling/frame/binding",
+          "removal_analysis": "Removing N09 leaves mismatch rejection and returned-item integrity unknown. Binding checks alone do not require all-success publication timing."
+        },
+        {
+          "distinct_contribution": "Realization of each selected choice in order.",
+          "need": "case-0011-context-utf8-ceiling/frame/items",
+          "removal_analysis": "Removing N10 leaves ordered realization unknown; N09's frame checks do not require ordering. Ordered retention does not establish when publication occurs."
+        }
+      ],
+      "minimality_analysis": "Removing N09 loses integrity predicates and removing N10 loses ordered realization, but keeping both leaves all-success publication unestablished. The set therefore cannot be sufficient or certified minimal.",
+      "needs": [
+        "case-0011-context-utf8-ceiling/frame/binding",
+        "case-0011-context-utf8-ceiling/frame/items"
+      ],
+      "provenance": {
+        "decision": "REPLACE_WITH_RECONCILED_JUDGMENT",
+        "evidence_references": [
+          "proposition:cf9d058a435c39d010f339be6f4c9255a7b30f4567437e24517627ce65feaa69/position_1"
+        ],
+        "origin": "RECONCILED_SINGLE_POSITION",
+        "proposition": "cf9d058a435c39d010f339be6f4c9255a7b30f4567437e24517627ce65feaa69"
+      },
+      "rationale": "N09 establishes repository/snapshot binding and returned identity/representation consistency; N10 establishes selected-choice order. Neither complete answer must establish that publication occurs only after every item succeeds. A binding/order answer can leave that publication-timing contract unknown.",
+      "unit": "unit-4b3c320635122396ffe052357de8b5f96f074e35017c0331a650de95844eaccd",
+      "unit_rationale": "Each supplied set is independently judged against the complete unchanged unit. Sufficiency requires every clause; minimality requires a distinct necessary contribution from each retained member. N09 establishes repository/snapshot binding and returned identity/representation consistency; N10 establishes selected-choice order. Neither complete answer must establish that publication occurs only after every item succeeds. A binding/order answer can leave that publication-timing contract unknown."
+    },
+    {
+      "classification": "VALID_MINIMAL_COLLECTIVE_SET",
+      "contributions": [
+        {
+          "distinct_contribution": "Address/content/option/representation identity bindings and one matching item per plan choice.",
+          "need": "case-0011-context-utf8-ceiling/frame/binding",
+          "removal_analysis": "Removing N09 leaves complete address/content/option/representation identity retention and matching requirements unknown; N10 need not inventory them."
+        },
+        {
+          "distinct_contribution": "Immutable exact-text/native-provenance retention and ordered plan-choice correspondence.",
+          "need": "case-0011-context-utf8-ceiling/frame/items",
+          "removal_analysis": "Removing N10 leaves exact text and native-provenance retention unknown; N09's identity-binding checks do not require these representation facts."
+        }
+      ],
+      "minimality_analysis": "Removing N09 leaves the full identity schema and matching requirements unknown. Removing N10 leaves immutable exact text and native-provenance retention unknown. Overlap in ordered correspondence does not remove either distinct necessary component.",
+      "needs": [
+        "case-0011-context-utf8-ceiling/frame/binding",
+        "case-0011-context-utf8-ceiling/frame/items"
+      ],
+      "provenance": {
+        "decision": "CONFIRM_PROPOSITION",
+        "evidence_references": [
+          "proposition:d334376d3ebc3b16b914fe034c5ad60418aae666d1616d7f349a400f9d3f71c2/position_1"
+        ],
+        "origin": "RECONCILED_SINGLE_POSITION",
+        "proposition": "d334376d3ebc3b16b914fe034c5ad60418aae666d1616d7f349a400f9d3f71c2"
+      },
+      "rationale": "N09 establishes complete retained address/content/option/representation identities and one matching item per plan choice. N10 establishes immutable exact text, native provenance and ordered retention. Together these answers establish the full retained item schema and ordered correspondence.",
+      "unit": "unit-f2f60cee7a81549ef3634c65a08ec026019e35505a0b7457ff348af70571ace3",
+      "unit_rationale": "Each supplied set is independently judged against the complete unchanged unit. Sufficiency requires every clause; minimality requires a distinct necessary contribution from each retained member. N09 establishes complete retained address/content/option/representation identities and one matching item per plan choice. N10 establishes immutable exact text, native provenance and ordered retention. Together these answers establish the full retained item schema and ordered correspondence."
+    }
+  ],
+  "packet_identity": "c1ecca8aec6bb9cbfb09668a79054262d91e22cfad4adda686bdf97016476b9f",
+  "schema": "case-0011-reviewed-c5-v1/collective_coverage"
+}

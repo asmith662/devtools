@@ -1,0 +1,879 @@
+{
+  "packet_identity": "c1ecca8aec6bb9cbfb09668a79054262d91e22cfad4adda686bdf97016476b9f",
+  "schema": "case-0011-reviewed-c5-v1/unit_coverage",
+  "unit_coverage": [
+    {
+      "alias": "U01",
+      "ambiguous_needs": [],
+      "consistency_decision": {
+        "decision": "ACCEPT_POSITION_2",
+        "evidence_references": [
+          "proposition:4c9122a0a3f6ec8f6cb78bed8f202ccc72df8c2165d03d82178fe2d27d867d1d/position_1",
+          "proposition:4c9122a0a3f6ec8f6cb78bed8f202ccc72df8c2165d03d82178fe2d27d867d1d/position_2"
+        ],
+        "identity": "4c9122a0a3f6ec8f6cb78bed8f202ccc72df8c2165d03d82178fe2d27d867d1d",
+        "kind": "UNIT_STATUS",
+        "payload": {
+          "rationale": "N11's public planning-package export inventory requires explicit imports and __all__ for the assembler and renderer/rendered-value companions used to supply it. This establishes all declarations in the unit.",
+          "status": "COVERED"
+        },
+        "subject": {
+          "unit": "unit-0057f1c75647a0b3e2d678bb704888665ee7ffbfeec0e56f27c501027a03c027"
+        },
+        "unit": "unit-0057f1c75647a0b3e2d678bb704888665ee7ffbfeec0e56f27c501027a03c027"
+      },
+      "direct_needs": [
+        "case-0011-context-utf8-ceiling/exports/public-boundary"
+      ],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "The planning public package explicitly imports and lists its common renderer, rendered value and assembler in __all__.",
+      "status": "COVERED",
+      "unit": "unit-0057f1c75647a0b3e2d678bb704888665ee7ffbfeec0e56f27c501027a03c027"
+    },
+    {
+      "alias": "U02",
+      "ambiguous_needs": [],
+      "consistency_decision": {
+        "decision": "ACCEPT_POSITION_2",
+        "evidence_references": [
+          "proposition:1554c2d0219638e87ba9a50c5c6ec8b76e729f1cd6588246be0c29959f04c69b/position_1",
+          "proposition:1554c2d0219638e87ba9a50c5c6ec8b76e729f1cd6588246be0c29959f04c69b/position_2"
+        ],
+        "identity": "1554c2d0219638e87ba9a50c5c6ec8b76e729f1cd6588246be0c29959f04c69b",
+        "kind": "UNIT_STATUS",
+        "payload": {
+          "rationale": "The supplied binding dispute asks frame checks, while this unit concerns qualified-reference semantic admission and defensive re-admission. No supplied need seeks a substantive admission component. This resolves only the disputed unit; the later inherited-mapping consistency check remains required.",
+          "status": "UNCOVERED"
+        },
+        "subject": {
+          "unit": "unit-08b960311265498f39d05f67308e78088d73f0324966eb42952517809e530aa2"
+        },
+        "unit": "unit-08b960311265498f39d05f67308e78088d73f0324966eb42952517809e530aa2"
+      },
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_UNCOVERED",
+      "partial_needs": [],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Qualified-reference admission rejects blank purpose, derivation/coverage or analysis-membership mismatch, unsupported target type and unsupported resolution route; its materializer rechecks this admission for directly constructed immutable values.",
+      "status": "UNCOVERED",
+      "unit": "unit-08b960311265498f39d05f67308e78088d73f0324966eb42952517809e530aa2"
+    },
+    {
+      "alias": "U03",
+      "ambiguous_needs": [],
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_PARTIAL",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/validation/configuration",
+        "case-0011-context-utf8-ceiling/validation/protected-entry"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "The protected command is the documented protected development entry point; it excludes the experiment test tree before collection, retains project pytest configuration and branch coverage with the 100 percent gate, returns pytest's exit code, and does not authorize excluded confirmation validation.",
+      "status": "PARTIAL_ONLY",
+      "unit": "unit-1466ea6b2b7b8cdc077c41ad15c6baf8087b6e7a230723f83b9911815a09a10c"
+    },
+    {
+      "alias": "U04",
+      "ambiguous_needs": [],
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_PARTIAL",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/documentation/package"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "The planning overview describes exact materialization, native provenance, appended copied-request Context and both supported choices, and distinguishes future token budgets/universal costs from current behavior.",
+      "status": "PARTIAL_ONLY",
+      "unit": "unit-183296beacda118e38a058b6d2588e582fd74639627706768ea3eb9396cc4580"
+    },
+    {
+      "alias": "U05",
+      "ambiguous_needs": [],
+      "direct_needs": [
+        "case-0011-context-utf8-ceiling/tests/request-preservation"
+      ],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/request/copy",
+        "case-0011-context-utf8-ceiling/request/prompt",
+        "case-0011-context-utf8-ceiling/tests/text-boundaries"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "The common assembly test checks unchanged original task, Prompt role, shared settings/conversation/provider values, task-before-Context placement and replace(assembled, prompt=task.prompt) == task.",
+      "status": "COVERED",
+      "unit": "unit-1979aa6106ebf66bce887d463ebbcb9d0745566f1875c359373e6e5afb72a394"
+    },
+    {
+      "alias": "U06",
+      "ambiguous_needs": [],
+      "direct_needs": [
+        "case-0011-context-utf8-ceiling/tests/text-boundaries"
+      ],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Common planning tests build retained snapshots by writing exact UTF-8 bytes and observing explicitly addressed resources.",
+      "status": "COVERED",
+      "unit": "unit-1bb673f66452efaf4d344988ed48b3011927a477ec8a2c9b4f5e77b2fd81aa42"
+    },
+    {
+      "alias": "U07",
+      "ambiguous_needs": [],
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/frame/binding",
+        "case-0011-context-utf8-ceiling/frame/items"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "The qualified-reference plan adapter delegates to its validated materializer and renderer and retains both source/target addresses and content identities, the rendered text and native materialized value in the common item.",
+      "status": "PARTIAL_ONLY",
+      "unit": "unit-1bb99811c2a45a9ce6d5dc32206e23d64f9fffa2d10fa642ca5f4ea6ce518c69"
+    },
+    {
+      "alias": "U08",
+      "ambiguous_needs": [],
+      "direct_needs": [
+        "case-0011-context-utf8-ceiling/frame/binding"
+      ],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/tests/frame-rejection"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Qualified-reference materialization checks the source dependency repository/snapshot, source occurrence snapshot/address, resource presence and equality with retained source content.",
+      "status": "COVERED",
+      "unit": "unit-21e7319918686d72a7f9e79f31bc68ed4922858fa7bfa299d351ea43ef3b0b87"
+    },
+    {
+      "alias": "U09",
+      "ambiguous_needs": [],
+      "consistency_decision": {
+        "decision": "ACCEPT_POSITION_1",
+        "evidence_references": [
+          "proposition:48478cae2b254268d0c7f427067d0dd5af5963c75b557d5a86fab08506c6426a/position_1",
+          "proposition:48478cae2b254268d0c7f427067d0dd5af5963c75b557d5a86fab08506c6426a/position_2"
+        ],
+        "identity": "48478cae2b254268d0c7f427067d0dd5af5963c75b557d5a86fab08506c6426a",
+        "kind": "UNIT_STATUS",
+        "payload": {
+          "rationale": "N15 seeks the governing architecture authority and relevant current scope. Its complete answer establishes canonical current cross-package status and the common planning/materialization/rendering/assembly description to extend. N16's separate package-documentation question is not the basis for coverage.",
+          "status": "COVERED"
+        },
+        "subject": {
+          "unit": "unit-33a494497198cadf88145cc45dc05ca55e09e6405588ce5cdd12c4f2c65e8371"
+        },
+        "unit": "unit-33a494497198cadf88145cc45dc05ca55e09e6405588ce5cdd12c4f2c65e8371"
+      },
+      "direct_needs": [
+        "case-0011-context-utf8-ceiling/documentation/architecture"
+      ],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "The governing architecture document is the canonical current cross-package architecture overview and contains the current common planning/materialization/rendering/assembly description to extend with the bounded byte feature.",
+      "status": "COVERED",
+      "unit": "unit-33a494497198cadf88145cc45dc05ca55e09e6405588ce5cdd12c4f2c65e8371"
+    },
+    {
+      "alias": "U10",
+      "ambiguous_needs": [],
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_PARTIAL",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/frame/binding",
+        "case-0011-context-utf8-ceiling/frame/items",
+        "case-0011-context-utf8-ceiling/tests/frame-rejection"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Common materialization rejects a mismatched repository or snapshot, realizes each selected option in order, verifies its returned identity/representation, and publishes a ContextDisclosure only after all items succeed.",
+      "status": "PARTIAL_ONLY",
+      "unit": "unit-4b3c320635122396ffe052357de8b5f96f074e35017c0331a650de95844eaccd"
+    },
+    {
+      "alias": "U11",
+      "ambiguous_needs": [],
+      "direct_needs": [
+        "case-0011-context-utf8-ceiling/ceiling/validation"
+      ],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/tests/request-preservation"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "The existing request-side optional integer validator accepts None, explicitly rejects bool and non-int, and raises a descriptive ValueError; its positive token domain must not override the task's nonnegative byte domain.",
+      "status": "COVERED",
+      "unit": "unit-50dcfb5fd4a867c57ed46736f5e8858a763c0a2f62aecc6e809ad822716dbb30"
+    },
+    {
+      "alias": "U12",
+      "ambiguous_needs": [],
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_PARTIAL",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/validation/configuration",
+        "case-0011-context-utf8-ceiling/validation/protected-entry"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "The protected command runs tests only; the validation guide separately specifies uv Ruff lint/format, mypy and diff whitespace checks, including staged diff checking where applicable.",
+      "status": "PARTIAL_ONLY",
+      "unit": "unit-5991a5afbd7d664372fc5b2357e8fbcacfa5d73d5560dcd97f853aa279e36b1c"
+    },
+    {
+      "alias": "U13",
+      "ambiguous_needs": [],
+      "consistency_decision": {
+        "decision": "ACCEPT_POSITION_2",
+        "evidence_references": [
+          "proposition:a667c642aa8b98f92b79997594df905dea275e21f77b512d7cb583d29976c2ec/position_1",
+          "proposition:a667c642aa8b98f92b79997594df905dea275e21f77b512d7cb583d29976c2ec/position_2"
+        ],
+        "identity": "a667c642aa8b98f92b79997594df905dea275e21f77b512d7cb583d29976c2ec",
+        "kind": "UNIT_STATUS",
+        "payload": {
+          "rationale": "N07 asks how every request field is preserved. A complete account of the actual immutable request shape and copying constraints establishes frozen dataclass status and prompt, settings, conversation, provider_settings and tools. Related tests and prompt-only questions are not needed for this direct judgment.",
+          "status": "COVERED"
+        },
+        "subject": {
+          "unit": "unit-5bf714afea56a8406609fdff47f7aa1db5a9fed50ba652b39884aca7ddf7c8c7"
+        },
+        "unit": "unit-5bf714afea56a8406609fdff47f7aa1db5a9fed50ba652b39884aca7ddf7c8c7"
+      },
+      "direct_needs": [
+        "case-0011-context-utf8-ceiling/request/copy"
+      ],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/ceiling/rejection",
+        "case-0011-context-utf8-ceiling/tests/request-preservation"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "ModelRequest is a frozen dataclass with prompt, settings, conversation, provider_settings and tools.",
+      "status": "COVERED",
+      "unit": "unit-5bf714afea56a8406609fdff47f7aa1db5a9fed50ba652b39884aca7ddf7c8c7"
+    },
+    {
+      "alias": "U14",
+      "ambiguous_needs": [],
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_PARTIAL",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/frame/binding",
+        "case-0011-context-utf8-ceiling/frame/items",
+        "case-0011-context-utf8-ceiling/tests/frame-rejection"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Immutable DisclosurePlan carries purpose, repository/snapshot identities and ordered choices, rejecting blank purpose, empty choices, mixed purposes or frames and duplicate choices.",
+      "status": "PARTIAL_ONLY",
+      "unit": "unit-5e58e7852d6acb8027c97bf0d6ccc3deede219f1c229e52225d0b31b7ed29af6"
+    },
+    {
+      "alias": "U15",
+      "ambiguous_needs": [],
+      "consistency_decision": {
+        "decision": "ACCEPT_POSITION_1",
+        "evidence_references": [
+          "proposition:ddfec976fe9d154625a222487ca76f3f9e96ae07b2f76f8fabc3c8d832e1bda0/position_1",
+          "proposition:ddfec976fe9d154625a222487ca76f3f9e96ae07b2f76f8fabc3c8d832e1bda0/position_2"
+        ],
+        "identity": "ddfec976fe9d154625a222487ca76f3f9e96ae07b2f76f8fabc3c8d832e1bda0",
+        "kind": "UNIT_STATUS",
+        "payload": {
+          "rationale": "N02 establishes the absent adapter/Retrieval dependency directions, but not the actual ModelRequest/Prompt imports and type-only ContextDisclosure dependency. Those positive import facts remain necessary to the complete unit.",
+          "status": "PARTIAL_ONLY"
+        },
+        "subject": {
+          "unit": "unit-60afd810dde9fbb0e5702b55bb3429a416665eddb2af840cc0eff247b801e7c7"
+        },
+        "unit": "unit-60afd810dde9fbb0e5702b55bb3429a416665eddb2af840cc0eff247b801e7c7"
+      },
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_PARTIAL",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/ownership/dependencies"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Common rendering and assembly import ModelRequest and Prompt, use common ContextDisclosure only as a type dependency, and introduce no language-specific adapter or Retrieval dependency.",
+      "status": "PARTIAL_ONLY",
+      "unit": "unit-60afd810dde9fbb0e5702b55bb3429a416665eddb2af840cc0eff247b801e7c7"
+    },
+    {
+      "alias": "U16",
+      "ambiguous_needs": [],
+      "consistency_decision": {
+        "decision": "ACCEPT_POSITION_2",
+        "evidence_references": [
+          "proposition:725ac388f10e7c0a59c666985aebe1bbcc06c88c8b3404e55a007c9a46ec0bea/position_1",
+          "proposition:725ac388f10e7c0a59c666985aebe1bbcc06c88c8b3404e55a007c9a46ec0bea/position_2"
+        ],
+        "identity": "725ac388f10e7c0a59c666985aebe1bbcc06c88c8b3404e55a007c9a46ec0bea",
+        "kind": "UNIT_STATUS",
+        "payload": {
+          "rationale": "N06 establishes whole-context assembly and a rejection seam before the final copy, but does not establish keyword-only syntax, RenderedContextDisclosure input or absence of an existing limit. N01 identifies ownership and N14 tests preservation; their answers do not cure the missing complete signature contract.",
+          "status": "PARTIAL_ONLY"
+        },
+        "subject": {
+          "unit": "unit-722d29ab3964ccc9a263e022b8048cf7f868ecc1a00128f96a56b05b56274605"
+        },
+        "unit": "unit-722d29ab3964ccc9a263e022b8048cf7f868ecc1a00128f96a56b05b56274605"
+      },
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_PARTIAL",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/bytes/rendered-boundary",
+        "case-0011-context-utf8-ceiling/ceiling/rejection",
+        "case-0011-context-utf8-ceiling/ownership/assembly-owner",
+        "case-0011-context-utf8-ceiling/request/copy",
+        "case-0011-context-utf8-ceiling/tests/request-preservation"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "The existing keyword-only common assembly entry point accepts RenderedContextDisclosure, has no limit argument, assembles the entire context.text, and creates the copied request only in its final replace call.",
+      "status": "PARTIAL_ONLY",
+      "unit": "unit-722d29ab3964ccc9a263e022b8048cf7f868ecc1a00128f96a56b05b56274605"
+    },
+    {
+      "alias": "U17",
+      "ambiguous_needs": [],
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_PARTIAL",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/bytes/encoding",
+        "case-0011-context-utf8-ceiling/bytes/rendered-boundary",
+        "case-0011-context-utf8-ceiling/request/copy",
+        "case-0011-context-utf8-ceiling/request/prompt",
+        "case-0011-context-utf8-ceiling/tests/text-boundaries"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Common assembly embeds unchanged task_text and context.text in separate outer envelopes, reports len(context.text.encode(\"utf-8\")) independently of the task length, and preserves each embedded string and its newline bytes.",
+      "status": "PARTIAL_ONLY",
+      "unit": "unit-7a4fab44afff20a76dbc7edba7d33f2895f0cd322bdc37d5626f2ca74a792e0c"
+    },
+    {
+      "alias": "U18",
+      "ambiguous_needs": [],
+      "direct_needs": [
+        "case-0011-context-utf8-ceiling/validation/configuration"
+      ],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Project configuration enforces strict pytest configuration/markers and production devtools branch coverage at a 100 percent threshold.",
+      "status": "COVERED",
+      "unit": "unit-7ec311946c51700e892b24d725de3a5b89904e240505c5e5e79e4d1736e56bb9"
+    },
+    {
+      "alias": "U19",
+      "ambiguous_needs": [],
+      "consistency_decision": {
+        "decision": "ACCEPT_POSITION_1",
+        "evidence_references": [
+          "proposition:92df5c02d9c7e7c242eeacc605c7fa016027bcb60d8fe14ecb96d0d3569c41d5/position_1",
+          "proposition:92df5c02d9c7e7c242eeacc605c7fa016027bcb60d8fe14ecb96d0d3569c41d5/position_2"
+        ],
+        "identity": "92df5c02d9c7e7c242eeacc605c7fa016027bcb60d8fe14ecb96d0d3569c41d5",
+        "kind": "UNIT_STATUS",
+        "payload": {
+          "rationale": "N12 seeks exact-text/non-ASCII/newline fixtures. The interpretation, production analysis and retained-reference selection sequence is a distinct qualified-fixture construction question, rather than a required constituent of its text-boundary answer.",
+          "status": "UNCOVERED"
+        },
+        "subject": {
+          "unit": "unit-87f78f68bcbaca8cbda3d9fc4b8f1daee88e66a1ed350ec6441d5861cbb400fc"
+        },
+        "unit": "unit-87f78f68bcbaca8cbda3d9fc4b8f1daee88e66a1ed350ec6441d5861cbb400fc"
+      },
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_UNCOVERED",
+      "partial_needs": [],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Common planning tests construct a qualified disclosure option through module interpretation and production reference analysis before choosing the retained reference.",
+      "status": "UNCOVERED",
+      "unit": "unit-87f78f68bcbaca8cbda3d9fc4b8f1daee88e66a1ed350ec6441d5861cbb400fc"
+    },
+    {
+      "alias": "U20",
+      "ambiguous_needs": [],
+      "consistency_decision": {
+        "decision": "ACCEPT_POSITION_2",
+        "evidence_references": [
+          "proposition:2ce88c0994cdc6a554fcfa0b72591b199564b9a243bb30116078dcd790f6a885/position_1",
+          "proposition:2ce88c0994cdc6a554fcfa0b72591b199564b9a243bb30116078dcd790f6a885/position_2"
+        ],
+        "identity": "2ce88c0994cdc6a554fcfa0b72591b199564b9a243bb30116078dcd790f6a885",
+        "kind": "UNIT_STATUS",
+        "payload": {
+          "rationale": "N11 overlaps assembler exposure but asks the planning-package boundary, leaving the distinct outer Context facade's complete companion imports and __all__ inventory unestablished.",
+          "status": "PARTIAL_ONLY"
+        },
+        "subject": {
+          "unit": "unit-8ad51eaf88aadfa2dd3d6fff7c23390b4bec7f204bc74d276ba759e0e6b3aa14"
+        },
+        "unit": "unit-8ad51eaf88aadfa2dd3d6fff7c23390b4bec7f204bc74d276ba759e0e6b3aa14"
+      },
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_PARTIAL",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/exports/public-boundary"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "The outer Context public facade explicitly imports the common planning assembler and companion plan/materialization/rendering symbols and lists them in __all__.",
+      "status": "PARTIAL_ONLY",
+      "unit": "unit-8ad51eaf88aadfa2dd3d6fff7c23390b4bec7f204bc74d276ba759e0e6b3aa14"
+    },
+    {
+      "alias": "U21",
+      "ambiguous_needs": [],
+      "direct_needs": [
+        "case-0011-context-utf8-ceiling/request/copy"
+      ],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/ceiling/rejection",
+        "case-0011-context-utf8-ceiling/request/prompt",
+        "case-0011-context-utf8-ceiling/tests/request-preservation"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Common assembly returns dataclasses.replace(task_request, prompt=Prompt(prompt_content, role=task_request.prompt.role)), replacing only Prompt and retaining its role.",
+      "status": "COVERED",
+      "unit": "unit-a090f45af360240ad7ce7630ffd09098a6a1b7887839d5266196a6f645880702"
+    },
+    {
+      "alias": "U22",
+      "ambiguous_needs": [],
+      "direct_needs": [
+        "case-0011-context-utf8-ceiling/frame/binding"
+      ],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/tests/frame-rejection"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Qualified-reference materialization checks target support/subject snapshots, target resource presence, subject resource-dependency identity and equality with retained target support.",
+      "status": "COVERED",
+      "unit": "unit-a2c6080b9a63cdbb8cb2057c41ba2c618614bc672246ada53ce1f470cf4d7fca"
+    },
+    {
+      "alias": "U23",
+      "ambiguous_needs": [],
+      "direct_needs": [
+        "case-0011-context-utf8-ceiling/tests/frame-rejection"
+      ],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/frame/binding"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Common planning tests distinguish changed snapshot from changed retained content under the same snapshot identity and exercise missing-resource rejection with replace and pytest.raises.",
+      "status": "COVERED",
+      "unit": "unit-a3e3b3430e6bfb7351af007e1cfff42c912e499682a4d3e332c4ac6b7e043580"
+    },
+    {
+      "alias": "U24",
+      "ambiguous_needs": [],
+      "consistency_decision": {
+        "decision": "ACCEPT_POSITION_1",
+        "evidence_references": [
+          "proposition:439923287bd5fe99d720efd279714c45ea2e22485a71c1ed8a742f9f04f0e10f/position_1",
+          "proposition:439923287bd5fe99d720efd279714c45ea2e22485a71c1ed8a742f9f04f0e10f/position_2"
+        ],
+        "identity": "439923287bd5fe99d720efd279714c45ea2e22485a71c1ed8a742f9f04f0e10f",
+        "kind": "UNIT_STATUS",
+        "payload": {
+          "rationale": "N09 establishes target resource/repository/snapshot consistency but leaves conditional declaration membership unestablished. N13 contributes tested frame consistency and likewise does not require declaration membership. No supplied complete-unit direct answer is established.",
+          "status": "PARTIAL_ONLY"
+        },
+        "subject": {
+          "unit": "unit-ab36d70f1deecd237ce4358ffb3258f71b19a55589c1815c3a99545581e8cbdf"
+        },
+        "unit": "unit-ab36d70f1deecd237ce4358ffb3258f71b19a55589c1815c3a99545581e8cbdf"
+      },
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_PARTIAL",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/frame/binding",
+        "case-0011-context-utf8-ceiling/tests/frame-rejection"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Qualified target resolution support and any retained declaration analysis must match target resource and repository/snapshot frame, with target declaration membership checked when analysis is retained.",
+      "status": "PARTIAL_ONLY",
+      "unit": "unit-ab36d70f1deecd237ce4358ffb3258f71b19a55589c1815c3a99545581e8cbdf"
+    },
+    {
+      "alias": "U25",
+      "ambiguous_needs": [],
+      "consistency_decision": {
+        "decision": "ACCEPT_POSITION_1",
+        "evidence_references": [
+          "proposition:c5e61b91a9461b63a2223dd9be143b1afb9620108ed6884a41eea4815b799752/position_1",
+          "proposition:c5e61b91a9461b63a2223dd9be143b1afb9620108ed6884a41eea4815b799752/position_2"
+        ],
+        "identity": "c5e61b91a9461b63a2223dd9be143b1afb9620108ed6884a41eea4815b799752",
+        "kind": "UNIT_STATUS",
+        "payload": {
+          "rationale": "N01 establishes common copied-assembly ownership, N02 the Retrieval dependency boundary, N10 faithful ordered realization and N15 the automatic-selection distinction. Each leaves other lifecycle clauses unestablished; identifying an assembly owner alone does not establish the full ordered planning/realization/rendering pipeline.",
+          "status": "PARTIAL_ONLY"
+        },
+        "subject": {
+          "unit": "unit-b92a7483c7e27b953e8533887d3a5a4dc664b57dd6859cb12fc7c742ae6eeca2"
+        },
+        "unit": "unit-b92a7483c7e27b953e8533887d3a5a4dc664b57dd6859cb12fc7c742ae6eeca2"
+      },
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_PARTIAL",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/documentation/architecture",
+        "case-0011-context-utf8-ceiling/frame/items",
+        "case-0011-context-utf8-ceiling/ownership/assembly-owner",
+        "case-0011-context-utf8-ceiling/ownership/dependencies"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Common Context Planning owns ordered caller-directed plans and faithful realization before rendering and copied request assembly, independently of Retrieval or automatic selection.",
+      "status": "PARTIAL_ONLY",
+      "unit": "unit-b92a7483c7e27b953e8533887d3a5a4dc664b57dd6859cb12fc7c742ae6eeca2"
+    },
+    {
+      "alias": "U26",
+      "ambiguous_needs": [],
+      "direct_needs": [
+        "case-0011-context-utf8-ceiling/tests/request-preservation"
+      ],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/ceiling/validation"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Existing request numeric tests use pytest parametrization and descriptive ValueError matching for bool, string, float and out-of-domain integers, test None separately, and test valid integers; the new byte tests must accept zero as the task directs.",
+      "status": "COVERED",
+      "unit": "unit-d553be405368fb0607f76e8e953d24dcecf462b0308474311add157d55b57fc7"
+    },
+    {
+      "alias": "U27",
+      "ambiguous_needs": [],
+      "direct_needs": [
+        "case-0011-context-utf8-ceiling/bytes/rendered-boundary"
+      ],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/bytes/encoding",
+        "case-0011-context-utf8-ceiling/frame/items",
+        "case-0011-context-utf8-ceiling/tests/text-boundaries"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Canonical common rendering joins the disclosure header, purpose, plan/snapshot identities, item count, ordered item headings and option identities with each unchanged item.text, using only its explicit LF separators and no newline normalization.",
+      "status": "COVERED",
+      "unit": "unit-e3c24d637a4dca9783a7b6b86dbe1abcda4ad0117b8933cc798af53004501e08"
+    },
+    {
+      "alias": "U28",
+      "ambiguous_needs": [],
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/frame/binding",
+        "case-0011-context-utf8-ceiling/frame/items",
+        "case-0011-context-utf8-ceiling/tests/frame-rejection"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Whole-resource realization rejects foreign/stale snapshot frames, missing resources and unequal retained occurrences; its item includes unchanged retained content, resource/content identities and the original occurrence as native provenance.",
+      "status": "PARTIAL_ONLY",
+      "unit": "unit-eac315eb2a9f6a5634e094a5d4ef2960559030b62385b832a57f0f8d893b72de"
+    },
+    {
+      "alias": "U29",
+      "ambiguous_needs": [],
+      "direct_needs": [
+        "case-0011-context-utf8-ceiling/validation/configuration"
+      ],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Project configuration selects Python 3.12, Ruff ALL with documented exceptions and 88-column formatting, and strict mypy over source, test and experiment trees with explicit package bases and src import base.",
+      "status": "COVERED",
+      "unit": "unit-f0a8cdef8232323f591cb10fdee77345e0352146b082c5bea0fb239ac9602965"
+    },
+    {
+      "alias": "U30",
+      "ambiguous_needs": [],
+      "consistency_decision": {
+        "decision": "ACCEPT_POSITION_1",
+        "evidence_references": [
+          "proposition:28bfdde192ecaf36be6ab760217a60ed8e6eda6b6fbd0e57f380e130b495f782/position_1",
+          "proposition:28bfdde192ecaf36be6ab760217a60ed8e6eda6b6fbd0e57f380e130b495f782/position_2"
+        ],
+        "identity": "28bfdde192ecaf36be6ab760217a60ed8e6eda6b6fbd0e57f380e130b495f782",
+        "kind": "UNIT_STATUS",
+        "payload": {
+          "rationale": "N10 establishes immutable order/text/native-provenance retention but not the full identity schema. N09 establishes plan/item address/content/option/representation binding but not exact text and native provenance. Neither supplies the whole unit directly; a valid collective set does not convert strict status to COVERED.",
+          "status": "PARTIAL_ONLY"
+        },
+        "subject": {
+          "unit": "unit-f2f60cee7a81549ef3634c65a08ec026019e35505a0b7457ff348af70571ace3"
+        },
+        "unit": "unit-f2f60cee7a81549ef3634c65a08ec026019e35505a0b7457ff348af70571ace3"
+      },
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/frame/binding",
+        "case-0011-context-utf8-ceiling/frame/items"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Immutable MaterializedDisclosureItem retains option identity, representation, addresses, content identities, exact text and native_provenance; ContextDisclosure requires one item per ordered plan choice with matching identity and representation.",
+      "status": "PARTIAL_ONLY",
+      "unit": "unit-f2f60cee7a81549ef3634c65a08ec026019e35505a0b7457ff348af70571ace3"
+    },
+    {
+      "alias": "U31",
+      "ambiguous_needs": [],
+      "direct_needs": [
+        "case-0011-context-utf8-ceiling/ceiling/validation"
+      ],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_COVERED",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/tests/request-preservation"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "Immutable ModelUsage optional integer admission accepts None, rejects bool and non-int with descriptive TypeError, and rejects negative counts with descriptive ValueError.",
+      "status": "COVERED",
+      "unit": "unit-f7ba939e852e8f0f8e89d99664675a3cd8f8c1d48ac0acdc0bc9b4ebb7d22c50"
+    },
+    {
+      "alias": "U32",
+      "ambiguous_needs": [],
+      "direct_needs": [],
+      "granularity_aware_provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_coverage_plus_validated_complete_collective_set"
+      },
+      "granularity_aware_status": "GRANULARITY_AWARE_PARTIAL",
+      "partial_needs": [
+        "case-0011-context-utf8-ceiling/frame/items",
+        "case-0011-context-utf8-ceiling/tests/text-boundaries"
+      ],
+      "provenance": {
+        "origin": "DETERMINISTIC_DERIVATION",
+        "rule": "strict_direct_then_partial_then_explicit_ambiguity_else_absence"
+      },
+      "statement": "The common mixed-plan test uses CRLF and non-ASCII qualified/whole-resource fixtures and checks unchanged retained source, native whole-resource provenance and rendered item order.",
+      "status": "PARTIAL_ONLY",
+      "unit": "unit-fddd6c59fb1d485b6e4a6a749f66062c76ddd58df987a692ae75827e2f9b8329"
+    }
+  ]
+}

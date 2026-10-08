@@ -9,11 +9,13 @@ Primary Stage C.5 = COMPLETE; immutable primary semantic mapping published.
 Independent Stage C.5-R = COMPLETE; immutable independent adjudication published.
 C.5 reliability comparison = COMPLETE.
 Reconciliation v1 = CONTRACT DEFECT / NO DECISIONS.
-Reconciliation v2 packet = PREPARED.
-Reconciliation v2 adjudication = NOT PERFORMED.
-Final reviewed C.5 mapping = NOT AVAILABLE.
-Stage D = BLOCKED pending bounded v2 reconciliation and later repository-root materialization.
+Reconciliation v2 packet = COMPLETE and immutable.
+Reconciliation v2 = COMPLETE; 110 bounded decisions imported byte-for-byte.
+Final reviewed C.5 mapping = COMPLETE; 576 exact pairs deterministically materialized.
+Stage D = READY BUT NOT PERFORMED.
 U1 effectiveness = UNKNOWN.
+
+## Historical checkpoint context
 
 The [reviewed reliability conclusion](reviewed/REVIEWED_GOLD.md) publishes the
 architecture-grade Case 0011 target. Earlier primary/independent publications and
@@ -55,10 +57,22 @@ by a separate deterministic repository-root materializer. No absent-pair default
 exists. No reconciliation or Stage D was performed in this correction checkpoint.
 No treatment or confirmation data was accessed.
 
-Next step: Start a fresh treatment-blind reconciliation-v2 session from the
-prepared stable sterile workspace and resolve only the 110 anonymized propositions.
-Produce bounded reconciliation decisions only. Do not construct the complete
-576-pair mapping and do not assign defaults to omitted pairs.
+## Final reviewed C.5 checkpoint
+
+The [final reviewed C.5 audit](stage_c5/reviewed/REVIEWED_C5.md) supersedes the
+pending-reconciliation status above. Strict coverage is 15/32 units; the secondary
+granularity-aware diagnostic covers 18/32. Both have 12 incomplete alternatives.
+The exact reviewed mapping inherits 544 agreed labels, applies 32 disputed labels
+and 12 shared-DIRECT rationale decisions, and retains all 110 decision bindings.
+All source publications and correction-checkpoint claims above remain historical.
+No production behavior, gold statement, frozen need or direct-coverage rule changed.
+No treatment or confirmation data was accessed during final materialization.
+
+Next step: Perform Case 0011 Stage D. Intentionally lift treatment blindness and
+compare whole-task retrieval, obligation-level retrieval and information-need
+retrieval against the final reviewed task gold and final reviewed C.5 semantic
+mapping. Report strict frozen-rule results and granularity-aware diagnostics
+separately. Stage D was not performed in this checkpoint; U1 effectiveness is UNKNOWN.
 
 Checkpoint publication was previously paused for the construction operator access
 disclosure. The access event and scoped non-access attestations are recorded in

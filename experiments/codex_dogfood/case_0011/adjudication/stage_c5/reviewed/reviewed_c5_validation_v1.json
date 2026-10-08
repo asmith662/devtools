@@ -1,0 +1,52 @@
+{
+  "packet_identity": "c1ecca8aec6bb9cbfb09668a79054262d91e22cfad4adda686bdf97016476b9f",
+  "schema": "case-0011-reviewed-c5-v1/validation",
+  "validation": {
+    "checks": [
+      "immutable_import_hashes",
+      "packet_integrity_and_bindings",
+      "exact_110_decisions",
+      "source_frame_alignment",
+      "agreement_inheritance_544",
+      "dispute_application_32",
+      "shared_direct_rationale_12",
+      "unit_derivation_32",
+      "unit_decision_consistency_11",
+      "need_inheritance_11_and_decisions_7",
+      "need_mechanical_consistency",
+      "strict_alternatives_12",
+      "alternative_decision_consistency_10",
+      "granularity_decisions_32",
+      "collective_propositions_6_sets_7",
+      "collective_minimality_structure",
+      "diagnostic_units_32",
+      "diagnostic_alternatives_12",
+      "failure_cause_metrics",
+      "expected_count_checks"
+    ],
+    "decision_counts": {
+      "ACCEPT_POSITION_1": 28,
+      "ACCEPT_POSITION_2": 34,
+      "CONFIRM_PROPOSITION": 32,
+      "REPLACE_WITH_RECONCILED_JUDGMENT": 16
+    },
+    "duplicate_pairs": 0,
+    "missing_pairs": 0,
+    "pairs": 576,
+    "proposition_counts": {
+      "ALTERNATIVE_COMPLETENESS": 10,
+      "COLLECTIVE_COVERAGE": 6,
+      "DIRECT_RATIONALE": 12,
+      "NEED_CLASSIFICATION": 7,
+      "PAIR_LABEL": 32,
+      "UNIT_GRANULARITY": 32,
+      "UNIT_STATUS": 11
+    },
+    "propositions": 110,
+    "provenance": {
+      "origin": "DETERMINISTIC_DERIVATION"
+    },
+    "status": "PASS",
+    "unexpected_pairs": 0
+  }
+}
