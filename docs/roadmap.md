@@ -137,10 +137,17 @@ automating them or changing production query weights.
   C has five local covered-unit depth gains and ten regressions; its same-unit
   prefix union increases 220 to 371 and unnecessary occurrences 337 to 737.
   A descriptive all-query oracle finds evidence routes, but earns no frozen-rule
-  credit. Next is separately authorized U2 protocol design with a reviewed
-  complete semantic target; this result does not reject InformationNeed semantics.
-- **U2 — exact-hint extraction + deterministic routing:** future experiment;
-  U1 records obvious literal task hints but leaves every hint lexical-only.
+  credit. This result does not reject InformationNeed semantics.
+- **U2 — exact-hint extraction + deterministic routing:** CURRENT;
+  [experimental protocol/infrastructure](../experiments/exact_hint_routing/README.md)
+  IMPLEMENTED; [Case 0012 Stage A](../experiments/codex_dogfood/case_0012/STAGE_A_REVIEW.md)
+  FROZEN for manual review. Stage B NOT EXECUTED; effectiveness UNKNOWN.
+  U2 tests whether explicit native hints bypass avoidable lexical burden while
+  complete unchanged lexical lanes retain conceptual evidence. It does not
+  repair missing/incomplete InformationNeeds. Exact routing supplies candidates,
+  not relevance, accepted witnesses, obligation satisfaction or readiness.
+  Next is maintainer review of the complete task/obligation/hint/locator/route
+  trace; separate authorization is required before Stage B.
 - **U3 — information-need × acquisition-mechanism routing:** future experiment;
   no general mechanism selector, autonomous search framework or search policy
   is implemented by U1. SEARCH_POLICY_FAILURE has its own taxonomy boundary.

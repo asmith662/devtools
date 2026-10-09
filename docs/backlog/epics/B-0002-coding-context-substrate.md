@@ -64,6 +64,16 @@ and does not authorize production routing. U2/U3 remain future, R1.7 retained,
 R2 true BM25F unconditional and mandatory, and Localization continuation intact.
 
 ADR-0005, grounding, witness generation/association, explicit resolution recording
+and external semantic-resolution research remain intact. U2 is now CURRENT:
+[experiment-only infrastructure](../../../experiments/exact_hint_routing/README.md)
+and [Case 0012 Stage A](../../../experiments/codex_dogfood/case_0012/README.md)
+are implemented/frozen for manual review. Stage B is NOT EXECUTED and
+effectiveness UNKNOWN. The typed exact routes preserve native truth and complete
+lexical safety; they do not repair incomplete needs or accept witnesses. This
+does not close the epic, resume semantic-resolution experimentation, implement
+U3/R1.7/BM25F or alter downstream Localization continuation.
+
+ADR-0005, grounding, witness generation/association, explicit resolution recording
 and external semantic-resolution research remain intact. Prospective semantic
 resolution effectiveness pauses pending R1/R2 progress unless a concrete earlier
 parallel justification is recorded. Retrieval defects and witness sufficiency

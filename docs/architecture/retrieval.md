@@ -264,7 +264,7 @@ sufficiency.** Both research tracks remain necessary.
 [EXPERIMENTAL; INSTRUMENTATION] R1.5 exact retrieval/failure diagnostics
 [EXPERIMENTAL; PROSPECTIVE COMPLETE, MIXED / NO SAFE REPLACEMENT] R1.6 BM25 sensitivity
 [EXPERIMENTAL; PRE-GOLD] U1 manual need decomposition, inspectable acquisition trace
-[ROADMAP; NOT EXECUTED] U2 exact hints/routing; U3 need/mechanism routing
+[EXPERIMENTAL; STAGE A ONLY] U2 exact hints/routing; U3 remains future
 [ROADMAP; RETAINED AFTER UPSTREAM EVIDENCE] R1.7 query-term discrimination investigation
 [MANDATORY ROADMAP; NOT IMPLEMENTED] R2 true BM25F, regardless of R1 outcome
 
@@ -329,7 +329,11 @@ authored set: strict need coverage 15/32, secondary collective coverage 18/32,
 no complete alternatives and increased responsible same-unit burden despite
 five local depth gains. All arms positively reach required resources; an
 unconstrained query oracle cannot repair missing semantic responsibility.
-U2/U3 remain future routing experiments before later query weighting. Task != obligation
+U2 is CURRENT: [experiment-only infrastructure](../../experiments/exact_hint_routing/README.md)
+and [Case 0012 Stage A](../../experiments/codex_dogfood/case_0012/STAGE_A_REVIEW.md)
+are frozen for review; no treatment executed, effectiveness UNKNOWN. Exact
+native hints supply candidates, not relevance, witnesses or readiness, and
+cannot repair missing/incomplete needs. U3 remains future before later query weighting. Task != obligation
 != information need != query/acquisition intent != retrieval action. Case 0011
 uses the same production ranker and a human-inspectable experimental trace;
 SEARCH_POLICY_FAILURE is separately defined and not implemented by U1. R1.7

@@ -46,6 +46,14 @@
   [practical review](../experiments/codex_dogfood/case_0011/stage_d/STAGE_D_REVIEW.md)
   owns inspectable task/obligation/unit/need/query/result/failure correspondence.
   An implementation or treatment capture is not an effectiveness claim.
+  [U2 exact-hint experiment](../experiments/exact_hint_routing/README.md) owns
+  task-only extraction, associations, native grounding composition and exact-first
+  presentation; its [capability inventory](../experiments/exact_hint_routing/CAPABILITIES.md)
+  records supported/deferred native contracts without moving RI ownership.
+  [Case 0012](../experiments/codex_dogfood/case_0012/README.md) owns the prospective
+  Stage A task/requirement matrix, separate caller/rule inventories, locator
+  requests, lexical safety lanes and decision rule. Stage B is not executed;
+  Stage C protocol is prepared only and effectiveness is unknown.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),
   [Cases 0004–0008 history](architecture/localization.md#prospective-cases-0004-0008-and-structural-breadth-closure)

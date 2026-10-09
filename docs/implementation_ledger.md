@@ -1273,3 +1273,31 @@ production branch coverage. No confirmation or live-service validation ran.
   R2 true BM25F mandatory and downstream Localization continuation unchanged.
   Validation commands/results live in the Stage D validation record; no
   confirmation/reserve or live-service validation was performed.
+
+## U2 infrastructure and prospective Case 0012 Stage A (2026-10-09)
+
+- [Exact-hint routing](../experiments/exact_hint_routing/README.md) is an
+  experiment-only owner for immutable task observations, task-only extraction,
+  typed locator admission, native grounding composition and exact-first views.
+  [Capability inventory](../experiments/exact_hint_routing/CAPABILITIES.md)
+  distinguishes source selection, binding lookup, module roots, containment,
+  import/member/Reference scope and deferred routes. Production source is unchanged.
+- [Case 0012](../experiments/codex_dogfood/case_0012/README.md) freezes a new future
+  direct-source Context disclosure task, ten feature clauses and nine complete
+  task-interpretation obligations. Independent caller and mechanical rule
+  inventories each contain ten hints; eight locator forms are admitted and two
+  bare class hints remain unsupported. No repository hint outcomes are observed.
+- Identical canonical lexical queries and an unchanged full-task safety lane
+  underlie A lexical-only, B caller exact-first and C rule exact-first. Native
+  scores/order/contributions survive without fusion; non-resolved routes promote
+  nothing. JSON-native frame images avoid incidental pickle byte differences.
+- The requirement matrix, human/machine traces, decision arithmetic/precedence,
+  native input universes, source seals and treatment-free Stage C protocol are
+  frozen. Stage B NOT EXECUTED; effectiveness UNKNOWN; no packet or gold now.
+  Controlled fixtures and freeze/leakage/tamper/overwrite tests validate the
+  infrastructure without Case 0012 retrieval or exact resolution.
+- U1 remains COMPLETE / INFORMATION_NEED_AUTHORING_DEFECT. U2 cannot repair
+  missing/incomplete needs; exact routes supply candidates, not relevance,
+  witness acceptance, satisfaction or readiness. U3 FUTURE, R1.7 RETAINED,
+  R2 true BM25F MANDATORY and Localization continuation PRESERVED. Maintainer
+  review and separate explicit authorization precede Stage B.

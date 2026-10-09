@@ -691,6 +691,14 @@ R1.5's existing descriptive threshold governs substantial ranking-burden claims;
 smaller overtaker counts remain visible. QUERY_DILUTION remains a contributor,
 and SEARCH_POLICY_FAILURE is NOT_ASSESSED without an executed sequential policy.
 
+[U2](../../experiments/exact_hint_routing/README.md) retains experimental
+extraction, type, unsupported/ambiguous/unresolved and exact-target/fallback
+classifications in its frozen evaluation protocol. They do not become native RI
+truth or production failure enums. Exact resolution supplies candidate evidence;
+relevance, witness acceptance, obligation satisfaction and readiness remain
+distinct. U2 does not repair missing/incomplete InformationNeeds or execute
+iterative search policy; SEARCH_POLICY_FAILURE remains NOT_ASSESSED.
+
 See the [current retrieval foundation](retrieval.md) for production support,
 empirical limitations and open hypotheses. Potential mechanisms in this table
 are a hypothesis vocabulary, not implementation commitments.

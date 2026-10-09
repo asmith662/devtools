@@ -1,0 +1,4045 @@
+{
+  "$id": "case-0012-stage-a-trace-v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "effectiveness": {
+      "const": "UNKNOWN"
+    },
+    "execution": {
+      "const": {
+        "exact_routes": 0,
+        "lexical_queries": 0,
+        "treatments": 0
+      }
+    },
+    "frame": {
+      "additionalProperties": false,
+      "properties": {
+        "corpus_id": {
+          "type": "string"
+        },
+        "declaration_analysis": {
+          "type": "string"
+        },
+        "declaration_resource_universe": {
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "eligible_resource_frame": {
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "address": {
+                    "type": "string"
+                  },
+                  "content_identity": {
+                    "type": "string"
+                  },
+                  "document_identity": {
+                    "type": "string"
+                  },
+                  "utf8_bytes": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "address",
+                  "content_identity",
+                  "document_identity",
+                  "utf8_bytes"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "frame_identity": {
+          "type": "string"
+        },
+        "module_count": {
+          "type": "integer"
+        },
+        "module_exclusions": {
+          "maxItems": 0,
+          "type": "array"
+        },
+        "module_universe": {
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "address": {
+                    "type": "string"
+                  },
+                  "content_identity": {
+                    "type": "string"
+                  },
+                  "dotted_name": {
+                    "type": "string"
+                  },
+                  "identity": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "root": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "address",
+                  "content_identity",
+                  "dotted_name",
+                  "identity",
+                  "kind",
+                  "root"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "module_universe_identity": {
+          "type": "string"
+        },
+        "repository_id": {
+          "type": "string"
+        },
+        "resource_count": {
+          "type": "integer"
+        },
+        "resource_order": {
+          "type": "string"
+        },
+        "resource_universe": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "snapshot_id": {
+          "type": "string"
+        },
+        "source_head": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "corpus_id",
+        "declaration_analysis",
+        "declaration_resource_universe",
+        "eligible_resource_frame",
+        "frame_identity",
+        "module_count",
+        "module_exclusions",
+        "module_universe",
+        "module_universe_identity",
+        "repository_id",
+        "resource_count",
+        "resource_order",
+        "resource_universe",
+        "scope",
+        "snapshot_id",
+        "source_head"
+      ],
+      "type": "object"
+    },
+    "results": {
+      "const": "ABSENT"
+    },
+    "schema": {
+      "const": "case-0012-stage-a-trace-v1"
+    },
+    "stage": {
+      "const": "STAGE_A"
+    },
+    "treatment": {
+      "additionalProperties": false,
+      "properties": {
+        "arms": {
+          "additionalProperties": false,
+          "properties": {
+            "A": {
+              "type": "string"
+            },
+            "B": {
+              "type": "string"
+            },
+            "C": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "A",
+            "B",
+            "C"
+          ],
+          "type": "object"
+        },
+        "caller_reviewed_hint_reference": {
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "category": {
+                    "type": "string"
+                  },
+                  "identity": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "task": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "task",
+                      "value"
+                    ],
+                    "type": "object"
+                  },
+                  "provenance": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "explanation": {
+                        "type": "string"
+                      },
+                      "source_identity": {
+                        "type": "string"
+                      },
+                      "span": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "end": {
+                            "type": "integer"
+                          },
+                          "start": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "end",
+                          "start"
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "explanation",
+                      "source_identity",
+                      "span"
+                    ],
+                    "type": "object"
+                  },
+                  "rule": {
+                    "type": "string"
+                  },
+                  "span": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "end": {
+                        "type": "integer"
+                      },
+                      "start": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "end",
+                      "start"
+                    ],
+                    "type": "object"
+                  },
+                  "syntactic_form": {
+                    "type": "string"
+                  },
+                  "task": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "value"
+                    ],
+                    "type": "object"
+                  },
+                  "text": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "category",
+                  "identity",
+                  "provenance",
+                  "rule",
+                  "span",
+                  "syntactic_form",
+                  "task",
+                  "text"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "decision_rule": {
+          "additionalProperties": false,
+          "properties": {
+            "arithmetic": {
+              "type": "string"
+            },
+            "completion": {
+              "type": "string"
+            },
+            "cost": {
+              "type": "string"
+            },
+            "extraction": {
+              "type": "string"
+            },
+            "failure_attribution": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "meaningful_value": {
+              "type": "string"
+            },
+            "obligation_safety": {
+              "type": "string"
+            },
+            "outcomes": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "precedence": {
+              "type": "string"
+            },
+            "scientific_safety": {
+              "type": "string"
+            },
+            "search_policy_failure": {
+              "type": "string"
+            },
+            "soundness": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "arithmetic",
+            "completion",
+            "cost",
+            "extraction",
+            "failure_attribution",
+            "meaningful_value",
+            "obligation_safety",
+            "outcomes",
+            "precedence",
+            "scientific_safety",
+            "search_policy_failure",
+            "soundness"
+          ],
+          "type": "object"
+        },
+        "effectiveness": {
+          "type": "string"
+        },
+        "exact_route_executions": {
+          "type": "integer"
+        },
+        "exact_route_requests": {
+          "additionalProperties": false,
+          "properties": {
+            "B": {
+              "items": {
+                "anyOf": [
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "association": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "hint": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "lane": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "reason": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "hint",
+                          "lane",
+                          "provenance",
+                          "reason"
+                        ],
+                        "type": "object"
+                      },
+                      "hint": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "rule": {
+                            "type": "string"
+                          },
+                          "span": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "end": {
+                                "type": "integer"
+                              },
+                              "start": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "end",
+                              "start"
+                            ],
+                            "type": "object"
+                          },
+                          "syntactic_form": {
+                            "type": "string"
+                          },
+                          "task": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "text": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "category",
+                          "provenance",
+                          "rule",
+                          "span",
+                          "syntactic_form",
+                          "task",
+                          "text"
+                        ],
+                        "type": "object"
+                      },
+                      "identity": {
+                        "type": "string"
+                      },
+                      "locator": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "address": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "address"
+                        ],
+                        "type": "object"
+                      },
+                      "mechanism": {
+                        "type": "string"
+                      },
+                      "reason": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "association",
+                      "hint",
+                      "identity",
+                      "locator",
+                      "mechanism",
+                      "reason"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "association": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "hint": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "lane": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "reason": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "hint",
+                          "lane",
+                          "provenance",
+                          "reason"
+                        ],
+                        "type": "object"
+                      },
+                      "hint": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "rule": {
+                            "type": "string"
+                          },
+                          "span": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "end": {
+                                "type": "integer"
+                              },
+                              "start": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "end",
+                              "start"
+                            ],
+                            "type": "object"
+                          },
+                          "syntactic_form": {
+                            "type": "string"
+                          },
+                          "task": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "text": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "category",
+                          "provenance",
+                          "rule",
+                          "span",
+                          "syntactic_form",
+                          "task",
+                          "text"
+                        ],
+                        "type": "object"
+                      },
+                      "identity": {
+                        "type": "string"
+                      },
+                      "locator": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "class_name": {
+                            "type": "string"
+                          },
+                          "method_name": {
+                            "type": "string"
+                          },
+                          "module": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "dotted_name": {
+                                "type": "string"
+                              },
+                              "kind": {
+                                "type": "null"
+                              }
+                            },
+                            "required": [
+                              "dotted_name",
+                              "kind"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "class_name",
+                          "method_name",
+                          "module"
+                        ],
+                        "type": "object"
+                      },
+                      "mechanism": {
+                        "type": "string"
+                      },
+                      "reason": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "association",
+                      "hint",
+                      "identity",
+                      "locator",
+                      "mechanism",
+                      "reason"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "association": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "hint": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "lane": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "reason": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "hint",
+                          "lane",
+                          "provenance",
+                          "reason"
+                        ],
+                        "type": "object"
+                      },
+                      "hint": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "rule": {
+                            "type": "string"
+                          },
+                          "span": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "end": {
+                                "type": "integer"
+                              },
+                              "start": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "end",
+                              "start"
+                            ],
+                            "type": "object"
+                          },
+                          "syntactic_form": {
+                            "type": "string"
+                          },
+                          "task": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "text": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "category",
+                          "provenance",
+                          "rule",
+                          "span",
+                          "syntactic_form",
+                          "task",
+                          "text"
+                        ],
+                        "type": "object"
+                      },
+                      "identity": {
+                        "type": "string"
+                      },
+                      "locator": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "declared_name": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "module": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "dotted_name": {
+                                "type": "string"
+                              },
+                              "kind": {
+                                "type": "null"
+                              }
+                            },
+                            "required": [
+                              "dotted_name",
+                              "kind"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "declared_name",
+                          "kind",
+                          "module"
+                        ],
+                        "type": "object"
+                      },
+                      "mechanism": {
+                        "type": "string"
+                      },
+                      "reason": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "association",
+                      "hint",
+                      "identity",
+                      "locator",
+                      "mechanism",
+                      "reason"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "association": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "hint": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "lane": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "reason": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "hint",
+                          "lane",
+                          "provenance",
+                          "reason"
+                        ],
+                        "type": "object"
+                      },
+                      "hint": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "rule": {
+                            "type": "string"
+                          },
+                          "span": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "end": {
+                                "type": "integer"
+                              },
+                              "start": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "end",
+                              "start"
+                            ],
+                            "type": "object"
+                          },
+                          "syntactic_form": {
+                            "type": "string"
+                          },
+                          "task": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "text": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "category",
+                          "provenance",
+                          "rule",
+                          "span",
+                          "syntactic_form",
+                          "task",
+                          "text"
+                        ],
+                        "type": "object"
+                      },
+                      "identity": {
+                        "type": "string"
+                      },
+                      "locator": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "dotted_name": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "null"
+                          }
+                        },
+                        "required": [
+                          "dotted_name",
+                          "kind"
+                        ],
+                        "type": "object"
+                      },
+                      "mechanism": {
+                        "type": "string"
+                      },
+                      "reason": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "association",
+                      "hint",
+                      "identity",
+                      "locator",
+                      "mechanism",
+                      "reason"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "association": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "hint": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "lane": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "reason": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "hint",
+                          "lane",
+                          "provenance",
+                          "reason"
+                        ],
+                        "type": "object"
+                      },
+                      "hint": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "rule": {
+                            "type": "string"
+                          },
+                          "span": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "end": {
+                                "type": "integer"
+                              },
+                              "start": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "end",
+                              "start"
+                            ],
+                            "type": "object"
+                          },
+                          "syntactic_form": {
+                            "type": "string"
+                          },
+                          "task": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "text": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "category",
+                          "provenance",
+                          "rule",
+                          "span",
+                          "syntactic_form",
+                          "task",
+                          "text"
+                        ],
+                        "type": "object"
+                      },
+                      "identity": {
+                        "type": "string"
+                      },
+                      "locator": {
+                        "type": "null"
+                      },
+                      "mechanism": {
+                        "type": "string"
+                      },
+                      "reason": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "association",
+                      "hint",
+                      "identity",
+                      "locator",
+                      "mechanism",
+                      "reason"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "C": {
+              "items": {
+                "anyOf": [
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "association": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "hint": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "lane": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "reason": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "hint",
+                          "lane",
+                          "provenance",
+                          "reason"
+                        ],
+                        "type": "object"
+                      },
+                      "hint": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "rule": {
+                            "type": "string"
+                          },
+                          "span": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "end": {
+                                "type": "integer"
+                              },
+                              "start": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "end",
+                              "start"
+                            ],
+                            "type": "object"
+                          },
+                          "syntactic_form": {
+                            "type": "string"
+                          },
+                          "task": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "text": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "category",
+                          "provenance",
+                          "rule",
+                          "span",
+                          "syntactic_form",
+                          "task",
+                          "text"
+                        ],
+                        "type": "object"
+                      },
+                      "identity": {
+                        "type": "string"
+                      },
+                      "locator": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "address": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "address"
+                        ],
+                        "type": "object"
+                      },
+                      "mechanism": {
+                        "type": "string"
+                      },
+                      "reason": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "association",
+                      "hint",
+                      "identity",
+                      "locator",
+                      "mechanism",
+                      "reason"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "association": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "hint": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "lane": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "reason": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "hint",
+                          "lane",
+                          "provenance",
+                          "reason"
+                        ],
+                        "type": "object"
+                      },
+                      "hint": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "rule": {
+                            "type": "string"
+                          },
+                          "span": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "end": {
+                                "type": "integer"
+                              },
+                              "start": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "end",
+                              "start"
+                            ],
+                            "type": "object"
+                          },
+                          "syntactic_form": {
+                            "type": "string"
+                          },
+                          "task": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "text": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "category",
+                          "provenance",
+                          "rule",
+                          "span",
+                          "syntactic_form",
+                          "task",
+                          "text"
+                        ],
+                        "type": "object"
+                      },
+                      "identity": {
+                        "type": "string"
+                      },
+                      "locator": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "class_name": {
+                            "type": "string"
+                          },
+                          "method_name": {
+                            "type": "string"
+                          },
+                          "module": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "dotted_name": {
+                                "type": "string"
+                              },
+                              "kind": {
+                                "type": "null"
+                              }
+                            },
+                            "required": [
+                              "dotted_name",
+                              "kind"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "class_name",
+                          "method_name",
+                          "module"
+                        ],
+                        "type": "object"
+                      },
+                      "mechanism": {
+                        "type": "string"
+                      },
+                      "reason": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "association",
+                      "hint",
+                      "identity",
+                      "locator",
+                      "mechanism",
+                      "reason"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "association": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "hint": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "lane": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "reason": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "hint",
+                          "lane",
+                          "provenance",
+                          "reason"
+                        ],
+                        "type": "object"
+                      },
+                      "hint": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "rule": {
+                            "type": "string"
+                          },
+                          "span": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "end": {
+                                "type": "integer"
+                              },
+                              "start": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "end",
+                              "start"
+                            ],
+                            "type": "object"
+                          },
+                          "syntactic_form": {
+                            "type": "string"
+                          },
+                          "task": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "text": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "category",
+                          "provenance",
+                          "rule",
+                          "span",
+                          "syntactic_form",
+                          "task",
+                          "text"
+                        ],
+                        "type": "object"
+                      },
+                      "identity": {
+                        "type": "string"
+                      },
+                      "locator": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "declared_name": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "module": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "dotted_name": {
+                                "type": "string"
+                              },
+                              "kind": {
+                                "type": "null"
+                              }
+                            },
+                            "required": [
+                              "dotted_name",
+                              "kind"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "declared_name",
+                          "kind",
+                          "module"
+                        ],
+                        "type": "object"
+                      },
+                      "mechanism": {
+                        "type": "string"
+                      },
+                      "reason": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "association",
+                      "hint",
+                      "identity",
+                      "locator",
+                      "mechanism",
+                      "reason"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "association": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "hint": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "lane": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "reason": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "hint",
+                          "lane",
+                          "provenance",
+                          "reason"
+                        ],
+                        "type": "object"
+                      },
+                      "hint": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "rule": {
+                            "type": "string"
+                          },
+                          "span": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "end": {
+                                "type": "integer"
+                              },
+                              "start": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "end",
+                              "start"
+                            ],
+                            "type": "object"
+                          },
+                          "syntactic_form": {
+                            "type": "string"
+                          },
+                          "task": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "text": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "category",
+                          "provenance",
+                          "rule",
+                          "span",
+                          "syntactic_form",
+                          "task",
+                          "text"
+                        ],
+                        "type": "object"
+                      },
+                      "identity": {
+                        "type": "string"
+                      },
+                      "locator": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "dotted_name": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "null"
+                          }
+                        },
+                        "required": [
+                          "dotted_name",
+                          "kind"
+                        ],
+                        "type": "object"
+                      },
+                      "mechanism": {
+                        "type": "string"
+                      },
+                      "reason": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "association",
+                      "hint",
+                      "identity",
+                      "locator",
+                      "mechanism",
+                      "reason"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "association": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "hint": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "lane": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "task": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "task",
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "reason": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "hint",
+                          "lane",
+                          "provenance",
+                          "reason"
+                        ],
+                        "type": "object"
+                      },
+                      "hint": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "provenance": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "explanation": {
+                                "type": "string"
+                              },
+                              "source_identity": {
+                                "type": "string"
+                              },
+                              "span": {
+                                "additionalProperties": false,
+                                "properties": {
+                                  "end": {
+                                    "type": "integer"
+                                  },
+                                  "start": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "end",
+                                  "start"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "explanation",
+                              "source_identity",
+                              "span"
+                            ],
+                            "type": "object"
+                          },
+                          "rule": {
+                            "type": "string"
+                          },
+                          "span": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "end": {
+                                "type": "integer"
+                              },
+                              "start": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "end",
+                              "start"
+                            ],
+                            "type": "object"
+                          },
+                          "syntactic_form": {
+                            "type": "string"
+                          },
+                          "task": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "text": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "category",
+                          "provenance",
+                          "rule",
+                          "span",
+                          "syntactic_form",
+                          "task",
+                          "text"
+                        ],
+                        "type": "object"
+                      },
+                      "identity": {
+                        "type": "string"
+                      },
+                      "locator": {
+                        "type": "null"
+                      },
+                      "mechanism": {
+                        "type": "string"
+                      },
+                      "reason": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "association",
+                      "hint",
+                      "identity",
+                      "locator",
+                      "mechanism",
+                      "reason"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "B",
+            "C"
+          ],
+          "type": "object"
+        },
+        "excluded": {
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "extraction_agreement": {
+          "additionalProperties": false,
+          "properties": {
+            "accepted_rule_hints": {
+              "type": "integer"
+            },
+            "caller_count": {
+              "type": "integer"
+            },
+            "caller_only_hints": {
+              "type": "integer"
+            },
+            "false_rule_extractions": {
+              "type": "integer"
+            },
+            "rule_count": {
+              "type": "integer"
+            },
+            "scope": {
+              "type": "string"
+            },
+            "type_disagreements": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "accepted_rule_hints",
+            "caller_count",
+            "caller_only_hints",
+            "false_rule_extractions",
+            "rule_count",
+            "scope",
+            "type_disagreements"
+          ],
+          "type": "object"
+        },
+        "extraction_decisions": {
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "observation": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "category": {
+                        "type": "string"
+                      },
+                      "provenance": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "explanation": {
+                            "type": "string"
+                          },
+                          "source_identity": {
+                            "type": "string"
+                          },
+                          "span": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "end": {
+                                "type": "integer"
+                              },
+                              "start": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "end",
+                              "start"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "explanation",
+                          "source_identity",
+                          "span"
+                        ],
+                        "type": "object"
+                      },
+                      "rule": {
+                        "type": "string"
+                      },
+                      "span": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "end": {
+                            "type": "integer"
+                          },
+                          "start": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "end",
+                          "start"
+                        ],
+                        "type": "object"
+                      },
+                      "syntactic_form": {
+                        "type": "string"
+                      },
+                      "task": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "category",
+                      "provenance",
+                      "rule",
+                      "span",
+                      "syntactic_form",
+                      "task",
+                      "text"
+                    ],
+                    "type": "object"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "span": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "end": {
+                        "type": "integer"
+                      },
+                      "start": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "end",
+                      "start"
+                    ],
+                    "type": "object"
+                  },
+                  "text": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "observation",
+                  "reason",
+                  "span",
+                  "text"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "global_safety_query": {
+          "additionalProperties": false,
+          "properties": {
+            "analyzed_terms": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "route": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "analyzed_terms",
+            "route",
+            "text"
+          ],
+          "type": "object"
+        },
+        "gold": {
+          "type": "string"
+        },
+        "hint_associations": {
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "hint": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "task": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "task",
+                      "value"
+                    ],
+                    "type": "object"
+                  },
+                  "lane": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "task": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "task",
+                      "value"
+                    ],
+                    "type": "object"
+                  },
+                  "provenance": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "explanation": {
+                        "type": "string"
+                      },
+                      "source_identity": {
+                        "type": "string"
+                      },
+                      "span": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "end": {
+                            "type": "integer"
+                          },
+                          "start": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "end",
+                          "start"
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "explanation",
+                      "source_identity",
+                      "span"
+                    ],
+                    "type": "object"
+                  },
+                  "reason": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "hint",
+                  "lane",
+                  "provenance",
+                  "reason"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "hint_inventory": {
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "caller_reviewed": {
+                    "type": "boolean"
+                  },
+                  "category": {
+                    "type": "string"
+                  },
+                  "identity": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "task": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "task",
+                      "value"
+                    ],
+                    "type": "object"
+                  },
+                  "provenance": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "explanation": {
+                        "type": "string"
+                      },
+                      "source_identity": {
+                        "type": "string"
+                      },
+                      "span": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "end": {
+                            "type": "integer"
+                          },
+                          "start": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "end",
+                          "start"
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "explanation",
+                      "source_identity",
+                      "span"
+                    ],
+                    "type": "object"
+                  },
+                  "rule": {
+                    "type": "string"
+                  },
+                  "rule_extracted": {
+                    "type": "boolean"
+                  },
+                  "span": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "end": {
+                        "type": "integer"
+                      },
+                      "start": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "end",
+                      "start"
+                    ],
+                    "type": "object"
+                  },
+                  "syntactic_form": {
+                    "type": "string"
+                  },
+                  "task": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "value"
+                    ],
+                    "type": "object"
+                  },
+                  "text": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "caller_reviewed",
+                  "category",
+                  "identity",
+                  "provenance",
+                  "rule",
+                  "rule_extracted",
+                  "span",
+                  "syntactic_form",
+                  "task",
+                  "text"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "lexical_query_executions": {
+          "type": "integer"
+        },
+        "native_obligation_queries": {
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "identity": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "task": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "task",
+                      "value"
+                    ],
+                    "type": "object"
+                  },
+                  "obligation": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "task": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "task",
+                      "value"
+                    ],
+                    "type": "object"
+                  },
+                  "text": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "identity",
+                  "obligation",
+                  "text"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "native_task_interpretation": {
+          "additionalProperties": false,
+          "properties": {
+            "anchors": {
+              "items": {
+                "anyOf": [
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "identity": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "task": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "task",
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "provenance": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "explanation": {
+                            "type": "string"
+                          },
+                          "source_identity": {
+                            "type": "string"
+                          },
+                          "span": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "end": {
+                                "type": "integer"
+                              },
+                              "start": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "end",
+                              "start"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "explanation",
+                          "source_identity",
+                          "span"
+                        ],
+                        "type": "object"
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "identity",
+                      "provenance",
+                      "text"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "identity": {
+              "additionalProperties": false,
+              "properties": {
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value"
+              ],
+              "type": "object"
+            },
+            "obligations": {
+              "items": {
+                "anyOf": [
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "anchors": {
+                        "items": {
+                          "anyOf": [
+                            {
+                              "additionalProperties": false,
+                              "properties": {
+                                "task": {
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "value": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "value"
+                                  ],
+                                  "type": "object"
+                                },
+                                "value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "task",
+                                "value"
+                              ],
+                              "type": "object"
+                            }
+                          ]
+                        },
+                        "type": "array"
+                      },
+                      "applicability_condition": {
+                        "type": "string"
+                      },
+                      "identity": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "task": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "task",
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "predicate": {
+                        "type": "string"
+                      },
+                      "provenance": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "explanation": {
+                            "type": "string"
+                          },
+                          "source_identity": {
+                            "type": "string"
+                          },
+                          "span": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "end": {
+                                "type": "integer"
+                              },
+                              "start": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "end",
+                              "start"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "explanation",
+                          "source_identity",
+                          "span"
+                        ],
+                        "type": "object"
+                      },
+                      "requirement": {
+                        "type": "string"
+                      },
+                      "satisfaction": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "statement": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "statement"
+                        ],
+                        "type": "object"
+                      },
+                      "witness_alternatives": {
+                        "maxItems": 0,
+                        "type": "array"
+                      }
+                    },
+                    "required": [
+                      "anchors",
+                      "applicability_condition",
+                      "identity",
+                      "predicate",
+                      "provenance",
+                      "requirement",
+                      "satisfaction",
+                      "witness_alternatives"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "properties": {
+                      "anchors": {
+                        "maxItems": 0,
+                        "type": "array"
+                      },
+                      "applicability_condition": {
+                        "type": "string"
+                      },
+                      "identity": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "task": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value"
+                            ],
+                            "type": "object"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "task",
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "predicate": {
+                        "type": "string"
+                      },
+                      "provenance": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "explanation": {
+                            "type": "string"
+                          },
+                          "source_identity": {
+                            "type": "string"
+                          },
+                          "span": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "end": {
+                                "type": "integer"
+                              },
+                              "start": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "end",
+                              "start"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "explanation",
+                          "source_identity",
+                          "span"
+                        ],
+                        "type": "object"
+                      },
+                      "requirement": {
+                        "type": "string"
+                      },
+                      "satisfaction": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "statement": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "statement"
+                        ],
+                        "type": "object"
+                      },
+                      "witness_alternatives": {
+                        "maxItems": 0,
+                        "type": "array"
+                      }
+                    },
+                    "required": [
+                      "anchors",
+                      "applicability_condition",
+                      "identity",
+                      "predicate",
+                      "provenance",
+                      "requirement",
+                      "satisfaction",
+                      "witness_alternatives"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "provenance": {
+              "additionalProperties": false,
+              "properties": {
+                "explanation": {
+                  "type": "string"
+                },
+                "source_identity": {
+                  "type": "string"
+                },
+                "span": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "explanation",
+                "source_identity",
+                "span"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "anchors",
+            "identity",
+            "obligations",
+            "provenance"
+          ],
+          "type": "object"
+        },
+        "non_hint_conceptual_requirements": {
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "analyzed_terms": {
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  },
+                  "applicability": {
+                    "type": "string"
+                  },
+                  "criterion": {
+                    "type": "string"
+                  },
+                  "identity": {
+                    "type": "string"
+                  },
+                  "key": {
+                    "type": "string"
+                  },
+                  "query": {
+                    "type": "string"
+                  },
+                  "statement": {
+                    "type": "string"
+                  },
+                  "task_basis": {
+                    "items": {
+                      "anyOf": [
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "end": {
+                              "type": "integer"
+                            },
+                            "start": {
+                              "type": "integer"
+                            },
+                            "text": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "end",
+                            "start",
+                            "text"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "analyzed_terms",
+                  "applicability",
+                  "criterion",
+                  "identity",
+                  "key",
+                  "query",
+                  "statement",
+                  "task_basis"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "obligations": {
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "analyzed_terms": {
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  },
+                  "applicability": {
+                    "type": "string"
+                  },
+                  "criterion": {
+                    "type": "string"
+                  },
+                  "identity": {
+                    "type": "string"
+                  },
+                  "key": {
+                    "type": "string"
+                  },
+                  "query": {
+                    "type": "string"
+                  },
+                  "statement": {
+                    "type": "string"
+                  },
+                  "task_basis": {
+                    "items": {
+                      "anyOf": [
+                        {
+                          "additionalProperties": false,
+                          "properties": {
+                            "end": {
+                              "type": "integer"
+                            },
+                            "start": {
+                              "type": "integer"
+                            },
+                            "text": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "end",
+                            "start",
+                            "text"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "analyzed_terms",
+                  "applicability",
+                  "criterion",
+                  "identity",
+                  "key",
+                  "query",
+                  "statement",
+                  "task_basis"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "rule_extracted_hints": {
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "category": {
+                    "type": "string"
+                  },
+                  "identity": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "task": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "task",
+                      "value"
+                    ],
+                    "type": "object"
+                  },
+                  "provenance": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "explanation": {
+                        "type": "string"
+                      },
+                      "source_identity": {
+                        "type": "string"
+                      },
+                      "span": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "end": {
+                            "type": "integer"
+                          },
+                          "start": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "end",
+                          "start"
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "explanation",
+                      "source_identity",
+                      "span"
+                    ],
+                    "type": "object"
+                  },
+                  "rule": {
+                    "type": "string"
+                  },
+                  "span": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "end": {
+                        "type": "integer"
+                      },
+                      "start": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "end",
+                      "start"
+                    ],
+                    "type": "object"
+                  },
+                  "syntactic_form": {
+                    "type": "string"
+                  },
+                  "task": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "value"
+                    ],
+                    "type": "object"
+                  },
+                  "text": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "category",
+                  "identity",
+                  "provenance",
+                  "rule",
+                  "span",
+                  "syntactic_form",
+                  "task",
+                  "text"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "schema": {
+          "type": "string"
+        },
+        "settings": {
+          "additionalProperties": false,
+          "properties": {
+            "BM25F": {
+              "type": "boolean"
+            },
+            "b": {
+              "type": "number"
+            },
+            "filename_weight": {
+              "type": "number"
+            },
+            "fusion": {
+              "type": "boolean"
+            },
+            "identifier_aware_view": {
+              "type": "boolean"
+            },
+            "k1": {
+              "type": "number"
+            },
+            "maximum_results": {
+              "type": "string"
+            },
+            "reformulation": {
+              "type": "boolean"
+            },
+            "representation": {
+              "type": "string"
+            },
+            "tie_order": {
+              "type": "string"
+            },
+            "tokenizer": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "BM25F",
+            "b",
+            "filename_weight",
+            "fusion",
+            "identifier_aware_view",
+            "k1",
+            "maximum_results",
+            "reformulation",
+            "representation",
+            "tie_order",
+            "tokenizer"
+          ],
+          "type": "object"
+        },
+        "stage_b": {
+          "type": "string"
+        },
+        "task_identity": {
+          "type": "string"
+        },
+        "task_requirement_matrix": {
+          "items": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "basis": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "end": {
+                        "type": "integer"
+                      },
+                      "start": {
+                        "type": "integer"
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "end",
+                      "start",
+                      "text"
+                    ],
+                    "type": "object"
+                  },
+                  "exclusion": {
+                    "type": "null"
+                  },
+                  "obligations": {
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  },
+                  "requirement": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "basis",
+                  "exclusion",
+                  "obligations",
+                  "requirement"
+                ],
+                "type": "object"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "task_sha256": {
+          "type": "string"
+        },
+        "task_text": {
+          "type": "string"
+        },
+        "treatment_executions": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "arms",
+        "caller_reviewed_hint_reference",
+        "decision_rule",
+        "effectiveness",
+        "exact_route_executions",
+        "exact_route_requests",
+        "excluded",
+        "extraction_agreement",
+        "extraction_decisions",
+        "global_safety_query",
+        "gold",
+        "hint_associations",
+        "hint_inventory",
+        "lexical_query_executions",
+        "native_obligation_queries",
+        "native_task_interpretation",
+        "non_hint_conceptual_requirements",
+        "obligations",
+        "rule_extracted_hints",
+        "schema",
+        "settings",
+        "stage_b",
+        "task_identity",
+        "task_requirement_matrix",
+        "task_sha256",
+        "task_text",
+        "treatment_executions"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "stage",
+    "treatment",
+    "frame",
+    "execution",
+    "results",
+    "effectiveness"
+  ],
+  "type": "object"
+}
