@@ -8,7 +8,7 @@ Challenge task interpretation, clause coverage, extraction, typing, association,
 
 ### schema
 
-case-0012-stage-a-clarification-v1
+case-0012-stage-a-clarification-v2
 
 ### history
 
@@ -16,6 +16,7 @@ case-0012-stage-a-clarification-v1
 {
   "original_stage_a_checkpoint": "bd82f6481d0f993c1757fe1689b8b772b1948db9",
   "original_subject": "Freeze prospective exact-hint routing case",
+  "prior_equivalence_checkpoint": "afe9fc75e7d4da0cc92df50331d92233e4ff8243",
   "authoritative_stage_a": "This amended, resealed pre-execution checkpoint supersedes the original protocol clarification; original inputs and history remain preserved at the original commit.",
   "scope": "Protocol clarification and attribution only; no task, treatment inputs, frame, universes, BM25 settings, primary thresholds or outcome vocabulary change."
 }
@@ -25,7 +26,7 @@ case-0012-stage-a-clarification-v1
 
 ```json
 {
-  "expectation": "B/C exact route-request identities, native resolution accounts and exact-first routed presentations must be identical for these identical frozen semantic treatment inputs.",
+  "expectation": "Pre-execution equality covers route-request identities, locator families/inputs, associated obligations, selected mechanisms and repository/snapshot/frame bindings. Post-resolution and post-presentation equality uses exact-hint-behavior-projection-v1, not literal equality of complete native accounts/views. TASK_EXTRACTION_PROVENANCE intentionally differs; REPOSITORY_RESOLUTION_PROVENANCE must be behaviorally equivalent.",
   "forbidden_differences": [
     "resolution disposition",
     "native target",
@@ -34,10 +35,59 @@ case-0012-stage-a-clarification-v1
     "fallback candidate membership",
     "fallback order",
     "native rank",
-    "native score"
+    "native score",
+    "native repository evidence",
+    "native score contributions"
   ],
   "cost": "Independent execution costs may differ only through measurement noise; extraction/reference projection is the same ordered task-text input surface. Timing differences confer no semantic/result difference.",
-  "failure": "Any listed semantic/result difference selects EXPERIMENTAL_CONTRACT_DEFECT under the existing first-precedence contract gate unless exact frozen treatment inputs are first proven different. Proven input differences must be reported and authenticated; arms must never be altered to force a difference.",
+  "failure": "Any field difference in the frozen behavioral equality projection selects EXPERIMENTAL_CONTRACT_DEFECT under the existing first-precedence contract gate unless frozen semantic route inputs are first proven different. Extraction-rule, caller/mechanical authorship, syntactic-form and treatment-explanation differences alone are expected, retained and never a contract defect. Do not normalize native objects or alter arms to force equality.",
+  "provenance_layers": {
+    "TASK_EXTRACTION_PROVENANCE": "U2-owned inventory/arm identity, extraction rule, syntactic form, author/review/extraction explanation and task-observation provenance. Retain exact B/C differences in full scientific artifacts; the semantic task identity/text/span is still compared.",
+    "REPOSITORY_RESOLUTION_PROVENANCE": "Native referents, candidates, evidence, locator inputs including native class-parent provenance, repository/snapshot/frame bindings and reasons from deterministic mechanisms. Compare all native fields except the explicitly identified task-extraction request.provenance pass-through, never strip provenance recursively."
+  },
+  "projection": {
+    "schema": "exact-hint-behavior-projection-v1",
+    "purpose": "B/C treatment-equivalence validation only; no alteration of native artifacts, extraction evaluation, routing, scores or effectiveness.",
+    "task_extraction_provenance": [
+      "arm/source inventory identity",
+      "extraction-rule identity",
+      "caller-versus-rule author identity",
+      "syntactic-form descriptor",
+      "treatment-authorship explanation",
+      "task-observation extraction provenance",
+      "experimental routing-view construction provenance"
+    ],
+    "required_input_fields": [
+      "route-request identity",
+      "hint semantic identity",
+      "exact task text/span",
+      "associated obligation",
+      "locator family/input",
+      "selected mechanism",
+      "frozen repository/snapshot/frame bindings"
+    ],
+    "required_behavior_fields": [
+      "resolution disposition",
+      "native resolved/ambiguous referent identities",
+      "native candidate identities/order",
+      "native repository evidence identities",
+      "native resource occurrences",
+      "resolution reason",
+      "repository-resolution accounts/bindings",
+      "promoted resource set",
+      "exact-tier order/positions",
+      "routed positions/resource sequence",
+      "complete lexical membership/native order",
+      "native ranks/scores",
+      "content and weighted filename scores",
+      "all term contributions",
+      "index/query/settings bindings",
+      "unchanged global safety lane"
+    ],
+    "native_boundary": "Only AnchorGrounding.request.provenance is excluded from each comparison copy: it is the original task-extraction provenance passed through by the caller. All other native grounding fields, including locator/class-parent source provenance, candidates, evidence, reason and universe, remain authenticated. No recursive provenance-name stripping.",
+    "identities": "Native value identities include fully qualified native type plus SHA-256 of canonical complete native serialization. Grounding account SHA-256 covers its complete projection with only request.provenance excluded. Original artifacts retain all excluded values. Ordered identity lists retain cardinality and multiplicity; scores remain exact floats without rounding.",
+    "reason_policy": "Keep resolution reasons verbatim. V1 does not remove reason text; any reason difference is behavioral unless frozen semantic inputs are first proven different."
+  },
   "scope": "Case 0012 does not provide a differential effectiveness test of mechanical extraction versus caller-reviewed extraction. It provides one-case task-text extraction agreement plus prospective exact-first route-value evidence. Caller review is not universal truth."
 }
 ```

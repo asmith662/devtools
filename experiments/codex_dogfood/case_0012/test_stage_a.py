@@ -249,10 +249,17 @@ def test_bc_route_equivalence_and_contract(no_execution: None) -> None:
         "fallback order",
         "native rank",
         "native score",
+        "native repository evidence",
+        "native score contributions",
     }
     assert "EXPERIMENTAL_CONTRACT_DEFECT" in contract["failure"]
     assert "measurement noise" in contract["cost"]
     assert "does not provide a differential effectiveness test" in contract["scope"]
+    assert b[0]["hint"]["provenance"] != c[0]["hint"]["provenance"]
+    assert b[0]["hint"]["rule"] != c[0]["hint"]["rule"]
+    assert b[0]["hint"]["syntactic_form"] != c[0]["hint"]["syntactic_form"]
+    assert contract["projection"]["schema"] == "exact-hint-behavior-projection-v1"
+    assert "not literal equality" in contract["expectation"]
     c[0]["identity"] = "tampered"
     with pytest.raises(ValueError, match="identities differ"):
         amendment.definition(treatment)
@@ -348,7 +355,7 @@ def test_amendment_overwrite_refusal(
 ) -> None:
     async def mock_git(*args: str) -> bytes:
         if args == ("rev-parse", "HEAD"):
-            return amendment.ORIGINAL.encode()
+            return amendment.RESEAL_PARENT.encode()
         if args == ("branch", "--show-current"):
             return b"main"
         if args[0] == "show":

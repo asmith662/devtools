@@ -602,7 +602,7 @@ async def build() -> dict[str, Any]:
 async def amend() -> dict[str, Any]:
     """Reseal this authorized clarification once, against the original checkpoint."""
     require(
-        (await git("rev-parse", "HEAD")).decode().strip() == amendment.ORIGINAL,
+        (await git("rev-parse", "HEAD")).decode().strip() == amendment.RESEAL_PARENT,
         "Unexpected amendment parent",
     )
     require(
@@ -613,7 +613,8 @@ async def amend() -> dict[str, Any]:
     original_seal = json.loads(
         await git(
             "show",
-            amendment.ORIGINAL + ":experiments/codex_dogfood/case_0012/integrity.json",
+            amendment.RESEAL_PARENT
+            + ":experiments/codex_dogfood/case_0012/integrity.json",
         )
     )
     require(

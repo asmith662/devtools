@@ -1,5 +1,34 @@
 # Case 0012 Stage A validation
 
+## Behavioral equivalence boundary correction
+
+Final corrected checkpoint: **84 focused U2 tests passed**, including **18 behavioral
+projection tests**. Scoped Ruff and formatter checks passed; strict mypy passed
+over **19 Python files**. Guarded deterministic Stage A replay, protected input
+byte comparisons, all implementation/source seals, leakage and overwrite refusal
+checks passed. Worktree and index whitespace checks passed. No production profile
+rerun was needed for this experiment-only comparison/protocol change.
+
+The earlier literal complete-native-object equality expectation was impossible:
+caller and rule hints intentionally retain different rule/form/authorship provenance,
+and native grounding carries that task provenance in its request. The corrected
+versioned behavioral projection excludes only that explicit task-author layer,
+while preserving exact task identity/span, frozen semantic route inputs, native
+candidate/referent/evidence identities and every repository account field other
+than the task provenance pass-through. Complete scientific artifacts are unchanged.
+
+Controlled tests prove unequal full native objects have equal behavioral projections,
+and detect changes in disposition, referent, native evidence, ambiguous candidate
+order, reason, frame binding, promoted resource, exact tier/order, fallback membership/
+order, native rank/score/content and weighted filename contributions and global safety.
+The new fixture uses synthetic native match objects without lexical retrieval;
+only isolated fixture hints are resolved, never Case 0012 hints. Case 0012 replay
+retains rejecting execution guards and verifies all protected input bytes.
+
+This correction preserves the five route families and all family-qualified
+conclusions. It changes no primary threshold, outcome vocabulary, native model or
+treatment. Confirmation/reserve access and Stage B remain prohibited here.
+
 ## Pre-execution attribution amendment
 
 Final amendment validation: **66 focused tests passed**, scoped Ruff and format

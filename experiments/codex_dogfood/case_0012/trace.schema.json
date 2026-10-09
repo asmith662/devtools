@@ -31,6 +31,83 @@
               },
               "type": "array"
             },
+            "projection": {
+              "additionalProperties": false,
+              "properties": {
+                "identities": {
+                  "type": "string"
+                },
+                "native_boundary": {
+                  "type": "string"
+                },
+                "purpose": {
+                  "type": "string"
+                },
+                "reason_policy": {
+                  "type": "string"
+                },
+                "required_behavior_fields": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "required_input_fields": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "schema": {
+                  "type": "string"
+                },
+                "task_extraction_provenance": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "identities",
+                "native_boundary",
+                "purpose",
+                "reason_policy",
+                "required_behavior_fields",
+                "required_input_fields",
+                "schema",
+                "task_extraction_provenance"
+              ],
+              "type": "object"
+            },
+            "provenance_layers": {
+              "additionalProperties": false,
+              "properties": {
+                "REPOSITORY_RESOLUTION_PROVENANCE": {
+                  "type": "string"
+                },
+                "TASK_EXTRACTION_PROVENANCE": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "REPOSITORY_RESOLUTION_PROVENANCE",
+                "TASK_EXTRACTION_PROVENANCE"
+              ],
+              "type": "object"
+            },
             "scope": {
               "type": "string"
             }
@@ -40,6 +117,8 @@
             "expectation",
             "failure",
             "forbidden_differences",
+            "projection",
+            "provenance_layers",
             "scope"
           ],
           "type": "object"
@@ -106,6 +185,9 @@
             "original_subject": {
               "type": "string"
             },
+            "prior_equivalence_checkpoint": {
+              "type": "string"
+            },
             "scope": {
               "type": "string"
             }
@@ -114,6 +196,7 @@
             "authoritative_stage_a",
             "original_stage_a_checkpoint",
             "original_subject",
+            "prior_equivalence_checkpoint",
             "scope"
           ],
           "type": "object"

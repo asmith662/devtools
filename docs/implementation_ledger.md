@@ -1274,6 +1274,24 @@ production branch coverage. No confirmation or live-service validation ran.
   Validation commands/results live in the Stage D validation record; no
   confirmation/reserve or live-service validation was performed.
 
+## Case 0012 behavioral-equivalence boundary correction (2026-10-09)
+
+The attribution checkpoint `afe9fc75e7d4da0cc92df50331d92233e4ff8243` incorrectly
+required literal equality of complete B/C accounts/views. Caller and mechanical
+observations intentionally differ in task-extraction provenance, including the
+provenance passed through by native grounding requests. A pre-execution inspection
+detected the conflict without resolving hints or executing retrieval.
+
+The corrected/resealed protocol uses `exact-hint-behavior-projection-v1` only for
+B/C equivalence: semantic route inputs, native repository evidence/identities,
+resolved occurrences, exact order and all lexical membership/order/score evidence
+must match. Task-authorship differences are preserved in complete native artifacts
+and excluded only from the explicit comparison copy. No recursive stripping of
+repository provenance or native model change is permitted. Controlled mutations
+validate the boundary; all original task/treatment/frame bytes, primary thresholds,
+outcomes, reporting families and narrow/unsupported review decisions remain frozen.
+Stage B remains NOT EXECUTED and effectiveness UNKNOWN; production is unchanged.
+
 ## Case 0012 pre-execution protocol attribution amendment (2026-10-09)
 
 The original Stage A checkpoint `bd82f6481d0f993c1757fe1689b8b772b1948db9`

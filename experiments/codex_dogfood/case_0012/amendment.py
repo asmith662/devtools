@@ -7,7 +7,10 @@ from __future__ import annotations
 import json
 from typing import Any
 
+from experiments.exact_hint_routing.behavior import CONTRACT
+
 ORIGINAL = "bd82f6481d0f993c1757fe1689b8b772b1948db9"
+RESEAL_PARENT = "afe9fc75e7d4da0cc92df50331d92233e4ff8243"
 FAMILIES = {
     "RESOURCE_ADDRESS": ("H07", "H08", "H09", "H10"),
     "PYTHON_DIRECT_DECLARATION": ("H01", "H02"),
@@ -35,7 +38,7 @@ FIELDS = (
     "cost",
 )
 EQUIVALENCE = {
-    "expectation": "B/C exact route-request identities, native resolution accounts and exact-first routed presentations must be identical for these identical frozen semantic treatment inputs.",
+    "expectation": "Pre-execution equality covers route-request identities, locator families/inputs, associated obligations, selected mechanisms and repository/snapshot/frame bindings. Post-resolution and post-presentation equality uses exact-hint-behavior-projection-v1, not literal equality of complete native accounts/views. TASK_EXTRACTION_PROVENANCE intentionally differs; REPOSITORY_RESOLUTION_PROVENANCE must be behaviorally equivalent.",
     "forbidden_differences": [
         "resolution disposition",
         "native target",
@@ -45,9 +48,16 @@ EQUIVALENCE = {
         "fallback order",
         "native rank",
         "native score",
+        "native repository evidence",
+        "native score contributions",
     ],
     "cost": "Independent execution costs may differ only through measurement noise; extraction/reference projection is the same ordered task-text input surface. Timing differences confer no semantic/result difference.",
-    "failure": "Any listed semantic/result difference selects EXPERIMENTAL_CONTRACT_DEFECT under the existing first-precedence contract gate unless exact frozen treatment inputs are first proven different. Proven input differences must be reported and authenticated; arms must never be altered to force a difference.",
+    "failure": "Any field difference in the frozen behavioral equality projection selects EXPERIMENTAL_CONTRACT_DEFECT under the existing first-precedence contract gate unless frozen semantic route inputs are first proven different. Extraction-rule, caller/mechanical authorship, syntactic-form and treatment-explanation differences alone are expected, retained and never a contract defect. Do not normalize native objects or alter arms to force equality.",
+    "provenance_layers": {
+        "TASK_EXTRACTION_PROVENANCE": "U2-owned inventory/arm identity, extraction rule, syntactic form, author/review/extraction explanation and task-observation provenance. Retain exact B/C differences in full scientific artifacts; the semantic task identity/text/span is still compared.",
+        "REPOSITORY_RESOLUTION_PROVENANCE": "Native referents, candidates, evidence, locator inputs including native class-parent provenance, repository/snapshot/frame bindings and reasons from deterministic mechanisms. Compare all native fields except the explicitly identified task-extraction request.provenance pass-through, never strip provenance recursively.",
+    },
+    "projection": CONTRACT,
     "scope": "Case 0012 does not provide a differential effectiveness test of mechanical extraction versus caller-reviewed extraction. It provides one-case task-text extraction agreement plus prospective exact-first route-value evidence. Caller review is not universal truth.",
 }
 SCOPE = {
@@ -114,10 +124,11 @@ def definition(treatment: dict[str, Any]) -> dict[str, Any]:
             "required_future_fields": list(FIELDS),
         }
     return {
-        "schema": "case-0012-stage-a-clarification-v1",
+        "schema": "case-0012-stage-a-clarification-v2",
         "history": {
             "original_stage_a_checkpoint": ORIGINAL,
             "original_subject": "Freeze prospective exact-hint routing case",
+            "prior_equivalence_checkpoint": RESEAL_PARENT,
             "authoritative_stage_a": "This amended, resealed pre-execution checkpoint supersedes the original protocol clarification; original inputs and history remain preserved at the original commit.",
             "scope": "Protocol clarification and attribution only; no task, treatment inputs, frame, universes, BM25 settings, primary thresholds or outcome vocabulary change.",
         },
