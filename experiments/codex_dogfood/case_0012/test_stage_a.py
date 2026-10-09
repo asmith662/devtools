@@ -19,10 +19,11 @@ from experiments.codex_dogfood.case_0009.artifacts import (
     ROOT,
     binary,
     digest,
+    git,
     json_bytes,
     put_text,
 )
-from experiments.codex_dogfood.case_0012 import blind, freeze, protocol
+from experiments.codex_dogfood.case_0012 import amendment, blind, freeze, protocol
 from experiments.exact_hint_routing import routing
 
 if TYPE_CHECKING:
@@ -228,3 +229,134 @@ def test_published_stage_a_no_outcomes_if_present(no_execution: None) -> None:
     result = asyncio.run(freeze.verify())
     assert result["replay"] == "PASSED"
     assert not any((freeze.CASE / name).exists() for name in freeze.FORBIDDEN)
+
+
+def test_bc_route_equivalence_and_contract(no_execution: None) -> None:
+    treatment = protocol.definition()
+    clarification = amendment.definition(treatment)
+    b, c = (treatment["exact_route_requests"][arm] for arm in ("B", "C"))
+    assert [r["identity"] for r in b] == [r["identity"] for r in c]
+    assert [(r["locator"], r["association"], r["mechanism"]) for r in b] == [
+        (r["locator"], r["association"], r["mechanism"]) for r in c
+    ]
+    contract = clarification["bc_equivalence"]
+    assert set(contract["forbidden_differences"]) == {
+        "resolution disposition",
+        "native target",
+        "promoted resource",
+        "routed order",
+        "fallback candidate membership",
+        "fallback order",
+        "native rank",
+        "native score",
+    }
+    assert "EXPERIMENTAL_CONTRACT_DEFECT" in contract["failure"]
+    assert "measurement noise" in contract["cost"]
+    assert "does not provide a differential effectiveness test" in contract["scope"]
+    c[0]["identity"] = "tampered"
+    with pytest.raises(ValueError, match="identities differ"):
+        amendment.definition(treatment)
+
+
+def test_route_family_partition_and_review_decisions(no_execution: None) -> None:
+    treatment = protocol.definition()
+    clarification = amendment.definition(treatment)
+    families = clarification["route_families"]
+    assert {f: tuple(v["hints"]) for f, v in families.items()} == {
+        "RESOURCE_ADDRESS": ("H07", "H08", "H09", "H10"),
+        "PYTHON_DIRECT_DECLARATION": ("H01", "H02"),
+        "PYTHON_MODULE": ("H03",),
+        "PYTHON_DIRECT_METHOD": ("H04",),
+        "UNSUPPORTED_BARE_CLASS": ("H05", "H06"),
+    }
+    members = [h for v in families.values() for h in v["hints"]]
+    assert len(members) == len(set(members)) == 10
+    assert sum(v["admitted_route_count"] for v in families.values()) == 8
+    assert all(
+        v["required_future_fields"] == list(amendment.FIELDS) for v in families.values()
+    )
+    routes = treatment["exact_route_requests"]["B"]
+    assert routes[2]["association"]["lane"]["value"] == "choices"
+    assert sum(r["hint"]["text"] == "devtools.context.planning" for r in routes) == 1
+    for n in (4, 5):
+        assert routes[n]["locator"] is None
+        assert routes[n]["mechanism"] == "UNSUPPORTED_EXACT_HINT"
+    assert "not failed extraction" in clarification["family_reporting"]
+    assert "not the primary U2 baseline arm" in clarification["baseline_scope"]
+    assert "obligation-level canonical BM25" in clarification["baseline_scope"]
+
+
+def test_family_conclusion_scope_without_execution(no_execution: None) -> None:
+    counts = dict.fromkeys(amendment.FAMILIES, 0)
+    assert all(
+        amendment.conclusion_scope(counts, frozenset())[f] == "NOT_ASSESSED"
+        for f in counts
+    )
+    counts["RESOURCE_ADDRESS"] = 1
+    result = amendment.conclusion_scope(counts, frozenset({"RESOURCE_ADDRESS"}))
+    assert (
+        result["conclusion"] == "exact repository-path routing supported in Case 0012"
+    )
+    assert result["PYTHON_DIRECT_DECLARATION"] == "NOT_ASSESSED"
+    counts["PYTHON_DIRECT_METHOD"] = 1
+    result = amendment.conclusion_scope(counts, frozenset({"PYTHON_DIRECT_METHOD"}))
+    assert (
+        result["conclusion"] == "Case 0012 value established for: PYTHON_DIRECT_METHOD"
+    )
+    with pytest.raises(ValueError, match="REQUIRED target"):
+        amendment.conclusion_scope(counts, frozenset({"PYTHON_MODULE"}))
+    assert "HELPFUL_ONLY-only" in amendment.SCOPE["no_required_target"]
+    assert "Do not claim empirical support" in amendment.SCOPE["path_only"]
+
+
+def test_amendment_correspondence_and_original_treatment(no_execution: None) -> None:
+    trace = json.loads(binary(freeze.CASE / "trace.json"))
+    clarification = amendment.definition(protocol.definition())
+    assert trace["clarification"] == clarification
+    from experiments.codex_dogfood.case_0012 import reporting  # noqa: PLC0415
+
+    for name in ("TRACE.md", "STAGE_A_REVIEW.md", "PROTOCOL.md"):
+        assert amendment.review(clarification) in binary(freeze.CASE / name).decode()
+    assert binary(freeze.CASE / "STAGE_A_REVIEW.md").decode() == reporting.review(
+        protocol.definition(), trace["frame"]
+    )
+    assert clarification["history"]["original_stage_a_checkpoint"] == amendment.ORIGINAL
+    assert set(clarification["execution"].values()) == {0}
+    protected = (
+        "task.txt",
+        "TASK_REQUIREMENT_MATRIX.md",
+        "treatment.json",
+        "frame.json",
+        "inputs.json.gz",
+        "resources.json.gz",
+        "AUTHORING.md",
+        "SELECTION.md",
+        "STAGE_C_PROTOCOL.md",
+    )
+    for name in protected:
+        original = asyncio.run(
+            git(
+                "show",
+                amendment.ORIGINAL + ":experiments/codex_dogfood/case_0012/" + name,
+            )
+        )
+        assert binary(freeze.CASE / name) == original
+
+
+def test_amendment_overwrite_refusal(
+    no_execution: None, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    async def mock_git(*args: str) -> bytes:
+        if args == ("rev-parse", "HEAD"):
+            return amendment.ORIGINAL.encode()
+        if args == ("branch", "--show-current"):
+            return b"main"
+        if args[0] == "show":
+            return b'{"sha256":{},"scope":"original"}'
+        raise AssertionError(args)
+
+    monkeypatch.setattr(freeze, "git", mock_git)
+    before = binary(freeze.CASE / "integrity.json")
+    with pytest.raises(ValueError, match="overwrite refused"):
+        asyncio.run(freeze.amend())
+    assert binary(freeze.CASE / "integrity.json") == before

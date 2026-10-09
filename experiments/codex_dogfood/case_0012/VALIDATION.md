@@ -1,5 +1,33 @@
 # Case 0012 Stage A validation
 
+## Pre-execution attribution amendment
+
+Final amendment validation: **66 focused tests passed**, scoped Ruff and format
+checks passed, strict mypy passed over **17 Python files**, and deterministic
+published replay passed. Worktree and staged whitespace checks passed. The original
+protected production profile below was not rerun for this experiment-only protocol
+amendment; no production behavior changed. Confirmation/reserve data was not accessed.
+
+The original checkpoint and its validation below remain historical evidence.
+The amended checkpoint adds guarded B/C request-identity and semantic-input
+equivalence, the complete five-family partition, exact conclusion scoping,
+path-only qualification, no-REQUIRED-target NOT_ASSESSED behavior, the obligation
+baseline and narrow/unsupported manual-review decisions. Protected task/treatment/
+matrix/native-frame/universe artifacts are compared byte-for-byte with the original
+commit. The guarded published replay, seal checks, Markdown/trace/JSON/schema
+correspondence, leakage, tamper rejection and both ordinary/amendment overwrite
+refusal remain mandatory. No Case 0012 hint resolution or lexical execution is
+permitted during amendment validation.
+
+Concurrent sessions in different repositories are permitted. The writer boundary
+is the Git worktree. The other resumed session's metadata and recent turn context
+identify `C:/Users/recoveryadmin/Workspace/repository-context-retrieval`, with no
+observed command target or unexplained file activity in this devtools checkout.
+It is NON_CONFLICTING_OTHER_WORKTREE, rather than a conflict merely because it is
+interactive. No other session was interrupted or terminated.
+
+## Original checkpoint validation
+
 Final guarded suite: **61 passed**. It covers immutable hints and stable spans,
 conservative extraction and false-positive boundaries, native obligation identity
 associations, resource/module/function/class/method fixture resolution, repeated

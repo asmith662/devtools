@@ -40,6 +40,7 @@ from devtools.context.repository.snapshot import (
     RepositorySnapshotId,
 )
 from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import TextFile, write
 from experiments.codex_dogfood.case_0009.artifacts import (
     ROOT,
     binary,
@@ -51,7 +52,7 @@ from experiments.codex_dogfood.case_0009.artifacts import (
     read_json,
 )
 from experiments.codex_dogfood.case_0009.freeze import eligible
-from experiments.codex_dogfood.case_0012 import protocol, reporting
+from experiments.codex_dogfood.case_0012 import amendment, protocol, reporting
 from experiments.exact_hint_routing.routing import ExactFrame
 
 CASE = protocol.CASE
@@ -109,6 +110,7 @@ def implementation_files() -> tuple[Path, ...]:
                         "freeze.py",
                         "blind.py",
                         "test_stage_a.py",
+                        "amendment.py",
                     )
                 ),
                 *EXPERIMENT.rglob("*.py"),
@@ -343,6 +345,7 @@ def protocol_text(treatment: dict[str, Any]) -> str:
         "",
         "## Primary questions and metrics",
         "",
+        amendment.review(amendment.definition(treatment)),
     ]
     lines += [f"{n}. {q}" for n, q in enumerate(questions, 1)]
     lines += ["", "## Frozen decision rule", ""]
@@ -406,6 +409,7 @@ def artifacts(
         "schema": "case-0012-stage-a-trace-v1",
         "stage": "STAGE_A",
         "treatment": treatment,
+        "clarification": amendment.definition(treatment),
         "frame": metadata,
         "execution": {"exact_routes": 0, "lexical_queries": 0, "treatments": 0},
         "results": "ABSENT",
@@ -433,6 +437,7 @@ def artifacts(
             "schema": {"const": trace["schema"]},
             "stage": {"const": "STAGE_A"},
             "treatment": shape(treatment),
+            "clarification": shape(trace["clarification"]),
             "frame": shape(metadata),
             "execution": {"const": trace["execution"]},
             "results": {"const": "ABSENT"},
@@ -594,12 +599,85 @@ async def build() -> dict[str, Any]:
     return await verify()
 
 
+async def amend() -> dict[str, Any]:
+    """Reseal this authorized clarification once, against the original checkpoint."""
+    require(
+        (await git("rev-parse", "HEAD")).decode().strip() == amendment.ORIGINAL,
+        "Unexpected amendment parent",
+    )
+    require(
+        (await git("branch", "--show-current")).decode().strip() == "main",
+        "Expected main branch",
+    )
+    require(not any((CASE / n).exists() for n in FORBIDDEN), "Unexpected execution")
+    original_seal = json.loads(
+        await git(
+            "show",
+            amendment.ORIGINAL + ":experiments/codex_dogfood/case_0012/integrity.json",
+        )
+    )
+    require(
+        read_json(CASE / "integrity.json") == original_seal,
+        "Amendment overwrite refused: already resealed",
+    )
+    require(
+        all(digest(binary(CASE / n)) == original_seal["sha256"][n] for n in GENERATED),
+        "Original Stage A artifact differs before amendment",
+    )
+    require(
+        all(
+            digest(binary(CASE / n)) == original_seal["sha256"][n]
+            for n in AUTHORED
+            if n != "README.md"
+        ),
+        "Protected authored input differs",
+    )
+    blobs = await committed_blobs()
+    image = json.loads(gzip.decompress(binary(CASE / "inputs.json.gz")))
+    frame = restore_frame(image)
+    output = artifacts(frame, read_json(CASE / "frame.json"), blobs)
+    mutable = {
+        "trace.json",
+        "TRACE.md",
+        "STAGE_A_REVIEW.md",
+        "PROTOCOL.md",
+        "trace.schema.json",
+        "pre_execution.json",
+    }
+    require(
+        all(binary(CASE / n) == raw for n, raw in output.items() if n not in mutable),
+        "Amendment changed frozen treatment/frame/matrix bytes",
+    )
+    for name in mutable:
+        write(
+            TextFile(resolve_path(CASE / name), output[name].decode("utf-8")),
+            overwrite=True,
+        )
+    sealed = {name: digest(raw) for name, raw in output.items()}
+    sealed.update({name: digest(binary(CASE / name)) for name in AUTHORED})
+    write(
+        TextFile(
+            resolve_path(CASE / "integrity.json"),
+            json_bytes(
+                {
+                    "schema": "case-0012-stage-a-integrity-v1",
+                    "sha256": sealed,
+                    "scope": original_seal["scope"],
+                }
+            ).decode(),
+        ),
+        overwrite=True,
+    )
+    return await verify()
+
+
 def main() -> None:
-    """Provide only build/verify; Stage B requires another authorization/checkpoint."""
+    """Provide only preparation/replay/amendment; Stage B needs authorization."""
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("operation", choices=("build", "verify"))
+    parser.add_argument("operation", choices=("build", "verify", "amend"))
     args = parser.parse_args()
-    print(asyncio.run(build() if args.operation == "build" else verify()))
+    operations = {"build": build, "verify": verify, "amend": amend}
+    print(asyncio.run(operations[args.operation]()))
 
 
 if __name__ == "__main__":

@@ -7,6 +7,8 @@ from __future__ import annotations
 import json
 from typing import Any
 
+from experiments.codex_dogfood.case_0012 import amendment
+
 
 def matrix(treatment: dict[str, Any]) -> str:
     """Expose every mandatory clause and explicit operational exclusion."""
@@ -45,6 +47,7 @@ def review(treatment: dict[str, Any], frame: dict[str, Any]) -> str:
         "",
         "Challenge task interpretation, clause coverage, extraction, typing, association, locator admission, arm design and decision arithmetic before authorization. No Case 0012 hints were resolved, no lexical query executed, and no rank/score/gold or treatment outcome is present.",
         "",
+        amendment.review(amendment.definition(treatment)),
         "## Original task verbatim",
         "",
         "```text",

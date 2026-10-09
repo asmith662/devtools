@@ -3,6 +3,480 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {
+    "clarification": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_scope": {
+          "type": "string"
+        },
+        "bc_equivalence": {
+          "additionalProperties": false,
+          "properties": {
+            "cost": {
+              "type": "string"
+            },
+            "expectation": {
+              "type": "string"
+            },
+            "failure": {
+              "type": "string"
+            },
+            "forbidden_differences": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            "scope": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "cost",
+            "expectation",
+            "failure",
+            "forbidden_differences",
+            "scope"
+          ],
+          "type": "object"
+        },
+        "conclusion_scope": {
+          "additionalProperties": false,
+          "properties": {
+            "code_symbols": {
+              "type": "string"
+            },
+            "no_required_target": {
+              "type": "string"
+            },
+            "path_only": {
+              "type": "string"
+            },
+            "primary_rule": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "code_symbols",
+            "no_required_target",
+            "path_only",
+            "primary_rule"
+          ],
+          "type": "object"
+        },
+        "effectiveness": {
+          "type": "string"
+        },
+        "execution": {
+          "additionalProperties": false,
+          "properties": {
+            "exact_routes": {
+              "type": "integer"
+            },
+            "lexical_queries": {
+              "type": "integer"
+            },
+            "treatments": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "exact_routes",
+            "lexical_queries",
+            "treatments"
+          ],
+          "type": "object"
+        },
+        "family_reporting": {
+          "type": "string"
+        },
+        "history": {
+          "additionalProperties": false,
+          "properties": {
+            "authoritative_stage_a": {
+              "type": "string"
+            },
+            "original_stage_a_checkpoint": {
+              "type": "string"
+            },
+            "original_subject": {
+              "type": "string"
+            },
+            "scope": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "authoritative_stage_a",
+            "original_stage_a_checkpoint",
+            "original_subject",
+            "scope"
+          ],
+          "type": "object"
+        },
+        "maintainer_review": {
+          "additionalProperties": false,
+          "properties": {
+            "H03": {
+              "type": "string"
+            },
+            "H05": {
+              "type": "string"
+            },
+            "H06": {
+              "type": "string"
+            },
+            "paths": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "H03",
+            "H05",
+            "H06",
+            "paths"
+          ],
+          "type": "object"
+        },
+        "route_families": {
+          "additionalProperties": false,
+          "properties": {
+            "PYTHON_DIRECT_DECLARATION": {
+              "additionalProperties": false,
+              "properties": {
+                "admitted_route_count": {
+                  "type": "integer"
+                },
+                "associated_obligations": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "hint_count": {
+                  "type": "integer"
+                },
+                "hint_texts": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "hints": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "required_future_fields": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "admitted_route_count",
+                "associated_obligations",
+                "hint_count",
+                "hint_texts",
+                "hints",
+                "required_future_fields"
+              ],
+              "type": "object"
+            },
+            "PYTHON_DIRECT_METHOD": {
+              "additionalProperties": false,
+              "properties": {
+                "admitted_route_count": {
+                  "type": "integer"
+                },
+                "associated_obligations": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "hint_count": {
+                  "type": "integer"
+                },
+                "hint_texts": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "hints": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "required_future_fields": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "admitted_route_count",
+                "associated_obligations",
+                "hint_count",
+                "hint_texts",
+                "hints",
+                "required_future_fields"
+              ],
+              "type": "object"
+            },
+            "PYTHON_MODULE": {
+              "additionalProperties": false,
+              "properties": {
+                "admitted_route_count": {
+                  "type": "integer"
+                },
+                "associated_obligations": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "hint_count": {
+                  "type": "integer"
+                },
+                "hint_texts": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "hints": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "required_future_fields": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "admitted_route_count",
+                "associated_obligations",
+                "hint_count",
+                "hint_texts",
+                "hints",
+                "required_future_fields"
+              ],
+              "type": "object"
+            },
+            "RESOURCE_ADDRESS": {
+              "additionalProperties": false,
+              "properties": {
+                "admitted_route_count": {
+                  "type": "integer"
+                },
+                "associated_obligations": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "hint_count": {
+                  "type": "integer"
+                },
+                "hint_texts": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "hints": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "required_future_fields": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "admitted_route_count",
+                "associated_obligations",
+                "hint_count",
+                "hint_texts",
+                "hints",
+                "required_future_fields"
+              ],
+              "type": "object"
+            },
+            "UNSUPPORTED_BARE_CLASS": {
+              "additionalProperties": false,
+              "properties": {
+                "admitted_route_count": {
+                  "type": "integer"
+                },
+                "associated_obligations": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "hint_count": {
+                  "type": "integer"
+                },
+                "hint_texts": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "hints": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "required_future_fields": {
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "admitted_route_count",
+                "associated_obligations",
+                "hint_count",
+                "hint_texts",
+                "hints",
+                "required_future_fields"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "PYTHON_DIRECT_DECLARATION",
+            "PYTHON_DIRECT_METHOD",
+            "PYTHON_MODULE",
+            "RESOURCE_ADDRESS",
+            "UNSUPPORTED_BARE_CLASS"
+          ],
+          "type": "object"
+        },
+        "schema": {
+          "type": "string"
+        },
+        "stage_b": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "baseline_scope",
+        "bc_equivalence",
+        "conclusion_scope",
+        "effectiveness",
+        "execution",
+        "family_reporting",
+        "history",
+        "maintainer_review",
+        "route_families",
+        "schema",
+        "stage_b"
+      ],
+      "type": "object"
+    },
     "effectiveness": {
       "const": "UNKNOWN"
     },
@@ -4036,6 +4510,7 @@
     "schema",
     "stage",
     "treatment",
+    "clarification",
     "frame",
     "execution",
     "results",

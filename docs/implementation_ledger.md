@@ -1274,6 +1274,27 @@ production branch coverage. No confirmation or live-service validation ran.
   Validation commands/results live in the Stage D validation record; no
   confirmation/reserve or live-service validation was performed.
 
+## Case 0012 pre-execution protocol attribution amendment (2026-10-09)
+
+The original Stage A checkpoint `bd82f6481d0f993c1757fe1689b8b772b1948db9`
+is retained in history. The amended/resealed Stage A is authoritative before any
+treatment execution. B/C identical task-only hint inventories require identical
+route identities, native resolution accounts and presentations; semantic/result
+differences trigger the existing EXPERIMENTAL_CONTRACT_DEFECT gate unless frozen
+inputs are first proven different. This case supplies task-text agreement and
+prospective route value, without a differential extraction-effectiveness test.
+
+Five reporting families separate paths, direct declarations, modules, methods
+and unsupported bare classes. Path-only value supports only exact repository-path
+routing in Case 0012; a family without a resolved REQUIRED target is NOT_ASSESSED.
+Arm A remains the obligation-query baseline and the global task query is safety/
+reference. H03 stays choices-only, H05/H06 remain unsupported without a task-only
+module owner. Task, obligations, observations, associations, locators, queries,
+frame, universes, BM25 and primary thresholds/outcomes are unchanged. Exact routes,
+lexical queries and treatments remain zero; Stage B is NOT EXECUTED and
+effectiveness UNKNOWN. U3 FUTURE, R1.7 RETAINED, true BM25F MANDATORY and downstream
+Localization continuation remain preserved; production behavior is unchanged.
+
 ## U2 infrastructure and prospective Case 0012 Stage A (2026-10-09)
 
 - [Exact-hint routing](../experiments/exact_hint_routing/README.md) is an
