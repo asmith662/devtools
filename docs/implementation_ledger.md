@@ -1245,3 +1245,31 @@ all original Stage A seals, full R1.5 score/profile reconstruction and sterile
 packet checks. Scoped Ruff, formatting and strict mypy passed. Before execution,
 the protected development profile passed 1588 tests (2 skipped), with 100%
 production branch coverage. No confirmation or live-service validation ran.
+
+## Case 0011 Stage D — reviewed information-need acquisition (2026-10-09)
+
+- [Joined analysis](../experiments/codex_dogfood/case_0011/stage_d/analysis.md)
+  selects **INFORMATION_NEED_AUTHORING_DEFECT** using literal frozen precedence:
+  U02/U19 have no direct or partial need. Strict C.5 coverage is 15/32 units;
+  granularity-aware coverage is 18/32; all 12 alternatives remain incomplete.
+- A/B/C execute 1/9/18 frozen queries, with 529/2,523/4,766 positive occurrences
+  and 529/484/497 unique resources. All reach 16 required resources, 23 owning
+  cells, 32 units by resource support and 15 indispensable resources.
+- A completes a valid alternative at depth 370. B's independent obligation
+  prefixes total 589 occurrences, 269 unique resources and 2,656,630 bytes.
+  On the same 15 directly covered units, B/C use 220/371 unique resources,
+  337/737 unnecessary occurrences and 2,315,351/2,689,816 bytes. C improves five
+  unit depths and regresses ten. U26's tests lane improves 122 to six while its
+  separate ceiling lane regresses two to six; maximum-unit depth conceals neither.
+- Collective subset B/C unions are 250/391; the descriptive C oracle is 135
+  unique resources at maximum best-resource rank 104, with no frozen-rule credit.
+  Prefix metrics are counterfactual burden; actual evidence-inspection cost was
+  not measured. Search-policy failure remains NOT_ASSESSED.
+- Concurrent untracked implementations were preserved, backed up operationally,
+  and consolidated after exclusive ownership was verified. One Stage D package
+  now owns the loader, metric engine, R1.5 diagnostics, reporting API and suite.
+  Frozen inputs and sealed earlier traces are unchanged; no retrieval reran.
+- This is one-task, one-authored-set evidence. U2/U3 remain future, R1.7 retained,
+  R2 true BM25F mandatory and downstream Localization continuation unchanged.
+  Validation commands/results live in the Stage D validation record; no
+  confirmation/reserve or live-service validation was performed.

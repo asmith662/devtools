@@ -52,6 +52,17 @@ remain. Task, obligation, information need, query and retrieval action are disti
 SEARCH_POLICY_FAILURE does not follow merely from poor ranking. These
 checkpoints leave the epic open and Localization continuation intact.
 
+[Case 0011 Stage D](../../../experiments/codex_dogfood/case_0011/stage_d/analysis.md)
+now completes U1 with **INFORMATION_NEED_AUTHORING_DEFECT** for its one authored
+need set. Strict responsibility covers 15/32 units; reviewed collective evidence
+raises the diagnostic to 18/32 without completing any alternative. All arms
+reach all required resources, while C's same-15-unit unique prefix grows 220 to
+371 and unnecessary occurrences 337 to 737 despite five local depth gains.
+The query oracle shows lexical routes without responsible semantic completion.
+This adds formulation and discrimination pressure; it resolves no epic concern
+and does not authorize production routing. U2/U3 remain future, R1.7 retained,
+R2 true BM25F unconditional and mandatory, and Localization continuation intact.
+
 ADR-0005, grounding, witness generation/association, explicit resolution recording
 and external semantic-resolution research remain intact. Prospective semantic
 resolution effectiveness pauses pending R1/R2 progress unless a concrete earlier

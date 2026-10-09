@@ -40,6 +40,11 @@
   own experimental InformationNeed and inspectable trace semantics;
   [Case 0011](../experiments/codex_dogfood/case_0011/README.md) owns its manual
   treatment, Stage A/B review and separate C/C.5 blindness protocols.
+  [Case 0011 Stage D](../experiments/codex_dogfood/case_0011/stage_d/analysis.md)
+  owns the reviewed-gold/need-mapping join, case-local authoring-defect outcome,
+  responsible subset burdens and separate unconstrained oracle. Its
+  [practical review](../experiments/codex_dogfood/case_0011/stage_d/STAGE_D_REVIEW.md)
+  owns inspectable task/obligation/unit/need/query/result/failure correspondence.
   An implementation or treatment capture is not an effectiveness claim.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),

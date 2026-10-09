@@ -37,4 +37,40 @@ architecture-grade Case 0011 target; primary-only conclusions were unsafe.
 The separate [C.5 packet transparency document](adjudication/stage_c5/C5_PACKET_REVIEW.md)
 is PREPARED only. C.5 adjudication and Stage D are NOT PERFORMED; U1 effectiveness
 is UNKNOWN. [Current status](adjudication/STATUS.md) supersedes historical status
-wording above; no treatment result has been joined.
+wording above; no treatment result had been joined at that historical checkpoint.
+
+## Current Stage D checkpoint
+
+Stage D is COMPLETE. The [joined analysis](stage_d/analysis.md) selects
+**INFORMATION_NEED_AUTHORING_DEFECT** under the exact frozen omitted-unit
+precedence. All arms reach 16 required resources, 23 owning cells and 32 units
+by resource support, but this manually authored need set directly covers only
+15/32 units. Collective diagnostics cover 18/32; neither completes any of the
+12 alternatives. On the same 15 covered units, C improves five depths and
+regresses ten, increasing unique prefix resources 220 to 371 and unnecessary
+occurrences 337 to 737. This is a Case-0011-local verdict on the authored set.
+
+The [practical review](stage_d/STAGE_D_REVIEW.md), [machine trace](stage_d/trace.json)
+and [human trace](stage_d/TRACE.md) form a separate Stage D layer. Original
+Stage A/B traces, task gold and every C.5 source/reconciled artifact remain frozen.
+The [ownership resolution](stage_d/OWNERSHIP_RESOLUTION.md) records consolidation
+after the conflicting writer was terminated; [validation](stage_d/validation.md)
+records the completed checks. This section supersedes earlier historical status
+and the then-current adjudication status without rewriting frozen publications.
+
+One canonical package owns inputs, metrics, diagnostics, reporting and tests:
+
+```text
+uv run python -B -m experiments.codex_dogfood.case_0011.stage_d.analyze verify
+```
+
+`build` publishes once and refuses overwrite. Verification reconstructs captured
+R1.5 evidence without rerunning retrieval. It authenticates the historical
+Stage A C5_PROTOCOL placeholder and its reviewed-gold preparation version at
+their proper commits; the original current-worktree Stage A verifier remains
+unchanged and consequently cannot replay the superseded placeholder at today's
+path. `-B` keeps sterile packet directories free of import caches.
+
+U2 exact-hint routing and U3 need/mechanism routing remain future; R1.7 remains
+retained, true BM25F mandatory, and downstream Localization continuation intact.
+No next increment or production behavior changed.

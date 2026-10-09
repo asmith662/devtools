@@ -130,6 +130,15 @@ automating them or changing production query weights.
   unchanged production canonical BM25. Case 0011 freezes human-inspectable
   task → obligation → need → query → route → result provenance. Independent
   task gold (C), then separate blind need-coverage review (C.5), precede D.
+  [Case 0011 Stage D](../experiments/codex_dogfood/case_0011/stage_d/analysis.md)
+  is complete: **INFORMATION_NEED_AUTHORING_DEFECT** for this authored set.
+  Required resource reach is unchanged, but strict coverage is 15/32 units,
+  collective diagnostic coverage 18/32, and all alternatives remain incomplete.
+  C has five local covered-unit depth gains and ten regressions; its same-unit
+  prefix union increases 220 to 371 and unnecessary occurrences 337 to 737.
+  A descriptive all-query oracle finds evidence routes, but earns no frozen-rule
+  credit. Next is separately authorized U2 protocol design with a reviewed
+  complete semantic target; this result does not reject InformationNeed semantics.
 - **U2 — exact-hint extraction + deterministic routing:** future experiment;
   U1 records obvious literal task hints but leaves every hint lexical-only.
 - **U3 — information-need × acquisition-mechanism routing:** future experiment;

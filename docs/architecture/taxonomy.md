@@ -680,6 +680,17 @@ separate from these seven acquisition/disclosure classes. QUERY_DILUTION /
 MIXED_INTENT is a possible diagnosed contributor, not an additional top-level
 class. U1 does not implement search policy, routing or an autonomous planner.
 
+[Case 0011 Stage D](../../experiments/codex_dogfood/case_0011/stage_d/analysis.md)
+uses case-local MISSING_INFORMATION_NEED and INCOMPLETE_INFORMATION_NEED
+descriptors beneath INFORMATION_NEED_OBLIGATION_FAILURE, separating complete-unit
+semantic responsibility from incidental resource retrieval. GOOD_NEED_BAD_QUERY,
+EXACT_HINT_NOT_ROUTED and EXPERIMENTAL_GRANULARITY_LIMITATION are bounded
+formulation/routing/method diagnostics, not new runtime classes or package owners.
+Strict pairwise coverage and reviewed collective diagnostics remain distinct.
+R1.5's existing descriptive threshold governs substantial ranking-burden claims;
+smaller overtaker counts remain visible. QUERY_DILUTION remains a contributor,
+and SEARCH_POLICY_FAILURE is NOT_ASSESSED without an executed sequential policy.
+
 See the [current retrieval foundation](retrieval.md) for production support,
 empirical limitations and open hypotheses. Potential mechanisms in this table
 are a hypothesis vocabulary, not implementation commitments.

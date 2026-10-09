@@ -323,8 +323,13 @@ one 1.25x obligation-regression bound. No adoption checkpoint is earned.
 Production `k1=1.2`, `b=0.75`, filename weight `0.25`
 remain unchanged. The [variant audit](../../experiments/bm25_sensitivity/VARIANTS.md)
 does not justify an R1.6b prerequisite before BM25F; open variant hypotheses remain.
-R1.6 is complete; U1 manual information-need formulation is next, before query
-weighting, with U2/U3 retained as future routing experiments. Task != obligation
+R1.6 and [U1 Case 0011 Stage D](../../experiments/codex_dogfood/case_0011/stage_d/analysis.md)
+are complete. U1 selects INFORMATION_NEED_AUTHORING_DEFECT for one manually
+authored set: strict need coverage 15/32, secondary collective coverage 18/32,
+no complete alternatives and increased responsible same-unit burden despite
+five local depth gains. All arms positively reach required resources; an
+unconstrained query oracle cannot repair missing semantic responsibility.
+U2/U3 remain future routing experiments before later query weighting. Task != obligation
 != information need != query/acquisition intent != retrieval action. Case 0011
 uses the same production ranker and a human-inspectable experimental trace;
 SEARCH_POLICY_FAILURE is separately defined and not implemented by U1. R1.7
