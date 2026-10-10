@@ -1,5 +1,23 @@
 # Implementation Ledger
 
+## Case 0012 Stage B capture recovery infrastructure (2026-10-09)
+
+Permanently preserved `case-0012-stage-b-1` as an immutable aborted audit record.
+Index and four lexical returns survived; materialization returned in memory but
+checkpoint replacement failed with Windows permission denial. No exact route,
+grounding, presentation, arm construction or adjudication ran. No missing return
+is reconstructed, no failed-attempt output is official or labelable.
+
+The [recovery contract](../experiments/codex_dogfood/case_0012/stage_b/RECOVERY_PROTOCOL.md)
+clarifies at most one invocation per operation per authorized attempt and discloses
+previously exposed mechanics. Experimental append-only entered/returned records
+now own durability; mutable summaries are reconstructable. A Windows denied-delete
+sharing fixture proves return preservation and finalization without native rerun.
+Native types/shared aliases and B/C authorship remain intact. Stage A scientific
+bytes and all production behavior remain unchanged. Fresh attempt 2 is authorized
+only after this recovery checkpoint is validated, committed and pushed. U2 value
+unknown; U3 future, R1.7 retained, R2 true BM25F mandatory, Localization preserved.
+
 This ledger is an ordered historical record of meaningful implementation
 milestones, important corrective decisions, and verification state. It is not
 an API reference or a backlog; see package-local documentation and the

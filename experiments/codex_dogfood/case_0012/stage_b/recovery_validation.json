@@ -1,0 +1,33 @@
+{
+  "attempt_1": "ABORTED_CAPTURE_INFRASTRUCTURE_FAILURE; AUDIT_ONLY; NOT_EVALUABLE",
+  "attempt_1_integrity_sha256": "54778e7531b976898fcea42bbe1885ca62949198904fe3eb01d21c7bec9f3f1a",
+  "new_attempt": "case-0012-stage-b-2; AUTHORIZED; NOT_ENTERED",
+  "protected_science": "UNCHANGED; Stage A deterministic replay and all 255 implementation/source seals verified",
+  "protocol_sha256": "c5a75582de646fe3f11ebe26504a67f177dc1be4ebf366d31b344dcc5f7d8874",
+  "schema": "case-0012-recovery-preflight-v1",
+  "source_sha256": {
+    "__init__.py": "4602e5ed691d84beeb8d4366e6d9f5e904718f323c34425b5714f8f9b9986099",
+    "audit.py": "88a04d6768dfdd95cd7abf9a4a68003257b30cb85e87d84f8425436b0b982cb8",
+    "canonical.py": "0646a1a5ba42584d8e75022bc4c1a34f79fd38c99222665de1e89c5f1b02b6c7",
+    "durability.py": "9711616d3a122b72c2abe26a16fcced1d1f4ea7b25b413a944f88e57215ccf39",
+    "execute.py": "b7aaa9802cdffa80b497995e0cb7c5c0e9fe0d772811cc6a47a905883fa632d4",
+    "graph.py": "bac8824ceffe4555944a79e4d0d386aebb6f2738a36ed4ae8239017baf9b58e5",
+    "reporting.py": "2776e525667bce805953d598d354d4408df73ea18102b83d665bab01fe951102",
+    "test_capture.py": "9a075aed078f3cdf19741611df7c5bc67607e5637af900d1ca9684169e3809eb",
+    "test_recovery.py": "a3a7071aa5afbc81784755c3a4771169e8bebb12629d26cbe44b875434d3826d",
+    "validate_packet.py": "f6d1ec7068ac1a86beabaebf0f76b24df919ba2662ae54c8a40df0e92416a1ca"
+  },
+  "stage_a_commit": "4ff6d3950e6c0be834f136a649c1a127f91fdba3",
+  "stage_a_integrity_sha256": "7baa3123198ca83249b759baf257573e7e6c4bff99562cb1e0052f350d867213",
+  "treatment_sha256": "a88ef7d6fe6f0e340494c8c7d880c058fd416009dbd22e1ee2ef0322ceaa3b88",
+  "validation": {
+    "confirmation_reserve": "NOT_ACCESSED",
+    "focused_recovery_tests": 17,
+    "format": "PASS",
+    "production_behavior": "UNCHANGED",
+    "ruff": "PASS",
+    "strict_mypy": "PASS; 11 source files; follow-imports=silent",
+    "u2_and_stage_a_tests": 84,
+    "windows_summary_lock_test": "PASS; actual denied-delete sharing; native return durable; no rerun"
+  }
+}

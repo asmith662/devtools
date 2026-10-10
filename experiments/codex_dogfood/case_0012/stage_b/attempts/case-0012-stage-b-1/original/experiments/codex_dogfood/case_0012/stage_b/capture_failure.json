@@ -1,0 +1,36 @@
+{
+  "claim_sha256": "8fa9059b3a99d27d8b21f40833737484ccb01d57713329207a6909b02b1c61f5",
+  "completed_operations": [
+    "index-build",
+    "lexical:global",
+    "lexical:source",
+    "lexical:choices",
+    "lexical:integrity"
+  ],
+  "durable_active": [
+    "lexical:materialization"
+  ],
+  "effectiveness": "UNKNOWN",
+  "entered_operations": [
+    "index-build",
+    "lexical:global",
+    "lexical:source",
+    "lexical:choices",
+    "lexical:integrity",
+    "lexical:materialization"
+  ],
+  "error_type": "FilesystemPermissionError",
+  "execution": "case-0012-stage-b-1",
+  "final_u2_outcome": "NOT_SELECTED",
+  "gold": "ABSENT",
+  "marker_sha256": "6fb5d781c05637cbb00cbe1851538a9141d216e82bbbd40fee334ffaa098d1c8",
+  "native_return_evidence": "Traceback reached Journal.call post-return self.save after result=invoke, status RETURNED and return serialization digest computation. The successful return existed in process memory but was not durably retained.",
+  "no_recoverable_materialization_return": true,
+  "operation": "lexical:materialization",
+  "possible_contributing_factor": "Concurrent read-only progress inspection may have held a Windows reader handle without delete sharing during atomic replacement. Exact locking handle is not established by the error.",
+  "raw_checkpoint_sha256": "bd3a6b0fa636f9791e6b2638ecbaedd541445558d7d3d728b37ed3343549251e",
+  "recovery_boundary": "Preserve complete earlier native returns and entered marker. Do not execute again or finalize missing return. Recovery/fresh-case policy requires explicit authorization; no operation was retried.",
+  "schema": "case-0012-stage-b-capture-failure-v1",
+  "status": "PERSISTENCE_FAILED_AFTER_NATIVE_RETURN; NO RETRY",
+  "underlying_error": "PermissionError [WinError 5] Access is denied during os.replace of sibling temporary native checkpoint onto raw_checkpoint.json"
+}

@@ -331,7 +331,12 @@ five local depth gains. All arms positively reach required resources; an
 unconstrained query oracle cannot repair missing semantic responsibility.
 U2 is CURRENT: [experiment-only infrastructure](../../experiments/exact_hint_routing/README.md)
 and [Case 0012 Stage A](../../experiments/codex_dogfood/case_0012/STAGE_A_REVIEW.md)
-are frozen for review; no treatment executed, effectiveness UNKNOWN. Exact
+remain frozen; attempt 1 is permanently aborted after a capture-publication
+failure. Its partial mechanics are audit-only, with no official Stage B result.
+The [capture recovery contract](../../experiments/codex_dogfood/case_0012/stage_b/RECOVERY_PROTOCOL.md)
+permits at most one invocation per frozen operation per explicitly authorized
+attempt, uses immutable native return records, and forbids splicing failed results.
+Effectiveness remains UNKNOWN. Exact
 native hints supply candidates, not relevance, witnesses or readiness, and
 cannot repair missing/incomplete needs. U3 remains future before later query weighting. Task != obligation
 != information need != query/acquisition intent != retrieval action. Case 0011

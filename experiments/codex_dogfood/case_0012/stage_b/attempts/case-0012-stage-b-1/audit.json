@@ -1,0 +1,142 @@
+{
+  "actual_lexical_returns": 5,
+  "arm_assemblies": 0,
+  "authoritative_use": "AUDIT_ONLY",
+  "durable_lexical_returns": 4,
+  "effectiveness": "NOT_EVALUABLE",
+  "exact_routes": 0,
+  "execution": "case-0012-stage-b-1",
+  "frame": {
+    "corpus_id": "a348059425edb51e8296900cd570f16aedb394b871b5cfb98144625cb34c93af",
+    "frame_identity": "c78f7b4bd23b95117058470c673c7c376c40018323e583228e67b88a3f1f311a",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+  },
+  "grounding_subcalls": 0,
+  "index_build_ns": 459217800,
+  "lost_return": "lexical:materialization",
+  "no_splice": true,
+  "operation_history": [
+    {
+      "durability_inside_call_ns": 0,
+      "identity": "index-build",
+      "inputs": {
+        "frame": "c78f7b4bd23b95117058470c673c7c376c40018323e583228e67b88a3f1f311a"
+      },
+      "invocations": 1,
+      "prior_operations": [],
+      "runtime_ns": 459217800,
+      "serialized_return_sha256": "b80ddae75282dd3f7380bada7ce4fa63a2f55e88b79c283b5be51f214aac9d63",
+      "status": "RETURNED",
+      "wall_call_ns": 459217800
+    },
+    {
+      "durability_inside_call_ns": 0,
+      "identity": "lexical:global",
+      "inputs": {
+        "maximum_results": 531,
+        "query": "Add caller-selected direct Python source-declaration disclosure choices to common Context Planning, alongside existing qualified-reference and whole-resource choices, without automatic retrieval or selection.\nReuse function `devtools.context.python.modules.selection.select_python_module_source_declarations` for direct function and class source identities; support a direct method only through its validated native class parent and containment, without runtime attribute, imported-facade, inherited-method or semantic resolution.\nIntegrate the choices with class `devtools.context.planning.plan.DisclosurePlan` and module `devtools.context.planning`, retaining immutable purpose/frame/ordered-choice contracts and compatibility with existing choices.\nValidate every supplied native declaration and resource against the retained snapshot through method `devtools.context.repository.snapshot.RepositorySnapshot.resource_at`; reject foreign or stale frame/content, missing resource, unsupported declaration scope and mismatched returned identity before publishing the disclosure, without reacquiring files.\nMaterialize the exact declaration source segment with native derivation, source-range and owner-resource provenance in class `ContextDisclosure`; preserve UTF-8 boundaries, decorators, CRLF/non-ASCII bytes and caller order in mixed plans, without inferring sufficiency or expanding to whole owners implicitly.\nPreserve common rendering and copied request assembly with class `ModelRequest`: original request, prompt role, settings, conversation, provider settings and tools remain unchanged except the copied prompt; keep task text before Context and introduce no new budget or truncation policy.\nExpose the new explicit choice through the common planning public API and outer Context facade, keeping dependency direction and avoiding a Retrieval dependency or language-specific logic in common assembly.\nAdd focused tests for direct function/class/method choices, decorated and repeated declarations, mixed-plan ordering and exact source/provenance, stale/foreign/missing-resource rejection, unchanged existing choices and copied-request preservation.\nUpdate file `src/devtools/context/planning/docs/overview.md` and file `docs/architecture.md` to explain source identity versus runtime bindings, explicit representation admission, supported/deferred scope and compatibility, without claiming automatic relevance or readiness.\nValidate with file `scripts/validate_development.py` and preserve file `pyproject.toml` test/coverage settings; run the documented protected development profile, Ruff lint/format, strict mypy and both worktree/index whitespace checks.\n"
+      },
+      "invocations": 1,
+      "prior_operations": [
+        "index-build"
+      ],
+      "runtime_ns": 26131900,
+      "serialized_return_sha256": "51c6953830bf27b9bdeda1ae32ef16b648993bb76fbda5f2595aa21fc8f564e5",
+      "status": "RETURNED",
+      "wall_call_ns": 26131900
+    },
+    {
+      "durability_inside_call_ns": 0,
+      "identity": "lexical:source",
+      "inputs": {
+        "maximum_results": 531,
+        "query": "Python direct source declaration selection class function method containment decorated repeated declarations"
+      },
+      "invocations": 1,
+      "prior_operations": [
+        "index-build",
+        "lexical:global"
+      ],
+      "runtime_ns": 8188400,
+      "serialized_return_sha256": "9da82be83bbb94d0e5f1ad224e1cf1a815b2fae392a4ff926e56b89ae98ac4da",
+      "status": "RETURNED",
+      "wall_call_ns": 8188400
+    },
+    {
+      "durability_inside_call_ns": 0,
+      "identity": "lexical:choices",
+      "inputs": {
+        "maximum_results": 531,
+        "query": "DisclosurePlan Context Planning explicit choice immutable purpose snapshot ordered qualified reference whole resource"
+      },
+      "invocations": 1,
+      "prior_operations": [
+        "index-build",
+        "lexical:global",
+        "lexical:source"
+      ],
+      "runtime_ns": 8447900,
+      "serialized_return_sha256": "d3bded5202c5bd02e756daab7312b5332814503e7cae90bd21694504bc8dad26",
+      "status": "RETURNED",
+      "wall_call_ns": 8447900
+    },
+    {
+      "durability_inside_call_ns": 0,
+      "identity": "lexical:integrity",
+      "inputs": {
+        "maximum_results": 531,
+        "query": "RepositorySnapshot native declaration materialization stale foreign content identity missing resource validation"
+      },
+      "invocations": 1,
+      "prior_operations": [
+        "index-build",
+        "lexical:global",
+        "lexical:source",
+        "lexical:choices"
+      ],
+      "runtime_ns": 7886500,
+      "serialized_return_sha256": "f7f3fb344c2d17ec25e25a0a461b6fd61a2bba7725704a773f0598cde99cda40",
+      "status": "RETURNED",
+      "wall_call_ns": 7886500
+    },
+    {
+      "identity": "lexical:materialization",
+      "inputs": {
+        "maximum_results": 531,
+        "query": "ContextDisclosure source segment native provenance source range UTF-8 decorators CRLF non ASCII mixed plan order"
+      },
+      "invocations": 1,
+      "prior_operations": [
+        "index-build",
+        "lexical:global",
+        "lexical:source",
+        "lexical:choices",
+        "lexical:integrity"
+      ],
+      "runtime_ns": null,
+      "status": "ENTERED"
+    }
+  ],
+  "presentation_calls": 0,
+  "previously_exposed_partial_mechanics": {
+    "choices": {
+      "positive_rows": 364,
+      "runtime_ns": 8447900
+    },
+    "global": {
+      "positive_rows": 529,
+      "runtime_ns": 26131900
+    },
+    "integrity": {
+      "positive_rows": 321,
+      "runtime_ns": 7886500
+    },
+    "source": {
+      "positive_rows": 355,
+      "runtime_ns": 8188400
+    }
+  },
+  "scientific_disposition": "ABORTED_CAPTURE_INFRASTRUCTURE_FAILURE",
+  "stage_a_commit": "4ff6d3950e6c0be834f136a649c1a127f91fdba3"
+}
