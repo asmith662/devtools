@@ -1,3 +1,11 @@
 /.b0002-increment-23-*.json -text
 /.b0002-purpose-relative-independent-validation.json -text
 /experiments/codex_dogfood/case_0011/adjudication/stage_c5/reconciliation_v2/packet/* -text
+/experiments/codex_dogfood/case_0012/adjudication/independent/* -text
+# Immutable C-R quoted evidence retains its sealed trailing space (review line 3642).
+/experiments/codex_dogfood/case_0012/adjudication/independent/STAGE_C_R_REVIEW.md whitespace=-blank-at-eol
+/experiments/codex_dogfood/case_0012/adjudication/reliability/reconciliation/packet/* -text
+/experiments/codex_dogfood/case_0012/adjudication/reliability/COMPARISON.json -text
+/experiments/codex_dogfood/case_0012/adjudication/reliability/RELIABILITY_REVIEW.md -text
+/experiments/codex_dogfood/case_0012/adjudication/reliability/ALIGNMENTS.json -text
+/experiments/codex_dogfood/case_0012/adjudication/reliability/validate_reconciliation_packet.py -text

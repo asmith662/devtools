@@ -1,0 +1,617 @@
+{
+  "authority": "Proposed comparison hypotheses with source provenance; not reconciled gold. No match based on independent ordinal IDs.",
+  "limitations": [
+    {
+      "c_r": [
+        "L01"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "identity": "LA001",
+      "neutral_claim": "Decorator-inclusive source extent needs additional faithful provenance",
+      "primary": [
+        "limitation.decorator-range"
+      ],
+      "rationale": "Both state current native spans exclude decorators and constrain implementation without a gap.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r": [
+        "L02"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "identity": "LA002",
+      "neutral_claim": "Caller-approved API/cardinality remains open",
+      "primary": [
+        "limitation.explicit-cardinality"
+      ],
+      "rationale": "Both retain per-declaration or explicitly selected ordered-group designs without runtime winner selection.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r": [
+        "L03"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "identity": "LA003",
+      "neutral_claim": "Current bounded implementation versus broader future architecture prose",
+      "primary": [
+        "limitation.architecture-status"
+      ],
+      "rationale": "Both constrain claims to precise implemented contracts.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r": [],
+      "classification": "NO_SEMANTIC_MATCH",
+      "identity": "LA004",
+      "neutral_claim": "Compatible parser/runtime/grammar derivation semantics in canonical replay",
+      "primary": [
+        "limitation.definition-replay"
+      ],
+      "rationale": "PRIMARY explicitly constrains compatible replay definitions. No C-R limitation states that same constraint; unit support may imply it, so a change in feasibility is uncertain.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r": [
+        "L04"
+      ],
+      "classification": "NO_SEMANTIC_MATCH",
+      "identity": "LA005",
+      "neutral_claim": "Containment checks alone do not authenticate arbitrary caller names/ranges",
+      "primary": [],
+      "rationale": "C-R limitation explicitly requires additional canonical membership. PRIMARY integrity.canonical-membership states a related fact, so this is cross-layer overlap, not proof of omission. Admission conditions still require review.",
+      "reconciliation_needed": true
+    }
+  ],
+  "schema": "case-0012-neutral-alignment-hypotheses-v1",
+  "units": [
+    {
+      "c_r_units": [
+        "U01"
+      ],
+      "classification": "PARTIAL_OVERLAP",
+      "difference_axis": "obligation reuse and partially shared scope",
+      "identity": "UA001",
+      "neutral_claim": "Supported direct source scope versus runtime/binding resolution",
+      "primary_units": [
+        "source.excluded-resolution",
+        "documentation.scope-claims"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Supported direct source scope versus runtime/binding resolution? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "The negative source boundary agrees. C-R reuses a task unit across documentation; PRIMARY documentation adds explicit admission/readiness claims.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U02"
+      ],
+      "classification": "PARTIAL_OVERLAP",
+      "difference_axis": "granularity and cross-obligation reuse",
+      "identity": "UA002",
+      "neutral_claim": "Exact direct module selection, retained analyses and frame checks",
+      "primary_units": [
+        "source.selector",
+        "integrity.selection-frame"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Exact direct module selection, retained analyses and frame checks? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "Both retain kind/name selection and repeated source identities; PRIMARY separates the frame guard while C-R states the retained module must match. Check exact guard coverage rather than equating the two unit names.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U03"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "obligation reuse",
+      "identity": "UA003",
+      "neutral_claim": "Native direct function identity and addressed occurrence",
+      "primary_units": [
+        "source.function-identity"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Native direct function identity and addressed occurrence? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "Both bind native subject/derivation to snapshot, definition, resource dependency and ordinal. C-R reuses this fact in integrity/materialization.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r_units": [
+        "U04"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "obligation reuse",
+      "identity": "UA004",
+      "neutral_claim": "Native direct class identity and occurrence",
+      "primary_units": [
+        "source.class-identity"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Native direct class identity and occurrence? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "Both require class subject, derivation and exact dependency/ordinal; supporting documentation is substitutable in both reviews.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r_units": [
+        "U05"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "obligation reuse",
+      "identity": "UA005",
+      "neutral_claim": "Native direct method identity and lexical parent",
+      "primary_units": [
+        "source.method-identity"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Native direct method identity and lexical parent? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "Both bind method subject to parent class and ordinal. This does not by itself establish the necessity of the separate containment builder.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r_units": [
+        "U06"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "wording",
+      "identity": "UA006",
+      "neutral_claim": "Common choice protocol and realized item",
+      "primary_units": [
+        "choices.admission"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Common choice protocol and realized item? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "The common participant fields and materialize(snapshot) protocol agree.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r_units": [
+        "U07"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "wording",
+      "identity": "UA007",
+      "neutral_claim": "Nonblank purpose, nonempty ordered choices, equal frame and unique identities",
+      "primary_units": [
+        "choices.plan-admission"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Nonblank purpose, nonempty ordered choices, equal frame and unique identities? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "Both require the same admission constraints.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r_units": [
+        "U08"
+      ],
+      "classification": "PARTIAL_OVERLAP",
+      "difference_axis": "granularity and evidence status",
+      "identity": "UA008",
+      "neutral_claim": "Immutable plan fields, ordered digest and preceding-plan lineage",
+      "primary_units": [
+        "choices.plan-identity",
+        "choices.plan-value"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Immutable plan fields, ordered digest and preceding-plan lineage? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "C-R splits digest from a task-backed immutable contract; PRIMARY also authors a dedicated current plan-value unit.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U09"
+      ],
+      "classification": "PRIMARY_BROADER",
+      "difference_axis": "actual necessary repository information",
+      "identity": "UA009",
+      "neutral_claim": "Compatibility with existing choices and caller-directed immutable integration",
+      "primary_units": [
+        "choices.caller-selection",
+        "choices.plan-value",
+        "choices.whole-compatibility",
+        "choices.reference-compatibility"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Compatibility with existing choices and caller-directed immutable integration? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "C-R treats future compatibility as task-backed; PRIMARY requires current whole-resource and reference-adapter contracts with additional repository resources. This is not a wording-only difference.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U10"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "wording",
+      "identity": "UA010",
+      "neutral_claim": "Exact retained snapshot resource lookup and missing-address failure",
+      "primary_units": [
+        "integrity.lookup"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Exact retained snapshot resource lookup and missing-address failure? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "Both establish retained-address lookup without reacquisition.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r_units": [
+        "U11"
+      ],
+      "classification": "NO_SEMANTIC_MATCH",
+      "difference_axis": "additional explicit necessary repository contract",
+      "identity": "UA011",
+      "neutral_claim": "Immutable repository occurrence and independent content identity",
+      "primary_units": [],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Immutable repository occurrence and independent content identity? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "C-R requires an explicit repository-resource value contract in integrity/materialization. PRIMARY uses resource/provenance fields elsewhere but has no separately necessary equivalent resource-model unit. Whether this is redundant support is unresolved.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U12"
+      ],
+      "classification": "PARTIAL_OVERLAP",
+      "difference_axis": "granularity and task/repository evidence",
+      "identity": "UA012",
+      "neutral_claim": "Snapshot/declaration admission, rejection and publication guards",
+      "primary_units": [
+        "integrity.canonical-membership",
+        "integrity.selection-frame",
+        "integrity.method-frame",
+        "integrity.returned-identity",
+        "integrity.publication"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Snapshot/declaration admission, rejection and publication guards? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "C-R authors a task-backed prescription and separate native evidence units. PRIMARY authors current mechanisms separately. The shared task requirement does not settle which native mechanisms are indispensable.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U13"
+      ],
+      "classification": "AMBIGUOUS_ALIGNMENT",
+      "difference_axis": "substantive admission and inference conditions",
+      "identity": "UA013",
+      "neutral_claim": "Validated direct method parent/membership and admissible canonical replay",
+      "primary_units": [
+        "source.containment",
+        "integrity.method-frame",
+        "integrity.canonical-membership"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Validated direct method parent/membership and admissible canonical replay? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "PRIMARY requires the containment builder and its checks, plus compatible canonical replay. C-R admits direct equality against canonical class/method analysis and inferable support bundles. Determine which admission conditions and mechanism facts are actually required.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U14"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "granularity plus different support alternatives",
+      "identity": "UA014",
+      "neutral_claim": "Plan frame, returned option/representation identity and all-success publication",
+      "primary_units": [
+        "integrity.plan-frame",
+        "integrity.returned-identity",
+        "integrity.publication"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Plan frame, returned option/representation identity and all-success publication? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "Both require these common-materialization guards; PRIMARY permits a test file alternative while C-R requires the implementation.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U15"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "granularity",
+      "identity": "UA015",
+      "neutral_claim": "Aligned common items, exact provenance fields and caller order",
+      "primary_units": [
+        "materialization.item-provenance",
+        "materialization.mixed-order"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Aligned common items, exact provenance fields and caller order? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "Common item and positional plan alignment facts agree; C-R combines fields/order that PRIMARY splits.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r_units": [
+        "U16"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "wording and support multiplicity",
+      "identity": "UA016",
+      "neutral_claim": "Native one-based line and UTF-8 byte column ranges",
+      "primary_units": [
+        "materialization.coordinates"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Native one-based line and UTF-8 byte column ranges? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "The coordinate convention agrees. Compare the complete obligation witnesses before treating extra support bundles as alternatives.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r_units": [
+        "U17"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "wording",
+      "identity": "UA017",
+      "neutral_claim": "Native ranges exclude preceding decorators",
+      "primary_units": [
+        "materialization.decorator-boundary"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Native ranges exclude preceding decorators? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "Both require additional faithful decorator-inclusive extent/provenance.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r_units": [
+        "U18"
+      ],
+      "classification": "PARTIAL_OVERLAP",
+      "difference_axis": "substantive repository evidence versus task prescription",
+      "identity": "UA018",
+      "neutral_claim": "Exact source materialization, UTF-8/CRLF/decorators, order and bounded meaning",
+      "primary_units": [
+        "materialization.extraction",
+        "materialization.mixed-order",
+        "materialization.bounded-meaning"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Exact source materialization, UTF-8/CRLF/decorators, order and bounded meaning? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "C-R treats requested exactness as task-backed; PRIMARY additionally requires the existing byte extractor as native repository evidence. Shared desired behavior is not equivalent to equal necessary information.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U19"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "wording",
+      "identity": "UA019",
+      "neutral_claim": "Common ordered rendering with realized text",
+      "primary_units": [
+        "assembly.rendering"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Common ordered rendering with realized text? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "The current common renderer contract agrees.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r_units": [
+        "U20"
+      ],
+      "classification": "PARTIAL_OVERLAP",
+      "difference_axis": "granularity and task/repository evidence",
+      "identity": "UA020",
+      "neutral_claim": "Task-first copied prompt assembly and preserved request fields",
+      "primary_units": [
+        "assembly.request-copy"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Task-first copied prompt assembly and preserved request fields? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "Both cite common rendering implementation. C-R separately authors task-backed field preservation in U21; PRIMARY includes preservation in the native copy contract.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U21"
+      ],
+      "classification": "PARTIAL_OVERLAP",
+      "difference_axis": "granularity and evidence status",
+      "identity": "UA021",
+      "neutral_claim": "All non-prompt request fields, role and tools preserved; no new budget",
+      "primary_units": [
+        "assembly.no-budget",
+        "assembly.request-copy"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: All non-prompt request fields, role and tools preserved; no new budget? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "Desired behavior agrees, but authors split current copying and task prescription differently.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U22"
+      ],
+      "classification": "PRIMARY_BROADER",
+      "difference_axis": "substantive necessary repository evidence",
+      "identity": "UA022",
+      "neutral_claim": "Public planning and outer Context API exposure",
+      "primary_units": [
+        "exports.planning-surface",
+        "exports.outer-surface"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Public planning and outer Context API exposure? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "C-R regards destinations as task-backed. PRIMARY requires both existing public facades and actual export seams.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U23"
+      ],
+      "classification": "PRIMARY_BROADER",
+      "difference_axis": "substantive necessary repository evidence",
+      "identity": "UA023",
+      "neutral_claim": "Dependency direction and common-assembly language boundary",
+      "primary_units": [
+        "exports.option-ownership",
+        "exports.assembly-ownership"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Dependency direction and common-assembly language boundary? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "C-R treats prohibited Retrieval/language dependencies as task-backed; PRIMARY requires actual current protocol and assembly ownership resources.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U24"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "pure unit granularity",
+      "identity": "UA024",
+      "neutral_claim": "Focused native function/class/method, decorated and repeated tests",
+      "primary_units": [
+        "tests.function-choice",
+        "tests.class-choice",
+        "tests.method-choice",
+        "tests.decorated",
+        "tests.repeated"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Focused native function/class/method, decorated and repeated tests? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "Both prescribe the same tests from the task; five PRIMARY units are grouped in one C-R unit.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r_units": [
+        "U25"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "pure unit granularity",
+      "identity": "UA025",
+      "neutral_claim": "Mixed-plan order, exact source/provenance and fidelity tests",
+      "primary_units": [
+        "tests.mixed-order",
+        "tests.exact-fidelity"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Mixed-plan order, exact source/provenance and fidelity tests? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "Both task-backed prescriptions cover order and exactness.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r_units": [
+        "U26"
+      ],
+      "classification": "PARTIAL_OVERLAP",
+      "difference_axis": "obligation-specific broader test scope",
+      "identity": "UA026",
+      "neutral_claim": "Stale/foreign/missing resource, scope, identity and publication rejection tests",
+      "primary_units": [
+        "tests.rejection"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Stale/foreign/missing resource, scope, identity and publication rejection tests? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "C-R expressly adds task-scope/publication guards to the rejection test unit; PRIMARY rejection unit explicitly lists stale/foreign/missing resources. Other PRIMARY units cover guards, so global omission is not established.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U27"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "pure unit granularity",
+      "identity": "UA027",
+      "neutral_claim": "Existing choices and copied-request regression tests",
+      "primary_units": [
+        "tests.existing-choices",
+        "tests.request-preservation"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Existing choices and copied-request regression tests? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "Both are task-backed; C-R groups the two PRIMARY prescriptions.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r_units": [
+        "U28"
+      ],
+      "classification": "NO_SEMANTIC_MATCH",
+      "difference_axis": "obligation-specific evidence necessity and reuse",
+      "identity": "UA028",
+      "neutral_claim": "Repository test framework and configured strict branch-coverage threshold",
+      "primary_units": [],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Repository test framework and configured strict branch-coverage threshold? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "C-R requires pyproject.toml for tests. PRIMARY tests have an empty resource witness, but PRIMARY validation already requires this configuration. This changes obligation sufficiency without adding an entirely absent task fact.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U29"
+      ],
+      "classification": "PRIMARY_BROADER",
+      "difference_axis": "actual necessary repository information",
+      "identity": "UA029",
+      "neutral_claim": "Documentation destinations versus current implemented baseline facts",
+      "primary_units": [
+        "documentation.package-baseline",
+        "documentation.architecture-baseline"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Documentation destinations versus current implemented baseline facts? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "C-R requires future documentation updates from the task. PRIMARY additionally requires the actual package and architecture baseline claims.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U30"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "wording",
+      "identity": "UA030",
+      "neutral_claim": "Documentation scope, source/binding distinction, admission and bounded claims",
+      "primary_units": [
+        "documentation.scope-claims"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Documentation scope, source/binding distinction, admission and bounded claims? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "Both task-backed claims prescribe supported/deferred scope and prohibit automatic readiness claims.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r_units": [
+        "U31"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "wording",
+      "identity": "UA031",
+      "neutral_claim": "Protected entry point and experiment-tree exclusion",
+      "primary_units": [
+        "validation.protected-profile"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Protected entry point and experiment-tree exclusion? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "Both use documentation as complete required support; the named script itself is not REQUIRED in either publication.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r_units": [
+        "U32"
+      ],
+      "classification": "PARTIAL_OVERLAP",
+      "difference_axis": "granularity plus scope detail",
+      "identity": "UA032",
+      "neutral_claim": "Strict pytest, branch coverage and strict mypy configuration",
+      "primary_units": [
+        "validation.pytest-config",
+        "validation.coverage-config",
+        "validation.mypy-config"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Strict pytest, branch coverage and strict mypy configuration? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "C-R groups configuration contracts, but PRIMARY states additional exact configuration details. Is every such detail necessary or only existing context?",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [
+        "U33"
+      ],
+      "classification": "SUBSTANTIALLY_EQUIVALENT",
+      "difference_axis": "wording",
+      "identity": "UA033",
+      "neutral_claim": "Separate documented static and whitespace commands",
+      "primary_units": [
+        "validation.quality-commands"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Separate documented static and whitespace commands? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "The commands and separation from protected tests agree; actual Ruff configuration is a separate source-only candidate below.",
+      "reconciliation_needed": false
+    },
+    {
+      "c_r_units": [
+        "U34"
+      ],
+      "classification": "PARTIAL_OVERLAP",
+      "difference_axis": "granularity and explicitness",
+      "identity": "UA034",
+      "neutral_claim": "Separate authorization for confirmation and preserved test exclusion",
+      "primary_units": [
+        "validation.protected-profile"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Separate authorization for confirmation and preserved test exclusion? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "C-R splits an explicit isolation unit from PRIMARY protected-profile semantics. PRIMARY also retains the operational restriction in task interpretation; no substantive task gap is established.",
+      "reconciliation_needed": true
+    },
+    {
+      "c_r_units": [],
+      "classification": "NO_SEMANTIC_MATCH",
+      "difference_axis": "source-only explicit necessary configuration",
+      "identity": "UA035",
+      "neutral_claim": "Exact current Ruff target, line length and selected/ignored rule configuration",
+      "primary_units": [
+        "validation.ruff-config"
+      ],
+      "question": "For the exact applicable obligations, what information and evidence are necessary to establish: Exact current Ruff target, line length and selected/ignored rule configuration? Preserve any genuinely distinct claims and state admissible task inference and repository support.",
+      "rationale": "PRIMARY requires actual Ruff configuration as a distinct necessary fact; C-R requires separate quality commands but no equivalent unit with these exact settings.",
+      "reconciliation_needed": true
+    }
+  ]
+}

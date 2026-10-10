@@ -2,7 +2,8 @@
 
 Stage A = FROZEN. Effectiveness = UNKNOWN.
 [PRIMARY BLIND STAGE C](adjudication/PUBLICATION.md) = COMPLETE.
-Independent Stage C-R = NOT PERFORMED; reliability = UNMEASURED;
+Independent Stage C-R = COMPLETE; reliability comparison = COMPLETE;
+outcome = SEVERE_ARCHITECTURE_RELEVANT_DISAGREEMENT;
 reviewed/reconciled gold = NOT AVAILABLE; Stage D = BLOCKED.
 The original Stage A instructions below are retained as checkpoint history.
 
@@ -47,9 +48,18 @@ not relevance, witness acceptance, obligation satisfaction or readiness.
 U3 remains FUTURE; R1.7 RETAINED; R2 true BM25F MANDATORY; downstream Localization
 continuation PRESERVED. Production source behavior is unchanged.
 
-Next: start a completely fresh GPT-6 Astra session in the prepared five-file
-C-R workspace, using only the independent prompt from the outside-workspace
-[operator record](adjudication/C_R_OPERATOR.md). Do not expose PRIMARY gold,
-Stage B or reliability expectations. The repository-side
-[comparison protocol](adjudication/reliability/PROTOCOL.md) is frozen but not
-executed. No treatment join or effectiveness analysis is authorized here.
+The independent immutable publication is in [adjudication/independent/](adjudication/independent/),
+authenticated by [INDEPENDENT_IMPORT.json](adjudication/INDEPENDENT_IMPORT.json).
+The unchanged frozen [comparison protocol](adjudication/reliability/PROTOCOL.md)
+has been executed. [RELIABILITY_REVIEW.md](adjudication/reliability/RELIABILITY_REVIEW.md)
+exposes every difference and gate; neither source is truth. All 4,779 cells align;
+4,673 labels agree, 106 differ, and 19 differ in REQUIRED membership. REQUIRED
+resource union Jaccard is 11/21. No treatment join or effectiveness analysis occurred.
+
+Next: start a fresh treatment-blind reconciliation session from the stable
+workspace recorded in [PREPARATION.json](adjudication/reliability/reconciliation/PREPARATION.json).
+Resolve ONLY its anonymized semantic disagreements. Do not access Stage B until
+reconciled reviewed gold has been materialized and frozen. The reviewer has not
+been started. Reviewed/reconciled gold is NOT AVAILABLE; Stage D remains BLOCKED;
+final U2 outcome is NOT_SELECTED. U3 FUTURE, R1.7 RETAINED and R2 true BM25F
+MANDATORY remain unchanged.

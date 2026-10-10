@@ -1,0 +1,152 @@
+{
+  "case": "case-0012",
+  "cell_count": 4779,
+  "checks": {
+    "all_4779_cells_no_missing_no_duplicate": "PASS",
+    "all_NO_blindness_attestation": "PASS",
+    "all_minimal_evidence_alternatives_enumerated": "PASS",
+    "alternative_completeness_and_resource_removal_minimality": "PASS",
+    "alternative_single_obligation_membership": "PASS",
+    "case_task_frame_binding": "PASS",
+    "complete_cartesian_task_combinations": "PASS",
+    "cross_obligation_reuse": "PASS",
+    "deterministic_markdown_reconstruction": "PASS",
+    "deterministic_statistics_reconstruction": "PASS",
+    "distinct_sufficient_resource_and_unit_unions": "PASS",
+    "exact_531_resource_identities": "PASS",
+    "exact_obligation_statements_criteria_applicability_basis": "PASS",
+    "exact_span_text_bounds_and_line_coordinates": "PASS",
+    "gap_limitation_and_ambiguity_schemas": "PASS",
+    "input_byte_preservation": "PASS",
+    "label_vocabulary": "PASS",
+    "obligation_and_task_indispensable_intersections": "PASS",
+    "support_resource_identities": "PASS",
+    "task_clause_coverage": "PASS",
+    "task_vs_repository_evidence_separation": "PASS",
+    "unique_required_units_with_support_and_inferability": "PASS"
+  },
+  "full_verification_invocation": "python -B stage_c_r_builder.py --verify",
+  "independent_process_replay": {
+    "byte_identical": [
+      "stage_c_r_review.json",
+      "stage_c_r_statistics.json",
+      "STAGE_C_R_REVIEW.md",
+      "stage_c_r_method.md"
+    ],
+    "invocation": "python -B stage_c_r_builder.py --replay-core",
+    "reconstruction_destination": "memory in a fresh process; no temporary directories/files",
+    "status": "PASS"
+  },
+  "initial_exact_five_file_whitelist": "PASS",
+  "initial_standalone_packet_validator": "PASS; exit 0; VERIFIED; NO ADJUDICATION",
+  "mutation_test_count": 24,
+  "mutation_tests": [
+    {
+      "result": "REJECTED",
+      "test": "altered_cell_identity"
+    },
+    {
+      "result": "REJECTED",
+      "test": "missing_cell"
+    },
+    {
+      "result": "REJECTED",
+      "test": "duplicate_cell"
+    },
+    {
+      "result": "REJECTED",
+      "test": "invalid_label"
+    },
+    {
+      "result": "REJECTED",
+      "test": "out_of_bounds_support_span"
+    },
+    {
+      "result": "REJECTED",
+      "test": "in_bounds_altered_support_text"
+    },
+    {
+      "result": "REJECTED",
+      "test": "invalid_unit_membership"
+    },
+    {
+      "result": "REJECTED",
+      "test": "invalid_alternative_resource_membership"
+    },
+    {
+      "result": "REJECTED",
+      "test": "invalid_alternative_obligation_membership"
+    },
+    {
+      "result": "REJECTED",
+      "test": "invalid_sufficient_combination"
+    },
+    {
+      "result": "REJECTED",
+      "test": "invalid_sufficient_resource_union"
+    },
+    {
+      "result": "REJECTED",
+      "test": "invalid_sufficient_unit_union"
+    },
+    {
+      "result": "REJECTED",
+      "test": "invalid_indispensable_intersection"
+    },
+    {
+      "result": "REJECTED",
+      "test": "required_unit_without_support"
+    },
+    {
+      "result": "REJECTED",
+      "test": "altered_task_identity"
+    },
+    {
+      "result": "REJECTED",
+      "test": "altered_obligation_criterion"
+    },
+    {
+      "result": "REJECTED",
+      "test": "altered_resource_frame"
+    },
+    {
+      "result": "REJECTED",
+      "test": "missing_complete_alternative"
+    },
+    {
+      "result": "REJECTED",
+      "test": "invalid_gap_schema"
+    },
+    {
+      "result": "REJECTED",
+      "test": "invalid_ambiguity_schema"
+    },
+    {
+      "result": "REJECTED",
+      "test": "altered_statistics_bytes"
+    },
+    {
+      "result": "REJECTED",
+      "test": "altered_markdown_bytes"
+    },
+    {
+      "result": "REJECTED",
+      "test": "invalid_scientific_hash"
+    },
+    {
+      "result": "REJECTED",
+      "test": "scientific_output_overwrite"
+    }
+  ],
+  "obligation_count": 9,
+  "operational_handoff": "Excluded from scientific hashes, evidence, adjudication and gaps; may be created only after full verification and input-byte preservation.",
+  "original_five_input_bytes_preserved": true,
+  "packet_input_digests_and_canonical_payload": "PASS",
+  "resource_count": 531,
+  "schema": "case-0012-independent-c-r-validation-v1",
+  "scientific_hash_verification": "All scientific artifacts except the non-self-hashing manifest are authenticated by stage_c_r_hashes.json; full --verify checks its exact deterministic bytes and all named digests.",
+  "scientific_output_overwrite_refused": true,
+  "semantic_validation_limit": "Deterministic validation checks the sealed authored judgments, support bindings and exact algebra. It does not claim that arithmetic alone proves a semantic judgment; the independent evidence/rationales and internal critique remain inspectable.",
+  "status": "PASS",
+  "task_identity": "case-0012-direct-source-disclosure"
+}

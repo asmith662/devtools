@@ -1,8 +1,9 @@
 # PRIMARY BLIND STAGE C — Case 0012
 
 Case: `case-0012`. Task: `case-0012-direct-source-disclosure`.
-PRIMARY Stage C = COMPLETE; independent Stage C-R = NOT PERFORMED;
-reliability = UNMEASURED; reviewed/reconciled gold = NOT AVAILABLE;
+PRIMARY Stage C = COMPLETE; independent Stage C-R = COMPLETE;
+reliability comparison = COMPLETE; outcome = SEVERE_ARCHITECTURE_RELEVANT_DISAGREEMENT;
+reviewed/reconciled gold = NOT AVAILABLE;
 Stage D = BLOCKED; U2 effectiveness = UNKNOWN; final U2 outcome = NOT_SELECTED.
 This publication is not architecture-grade reviewed gold.
 
@@ -98,6 +99,13 @@ API/cardinality:
 workspace. [C_R_OPERATOR.md](C_R_OPERATOR.md) contains operator instructions and
 the independent prompt outside that workspace. The pre-comparison criteria are
 frozen in [reliability/PROTOCOL.md](reliability/PROTOCOL.md) and its deterministic
-JSON source. No C-R adjudication, comparison or disagreement packet exists here.
-Stage D remains blocked pending independent reliability review and any necessary
-treatment-blind reconciliation. No U3, R1.7 or BM25F capability is implemented.
+JSON source. The completed independent source is now imported unchanged in
+[independent/](independent/); [INDEPENDENT_IMPORT.json](INDEPENDENT_IMPORT.json)
+authenticates its seven outputs and complete blindness attestation.
+[RELIABILITY_REVIEW.md](reliability/RELIABILITY_REVIEW.md) reports the executed
+unchanged protocol, all 106 label differences and 19 REQUIRED-membership
+differences. Neither source establishes truth. The severe gate requires
+treatment-blind reconciliation; [PREPARATION.json](reliability/reconciliation/PREPARATION.json)
+records the neutral packet and stable sterile workspace. No reviewer was started
+and no reconciliation occurred. Stage D remains blocked. U2 effectiveness UNKNOWN;
+final U2 outcome NOT_SELECTED; U3 FUTURE; R1.7 RETAINED; R2 true BM25F MANDATORY.

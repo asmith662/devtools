@@ -1,0 +1,21 @@
+{
+  "case": "case-0012",
+  "hash_scope": "Exact file bytes. The manifest excludes itself to avoid a circular digest; report its own SHA-256 externally. .local/codex-result.md is operational and excluded.",
+  "input_sha256": {
+    "README.md": "b33c456f8999b4343d6dbe59c311c7866ae681668c9415f4042d8ced231cf7be",
+    "integrity.json": "89947624937675a94d6228e3c6fc6c206bc929600b4f21faf2f5cf22bf78a6f9",
+    "manifest.json": "15c886a8af33bf2ba12c2a92e82ec3a33789a605064bded6f17ae4b603d579cf",
+    "resources.json.gz": "2cbc95afb120c920ed8d919e37a187f8fe0eec4618eff28eb25203d108599fe3",
+    "validate_packet.py": "f6d1ec7068ac1a86beabaebf0f76b24df919ba2662ae54c8a40df0e92416a1ca"
+  },
+  "schema": "case-0012-independent-c-r-hashes-v1",
+  "scientific_sha256": {
+    "STAGE_C_R_REVIEW.md": "e7e6217010d779a2edcfb224ee268c82e3f9da40d76a9c78f593a282ece68aa4",
+    "stage_c_r_builder.py": "df214d5ebdae90c1cca6574146125004cb6e56f31654dfa46e5fd590db07cd24",
+    "stage_c_r_method.md": "03bb5081bd0056f0ce39914712a9df7c4afeffda18d84bfb7b4d88aabc2d03aa",
+    "stage_c_r_review.json": "281c8be4cbfa4edd5661f66aa675f1f9493e656ba06f0414d72c2316515d634d",
+    "stage_c_r_statistics.json": "bb9e4bc529a54bd5a90dfd0c47e1457737b7ed5142d7ef723316f9b1298f8251",
+    "stage_c_r_validation.json": "5b40ab10b2ce01ff0056db0a46537e5a2959e783ecf1face2ce081ce69b299d9"
+  },
+  "task_identity": "case-0012-direct-source-disclosure"
+}

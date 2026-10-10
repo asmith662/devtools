@@ -142,15 +142,20 @@ automating them or changing production query weights.
   [experimental protocol/infrastructure](../experiments/exact_hint_routing/README.md)
   IMPLEMENTED; [Case 0012 Stage A](../experiments/codex_dogfood/case_0012/STAGE_A_REVIEW.md)
   FROZEN. [PRIMARY BLIND STAGE C](../experiments/codex_dogfood/case_0012/adjudication/PUBLICATION.md)
-  COMPLETE; C-R NOT PERFORMED; reliability UNMEASURED; Stage D BLOCKED;
+  COMPLETE; independent C-R COMPLETE; reliability comparison COMPLETE;
+  [frozen reliability outcome](../experiments/codex_dogfood/case_0012/adjudication/reliability/RELIABILITY_REVIEW.md)
+  SEVERE_ARCHITECTURE_RELEVANT_DISAGREEMENT; Stage D BLOCKED;
   effectiveness UNKNOWN.
   U2 tests whether explicit native hints bypass avoidable lexical burden while
   complete unchanged lexical lanes retain conceptual evidence. It does not
   repair missing/incomplete InformationNeeds. Exact routing supplies candidates,
   not relevance, accepted witnesses, obligation satisfaction or readiness.
-  Next is a completely fresh independent blind C-R session in the prepared
-  five-file workspace. The reviewer receives no PRIMARY or treatment evidence
-  and no reliability expectations. No treatment join occurs at this checkpoint.
+  Next is a fresh treatment-blind reconciliation session in the prepared stable
+  [sterile workspace](../experiments/codex_dogfood/case_0012/adjudication/reliability/reconciliation/PREPARATION.json).
+  Resolve only anonymized semantic disagreements; do not access Stage B until
+  reconciled reviewed gold is materialized and frozen. Reviewed/reconciled gold
+  is NOT AVAILABLE; final U2 outcome is NOT_SELECTED. No reconciliation,
+  treatment join or effectiveness analysis occurs at this checkpoint.
 - **U3 — information-need × acquisition-mechanism routing:** future experiment;
   no general mechanism selector, autonomous search framework or search policy
   is implemented by U1. SEARCH_POLICY_FAILURE has its own taxonomy boundary.

@@ -1,0 +1,1075 @@
+{
+  "archive_sha256": "34b81cc262487fb8bc2a6a6bf795622575a15b8f7542f8cc6862cc4ebcb56522",
+  "canonical_payload_sha256": "c63885421eb93fc456ca136a1c54bd5a69ce99c6e1f92c473f1503ca28fe2e44",
+  "coverage": {
+    "agreed_bulk_cells": 0,
+    "coverage_contract": "Every unequal qualified cell; every uncertain/broader/unmatched unit row; every unequal witness family or unresolved necessary scope; all unequal obligation resource intersections; task union/intersection; both uncertain source-only limitation constraints. Shared granularity only where grouping needs independent rationale inspection.",
+    "disputed_cells": 106,
+    "proposition_counts": {
+      "ALTERNATIVE_WITNESS_SUFFICIENCY": 9,
+      "DISPUTED_CELL_LABEL": 87,
+      "DISPUTED_REQUIRED_NECESSITY": 19,
+      "GRANULARITY": 5,
+      "LIMITATION_ADMISSIBILITY": 2,
+      "OBLIGATION_INDISPENSABILITY": 6,
+      "SEMANTIC_UNIT_NECESSITY_ALIGNMENT": 19,
+      "TASK_SUFFICIENCY_INDISPENSABILITY": 1
+    },
+    "required_membership_cells": 19,
+    "selected_limitations": 2,
+    "selected_unit_alignments": 19
+  },
+  "integrity_sha256": "c8d9e602021a7667c3b0e066cf336caa76d52a24e47dc3936e00765d5c2da64a",
+  "manifest_sha256": "408c7e83c6e8455afb817767ad6b2b7848d699a73344d4c99e3ed42fe7056cd0",
+  "physical_sha256": {
+    "README.md": "68b12b7db474e2846b240cf78f75c9f57347b6665beeea5373b663848e644797",
+    "integrity.json": "c8d9e602021a7667c3b0e066cf336caa76d52a24e47dc3936e00765d5c2da64a",
+    "manifest.json": "408c7e83c6e8455afb817767ad6b2b7848d699a73344d4c99e3ed42fe7056cd0",
+    "packet.json.gz": "34b81cc262487fb8bc2a6a6bf795622575a15b8f7542f8cc6862cc4ebcb56522",
+    "validate_packet.py": "f3968f8607aec79fd77e4c4e17def7bb71a0e4d9d7fc0c62ec3c548d294b442a"
+  },
+  "reconciliation_performed": false,
+  "reviewer_started": false,
+  "schema": "case-0012-reconciliation-preparation-v1",
+  "semantic_tamper_rejected": 6,
+  "source_mapping": {
+    "0230e617367db534bc8e5b1e28ff52fc117c1021dcdf8103743fb0724444c764": {
+      "comparison_key": "witness/validation",
+      "position_source": {
+        "85a643afd91bdd5a7f680908463aaf636f69931cb560221dad8581b9013bd261": "PRIMARY",
+        "fe9e6437893236eabbd1db17311cdc574d273ecbeac78f050df717335f592e68": "C-R"
+      }
+    },
+    "07121551ab758965a5bcc5b58e549479910279dc5b8b97317149ca35897fc343": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|tests/context/python/function/test_containment.py|d67c0d0abc7a00d2562441144fd3f2176a14c61b15aac86420e9cede1b06c2e2|ff717ff17352caa315d9dce1877a55354ca45ff65b4cddc4c67cbe2fcc02235f",
+      "position_source": {
+        "31de0f082e71bff4f6bab5043a8973218cd67d4b50c58d777b7d6d9ab146a41d": "C-R",
+        "5610d922e9d34608f801a82a2dfeb4849ac59730be91f9100ff714ec755ee501": "PRIMARY"
+      }
+    },
+    "08d97af038d77f20895196b87919a43670678debdcd616ce2e5f3c4eba33e631": {
+      "comparison_key": "UA027/granularity",
+      "position_source": {
+        "180cf9bbda1c3d1b7f7e27167c848d3f5227778c9ea6bed32f7142220c9ad893": "PRIMARY",
+        "771748a11d4a4870f24f739e30f996e3632a212c468d5a96e9943e37113fdcb4": "C-R"
+      }
+    },
+    "0977ae911d74d18fcae9efa7b3340356d4669e64062aba056a3acfaeb09cb067": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/python/function/planned_reference.py|a1e96fb89604e70bc163fa267a3a53a03ed24515ce4b00d421d1f0dda5d17381|0e85d7f5109d5129516027b53f9a466471a2317aded85a7d7e7761777a94b701",
+      "position_source": {
+        "40ebb8392c80f1fda3e53e1b116372737b00f97915d66b231f7c84f5ccb5c6e7": "PRIMARY",
+        "9ec40755f70d0fcf49e50eed5e863a2e2155507f67d0b07218f44b7ce345d2bd": "C-R"
+      }
+    },
+    "0ba476be153cc46b165e80745cf1349dfc66275e777e0d24188779006c494c25": {
+      "comparison_key": "case-0012-direct-source-disclosure/source|docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md|33c954239327f6dd04a9c8b690b7f34577cdf32685ced4719820dfa0b4c133f7|70f7458544fe2922cf8ec64055c8be00556abddc44dfeb9cf45fa178f079760a",
+      "position_source": {
+        "549389285e52d0aa8272146631aef65d8f079e757ac00d62e3738756974ce67f": "PRIMARY",
+        "ad3dda732771cffa0533e4f0759e982914c60f8c1d18bd4c34043298c3c27f3f": "C-R"
+      }
+    },
+    "0c48b54a2b7dbd99fcdc22ea96663c45663f9d9877952cada08e569182d98c6b": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|src/devtools/context/python/classes/containment.py|47a4bec4b1e0d9ba2449efbe3bf5aa9e381660ca22eb3c904006e796d3316c4f|fdf5ea2c18fbae4e67ffa276e4aac88463b68753e7cd839635b0179173fe9175",
+      "position_source": {
+        "1ec948d573a20d29e34f6b2f5ee88377523b14cc0e43c25e9c965495abc65251": "C-R",
+        "9a30da47d1a86b063ed093cf539d0ce8f84edf7c1e4d13c66a06b3a1f41c46ee": "PRIMARY"
+      }
+    },
+    "0c599297f0f1a073c31d85aa5a7cf99dc8ce623ae013da272757decaaf8d9626": {
+      "comparison_key": "case-0012-direct-source-disclosure/exports|AGENTS.md|096fc5fe252684225386aeb3acd48781733286a51f9b27af142eb6d54797fa9a|953ca78b4215df7a7981e46287fbc2bd96eee678f692a82d8f69b84b0aa5cc1d",
+      "position_source": {
+        "603d7ecfdb4b1d5c3511c8ed6e8a34159c3940108acdcf02832d8da3c449c506": "PRIMARY",
+        "f1ab78588a3ba50c9dda23e297be04c2b2307d33d34d035dd6e2b7b3e05b6338": "C-R"
+      }
+    },
+    "0ca70ec97fb088370985b879c2bb86cc1017b5c65ae8f2693b2f4516c7f3f507": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/python/function/qualified_reference.py|f38207363dcef35c196eac7dd5ab939335e73a9aec507886af7bbdcee7008c69|e9818d20ebf2bf2abdb3e49ac8b43398512fcb0d90e5736e7b9d60c4ce28fdb3",
+      "position_source": {
+        "901411989c5f4f637122220474a16bef73116e72d3d6d888e7f8778a6a5249c8": "PRIMARY",
+        "cb499a7e10ef526730e0d1758b970d8e3aa57f9f4f3e258b926c38b30d3c4a10": "C-R"
+      }
+    },
+    "0d31686e4a32ba5f6c9daca09e82e7fec008b2ea18884ac2f17d5b47295f67ad": {
+      "comparison_key": "case-0012-direct-source-disclosure/source|tests/context/python/classes/test_declarations.py|40acd74906703279d4d9251d72820354d488dabb5603c2bbd265d761755a726c|750c22bae743779b23838b909394f7cb83dae21e4f04ceab4a972bc02d4460b0",
+      "position_source": {
+        "8c67b28ae74f2022506aa41f8a7b2c10d8b064b3905a95b786ad416b3d1690b0": "PRIMARY",
+        "bea4da1bfc660b6a22718a0b2847c059051113629d1648011929030ec9ef9510": "C-R"
+      }
+    },
+    "1170669dee7fc7922e730a613350129eabd327356fddc7bf31e2ac3e67c7fb99": {
+      "comparison_key": "case-0012-direct-source-disclosure/materialization|src/devtools/context/python/function/docs/overview.md|6694ff79616580eaf377f6d9b9ab2472117b19879c651fa6bc8b9b45900f8a9d|5ae4e5e2f60ab154856abc53979c28e910145b12a7bdaa9fa313437d29be3920",
+      "position_source": {
+        "0e72968344a8c5bacd64a6d5ec27038403180958746fe41124665e4a81e8bd52": "PRIMARY",
+        "9d29e4b05ca9eff17573e3c84fe9453b2daabc00fad76a87d0fb40caf5ae2227": "C-R"
+      }
+    },
+    "11dec8909583697208ccc58b9d2de965d4d57d981e97ae2b7cbb5bd6d16af32a": {
+      "comparison_key": "case-0012-direct-source-disclosure/documentation|src/devtools/context/planning/plan.py|8e1ccfa2286a3bad1f832a2611770b6c655e65ff4c39adde07f9757d47253998|09cd96dea039214b6365b48a3142d2f45a44ed8127a418be321022ad89be4493",
+      "position_source": {
+        "2742557fb1d45bfb7d8a89e520ed6ad3ecde0778844d5173a336a46b8ec95740": "PRIMARY",
+        "3155c1623fefc7d83edcb0dcf56182f87fd135ce6b6894c8ee4af7993b6c2962": "C-R"
+      }
+    },
+    "12bc070d55b8ff177a254b8a8e987e5153376e2c54fbed3b80f8f450be8605a8": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/planning/rendering.py|741a33e77ec223f64a1b381a156cb25db53473d818bb556432c3b36cbec75ea7|edf8c256628048ad28d0a4acc1b6f81f2d6945c556922faafa945e0bb786974f",
+      "position_source": {
+        "1c83d69161007e264db842964dda086778070226132adbc38296f94e9ffd77df": "C-R",
+        "59a0f67bbacc521d865776bbdcd28f24fe98e344924ea3e59b6812279fc8c671": "PRIMARY"
+      }
+    },
+    "14bd79f7f9e0cebefe843ad7ab91465e2ddcf1084262d440f56410cfb13812ba": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/models/interaction/prompt.py|39cb6fee3466d10d96f263871246453ab95137459390d0f2553642c965b731f4|b79574a0110b54911e28921f9b7f5228a985b8921de1181a962e459d9c8c7fec",
+      "position_source": {
+        "055b30096e382ab06d376f068a95e5a66a99b3ebec223268844be9ab2e690c4b": "PRIMARY",
+        "65690d16876c4bb6c29ff15ef2125ae08c3b7f6e90ea892521ceacadbba0448e": "C-R"
+      }
+    },
+    "171d762a0bfbaf7527a03a7fae49a766c328e637dd3efeb203e4256f161e548f": {
+      "comparison_key": "case-0012-direct-source-disclosure/materialization|docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md|33c954239327f6dd04a9c8b690b7f34577cdf32685ced4719820dfa0b4c133f7|70f7458544fe2922cf8ec64055c8be00556abddc44dfeb9cf45fa178f079760a",
+      "position_source": {
+        "ad3dda732771cffa0533e4f0759e982914c60f8c1d18bd4c34043298c3c27f3f": "C-R",
+        "bbf9cfee056f5ef73a49b1be9d41420ffd419a713340eb6b29edf08293a782dc": "PRIMARY"
+      }
+    },
+    "1772378a06e232c0a9d29a2f38cce6ffdd3b096b31f3f9c7437ffb478d38bf8e": {
+      "comparison_key": "UA001",
+      "position_source": {
+        "0bc370102603ad006ae2fc0f7fd1f608ea551e4dfd90872ff26310c3b8c852c8": "PRIMARY",
+        "a538113a20084c5ec3bc73dd62646bbe29997eac871b293cd1556ec7a6f0d853": "C-R"
+      }
+    },
+    "178148631078893bb6163eab8a13b248092571e2ef6a4616f851e10cdbbd3115": {
+      "comparison_key": "witness/tests",
+      "position_source": {
+        "90c98b6908611e8a5743697a010c06ff4e0a649106345edc2f1851d0bf9ceb68": "PRIMARY",
+        "f945610c33f9bee3a950d9eaac722747aaa54da29f191d9eccb627fe1a264acf": "C-R"
+      }
+    },
+    "179ce91b9ef646d582cdd1e317f15deb953668788f591db87b66d06158835001": {
+      "comparison_key": "UA035",
+      "position_source": {
+        "1d264e6c57bfa14bceb131fbaf980021d08c266c5304e9fadc18728b03cff4a0": "C-R",
+        "cea23101d82707e73bf51b08e2e853a3d9ac4cc9ba95650032feee995fb2bf4e": "PRIMARY"
+      }
+    },
+    "192aa95cd6ad6236486f34cb394e4bbcce09dba0e5e316bc6ff898c83d2b7279": {
+      "comparison_key": "case-0012-direct-source-disclosure/documentation|src/devtools/context/python/modules/selection.py|8017f8d2153eb217b57cee49b78841073b752e675539254d54c13a6979eadc6f|f9a7943390f82d8e1399edaa66aebd172b43ad5a85838285c134ec03f5ad89af",
+      "position_source": {
+        "3d523cd0c9f83c0f019801baf8e74a16ff7c6eed3bb8be23b0400455b45b274f": "PRIMARY",
+        "e783530172d7a28701d672f2cbf1eefb36e08cdbe544638b49602653630e5562": "C-R"
+      }
+    },
+    "19716081af04a172508059db774f39d8ae0e636be692a37b50ba6a50d1cf5aed": {
+      "comparison_key": "case-0012-direct-source-disclosure/documentation|src/devtools/context/python/modules/declarations.py|e54171b465bb78a21c1c380321d1f04f69771982db02f4cd1b140b36423283be|e2cc21c89da653801bf7f0ac37d116e358f959b729b7fcb941fc483bbca7dd3a",
+      "position_source": {
+        "6e971789871c288edb9ca9e9fb135d036bdad4391b92b1fe4b4fed674aa35ce3": "PRIMARY",
+        "a59ce2cc6fcd32e43c066c62f016050065e07092bfcd02ee6775e7026105eee3": "C-R"
+      }
+    },
+    "19751d7155210cbaee8674b3840a777474a1ffde9e70663c5e53414d0802d9bf": {
+      "comparison_key": "case-0012-direct-source-disclosure/materialization|docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md|d0290dfb94b0f778386c2c3b49ec6794e74af6ada402d260c34221bbf267a63f|3ef8f4c17bde748518e7990711d199b054ba95cdf67fe9e92da548a643782ceb",
+      "position_source": {
+        "355a5cf83035362b7a46e88c347eb9d3481bf043c157c4b28cd9cd407201ee41": "C-R",
+        "6a3c04e711ec40e6cc75c25df251ae9d85eb3714bb6aaf334475950be3f5291f": "PRIMARY"
+      }
+    },
+    "1b8ac30b0d136d5fd246bf334ba2df4c9a880b6c8605a19349ee97585f4ac512": {
+      "comparison_key": "UA029",
+      "position_source": {
+        "a5256dd93da19d2acd17f4ef0cb4ed0d3f23f9ad0cf643929aba45e6394d340a": "C-R",
+        "ca0c03a4dec42ce231c0700566a1fa58f1f7337825c384312fce7f512ade7dd9": "PRIMARY"
+      }
+    },
+    "1bafeef19ddd0fecfce3148953039c7420ae6157aea742e1940ad037e805fd8a": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|src/devtools/context/python/classes/declarations.py|f283a78b7bebb29f155653b03f47be9f0d74f55593b30a3e4b2f552c91cf4a73|b38664916a128ac4e218cfd4adb4c1070e79618c68930eefc3b1eba8d70cabbd",
+      "position_source": {
+        "9da1caad961e8d5b9b1137aad8d363a244e900a8b5d566d7befb608222593515": "PRIMARY",
+        "dc553aa0e18dd2a234e4798008aa02a197bd3fb471a4d893c8197e26098e61c7": "C-R"
+      }
+    },
+    "1cf5a5385e5a5e43046dde5356a9715199f653cd4606c0a7bdde60fd4e093ece": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|pyproject.toml|e013670bd2a7ea0dc22304788444ac0f1106f179a1e2af7d1b96ee7e1548b145|6960fb8d154fecac3ee960eb940df3e2d78d6c5ccda4931b20f43d5089e421c0",
+      "position_source": {
+        "0e1a81366d360e471d474eb0b9fc6bdddfda72cb90ac271152856c950cd82fd8": "PRIMARY",
+        "84ed3936f848f7d019f13c04890d9eb860da5055db50ca6196e65c5a47835e6f": "C-R"
+      }
+    },
+    "2081544ec1708a6ee623aae1a929b956fe2117c2c6f1350f29a7e08f44aabc56": {
+      "comparison_key": "UA020",
+      "position_source": {
+        "abc70b6375fb8e6b6a72ff0d06b72eb05bce2b9caf9cf4ac1faadb7fe6ebf44b": "C-R",
+        "c977f29f5c17fb878315bd5d9cd4ce25343bc5d197444ef6669c41aae9e02921": "PRIMARY"
+      }
+    },
+    "2154f4f75b40645918c542d89ffb433354431d748d76111aea66096756053248": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|src/devtools/context/repository/resource.py|a1d3fbdcff843b2a2b672307a4b204bf4d4ea8fca96b2cf2cfc0533b28e1421c|216cce289f3fd9be8e9934580dac009863354bbc83a3763a85dedb5accce300f",
+      "position_source": {
+        "0e59a0555afad59e64f68a164c2ae07c4638d9fa6dfd457883c2cdac3519e667": "PRIMARY",
+        "65629f5c313ca972e5954fd566fcc822437b01fb9460ab23f74fbbf20952ecc8": "C-R"
+      }
+    },
+    "22dd9c25011d540b081d42eacc98a9b18cbf7391ab25a74c5b3415c7c3c870d5": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|docs/architecture.md|fea96cb29341a4b8fa8b409c223870b155f0e51a350db6c6b9a9f4d650b75c8b|04da2f220007ae00b8c35c5d6c0a0c39ae027df5f7eea6add7a9c43b45519391",
+      "position_source": {
+        "00eb784bc9f111cf96e5329275806f6637e5e1754e2bc68df0933b4f78c8fcd6": "PRIMARY",
+        "85d8e40094dfde3300f8d51120a375b1329284d2619292b2ddfc7417dd75728a": "C-R"
+      }
+    },
+    "27de08d040f253a7273b7a6209f69f6145c0f48431f8732aff7b94cdeed07d08": {
+      "comparison_key": "case-0012-direct-source-disclosure/exports|docs/architecture.md|fea96cb29341a4b8fa8b409c223870b155f0e51a350db6c6b9a9f4d650b75c8b|04da2f220007ae00b8c35c5d6c0a0c39ae027df5f7eea6add7a9c43b45519391",
+      "position_source": {
+        "36f0defb69b3ad7c169f4ba7a1ddc9e181f4bf4d61ab85b7f9eb0bfa00458938": "C-R",
+        "6e9b63ff4acbe0fe038136dd39b95cc7e35e545be21a0fc4b9bc18f76db7ac2c": "PRIMARY"
+      }
+    },
+    "28070d09e70867361f84fcb0108a2b56d5d874ab8db7596f529829d3c0eff14c": {
+      "comparison_key": "case-0012-direct-source-disclosure/documentation|docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md|33c954239327f6dd04a9c8b690b7f34577cdf32685ced4719820dfa0b4c133f7|70f7458544fe2922cf8ec64055c8be00556abddc44dfeb9cf45fa178f079760a",
+      "position_source": {
+        "95bce89fccb02d62aec2d24edff212c1e1ab714bd010c524140c33dd4ac209bb": "PRIMARY",
+        "ad3dda732771cffa0533e4f0759e982914c60f8c1d18bd4c34043298c3c27f3f": "C-R"
+      }
+    },
+    "2892272b9e7d6d0c80ddeaf003bb4300d86d747615dc0faf10f32e429be640fb": {
+      "comparison_key": "case-0012-direct-source-disclosure/documentation|src/devtools/context/python/function/docs/overview.md|6694ff79616580eaf377f6d9b9ab2472117b19879c651fa6bc8b9b45900f8a9d|5ae4e5e2f60ab154856abc53979c28e910145b12a7bdaa9fa313437d29be3920",
+      "position_source": {
+        "7610eda0553c1736690a816a18504352f15b14a433e7fa48dc198714360d041b": "PRIMARY",
+        "9d29e4b05ca9eff17573e3c84fe9453b2daabc00fad76a87d0fb40caf5ae2227": "C-R"
+      }
+    },
+    "289341b6fadb0b0a9d42fc73ab30f535e3557911cf3f4380a89f1db2f3c00bc7": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/localization/grounding/resolve.py|cc9086d27d2929f521f47680bd5a7e64b78f88e4e035bdbcbe87d549b9ff7ba8|7776e3bf22c9fc0658855e1b11bc84f78d9d6970fd6bb59987594c506cce0f35",
+      "position_source": {
+        "7f687f44b972806a7e682706f2a136f702de88f5e1fe40243fc45d45fe9e0ce1": "PRIMARY",
+        "c7489e090540fac7dce02da32e4d4b7277af10efdd5a2f814a28e78cd3f7bdf9": "C-R"
+      }
+    },
+    "292d9fbaf80945c40fd0428c6f465626be40153a2be8ecbc60f9114734cc824b": {
+      "comparison_key": "case-0012-direct-source-disclosure/materialization|src/devtools/context/planning/plan.py|8e1ccfa2286a3bad1f832a2611770b6c655e65ff4c39adde07f9757d47253998|09cd96dea039214b6365b48a3142d2f45a44ed8127a418be321022ad89be4493",
+      "position_source": {
+        "3155c1623fefc7d83edcb0dcf56182f87fd135ce6b6894c8ee4af7993b6c2962": "C-R",
+        "a18f627cd3595976ea9748dbb119244f412b9ce611e1a902021fd7ddfff106b4": "PRIMARY"
+      }
+    },
+    "29d04bed22c83649f704384d11199492297613a8e1ad219cf91399e2b9ff833f": {
+      "comparison_key": "UA011",
+      "position_source": {
+        "1d264e6c57bfa14bceb131fbaf980021d08c266c5304e9fadc18728b03cff4a0": "PRIMARY",
+        "2f4643f24b2bff0fcad5eb2aeda50796ebebe25ba2a201ab263c87e7b4f71522": "C-R"
+      }
+    },
+    "29d97ade071e14f6c1e7d10727c51fb36fecc0940498009a59b2d2272b537909": {
+      "comparison_key": "case-0012-direct-source-disclosure/assembly|tests/context/python/function/test_request_assembly.py|2e630467829d7e324b7778ed17666113786a6c483b033f8e0b97c92d99bd9b2b|014095b3c7bb7bd04e50b89902dded8436291ba82f840904b1d5535da726f810",
+      "position_source": {
+        "3f3388a8d7e7bf3b92360ba5cdec0331ec224067153167869dd1af13ba6a5fec": "C-R",
+        "71d36a0d77f26bd514a92c7debf79e5bb997689c3436d8b2d5553a7bbb5c7c2d": "PRIMARY"
+      }
+    },
+    "2d82571843705e542f82060041fc85e8db5fcfdb93beb9aa3e7b9da75d51575c": {
+      "comparison_key": "UA009",
+      "position_source": {
+        "a6519f9929c04483c20b6b70df1a964e6c4613b4cb008c4e02b682b0630016b9": "PRIMARY",
+        "c8b322e7a187f9a5b539fb97d8fc4a4e6f997fdcbcef70af46f20b1ac62cc1b1": "C-R"
+      }
+    },
+    "2ed67f4ccee7d24e4506c2f1c6af6206f65d53d537b4181e617b90e33e80dd39": {
+      "comparison_key": "UA025/granularity",
+      "position_source": {
+        "07093d56031681f6a1749cd5eb2256c1f160a8c123b68e029cb14dc8b106bfce": "C-R",
+        "ea20d04669b382ba8a81f07ae745c85e0aab97cfefa011325e6137bdc0006363": "PRIMARY"
+      }
+    },
+    "318d47abc17c0fc52b2706df90e04c2743e5403da59198ee90b8f941a92cfe76": {
+      "comparison_key": "case-0012-direct-source-disclosure/validation|docs/backlog/items/B-0047-protected-development-validation-profile.md|68f8e62f69b0daa0dbb7aaca08db787a51e2bb910ae3c21c5c27f8e8ac10f0e6|1abb95c034bd105e8cb1a2b8f205230956591c5012ea92a6e8a9400cfcdde06e",
+      "position_source": {
+        "5b1c5ae758525655eed7adfb64a9f4454a347c51b1854179ae3a26b77ae89683": "PRIMARY",
+        "91836bb4027d045f4ecba16d5fdbb72b7378b622eb06e5f205fd89ebc6b3ef71": "C-R"
+      }
+    },
+    "31fab1fe7dedcc282cb3dffb42c54e788b8c00a62f64d2fe7e6c6f5edc99fab1": {
+      "comparison_key": "case-0012-direct-source-disclosure/assembly|docs/architecture/taxonomy.md|24677a057596cb8157bd77407c35ff82c4cc58c27908ddb72e32f79e266a010e|e13fc10a26ce00bb5fc7641ea0ac13d59bbf6872873bac1c00021fd86a762f01",
+      "position_source": {
+        "6512955f89ff6d0a058f3c63c7c581298b5f35a96513a5086a3b599b357f9c5a": "PRIMARY",
+        "753db42dddbbb9871961bdfc15520e0966da4a2d1c210c34c1e8f0513fd8b646": "C-R"
+      }
+    },
+    "33e9199e7ff710d36e53f0262ed3ff1a7704ce8c4f2a3e177cbedc2e9a5e177b": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/repository/resource.py|a1d3fbdcff843b2a2b672307a4b204bf4d4ea8fca96b2cf2cfc0533b28e1421c|216cce289f3fd9be8e9934580dac009863354bbc83a3763a85dedb5accce300f",
+      "position_source": {
+        "719ea14a01a85f9a165465c9cacdc66d88f76a5c0e0c867e65fa3d2da1020e9b": "PRIMARY",
+        "fa6b4560d1cf8ae1fee5f613d487841361c0336b283adee6b901bd1d0347b6f8": "C-R"
+      }
+    },
+    "387476d4995eb0a25bc54dddc0830bb85a5efde5e8f21f9650c2f5e5e8b96f13": {
+      "comparison_key": "task/sufficiency",
+      "position_source": {
+        "11a390534c2c2c08b8b2ab4ea272a0bc945f0936613102af4f7a34c09ca6ce0f": "PRIMARY",
+        "bb0dc940b2dad6b0e57834795eb8a83a32ffaf9051ae773e3ea8fad06ce92642": "C-R"
+      }
+    },
+    "38d6e73198c046a128441ef4be921d7ddce7afdface67642493f2e67256b9945": {
+      "comparison_key": "witness/source",
+      "position_source": {
+        "9c68288c8fb618eacb4382d4fe2af77e20d693495ffe56e7779f2c06d06059f9": "C-R",
+        "a6884019f0c8fed9aa6d43e97945db028a70c7d80fc841e512df694431644011": "PRIMARY"
+      }
+    },
+    "3cb596f4175706fb60d96834e8c86f83a1e88e6b87b7b7388517ce0111a1e022": {
+      "comparison_key": "case-0012-direct-source-disclosure/assembly|tests/context/python/function/test_rendering.py|473398e3a37c321aa451e97f00bef61bf7794a822d95e6f6e3916e4af43eede6|62823b43ffdc9b7460635c80a1957ec2e2a8007841a292f964687975fcf7ad45",
+      "position_source": {
+        "0cd320cef2abe2266c779f3c2c36e5fd17ee19e459c94329be7468c2203d907b": "C-R",
+        "b3cdd5609576a9c0c4b992603d1c3460d55c57e4b5db7150d05202a81546e062": "PRIMARY"
+      }
+    },
+    "3da6b7834d6473779e704a6a4e1c76e99c0be408023451ad7c95d4b3a1faec95": {
+      "comparison_key": "case-0012-direct-source-disclosure/exports|src/devtools/context/planning/rendering.py|741a33e77ec223f64a1b381a156cb25db53473d818bb556432c3b36cbec75ea7|edf8c256628048ad28d0a4acc1b6f81f2d6945c556922faafa945e0bb786974f",
+      "position_source": {
+        "105607055f5aa4b71dfe595c5c12b493ae190ffcf63ca8ea9ce68d73e5500639": "PRIMARY",
+        "1c83d69161007e264db842964dda086778070226132adbc38296f94e9ffd77df": "C-R"
+      }
+    },
+    "3e9def1b1013c3570fbc6ec465cc32c20bcd5c4b33d648e81a378583b8f4ab33": {
+      "comparison_key": "case-0012-direct-source-disclosure/choices|tests/context/python/function/test_qualified_reference.py|d8ede2921942e6f4acabc9e4176190781eae10fba4c7e0d894aedbb831b2dafb|9c7dfe605bbc376cbb99024b56ae468cdaefab9766bcbe2612175b46106e3c2d",
+      "position_source": {
+        "9030619583957cfcefc59e73a8d86f7bb0aae6b807f6ea4f32904cbe054ff8d4": "C-R",
+        "cd331dd15264814b23fd7802c10001d791050fa0c855b9c8adcf0d46fc2a2d5d": "PRIMARY"
+      }
+    },
+    "406be173eb89fef7a4177f97b8a04250dc6c8bebf91e56da36e8c303e5b9e092": {
+      "comparison_key": "UA014/granularity",
+      "position_source": {
+        "5aef16ac997b7e6a2c7a3e474a7298019328e8614b0d1544ccc6400ae8570f09": "PRIMARY",
+        "6c77ae6ee522d9897e834e25aa989f6670f461b0f24e9ae9c0f17f8031964f77": "C-R"
+      }
+    },
+    "45f270b13f2dc83ecb3e6c128779a196a6221c5fb82f801a8da057e7ee277991": {
+      "comparison_key": "case-0012-direct-source-disclosure/assembly|src/devtools/context/planning/docs/overview.md|a679cfa5ee0591036eaab418fa386a0885ef748f98287b8dd49846c093b068bd|de0155f1cfe9bdb78fffb3e8897785e5a32f6147ddcd291c3bc7d67f7f9b274a",
+      "position_source": {
+        "5da6c52d08dda034b0c5ff5a36cd64b6f39f197ccecccbacbccc0f95e96985bf": "C-R",
+        "9a620d9b57723f52bb46197d97cf54627dd4318504e7f79be80ce7ae08cd904a": "PRIMARY"
+      }
+    },
+    "4626fc7b47921d81f1cc2416e76c64777e10fb1f437efcbba5c48423ef21daeb": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|src/devtools/context/python/modules/interpretation.py|b858bbdd8ea4d0a8e9a3193ae29176947ef0796f949025a6bf3866ea7caf9dbd|54ffd27dd2b175d1f12987c030f3ec13b4718f6237127bcdd7163f838f12e15b",
+      "position_source": {
+        "3aac260655d111c6748a966853c8742082afba0df248c9265b2bf61105b8238c": "PRIMARY",
+        "92adc7b4c5e03db418f3f6a0bc9a68d6f5e6bbcd00dc1dc0417dd7fe829cf919": "C-R"
+      }
+    },
+    "47a5beb332a2f92771ecab16b0a9dfc00b39177c9713f7e395b0f4d769bd815c": {
+      "comparison_key": "case-0012-direct-source-disclosure/choices|src/devtools/context/planning/materialization.py|8c7b2c0dd17e5c8a4f79f3ff48403b92b3ecce5cf4845d85a8723da296cb3315|e980ecd96c4e962999c8155e2ba0bcce3e438ed4ce00981aede274dc27f34da8",
+      "position_source": {
+        "10a2a10e53f87ce9894a5d78b99ca80b0d42807d867972320b218b3b8a963b3b": "PRIMARY",
+        "40bc6fcc0eecb082fb54d9fef65d54ac28adf367cb0bff0c9089f6bfc01d829d": "C-R"
+      }
+    },
+    "47bfcd0d8fb6a5c2cd12d2ba189f8a58fa850986a9183b8b76684f6a122a7167": {
+      "comparison_key": "witness/integrity",
+      "position_source": {
+        "62e941a327857dbbc5cc5889defc5fa27236ce8f59dedc8c4dbbc3a7d4a37724": "C-R",
+        "960ab439bcd83640167b6a575913e4600c6bb0ad2400cd6f75142761407bc7fd": "PRIMARY"
+      }
+    },
+    "48293408df895acb3179bc734ee50bdc89cc0694b90a32ec51d3034002cf3892": {
+      "comparison_key": "indispensable/materialization",
+      "position_source": {
+        "44a713a9905bf6b38548d6dcd6f33ddec17db85d458e9d65bc6f86a559fef535": "PRIMARY",
+        "92e9bb7d6172d88767c6797c7ff6e8950bf784b99157d89d4771e258d1794676": "C-R"
+      }
+    },
+    "4936ddf828089efad47db3eb1374f0b5935e4a7ffc9a6e9375858eaeca790268": {
+      "comparison_key": "LA004",
+      "position_source": {
+        "6471ad7d98dc0235da614a438f37c47e96cc355347a57c77c3e44d4d4abb894b": "C-R",
+        "eec48012db5b4d4eaa7e2e78d4bcebd8c88c21c5ff713a9b099466e720a9190d": "PRIMARY"
+      }
+    },
+    "4ad59856e4db8424f2d38d5d307b6b09635d329d47dd9c0523d7123fdc150c75": {
+      "comparison_key": "indispensable/exports",
+      "position_source": {
+        "2c49e3c29481a9d1c793b7332fc2d53d9617023eb59f1d789bcdc84a79eb921c": "C-R",
+        "f8fda47d4adfa802352e31d30683f6e07d1903cd9cf09f7a2b0c20989edecb0e": "PRIMARY"
+      }
+    },
+    "5314ba3de77de019904c060bbd57fa6098c97b93b92e45e5ae8cfad40476336c": {
+      "comparison_key": "case-0012-direct-source-disclosure/materialization|tests/context/python/classes/test_declarations.py|40acd74906703279d4d9251d72820354d488dabb5603c2bbd265d761755a726c|750c22bae743779b23838b909394f7cb83dae21e4f04ceab4a972bc02d4460b0",
+      "position_source": {
+        "09894c336b781b0c884e8f19b7b9e309640024790508dc1f6a9ee631e8727d23": "PRIMARY",
+        "bea4da1bfc660b6a22718a0b2847c059051113629d1648011929030ec9ef9510": "C-R"
+      }
+    },
+    "571551f1e22ec8b143c5fe2ef13f0cd6b25bf0a5605013c4fb59b4ff26480141": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/python/modules/docs/overview.md|fafb310cbfe8b944532ac8cfa2d930daa909b2a72bd3a54af57f8ca089cc8a08|8949e50f36f8be98c36798e14347fa778131b55bce5f9e066d6a0287bc02af95",
+      "position_source": {
+        "0920c6ac2687e3dd6970a7ee6cda8219454291e856106facc256ed39b57e93ed": "C-R",
+        "d983b6713f1896aea8d679e45d9ba462057a034886ef8640363d0d54cef722fe": "PRIMARY"
+      }
+    },
+    "5b9134a3171081a8ab9bfe46b2ab36e70d754eddf6fa73fb63ffef8e7c086efa": {
+      "comparison_key": "indispensable/tests",
+      "position_source": {
+        "ce3af7852f87daa0c0aca9f54a62793149f46a80290ec2714f196f0a623ee128": "C-R",
+        "dc050f0d9412e82fb813c2f2b525602807c98ae78f4ecc73533db8a8a1c4f2c0": "PRIMARY"
+      }
+    },
+    "5c06205c5a4936908bbffd8a7734b36f84b4ef50f2796a6773655bbb3131c59c": {
+      "comparison_key": "case-0012-direct-source-disclosure/exports|docs/architecture/taxonomy.md|24677a057596cb8157bd77407c35ff82c4cc58c27908ddb72e32f79e266a010e|e13fc10a26ce00bb5fc7641ea0ac13d59bbf6872873bac1c00021fd86a762f01",
+      "position_source": {
+        "753db42dddbbb9871961bdfc15520e0966da4a2d1c210c34c1e8f0513fd8b646": "C-R",
+        "e0de6d03e1f730a3407901f6b63187bff271c32bbf8304127aae74bb298f170a": "PRIMARY"
+      }
+    },
+    "5f29abe383c2345fc36572528341b9bd6d59e4b7c569c2a89390edcd83bc2eb1": {
+      "comparison_key": "case-0012-direct-source-disclosure/documentation|src/devtools/context/planning/rendering.py|741a33e77ec223f64a1b381a156cb25db53473d818bb556432c3b36cbec75ea7|edf8c256628048ad28d0a4acc1b6f81f2d6945c556922faafa945e0bb786974f",
+      "position_source": {
+        "1c83d69161007e264db842964dda086778070226132adbc38296f94e9ffd77df": "C-R",
+        "9732944720fad09cdfbd46606bddcef4b4e1b730f264cdae78eec9858381d90a": "PRIMARY"
+      }
+    },
+    "63697b34113193f794d7ff9c399e70fa01328c50b19c739ad062cd58edbe448d": {
+      "comparison_key": "case-0012-direct-source-disclosure/documentation|src/devtools/context/python/function/declarations.py|2521087e439f635cd05993cfcbb282fcbaef4f2ddfd569e6c6fee277f1e25a66|038c1f33e0939a8fd7e1aeb0def4d3a390ef1fac1abea96bf001e0f4b2786baa",
+      "position_source": {
+        "2f91bd824690fed05539fce4bc41816bf2866c3172ca09a5fb6de49f273100a7": "PRIMARY",
+        "828bbf304608c97e18db6aa3679910c7ff3cd0a6d02f65eb3b1f6ebc48e70a5c": "C-R"
+      }
+    },
+    "63a0a5b201b1e37d213da37a745a780db27265f1c4bdb318a6e75aa6669073b9": {
+      "comparison_key": "case-0012-direct-source-disclosure/assembly|src/devtools/models/interaction/docs/overview.md|0e21114ed3c5afcbd745202deb7cbacc21440d36bb6baf96b21139e5a827b1e7|5d92535e7d4cfb0d283a7c6e912005c1363f04d7bc0284519ed82ae36b817fa1",
+      "position_source": {
+        "05663fff29dbd54bef635c5585ff6a5feed6f7c91b947db9d032885726de219a": "PRIMARY",
+        "d82ab31fe57f614fca3689e8b9950d8772a50cd96151c8716e415ffe7a825406": "C-R"
+      }
+    },
+    "64cbe8c2192d6c2c9f8124be22f7a6018533fd1c6ce55549da7dc61bd07ba27c": {
+      "comparison_key": "case-0012-direct-source-disclosure/source|tests/context/python/function/test_containment.py|d67c0d0abc7a00d2562441144fd3f2176a14c61b15aac86420e9cede1b06c2e2|ff717ff17352caa315d9dce1877a55354ca45ff65b4cddc4c67cbe2fcc02235f",
+      "position_source": {
+        "31de0f082e71bff4f6bab5043a8973218cd67d4b50c58d777b7d6d9ab146a41d": "C-R",
+        "c46add3d11a4fac6204d6ef8fcb2a285bea7b827a6645601adf570a3c1903c94": "PRIMARY"
+      }
+    },
+    "64ea95f1831036ef910a2ceb14d1813b380062236f46c34c048383235116b5ff": {
+      "comparison_key": "case-0012-direct-source-disclosure/choices|src/devtools/context/python/references/docs/overview.md|5ab01b1b0b6fa6a8c338119aa2cd820c9d1f292b1120b96a4211c0e9bf5c7d09|fdd6202b0566e87503fea599e162cb4cf293083b363e4a85c959a48ac634ee9b",
+      "position_source": {
+        "1f4dbca30fbb7aa435f9f5a834d65437768646d3e6e24d94dbfc0b74d8a1d408": "PRIMARY",
+        "de565aaaf110561a28d3230309382c7eee970986156acadd29efad8d3d9c7ccd": "C-R"
+      }
+    },
+    "65aa198f0791f3471b7c28d1ed6615b49675ff29442e6a4532bbf5e90390f031": {
+      "comparison_key": "witness/assembly",
+      "position_source": {
+        "28eadcf3cc2cf217263dbf82139b529538e712cb639d0573b41ab2d587373d30": "PRIMARY",
+        "5ae353beac4c02981e944db77812b82de0166311b4d2806d5f7b1b65f1858bd8": "C-R"
+      }
+    },
+    "661c851a8fe6b978be0991958f20ad12a0c8dc9e37d7a12ea0f793af1278ed04": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|tests/context/planning/test_plan.py|641a5ffab748722ab2118dec73331c88dbbe16b2bf9500876cc5e117871be492|7485eaa77a31915c0fbbde306135637263392bfba88e102dcacde31d00794088",
+      "position_source": {
+        "3f492b85b366782b4cbe8fefb750816a10c464d9e50cab4015716e0f7edb8210": "C-R",
+        "4f33e510444844efb0fd79e2e538a0be5946fd417917257777789c38a63233f1": "PRIMARY"
+      }
+    },
+    "663ea0951ec2faa886cb4241b6fa62dc82e40ee6efdcbb9b8f4df68fb74789d2": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|src/devtools/context/planning/docs/overview.md|a679cfa5ee0591036eaab418fa386a0885ef748f98287b8dd49846c093b068bd|de0155f1cfe9bdb78fffb3e8897785e5a32f6147ddcd291c3bc7d67f7f9b274a",
+      "position_source": {
+        "3ad6632b18a1a093e9cd3b9e4a8437b9cbbaaa913ed05f6f2f2941d2bb586806": "PRIMARY",
+        "5da6c52d08dda034b0c5ff5a36cd64b6f39f197ccecccbacbccc0f95e96985bf": "C-R"
+      }
+    },
+    "66ac145e87e380ccfe2eea8a1406a21cc5b3c1d8c2c23e8a9b3e15a12a293516": {
+      "comparison_key": "UA008",
+      "position_source": {
+        "348381a1d9d377ec08a6bdec33fb58b4201fe6764f27a3089050ca710893114e": "PRIMARY",
+        "e553df41b39f034d1413175a45ef823e0744aefe6d8f75e7a890c0b4cdfdb042": "C-R"
+      }
+    },
+    "6ae9b3bae3f7f8af6eff9f4d4c9d33c394fd5055ffe9f3cd4b934e7d6eff0144": {
+      "comparison_key": "case-0012-direct-source-disclosure/materialization|tests/context/python/function/test_qualified_reference.py|d8ede2921942e6f4acabc9e4176190781eae10fba4c7e0d894aedbb831b2dafb|9c7dfe605bbc376cbb99024b56ae468cdaefab9766bcbe2612175b46106e3c2d",
+      "position_source": {
+        "9030619583957cfcefc59e73a8d86f7bb0aae6b807f6ea4f32904cbe054ff8d4": "C-R",
+        "f6210c2da1943a1992150bd61e2e856e9faaa09db5431ba51b2f6cdd1b5ef710": "PRIMARY"
+      }
+    },
+    "6bbc96e14fb9da8162f21d4a286de7626f939bf82b0715a915a99ead29f2b91e": {
+      "comparison_key": "case-0012-direct-source-disclosure/choices|src/devtools/context/planning/__init__.py|f0a22d1b55645d1c428dd456c527cbe41e36ebbcaab3ca09229498d3e2f7f8d3|4950d26efdac0ac7b2855daddf9406849e26a401d0a5f6a31840aca64f4eea5d",
+      "position_source": {
+        "6faee3d030c0b6b561c2b7e39d9caf6a24765cfc748d3638be3f739005e74d73": "PRIMARY",
+        "929209e293f07e85970d24c595e42b8a1cec0ab0444485daaed96c1fcccaf377": "C-R"
+      }
+    },
+    "7101eb77ac6911e858605fd20288e6a0d464511a581d803e6cf17fbac2580597": {
+      "comparison_key": "case-0012-direct-source-disclosure/materialization|tests/context/python/function/test_materialization.py|d71c206e1b8df47bbb23c1be65177148ee98a0757acd0e789e4e1ee5e2906dc7|95b96313fc74a7f6a3e5caeb20352be2b7483609d2427df6e26f4a0b9db2631c",
+      "position_source": {
+        "1e1b31dd00a5aa4c486cb33b50516452a5d48a0d5f15538db86589e492164895": "PRIMARY",
+        "a20cef63d533399b9e5b94e105a38972db9ca552c993671bc8a11f3e9ad79380": "C-R"
+      }
+    },
+    "7b25135d5195ef5879994922f76ec91e4e2db210fc08dff3ff09460f0b27b4ff": {
+      "comparison_key": "case-0012-direct-source-disclosure/source|src/devtools/context/python/classes/containment.py|47a4bec4b1e0d9ba2449efbe3bf5aa9e381660ca22eb3c904006e796d3316c4f|fdf5ea2c18fbae4e67ffa276e4aac88463b68753e7cd839635b0179173fe9175",
+      "position_source": {
+        "1ec948d573a20d29e34f6b2f5ee88377523b14cc0e43c25e9c965495abc65251": "C-R",
+        "65c0369eead20f3d11ad875d20c0b9b1aa51f9ca7793e0a601c0d85f87d280b5": "PRIMARY"
+      }
+    },
+    "7c9317440fdb2b9d0e49cf4138b534820b1d04b78f6d8ff3f065e34b4a56f60b": {
+      "comparison_key": "witness/materialization",
+      "position_source": {
+        "d2e0368e3c03cf15f4e2fad95cd3ad72cdc0de20175439dd76378c18f2bc773f": "PRIMARY",
+        "ed88ee2abb80a126424cd10a90dcac99a855be8ef7f494c4b8d4cde338848fc4": "C-R"
+      }
+    },
+    "7d272b7ea37c7097f337bdaf89b958b546e2607c7da06d3290cdab750c521681": {
+      "comparison_key": "UA014",
+      "position_source": {
+        "5aef16ac997b7e6a2c7a3e474a7298019328e8614b0d1544ccc6400ae8570f09": "PRIMARY",
+        "6c77ae6ee522d9897e834e25aa989f6670f461b0f24e9ae9c0f17f8031964f77": "C-R"
+      }
+    },
+    "8060c1733f171ba7f459a24441b19e94d9524c6f4677028c7f0ed2f561d2a1fe": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/python/modules/selection.py|8017f8d2153eb217b57cee49b78841073b752e675539254d54c13a6979eadc6f|f9a7943390f82d8e1399edaa66aebd172b43ad5a85838285c134ec03f5ad89af",
+      "position_source": {
+        "e783530172d7a28701d672f2cbf1eefb36e08cdbe544638b49602653630e5562": "C-R",
+        "eff41b0aa737f115f46ad7523f0d44d84d20b877e15738f8d3c9b78f32a4930f": "PRIMARY"
+      }
+    },
+    "81091f3fd02890e24289a5d4b2c9f05d12c0f283322b42e766a9131e79808de6": {
+      "comparison_key": "case-0012-direct-source-disclosure/exports|src/devtools/context/__init__.py|e2392c9351df7a0f17f23f2ccd15e3fd1436c4e59eb7e0ee9eb7d0d0c32a445c|e44bbb91c8804801b3ec8c1731768a79edb711856c5773559b29b654d25ac198",
+      "position_source": {
+        "4bb4a9c36780fc4adae94defd487969a2619f13af2345cf4ffd7e4733ff7dc34": "C-R",
+        "63228b58bff5ea9747b3c9ff8f22efeeea14c7e62de29b5ec1b3be8ebeecf57b": "PRIMARY"
+      }
+    },
+    "81ecc46abd94b3c7ccaad3ba54da00be50b6c8a77530c9b39e612bfdddbb0f18": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/python/function/declarations.py|2521087e439f635cd05993cfcbb282fcbaef4f2ddfd569e6c6fee277f1e25a66|038c1f33e0939a8fd7e1aeb0def4d3a390ef1fac1abea96bf001e0f4b2786baa",
+      "position_source": {
+        "2ad02e0834ea5317fe07eeeb894affefdd09cb8a0d9a9803972a260e33d8dfa1": "PRIMARY",
+        "828bbf304608c97e18db6aa3679910c7ff3cd0a6d02f65eb3b1f6ebc48e70a5c": "C-R"
+      }
+    },
+    "8278091f4add3e15a830ac74645b20cc33f683fc13650e4ef6c8ea2426fe2fbd": {
+      "comparison_key": "case-0012-direct-source-disclosure/materialization|src/devtools/context/repository/resource.py|a1d3fbdcff843b2a2b672307a4b204bf4d4ea8fca96b2cf2cfc0533b28e1421c|216cce289f3fd9be8e9934580dac009863354bbc83a3763a85dedb5accce300f",
+      "position_source": {
+        "12f1bc2177401bd31a1c19bbc879569b545f03ff4a313dbe5a6dbbee37d97f51": "PRIMARY",
+        "b61bed0a94b794b398ab1653ca140103cb231e49b4de0e3900a06c14bc789984": "C-R"
+      }
+    },
+    "8521fe30ba8ad8946c4a25d4f05c32616905e2fa1876094395e82a47e380f907": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|tests/context/python/modules/test_selection.py|97ec04ba3d29c5c4984678ec389ca11172738134335ad17b160171e7e5192541|87491fef6cbd5c7986a6522574fccb34cddbe0194fe73e4563404c29d8acdf83",
+      "position_source": {
+        "03acbde89ad78e140e26ba88c98b115c58b0c530c1236753f26082c72dcef610": "C-R",
+        "a7ccc5d7e6ac7efcd09268f744b838df4c7b8d354f5ba1b2440f844a73bcc347": "PRIMARY"
+      }
+    },
+    "85568b30e7a34a98ba5284ec125f65b4fd30912c03a0efd29b8ec96dc67f2d23": {
+      "comparison_key": "case-0012-direct-source-disclosure/exports|src/devtools/context/planning/materialization.py|8c7b2c0dd17e5c8a4f79f3ff48403b92b3ecce5cf4845d85a8723da296cb3315|e980ecd96c4e962999c8155e2ba0bcce3e438ed4ce00981aede274dc27f34da8",
+      "position_source": {
+        "5480bb1223695a0925fd47f12cd56331b3151066f8f04bfb180e2838ab81f7a3": "PRIMARY",
+        "70177e7b071ae9d2d4d24777760fb28a2ae72e2566157c4d7ef29de1b9e22560": "C-R"
+      }
+    },
+    "862fab3b2fa1e3506c4a9d9d7d57480384a161b48e4c980a1b4a983343ea436d": {
+      "comparison_key": "case-0012-direct-source-disclosure/materialization|src/devtools/context/python/function/qualified_reference.py|f38207363dcef35c196eac7dd5ab939335e73a9aec507886af7bbdcee7008c69|e9818d20ebf2bf2abdb3e49ac8b43398512fcb0d90e5736e7b9d60c4ce28fdb3",
+      "position_source": {
+        "894d81446c824c13e31a2c7aed0a9db05bea7081d4372ea352e78801540b983e": "PRIMARY",
+        "cb499a7e10ef526730e0d1758b970d8e3aa57f9f4f3e258b926c38b30d3c4a10": "C-R"
+      }
+    },
+    "897bb265563fa465e5d3efc498ac4c0e14cda44bfc29edb88f9498819e7f6807": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/planning/resource.py|f05d554cc5e81d1584c463f37c9d05801293c4a6cf74c839c5ea650a26c6123b|0a23e17b83599252292e40cca317125d7cf495c6eed74c1a0b274ec12bb260e5",
+      "position_source": {
+        "37f45ea02386f318561ce5dd97ee3b58954ad6f61755181c381c459e50a333f2": "C-R",
+        "a480a6302643c7f6dbb197161a4923d1ed54ed84eb9c072b5dee8cb42f0efbe8": "PRIMARY"
+      }
+    },
+    "89c98610d0fb12b970ef7300102a5d6c3928604467a9c6b53eddfc842747cae9": {
+      "comparison_key": "case-0012-direct-source-disclosure/documentation|tests/context/python/modules/test_selection.py|97ec04ba3d29c5c4984678ec389ca11172738134335ad17b160171e7e5192541|87491fef6cbd5c7986a6522574fccb34cddbe0194fe73e4563404c29d8acdf83",
+      "position_source": {
+        "03acbde89ad78e140e26ba88c98b115c58b0c530c1236753f26082c72dcef610": "C-R",
+        "71df595cae48e1ff2ce147ed6332a8449e60ad203769304a7e0e72a5240af9ba": "PRIMARY"
+      }
+    },
+    "8a51be66a2aa94209512bc3d77b0d4b754bf588a6ac34ccdfa6d00e919732f6e": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/python/classes/containment.py|47a4bec4b1e0d9ba2449efbe3bf5aa9e381660ca22eb3c904006e796d3316c4f|fdf5ea2c18fbae4e67ffa276e4aac88463b68753e7cd839635b0179173fe9175",
+      "position_source": {
+        "1ec948d573a20d29e34f6b2f5ee88377523b14cc0e43c25e9c965495abc65251": "C-R",
+        "8a13640cfcb33ca216983f96f5965028b0298912f49f7f6696d7987df7858a5d": "PRIMARY"
+      }
+    },
+    "8a7e2905126a0a9b2a3dde577b16ea544eafb179c89dac23e8916a2f6ffedad6": {
+      "comparison_key": "UA013",
+      "position_source": {
+        "1c286f3d3e0b6d663e10d8b383be61976cbbca8cb806f80c72f6615c252398f9": "C-R",
+        "81a379d3420b083b693e483f0b7ea965d4d581774273ecfc907c78b75d5d604c": "PRIMARY"
+      }
+    },
+    "8cecb72949a624ca35c9431a9c3f5d7e4f931fdd009c9be08d7326457a455686": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|src/devtools/context/python/modules/docs/overview.md|fafb310cbfe8b944532ac8cfa2d930daa909b2a72bd3a54af57f8ca089cc8a08|8949e50f36f8be98c36798e14347fa778131b55bce5f9e066d6a0287bc02af95",
+      "position_source": {
+        "9e38aeef5e923f78a365fc174777aff2c4bf1d5643a2fc644ca13f922cb09a6f": "C-R",
+        "ecb3669c4b6db76072ce4345a470dbbc4de87e93e9e38683e0e5286365df8ec8": "PRIMARY"
+      }
+    },
+    "8e70c960a06747e24bbb8abce8fd235837b0cecf44f2fbf1d3aab7ded129f905": {
+      "comparison_key": "UA032",
+      "position_source": {
+        "03eac8bf17d1ba5706bec8263d0ef5bb274632472d9e10964c7c8248c9e7c062": "C-R",
+        "a3fa72a4af7099ef41d0b2f7d25a808c67ad6547cf011d68c4778ff80a39fd5f": "PRIMARY"
+      }
+    },
+    "8ee0eb31f1d89f4968d8fda99baf41cca3f659434aee9efa960148100225fcd6": {
+      "comparison_key": "UA018",
+      "position_source": {
+        "401a40568700c1265c42b9b51e34cff8ad3e31c61ca0a73bfbc29d5127a780ef": "C-R",
+        "c1152026d0b719557c3de5c4751afbdeabb68d0197bb8d42a179924869455f1b": "PRIMARY"
+      }
+    },
+    "8f5e461f78e39917db93392ecb4f9fae2aec2e1662c643683af281c2f65c4632": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/python/modules/interpretation.py|b858bbdd8ea4d0a8e9a3193ae29176947ef0796f949025a6bf3866ea7caf9dbd|54ffd27dd2b175d1f12987c030f3ec13b4718f6237127bcdd7163f838f12e15b",
+      "position_source": {
+        "92adc7b4c5e03db418f3f6a0bc9a68d6f5e6bbcd00dc1dc0417dd7fe829cf919": "C-R",
+        "d9b4e15b3efb1958ebfe267d4680d949b86c6cc94eb2894e13e33c83e943daa5": "PRIMARY"
+      }
+    },
+    "91b2426bc2976546f6accea7e9a103e8a50697bc763b6cd26f5c072219c54f36": {
+      "comparison_key": "UA002",
+      "position_source": {
+        "6442747e127be7a59a0c15544a3adc6fbdfd076c1df139968468af68fdccbfa5": "PRIMARY",
+        "ec7f346aecaa66f59cd105be745af8819ce7710b49b5fbe943e630e6ffa8f2ef": "C-R"
+      }
+    },
+    "946166ba69f2ea0f7fdfbcd7a0ce4ddd3b2c7ff5f15dcbcfd73af8d5be339938": {
+      "comparison_key": "case-0012-direct-source-disclosure/documentation|src/devtools/context/python/references/docs/overview.md|5ab01b1b0b6fa6a8c338119aa2cd820c9d1f292b1120b96a4211c0e9bf5c7d09|fdd6202b0566e87503fea599e162cb4cf293083b363e4a85c959a48ac634ee9b",
+      "position_source": {
+        "aa9f5f6c1c622b175b1467d4d08837115037d0626068a41042074e53311292a6": "PRIMARY",
+        "de565aaaf110561a28d3230309382c7eee970986156acadd29efad8d3d9c7ccd": "C-R"
+      }
+    },
+    "959b556ba6a3a50cca2b37766dd9f2b507093d5e39cb1c0758b722c1c3b37da7": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|tests/context/python/function/test_qualified_reference.py|d8ede2921942e6f4acabc9e4176190781eae10fba4c7e0d894aedbb831b2dafb|9c7dfe605bbc376cbb99024b56ae468cdaefab9766bcbe2612175b46106e3c2d",
+      "position_source": {
+        "9030619583957cfcefc59e73a8d86f7bb0aae6b807f6ea4f32904cbe054ff8d4": "C-R",
+        "f8e094254b1c508c9e92b8249e6fe49f799a41a9c6686cf2bf87c16c1c678dcd": "PRIMARY"
+      }
+    },
+    "9654c21fb927d90eb25eafde96b3b5a55f380dcf12e9a7289f17000046007faf": {
+      "comparison_key": "case-0012-direct-source-disclosure/exports|src/devtools/context/planning/docs/overview.md|a679cfa5ee0591036eaab418fa386a0885ef748f98287b8dd49846c093b068bd|de0155f1cfe9bdb78fffb3e8897785e5a32f6147ddcd291c3bc7d67f7f9b274a",
+      "position_source": {
+        "5da6c52d08dda034b0c5ff5a36cd64b6f39f197ccecccbacbccc0f95e96985bf": "C-R",
+        "90a4135b43dd8da7d3c0adc152788af2fef8761623cafd0ff3ff3da6d376aeef": "PRIMARY"
+      }
+    },
+    "9697788bdc4ede4bf2c23e4e4c59f255d4f2d303c82d238c6063c5dc0a7e443f": {
+      "comparison_key": "case-0012-direct-source-disclosure/exports|src/devtools/context/planning/plan.py|8e1ccfa2286a3bad1f832a2611770b6c655e65ff4c39adde07f9757d47253998|09cd96dea039214b6365b48a3142d2f45a44ed8127a418be321022ad89be4493",
+      "position_source": {
+        "3155c1623fefc7d83edcb0dcf56182f87fd135ce6b6894c8ee4af7993b6c2962": "C-R",
+        "725153fafda24b7d5addb01ec68673141d1e197442b5923666e243f0c479d07b": "PRIMARY"
+      }
+    },
+    "99002d9a8898d5641128de1eb4a360a43227b54e093269c9829676db7a1b7ec2": {
+      "comparison_key": "case-0012-direct-source-disclosure/materialization|docs/architecture.md|fea96cb29341a4b8fa8b409c223870b155f0e51a350db6c6b9a9f4d650b75c8b|04da2f220007ae00b8c35c5d6c0a0c39ae027df5f7eea6add7a9c43b45519391",
+      "position_source": {
+        "36f0defb69b3ad7c169f4ba7a1ddc9e181f4bf4d61ab85b7f9eb0bfa00458938": "C-R",
+        "fdd63a7c2d419416ad14fa4b514078caa8b82863f95b4e2fc18cf6cc1e2f3de6": "PRIMARY"
+      }
+    },
+    "9ac9a2c6dee34dc23c7cc4b05b5ebbf6c8714928da2c40454ff9040647750e75": {
+      "comparison_key": "indispensable/integrity",
+      "position_source": {
+        "192148f26a7551bc92ed12e7f06181fcaa766af25cbed1425dae5a64726a6bcb": "PRIMARY",
+        "ae6846d2fc6aa3927aee13080359f03ac9b12f505807fe839e6c7aeebc58d930": "C-R"
+      }
+    },
+    "9ba817296651695006192ed9185299ffe457c811f89bec3b2f1ee018d1ec87ac": {
+      "comparison_key": "case-0012-direct-source-disclosure/documentation|src/devtools/context/python/classes/declarations.py|f283a78b7bebb29f155653b03f47be9f0d74f55593b30a3e4b2f552c91cf4a73|b38664916a128ac4e218cfd4adb4c1070e79618c68930eefc3b1eba8d70cabbd",
+      "position_source": {
+        "4d7886cfbb1f4164c6eaf325a3027de037d89cfe7953ca5e82acaa71673d669f": "PRIMARY",
+        "c09b893791e4ba0e75f72998bbaa3e2fa5c764dabed3347ed2b4f8d5e2fd4ea5": "C-R"
+      }
+    },
+    "9c424cce88df0d80a0bf0de7bdcffc4407c7b958b18f88c6b21ebdd8b2145d38": {
+      "comparison_key": "case-0012-direct-source-disclosure/choices|src/devtools/context/python/function/planned_reference.py|a1e96fb89604e70bc163fa267a3a53a03ed24515ce4b00d421d1f0dda5d17381|0e85d7f5109d5129516027b53f9a466471a2317aded85a7d7e7761777a94b701",
+      "position_source": {
+        "9ec40755f70d0fcf49e50eed5e863a2e2155507f67d0b07218f44b7ce345d2bd": "C-R",
+        "b00e9914a251dcba9c8d4155b80f9ea2473f8c036c1420ba6462917434dc9179": "PRIMARY"
+      }
+    },
+    "9c94441580822aa9c7315cbf571472e182eabbf5c26a899978dd2fc5b40b94d0": {
+      "comparison_key": "UA012",
+      "position_source": {
+        "8a5ab30920eacea724613fe972c6147330ed03d7008ef058463ed3c3f4a99c82": "C-R",
+        "d62e1fbb0001e58e297b7d20a5f639d109687455861f0e82b11fe9e324411ff4": "PRIMARY"
+      }
+    },
+    "9ea4fe94631aaf392812c10d978f74c011ed23a8d390cf727853a4b2acf2143e": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|tests/context/python/function/test_rendering.py|473398e3a37c321aa451e97f00bef61bf7794a822d95e6f6e3916e4af43eede6|62823b43ffdc9b7460635c80a1957ec2e2a8007841a292f964687975fcf7ad45",
+      "position_source": {
+        "0cd320cef2abe2266c779f3c2c36e5fd17ee19e459c94329be7468c2203d907b": "C-R",
+        "7468bbf9ece9cdce4c94b9006db9158559cf91144eb274cc679fd92c328e63dc": "PRIMARY"
+      }
+    },
+    "9eceb9e517dcbdf9824e35c0684cac0592756a62c8f5850a1d341ecabcfb4f25": {
+      "comparison_key": "UA024/granularity",
+      "position_source": {
+        "127aadc4ea6c6fc020a3582730878f6d55a59b61831141397b5ee421b33ba141": "C-R",
+        "e0a520dbdf76f184622759782cea7e87f4191a31049fa44d4032b20146c8cff8": "PRIMARY"
+      }
+    },
+    "9fa327862a9603ddce11bd4bf2b07819d74c1714732dd72dc98e0febd0aefa14": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|tests/context/python/function/test_materialization.py|d71c206e1b8df47bbb23c1be65177148ee98a0757acd0e789e4e1ee5e2906dc7|95b96313fc74a7f6a3e5caeb20352be2b7483609d2427df6e26f4a0b9db2631c",
+      "position_source": {
+        "a20cef63d533399b9e5b94e105a38972db9ca552c993671bc8a11f3e9ad79380": "C-R",
+        "af3fd72c9d037bb8c164b4f599a059bf4af69fc6a7eb642da53931ea55fed313": "PRIMARY"
+      }
+    },
+    "a0b920f5d162bf2fa6cf441568d5cb8cfe63a8d895504aaccd5670a0b82e4e5c": {
+      "comparison_key": "UA015/granularity",
+      "position_source": {
+        "1dcf9afc127e2284086267a3e408a827c423223165c1efa61570568fa11f9460": "C-R",
+        "e18d403d1b4248f215c8e912b0ee8566438c464bdd255fb3e4c7b58ffb8bebe9": "PRIMARY"
+      }
+    },
+    "a867703e017f8b4cc6c6b32e949fab49b5d5eb0818af429b3cf35b2eb89794a9": {
+      "comparison_key": "case-0012-direct-source-disclosure/assembly|tests/models/interaction/test_models.py|03eb423890b8178020859d436d5cfb6e1aefdfd26b44036eccda1435206d234d|5f92a0e5f0c2781111fb65005a067d342665db46c8d991cb72b8f82065d81c9a",
+      "position_source": {
+        "a3051bab2345cf95ec0cd40dfafdd140b6955c121a30eed7844aa508084910a7": "C-R",
+        "b5f5584319ca400ced9b2faa32795e6b39b8d3590e3beaa1cceefe4d2dc2765e": "PRIMARY"
+      }
+    },
+    "aa3b046290c53b3a7a321b3bcc96115743451ca78907ce7a44655453d59ca16e": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|tests/context/python/function/test_containment.py|d67c0d0abc7a00d2562441144fd3f2176a14c61b15aac86420e9cede1b06c2e2|ff717ff17352caa315d9dce1877a55354ca45ff65b4cddc4c67cbe2fcc02235f",
+      "position_source": {
+        "319da102d292e5bec21320adc912d5e9263cba4ee801d097299caca1c261cc17": "PRIMARY",
+        "31de0f082e71bff4f6bab5043a8973218cd67d4b50c58d777b7d6d9ab146a41d": "C-R"
+      }
+    },
+    "abc32bdcdeebdf5e856e79faf364b15a7f1575f547770412b56fc9413dd1b9a2": {
+      "comparison_key": "UA022",
+      "position_source": {
+        "15b05cf2ff3911cea1c509f0b98fd7b6fc58e6f855faf0859b7e5f41e1995f64": "C-R",
+        "899cdf62bb20729cbc7406513375d70fadcb7b62d5825f1e0a20925f4a8f0518": "PRIMARY"
+      }
+    },
+    "af2a62298b3d16b06443224d7efe9cba693b5bae616dc1ccb61d7c2f63fa5227": {
+      "comparison_key": "case-0012-direct-source-disclosure/choices|src/devtools/context/planning/resource.py|f05d554cc5e81d1584c463f37c9d05801293c4a6cf74c839c5ea650a26c6123b|0a23e17b83599252292e40cca317125d7cf495c6eed74c1a0b274ec12bb260e5",
+      "position_source": {
+        "3778508afe56412bae990dc39ff30e4da2b5e5de4db51ae3640273cb831901a1": "PRIMARY",
+        "37f45ea02386f318561ce5dd97ee3b58954ad6f61755181c381c459e50a333f2": "C-R"
+      }
+    },
+    "b3112f8874482c1193c75bb8aac945d21207607e4b36656e38f42b216445f3a9": {
+      "comparison_key": "case-0012-direct-source-disclosure/materialization|src/devtools/context/planning/docs/overview.md|a679cfa5ee0591036eaab418fa386a0885ef748f98287b8dd49846c093b068bd|de0155f1cfe9bdb78fffb3e8897785e5a32f6147ddcd291c3bc7d67f7f9b274a",
+      "position_source": {
+        "5da6c52d08dda034b0c5ff5a36cd64b6f39f197ccecccbacbccc0f95e96985bf": "C-R",
+        "95f1fae614bc1c02acd9ed70c11cf507bd1d8492a25fadbc4d713426fa36872c": "PRIMARY"
+      }
+    },
+    "b6b669f6a8f0b54110c5c1de2c1d22763cb1273b70c7b7e3cfa663946f3feeed": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|tests/context/python/classes/test_declarations.py|40acd74906703279d4d9251d72820354d488dabb5603c2bbd265d761755a726c|750c22bae743779b23838b909394f7cb83dae21e4f04ceab4a972bc02d4460b0",
+      "position_source": {
+        "bea4da1bfc660b6a22718a0b2847c059051113629d1648011929030ec9ef9510": "C-R",
+        "e8cc357428c9753a4381d07d8a77599e2f4a56618f8468dbfe32cd376625b2ba": "PRIMARY"
+      }
+    },
+    "b6e97a1ee0063f86020cf20235e864a5363b96bf29eaf2d6e78eefac2348904e": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/planning/plan.py|8e1ccfa2286a3bad1f832a2611770b6c655e65ff4c39adde07f9757d47253998|09cd96dea039214b6365b48a3142d2f45a44ed8127a418be321022ad89be4493",
+      "position_source": {
+        "3155c1623fefc7d83edcb0dcf56182f87fd135ce6b6894c8ee4af7993b6c2962": "C-R",
+        "7a67595e79416cea178f3eb5bdfcf26ef3ea4234d52e75f280ef736ddc1e65bf": "PRIMARY"
+      }
+    },
+    "b72b356fe4470185ceac31e520952d2de0caca1b81a41806ae88c6a2f276b043": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/repository/snapshot.py|492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098|71672ee68667154dfaa647de6e53e8680fc81f07cdb4281e8fca2a4ce41be6d7",
+      "position_source": {
+        "7c067d95609829285ba399c22e2c088675c687d00a4cd28cd8071e2d2213625c": "C-R",
+        "f3a9495d9f9fdde3116f393af010437432601a995c102b41d01f1d9dcf47e5a3": "PRIMARY"
+      }
+    },
+    "b82b11d370e13693f464fedf03925c1162b8df48bff77869fc68e87dff302a3d": {
+      "comparison_key": "case-0012-direct-source-disclosure/documentation|docs/architecture.md|fea96cb29341a4b8fa8b409c223870b155f0e51a350db6c6b9a9f4d650b75c8b|04da2f220007ae00b8c35c5d6c0a0c39ae027df5f7eea6add7a9c43b45519391",
+      "position_source": {
+        "36f0defb69b3ad7c169f4ba7a1ddc9e181f4bf4d61ab85b7f9eb0bfa00458938": "C-R",
+        "da61652bc3091d25077f5d353f68c53ddafb6173811d794a2fd69ad35be4493e": "PRIMARY"
+      }
+    },
+    "bc2970bb08ef33522c4747ee79c6cb46baf377f53d64efb08825cbf76fd9c96e": {
+      "comparison_key": "witness/exports",
+      "position_source": {
+        "6004c9db8d5fac1eb1d6130bcce91a097a092d523932e328860f14fff607e76c": "PRIMARY",
+        "efd2ff432f429d7e81e6cd1e3990c2c00b0a709bc68b100d9b26c9a6d5daf880": "C-R"
+      }
+    },
+    "bfcebf42a316f5aa00a576d36b7232bb0c9cb51c836b0c1fe728ff382dc35f77": {
+      "comparison_key": "case-0012-direct-source-disclosure/source|src/devtools/context/python/references/docs/overview.md|5ab01b1b0b6fa6a8c338119aa2cd820c9d1f292b1120b96a4211c0e9bf5c7d09|fdd6202b0566e87503fea599e162cb4cf293083b363e4a85c959a48ac634ee9b",
+      "position_source": {
+        "0e6f1766113cb7facb36ef29ebb84eb774920e0824e05367af8d0b56a99c07ec": "PRIMARY",
+        "de565aaaf110561a28d3230309382c7eee970986156acadd29efad8d3d9c7ccd": "C-R"
+      }
+    },
+    "c2dae4e51367d8390d7700c0abae50b2bdfaf8fd99145377ffb05ab82363a5a0": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/models/interaction/models.py|6eb9d64480b0c9ab9ad6e0185f63006d0b7635e824cac8d7c111211d9926466f|4e1cded7a20da8216abfbe52f6dc2db1ca2c04cdede2d40793162e86c4d87d17",
+      "position_source": {
+        "24e893da0ddc3594be85bcbea9ada1d210d9b0f4b0ff37c61d532f8e68c4025c": "PRIMARY",
+        "882d6c1f9d2728353d7bf21a700a2f69f52b3812f3fd28b16ddede6d62c07da5": "C-R"
+      }
+    },
+    "c54af40f807eed4f280ab06b2156f2c07300eb92cb7938269c65491f064afe08": {
+      "comparison_key": "witness/choices",
+      "position_source": {
+        "2a7d328262ed5a3634c23e65374c07373a52dbf63d32fce1254dc7f207d8ffd6": "C-R",
+        "bc9ae95d634973d6c13e8d20618f0adfdca0ea28d483f00b33ea82c892e93375": "PRIMARY"
+      }
+    },
+    "c55805848b13e21ff310dd3879339e64e31463b673a29cc3b6bcda7c7bf2d961": {
+      "comparison_key": "case-0012-direct-source-disclosure/documentation|AGENTS.md|096fc5fe252684225386aeb3acd48781733286a51f9b27af142eb6d54797fa9a|953ca78b4215df7a7981e46287fbc2bd96eee678f692a82d8f69b84b0aa5cc1d",
+      "position_source": {
+        "58b52929eb4dcd86dde8a2ec6a85c86e54c505383fae7107527c6fd2d58b9630": "PRIMARY",
+        "f1ab78588a3ba50c9dda23e297be04c2b2307d33d34d035dd6e2b7b3e05b6338": "C-R"
+      }
+    },
+    "c9c0eea2fb2cc525098bd8f3bc56f8ee8ce22a14fec084e3bdcb0f09d8b90614": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/planning/materialization.py|8c7b2c0dd17e5c8a4f79f3ff48403b92b3ecce5cf4845d85a8723da296cb3315|e980ecd96c4e962999c8155e2ba0bcce3e438ed4ce00981aede274dc27f34da8",
+      "position_source": {
+        "40bc6fcc0eecb082fb54d9fef65d54ac28adf367cb0bff0c9089f6bfc01d829d": "C-R",
+        "682f000ac8689399ba7c57f269307f95a241e9e417997c8e64c2af7259396d4a": "PRIMARY"
+      }
+    },
+    "ca6c1e4c5f7b52c0ab4edbb36f8736335bbd59fee04d62900eb59020543238cd": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|src/devtools/context/python/function/docs/overview.md|6694ff79616580eaf377f6d9b9ab2472117b19879c651fa6bc8b9b45900f8a9d|5ae4e5e2f60ab154856abc53979c28e910145b12a7bdaa9fa313437d29be3920",
+      "position_source": {
+        "8b17f6354c65e3f02f1bbc921a42ac5a496da1b5d4927143c255a9bb88b7d8e2": "PRIMARY",
+        "9d29e4b05ca9eff17573e3c84fe9453b2daabc00fad76a87d0fb40caf5ae2227": "C-R"
+      }
+    },
+    "cbe524cefa1b1f8f44e2217299a22e02ca07820a0e5e521c8cf70b35b3bddd53": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|src/devtools/context/planning/plan.py|8e1ccfa2286a3bad1f832a2611770b6c655e65ff4c39adde07f9757d47253998|09cd96dea039214b6365b48a3142d2f45a44ed8127a418be321022ad89be4493",
+      "position_source": {
+        "3155c1623fefc7d83edcb0dcf56182f87fd135ce6b6894c8ee4af7993b6c2962": "C-R",
+        "d0963e18d3dcfe68c8a2c7c0780f479cd32aa49749c2db882f95a4eacbb4a9b1": "PRIMARY"
+      }
+    },
+    "d0a14b1dd6e6995a4754df9f5e9c4bbf0b10d517a34996e10ca28aea4e350c4a": {
+      "comparison_key": "case-0012-direct-source-disclosure/source|docs/architecture.md|fea96cb29341a4b8fa8b409c223870b155f0e51a350db6c6b9a9f4d650b75c8b|04da2f220007ae00b8c35c5d6c0a0c39ae027df5f7eea6add7a9c43b45519391",
+      "position_source": {
+        "16ec840fa17baa2febaebcdd0ced8b4f7fb5beb0f3131d86a56c0ee9c3a32ab0": "PRIMARY",
+        "85d8e40094dfde3300f8d51120a375b1329284d2619292b2ddfc7417dd75728a": "C-R"
+      }
+    },
+    "d113230fa8ab94d1f13e8f96a1ad920857a7357d5e2e0ba6e85da287f1f92180": {
+      "comparison_key": "UA034",
+      "position_source": {
+        "6a281a82ad4160a21dea05f755fbffa8883ec3b2126beeb5e25ed296faef3d97": "C-R",
+        "ae63831131e8c589f7c92887c820e688c74c0482e7e8b0ef3c082b864347d09b": "PRIMARY"
+      }
+    },
+    "d3c22067eabda0c4d9382e7b2abda421535b9171fe9973487de6eca2750f5034": {
+      "comparison_key": "LA005",
+      "position_source": {
+        "363d73971750a65a590ee959df0640d4dffa5ba6d5dc09b6093172ed458e2ebc": "C-R",
+        "6471ad7d98dc0235da614a438f37c47e96cc355347a57c77c3e44d4d4abb894b": "PRIMARY"
+      }
+    },
+    "d3fe154382cc2918597fc7409660c7e025c10948dafcb5ba022d63759a84b16c": {
+      "comparison_key": "case-0012-direct-source-disclosure/materialization|src/devtools/context/python/function/containment.py|7af4524a28e61dc608e35c9ab4ff34c0bc486fb1ef54a3521f9fb0735eb25d69|c58c277bd0efe01f5fc81064b7bf2f5c500c8babc9b13bf89154b59a2e6eaaa8",
+      "position_source": {
+        "5271ad1d48a58d6391980942613b2c4dd1ca9d19430999249212f4cb721ad563": "PRIMARY",
+        "ce5e255f695b6290b9587997879efb02ee73d2e141a9cf0307ac28167318b774": "C-R"
+      }
+    },
+    "d404a87109f936810520bcb6542251aac84fb1b1ea70aaa5f58baea6cc165542": {
+      "comparison_key": "case-0012-direct-source-disclosure/assembly|src/devtools/context/python/function/docs/overview.md|6694ff79616580eaf377f6d9b9ab2472117b19879c651fa6bc8b9b45900f8a9d|5ae4e5e2f60ab154856abc53979c28e910145b12a7bdaa9fa313437d29be3920",
+      "position_source": {
+        "3f25d0e91f1685be172000c923eea72ff14bc7c9326aa9b7a34a1331cd8baba2": "PRIMARY",
+        "9d29e4b05ca9eff17573e3c84fe9453b2daabc00fad76a87d0fb40caf5ae2227": "C-R"
+      }
+    },
+    "d52b5b63c2c41c41fbb8cee163be98090f7657e3b2524bcbeca575c1dea58b8e": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/python/function/materialization.py|d914b5e736e7cf1e2d6af3762c6348c6a98882aa69b4fd96b65aca0833ba17a5|0ee97c99b5a9a8df7d8e6d168be9145f3fe3315cb1cbdf5bd0f5cfdbaec245c5",
+      "position_source": {
+        "38efb56c9a5aaea7a2ed9931d2af81f506bd8fa4cbb2511e17f12c84ed0a0dde": "C-R",
+        "b54476f45d77fdf4d37f7a6aebb442e000461233126335dad6f34ab7cfcb17d3": "PRIMARY"
+      }
+    },
+    "d9795eb535a8a46f311765ee603cfc8a6c342ff294326a844879a746c63c825a": {
+      "comparison_key": "UA021",
+      "position_source": {
+        "bcc569a12b33e5b16fe1cb8d8e69e19438980fedd3922d938ac4ff623fe8d8f3": "PRIMARY",
+        "c1e6977162bb6b89e25b4d648dadb941ea70f2336dea9dded7b195769881bff6": "C-R"
+      }
+    },
+    "d9a1937536bdc6733e4e2c0936981519f011030402fb076f777d495fc1b9c2ef": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|src/devtools/context/python/classes/docs/overview.md|83660bad67230c9ac59b4b93fd4bd8702a957ff6ef2d96824a509a38c33749e9|f314cf97f061855c388b7f8d3fbbb30dc290a621feedd4371b0ae7dc1ed638cd",
+      "position_source": {
+        "a73b77985bb9d6d43d521a6c8482f892ee585aae34b2d60bd147e67491cd453b": "C-R",
+        "c18351bfaea5aca36e53f70ba00ef6095fce0ce1e1fd83873159999641e18246": "PRIMARY"
+      }
+    },
+    "da5976ef61d0befd5ff9d9cf9e11deb37af150dcf30821b01ec8046d51c0d0b3": {
+      "comparison_key": "indispensable/documentation",
+      "position_source": {
+        "0de8c9a0012f8553d944f5ab72a7ac30b024045d27b10eeb5ad17024349585f1": "PRIMARY",
+        "89c9ccda3dcfa437290dc40a1f9b9311313f694791747a41bd139334e032dbfb": "C-R"
+      }
+    },
+    "e0b83c1e69522af23bbff2858e4dc3fd0d516290fc173b5ad56f06fd2d351695": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|docs/architecture/decisions/ADR-0002-repository-intelligence-identity-and-derivation.md|33c954239327f6dd04a9c8b690b7f34577cdf32685ced4719820dfa0b4c133f7|70f7458544fe2922cf8ec64055c8be00556abddc44dfeb9cf45fa178f079760a",
+      "position_source": {
+        "a0ec55044893e62b95940c6f8cf0c290b178b4d228bfc5ee9b2a9d7be10a26af": "PRIMARY",
+        "ad3dda732771cffa0533e4f0759e982914c60f8c1d18bd4c34043298c3c27f3f": "C-R"
+      }
+    },
+    "e254ae28e87aac4bb538d115ca1935157f3a78d94782e204936ec68aafdb6b53": {
+      "comparison_key": "case-0012-direct-source-disclosure/source|src/devtools/context/repository/snapshot.py|492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098|71672ee68667154dfaa647de6e53e8680fc81f07cdb4281e8fca2a4ce41be6d7",
+      "position_source": {
+        "5c3d25a618a274cedfc044d7e419e627d02817a852350ca968803c2bd742a525": "PRIMARY",
+        "7c067d95609829285ba399c22e2c088675c687d00a4cd28cd8071e2d2213625c": "C-R"
+      }
+    },
+    "e4dfc9ff745dd2dd1b8141f4954b58e87fcf354c3bd53687ac36f678519d9dd0": {
+      "comparison_key": "witness/documentation",
+      "position_source": {
+        "04a8c969ecc367a93803f9afc1c94a1b9aba8696edfaee0cedd353c5b8d234e6": "PRIMARY",
+        "0d6ca217b6121ea0220a29f58714897dd7a7917320dd560da5a7e80b77619f75": "C-R"
+      }
+    },
+    "e5131c2663735acba1a3704d5e530bba9e259f1183c1aa9a0dc98727d8d55bb0": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|src/devtools/context/python/function/materialization.py|d914b5e736e7cf1e2d6af3762c6348c6a98882aa69b4fd96b65aca0833ba17a5|0ee97c99b5a9a8df7d8e6d168be9145f3fe3315cb1cbdf5bd0f5cfdbaec245c5",
+      "position_source": {
+        "38efb56c9a5aaea7a2ed9931d2af81f506bd8fa4cbb2511e17f12c84ed0a0dde": "C-R",
+        "b8a740d23fb919120424552d7cb625fa5042ff68739fa109aaa60fabc03ed5e9": "PRIMARY"
+      }
+    },
+    "e8bc8751a57ec0d3b29690cefdc4da7b550b6538c325a9580d8f833a14c72d76": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/python/function/request_assembly.py|27bfd8eb7c177577cc410c7e19c47cd8724a6b93200dd15e2ac8d55d4bb4d152|d0683bff077bc951cd4f02a215e96323dbb4ed78587cbcddd9a12df9ec0b9c8a",
+      "position_source": {
+        "2876bf77d58e874dfdcc05c27c6cbca7acf7819aedfc2861449c3fdae430e8bb": "PRIMARY",
+        "b2a0e27d27ba968682f457ae1107bddafc2b5688bcca34624cba46ad8bf87b8d": "C-R"
+      }
+    },
+    "e98de98905f40c0133415b7d3562b05f96d9950a8bc249b6f745ab89bae4b353": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/python/function/containment.py|7af4524a28e61dc608e35c9ab4ff34c0bc486fb1ef54a3521f9fb0735eb25d69|c58c277bd0efe01f5fc81064b7bf2f5c500c8babc9b13bf89154b59a2e6eaaa8",
+      "position_source": {
+        "ce5e255f695b6290b9587997879efb02ee73d2e141a9cf0307ac28167318b774": "C-R",
+        "e9c6c7828fe2a1771bde1801bc06e289f22c864cfabe34b268cd7580b5991f63": "PRIMARY"
+      }
+    },
+    "ea46683544c8a7cefe06dbefe342c8a213f29bde923bade12089394e27ef9154": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/python/classes/declarations.py|f283a78b7bebb29f155653b03f47be9f0d74f55593b30a3e4b2f552c91cf4a73|b38664916a128ac4e218cfd4adb4c1070e79618c68930eefc3b1eba8d70cabbd",
+      "position_source": {
+        "23b79c6efc5f94b5c6c9f383f35db68fa2f5f0c05c047321ac9ad93414b79ecf": "PRIMARY",
+        "c09b893791e4ba0e75f72998bbaa3e2fa5c764dabed3347ed2b4f8d5e2fd4ea5": "C-R"
+      }
+    },
+    "ede141ad5abba62a0a13f6c81f2b3a09a9d3fdc2374dcd96d01cdc8cbdd1c84a": {
+      "comparison_key": "case-0012-direct-source-disclosure/source|docs/architecture/taxonomy.md|24677a057596cb8157bd77407c35ff82c4cc58c27908ddb72e32f79e266a010e|e13fc10a26ce00bb5fc7641ea0ac13d59bbf6872873bac1c00021fd86a762f01",
+      "position_source": {
+        "1a8809831bcc4f0cdb6f0659f7e6bfd219d49aeb8c734a06a4c423d88e485c47": "PRIMARY",
+        "753db42dddbbb9871961bdfc15520e0966da4a2d1c210c34c1e8f0513fd8b646": "C-R"
+      }
+    },
+    "ee73c3bafd1671dcb61af9db1d63434272b86ef19405da22629bfee09875e84b": {
+      "comparison_key": "UA026",
+      "position_source": {
+        "295b4dac7fa1db2e0c6b57b07595cd869161d38f9ccab3fbeccdb65908804344": "C-R",
+        "d03f488be492da56b6e2544784f6b518a142c8827c1d4625452a0c2625cbe110": "PRIMARY"
+      }
+    },
+    "ef64c5b67475277a2555fb2329ef4964c79fcd7b48459dad74fecb4b85193491": {
+      "comparison_key": "indispensable/choices",
+      "position_source": {
+        "5f77d93b984d06596e78912e26e0558a36420fe48678678935c5c9d22afd034e": "PRIMARY",
+        "e3c33218da0b3fde1c2b3ced3d1c3cc8d75dc05b1fc08cfd7904292c3b326f98": "C-R"
+      }
+    },
+    "efa6f7aafa76f689d18c257aba495e29471e4e342170a3ec4aab875cf3b6731d": {
+      "comparison_key": "case-0012-direct-source-disclosure/tests|src/devtools/context/python/classes/docs/overview.md|83660bad67230c9ac59b4b93fd4bd8702a957ff6ef2d96824a509a38c33749e9|f314cf97f061855c388b7f8d3fbbb30dc290a621feedd4371b0ae7dc1ed638cd",
+      "position_source": {
+        "68f4ae70fdcdb1268c13635363d8e88fe4476eb169cc1f90532f25794ba32dc1": "PRIMARY",
+        "993147e4f16b492eb9ab6facbc247a3df73ee908f959e7731e25df2f6815e7c8": "C-R"
+      }
+    },
+    "f41ff9a798aeb2a9d4ddd0b1ac90052f1b3de0a8c2e64f3d1b21063e24d8d447": {
+      "comparison_key": "case-0012-direct-source-disclosure/materialization|src/devtools/context/python/function/materialization.py|d914b5e736e7cf1e2d6af3762c6348c6a98882aa69b4fd96b65aca0833ba17a5|0ee97c99b5a9a8df7d8e6d168be9145f3fe3315cb1cbdf5bd0f5cfdbaec245c5",
+      "position_source": {
+        "033ddf5af14b8f7833ccd1333bd9ad9f4fd6b78b01ac04617399b8f8ac504630": "PRIMARY",
+        "38efb56c9a5aaea7a2ed9931d2af81f506bd8fa4cbb2511e17f12c84ed0a0dde": "C-R"
+      }
+    },
+    "f484d1d242ef038633d74458e75ed416396fd4511510315fb39cf47375383c04": {
+      "comparison_key": "case-0012-direct-source-disclosure/source|src/devtools/context/repository/resource.py|a1d3fbdcff843b2a2b672307a4b204bf4d4ea8fca96b2cf2cfc0533b28e1421c|216cce289f3fd9be8e9934580dac009863354bbc83a3763a85dedb5accce300f",
+      "position_source": {
+        "0fad1e1bd0d298f7079c258a584d093ab076806b51c05abf7447b5b4d9f3a0ba": "PRIMARY",
+        "fa6b4560d1cf8ae1fee5f613d487841361c0336b283adee6b901bd1d0347b6f8": "C-R"
+      }
+    },
+    "f5b10cec473bf845b6a7aad5ca7eeaa24d0dd4024a7a35cdd9844571eacd0a8a": {
+      "comparison_key": "case-0012-direct-source-disclosure/assembly|docs/architecture.md|fea96cb29341a4b8fa8b409c223870b155f0e51a350db6c6b9a9f4d650b75c8b|04da2f220007ae00b8c35c5d6c0a0c39ae027df5f7eea6add7a9c43b45519391",
+      "position_source": {
+        "36f0defb69b3ad7c169f4ba7a1ddc9e181f4bf4d61ab85b7f9eb0bfa00458938": "C-R",
+        "6d72679797293e9e83d32da2a368dd03850f0393cbd5e426e2b4ec1181fb08ee": "PRIMARY"
+      }
+    },
+    "f5fc07f8fbe96fd6db22fe7f8c61dcdec2247b8d4c4154b0d01e1eb97b815321": {
+      "comparison_key": "case-0012-direct-source-disclosure/materialization|tests/context/python/function/test_declarations.py|9b90a073bec97217be0312199d82de5d5aab94ccb2666b7de5cd5bda78688e50|a994332cda61e4b429e5a232589925f51304e14bb461c5f01b1122e8655709e6",
+      "position_source": {
+        "7254b08b96a8cfd30c698f09db9e0c6b2790943de58410afd77214ff6b4648e7": "C-R",
+        "b1e5837ff0397e5b08a52a42cceb25a09a7047df8f92bef59dd8901871076be1": "PRIMARY"
+      }
+    },
+    "f663338ad373fabe7809710ec276709dc1c9b0be9384a9da794b825bbe5f4667": {
+      "comparison_key": "case-0012-direct-source-disclosure/source|tests/context/python/function/test_declarations.py|9b90a073bec97217be0312199d82de5d5aab94ccb2666b7de5cd5bda78688e50|a994332cda61e4b429e5a232589925f51304e14bb461c5f01b1122e8655709e6",
+      "position_source": {
+        "40da5c284011bcf07c94c966381cb10f91f1cd1bde71db668f81aaf1f3d4f548": "PRIMARY",
+        "7254b08b96a8cfd30c698f09db9e0c6b2790943de58410afd77214ff6b4648e7": "C-R"
+      }
+    },
+    "f9fb45f4f1c4e3f9e1ad8bec284a0c32ddeee50e2bcf238c6995ab55de84caad": {
+      "comparison_key": "UA028",
+      "position_source": {
+        "1d264e6c57bfa14bceb131fbaf980021d08c266c5304e9fadc18728b03cff4a0": "PRIMARY",
+        "d4dd4dbe41221251767251886cd7756af4b6ed063f146cbb7bae0ddcbb52ba05": "C-R"
+      }
+    },
+    "fa21a866fe8e9218b7010a6f6d4902d49cbc3fae32c0b40abb696adaa7b08362": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|src/devtools/context/python/function/declarations.py|2521087e439f635cd05993cfcbb282fcbaef4f2ddfd569e6c6fee277f1e25a66|038c1f33e0939a8fd7e1aeb0def4d3a390ef1fac1abea96bf001e0f4b2786baa",
+      "position_source": {
+        "9a974c9fb4f70394fcdd1095c7b7be4eac0086441590050f199eb7d46861f14f": "PRIMARY",
+        "bb705309daa12880b02566c9e176a206807f37a586e85fb5517a832e949f35aa": "C-R"
+      }
+    },
+    "fd18469df21396732223ffe697bcfd21ae28b0de80728af8ed4d6ea7504c1f61": {
+      "comparison_key": "case-0012-direct-source-disclosure/integrity|src/devtools/context/repository/observation.py|84b0893b289fd613f3ecd441b4f963ef15c5269f3e6fcfe98ac1f52de4fe7b51|3a8861e503621727519812dba904e2ba986d526e36cf885e9f9d52e7a26486da",
+      "position_source": {
+        "0a0837216c34885c3e822cb17080428b0043fdc7c254f953e3750f89727e871a": "C-R",
+        "65a4a8f6850e631d309c68c2bfc8c20ed5524d6dc0ea0fde6c00ffd61d30f89e": "PRIMARY"
+      }
+    },
+    "fd2adf657b0a4b71228b3ce01bff3b2548131f7c3cfeca5e1328bec3ab3fc7fe": {
+      "comparison_key": "case-0012-direct-source-disclosure/documentation|src/devtools/context/planning/docs/overview.md|a679cfa5ee0591036eaab418fa386a0885ef748f98287b8dd49846c093b068bd|de0155f1cfe9bdb78fffb3e8897785e5a32f6147ddcd291c3bc7d67f7f9b274a",
+      "position_source": {
+        "3c64f490a3ffc03cbc904fedabf904733250f77cc9a90551e2a26046c261c674": "PRIMARY",
+        "5da6c52d08dda034b0c5ff5a36cd64b6f39f197ccecccbacbccc0f95e96985bf": "C-R"
+      }
+    },
+    "fdb3d9672e2c7ba7fc7ecb53a9b257203d3c3bfa84063a14d6da42ac7380308e": {
+      "comparison_key": "case-0012-direct-source-disclosure/exports|src/devtools/context/planning/__init__.py|f0a22d1b55645d1c428dd456c527cbe41e36ebbcaab3ca09229498d3e2f7f8d3|4950d26efdac0ac7b2855daddf9406849e26a401d0a5f6a31840aca64f4eea5d",
+      "position_source": {
+        "59ceff1fafe7234122bb516eee08057647a87d0802f29fc207aaf2fe52518d22": "PRIMARY",
+        "929209e293f07e85970d24c595e42b8a1cec0ab0444485daaed96c1fcccaf377": "C-R"
+      }
+    },
+    "ff138dc7d560b68c9a6bd8480244cafdf7d1c695861bd9149ff99808d29c452d": {
+      "comparison_key": "UA023",
+      "position_source": {
+        "bae2f2263f82b1fabb576a37a0dbfa4b0c82f91571bd95be1a892f482a53f00b": "C-R",
+        "d43ee25ff9b9d832f5af8e15d8436458f0708a74033e8e83ecf4b99cb31d8ffd": "PRIMARY"
+      }
+    },
+    "ff7c6271e137ef602bb805cb7a3e0b00747c8bf6de1ec67b598a6ddeb69bd4ff": {
+      "comparison_key": "case-0012-direct-source-disclosure/documentation|docs/roadmap.md|59aa61e214977c4a25e60c1f69fca8ee7688e71ba7d8ab9361f3de0c84bf8671|c5a530215f102a343d68092d0f1664b3adc60dc57b27ed49ee6f54d68fc9e5ec",
+      "position_source": {
+        "6a24b83aa5da26de9bb9b379e037bef46ffa846d68f1f4969a7aec59924e44b0": "C-R",
+        "c087eee9a284662669835f18275e8f13d47f89d7eee98cd7296093327e8cafef": "PRIMARY"
+      }
+    }
+  },
+  "source_mapping_location": "Outside reviewer packet only",
+  "workspace": "C:\\Users\\recoveryadmin\\CodexSterile\\case_0012_gold_reconciliation_34b81cc26248"
+}

@@ -54,9 +54,15 @@
   Stage A task/requirement matrix, separate caller/rule inventories, locator
   requests, lexical safety lanes and decision rule. Its
   [PRIMARY BLIND STAGE C publication](../experiments/codex_dogfood/case_0012/adjudication/PUBLICATION.md)
-  owns the immutable import and independent-review preparation. PRIMARY is
-  complete; reliability is unmeasured, C-R is not performed, Stage D is blocked
-  and effectiveness is unknown. The comparison protocol is frozen before C-R.
+  owns the original immutable PRIMARY import and independent-review preparation.
+  PRIMARY and independent C-R are complete. The unchanged protocol frozen before
+  C-R now yields SEVERE_ARCHITECTURE_RELEVANT_DISAGREEMENT. The
+  [reliability review](../experiments/codex_dogfood/case_0012/adjudication/reliability/RELIABILITY_REVIEW.md)
+  owns exact comparisons and neutral alignment hypotheses. The
+  [reconciliation preparation](../experiments/codex_dogfood/case_0012/adjudication/reliability/reconciliation/PREPARATION.json)
+  owns the stable treatment-blind packet/workspace and outside-packet mapping.
+  Reconciliation has not occurred; reviewed gold is unavailable, Stage D remains
+  blocked and effectiveness unknown. Neither independent source is truth.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),
   [Cases 0004–0008 history](architecture/localization.md#prospective-cases-0004-0008-and-structural-breadth-closure)

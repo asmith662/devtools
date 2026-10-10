@@ -1,0 +1,84 @@
+{
+  "comparison_replay": "PASS: double reconstruction plus fresh-process verify",
+  "coverage": {
+    "agreed_bulk_cells": 0,
+    "coverage_contract": "Every unequal qualified cell; every uncertain/broader/unmatched unit row; every unequal witness family or unresolved necessary scope; all unequal obligation resource intersections; task union/intersection; both uncertain source-only limitation constraints. Shared granularity only where grouping needs independent rationale inspection.",
+    "disputed_cells": 106,
+    "proposition_counts": {
+      "ALTERNATIVE_WITNESS_SUFFICIENCY": 9,
+      "DISPUTED_CELL_LABEL": 87,
+      "DISPUTED_REQUIRED_NECESSITY": 19,
+      "GRANULARITY": 5,
+      "LIMITATION_ADMISSIBILITY": 2,
+      "OBLIGATION_INDISPENSABILITY": 6,
+      "SEMANTIC_UNIT_NECESSITY_ALIGNMENT": 19,
+      "TASK_SUFFICIENCY_INDISPENSABILITY": 1
+    },
+    "required_membership_cells": 19,
+    "selected_limitations": 2,
+    "selected_unit_alignments": 19
+  },
+  "development_validation": {
+    "branch_coverage": "100%",
+    "command": "uv run python scripts/validate_development.py",
+    "experiment_tree": "excluded before collection",
+    "live_or_confirmation_validation": "NOT RUN",
+    "passed": 1588,
+    "skipped": 2
+  },
+  "diff_checks": "PASS: git diff --check and git diff --cached --check; exact immutable quoted-evidence exemption documented separately",
+  "exact_frame": "PASS: 531 resources / 9 obligations / 4779 qualified cells; 0 duplicate/missing/unexpected",
+  "immutable_whitespace_exception": {
+    "line": 3642,
+    "path": "independent/STAGE_C_R_REVIEW.md",
+    "reason": "One sealed trailing space in quoted evidence; byte preservation required. File-scoped whitespace=-blank-at-eol attribute; mutable artifacts retain normal checks."
+  },
+  "independent_cell_and_set_arithmetic": "PASS",
+  "overwrite_refusal": "PASS: comparison build and packet build, existing bytes unchanged",
+  "packet_replay": "PASS: deterministic double-build and fresh-process verify",
+  "physical_and_roster_tamper_challenges_rejected": [
+    "physical_tamper",
+    "extra_file",
+    "missing_file",
+    "directory_instead_of_file"
+  ],
+  "schema": "case-0012-reliability-validation-v1",
+  "scientific_publication_hashes": {
+    "ALIGNMENTS.json": "6d47884ac4ccc4ea4bdafbc3b3c8b7883fd4adec999ce3729ebae9044506128e",
+    "COMPARISON.json": "847899709d99b14dc81ec558f6e3c59544f9d1c40f04b876fa371bdcbd8ab094",
+    "RELIABILITY_REVIEW.md": "a4869e475f35202abd10d76e256f9c8a83e1a70f1f63a3b5ee540d559efa31a7"
+  },
+  "scoped_static_checks": "PASS: Ruff, formatter check, strict mypy on three mutable authored Python files; immutable imports excluded",
+  "semantic_tamper_challenges_rejected": 6,
+  "source_anonymization": "PASS: forbidden metadata/string scan and digest-ordered competing positions",
+  "source_authentication": "PASS: original five packet files; seven C-R outputs; seven PRIMARY outputs; frozen protocol digests",
+  "source_destination_identity": "PASS; staged and committed raw Git content additionally verified at publication",
+  "source_replays": "PASS: both original standalone builders --verify; no initial whitelist validator run in completed adjudication directories",
+  "standalone_sterile_validator": {
+    "archive_sha256": "34b81cc262487fb8bc2a6a6bf795622575a15b8f7542f8cc6862cc4ebcb56522",
+    "canonical_payload_sha256": "c63885421eb93fc456ca136a1c54bd5a69ce99c6e1f92c473f1503ca28fe2e44",
+    "files": [
+      "README.md",
+      "integrity.json",
+      "manifest.json",
+      "packet.json.gz",
+      "validate_packet.py"
+    ],
+    "integrity_sha256": "c8d9e602021a7667c3b0e066cf336caa76d52a24e47dc3936e00765d5c2da64a",
+    "manifest_sha256": "408c7e83c6e8455afb817767ad6b2b7848d699a73344d4c99e3ed42fe7056cd0",
+    "proposition_counts": {
+      "ALTERNATIVE_WITNESS_SUFFICIENCY": 9,
+      "DISPUTED_CELL_LABEL": 87,
+      "DISPUTED_REQUIRED_NECESSITY": 19,
+      "GRANULARITY": 5,
+      "LIMITATION_ADMISSIBILITY": 2,
+      "OBLIGATION_INDISPENSABILITY": 6,
+      "SEMANTIC_UNIT_NECESSITY_ALIGNMENT": 19,
+      "TASK_SUFFICIENCY_INDISPENSABILITY": 1
+    },
+    "status": "PASS; NO RECONCILIATION"
+  },
+  "status": "PASS",
+  "sterile_workspace": "C:\\Users\\recoveryadmin\\CodexSterile\\case_0012_gold_reconciliation_34b81cc26248",
+  "treatment_blindness": "PASS: only task/obligation/adjudication evidence; no Stage B contents or treatment join"
+}

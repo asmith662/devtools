@@ -1,0 +1,312 @@
+{
+  "alternative_counts_by_obligation": {
+    "assembly": 1,
+    "choices": 1,
+    "documentation": 1,
+    "exports": 1,
+    "integrity": 4,
+    "materialization": 2,
+    "source": 4,
+    "tests": 1,
+    "validation": 1
+  },
+  "applicable_obligation_count": 9,
+  "case": "case-0012",
+  "cell_count": 4779,
+  "cell_counts_by_obligation": {
+    "assembly": {
+      "HELPFUL_ONLY": 13,
+      "REQUIRED": 1,
+      "UNNECESSARY": 517,
+      "UNRESOLVED": 0
+    },
+    "choices": {
+      "HELPFUL_ONLY": 13,
+      "REQUIRED": 1,
+      "UNNECESSARY": 517,
+      "UNRESOLVED": 0
+    },
+    "documentation": {
+      "HELPFUL_ONLY": 18,
+      "REQUIRED": 0,
+      "UNNECESSARY": 513,
+      "UNRESOLVED": 0
+    },
+    "exports": {
+      "HELPFUL_ONLY": 10,
+      "REQUIRED": 0,
+      "UNNECESSARY": 521,
+      "UNRESOLVED": 0
+    },
+    "integrity": {
+      "HELPFUL_ONLY": 18,
+      "REQUIRED": 8,
+      "UNNECESSARY": 505,
+      "UNRESOLVED": 0
+    },
+    "materialization": {
+      "HELPFUL_ONLY": 17,
+      "REQUIRED": 5,
+      "UNNECESSARY": 509,
+      "UNRESOLVED": 0
+    },
+    "source": {
+      "HELPFUL_ONLY": 16,
+      "REQUIRED": 5,
+      "UNNECESSARY": 510,
+      "UNRESOLVED": 0
+    },
+    "tests": {
+      "HELPFUL_ONLY": 31,
+      "REQUIRED": 1,
+      "UNNECESSARY": 499,
+      "UNRESOLVED": 0
+    },
+    "validation": {
+      "HELPFUL_ONLY": 4,
+      "REQUIRED": 2,
+      "UNNECESSARY": 525,
+      "UNRESOLVED": 0
+    }
+  },
+  "complete_task_combination_count": 32,
+  "distinct_sufficient_resource_union_count": 9,
+  "distinct_sufficient_unit_union_count": 1,
+  "gap_counts": {
+    "REPOSITORY_INFORMATION_GAP": 0,
+    "TASK_GAP": 0,
+    "TASK_INTERPRETATION_GAP": 0
+  },
+  "label_counts": {
+    "HELPFUL_ONLY": 140,
+    "REQUIRED": 23,
+    "UNNECESSARY": 4616,
+    "UNRESOLVED": 0
+  },
+  "limitation_count": 4,
+  "maximum_sufficient_resource_count": 12,
+  "maximum_sufficient_unit_count": 34,
+  "minimum_sufficient_resource_count": 10,
+  "minimum_sufficient_unit_count": 34,
+  "obligation_count": 9,
+  "obligation_indispensable": {
+    "assembly": {
+      "complete_alternative_exists": true,
+      "resources": [
+        124
+      ],
+      "units": [
+        "U19",
+        "U20",
+        "U21"
+      ]
+    },
+    "choices": {
+      "complete_alternative_exists": true,
+      "resources": [
+        123
+      ],
+      "units": [
+        "U06",
+        "U07",
+        "U08",
+        "U09"
+      ]
+    },
+    "documentation": {
+      "complete_alternative_exists": true,
+      "resources": [],
+      "units": [
+        "U01",
+        "U29",
+        "U30"
+      ]
+    },
+    "exports": {
+      "complete_alternative_exists": true,
+      "resources": [],
+      "units": [
+        "U22",
+        "U23"
+      ]
+    },
+    "integrity": {
+      "complete_alternative_exists": true,
+      "resources": [
+        122,
+        136,
+        180,
+        181
+      ],
+      "units": [
+        "U02",
+        "U03",
+        "U04",
+        "U05",
+        "U10",
+        "U11",
+        "U12",
+        "U13",
+        "U14"
+      ]
+    },
+    "materialization": {
+      "complete_alternative_exists": true,
+      "resources": [
+        122,
+        136,
+        180
+      ],
+      "units": [
+        "U03",
+        "U04",
+        "U05",
+        "U11",
+        "U15",
+        "U16",
+        "U17",
+        "U18"
+      ]
+    },
+    "source": {
+      "complete_alternative_exists": true,
+      "resources": [
+        136
+      ],
+      "units": [
+        "U01",
+        "U02",
+        "U03",
+        "U04",
+        "U05"
+      ]
+    },
+    "tests": {
+      "complete_alternative_exists": true,
+      "resources": [
+        64
+      ],
+      "units": [
+        "U24",
+        "U25",
+        "U26",
+        "U27",
+        "U28"
+      ]
+    },
+    "validation": {
+      "complete_alternative_exists": true,
+      "resources": [
+        60,
+        64
+      ],
+      "units": [
+        "U31",
+        "U32",
+        "U33",
+        "U34"
+      ]
+    }
+  },
+  "required_resource_addresses": [
+    "docs/development/validation.md",
+    "pyproject.toml",
+    "src/devtools/context/planning/materialization.py",
+    "src/devtools/context/planning/plan.py",
+    "src/devtools/context/planning/rendering.py",
+    "src/devtools/context/python/classes/declarations.py",
+    "src/devtools/context/python/classes/docs/overview.md",
+    "src/devtools/context/python/function/declarations.py",
+    "src/devtools/context/python/modules/docs/overview.md",
+    "src/devtools/context/python/modules/selection.py",
+    "src/devtools/context/repository/resource.py",
+    "src/devtools/context/repository/snapshot.py"
+  ],
+  "required_resource_union": [
+    60,
+    64,
+    122,
+    123,
+    124,
+    130,
+    131,
+    136,
+    154,
+    158,
+    180,
+    181
+  ],
+  "required_resource_union_count": 12,
+  "required_unit_count": 34,
+  "resource_count": 531,
+  "schema": "case-0012-independent-c-r-statistics-v1",
+  "substantive_requirement_count": 53,
+  "task_backed_only_obligations": [
+    "exports",
+    "documentation"
+  ],
+  "task_backed_unit_count": 13,
+  "task_clause_count": 10,
+  "task_identity": "case-0012-direct-source-disclosure",
+  "task_indispensable": {
+    "complete_combination_exists": true,
+    "resources": [
+      60,
+      64,
+      122,
+      123,
+      124,
+      136,
+      180,
+      181
+    ],
+    "units": [
+      "U01",
+      "U02",
+      "U03",
+      "U04",
+      "U05",
+      "U06",
+      "U07",
+      "U08",
+      "U09",
+      "U10",
+      "U11",
+      "U12",
+      "U13",
+      "U14",
+      "U15",
+      "U16",
+      "U17",
+      "U18",
+      "U19",
+      "U20",
+      "U21",
+      "U22",
+      "U23",
+      "U24",
+      "U25",
+      "U26",
+      "U27",
+      "U28",
+      "U29",
+      "U30",
+      "U31",
+      "U32",
+      "U33",
+      "U34"
+    ]
+  },
+  "unit_counts_by_obligation": {
+    "assembly": 3,
+    "choices": 4,
+    "documentation": 3,
+    "exports": 2,
+    "integrity": 9,
+    "materialization": 8,
+    "source": 5,
+    "tests": 5,
+    "validation": 4
+  },
+  "unresolved_cell_count": 0
+}
