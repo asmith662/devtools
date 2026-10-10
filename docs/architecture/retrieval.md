@@ -264,7 +264,7 @@ sufficiency.** Both research tracks remain necessary.
 [EXPERIMENTAL; INSTRUMENTATION] R1.5 exact retrieval/failure diagnostics
 [EXPERIMENTAL; PROSPECTIVE COMPLETE, MIXED / NO SAFE REPLACEMENT] R1.6 BM25 sensitivity
 [EXPERIMENTAL; COMPLETE] U1 manual needs: INFORMATION_NEED_AUTHORING_DEFECT
-[EXPERIMENTAL; COMPLETE] U2 exact hints: EXACT_HINT_ROUTING_SUPPORTED; U3 future
+[EXPERIMENTAL; COMPLETE] U2 exact hints: EXACT_HINT_ROUTING_SUPPORTED; U3 Stage A CURRENT
 [ROADMAP; RETAINED AFTER UPSTREAM EVIDENCE] R1.7 query-term discrimination investigation
 [MANDATORY ROADMAP; NOT IMPLEMENTED] R2 true BM25F, regardless of R1 outcome
 
@@ -344,7 +344,11 @@ The [capture recovery contract](../../experiments/codex_dogfood/case_0012/stage_
 permits at most one invocation per frozen operation per explicitly authorized
 attempt, uses immutable native return records, and forbids splicing failed results.
 The final reviewed join is complete. Exact native hints supply candidates, not relevance, witnesses or readiness, and
-cannot repair missing/incomplete needs. U3 remains future before later query weighting. Task != obligation
+cannot repair missing/incomplete needs. U3 is CURRENT at
+[Case 0013 Stage A](../../experiments/codex_dogfood/case_0013/STAGE_A_REVIEW.md),
+with experiment-only task-visible mechanism selection and full lexical fallback.
+No Case 0013 acquisition, treatment or gold has executed; effectiveness UNKNOWN.
+Later query weighting, mandatory R2 and Localization continuation remain intact. Task != obligation
 != information need != query/acquisition intent != retrieval action. Case 0011
 uses the same production ranker and a human-inspectable experimental trace;
 SEARCH_POLICY_FAILURE is separately defined and not implemented by U1. R1.7

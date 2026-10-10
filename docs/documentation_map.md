@@ -68,6 +68,15 @@
   owns the captured-treatment join and **EXACT_HINT_ROUTING_SUPPORTED** outcome,
   per-family scope, witness bottlenecks, burden, cost and every frozen gate.
   Neither independent source alone is truth; U2 is not productionized.
+- [U3 selective mechanism routing](../experiments/mechanism_routing/README.md)
+  owns the experimental routing-role wrapper, task-only deterministic selection,
+  captured-outcome composition and prospective gate arithmetic. Its
+  [inventory](../experiments/mechanism_routing/CAPABILITIES.md) records native
+  contracts and deferred relationships. [Case 0013 Stage A](../experiments/codex_dogfood/case_0013/STAGE_A_REVIEW.md)
+  owns the new prospective task, complete requirement matrix, purposes, hints,
+  route decisions, locators, queries, frame, arms, metrics, cost plan, failure
+  taxonomy, decision rule and future Astra High blind-gold policy. It contains
+  no acquisition outcomes or gold and authorizes no production change.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),
   [Cases 0004–0008 history](architecture/localization.md#prospective-cases-0004-0008-and-structural-breadth-closure)

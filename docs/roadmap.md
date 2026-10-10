@@ -61,7 +61,8 @@ evidence; mixed ranking changes fail promotion's no-worse-completion and
 [Case 0009 Stage B](../experiments/codex_dogfood/case_0009/stage_b.md) now records
 one A/B execution and the frozen full-frame blind packet. Clean Stage C and the
 Stage D join are complete. **R1.6 development and Case 0010 Stage D are complete;
-U1 and U2 are complete**; U3 remains future, R1.7 retained and R2 mandatory;
+U1 and U2 are complete**; U3 is CURRENT at its prospective Stage A checkpoint,
+R1.7 retained and R2 mandatory;
 canonical production BM25 remains unchanged and semantic-resolution effectiveness
 does not resume yet.
 
@@ -158,9 +159,20 @@ automating them or changing production query weights.
   unsupported bare-class routing remains unsupported; both are NOT_ASSESSED.
   U2 does not repair missing InformationNeeds or automatically authorize production
   routing. Exact routes provide candidates, not relevance, sufficiency or readiness.
-- **U3 — information-need × acquisition-mechanism routing:** future experiment;
-  no general mechanism selector, autonomous search framework or search policy
-  is implemented by U1. SEARCH_POLICY_FAILURE has its own taxonomy boundary.
+- **U3 — selective acquisition-mechanism routing:** CURRENT;
+  [experimental policy](../experiments/mechanism_routing/README.md) and
+  [Case 0013 Stage A](../experiments/codex_dogfood/case_0013/STAGE_A_REVIEW.md)
+  freeze a new future Context-disclosure manifest task for maintainer review.
+  A is canonical lexical, B always-on exact-first, C task-only selective routing.
+  Existing information-purpose values are reused with explicit routing roles;
+  U1's failed need set is not consumed. All obligation lexical lanes remain
+  complete. Stage B, exact/specialized acquisition and gold are NOT EXECUTED;
+  effectiveness UNKNOWN. Future primary gold is one clean treatment-blind
+  GPT-6 Astra High review, without an automatic second adjudication.
+  This is experiment-only mechanism selection, not relevance, witness acceptance,
+  sufficiency, production routing or sequential search. SEARCH_POLICY_FAILURE
+  remains NOT_ASSESSED. Maintainer review and separate execution authorization
+  precede any frozen A/B/C treatment.
 
 Human treatment inspection is not blind adjudication; maintainer labels belong
 in MANUAL_AUDIT. R1/R1.5/R1.6 remain complete. R1.7 remains a later query-term
@@ -229,7 +241,7 @@ canonical baseline
     -> R1 identifier-aware representation
     -> R1.5 diagnostics (done) -> R1.6 sensitivity (done)
     -> U1 manual formulation (complete) -> U2 exact hints (complete)
-    -> U3 information-need/mechanism routing (future)
+    -> U3 selective mechanism routing (CURRENT; Case 0013 Stage A frozen)
     -> R1.7 query terms (retained)
     -> R2 BM25F canonical terms + R2 BM25F identifier-aware terms
        (representation gain, fielding gain and interaction separately measured)
