@@ -1,0 +1,135 @@
+{
+  "event": 110,
+  "execution": "case-0012-stage-b-2",
+  "frame": {
+    "corpus_id": "a348059425edb51e8296900cd570f16aedb394b871b5cfb98144625cb34c93af",
+    "frame_identity": "c78f7b4bd23b95117058470c673c7c376c40018323e583228e67b88a3f1f311a",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+  },
+  "input_sha256": "a7e7f802c6f6c7ed8acfd6a5949717421e1268e1514d6064280732695575f9b1",
+  "operation": {
+    "identity": "route:C:H07",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "0be3197811da4cf3df005ef1d53d3241acb849c7c3f9b951f678559a3f6d577e"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "documentation"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2217,
+            "start": 2171
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "RESOURCE_ADDRESS",
+        "provenance": {
+          "explanation": "Task text only; no repository lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2217,
+            "start": 2171
+          }
+        },
+        "rule": "u2-task-syntax-v1/code-address-v1",
+        "span": {
+          "end": 2217,
+          "start": 2171
+        },
+        "syntactic_form": "inline-code",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "src/devtools/context/planning/docs/overview.md"
+      },
+      "locator": {
+        "address": {
+          "value": "src/devtools/context/planning/docs/overview.md"
+        }
+      },
+      "mechanism": "repository-snapshot-resource-at",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "95b26cd428d6324a694e35dccbf367ff32f313e2632b3639d6db86d77e175948",
+  "runtime_identity": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+    "unicode": "16.0.0"
+  },
+  "sequence": 56,
+  "state": "ENTERED"
+}

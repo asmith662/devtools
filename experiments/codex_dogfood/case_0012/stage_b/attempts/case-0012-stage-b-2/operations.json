@@ -1,0 +1,5160 @@
+[
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "index-build",
+    "inputs": {
+      "frame": "c78f7b4bd23b95117058470c673c7c376c40018323e583228e67b88a3f1f311a"
+    },
+    "invocations": 1,
+    "prior_operations": [],
+    "runtime_ns": 444154100,
+    "serialized_return_sha256": "6f1ac422cb2d4d99ce5c21d1ab8a30797ec0cca9fa2e362c9c97fba618eb76ef",
+    "status": "RETURNED",
+    "wall_call_ns": 444154100
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:global",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "Add caller-selected direct Python source-declaration disclosure choices to common Context Planning, alongside existing qualified-reference and whole-resource choices, without automatic retrieval or selection.\nReuse function `devtools.context.python.modules.selection.select_python_module_source_declarations` for direct function and class source identities; support a direct method only through its validated native class parent and containment, without runtime attribute, imported-facade, inherited-method or semantic resolution.\nIntegrate the choices with class `devtools.context.planning.plan.DisclosurePlan` and module `devtools.context.planning`, retaining immutable purpose/frame/ordered-choice contracts and compatibility with existing choices.\nValidate every supplied native declaration and resource against the retained snapshot through method `devtools.context.repository.snapshot.RepositorySnapshot.resource_at`; reject foreign or stale frame/content, missing resource, unsupported declaration scope and mismatched returned identity before publishing the disclosure, without reacquiring files.\nMaterialize the exact declaration source segment with native derivation, source-range and owner-resource provenance in class `ContextDisclosure`; preserve UTF-8 boundaries, decorators, CRLF/non-ASCII bytes and caller order in mixed plans, without inferring sufficiency or expanding to whole owners implicitly.\nPreserve common rendering and copied request assembly with class `ModelRequest`: original request, prompt role, settings, conversation, provider settings and tools remain unchanged except the copied prompt; keep task text before Context and introduce no new budget or truncation policy.\nExpose the new explicit choice through the common planning public API and outer Context facade, keeping dependency direction and avoiding a Retrieval dependency or language-specific logic in common assembly.\nAdd focused tests for direct function/class/method choices, decorated and repeated declarations, mixed-plan ordering and exact source/provenance, stale/foreign/missing-resource rejection, unchanged existing choices and copied-request preservation.\nUpdate file `src/devtools/context/planning/docs/overview.md` and file `docs/architecture.md` to explain source identity versus runtime bindings, explicit representation admission, supported/deferred scope and compatibility, without claiming automatic relevance or readiness.\nValidate with file `scripts/validate_development.py` and preserve file `pyproject.toml` test/coverage settings; run the documented protected development profile, Ruff lint/format, strict mypy and both worktree/index whitespace checks.\n"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build"
+    ],
+    "runtime_ns": 25751800,
+    "serialized_return_sha256": "2ee27206bf1cc3749e0d164ab7a5413e870b895ac3386801aec02a8095db76e0",
+    "status": "RETURNED",
+    "wall_call_ns": 25751800
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:source",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "Python direct source declaration selection class function method containment decorated repeated declarations"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global"
+    ],
+    "runtime_ns": 8047100,
+    "serialized_return_sha256": "39fd6f20145aefa57fda11f361f5008b7b886c79385a73f72bf1ef57881eac06",
+    "status": "RETURNED",
+    "wall_call_ns": 8047100
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:choices",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "DisclosurePlan Context Planning explicit choice immutable purpose snapshot ordered qualified reference whole resource"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source"
+    ],
+    "runtime_ns": 8425300,
+    "serialized_return_sha256": "5635affa287627a3fe3fd6a47e77ed2b184b42c48ea2d412cacf0d0a92fd9a3f",
+    "status": "RETURNED",
+    "wall_call_ns": 8425300
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:integrity",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "RepositorySnapshot native declaration materialization stale foreign content identity missing resource validation"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices"
+    ],
+    "runtime_ns": 13335500,
+    "serialized_return_sha256": "c2bc244e42ace9fdc48e92c180ad37229e0d0ca509210296f7876a991b9f5d3d",
+    "status": "RETURNED",
+    "wall_call_ns": 13335500
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:materialization",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "ContextDisclosure source segment native provenance source range UTF-8 decorators CRLF non ASCII mixed plan order"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity"
+    ],
+    "runtime_ns": 7461500,
+    "serialized_return_sha256": "ba20831ce139d776b16ff1859df118902d36cd5f56f15bfc0d7ebea1da3e6e28",
+    "status": "RETURNED",
+    "wall_call_ns": 7461500
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:assembly",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "ModelRequest copied prompt role settings conversation provider tools rendering Context task unchanged assembly"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization"
+    ],
+    "runtime_ns": 8853500,
+    "serialized_return_sha256": "cce9cab63af305b95c976fa8116748d9effc9b9b4ddfafadc29737d64618fcad",
+    "status": "RETURNED",
+    "wall_call_ns": 8853500
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:exports",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "Context planning public facade exports __all__ dependency Retrieval common assembly"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly"
+    ],
+    "runtime_ns": 7732000,
+    "serialized_return_sha256": "b030023eebe642c8a16698b1e080973d7a7e30dfdffd68fc79dcf443c5d7765b",
+    "status": "RETURNED",
+    "wall_call_ns": 7732000
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:tests",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "Context planning tests direct function class method decorated repeated declaration mixed plan provenance stale rejection copied request"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports"
+    ],
+    "runtime_ns": 9238800,
+    "serialized_return_sha256": "4abe541dfae0af24c9c9e08a6bdaa3f0aff97c42092aa35b8bb3b7773d595211",
+    "status": "RETURNED",
+    "wall_call_ns": 9238800
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:documentation",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "Context planning documentation architecture direct source runtime binding explicit representation admission compatibility"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests"
+    ],
+    "runtime_ns": 8003900,
+    "serialized_return_sha256": "bdd3a09a968a14f88b2aa00a4dadaf789d7f41782cb4985c27a60fd392ced94a",
+    "status": "RETURNED",
+    "wall_call_ns": 8003900
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:validation",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "protected development validation pytest coverage configuration Ruff format strict mypy staged diff whitespace"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation"
+    ],
+    "runtime_ns": 8025600,
+    "serialized_return_sha256": "8521c81ca8b8a4460b3824f54dcd013867d7358e78f541b2f03023ad4c725c50",
+    "status": "RETURNED",
+    "wall_call_ns": 8025600
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "arm:A",
+    "inputs": {
+      "lanes": [
+        "global",
+        "source",
+        "choices",
+        "integrity",
+        "materialization",
+        "assembly",
+        "exports",
+        "tests",
+        "documentation",
+        "validation"
+      ]
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation"
+    ],
+    "runtime_ns": 600,
+    "serialized_return_sha256": "046927bc805071077781001903f2cf14740e9195044ccde9f054e63dc29a199d",
+    "status": "RETURNED",
+    "wall_call_ns": 600
+  },
+  {
+    "durability_inside_call_ns": 55841594600,
+    "identity": "arm:B",
+    "inputs": {
+      "routes": [
+        "ec47d10dd9581872d9fb3f5f3cf1f1daefbabdaac7aac3f9e8a4ecc82268387a",
+        "c5d81f3ef02bf66abfa18ebe8994e1cd32d8899f34a6c62c14afbcea429df7a8",
+        "16d29e50620474ea72a77d7df3afeb7c2cc402c75eb2786ec6e1cf24c06e93ed",
+        "148b6e9177521693f6f9aa1ecea82c7889d340a4f6a96021cffe62393232c09a",
+        "42322a84d889294805e78dc03050d5ab9cab0035bd7609ea7c4684ec52460574",
+        "c9bdcb518edb0209b757a9ec6ceb80bbee16f0f1d42a6ad44e44d3696daba253",
+        "b3829506c6883e2ddb7758e882fee513325b15b9d4a3e1a75b41b6dec8dc0fde",
+        "dfe2c96db096399524a04f5aaabb33c1ff2794918e251177715ad3490d1d1a1b",
+        "14982cd81a2956f289e7f8ff20efa6733dacafe00db4e4f0d1c46391b562f927",
+        "ff106be44f84a35f66ee5afb2dc330b3f86e94049bfe9896aa1db92b8cd56444"
+      ]
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A"
+    ],
+    "runtime_ns": 725245000,
+    "serialized_return_sha256": "78f5e1bd70a961bf2bf42095cb356d681e549433fd7dad1d7d688fe297e76bd3",
+    "status": "RETURNED",
+    "wall_call_ns": 56566839600
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "inventory:B",
+    "inputs": {
+      "task": "case-0012-direct-source-disclosure"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B"
+    ],
+    "runtime_ns": 1200,
+    "serialized_return_sha256": "df6bd587824b40936b79b4a0110534f56dc0ecc7df103fffe8bb16d64bcf8bb5",
+    "status": "RETURNED",
+    "wall_call_ns": 1200
+  },
+  {
+    "durability_inside_call_ns": 171470200,
+    "identity": "route:B:H01",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "9561e099d5f938a755a7bdebfdd36bf83d7eb82ca1de4e8e3f960dcd885f70ba"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "source"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 307,
+            "start": 225
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "PYTHON_DIRECT_FUNCTION",
+        "provenance": {
+          "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 307,
+            "start": 225
+          }
+        },
+        "rule": "caller-task-review-v1",
+        "span": {
+          "end": 307,
+          "start": 225
+        },
+        "syntactic_form": "caller-reviewed-task-syntax",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "devtools.context.python.modules.selection.select_python_module_source_declarations"
+      },
+      "locator": {
+        "declared_name": "select_python_module_source_declarations",
+        "kind": "function",
+        "module": {
+          "dotted_name": "devtools.context.python.modules.selection",
+          "kind": null
+        }
+      },
+      "mechanism": "exact-python-module-source-declaration-selection-v1",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B"
+    ],
+    "runtime_ns": 49801700,
+    "serialized_return_sha256": "148d432f1560f70f8c1ddc97ed09bacc5b4479a6d2783ebec27b0b185d128fe3",
+    "status": "RETURNED",
+    "wall_call_ns": 221271900
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H01:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "9561e099d5f938a755a7bdebfdd36bf83d7eb82ca1de4e8e3f960dcd885f70ba"
+      },
+      "locator": {
+        "declared_name": "select_python_module_source_declarations",
+        "kind": "function",
+        "module": {
+          "dotted_name": "devtools.context.python.modules.selection",
+          "kind": null
+        }
+      },
+      "provenance": {
+        "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 307,
+          "start": 225
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01"
+    ],
+    "runtime_ns": 19861700,
+    "serialized_return_sha256": "adf5d9716dfc2d466b36696187e411dbe6764602a63e33a2750f97ec41004f7e",
+    "status": "RETURNED",
+    "wall_call_ns": 19861700
+  },
+  {
+    "durability_inside_call_ns": 102588200,
+    "identity": "route:B:H02",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "915e5b569a5e16ba8aeb988f61c1b56e7ea00b058fae6fc8a05f7b87964727f6"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "choices"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 610,
+            "start": 565
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "PYTHON_DIRECT_CLASS",
+        "provenance": {
+          "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 610,
+            "start": 565
+          }
+        },
+        "rule": "caller-task-review-v1",
+        "span": {
+          "end": 610,
+          "start": 565
+        },
+        "syntactic_form": "caller-reviewed-task-syntax",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "devtools.context.planning.plan.DisclosurePlan"
+      },
+      "locator": {
+        "declared_name": "DisclosurePlan",
+        "kind": "class",
+        "module": {
+          "dotted_name": "devtools.context.planning.plan",
+          "kind": null
+        }
+      },
+      "mechanism": "exact-python-module-source-declaration-selection-v1",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1"
+    ],
+    "runtime_ns": 45410000,
+    "serialized_return_sha256": "1e3a8d6abd964a645197c2b32a898f0e80dafb208ef123aa4d53c0b342908799",
+    "status": "RETURNED",
+    "wall_call_ns": 147998200
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H02:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "915e5b569a5e16ba8aeb988f61c1b56e7ea00b058fae6fc8a05f7b87964727f6"
+      },
+      "locator": {
+        "declared_name": "DisclosurePlan",
+        "kind": "class",
+        "module": {
+          "dotted_name": "devtools.context.planning.plan",
+          "kind": null
+        }
+      },
+      "provenance": {
+        "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 610,
+          "start": 565
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02"
+    ],
+    "runtime_ns": 18300300,
+    "serialized_return_sha256": "687e947f68ddabcd46528b403876650e10b4f4951e070a7e8ea1667ff6619699",
+    "status": "RETURNED",
+    "wall_call_ns": 18300300
+  },
+  {
+    "durability_inside_call_ns": 92757400,
+    "identity": "route:B:H03",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "2f54b3f4ed208ec49f79cfe7c77e9b897a4ce166b4d5b80161906a1ab488e115"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "choices"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 649,
+            "start": 624
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "PYTHON_MODULE",
+        "provenance": {
+          "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 649,
+            "start": 624
+          }
+        },
+        "rule": "caller-task-review-v1",
+        "span": {
+          "end": 649,
+          "start": 624
+        },
+        "syntactic_form": "caller-reviewed-task-syntax",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "devtools.context.planning"
+      },
+      "locator": {
+        "dotted_name": "devtools.context.planning",
+        "kind": null
+      },
+      "mechanism": "python-module-exact-name-lookup",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1"
+    ],
+    "runtime_ns": 43884300,
+    "serialized_return_sha256": "926fbe480ac6b30df7131de35edbe8d10eabff4e465ae17346b644209fa41ba3",
+    "status": "RETURNED",
+    "wall_call_ns": 136641700
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H03:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "2f54b3f4ed208ec49f79cfe7c77e9b897a4ce166b4d5b80161906a1ab488e115"
+      },
+      "locator": {
+        "dotted_name": "devtools.context.planning",
+        "kind": null
+      },
+      "provenance": {
+        "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 649,
+          "start": 624
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03"
+    ],
+    "runtime_ns": 17338200,
+    "serialized_return_sha256": "2d50cf59dc290025880f72241870a12d42cb90cd97dccbe7356c7aff256f5aa1",
+    "status": "RETURNED",
+    "wall_call_ns": 17338200
+  },
+  {
+    "durability_inside_call_ns": 125142900,
+    "identity": "route:B:H04",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "6ad9841f9f0e8d4ac1c8ea342b625e8d70763971ef76c0c0335d1da4917733f8"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "integrity"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 921,
+            "start": 854
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "PYTHON_DIRECT_METHOD",
+        "provenance": {
+          "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 921,
+            "start": 854
+          }
+        },
+        "rule": "caller-task-review-v1",
+        "span": {
+          "end": 921,
+          "start": 854
+        },
+        "syntactic_form": "caller-reviewed-task-syntax",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "devtools.context.repository.snapshot.RepositorySnapshot.resource_at"
+      },
+      "locator": {
+        "class_name": "RepositorySnapshot",
+        "method_name": "resource_at",
+        "module": {
+          "dotted_name": "devtools.context.repository.snapshot",
+          "kind": null
+        }
+      },
+      "mechanism": "exact-source-class-then-native-direct-method-containment-v1",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1"
+    ],
+    "runtime_ns": 47423300,
+    "serialized_return_sha256": "c6b83220cafc2593af26c165ae1a38890e972fc11d4f79ba936774b4cdb40829",
+    "status": "RETURNED",
+    "wall_call_ns": 172566200
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H04:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "6ad9841f9f0e8d4ac1c8ea342b625e8d70763971ef76c0c0335d1da4917733f8"
+      },
+      "locator": {
+        "declared_name": "RepositorySnapshot",
+        "kind": "class",
+        "module": {
+          "dotted_name": "devtools.context.repository.snapshot",
+          "kind": null
+        }
+      },
+      "provenance": {
+        "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 921,
+          "start": 854
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04"
+    ],
+    "runtime_ns": 19219700,
+    "serialized_return_sha256": "1b224d667bc097a21ae2ca5850886e36f2a1a4af6fc28bbc5ce87a304bf8c90c",
+    "status": "RETURNED",
+    "wall_call_ns": 19219700
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H04:2",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "6ad9841f9f0e8d4ac1c8ea342b625e8d70763971ef76c0c0335d1da4917733f8"
+      },
+      "locator": {
+        "containing_class": {
+          "base_syntax": [],
+          "declared_name": "RepositorySnapshot",
+          "derivation_identity": "0ec74c687d56721a368e23b00fc4d8f0c0587b86da2ae8bcfd72c6c0c4b0d4c0",
+          "subject": {
+            "declaration_ordinal": 1,
+            "derivation_definition_identity": "d22897ae0a05b53913122c1997306690f4632e045d4452da543291687b8bbe9d",
+            "resource_dependency_identity": "acaa388878e6c8be580ee6bbae417d460acf3ec5acf938736b4ac0f575f1ee16",
+            "snapshot_id": {
+              "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+            }
+          },
+          "support": {
+            "resource_address": {
+              "value": "src/devtools/context/repository/snapshot.py"
+            },
+            "snapshot_id": {
+              "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+            },
+            "source_range": {
+              "end_column_utf8": 29,
+              "end_line": 61,
+              "start_column_utf8": 0,
+              "start_line": 35
+            }
+          }
+        },
+        "declared_name": "resource_at"
+      },
+      "provenance": {
+        "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 921,
+          "start": 854
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1"
+    ],
+    "runtime_ns": 629100,
+    "serialized_return_sha256": "3cd82307e0abfa2296c67a2104d13be2c4e3a4df18a067f5b45c8993a871bc7e",
+    "status": "RETURNED",
+    "wall_call_ns": 629100
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "route:B:H05",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "d9f3428ed2d1b16a004808357fe6d15baefeb96e7f1ead721b39a222e93d9010"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "materialization"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 1248,
+            "start": 1231
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "PYTHON_DIRECT_CLASS",
+        "provenance": {
+          "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 1248,
+            "start": 1231
+          }
+        },
+        "rule": "caller-task-review-v1",
+        "span": {
+          "end": 1248,
+          "start": 1231
+        },
+        "syntactic_form": "caller-reviewed-task-syntax",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "ContextDisclosure"
+      },
+      "locator": null,
+      "mechanism": "UNSUPPORTED_EXACT_HINT",
+      "reason": "Unqualified or unsupported hint has no sound v1 locator; retain lexical fallback"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2"
+    ],
+    "runtime_ns": 1377900,
+    "serialized_return_sha256": "8cc407e48f08b09a864c9eb9de2c1122ce48653e8173b91ae493497dca847a93",
+    "status": "RETURNED",
+    "wall_call_ns": 1377900
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "route:B:H06",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "d6308c57c0bac5c44785dd045f6c2eff104e8fffd99ebbdeadfb86cbba8cbf34"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "assembly"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 1493,
+            "start": 1481
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "PYTHON_DIRECT_CLASS",
+        "provenance": {
+          "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 1493,
+            "start": 1481
+          }
+        },
+        "rule": "caller-task-review-v1",
+        "span": {
+          "end": 1493,
+          "start": 1481
+        },
+        "syntactic_form": "caller-reviewed-task-syntax",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "ModelRequest"
+      },
+      "locator": null,
+      "mechanism": "UNSUPPORTED_EXACT_HINT",
+      "reason": "Unqualified or unsupported hint has no sound v1 locator; retain lexical fallback"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05"
+    ],
+    "runtime_ns": 1332800,
+    "serialized_return_sha256": "66e6ec1fd9edc1823923b0c0f458373de6d223dc94fc9b348594d5a713c94663",
+    "status": "RETURNED",
+    "wall_call_ns": 1332800
+  },
+  {
+    "durability_inside_call_ns": 15712100,
+    "identity": "route:B:H07",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "0be3197811da4cf3df005ef1d53d3241acb849c7c3f9b951f678559a3f6d577e"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "documentation"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2217,
+            "start": 2171
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "RESOURCE_ADDRESS",
+        "provenance": {
+          "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2217,
+            "start": 2171
+          }
+        },
+        "rule": "caller-task-review-v1",
+        "span": {
+          "end": 2217,
+          "start": 2171
+        },
+        "syntactic_form": "caller-reviewed-task-syntax",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "src/devtools/context/planning/docs/overview.md"
+      },
+      "locator": {
+        "address": {
+          "value": "src/devtools/context/planning/docs/overview.md"
+        }
+      },
+      "mechanism": "repository-snapshot-resource-at",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06"
+    ],
+    "runtime_ns": 26807000,
+    "serialized_return_sha256": "ccd1ad927c0a1ff3c653292a372802d004f820a8181656cb175f4e90ad8b307f",
+    "status": "RETURNED",
+    "wall_call_ns": 42519100
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H07:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "0be3197811da4cf3df005ef1d53d3241acb849c7c3f9b951f678559a3f6d577e"
+      },
+      "locator": {
+        "address": {
+          "value": "src/devtools/context/planning/docs/overview.md"
+        }
+      },
+      "provenance": {
+        "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 2217,
+          "start": 2171
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07"
+    ],
+    "runtime_ns": 31200,
+    "serialized_return_sha256": "07bb415f75137c2d4857f1a598c9805def3d6bc0183fc44042071d96bea8fabf",
+    "status": "RETURNED",
+    "wall_call_ns": 31200
+  },
+  {
+    "durability_inside_call_ns": 15384500,
+    "identity": "route:B:H08",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "51c2ace35a209b3ea24a4f5d6410b2dab928ce1bd8877691b73b307360da611f"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "documentation"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2249,
+            "start": 2229
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "RESOURCE_ADDRESS",
+        "provenance": {
+          "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2249,
+            "start": 2229
+          }
+        },
+        "rule": "caller-task-review-v1",
+        "span": {
+          "end": 2249,
+          "start": 2229
+        },
+        "syntactic_form": "caller-reviewed-task-syntax",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "docs/architecture.md"
+      },
+      "locator": {
+        "address": {
+          "value": "docs/architecture.md"
+        }
+      },
+      "mechanism": "repository-snapshot-resource-at",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1"
+    ],
+    "runtime_ns": 26562400,
+    "serialized_return_sha256": "6f3d511a31efeed8da8f125c4da78bd9316ad4d43d74f02bb4b58e837a168322",
+    "status": "RETURNED",
+    "wall_call_ns": 41946900
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H08:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "51c2ace35a209b3ea24a4f5d6410b2dab928ce1bd8877691b73b307360da611f"
+      },
+      "locator": {
+        "address": {
+          "value": "docs/architecture.md"
+        }
+      },
+      "provenance": {
+        "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 2249,
+          "start": 2229
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08"
+    ],
+    "runtime_ns": 20700,
+    "serialized_return_sha256": "44694f12d57488008fbda11a7899cbd194cc941463074093d62e63f4749fb682",
+    "status": "RETURNED",
+    "wall_call_ns": 20700
+  },
+  {
+    "durability_inside_call_ns": 11862000,
+    "identity": "route:B:H09",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "348c900ef8da3d6ac416aa29b9a6b9de2199f1ec643c080ad437c3b63eda48a6"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "validation"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2484,
+            "start": 2453
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "RESOURCE_ADDRESS",
+        "provenance": {
+          "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2484,
+            "start": 2453
+          }
+        },
+        "rule": "caller-task-review-v1",
+        "span": {
+          "end": 2484,
+          "start": 2453
+        },
+        "syntactic_form": "caller-reviewed-task-syntax",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "scripts/validate_development.py"
+      },
+      "locator": {
+        "address": {
+          "value": "scripts/validate_development.py"
+        }
+      },
+      "mechanism": "repository-snapshot-resource-at",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1"
+    ],
+    "runtime_ns": 26418500,
+    "serialized_return_sha256": "57f2592c89c73a1e7570b6064891d4ebebabc1c9f9f642ecd8f022fb1fdf1530",
+    "status": "RETURNED",
+    "wall_call_ns": 38280500
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H09:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "348c900ef8da3d6ac416aa29b9a6b9de2199f1ec643c080ad437c3b63eda48a6"
+      },
+      "locator": {
+        "address": {
+          "value": "scripts/validate_development.py"
+        }
+      },
+      "provenance": {
+        "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 2484,
+          "start": 2453
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09"
+    ],
+    "runtime_ns": 21500,
+    "serialized_return_sha256": "8e7ef8e84e4f697ae05c8269eff1e2bae6e3e1204f09395ab926cffae6a7e0d3",
+    "status": "RETURNED",
+    "wall_call_ns": 21500
+  },
+  {
+    "durability_inside_call_ns": 12611000,
+    "identity": "route:B:H10",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "4ecac64d21ccda656bb428bfe62ce3d4387eb17cef090d421410458fc7b02b9f"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "validation"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2519,
+            "start": 2505
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "RESOURCE_ADDRESS",
+        "provenance": {
+          "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2519,
+            "start": 2505
+          }
+        },
+        "rule": "caller-task-review-v1",
+        "span": {
+          "end": 2519,
+          "start": 2505
+        },
+        "syntactic_form": "caller-reviewed-task-syntax",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "pyproject.toml"
+      },
+      "locator": {
+        "address": {
+          "value": "pyproject.toml"
+        }
+      },
+      "mechanism": "repository-snapshot-resource-at",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1"
+    ],
+    "runtime_ns": 26372500,
+    "serialized_return_sha256": "cba5af732bd2913b13aca855e8c4a419597b4e7ba7a7e7fddc2f78be8e7e7bcc",
+    "status": "RETURNED",
+    "wall_call_ns": 38983500
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H10:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "4ecac64d21ccda656bb428bfe62ce3d4387eb17cef090d421410458fc7b02b9f"
+      },
+      "locator": {
+        "address": {
+          "value": "pyproject.toml"
+        }
+      },
+      "provenance": {
+        "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 2519,
+          "start": 2505
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10"
+    ],
+    "runtime_ns": 20900,
+    "serialized_return_sha256": "05e37bca1f47596705a3a92bffc40a7c90cdc5bddc42da97273abdd4e3dea3e1",
+    "status": "RETURNED",
+    "wall_call_ns": 20900
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:source",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/source"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1"
+    ],
+    "runtime_ns": 39850600,
+    "serialized_return_sha256": "399eee718472bde07b4c8c9625d10a0476062ecb05922a74d2fa4b335e7c9291",
+    "status": "RETURNED",
+    "wall_call_ns": 39850600
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:choices",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/choices"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source"
+    ],
+    "runtime_ns": 44340300,
+    "serialized_return_sha256": "3aee59873296310a047fd3683b6edee75e9a21c71f57d3ebe45fc113461ec71f",
+    "status": "RETURNED",
+    "wall_call_ns": 44340300
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:integrity",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/integrity"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices"
+    ],
+    "runtime_ns": 54823700,
+    "serialized_return_sha256": "1d642045c41e5924e234cfec16e8f3e84d2d428e0fddeb20fb8c8ec9982a2c8d",
+    "status": "RETURNED",
+    "wall_call_ns": 54823700
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:materialization",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/materialization"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity"
+    ],
+    "runtime_ns": 40218600,
+    "serialized_return_sha256": "21a4ee9eec676abe6a9c72d5b0469e425f8d5323212c310bc42392f98f3639f6",
+    "status": "RETURNED",
+    "wall_call_ns": 40218600
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:assembly",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/assembly"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization"
+    ],
+    "runtime_ns": 38373400,
+    "serialized_return_sha256": "9443f582128f3208a91bcb94b6a2632c5bf0760bebf0dc0e9d705f7220b06e6f",
+    "status": "RETURNED",
+    "wall_call_ns": 38373400
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:exports",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/exports"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly"
+    ],
+    "runtime_ns": 36767400,
+    "serialized_return_sha256": "e26be60ec9a94148d4ee00abd4be7d06c49fd9de309e79f0eabe994c7d351a47",
+    "status": "RETURNED",
+    "wall_call_ns": 36767400
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:tests",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/tests"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports"
+    ],
+    "runtime_ns": 42316200,
+    "serialized_return_sha256": "40a1efb5ef26d778ff7c2590f8f539c1945b7d669cd9b305123df24864da1f7c",
+    "status": "RETURNED",
+    "wall_call_ns": 42316200
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:documentation",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/documentation"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests"
+    ],
+    "runtime_ns": 42527200,
+    "serialized_return_sha256": "44e8969f89afe6e4134d4cd7c83e8034a7339064352543a5d389e6eb82a624b1",
+    "status": "RETURNED",
+    "wall_call_ns": 42527200
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:validation",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/validation"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation"
+    ],
+    "runtime_ns": 40653400,
+    "serialized_return_sha256": "2badac2d6f9ac876608264e585cdc37b2bd38a254331186a854f43723ffeb551",
+    "status": "RETURNED",
+    "wall_call_ns": 40653400
+  },
+  {
+    "durability_inside_call_ns": 57364249300,
+    "identity": "arm:C",
+    "inputs": {
+      "routes": [
+        "ec47d10dd9581872d9fb3f5f3cf1f1daefbabdaac7aac3f9e8a4ecc82268387a",
+        "c5d81f3ef02bf66abfa18ebe8994e1cd32d8899f34a6c62c14afbcea429df7a8",
+        "16d29e50620474ea72a77d7df3afeb7c2cc402c75eb2786ec6e1cf24c06e93ed",
+        "148b6e9177521693f6f9aa1ecea82c7889d340a4f6a96021cffe62393232c09a",
+        "42322a84d889294805e78dc03050d5ab9cab0035bd7609ea7c4684ec52460574",
+        "c9bdcb518edb0209b757a9ec6ceb80bbee16f0f1d42a6ad44e44d3696daba253",
+        "b3829506c6883e2ddb7758e882fee513325b15b9d4a3e1a75b41b6dec8dc0fde",
+        "dfe2c96db096399524a04f5aaabb33c1ff2794918e251177715ad3490d1d1a1b",
+        "14982cd81a2956f289e7f8ff20efa6733dacafe00db4e4f0d1c46391b562f927",
+        "ff106be44f84a35f66ee5afb2dc330b3f86e94049bfe9896aa1db92b8cd56444"
+      ]
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation"
+    ],
+    "runtime_ns": 727506000,
+    "serialized_return_sha256": "2fc6398230b211d93adb084f4510661a696e064e695030e01d38288f322b69db",
+    "status": "RETURNED",
+    "wall_call_ns": 58091755300
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "inventory:C",
+    "inputs": {
+      "task": "case-0012-direct-source-disclosure"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C"
+    ],
+    "runtime_ns": 256100,
+    "serialized_return_sha256": "1fdc5ae1a8adf00706eda0ac6cd19f95b0d14e272af04759fd761f61c57b6aeb",
+    "status": "RETURNED",
+    "wall_call_ns": 256100
+  },
+  {
+    "durability_inside_call_ns": 107189600,
+    "identity": "route:C:H01",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "9561e099d5f938a755a7bdebfdd36bf83d7eb82ca1de4e8e3f960dcd885f70ba"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "source"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 307,
+            "start": 225
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "PYTHON_DIRECT_FUNCTION",
+        "provenance": {
+          "explanation": "Task text only; no repository lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 307,
+            "start": 225
+          }
+        },
+        "rule": "u2-task-syntax-v1/explicit-api-introduction-v1",
+        "span": {
+          "end": 307,
+          "start": 225
+        },
+        "syntactic_form": "inline-code",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "devtools.context.python.modules.selection.select_python_module_source_declarations"
+      },
+      "locator": {
+        "declared_name": "select_python_module_source_declarations",
+        "kind": "function",
+        "module": {
+          "dotted_name": "devtools.context.python.modules.selection",
+          "kind": null
+        }
+      },
+      "mechanism": "exact-python-module-source-declaration-selection-v1",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C"
+    ],
+    "runtime_ns": 47324600,
+    "serialized_return_sha256": "4e43ef75ecfc19acdb14549b4f1bbd3bc65253b3407752ddedf61e9eca633d61",
+    "status": "RETURNED",
+    "wall_call_ns": 154514200
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:C:H01:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "9561e099d5f938a755a7bdebfdd36bf83d7eb82ca1de4e8e3f960dcd885f70ba"
+      },
+      "locator": {
+        "declared_name": "select_python_module_source_declarations",
+        "kind": "function",
+        "module": {
+          "dotted_name": "devtools.context.python.modules.selection",
+          "kind": null
+        }
+      },
+      "provenance": {
+        "explanation": "Task text only; no repository lookup",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 307,
+          "start": 225
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01"
+    ],
+    "runtime_ns": 18173800,
+    "serialized_return_sha256": "82f09318f12f60db7a0de9418d5556c80edb191f75d5fbc19d7a165d1675ae36",
+    "status": "RETURNED",
+    "wall_call_ns": 18173800
+  },
+  {
+    "durability_inside_call_ns": 160708300,
+    "identity": "route:C:H02",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "915e5b569a5e16ba8aeb988f61c1b56e7ea00b058fae6fc8a05f7b87964727f6"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "choices"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 610,
+            "start": 565
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "PYTHON_DIRECT_CLASS",
+        "provenance": {
+          "explanation": "Task text only; no repository lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 610,
+            "start": 565
+          }
+        },
+        "rule": "u2-task-syntax-v1/explicit-api-introduction-v1",
+        "span": {
+          "end": 610,
+          "start": 565
+        },
+        "syntactic_form": "inline-code",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "devtools.context.planning.plan.DisclosurePlan"
+      },
+      "locator": {
+        "declared_name": "DisclosurePlan",
+        "kind": "class",
+        "module": {
+          "dotted_name": "devtools.context.planning.plan",
+          "kind": null
+        }
+      },
+      "mechanism": "exact-python-module-source-declaration-selection-v1",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1"
+    ],
+    "runtime_ns": 46693500,
+    "serialized_return_sha256": "09c1692bc6474b9c4c541b07b11d8e5787a463dcd051c56853e476ebba5de82a",
+    "status": "RETURNED",
+    "wall_call_ns": 207401800
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:C:H02:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "915e5b569a5e16ba8aeb988f61c1b56e7ea00b058fae6fc8a05f7b87964727f6"
+      },
+      "locator": {
+        "declared_name": "DisclosurePlan",
+        "kind": "class",
+        "module": {
+          "dotted_name": "devtools.context.planning.plan",
+          "kind": null
+        }
+      },
+      "provenance": {
+        "explanation": "Task text only; no repository lookup",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 610,
+          "start": 565
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02"
+    ],
+    "runtime_ns": 18582800,
+    "serialized_return_sha256": "b416ad8291296090fc4e272541a9739097bfab8fcb64eb767bdc2734e6e4b55c",
+    "status": "RETURNED",
+    "wall_call_ns": 18582800
+  },
+  {
+    "durability_inside_call_ns": 150358200,
+    "identity": "route:C:H03",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "2f54b3f4ed208ec49f79cfe7c77e9b897a4ce166b4d5b80161906a1ab488e115"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "choices"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 649,
+            "start": 624
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "PYTHON_MODULE",
+        "provenance": {
+          "explanation": "Task text only; no repository lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 649,
+            "start": 624
+          }
+        },
+        "rule": "u2-task-syntax-v1/explicit-api-introduction-v1",
+        "span": {
+          "end": 649,
+          "start": 624
+        },
+        "syntactic_form": "inline-code",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "devtools.context.planning"
+      },
+      "locator": {
+        "dotted_name": "devtools.context.planning",
+        "kind": null
+      },
+      "mechanism": "python-module-exact-name-lookup",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1"
+    ],
+    "runtime_ns": 46764600,
+    "serialized_return_sha256": "ec473fccb7710abe873ff5f494bd4db2530498f4940a2283b727f265bb32b2fd",
+    "status": "RETURNED",
+    "wall_call_ns": 197122800
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:C:H03:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "2f54b3f4ed208ec49f79cfe7c77e9b897a4ce166b4d5b80161906a1ab488e115"
+      },
+      "locator": {
+        "dotted_name": "devtools.context.planning",
+        "kind": null
+      },
+      "provenance": {
+        "explanation": "Task text only; no repository lookup",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 649,
+          "start": 624
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03"
+    ],
+    "runtime_ns": 17125400,
+    "serialized_return_sha256": "5afa512c4c8b178c3bf70461381dd5a9d355be8367ecd467b38e959cc60c0781",
+    "status": "RETURNED",
+    "wall_call_ns": 17125400
+  },
+  {
+    "durability_inside_call_ns": 192349600,
+    "identity": "route:C:H04",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "6ad9841f9f0e8d4ac1c8ea342b625e8d70763971ef76c0c0335d1da4917733f8"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "integrity"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 921,
+            "start": 854
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "PYTHON_DIRECT_METHOD",
+        "provenance": {
+          "explanation": "Task text only; no repository lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 921,
+            "start": 854
+          }
+        },
+        "rule": "u2-task-syntax-v1/explicit-api-introduction-v1",
+        "span": {
+          "end": 921,
+          "start": 854
+        },
+        "syntactic_form": "inline-code",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "devtools.context.repository.snapshot.RepositorySnapshot.resource_at"
+      },
+      "locator": {
+        "class_name": "RepositorySnapshot",
+        "method_name": "resource_at",
+        "module": {
+          "dotted_name": "devtools.context.repository.snapshot",
+          "kind": null
+        }
+      },
+      "mechanism": "exact-source-class-then-native-direct-method-containment-v1",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1"
+    ],
+    "runtime_ns": 46240500,
+    "serialized_return_sha256": "b0040fd46ac1065a3d562c69a7783f028e6583cd92f77a7acf8684e435974031",
+    "status": "RETURNED",
+    "wall_call_ns": 238590100
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:C:H04:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "6ad9841f9f0e8d4ac1c8ea342b625e8d70763971ef76c0c0335d1da4917733f8"
+      },
+      "locator": {
+        "declared_name": "RepositorySnapshot",
+        "kind": "class",
+        "module": {
+          "dotted_name": "devtools.context.repository.snapshot",
+          "kind": null
+        }
+      },
+      "provenance": {
+        "explanation": "Task text only; no repository lookup",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 921,
+          "start": 854
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04"
+    ],
+    "runtime_ns": 17746800,
+    "serialized_return_sha256": "8a8b7e87d4af60a8f6fc7fe75978745f01f56fa32e5865430743ad6f63fa0e50",
+    "status": "RETURNED",
+    "wall_call_ns": 17746800
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:C:H04:2",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "6ad9841f9f0e8d4ac1c8ea342b625e8d70763971ef76c0c0335d1da4917733f8"
+      },
+      "locator": {
+        "containing_class": {
+          "base_syntax": [],
+          "declared_name": "RepositorySnapshot",
+          "derivation_identity": "0ec74c687d56721a368e23b00fc4d8f0c0587b86da2ae8bcfd72c6c0c4b0d4c0",
+          "subject": {
+            "declaration_ordinal": 1,
+            "derivation_definition_identity": "d22897ae0a05b53913122c1997306690f4632e045d4452da543291687b8bbe9d",
+            "resource_dependency_identity": "acaa388878e6c8be580ee6bbae417d460acf3ec5acf938736b4ac0f575f1ee16",
+            "snapshot_id": {
+              "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+            }
+          },
+          "support": {
+            "resource_address": {
+              "value": "src/devtools/context/repository/snapshot.py"
+            },
+            "snapshot_id": {
+              "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+            },
+            "source_range": {
+              "end_column_utf8": 29,
+              "end_line": 61,
+              "start_column_utf8": 0,
+              "start_line": 35
+            }
+          }
+        },
+        "declared_name": "resource_at"
+      },
+      "provenance": {
+        "explanation": "Task text only; no repository lookup",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 921,
+          "start": 854
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1"
+    ],
+    "runtime_ns": 604200,
+    "serialized_return_sha256": "b2ee05a017d5a0e66c3dd2204133789286ea60615a51fff5bb6d04bc462ba843",
+    "status": "RETURNED",
+    "wall_call_ns": 604200
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "route:C:H05",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "d9f3428ed2d1b16a004808357fe6d15baefeb96e7f1ead721b39a222e93d9010"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "materialization"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 1248,
+            "start": 1231
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "PYTHON_DIRECT_CLASS",
+        "provenance": {
+          "explanation": "Task text only; no repository lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 1248,
+            "start": 1231
+          }
+        },
+        "rule": "u2-task-syntax-v1/explicit-api-introduction-v1",
+        "span": {
+          "end": 1248,
+          "start": 1231
+        },
+        "syntactic_form": "inline-code",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "ContextDisclosure"
+      },
+      "locator": null,
+      "mechanism": "UNSUPPORTED_EXACT_HINT",
+      "reason": "Unqualified or unsupported hint has no sound v1 locator; retain lexical fallback"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2"
+    ],
+    "runtime_ns": 1510600,
+    "serialized_return_sha256": "bb8524340f8571906c097011c96d189a5b43f0151027a11ea84101f0a892434a",
+    "status": "RETURNED",
+    "wall_call_ns": 1510600
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "route:C:H06",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "d6308c57c0bac5c44785dd045f6c2eff104e8fffd99ebbdeadfb86cbba8cbf34"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "assembly"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 1493,
+            "start": 1481
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "PYTHON_DIRECT_CLASS",
+        "provenance": {
+          "explanation": "Task text only; no repository lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 1493,
+            "start": 1481
+          }
+        },
+        "rule": "u2-task-syntax-v1/explicit-api-introduction-v1",
+        "span": {
+          "end": 1493,
+          "start": 1481
+        },
+        "syntactic_form": "inline-code",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "ModelRequest"
+      },
+      "locator": null,
+      "mechanism": "UNSUPPORTED_EXACT_HINT",
+      "reason": "Unqualified or unsupported hint has no sound v1 locator; retain lexical fallback"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05"
+    ],
+    "runtime_ns": 2118500,
+    "serialized_return_sha256": "a8879e404afb2dbc0bbf9f5057fdaf2136abf911df7542e53c8f1ba3142e914b",
+    "status": "RETURNED",
+    "wall_call_ns": 2118500
+  },
+  {
+    "durability_inside_call_ns": 14581500,
+    "identity": "route:C:H07",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "0be3197811da4cf3df005ef1d53d3241acb849c7c3f9b951f678559a3f6d577e"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "documentation"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2217,
+            "start": 2171
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "RESOURCE_ADDRESS",
+        "provenance": {
+          "explanation": "Task text only; no repository lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2217,
+            "start": 2171
+          }
+        },
+        "rule": "u2-task-syntax-v1/code-address-v1",
+        "span": {
+          "end": 2217,
+          "start": 2171
+        },
+        "syntactic_form": "inline-code",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "src/devtools/context/planning/docs/overview.md"
+      },
+      "locator": {
+        "address": {
+          "value": "src/devtools/context/planning/docs/overview.md"
+        }
+      },
+      "mechanism": "repository-snapshot-resource-at",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06"
+    ],
+    "runtime_ns": 29296500,
+    "serialized_return_sha256": "e06b4be92060f4b75cde1cb1dd6ae73986144f1baa6767d589fee0aa250d3b5d",
+    "status": "RETURNED",
+    "wall_call_ns": 43878000
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:C:H07:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "0be3197811da4cf3df005ef1d53d3241acb849c7c3f9b951f678559a3f6d577e"
+      },
+      "locator": {
+        "address": {
+          "value": "src/devtools/context/planning/docs/overview.md"
+        }
+      },
+      "provenance": {
+        "explanation": "Task text only; no repository lookup",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 2217,
+          "start": 2171
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06",
+      "route:C:H07"
+    ],
+    "runtime_ns": 29700,
+    "serialized_return_sha256": "6878b19ff7a2b8bc45db27056805ca1a00588f3695aadeb33d322e521e06c3ef",
+    "status": "RETURNED",
+    "wall_call_ns": 29700
+  },
+  {
+    "durability_inside_call_ns": 37649700,
+    "identity": "route:C:H08",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "51c2ace35a209b3ea24a4f5d6410b2dab928ce1bd8877691b73b307360da611f"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "documentation"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2249,
+            "start": 2229
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "RESOURCE_ADDRESS",
+        "provenance": {
+          "explanation": "Task text only; no repository lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2249,
+            "start": 2229
+          }
+        },
+        "rule": "u2-task-syntax-v1/code-address-v1",
+        "span": {
+          "end": 2249,
+          "start": 2229
+        },
+        "syntactic_form": "inline-code",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "docs/architecture.md"
+      },
+      "locator": {
+        "address": {
+          "value": "docs/architecture.md"
+        }
+      },
+      "mechanism": "repository-snapshot-resource-at",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06",
+      "route:C:H07",
+      "ground:C:H07:1"
+    ],
+    "runtime_ns": 26657300,
+    "serialized_return_sha256": "39b7dc16a89ebf802c164a666ff4fdbf41aa756f10af31dc4e286066784f0a80",
+    "status": "RETURNED",
+    "wall_call_ns": 64307000
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:C:H08:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "51c2ace35a209b3ea24a4f5d6410b2dab928ce1bd8877691b73b307360da611f"
+      },
+      "locator": {
+        "address": {
+          "value": "docs/architecture.md"
+        }
+      },
+      "provenance": {
+        "explanation": "Task text only; no repository lookup",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 2249,
+          "start": 2229
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H08"
+    ],
+    "runtime_ns": 15200,
+    "serialized_return_sha256": "62726136c7aa3e7055029cc9247e171d040c7c88c992652f956b3464657b74c1",
+    "status": "RETURNED",
+    "wall_call_ns": 15200
+  },
+  {
+    "durability_inside_call_ns": 18993500,
+    "identity": "route:C:H09",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "348c900ef8da3d6ac416aa29b9a6b9de2199f1ec643c080ad437c3b63eda48a6"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "validation"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2484,
+            "start": 2453
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "RESOURCE_ADDRESS",
+        "provenance": {
+          "explanation": "Task text only; no repository lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2484,
+            "start": 2453
+          }
+        },
+        "rule": "u2-task-syntax-v1/code-address-v1",
+        "span": {
+          "end": 2484,
+          "start": 2453
+        },
+        "syntactic_form": "inline-code",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "scripts/validate_development.py"
+      },
+      "locator": {
+        "address": {
+          "value": "scripts/validate_development.py"
+        }
+      },
+      "mechanism": "repository-snapshot-resource-at",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H08",
+      "ground:C:H08:1"
+    ],
+    "runtime_ns": 27000800,
+    "serialized_return_sha256": "3e2721ad0cb8db6c007297f0f382398ec2af16108917198d83d66043eb4523d8",
+    "status": "RETURNED",
+    "wall_call_ns": 45994300
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:C:H09:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "348c900ef8da3d6ac416aa29b9a6b9de2199f1ec643c080ad437c3b63eda48a6"
+      },
+      "locator": {
+        "address": {
+          "value": "scripts/validate_development.py"
+        }
+      },
+      "provenance": {
+        "explanation": "Task text only; no repository lookup",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 2484,
+          "start": 2453
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H08",
+      "ground:C:H08:1",
+      "route:C:H09"
+    ],
+    "runtime_ns": 23100,
+    "serialized_return_sha256": "43c327b2133579e3868108c7ae125ac64c80201d4b104ff61e132c9143238453",
+    "status": "RETURNED",
+    "wall_call_ns": 23100
+  },
+  {
+    "durability_inside_call_ns": 14779700,
+    "identity": "route:C:H10",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "4ecac64d21ccda656bb428bfe62ce3d4387eb17cef090d421410458fc7b02b9f"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "validation"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2519,
+            "start": 2505
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "RESOURCE_ADDRESS",
+        "provenance": {
+          "explanation": "Task text only; no repository lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 2519,
+            "start": 2505
+          }
+        },
+        "rule": "u2-task-syntax-v1/code-address-v1",
+        "span": {
+          "end": 2519,
+          "start": 2505
+        },
+        "syntactic_form": "inline-code",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "pyproject.toml"
+      },
+      "locator": {
+        "address": {
+          "value": "pyproject.toml"
+        }
+      },
+      "mechanism": "repository-snapshot-resource-at",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H08",
+      "ground:C:H08:1",
+      "route:C:H09",
+      "ground:C:H09:1"
+    ],
+    "runtime_ns": 26717400,
+    "serialized_return_sha256": "28002a7f68ad587e069a9ba73e2e8de6bb874d1b5ca85c96e3523ded96b48996",
+    "status": "RETURNED",
+    "wall_call_ns": 41497100
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:C:H10:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "value": "4ecac64d21ccda656bb428bfe62ce3d4387eb17cef090d421410458fc7b02b9f"
+      },
+      "locator": {
+        "address": {
+          "value": "pyproject.toml"
+        }
+      },
+      "provenance": {
+        "explanation": "Task text only; no repository lookup",
+        "source_identity": "case-0012-direct-source-disclosure",
+        "span": {
+          "end": 2519,
+          "start": 2505
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+      },
+      "task": {
+        "value": "case-0012-direct-source-disclosure"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H08",
+      "ground:C:H08:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10"
+    ],
+    "runtime_ns": 23700,
+    "serialized_return_sha256": "7ccc5e198720c48840b84e5eca23c0b72756064bf1a44c1df1adf4f0d9c8008d",
+    "status": "RETURNED",
+    "wall_call_ns": 23700
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:source",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/source"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H08",
+      "ground:C:H08:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1"
+    ],
+    "runtime_ns": 39690800,
+    "serialized_return_sha256": "ff78ea8ecc382e158166a7f46a17fa535bca426739882d01d55a950fe8e0fafa",
+    "status": "RETURNED",
+    "wall_call_ns": 39690800
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:choices",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/choices"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H08",
+      "ground:C:H08:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1",
+      "present:C:source"
+    ],
+    "runtime_ns": 45347100,
+    "serialized_return_sha256": "5c0f203b0b44b82b4d214fae59a0979ce35001ebb39acfcbb206b968b05c93ff",
+    "status": "RETURNED",
+    "wall_call_ns": 45347100
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:integrity",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/integrity"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H08",
+      "ground:C:H08:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1",
+      "present:C:source",
+      "present:C:choices"
+    ],
+    "runtime_ns": 40465300,
+    "serialized_return_sha256": "b61fa30dd96a1456301781f2124204fe274561119e9b49919af8e25eaef0b199",
+    "status": "RETURNED",
+    "wall_call_ns": 40465300
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:materialization",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/materialization"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H08",
+      "ground:C:H08:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1",
+      "present:C:source",
+      "present:C:choices",
+      "present:C:integrity"
+    ],
+    "runtime_ns": 40427800,
+    "serialized_return_sha256": "4ca0b74e32e182321d00062451e7a2fd907588c88376a6f7dcb417141d8ea5f8",
+    "status": "RETURNED",
+    "wall_call_ns": 40427800
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:assembly",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/assembly"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H08",
+      "ground:C:H08:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1",
+      "present:C:source",
+      "present:C:choices",
+      "present:C:integrity",
+      "present:C:materialization"
+    ],
+    "runtime_ns": 42444800,
+    "serialized_return_sha256": "2d3e2d4b56fd4eec0019a154a98ccfbae7b8f66f96e7b7177a032c28bd1f1155",
+    "status": "RETURNED",
+    "wall_call_ns": 42444800
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:exports",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/exports"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H08",
+      "ground:C:H08:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1",
+      "present:C:source",
+      "present:C:choices",
+      "present:C:integrity",
+      "present:C:materialization",
+      "present:C:assembly"
+    ],
+    "runtime_ns": 40263100,
+    "serialized_return_sha256": "eaae88cb952c7c78eaa2dedce32ff0b7534e544523b9b60d732231f3565a0956",
+    "status": "RETURNED",
+    "wall_call_ns": 40263100
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:tests",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/tests"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H08",
+      "ground:C:H08:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1",
+      "present:C:source",
+      "present:C:choices",
+      "present:C:integrity",
+      "present:C:materialization",
+      "present:C:assembly",
+      "present:C:exports"
+    ],
+    "runtime_ns": 44006700,
+    "serialized_return_sha256": "f6bf2b2d592fd347e0381a29b8d8f21bf58a51bc6df66a2f2eb88215f18ecc25",
+    "status": "RETURNED",
+    "wall_call_ns": 44006700
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:documentation",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/documentation"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H08",
+      "ground:C:H08:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1",
+      "present:C:source",
+      "present:C:choices",
+      "present:C:integrity",
+      "present:C:materialization",
+      "present:C:assembly",
+      "present:C:exports",
+      "present:C:tests"
+    ],
+    "runtime_ns": 41069700,
+    "serialized_return_sha256": "dd47d06dfd1370e43bb9f44fc93300ba427dd8fdcb76e5168e378513a389f84d",
+    "status": "RETURNED",
+    "wall_call_ns": 41069700
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:validation",
+    "inputs": {
+      "obligation": "case-0012-direct-source-disclosure/validation"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "route:C:H04",
+      "ground:C:H04:1",
+      "ground:C:H04:2",
+      "route:C:H05",
+      "route:C:H06",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H08",
+      "ground:C:H08:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1",
+      "present:C:source",
+      "present:C:choices",
+      "present:C:integrity",
+      "present:C:materialization",
+      "present:C:assembly",
+      "present:C:exports",
+      "present:C:tests",
+      "present:C:documentation"
+    ],
+    "runtime_ns": 43040300,
+    "serialized_return_sha256": "7b03ea70beb18cbc5c2b375d0020c390ee9d148f62362a15ce40bc0c23199367",
+    "status": "RETURNED",
+    "wall_call_ns": 43040300
+  }
+]

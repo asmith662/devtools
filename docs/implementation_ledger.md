@@ -1,5 +1,29 @@
 # Implementation Ledger
 
+## Case 0012 authoritative Stage B attempt 2 (2026-10-09)
+
+After the pushed recovery checkpoint, fresh `case-0012-stage-b-2` completed every
+frozen operation once: one index, ten lexical queries (nine obligations plus global
+safety), sixteen admitted exact routes, eighteen grounding subcalls, eighteen
+presentations and three arm assemblies. Seventy-two journaled operations include
+inventory/unsupported accounts and composite arm calls; all returned immutably.
+No attempt-1 result was spliced in. Its four retained query surfaces agree exactly,
+excluding timing. Eight hints resolve per arm; two remain unsupported. Native B/C
+authorship differs; frozen behavioral projections agree, with complete native
+fallback/ranks/scores/contributions and global safety preserved.
+
+Read-only finalization was interrupted after native completion because expanded
+index hashing repeated large statistics graphs. A separately bound byte-equivalent
+publication reader caches immutable fragments; producer bytes and treatment remain
+unchanged, and no native operation reran. All three arms have 3,051 occurrences,
+514 unique resources and 2,537 duplicates; global safety has 529 rows. These are
+mechanical counts, not effectiveness. The review and distinct trace live under
+[Stage B attempt 2](../experiments/codex_dogfood/case_0012/stage_b/attempts/case-0012-stage-b-2/STAGE_B_REVIEW.md).
+The treatment-blind packet is independently byte-identical across two builds and
+prepared for a fresh sterile session. Gold absent, effectiveness unknown, final U2
+outcome unselected. Production behavior unchanged; no confirmation/reserve access.
+U3 future, R1.7 retained, true BM25F mandatory, Localization continuation preserved.
+
 ## Case 0012 Stage B capture recovery infrastructure (2026-10-09)
 
 Permanently preserved `case-0012-stage-b-1` as an immutable aborted audit record.

@@ -332,7 +332,11 @@ unconstrained query oracle cannot repair missing semantic responsibility.
 U2 is CURRENT: [experiment-only infrastructure](../../experiments/exact_hint_routing/README.md)
 and [Case 0012 Stage A](../../experiments/codex_dogfood/case_0012/STAGE_A_REVIEW.md)
 remain frozen; attempt 1 is permanently aborted after a capture-publication
-failure. Its partial mechanics are audit-only, with no official Stage B result.
+failure. Its partial mechanics are audit-only. The independent attempt 2 is
+[captured](../../experiments/codex_dogfood/case_0012/stage_b/STATUS.md): B/C behavioral
+equivalence and four deterministic overlap comparisons pass, while extraction
+authorship remains distinct. The treatment-blind packet is prepared; no gold or
+effectiveness adjudication has occurred.
 The [capture recovery contract](../../experiments/codex_dogfood/case_0012/stage_b/RECOVERY_PROTOCOL.md)
 permits at most one invocation per frozen operation per explicitly authorized
 attempt, uses immutable native return records, and forbids splicing failed results.

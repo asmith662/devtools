@@ -1,0 +1,32 @@
+{
+  "event": 3,
+  "execution": "case-0012-stage-b-2",
+  "frame": {
+    "corpus_id": "a348059425edb51e8296900cd570f16aedb394b871b5cfb98144625cb34c93af",
+    "frame_identity": "c78f7b4bd23b95117058470c673c7c376c40018323e583228e67b88a3f1f311a",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+  },
+  "input_sha256": "38037c8a7bb85bd870cbd50507167d3be4052dc4f70b6727017f8948de4902c8",
+  "operation": {
+    "identity": "lexical:global",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "Add caller-selected direct Python source-declaration disclosure choices to common Context Planning, alongside existing qualified-reference and whole-resource choices, without automatic retrieval or selection.\nReuse function `devtools.context.python.modules.selection.select_python_module_source_declarations` for direct function and class source identities; support a direct method only through its validated native class parent and containment, without runtime attribute, imported-facade, inherited-method or semantic resolution.\nIntegrate the choices with class `devtools.context.planning.plan.DisclosurePlan` and module `devtools.context.planning`, retaining immutable purpose/frame/ordered-choice contracts and compatibility with existing choices.\nValidate every supplied native declaration and resource against the retained snapshot through method `devtools.context.repository.snapshot.RepositorySnapshot.resource_at`; reject foreign or stale frame/content, missing resource, unsupported declaration scope and mismatched returned identity before publishing the disclosure, without reacquiring files.\nMaterialize the exact declaration source segment with native derivation, source-range and owner-resource provenance in class `ContextDisclosure`; preserve UTF-8 boundaries, decorators, CRLF/non-ASCII bytes and caller order in mixed plans, without inferring sufficiency or expanding to whole owners implicitly.\nPreserve common rendering and copied request assembly with class `ModelRequest`: original request, prompt role, settings, conversation, provider settings and tools remain unchanged except the copied prompt; keep task text before Context and introduce no new budget or truncation policy.\nExpose the new explicit choice through the common planning public API and outer Context facade, keeping dependency direction and avoiding a Retrieval dependency or language-specific logic in common assembly.\nAdd focused tests for direct function/class/method choices, decorated and repeated declarations, mixed-plan ordering and exact source/provenance, stale/foreign/missing-resource rejection, unchanged existing choices and copied-request preservation.\nUpdate file `src/devtools/context/planning/docs/overview.md` and file `docs/architecture.md` to explain source identity versus runtime bindings, explicit representation admission, supported/deferred scope and compatibility, without claiming automatic relevance or readiness.\nValidate with file `scripts/validate_development.py` and preserve file `pyproject.toml` test/coverage settings; run the documented protected development profile, Ruff lint/format, strict mypy and both worktree/index whitespace checks.\n"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "bb851e6de4cb1943979844796d0106e711798a555f5499906132942a70e75e02",
+  "runtime_identity": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+    "unicode": "16.0.0"
+  },
+  "sequence": 2,
+  "state": "ENTERED"
+}

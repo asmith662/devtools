@@ -1,0 +1,133 @@
+{
+  "event": 100,
+  "execution": "case-0012-stage-b-2",
+  "frame": {
+    "corpus_id": "a348059425edb51e8296900cd570f16aedb394b871b5cfb98144625cb34c93af",
+    "frame_identity": "c78f7b4bd23b95117058470c673c7c376c40018323e583228e67b88a3f1f311a",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+  },
+  "input_sha256": "7084dceb8badc22ea7f8a394a3df5e468e9d10ef1de102b7c24121b633116310",
+  "operation": {
+    "identity": "route:C:H04",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "6ad9841f9f0e8d4ac1c8ea342b625e8d70763971ef76c0c0335d1da4917733f8"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "integrity"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 921,
+            "start": 854
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "PYTHON_DIRECT_METHOD",
+        "provenance": {
+          "explanation": "Task text only; no repository lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 921,
+            "start": 854
+          }
+        },
+        "rule": "u2-task-syntax-v1/explicit-api-introduction-v1",
+        "span": {
+          "end": 921,
+          "start": 854
+        },
+        "syntactic_form": "inline-code",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "devtools.context.repository.snapshot.RepositorySnapshot.resource_at"
+      },
+      "locator": {
+        "class_name": "RepositorySnapshot",
+        "method_name": "resource_at",
+        "module": {
+          "dotted_name": "devtools.context.repository.snapshot",
+          "kind": null
+        }
+      },
+      "mechanism": "exact-source-class-then-native-direct-method-containment-v1",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "17f066e4461240b48e926c31870362b8aa483de235a0d35346632f72a84f9e9c",
+  "runtime_identity": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+    "unicode": "16.0.0"
+  },
+  "sequence": 51,
+  "state": "ENTERED"
+}

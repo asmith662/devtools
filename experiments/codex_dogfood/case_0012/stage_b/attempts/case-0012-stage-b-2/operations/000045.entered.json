@@ -1,0 +1,127 @@
+{
+  "event": 88,
+  "execution": "case-0012-stage-b-2",
+  "frame": {
+    "corpus_id": "a348059425edb51e8296900cd570f16aedb394b871b5cfb98144625cb34c93af",
+    "frame_identity": "c78f7b4bd23b95117058470c673c7c376c40018323e583228e67b88a3f1f311a",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+  },
+  "input_sha256": "eecd0b1f35402d8e3cbd2be8b397c4280e5b88bcb4a9efe12e5e4937819bed8a",
+  "operation": {
+    "identity": "route:C:H01",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "9561e099d5f938a755a7bdebfdd36bf83d7eb82ca1de4e8e3f960dcd885f70ba"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "source"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 307,
+            "start": 225
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "PYTHON_DIRECT_FUNCTION",
+        "provenance": {
+          "explanation": "Task text only; no repository lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 307,
+            "start": 225
+          }
+        },
+        "rule": "u2-task-syntax-v1/explicit-api-introduction-v1",
+        "span": {
+          "end": 307,
+          "start": 225
+        },
+        "syntactic_form": "inline-code",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "devtools.context.python.modules.selection.select_python_module_source_declarations"
+      },
+      "locator": {
+        "declared_name": "select_python_module_source_declarations",
+        "kind": "function",
+        "module": {
+          "dotted_name": "devtools.context.python.modules.selection",
+          "kind": null
+        }
+      },
+      "mechanism": "exact-python-module-source-declaration-selection-v1",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05",
+      "route:B:H06",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:source",
+      "present:B:choices",
+      "present:B:integrity",
+      "present:B:materialization",
+      "present:B:assembly",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "inventory:C"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "a47274d6f9874b5608fe30d73b14540df45d5141e359d6955f5e9547b3ad2dd3",
+  "runtime_identity": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+    "unicode": "16.0.0"
+  },
+  "sequence": 45,
+  "state": "ENTERED"
+}

@@ -1,0 +1,100 @@
+{
+  "event": 48,
+  "execution": "case-0012-stage-b-2",
+  "frame": {
+    "corpus_id": "a348059425edb51e8296900cd570f16aedb394b871b5cfb98144625cb34c93af",
+    "frame_identity": "c78f7b4bd23b95117058470c673c7c376c40018323e583228e67b88a3f1f311a",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+  },
+  "input_sha256": "48002a2fbe45d6769e13716541f44bc7f6a7c4e59c6a9ddf565c48910b7150c1",
+  "operation": {
+    "identity": "route:B:H06",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "d6308c57c0bac5c44785dd045f6c2eff104e8fffd99ebbdeadfb86cbba8cbf34"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "assembly"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 1493,
+            "start": 1481
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "PYTHON_DIRECT_CLASS",
+        "provenance": {
+          "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 1493,
+            "start": 1481
+          }
+        },
+        "rule": "caller-task-review-v1",
+        "span": {
+          "end": 1493,
+          "start": 1481
+        },
+        "syntactic_form": "caller-reviewed-task-syntax",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "ModelRequest"
+      },
+      "locator": null,
+      "mechanism": "UNSUPPORTED_EXACT_HINT",
+      "reason": "Unqualified or unsupported hint has no sound v1 locator; retain lexical fallback"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "ground:B:H04:2",
+      "route:B:H05"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "b92e2d6275e38c8e8fadf1be82b56fcd7d5de154ba9a49249df41c25fc66b4f1",
+  "runtime_identity": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+    "unicode": "16.0.0"
+  },
+  "sequence": 25,
+  "state": "ENTERED"
+}

@@ -1,0 +1,97 @@
+{
+  "event": 36,
+  "execution": "case-0012-stage-b-2",
+  "frame": {
+    "corpus_id": "a348059425edb51e8296900cd570f16aedb394b871b5cfb98144625cb34c93af",
+    "frame_identity": "c78f7b4bd23b95117058470c673c7c376c40018323e583228e67b88a3f1f311a",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "07f8c054b5aea9c7c893231a53fb2271d9df74f91c71ee19975c0ba86f52d7ca"
+  },
+  "input_sha256": "23c34a2b34d0b599fe1790427764edc6ce09dc80006cedeb000429046333e887",
+  "operation": {
+    "identity": "route:B:H03",
+    "inputs": {
+      "association": {
+        "hint": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "2f54b3f4ed208ec49f79cfe7c77e9b897a4ce166b4d5b80161906a1ab488e115"
+        },
+        "lane": {
+          "task": {
+            "value": "case-0012-direct-source-disclosure"
+          },
+          "value": "choices"
+        },
+        "provenance": {
+          "explanation": "Caller-authored task-only association before native frame lookup",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 649,
+            "start": 624
+          }
+        },
+        "reason": "The exact task clause containing this hint is interpreted by this obligation; association makes no relevance/satisfaction claim"
+      },
+      "hint": {
+        "category": "PYTHON_MODULE",
+        "provenance": {
+          "explanation": "Caller task-syntax review: explicitly introduced code reference; no repository contents, ranks, gold or resolutions inspected",
+          "source_identity": "case-0012-direct-source-disclosure",
+          "span": {
+            "end": 649,
+            "start": 624
+          }
+        },
+        "rule": "caller-task-review-v1",
+        "span": {
+          "end": 649,
+          "start": 624
+        },
+        "syntactic_form": "caller-reviewed-task-syntax",
+        "task": {
+          "value": "case-0012-direct-source-disclosure"
+        },
+        "text": "devtools.context.planning"
+      },
+      "locator": {
+        "dotted_name": "devtools.context.planning",
+        "kind": null
+      },
+      "mechanism": "python-module-exact-name-lookup",
+      "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "index-build",
+      "lexical:global",
+      "lexical:source",
+      "lexical:choices",
+      "lexical:integrity",
+      "lexical:materialization",
+      "lexical:assembly",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "arm:B",
+      "inventory:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "93ae1fb12c67bef4cb8675a6cf7e62f185441d5bc722651c87088d50ace1be62",
+  "runtime_identity": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+    "unicode": "16.0.0"
+  },
+  "sequence": 19,
+  "state": "ENTERED"
+}

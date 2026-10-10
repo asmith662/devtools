@@ -1,0 +1,34 @@
+{
+  "all_invocations_one": true,
+  "attempt_1": "ABORTED; AUDIT_ONLY; NO_SPLICING",
+  "attempt_2": "COMPLETE; AUTHORITATIVE_STAGE_B_EXECUTION",
+  "bc_behavior": "PASS",
+  "confirmation_reserve": "NOT_ACCESSED",
+  "cross_attempt_overlap": "PASS; four queries, full native index/settings, no timing requirement",
+  "deterministic_replay": "PASS; native journal to JSON/Markdown/projections reconstructed twice; no production call reentry",
+  "effectiveness": "UNKNOWN",
+  "fallback_and_global_safety": "PRESERVED",
+  "final_u2_outcome": "NOT_SELECTED",
+  "focused_tests": {
+    "post_capture_deselected": "retained-native codec and published-replay tests were covered by pre-execution codec test and completed CLI full replay",
+    "post_capture_fixtures": 16,
+    "pre_execution_recovery": 17,
+    "publication_reader": 1,
+    "u2_and_stage_a": 84
+  },
+  "gold": "NOT_CREATED",
+  "native_bc_authorship": "PRESERVED_DIFFERENT",
+  "native_journal_records": 144,
+  "producer_source_hashes": "UNCHANGED; ALL VERIFIED",
+  "production_behavior": "UNCHANGED",
+  "protected_development": {
+    "passed": 1588,
+    "production_branch_coverage_percent": 100,
+    "skipped": 2
+  },
+  "publication_reader_sha256": "972d66dee9e93dee9ca1dea0afd1c38087588327b4c5bf277c372bc8317ff0ca",
+  "scheduled_operations": 72,
+  "schema": "case-0012-completed-validation-v1",
+  "stage_a_integrity_sha256": "7baa3123198ca83249b759baf257573e7e6c4bff99562cb1e0052f350d867213",
+  "stage_b_integrity_sha256": "3c6166a329785342f40745e84767c55c4300b27d7a067a0154804e72106b4e67"
+}
