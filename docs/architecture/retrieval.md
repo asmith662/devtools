@@ -263,8 +263,8 @@ sufficiency.** Both research tracks remain necessary.
 [EXPERIMENTAL; EVALUATED] R1 whole identifiers + subtokens (retain separate view)
 [EXPERIMENTAL; INSTRUMENTATION] R1.5 exact retrieval/failure diagnostics
 [EXPERIMENTAL; PROSPECTIVE COMPLETE, MIXED / NO SAFE REPLACEMENT] R1.6 BM25 sensitivity
-[EXPERIMENTAL; PRE-GOLD] U1 manual need decomposition, inspectable acquisition trace
-[EXPERIMENTAL; STAGE A ONLY] U2 exact hints/routing; U3 remains future
+[EXPERIMENTAL; COMPLETE] U1 manual needs: INFORMATION_NEED_AUTHORING_DEFECT
+[EXPERIMENTAL; COMPLETE] U2 exact hints: EXACT_HINT_ROUTING_SUPPORTED; U3 future
 [ROADMAP; RETAINED AFTER UPSTREAM EVIDENCE] R1.7 query-term discrimination investigation
 [MANDATORY ROADMAP; NOT IMPLEMENTED] R2 true BM25F, regardless of R1 outcome
 
@@ -329,22 +329,21 @@ authored set: strict need coverage 15/32, secondary collective coverage 18/32,
 no complete alternatives and increased responsible same-unit burden despite
 five local depth gains. All arms positively reach required resources; an
 unconstrained query oracle cannot repair missing semantic responsibility.
-U2 is CURRENT: [experiment-only infrastructure](../../experiments/exact_hint_routing/README.md)
-and [Case 0012 Stage A](../../experiments/codex_dogfood/case_0012/STAGE_A_REVIEW.md)
-remain frozen; attempt 1 is permanently aborted after a capture-publication
-failure. Its partial mechanics are audit-only. The independent attempt 2 is
-[captured](../../experiments/codex_dogfood/case_0012/stage_b/STATUS.md): B/C behavioral
-equivalence and four deterministic overlap comparisons pass, while extraction
-authorship remains distinct. The treatment-blind packet now has a sealed
-[PRIMARY BLIND STAGE C publication](../../experiments/codex_dogfood/case_0012/adjudication/PUBLICATION.md).
-Independent C-R is not performed; reliability is unmeasured; reviewed/reconciled
-gold is unavailable and Stage D remains blocked. No effectiveness adjudication
-has occurred.
+U2 is COMPLETE / **EXACT_HINT_ROUTING_SUPPORTED** in
+[Case 0012 Stage D](../../experiments/codex_dogfood/case_0012/stage_d/STAGE_D_REVIEW.md).
+Stage A remains frozen; failed attempt 1 is audit-only, and captured attempt 2
+alone supplies treatment. Independent PRIMARY/C-R, reliability and sealed
+reconciliation precede the committed reviewed target. All six frozen gates pass.
+Four obligation completions improve; five tie. REQUIRED reach and semantic
+completeness tie. Unique prefix union falls 319 to 316 and charged runtime
+increases within the frozen three-times gate. Value is case-local for tested
+resource-address, direct-declaration and direct-method routes. Module routing
+has no owning REQUIRED target; unsupported bare classes remain unsupported;
+both have effectiveness NOT_ASSESSED. This does not productionize routing.
 The [capture recovery contract](../../experiments/codex_dogfood/case_0012/stage_b/RECOVERY_PROTOCOL.md)
 permits at most one invocation per frozen operation per explicitly authorized
 attempt, uses immutable native return records, and forbids splicing failed results.
-Effectiveness remains UNKNOWN. Exact
-native hints supply candidates, not relevance, witnesses or readiness, and
+The final reviewed join is complete. Exact native hints supply candidates, not relevance, witnesses or readiness, and
 cannot repair missing/incomplete needs. U3 remains future before later query weighting. Task != obligation
 != information need != query/acquisition intent != retrieval action. Case 0011
 uses the same production ranker and a human-inspectable experimental trace;

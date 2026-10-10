@@ -61,7 +61,7 @@ evidence; mixed ranking changes fail promotion's no-worse-completion and
 [Case 0009 Stage B](../experiments/codex_dogfood/case_0009/stage_b.md) now records
 one A/B execution and the frozen full-frame blind packet. Clean Stage C and the
 Stage D join are complete. **R1.6 development and Case 0010 Stage D are complete;
-U1 manual information-need decomposition is next**;
+U1 and U2 are complete**; U3 remains future, R1.7 retained and R2 mandatory;
 canonical production BM25 remains unchanged and semantic-resolution effectiveness
 does not resume yet.
 
@@ -228,7 +228,8 @@ and incremental complexity. Top-K usefulness alone is insufficient.
 canonical baseline
     -> R1 identifier-aware representation
     -> R1.5 diagnostics (done) -> R1.6 sensitivity (done)
-    -> U1 manual formulation (now) -> U2/U3 future upstream routing evidence
+    -> U1 manual formulation (complete) -> U2 exact hints (complete)
+    -> U3 information-need/mechanism routing (future)
     -> R1.7 query terms (retained)
     -> R2 BM25F canonical terms + R2 BM25F identifier-aware terms
        (representation gain, fielding gain and interaction separately measured)
