@@ -1,8 +1,15 @@
 # Case 0012 future blind Stage C protocol — PREPARED ONLY
 
-Do not execute at Stage A. No packet, labels, units, witness alternatives or gold
-are authored now. After authorized Stage B, create a fresh sterile packet through
-the tested allowlist projection in `blind.py`, without historical-answer access.
+Current publication: [PRIMARY BLIND STAGE C](adjudication/PUBLICATION.md) is
+COMPLETE. Independent Stage C-R is NOT PERFORMED; reliability is UNMEASURED;
+reviewed/reconciled gold is NOT AVAILABLE and Stage D remains BLOCKED.
+The [C-R operator record](adjudication/C_R_OPERATOR.md) supplies the independent
+prompt; the [comparison protocol](adjudication/reliability/PROTOCOL.md) is frozen
+before C-R. The original Stage A protocol below is retained as history.
+
+At Stage A no packet, labels, units, witness alternatives or gold were authored.
+After authorized Stage B, a fresh sterile packet uses the tested allowlist
+projection in `blind.py`, without historical-answer access.
 
 The independent adjudicator receives only exact task text, obligations with
 criteria/applicability/task basis, and every eligible resource's exact contents,

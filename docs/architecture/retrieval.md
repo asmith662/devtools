@@ -335,8 +335,11 @@ remain frozen; attempt 1 is permanently aborted after a capture-publication
 failure. Its partial mechanics are audit-only. The independent attempt 2 is
 [captured](../../experiments/codex_dogfood/case_0012/stage_b/STATUS.md): B/C behavioral
 equivalence and four deterministic overlap comparisons pass, while extraction
-authorship remains distinct. The treatment-blind packet is prepared; no gold or
-effectiveness adjudication has occurred.
+authorship remains distinct. The treatment-blind packet now has a sealed
+[PRIMARY BLIND STAGE C publication](../../experiments/codex_dogfood/case_0012/adjudication/PUBLICATION.md).
+Independent C-R is not performed; reliability is unmeasured; reviewed/reconciled
+gold is unavailable and Stage D remains blocked. No effectiveness adjudication
+has occurred.
 The [capture recovery contract](../../experiments/codex_dogfood/case_0012/stage_b/RECOVERY_PROTOCOL.md)
 permits at most one invocation per frozen operation per explicitly authorized
 attempt, uses immutable native return records, and forbids splicing failed results.

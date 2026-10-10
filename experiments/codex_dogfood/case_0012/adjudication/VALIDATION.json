@@ -1,0 +1,40 @@
+{
+  "challenge_results": [
+    "physical_packet_tamper_rejected",
+    "extra_file_rejected",
+    "cr_file_overwrite_refused",
+    "cr_directory_overwrite_refused",
+    "primary_import_overwrite_refused",
+    "protocol_byte_tamper_detected"
+  ],
+  "checks": {
+    "cr_source_byte_identity": "PASS",
+    "cr_validator": "PASS",
+    "deterministic_protocol_reconstruction": "PASS",
+    "four_packet_scopes": "PASS",
+    "fresh_cr_exact_whitelist_and_native_files": "PASS",
+    "no_primary_or_treatment_outputs_in_cr": "PASS",
+    "primary_output_hashes": "PASS",
+    "publication_statistics": "PASS",
+    "published_blind_attestation": "PASS",
+    "source_destination_byte_identity": "PASS",
+    "source_known_file_authentication": "PASS"
+  },
+  "documentation_impact": "Case navigation/status, documentation map, roadmap and retrieval status updated; no framework behavior, taxonomy, architecture decision or backlog maturity changed",
+  "git_blob_validation": "Performed separately after staging and after commit; expected hashes in IMPORT.json",
+  "not_performed": [
+    "C-R adjudication",
+    "reliability comparison",
+    "treatment access/join",
+    "effectiveness analysis",
+    "confirmation/reserve access"
+  ],
+  "protocol_sha256": {
+    "PROTOCOL.json": "8315600ceda3006123ce2b4601a99e5a948278730ae26ab4bad9b5adb0ff45b3",
+    "PROTOCOL.md": "54261d3bd8131dd35a4f0c35acda31db1057b81feb30462b49608a91f4c9ac0a"
+  },
+  "schema": "case-0012-import-validation-v1",
+  "source_builder_replay": "PASS (separately invoked in completed source)",
+  "static_checks": "Not applicable: no mutable repository Python changed; immutable imported builder excluded from formatting/lint",
+  "status": "PASS"
+}

@@ -141,13 +141,16 @@ automating them or changing production query weights.
 - **U2 — exact-hint extraction + deterministic routing:** CURRENT;
   [experimental protocol/infrastructure](../experiments/exact_hint_routing/README.md)
   IMPLEMENTED; [Case 0012 Stage A](../experiments/codex_dogfood/case_0012/STAGE_A_REVIEW.md)
-  FROZEN for manual review. Stage B NOT EXECUTED; effectiveness UNKNOWN.
+  FROZEN. [PRIMARY BLIND STAGE C](../experiments/codex_dogfood/case_0012/adjudication/PUBLICATION.md)
+  COMPLETE; C-R NOT PERFORMED; reliability UNMEASURED; Stage D BLOCKED;
+  effectiveness UNKNOWN.
   U2 tests whether explicit native hints bypass avoidable lexical burden while
   complete unchanged lexical lanes retain conceptual evidence. It does not
   repair missing/incomplete InformationNeeds. Exact routing supplies candidates,
   not relevance, accepted witnesses, obligation satisfaction or readiness.
-  Next is maintainer review of the complete task/obligation/hint/locator/route
-  trace; separate authorization is required before Stage B.
+  Next is a completely fresh independent blind C-R session in the prepared
+  five-file workspace. The reviewer receives no PRIMARY or treatment evidence
+  and no reliability expectations. No treatment join occurs at this checkpoint.
 - **U3 — information-need × acquisition-mechanism routing:** future experiment;
   no general mechanism selector, autonomous search framework or search policy
   is implemented by U1. SEARCH_POLICY_FAILURE has its own taxonomy boundary.

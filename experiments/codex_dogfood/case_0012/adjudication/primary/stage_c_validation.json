@@ -1,0 +1,95 @@
+{
+  "case": "case-0012",
+  "checks": {
+    "complete_blind_attestation": "PASS",
+    "complete_combination_mathematics": "PASS",
+    "complete_unique_qualified_cells": "PASS",
+    "distinct_unions_and_indispensable_intersections": "PASS",
+    "exact_case_task_binding": "PASS",
+    "exact_obligation_set": "PASS",
+    "exact_resource_frame": "PASS",
+    "exact_support_identities_and_spans": "PASS",
+    "gap_limitation_ambiguity_structure": "PASS",
+    "independent_process_byte_reconstruction": "PASS",
+    "independent_support_state_reconstruction": "PASS",
+    "markdown_from_review": "PASS",
+    "native_content_document_snapshot_identity_scopes": "PASS",
+    "overwrite_refusal": "PASS",
+    "scientific_output_hashes": "PASS",
+    "statistics_from_review": "PASS",
+    "task_clause_coverage": "PASS",
+    "unique_supported_units": "PASS",
+    "valid_complete_minimal_alternatives": "PASS",
+    "valid_labels": "PASS"
+  },
+  "hash_index_scope": "All scientific outputs except the hash index itself, plus builder. Hash-index physical digest is reported separately. Operational handoff excluded.",
+  "mutation_challenges": [
+    {
+      "name": "task_binding",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "name": "obligation_statement",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "name": "resource_frame_missing",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "name": "duplicate_qualified_cell",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "name": "invalid_label",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "name": "support_identity",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "name": "support_bounds",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "name": "duplicate_unit",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "name": "unsupported_unit",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "name": "alternative_obligation",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "name": "missing_alternative_member",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "name": "missing_complete_alternative",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "name": "combination_mathematics",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "name": "indispensable_intersection",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "name": "limitation_structure",
+      "result": "REJECTED_AS_REQUIRED"
+    }
+  ],
+  "overwrite_policy": "Refuse if any scientific output already exists; verify/replay mode never overwrites.",
+  "packet_originals_unchanged": true,
+  "replay_command": "python -B stage_c_builder.py --verify",
+  "schema": "case-0012-primary-stage-c-validation-v1",
+  "status": "PASS",
+  "task_identity": "case-0012-direct-source-disclosure",
+  "validated_cell_count": 4779
+}

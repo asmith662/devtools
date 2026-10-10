@@ -1,7 +1,10 @@
 # Case 0012 — prospective U2 exact-hint routing
 
-Stage A = FROZEN. Stage B = NOT EXECUTED. Effectiveness = UNKNOWN.
-Stage C protocol = PREPARED ONLY; no packet or gold.
+Stage A = FROZEN. Effectiveness = UNKNOWN.
+[PRIMARY BLIND STAGE C](adjudication/PUBLICATION.md) = COMPLETE.
+Independent Stage C-R = NOT PERFORMED; reliability = UNMEASURED;
+reviewed/reconciled gold = NOT AVAILABLE; Stage D = BLOCKED.
+The original Stage A instructions below are retained as checkpoint history.
 
 The original Stage A checkpoint is `bd82f6481d0f993c1757fe1689b8b772b1948db9`.
 The amended/resealed pre-execution checkpoint is authoritative for attribution
@@ -44,6 +47,9 @@ not relevance, witness acceptance, obligation satisfaction or readiness.
 U3 remains FUTURE; R1.7 RETAINED; R2 true BM25F MANDATORY; downstream Localization
 continuation PRESERVED. Production source behavior is unchanged.
 
-Next: maintainer manually reviews STAGE_A_REVIEW.md and the complete trace.
-Only separate explicit authorization permits Stage B hint resolution, one
-canonical lexical capture, A/B/C treatments and blind packet construction.
+Next: start a completely fresh GPT-6 Astra session in the prepared five-file
+C-R workspace, using only the independent prompt from the outside-workspace
+[operator record](adjudication/C_R_OPERATOR.md). Do not expose PRIMARY gold,
+Stage B or reliability expectations. The repository-side
+[comparison protocol](adjudication/reliability/PROTOCOL.md) is frozen but not
+executed. No treatment join or effectiveness analysis is authorized here.

@@ -1,0 +1,53 @@
+{
+  "blind_access_attestation": {
+    "Git_history": "NO",
+    "acquisition_costs": "NO",
+    "confirmation_or_reserve_data": "NO",
+    "experiment_arms": "NO",
+    "external_web_information": "NO",
+    "hint_or_routing_artifacts": "NO",
+    "parent_or_sibling_workspace_files": "NO",
+    "prior_gold": "NO",
+    "rankings": "NO",
+    "repository_checkout": "NO",
+    "retrieval_queries": "NO",
+    "scores": "NO",
+    "treatment_results": "NO"
+  },
+  "case": "case-0012",
+  "completed_source_validation": "Known-file hashes and builder verification; initial five-file validator NOT run here",
+  "confirmation_reserve_access": "NONE",
+  "excluded_from_import": [
+    ".local"
+  ],
+  "git_identity_contract": "SHA-256 of raw git show :path and HEAD:path must equal each immutable physical SHA-256; no Git object-ID substitution",
+  "immutable_artifact_sha256": {
+    "STAGE_C_REVIEW.md": "4fd16a5e0370baea18e3f3cc4c8fe026a593b5220e6cf90ef834560c0540ccff",
+    "stage_c_builder.py": "8eb13f237af8b7a15584b69e4b21403f8e34e8e96150867d869336977ccf44da",
+    "stage_c_hashes.json": "94f8119292e3d1bf9a24dd9f47f71343061c2afa150ab56e062dd63f1384ff61",
+    "stage_c_method.md": "4c6572bc1adf589ce7deb94c4437fe7a5868f39f145f657d62b341cb903dd43b",
+    "stage_c_review.json": "9c03aafa0966b39603cb6634e325d253eff3dff0f2ee965e349d763ea6240e4f",
+    "stage_c_statistics.json": "4e5c81fb63fca6ea922e1d5ba0c98b6a7ebada4664b0a8a94d170e01afe11207",
+    "stage_c_validation.json": "26738bbe755fcdad02ea7ce7a2fd2813819e744b425a8c33259dbe85ab140509"
+  },
+  "import_session": "Repository publisher, not blind reviewer; repository access does not alter sealed PRIMARY judgments",
+  "packet_digest_scopes": {
+    "archive_sha256": "2cbc95afb120c920ed8d919e37a187f8fe0eec4618eff28eb25203d108599fe3",
+    "canonical_payload_sha256": "c774aa5f8fa82d8271fbaf801393f3f942e33b6e686417c4b7f195317344d3ce",
+    "integrity_sha256": "89947624937675a94d6228e3c6fc6c206bc929600b4f21faf2f5cf22bf78a6f9",
+    "manifest_sha256": "15c886a8af33bf2ba12c2a92e82ec3a33789a605064bded6f17ae4b603d579cf"
+  },
+  "same_worktree_conflict": "NONE; no concrete evidence of another writer targeting this worktree",
+  "schema": "case-0012-primary-import-v1",
+  "source_packet_sha256": {
+    "README.md": "b33c456f8999b4343d6dbe59c311c7866ae681668c9415f4042d8ced231cf7be",
+    "integrity.json": "89947624937675a94d6228e3c6fc6c206bc929600b4f21faf2f5cf22bf78a6f9",
+    "manifest.json": "15c886a8af33bf2ba12c2a92e82ec3a33789a605064bded6f17ae4b603d579cf",
+    "resources.json.gz": "2cbc95afb120c920ed8d919e37a187f8fe0eec4618eff28eb25203d108599fe3",
+    "validate_packet.py": "f6d1ec7068ac1a86beabaebf0f76b24df919ba2662ae54c8a40df0e92416a1ca"
+  },
+  "source_replay": "PASS: python -B stage_c_builder.py --verify; deterministic byte equality; originals unchanged",
+  "source_workspace": "C:\\Users\\recoveryadmin\\CodexSterile\\case_0012_stage_c_2cbc95afb120",
+  "stage_b_access": "NONE",
+  "task": "case-0012-direct-source-disclosure"
+}

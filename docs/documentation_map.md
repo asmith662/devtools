@@ -52,8 +52,11 @@
   records supported/deferred native contracts without moving RI ownership.
   [Case 0012](../experiments/codex_dogfood/case_0012/README.md) owns the prospective
   Stage A task/requirement matrix, separate caller/rule inventories, locator
-  requests, lexical safety lanes and decision rule. Stage B is not executed;
-  Stage C protocol is prepared only and effectiveness is unknown.
+  requests, lexical safety lanes and decision rule. Its
+  [PRIMARY BLIND STAGE C publication](../experiments/codex_dogfood/case_0012/adjudication/PUBLICATION.md)
+  owns the immutable import and independent-review preparation. PRIMARY is
+  complete; reliability is unmeasured, C-R is not performed, Stage D is blocked
+  and effectiveness is unknown. The comparison protocol is frozen before C-R.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),
   [Cases 0004–0008 history](architecture/localization.md#prospective-cases-0004-0008-and-structural-breadth-closure)
