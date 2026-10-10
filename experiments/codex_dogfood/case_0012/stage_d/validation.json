@@ -1,0 +1,37 @@
+{
+  "B_C_effectiveness_equal": true,
+  "adversarial_tests": "test_analysis.py: prefix, rank, byte, score, contribution, candidate, gate, outcome and output mutation; overwrite refusal",
+  "ancestry": {
+    "ancestry": "PASS",
+    "blind_packet": "35153e46d22ad4e151d8a71b5e10d2a38a066034",
+    "reviewed_gold": "996ea3b1f9bfc25ed770a390f37fde24077b0710",
+    "reviewed_hashes_sha256": "5ffca95db3a874c5558f43fc11e96e33ffc5ebe9bb37ab8006d29d3d37e5c046",
+    "stage_a": "4ff6d3950e6c0be834f136a649c1a127f91fdba3",
+    "stage_a_integrity_sha256": "7baa3123198ca83249b759baf257573e7e6c4bff99562cb1e0052f350d867213",
+    "stage_b": "a2f140d4aa2862c7cc64b80d9608ee6690a6e6bb",
+    "stage_b_integrity_sha256": "3c6166a329785342f40745e84767c55c4300b27d7a067a0154804e72106b4e67"
+  },
+  "candidate_loss": 0,
+  "checks": [
+    "exact frame and queries",
+    "native resolutions",
+    "native match identities/ranks/scores/contributions",
+    "all witness depths",
+    "all prefixes and unions",
+    "all UTF-8 totals",
+    "task combination accounting",
+    "all safety reach sets",
+    "captured nonoverlapping charged costs",
+    "integer frozen gates",
+    "outcome precedence",
+    "deterministic JSON/Markdown/trace"
+  ],
+  "hints_per_arm": 10,
+  "qualified_cells": 4779,
+  "resources": 531,
+  "reviewed_gold": "PASS",
+  "stage_b_capture": "PASS",
+  "status": "PASS",
+  "task_combinations": 32,
+  "witnesses": 16
+}

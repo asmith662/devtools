@@ -1,11 +1,13 @@
 # Case 0012 — prospective U2 exact-hint routing
 
-Stage A = FROZEN. Reconciliation = COMPLETE; reviewed gold = VALIDATED.
-[Reviewed gold](adjudication/reviewed/REVIEWED_GOLD.md) is the final semantic target:
-4,779 cells, 61 units, 16 witnesses and 32 complete task combinations.
-Stage D is authorized after the reviewed-gold committed/pushed checkpoint;
-effectiveness remains UNKNOWN until that captured-treatment join completes.
-The original reliability result remains historical evidence, not final gold.
+Stage A = FROZEN. Reconciliation and reviewed gold = COMPLETE.
+[Stage D](stage_d/STAGE_D_REVIEW.md) = COMPLETE;
+U2 outcome = **EXACT_HINT_ROUTING_SUPPORTED** in Case 0012.
+[Reviewed gold](adjudication/reviewed/REVIEWED_GOLD.md) retains the final 4,779 cells,
+61 units, 16 witnesses and 32 complete task combinations. Captured exact-first
+routing improves four obligation completions while preserving all REQUIRED reach.
+The case-wide union falls only 319 to 316; charged runtime increases within the
+frozen gate. Module and unsupported bare-class effectiveness remain NOT_ASSESSED.
 The original Stage A instructions below are retained as checkpoint history.
 
 The original Stage A checkpoint is `bd82f6481d0f993c1757fe1689b8b772b1948db9`.
@@ -57,7 +59,7 @@ exposes every difference and gate; neither source is truth. All 4,779 cells alig
 4,673 labels agree, 106 differ, and 19 differ in REQUIRED membership. REQUIRED
 resource union Jaccard is 11/21. No treatment join or effectiveness analysis occurred.
 
-Current next step: authenticate the captured authoritative Stage B attempt and
-execute Stage D against the frozen reviewed gold. No retrieval, resolution or
-presentation rerun is authorized. U3 FUTURE, R1.7 RETAINED, R2 true BM25F MANDATORY
-and downstream Localization continuation PRESERVED.
+Current next step: maintainer review of the complete Stage D result and a separately
+scoped roadmap continuation. This task stops after Stage D. U3 FUTURE,
+R1.7 RETAINED, R2 true BM25F MANDATORY and downstream Localization continuation
+PRESERVED. U2 is not automatically productionized; source-disclosure is unimplemented.

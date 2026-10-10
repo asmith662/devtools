@@ -64,8 +64,10 @@
   The [immutable reconciliation](../experiments/codex_dogfood/case_0012/adjudication/reliability/reconciliation/review/RECONCILIATION_REVIEW.md)
   is complete. [Reviewed gold](../experiments/codex_dogfood/case_0012/adjudication/reviewed/REVIEWED_GOLD.md)
   owns the validated final 4,779-cell target, 61 units, 16 witnesses and task
-  sufficiency. Stage D is authorized after its committed/pushed gold checkpoint;
-  effectiveness remains unknown. Neither independent source alone is truth.
+  sufficiency. [Stage D](../experiments/codex_dogfood/case_0012/stage_d/STAGE_D_REVIEW.md)
+  owns the captured-treatment join and **EXACT_HINT_ROUTING_SUPPORTED** outcome,
+  per-family scope, witness bottlenecks, burden, cost and every frozen gate.
+  Neither independent source alone is truth; U2 is not productionized.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),
   [Cases 0004–0008 history](architecture/localization.md#prospective-cases-0004-0008-and-structural-breadth-closure)

@@ -125,7 +125,8 @@ yet its smallest completion-prefix union was 232 resources versus a sufficient
 whether ranking is compensating for weak or mixed upstream intents before
 automating them or changing production query weights.
 
-- **U1 — manual information-need decomposition:** compare exact task, current
+- **U1 — manual information-need decomposition:** COMPLETE / INFORMATION_NEED_AUTHORING_DEFECT;
+  compare exact task, current
   obligation queries and manually authored need-specific literal queries using
   unchanged production canonical BM25. Case 0011 freezes human-inspectable
   task → obligation → need → query → route → result provenance. Independent
@@ -138,21 +139,25 @@ automating them or changing production query weights.
   prefix union increases 220 to 371 and unnecessary occurrences 337 to 737.
   A descriptive all-query oracle finds evidence routes, but earns no frozen-rule
   credit. This result does not reject InformationNeed semantics.
-- **U2 — exact-hint extraction + deterministic routing:** CURRENT;
+- **U2 — exact-hint extraction + deterministic routing:** COMPLETE;
   [experimental protocol/infrastructure](../experiments/exact_hint_routing/README.md)
   IMPLEMENTED; [Case 0012 Stage A](../experiments/codex_dogfood/case_0012/STAGE_A_REVIEW.md)
   FROZEN. [PRIMARY BLIND STAGE C](../experiments/codex_dogfood/case_0012/adjudication/PUBLICATION.md)
   COMPLETE; independent C-R COMPLETE; reliability comparison COMPLETE;
   [frozen reliability outcome](../experiments/codex_dogfood/case_0012/adjudication/reliability/RELIABILITY_REVIEW.md)
-  SEVERE_ARCHITECTURE_RELEVANT_DISAGREEMENT (historical). Reconciliation COMPLETE;
+  SEVERE_ARCHITECTURE_RELEVANT_DISAGREEMENT (historical). Reconciliation and
   [reviewed gold](../experiments/codex_dogfood/case_0012/adjudication/reviewed/REVIEWED_GOLD.md)
-  VALIDATED: 4,779 cells, 61 shared units and 16 complete witnesses. Stage D is
-  authorized after the committed/pushed reviewed-gold checkpoint. Effectiveness
-  remains UNKNOWN; final U2 outcome NOT_SELECTED until the frozen treatment join.
-  U2 tests whether explicit native hints bypass avoidable lexical burden while
-  complete unchanged lexical lanes retain conceptual evidence. It does not
-  repair missing/incomplete InformationNeeds. Exact routing supplies candidates,
-  not relevance, accepted witnesses, obligation satisfaction or readiness.
+  COMPLETE: 4,779 cells, 61 units, 16 witnesses. [Stage D](../experiments/codex_dogfood/case_0012/stage_d/STAGE_D_REVIEW.md)
+  COMPLETE / **EXACT_HINT_ROUTING_SUPPORTED**. All six frozen gates pass.
+  Choices completion improves 2 to 1, integrity 138 to 113, documentation 13 to 2
+  and validation 5 to 3; five obligations tie. Unique prefix union improves only
+  319 to 316, occurrences 684 to 645 and bytes 2,856,555 to 2,849,307. REQUIRED reach
+  and semantic completeness tie; captured cost increases within the 3x gate.
+  Supported case-local value covers tested direct-declaration, direct-method and
+  resource-address routes. Module routing has no owning REQUIRED target;
+  unsupported bare-class routing remains unsupported; both are NOT_ASSESSED.
+  U2 does not repair missing InformationNeeds or automatically authorize production
+  routing. Exact routes provide candidates, not relevance, sufficiency or readiness.
 - **U3 — information-need × acquisition-mechanism routing:** future experiment;
   no general mechanism selector, autonomous search framework or search policy
   is implemented by U1. SEARCH_POLICY_FAILURE has its own taxonomy boundary.

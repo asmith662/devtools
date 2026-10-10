@@ -1,11 +1,11 @@
 # Case 0012 future blind Stage C protocol — PREPARED ONLY
 
-Current publication: [PRIMARY BLIND STAGE C](adjudication/PUBLICATION.md) is
-COMPLETE. Independent Stage C-R is NOT PERFORMED; reliability is UNMEASURED;
-reviewed/reconciled gold is NOT AVAILABLE and Stage D remains BLOCKED.
-The [C-R operator record](adjudication/C_R_OPERATOR.md) supplies the independent
-prompt; the [comparison protocol](adjudication/reliability/PROTOCOL.md) is frozen
-before C-R. The original Stage A protocol below is retained as history.
+Current publication: PRIMARY, independent C-R, reliability and sealed
+reconciliation are COMPLETE. [Reviewed gold](adjudication/reviewed/REVIEWED_GOLD.md)
+is COMPLETE; [Stage D](stage_d/STAGE_D_REVIEW.md) is COMPLETE /
+EXACT_HINT_ROUTING_SUPPORTED. The original Stage A blind protocol below is
+retained as history and authenticated at its historical checkpoint. Neither source
+review alone is final truth; disputed judgments use sealed reconciliation.
 
 At Stage A no packet, labels, units, witness alternatives or gold were authored.
 After authorized Stage B, a fresh sterile packet uses the tested allowlist

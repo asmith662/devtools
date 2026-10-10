@@ -1,3 +1,8 @@
+Current status: sealed reconciliation, [reviewed gold](../reviewed/REVIEWED_GOLD.md)
+and [Stage D](../../stage_d/STAGE_D_REVIEW.md) are COMPLETE. The U2 outcome is
+EXACT_HINT_ROUTING_SUPPORTED. The reliability/preparation checkpoint report below
+is retained as historical evidence; its earlier blocked status is superseded.
+
 # Case 0012 reliability comparison and reconciliation preparation
 
 The unchanged pre-C-R protocol selects
