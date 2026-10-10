@@ -1,10 +1,11 @@
 # Case 0012 — prospective U2 exact-hint routing
 
-Stage A = FROZEN. Effectiveness = UNKNOWN.
-[PRIMARY BLIND STAGE C](adjudication/PUBLICATION.md) = COMPLETE.
-Independent Stage C-R = COMPLETE; reliability comparison = COMPLETE;
-outcome = SEVERE_ARCHITECTURE_RELEVANT_DISAGREEMENT;
-reviewed/reconciled gold = NOT AVAILABLE; Stage D = BLOCKED.
+Stage A = FROZEN. Reconciliation = COMPLETE; reviewed gold = VALIDATED.
+[Reviewed gold](adjudication/reviewed/REVIEWED_GOLD.md) is the final semantic target:
+4,779 cells, 61 units, 16 witnesses and 32 complete task combinations.
+Stage D is authorized after the reviewed-gold committed/pushed checkpoint;
+effectiveness remains UNKNOWN until that captured-treatment join completes.
+The original reliability result remains historical evidence, not final gold.
 The original Stage A instructions below are retained as checkpoint history.
 
 The original Stage A checkpoint is `bd82f6481d0f993c1757fe1689b8b772b1948db9`.
@@ -56,10 +57,7 @@ exposes every difference and gate; neither source is truth. All 4,779 cells alig
 4,673 labels agree, 106 differ, and 19 differ in REQUIRED membership. REQUIRED
 resource union Jaccard is 11/21. No treatment join or effectiveness analysis occurred.
 
-Next: start a fresh treatment-blind reconciliation session from the stable
-workspace recorded in [PREPARATION.json](adjudication/reliability/reconciliation/PREPARATION.json).
-Resolve ONLY its anonymized semantic disagreements. Do not access Stage B until
-reconciled reviewed gold has been materialized and frozen. The reviewer has not
-been started. Reviewed/reconciled gold is NOT AVAILABLE; Stage D remains BLOCKED;
-final U2 outcome is NOT_SELECTED. U3 FUTURE, R1.7 RETAINED and R2 true BM25F
-MANDATORY remain unchanged.
+Current next step: authenticate the captured authoritative Stage B attempt and
+execute Stage D against the frozen reviewed gold. No retrieval, resolution or
+presentation rerun is authorized. U3 FUTURE, R1.7 RETAINED, R2 true BM25F MANDATORY
+and downstream Localization continuation PRESERVED.

@@ -1,0 +1,103 @@
+{
+  "adversarial_checks": {
+    "altered_evidence_identity": "REJECTED",
+    "altered_judgment_with_hash_update": "REJECTED",
+    "altered_judgment_without_hash_update": "REJECTED",
+    "duplicate_decision": "REJECTED",
+    "existing_output_overwrite": "REJECTED",
+    "invalid_decision": "REJECTED",
+    "invalid_support_span": "REJECTED",
+    "missing_decision": "REJECTED",
+    "packet_identity_tamper": "REJECTED",
+    "prohibited_identity_leakage": "REJECTED",
+    "tampered_hashes": "REJECTED",
+    "tampered_hashes_resealed": "REJECTED",
+    "unknown_evidence_resource": "REJECTED",
+    "unknown_proposition": "REJECTED",
+    "wrong_span_text": "REJECTED"
+  },
+  "blindness": {
+    "access": {
+      "Git/history": "NO",
+      "PRIMARY adjudication": "NO",
+      "Stage B": "NO",
+      "U2 outcome information": "NO",
+      "acquisition costs": "NO",
+      "analyzed terms": "NO",
+      "arms": "NO",
+      "chronology": "NO",
+      "confirmation data": "NO",
+      "external web information": "NO",
+      "hint inventories": "NO",
+      "independent C-R adjudication": "NO",
+      "model identities": "NO",
+      "parent directory": "NO",
+      "prior Codex-session content": "NO",
+      "rankings": "NO",
+      "repository checkout": "NO",
+      "reserve data": "NO",
+      "retrieval queries": "NO",
+      "routes": "NO",
+      "scores": "NO",
+      "sibling workspaces": "NO",
+      "source reviewer identities": "NO"
+    },
+    "clean_treatment_blind": true,
+    "scope": "No excluded external/source-treatment information was sought or used. Inert repository vocabulary within the permitted packet is not external experimental access. No prior session content was consulted."
+  },
+  "checks": {
+    "anonymous_provenance": "PASS",
+    "cell_witness_consistency": "PASS",
+    "decision_vocabulary": "PASS",
+    "deterministic_json_reconstruction": "PASS",
+    "deterministic_markdown": "PASS",
+    "exact_packet_identity": "PASS",
+    "exact_proposition_inventory": "148 unique, 148 expected",
+    "input_byte_preservation": "PASS",
+    "output_hashes": "PASS on verify",
+    "overwrite_refusal": "PASS",
+    "resource_identities": "PASS",
+    "support_spans": "PASS",
+    "witness_minimality_and_completeness": "PASS"
+  },
+  "counts": {
+    "by_decision": {
+      "HELPFUL_ONLY": 94,
+      "RECONCILED": 42,
+      "REQUIRED": 12
+    },
+    "by_type": {
+      "ALTERNATIVE_WITNESS_SUFFICIENCY": 9,
+      "DISPUTED_CELL_LABEL": 87,
+      "DISPUTED_REQUIRED_NECESSITY": 19,
+      "GRANULARITY": 5,
+      "LIMITATION_ADMISSIBILITY": 2,
+      "OBLIGATION_INDISPENSABILITY": 6,
+      "SEMANTIC_UNIT_NECESSITY_ALIGNMENT": 19,
+      "TASK_SUFFICIENCY_INDISPENSABILITY": 1
+    },
+    "propositions": 148,
+    "unresolved": 0
+  },
+  "initial_directories": [],
+  "initial_links_or_reparse_points": [],
+  "initial_validator": "PASS; NO RECONCILIATION (run before outputs)",
+  "initial_whitelist": [
+    "README.md",
+    "integrity.json",
+    "manifest.json",
+    "packet.json.gz",
+    "validate_packet.py"
+  ],
+  "original_file_sha256": {
+    "README.md": "68b12b7db474e2846b240cf78f75c9f57347b6665beeea5373b663848e644797",
+    "integrity.json": "c8d9e602021a7667c3b0e066cf336caa76d52a24e47dc3936e00765d5c2da64a",
+    "manifest.json": "408c7e83c6e8455afb817767ad6b2b7848d699a73344d4c99e3ed42fe7056cd0",
+    "packet.json.gz": "34b81cc262487fb8bc2a6a6bf795622575a15b8f7542f8cc6862cc4ebcb56522",
+    "validate_packet.py": "f3968f8607aec79fd77e4c4e17def7bb71a0e4d9d7fc0c62ec3c548d294b442a"
+  },
+  "replay_contract": "A separate python -B process reconstructs all generated scientific bytes and compares them to disk; no replay output directory is created.",
+  "schema": "case-0012-reconciliation-validation-v1",
+  "status": "PASS",
+  "unresolved": 0
+}

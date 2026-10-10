@@ -9,3 +9,9 @@
 /experiments/codex_dogfood/case_0012/adjudication/reliability/RELIABILITY_REVIEW.md -text
 /experiments/codex_dogfood/case_0012/adjudication/reliability/ALIGNMENTS.json -text
 /experiments/codex_dogfood/case_0012/adjudication/reliability/validate_reconciliation_packet.py -text
+/experiments/codex_dogfood/case_0012/adjudication/reliability/reconciliation/review/* -text
+/experiments/codex_dogfood/case_0012/adjudication/reviewed/*.json -text
+/experiments/codex_dogfood/case_0012/adjudication/reviewed/REVIEWED_GOLD.md -text
+/experiments/codex_dogfood/case_0012/adjudication/reviewed/*.py -text
+# Immutable reconciliation review quotes three sealed trailing spaces verbatim.
+/experiments/codex_dogfood/case_0012/adjudication/reliability/reconciliation/review/RECONCILIATION_REVIEW.md whitespace=-blank-at-eol

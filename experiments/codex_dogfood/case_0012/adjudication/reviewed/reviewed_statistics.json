@@ -1,0 +1,94 @@
+{
+  "cells": 4779,
+  "labels": {
+    "HELPFUL_ONLY": 138,
+    "REQUIRED": 28,
+    "UNNECESSARY": 4613
+  },
+  "per_obligation": {
+    "assembly": {
+      "HELPFUL_ONLY": 13,
+      "REQUIRED": 1,
+      "UNNECESSARY": 517
+    },
+    "choices": {
+      "HELPFUL_ONLY": 13,
+      "REQUIRED": 1,
+      "UNNECESSARY": 517
+    },
+    "documentation": {
+      "HELPFUL_ONLY": 17,
+      "REQUIRED": 2,
+      "UNNECESSARY": 512
+    },
+    "exports": {
+      "HELPFUL_ONLY": 8,
+      "REQUIRED": 3,
+      "UNNECESSARY": 520
+    },
+    "integrity": {
+      "HELPFUL_ONLY": 19,
+      "REQUIRED": 8,
+      "UNNECESSARY": 504
+    },
+    "materialization": {
+      "HELPFUL_ONLY": 17,
+      "REQUIRED": 5,
+      "UNNECESSARY": 509
+    },
+    "source": {
+      "HELPFUL_ONLY": 16,
+      "REQUIRED": 5,
+      "UNNECESSARY": 510
+    },
+    "tests": {
+      "HELPFUL_ONLY": 31,
+      "REQUIRED": 1,
+      "UNNECESSARY": 499
+    },
+    "validation": {
+      "HELPFUL_ONLY": 4,
+      "REQUIRED": 2,
+      "UNNECESSARY": 525
+    }
+  },
+  "provenance": {
+    "INHERITED_AGREEMENT": 4673,
+    "RECONCILED_DISAGREEMENT": 106
+  },
+  "required_resource_union": [
+    "docs/architecture.md",
+    "docs/development/validation.md",
+    "pyproject.toml",
+    "src/devtools/context/__init__.py",
+    "src/devtools/context/planning/__init__.py",
+    "src/devtools/context/planning/docs/overview.md",
+    "src/devtools/context/planning/materialization.py",
+    "src/devtools/context/planning/plan.py",
+    "src/devtools/context/planning/rendering.py",
+    "src/devtools/context/python/classes/declarations.py",
+    "src/devtools/context/python/classes/docs/overview.md",
+    "src/devtools/context/python/function/declarations.py",
+    "src/devtools/context/python/modules/docs/overview.md",
+    "src/devtools/context/python/modules/selection.py",
+    "src/devtools/context/repository/resource.py",
+    "src/devtools/context/repository/snapshot.py"
+  ],
+  "support_split": {
+    "REPOSITORY_SUPPORTED": 33,
+    "TASK_ONLY": 28
+  },
+  "task_combinations": 32,
+  "units": 61,
+  "witnesses": {
+    "assembly": 1,
+    "choices": 1,
+    "documentation": 1,
+    "exports": 1,
+    "integrity": 4,
+    "materialization": 2,
+    "source": 4,
+    "tests": 1,
+    "validation": 1
+  }
+}

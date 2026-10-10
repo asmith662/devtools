@@ -61,8 +61,11 @@
   owns exact comparisons and neutral alignment hypotheses. The
   [reconciliation preparation](../experiments/codex_dogfood/case_0012/adjudication/reliability/reconciliation/PREPARATION.json)
   owns the stable treatment-blind packet/workspace and outside-packet mapping.
-  Reconciliation has not occurred; reviewed gold is unavailable, Stage D remains
-  blocked and effectiveness unknown. Neither independent source is truth.
+  The [immutable reconciliation](../experiments/codex_dogfood/case_0012/adjudication/reliability/reconciliation/review/RECONCILIATION_REVIEW.md)
+  is complete. [Reviewed gold](../experiments/codex_dogfood/case_0012/adjudication/reviewed/REVIEWED_GOLD.md)
+  owns the validated final 4,779-cell target, 61 units, 16 witnesses and task
+  sufficiency. Stage D is authorized after its committed/pushed gold checkpoint;
+  effectiveness remains unknown. Neither independent source alone is truth.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),
   [Cases 0004–0008 history](architecture/localization.md#prospective-cases-0004-0008-and-structural-breadth-closure)
