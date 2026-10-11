@@ -1,0 +1,45 @@
+{
+  "event": 13,
+  "execution": "case-0014-stage-b-1",
+  "frame": {
+    "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 515,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "9846f13fdce6c8fc896f673fb7d1f6e0a40b0aeeea24ad71b73d4527e367c494",
+    "source_head": "3aafd897a6a46a201180dc51dbef5e5201669a58"
+  },
+  "input_sha256": "aadb52e361cc60003eca7268fadf4235624cb2c102f51d172c17dcfb0bdab77b",
+  "operation": {
+    "identity": "query:Q5",
+    "inputs": {
+      "identity": "Q5",
+      "maximum_results": 515,
+      "obligation": "O5",
+      "text": "create src/devtools/resources/commands/__init__.py public API deterministic immutable presentation decoding display policy logging Evidence Trace subprocess persistence secret redaction"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "index-build",
+      "query:Q1",
+      "query:Q2",
+      "query:Q3",
+      "query:Q4"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "0d457f3e82a26dca675a9679ebff713b9faf8abebe93cbe7cfa993eadb009d44",
+  "runtime_identity": {
+    "implementation": "cpython",
+    "python": [
+      3,
+      14,
+      0
+    ]
+  },
+  "sequence": 7,
+  "state": "ENTERED"
+}

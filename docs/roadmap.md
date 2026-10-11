@@ -62,8 +62,8 @@ evidence; mixed ranking changes fail promotion's no-worse-completion and
 one A/B execution and the frozen full-frame blind packet. Clean Stage C and the
 Stage D join are complete. **R1.6 development and Case 0010 Stage D are complete;
 U1, U2 and U3 are complete**; Case 0013 Stage D supports bounded task-role-
-conditioned exact-route admission. R1.7 is CURRENT at frozen Case 0014 Stage A,
-with no prospective retrieval or gold; R2 is mandatory immediately after R1.7;
+conditioned exact-route admission. R1.7 is CURRENT with Case 0014 Stage A frozen
+and Stage B captured once, with no gold or selected outcome; R2 is mandatory immediately after R1.7;
 canonical production BM25 remains unchanged and semantic-resolution effectiveness
 does not resume yet.
 
@@ -219,9 +219,13 @@ and filename behavior while applying explicit contribution multipliers. A is
 canonical; B emphasizes literals; C additionally attenuates five generic work
 verbs. C is the primary prospective comparison; B supplies attribution. The
 frozen integer rule distinguishes safe strong ranking value from complementary
-value with bounded regressions and harmful or invalid behavior. Stage B is NOT
-EXECUTED, gold is ABSENT and effectiveness is UNKNOWN. Maintainer reviews Stage A;
-only after authorization execute the prospective treatments once. No production
+value with bounded regressions and harmful or invalid behavior.
+[Stage B](../experiments/codex_dogfood/case_0014/stage_b/attempts/case-0014-stage-b-1/STAGE_B_REVIEW.md)
+is CAPTURED once: one native index, six obligation queries and one unchanged
+whole-task reference lane; A/B/C share all captured native contributions and
+candidate identities. Mechanical attribution/replay pass. Gold is NOT_CREATED,
+effectiveness UNKNOWN and outcome NOT_SELECTED; the frozen rule is not applied.
+Maintainer reviews the capture before one fresh treatment-blind Astra High primary. No production
 weighting or future feature is implemented. R2 remains mandatory immediately
 after R1.7; downstream Localization continuation remains preserved.
 
@@ -281,7 +285,7 @@ canonical baseline
     -> R1.5 diagnostics (done) -> R1.6 sensitivity (done)
     -> U1 manual formulation (complete) -> U2 exact hints (complete)
     -> U3 selective mechanism routing (complete; bounded Case 0013 support)
-    -> R1.7 query terms (CURRENT; Case 0014 Stage A frozen, no retrieval)
+    -> R1.7 query terms (CURRENT; Case 0014 Stage B captured, no gold/outcome)
     -> R2 BM25F canonical terms + R2 BM25F identifier-aware terms
        (representation gain, fielding gain and interaction separately measured)
 ```

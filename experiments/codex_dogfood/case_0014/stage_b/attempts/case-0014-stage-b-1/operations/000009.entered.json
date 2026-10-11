@@ -1,0 +1,46 @@
+{
+  "event": 17,
+  "execution": "case-0014-stage-b-1",
+  "frame": {
+    "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 515,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "9846f13fdce6c8fc896f673fb7d1f6e0a40b0aeeea24ad71b73d4527e367c494",
+    "source_head": "3aafd897a6a46a201180dc51dbef5e5201669a58"
+  },
+  "input_sha256": "fccb34f3ce14cc96e7c93db8106015944fa75294c0305542eef206c65b40ce39",
+  "operation": {
+    "identity": "query:reference",
+    "inputs": {
+      "maximum_results": 515,
+      "text": "Add an opt-in deterministic human-readable diagnostic renderer for an already completed `CommandResult` in `devtools.resources.commands`.\n\nO1. Preserve the structured `Command` executable and arguments, `exit_code`, `duration`, and `succeeded`/`failed` meaning. A nonzero exit is an ordinary completed result. Rendering must be a pure operation: do not execute a command, invoke a shell, retry, or mutate the result.\n\nO2. Render `stdout` and `stderr` as separately labeled UTF-8 diagnostic excerpts. Retain the original bytes unchanged. Use explicit replacement decoding for invalid or incomplete UTF-8, disclose decoding loss separately, and never imply that decoded text is the original byte stream.\n\nO3. Add a caller-configurable nonnegative per-stream character display limit, with a default of 2048 characters. Show only a leading decoded prefix and disclose omitted display characters. Distinguish this display limit from `CommandOutputPolicy` byte retention and from `stdout_truncated`/`stderr_truncated`; a zero display limit must remain informative about omitted output.\n\nO4. Preserve and display `events_dropped` independently of output truncation. Do not reconstruct event interleaving or fabricate missing events. Do not create a `CommandResult` for timeout, cancellation, or executable-not-found failures: this renderer accepts only an existing completed result.\n\nO5. Provide a small explicit public API through `src/devtools/resources/commands/__init__.py` with deterministic output, immutable inputs and documented decoding/display policy. Keep presentation in the commands domain; do not add logging, Evidence/Trace infrastructure, subprocess ownership, persistence, or a claim of secret redaction.\n\nO6. Add controlled tests under `tests/resources/commands/` and update the package documentation under `src/devtools/resources/commands/docs/` for success/nonzero exit, empty output, valid/invalid/incomplete UTF-8, zero/default/custom display bounds, independent retention flags, event loss, deterministic output, and input immutability. Preserve the protected development validation profile documented in `docs/development/validation.md`.\n",
+      "weighted": false
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "index-build",
+      "query:Q1",
+      "query:Q2",
+      "query:Q3",
+      "query:Q4",
+      "query:Q5",
+      "query:Q6"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "4d9ebdcf51c139fd73c31ce4b0db89be6b51432b94494729cffef279fade4ba1",
+  "runtime_identity": {
+    "implementation": "cpython",
+    "python": [
+      3,
+      14,
+      0
+    ]
+  },
+  "sequence": 9,
+  "state": "ENTERED"
+}

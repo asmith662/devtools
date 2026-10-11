@@ -1,5 +1,35 @@
 # Implementation Ledger
 
+## Case 0014 query-term weighting Stage B capture (2026-10-11)
+
+Authenticated committed Stage A and the unchanged deterministic replay before
+execution. One exclusive `case-0014-stage-b-1` claim binds the frozen protocol,
+native frame, runtime, implementation and operation schedule. Reused the hardened
+fsynced append-only journal and recoverable native codec. All 27 ENTERED/RETURNED
+pairs complete without native retry: frame preparation, one index, six obligation
+queries, one unchanged reference lane and eighteen deterministic arm constructions.
+Complete positive counts are 216/208/180/343/492/460, totaling 1,899 per arm.
+
+[Mechanical review](../experiments/codex_dogfood/case_0014/stage_b/attempts/case-0014-stage-b-1/STAGE_B_REVIEW.md)
+retains full native and weighted term/channel evidence, native statistics/identity,
+all rankings, top-10/20/50 pair-order inversion sets, crossings, movements and
+role-only attribution. A exactly reproduces canonical scores/ranks/ties; A/B/C
+candidate identity is unchanged. Exact binary-rational diagnostics disclose the
+frozen ordered float summation residuals without changing scores. Costs separate
+shared native acquisition, arm construction, reference, classification restoration,
+durability/publication and descriptive wall time. Pure replay invokes no query.
+
+Gold is NOT_CREATED, effectiveness UNKNOWN, outcome NOT_SELECTED and
+SEARCH_POLICY_FAILURE NOT_ASSESSED. No witness/effectiveness analysis or gate
+application occurs. Frozen Stage A, queries, roles, multipliers and thresholds,
+production source/configuration and prior-case evidence are unchanged. Focused
+synthetic capture/weighting tests, scoped Ruff/format, strict mypy and deterministic
+mechanical validation pass; protected development validation passes 1,588 tests,
+two skips and 100% production branch coverage. U1/U2/U3 retain completed outcomes;
+R1.7 remains CURRENT, BM25F mandatory immediately afterward, Localization preserved.
+The future feature is not implemented; confirmation/reserve and live services
+are untouched. A separate blind-packet checkpoint follows the captured treatment.
+
 ## Case 0014 prospective query-term discrimination Stage A (2026-10-11)
 
 Froze selection criteria before authoring a new six-obligation command-result

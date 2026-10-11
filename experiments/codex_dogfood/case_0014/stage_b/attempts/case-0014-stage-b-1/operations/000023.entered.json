@@ -1,0 +1,61 @@
+{
+  "event": 45,
+  "execution": "case-0014-stage-b-1",
+  "frame": {
+    "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 515,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "9846f13fdce6c8fc896f673fb7d1f6e0a40b0aeeea24ad71b73d4527e367c494",
+    "source_head": "3aafd897a6a46a201180dc51dbef5e5201669a58"
+  },
+  "input_sha256": "a6751959d7a7a73eb7427cd271a946dcc4d6392b7736ad0056b2722ac3544051",
+  "operation": {
+    "identity": "construct:C:Q2",
+    "inputs": {
+      "arm": "C",
+      "frozen_policy_sha256": "4d6160085104ba15d96ba7c5c6c1f9820d69f67bc902ca0971a5cb4af5b9f081",
+      "native_operation": "query:Q2",
+      "query": "Q2"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "index-build",
+      "query:Q1",
+      "query:Q2",
+      "query:Q3",
+      "query:Q4",
+      "query:Q5",
+      "query:Q6",
+      "query:reference",
+      "construct:A:Q1",
+      "construct:A:Q2",
+      "construct:A:Q3",
+      "construct:A:Q4",
+      "construct:A:Q5",
+      "construct:A:Q6",
+      "construct:B:Q1",
+      "construct:B:Q2",
+      "construct:B:Q3",
+      "construct:B:Q4",
+      "construct:B:Q5",
+      "construct:B:Q6",
+      "construct:C:Q1"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "11ef787e8d558fefa95c452d797c7b9e198457c6e73c5e92ad849408addbdd45",
+  "runtime_identity": {
+    "implementation": "cpython",
+    "python": [
+      3,
+      14,
+      0
+    ]
+  },
+  "sequence": 23,
+  "state": "ENTERED"
+}

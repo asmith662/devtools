@@ -266,7 +266,7 @@ sufficiency.** Both research tracks remain necessary.
 [EXPERIMENTAL; COMPLETE] U1 manual needs: INFORMATION_NEED_AUTHORING_DEFECT
 [EXPERIMENTAL; COMPLETE] U2 exact hints: EXACT_HINT_ROUTING_SUPPORTED
 [EXPERIMENTAL; COMPLETE] U3: SELECTIVE_MECHANISM_ROUTING_SUPPORTED, bounded exact admission
-[EXPERIMENTAL; STAGE A FROZEN, NOT EXECUTED] R1.7 query-term discrimination, Case 0014
+[EXPERIMENTAL; STAGE B CAPTURED, NO GOLD/OUTCOME] R1.7 query-term discrimination, Case 0014
 [MANDATORY ROADMAP; NOT IMPLEMENTED] R2 true BM25F, regardless of R1 outcome
 
 [PRODUCTION, CALLER-DIRECTED] explicit Context choices --> plan
@@ -357,8 +357,11 @@ Later query weighting, mandatory R2 and Localization continuation remain intact.
 uses the same production ranker and a human-inspectable experimental trace;
 SEARCH_POLICY_FAILURE is separately defined and not implemented by U1. R1.7
 is CURRENT at [Case 0014 Stage A](../../experiments/codex_dogfood/case_0014/STAGE_A_REVIEW.md):
-query-side contribution multipliers are experimental infrastructure, with zero
-prospective indexing/retrieval/scoring and no gold. Native representation,
+query-side contribution multipliers are experimental infrastructure.
+[Stage B](../../experiments/codex_dogfood/case_0014/stage_b/attempts/case-0014-stage-b-1/STAGE_B_REVIEW.md)
+captures one index and seven queries; A/B/C deterministically share complete native
+contributions. Gold is NOT_CREATED, effectiveness UNKNOWN and outcome NOT_SELECTED;
+mechanical rank movement does not establish effectiveness. Native representation,
 statistics, positive candidates, ties and production behavior remain unchanged.
 True BM25F is mandatory immediately afterward. No field aggregation or production
 query weighting is implemented here; semantic-resolution continuation is preserved.

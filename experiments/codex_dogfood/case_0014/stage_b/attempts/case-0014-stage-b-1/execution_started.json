@@ -1,0 +1,97 @@
+{
+  "authentication": {
+    "frame": {
+      "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+      "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+      "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+      "resource_count": 515,
+      "resource_order": "canonical resource address ascending",
+      "snapshot_id": "9846f13fdce6c8fc896f673fb7d1f6e0a40b0aeeea24ad71b73d4527e367c494",
+      "source_head": "3aafd897a6a46a201180dc51dbef5e5201669a58"
+    },
+    "initial_counts": {
+      "gold": "ABSENT",
+      "prospective_index_builds": 0,
+      "prospective_obligation_query_executions": 0,
+      "treatment_scorings": 0,
+      "weighted_rankings": 0
+    },
+    "integrity_sha256": "ec069881253e903ecb28c86b5c4b87ee669f540f76fd036e523c8dbde5092505",
+    "protocol_sha256": "7ac7a0905813f587b750ba3335a14b4d52b66311e602256d4ad7573118112041",
+    "stage_a": "6d26f3c9cce5bc059226a0fe4023dc3ec75832ce",
+    "status": "PASS"
+  },
+  "case": "0014",
+  "classification_restoration_verification_ns": 24848500,
+  "effectiveness": "UNKNOWN",
+  "execution": "case-0014-stage-b-1",
+  "frame": {
+    "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 515,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "9846f13fdce6c8fc896f673fb7d1f6e0a40b0aeeea24ad71b73d4527e367c494",
+    "source_head": "3aafd897a6a46a201180dc51dbef5e5201669a58"
+  },
+  "gold": "ABSENT",
+  "implementation_sha256": {
+    "experiments/codex_dogfood/case_0012/stage_b/canonical.py": "0646a1a5ba42584d8e75022bc4c1a34f79fd38c99222665de1e89c5f1b02b6c7",
+    "experiments/codex_dogfood/case_0012/stage_b/durability.py": "9711616d3a122b72c2abe26a16fcced1d1f4ea7b25b413a944f88e57215ccf39",
+    "experiments/codex_dogfood/case_0012/stage_b/graph.py": "bac8824ceffe4555944a79e4d0d386aebb6f2738a36ed4ae8239017baf9b58e5",
+    "experiments/codex_dogfood/case_0014/stage_b/.gitattributes": "abeba78466be388a1c5f3cb4ad595b915a0aa9402d1d87e37dfe42762e5b91c5",
+    "experiments/codex_dogfood/case_0014/stage_b/README.md": "ec7b6f8c258d069506c0c63ab771b82fd3cd83ff91bdd0c15f26f602998602ac",
+    "experiments/codex_dogfood/case_0014/stage_b/__init__.py": "41d76f91e6c14ef342dd7c0bd5c47d125d28435468f2654cacc51bb815eec7ca",
+    "experiments/codex_dogfood/case_0014/stage_b/authenticate.py": "d0d69258b85ad453e7a41296da0c1bbb25e1a79a0c4d0b9c25d0d23468c9cf9c",
+    "experiments/codex_dogfood/case_0014/stage_b/execute.py": "39ed78fdb1f1a8b46431097372203e132f89e10e4076951ab0829f09f748d9f8",
+    "experiments/codex_dogfood/case_0014/stage_b/reporting.py": "5f4fc8727cd164bbe75dc6bf56c64d20b7efe5d549f5b3ac5bb473b550c2bb36",
+    "experiments/codex_dogfood/case_0014/stage_b/test_capture.py": "cba3b6685bbbd53bf112b60e94032bdbe6e9295698da04551643439ea46ddf04"
+  },
+  "initial_counts": {
+    "gold": "ABSENT",
+    "prospective_index_builds": 0,
+    "prospective_obligation_query_executions": 0,
+    "treatment_scorings": 0,
+    "weighted_rankings": 0
+  },
+  "operation_schedule": [
+    "frame:prepare",
+    "index-build",
+    "query:Q1",
+    "query:Q2",
+    "query:Q3",
+    "query:Q4",
+    "query:Q5",
+    "query:Q6",
+    "query:reference",
+    "construct:A:Q1",
+    "construct:A:Q2",
+    "construct:A:Q3",
+    "construct:A:Q4",
+    "construct:A:Q5",
+    "construct:A:Q6",
+    "construct:B:Q1",
+    "construct:B:Q2",
+    "construct:B:Q3",
+    "construct:B:Q4",
+    "construct:B:Q5",
+    "construct:B:Q6",
+    "construct:C:Q1",
+    "construct:C:Q2",
+    "construct:C:Q3",
+    "construct:C:Q4",
+    "construct:C:Q5",
+    "construct:C:Q6"
+  ],
+  "outcome": "NOT_SELECTED",
+  "protocol_sha256": "7ac7a0905813f587b750ba3335a14b4d52b66311e602256d4ad7573118112041",
+  "runtime": {
+    "implementation": "cpython",
+    "python": [
+      3,
+      14,
+      0
+    ]
+  },
+  "stage_a": "6d26f3c9cce5bc059226a0fe4023dc3ec75832ce"
+}

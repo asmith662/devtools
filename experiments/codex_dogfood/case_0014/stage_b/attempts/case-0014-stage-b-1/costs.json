@@ -1,0 +1,56 @@
+{
+  "accounting": "All top-level native times single-run; no child, wall, publication or durability double counting; no timing reruns",
+  "arms": {
+    "A": {
+      "charged_ns": 12226659800,
+      "construction_ns": 1747263700,
+      "queries": {
+        "Q1": 198542100,
+        "Q2": 197955900,
+        "Q3": 174323500,
+        "Q4": 298690600,
+        "Q5": 450464500,
+        "Q6": 427287100
+      }
+    },
+    "B": {
+      "charged_ns": 12229738600,
+      "construction_ns": 1750342500,
+      "queries": {
+        "Q1": 199135700,
+        "Q2": 197941100,
+        "Q3": 170870400,
+        "Q4": 305373000,
+        "Q5": 445495900,
+        "Q6": 431526400
+      }
+    },
+    "C": {
+      "charged_ns": 12185305200,
+      "construction_ns": 1705909100,
+      "queries": {
+        "Q1": 197315400,
+        "Q2": 189955000,
+        "Q3": 173854900,
+        "Q4": 304517300,
+        "Q5": 424292600,
+        "Q6": 415973900
+      }
+    }
+  },
+  "classification": "Frozen in Stage A; restoration verification separately reported, not mechanism charged",
+  "publication_durability": {
+    "accounting": "Non-mechanism publication/durability and descriptive wall only; no double counting",
+    "capture_wall_ns": 131452368200,
+    "classification_restoration_verification_ns": 24848500,
+    "journal_publication_durability_ns": 115373859000
+  },
+  "reference": "Separate unchanged lane; not mechanism charged",
+  "shared": {
+    "canonical_index_ns": 2281626000,
+    "frame_preparation_ns": 8101636000,
+    "obligation_native_acquisition_ns": 96134100,
+    "reference_native_acquisition_ns": 88977300
+  },
+  "shared_charged_equally_ns": 10479396100
+}
