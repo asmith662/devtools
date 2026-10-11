@@ -1,0 +1,51 @@
+{
+  "checkpoints": {
+    "ancestry": "PASS",
+    "blind_packet": "483caf11f6e17994b922e3f00dcb9058e28c3e3d",
+    "primary_hashes_sha256": "fc82fa987d7374590373d9fee0d51626e0e7ab21964835f876abfb5eab38861a",
+    "reviewed_gold": "f498a790714b9420b79206ad2183ed2f93f44a42",
+    "reviewed_hashes_sha256": "a9b6a964999ef5e1dfeaa81e0810c5684ac6d689cbbab700c1d55b55ca48cba6",
+    "stage_a": "6b18b6e12bbab5a0e131e0afe2fb57b5410b4f16",
+    "stage_a_integrity_sha256": "cc09684fc98c17c776a97f0d8182d9fc35a463a6e2e4f0d7d1437fd049bbc0fb",
+    "stage_b": "2937e49feb566443f943b91267c59b60b2c7494a",
+    "stage_b_integrity_sha256": "b2132804733e7c457deaccfe759cbdfc1c6546eb6a9164b1592d1e12f8c9f999"
+  },
+  "checks": [
+    "immutable ancestry and Stage A/B seals",
+    "primary/reviewed identity",
+    "73 ENTERED/RETURNED pairs and no retries",
+    "native JSON graphs/ranks/scores/contributions",
+    "independent B/C capture",
+    "literal/frozen policy and exact candidate preservation",
+    "every qualified resource/cell/unit join",
+    "all 48 witnesses in each arm and stable tie-break",
+    "prefix/union/UTF-8 arithmetic",
+    "required and owning unit reach",
+    "nonoverlapping captured costs",
+    "integer gate arithmetic and precedence",
+    "deterministic JSON/Markdown/trace",
+    "focused tamper and overwrite tests"
+  ],
+  "joins": {
+    "cells": 4779,
+    "duplicate": 0,
+    "identity_dimensions": [
+      "case",
+      "task",
+      "obligation",
+      "RepositoryId",
+      "SnapshotId",
+      "CorpusId",
+      "address",
+      "content_identity"
+    ],
+    "missing": 0,
+    "resources": 531,
+    "stale_frame": 0,
+    "unexpected": 0,
+    "units": 49,
+    "witnesses": 48
+  },
+  "outcome": "SELECTIVE_MECHANISM_ROUTING_SUPPORTED",
+  "status": "PASS"
+}

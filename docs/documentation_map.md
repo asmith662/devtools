@@ -82,8 +82,12 @@
   complete lexical/exact-first mechanical views and captured costs.
   [Primary publication](../experiments/codex_dogfood/case_0013/adjudication/PUBLICATION.md)
   owns the immutable treatment-blind GPT-6 Astra High import; [reviewed gold](../experiments/codex_dogfood/case_0013/adjudication/reviewed/REVIEWED_GOLD.md)
-  preserves its semantics directly, with no reconciliation. Stage D is pending;
-  effectiveness is unknown and U3 outcome is not selected.
+  preserves its semantics directly, with no reconciliation.
+  [Case 0013 Stage D](../experiments/codex_dogfood/case_0013/stage_d/STAGE_D_REVIEW.md)
+  owns the exact gold/capture join, all witness calculations, costs and unchanged
+  prospective gates: SELECTIVE_MECHANISM_ROUTING_SUPPORTED. The bounded result
+  establishes task-role-conditioned exact-route admission only; production is
+  unchanged. R1.7 is NEXT; true BM25F is MANDATORY AFTER R1.7.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),
   [Cases 0004–0008 history](architecture/localization.md#prospective-cases-0004-0008-and-structural-breadth-closure)

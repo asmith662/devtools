@@ -61,8 +61,8 @@ evidence; mixed ranking changes fail promotion's no-worse-completion and
 [Case 0009 Stage B](../experiments/codex_dogfood/case_0009/stage_b.md) now records
 one A/B execution and the frozen full-frame blind packet. Clean Stage C and the
 Stage D join are complete. **R1.6 development and Case 0010 Stage D are complete;
-U1 and U2 are complete**; U3 is CURRENT at its prospective Stage A checkpoint,
-R1.7 retained and R2 mandatory;
+U1, U2 and U3 are complete**; Case 0013 Stage D supports bounded task-role-
+conditioned exact-route admission. R1.7 is NEXT and R2 is mandatory after R1.7;
 canonical production BM25 remains unchanged and semantic-resolution effectiveness
 does not resume yet.
 
@@ -159,7 +159,8 @@ automating them or changing production query weights.
   unsupported bare-class routing remains unsupported; both are NOT_ASSESSED.
   U2 does not repair missing InformationNeeds or automatically authorize production
   routing. Exact routes provide candidates, not relevance, sufficiency or readiness.
-- **U3 — selective acquisition-mechanism routing:** CURRENT;
+- **U3 — selective acquisition-mechanism routing:** COMPLETE /
+  **SELECTIVE_MECHANISM_ROUTING_SUPPORTED**;
   [experimental policy](../experiments/mechanism_routing/README.md) and
   [Case 0013 Stage A](../experiments/codex_dogfood/case_0013/STAGE_A_REVIEW.md)
   freeze a new future Context-disclosure manifest task for maintainer review.
@@ -174,7 +175,20 @@ automating them or changing production query weights.
   is COMPLETE: the clean treatment-blind GPT-6 Astra High primary adjudication
   is imported unchanged and projected directly, without a second adjudication
   or reconciliation. It contains 4,779 cells, 49 units and 48 witnesses.
-  Stage D remains pending; effectiveness UNKNOWN and U3 outcome NOT_SELECTED.
+  [Stage D](../experiments/codex_dogfood/case_0013/stage_d/STAGE_D_REVIEW.md) is
+  COMPLETE under the unchanged prospective rule. Branch 1 passes: compatibility
+  A depth 2 to B/C depth 1 and validation A depth 4 to B/C depth 2 are meaningful
+  gains, both retained by C; admitted native invocations fall 10 to 6;
+  resolution plus presentation falls 4,003,246,000 to 3,413,696,800 ns;
+  charged cost falls 6,975,061,900 to 6,386,112,300 ns. Required resource/cell/unit
+  reach and obligation safety pass. Completion burden ties B/C, so branch 2
+  fails. The four skipped routes are actual native nonresolutions, without
+  invented targets. Captured presentation cost rises; all timings describe one
+  run. The result supports only task-role-conditioned exact-route admission;
+  it does not establish universal mechanism routing, graph routing, semantic
+  retrieval routing, learned routing, sequential search policy or arbitrary
+  InformationNeed by mechanism routing. Retain it as evidence for later broader
+  routing architecture; do not automatically implement production routing.
   This is experiment-only mechanism selection, not relevance, witness acceptance,
   sufficiency, production routing or sequential search. SEARCH_POLICY_FAILURE
   remains NOT_ASSESSED.
@@ -183,18 +197,20 @@ automating them or changing production query weights.
   replay passes, preserves the original packet, and attests NO excluded access.
 
 Human treatment inspection is not blind adjudication; maintainer labels belong
-in MANUAL_AUDIT. R1/R1.5/R1.6 remain complete. R1.7 remains a later query-term
-investigation, R2 true BM25F remains unconditional and mandatory, and downstream
-Localization continuation is unchanged. U1 success is not a condition for R2.
+in MANUAL_AUDIT. R1/R1.5/R1.6 remain complete. U1 = COMPLETE /
+INFORMATION_NEED_AUTHORING_DEFECT; U2 = COMPLETE / EXACT_HINT_ROUTING_SUPPORTED;
+U3 = COMPLETE / SELECTIVE_MECHANISM_ROUTING_SUPPORTED. R1.7 = NEXT. R2 true
+BM25F = MANDATORY AFTER R1.7; downstream Localization continuation = PRESERVED.
+U1 success is not a condition for R2.
 
-#### R1.7 — Query-term discrimination / weighting investigation — retained, after upstream evidence
+#### R1.7 — Query-term discrimination / weighting investigation — NEXT
 
 Follow completed prospective R1.6, or combine only if parameter and query effects remain cleanly
 attributable. Use term DF/IDF, footprint and independently judged yields as
 descriptive evidence, not automatic removal/downweighting rules. No query weights
 change in R1.5. Query formulation remains the separate R3 question.
 
-#### R2 — True BM25F / field-aware sparse retrieval — MANDATORY
+#### R2 — True BM25F / field-aware sparse retrieval — MANDATORY AFTER R1.7
 
 **R2 — Implement and evaluate a true BM25F / field-aware sparse retrieval
 formulation regardless of the outcome of R1.** R2 is unconditional: it follows
@@ -249,8 +265,8 @@ canonical baseline
     -> R1 identifier-aware representation
     -> R1.5 diagnostics (done) -> R1.6 sensitivity (done)
     -> U1 manual formulation (complete) -> U2 exact hints (complete)
-    -> U3 selective mechanism routing (CURRENT; Case 0013 Stage A frozen)
-    -> R1.7 query terms (retained)
+    -> U3 selective mechanism routing (complete; bounded Case 0013 support)
+    -> R1.7 query terms (NEXT)
     -> R2 BM25F canonical terms + R2 BM25F identifier-aware terms
        (representation gain, fielding gain and interaction separately measured)
 ```

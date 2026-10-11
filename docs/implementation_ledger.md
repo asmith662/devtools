@@ -1,5 +1,46 @@
 # Implementation Ledger
 
+## Case 0013 primary gold and selective-routing Stage D (2026-10-11)
+
+Authenticated the completed sterile GPT-6 Astra / High primary workspace against
+the sealed five original inputs and seven scientific artifact hashes. Its exact
+supported separate-process replay passed and every excluded-access category
+attests NO. Imported the primary artifacts byte-for-byte and published reviewed
+development gold directly, without semantic transformation, a second reviewer,
+reliability comparison or reconciliation. Checkpoint
+`f498a790714b9420b79206ad2183ed2f93f44a42` freezes 4,779 cells, 49 units, 48 witnesses,
+38,400 task combinations and 280 sufficient resource unions. Source, destination,
+staged and committed primary Git blob identities agree.
+
+[Stage D](../experiments/codex_dogfood/case_0013/stage_d/STAGE_D_REVIEW.md) authenticates
+the authoritative `case-0013-stage-b-1` journal and joins exact repository/snapshot/
+corpus/address/content identities. It executes no treatment operation and reads
+only inert canonical native JSON graphs; all 73 operation pairs and all native
+positive ranks/scores/contributions are preserved. Independent calculations cover
+all 144 arm/witness results. All 18 REQUIRED resources, 45 REQUIRED cells and 49
+required units remain reached. Compatibility 2-to-1 and validation 4-to-2 B gains
+are meaningful and retained by C. B/C chosen burden ties at 286 unique resources,
+807 occurrences, 706 UNNECESSARY occurrences and 2,706,261 UTF-8 bytes.
+
+The unchanged prospective gates select SELECTIVE_MECHANISM_ROUTING_SUPPORTED
+through branch 1: requests fall 10 to 6, resolution plus presentation falls
+4,003,246,000 to 3,413,696,800 ns, and charged cost falls 6,975,061,900 to
+6,386,112,300 ns. The four skipped routes genuinely returned native UNRESOLVED
+with no candidates; no target or gold label is invented. Presentation cost rises
+in this single captured run. Branch 2 fails because resource burden ties.
+SEARCH_POLICY_FAILURE remains NOT_ASSESSED. Scope is task-role-conditioned
+exact-route admission only, retained as evidence for later broader architecture.
+
+Focused reviewed-gold tests (17), Stage D tests (28), strict scoped mypy,
+Ruff/format and independent deterministic replay pass. Protected development
+validation passes with 1,588 tests, two skips and 100% production branch coverage.
+Mechanical publication/test plumbing honors native domain-separated ContentIdentity
+separately from physical artifact SHA-256 and preserves sealed quoted whitespace.
+Stage A, Stage B, primary semantics, frozen gates and production source are unchanged;
+confirmation/reserve and live services are untouched. U1/U2 conclusions remain;
+U3 is COMPLETE with the exact outcome above. R1.7 is NEXT, true BM25F is MANDATORY
+AFTER R1.7, and downstream Localization continuation is PRESERVED.
+
 ## Case 0012 authoritative Stage B attempt 2 (2026-10-09)
 
 After the pushed recovery checkpoint, fresh `case-0012-stage-b-2` completed every
