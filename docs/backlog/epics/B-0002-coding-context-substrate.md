@@ -33,8 +33,12 @@ R1.7 is COMPLETE / QUERY_TERM_WEIGHTING_HARMFUL at
 The single captured treatment and unchanged primary-derived reviewed gold establish
 selected-completion/burden gains with seven unbounded REQUIRED-cell regressions
 under the prospective rule. This is query-side weighting evidence only; no
-production weighting is authorized. R2 true BM25F is NEXT / MANDATORY and
-downstream Localization preserved. SEARCH_POLICY_FAILURE = NOT_ASSESSED;
+production weighting is authorized. R2 true BM25F is CURRENT / STAGE_A_FROZEN at
+[Case 0015](../../../experiments/codex_dogfood/case_0015/STAGE_A_REVIEW.md), with
+experiment-only CONTENT/FILENAME BM25F, fixed parameters, zero prospective
+execution and absent gold. This first slice holds representation fixed; broader
+identifier/field studies remain separate future work. No epic pressure is resolved;
+downstream Localization is preserved. SEARCH_POLICY_FAILURE = NOT_ASSESSED;
 confirmation/reserve = NOT_ACCESSED; production behavior = UNCHANGED. No epic concern is closed,
 no feature or production routing is implemented, and historical checkpoint
 paragraphs below retain their original meaning.

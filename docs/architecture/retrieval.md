@@ -267,7 +267,7 @@ sufficiency.** Both research tracks remain necessary.
 [EXPERIMENTAL; COMPLETE] U2 exact hints: EXACT_HINT_ROUTING_SUPPORTED
 [EXPERIMENTAL; COMPLETE] U3: SELECTIVE_MECHANISM_ROUTING_SUPPORTED, bounded exact admission
 [EXPERIMENTAL; COMPLETE] R1.7: QUERY_TERM_WEIGHTING_HARMFUL, Case 0014
-[MANDATORY ROADMAP; NOT IMPLEMENTED] R2 true BM25F, regardless of R1 outcome
+[EXPERIMENTAL; CURRENT, STAGE_A_FROZEN] R2 true BM25F, Case 0015; not executed
 
 [PRODUCTION, CALLER-DIRECTED] explicit Context choices --> plan
                      --> exact materialization --> rendering / assembly
@@ -370,8 +370,16 @@ evidence, not production authorization or a statement about exact routing or BM2
 SEARCH_POLICY_FAILURE remains NOT_ASSESSED; confirmation/reserve NOT_ACCESSED.
 Native representation,
 statistics, positive candidates, ties and production behavior remain unchanged.
-True BM25F design/freeze is NEXT / MANDATORY. No field aggregation or production
-query weighting is implemented here; semantic-resolution continuation is preserved.
+[Case 0015 Stage A](../../experiments/codex_dogfood/case_0015/STAGE_A_REVIEW.md)
+makes R2 CURRENT / STAGE_A_FROZEN. Experiment-owned two-field BM25F combines
+canonical content/filename normalized tf before one union IDF and saturation;
+the first slice freezes only canonical additive A versus true BM25F B with
+unchanged field representations and fixed native parameter prior. It has no
+prospective index, query, score, rank or gold. No production field aggregation
+or query weighting is implemented; semantic-resolution continuation is preserved.
+R1.7 anchor emphasis caused the harmful REQUIRED regressions; generic attenuation
+added REQUIRED gains with no additional REQUIRED regressions in that case.
+Identifier-aware R1 remains a separate view; U2/U3 remain exact-routing evidence.
 
 Open adjudications include the placement of identifier evidence, the smallest
 scientifically useful BM25F field schema, semantic retrieval granularity,

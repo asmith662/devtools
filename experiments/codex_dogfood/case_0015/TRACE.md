@@ -1,0 +1,4866 @@
+# Case 0015 prospective trace
+
+R2 CURRENT; Stage B NOT EXECUTED; effectiveness NOT_EVALUATED.
+
+## Exact task
+
+Implement strict bounded acquisition for the existing codec-backed filesystem read API.
+
+O1. In `src/devtools/resources/filesystem/reading.py`, replace the complete `read_bytes()` acquisition used by `read()` with bounded chunk acquisition when `max_bytes` is finite. Preserve the public `ResolvedPath`, `file_format`, `max_bytes` and `DEFAULT_MAX_READ_BYTES` contract, including the 16 MiB default, `None` as explicitly unbounded, negative-limit rejection, zero-limit behavior and acceptance at the exact byte boundary. A preliminary stat check may remain, but a growing file must not cause an unbounded read before rejection.
+
+O2. Define the finite acquisition bound precisely: retain at most `max_bytes` payload bytes and acquire at most one additional byte to distinguish exact-boundary EOF from oversized input; bound individual read requests and release the stream on success and every failure. Raise `FileTooLargeError` on excess instead of returning a truncated model. Do not claim a bound on decoded model memory, a stable file snapshot, race-free pathname checks, containment, authorization or locking.
+
+O3. Preserve `resolve_file_format` and `resolve_codec` behavior, explicit format override and suffix inference. Pass complete accepted bytes to the existing codecs without rewriting content. Preserve the concrete `TextFile`, `MarkdownFile`, `CsvFile`, `JsonObjectFile`, `JsonListFile` and `JsonScalarFile` results, UTF-8 decoding, original line endings, encoding and byte-size metadata. Split multibyte input across acquisition chunks without introducing replacement decoding; codec decoding failures remain `TextDecodingError` or the existing format-domain error.
+
+O4. Preserve existing filesystem error boundaries for a missing path, non-regular file, permission denial, unsupported format and oversized input. Normalize permission failures during stream opening and chunk reads to `FilesystemPermissionError` with causal exceptions. Do not change atomic `write()` behavior, format resolution ownership, core path resolution or any Tool authorization boundary; use the existing filesystem package rather than adding a generic streaming framework.
+
+O5. Add controlled tests in `tests/resources/filesystem/test_reading.py` and relevant codec/model tests for empty input, zero/exact/over-limit bytes, negative and unbounded limits, growth after stat, short chunk reads, EOF, stream closure on exceptions, opening/read permission failures, multibyte UTF-8 split across chunks, invalid UTF-8, explicit format overrides and all currently supported rich result types. Demonstrate the finite request/retention bound with deterministic instrumented streams rather than unreliable process-memory measurements or live filesystem races.
+
+O6. Update `src/devtools/resources/filesystem/docs/io.md`, the filesystem overview and roadmap, and public API documentation where needed to describe the acquisition bound and remaining limitations accurately. Preserve existing callers and the protected development validation profile in `docs/development/validation.md`, `scripts/validate_development.py` and `pyproject.toml`; run the protected profile, Ruff, formatting, mypy and diff checks. Do not add binary codecs, new file formats, streaming format parsers, secure filesystem policy or production retrieval changes.
+
+## Selection record
+
+# Case 0015 selection
+
+SELECTION_CRITERIA.json was written before final task authoring. Selection used bounded direct inspection of current filesystem/persistence documentation, backlog records and source/tests. No lexical index, document frequencies, query execution or prospective scores were obtained. No prior-case gold was read for selection.
+
+| Candidate | Decision | Reason |
+|---|---|---|
+| Strict bounded filesystem reads | SELECTED | Concrete documented allocation-before-rejection limitation; future evolution explicitly names chunk-bounded reads. Existing read contract, codecs, rich models, errors, paths, tests and validation establish six meaningful obligations. |
+| Source-format-preserving structured writes | REJECTED | Documented future pressure, but exact formatting fidelity and supported formats require broader consumer choices before a bounded task can be authored. |
+| Persistence process-loss recovery | REJECTED | B-0028 requires a real owning-domain recovery consumer; selecting it now would add unresolved durable state and lifecycle policy. |
+
+The selected task is realistic future work, distinct from prior Context Planning and command-result rendering work. Its vocabulary naturally includes read, reading.py, file formats, codecs, rich model identifiers, byte bounds, errors and validation. Current evidence spans multiple contracts and implementations, so ranking can affect acquisition burden. This rationale predicts no BM25F improvement and provides no task-specific field weight tuning.
+
+The task is a prospective information need only. This checkpoint implements neither bounded filesystem reads nor any production retrieval change. The existing filesystem roadmap remains future work.
+
+## Criteria frozen before authoring
+
+```json
+{
+  "schema": "case-0015-selection-criteria-v1",
+  "frozen_before_final_task_authoring": true,
+  "source_head": "53a1d087a24e7880f305e167e2d5f3bbb727ff61",
+  "criteria": [
+    "Realistic bounded future devtools development work grounded in current documented pressure",
+    "Different immediate feature from Cases 0011 through 0014; avoid Context Planning and command rendering",
+    "At least five independently meaningful mandatory obligations requiring current evidence across multiple resources",
+    "Natural domain vocabulary, code identifiers, filenames and conceptual requirements",
+    "Lexical ranking plausibly matters because implementation, contracts, tests and consumer boundaries are distributed",
+    "No prospective index, retrieval, document frequency, scoring or rankings during selection",
+    "No prior-case gold labels used to construct requirements",
+    "Task selection independent of predicted or observed BM25F effectiveness",
+    "No production feature implementation authorized by selecting a task"
+  ],
+  "selection_information": "Current documentation, backlog and direct bounded source/test inspection only; no retrieval evaluation"
+}
+```
+
+## schema
+
+```json
+"case-0015-r2-stage-a-v1"
+```
+
+## case
+
+```json
+"0015"
+```
+
+## source head
+
+```json
+"53a1d087a24e7880f305e167e2d5f3bbb727ff61"
+```
+
+## task identity
+
+```json
+"case-0015-strict-bounded-filesystem-read-v1"
+```
+
+## task sha256
+
+```json
+"a5626ce2aea7ff59d3b368e2a35ec2f4e88e7c8049fe35a42852ad1735f8e468"
+```
+
+## hypothesis
+
+```json
+"Given the same query, query analysis, positive candidate universe and existing CONTENT/FILENAME representations, true BM25F field combination improves task-relative necessary-evidence ranking compared with independent content BM25 plus 0.25 filename BM25. Improvement is unknown and not presumed."
+```
+
+## primary failure class
+
+```json
+"RANKING_DISCRIMINATION_FAILURE through document-side field combination; representation is held fixed"
+```
+
+## boundary
+
+```json
+"Only document-field combination architecture changes. No query weights, identifiers/subtokens, path/symbol/AST/graph fields, expansion, reranking, fusion, routing, reformulation, sequential search, software feature or production implementation."
+```
+
+## scorer semantics
+
+```json
+{
+  "CONTENT": "RepositoryTextDocument.text: exact decoded whole-resource UTF-8 text, not a window or AST view.",
+  "FILENAME": "PurePosixPath(resource.address.value).stem: final basename without final suffix; no directories, extension field or full path. Canonical iter_lexical_spans on that stem.",
+  "analysis": "Query and both fields: canonical Unicode regex \\w+ spans, casefold. Underscores remain inside words; no identifier splitting, stemming or stopwords. Query duplicates retained as observations; distinct terms score once in first encounter order.",
+  "b_content": 0.75,
+  "b_filename": 0.75,
+  "candidate": "Positive native content OR filename term matches; full maximum_results >= N. With positive IDF/settings these are exactly positive-score resources.",
+  "canonical_sources": [
+    "src/devtools/context/retrieval/lexical/analysis.py",
+    "src/devtools/context/retrieval/lexical/bm25.py",
+    "src/devtools/context/retrieval/lexical/filename.py",
+    "src/devtools/context/retrieval/lexical/scoring.py",
+    "src/devtools/context/retrieval/lexical/statistics.py",
+    "src/devtools/context/retrieval/lexical/index.py"
+  ],
+  "df": "Independent field df counts documents with at least one field occurrence; N is all eligible resource documents in both fields.",
+  "filename_coefficient": 0.25,
+  "idf": "Each field independently: ln(1 + (N - df_field + 0.5)/(df_field + 0.5)).",
+  "k1": 1.2,
+  "length": "Each field length is its own observation count. Each average is total field length divided by N including zero-length field documents; empty corpus average 0.",
+  "not_bm25f": "Independent field IDFs and independent saturations precede additive channel combination. True BM25F requires combined normalized tf before one saturation and one union IDF.",
+  "provenance": "Native result retains query observations, content statistics/index, independent filename index, both channel scores and every contributing term tf, df, idf, length, average and score.",
+  "score": "sum(content term contributions in distinct query encounter order) + 0.25 * sum(filename term contributions in distinct query encounter order)",
+  "term": "idf_field * tf_field * (k1+1) / (tf_field + k1*(1-b+b*length_field/average_field_length))",
+  "ties": "Descending score, then original native document collection position; full candidate enumeration before result bound."
+}
+```
+
+## bm25f formula
+
+```json
+{
+  "arithmetic": "Python float, fixed grouping and field/query order; every floating input/intermediate/output serialized as float.hex; do not regroup native A channels.",
+  "combined_tf": "sum(field_weight_f * normalized_tf_f) in CONTENT then FILENAME order",
+  "df_union": "Count each eligible resource document once if t occurs in CONTENT OR FILENAME; never twice.",
+  "document_score": "sum term_score in distinct canonical query encounter order; every query multiplier = 1.0",
+  "empty_field": "If tf=0 normalized tf=0. If average=0 all field lengths/tfs must be zero: disclosed denominator=1 convention with zero contribution. No division by zero. Zero-length document in nonempty field may have denominator=0 when synthetic b=1, but tf=0 still contributes zero.",
+  "idf_union": "ln(1 + (N - df_union + 0.5)/(df_union + 0.5)) using canonical calculate_bm25_inverse_document_frequency",
+  "invariants": [
+    "ONE aggregated tf",
+    "ONE union IDF",
+    "ONE saturation per term/document",
+    "Only CONTENT and FILENAME",
+    "Exact native tokens",
+    "Identical A/B positive candidates",
+    "Canonical collection-order ties"
+  ],
+  "normalized_tf": "tf_f / (1 - b_f + b_f * field_length_f / average_field_length_f)",
+  "term_score": "idf_union * ((k1+1)*combined_tf) / (k1+combined_tf)"
+}
+```
+
+## parameters
+
+```json
+{
+  "b_content": 0.75,
+  "b_filename": 0.75,
+  "content_weight": 1.0,
+  "filename_weight": 0.25,
+  "k1": 1.2
+}
+```
+
+## parameter rationale
+
+```json
+"Retain native k1=1.2, both b=0.75 and content:filename prior 1:0.25; no semantic incompatibility found. Values fixed before prospective statistics/execution; no grid search or task-specific tuning."
+```
+
+## arms
+
+```json
+{
+  "A": "CANONICAL_ADDITIVE_BM25: exact production retrieve_repository_text_documents_by_bm25, defaults and full bound",
+  "B": "TRUE_BM25F: canonical field observations; per-field normalized tf, positive field weights, one union IDF and one saturation"
+}
+```
+
+## requirement matrix
+
+```json
+[
+  {
+    "applicability": "APPLICABLE",
+    "identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "O1"
+    },
+    "mandatory": true,
+    "query_identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "Q1"
+    },
+    "requirement": "O1",
+    "satisfaction": "Identify current signature, default, limit semantics and allocation-before-rejection behavior; locate the owning implementation.",
+    "task_clause": "O1. In `src/devtools/resources/filesystem/reading.py`, replace the complete `read_bytes()` acquisition used by `read()` with bounded chunk acquisition when `max_bytes` is finite. Preserve the public `ResolvedPath`, `file_format`, `max_bytes` and `DEFAULT_MAX_READ_BYTES` contract, including the 16 MiB default, `None` as explicitly unbounded, negative-limit rejection, zero-limit behavior and acceptance at the exact byte boundary. A preliminary stat check may remain, but a growing file must not cause an unbounded read before rejection.\n\n",
+    "task_span": {
+      "end": 629,
+      "start": 89
+    },
+    "title": "Compatible bounded read contract"
+  },
+  {
+    "applicability": "APPLICABLE",
+    "identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "O2"
+    },
+    "mandatory": true,
+    "query_identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "Q2"
+    },
+    "requirement": "O2",
+    "satisfaction": "Establish precise max_bytes plus one sentinel acquisition, bounded requests, closure and distinction from model memory/security/snapshot guarantees.",
+    "task_clause": "O2. Define the finite acquisition bound precisely: retain at most `max_bytes` payload bytes and acquire at most one additional byte to distinguish exact-boundary EOF from oversized input; bound individual read requests and release the stream on success and every failure. Raise `FileTooLargeError` on excess instead of returning a truncated model. Do not claim a bound on decoded model memory, a stable file snapshot, race-free pathname checks, containment, authorization or locking.\n\n",
+    "task_span": {
+      "end": 1114,
+      "start": 629
+    },
+    "title": "Acquisition bound and lifecycle"
+  },
+  {
+    "applicability": "APPLICABLE",
+    "identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "O3"
+    },
+    "mandatory": true,
+    "query_identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "Q3"
+    },
+    "requirement": "O3",
+    "satisfaction": "Identify complete-byte codec contracts, format override/inference, concrete models, metadata and strict decoding behavior.",
+    "task_clause": "O3. Preserve `resolve_file_format` and `resolve_codec` behavior, explicit format override and suffix inference. Pass complete accepted bytes to the existing codecs without rewriting content. Preserve the concrete `TextFile`, `MarkdownFile`, `CsvFile`, `JsonObjectFile`, `JsonListFile` and `JsonScalarFile` results, UTF-8 decoding, original line endings, encoding and byte-size metadata. Split multibyte input across acquisition chunks without introducing replacement decoding; codec decoding failures remain `TextDecodingError` or the existing format-domain error.\n\n",
+    "task_span": {
+      "end": 1680,
+      "start": 1114
+    },
+    "title": "Codec and rich-model fidelity"
+  },
+  {
+    "applicability": "APPLICABLE",
+    "identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "O4"
+    },
+    "mandatory": true,
+    "query_identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "Q4"
+    },
+    "requirement": "O4",
+    "satisfaction": "Establish existing error normalization, causal exceptions and package/atomic-write/path/authorization boundaries.",
+    "task_clause": "O4. Preserve existing filesystem error boundaries for a missing path, non-regular file, permission denial, unsupported format and oversized input. Normalize permission failures during stream opening and chunk reads to `FilesystemPermissionError` with causal exceptions. Do not change atomic `write()` behavior, format resolution ownership, core path resolution or any Tool authorization boundary; use the existing filesystem package rather than adding a generic streaming framework.\n\n",
+    "task_span": {
+      "end": 2164,
+      "start": 1680
+    },
+    "title": "Error and ownership boundaries"
+  },
+  {
+    "applicability": "APPLICABLE",
+    "identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "O5"
+    },
+    "mandatory": true,
+    "query_identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "Q5"
+    },
+    "requirement": "O5",
+    "satisfaction": "Find current read/codec/model test patterns and evidence needed for deterministic instrumented-stream tests of bounds and compatibility.",
+    "task_clause": "O5. Add controlled tests in `tests/resources/filesystem/test_reading.py` and relevant codec/model tests for empty input, zero/exact/over-limit bytes, negative and unbounded limits, growth after stat, short chunk reads, EOF, stream closure on exceptions, opening/read permission failures, multibyte UTF-8 split across chunks, invalid UTF-8, explicit format overrides and all currently supported rich result types. Demonstrate the finite request/retention bound with deterministic instrumented streams rather than unreliable process-memory measurements or live filesystem races.\n\n",
+    "task_span": {
+      "end": 2742,
+      "start": 2164
+    },
+    "title": "Controlled regression tests"
+  },
+  {
+    "applicability": "APPLICABLE",
+    "identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "O6"
+    },
+    "mandatory": true,
+    "query_identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "Q6"
+    },
+    "requirement": "O6",
+    "satisfaction": "Identify authoritative behavior documentation, deferred scope and protected validation policy/configuration without changing exclusions or coverage.",
+    "task_clause": "O6. Update `src/devtools/resources/filesystem/docs/io.md`, the filesystem overview and roadmap, and public API documentation where needed to describe the acquisition bound and remaining limitations accurately. Preserve existing callers and the protected development validation profile in `docs/development/validation.md`, `scripts/validate_development.py` and `pyproject.toml`; run the protected profile, Ruff, formatting, mypy and diff checks. Do not add binary codecs, new file formats, streaming format parsers, secure filesystem policy or production retrieval changes.\n",
+    "task_span": {
+      "end": 3315,
+      "start": 2742
+    },
+    "title": "Documentation and protected validation"
+  }
+]
+```
+
+## queries
+
+```json
+[
+  {
+    "all_term_multipliers": 1.0,
+    "analysis": {
+      "observations": [
+        {
+          "encounter_ordinal": 0,
+          "end": 7,
+          "normalized_term": "reading",
+          "observed_text": "reading",
+          "start": 0
+        },
+        {
+          "encounter_ordinal": 1,
+          "end": 10,
+          "normalized_term": "py",
+          "observed_text": "py",
+          "start": 8
+        },
+        {
+          "encounter_ordinal": 2,
+          "end": 15,
+          "normalized_term": "read",
+          "observed_text": "read",
+          "start": 11
+        },
+        {
+          "encounter_ordinal": 3,
+          "end": 26,
+          "normalized_term": "read_bytes",
+          "observed_text": "read_bytes",
+          "start": 16
+        },
+        {
+          "encounter_ordinal": 4,
+          "end": 39,
+          "normalized_term": "resolvedpath",
+          "observed_text": "ResolvedPath",
+          "start": 27
+        },
+        {
+          "encounter_ordinal": 5,
+          "end": 51,
+          "normalized_term": "file_format",
+          "observed_text": "file_format",
+          "start": 40
+        },
+        {
+          "encounter_ordinal": 6,
+          "end": 61,
+          "normalized_term": "max_bytes",
+          "observed_text": "max_bytes",
+          "start": 52
+        },
+        {
+          "encounter_ordinal": 7,
+          "end": 84,
+          "normalized_term": "default_max_read_bytes",
+          "observed_text": "DEFAULT_MAX_READ_BYTES",
+          "start": 62
+        },
+        {
+          "encounter_ordinal": 8,
+          "end": 91,
+          "normalized_term": "finite",
+          "observed_text": "finite",
+          "start": 85
+        },
+        {
+          "encounter_ordinal": 9,
+          "end": 101,
+          "normalized_term": "unbounded",
+          "observed_text": "unbounded",
+          "start": 92
+        },
+        {
+          "encounter_ordinal": 10,
+          "end": 110,
+          "normalized_term": "negative",
+          "observed_text": "negative",
+          "start": 102
+        },
+        {
+          "encounter_ordinal": 11,
+          "end": 115,
+          "normalized_term": "zero",
+          "observed_text": "zero",
+          "start": 111
+        },
+        {
+          "encounter_ordinal": 12,
+          "end": 121,
+          "normalized_term": "exact",
+          "observed_text": "exact",
+          "start": 116
+        },
+        {
+          "encounter_ordinal": 13,
+          "end": 126,
+          "normalized_term": "byte",
+          "observed_text": "byte",
+          "start": 122
+        },
+        {
+          "encounter_ordinal": 14,
+          "end": 135,
+          "normalized_term": "boundary",
+          "observed_text": "boundary",
+          "start": 127
+        },
+        {
+          "encounter_ordinal": 15,
+          "end": 143,
+          "normalized_term": "growing",
+          "observed_text": "growing",
+          "start": 136
+        },
+        {
+          "encounter_ordinal": 16,
+          "end": 148,
+          "normalized_term": "file",
+          "observed_text": "file",
+          "start": 144
+        }
+      ],
+      "text": "reading.py read read_bytes ResolvedPath file_format max_bytes DEFAULT_MAX_READ_BYTES finite unbounded negative zero exact byte boundary growing file"
+    },
+    "authoring": "One query authored from this task clause before any prospective document statistics/rank; identical for both arms; no reformulation.",
+    "identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "Q1"
+    },
+    "normalized_terms": [
+      "reading",
+      "py",
+      "read",
+      "read_bytes",
+      "resolvedpath",
+      "file_format",
+      "max_bytes",
+      "default_max_read_bytes",
+      "finite",
+      "unbounded",
+      "negative",
+      "zero",
+      "exact",
+      "byte",
+      "boundary",
+      "growing",
+      "file"
+    ],
+    "obligation": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "O1"
+    },
+    "text": "reading.py read read_bytes ResolvedPath file_format max_bytes DEFAULT_MAX_READ_BYTES finite unbounded negative zero exact byte boundary growing file"
+  },
+  {
+    "all_term_multipliers": 1.0,
+    "analysis": {
+      "observations": [
+        {
+          "encounter_ordinal": 0,
+          "end": 10,
+          "normalized_term": "filesystem",
+          "observed_text": "filesystem",
+          "start": 0
+        },
+        {
+          "encounter_ordinal": 1,
+          "end": 18,
+          "normalized_term": "bounded",
+          "observed_text": "bounded",
+          "start": 11
+        },
+        {
+          "encounter_ordinal": 2,
+          "end": 24,
+          "normalized_term": "chunk",
+          "observed_text": "chunk",
+          "start": 19
+        },
+        {
+          "encounter_ordinal": 3,
+          "end": 36,
+          "normalized_term": "acquisition",
+          "observed_text": "acquisition",
+          "start": 25
+        },
+        {
+          "encounter_ordinal": 4,
+          "end": 44,
+          "normalized_term": "payload",
+          "observed_text": "payload",
+          "start": 37
+        },
+        {
+          "encounter_ordinal": 5,
+          "end": 50,
+          "normalized_term": "bytes",
+          "observed_text": "bytes",
+          "start": 45
+        },
+        {
+          "encounter_ordinal": 6,
+          "end": 54,
+          "normalized_term": "eof",
+          "observed_text": "EOF",
+          "start": 51
+        },
+        {
+          "encounter_ordinal": 7,
+          "end": 72,
+          "normalized_term": "filetoolargeerror",
+          "observed_text": "FileTooLargeError",
+          "start": 55
+        },
+        {
+          "encounter_ordinal": 8,
+          "end": 79,
+          "normalized_term": "stream",
+          "observed_text": "stream",
+          "start": 73
+        },
+        {
+          "encounter_ordinal": 9,
+          "end": 87,
+          "normalized_term": "closure",
+          "observed_text": "closure",
+          "start": 80
+        },
+        {
+          "encounter_ordinal": 10,
+          "end": 94,
+          "normalized_term": "memory",
+          "observed_text": "memory",
+          "start": 88
+        },
+        {
+          "encounter_ordinal": 11,
+          "end": 99,
+          "normalized_term": "stat",
+          "observed_text": "stat",
+          "start": 95
+        },
+        {
+          "encounter_ordinal": 12,
+          "end": 108,
+          "normalized_term": "snapshot",
+          "observed_text": "snapshot",
+          "start": 100
+        },
+        {
+          "encounter_ordinal": 13,
+          "end": 120,
+          "normalized_term": "containment",
+          "observed_text": "containment",
+          "start": 109
+        },
+        {
+          "encounter_ordinal": 14,
+          "end": 134,
+          "normalized_term": "authorization",
+          "observed_text": "authorization",
+          "start": 121
+        },
+        {
+          "encounter_ordinal": 15,
+          "end": 142,
+          "normalized_term": "locking",
+          "observed_text": "locking",
+          "start": 135
+        }
+      ],
+      "text": "filesystem bounded chunk acquisition payload bytes EOF FileTooLargeError stream closure memory stat snapshot containment authorization locking"
+    },
+    "authoring": "One query authored from this task clause before any prospective document statistics/rank; identical for both arms; no reformulation.",
+    "identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "Q2"
+    },
+    "normalized_terms": [
+      "filesystem",
+      "bounded",
+      "chunk",
+      "acquisition",
+      "payload",
+      "bytes",
+      "eof",
+      "filetoolargeerror",
+      "stream",
+      "closure",
+      "memory",
+      "stat",
+      "snapshot",
+      "containment",
+      "authorization",
+      "locking"
+    ],
+    "obligation": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "O2"
+    },
+    "text": "filesystem bounded chunk acquisition payload bytes EOF FileTooLargeError stream closure memory stat snapshot containment authorization locking"
+  },
+  {
+    "all_term_multipliers": 1.0,
+    "analysis": {
+      "observations": [
+        {
+          "encounter_ordinal": 0,
+          "end": 19,
+          "normalized_term": "resolve_file_format",
+          "observed_text": "resolve_file_format",
+          "start": 0
+        },
+        {
+          "encounter_ordinal": 1,
+          "end": 33,
+          "normalized_term": "resolve_codec",
+          "observed_text": "resolve_codec",
+          "start": 20
+        },
+        {
+          "encounter_ordinal": 2,
+          "end": 42,
+          "normalized_term": "textfile",
+          "observed_text": "TextFile",
+          "start": 34
+        },
+        {
+          "encounter_ordinal": 3,
+          "end": 55,
+          "normalized_term": "markdownfile",
+          "observed_text": "MarkdownFile",
+          "start": 43
+        },
+        {
+          "encounter_ordinal": 4,
+          "end": 63,
+          "normalized_term": "csvfile",
+          "observed_text": "CsvFile",
+          "start": 56
+        },
+        {
+          "encounter_ordinal": 5,
+          "end": 78,
+          "normalized_term": "jsonobjectfile",
+          "observed_text": "JsonObjectFile",
+          "start": 64
+        },
+        {
+          "encounter_ordinal": 6,
+          "end": 91,
+          "normalized_term": "jsonlistfile",
+          "observed_text": "JsonListFile",
+          "start": 79
+        },
+        {
+          "encounter_ordinal": 7,
+          "end": 106,
+          "normalized_term": "jsonscalarfile",
+          "observed_text": "JsonScalarFile",
+          "start": 92
+        },
+        {
+          "encounter_ordinal": 8,
+          "end": 110,
+          "normalized_term": "utf",
+          "observed_text": "UTF",
+          "start": 107
+        },
+        {
+          "encounter_ordinal": 9,
+          "end": 112,
+          "normalized_term": "8",
+          "observed_text": "8",
+          "start": 111
+        },
+        {
+          "encounter_ordinal": 10,
+          "end": 121,
+          "normalized_term": "decoding",
+          "observed_text": "decoding",
+          "start": 113
+        },
+        {
+          "encounter_ordinal": 11,
+          "end": 130,
+          "normalized_term": "encoding",
+          "observed_text": "encoding",
+          "start": 122
+        },
+        {
+          "encounter_ordinal": 12,
+          "end": 140,
+          "normalized_term": "byte_size",
+          "observed_text": "byte_size",
+          "start": 131
+        },
+        {
+          "encounter_ordinal": 13,
+          "end": 145,
+          "normalized_term": "line",
+          "observed_text": "line",
+          "start": 141
+        },
+        {
+          "encounter_ordinal": 14,
+          "end": 153,
+          "normalized_term": "endings",
+          "observed_text": "endings",
+          "start": 146
+        },
+        {
+          "encounter_ordinal": 15,
+          "end": 171,
+          "normalized_term": "textdecodingerror",
+          "observed_text": "TextDecodingError",
+          "start": 154
+        }
+      ],
+      "text": "resolve_file_format resolve_codec TextFile MarkdownFile CsvFile JsonObjectFile JsonListFile JsonScalarFile UTF-8 decoding encoding byte_size line endings TextDecodingError"
+    },
+    "authoring": "One query authored from this task clause before any prospective document statistics/rank; identical for both arms; no reformulation.",
+    "identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "Q3"
+    },
+    "normalized_terms": [
+      "resolve_file_format",
+      "resolve_codec",
+      "textfile",
+      "markdownfile",
+      "csvfile",
+      "jsonobjectfile",
+      "jsonlistfile",
+      "jsonscalarfile",
+      "utf",
+      "8",
+      "decoding",
+      "encoding",
+      "byte_size",
+      "line",
+      "endings",
+      "textdecodingerror"
+    ],
+    "obligation": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "O3"
+    },
+    "text": "resolve_file_format resolve_codec TextFile MarkdownFile CsvFile JsonObjectFile JsonListFile JsonScalarFile UTF-8 decoding encoding byte_size line endings TextDecodingError"
+  },
+  {
+    "all_term_multipliers": 1.0,
+    "analysis": {
+      "observations": [
+        {
+          "encounter_ordinal": 0,
+          "end": 10,
+          "normalized_term": "filesystem",
+          "observed_text": "filesystem",
+          "start": 0
+        },
+        {
+          "encounter_ordinal": 1,
+          "end": 18,
+          "normalized_term": "reading",
+          "observed_text": "reading",
+          "start": 11
+        },
+        {
+          "encounter_ordinal": 2,
+          "end": 42,
+          "normalized_term": "filesystemnotfounderror",
+          "observed_text": "FilesystemNotFoundError",
+          "start": 19
+        },
+        {
+          "encounter_ordinal": 3,
+          "end": 56,
+          "normalized_term": "notafileerror",
+          "observed_text": "NotAFileError",
+          "start": 43
+        },
+        {
+          "encounter_ordinal": 4,
+          "end": 82,
+          "normalized_term": "filesystempermissionerror",
+          "observed_text": "FilesystemPermissionError",
+          "start": 57
+        },
+        {
+          "encounter_ordinal": 5,
+          "end": 100,
+          "normalized_term": "filetoolargeerror",
+          "observed_text": "FileTooLargeError",
+          "start": 83
+        },
+        {
+          "encounter_ordinal": 6,
+          "end": 116,
+          "normalized_term": "fileformaterror",
+          "observed_text": "FileFormatError",
+          "start": 101
+        },
+        {
+          "encounter_ordinal": 7,
+          "end": 127,
+          "normalized_term": "permission",
+          "observed_text": "permission",
+          "start": 117
+        },
+        {
+          "encounter_ordinal": 8,
+          "end": 134,
+          "normalized_term": "stream",
+          "observed_text": "stream",
+          "start": 128
+        },
+        {
+          "encounter_ordinal": 9,
+          "end": 142,
+          "normalized_term": "opening",
+          "observed_text": "opening",
+          "start": 135
+        },
+        {
+          "encounter_ordinal": 10,
+          "end": 148,
+          "normalized_term": "chunk",
+          "observed_text": "chunk",
+          "start": 143
+        },
+        {
+          "encounter_ordinal": 11,
+          "end": 153,
+          "normalized_term": "read",
+          "observed_text": "read",
+          "start": 149
+        },
+        {
+          "encounter_ordinal": 12,
+          "end": 159,
+          "normalized_term": "write",
+          "observed_text": "write",
+          "start": 154
+        },
+        {
+          "encounter_ordinal": 13,
+          "end": 166,
+          "normalized_term": "atomic",
+          "observed_text": "atomic",
+          "start": 160
+        },
+        {
+          "encounter_ordinal": 14,
+          "end": 172,
+          "normalized_term": "paths",
+          "observed_text": "paths",
+          "start": 167
+        },
+        {
+          "encounter_ordinal": 15,
+          "end": 177,
+          "normalized_term": "tool",
+          "observed_text": "Tool",
+          "start": 173
+        },
+        {
+          "encounter_ordinal": 16,
+          "end": 191,
+          "normalized_term": "authorization",
+          "observed_text": "authorization",
+          "start": 178
+        }
+      ],
+      "text": "filesystem reading FilesystemNotFoundError NotAFileError FilesystemPermissionError FileTooLargeError FileFormatError permission stream opening chunk read write atomic paths Tool authorization"
+    },
+    "authoring": "One query authored from this task clause before any prospective document statistics/rank; identical for both arms; no reformulation.",
+    "identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "Q4"
+    },
+    "normalized_terms": [
+      "filesystem",
+      "reading",
+      "filesystemnotfounderror",
+      "notafileerror",
+      "filesystempermissionerror",
+      "filetoolargeerror",
+      "fileformaterror",
+      "permission",
+      "stream",
+      "opening",
+      "chunk",
+      "read",
+      "write",
+      "atomic",
+      "paths",
+      "tool",
+      "authorization"
+    ],
+    "obligation": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "O4"
+    },
+    "text": "filesystem reading FilesystemNotFoundError NotAFileError FilesystemPermissionError FileTooLargeError FileFormatError permission stream opening chunk read write atomic paths Tool authorization"
+  },
+  {
+    "all_term_multipliers": 1.0,
+    "analysis": {
+      "observations": [
+        {
+          "encounter_ordinal": 0,
+          "end": 5,
+          "normalized_term": "tests",
+          "observed_text": "tests",
+          "start": 0
+        },
+        {
+          "encounter_ordinal": 1,
+          "end": 15,
+          "normalized_term": "resources",
+          "observed_text": "resources",
+          "start": 6
+        },
+        {
+          "encounter_ordinal": 2,
+          "end": 26,
+          "normalized_term": "filesystem",
+          "observed_text": "filesystem",
+          "start": 16
+        },
+        {
+          "encounter_ordinal": 3,
+          "end": 39,
+          "normalized_term": "test_reading",
+          "observed_text": "test_reading",
+          "start": 27
+        },
+        {
+          "encounter_ordinal": 4,
+          "end": 42,
+          "normalized_term": "py",
+          "observed_text": "py",
+          "start": 40
+        },
+        {
+          "encounter_ordinal": 5,
+          "end": 49,
+          "normalized_term": "codecs",
+          "observed_text": "codecs",
+          "start": 43
+        },
+        {
+          "encounter_ordinal": 6,
+          "end": 56,
+          "normalized_term": "models",
+          "observed_text": "models",
+          "start": 50
+        },
+        {
+          "encounter_ordinal": 7,
+          "end": 62,
+          "normalized_term": "empty",
+          "observed_text": "empty",
+          "start": 57
+        },
+        {
+          "encounter_ordinal": 8,
+          "end": 67,
+          "normalized_term": "zero",
+          "observed_text": "zero",
+          "start": 63
+        },
+        {
+          "encounter_ordinal": 9,
+          "end": 73,
+          "normalized_term": "exact",
+          "observed_text": "exact",
+          "start": 68
+        },
+        {
+          "encounter_ordinal": 10,
+          "end": 78,
+          "normalized_term": "over",
+          "observed_text": "over",
+          "start": 74
+        },
+        {
+          "encounter_ordinal": 11,
+          "end": 84,
+          "normalized_term": "limit",
+          "observed_text": "limit",
+          "start": 79
+        },
+        {
+          "encounter_ordinal": 12,
+          "end": 93,
+          "normalized_term": "negative",
+          "observed_text": "negative",
+          "start": 85
+        },
+        {
+          "encounter_ordinal": 13,
+          "end": 103,
+          "normalized_term": "unbounded",
+          "observed_text": "unbounded",
+          "start": 94
+        },
+        {
+          "encounter_ordinal": 14,
+          "end": 110,
+          "normalized_term": "growth",
+          "observed_text": "growth",
+          "start": 104
+        },
+        {
+          "encounter_ordinal": 15,
+          "end": 115,
+          "normalized_term": "stat",
+          "observed_text": "stat",
+          "start": 111
+        },
+        {
+          "encounter_ordinal": 16,
+          "end": 121,
+          "normalized_term": "short",
+          "observed_text": "short",
+          "start": 116
+        },
+        {
+          "encounter_ordinal": 17,
+          "end": 127,
+          "normalized_term": "reads",
+          "observed_text": "reads",
+          "start": 122
+        },
+        {
+          "encounter_ordinal": 18,
+          "end": 131,
+          "normalized_term": "eof",
+          "observed_text": "EOF",
+          "start": 128
+        },
+        {
+          "encounter_ordinal": 19,
+          "end": 139,
+          "normalized_term": "closure",
+          "observed_text": "closure",
+          "start": 132
+        },
+        {
+          "encounter_ordinal": 20,
+          "end": 150,
+          "normalized_term": "permission",
+          "observed_text": "permission",
+          "start": 140
+        },
+        {
+          "encounter_ordinal": 21,
+          "end": 160,
+          "normalized_term": "multibyte",
+          "observed_text": "multibyte",
+          "start": 151
+        },
+        {
+          "encounter_ordinal": 22,
+          "end": 164,
+          "normalized_term": "utf",
+          "observed_text": "UTF",
+          "start": 161
+        },
+        {
+          "encounter_ordinal": 23,
+          "end": 166,
+          "normalized_term": "8",
+          "observed_text": "8",
+          "start": 165
+        },
+        {
+          "encounter_ordinal": 24,
+          "end": 174,
+          "normalized_term": "invalid",
+          "observed_text": "invalid",
+          "start": 167
+        },
+        {
+          "encounter_ordinal": 25,
+          "end": 181,
+          "normalized_term": "format",
+          "observed_text": "format",
+          "start": 175
+        },
+        {
+          "encounter_ordinal": 26,
+          "end": 190,
+          "normalized_term": "override",
+          "observed_text": "override",
+          "start": 182
+        }
+      ],
+      "text": "tests/resources/filesystem/test_reading.py codecs models empty zero exact over-limit negative unbounded growth stat short reads EOF closure permission multibyte UTF-8 invalid format override"
+    },
+    "authoring": "One query authored from this task clause before any prospective document statistics/rank; identical for both arms; no reformulation.",
+    "identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "Q5"
+    },
+    "normalized_terms": [
+      "tests",
+      "resources",
+      "filesystem",
+      "test_reading",
+      "py",
+      "codecs",
+      "models",
+      "empty",
+      "zero",
+      "exact",
+      "over",
+      "limit",
+      "negative",
+      "unbounded",
+      "growth",
+      "stat",
+      "short",
+      "reads",
+      "eof",
+      "closure",
+      "permission",
+      "multibyte",
+      "utf",
+      "8",
+      "invalid",
+      "format",
+      "override"
+    ],
+    "obligation": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "O5"
+    },
+    "text": "tests/resources/filesystem/test_reading.py codecs models empty zero exact over-limit negative unbounded growth stat short reads EOF closure permission multibyte UTF-8 invalid format override"
+  },
+  {
+    "all_term_multipliers": 1.0,
+    "analysis": {
+      "observations": [
+        {
+          "encounter_ordinal": 0,
+          "end": 3,
+          "normalized_term": "src",
+          "observed_text": "src",
+          "start": 0
+        },
+        {
+          "encounter_ordinal": 1,
+          "end": 12,
+          "normalized_term": "devtools",
+          "observed_text": "devtools",
+          "start": 4
+        },
+        {
+          "encounter_ordinal": 2,
+          "end": 22,
+          "normalized_term": "resources",
+          "observed_text": "resources",
+          "start": 13
+        },
+        {
+          "encounter_ordinal": 3,
+          "end": 33,
+          "normalized_term": "filesystem",
+          "observed_text": "filesystem",
+          "start": 23
+        },
+        {
+          "encounter_ordinal": 4,
+          "end": 38,
+          "normalized_term": "docs",
+          "observed_text": "docs",
+          "start": 34
+        },
+        {
+          "encounter_ordinal": 5,
+          "end": 41,
+          "normalized_term": "io",
+          "observed_text": "io",
+          "start": 39
+        },
+        {
+          "encounter_ordinal": 6,
+          "end": 44,
+          "normalized_term": "md",
+          "observed_text": "md",
+          "start": 42
+        },
+        {
+          "encounter_ordinal": 7,
+          "end": 53,
+          "normalized_term": "overview",
+          "observed_text": "overview",
+          "start": 45
+        },
+        {
+          "encounter_ordinal": 8,
+          "end": 61,
+          "normalized_term": "roadmap",
+          "observed_text": "roadmap",
+          "start": 54
+        },
+        {
+          "encounter_ordinal": 9,
+          "end": 68,
+          "normalized_term": "public",
+          "observed_text": "public",
+          "start": 62
+        },
+        {
+          "encounter_ordinal": 10,
+          "end": 72,
+          "normalized_term": "api",
+          "observed_text": "API",
+          "start": 69
+        },
+        {
+          "encounter_ordinal": 11,
+          "end": 77,
+          "normalized_term": "docs",
+          "observed_text": "docs",
+          "start": 73
+        },
+        {
+          "encounter_ordinal": 12,
+          "end": 89,
+          "normalized_term": "development",
+          "observed_text": "development",
+          "start": 78
+        },
+        {
+          "encounter_ordinal": 13,
+          "end": 100,
+          "normalized_term": "validation",
+          "observed_text": "validation",
+          "start": 90
+        },
+        {
+          "encounter_ordinal": 14,
+          "end": 103,
+          "normalized_term": "md",
+          "observed_text": "md",
+          "start": 101
+        },
+        {
+          "encounter_ordinal": 15,
+          "end": 111,
+          "normalized_term": "scripts",
+          "observed_text": "scripts",
+          "start": 104
+        },
+        {
+          "encounter_ordinal": 16,
+          "end": 132,
+          "normalized_term": "validate_development",
+          "observed_text": "validate_development",
+          "start": 112
+        },
+        {
+          "encounter_ordinal": 17,
+          "end": 135,
+          "normalized_term": "py",
+          "observed_text": "py",
+          "start": 133
+        },
+        {
+          "encounter_ordinal": 18,
+          "end": 145,
+          "normalized_term": "pyproject",
+          "observed_text": "pyproject",
+          "start": 136
+        },
+        {
+          "encounter_ordinal": 19,
+          "end": 150,
+          "normalized_term": "toml",
+          "observed_text": "toml",
+          "start": 146
+        },
+        {
+          "encounter_ordinal": 20,
+          "end": 160,
+          "normalized_term": "protected",
+          "observed_text": "protected",
+          "start": 151
+        },
+        {
+          "encounter_ordinal": 21,
+          "end": 171,
+          "normalized_term": "validation",
+          "observed_text": "validation",
+          "start": 161
+        },
+        {
+          "encounter_ordinal": 22,
+          "end": 176,
+          "normalized_term": "ruff",
+          "observed_text": "Ruff",
+          "start": 172
+        },
+        {
+          "encounter_ordinal": 23,
+          "end": 187,
+          "normalized_term": "formatting",
+          "observed_text": "formatting",
+          "start": 177
+        },
+        {
+          "encounter_ordinal": 24,
+          "end": 192,
+          "normalized_term": "mypy",
+          "observed_text": "mypy",
+          "start": 188
+        },
+        {
+          "encounter_ordinal": 25,
+          "end": 199,
+          "normalized_term": "binary",
+          "observed_text": "binary",
+          "start": 193
+        },
+        {
+          "encounter_ordinal": 26,
+          "end": 207,
+          "normalized_term": "formats",
+          "observed_text": "formats",
+          "start": 200
+        },
+        {
+          "encounter_ordinal": 27,
+          "end": 217,
+          "normalized_term": "streaming",
+          "observed_text": "streaming",
+          "start": 208
+        },
+        {
+          "encounter_ordinal": 28,
+          "end": 226,
+          "normalized_term": "security",
+          "observed_text": "security",
+          "start": 218
+        }
+      ],
+      "text": "src/devtools/resources/filesystem/docs/io.md overview roadmap public API docs/development/validation.md scripts/validate_development.py pyproject.toml protected validation Ruff formatting mypy binary formats streaming security"
+    },
+    "authoring": "One query authored from this task clause before any prospective document statistics/rank; identical for both arms; no reformulation.",
+    "identity": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "Q6"
+    },
+    "normalized_terms": [
+      "src",
+      "devtools",
+      "resources",
+      "filesystem",
+      "docs",
+      "io",
+      "md",
+      "overview",
+      "roadmap",
+      "public",
+      "api",
+      "development",
+      "validation",
+      "scripts",
+      "validate_development",
+      "py",
+      "pyproject",
+      "toml",
+      "protected",
+      "ruff",
+      "formatting",
+      "mypy",
+      "binary",
+      "formats",
+      "streaming",
+      "security"
+    ],
+    "obligation": {
+      "task": {
+        "value": "case-0015-strict-bounded-filesystem-read-v1"
+      },
+      "value": "O6"
+    },
+    "text": "src/devtools/resources/filesystem/docs/io.md overview roadmap public API docs/development/validation.md scripts/validate_development.py pyproject.toml protected validation Ruff formatting mypy binary formats streaming security"
+  }
+]
+```
+
+## global reference lane
+
+```json
+{
+  "analysis": {
+    "observations": [
+      {
+        "encounter_ordinal": 0,
+        "end": 9,
+        "normalized_term": "implement",
+        "observed_text": "Implement",
+        "start": 0
+      },
+      {
+        "encounter_ordinal": 1,
+        "end": 16,
+        "normalized_term": "strict",
+        "observed_text": "strict",
+        "start": 10
+      },
+      {
+        "encounter_ordinal": 2,
+        "end": 24,
+        "normalized_term": "bounded",
+        "observed_text": "bounded",
+        "start": 17
+      },
+      {
+        "encounter_ordinal": 3,
+        "end": 36,
+        "normalized_term": "acquisition",
+        "observed_text": "acquisition",
+        "start": 25
+      },
+      {
+        "encounter_ordinal": 4,
+        "end": 40,
+        "normalized_term": "for",
+        "observed_text": "for",
+        "start": 37
+      },
+      {
+        "encounter_ordinal": 5,
+        "end": 44,
+        "normalized_term": "the",
+        "observed_text": "the",
+        "start": 41
+      },
+      {
+        "encounter_ordinal": 6,
+        "end": 53,
+        "normalized_term": "existing",
+        "observed_text": "existing",
+        "start": 45
+      },
+      {
+        "encounter_ordinal": 7,
+        "end": 59,
+        "normalized_term": "codec",
+        "observed_text": "codec",
+        "start": 54
+      },
+      {
+        "encounter_ordinal": 8,
+        "end": 66,
+        "normalized_term": "backed",
+        "observed_text": "backed",
+        "start": 60
+      },
+      {
+        "encounter_ordinal": 9,
+        "end": 77,
+        "normalized_term": "filesystem",
+        "observed_text": "filesystem",
+        "start": 67
+      },
+      {
+        "encounter_ordinal": 10,
+        "end": 82,
+        "normalized_term": "read",
+        "observed_text": "read",
+        "start": 78
+      },
+      {
+        "encounter_ordinal": 11,
+        "end": 86,
+        "normalized_term": "api",
+        "observed_text": "API",
+        "start": 83
+      },
+      {
+        "encounter_ordinal": 12,
+        "end": 91,
+        "normalized_term": "o1",
+        "observed_text": "O1",
+        "start": 89
+      },
+      {
+        "encounter_ordinal": 13,
+        "end": 95,
+        "normalized_term": "in",
+        "observed_text": "In",
+        "start": 93
+      },
+      {
+        "encounter_ordinal": 14,
+        "end": 100,
+        "normalized_term": "src",
+        "observed_text": "src",
+        "start": 97
+      },
+      {
+        "encounter_ordinal": 15,
+        "end": 109,
+        "normalized_term": "devtools",
+        "observed_text": "devtools",
+        "start": 101
+      },
+      {
+        "encounter_ordinal": 16,
+        "end": 119,
+        "normalized_term": "resources",
+        "observed_text": "resources",
+        "start": 110
+      },
+      {
+        "encounter_ordinal": 17,
+        "end": 130,
+        "normalized_term": "filesystem",
+        "observed_text": "filesystem",
+        "start": 120
+      },
+      {
+        "encounter_ordinal": 18,
+        "end": 138,
+        "normalized_term": "reading",
+        "observed_text": "reading",
+        "start": 131
+      },
+      {
+        "encounter_ordinal": 19,
+        "end": 141,
+        "normalized_term": "py",
+        "observed_text": "py",
+        "start": 139
+      },
+      {
+        "encounter_ordinal": 20,
+        "end": 151,
+        "normalized_term": "replace",
+        "observed_text": "replace",
+        "start": 144
+      },
+      {
+        "encounter_ordinal": 21,
+        "end": 155,
+        "normalized_term": "the",
+        "observed_text": "the",
+        "start": 152
+      },
+      {
+        "encounter_ordinal": 22,
+        "end": 164,
+        "normalized_term": "complete",
+        "observed_text": "complete",
+        "start": 156
+      },
+      {
+        "encounter_ordinal": 23,
+        "end": 176,
+        "normalized_term": "read_bytes",
+        "observed_text": "read_bytes",
+        "start": 166
+      },
+      {
+        "encounter_ordinal": 24,
+        "end": 191,
+        "normalized_term": "acquisition",
+        "observed_text": "acquisition",
+        "start": 180
+      },
+      {
+        "encounter_ordinal": 25,
+        "end": 196,
+        "normalized_term": "used",
+        "observed_text": "used",
+        "start": 192
+      },
+      {
+        "encounter_ordinal": 26,
+        "end": 199,
+        "normalized_term": "by",
+        "observed_text": "by",
+        "start": 197
+      },
+      {
+        "encounter_ordinal": 27,
+        "end": 205,
+        "normalized_term": "read",
+        "observed_text": "read",
+        "start": 201
+      },
+      {
+        "encounter_ordinal": 28,
+        "end": 213,
+        "normalized_term": "with",
+        "observed_text": "with",
+        "start": 209
+      },
+      {
+        "encounter_ordinal": 29,
+        "end": 221,
+        "normalized_term": "bounded",
+        "observed_text": "bounded",
+        "start": 214
+      },
+      {
+        "encounter_ordinal": 30,
+        "end": 227,
+        "normalized_term": "chunk",
+        "observed_text": "chunk",
+        "start": 222
+      },
+      {
+        "encounter_ordinal": 31,
+        "end": 239,
+        "normalized_term": "acquisition",
+        "observed_text": "acquisition",
+        "start": 228
+      },
+      {
+        "encounter_ordinal": 32,
+        "end": 244,
+        "normalized_term": "when",
+        "observed_text": "when",
+        "start": 240
+      },
+      {
+        "encounter_ordinal": 33,
+        "end": 255,
+        "normalized_term": "max_bytes",
+        "observed_text": "max_bytes",
+        "start": 246
+      },
+      {
+        "encounter_ordinal": 34,
+        "end": 259,
+        "normalized_term": "is",
+        "observed_text": "is",
+        "start": 257
+      },
+      {
+        "encounter_ordinal": 35,
+        "end": 266,
+        "normalized_term": "finite",
+        "observed_text": "finite",
+        "start": 260
+      },
+      {
+        "encounter_ordinal": 36,
+        "end": 276,
+        "normalized_term": "preserve",
+        "observed_text": "Preserve",
+        "start": 268
+      },
+      {
+        "encounter_ordinal": 37,
+        "end": 280,
+        "normalized_term": "the",
+        "observed_text": "the",
+        "start": 277
+      },
+      {
+        "encounter_ordinal": 38,
+        "end": 287,
+        "normalized_term": "public",
+        "observed_text": "public",
+        "start": 281
+      },
+      {
+        "encounter_ordinal": 39,
+        "end": 301,
+        "normalized_term": "resolvedpath",
+        "observed_text": "ResolvedPath",
+        "start": 289
+      },
+      {
+        "encounter_ordinal": 40,
+        "end": 316,
+        "normalized_term": "file_format",
+        "observed_text": "file_format",
+        "start": 305
+      },
+      {
+        "encounter_ordinal": 41,
+        "end": 329,
+        "normalized_term": "max_bytes",
+        "observed_text": "max_bytes",
+        "start": 320
+      },
+      {
+        "encounter_ordinal": 42,
+        "end": 334,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 331
+      },
+      {
+        "encounter_ordinal": 43,
+        "end": 358,
+        "normalized_term": "default_max_read_bytes",
+        "observed_text": "DEFAULT_MAX_READ_BYTES",
+        "start": 336
+      },
+      {
+        "encounter_ordinal": 44,
+        "end": 368,
+        "normalized_term": "contract",
+        "observed_text": "contract",
+        "start": 360
+      },
+      {
+        "encounter_ordinal": 45,
+        "end": 379,
+        "normalized_term": "including",
+        "observed_text": "including",
+        "start": 370
+      },
+      {
+        "encounter_ordinal": 46,
+        "end": 383,
+        "normalized_term": "the",
+        "observed_text": "the",
+        "start": 380
+      },
+      {
+        "encounter_ordinal": 47,
+        "end": 386,
+        "normalized_term": "16",
+        "observed_text": "16",
+        "start": 384
+      },
+      {
+        "encounter_ordinal": 48,
+        "end": 390,
+        "normalized_term": "mib",
+        "observed_text": "MiB",
+        "start": 387
+      },
+      {
+        "encounter_ordinal": 49,
+        "end": 398,
+        "normalized_term": "default",
+        "observed_text": "default",
+        "start": 391
+      },
+      {
+        "encounter_ordinal": 50,
+        "end": 405,
+        "normalized_term": "none",
+        "observed_text": "None",
+        "start": 401
+      },
+      {
+        "encounter_ordinal": 51,
+        "end": 409,
+        "normalized_term": "as",
+        "observed_text": "as",
+        "start": 407
+      },
+      {
+        "encounter_ordinal": 52,
+        "end": 420,
+        "normalized_term": "explicitly",
+        "observed_text": "explicitly",
+        "start": 410
+      },
+      {
+        "encounter_ordinal": 53,
+        "end": 430,
+        "normalized_term": "unbounded",
+        "observed_text": "unbounded",
+        "start": 421
+      },
+      {
+        "encounter_ordinal": 54,
+        "end": 440,
+        "normalized_term": "negative",
+        "observed_text": "negative",
+        "start": 432
+      },
+      {
+        "encounter_ordinal": 55,
+        "end": 446,
+        "normalized_term": "limit",
+        "observed_text": "limit",
+        "start": 441
+      },
+      {
+        "encounter_ordinal": 56,
+        "end": 456,
+        "normalized_term": "rejection",
+        "observed_text": "rejection",
+        "start": 447
+      },
+      {
+        "encounter_ordinal": 57,
+        "end": 462,
+        "normalized_term": "zero",
+        "observed_text": "zero",
+        "start": 458
+      },
+      {
+        "encounter_ordinal": 58,
+        "end": 468,
+        "normalized_term": "limit",
+        "observed_text": "limit",
+        "start": 463
+      },
+      {
+        "encounter_ordinal": 59,
+        "end": 477,
+        "normalized_term": "behavior",
+        "observed_text": "behavior",
+        "start": 469
+      },
+      {
+        "encounter_ordinal": 60,
+        "end": 481,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 478
+      },
+      {
+        "encounter_ordinal": 61,
+        "end": 492,
+        "normalized_term": "acceptance",
+        "observed_text": "acceptance",
+        "start": 482
+      },
+      {
+        "encounter_ordinal": 62,
+        "end": 495,
+        "normalized_term": "at",
+        "observed_text": "at",
+        "start": 493
+      },
+      {
+        "encounter_ordinal": 63,
+        "end": 499,
+        "normalized_term": "the",
+        "observed_text": "the",
+        "start": 496
+      },
+      {
+        "encounter_ordinal": 64,
+        "end": 505,
+        "normalized_term": "exact",
+        "observed_text": "exact",
+        "start": 500
+      },
+      {
+        "encounter_ordinal": 65,
+        "end": 510,
+        "normalized_term": "byte",
+        "observed_text": "byte",
+        "start": 506
+      },
+      {
+        "encounter_ordinal": 66,
+        "end": 519,
+        "normalized_term": "boundary",
+        "observed_text": "boundary",
+        "start": 511
+      },
+      {
+        "encounter_ordinal": 67,
+        "end": 522,
+        "normalized_term": "a",
+        "observed_text": "A",
+        "start": 521
+      },
+      {
+        "encounter_ordinal": 68,
+        "end": 534,
+        "normalized_term": "preliminary",
+        "observed_text": "preliminary",
+        "start": 523
+      },
+      {
+        "encounter_ordinal": 69,
+        "end": 539,
+        "normalized_term": "stat",
+        "observed_text": "stat",
+        "start": 535
+      },
+      {
+        "encounter_ordinal": 70,
+        "end": 545,
+        "normalized_term": "check",
+        "observed_text": "check",
+        "start": 540
+      },
+      {
+        "encounter_ordinal": 71,
+        "end": 549,
+        "normalized_term": "may",
+        "observed_text": "may",
+        "start": 546
+      },
+      {
+        "encounter_ordinal": 72,
+        "end": 556,
+        "normalized_term": "remain",
+        "observed_text": "remain",
+        "start": 550
+      },
+      {
+        "encounter_ordinal": 73,
+        "end": 561,
+        "normalized_term": "but",
+        "observed_text": "but",
+        "start": 558
+      },
+      {
+        "encounter_ordinal": 74,
+        "end": 563,
+        "normalized_term": "a",
+        "observed_text": "a",
+        "start": 562
+      },
+      {
+        "encounter_ordinal": 75,
+        "end": 571,
+        "normalized_term": "growing",
+        "observed_text": "growing",
+        "start": 564
+      },
+      {
+        "encounter_ordinal": 76,
+        "end": 576,
+        "normalized_term": "file",
+        "observed_text": "file",
+        "start": 572
+      },
+      {
+        "encounter_ordinal": 77,
+        "end": 581,
+        "normalized_term": "must",
+        "observed_text": "must",
+        "start": 577
+      },
+      {
+        "encounter_ordinal": 78,
+        "end": 585,
+        "normalized_term": "not",
+        "observed_text": "not",
+        "start": 582
+      },
+      {
+        "encounter_ordinal": 79,
+        "end": 591,
+        "normalized_term": "cause",
+        "observed_text": "cause",
+        "start": 586
+      },
+      {
+        "encounter_ordinal": 80,
+        "end": 594,
+        "normalized_term": "an",
+        "observed_text": "an",
+        "start": 592
+      },
+      {
+        "encounter_ordinal": 81,
+        "end": 604,
+        "normalized_term": "unbounded",
+        "observed_text": "unbounded",
+        "start": 595
+      },
+      {
+        "encounter_ordinal": 82,
+        "end": 609,
+        "normalized_term": "read",
+        "observed_text": "read",
+        "start": 605
+      },
+      {
+        "encounter_ordinal": 83,
+        "end": 616,
+        "normalized_term": "before",
+        "observed_text": "before",
+        "start": 610
+      },
+      {
+        "encounter_ordinal": 84,
+        "end": 626,
+        "normalized_term": "rejection",
+        "observed_text": "rejection",
+        "start": 617
+      },
+      {
+        "encounter_ordinal": 85,
+        "end": 631,
+        "normalized_term": "o2",
+        "observed_text": "O2",
+        "start": 629
+      },
+      {
+        "encounter_ordinal": 86,
+        "end": 639,
+        "normalized_term": "define",
+        "observed_text": "Define",
+        "start": 633
+      },
+      {
+        "encounter_ordinal": 87,
+        "end": 643,
+        "normalized_term": "the",
+        "observed_text": "the",
+        "start": 640
+      },
+      {
+        "encounter_ordinal": 88,
+        "end": 650,
+        "normalized_term": "finite",
+        "observed_text": "finite",
+        "start": 644
+      },
+      {
+        "encounter_ordinal": 89,
+        "end": 662,
+        "normalized_term": "acquisition",
+        "observed_text": "acquisition",
+        "start": 651
+      },
+      {
+        "encounter_ordinal": 90,
+        "end": 668,
+        "normalized_term": "bound",
+        "observed_text": "bound",
+        "start": 663
+      },
+      {
+        "encounter_ordinal": 91,
+        "end": 678,
+        "normalized_term": "precisely",
+        "observed_text": "precisely",
+        "start": 669
+      },
+      {
+        "encounter_ordinal": 92,
+        "end": 686,
+        "normalized_term": "retain",
+        "observed_text": "retain",
+        "start": 680
+      },
+      {
+        "encounter_ordinal": 93,
+        "end": 689,
+        "normalized_term": "at",
+        "observed_text": "at",
+        "start": 687
+      },
+      {
+        "encounter_ordinal": 94,
+        "end": 694,
+        "normalized_term": "most",
+        "observed_text": "most",
+        "start": 690
+      },
+      {
+        "encounter_ordinal": 95,
+        "end": 705,
+        "normalized_term": "max_bytes",
+        "observed_text": "max_bytes",
+        "start": 696
+      },
+      {
+        "encounter_ordinal": 96,
+        "end": 714,
+        "normalized_term": "payload",
+        "observed_text": "payload",
+        "start": 707
+      },
+      {
+        "encounter_ordinal": 97,
+        "end": 720,
+        "normalized_term": "bytes",
+        "observed_text": "bytes",
+        "start": 715
+      },
+      {
+        "encounter_ordinal": 98,
+        "end": 724,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 721
+      },
+      {
+        "encounter_ordinal": 99,
+        "end": 732,
+        "normalized_term": "acquire",
+        "observed_text": "acquire",
+        "start": 725
+      },
+      {
+        "encounter_ordinal": 100,
+        "end": 735,
+        "normalized_term": "at",
+        "observed_text": "at",
+        "start": 733
+      },
+      {
+        "encounter_ordinal": 101,
+        "end": 740,
+        "normalized_term": "most",
+        "observed_text": "most",
+        "start": 736
+      },
+      {
+        "encounter_ordinal": 102,
+        "end": 744,
+        "normalized_term": "one",
+        "observed_text": "one",
+        "start": 741
+      },
+      {
+        "encounter_ordinal": 103,
+        "end": 755,
+        "normalized_term": "additional",
+        "observed_text": "additional",
+        "start": 745
+      },
+      {
+        "encounter_ordinal": 104,
+        "end": 760,
+        "normalized_term": "byte",
+        "observed_text": "byte",
+        "start": 756
+      },
+      {
+        "encounter_ordinal": 105,
+        "end": 763,
+        "normalized_term": "to",
+        "observed_text": "to",
+        "start": 761
+      },
+      {
+        "encounter_ordinal": 106,
+        "end": 775,
+        "normalized_term": "distinguish",
+        "observed_text": "distinguish",
+        "start": 764
+      },
+      {
+        "encounter_ordinal": 107,
+        "end": 781,
+        "normalized_term": "exact",
+        "observed_text": "exact",
+        "start": 776
+      },
+      {
+        "encounter_ordinal": 108,
+        "end": 790,
+        "normalized_term": "boundary",
+        "observed_text": "boundary",
+        "start": 782
+      },
+      {
+        "encounter_ordinal": 109,
+        "end": 794,
+        "normalized_term": "eof",
+        "observed_text": "EOF",
+        "start": 791
+      },
+      {
+        "encounter_ordinal": 110,
+        "end": 799,
+        "normalized_term": "from",
+        "observed_text": "from",
+        "start": 795
+      },
+      {
+        "encounter_ordinal": 111,
+        "end": 809,
+        "normalized_term": "oversized",
+        "observed_text": "oversized",
+        "start": 800
+      },
+      {
+        "encounter_ordinal": 112,
+        "end": 815,
+        "normalized_term": "input",
+        "observed_text": "input",
+        "start": 810
+      },
+      {
+        "encounter_ordinal": 113,
+        "end": 822,
+        "normalized_term": "bound",
+        "observed_text": "bound",
+        "start": 817
+      },
+      {
+        "encounter_ordinal": 114,
+        "end": 833,
+        "normalized_term": "individual",
+        "observed_text": "individual",
+        "start": 823
+      },
+      {
+        "encounter_ordinal": 115,
+        "end": 838,
+        "normalized_term": "read",
+        "observed_text": "read",
+        "start": 834
+      },
+      {
+        "encounter_ordinal": 116,
+        "end": 847,
+        "normalized_term": "requests",
+        "observed_text": "requests",
+        "start": 839
+      },
+      {
+        "encounter_ordinal": 117,
+        "end": 851,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 848
+      },
+      {
+        "encounter_ordinal": 118,
+        "end": 859,
+        "normalized_term": "release",
+        "observed_text": "release",
+        "start": 852
+      },
+      {
+        "encounter_ordinal": 119,
+        "end": 863,
+        "normalized_term": "the",
+        "observed_text": "the",
+        "start": 860
+      },
+      {
+        "encounter_ordinal": 120,
+        "end": 870,
+        "normalized_term": "stream",
+        "observed_text": "stream",
+        "start": 864
+      },
+      {
+        "encounter_ordinal": 121,
+        "end": 873,
+        "normalized_term": "on",
+        "observed_text": "on",
+        "start": 871
+      },
+      {
+        "encounter_ordinal": 122,
+        "end": 881,
+        "normalized_term": "success",
+        "observed_text": "success",
+        "start": 874
+      },
+      {
+        "encounter_ordinal": 123,
+        "end": 885,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 882
+      },
+      {
+        "encounter_ordinal": 124,
+        "end": 891,
+        "normalized_term": "every",
+        "observed_text": "every",
+        "start": 886
+      },
+      {
+        "encounter_ordinal": 125,
+        "end": 899,
+        "normalized_term": "failure",
+        "observed_text": "failure",
+        "start": 892
+      },
+      {
+        "encounter_ordinal": 126,
+        "end": 906,
+        "normalized_term": "raise",
+        "observed_text": "Raise",
+        "start": 901
+      },
+      {
+        "encounter_ordinal": 127,
+        "end": 925,
+        "normalized_term": "filetoolargeerror",
+        "observed_text": "FileTooLargeError",
+        "start": 908
+      },
+      {
+        "encounter_ordinal": 128,
+        "end": 929,
+        "normalized_term": "on",
+        "observed_text": "on",
+        "start": 927
+      },
+      {
+        "encounter_ordinal": 129,
+        "end": 936,
+        "normalized_term": "excess",
+        "observed_text": "excess",
+        "start": 930
+      },
+      {
+        "encounter_ordinal": 130,
+        "end": 944,
+        "normalized_term": "instead",
+        "observed_text": "instead",
+        "start": 937
+      },
+      {
+        "encounter_ordinal": 131,
+        "end": 947,
+        "normalized_term": "of",
+        "observed_text": "of",
+        "start": 945
+      },
+      {
+        "encounter_ordinal": 132,
+        "end": 957,
+        "normalized_term": "returning",
+        "observed_text": "returning",
+        "start": 948
+      },
+      {
+        "encounter_ordinal": 133,
+        "end": 959,
+        "normalized_term": "a",
+        "observed_text": "a",
+        "start": 958
+      },
+      {
+        "encounter_ordinal": 134,
+        "end": 969,
+        "normalized_term": "truncated",
+        "observed_text": "truncated",
+        "start": 960
+      },
+      {
+        "encounter_ordinal": 135,
+        "end": 975,
+        "normalized_term": "model",
+        "observed_text": "model",
+        "start": 970
+      },
+      {
+        "encounter_ordinal": 136,
+        "end": 979,
+        "normalized_term": "do",
+        "observed_text": "Do",
+        "start": 977
+      },
+      {
+        "encounter_ordinal": 137,
+        "end": 983,
+        "normalized_term": "not",
+        "observed_text": "not",
+        "start": 980
+      },
+      {
+        "encounter_ordinal": 138,
+        "end": 989,
+        "normalized_term": "claim",
+        "observed_text": "claim",
+        "start": 984
+      },
+      {
+        "encounter_ordinal": 139,
+        "end": 991,
+        "normalized_term": "a",
+        "observed_text": "a",
+        "start": 990
+      },
+      {
+        "encounter_ordinal": 140,
+        "end": 997,
+        "normalized_term": "bound",
+        "observed_text": "bound",
+        "start": 992
+      },
+      {
+        "encounter_ordinal": 141,
+        "end": 1000,
+        "normalized_term": "on",
+        "observed_text": "on",
+        "start": 998
+      },
+      {
+        "encounter_ordinal": 142,
+        "end": 1008,
+        "normalized_term": "decoded",
+        "observed_text": "decoded",
+        "start": 1001
+      },
+      {
+        "encounter_ordinal": 143,
+        "end": 1014,
+        "normalized_term": "model",
+        "observed_text": "model",
+        "start": 1009
+      },
+      {
+        "encounter_ordinal": 144,
+        "end": 1021,
+        "normalized_term": "memory",
+        "observed_text": "memory",
+        "start": 1015
+      },
+      {
+        "encounter_ordinal": 145,
+        "end": 1024,
+        "normalized_term": "a",
+        "observed_text": "a",
+        "start": 1023
+      },
+      {
+        "encounter_ordinal": 146,
+        "end": 1031,
+        "normalized_term": "stable",
+        "observed_text": "stable",
+        "start": 1025
+      },
+      {
+        "encounter_ordinal": 147,
+        "end": 1036,
+        "normalized_term": "file",
+        "observed_text": "file",
+        "start": 1032
+      },
+      {
+        "encounter_ordinal": 148,
+        "end": 1045,
+        "normalized_term": "snapshot",
+        "observed_text": "snapshot",
+        "start": 1037
+      },
+      {
+        "encounter_ordinal": 149,
+        "end": 1051,
+        "normalized_term": "race",
+        "observed_text": "race",
+        "start": 1047
+      },
+      {
+        "encounter_ordinal": 150,
+        "end": 1056,
+        "normalized_term": "free",
+        "observed_text": "free",
+        "start": 1052
+      },
+      {
+        "encounter_ordinal": 151,
+        "end": 1065,
+        "normalized_term": "pathname",
+        "observed_text": "pathname",
+        "start": 1057
+      },
+      {
+        "encounter_ordinal": 152,
+        "end": 1072,
+        "normalized_term": "checks",
+        "observed_text": "checks",
+        "start": 1066
+      },
+      {
+        "encounter_ordinal": 153,
+        "end": 1085,
+        "normalized_term": "containment",
+        "observed_text": "containment",
+        "start": 1074
+      },
+      {
+        "encounter_ordinal": 154,
+        "end": 1100,
+        "normalized_term": "authorization",
+        "observed_text": "authorization",
+        "start": 1087
+      },
+      {
+        "encounter_ordinal": 155,
+        "end": 1103,
+        "normalized_term": "or",
+        "observed_text": "or",
+        "start": 1101
+      },
+      {
+        "encounter_ordinal": 156,
+        "end": 1111,
+        "normalized_term": "locking",
+        "observed_text": "locking",
+        "start": 1104
+      },
+      {
+        "encounter_ordinal": 157,
+        "end": 1116,
+        "normalized_term": "o3",
+        "observed_text": "O3",
+        "start": 1114
+      },
+      {
+        "encounter_ordinal": 158,
+        "end": 1126,
+        "normalized_term": "preserve",
+        "observed_text": "Preserve",
+        "start": 1118
+      },
+      {
+        "encounter_ordinal": 159,
+        "end": 1147,
+        "normalized_term": "resolve_file_format",
+        "observed_text": "resolve_file_format",
+        "start": 1128
+      },
+      {
+        "encounter_ordinal": 160,
+        "end": 1152,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 1149
+      },
+      {
+        "encounter_ordinal": 161,
+        "end": 1167,
+        "normalized_term": "resolve_codec",
+        "observed_text": "resolve_codec",
+        "start": 1154
+      },
+      {
+        "encounter_ordinal": 162,
+        "end": 1177,
+        "normalized_term": "behavior",
+        "observed_text": "behavior",
+        "start": 1169
+      },
+      {
+        "encounter_ordinal": 163,
+        "end": 1187,
+        "normalized_term": "explicit",
+        "observed_text": "explicit",
+        "start": 1179
+      },
+      {
+        "encounter_ordinal": 164,
+        "end": 1194,
+        "normalized_term": "format",
+        "observed_text": "format",
+        "start": 1188
+      },
+      {
+        "encounter_ordinal": 165,
+        "end": 1203,
+        "normalized_term": "override",
+        "observed_text": "override",
+        "start": 1195
+      },
+      {
+        "encounter_ordinal": 166,
+        "end": 1207,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 1204
+      },
+      {
+        "encounter_ordinal": 167,
+        "end": 1214,
+        "normalized_term": "suffix",
+        "observed_text": "suffix",
+        "start": 1208
+      },
+      {
+        "encounter_ordinal": 168,
+        "end": 1224,
+        "normalized_term": "inference",
+        "observed_text": "inference",
+        "start": 1215
+      },
+      {
+        "encounter_ordinal": 169,
+        "end": 1230,
+        "normalized_term": "pass",
+        "observed_text": "Pass",
+        "start": 1226
+      },
+      {
+        "encounter_ordinal": 170,
+        "end": 1239,
+        "normalized_term": "complete",
+        "observed_text": "complete",
+        "start": 1231
+      },
+      {
+        "encounter_ordinal": 171,
+        "end": 1248,
+        "normalized_term": "accepted",
+        "observed_text": "accepted",
+        "start": 1240
+      },
+      {
+        "encounter_ordinal": 172,
+        "end": 1254,
+        "normalized_term": "bytes",
+        "observed_text": "bytes",
+        "start": 1249
+      },
+      {
+        "encounter_ordinal": 173,
+        "end": 1257,
+        "normalized_term": "to",
+        "observed_text": "to",
+        "start": 1255
+      },
+      {
+        "encounter_ordinal": 174,
+        "end": 1261,
+        "normalized_term": "the",
+        "observed_text": "the",
+        "start": 1258
+      },
+      {
+        "encounter_ordinal": 175,
+        "end": 1270,
+        "normalized_term": "existing",
+        "observed_text": "existing",
+        "start": 1262
+      },
+      {
+        "encounter_ordinal": 176,
+        "end": 1277,
+        "normalized_term": "codecs",
+        "observed_text": "codecs",
+        "start": 1271
+      },
+      {
+        "encounter_ordinal": 177,
+        "end": 1285,
+        "normalized_term": "without",
+        "observed_text": "without",
+        "start": 1278
+      },
+      {
+        "encounter_ordinal": 178,
+        "end": 1295,
+        "normalized_term": "rewriting",
+        "observed_text": "rewriting",
+        "start": 1286
+      },
+      {
+        "encounter_ordinal": 179,
+        "end": 1303,
+        "normalized_term": "content",
+        "observed_text": "content",
+        "start": 1296
+      },
+      {
+        "encounter_ordinal": 180,
+        "end": 1313,
+        "normalized_term": "preserve",
+        "observed_text": "Preserve",
+        "start": 1305
+      },
+      {
+        "encounter_ordinal": 181,
+        "end": 1317,
+        "normalized_term": "the",
+        "observed_text": "the",
+        "start": 1314
+      },
+      {
+        "encounter_ordinal": 182,
+        "end": 1326,
+        "normalized_term": "concrete",
+        "observed_text": "concrete",
+        "start": 1318
+      },
+      {
+        "encounter_ordinal": 183,
+        "end": 1336,
+        "normalized_term": "textfile",
+        "observed_text": "TextFile",
+        "start": 1328
+      },
+      {
+        "encounter_ordinal": 184,
+        "end": 1352,
+        "normalized_term": "markdownfile",
+        "observed_text": "MarkdownFile",
+        "start": 1340
+      },
+      {
+        "encounter_ordinal": 185,
+        "end": 1363,
+        "normalized_term": "csvfile",
+        "observed_text": "CsvFile",
+        "start": 1356
+      },
+      {
+        "encounter_ordinal": 186,
+        "end": 1381,
+        "normalized_term": "jsonobjectfile",
+        "observed_text": "JsonObjectFile",
+        "start": 1367
+      },
+      {
+        "encounter_ordinal": 187,
+        "end": 1397,
+        "normalized_term": "jsonlistfile",
+        "observed_text": "JsonListFile",
+        "start": 1385
+      },
+      {
+        "encounter_ordinal": 188,
+        "end": 1402,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 1399
+      },
+      {
+        "encounter_ordinal": 189,
+        "end": 1418,
+        "normalized_term": "jsonscalarfile",
+        "observed_text": "JsonScalarFile",
+        "start": 1404
+      },
+      {
+        "encounter_ordinal": 190,
+        "end": 1427,
+        "normalized_term": "results",
+        "observed_text": "results",
+        "start": 1420
+      },
+      {
+        "encounter_ordinal": 191,
+        "end": 1432,
+        "normalized_term": "utf",
+        "observed_text": "UTF",
+        "start": 1429
+      },
+      {
+        "encounter_ordinal": 192,
+        "end": 1434,
+        "normalized_term": "8",
+        "observed_text": "8",
+        "start": 1433
+      },
+      {
+        "encounter_ordinal": 193,
+        "end": 1443,
+        "normalized_term": "decoding",
+        "observed_text": "decoding",
+        "start": 1435
+      },
+      {
+        "encounter_ordinal": 194,
+        "end": 1453,
+        "normalized_term": "original",
+        "observed_text": "original",
+        "start": 1445
+      },
+      {
+        "encounter_ordinal": 195,
+        "end": 1458,
+        "normalized_term": "line",
+        "observed_text": "line",
+        "start": 1454
+      },
+      {
+        "encounter_ordinal": 196,
+        "end": 1466,
+        "normalized_term": "endings",
+        "observed_text": "endings",
+        "start": 1459
+      },
+      {
+        "encounter_ordinal": 197,
+        "end": 1476,
+        "normalized_term": "encoding",
+        "observed_text": "encoding",
+        "start": 1468
+      },
+      {
+        "encounter_ordinal": 198,
+        "end": 1480,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 1477
+      },
+      {
+        "encounter_ordinal": 199,
+        "end": 1485,
+        "normalized_term": "byte",
+        "observed_text": "byte",
+        "start": 1481
+      },
+      {
+        "encounter_ordinal": 200,
+        "end": 1490,
+        "normalized_term": "size",
+        "observed_text": "size",
+        "start": 1486
+      },
+      {
+        "encounter_ordinal": 201,
+        "end": 1499,
+        "normalized_term": "metadata",
+        "observed_text": "metadata",
+        "start": 1491
+      },
+      {
+        "encounter_ordinal": 202,
+        "end": 1506,
+        "normalized_term": "split",
+        "observed_text": "Split",
+        "start": 1501
+      },
+      {
+        "encounter_ordinal": 203,
+        "end": 1516,
+        "normalized_term": "multibyte",
+        "observed_text": "multibyte",
+        "start": 1507
+      },
+      {
+        "encounter_ordinal": 204,
+        "end": 1522,
+        "normalized_term": "input",
+        "observed_text": "input",
+        "start": 1517
+      },
+      {
+        "encounter_ordinal": 205,
+        "end": 1529,
+        "normalized_term": "across",
+        "observed_text": "across",
+        "start": 1523
+      },
+      {
+        "encounter_ordinal": 206,
+        "end": 1541,
+        "normalized_term": "acquisition",
+        "observed_text": "acquisition",
+        "start": 1530
+      },
+      {
+        "encounter_ordinal": 207,
+        "end": 1548,
+        "normalized_term": "chunks",
+        "observed_text": "chunks",
+        "start": 1542
+      },
+      {
+        "encounter_ordinal": 208,
+        "end": 1556,
+        "normalized_term": "without",
+        "observed_text": "without",
+        "start": 1549
+      },
+      {
+        "encounter_ordinal": 209,
+        "end": 1568,
+        "normalized_term": "introducing",
+        "observed_text": "introducing",
+        "start": 1557
+      },
+      {
+        "encounter_ordinal": 210,
+        "end": 1580,
+        "normalized_term": "replacement",
+        "observed_text": "replacement",
+        "start": 1569
+      },
+      {
+        "encounter_ordinal": 211,
+        "end": 1589,
+        "normalized_term": "decoding",
+        "observed_text": "decoding",
+        "start": 1581
+      },
+      {
+        "encounter_ordinal": 212,
+        "end": 1596,
+        "normalized_term": "codec",
+        "observed_text": "codec",
+        "start": 1591
+      },
+      {
+        "encounter_ordinal": 213,
+        "end": 1605,
+        "normalized_term": "decoding",
+        "observed_text": "decoding",
+        "start": 1597
+      },
+      {
+        "encounter_ordinal": 214,
+        "end": 1614,
+        "normalized_term": "failures",
+        "observed_text": "failures",
+        "start": 1606
+      },
+      {
+        "encounter_ordinal": 215,
+        "end": 1621,
+        "normalized_term": "remain",
+        "observed_text": "remain",
+        "start": 1615
+      },
+      {
+        "encounter_ordinal": 216,
+        "end": 1640,
+        "normalized_term": "textdecodingerror",
+        "observed_text": "TextDecodingError",
+        "start": 1623
+      },
+      {
+        "encounter_ordinal": 217,
+        "end": 1644,
+        "normalized_term": "or",
+        "observed_text": "or",
+        "start": 1642
+      },
+      {
+        "encounter_ordinal": 218,
+        "end": 1648,
+        "normalized_term": "the",
+        "observed_text": "the",
+        "start": 1645
+      },
+      {
+        "encounter_ordinal": 219,
+        "end": 1657,
+        "normalized_term": "existing",
+        "observed_text": "existing",
+        "start": 1649
+      },
+      {
+        "encounter_ordinal": 220,
+        "end": 1664,
+        "normalized_term": "format",
+        "observed_text": "format",
+        "start": 1658
+      },
+      {
+        "encounter_ordinal": 221,
+        "end": 1671,
+        "normalized_term": "domain",
+        "observed_text": "domain",
+        "start": 1665
+      },
+      {
+        "encounter_ordinal": 222,
+        "end": 1677,
+        "normalized_term": "error",
+        "observed_text": "error",
+        "start": 1672
+      },
+      {
+        "encounter_ordinal": 223,
+        "end": 1682,
+        "normalized_term": "o4",
+        "observed_text": "O4",
+        "start": 1680
+      },
+      {
+        "encounter_ordinal": 224,
+        "end": 1692,
+        "normalized_term": "preserve",
+        "observed_text": "Preserve",
+        "start": 1684
+      },
+      {
+        "encounter_ordinal": 225,
+        "end": 1701,
+        "normalized_term": "existing",
+        "observed_text": "existing",
+        "start": 1693
+      },
+      {
+        "encounter_ordinal": 226,
+        "end": 1712,
+        "normalized_term": "filesystem",
+        "observed_text": "filesystem",
+        "start": 1702
+      },
+      {
+        "encounter_ordinal": 227,
+        "end": 1718,
+        "normalized_term": "error",
+        "observed_text": "error",
+        "start": 1713
+      },
+      {
+        "encounter_ordinal": 228,
+        "end": 1729,
+        "normalized_term": "boundaries",
+        "observed_text": "boundaries",
+        "start": 1719
+      },
+      {
+        "encounter_ordinal": 229,
+        "end": 1733,
+        "normalized_term": "for",
+        "observed_text": "for",
+        "start": 1730
+      },
+      {
+        "encounter_ordinal": 230,
+        "end": 1735,
+        "normalized_term": "a",
+        "observed_text": "a",
+        "start": 1734
+      },
+      {
+        "encounter_ordinal": 231,
+        "end": 1743,
+        "normalized_term": "missing",
+        "observed_text": "missing",
+        "start": 1736
+      },
+      {
+        "encounter_ordinal": 232,
+        "end": 1748,
+        "normalized_term": "path",
+        "observed_text": "path",
+        "start": 1744
+      },
+      {
+        "encounter_ordinal": 233,
+        "end": 1753,
+        "normalized_term": "non",
+        "observed_text": "non",
+        "start": 1750
+      },
+      {
+        "encounter_ordinal": 234,
+        "end": 1761,
+        "normalized_term": "regular",
+        "observed_text": "regular",
+        "start": 1754
+      },
+      {
+        "encounter_ordinal": 235,
+        "end": 1766,
+        "normalized_term": "file",
+        "observed_text": "file",
+        "start": 1762
+      },
+      {
+        "encounter_ordinal": 236,
+        "end": 1778,
+        "normalized_term": "permission",
+        "observed_text": "permission",
+        "start": 1768
+      },
+      {
+        "encounter_ordinal": 237,
+        "end": 1785,
+        "normalized_term": "denial",
+        "observed_text": "denial",
+        "start": 1779
+      },
+      {
+        "encounter_ordinal": 238,
+        "end": 1798,
+        "normalized_term": "unsupported",
+        "observed_text": "unsupported",
+        "start": 1787
+      },
+      {
+        "encounter_ordinal": 239,
+        "end": 1805,
+        "normalized_term": "format",
+        "observed_text": "format",
+        "start": 1799
+      },
+      {
+        "encounter_ordinal": 240,
+        "end": 1809,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 1806
+      },
+      {
+        "encounter_ordinal": 241,
+        "end": 1819,
+        "normalized_term": "oversized",
+        "observed_text": "oversized",
+        "start": 1810
+      },
+      {
+        "encounter_ordinal": 242,
+        "end": 1825,
+        "normalized_term": "input",
+        "observed_text": "input",
+        "start": 1820
+      },
+      {
+        "encounter_ordinal": 243,
+        "end": 1836,
+        "normalized_term": "normalize",
+        "observed_text": "Normalize",
+        "start": 1827
+      },
+      {
+        "encounter_ordinal": 244,
+        "end": 1847,
+        "normalized_term": "permission",
+        "observed_text": "permission",
+        "start": 1837
+      },
+      {
+        "encounter_ordinal": 245,
+        "end": 1856,
+        "normalized_term": "failures",
+        "observed_text": "failures",
+        "start": 1848
+      },
+      {
+        "encounter_ordinal": 246,
+        "end": 1863,
+        "normalized_term": "during",
+        "observed_text": "during",
+        "start": 1857
+      },
+      {
+        "encounter_ordinal": 247,
+        "end": 1870,
+        "normalized_term": "stream",
+        "observed_text": "stream",
+        "start": 1864
+      },
+      {
+        "encounter_ordinal": 248,
+        "end": 1878,
+        "normalized_term": "opening",
+        "observed_text": "opening",
+        "start": 1871
+      },
+      {
+        "encounter_ordinal": 249,
+        "end": 1882,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 1879
+      },
+      {
+        "encounter_ordinal": 250,
+        "end": 1888,
+        "normalized_term": "chunk",
+        "observed_text": "chunk",
+        "start": 1883
+      },
+      {
+        "encounter_ordinal": 251,
+        "end": 1894,
+        "normalized_term": "reads",
+        "observed_text": "reads",
+        "start": 1889
+      },
+      {
+        "encounter_ordinal": 252,
+        "end": 1897,
+        "normalized_term": "to",
+        "observed_text": "to",
+        "start": 1895
+      },
+      {
+        "encounter_ordinal": 253,
+        "end": 1924,
+        "normalized_term": "filesystempermissionerror",
+        "observed_text": "FilesystemPermissionError",
+        "start": 1899
+      },
+      {
+        "encounter_ordinal": 254,
+        "end": 1930,
+        "normalized_term": "with",
+        "observed_text": "with",
+        "start": 1926
+      },
+      {
+        "encounter_ordinal": 255,
+        "end": 1937,
+        "normalized_term": "causal",
+        "observed_text": "causal",
+        "start": 1931
+      },
+      {
+        "encounter_ordinal": 256,
+        "end": 1948,
+        "normalized_term": "exceptions",
+        "observed_text": "exceptions",
+        "start": 1938
+      },
+      {
+        "encounter_ordinal": 257,
+        "end": 1952,
+        "normalized_term": "do",
+        "observed_text": "Do",
+        "start": 1950
+      },
+      {
+        "encounter_ordinal": 258,
+        "end": 1956,
+        "normalized_term": "not",
+        "observed_text": "not",
+        "start": 1953
+      },
+      {
+        "encounter_ordinal": 259,
+        "end": 1963,
+        "normalized_term": "change",
+        "observed_text": "change",
+        "start": 1957
+      },
+      {
+        "encounter_ordinal": 260,
+        "end": 1970,
+        "normalized_term": "atomic",
+        "observed_text": "atomic",
+        "start": 1964
+      },
+      {
+        "encounter_ordinal": 261,
+        "end": 1977,
+        "normalized_term": "write",
+        "observed_text": "write",
+        "start": 1972
+      },
+      {
+        "encounter_ordinal": 262,
+        "end": 1989,
+        "normalized_term": "behavior",
+        "observed_text": "behavior",
+        "start": 1981
+      },
+      {
+        "encounter_ordinal": 263,
+        "end": 1997,
+        "normalized_term": "format",
+        "observed_text": "format",
+        "start": 1991
+      },
+      {
+        "encounter_ordinal": 264,
+        "end": 2008,
+        "normalized_term": "resolution",
+        "observed_text": "resolution",
+        "start": 1998
+      },
+      {
+        "encounter_ordinal": 265,
+        "end": 2018,
+        "normalized_term": "ownership",
+        "observed_text": "ownership",
+        "start": 2009
+      },
+      {
+        "encounter_ordinal": 266,
+        "end": 2024,
+        "normalized_term": "core",
+        "observed_text": "core",
+        "start": 2020
+      },
+      {
+        "encounter_ordinal": 267,
+        "end": 2029,
+        "normalized_term": "path",
+        "observed_text": "path",
+        "start": 2025
+      },
+      {
+        "encounter_ordinal": 268,
+        "end": 2040,
+        "normalized_term": "resolution",
+        "observed_text": "resolution",
+        "start": 2030
+      },
+      {
+        "encounter_ordinal": 269,
+        "end": 2043,
+        "normalized_term": "or",
+        "observed_text": "or",
+        "start": 2041
+      },
+      {
+        "encounter_ordinal": 270,
+        "end": 2047,
+        "normalized_term": "any",
+        "observed_text": "any",
+        "start": 2044
+      },
+      {
+        "encounter_ordinal": 271,
+        "end": 2052,
+        "normalized_term": "tool",
+        "observed_text": "Tool",
+        "start": 2048
+      },
+      {
+        "encounter_ordinal": 272,
+        "end": 2066,
+        "normalized_term": "authorization",
+        "observed_text": "authorization",
+        "start": 2053
+      },
+      {
+        "encounter_ordinal": 273,
+        "end": 2075,
+        "normalized_term": "boundary",
+        "observed_text": "boundary",
+        "start": 2067
+      },
+      {
+        "encounter_ordinal": 274,
+        "end": 2080,
+        "normalized_term": "use",
+        "observed_text": "use",
+        "start": 2077
+      },
+      {
+        "encounter_ordinal": 275,
+        "end": 2084,
+        "normalized_term": "the",
+        "observed_text": "the",
+        "start": 2081
+      },
+      {
+        "encounter_ordinal": 276,
+        "end": 2093,
+        "normalized_term": "existing",
+        "observed_text": "existing",
+        "start": 2085
+      },
+      {
+        "encounter_ordinal": 277,
+        "end": 2104,
+        "normalized_term": "filesystem",
+        "observed_text": "filesystem",
+        "start": 2094
+      },
+      {
+        "encounter_ordinal": 278,
+        "end": 2112,
+        "normalized_term": "package",
+        "observed_text": "package",
+        "start": 2105
+      },
+      {
+        "encounter_ordinal": 279,
+        "end": 2119,
+        "normalized_term": "rather",
+        "observed_text": "rather",
+        "start": 2113
+      },
+      {
+        "encounter_ordinal": 280,
+        "end": 2124,
+        "normalized_term": "than",
+        "observed_text": "than",
+        "start": 2120
+      },
+      {
+        "encounter_ordinal": 281,
+        "end": 2131,
+        "normalized_term": "adding",
+        "observed_text": "adding",
+        "start": 2125
+      },
+      {
+        "encounter_ordinal": 282,
+        "end": 2133,
+        "normalized_term": "a",
+        "observed_text": "a",
+        "start": 2132
+      },
+      {
+        "encounter_ordinal": 283,
+        "end": 2141,
+        "normalized_term": "generic",
+        "observed_text": "generic",
+        "start": 2134
+      },
+      {
+        "encounter_ordinal": 284,
+        "end": 2151,
+        "normalized_term": "streaming",
+        "observed_text": "streaming",
+        "start": 2142
+      },
+      {
+        "encounter_ordinal": 285,
+        "end": 2161,
+        "normalized_term": "framework",
+        "observed_text": "framework",
+        "start": 2152
+      },
+      {
+        "encounter_ordinal": 286,
+        "end": 2166,
+        "normalized_term": "o5",
+        "observed_text": "O5",
+        "start": 2164
+      },
+      {
+        "encounter_ordinal": 287,
+        "end": 2171,
+        "normalized_term": "add",
+        "observed_text": "Add",
+        "start": 2168
+      },
+      {
+        "encounter_ordinal": 288,
+        "end": 2182,
+        "normalized_term": "controlled",
+        "observed_text": "controlled",
+        "start": 2172
+      },
+      {
+        "encounter_ordinal": 289,
+        "end": 2188,
+        "normalized_term": "tests",
+        "observed_text": "tests",
+        "start": 2183
+      },
+      {
+        "encounter_ordinal": 290,
+        "end": 2191,
+        "normalized_term": "in",
+        "observed_text": "in",
+        "start": 2189
+      },
+      {
+        "encounter_ordinal": 291,
+        "end": 2198,
+        "normalized_term": "tests",
+        "observed_text": "tests",
+        "start": 2193
+      },
+      {
+        "encounter_ordinal": 292,
+        "end": 2208,
+        "normalized_term": "resources",
+        "observed_text": "resources",
+        "start": 2199
+      },
+      {
+        "encounter_ordinal": 293,
+        "end": 2219,
+        "normalized_term": "filesystem",
+        "observed_text": "filesystem",
+        "start": 2209
+      },
+      {
+        "encounter_ordinal": 294,
+        "end": 2232,
+        "normalized_term": "test_reading",
+        "observed_text": "test_reading",
+        "start": 2220
+      },
+      {
+        "encounter_ordinal": 295,
+        "end": 2235,
+        "normalized_term": "py",
+        "observed_text": "py",
+        "start": 2233
+      },
+      {
+        "encounter_ordinal": 296,
+        "end": 2240,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 2237
+      },
+      {
+        "encounter_ordinal": 297,
+        "end": 2249,
+        "normalized_term": "relevant",
+        "observed_text": "relevant",
+        "start": 2241
+      },
+      {
+        "encounter_ordinal": 298,
+        "end": 2255,
+        "normalized_term": "codec",
+        "observed_text": "codec",
+        "start": 2250
+      },
+      {
+        "encounter_ordinal": 299,
+        "end": 2261,
+        "normalized_term": "model",
+        "observed_text": "model",
+        "start": 2256
+      },
+      {
+        "encounter_ordinal": 300,
+        "end": 2267,
+        "normalized_term": "tests",
+        "observed_text": "tests",
+        "start": 2262
+      },
+      {
+        "encounter_ordinal": 301,
+        "end": 2271,
+        "normalized_term": "for",
+        "observed_text": "for",
+        "start": 2268
+      },
+      {
+        "encounter_ordinal": 302,
+        "end": 2277,
+        "normalized_term": "empty",
+        "observed_text": "empty",
+        "start": 2272
+      },
+      {
+        "encounter_ordinal": 303,
+        "end": 2283,
+        "normalized_term": "input",
+        "observed_text": "input",
+        "start": 2278
+      },
+      {
+        "encounter_ordinal": 304,
+        "end": 2289,
+        "normalized_term": "zero",
+        "observed_text": "zero",
+        "start": 2285
+      },
+      {
+        "encounter_ordinal": 305,
+        "end": 2295,
+        "normalized_term": "exact",
+        "observed_text": "exact",
+        "start": 2290
+      },
+      {
+        "encounter_ordinal": 306,
+        "end": 2300,
+        "normalized_term": "over",
+        "observed_text": "over",
+        "start": 2296
+      },
+      {
+        "encounter_ordinal": 307,
+        "end": 2306,
+        "normalized_term": "limit",
+        "observed_text": "limit",
+        "start": 2301
+      },
+      {
+        "encounter_ordinal": 308,
+        "end": 2312,
+        "normalized_term": "bytes",
+        "observed_text": "bytes",
+        "start": 2307
+      },
+      {
+        "encounter_ordinal": 309,
+        "end": 2322,
+        "normalized_term": "negative",
+        "observed_text": "negative",
+        "start": 2314
+      },
+      {
+        "encounter_ordinal": 310,
+        "end": 2326,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 2323
+      },
+      {
+        "encounter_ordinal": 311,
+        "end": 2336,
+        "normalized_term": "unbounded",
+        "observed_text": "unbounded",
+        "start": 2327
+      },
+      {
+        "encounter_ordinal": 312,
+        "end": 2343,
+        "normalized_term": "limits",
+        "observed_text": "limits",
+        "start": 2337
+      },
+      {
+        "encounter_ordinal": 313,
+        "end": 2351,
+        "normalized_term": "growth",
+        "observed_text": "growth",
+        "start": 2345
+      },
+      {
+        "encounter_ordinal": 314,
+        "end": 2357,
+        "normalized_term": "after",
+        "observed_text": "after",
+        "start": 2352
+      },
+      {
+        "encounter_ordinal": 315,
+        "end": 2362,
+        "normalized_term": "stat",
+        "observed_text": "stat",
+        "start": 2358
+      },
+      {
+        "encounter_ordinal": 316,
+        "end": 2369,
+        "normalized_term": "short",
+        "observed_text": "short",
+        "start": 2364
+      },
+      {
+        "encounter_ordinal": 317,
+        "end": 2375,
+        "normalized_term": "chunk",
+        "observed_text": "chunk",
+        "start": 2370
+      },
+      {
+        "encounter_ordinal": 318,
+        "end": 2381,
+        "normalized_term": "reads",
+        "observed_text": "reads",
+        "start": 2376
+      },
+      {
+        "encounter_ordinal": 319,
+        "end": 2386,
+        "normalized_term": "eof",
+        "observed_text": "EOF",
+        "start": 2383
+      },
+      {
+        "encounter_ordinal": 320,
+        "end": 2394,
+        "normalized_term": "stream",
+        "observed_text": "stream",
+        "start": 2388
+      },
+      {
+        "encounter_ordinal": 321,
+        "end": 2402,
+        "normalized_term": "closure",
+        "observed_text": "closure",
+        "start": 2395
+      },
+      {
+        "encounter_ordinal": 322,
+        "end": 2405,
+        "normalized_term": "on",
+        "observed_text": "on",
+        "start": 2403
+      },
+      {
+        "encounter_ordinal": 323,
+        "end": 2416,
+        "normalized_term": "exceptions",
+        "observed_text": "exceptions",
+        "start": 2406
+      },
+      {
+        "encounter_ordinal": 324,
+        "end": 2425,
+        "normalized_term": "opening",
+        "observed_text": "opening",
+        "start": 2418
+      },
+      {
+        "encounter_ordinal": 325,
+        "end": 2430,
+        "normalized_term": "read",
+        "observed_text": "read",
+        "start": 2426
+      },
+      {
+        "encounter_ordinal": 326,
+        "end": 2441,
+        "normalized_term": "permission",
+        "observed_text": "permission",
+        "start": 2431
+      },
+      {
+        "encounter_ordinal": 327,
+        "end": 2450,
+        "normalized_term": "failures",
+        "observed_text": "failures",
+        "start": 2442
+      },
+      {
+        "encounter_ordinal": 328,
+        "end": 2461,
+        "normalized_term": "multibyte",
+        "observed_text": "multibyte",
+        "start": 2452
+      },
+      {
+        "encounter_ordinal": 329,
+        "end": 2465,
+        "normalized_term": "utf",
+        "observed_text": "UTF",
+        "start": 2462
+      },
+      {
+        "encounter_ordinal": 330,
+        "end": 2467,
+        "normalized_term": "8",
+        "observed_text": "8",
+        "start": 2466
+      },
+      {
+        "encounter_ordinal": 331,
+        "end": 2473,
+        "normalized_term": "split",
+        "observed_text": "split",
+        "start": 2468
+      },
+      {
+        "encounter_ordinal": 332,
+        "end": 2480,
+        "normalized_term": "across",
+        "observed_text": "across",
+        "start": 2474
+      },
+      {
+        "encounter_ordinal": 333,
+        "end": 2487,
+        "normalized_term": "chunks",
+        "observed_text": "chunks",
+        "start": 2481
+      },
+      {
+        "encounter_ordinal": 334,
+        "end": 2496,
+        "normalized_term": "invalid",
+        "observed_text": "invalid",
+        "start": 2489
+      },
+      {
+        "encounter_ordinal": 335,
+        "end": 2500,
+        "normalized_term": "utf",
+        "observed_text": "UTF",
+        "start": 2497
+      },
+      {
+        "encounter_ordinal": 336,
+        "end": 2502,
+        "normalized_term": "8",
+        "observed_text": "8",
+        "start": 2501
+      },
+      {
+        "encounter_ordinal": 337,
+        "end": 2512,
+        "normalized_term": "explicit",
+        "observed_text": "explicit",
+        "start": 2504
+      },
+      {
+        "encounter_ordinal": 338,
+        "end": 2519,
+        "normalized_term": "format",
+        "observed_text": "format",
+        "start": 2513
+      },
+      {
+        "encounter_ordinal": 339,
+        "end": 2529,
+        "normalized_term": "overrides",
+        "observed_text": "overrides",
+        "start": 2520
+      },
+      {
+        "encounter_ordinal": 340,
+        "end": 2533,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 2530
+      },
+      {
+        "encounter_ordinal": 341,
+        "end": 2537,
+        "normalized_term": "all",
+        "observed_text": "all",
+        "start": 2534
+      },
+      {
+        "encounter_ordinal": 342,
+        "end": 2547,
+        "normalized_term": "currently",
+        "observed_text": "currently",
+        "start": 2538
+      },
+      {
+        "encounter_ordinal": 343,
+        "end": 2557,
+        "normalized_term": "supported",
+        "observed_text": "supported",
+        "start": 2548
+      },
+      {
+        "encounter_ordinal": 344,
+        "end": 2562,
+        "normalized_term": "rich",
+        "observed_text": "rich",
+        "start": 2558
+      },
+      {
+        "encounter_ordinal": 345,
+        "end": 2569,
+        "normalized_term": "result",
+        "observed_text": "result",
+        "start": 2563
+      },
+      {
+        "encounter_ordinal": 346,
+        "end": 2575,
+        "normalized_term": "types",
+        "observed_text": "types",
+        "start": 2570
+      },
+      {
+        "encounter_ordinal": 347,
+        "end": 2588,
+        "normalized_term": "demonstrate",
+        "observed_text": "Demonstrate",
+        "start": 2577
+      },
+      {
+        "encounter_ordinal": 348,
+        "end": 2592,
+        "normalized_term": "the",
+        "observed_text": "the",
+        "start": 2589
+      },
+      {
+        "encounter_ordinal": 349,
+        "end": 2599,
+        "normalized_term": "finite",
+        "observed_text": "finite",
+        "start": 2593
+      },
+      {
+        "encounter_ordinal": 350,
+        "end": 2607,
+        "normalized_term": "request",
+        "observed_text": "request",
+        "start": 2600
+      },
+      {
+        "encounter_ordinal": 351,
+        "end": 2617,
+        "normalized_term": "retention",
+        "observed_text": "retention",
+        "start": 2608
+      },
+      {
+        "encounter_ordinal": 352,
+        "end": 2623,
+        "normalized_term": "bound",
+        "observed_text": "bound",
+        "start": 2618
+      },
+      {
+        "encounter_ordinal": 353,
+        "end": 2628,
+        "normalized_term": "with",
+        "observed_text": "with",
+        "start": 2624
+      },
+      {
+        "encounter_ordinal": 354,
+        "end": 2642,
+        "normalized_term": "deterministic",
+        "observed_text": "deterministic",
+        "start": 2629
+      },
+      {
+        "encounter_ordinal": 355,
+        "end": 2655,
+        "normalized_term": "instrumented",
+        "observed_text": "instrumented",
+        "start": 2643
+      },
+      {
+        "encounter_ordinal": 356,
+        "end": 2663,
+        "normalized_term": "streams",
+        "observed_text": "streams",
+        "start": 2656
+      },
+      {
+        "encounter_ordinal": 357,
+        "end": 2670,
+        "normalized_term": "rather",
+        "observed_text": "rather",
+        "start": 2664
+      },
+      {
+        "encounter_ordinal": 358,
+        "end": 2675,
+        "normalized_term": "than",
+        "observed_text": "than",
+        "start": 2671
+      },
+      {
+        "encounter_ordinal": 359,
+        "end": 2686,
+        "normalized_term": "unreliable",
+        "observed_text": "unreliable",
+        "start": 2676
+      },
+      {
+        "encounter_ordinal": 360,
+        "end": 2694,
+        "normalized_term": "process",
+        "observed_text": "process",
+        "start": 2687
+      },
+      {
+        "encounter_ordinal": 361,
+        "end": 2701,
+        "normalized_term": "memory",
+        "observed_text": "memory",
+        "start": 2695
+      },
+      {
+        "encounter_ordinal": 362,
+        "end": 2714,
+        "normalized_term": "measurements",
+        "observed_text": "measurements",
+        "start": 2702
+      },
+      {
+        "encounter_ordinal": 363,
+        "end": 2717,
+        "normalized_term": "or",
+        "observed_text": "or",
+        "start": 2715
+      },
+      {
+        "encounter_ordinal": 364,
+        "end": 2722,
+        "normalized_term": "live",
+        "observed_text": "live",
+        "start": 2718
+      },
+      {
+        "encounter_ordinal": 365,
+        "end": 2733,
+        "normalized_term": "filesystem",
+        "observed_text": "filesystem",
+        "start": 2723
+      },
+      {
+        "encounter_ordinal": 366,
+        "end": 2739,
+        "normalized_term": "races",
+        "observed_text": "races",
+        "start": 2734
+      },
+      {
+        "encounter_ordinal": 367,
+        "end": 2744,
+        "normalized_term": "o6",
+        "observed_text": "O6",
+        "start": 2742
+      },
+      {
+        "encounter_ordinal": 368,
+        "end": 2752,
+        "normalized_term": "update",
+        "observed_text": "Update",
+        "start": 2746
+      },
+      {
+        "encounter_ordinal": 369,
+        "end": 2757,
+        "normalized_term": "src",
+        "observed_text": "src",
+        "start": 2754
+      },
+      {
+        "encounter_ordinal": 370,
+        "end": 2766,
+        "normalized_term": "devtools",
+        "observed_text": "devtools",
+        "start": 2758
+      },
+      {
+        "encounter_ordinal": 371,
+        "end": 2776,
+        "normalized_term": "resources",
+        "observed_text": "resources",
+        "start": 2767
+      },
+      {
+        "encounter_ordinal": 372,
+        "end": 2787,
+        "normalized_term": "filesystem",
+        "observed_text": "filesystem",
+        "start": 2777
+      },
+      {
+        "encounter_ordinal": 373,
+        "end": 2792,
+        "normalized_term": "docs",
+        "observed_text": "docs",
+        "start": 2788
+      },
+      {
+        "encounter_ordinal": 374,
+        "end": 2795,
+        "normalized_term": "io",
+        "observed_text": "io",
+        "start": 2793
+      },
+      {
+        "encounter_ordinal": 375,
+        "end": 2798,
+        "normalized_term": "md",
+        "observed_text": "md",
+        "start": 2796
+      },
+      {
+        "encounter_ordinal": 376,
+        "end": 2804,
+        "normalized_term": "the",
+        "observed_text": "the",
+        "start": 2801
+      },
+      {
+        "encounter_ordinal": 377,
+        "end": 2815,
+        "normalized_term": "filesystem",
+        "observed_text": "filesystem",
+        "start": 2805
+      },
+      {
+        "encounter_ordinal": 378,
+        "end": 2824,
+        "normalized_term": "overview",
+        "observed_text": "overview",
+        "start": 2816
+      },
+      {
+        "encounter_ordinal": 379,
+        "end": 2828,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 2825
+      },
+      {
+        "encounter_ordinal": 380,
+        "end": 2836,
+        "normalized_term": "roadmap",
+        "observed_text": "roadmap",
+        "start": 2829
+      },
+      {
+        "encounter_ordinal": 381,
+        "end": 2841,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 2838
+      },
+      {
+        "encounter_ordinal": 382,
+        "end": 2848,
+        "normalized_term": "public",
+        "observed_text": "public",
+        "start": 2842
+      },
+      {
+        "encounter_ordinal": 383,
+        "end": 2852,
+        "normalized_term": "api",
+        "observed_text": "API",
+        "start": 2849
+      },
+      {
+        "encounter_ordinal": 384,
+        "end": 2866,
+        "normalized_term": "documentation",
+        "observed_text": "documentation",
+        "start": 2853
+      },
+      {
+        "encounter_ordinal": 385,
+        "end": 2872,
+        "normalized_term": "where",
+        "observed_text": "where",
+        "start": 2867
+      },
+      {
+        "encounter_ordinal": 386,
+        "end": 2879,
+        "normalized_term": "needed",
+        "observed_text": "needed",
+        "start": 2873
+      },
+      {
+        "encounter_ordinal": 387,
+        "end": 2882,
+        "normalized_term": "to",
+        "observed_text": "to",
+        "start": 2880
+      },
+      {
+        "encounter_ordinal": 388,
+        "end": 2891,
+        "normalized_term": "describe",
+        "observed_text": "describe",
+        "start": 2883
+      },
+      {
+        "encounter_ordinal": 389,
+        "end": 2895,
+        "normalized_term": "the",
+        "observed_text": "the",
+        "start": 2892
+      },
+      {
+        "encounter_ordinal": 390,
+        "end": 2907,
+        "normalized_term": "acquisition",
+        "observed_text": "acquisition",
+        "start": 2896
+      },
+      {
+        "encounter_ordinal": 391,
+        "end": 2913,
+        "normalized_term": "bound",
+        "observed_text": "bound",
+        "start": 2908
+      },
+      {
+        "encounter_ordinal": 392,
+        "end": 2917,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 2914
+      },
+      {
+        "encounter_ordinal": 393,
+        "end": 2927,
+        "normalized_term": "remaining",
+        "observed_text": "remaining",
+        "start": 2918
+      },
+      {
+        "encounter_ordinal": 394,
+        "end": 2939,
+        "normalized_term": "limitations",
+        "observed_text": "limitations",
+        "start": 2928
+      },
+      {
+        "encounter_ordinal": 395,
+        "end": 2950,
+        "normalized_term": "accurately",
+        "observed_text": "accurately",
+        "start": 2940
+      },
+      {
+        "encounter_ordinal": 396,
+        "end": 2960,
+        "normalized_term": "preserve",
+        "observed_text": "Preserve",
+        "start": 2952
+      },
+      {
+        "encounter_ordinal": 397,
+        "end": 2969,
+        "normalized_term": "existing",
+        "observed_text": "existing",
+        "start": 2961
+      },
+      {
+        "encounter_ordinal": 398,
+        "end": 2977,
+        "normalized_term": "callers",
+        "observed_text": "callers",
+        "start": 2970
+      },
+      {
+        "encounter_ordinal": 399,
+        "end": 2981,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 2978
+      },
+      {
+        "encounter_ordinal": 400,
+        "end": 2985,
+        "normalized_term": "the",
+        "observed_text": "the",
+        "start": 2982
+      },
+      {
+        "encounter_ordinal": 401,
+        "end": 2995,
+        "normalized_term": "protected",
+        "observed_text": "protected",
+        "start": 2986
+      },
+      {
+        "encounter_ordinal": 402,
+        "end": 3007,
+        "normalized_term": "development",
+        "observed_text": "development",
+        "start": 2996
+      },
+      {
+        "encounter_ordinal": 403,
+        "end": 3018,
+        "normalized_term": "validation",
+        "observed_text": "validation",
+        "start": 3008
+      },
+      {
+        "encounter_ordinal": 404,
+        "end": 3026,
+        "normalized_term": "profile",
+        "observed_text": "profile",
+        "start": 3019
+      },
+      {
+        "encounter_ordinal": 405,
+        "end": 3029,
+        "normalized_term": "in",
+        "observed_text": "in",
+        "start": 3027
+      },
+      {
+        "encounter_ordinal": 406,
+        "end": 3035,
+        "normalized_term": "docs",
+        "observed_text": "docs",
+        "start": 3031
+      },
+      {
+        "encounter_ordinal": 407,
+        "end": 3047,
+        "normalized_term": "development",
+        "observed_text": "development",
+        "start": 3036
+      },
+      {
+        "encounter_ordinal": 408,
+        "end": 3058,
+        "normalized_term": "validation",
+        "observed_text": "validation",
+        "start": 3048
+      },
+      {
+        "encounter_ordinal": 409,
+        "end": 3061,
+        "normalized_term": "md",
+        "observed_text": "md",
+        "start": 3059
+      },
+      {
+        "encounter_ordinal": 410,
+        "end": 3072,
+        "normalized_term": "scripts",
+        "observed_text": "scripts",
+        "start": 3065
+      },
+      {
+        "encounter_ordinal": 411,
+        "end": 3093,
+        "normalized_term": "validate_development",
+        "observed_text": "validate_development",
+        "start": 3073
+      },
+      {
+        "encounter_ordinal": 412,
+        "end": 3096,
+        "normalized_term": "py",
+        "observed_text": "py",
+        "start": 3094
+      },
+      {
+        "encounter_ordinal": 413,
+        "end": 3101,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 3098
+      },
+      {
+        "encounter_ordinal": 414,
+        "end": 3112,
+        "normalized_term": "pyproject",
+        "observed_text": "pyproject",
+        "start": 3103
+      },
+      {
+        "encounter_ordinal": 415,
+        "end": 3117,
+        "normalized_term": "toml",
+        "observed_text": "toml",
+        "start": 3113
+      },
+      {
+        "encounter_ordinal": 416,
+        "end": 3123,
+        "normalized_term": "run",
+        "observed_text": "run",
+        "start": 3120
+      },
+      {
+        "encounter_ordinal": 417,
+        "end": 3127,
+        "normalized_term": "the",
+        "observed_text": "the",
+        "start": 3124
+      },
+      {
+        "encounter_ordinal": 418,
+        "end": 3137,
+        "normalized_term": "protected",
+        "observed_text": "protected",
+        "start": 3128
+      },
+      {
+        "encounter_ordinal": 419,
+        "end": 3145,
+        "normalized_term": "profile",
+        "observed_text": "profile",
+        "start": 3138
+      },
+      {
+        "encounter_ordinal": 420,
+        "end": 3151,
+        "normalized_term": "ruff",
+        "observed_text": "Ruff",
+        "start": 3147
+      },
+      {
+        "encounter_ordinal": 421,
+        "end": 3163,
+        "normalized_term": "formatting",
+        "observed_text": "formatting",
+        "start": 3153
+      },
+      {
+        "encounter_ordinal": 422,
+        "end": 3169,
+        "normalized_term": "mypy",
+        "observed_text": "mypy",
+        "start": 3165
+      },
+      {
+        "encounter_ordinal": 423,
+        "end": 3173,
+        "normalized_term": "and",
+        "observed_text": "and",
+        "start": 3170
+      },
+      {
+        "encounter_ordinal": 424,
+        "end": 3178,
+        "normalized_term": "diff",
+        "observed_text": "diff",
+        "start": 3174
+      },
+      {
+        "encounter_ordinal": 425,
+        "end": 3185,
+        "normalized_term": "checks",
+        "observed_text": "checks",
+        "start": 3179
+      },
+      {
+        "encounter_ordinal": 426,
+        "end": 3189,
+        "normalized_term": "do",
+        "observed_text": "Do",
+        "start": 3187
+      },
+      {
+        "encounter_ordinal": 427,
+        "end": 3193,
+        "normalized_term": "not",
+        "observed_text": "not",
+        "start": 3190
+      },
+      {
+        "encounter_ordinal": 428,
+        "end": 3197,
+        "normalized_term": "add",
+        "observed_text": "add",
+        "start": 3194
+      },
+      {
+        "encounter_ordinal": 429,
+        "end": 3204,
+        "normalized_term": "binary",
+        "observed_text": "binary",
+        "start": 3198
+      },
+      {
+        "encounter_ordinal": 430,
+        "end": 3211,
+        "normalized_term": "codecs",
+        "observed_text": "codecs",
+        "start": 3205
+      },
+      {
+        "encounter_ordinal": 431,
+        "end": 3216,
+        "normalized_term": "new",
+        "observed_text": "new",
+        "start": 3213
+      },
+      {
+        "encounter_ordinal": 432,
+        "end": 3221,
+        "normalized_term": "file",
+        "observed_text": "file",
+        "start": 3217
+      },
+      {
+        "encounter_ordinal": 433,
+        "end": 3229,
+        "normalized_term": "formats",
+        "observed_text": "formats",
+        "start": 3222
+      },
+      {
+        "encounter_ordinal": 434,
+        "end": 3240,
+        "normalized_term": "streaming",
+        "observed_text": "streaming",
+        "start": 3231
+      },
+      {
+        "encounter_ordinal": 435,
+        "end": 3247,
+        "normalized_term": "format",
+        "observed_text": "format",
+        "start": 3241
+      },
+      {
+        "encounter_ordinal": 436,
+        "end": 3255,
+        "normalized_term": "parsers",
+        "observed_text": "parsers",
+        "start": 3248
+      },
+      {
+        "encounter_ordinal": 437,
+        "end": 3263,
+        "normalized_term": "secure",
+        "observed_text": "secure",
+        "start": 3257
+      },
+      {
+        "encounter_ordinal": 438,
+        "end": 3274,
+        "normalized_term": "filesystem",
+        "observed_text": "filesystem",
+        "start": 3264
+      },
+      {
+        "encounter_ordinal": 439,
+        "end": 3281,
+        "normalized_term": "policy",
+        "observed_text": "policy",
+        "start": 3275
+      },
+      {
+        "encounter_ordinal": 440,
+        "end": 3284,
+        "normalized_term": "or",
+        "observed_text": "or",
+        "start": 3282
+      },
+      {
+        "encounter_ordinal": 441,
+        "end": 3295,
+        "normalized_term": "production",
+        "observed_text": "production",
+        "start": 3285
+      },
+      {
+        "encounter_ordinal": 442,
+        "end": 3305,
+        "normalized_term": "retrieval",
+        "observed_text": "retrieval",
+        "start": 3296
+      },
+      {
+        "encounter_ordinal": 443,
+        "end": 3313,
+        "normalized_term": "changes",
+        "observed_text": "changes",
+        "start": 3306
+      }
+    ],
+    "text": "Implement strict bounded acquisition for the existing codec-backed filesystem read API.\n\nO1. In `src/devtools/resources/filesystem/reading.py`, replace the complete `read_bytes()` acquisition used by `read()` with bounded chunk acquisition when `max_bytes` is finite. Preserve the public `ResolvedPath`, `file_format`, `max_bytes` and `DEFAULT_MAX_READ_BYTES` contract, including the 16 MiB default, `None` as explicitly unbounded, negative-limit rejection, zero-limit behavior and acceptance at the exact byte boundary. A preliminary stat check may remain, but a growing file must not cause an unbounded read before rejection.\n\nO2. Define the finite acquisition bound precisely: retain at most `max_bytes` payload bytes and acquire at most one additional byte to distinguish exact-boundary EOF from oversized input; bound individual read requests and release the stream on success and every failure. Raise `FileTooLargeError` on excess instead of returning a truncated model. Do not claim a bound on decoded model memory, a stable file snapshot, race-free pathname checks, containment, authorization or locking.\n\nO3. Preserve `resolve_file_format` and `resolve_codec` behavior, explicit format override and suffix inference. Pass complete accepted bytes to the existing codecs without rewriting content. Preserve the concrete `TextFile`, `MarkdownFile`, `CsvFile`, `JsonObjectFile`, `JsonListFile` and `JsonScalarFile` results, UTF-8 decoding, original line endings, encoding and byte-size metadata. Split multibyte input across acquisition chunks without introducing replacement decoding; codec decoding failures remain `TextDecodingError` or the existing format-domain error.\n\nO4. Preserve existing filesystem error boundaries for a missing path, non-regular file, permission denial, unsupported format and oversized input. Normalize permission failures during stream opening and chunk reads to `FilesystemPermissionError` with causal exceptions. Do not change atomic `write()` behavior, format resolution ownership, core path resolution or any Tool authorization boundary; use the existing filesystem package rather than adding a generic streaming framework.\n\nO5. Add controlled tests in `tests/resources/filesystem/test_reading.py` and relevant codec/model tests for empty input, zero/exact/over-limit bytes, negative and unbounded limits, growth after stat, short chunk reads, EOF, stream closure on exceptions, opening/read permission failures, multibyte UTF-8 split across chunks, invalid UTF-8, explicit format overrides and all currently supported rich result types. Demonstrate the finite request/retention bound with deterministic instrumented streams rather than unreliable process-memory measurements or live filesystem races.\n\nO6. Update `src/devtools/resources/filesystem/docs/io.md`, the filesystem overview and roadmap, and public API documentation where needed to describe the acquisition bound and remaining limitations accurately. Preserve existing callers and the protected development validation profile in `docs/development/validation.md`, `scripts/validate_development.py` and `pyproject.toml`; run the protected profile, Ruff, formatting, mypy and diff checks. Do not add binary codecs, new file formats, streaming format parsers, secure filesystem policy or production retrieval changes.\n"
+  },
+  "semantics": "Whole-task canonical additive BM25 unchanged, separate safety lane, never rescue; future execute once with same frame.",
+  "text": "Implement strict bounded acquisition for the existing codec-backed filesystem read API.\n\nO1. In `src/devtools/resources/filesystem/reading.py`, replace the complete `read_bytes()` acquisition used by `read()` with bounded chunk acquisition when `max_bytes` is finite. Preserve the public `ResolvedPath`, `file_format`, `max_bytes` and `DEFAULT_MAX_READ_BYTES` contract, including the 16 MiB default, `None` as explicitly unbounded, negative-limit rejection, zero-limit behavior and acceptance at the exact byte boundary. A preliminary stat check may remain, but a growing file must not cause an unbounded read before rejection.\n\nO2. Define the finite acquisition bound precisely: retain at most `max_bytes` payload bytes and acquire at most one additional byte to distinguish exact-boundary EOF from oversized input; bound individual read requests and release the stream on success and every failure. Raise `FileTooLargeError` on excess instead of returning a truncated model. Do not claim a bound on decoded model memory, a stable file snapshot, race-free pathname checks, containment, authorization or locking.\n\nO3. Preserve `resolve_file_format` and `resolve_codec` behavior, explicit format override and suffix inference. Pass complete accepted bytes to the existing codecs without rewriting content. Preserve the concrete `TextFile`, `MarkdownFile`, `CsvFile`, `JsonObjectFile`, `JsonListFile` and `JsonScalarFile` results, UTF-8 decoding, original line endings, encoding and byte-size metadata. Split multibyte input across acquisition chunks without introducing replacement decoding; codec decoding failures remain `TextDecodingError` or the existing format-domain error.\n\nO4. Preserve existing filesystem error boundaries for a missing path, non-regular file, permission denial, unsupported format and oversized input. Normalize permission failures during stream opening and chunk reads to `FilesystemPermissionError` with causal exceptions. Do not change atomic `write()` behavior, format resolution ownership, core path resolution or any Tool authorization boundary; use the existing filesystem package rather than adding a generic streaming framework.\n\nO5. Add controlled tests in `tests/resources/filesystem/test_reading.py` and relevant codec/model tests for empty input, zero/exact/over-limit bytes, negative and unbounded limits, growth after stat, short chunk reads, EOF, stream closure on exceptions, opening/read permission failures, multibyte UTF-8 split across chunks, invalid UTF-8, explicit format overrides and all currently supported rich result types. Demonstrate the finite request/retention bound with deterministic instrumented streams rather than unreliable process-memory measurements or live filesystem races.\n\nO6. Update `src/devtools/resources/filesystem/docs/io.md`, the filesystem overview and roadmap, and public API documentation where needed to describe the acquisition bound and remaining limitations accurately. Preserve existing callers and the protected development validation profile in `docs/development/validation.md`, `scripts/validate_development.py` and `pyproject.toml`; run the protected profile, Ruff, formatting, mypy and diff checks. Do not add binary codecs, new file formats, streaming format parsers, secure filesystem policy or production retrieval changes.\n"
+}
+```
+
+## candidate invariants
+
+```json
+[
+  "Same eligible resource/document/content universe",
+  "Same normalized queries and exact field tokens",
+  "Full positive CONTENT OR FILENAME union independently observed in A and B",
+  "No candidates added/lost; mismatch contract defect, no post-hoc union repair",
+  "Canonical collection-order tie semantics",
+  "Query multipliers all 1.0"
+]
+```
+
+## metrics
+
+```json
+[
+  "REQUIRED resource reach",
+  "REQUIRED cell reach",
+  "required semantic-unit reach",
+  "every reviewed witness completion depth",
+  "selected minimum witness depth per obligation, then stable witness identity",
+  "obligation completeness",
+  "obligation-indispensable resource ranks",
+  "task-indispensable resource ranks",
+  "every REQUIRED-cell rank",
+  "meaningful REQUIRED-cell improvements",
+  "REQUIRED-cell regressions",
+  "unique completion-prefix resources",
+  "repeated prefix occurrences",
+  "duplicate occurrences",
+  "owning-obligation REQUIRED occurrences",
+  "owning-obligation HELPFUL_ONLY occurrences",
+  "owning-obligation UNNECESSARY occurrences",
+  "distinct exact UTF-8 whole-resource bytes",
+  "treatment execution cost",
+  "diagnostic top-K inversions K=10,20,50 gold-labeled after gold",
+  "per-field contribution effects",
+  "union-IDF deltas",
+  "pre-saturation weighting and single-saturation deltas"
+]
+```
+
+## burden accounting
+
+```json
+"Calculate every reviewed witness independently; TASK_BACKED units have no retrieval rank; honor encoded repository support choices, never mix witnesses. Choose minimum complete depth then stable reviewed identity; incomplete None. Union selected owning-obligation prefixes for unique resources and exact UTF-8 bytes, retain repeated occurrences and own obligation-relative labels. No task-global ranking."
+```
+
+## cost accounting
+
+```json
+"Future exactly-once run: shared frame/content index/field observation acquisition charged equally to A/B once. Native A retrieval (including its native filename construction) and B union statistics/scoring/sort/trace timed separately at top-level. Whole-task reference cost separate and unchanged. Disclosure includes setup, scoring, memory/index size where observed; publication/durability/wall/child timers descriptive and never double-counted. No cost threshold chooses effectiveness."
+```
+
+## diagnostic attribution
+
+```json
+"Fixed per-term telescoping: replace independent field IDFs with union IDF, move positive filename weight inside otherwise independent saturation, then combine into one saturation. Retain native channel grouping residual. Field normalization inputs identical to A; trace exact lengths/averages. Counterfactual calculations are unranked explanations, not additional arms; harmful causes require necessary-evidence/overtaker consequences, allow ambiguity and interacting causes."
+```
+
+## decision rule
+
+```json
+{
+  "complementary_bounds": "All baseline-complete obligations remain complete; every reached REQUIRED cell retained. Each depth: 5*B <= 6*A AND B-A <= 5. Each REQUIRED rank: 5*B <= 6*A AND B-A <= 10.",
+  "contract_checks": [
+    "Exact source ancestry and frame/content/document joins",
+    "Same task/obligations/queries/analysis/field representations",
+    "Identical full positive A/B candidates",
+    "Unchanged canonical reference lane",
+    "Exactly-once prospective execution with no tuning",
+    "Complete clean treatment-blind primary gold and no unresolved cells",
+    "Lossless replay and captured cost"
+  ],
+  "implementation": "experiments/bm25f/gates.py",
+  "implementation_checks": [
+    "Canonical field observations and lengths",
+    "Correct union df/N/IDF",
+    "Exact per-field normalization",
+    "Aggregation before one saturation",
+    "Deterministic contributions/doc score/ties",
+    "REQUIRED resource/cell/repository-unit reach safety"
+  ],
+  "meaningful_required_rank": "A and B reached; A_rank - B_rank >= 2 AND 5*B_rank <= 4*A_rank",
+  "meaningful_witness": "A incomplete and B complete OR A_depth > 0 AND 5*B_depth <= 4*A_depth",
+  "precedence": [
+    "Contract defect => EXPERIMENTAL_CONTRACT_DEFECT",
+    "Field/DF/normalization/aggregation/application defect or REQUIRED reach loss => BM25F_IMPLEMENTATION_DEFECT",
+    "Meaningful witness gain AND strong safety AND strong burden => TRUE_BM25F_SUPPORTED",
+    "Meaningful witness gain OR meaningful REQUIRED rank gain, WITH all complementary bounds => COMPLEMENTARY_BM25F_VALUE",
+    "Completion loss or unbounded REQUIRED regression => BM25F_HARMFUL",
+    "Otherwise => NO_MATERIAL_VALUE"
+  ],
+  "primary": "B true BM25F versus A canonical additive only; never select an explanatory counterfactual as an arm",
+  "strong_burden": "Positive baseline and (10*B_unique <= 9*A_unique OR 10*B_occurrences <= 9*A_occurrences), with B_unique <= A_unique AND B_occurrences <= A_occurrences AND B_bytes <= A_bytes.",
+  "strong_safety": "No selected mandatory baseline-complete witness depth regression, no baseline-reached REQUIRED-cell rank regression, no REQUIRED resource/cell/repository-supported-unit reach loss.",
+  "zero_depth": "Fully task-backed complete witness depth=0 allowed; 0->0 not meaningful; incomplete represented None, never fabricated rank."
+}
+```
+
+## failure definitions
+
+```json
+{
+  "BM25F_AGGREGATION_DEFECT": "Evidence is not aggregated before a single saturation.",
+  "BM25F_APPLICATION_DEFECT": "Term/document score, tie or lossless provenance does not reconstruct.",
+  "BM25F_DF_DEFECT": "Union document frequency incorrect or double-counts a document.",
+  "BM25F_FIELD_DEFINITION_DEFECT": "Admitted text/lengths differ from sealed canonical representations.",
+  "BM25F_NORMALIZATION_DEFECT": "Per-field normalization cannot reconstruct from exact observations/averages/b.",
+  "CONTENT_FIELD_DOMINANCE": "Content influence leaves necessary filename evidence behind with captured contribution/overtaker proof.",
+  "CROSS_FIELD_SATURATION_HARM": "Fixed-order single-saturation delta contributes to necessary-rank/completion harm; signed score movement alone is insufficient.",
+  "EXPERIMENTAL_CONTRACT_DEFECT": "Identity/query/token/candidate/blindness/execution/authoritative gold/reference contract broken; no effectiveness inference.",
+  "FIELD_REPRESENTATION_LIMIT": "Unchanged existing fields cannot represent/discriminate necessary fact; no structural/graph claim.",
+  "FILENAME_FIELD_OVERWEIGHT": "Filename influence promotes non-required overtakers with proven necessary-evidence consequence, not mere upward movement.",
+  "QUERY_AUTHORING_LIMIT": "Necessary fact omitted from frozen query; cannot be repaired by field scoring.",
+  "REQUIRED_RANKING_REGRESSION": "Baseline-reached necessary cell or selected completion worsens; exact magnitude and bounds retained.",
+  "UNION_IDF_HARM": "Fixed-order union-IDF delta contributes to necessary-rank/completion harm, with exact overtaker evidence."
+}
+```
+
+## SEARCH POLICY FAILURE
+
+```json
+"NOT_ASSESSED"
+```
+
+## gold policy
+
+```json
+{
+  "MODEL": "GPT-6 Astra",
+  "REASONING": "High",
+  "allowed": [
+    "case",
+    "task_identity",
+    "task_text",
+    "obligations",
+    "eligible_resources"
+  ],
+  "automatic_second_reviewer": false,
+  "excluded": [
+    "queries",
+    "analyzed query terms",
+    "BM25F field definitions as experiment metadata",
+    "field weights",
+    "b values",
+    "BM25F formula",
+    "arms",
+    "rankings",
+    "scores",
+    "field contributions",
+    "df values",
+    "IDF values",
+    "candidate results",
+    "metrics",
+    "gates",
+    "costs",
+    "outcome",
+    "prior gold",
+    "confirmation/reserve",
+    "repository checkout/history",
+    "web",
+    "prior Codex-session content"
+  ],
+  "resource_text": "Original natural task/resource text unchanged; exclusion removes metadata, never edits source text.",
+  "review": "One clean primary semantic adjudication; no automatic second reviewer or reconciliation. Full cell matrix, task/repository semantic units, support alternatives/spans, complete minimal witnesses, task combinations, indispensability, gaps/limitations/design freedom. Clean blindness attestation required before publication.",
+  "treatment_blind": true
+}
+```
+
+## no execution
+
+```json
+{
+  "gold": "ABSENT",
+  "prospective_bm25f_scorings": 0,
+  "prospective_frame_retrieval_executions": 0,
+  "prospective_index_builds": 0,
+  "prospective_obligation_queries": 0,
+  "prospective_reference_queries": 0,
+  "prospective_treatment_rankings": 0
+}
+```
+
+## execution policy
+
+```json
+"No Stage B entry point at this checkpoint. Maintainer reviews frozen Stage A; only after authorization execute A/B and reference prospectively exactly once. Synthetic controlled fixtures are segregated and cannot use the prospective frame."
+```
+
+## status
+
+```json
+"R2 CURRENT / STAGE_A_FROZEN; effectiveness NOT_EVALUATED; production UNCHANGED; confirmation/reserve NOT_ACCESSED"
+```
+
+## Controlled mathematical examples (synthetic only)
+
+# True BM25F experiment infrastructure
+
+This non-installable experiment owns two-field observations/statistics adaptation, union df, normalized tf, contribution provenance, deterministic ranking, comparison and lossless traces. It depends on canonical repository identities and lexical primitives read-only. Production never imports it. No promotion or production interface is authorized. Case 0015 is a future consumer after separate execution authorization; synthetic fixtures are the only scoring inputs at Stage A.
+
+CONTENT is exact whole-resource decoded text. FILENAME is `PurePosixPath(address).stem`, tokenized by the same Unicode `\w+`/casefold analysis. Length is observation count; each average includes every eligible document, including empty fields. No path, extension, symbols or identifier subtokens are added.
+
+For each distinct query term:
+
+```text
+normalized_tf_f = tf_f / (1-b_f+b_f*length_f/average_length_f)
+combined_tf = 1.0*normalized_tf_CONTENT + 0.25*normalized_tf_FILENAME
+df_union = count(documents containing term in at least one field)
+idf_union = ln(1+(N-df_union+0.5)/(df_union+0.5))
+term_score = idf_union * ((1.2+1)*combined_tf) / (1.2+combined_tf)
+score = sum(term_score in distinct query encounter order)
+```
+
+Both b values are 0.75; all query multipliers are 1.0. Empty fields contribute zero. Union df counts a document once across fields. Positive weights preserve the canonical positive content-or-filename candidate set. Equal scores retain original collection order. The implementation preserves native Arm A channel grouping and verifies candidate identity without a repair union.
+
+## Controlled mathematical examples — synthetic only
+
+Take two synthetic resources: `alpha.txt` contains `alpha alpha`; `quiet.txt` contains `quiet quiet`. Both content lengths are 2 and both filename lengths are 1, hence averages 2 and 1. Query `alpha` has content df=1, filename df=1, union df=1, N=2, and IDF=ln(2). The matching document has normalized tf 2 and 1; weighted aggregate 2.25.
+
+True BM25F = `ln(2) * 4.95 / 3.45`.
+
+Independent additive BM25 = `ln(2) * (4.4/3.2 + 0.25*2.2/2.2)` = `ln(2)*1.625`.
+
+These differ. Counting the cross-field document twice would also change IDF incorrectly. This fixture proves the architectural change without obtaining any prospective Case 0015 score.
+
+If only CONTENT has the queried term and content weight=1, union df equals content df and BM25F reduces algebraically to ordinary content BM25 (binary floating grouping can differ by rounding). If filename has no observations in any document, its average is zero and its contribution is zero. Field averages always remain independent; queries do not alter them.
+
+`trace.py` serializes every float as `float.hex`, preserves canonical observations and identity binding, reconstructs scores and rejects tamper. Its fixed telescoping diagnostics replace field IDFs with union IDF, move field weights inside independent saturations, then combine into a single saturation. Field-normalization inputs stay unchanged from A; exact per-field denominators explain interaction with lengths. Native channel-grouping residual is explicit. Diagnostics are unranked counterfactual arithmetic, not additional arms or causal proof by score delta alone.
+
+`gates.py` retains disciplined R1.7 integer gain/safety thresholds with R2 outcomes, independently frozen for B versus A. It additionally handles complete zero-retrieval-depth task-backed witnesses explicitly. No term-role or query-weighting implementation is reused. `pytest.ini` isolates controlled fixtures from production coverage configuration. No fixture contains Case 0015 resources, task evidence or effectiveness labels.
+
+Run controlled tests with `uv run pytest -c experiments/bm25f/pytest.ini experiments/bm25f experiments/codex_dogfood/case_0015 -q`. No Stage B command exists here.
+
+## Frozen native frame
+
+```json
+{
+  "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+  "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+  "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+  "resource_count": 515,
+  "resource_order": "canonical resource address ascending",
+  "snapshot_id": "9846f13fdce6c8fc896f673fb7d1f6e0a40b0aeeea24ad71b73d4527e367c494",
+  "source_head": "53a1d087a24e7880f305e167e2d5f3bbb727ff61"
+}
+```
+
+## Resource eligibility
+
+```json
+{
+  "excluded_prior_case_resources": [
+    "docs/architecture.md",
+    "docs/architecture/decisions/ADR-0005-obligation-driven-repository-localization.md",
+    "docs/architecture/localization.md",
+    "docs/architecture/retrieval.md",
+    "docs/architecture/taxonomy.md",
+    "docs/backlog/epics/B-0002-coding-context-substrate.md",
+    "docs/backlog/items/B-0047-protected-development-validation-profile.md",
+    "docs/development/validation.md",
+    "docs/documentation_map.md",
+    "docs/roadmap.md",
+    "src/devtools/context/localization/docs/overview.md",
+    "src/devtools/context/localization/roles/docs/overview.md",
+    "src/devtools/context/python/project_configuration/docs/overview.md",
+    "src/devtools/context/python/references/analysis.py",
+    "src/devtools/context/retrieval/graph/docs/overview.md",
+    "src/devtools/context/retrieval/repository_map/docs/overview.md"
+  ],
+  "path_eligibility": "Broad source/test/doc/config selection; experiments, held-out paths, research/reports/ledger and operational files excluded before reads",
+  "prior_case_leakage": "Exclude complete original resource containing case[_ -]?00\\d\\d marker case-insensitive; never strip/rewrite source",
+  "task_query_independent": true
+}
+```
+
+Complete exact identity inventory: frame.json. Exact whole contents: resources.json.gz. No document tokens, lengths, averages, df, candidates, scores, ranks or gold have been calculated for this frame.
+
+Maintainer reviews frozen Case 0015 R2 Stage A. Only after authorization execute canonical additive BM25 and true BM25F prospectively exactly once.

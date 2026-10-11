@@ -9,6 +9,11 @@ open retrieval hypotheses. Production has whole-resource content BM25 plus an
 independent filename-stem contribution at weight 0.25: **not BM25F**. Unicode
 word/casefold terms do not split snake/camel/Pascal/acronym identifiers. There
 is no production dense, learned sparse or learned ranking/reranking path.
+The [first R2 Stage A](../../../../../experiments/codex_dogfood/case_0015/STAGE_A_REVIEW.md)
+is frozen prospectively: only existing content/filename fields, native additive A
+versus experiment-only true BM25F B; zero prospective execution, no gold and no
+production integration. Maintainer review must precede execution.
+
 Identifier/subtoken evidence and true BM25F are separately attributable mandatory
 roadmap experiments; canonical production behavior is unchanged.
 

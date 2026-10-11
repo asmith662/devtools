@@ -64,8 +64,8 @@ Stage D join are complete. **R1.6 development and Case 0010 Stage D are complete
 U1, U2 and U3 are complete**; Case 0013 Stage D supports bounded task-role-
 conditioned exact-route admission. R1.7 is COMPLETE /
 QUERY_TERM_WEIGHTING_HARMFUL at Case 0014 Stage D, with unchanged primary-derived
-reviewed gold and the prospectively frozen decision rule. R2 true BM25F is NEXT /
-MANDATORY;
+reviewed gold and the prospectively frozen decision rule. R2 true BM25F is
+CURRENT / STAGE_A_FROZEN at Case 0015; maintainer review precedes execution.
 canonical production BM25 remains unchanged and semantic-resolution effectiveness
 does not resume yet.
 
@@ -203,7 +203,7 @@ Human treatment inspection is not blind adjudication; maintainer labels belong
 in MANUAL_AUDIT. R1/R1.5/R1.6 remain complete. U1 = COMPLETE /
 INFORMATION_NEED_AUTHORING_DEFECT; U2 = COMPLETE / EXACT_HINT_ROUTING_SUPPORTED;
 U3 = COMPLETE / SELECTIVE_MECHANISM_ROUTING_SUPPORTED. R1.7 = COMPLETE /
-QUERY_TERM_WEIGHTING_HARMFUL. R2 true BM25F = NEXT / MANDATORY;
+QUERY_TERM_WEIGHTING_HARMFUL. R2 true BM25F = CURRENT / STAGE_A_FROZEN;
 downstream Localization continuation = PRESERVED.
 U1 success is not a condition for R2.
 
@@ -248,10 +248,31 @@ SEARCH_POLICY_FAILURE = NOT_ASSESSED; confirmation/reserve = NOT_ACCESSED;
 production behavior = UNCHANGED. R1.7 is query-side weighting evidence only and
 does not authorize production weighting. Identifier-aware R1 remains a separate
 retrieval view, and U2/U3 remain evidence for bounded exact mechanism routing.
-Next: begin R2 true BM25F design/freeze. Test actual multi-field BM25F semantics
-rather than summing independent BM25 scores. Downstream Localization is preserved.
+R2 Case 0015 Stage A is now frozen for actual multi-field BM25F semantics.
+Anchor emphasis produced the harmful REQUIRED regressions in Case 0014;
+generic-operation attenuation produced additional REQUIRED improvements with
+no additional REQUIRED regressions. That bounded result does not authorize a
+new query-weighting treatment or production weighting. Downstream Localization is preserved.
 
-#### R2 — True BM25F / field-aware sparse retrieval — NEXT / MANDATORY
+#### R2 — True BM25F / field-aware sparse retrieval — CURRENT
+
+[Case 0015 Stage A](../experiments/codex_dogfood/case_0015/STAGE_A_REVIEW.md)
+freezes the first isolation-preserving R2 slice: canonical whole-content and
+filename-stem representations only; exact native additive Arm A versus true
+BM25F Arm B. Field-normalized tf combines before one union IDF and one
+saturation. k1=1.2, both b=0.75, weights content=1.0 and filename=0.25;
+every query multiplier=1.0. The new future strict-bounded-filesystem-read task
+has six mandatory obligations and identical frozen queries across arms.
+[Experiment infrastructure](../experiments/bm25f/README.md) is tested only on
+synthetic fixtures. Prospective index/query/scoring/ranking executions are zero;
+gold is absent. Production and confirmation/reserve status are unchanged.
+The frozen rule distinguishes safe replacement, bounded complementary value,
+harm and invalid experiments through task-relative witnesses and REQUIRED ranks.
+
+Next: maintainer reviews frozen Case 0015 R2 Stage A. Only after authorization
+execute canonical additive BM25 and true BM25F prospectively exactly once.
+The broader field/identifier comparison directions below remain future hypotheses;
+they are not arms or fields in this first frozen two-field, two-arm slice.
 
 **R2 — Implement and evaluate a true BM25F / field-aware sparse retrieval
 formulation regardless of the outcome of R1.** R2 is unconditional: it follows
@@ -275,7 +296,8 @@ field belongs in BM25F v1. Identifier representation asks **what terms exist**;
 BM25F asks **where terms occur and how field evidence contributes**. They may
 complement rather than compete.
 
-At minimum, where technically possible, freeze these comparison arms:
+For a later separately authorized representation-interaction study, consider
+these comparison arms; they are not part of Case 0015:
 
 | Arm | Representation / scoring |
 | --- | --- |

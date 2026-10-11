@@ -88,7 +88,7 @@
   prospective gates: SELECTIVE_MECHANISM_ROUTING_SUPPORTED. The bounded result
   establishes task-role-conditioned exact-route admission only; production is
   unchanged. R1.7 is COMPLETE / QUERY_TERM_WEIGHTING_HARMFUL;
-  true BM25F design/freeze is NEXT / MANDATORY.
+  true BM25F is CURRENT / STAGE_A_FROZEN at Case 0015.
 - [R1.7 query-term weighting](../experiments/query_term_weighting/README.md)
   owns experimental task/query-only roles, explicit contribution multipliers,
   native/weighted trace reconstruction and exact prospective gates.
@@ -475,7 +475,14 @@ retains the sole sealed Astra High primary without semantic transformation. Its
 owns the exact gold/capture joins, all witnesses and REQUIRED ranks, captured
 attribution, prefix burdens and frozen R1.7 QUERY_TERM_WEIGHTING_HARMFUL outcome.
 This is development query-side weighting evidence; production behavior is unchanged.
-The roadmap places true BM25F design/freeze next and mandatory.
+[Case 0015 Stage A](../experiments/codex_dogfood/case_0015/STAGE_A_REVIEW.md)
+owns the prospective first R2 slice, task/queries, exact frame, two-field/two-arm
+contract, blind-gold policy and frozen integer outcome rule.
+[True BM25F infrastructure](../experiments/bm25f/README.md) owns experiment-only
+canonical field adaptation, union df, pre-saturation aggregation and lossless
+traces. R2 is CURRENT / STAGE_A_FROZEN; prospective execution is zero and gold
+absent. Production remains unchanged. Maintainer review precedes separately
+authorized exactly-once Stage B.
 
 The `orchestration` and `governance` domains remain recognized sparse
 namespaces without reusable implementation APIs. Evaluation now provides the
