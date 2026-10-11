@@ -79,8 +79,11 @@
   no acquisition outcomes or gold and authorizes no production change.
   [Case 0013 Stage B](../experiments/codex_dogfood/case_0013/stage_b/attempts/case-0013-stage-b-1/STAGE_B_REVIEW.md)
   owns immutable native operation returns, independent B/C route execution,
-  complete lexical/exact-first mechanical views and captured costs. Gold is
-  absent, effectiveness unknown and U3 outcome not selected.
+  complete lexical/exact-first mechanical views and captured costs.
+  [Primary publication](../experiments/codex_dogfood/case_0013/adjudication/PUBLICATION.md)
+  owns the immutable treatment-blind GPT-6 Astra High import; [reviewed gold](../experiments/codex_dogfood/case_0013/adjudication/reviewed/REVIEWED_GOLD.md)
+  preserves its semantics directly, with no reconciliation. Stage D is pending;
+  effectiveness is unknown and U3 outcome is not selected.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),
   [Cases 0004–0008 history](architecture/localization.md#prospective-cases-0004-0008-and-structural-breadth-closure)

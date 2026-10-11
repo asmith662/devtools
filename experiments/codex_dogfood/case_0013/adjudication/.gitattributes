@@ -1,0 +1,7 @@
+primary/* -text
+reviewed/*.json -text
+reviewed/REVIEWED_GOLD.md -text
+reviewed/*.py -text
+# Sealed quoted task spans retain trailing spaces and the source report EOF.
+primary/STAGE_C_REVIEW.md whitespace=-blank-at-eol,-blank-at-eof
+reviewed/REVIEWED_GOLD.md whitespace=-blank-at-eol,-blank-at-eof

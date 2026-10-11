@@ -1,0 +1,325 @@
+{
+  "applicable_obligation_count": 9,
+  "bounded_ambiguity_count": 2,
+  "case": "case-0013",
+  "cell_count": 4779,
+  "complete_task_combination_count": 38400,
+  "distinct_sufficient_resource_union_count": 280,
+  "distinct_sufficient_unit_union_count": 1,
+  "evidence_classes": {
+    "REPOSITORY_SUPPORTED": 17,
+    "TASK_AND_REPOSITORY_SUPPORTED": 0,
+    "TASK_BACKED": 32
+  },
+  "gap_counts": {
+    "REPOSITORY_INFORMATION_GAP": 0,
+    "TASK_GAP": 0,
+    "TASK_INTERPRETATION_GAP": 0
+  },
+  "globally_minimal_resource_union_count": 32,
+  "indispensable_resources": [
+    "R064",
+    "R083",
+    "R120",
+    "R122",
+    "R124",
+    "R181"
+  ],
+  "indispensable_units": [
+    "S01",
+    "S02",
+    "S03",
+    "S04",
+    "S05",
+    "S06",
+    "S07",
+    "S08",
+    "S09",
+    "S10",
+    "S11",
+    "S12",
+    "S13",
+    "S14",
+    "S15",
+    "S16",
+    "S17",
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08",
+    "T09",
+    "T10",
+    "T11",
+    "T12",
+    "T13",
+    "T14",
+    "T15",
+    "T16",
+    "T17",
+    "T18",
+    "T19",
+    "T20",
+    "T21",
+    "T22",
+    "T23",
+    "T24",
+    "T25",
+    "T26",
+    "T27",
+    "T28",
+    "T29",
+    "T30",
+    "T31",
+    "T32"
+  ],
+  "labels": {
+    "HELPFUL_ONLY": 126,
+    "REQUIRED": 45,
+    "UNNECESSARY": 4608
+  },
+  "labels_by_obligation": {
+    "compatibility": {
+      "HELPFUL_ONLY": 14,
+      "REQUIRED": 1,
+      "UNNECESSARY": 516
+    },
+    "documentation": {
+      "HELPFUL_ONLY": 16,
+      "REQUIRED": 0,
+      "UNNECESSARY": 515
+    },
+    "exports": {
+      "HELPFUL_ONLY": 8,
+      "REQUIRED": 2,
+      "UNNECESSARY": 521
+    },
+    "integrity": {
+      "HELPFUL_ONLY": 12,
+      "REQUIRED": 5,
+      "UNNECESSARY": 514
+    },
+    "manifest": {
+      "HELPFUL_ONLY": 17,
+      "REQUIRED": 9,
+      "UNNECESSARY": 505
+    },
+    "projection": {
+      "HELPFUL_ONLY": 15,
+      "REQUIRED": 9,
+      "UNNECESSARY": 507
+    },
+    "structure": {
+      "HELPFUL_ONLY": 18,
+      "REQUIRED": 3,
+      "UNNECESSARY": 510
+    },
+    "tests": {
+      "HELPFUL_ONLY": 25,
+      "REQUIRED": 11,
+      "UNNECESSARY": 495
+    },
+    "validation": {
+      "HELPFUL_ONLY": 1,
+      "REQUIRED": 5,
+      "UNNECESSARY": 525
+    }
+  },
+  "limitation_count": 7,
+  "maximum_resource_count": 14,
+  "maximum_unit_count": 49,
+  "minimum_resource_count": 9,
+  "minimum_unit_count": 49,
+  "obligation_count": 9,
+  "obligation_indispensability": {
+    "compatibility": {
+      "resources": [
+        "R124"
+      ],
+      "units": [
+        "S06",
+        "S07",
+        "T14"
+      ]
+    },
+    "documentation": {
+      "resources": [],
+      "units": [
+        "T13",
+        "T21",
+        "T22",
+        "T23",
+        "T24"
+      ]
+    },
+    "exports": {
+      "resources": [
+        "R083",
+        "R120"
+      ],
+      "units": [
+        "S08",
+        "S09",
+        "T15",
+        "T16",
+        "T26"
+      ]
+    },
+    "integrity": {
+      "resources": [
+        "R122",
+        "R181"
+      ],
+      "units": [
+        "S01",
+        "S02",
+        "S04",
+        "S05",
+        "T04",
+        "T05",
+        "T06"
+      ]
+    },
+    "manifest": {
+      "resources": [
+        "R122",
+        "R181"
+      ],
+      "units": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S14",
+        "S15",
+        "T01",
+        "T02",
+        "T03",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T24"
+      ]
+    },
+    "projection": {
+      "resources": [
+        "R122",
+        "R181"
+      ],
+      "units": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S14",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13"
+      ]
+    },
+    "structure": {
+      "resources": [
+        "R122"
+      ],
+      "units": [
+        "S01",
+        "S02",
+        "S03",
+        "S15",
+        "T01",
+        "T02",
+        "T03",
+        "T08",
+        "T10",
+        "T24"
+      ]
+    },
+    "tests": {
+      "resources": [
+        "R122",
+        "R181"
+      ],
+      "units": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S10",
+        "S11",
+        "S14",
+        "T17",
+        "T18",
+        "T19",
+        "T20",
+        "T27",
+        "T28",
+        "T29"
+      ]
+    },
+    "validation": {
+      "resources": [
+        "R064"
+      ],
+      "units": [
+        "S12",
+        "S13",
+        "S16",
+        "S17",
+        "T25",
+        "T30",
+        "T31",
+        "T32"
+      ]
+    }
+  },
+  "required_resource_count": 18,
+  "required_resource_union": [
+    "R000",
+    "R057",
+    "R060",
+    "R064",
+    "R065",
+    "R083",
+    "R120",
+    "R122",
+    "R123",
+    "R124",
+    "R125",
+    "R140",
+    "R141",
+    "R179",
+    "R180",
+    "R181",
+    "R383",
+    "R424"
+  ],
+  "resource_count": 531,
+  "schema": "case-0013-semantic-statistics-v1",
+  "semantic_unit_count": 49,
+  "substantive_subclause_count": 18,
+  "task_clause_count": 10,
+  "task_identity": "case-0013-context-disclosure-manifest",
+  "unresolved_cell_count": 0,
+  "witness_counts": {
+    "compatibility": 1,
+    "documentation": 1,
+    "exports": 1,
+    "integrity": 3,
+    "manifest": 10,
+    "projection": 10,
+    "structure": 2,
+    "tests": 16,
+    "validation": 4
+  }
+}

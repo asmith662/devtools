@@ -1,0 +1,142 @@
+{
+  "adversarial_test_count": 20,
+  "adversarial_tests": [
+    {
+      "name": "altered_cell_identity",
+      "result": "REJECTED"
+    },
+    {
+      "name": "missing_cell",
+      "result": "REJECTED"
+    },
+    {
+      "name": "duplicate_cell",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_label",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_resource_identity",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_support_span",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_semantic_unit_membership",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_witness_membership",
+      "result": "REJECTED"
+    },
+    {
+      "name": "incomplete_witness",
+      "result": "REJECTED"
+    },
+    {
+      "name": "redundant_witness_member",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_task_combination",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_sufficient_union",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_sufficient_unit_union",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_task_indispensability",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_obligation_indispensability",
+      "result": "REJECTED"
+    },
+    {
+      "name": "altered_task_binding",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_support_classification",
+      "result": "REJECTED"
+    },
+    {
+      "name": "altered_obligation_criterion",
+      "result": "REJECTED"
+    },
+    {
+      "name": "tampered_scientific_hash",
+      "result": "REJECTED"
+    },
+    {
+      "name": "overwrite_refusal",
+      "result": "REJECTED"
+    }
+  ],
+  "blindness": "PASS: every excluded-access category is NO",
+  "checks": [
+    "exact case/task/obligation binding",
+    "exact 531-resource frame",
+    "4779 unique complete qualified cells",
+    "label vocabulary",
+    "resource identities and native content identities",
+    "exact support text/offset/line spans",
+    "unique semantic-unit identities",
+    "evidence classification and support alternatives",
+    "unit/obligation memberships",
+    "witness completeness and resource-deletion minimality",
+    "REQUIRED/witness correspondence",
+    "Cartesian task combinations",
+    "resource and unit unions",
+    "obligation and task intersections",
+    "gap and limitation schemas",
+    "deterministic statistics",
+    "deterministic Markdown",
+    "scientific output hashes",
+    "overwrite refusal"
+  ],
+  "deterministic_replay": {
+    "mode": "Separate python -B process rebuilds all publication bytes in memory; publisher/verify compares the complete length-framed artifact byte stream directly for exact equality, in addition to artifact SHA-256 authentication.",
+    "no_timestamp_or_environment_dependent_fields": true,
+    "status": "PASS"
+  },
+  "initial_validator_result": "PASS; NO ADJUDICATION",
+  "initial_whitelist": {
+    "exact_files": [
+      "README.md",
+      "integrity.json",
+      "manifest.json",
+      "resources.json.gz",
+      "validate_packet.py"
+    ],
+    "no_subdirectories_links_junctions_reparse_points": true,
+    "performed_before_output_creation": true,
+    "status": "PASS"
+  },
+  "original_packet_preservation": "PASS: all five sealed input byte hashes match",
+  "packet_digest_scopes": {
+    "archive_sha256": "7d501a60f1107e1d7e5de17d37ad61732e7d173b8d3554975d516586002d9558",
+    "canonical_payload_sha256": "1305f78b76f482750807bb376c820515990683d13b8d107be9725729b7a8ece6",
+    "integrity_sha256": "683a0d244b3c166821db046d107b2b5cdd00e1d2753d1b924c9ca2054df60f16",
+    "manifest_sha256": "9653a664db91faa1c41ade168e2da528d3601b809d08386d9c13cc96a24bb0f4"
+  },
+  "schema": "case-0013-semantic-validation-v1",
+  "scope": "Structural invariants and exact evidence are mechanically validated; semantic judgments are the single primary reviewer decisions retained in the builder and review.",
+  "sealed_input_hashes": {
+    "README.md": "66b119b890f3019c0cc50982b26385fb63a54c87b4c5f2a88b3446b0a0da8578",
+    "integrity.json": "683a0d244b3c166821db046d107b2b5cdd00e1d2753d1b924c9ca2054df60f16",
+    "manifest.json": "9653a664db91faa1c41ade168e2da528d3601b809d08386d9c13cc96a24bb0f4",
+    "resources.json.gz": "7d501a60f1107e1d7e5de17d37ad61732e7d173b8d3554975d516586002d9558",
+    "validate_packet.py": "35e60aeb0df29a9462cac19c5acba152f3b9e08832e0e53375144b9bdb8917c2"
+  },
+  "status": "PASS"
+}

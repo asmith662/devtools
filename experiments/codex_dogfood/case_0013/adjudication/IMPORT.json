@@ -1,0 +1,73 @@
+{
+  "blindness_attestation": {
+    "Git_history": "NO",
+    "acquisition_purposes_intents": "NO",
+    "analyzed_terms": "NO",
+    "confirmation_data": "NO",
+    "experiment_arms": "NO",
+    "experiment_decision_rules": "NO",
+    "external_web_information": "NO",
+    "hint_associations": "NO",
+    "hint_metadata_outside_original_task_text": "NO",
+    "locators": "NO",
+    "mechanisms": "NO",
+    "parent_directory": "NO",
+    "prior_Codex_session_content": "NO",
+    "prior_adjudication": "NO",
+    "prior_gold": "NO",
+    "ranks": "NO",
+    "repository_checkout": "NO",
+    "reserve_data": "NO",
+    "retrieval_queries": "NO",
+    "route_decisions": "NO",
+    "route_outcomes": "NO",
+    "routing_roles": "NO",
+    "score_contributions": "NO",
+    "scores": "NO",
+    "sibling_workspaces": "NO",
+    "treatment_costs_timings": "NO"
+  },
+  "case": "case-0013",
+  "deterministic_replay": "PASS: python -B -X utf8 stage_c_builder.py --verify",
+  "excluded": [
+    "sterile .local",
+    "reliability comparison",
+    "reconciliation",
+    "second reviewer"
+  ],
+  "git_identity_requirement": "Every primary file must match staged and committed Git blob content; no normalization.",
+  "original_packet_bytes": "PRESERVED",
+  "packet_digest_scopes": {
+    "archive_sha256": "7d501a60f1107e1d7e5de17d37ad61732e7d173b8d3554975d516586002d9558",
+    "canonical_payload_sha256": "1305f78b76f482750807bb376c820515990683d13b8d107be9725729b7a8ece6",
+    "integrity_sha256": "683a0d244b3c166821db046d107b2b5cdd00e1d2753d1b924c9ca2054df60f16",
+    "manifest_sha256": "9653a664db91faa1c41ade168e2da528d3601b809d08386d9c13cc96a24bb0f4"
+  },
+  "primary_adjudicator_policy": {
+    "MODEL": "GPT-6 Astra",
+    "REASONING": "High",
+    "automatic_second_review": false,
+    "treatment_blind": true
+  },
+  "primary_sha256": {
+    "STAGE_C_REVIEW.md": "3496b769d41b645f39cf6eb4fba2d0beee07502da57e76f597b1124570bb2dab",
+    "stage_c_builder.py": "6cbcde860e7148f8f6d1fc177721f3301be0248a013c6a714943f2d2844e9a27",
+    "stage_c_hashes.json": "fc82fa987d7374590373d9fee0d51626e0e7ab21964835f876abfb5eab38861a",
+    "stage_c_method.md": "e6fc71ed56c47f1be89e080a1eeada49aa9e169ddeb7fd93d5eda831ddac4038",
+    "stage_c_review.json": "cb93fbc4c158668e4971c29fd8c3bf05c0a0d2e357a9aa66acee6888d4c51b50",
+    "stage_c_statistics.json": "ff22c42f1b32eb7bb485191e1c3aa586f3a9c51cd370e46cf471427a5023e292",
+    "stage_c_validation.json": "29c803f2423e18958387635e00ced46a536fcf39e0b308caa5f1148e60958361"
+  },
+  "sealed_input_hashes": {
+    "README.md": "66b119b890f3019c0cc50982b26385fb63a54c87b4c5f2a88b3446b0a0da8578",
+    "integrity.json": "683a0d244b3c166821db046d107b2b5cdd00e1d2753d1b924c9ca2054df60f16",
+    "manifest.json": "9653a664db91faa1c41ade168e2da528d3601b809d08386d9c13cc96a24bb0f4",
+    "resources.json.gz": "7d501a60f1107e1d7e5de17d37ad61732e7d173b8d3554975d516586002d9558",
+    "validate_packet.py": "35e60aeb0df29a9462cac19c5acba152f3b9e08832e0e53375144b9bdb8917c2"
+  },
+  "semantic_transformation": "NONE",
+  "source": "PRIMARY_ASTRA_HIGH",
+  "source_destination_identity": "PASS; exact physical bytes",
+  "sterile_workspace": "C:\\Users\\recoveryadmin\\CodexSterile\\case_0013_stage_c_7d501a60f110",
+  "task_identity": "case-0013-context-disclosure-manifest"
+}
