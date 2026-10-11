@@ -225,8 +225,11 @@ is CAPTURED once: one native index, six obligation queries and one unchanged
 whole-task reference lane; A/B/C share all captured native contributions and
 candidate identities. Mechanical attribution/replay pass. Gold is NOT_CREATED,
 effectiveness UNKNOWN and outcome NOT_SELECTED; the frozen rule is not applied.
-Maintainer reviews the capture before one fresh treatment-blind Astra High primary. No production
-weighting or future feature is implemented. R2 remains mandatory immediately
+Maintainer reviews the capture before one fresh treatment-blind Astra High primary.
+The [blind packet](../experiments/codex_dogfood/case_0014/stage_c/PUBLICATION.md)
+is independently double-built and validated in a fresh stable sterile workspace;
+Astra has not started. No gold-dependent evaluation occurs at this checkpoint.
+No production weighting or future feature is implemented. R2 remains mandatory immediately
 after R1.7; downstream Localization continuation remains preserved.
 
 #### R2 — True BM25F / field-aware sparse retrieval — MANDATORY AFTER R1.7

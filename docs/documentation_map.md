@@ -102,6 +102,10 @@
   captured costs and append-only journal. Candidate/statistics identity and
   exact A/native reconstruction pass; gold is NOT_CREATED, effectiveness UNKNOWN,
   outcome NOT_SELECTED. Maintainer review precedes a fresh Astra High primary.
+  [Blind packet publication](../experiments/codex_dogfood/case_0014/stage_c/PUBLICATION.md)
+  owns the independent deterministic double-build, five-file input whitelist,
+  exact digest scopes and fresh stable sterile workspace. It starts no reviewer
+  and contains no gold or treatment/effectiveness inputs.
   This does not implement query
   weighting in production, the future feature or mandatory subsequent BM25F.
 - [Localization continuity](architecture/localization.md) owns the single

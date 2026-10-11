@@ -1,5 +1,31 @@
 # Implementation Ledger
 
+## Case 0014 blind adjudication packet freeze (2026-10-11)
+
+After the completed Stage B checkpoint `06e816693fed9165467c3afde42298e6dcefe615`,
+two independent Python processes built byte-identical five-file packets containing
+only original task/obligation semantics and all 515 native eligible resources.
+The [publication record](../experiments/codex_dogfood/case_0014/stage_c/PUBLICATION.md)
+preserves separate archive/payload/manifest/integrity digests. Exact allowlists,
+native content/document/snapshot/corpus reconstruction, deep metadata leakage
+tripwires, overwrite refusal and tamper checks pass. Original text remains intact.
+
+Prepared the fresh stable user-owned sterile workspace
+`C:\Users\recoveryadmin\CodexSterile\case_0014_stage_c_59a7f62ecc1e` with only
+README.md, integrity.json, manifest.json, resources.json.gz and validate_packet.py.
+Physical source/repository/sterile copies match, with no subdirectories, reparse
+points, checkout or treatment data. The standalone `python -B validate_packet.py`
+passes. One relative CLI destination defect was repaired through the canonical
+path resolver and covered by a focused test before sealing; no scientific native
+operation was repeated. All 43 focused weighting/capture/packet tests pass.
+
+No Astra session starts, no gold is created, no witness/effectiveness analysis or
+frozen outcome rule is applied. R1.7 remains CURRENT, effectiveness UNKNOWN,
+outcome NOT_SELECTED, SEARCH_POLICY_FAILURE NOT_ASSESSED. Future adjudication is
+one completely fresh treatment-blind GPT-6 Astra / High primary with no automatic
+second reviewer. U1/U2/U3, bounded U3 scope, production behavior, mandatory BM25F
+immediately after R1.7 and downstream Localization continuation remain unchanged.
+
 ## Case 0014 query-term weighting Stage B capture (2026-10-11)
 
 Authenticated committed Stage A and the unchanged deterministic replay before
