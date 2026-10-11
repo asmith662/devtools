@@ -21,3 +21,11 @@ linting and type-check edits. Its exact-byte replay validates its sealed source.
 Checkpoint 1 freezes primary/reviewed gold only. Stage D starts after that commit
 is validated and pushed. Production behavior is unchanged; confirmation/reserve
 are not accessed. R2 true BM25F remains mandatory after R1.7.
+
+Publication correction: the first gold commit updated the case README as current
+status prose, overlooking its membership in Stage A's authored-file seal. The
+Stage D authentication check caught this metadata defect before analysis. Its
+original committed bytes are restored in a separate correction commit. Current
+status belongs here and in Stage D; all Stage A scientific inputs and source
+contracts retain their original seal. No native operation or semantic adjudication
+was repeated. The reviewed-gold and primary bytes are unchanged by this correction.
