@@ -28,12 +28,14 @@ U2 is COMPLETE / EXACT_HINT_ROUTING_SUPPORTED; U3 is COMPLETE /
 SELECTIVE_MECHANISM_ROUTING_SUPPORTED at
 [Case 0013 Stage D](../../../experiments/codex_dogfood/case_0013/stage_d/STAGE_D_REVIEW.md).
 That result establishes only task-role-conditioned exact-route admission.
-R1.7 is CURRENT at
-[Case 0014 Stage A](../../../experiments/codex_dogfood/case_0014/STAGE_A_REVIEW.md),
-with [Stage B](../../../experiments/codex_dogfood/case_0014/stage_b/attempts/case-0014-stage-b-1/STAGE_B_REVIEW.md)
-captured once, primary-derived reviewed gold, unknown effectiveness and no selected
-outcome at the gold-publication checkpoint. R2 true BM25F
-is mandatory immediately after R1.7 and downstream Localization preserved. No epic concern is closed,
+R1.7 is COMPLETE / QUERY_TERM_WEIGHTING_HARMFUL at
+[Case 0014 Stage D](../../../experiments/codex_dogfood/case_0014/stage_d/STAGE_D_REVIEW.md).
+The single captured treatment and unchanged primary-derived reviewed gold establish
+selected-completion/burden gains with seven unbounded REQUIRED-cell regressions
+under the prospective rule. This is query-side weighting evidence only; no
+production weighting is authorized. R2 true BM25F is NEXT / MANDATORY and
+downstream Localization preserved. SEARCH_POLICY_FAILURE = NOT_ASSESSED;
+confirmation/reserve = NOT_ACCESSED; production behavior = UNCHANGED. No epic concern is closed,
 no feature or production routing is implemented, and historical checkpoint
 paragraphs below retain their original meaning.
 

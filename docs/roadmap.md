@@ -62,9 +62,10 @@ evidence; mixed ranking changes fail promotion's no-worse-completion and
 one A/B execution and the frozen full-frame blind packet. Clean Stage C and the
 Stage D join are complete. **R1.6 development and Case 0010 Stage D are complete;
 U1, U2 and U3 are complete**; Case 0013 Stage D supports bounded task-role-
-conditioned exact-route admission. R1.7 is CURRENT with Case 0014 Stage A frozen
-and Stage B captured once, with primary-derived reviewed gold and no selected outcome;
-R2 is mandatory immediately after R1.7;
+conditioned exact-route admission. R1.7 is COMPLETE /
+QUERY_TERM_WEIGHTING_HARMFUL at Case 0014 Stage D, with unchanged primary-derived
+reviewed gold and the prospectively frozen decision rule. R2 true BM25F is NEXT /
+MANDATORY;
 canonical production BM25 remains unchanged and semantic-resolution effectiveness
 does not resume yet.
 
@@ -201,11 +202,12 @@ automating them or changing production query weights.
 Human treatment inspection is not blind adjudication; maintainer labels belong
 in MANUAL_AUDIT. R1/R1.5/R1.6 remain complete. U1 = COMPLETE /
 INFORMATION_NEED_AUTHORING_DEFECT; U2 = COMPLETE / EXACT_HINT_ROUTING_SUPPORTED;
-U3 = COMPLETE / SELECTIVE_MECHANISM_ROUTING_SUPPORTED. R1.7 = CURRENT. R2 true
-BM25F = MANDATORY AFTER R1.7; downstream Localization continuation = PRESERVED.
+U3 = COMPLETE / SELECTIVE_MECHANISM_ROUTING_SUPPORTED. R1.7 = COMPLETE /
+QUERY_TERM_WEIGHTING_HARMFUL. R2 true BM25F = NEXT / MANDATORY;
+downstream Localization continuation = PRESERVED.
 U1 success is not a condition for R2.
 
-#### R1.7 — Query-term discrimination / weighting investigation — CURRENT
+#### R1.7 — Query-term discrimination / weighting investigation — COMPLETE
 
 Follow completed prospective R1.6, or combine only if parameter and query effects remain cleanly
 attributable. Use term DF/IDF, footprint and independently judged yields as
@@ -228,16 +230,28 @@ candidate identities. Mechanical attribution/replay pass.
 The completed treatment-blind Astra High primary is imported byte-for-byte;
 [reviewed gold](../experiments/codex_dogfood/case_0014/adjudication/reviewed/REVIEWED_GOLD.md)
 preserves its full semantic object with no transformation, reconciliation or
-second reviewer. Effectiveness remains UNKNOWN and outcome NOT_SELECTED at this
-gold-publication checkpoint; the frozen rule has not yet been applied.
+second reviewer. [Stage D](../experiments/codex_dogfood/case_0014/stage_d/STAGE_D_REVIEW.md)
+joins all 3,090 cells, 30 units and 36 witnesses to the sealed capture and selects
+**QUERY_TERM_WEIGHTING_HARMFUL** for C versus A. Selected O5/O6 depths improve
+180→108 and 65→39; unique prefix resources fall 196→118 and occurrences 249→151.
+All six obligations stay complete and REQUIRED reach is unchanged. Ten REQUIRED
+cell ranks regress; seven exceed the frozen complementary bounds. Strong and
+complementary safety therefore fail despite the selected-completion/burden gains.
+Anchor emphasis causes the regressions; generic attenuation adds small gains
+without restoring their safety. B remains attribution only.
 The [blind packet](../experiments/codex_dogfood/case_0014/stage_c/PUBLICATION.md)
 is independently double-built and validated in a fresh stable sterile workspace;
-its historical preparation record remains unchanged in meaning. Stage D is
-authorized after the reviewed-gold checkpoint validates, commits and pushes.
-No production weighting or future feature is implemented. R2 remains mandatory immediately
-after R1.7; downstream Localization continuation remains preserved.
+its historical preparation record remains unchanged in meaning. The gold checkpoint
+was pushed before Stage D; a publication metadata correction restored the sealed
+Stage A README bytes before analysis. No native operation was repeated.
+SEARCH_POLICY_FAILURE = NOT_ASSESSED; confirmation/reserve = NOT_ACCESSED;
+production behavior = UNCHANGED. R1.7 is query-side weighting evidence only and
+does not authorize production weighting. Identifier-aware R1 remains a separate
+retrieval view, and U2/U3 remain evidence for bounded exact mechanism routing.
+Next: begin R2 true BM25F design/freeze. Test actual multi-field BM25F semantics
+rather than summing independent BM25 scores. Downstream Localization is preserved.
 
-#### R2 — True BM25F / field-aware sparse retrieval — MANDATORY AFTER R1.7
+#### R2 — True BM25F / field-aware sparse retrieval — NEXT / MANDATORY
 
 **R2 — Implement and evaluate a true BM25F / field-aware sparse retrieval
 formulation regardless of the outcome of R1.** R2 is unconditional: it follows
@@ -293,7 +307,7 @@ canonical baseline
     -> R1.5 diagnostics (done) -> R1.6 sensitivity (done)
     -> U1 manual formulation (complete) -> U2 exact hints (complete)
     -> U3 selective mechanism routing (complete; bounded Case 0013 support)
-    -> R1.7 query terms (CURRENT; Case 0014 Stage B captured, no gold/outcome)
+    -> R1.7 query terms (COMPLETE; Case 0014 QUERY_TERM_WEIGHTING_HARMFUL)
     -> R2 BM25F canonical terms + R2 BM25F identifier-aware terms
        (representation gain, fielding gain and interaction separately measured)
 ```

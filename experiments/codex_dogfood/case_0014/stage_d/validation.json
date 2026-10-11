@@ -1,0 +1,61 @@
+{
+  "checkpoints": {
+    "ancestry": "PASS",
+    "blind_packet": "15417485eba52eb07631c54dcb141ff8d3294606",
+    "primary_sha256": {
+      "STAGE_C_REVIEW.md": "628f2f1b86627c33f76807dd3875c7fd49b7dc7fb307f85a808e873de1dd4a4f",
+      "stage_c_builder.py": "5f0e25a082118ee37651adc64d0d57228eaf0e7d7496d53f9798997c6762ddeb",
+      "stage_c_hashes.json": "910ca60da636f3d888708a4709b95c2ca68969fb16f14a1c3f361d0249865a16",
+      "stage_c_method.md": "e2a76a8feef89f0f5207333d4d3feaa67bb67c5b427f84b7844edb37703a713b",
+      "stage_c_review.json": "cee15c825f70eee62162cf772f66597dfbfa6f51ef6567780ea161b08a7b59ea",
+      "stage_c_statistics.json": "cb42c54dfde3cf88e492c3e40e3fe1f946b0eedeee5e172799d56ae4ffbbcefa",
+      "stage_c_validation.json": "019cc61f46284e898615e911c64bd0e2c20c1356ad942c5e87d892163c7e920a"
+    },
+    "reviewed_gold": "466e0a7a473d5baf7ff0fd75ec9ae3031760649a",
+    "reviewed_hashes_sha256": "eccbf9fc7b53907e17e3ef71b64a676c4f8b7649623b5e78857ed85eb825348b",
+    "stage_a": "6d26f3c9cce5bc059226a0fe4023dc3ec75832ce",
+    "stage_a_readme_restoration": "c43d46607e55d7999ac0277cd196ca9d9e07b9b5",
+    "stage_b": "06e816693fed9165467c3afde42298e6dcefe615",
+    "stage_b_integrity_sha256": "089bd2fb9be9449dc66966e097d734410030069cbd2a12aefb57610f17fe3ba0"
+  },
+  "checks": [
+    "sealed ancestry/Stage A/B/primary/reviewed gold",
+    "27 complete journal pairs, no retries or failures",
+    "inert native graphs, all native ranks and contributions",
+    "exact case/task/obligation/resource/content/frame joins",
+    "all 3090 gold cells and 30 unchanged units",
+    "all 36 witnesses independently in each arm",
+    "minimum complete depth and stable witness identity",
+    "rank/witness integer gains and complementary bounds",
+    "prefix/unique/occurrence/label/UTF-8 arithmetic",
+    "candidate and reference safety",
+    "role/channel arithmetic and crossing attribution",
+    "frozen gate arithmetic and precedence",
+    "deterministic JSON/Markdown/trace/hash replay",
+    "focused mutations, overwrite refusal and tamper rejection"
+  ],
+  "joins": {
+    "cells": 3090,
+    "duplicate": 0,
+    "identity_dimensions": [
+      "case",
+      "task",
+      "obligation",
+      "RepositoryId",
+      "SnapshotId",
+      "CorpusId",
+      "address",
+      "content_identity",
+      "document_identity"
+    ],
+    "missing": 0,
+    "required_cells": 34,
+    "resources": 515,
+    "stale_frame": 0,
+    "unexpected": 0,
+    "units": 30,
+    "witnesses": 36
+  },
+  "outcome": "QUERY_TERM_WEIGHTING_HARMFUL",
+  "status": "PASS"
+}

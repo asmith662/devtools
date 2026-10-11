@@ -87,7 +87,8 @@
   owns the exact gold/capture join, all witness calculations, costs and unchanged
   prospective gates: SELECTIVE_MECHANISM_ROUTING_SUPPORTED. The bounded result
   establishes task-role-conditioned exact-route admission only; production is
-  unchanged. R1.7 is CURRENT; true BM25F is MANDATORY AFTER R1.7.
+  unchanged. R1.7 is COMPLETE / QUERY_TERM_WEIGHTING_HARMFUL;
+  true BM25F design/freeze is NEXT / MANDATORY.
 - [R1.7 query-term weighting](../experiments/query_term_weighting/README.md)
   owns experimental task/query-only roles, explicit contribution multipliers,
   native/weighted trace reconstruction and exact prospective gates.
@@ -100,8 +101,9 @@
   owns the one native index, seven query returns, shared complete contribution
   surfaces, eighteen arm constructions, all mechanical movements/attribution,
   captured costs and append-only journal. Candidate/statistics identity and
-  exact A/native reconstruction pass; gold is NOT_CREATED, effectiveness UNKNOWN,
-  outcome NOT_SELECTED. Maintainer review precedes a fresh Astra High primary.
+  exact A/native reconstruction pass. Its no-gold/no-outcome summary is the
+  historical mechanical checkpoint; the completed primary and Stage D now own
+  semantic gold and effectiveness respectively.
   [Blind packet publication](../experiments/codex_dogfood/case_0014/stage_c/PUBLICATION.md)
   owns the independent deterministic double-build, five-file input whitelist,
   exact digest scopes and fresh stable sterile workspace. It starts no reviewer
@@ -466,6 +468,14 @@ freezes the repository-role intelligence task, caller-authored obligations and
 explicit lexical queries before Retrieval. It owns the fixed corpus, native
 input archive, acquisition settings, blind adjudication and measurement rules;
 this checkpoint contains no retrieval outputs or resource judgments.
+
+The [Case 0014 reviewed development gold](../experiments/codex_dogfood/case_0014/adjudication/reviewed/REVIEWED_GOLD.md)
+retains the sole sealed Astra High primary without semantic transformation. Its
+[Stage D review](../experiments/codex_dogfood/case_0014/stage_d/STAGE_D_REVIEW.md)
+owns the exact gold/capture joins, all witnesses and REQUIRED ranks, captured
+attribution, prefix burdens and frozen R1.7 QUERY_TERM_WEIGHTING_HARMFUL outcome.
+This is development query-side weighting evidence; production behavior is unchanged.
+The roadmap places true BM25F design/freeze next and mandatory.
 
 The `orchestration` and `governance` domains remain recognized sparse
 namespaces without reusable implementation APIs. Evaluation now provides the
