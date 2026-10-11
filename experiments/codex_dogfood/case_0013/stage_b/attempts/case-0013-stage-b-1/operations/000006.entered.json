@@ -1,0 +1,36 @@
+{
+  "event": 11,
+  "execution": "case-0013-stage-b-1",
+  "frame": {
+    "corpus_id": "33afe5a67237b2743ee4ecc9bdb43c3c7edaf765f246d2c1fc704c9d31847d25",
+    "frame_identity": "1d6ddb8cc25ba05e133b760337a932f6c1d783fa1350353aaaa29a1d98edd30a",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+  },
+  "input_sha256": "3ddcf802e5485eacc05fd288086c4cda1949c8602ac02ca5e40df2c33f026860",
+  "operation": {
+    "identity": "lexical:global",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "Build a deterministic, inspectable in-memory manifest of an already materialized repository Context disclosure, keeping caller-directed selection distinct from relevance, sufficiency, persistent Evidence and model-input assembly.\nInspect the existing class `devtools.context.planning.materialization.ContextDisclosure` and function `devtools.context.planning.materialization.materialize_disclosure_plan`: preserve exact plan identity, purpose, repository/snapshot applicability, ordered choices, representation names, option identities and the one-item-per-choice contract.\nUse the existing method `devtools.context.repository.snapshot.RepositorySnapshot.resource_at` contract to authenticate each manifest resource against the supplied retained snapshot. Reject foreign or stale frames, missing resources, content-identity mismatch and misaligned address/content pairs before publishing a manifest; do not reacquire source, rematerialize choices or silently substitute evidence.\nIntroduce a new class `devtools.context.planning.manifest.ContextDisclosureManifest` and a new function `devtools.context.planning.manifest.describe_context_disclosure` in the new file `src/devtools/context/planning/manifest.py`. Preserve every item and repeated support occurrence in plan order, correlate exact supporting resource/content identities and UTF-8 text byte counts, and retain original native provenance as native values rather than serializing arbitrary objects.\nProvide a deterministic JSON-compatible projection of that manifest with explicit stable identity fields and exact ordered support records; distinguish total item text bytes from unique supporting-resource bytes. The projection is a derived presentation, not a durable wire schema, new repository fact, authorization to export source, budget policy or sufficiency claim.\nInspect the existing module `devtools.context.planning.rendering` for compatibility: existing rendering and copied ModelRequest assembly must remain unchanged. Export the manifest operation through the common planning and outer Context facades without depending on Retrieval or relocating Python-specific provenance into common planning.\nAdd focused tests in the new file `tests/context/planning/test_manifest.py` for mixed existing whole-resource and qualified-reference choices, duplicate support, order, non-ASCII and CRLF bytes, exact native provenance, deterministic projection and all rejection cases; retain existing planning, rendering and copied-request regression coverage.\nUpdate the existing file `src/devtools/context/planning/docs/overview.md` to explain the manifest's fidelity, applicability, byte-accounting and non-persistence scope. Explain why manifest completeness does not establish task completeness or model comprehension, and why it does not authorize disclosure or implement automatic Context planning.\nInspect the existing file `pyproject.toml` for test, coverage and strict typing constraints; run the protected development profile, Ruff, formatting, strict mypy and worktree/index diff checks without weakening configuration or running confirmation, reserve, live-model or Docker validation.\nOperational exclusion: this is a future feature specification for an acquisition experiment. Stage A freezes the experiment only; do not implement the manifest feature, production routing, R1.7, BM25F, sequential search, treatment execution or gold adjudication.\n"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "4dc654d49d877f7a30f764c8e3081843626421b6edded9759c86555178783ba0",
+  "runtime_identity": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+    "unicode": "16.0.0"
+  },
+  "sequence": 6,
+  "state": "ENTERED"
+}

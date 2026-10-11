@@ -1,0 +1,5574 @@
+[
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "frame:resources",
+    "inputs": {
+      "snapshot": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+    },
+    "invocations": 1,
+    "prior_operations": [],
+    "runtime_ns": 16312200,
+    "serialized_return_sha256": "e4be396e687fbef6ffe7903eaca6428049878677675ae2d5a369db67feb3c60a",
+    "status": "RETURNED",
+    "wall_call_ns": 16312200
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "frame:modules",
+    "inputs": {
+      "universe": "68f711d0e0578f5330d4a719f23e81df15084e99ae37922f1bb797ff59f69969"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources"
+    ],
+    "runtime_ns": 64734500,
+    "serialized_return_sha256": "7f77104a04ed704e1621728394d03fd41ee6bf184504021656676457f24105dd",
+    "status": "RETURNED",
+    "wall_call_ns": 64734500
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "frame:declarations",
+    "inputs": {
+      "addresses": [
+        "scripts/validate_development.py",
+        "src/devtools/__init__.py",
+        "src/devtools/agents/__init__.py",
+        "src/devtools/agents/conversation/__init__.py",
+        "src/devtools/agents/conversation/conversation.py",
+        "src/devtools/agents/conversation/history.py",
+        "src/devtools/agents/conversation/message.py",
+        "src/devtools/agents/integrations/__init__.py",
+        "src/devtools/agents/integrations/codex/__init__.py",
+        "src/devtools/agents/integrations/codex/agent.py",
+        "src/devtools/agents/integrations/codex/errors.py",
+        "src/devtools/agents/integrations/codex/models.py",
+        "src/devtools/agents/integrations/codex/parsing.py",
+        "src/devtools/context/__init__.py",
+        "src/devtools/context/localization/__init__.py",
+        "src/devtools/context/localization/assessment.py",
+        "src/devtools/context/localization/association/__init__.py",
+        "src/devtools/context/localization/association/hypothesis.py",
+        "src/devtools/context/localization/association/imports.py",
+        "src/devtools/context/localization/association/references.py",
+        "src/devtools/context/localization/association/structural.py",
+        "src/devtools/context/localization/generation/__init__.py",
+        "src/devtools/context/localization/generation/contract.py",
+        "src/devtools/context/localization/generation/generate.py",
+        "src/devtools/context/localization/generation/imports.py",
+        "src/devtools/context/localization/generation/references.py",
+        "src/devtools/context/localization/grounding/__init__.py",
+        "src/devtools/context/localization/grounding/contract.py",
+        "src/devtools/context/localization/grounding/resolve.py",
+        "src/devtools/context/localization/grounding/view.py",
+        "src/devtools/context/localization/identity.py",
+        "src/devtools/context/localization/lexical.py",
+        "src/devtools/context/localization/obligation.py",
+        "src/devtools/context/localization/readiness.py",
+        "src/devtools/context/localization/resolution/__init__.py",
+        "src/devtools/context/localization/resolution/contract.py",
+        "src/devtools/context/localization/resolution/promotion.py",
+        "src/devtools/context/localization/resolution/view.py",
+        "src/devtools/context/localization/roles/__init__.py",
+        "src/devtools/context/localization/roles/configuration.py",
+        "src/devtools/context/localization/roles/derivation.py",
+        "src/devtools/context/localization/roles/inputs.py",
+        "src/devtools/context/localization/roles/models.py",
+        "src/devtools/context/localization/routing/__init__.py",
+        "src/devtools/context/localization/routing/derive.py",
+        "src/devtools/context/localization/routing/models.py",
+        "src/devtools/context/localization/task.py",
+        "src/devtools/context/planning/__init__.py",
+        "src/devtools/context/planning/materialization.py",
+        "src/devtools/context/planning/plan.py",
+        "src/devtools/context/planning/rendering.py",
+        "src/devtools/context/planning/resource.py",
+        "src/devtools/context/python/__init__.py",
+        "src/devtools/context/python/classes/__init__.py",
+        "src/devtools/context/python/classes/bases.py",
+        "src/devtools/context/python/classes/containment.py",
+        "src/devtools/context/python/classes/declarations.py",
+        "src/devtools/context/python/function/__init__.py",
+        "src/devtools/context/python/function/candidates.py",
+        "src/devtools/context/python/function/containment.py",
+        "src/devtools/context/python/function/declarations.py",
+        "src/devtools/context/python/function/disclosure.py",
+        "src/devtools/context/python/function/materialization.py",
+        "src/devtools/context/python/function/planned_reference.py",
+        "src/devtools/context/python/function/qualified_reference.py",
+        "src/devtools/context/python/function/rendering.py",
+        "src/devtools/context/python/function/request_assembly.py",
+        "src/devtools/context/python/function/retrieval.py",
+        "src/devtools/context/python/imports/__init__.py",
+        "src/devtools/context/python/imports/declarations.py",
+        "src/devtools/context/python/imports/members.py",
+        "src/devtools/context/python/imports/relations.py",
+        "src/devtools/context/python/imports/resolution.py",
+        "src/devtools/context/python/mirrored_paths.py",
+        "src/devtools/context/python/modules/__init__.py",
+        "src/devtools/context/python/modules/declarations.py",
+        "src/devtools/context/python/modules/interpretation.py",
+        "src/devtools/context/python/modules/lookup.py",
+        "src/devtools/context/python/modules/membership.py",
+        "src/devtools/context/python/modules/selection.py",
+        "src/devtools/context/python/project_configuration/__init__.py",
+        "src/devtools/context/python/project_configuration/declarations.py",
+        "src/devtools/context/python/project_configuration/models.py",
+        "src/devtools/context/python/project_configuration/resolution.py",
+        "src/devtools/context/python/project_configuration/settings.py",
+        "src/devtools/context/python/references/__init__.py",
+        "src/devtools/context/python/references/analysis.py",
+        "src/devtools/context/python/references/declarations/__init__.py",
+        "src/devtools/context/python/references/declarations/analysis.py",
+        "src/devtools/context/python/references/declarations/bindings.py",
+        "src/devtools/context/python/references/declarations/model.py",
+        "src/devtools/context/python/references/declarations/resolution.py",
+        "src/devtools/context/python/source_candidacy.py",
+        "src/devtools/context/repository/__init__.py",
+        "src/devtools/context/repository/corpus.py",
+        "src/devtools/context/repository/discovery.py",
+        "src/devtools/context/repository/document.py",
+        "src/devtools/context/repository/identity.py",
+        "src/devtools/context/repository/observation.py",
+        "src/devtools/context/repository/resource.py",
+        "src/devtools/context/repository/snapshot.py",
+        "src/devtools/context/retrieval/__init__.py",
+        "src/devtools/context/retrieval/composition.py",
+        "src/devtools/context/retrieval/fusion.py",
+        "src/devtools/context/retrieval/graph/__init__.py",
+        "src/devtools/context/retrieval/graph/pagerank.py",
+        "src/devtools/context/retrieval/graph/view.py",
+        "src/devtools/context/retrieval/graph/walk.py",
+        "src/devtools/context/retrieval/lexical/__init__.py",
+        "src/devtools/context/retrieval/lexical/analysis.py",
+        "src/devtools/context/retrieval/lexical/bm25.py",
+        "src/devtools/context/retrieval/lexical/evaluation.py",
+        "src/devtools/context/retrieval/lexical/filename.py",
+        "src/devtools/context/retrieval/lexical/index.py",
+        "src/devtools/context/retrieval/lexical/scoring.py",
+        "src/devtools/context/retrieval/lexical/statistics.py",
+        "src/devtools/context/retrieval/repository_map/__init__.py",
+        "src/devtools/context/retrieval/repository_map/importance.py",
+        "src/devtools/context/retrieval/repository_map/ranking.py",
+        "src/devtools/context/retrieval/repository_map/relevance.py",
+        "src/devtools/context/retrieval/repository_map/view.py",
+        "src/devtools/context/retrieval/structural.py",
+        "src/devtools/core/__init__.py",
+        "src/devtools/core/conversion/__init__.py",
+        "src/devtools/core/conversion/conversion.py",
+        "src/devtools/core/conversion/errors.py",
+        "src/devtools/core/identity/__init__.py",
+        "src/devtools/core/identity/models.py",
+        "src/devtools/core/paths/__init__.py",
+        "src/devtools/core/paths/errors.py",
+        "src/devtools/core/paths/models.py",
+        "src/devtools/core/paths/resolution.py",
+        "src/devtools/core/regex/__init__.py",
+        "src/devtools/core/regex/models.py",
+        "src/devtools/core/regex/search.py",
+        "src/devtools/core/system/__init__.py",
+        "src/devtools/core/system/detection.py",
+        "src/devtools/core/system/models.py",
+        "src/devtools/core/time/__init__.py",
+        "src/devtools/core/time/errors.py",
+        "src/devtools/core/time/models/__init__.py",
+        "src/devtools/core/time/models/duration.py",
+        "src/devtools/core/time/models/stopwatch.py",
+        "src/devtools/core/time/models/timestamp.py",
+        "src/devtools/core/time/parsing.py",
+        "src/devtools/evaluation/__init__.py",
+        "src/devtools/evaluation/coverage.py",
+        "src/devtools/execution/__init__.py",
+        "src/devtools/execution/interaction_attempt.py",
+        "src/devtools/execution/protocols.py",
+        "src/devtools/execution/runtime.py",
+        "src/devtools/governance/__init__.py",
+        "src/devtools/models/__init__.py",
+        "src/devtools/models/benchmarks/__init__.py",
+        "src/devtools/models/benchmarks/models.py",
+        "src/devtools/models/benchmarks/runner.py",
+        "src/devtools/models/benchmarks/storage.py",
+        "src/devtools/models/interaction/__init__.py",
+        "src/devtools/models/interaction/models.py",
+        "src/devtools/models/interaction/observation.py",
+        "src/devtools/models/interaction/prompt.py",
+        "src/devtools/models/interaction/protocols.py",
+        "src/devtools/models/interaction/providers/__init__.py",
+        "src/devtools/models/interaction/providers/llama_cpp.py",
+        "src/devtools/models/interaction/providers/llama_cpp_errors.py",
+        "src/devtools/models/interaction/providers/llama_cpp_request_settings.py",
+        "src/devtools/models/interaction/response.py",
+        "src/devtools/models/interaction/termination.py",
+        "src/devtools/models/interaction/tools.py",
+        "src/devtools/models/interaction/usage.py",
+        "src/devtools/models/serving/__init__.py",
+        "src/devtools/models/serving/errors.py",
+        "src/devtools/models/serving/huggingface.py",
+        "src/devtools/models/serving/identity.py",
+        "src/devtools/models/serving/llama_cpp.py",
+        "src/devtools/models/serving/vllm.py",
+        "src/devtools/observability/__init__.py",
+        "src/devtools/observability/evidence/__init__.py",
+        "src/devtools/observability/evidence/inspection.py",
+        "src/devtools/observability/evidence/model_interaction.py",
+        "src/devtools/observability/evidence/protocols.py",
+        "src/devtools/observability/evidence/terminal.py",
+        "src/devtools/orchestration/__init__.py",
+        "src/devtools/persistence/__init__.py",
+        "src/devtools/persistence/_snapshot.py",
+        "src/devtools/persistence/errors.py",
+        "src/devtools/persistence/json.py",
+        "src/devtools/persistence/sqlite.py",
+        "src/devtools/resources/__init__.py",
+        "src/devtools/resources/commands/__init__.py",
+        "src/devtools/resources/commands/errors.py",
+        "src/devtools/resources/commands/events.py",
+        "src/devtools/resources/commands/execution.py",
+        "src/devtools/resources/commands/handle.py",
+        "src/devtools/resources/commands/models/__init__.py",
+        "src/devtools/resources/commands/models/command.py",
+        "src/devtools/resources/commands/models/output.py",
+        "src/devtools/resources/commands/models/result.py",
+        "src/devtools/resources/filesystem/__init__.py",
+        "src/devtools/resources/filesystem/codecs/__init__.py",
+        "src/devtools/resources/filesystem/codecs/csv.py",
+        "src/devtools/resources/filesystem/codecs/json.py",
+        "src/devtools/resources/filesystem/codecs/markdown.py",
+        "src/devtools/resources/filesystem/codecs/text.py",
+        "src/devtools/resources/filesystem/errors.py",
+        "src/devtools/resources/filesystem/models/__init__.py",
+        "src/devtools/resources/filesystem/models/base.py",
+        "src/devtools/resources/filesystem/models/binary.py",
+        "src/devtools/resources/filesystem/models/csv.py",
+        "src/devtools/resources/filesystem/models/json/__init__.py",
+        "src/devtools/resources/filesystem/models/json/base.py",
+        "src/devtools/resources/filesystem/models/json/conversion.py",
+        "src/devtools/resources/filesystem/models/json/list.py",
+        "src/devtools/resources/filesystem/models/json/object.py",
+        "src/devtools/resources/filesystem/models/json/scalar.py",
+        "src/devtools/resources/filesystem/models/markdown/__init__.py",
+        "src/devtools/resources/filesystem/models/markdown/file.py",
+        "src/devtools/resources/filesystem/models/markdown/heading.py",
+        "src/devtools/resources/filesystem/models/markdown/section.py",
+        "src/devtools/resources/filesystem/models/text.py",
+        "src/devtools/resources/filesystem/reading.py",
+        "src/devtools/resources/filesystem/resolution.py",
+        "src/devtools/resources/filesystem/writing.py",
+        "src/devtools/tools/__init__.py",
+        "src/devtools/tools/command.py",
+        "src/devtools/tools/disclosure.py",
+        "src/devtools/tools/errors.py",
+        "src/devtools/tools/execution.py",
+        "src/devtools/tools/filesystem.py",
+        "src/devtools/tools/protocols.py",
+        "tests/__init__.py",
+        "tests/agents/__init__.py",
+        "tests/agents/conversation/__init__.py",
+        "tests/agents/conversation/history/__init__.py",
+        "tests/agents/conversation/history/test_history.py",
+        "tests/agents/conversation/message/__init__.py",
+        "tests/agents/conversation/message/test_message.py",
+        "tests/agents/conversation/test_live.py",
+        "tests/agents/conversation/test_session.py",
+        "tests/agents/conversation/test_session_id.py",
+        "tests/agents/integrations/__init__.py",
+        "tests/agents/integrations/codex/__init__.py",
+        "tests/agents/integrations/codex/test_agent.py",
+        "tests/agents/integrations/codex/test_live.py",
+        "tests/agents/integrations/codex/test_parsing.py",
+        "tests/context/__init__.py",
+        "tests/context/localization/__init__.py",
+        "tests/context/localization/association/__init__.py",
+        "tests/context/localization/association/test_hypothesis.py",
+        "tests/context/localization/generation/__init__.py",
+        "tests/context/localization/generation/test_branching.py",
+        "tests/context/localization/generation/test_generation.py",
+        "tests/context/localization/generation/test_imports.py",
+        "tests/context/localization/generation/test_references.py",
+        "tests/context/localization/grounding/__init__.py",
+        "tests/context/localization/grounding/test_grounding.py",
+        "tests/context/localization/resolution/__init__.py",
+        "tests/context/localization/resolution/test_resolution.py",
+        "tests/context/localization/roles/__init__.py",
+        "tests/context/localization/roles/helpers.py",
+        "tests/context/localization/roles/test_configuration.py",
+        "tests/context/localization/roles/test_evidence.py",
+        "tests/context/localization/roles/test_inputs.py",
+        "tests/context/localization/routing/__init__.py",
+        "tests/context/localization/routing/test_routing.py",
+        "tests/context/localization/test_kernel.py",
+        "tests/context/localization/test_lexical.py",
+        "tests/context/planning/__init__.py",
+        "tests/context/planning/test_plan.py",
+        "tests/context/python/__init__.py",
+        "tests/context/python/classes/__init__.py",
+        "tests/context/python/classes/test_bases.py",
+        "tests/context/python/classes/test_declarations.py",
+        "tests/context/python/function/__init__.py",
+        "tests/context/python/function/test_candidates.py",
+        "tests/context/python/function/test_containment.py",
+        "tests/context/python/function/test_cross_resource_pipeline.py",
+        "tests/context/python/function/test_declaration_aggregation.py",
+        "tests/context/python/function/test_declarations.py",
+        "tests/context/python/function/test_disclosure.py",
+        "tests/context/python/function/test_materialization.py",
+        "tests/context/python/function/test_qualified_reference.py",
+        "tests/context/python/function/test_rendering.py",
+        "tests/context/python/function/test_request_assembly.py",
+        "tests/context/python/function/test_resource_selection.py",
+        "tests/context/python/function/test_retrieval.py",
+        "tests/context/python/imports/__init__.py",
+        "tests/context/python/imports/test_declarations.py",
+        "tests/context/python/imports/test_members.py",
+        "tests/context/python/imports/test_relations.py",
+        "tests/context/python/imports/test_resolution.py",
+        "tests/context/python/modules/__init__.py",
+        "tests/context/python/modules/test_interpretation.py",
+        "tests/context/python/modules/test_membership.py",
+        "tests/context/python/modules/test_selection.py",
+        "tests/context/python/project_configuration/__init__.py",
+        "tests/context/python/project_configuration/test_configuration.py",
+        "tests/context/python/project_configuration/test_settings.py",
+        "tests/context/python/references/__init__.py",
+        "tests/context/python/references/declarations/__init__.py",
+        "tests/context/python/references/declarations/test_analysis.py",
+        "tests/context/python/references/declarations/test_bindings.py",
+        "tests/context/python/test_mirrored_paths.py",
+        "tests/context/python/test_source_candidacy.py",
+        "tests/context/repository/__init__.py",
+        "tests/context/repository/test_corpus.py",
+        "tests/context/repository/test_discovery.py",
+        "tests/context/repository/test_document.py",
+        "tests/context/repository/test_intrinsic_paths.py",
+        "tests/context/repository/test_observation.py",
+        "tests/context/retrieval/__init__.py",
+        "tests/context/retrieval/graph/__init__.py",
+        "tests/context/retrieval/graph/test_ranking.py",
+        "tests/context/retrieval/graph/test_typed.py",
+        "tests/context/retrieval/lexical/__init__.py",
+        "tests/context/retrieval/lexical/_helpers.py",
+        "tests/context/retrieval/lexical/test_analysis.py",
+        "tests/context/retrieval/lexical/test_bm25.py",
+        "tests/context/retrieval/lexical/test_evaluation.py",
+        "tests/context/retrieval/lexical/test_filename.py",
+        "tests/context/retrieval/lexical/test_index.py",
+        "tests/context/retrieval/lexical/test_statistics.py",
+        "tests/context/retrieval/repository_map/__init__.py",
+        "tests/context/retrieval/repository_map/test_ranking.py",
+        "tests/context/retrieval/test_composition.py",
+        "tests/context/retrieval/test_structural.py",
+        "tests/core/__init__.py",
+        "tests/core/conversion/__init__.py",
+        "tests/core/conversion/test_conversion.py",
+        "tests/core/identity/__init__.py",
+        "tests/core/identity/test_models.py",
+        "tests/core/paths/__init__.py",
+        "tests/core/paths/test_errors.py",
+        "tests/core/paths/test_resolution.py",
+        "tests/core/paths/test_resolved_path.py",
+        "tests/core/regex/__init__.py",
+        "tests/core/regex/test_models.py",
+        "tests/core/regex/test_search.py",
+        "tests/core/system/__init__.py",
+        "tests/core/system/test_detection.py",
+        "tests/core/system/test_models.py",
+        "tests/core/time/__init__.py",
+        "tests/core/time/test_models.py",
+        "tests/core/time/test_parsing.py",
+        "tests/core/time/test_timing.py",
+        "tests/evaluation/__init__.py",
+        "tests/evaluation/test_coverage.py",
+        "tests/execution/__init__.py",
+        "tests/execution/test_interaction_attempt.py",
+        "tests/execution/test_runtime.py",
+        "tests/models/__init__.py",
+        "tests/models/benchmarks/__init__.py",
+        "tests/models/benchmarks/test_models.py",
+        "tests/models/benchmarks/test_runner.py",
+        "tests/models/benchmarks/test_storage.py",
+        "tests/models/interaction/__init__.py",
+        "tests/models/interaction/providers/__init__.py",
+        "tests/models/interaction/providers/test_llama_cpp.py",
+        "tests/models/interaction/test_models.py",
+        "tests/models/interaction/test_protocols.py",
+        "tests/models/interaction/test_tools.py",
+        "tests/models/serving/__init__.py",
+        "tests/models/serving/test_huggingface.py",
+        "tests/models/serving/test_llama_cpp.py",
+        "tests/models/serving/test_vllm.py",
+        "tests/observability/__init__.py",
+        "tests/observability/evidence/__init__.py",
+        "tests/observability/evidence/test_inspection.py",
+        "tests/observability/evidence/test_model_interaction.py",
+        "tests/observability/evidence/test_protocols.py",
+        "tests/observability/evidence/test_terminal.py",
+        "tests/persistence/__init__.py",
+        "tests/persistence/test_json.py",
+        "tests/persistence/test_sqlite.py",
+        "tests/resources/__init__.py",
+        "tests/resources/commands/__init__.py",
+        "tests/resources/commands/test_errors.py",
+        "tests/resources/commands/test_events.py",
+        "tests/resources/commands/test_execution.py",
+        "tests/resources/commands/test_handle.py",
+        "tests/resources/commands/test_models.py",
+        "tests/resources/filesystem/__init__.py",
+        "tests/resources/filesystem/codecs/__init__.py",
+        "tests/resources/filesystem/codecs/test_csv.py",
+        "tests/resources/filesystem/codecs/test_json.py",
+        "tests/resources/filesystem/codecs/test_markdown.py",
+        "tests/resources/filesystem/codecs/test_text.py",
+        "tests/resources/filesystem/models/__init__.py",
+        "tests/resources/filesystem/models/csv/__init__.py",
+        "tests/resources/filesystem/models/csv/test_dialect.py",
+        "tests/resources/filesystem/models/csv/test_file.py",
+        "tests/resources/filesystem/models/csv/test_row.py",
+        "tests/resources/filesystem/models/markdown/__init__.py",
+        "tests/resources/filesystem/models/markdown/test_file.py",
+        "tests/resources/filesystem/models/markdown/test_heading.py",
+        "tests/resources/filesystem/models/markdown/test_section.py",
+        "tests/resources/filesystem/test_json_conversion.py",
+        "tests/resources/filesystem/test_json_models.py",
+        "tests/resources/filesystem/test_models.py",
+        "tests/resources/filesystem/test_reading.py",
+        "tests/resources/filesystem/test_resolution.py",
+        "tests/resources/filesystem/test_writing.py",
+        "tests/scripts/qwen/test_llama_cpp_profile.py",
+        "tests/scripts/qwen/test_llama_cpp_service.py",
+        "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+        "tests/scripts/qwen/test_python_function_context_acceptance.py",
+        "tests/scripts/qwen/test_two_action_read_only_acceptance.py",
+        "tests/scripts/qwen/test_two_read_acceptance.py",
+        "tests/scripts/test_retrieval_bm25_baseline.py",
+        "tests/scripts/test_validate_development.py",
+        "tests/scripts/test_vllm_benchmark_driver.py",
+        "tests/tools/__init__.py",
+        "tests/tools/test_command.py",
+        "tests/tools/test_execution.py",
+        "tests/tools/test_filesystem.py",
+        "tests/tools/test_runtime_integration.py"
+      ]
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules"
+    ],
+    "runtime_ns": 5801200,
+    "serialized_return_sha256": "87d09fa56f7baffe7a2ea153dda43bb7d3f0ebd7abdf40d26901790ce29873a4",
+    "status": "RETURNED",
+    "wall_call_ns": 5801200
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "frame:assembly",
+    "inputs": {
+      "frame": "1d6ddb8cc25ba05e133b760337a932f6c1d783fa1350353aaaa29a1d98edd30a"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations"
+    ],
+    "runtime_ns": 143357300,
+    "serialized_return_sha256": "069f722640e24d828482264c65e36030c3cc740f20833e3f7dc099c25aa690cb",
+    "status": "RETURNED",
+    "wall_call_ns": 143357300
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "index-build",
+    "inputs": {
+      "frame": "1d6ddb8cc25ba05e133b760337a932f6c1d783fa1350353aaaa29a1d98edd30a"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly"
+    ],
+    "runtime_ns": 2466962400,
+    "serialized_return_sha256": "b3a86ddf6eb7a3fdc2d816716634aa9c4865b2c03735ec6e15e59eb85195272d",
+    "status": "RETURNED",
+    "wall_call_ns": 2466962400
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:global",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "Build a deterministic, inspectable in-memory manifest of an already materialized repository Context disclosure, keeping caller-directed selection distinct from relevance, sufficiency, persistent Evidence and model-input assembly.\nInspect the existing class `devtools.context.planning.materialization.ContextDisclosure` and function `devtools.context.planning.materialization.materialize_disclosure_plan`: preserve exact plan identity, purpose, repository/snapshot applicability, ordered choices, representation names, option identities and the one-item-per-choice contract.\nUse the existing method `devtools.context.repository.snapshot.RepositorySnapshot.resource_at` contract to authenticate each manifest resource against the supplied retained snapshot. Reject foreign or stale frames, missing resources, content-identity mismatch and misaligned address/content pairs before publishing a manifest; do not reacquire source, rematerialize choices or silently substitute evidence.\nIntroduce a new class `devtools.context.planning.manifest.ContextDisclosureManifest` and a new function `devtools.context.planning.manifest.describe_context_disclosure` in the new file `src/devtools/context/planning/manifest.py`. Preserve every item and repeated support occurrence in plan order, correlate exact supporting resource/content identities and UTF-8 text byte counts, and retain original native provenance as native values rather than serializing arbitrary objects.\nProvide a deterministic JSON-compatible projection of that manifest with explicit stable identity fields and exact ordered support records; distinguish total item text bytes from unique supporting-resource bytes. The projection is a derived presentation, not a durable wire schema, new repository fact, authorization to export source, budget policy or sufficiency claim.\nInspect the existing module `devtools.context.planning.rendering` for compatibility: existing rendering and copied ModelRequest assembly must remain unchanged. Export the manifest operation through the common planning and outer Context facades without depending on Retrieval or relocating Python-specific provenance into common planning.\nAdd focused tests in the new file `tests/context/planning/test_manifest.py` for mixed existing whole-resource and qualified-reference choices, duplicate support, order, non-ASCII and CRLF bytes, exact native provenance, deterministic projection and all rejection cases; retain existing planning, rendering and copied-request regression coverage.\nUpdate the existing file `src/devtools/context/planning/docs/overview.md` to explain the manifest's fidelity, applicability, byte-accounting and non-persistence scope. Explain why manifest completeness does not establish task completeness or model comprehension, and why it does not authorize disclosure or implement automatic Context planning.\nInspect the existing file `pyproject.toml` for test, coverage and strict typing constraints; run the protected development profile, Ruff, formatting, strict mypy and worktree/index diff checks without weakening configuration or running confirmation, reserve, live-model or Docker validation.\nOperational exclusion: this is a future feature specification for an acquisition experiment. Stage A freezes the experiment only; do not implement the manifest feature, production routing, R1.7, BM25F, sequential search, treatment execution or gold adjudication.\n"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build"
+    ],
+    "runtime_ns": 130993800,
+    "serialized_return_sha256": "5766f46b2f34a77cbc55f8cc69dffabd2402abe3f978c53e2df3bb49d5fd6411",
+    "status": "RETURNED",
+    "wall_call_ns": 130993800
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:structure",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "ContextDisclosure materialized disclosure plan purpose snapshot ordered items option identity representation native provenance"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global"
+    ],
+    "runtime_ns": 40449400,
+    "serialized_return_sha256": "e0be8ca2dad234bfe698c9d3a4192c8e5b8db224087f6ad539e21045e8ecff4e",
+    "status": "RETURNED",
+    "wall_call_ns": 40449400
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:integrity",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "RepositorySnapshot resource_at content identity foreign stale missing resources support validation materialization"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure"
+    ],
+    "runtime_ns": 38851300,
+    "serialized_return_sha256": "24ccd4d8921a752f375cda0cd646dbf9e98730fc0a116617eb53445b6741d351",
+    "status": "RETURNED",
+    "wall_call_ns": 38851300
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:manifest",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "Context planning disclosure manifest items support resource content identities repeated order byte count native provenance"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity"
+    ],
+    "runtime_ns": 45832200,
+    "serialized_return_sha256": "d731f464e20da74ef2bc94d8c588fee1fa50c65bf909f3af21dd74500edfa82d",
+    "status": "RETURNED",
+    "wall_call_ns": 45832200
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:projection",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "deterministic Context disclosure projection JSON stable identity UTF-8 byte count unique resource item text native provenance"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest"
+    ],
+    "runtime_ns": 42847200,
+    "serialized_return_sha256": "f77ec6140aa916977b5f0903a896cb83e331fdd39b0ea89c84f919f115329c82",
+    "status": "RETURNED",
+    "wall_call_ns": 42847200
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:compatibility",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "Context planning rendering assemble copied ModelRequest prompt role settings tools task unchanged"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection"
+    ],
+    "runtime_ns": 36961200,
+    "serialized_return_sha256": "414aacfb05edb63013b3908f0a6d4d15d5343faf86fdfb9f89ee9837853d9aec",
+    "status": "RETURNED",
+    "wall_call_ns": 36961200
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:exports",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "Context planning __init__ exports public facade dependency Python qualified reference Retrieval"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility"
+    ],
+    "runtime_ns": 46753800,
+    "serialized_return_sha256": "3c826424d90b8c49f3c900e67bfec98f7b982623c6bdf63e6c21fdb766f94029",
+    "status": "RETURNED",
+    "wall_call_ns": 46753800
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:tests",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "Context planning tests mixed whole resource qualified reference duplicate support non ASCII CRLF rejection provenance rendering copied request"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports"
+    ],
+    "runtime_ns": 38797800,
+    "serialized_return_sha256": "7de20ca2b5307ffa5cf066ac2ed524409a3985dcbf1d2351c15623183da2f883",
+    "status": "RETURNED",
+    "wall_call_ns": 38797800
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:documentation",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "Context planning documentation manifest fidelity applicability byte accounting persistence completeness authorization"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests"
+    ],
+    "runtime_ns": 33014300,
+    "serialized_return_sha256": "c6ae490b9dc3cf177eaec149ce5a4ec7d87c29738242a7e7ef3e5ec473ecad2f",
+    "status": "RETURNED",
+    "wall_call_ns": 33014300
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "lexical:validation",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "protected development validation pytest coverage pyproject strict mypy Ruff formatting confirmation exclusion"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation"
+    ],
+    "runtime_ns": 33381600,
+    "serialized_return_sha256": "5fbe417a592495077852b1ed91421d611ff0f604c6449174f217f7d72b5c38f8",
+    "status": "RETURNED",
+    "wall_call_ns": 33381600
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "arm:A",
+    "inputs": {
+      "lanes": [
+        "global",
+        "structure",
+        "integrity",
+        "manifest",
+        "projection",
+        "compatibility",
+        "exports",
+        "tests",
+        "documentation",
+        "validation"
+      ]
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation"
+    ],
+    "runtime_ns": 2200,
+    "serialized_return_sha256": "aba3a73163e91d8fd45ba1989b88c4e43bfffec4ab779942448882f2e3ec16dd",
+    "status": "RETURNED",
+    "wall_call_ns": 2200
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "purposes:shared",
+    "inputs": {
+      "purposes": 19,
+      "task": "case-0013-context-disclosure-manifest"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A"
+    ],
+    "runtime_ns": 5482600,
+    "serialized_return_sha256": "b963db305d7426d2417cd0f2e7dfaf7b34ce6d93b0c48a2bdb5d1f3e43101ddc",
+    "status": "RETURNED",
+    "wall_call_ns": 5482600
+  },
+  {
+    "durability_inside_call_ns": 253303417100,
+    "identity": "arm:B",
+    "inputs": {
+      "arm": "ALWAYS_ON_EXACT_FIRST",
+      "requests": [
+        "b4a49334eb132112f800a988d16b78b4bce655646205d745256d97bc85f11201",
+        "c7a3994bc9b2ae6192b7469c11523e15146a67ef4fd0309cee7d6ec195647dc4",
+        "f00ef57a14eb5fc486659a03d5c6003be020a475a93b9f804b3b85a1f3cf94e6",
+        "33fdd9fd3922414d6b2029635b0aa93c71af228d046884bc9737b72cb349a5bb",
+        "4b6939ce4e27683f1f91582a3945f3b67ae73299fff0c4d56b61316333eec47c",
+        "3a29b12fa1258b53494a010724207487dc98084426459e8cd2a5a1e50ff981d5",
+        "ee37549193fc85fdced1e87e95dcda12dc735b53f8d8db147b8dc823631d0adc",
+        "16d9c7007ba1c39f516782f871e8ce0853b3c10087609317d01f2de7a55d53d1",
+        "41f1962b000c7d04ebe8c3c3c5c1db64afa38c30dc4cb24b1b07508629794552",
+        "d9b7c3e0299c143db75acc9e83da06c75002fa6fe98a57ab348b14a335547e25"
+      ]
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared"
+    ],
+    "runtime_ns": 4315308700,
+    "serialized_return_sha256": "db25432e57fa99ab16bb6791c61ca1142726bc408a8d4df31b2f69f8f90cbe32",
+    "status": "RETURNED",
+    "wall_call_ns": 257618725800
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "policy:B",
+    "inputs": {
+      "arm": "ALWAYS_ON_EXACT_FIRST",
+      "task": "case-0013-context-disclosure-manifest"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B"
+    ],
+    "runtime_ns": 11488300,
+    "serialized_return_sha256": "8366baff5815a58569a38d229ea8ea09317ac8fc85ce6d69b886bdd7c6c00754",
+    "status": "RETURNED",
+    "wall_call_ns": 11488300
+  },
+  {
+    "durability_inside_call_ns": 483255400,
+    "identity": "route:B:H01",
+    "inputs": {
+      "arm": "B",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "1ab7e8b1be7a34f08412218db588c864255478c036de449572cf2254b2c9577d"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "structure"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 317,
+              "start": 258
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "PYTHON_DIRECT_CLASS",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 317,
+              "start": 258
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 317,
+            "start": 258
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "devtools.context.planning.materialization.ContextDisclosure"
+        },
+        "locator": {
+          "declared_name": "ContextDisclosure",
+          "kind": "class",
+          "module": {
+            "dotted_name": "devtools.context.planning.materialization",
+            "kind": null
+          }
+        },
+        "mechanism": "exact-python-module-source-declaration-selection-v1",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "b4a49334eb132112f800a988d16b78b4bce655646205d745256d97bc85f11201"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B"
+    ],
+    "runtime_ns": 257037300,
+    "serialized_return_sha256": "cdb67d8271fcfb61fc0eeed91c1a2b9f024575d5ee683d4a49a51058fb296a0d",
+    "status": "RETURNED",
+    "wall_call_ns": 740292700
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H01:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "1ab7e8b1be7a34f08412218db588c864255478c036de449572cf2254b2c9577d"
+      },
+      "locator": {
+        "declared_name": "ContextDisclosure",
+        "kind": "class",
+        "module": {
+          "dotted_name": "devtools.context.planning.materialization",
+          "kind": null
+        }
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 317,
+          "start": 258
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01"
+    ],
+    "runtime_ns": 105510300,
+    "serialized_return_sha256": "a4b436956633f9159a6b6991c967cc9b8e82135d87d829df41d9bdc370fd1581",
+    "status": "RETURNED",
+    "wall_call_ns": 105510300
+  },
+  {
+    "durability_inside_call_ns": 456174700,
+    "identity": "route:B:H02",
+    "inputs": {
+      "arm": "B",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "d69727149c91b87f9e23aa8a8026a1843641feb0933f93dfcefbb1df8af407b1"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "structure"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 402,
+              "start": 333
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "PYTHON_DIRECT_FUNCTION",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 402,
+              "start": 333
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 402,
+            "start": 333
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "devtools.context.planning.materialization.materialize_disclosure_plan"
+        },
+        "locator": {
+          "declared_name": "materialize_disclosure_plan",
+          "kind": "function",
+          "module": {
+            "dotted_name": "devtools.context.planning.materialization",
+            "kind": null
+          }
+        },
+        "mechanism": "exact-python-module-source-declaration-selection-v1",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "c7a3994bc9b2ae6192b7469c11523e15146a67ef4fd0309cee7d6ec195647dc4"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1"
+    ],
+    "runtime_ns": 260523000,
+    "serialized_return_sha256": "5cb4e5304d3bfbf5ad1d40af3e4be7ee769318f359a960838561764a190cc31e",
+    "status": "RETURNED",
+    "wall_call_ns": 716697700
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H02:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "d69727149c91b87f9e23aa8a8026a1843641feb0933f93dfcefbb1df8af407b1"
+      },
+      "locator": {
+        "declared_name": "materialize_disclosure_plan",
+        "kind": "function",
+        "module": {
+          "dotted_name": "devtools.context.planning.materialization",
+          "kind": null
+        }
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 402,
+          "start": 333
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02"
+    ],
+    "runtime_ns": 105791600,
+    "serialized_return_sha256": "058cf7af3a84e35c784632d2aee1e2a97ea5824842dcc0170459968790280329",
+    "status": "RETURNED",
+    "wall_call_ns": 105791600
+  },
+  {
+    "durability_inside_call_ns": 504656000,
+    "identity": "route:B:H03",
+    "inputs": {
+      "arm": "B",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "cf1c9669156f1680068aad976936c93c4952ce089fdd57408998c346177f2c34"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "integrity"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 666,
+              "start": 599
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "PYTHON_DIRECT_METHOD",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 666,
+              "start": 599
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 666,
+            "start": 599
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "devtools.context.repository.snapshot.RepositorySnapshot.resource_at"
+        },
+        "locator": {
+          "class_name": "RepositorySnapshot",
+          "method_name": "resource_at",
+          "module": {
+            "dotted_name": "devtools.context.repository.snapshot",
+            "kind": null
+          }
+        },
+        "mechanism": "exact-source-class-then-native-direct-method-containment-v1",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "f00ef57a14eb5fc486659a03d5c6003be020a475a93b9f804b3b85a1f3cf94e6"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1"
+    ],
+    "runtime_ns": 268754600,
+    "serialized_return_sha256": "b07a45f69b16292a2198775d44ff064ac612015e1048d4263c4231254be95a10",
+    "status": "RETURNED",
+    "wall_call_ns": 773410600
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H03:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "cf1c9669156f1680068aad976936c93c4952ce089fdd57408998c346177f2c34"
+      },
+      "locator": {
+        "declared_name": "RepositorySnapshot",
+        "kind": "class",
+        "module": {
+          "dotted_name": "devtools.context.repository.snapshot",
+          "kind": null
+        }
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 666,
+          "start": 599
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03"
+    ],
+    "runtime_ns": 104107000,
+    "serialized_return_sha256": "7d840b4599c10932946e3e040aa7a15b63785f7bb39864d5eb3dad3fbb77e57b",
+    "status": "RETURNED",
+    "wall_call_ns": 104107000
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H03:2",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "cf1c9669156f1680068aad976936c93c4952ce089fdd57408998c346177f2c34"
+      },
+      "locator": {
+        "containing_class": {
+          "base_syntax": [],
+          "declared_name": "RepositorySnapshot",
+          "derivation_identity": "76ca770f0447ad778fbf598aaa74b53f297de3400759a77213fb69441971e96a",
+          "subject": {
+            "declaration_ordinal": 1,
+            "derivation_definition_identity": "d22897ae0a05b53913122c1997306690f4632e045d4452da543291687b8bbe9d",
+            "resource_dependency_identity": "580a8041b654fc20480c56af374c82db718ec8fa59e7135579d36c29e603da3b",
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            }
+          },
+          "support": {
+            "resource_address": {
+              "value": "src/devtools/context/repository/snapshot.py"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "source_range": {
+              "end_column_utf8": 29,
+              "end_line": 61,
+              "start_column_utf8": 0,
+              "start_line": 35
+            }
+          }
+        },
+        "declared_name": "resource_at"
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 666,
+          "start": 599
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1"
+    ],
+    "runtime_ns": 3123900,
+    "serialized_return_sha256": "477686ee211ecb37835daa8e6a802887639327e4963bc36a519197c383ef7bc6",
+    "status": "RETURNED",
+    "wall_call_ns": 3123900
+  },
+  {
+    "durability_inside_call_ns": 383361100,
+    "identity": "route:B:H04",
+    "inputs": {
+      "arm": "B",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "da5ce9184d6e0acdadf0d257685551671eed86b7ab9f0beac15de0a74b18ff42"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "manifest"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 1063,
+              "start": 1003
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "PYTHON_DIRECT_CLASS",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 1063,
+              "start": 1003
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 1063,
+            "start": 1003
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "devtools.context.planning.manifest.ContextDisclosureManifest"
+        },
+        "locator": {
+          "declared_name": "ContextDisclosureManifest",
+          "kind": "class",
+          "module": {
+            "dotted_name": "devtools.context.planning.manifest",
+            "kind": null
+          }
+        },
+        "mechanism": "exact-python-module-source-declaration-selection-v1",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "33fdd9fd3922414d6b2029635b0aa93c71af228d046884bc9737b72cb349a5bb"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2"
+    ],
+    "runtime_ns": 247334800,
+    "serialized_return_sha256": "9965e180c9aed5c0cd826e4e7422e50229ac61ea5d6907fb5a0a79b3803efbae",
+    "status": "RETURNED",
+    "wall_call_ns": 630695900
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H04:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "da5ce9184d6e0acdadf0d257685551671eed86b7ab9f0beac15de0a74b18ff42"
+      },
+      "locator": {
+        "declared_name": "ContextDisclosureManifest",
+        "kind": "class",
+        "module": {
+          "dotted_name": "devtools.context.planning.manifest",
+          "kind": null
+        }
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 1063,
+          "start": 1003
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04"
+    ],
+    "runtime_ns": 97426900,
+    "serialized_return_sha256": "7f46f4385c3f2e16a206535a3e0146571c61fb2ba5c4e803b57eb9ad9f05c8e9",
+    "status": "RETURNED",
+    "wall_call_ns": 97426900
+  },
+  {
+    "durability_inside_call_ns": 391729200,
+    "identity": "route:B:H05",
+    "inputs": {
+      "arm": "B",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "61cfacc7c887ac636e0a99bb1dfa3600946f955d13e272f7039ba540d1477a05"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "manifest"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 1147,
+              "start": 1085
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "PYTHON_DIRECT_FUNCTION",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 1147,
+              "start": 1085
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 1147,
+            "start": 1085
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "devtools.context.planning.manifest.describe_context_disclosure"
+        },
+        "locator": {
+          "declared_name": "describe_context_disclosure",
+          "kind": "function",
+          "module": {
+            "dotted_name": "devtools.context.planning.manifest",
+            "kind": null
+          }
+        },
+        "mechanism": "exact-python-module-source-declaration-selection-v1",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "4b6939ce4e27683f1f91582a3945f3b67ae73299fff0c4d56b61316333eec47c"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1"
+    ],
+    "runtime_ns": 265771400,
+    "serialized_return_sha256": "eb6f9d547c02cb688063ba296b5859c2a1beba67bddfdba5d7965a081a4ded9a",
+    "status": "RETURNED",
+    "wall_call_ns": 657500600
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H05:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "61cfacc7c887ac636e0a99bb1dfa3600946f955d13e272f7039ba540d1477a05"
+      },
+      "locator": {
+        "declared_name": "describe_context_disclosure",
+        "kind": "function",
+        "module": {
+          "dotted_name": "devtools.context.planning.manifest",
+          "kind": null
+        }
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 1147,
+          "start": 1085
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05"
+    ],
+    "runtime_ns": 97809400,
+    "serialized_return_sha256": "c3355563574fbfd46314bee87345e5fc6ac8e449e577a4287f767acfcd104eed",
+    "status": "RETURNED",
+    "wall_call_ns": 97809400
+  },
+  {
+    "durability_inside_call_ns": 53399100,
+    "identity": "route:B:H06",
+    "inputs": {
+      "arm": "B",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "6eb085a6c986efa5c0c2fc0095f9b094b4ff0642f9444ca99c7b9273ca0c7d06"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "manifest"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 1207,
+              "start": 1166
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "RESOURCE_ADDRESS",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 1207,
+              "start": 1166
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 1207,
+            "start": 1166
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "src/devtools/context/planning/manifest.py"
+        },
+        "locator": {
+          "address": {
+            "value": "src/devtools/context/planning/manifest.py"
+          }
+        },
+        "mechanism": "repository-snapshot-resource-at",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "3a29b12fa1258b53494a010724207487dc98084426459e8cd2a5a1e50ff981d5"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1"
+    ],
+    "runtime_ns": 176938200,
+    "serialized_return_sha256": "0bb0e7e7b5a50a82241af48eaf93efd325fde90a8d10d6b55ca6bb46684ee753",
+    "status": "RETURNED",
+    "wall_call_ns": 230337300
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H06:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "6eb085a6c986efa5c0c2fc0095f9b094b4ff0642f9444ca99c7b9273ca0c7d06"
+      },
+      "locator": {
+        "address": {
+          "value": "src/devtools/context/planning/manifest.py"
+        }
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 1207,
+          "start": 1166
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06"
+    ],
+    "runtime_ns": 357800,
+    "serialized_return_sha256": "6eb6bac7035050bb145fd0fc0432bc536c8d6e544936ec3278f922d755b2bfe7",
+    "status": "RETURNED",
+    "wall_call_ns": 357800
+  },
+  {
+    "durability_inside_call_ns": 391171100,
+    "identity": "route:B:H07",
+    "inputs": {
+      "arm": "B",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "d9100147c6fbdd12dc162735ce8ca06095a3aabc0f94618693d712299b215beb"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "compatibility"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 1893,
+              "start": 1858
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "PYTHON_MODULE",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 1893,
+              "start": 1858
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 1893,
+            "start": 1858
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "devtools.context.planning.rendering"
+        },
+        "locator": {
+          "dotted_name": "devtools.context.planning.rendering",
+          "kind": null
+        },
+        "mechanism": "python-module-exact-name-lookup",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "ee37549193fc85fdced1e87e95dcda12dc735b53f8d8db147b8dc823631d0adc"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1"
+    ],
+    "runtime_ns": 249993300,
+    "serialized_return_sha256": "89da7cff2ffbb7cba5729480a2e6586a37c7b98498aa923068b426c1598dbfce",
+    "status": "RETURNED",
+    "wall_call_ns": 641164400
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H07:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "d9100147c6fbdd12dc162735ce8ca06095a3aabc0f94618693d712299b215beb"
+      },
+      "locator": {
+        "dotted_name": "devtools.context.planning.rendering",
+        "kind": null
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 1893,
+          "start": 1858
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07"
+    ],
+    "runtime_ns": 96262800,
+    "serialized_return_sha256": "9b3a973796530683f664cfacce6ada090823eb3ebc485ac5dec33af3a3a69da3",
+    "status": "RETURNED",
+    "wall_call_ns": 96262800
+  },
+  {
+    "durability_inside_call_ns": 77042000,
+    "identity": "route:B:H08",
+    "inputs": {
+      "arm": "B",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "94ae0c2a8958c9e96cd918e354d8c343b31bdbd29e710c5e0f135110e27da21d"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "tests"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 2241,
+              "start": 2202
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "RESOURCE_ADDRESS",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 2241,
+              "start": 2202
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 2241,
+            "start": 2202
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "tests/context/planning/test_manifest.py"
+        },
+        "locator": {
+          "address": {
+            "value": "tests/context/planning/test_manifest.py"
+          }
+        },
+        "mechanism": "repository-snapshot-resource-at",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "16d9c7007ba1c39f516782f871e8ce0853b3c10087609317d01f2de7a55d53d1"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1"
+    ],
+    "runtime_ns": 158666200,
+    "serialized_return_sha256": "540db603e25835f76821dc539c07f21b705a04bedbffba8e43afd9bb91fba147",
+    "status": "RETURNED",
+    "wall_call_ns": 235708200
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H08:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "94ae0c2a8958c9e96cd918e354d8c343b31bdbd29e710c5e0f135110e27da21d"
+      },
+      "locator": {
+        "address": {
+          "value": "tests/context/planning/test_manifest.py"
+        }
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 2241,
+          "start": 2202
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08"
+    ],
+    "runtime_ns": 230100,
+    "serialized_return_sha256": "1821c88cf432befba99ae6efa02ee0f9c4a0785edb8c878171726369419347b1",
+    "status": "RETURNED",
+    "wall_call_ns": 230100
+  },
+  {
+    "durability_inside_call_ns": 42024300,
+    "identity": "route:B:H09",
+    "inputs": {
+      "arm": "B",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "00fdd66ff260770b2dc6715e971b285106a97b12ae6e424403fdbee83b353cff"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "documentation"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 2585,
+              "start": 2539
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "RESOURCE_ADDRESS",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 2585,
+              "start": 2539
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 2585,
+            "start": 2539
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "src/devtools/context/planning/docs/overview.md"
+        },
+        "locator": {
+          "address": {
+            "value": "src/devtools/context/planning/docs/overview.md"
+          }
+        },
+        "mechanism": "repository-snapshot-resource-at",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "41f1962b000c7d04ebe8c3c3c5c1db64afa38c30dc4cb24b1b07508629794552"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1"
+    ],
+    "runtime_ns": 152910600,
+    "serialized_return_sha256": "84e973958e4910878c114262e981e6d4d3e84035d7db378bdab6c13602d169ba",
+    "status": "RETURNED",
+    "wall_call_ns": 194934900
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H09:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "00fdd66ff260770b2dc6715e971b285106a97b12ae6e424403fdbee83b353cff"
+      },
+      "locator": {
+        "address": {
+          "value": "src/devtools/context/planning/docs/overview.md"
+        }
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 2585,
+          "start": 2539
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09"
+    ],
+    "runtime_ns": 102900,
+    "serialized_return_sha256": "801f44c392bb9f7777f3052fffc14e7a1a89cd10cbdac44644107ee298263d65",
+    "status": "RETURNED",
+    "wall_call_ns": 102900
+  },
+  {
+    "durability_inside_call_ns": 52428700,
+    "identity": "route:B:H10",
+    "inputs": {
+      "arm": "B",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "6f05d43a1a6346a973fd41349d2d10969431e7e13707cebfbfa4e0c2e340a31f"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "validation"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 2899,
+              "start": 2885
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "RESOURCE_ADDRESS",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 2899,
+              "start": 2885
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 2899,
+            "start": 2885
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "pyproject.toml"
+        },
+        "locator": {
+          "address": {
+            "value": "pyproject.toml"
+          }
+        },
+        "mechanism": "repository-snapshot-resource-at",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "d9b7c3e0299c143db75acc9e83da06c75002fa6fe98a57ab348b14a335547e25"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1"
+    ],
+    "runtime_ns": 154649400,
+    "serialized_return_sha256": "5913cc69997210903a0b3e3e5dabf0624c8bdcaca808f6cf9942ea2a5347dfcc",
+    "status": "RETURNED",
+    "wall_call_ns": 207078100
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H10:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "6f05d43a1a6346a973fd41349d2d10969431e7e13707cebfbfa4e0c2e340a31f"
+      },
+      "locator": {
+        "address": {
+          "value": "pyproject.toml"
+        }
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 2899,
+          "start": 2885
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10"
+    ],
+    "runtime_ns": 95600,
+    "serialized_return_sha256": "298ddaeaf54ee55a93eafeed3d29cb90e62adb2985421a9b882dce55fd0f409f",
+    "status": "RETURNED",
+    "wall_call_ns": 95600
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:structure",
+    "inputs": {
+      "arm": "B",
+      "obligation": "case-0013-context-disclosure-manifest/structure"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1"
+    ],
+    "runtime_ns": 224128900,
+    "serialized_return_sha256": "edaa15b4eb1a859bd44a150b7a8eb606ebdea758f5bbbdd383f2eb2192e06774",
+    "status": "RETURNED",
+    "wall_call_ns": 224128900
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:integrity",
+    "inputs": {
+      "arm": "B",
+      "obligation": "case-0013-context-disclosure-manifest/integrity"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure"
+    ],
+    "runtime_ns": 188467500,
+    "serialized_return_sha256": "bf78e50f036ccc0655b17c834c69d6b4c39e8816abba61ca4ec71e47199c5cc9",
+    "status": "RETURNED",
+    "wall_call_ns": 188467500
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:manifest",
+    "inputs": {
+      "arm": "B",
+      "obligation": "case-0013-context-disclosure-manifest/manifest"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity"
+    ],
+    "runtime_ns": 235170100,
+    "serialized_return_sha256": "dda5ecd97d645baa1620c476ec6e99089f2baa616db3b437b69c0b93b0937f36",
+    "status": "RETURNED",
+    "wall_call_ns": 235170100
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:projection",
+    "inputs": {
+      "arm": "B",
+      "obligation": "case-0013-context-disclosure-manifest/projection"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest"
+    ],
+    "runtime_ns": 210060200,
+    "serialized_return_sha256": "3a69ab11e9cca415713715ae162d608b947f7a7477d0f4dfa82b01c3cf89fc64",
+    "status": "RETURNED",
+    "wall_call_ns": 210060200
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:compatibility",
+    "inputs": {
+      "arm": "B",
+      "obligation": "case-0013-context-disclosure-manifest/compatibility"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection"
+    ],
+    "runtime_ns": 210471000,
+    "serialized_return_sha256": "175df32ce91b4ff30f517f652cbbc18b6b753742c1a849132cefa2bd40221604",
+    "status": "RETURNED",
+    "wall_call_ns": 210471000
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:exports",
+    "inputs": {
+      "arm": "B",
+      "obligation": "case-0013-context-disclosure-manifest/exports"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility"
+    ],
+    "runtime_ns": 211981000,
+    "serialized_return_sha256": "54bcc165839029881047f88b1ceaeebe2c7e2076eea4332ecffbb18a4f792050",
+    "status": "RETURNED",
+    "wall_call_ns": 211981000
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:tests",
+    "inputs": {
+      "arm": "B",
+      "obligation": "case-0013-context-disclosure-manifest/tests"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports"
+    ],
+    "runtime_ns": 230328600,
+    "serialized_return_sha256": "25ab407798aa8db66af0bd53511a1e581d8c79681a3e9d7417c019b55a8a0ac2",
+    "status": "RETURNED",
+    "wall_call_ns": 230328600
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:documentation",
+    "inputs": {
+      "arm": "B",
+      "obligation": "case-0013-context-disclosure-manifest/documentation"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests"
+    ],
+    "runtime_ns": 212541300,
+    "serialized_return_sha256": "0cb4d9beba421aee2828bb422ca0e77a3dfbdfeba457f6f75c7817ebcf4c9f17",
+    "status": "RETURNED",
+    "wall_call_ns": 212541300
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:B:validation",
+    "inputs": {
+      "arm": "B",
+      "obligation": "case-0013-context-disclosure-manifest/validation"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation"
+    ],
+    "runtime_ns": 87518600,
+    "serialized_return_sha256": "095de763635bb3a0f9ab2197bc8d73a80ee2e11b06f3ff810aa5b525f382909f",
+    "status": "RETURNED",
+    "wall_call_ns": 87518600
+  },
+  {
+    "durability_inside_call_ns": 261110633300,
+    "identity": "arm:C",
+    "inputs": {
+      "arm": "SELECTIVE_MECHANISM_ROUTER",
+      "requests": [
+        "b4a49334eb132112f800a988d16b78b4bce655646205d745256d97bc85f11201",
+        "c7a3994bc9b2ae6192b7469c11523e15146a67ef4fd0309cee7d6ec195647dc4",
+        "f00ef57a14eb5fc486659a03d5c6003be020a475a93b9f804b3b85a1f3cf94e6",
+        "ee37549193fc85fdced1e87e95dcda12dc735b53f8d8db147b8dc823631d0adc",
+        "41f1962b000c7d04ebe8c3c3c5c1db64afa38c30dc4cb24b1b07508629794552",
+        "d9b7c3e0299c143db75acc9e83da06c75002fa6fe98a57ab348b14a335547e25"
+      ]
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation"
+    ],
+    "runtime_ns": 3688711500,
+    "serialized_return_sha256": "6f4be363ef451b3c065d679e4688077a9a88763f46b89b3b2fb7cbd2434bede4",
+    "status": "RETURNED",
+    "wall_call_ns": 264799344800
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "policy:C",
+    "inputs": {
+      "arm": "SELECTIVE_MECHANISM_ROUTER",
+      "task": "case-0013-context-disclosure-manifest"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C"
+    ],
+    "runtime_ns": 12087900,
+    "serialized_return_sha256": "faab4242443ef4d46abc30442d231769c5c5f662e98c5f97b6405dd5e28831af",
+    "status": "RETURNED",
+    "wall_call_ns": 12087900
+  },
+  {
+    "durability_inside_call_ns": 441229600,
+    "identity": "route:C:H01",
+    "inputs": {
+      "arm": "C",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "1ab7e8b1be7a34f08412218db588c864255478c036de449572cf2254b2c9577d"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "structure"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 317,
+              "start": 258
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "PYTHON_DIRECT_CLASS",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 317,
+              "start": 258
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 317,
+            "start": 258
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "devtools.context.planning.materialization.ContextDisclosure"
+        },
+        "locator": {
+          "declared_name": "ContextDisclosure",
+          "kind": "class",
+          "module": {
+            "dotted_name": "devtools.context.planning.materialization",
+            "kind": null
+          }
+        },
+        "mechanism": "exact-python-module-source-declaration-selection-v1",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "b4a49334eb132112f800a988d16b78b4bce655646205d745256d97bc85f11201"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C"
+    ],
+    "runtime_ns": 260393700,
+    "serialized_return_sha256": "cdb67d8271fcfb61fc0eeed91c1a2b9f024575d5ee683d4a49a51058fb296a0d",
+    "status": "RETURNED",
+    "wall_call_ns": 701623300
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:C:H01:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "1ab7e8b1be7a34f08412218db588c864255478c036de449572cf2254b2c9577d"
+      },
+      "locator": {
+        "declared_name": "ContextDisclosure",
+        "kind": "class",
+        "module": {
+          "dotted_name": "devtools.context.planning.materialization",
+          "kind": null
+        }
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 317,
+          "start": 258
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01"
+    ],
+    "runtime_ns": 106795200,
+    "serialized_return_sha256": "a4b436956633f9159a6b6991c967cc9b8e82135d87d829df41d9bdc370fd1581",
+    "status": "RETURNED",
+    "wall_call_ns": 106795200
+  },
+  {
+    "durability_inside_call_ns": 1737101100,
+    "identity": "route:C:H02",
+    "inputs": {
+      "arm": "C",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "d69727149c91b87f9e23aa8a8026a1843641feb0933f93dfcefbb1df8af407b1"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "structure"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 402,
+              "start": 333
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "PYTHON_DIRECT_FUNCTION",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 402,
+              "start": 333
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 402,
+            "start": 333
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "devtools.context.planning.materialization.materialize_disclosure_plan"
+        },
+        "locator": {
+          "declared_name": "materialize_disclosure_plan",
+          "kind": "function",
+          "module": {
+            "dotted_name": "devtools.context.planning.materialization",
+            "kind": null
+          }
+        },
+        "mechanism": "exact-python-module-source-declaration-selection-v1",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "c7a3994bc9b2ae6192b7469c11523e15146a67ef4fd0309cee7d6ec195647dc4"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1"
+    ],
+    "runtime_ns": 261882700,
+    "serialized_return_sha256": "5cb4e5304d3bfbf5ad1d40af3e4be7ee769318f359a960838561764a190cc31e",
+    "status": "RETURNED",
+    "wall_call_ns": 1998983800
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:C:H02:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "d69727149c91b87f9e23aa8a8026a1843641feb0933f93dfcefbb1df8af407b1"
+      },
+      "locator": {
+        "declared_name": "materialize_disclosure_plan",
+        "kind": "function",
+        "module": {
+          "dotted_name": "devtools.context.planning.materialization",
+          "kind": null
+        }
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 402,
+          "start": 333
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02"
+    ],
+    "runtime_ns": 108827200,
+    "serialized_return_sha256": "058cf7af3a84e35c784632d2aee1e2a97ea5824842dcc0170459968790280329",
+    "status": "RETURNED",
+    "wall_call_ns": 108827200
+  },
+  {
+    "durability_inside_call_ns": 685909500,
+    "identity": "route:C:H03",
+    "inputs": {
+      "arm": "C",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "cf1c9669156f1680068aad976936c93c4952ce089fdd57408998c346177f2c34"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "integrity"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 666,
+              "start": 599
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "PYTHON_DIRECT_METHOD",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 666,
+              "start": 599
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 666,
+            "start": 599
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "devtools.context.repository.snapshot.RepositorySnapshot.resource_at"
+        },
+        "locator": {
+          "class_name": "RepositorySnapshot",
+          "method_name": "resource_at",
+          "module": {
+            "dotted_name": "devtools.context.repository.snapshot",
+            "kind": null
+          }
+        },
+        "mechanism": "exact-source-class-then-native-direct-method-containment-v1",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "f00ef57a14eb5fc486659a03d5c6003be020a475a93b9f804b3b85a1f3cf94e6"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1"
+    ],
+    "runtime_ns": 293285900,
+    "serialized_return_sha256": "b07a45f69b16292a2198775d44ff064ac612015e1048d4263c4231254be95a10",
+    "status": "RETURNED",
+    "wall_call_ns": 979195400
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:C:H03:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "cf1c9669156f1680068aad976936c93c4952ce089fdd57408998c346177f2c34"
+      },
+      "locator": {
+        "declared_name": "RepositorySnapshot",
+        "kind": "class",
+        "module": {
+          "dotted_name": "devtools.context.repository.snapshot",
+          "kind": null
+        }
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 666,
+          "start": 599
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03"
+    ],
+    "runtime_ns": 101230400,
+    "serialized_return_sha256": "7d840b4599c10932946e3e040aa7a15b63785f7bb39864d5eb3dad3fbb77e57b",
+    "status": "RETURNED",
+    "wall_call_ns": 101230400
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:C:H03:2",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "cf1c9669156f1680068aad976936c93c4952ce089fdd57408998c346177f2c34"
+      },
+      "locator": {
+        "containing_class": {
+          "base_syntax": [],
+          "declared_name": "RepositorySnapshot",
+          "derivation_identity": "76ca770f0447ad778fbf598aaa74b53f297de3400759a77213fb69441971e96a",
+          "subject": {
+            "declaration_ordinal": 1,
+            "derivation_definition_identity": "d22897ae0a05b53913122c1997306690f4632e045d4452da543291687b8bbe9d",
+            "resource_dependency_identity": "580a8041b654fc20480c56af374c82db718ec8fa59e7135579d36c29e603da3b",
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            }
+          },
+          "support": {
+            "resource_address": {
+              "value": "src/devtools/context/repository/snapshot.py"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "source_range": {
+              "end_column_utf8": 29,
+              "end_line": 61,
+              "start_column_utf8": 0,
+              "start_line": 35
+            }
+          }
+        },
+        "declared_name": "resource_at"
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 666,
+          "start": 599
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1"
+    ],
+    "runtime_ns": 5239600,
+    "serialized_return_sha256": "477686ee211ecb37835daa8e6a802887639327e4963bc36a519197c383ef7bc6",
+    "status": "RETURNED",
+    "wall_call_ns": 5239600
+  },
+  {
+    "durability_inside_call_ns": 434097400,
+    "identity": "route:C:H07",
+    "inputs": {
+      "arm": "C",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "d9100147c6fbdd12dc162735ce8ca06095a3aabc0f94618693d712299b215beb"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "compatibility"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 1893,
+              "start": 1858
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "PYTHON_MODULE",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 1893,
+              "start": 1858
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 1893,
+            "start": 1858
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "devtools.context.planning.rendering"
+        },
+        "locator": {
+          "dotted_name": "devtools.context.planning.rendering",
+          "kind": null
+        },
+        "mechanism": "python-module-exact-name-lookup",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "ee37549193fc85fdced1e87e95dcda12dc735b53f8d8db147b8dc823631d0adc"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "ground:C:H03:2"
+    ],
+    "runtime_ns": 259754300,
+    "serialized_return_sha256": "89da7cff2ffbb7cba5729480a2e6586a37c7b98498aa923068b426c1598dbfce",
+    "status": "RETURNED",
+    "wall_call_ns": 693851700
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:C:H07:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "d9100147c6fbdd12dc162735ce8ca06095a3aabc0f94618693d712299b215beb"
+      },
+      "locator": {
+        "dotted_name": "devtools.context.planning.rendering",
+        "kind": null
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 1893,
+          "start": 1858
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "ground:C:H03:2",
+      "route:C:H07"
+    ],
+    "runtime_ns": 101513900,
+    "serialized_return_sha256": "9b3a973796530683f664cfacce6ada090823eb3ebc485ac5dec33af3a3a69da3",
+    "status": "RETURNED",
+    "wall_call_ns": 101513900
+  },
+  {
+    "durability_inside_call_ns": 60717200,
+    "identity": "route:C:H09",
+    "inputs": {
+      "arm": "C",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "00fdd66ff260770b2dc6715e971b285106a97b12ae6e424403fdbee83b353cff"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "documentation"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 2585,
+              "start": 2539
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "RESOURCE_ADDRESS",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 2585,
+              "start": 2539
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 2585,
+            "start": 2539
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "src/devtools/context/planning/docs/overview.md"
+        },
+        "locator": {
+          "address": {
+            "value": "src/devtools/context/planning/docs/overview.md"
+          }
+        },
+        "mechanism": "repository-snapshot-resource-at",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "41f1962b000c7d04ebe8c3c3c5c1db64afa38c30dc4cb24b1b07508629794552"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "ground:C:H03:2",
+      "route:C:H07",
+      "ground:C:H07:1"
+    ],
+    "runtime_ns": 168152100,
+    "serialized_return_sha256": "84e973958e4910878c114262e981e6d4d3e84035d7db378bdab6c13602d169ba",
+    "status": "RETURNED",
+    "wall_call_ns": 228869300
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:C:H09:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "00fdd66ff260770b2dc6715e971b285106a97b12ae6e424403fdbee83b353cff"
+      },
+      "locator": {
+        "address": {
+          "value": "src/devtools/context/planning/docs/overview.md"
+        }
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 2585,
+          "start": 2539
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "ground:C:H03:2",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H09"
+    ],
+    "runtime_ns": 121900,
+    "serialized_return_sha256": "801f44c392bb9f7777f3052fffc14e7a1a89cd10cbdac44644107ee298263d65",
+    "status": "RETURNED",
+    "wall_call_ns": 121900
+  },
+  {
+    "durability_inside_call_ns": 793370600,
+    "identity": "route:C:H10",
+    "inputs": {
+      "arm": "C",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "6f05d43a1a6346a973fd41349d2d10969431e7e13707cebfbfa4e0c2e340a31f"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "validation"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 2899,
+              "start": 2885
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "RESOURCE_ADDRESS",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 2899,
+              "start": 2885
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 2899,
+            "start": 2885
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "pyproject.toml"
+        },
+        "locator": {
+          "address": {
+            "value": "pyproject.toml"
+          }
+        },
+        "mechanism": "repository-snapshot-resource-at",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "d9b7c3e0299c143db75acc9e83da06c75002fa6fe98a57ab348b14a335547e25"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "ground:C:H03:2",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H09",
+      "ground:C:H09:1"
+    ],
+    "runtime_ns": 166018200,
+    "serialized_return_sha256": "5913cc69997210903a0b3e3e5dabf0624c8bdcaca808f6cf9942ea2a5347dfcc",
+    "status": "RETURNED",
+    "wall_call_ns": 959388800
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:C:H10:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "6f05d43a1a6346a973fd41349d2d10969431e7e13707cebfbfa4e0c2e340a31f"
+      },
+      "locator": {
+        "address": {
+          "value": "pyproject.toml"
+        }
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 2899,
+          "start": 2885
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "ground:C:H03:2",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10"
+    ],
+    "runtime_ns": 260900,
+    "serialized_return_sha256": "298ddaeaf54ee55a93eafeed3d29cb90e62adb2985421a9b882dce55fd0f409f",
+    "status": "RETURNED",
+    "wall_call_ns": 260900
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:structure",
+    "inputs": {
+      "arm": "C",
+      "obligation": "case-0013-context-disclosure-manifest/structure"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "ground:C:H03:2",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1"
+    ],
+    "runtime_ns": 229847300,
+    "serialized_return_sha256": "7aea6a79700cef20470bf113b242d8244ffe03b158a9d6a65157b23a88f984b5",
+    "status": "RETURNED",
+    "wall_call_ns": 229847300
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:integrity",
+    "inputs": {
+      "arm": "C",
+      "obligation": "case-0013-context-disclosure-manifest/integrity"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "ground:C:H03:2",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1",
+      "present:C:structure"
+    ],
+    "runtime_ns": 230328300,
+    "serialized_return_sha256": "054dc201fa56977545e1da05f813e9da8f56ca4fdb8bc40a9721bc5661b967b9",
+    "status": "RETURNED",
+    "wall_call_ns": 230328300
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:manifest",
+    "inputs": {
+      "arm": "C",
+      "obligation": "case-0013-context-disclosure-manifest/manifest"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "ground:C:H03:2",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1",
+      "present:C:structure",
+      "present:C:integrity"
+    ],
+    "runtime_ns": 213385100,
+    "serialized_return_sha256": "d717d813a03aad1d538d07231bbae81093ccf2388d761df4becca664766759e1",
+    "status": "RETURNED",
+    "wall_call_ns": 213385100
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:projection",
+    "inputs": {
+      "arm": "C",
+      "obligation": "case-0013-context-disclosure-manifest/projection"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "ground:C:H03:2",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1",
+      "present:C:structure",
+      "present:C:integrity",
+      "present:C:manifest"
+    ],
+    "runtime_ns": 227394600,
+    "serialized_return_sha256": "cad0f7dbcc6463505959dfd0845e7dd603ece585d8d081644d373ed420bf4c3e",
+    "status": "RETURNED",
+    "wall_call_ns": 227394600
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:compatibility",
+    "inputs": {
+      "arm": "C",
+      "obligation": "case-0013-context-disclosure-manifest/compatibility"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "ground:C:H03:2",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1",
+      "present:C:structure",
+      "present:C:integrity",
+      "present:C:manifest",
+      "present:C:projection"
+    ],
+    "runtime_ns": 207793100,
+    "serialized_return_sha256": "f7c8caa97ac0a4a2217618f67f5ea79bfba6343cb8f4d66ed5b07509782b3b05",
+    "status": "RETURNED",
+    "wall_call_ns": 207793100
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:exports",
+    "inputs": {
+      "arm": "C",
+      "obligation": "case-0013-context-disclosure-manifest/exports"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "ground:C:H03:2",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1",
+      "present:C:structure",
+      "present:C:integrity",
+      "present:C:manifest",
+      "present:C:projection",
+      "present:C:compatibility"
+    ],
+    "runtime_ns": 206933900,
+    "serialized_return_sha256": "25583be1b4efcb095930dacfd7a339cb691c02c16f23395dafd0a03b3a11d063",
+    "status": "RETURNED",
+    "wall_call_ns": 206933900
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:tests",
+    "inputs": {
+      "arm": "C",
+      "obligation": "case-0013-context-disclosure-manifest/tests"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "ground:C:H03:2",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1",
+      "present:C:structure",
+      "present:C:integrity",
+      "present:C:manifest",
+      "present:C:projection",
+      "present:C:compatibility",
+      "present:C:exports"
+    ],
+    "runtime_ns": 237549300,
+    "serialized_return_sha256": "6e30c9afab08978038a1b6ab08e3474ee50289ce8a15f2421402df253d6370e1",
+    "status": "RETURNED",
+    "wall_call_ns": 237549300
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:documentation",
+    "inputs": {
+      "arm": "C",
+      "obligation": "case-0013-context-disclosure-manifest/documentation"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "ground:C:H03:2",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1",
+      "present:C:structure",
+      "present:C:integrity",
+      "present:C:manifest",
+      "present:C:projection",
+      "present:C:compatibility",
+      "present:C:exports",
+      "present:C:tests"
+    ],
+    "runtime_ns": 227769200,
+    "serialized_return_sha256": "ce46ee2039de3b6b524657c8f55b8f8a13ada3e07947521813577df49b1cf66c",
+    "status": "RETURNED",
+    "wall_call_ns": 227769200
+  },
+  {
+    "durability_inside_call_ns": 0,
+    "identity": "present:C:validation",
+    "inputs": {
+      "arm": "C",
+      "obligation": "case-0013-context-disclosure-manifest/validation"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1",
+      "ground:C:H03:2",
+      "route:C:H07",
+      "ground:C:H07:1",
+      "route:C:H09",
+      "ground:C:H09:1",
+      "route:C:H10",
+      "ground:C:H10:1",
+      "present:C:structure",
+      "present:C:integrity",
+      "present:C:manifest",
+      "present:C:projection",
+      "present:C:compatibility",
+      "present:C:exports",
+      "present:C:tests",
+      "present:C:documentation"
+    ],
+    "runtime_ns": 223209100,
+    "serialized_return_sha256": "57b86694d344f06da9d7859aebde4f29a3e0c8090a596158a45ce37551a1b688",
+    "status": "RETURNED",
+    "wall_call_ns": 223209100
+  }
+]

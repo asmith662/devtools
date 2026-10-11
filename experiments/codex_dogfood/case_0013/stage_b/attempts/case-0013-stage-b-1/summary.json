@@ -1,0 +1,2363 @@
+{
+  "C_skipped": [
+    {
+      "B_disposition": "UNRESOLVED",
+      "B_locator": {
+        "declared_name": "ContextDisclosureManifest",
+        "kind": "class",
+        "module": {
+          "dotted_name": "devtools.context.planning.manifest",
+          "kind": null
+        }
+      },
+      "B_mechanism": "exact-python-module-source-declaration-selection-v1",
+      "B_targets": [],
+      "C_disposition": "LEXICAL_ONLY",
+      "C_invocations": 0,
+      "C_native_outcome": null,
+      "hint": "H04",
+      "hint_identity": "da5ce9184d6e0acdadf0d257685551671eed86b7ab9f0beac15de0a74b18ff42",
+      "purpose": "Introduce new devtools.context.planning.manifest.ContextDisclosureManifest: establish surrounding integration contracts; this literal is a future destination, not an existing-evidence request",
+      "role": "INTRODUCE_NEW",
+      "scope": "Intentionally not invoked in C; no effectiveness classification"
+    },
+    {
+      "B_disposition": "UNRESOLVED",
+      "B_locator": {
+        "declared_name": "describe_context_disclosure",
+        "kind": "function",
+        "module": {
+          "dotted_name": "devtools.context.planning.manifest",
+          "kind": null
+        }
+      },
+      "B_mechanism": "exact-python-module-source-declaration-selection-v1",
+      "B_targets": [],
+      "C_disposition": "LEXICAL_ONLY",
+      "C_invocations": 0,
+      "C_native_outcome": null,
+      "hint": "H05",
+      "hint_identity": "61cfacc7c887ac636e0a99bb1dfa3600946f955d13e272f7039ba540d1477a05",
+      "purpose": "Introduce new devtools.context.planning.manifest.describe_context_disclosure: establish surrounding integration contracts; this literal is a future destination, not an existing-evidence request",
+      "role": "INTRODUCE_NEW",
+      "scope": "Intentionally not invoked in C; no effectiveness classification"
+    },
+    {
+      "B_disposition": "UNRESOLVED",
+      "B_locator": {
+        "address": {
+          "value": "src/devtools/context/planning/manifest.py"
+        }
+      },
+      "B_mechanism": "repository-snapshot-resource-at",
+      "B_targets": [],
+      "C_disposition": "LEXICAL_ONLY",
+      "C_invocations": 0,
+      "C_native_outcome": null,
+      "hint": "H06",
+      "hint_identity": "6eb085a6c986efa5c0c2fc0095f9b094b4ff0642f9444ca99c7b9273ca0c7d06",
+      "purpose": "Introduce new src/devtools/context/planning/manifest.py: establish surrounding integration contracts; this literal is a future destination, not an existing-evidence request",
+      "role": "INTRODUCE_NEW",
+      "scope": "Intentionally not invoked in C; no effectiveness classification"
+    },
+    {
+      "B_disposition": "UNRESOLVED",
+      "B_locator": {
+        "address": {
+          "value": "tests/context/planning/test_manifest.py"
+        }
+      },
+      "B_mechanism": "repository-snapshot-resource-at",
+      "B_targets": [],
+      "C_disposition": "LEXICAL_ONLY",
+      "C_invocations": 0,
+      "C_native_outcome": null,
+      "hint": "H08",
+      "hint_identity": "94ae0c2a8958c9e96cd918e354d8c343b31bdbd29e710c5e0f135110e27da21d",
+      "purpose": "Introduce new tests/context/planning/test_manifest.py: establish surrounding integration contracts; this literal is a future destination, not an existing-evidence request",
+      "role": "INTRODUCE_NEW",
+      "scope": "Intentionally not invoked in C; no effectiveness classification"
+    }
+  ],
+  "admission_scope": "B-to-C 10-to-6 is a frozen policy difference, not effectiveness evidence",
+  "arms": {
+    "A": {
+      "duplicates_across_lanes": 2476,
+      "lanes": {
+        "compatibility": 316,
+        "documentation": 294,
+        "exports": 391,
+        "integrity": 345,
+        "manifest": 348,
+        "projection": 388,
+        "structure": 293,
+        "tests": 398,
+        "validation": 223
+      },
+      "occurrences": 2996,
+      "unique_resources": 520
+    },
+    "B": {
+      "duplicates_across_lanes": 2476,
+      "lanes": {
+        "compatibility": 316,
+        "documentation": 294,
+        "exports": 391,
+        "integrity": 345,
+        "manifest": 348,
+        "projection": 388,
+        "structure": 293,
+        "tests": 398,
+        "validation": 223
+      },
+      "occurrences": 2996,
+      "unique_resources": 520
+    },
+    "C": {
+      "duplicates_across_lanes": 2476,
+      "lanes": {
+        "compatibility": 316,
+        "documentation": 294,
+        "exports": 391,
+        "integrity": 345,
+        "manifest": 348,
+        "projection": 388,
+        "structure": 293,
+        "tests": 398,
+        "validation": 223
+      },
+      "occurrences": 2996,
+      "unique_resources": 520
+    }
+  },
+  "costs": {
+    "arm_A_assembly_ns": 2200,
+    "arms": {
+      "A": {
+        "charged_ns": 2954845000,
+        "composite_ns": 2200,
+        "composite_wall_ns": 2200,
+        "mechanism_ns": 0,
+        "policy_ns": 0,
+        "presentation_ns": 0,
+        "route_ns": 0
+      },
+      "B": {
+        "charged_ns": 6975061900,
+        "composite_ns": 4315308700,
+        "composite_wall_ns": 257618725800,
+        "mechanism_ns": 4003246000,
+        "policy_ns": 11488300,
+        "presentation_ns": 1810667200,
+        "route_ns": 2192578800
+      },
+      "C": {
+        "charged_ns": 6386112300,
+        "composite_ns": 3688711500,
+        "composite_wall_ns": 264799344800,
+        "mechanism_ns": 3413696800,
+        "policy_ns": 12087900,
+        "presentation_ns": 2004209900,
+        "route_ns": 1409486900
+      }
+    },
+    "common_frame_preparation_ns": {
+      "frame:assembly": 143357300,
+      "frame:declarations": 5801200,
+      "frame:modules": 64734500,
+      "frame:resources": 16312200
+    },
+    "native_index_ns": 2466962400,
+    "scope": "Single-run captured ns. Composite includes children and excludes measured nested journal overhead; composite and child timings never added together. Frame/publication/durability separate from charged totals.",
+    "shared_purposes_hint_extraction_ns": 5482600,
+    "shared_queries_ns": 487882600
+  },
+  "counts": {
+    "A_exact_requests": 0,
+    "B_exact_requests": 10,
+    "C_exact_requests": 6,
+    "arm_calls": 3,
+    "global_queries": 1,
+    "index_builds": 1,
+    "native_grounding_subcalls": 18,
+    "obligation_queries": 9,
+    "operations": 73,
+    "presentation_calls": 18
+  },
+  "cross_arm_exact_outcomes": "INDEPENDENT",
+  "effectiveness": "UNKNOWN",
+  "execution": "case-0013-stage-b-1",
+  "families": {
+    "B": {
+      "PYTHON_DIRECT_CLASS": {
+        "AMBIGUOUS": 0,
+        "RESOLVED": 1,
+        "UNRESOLVED": 1,
+        "UNSUPPORTED": 0,
+        "admitted_requests": 2,
+        "hint_count": 2,
+        "presentation_ns": 459299000,
+        "presentation_scope": "Full lane timings; shared across families in same lane, not additive family costs",
+        "route_ns": 504372100,
+        "target_positions": [
+          {
+            "address": "src/devtools/context/planning/materialization.py",
+            "content_identity": "8c7b2c0dd17e5c8a4f79f3ff48403b92b3ecce5cf4845d85a8723da296cb3315",
+            "depth_saved": 0,
+            "exact_tier_position": 1,
+            "hint": "H01",
+            "native_rank": 1,
+            "routed_position": 1
+          }
+        ],
+        "unique_resolved_resources": [
+          "src/devtools/context/planning/materialization.py"
+        ]
+      },
+      "PYTHON_DIRECT_FUNCTION": {
+        "AMBIGUOUS": 0,
+        "RESOLVED": 1,
+        "UNRESOLVED": 1,
+        "UNSUPPORTED": 0,
+        "admitted_requests": 2,
+        "hint_count": 2,
+        "presentation_ns": 459299000,
+        "presentation_scope": "Full lane timings; shared across families in same lane, not additive family costs",
+        "route_ns": 526294400,
+        "target_positions": [
+          {
+            "address": "src/devtools/context/planning/materialization.py",
+            "content_identity": "8c7b2c0dd17e5c8a4f79f3ff48403b92b3ecce5cf4845d85a8723da296cb3315",
+            "depth_saved": 0,
+            "exact_tier_position": 1,
+            "hint": "H02",
+            "native_rank": 1,
+            "routed_position": 1
+          }
+        ],
+        "unique_resolved_resources": [
+          "src/devtools/context/planning/materialization.py"
+        ]
+      },
+      "PYTHON_DIRECT_METHOD": {
+        "AMBIGUOUS": 0,
+        "RESOLVED": 1,
+        "UNRESOLVED": 0,
+        "UNSUPPORTED": 0,
+        "admitted_requests": 1,
+        "hint_count": 1,
+        "presentation_ns": 188467500,
+        "presentation_scope": "Full lane timings; shared across families in same lane, not additive family costs",
+        "route_ns": 268754600,
+        "target_positions": [
+          {
+            "address": "src/devtools/context/repository/snapshot.py",
+            "content_identity": "492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098",
+            "depth_saved": 70,
+            "exact_tier_position": 1,
+            "hint": "H03",
+            "native_rank": 71,
+            "routed_position": 1
+          }
+        ],
+        "unique_resolved_resources": [
+          "src/devtools/context/repository/snapshot.py"
+        ]
+      },
+      "PYTHON_MODULE": {
+        "AMBIGUOUS": 0,
+        "RESOLVED": 1,
+        "UNRESOLVED": 0,
+        "UNSUPPORTED": 0,
+        "admitted_requests": 1,
+        "hint_count": 1,
+        "presentation_ns": 210471000,
+        "presentation_scope": "Full lane timings; shared across families in same lane, not additive family costs",
+        "route_ns": 249993300,
+        "target_positions": [
+          {
+            "address": "src/devtools/context/planning/rendering.py",
+            "content_identity": "741a33e77ec223f64a1b381a156cb25db53473d818bb556432c3b36cbec75ea7",
+            "depth_saved": 1,
+            "exact_tier_position": 1,
+            "hint": "H07",
+            "native_rank": 2,
+            "routed_position": 1
+          }
+        ],
+        "unique_resolved_resources": [
+          "src/devtools/context/planning/rendering.py"
+        ]
+      },
+      "RESOURCE_ADDRESS": {
+        "AMBIGUOUS": 0,
+        "RESOLVED": 2,
+        "UNRESOLVED": 2,
+        "UNSUPPORTED": 0,
+        "admitted_requests": 4,
+        "hint_count": 4,
+        "presentation_ns": 765558600,
+        "presentation_scope": "Full lane timings; shared across families in same lane, not additive family costs",
+        "route_ns": 643164400,
+        "target_positions": [
+          {
+            "address": "src/devtools/context/planning/docs/overview.md",
+            "content_identity": "a679cfa5ee0591036eaab418fa386a0885ef748f98287b8dd49846c093b068bd",
+            "depth_saved": 19,
+            "exact_tier_position": 1,
+            "hint": "H09",
+            "native_rank": 20,
+            "routed_position": 1
+          },
+          {
+            "address": "pyproject.toml",
+            "content_identity": "e013670bd2a7ea0dc22304788444ac0f1106f179a1e2af7d1b96ee7e1548b145",
+            "depth_saved": 3,
+            "exact_tier_position": 1,
+            "hint": "H10",
+            "native_rank": 4,
+            "routed_position": 1
+          }
+        ],
+        "unique_resolved_resources": [
+          "pyproject.toml",
+          "src/devtools/context/planning/docs/overview.md"
+        ]
+      }
+    },
+    "C": {
+      "PYTHON_DIRECT_CLASS": {
+        "AMBIGUOUS": 0,
+        "RESOLVED": 1,
+        "UNRESOLVED": 0,
+        "UNSUPPORTED": 0,
+        "admitted_requests": 1,
+        "hint_count": 2,
+        "presentation_ns": 229847300,
+        "presentation_scope": "Full lane timings; shared across families in same lane, not additive family costs",
+        "route_ns": 260393700,
+        "target_positions": [
+          {
+            "address": "src/devtools/context/planning/materialization.py",
+            "content_identity": "8c7b2c0dd17e5c8a4f79f3ff48403b92b3ecce5cf4845d85a8723da296cb3315",
+            "depth_saved": 0,
+            "exact_tier_position": 1,
+            "hint": "H01",
+            "native_rank": 1,
+            "routed_position": 1
+          }
+        ],
+        "unique_resolved_resources": [
+          "src/devtools/context/planning/materialization.py"
+        ]
+      },
+      "PYTHON_DIRECT_FUNCTION": {
+        "AMBIGUOUS": 0,
+        "RESOLVED": 1,
+        "UNRESOLVED": 0,
+        "UNSUPPORTED": 0,
+        "admitted_requests": 1,
+        "hint_count": 2,
+        "presentation_ns": 229847300,
+        "presentation_scope": "Full lane timings; shared across families in same lane, not additive family costs",
+        "route_ns": 261882700,
+        "target_positions": [
+          {
+            "address": "src/devtools/context/planning/materialization.py",
+            "content_identity": "8c7b2c0dd17e5c8a4f79f3ff48403b92b3ecce5cf4845d85a8723da296cb3315",
+            "depth_saved": 0,
+            "exact_tier_position": 1,
+            "hint": "H02",
+            "native_rank": 1,
+            "routed_position": 1
+          }
+        ],
+        "unique_resolved_resources": [
+          "src/devtools/context/planning/materialization.py"
+        ]
+      },
+      "PYTHON_DIRECT_METHOD": {
+        "AMBIGUOUS": 0,
+        "RESOLVED": 1,
+        "UNRESOLVED": 0,
+        "UNSUPPORTED": 0,
+        "admitted_requests": 1,
+        "hint_count": 1,
+        "presentation_ns": 230328300,
+        "presentation_scope": "Full lane timings; shared across families in same lane, not additive family costs",
+        "route_ns": 293285900,
+        "target_positions": [
+          {
+            "address": "src/devtools/context/repository/snapshot.py",
+            "content_identity": "492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098",
+            "depth_saved": 70,
+            "exact_tier_position": 1,
+            "hint": "H03",
+            "native_rank": 71,
+            "routed_position": 1
+          }
+        ],
+        "unique_resolved_resources": [
+          "src/devtools/context/repository/snapshot.py"
+        ]
+      },
+      "PYTHON_MODULE": {
+        "AMBIGUOUS": 0,
+        "RESOLVED": 1,
+        "UNRESOLVED": 0,
+        "UNSUPPORTED": 0,
+        "admitted_requests": 1,
+        "hint_count": 1,
+        "presentation_ns": 207793100,
+        "presentation_scope": "Full lane timings; shared across families in same lane, not additive family costs",
+        "route_ns": 259754300,
+        "target_positions": [
+          {
+            "address": "src/devtools/context/planning/rendering.py",
+            "content_identity": "741a33e77ec223f64a1b381a156cb25db53473d818bb556432c3b36cbec75ea7",
+            "depth_saved": 1,
+            "exact_tier_position": 1,
+            "hint": "H07",
+            "native_rank": 2,
+            "routed_position": 1
+          }
+        ],
+        "unique_resolved_resources": [
+          "src/devtools/context/planning/rendering.py"
+        ]
+      },
+      "RESOURCE_ADDRESS": {
+        "AMBIGUOUS": 0,
+        "RESOLVED": 2,
+        "UNRESOLVED": 0,
+        "UNSUPPORTED": 0,
+        "admitted_requests": 2,
+        "hint_count": 4,
+        "presentation_ns": 450978300,
+        "presentation_scope": "Full lane timings; shared across families in same lane, not additive family costs",
+        "route_ns": 334170300,
+        "target_positions": [
+          {
+            "address": "src/devtools/context/planning/docs/overview.md",
+            "content_identity": "a679cfa5ee0591036eaab418fa386a0885ef748f98287b8dd49846c093b068bd",
+            "depth_saved": 19,
+            "exact_tier_position": 1,
+            "hint": "H09",
+            "native_rank": 20,
+            "routed_position": 1
+          },
+          {
+            "address": "pyproject.toml",
+            "content_identity": "e013670bd2a7ea0dc22304788444ac0f1106f179a1e2af7d1b96ee7e1548b145",
+            "depth_saved": 3,
+            "exact_tier_position": 1,
+            "hint": "H10",
+            "native_rank": 4,
+            "routed_position": 1
+          }
+        ],
+        "unique_resolved_resources": [
+          "pyproject.toml",
+          "src/devtools/context/planning/docs/overview.md"
+        ]
+      }
+    }
+  },
+  "global_positive_rows": 529,
+  "global_safety": "PRESERVED",
+  "gold": "ABSENT",
+  "hint_rows": [
+    {
+      "arm": "B",
+      "disposition": "RESOLVED",
+      "family": "PYTHON_DIRECT_CLASS",
+      "hint": "H01",
+      "hint_identity": "1ab7e8b1be7a34f08412218db588c864255478c036de449572cf2254b2c9577d",
+      "locator": {
+        "declared_name": "ContextDisclosure",
+        "kind": "class",
+        "module": {
+          "dotted_name": "devtools.context.planning.materialization",
+          "kind": null
+        }
+      },
+      "mechanism": "exact-python-module-source-declaration-selection-v1",
+      "native_accounts": [
+        {
+          "candidates": [
+            {
+              "evidence_type": "devtools.context.python.modules.selection.PythonModuleSourceDeclarationSelection",
+              "referent": {
+                "base_syntax": [],
+                "declared_name": "ContextDisclosure",
+                "derivation_identity": "e3718849e46fcad38886e8c6f42efb8b533e5181873a10329091d12d89c29873",
+                "subject": {
+                  "declaration_ordinal": 2,
+                  "derivation_definition_identity": "d22897ae0a05b53913122c1997306690f4632e045d4452da543291687b8bbe9d",
+                  "resource_dependency_identity": "b62323e1a1c3352046e6848e5e1139f3f4a44810debc866c6e7dd26c329c2063",
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  }
+                },
+                "support": {
+                  "resource_address": {
+                    "value": "src/devtools/context/planning/materialization.py"
+                  },
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  },
+                  "source_range": {
+                    "end_column_utf8": 9,
+                    "end_line": 70,
+                    "start_column_utf8": 0,
+                    "start_line": 37
+                  }
+                }
+              }
+            }
+          ],
+          "complete_native_evidence": {
+            "arm": "B",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "a4b436956633f9159a6b6991c967cc9b8e82135d87d829df41d9bdc370fd1581",
+            "ordinal": 1
+          },
+          "disposition": "resolved",
+          "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "1ab7e8b1be7a34f08412218db588c864255478c036de449572cf2254b2c9577d"
+            },
+            "locator": {
+              "declared_name": "ContextDisclosure",
+              "kind": "class",
+              "module": {
+                "dotted_name": "devtools.context.planning.materialization",
+                "kind": null
+              }
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 317,
+                "start": 258
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "exact-python-module-source-declaration-selection-v1"
+        }
+      ],
+      "obligation": "structure",
+      "purpose": "Inspect existing devtools.context.planning.materialization.ContextDisclosure: establish its native contract specified by this task clause",
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "request_identity": "b4a49334eb132112f800a988d16b78b4bce655646205d745256d97bc85f11201",
+      "role": "INSPECT_EXISTING",
+      "runtime_ns": 257037300,
+      "span": {
+        "end": 317,
+        "start": 258
+      },
+      "targets": [
+        {
+          "address": "src/devtools/context/planning/materialization.py",
+          "content_identity": "8c7b2c0dd17e5c8a4f79f3ff48403b92b3ecce5cf4845d85a8723da296cb3315",
+          "depth_saved": 0,
+          "exact_tier_position": 1,
+          "native_rank": 1,
+          "routed_position": 1
+        }
+      ],
+      "text": "devtools.context.planning.materialization.ContextDisclosure"
+    },
+    {
+      "arm": "B",
+      "disposition": "RESOLVED",
+      "family": "PYTHON_DIRECT_FUNCTION",
+      "hint": "H02",
+      "hint_identity": "d69727149c91b87f9e23aa8a8026a1843641feb0933f93dfcefbb1df8af407b1",
+      "locator": {
+        "declared_name": "materialize_disclosure_plan",
+        "kind": "function",
+        "module": {
+          "dotted_name": "devtools.context.planning.materialization",
+          "kind": null
+        }
+      },
+      "mechanism": "exact-python-module-source-declaration-selection-v1",
+      "native_accounts": [
+        {
+          "candidates": [
+            {
+              "evidence_type": "devtools.context.python.modules.selection.PythonModuleSourceDeclarationSelection",
+              "referent": {
+                "declaration_kind": "function-def",
+                "declared_name": "materialize_disclosure_plan",
+                "derivation_identity": "8d84b5513aa99833d9c366351b7b44209cf45014ca3c6a4d1256105b19116ecc",
+                "subject": {
+                  "declaration_ordinal": 0,
+                  "derivation_definition_identity": "eb40064339977360584b9eb6a6654f08047c670161c3f78b06fa27c3839072d1",
+                  "resource_dependency_identity": "b62323e1a1c3352046e6848e5e1139f3f4a44810debc866c6e7dd26c329c2063",
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  }
+                },
+                "support": {
+                  "resource_address": {
+                    "value": "src/devtools/context/planning/materialization.py"
+                  },
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  },
+                  "source_range": {
+                    "end_column_utf8": 59,
+                    "end_line": 92,
+                    "start_column_utf8": 0,
+                    "start_line": 73
+                  }
+                }
+              }
+            }
+          ],
+          "complete_native_evidence": {
+            "arm": "B",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "058cf7af3a84e35c784632d2aee1e2a97ea5824842dcc0170459968790280329",
+            "ordinal": 2
+          },
+          "disposition": "resolved",
+          "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "d69727149c91b87f9e23aa8a8026a1843641feb0933f93dfcefbb1df8af407b1"
+            },
+            "locator": {
+              "declared_name": "materialize_disclosure_plan",
+              "kind": "function",
+              "module": {
+                "dotted_name": "devtools.context.planning.materialization",
+                "kind": null
+              }
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 402,
+                "start": 333
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "exact-python-module-source-declaration-selection-v1"
+        }
+      ],
+      "obligation": "structure",
+      "purpose": "Inspect existing devtools.context.planning.materialization.materialize_disclosure_plan: establish its native contract specified by this task clause",
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "request_identity": "c7a3994bc9b2ae6192b7469c11523e15146a67ef4fd0309cee7d6ec195647dc4",
+      "role": "INSPECT_EXISTING",
+      "runtime_ns": 260523000,
+      "span": {
+        "end": 402,
+        "start": 333
+      },
+      "targets": [
+        {
+          "address": "src/devtools/context/planning/materialization.py",
+          "content_identity": "8c7b2c0dd17e5c8a4f79f3ff48403b92b3ecce5cf4845d85a8723da296cb3315",
+          "depth_saved": 0,
+          "exact_tier_position": 1,
+          "native_rank": 1,
+          "routed_position": 1
+        }
+      ],
+      "text": "devtools.context.planning.materialization.materialize_disclosure_plan"
+    },
+    {
+      "arm": "B",
+      "disposition": "RESOLVED",
+      "family": "PYTHON_DIRECT_METHOD",
+      "hint": "H03",
+      "hint_identity": "cf1c9669156f1680068aad976936c93c4952ce089fdd57408998c346177f2c34",
+      "locator": {
+        "class_name": "RepositorySnapshot",
+        "method_name": "resource_at",
+        "module": {
+          "dotted_name": "devtools.context.repository.snapshot",
+          "kind": null
+        }
+      },
+      "mechanism": "exact-source-class-then-native-direct-method-containment-v1",
+      "native_accounts": [
+        {
+          "candidates": [
+            {
+              "evidence_type": "devtools.context.python.modules.selection.PythonModuleSourceDeclarationSelection",
+              "referent": {
+                "base_syntax": [],
+                "declared_name": "RepositorySnapshot",
+                "derivation_identity": "76ca770f0447ad778fbf598aaa74b53f297de3400759a77213fb69441971e96a",
+                "subject": {
+                  "declaration_ordinal": 1,
+                  "derivation_definition_identity": "d22897ae0a05b53913122c1997306690f4632e045d4452da543291687b8bbe9d",
+                  "resource_dependency_identity": "580a8041b654fc20480c56af374c82db718ec8fa59e7135579d36c29e603da3b",
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  }
+                },
+                "support": {
+                  "resource_address": {
+                    "value": "src/devtools/context/repository/snapshot.py"
+                  },
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  },
+                  "source_range": {
+                    "end_column_utf8": 29,
+                    "end_line": 61,
+                    "start_column_utf8": 0,
+                    "start_line": 35
+                  }
+                }
+              }
+            }
+          ],
+          "complete_native_evidence": {
+            "arm": "B",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "7d840b4599c10932946e3e040aa7a15b63785f7bb39864d5eb3dad3fbb77e57b",
+            "ordinal": 3
+          },
+          "disposition": "resolved",
+          "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "cf1c9669156f1680068aad976936c93c4952ce089fdd57408998c346177f2c34"
+            },
+            "locator": {
+              "declared_name": "RepositorySnapshot",
+              "kind": "class",
+              "module": {
+                "dotted_name": "devtools.context.repository.snapshot",
+                "kind": null
+              }
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 666,
+                "start": 599
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "exact-python-module-source-declaration-selection-v1"
+        },
+        {
+          "candidates": [
+            {
+              "evidence_type": "devtools.context.python.classes.declarations.PythonClassMethodAnalysis",
+              "referent": {
+                "containing_class": {
+                  "base_syntax": [],
+                  "declared_name": "RepositorySnapshot",
+                  "derivation_identity": "76ca770f0447ad778fbf598aaa74b53f297de3400759a77213fb69441971e96a",
+                  "subject": {
+                    "declaration_ordinal": 1,
+                    "derivation_definition_identity": "d22897ae0a05b53913122c1997306690f4632e045d4452da543291687b8bbe9d",
+                    "resource_dependency_identity": "580a8041b654fc20480c56af374c82db718ec8fa59e7135579d36c29e603da3b",
+                    "snapshot_id": {
+                      "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                    }
+                  },
+                  "support": {
+                    "resource_address": {
+                      "value": "src/devtools/context/repository/snapshot.py"
+                    },
+                    "snapshot_id": {
+                      "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                    },
+                    "source_range": {
+                      "end_column_utf8": 29,
+                      "end_line": 61,
+                      "start_column_utf8": 0,
+                      "start_line": 35
+                    }
+                  }
+                },
+                "declaration_kind": "function-def",
+                "declared_name": "resource_at",
+                "derivation_identity": "76ca770f0447ad778fbf598aaa74b53f297de3400759a77213fb69441971e96a",
+                "subject": {
+                  "containing_class_subject_identity": "33d959294083ecd2125fedda317da99a968f468f588ade9748cbd151333a88b5",
+                  "declaration_ordinal": 1,
+                  "derivation_definition_identity": "d22897ae0a05b53913122c1997306690f4632e045d4452da543291687b8bbe9d",
+                  "resource_dependency_identity": "580a8041b654fc20480c56af374c82db718ec8fa59e7135579d36c29e603da3b",
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  }
+                },
+                "support": {
+                  "resource_address": {
+                    "value": "src/devtools/context/repository/snapshot.py"
+                  },
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  },
+                  "source_range": {
+                    "end_column_utf8": 29,
+                    "end_line": 61,
+                    "start_column_utf8": 4,
+                    "start_line": 52
+                  }
+                }
+              }
+            }
+          ],
+          "complete_native_evidence": {
+            "arm": "B",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "477686ee211ecb37835daa8e6a802887639327e4963bc36a519197c383ef7bc6",
+            "ordinal": 3
+          },
+          "disposition": "resolved",
+          "reason": "Exact direct class-body method syntax matched in the observed class.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "cf1c9669156f1680068aad976936c93c4952ce089fdd57408998c346177f2c34"
+            },
+            "locator": {
+              "containing_class": {
+                "base_syntax": [],
+                "declared_name": "RepositorySnapshot",
+                "derivation_identity": "76ca770f0447ad778fbf598aaa74b53f297de3400759a77213fb69441971e96a",
+                "subject": {
+                  "declaration_ordinal": 1,
+                  "derivation_definition_identity": "d22897ae0a05b53913122c1997306690f4632e045d4452da543291687b8bbe9d",
+                  "resource_dependency_identity": "580a8041b654fc20480c56af374c82db718ec8fa59e7135579d36c29e603da3b",
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  }
+                },
+                "support": {
+                  "resource_address": {
+                    "value": "src/devtools/context/repository/snapshot.py"
+                  },
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  },
+                  "source_range": {
+                    "end_column_utf8": 29,
+                    "end_line": 61,
+                    "start_column_utf8": 0,
+                    "start_line": 35
+                  }
+                }
+              },
+              "declared_name": "resource_at"
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 666,
+                "start": 599
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "python-direct-method-containment"
+        }
+      ],
+      "obligation": "integrity",
+      "purpose": "Inspect existing devtools.context.repository.snapshot.RepositorySnapshot.resource_at: establish its native contract specified by this task clause",
+      "reason": "Exact direct class-body method syntax matched in the observed class.",
+      "request_identity": "f00ef57a14eb5fc486659a03d5c6003be020a475a93b9f804b3b85a1f3cf94e6",
+      "role": "INSPECT_EXISTING",
+      "runtime_ns": 268754600,
+      "span": {
+        "end": 666,
+        "start": 599
+      },
+      "targets": [
+        {
+          "address": "src/devtools/context/repository/snapshot.py",
+          "content_identity": "492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098",
+          "depth_saved": 70,
+          "exact_tier_position": 1,
+          "native_rank": 71,
+          "routed_position": 1
+        }
+      ],
+      "text": "devtools.context.repository.snapshot.RepositorySnapshot.resource_at"
+    },
+    {
+      "arm": "B",
+      "disposition": "UNRESOLVED",
+      "family": "PYTHON_DIRECT_CLASS",
+      "hint": "H04",
+      "hint_identity": "da5ce9184d6e0acdadf0d257685551671eed86b7ab9f0beac15de0a74b18ff42",
+      "locator": {
+        "declared_name": "ContextDisclosureManifest",
+        "kind": "class",
+        "module": {
+          "dotted_name": "devtools.context.planning.manifest",
+          "kind": null
+        }
+      },
+      "mechanism": "exact-python-module-source-declaration-selection-v1",
+      "native_accounts": [
+        {
+          "candidates": [],
+          "complete_native_evidence": {
+            "arm": "B",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "7f46f4385c3f2e16a206535a3e0146571c61fb2ba5c4e803b57eb9ad9f05c8e9",
+            "ordinal": 4
+          },
+          "disposition": "unresolved",
+          "reason": "No requested direct declaration was found in the supplied modules.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "da5ce9184d6e0acdadf0d257685551671eed86b7ab9f0beac15de0a74b18ff42"
+            },
+            "locator": {
+              "declared_name": "ContextDisclosureManifest",
+              "kind": "class",
+              "module": {
+                "dotted_name": "devtools.context.planning.manifest",
+                "kind": null
+              }
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 1063,
+                "start": 1003
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "exact-python-module-source-declaration-selection-v1"
+        }
+      ],
+      "obligation": "manifest",
+      "purpose": "Introduce new devtools.context.planning.manifest.ContextDisclosureManifest: establish surrounding integration contracts; this literal is a future destination, not an existing-evidence request",
+      "reason": "No requested direct declaration was found in the supplied modules.",
+      "request_identity": "33fdd9fd3922414d6b2029635b0aa93c71af228d046884bc9737b72cb349a5bb",
+      "role": "INTRODUCE_NEW",
+      "runtime_ns": 247334800,
+      "span": {
+        "end": 1063,
+        "start": 1003
+      },
+      "targets": [],
+      "text": "devtools.context.planning.manifest.ContextDisclosureManifest"
+    },
+    {
+      "arm": "B",
+      "disposition": "UNRESOLVED",
+      "family": "PYTHON_DIRECT_FUNCTION",
+      "hint": "H05",
+      "hint_identity": "61cfacc7c887ac636e0a99bb1dfa3600946f955d13e272f7039ba540d1477a05",
+      "locator": {
+        "declared_name": "describe_context_disclosure",
+        "kind": "function",
+        "module": {
+          "dotted_name": "devtools.context.planning.manifest",
+          "kind": null
+        }
+      },
+      "mechanism": "exact-python-module-source-declaration-selection-v1",
+      "native_accounts": [
+        {
+          "candidates": [],
+          "complete_native_evidence": {
+            "arm": "B",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "c3355563574fbfd46314bee87345e5fc6ac8e449e577a4287f767acfcd104eed",
+            "ordinal": 5
+          },
+          "disposition": "unresolved",
+          "reason": "No requested direct declaration was found in the supplied modules.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "61cfacc7c887ac636e0a99bb1dfa3600946f955d13e272f7039ba540d1477a05"
+            },
+            "locator": {
+              "declared_name": "describe_context_disclosure",
+              "kind": "function",
+              "module": {
+                "dotted_name": "devtools.context.planning.manifest",
+                "kind": null
+              }
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 1147,
+                "start": 1085
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "exact-python-module-source-declaration-selection-v1"
+        }
+      ],
+      "obligation": "manifest",
+      "purpose": "Introduce new devtools.context.planning.manifest.describe_context_disclosure: establish surrounding integration contracts; this literal is a future destination, not an existing-evidence request",
+      "reason": "No requested direct declaration was found in the supplied modules.",
+      "request_identity": "4b6939ce4e27683f1f91582a3945f3b67ae73299fff0c4d56b61316333eec47c",
+      "role": "INTRODUCE_NEW",
+      "runtime_ns": 265771400,
+      "span": {
+        "end": 1147,
+        "start": 1085
+      },
+      "targets": [],
+      "text": "devtools.context.planning.manifest.describe_context_disclosure"
+    },
+    {
+      "arm": "B",
+      "disposition": "UNRESOLVED",
+      "family": "RESOURCE_ADDRESS",
+      "hint": "H06",
+      "hint_identity": "6eb085a6c986efa5c0c2fc0095f9b094b4ff0642f9444ca99c7b9273ca0c7d06",
+      "locator": {
+        "address": {
+          "value": "src/devtools/context/planning/manifest.py"
+        }
+      },
+      "mechanism": "repository-snapshot-resource-at",
+      "native_accounts": [
+        {
+          "candidates": [],
+          "complete_native_evidence": {
+            "arm": "B",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "6eb6bac7035050bb145fd0fc0432bc536c8d6e544936ec3278f922d755b2bfe7",
+            "ordinal": 6
+          },
+          "disposition": "unresolved",
+          "reason": "Exact address is absent from the supplied observed snapshot.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "6eb085a6c986efa5c0c2fc0095f9b094b4ff0642f9444ca99c7b9273ca0c7d06"
+            },
+            "locator": {
+              "address": {
+                "value": "src/devtools/context/planning/manifest.py"
+              }
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 1207,
+                "start": 1166
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "repository-snapshot-resource-at"
+        }
+      ],
+      "obligation": "manifest",
+      "purpose": "Introduce new src/devtools/context/planning/manifest.py: establish surrounding integration contracts; this literal is a future destination, not an existing-evidence request",
+      "reason": "Exact address is absent from the supplied observed snapshot.",
+      "request_identity": "3a29b12fa1258b53494a010724207487dc98084426459e8cd2a5a1e50ff981d5",
+      "role": "INTRODUCE_NEW",
+      "runtime_ns": 176938200,
+      "span": {
+        "end": 1207,
+        "start": 1166
+      },
+      "targets": [],
+      "text": "src/devtools/context/planning/manifest.py"
+    },
+    {
+      "arm": "B",
+      "disposition": "RESOLVED",
+      "family": "PYTHON_MODULE",
+      "hint": "H07",
+      "hint_identity": "d9100147c6fbdd12dc162735ce8ca06095a3aabc0f94618693d712299b215beb",
+      "locator": {
+        "dotted_name": "devtools.context.planning.rendering",
+        "kind": null
+      },
+      "mechanism": "python-module-exact-name-lookup",
+      "native_accounts": [
+        {
+          "candidates": [
+            {
+              "evidence_type": "devtools.context.python.modules.interpretation.PythonModuleInterpretation",
+              "referent": {
+                "dotted_name": "devtools.context.planning.rendering",
+                "kind": "ordinary-module",
+                "module_root": {
+                  "value": "src"
+                },
+                "repository_id": {
+                  "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+                },
+                "resource": {
+                  "address": {
+                    "value": "src/devtools/context/planning/rendering.py"
+                  },
+                  "byte_size": 2316,
+                  "content": "# Copyright (c) 2026\n\"\"\"Deterministic presentation of a realized repository disclosure.\"\"\"\n\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass, replace\nfrom typing import TYPE_CHECKING\n\nfrom devtools.models.interaction import ModelRequest, Prompt\n\nif TYPE_CHECKING:\n    from devtools.context.planning.materialization import ContextDisclosure\n\n\n@dataclass(frozen=True, slots=True)\nclass RenderedContextDisclosure:\n    \"\"\"Retain text and the exact realized Context it presents.\"\"\"\n\n    disclosure: ContextDisclosure\n    text: str\n\n\ndef render_context_disclosure(\n    disclosure: ContextDisclosure,\n) -> RenderedContextDisclosure:\n    \"\"\"Render planned item order without reselecting or changing information.\"\"\"\n    parts = [\n        \"Repository Context disclosure\\n\",\n        f\"Purpose: {disclosure.plan.purpose}\\n\",\n        f\"Plan identity: {disclosure.plan.identity}\\n\",\n        f\"Snapshot identity: {disclosure.plan.snapshot_id}\\n\",\n        f\"Items: {len(disclosure.items)}\\n\",\n    ]\n    for ordinal, item in enumerate(disclosure.items, start=1):\n        parts.extend(\n            (\n                f\"\\nDisclosure item {ordinal}: {item.representation}\\n\",\n                f\"Option identity: {item.option_identity}\\n\",\n                item.text,\n            ),\n        )\n    return RenderedContextDisclosure(disclosure, \"\".join(parts))\n\n\ndef assemble_context_disclosure_model_request(\n    *,\n    task_request: ModelRequest,\n    context: RenderedContextDisclosure,\n) -> ModelRequest:\n    \"\"\"Place realized Context after the unchanged task and copy all settings.\"\"\"\n    task_text = task_request.prompt.content\n    prompt_content = \"\".join(\n        (\n            f\"Task/instruction UTF-8 byte length: {len(task_text.encode('utf-8'))}\\n\",\n            \"--- task/instruction begins ---\\n\",\n            task_text,\n            \"\\n--- task/instruction ends ---\\n\\n\",\n            (\n                \"Supporting repository Context UTF-8 byte length: \"\n                f\"{len(context.text.encode('utf-8'))}\\n\"\n            ),\n            \"--- supporting repository Context begins ---\\n\",\n            context.text,\n            \"\\n--- supporting repository Context ends ---\\n\",\n        ),\n    )\n    return replace(\n        task_request,\n        prompt=Prompt(prompt_content, role=task_request.prompt.role),\n    )\n",
+                  "content_identity": {
+                    "value": "741a33e77ec223f64a1b381a156cb25db53473d818bb556432c3b36cbec75ea7"
+                  },
+                  "encoding": "utf-8"
+                },
+                "snapshot_id": {
+                  "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                }
+              }
+            }
+          ],
+          "complete_native_evidence": {
+            "arm": "B",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "9b3a973796530683f664cfacce6ada090823eb3ebc485ac5dec33af3a3a69da3",
+            "ordinal": 7
+          },
+          "disposition": "resolved",
+          "reason": "Exact dotted name matched within the supplied explicit-root universe.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "d9100147c6fbdd12dc162735ce8ca06095a3aabc0f94618693d712299b215beb"
+            },
+            "locator": {
+              "dotted_name": "devtools.context.planning.rendering",
+              "kind": null
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 1893,
+                "start": 1858
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "python-module-exact-name-lookup"
+        }
+      ],
+      "obligation": "compatibility",
+      "purpose": "Inspect existing devtools.context.planning.rendering: establish its native contract specified by this task clause",
+      "reason": "Exact dotted name matched within the supplied explicit-root universe.",
+      "request_identity": "ee37549193fc85fdced1e87e95dcda12dc735b53f8d8db147b8dc823631d0adc",
+      "role": "INSPECT_EXISTING",
+      "runtime_ns": 249993300,
+      "span": {
+        "end": 1893,
+        "start": 1858
+      },
+      "targets": [
+        {
+          "address": "src/devtools/context/planning/rendering.py",
+          "content_identity": "741a33e77ec223f64a1b381a156cb25db53473d818bb556432c3b36cbec75ea7",
+          "depth_saved": 1,
+          "exact_tier_position": 1,
+          "native_rank": 2,
+          "routed_position": 1
+        }
+      ],
+      "text": "devtools.context.planning.rendering"
+    },
+    {
+      "arm": "B",
+      "disposition": "UNRESOLVED",
+      "family": "RESOURCE_ADDRESS",
+      "hint": "H08",
+      "hint_identity": "94ae0c2a8958c9e96cd918e354d8c343b31bdbd29e710c5e0f135110e27da21d",
+      "locator": {
+        "address": {
+          "value": "tests/context/planning/test_manifest.py"
+        }
+      },
+      "mechanism": "repository-snapshot-resource-at",
+      "native_accounts": [
+        {
+          "candidates": [],
+          "complete_native_evidence": {
+            "arm": "B",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "1821c88cf432befba99ae6efa02ee0f9c4a0785edb8c878171726369419347b1",
+            "ordinal": 8
+          },
+          "disposition": "unresolved",
+          "reason": "Exact address is absent from the supplied observed snapshot.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "94ae0c2a8958c9e96cd918e354d8c343b31bdbd29e710c5e0f135110e27da21d"
+            },
+            "locator": {
+              "address": {
+                "value": "tests/context/planning/test_manifest.py"
+              }
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 2241,
+                "start": 2202
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "repository-snapshot-resource-at"
+        }
+      ],
+      "obligation": "tests",
+      "purpose": "Introduce new tests/context/planning/test_manifest.py: establish surrounding integration contracts; this literal is a future destination, not an existing-evidence request",
+      "reason": "Exact address is absent from the supplied observed snapshot.",
+      "request_identity": "16d9c7007ba1c39f516782f871e8ce0853b3c10087609317d01f2de7a55d53d1",
+      "role": "INTRODUCE_NEW",
+      "runtime_ns": 158666200,
+      "span": {
+        "end": 2241,
+        "start": 2202
+      },
+      "targets": [],
+      "text": "tests/context/planning/test_manifest.py"
+    },
+    {
+      "arm": "B",
+      "disposition": "RESOLVED",
+      "family": "RESOURCE_ADDRESS",
+      "hint": "H09",
+      "hint_identity": "00fdd66ff260770b2dc6715e971b285106a97b12ae6e424403fdbee83b353cff",
+      "locator": {
+        "address": {
+          "value": "src/devtools/context/planning/docs/overview.md"
+        }
+      },
+      "mechanism": "repository-snapshot-resource-at",
+      "native_accounts": [
+        {
+          "candidates": [
+            {
+              "evidence_type": "devtools.context.repository.resource.RepositoryResourceOccurrence",
+              "referent": {
+                "address": {
+                  "value": "src/devtools/context/planning/docs/overview.md"
+                },
+                "byte_size": 4084,
+                "content": "# Explicit repository Context plans\n\nThe devtools.context.planning package owns the first production\n[ADR-0004](../../../../../docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)\nDisclosurePlan and ContextDisclosure values. A caller supplies a purpose,\nan observed RepositorySnapshot, and an ordered set of concrete disclosure\nchoices. plan_disclosures records that choice; it does no retrieval, ranking,\nautomatic selection, cost optimization, or sufficiency assessment.\n\n~~~text\nInformationNeed / caller purpose\n          |\n          v\n       Retrieval (optional; native evidence remains independent)\n          |\n          v\ncandidate evidence / explicitly known target\n          |\n          v\ncaller chooses representations --> DisclosurePlan\n                                  /             \\\n                                 v               v\n                      qualified Reference   whole resource\n                                 \\               /\n                                  v             v\n                            ContextDisclosure\n                                  |\n                          deterministic rendering\n                                  |\n                         copied ModelRequest / Agent\n                                  |\n                        later need may create another plan\n~~~\n\nDisclosurePlan binds purpose, repository and snapshot identities, ordered\nchoices, and optional preceding-plan identity. The plan's deterministic\nidentity changes when purpose, applicability, order, choice, or lineage changes.\nEach concrete choice names an implemented representation and retains its own\nnative support. The common PlannedDisclosure protocol only permits the two\ncurrent consumers to participate in one plan; it is not a generic fact ontology,\nlanguage-independent parser, or materializer registry.\n\nmaterialize_disclosure_plan rechecks the supplied snapshot and requires each\nmaterialized item to match its planned choice. It fails on stale, missing, or\nincompatible dependencies. A ContextDisclosure retains one item per choice,\nexact content identities and addresses, text, and the native materialized\nprovenance. Rendering preserves plan order and does not infer new facts.\nassemble_context_disclosure_model_request copies a caller's ModelRequest and\nappends already-rendered Context after the unchanged task.\n\nImplemented choices:\n\n- WholeResourceDisclosureOption: explicitly chosen observed resource,\n  materialized from retained snapshot content. It is a coarse representation,\n  never a silent fallback.\n- PythonQualifiedReferenceDisclosureOption: adapts the existing Python-specific\n  qualified Reference/direct Call path. Its existing fact, derivation,\n  source/target content checks, exact UTF-8 extraction, and bounded Call\n  meaning remain intact.\n\nThe caller may construct a later plan with a different or refined purpose and\npreceding_plan_identity. This preserves lineage but does not implement an agent\nrecovery controller or prove that a model retained prior information. No token\nbudget field is selected: ADR-0004 distinguishes hard capacity, policy budget,\nand remaining capacity but selects no universal cost function. A future planner\ncan consume retrieval evidence and explicit constraints without changing the\nplan/materialization distinction. Retrieval rank does not itself decide\nrepresentation, quantity, or adequacy.\n\n[ADR-0005](../../../../../docs/architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)\nplaces Localization before this package. The semantic kernel at\n`devtools.context.localization` represents caller obligations, native witness\nidentities, snapshot-qualified assessments, and bounded frame readiness. It does\nnot provide automatic Context links. Its one-way BM25 acquisition adapter, grounding,\nbounded structural generation and explicit resolution recording are implemented.\nCurrent `plan_disclosures`\nremains caller-directed; it does not resolve obligations, transfer obligation\nprovenance, or establish representation coverage/capacity.\n",
+                "content_identity": {
+                  "value": "a679cfa5ee0591036eaab418fa386a0885ef748f98287b8dd49846c093b068bd"
+                },
+                "encoding": "utf-8"
+              }
+            }
+          ],
+          "complete_native_evidence": {
+            "arm": "B",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "801f44c392bb9f7777f3052fffc14e7a1a89cd10cbdac44644107ee298263d65",
+            "ordinal": 9
+          },
+          "disposition": "resolved",
+          "reason": "Exact address identifies one observed resource occurrence.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "00fdd66ff260770b2dc6715e971b285106a97b12ae6e424403fdbee83b353cff"
+            },
+            "locator": {
+              "address": {
+                "value": "src/devtools/context/planning/docs/overview.md"
+              }
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 2585,
+                "start": 2539
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "repository-snapshot-resource-at"
+        }
+      ],
+      "obligation": "documentation",
+      "purpose": "Inspect existing src/devtools/context/planning/docs/overview.md: establish its native contract specified by this task clause",
+      "reason": "Exact address identifies one observed resource occurrence.",
+      "request_identity": "41f1962b000c7d04ebe8c3c3c5c1db64afa38c30dc4cb24b1b07508629794552",
+      "role": "INSPECT_EXISTING",
+      "runtime_ns": 152910600,
+      "span": {
+        "end": 2585,
+        "start": 2539
+      },
+      "targets": [
+        {
+          "address": "src/devtools/context/planning/docs/overview.md",
+          "content_identity": "a679cfa5ee0591036eaab418fa386a0885ef748f98287b8dd49846c093b068bd",
+          "depth_saved": 19,
+          "exact_tier_position": 1,
+          "native_rank": 20,
+          "routed_position": 1
+        }
+      ],
+      "text": "src/devtools/context/planning/docs/overview.md"
+    },
+    {
+      "arm": "B",
+      "disposition": "RESOLVED",
+      "family": "RESOURCE_ADDRESS",
+      "hint": "H10",
+      "hint_identity": "6f05d43a1a6346a973fd41349d2d10969431e7e13707cebfbfa4e0c2e340a31f",
+      "locator": {
+        "address": {
+          "value": "pyproject.toml"
+        }
+      },
+      "mechanism": "repository-snapshot-resource-at",
+      "native_accounts": [
+        {
+          "candidates": [
+            {
+              "evidence_type": "devtools.context.repository.resource.RepositoryResourceOccurrence",
+              "referent": {
+                "address": {
+                  "value": "pyproject.toml"
+                },
+                "byte_size": 1368,
+                "content": "[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"devtools\"\nversion = \"0.1.0\"\ndescription = \"Composable developer-tool primitives for Python callers and AI agents.\"\nreadme = \"README.md\"\nrequires-python = \">=3.12\"\ndependencies = [\n    \"huggingface-hub>=1.30.0\",\n]\n\n[tool.hatch.build.targets.wheel]\npackages = [\"src/devtools\"]\n\n[dependency-groups]\ndev = [\n    \"mypy\",\n    \"pytest\",\n    \"pytest-cov\",\n    \"ruff\",\n]\nincrement-26 = [\n    \"einops==0.8.1\",\n    \"torch==2.14.0\",\n    \"transformers==5.17.0\",\n]\nincrement-27 = [\n    \"bm25s==0.3.11\",\n]\n\n[tool.pytest.ini_options]\ntestpaths = [\"tests\"]\naddopts = [\n    \"--strict-config\",\n    \"--strict-markers\",\n    \"--cov=devtools\",\n    \"--cov-branch\",\n    \"--cov-report=term-missing\",\n    \"--cov-fail-under=100\",\n]\nmarkers = [\n    \"live_codex: opt-in test that contacts the locally authenticated Codex CLI\",\n]\n\n[tool.coverage.run]\nbranch = true\nsource = [\"devtools\"]\n\n[tool.coverage.report]\nshow_missing = true\nskip_covered = false\nfail_under = 100\n\n[tool.ruff]\ntarget-version = \"py312\"\nline-length = 88\n\n[tool.ruff.lint]\nselect = [\"ALL\"]\nignore = [\n    \"D203\",\n    \"D213\",\n]\n\n[tool.ruff.lint.per-file-ignores]\n\"tests/**/*.py\" = [\n    \"S101\",\n]\n\n[tool.mypy]\npython_version = \"3.12\"\nstrict = true\nfiles = [\"src\", \"tests\", \"experiments\"]\nexplicit_package_bases = true\nmypy_path = [\"src\"]\n",
+                "content_identity": {
+                  "value": "e013670bd2a7ea0dc22304788444ac0f1106f179a1e2af7d1b96ee7e1548b145"
+                },
+                "encoding": "utf-8"
+              }
+            }
+          ],
+          "complete_native_evidence": {
+            "arm": "B",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "298ddaeaf54ee55a93eafeed3d29cb90e62adb2985421a9b882dce55fd0f409f",
+            "ordinal": 10
+          },
+          "disposition": "resolved",
+          "reason": "Exact address identifies one observed resource occurrence.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "6f05d43a1a6346a973fd41349d2d10969431e7e13707cebfbfa4e0c2e340a31f"
+            },
+            "locator": {
+              "address": {
+                "value": "pyproject.toml"
+              }
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 2899,
+                "start": 2885
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "repository-snapshot-resource-at"
+        }
+      ],
+      "obligation": "validation",
+      "purpose": "Inspect existing pyproject.toml: establish its native contract specified by this task clause",
+      "reason": "Exact address identifies one observed resource occurrence.",
+      "request_identity": "d9b7c3e0299c143db75acc9e83da06c75002fa6fe98a57ab348b14a335547e25",
+      "role": "INSPECT_EXISTING",
+      "runtime_ns": 154649400,
+      "span": {
+        "end": 2899,
+        "start": 2885
+      },
+      "targets": [
+        {
+          "address": "pyproject.toml",
+          "content_identity": "e013670bd2a7ea0dc22304788444ac0f1106f179a1e2af7d1b96ee7e1548b145",
+          "depth_saved": 3,
+          "exact_tier_position": 1,
+          "native_rank": 4,
+          "routed_position": 1
+        }
+      ],
+      "text": "pyproject.toml"
+    },
+    {
+      "arm": "C",
+      "disposition": "RESOLVED",
+      "family": "PYTHON_DIRECT_CLASS",
+      "hint": "H01",
+      "hint_identity": "1ab7e8b1be7a34f08412218db588c864255478c036de449572cf2254b2c9577d",
+      "locator": {
+        "declared_name": "ContextDisclosure",
+        "kind": "class",
+        "module": {
+          "dotted_name": "devtools.context.planning.materialization",
+          "kind": null
+        }
+      },
+      "mechanism": "exact-python-module-source-declaration-selection-v1",
+      "native_accounts": [
+        {
+          "candidates": [
+            {
+              "evidence_type": "devtools.context.python.modules.selection.PythonModuleSourceDeclarationSelection",
+              "referent": {
+                "base_syntax": [],
+                "declared_name": "ContextDisclosure",
+                "derivation_identity": "e3718849e46fcad38886e8c6f42efb8b533e5181873a10329091d12d89c29873",
+                "subject": {
+                  "declaration_ordinal": 2,
+                  "derivation_definition_identity": "d22897ae0a05b53913122c1997306690f4632e045d4452da543291687b8bbe9d",
+                  "resource_dependency_identity": "b62323e1a1c3352046e6848e5e1139f3f4a44810debc866c6e7dd26c329c2063",
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  }
+                },
+                "support": {
+                  "resource_address": {
+                    "value": "src/devtools/context/planning/materialization.py"
+                  },
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  },
+                  "source_range": {
+                    "end_column_utf8": 9,
+                    "end_line": 70,
+                    "start_column_utf8": 0,
+                    "start_line": 37
+                  }
+                }
+              }
+            }
+          ],
+          "complete_native_evidence": {
+            "arm": "C",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "a4b436956633f9159a6b6991c967cc9b8e82135d87d829df41d9bdc370fd1581",
+            "ordinal": 1
+          },
+          "disposition": "resolved",
+          "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "1ab7e8b1be7a34f08412218db588c864255478c036de449572cf2254b2c9577d"
+            },
+            "locator": {
+              "declared_name": "ContextDisclosure",
+              "kind": "class",
+              "module": {
+                "dotted_name": "devtools.context.planning.materialization",
+                "kind": null
+              }
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 317,
+                "start": 258
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "exact-python-module-source-declaration-selection-v1"
+        }
+      ],
+      "obligation": "structure",
+      "purpose": "Inspect existing devtools.context.planning.materialization.ContextDisclosure: establish its native contract specified by this task clause",
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "request_identity": "b4a49334eb132112f800a988d16b78b4bce655646205d745256d97bc85f11201",
+      "role": "INSPECT_EXISTING",
+      "runtime_ns": 260393700,
+      "span": {
+        "end": 317,
+        "start": 258
+      },
+      "targets": [
+        {
+          "address": "src/devtools/context/planning/materialization.py",
+          "content_identity": "8c7b2c0dd17e5c8a4f79f3ff48403b92b3ecce5cf4845d85a8723da296cb3315",
+          "depth_saved": 0,
+          "exact_tier_position": 1,
+          "native_rank": 1,
+          "routed_position": 1
+        }
+      ],
+      "text": "devtools.context.planning.materialization.ContextDisclosure"
+    },
+    {
+      "arm": "C",
+      "disposition": "RESOLVED",
+      "family": "PYTHON_DIRECT_FUNCTION",
+      "hint": "H02",
+      "hint_identity": "d69727149c91b87f9e23aa8a8026a1843641feb0933f93dfcefbb1df8af407b1",
+      "locator": {
+        "declared_name": "materialize_disclosure_plan",
+        "kind": "function",
+        "module": {
+          "dotted_name": "devtools.context.planning.materialization",
+          "kind": null
+        }
+      },
+      "mechanism": "exact-python-module-source-declaration-selection-v1",
+      "native_accounts": [
+        {
+          "candidates": [
+            {
+              "evidence_type": "devtools.context.python.modules.selection.PythonModuleSourceDeclarationSelection",
+              "referent": {
+                "declaration_kind": "function-def",
+                "declared_name": "materialize_disclosure_plan",
+                "derivation_identity": "8d84b5513aa99833d9c366351b7b44209cf45014ca3c6a4d1256105b19116ecc",
+                "subject": {
+                  "declaration_ordinal": 0,
+                  "derivation_definition_identity": "eb40064339977360584b9eb6a6654f08047c670161c3f78b06fa27c3839072d1",
+                  "resource_dependency_identity": "b62323e1a1c3352046e6848e5e1139f3f4a44810debc866c6e7dd26c329c2063",
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  }
+                },
+                "support": {
+                  "resource_address": {
+                    "value": "src/devtools/context/planning/materialization.py"
+                  },
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  },
+                  "source_range": {
+                    "end_column_utf8": 59,
+                    "end_line": 92,
+                    "start_column_utf8": 0,
+                    "start_line": 73
+                  }
+                }
+              }
+            }
+          ],
+          "complete_native_evidence": {
+            "arm": "C",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "058cf7af3a84e35c784632d2aee1e2a97ea5824842dcc0170459968790280329",
+            "ordinal": 2
+          },
+          "disposition": "resolved",
+          "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "d69727149c91b87f9e23aa8a8026a1843641feb0933f93dfcefbb1df8af407b1"
+            },
+            "locator": {
+              "declared_name": "materialize_disclosure_plan",
+              "kind": "function",
+              "module": {
+                "dotted_name": "devtools.context.planning.materialization",
+                "kind": null
+              }
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 402,
+                "start": 333
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "exact-python-module-source-declaration-selection-v1"
+        }
+      ],
+      "obligation": "structure",
+      "purpose": "Inspect existing devtools.context.planning.materialization.materialize_disclosure_plan: establish its native contract specified by this task clause",
+      "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+      "request_identity": "c7a3994bc9b2ae6192b7469c11523e15146a67ef4fd0309cee7d6ec195647dc4",
+      "role": "INSPECT_EXISTING",
+      "runtime_ns": 261882700,
+      "span": {
+        "end": 402,
+        "start": 333
+      },
+      "targets": [
+        {
+          "address": "src/devtools/context/planning/materialization.py",
+          "content_identity": "8c7b2c0dd17e5c8a4f79f3ff48403b92b3ecce5cf4845d85a8723da296cb3315",
+          "depth_saved": 0,
+          "exact_tier_position": 1,
+          "native_rank": 1,
+          "routed_position": 1
+        }
+      ],
+      "text": "devtools.context.planning.materialization.materialize_disclosure_plan"
+    },
+    {
+      "arm": "C",
+      "disposition": "RESOLVED",
+      "family": "PYTHON_DIRECT_METHOD",
+      "hint": "H03",
+      "hint_identity": "cf1c9669156f1680068aad976936c93c4952ce089fdd57408998c346177f2c34",
+      "locator": {
+        "class_name": "RepositorySnapshot",
+        "method_name": "resource_at",
+        "module": {
+          "dotted_name": "devtools.context.repository.snapshot",
+          "kind": null
+        }
+      },
+      "mechanism": "exact-source-class-then-native-direct-method-containment-v1",
+      "native_accounts": [
+        {
+          "candidates": [
+            {
+              "evidence_type": "devtools.context.python.modules.selection.PythonModuleSourceDeclarationSelection",
+              "referent": {
+                "base_syntax": [],
+                "declared_name": "RepositorySnapshot",
+                "derivation_identity": "76ca770f0447ad778fbf598aaa74b53f297de3400759a77213fb69441971e96a",
+                "subject": {
+                  "declaration_ordinal": 1,
+                  "derivation_definition_identity": "d22897ae0a05b53913122c1997306690f4632e045d4452da543291687b8bbe9d",
+                  "resource_dependency_identity": "580a8041b654fc20480c56af374c82db718ec8fa59e7135579d36c29e603da3b",
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  }
+                },
+                "support": {
+                  "resource_address": {
+                    "value": "src/devtools/context/repository/snapshot.py"
+                  },
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  },
+                  "source_range": {
+                    "end_column_utf8": 29,
+                    "end_line": 61,
+                    "start_column_utf8": 0,
+                    "start_line": 35
+                  }
+                }
+              }
+            }
+          ],
+          "complete_native_evidence": {
+            "arm": "C",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "7d840b4599c10932946e3e040aa7a15b63785f7bb39864d5eb3dad3fbb77e57b",
+            "ordinal": 3
+          },
+          "disposition": "resolved",
+          "reason": "Exactly one native source declaration matches the exact locator; runtime binding identity is not established.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "cf1c9669156f1680068aad976936c93c4952ce089fdd57408998c346177f2c34"
+            },
+            "locator": {
+              "declared_name": "RepositorySnapshot",
+              "kind": "class",
+              "module": {
+                "dotted_name": "devtools.context.repository.snapshot",
+                "kind": null
+              }
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 666,
+                "start": 599
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "exact-python-module-source-declaration-selection-v1"
+        },
+        {
+          "candidates": [
+            {
+              "evidence_type": "devtools.context.python.classes.declarations.PythonClassMethodAnalysis",
+              "referent": {
+                "containing_class": {
+                  "base_syntax": [],
+                  "declared_name": "RepositorySnapshot",
+                  "derivation_identity": "76ca770f0447ad778fbf598aaa74b53f297de3400759a77213fb69441971e96a",
+                  "subject": {
+                    "declaration_ordinal": 1,
+                    "derivation_definition_identity": "d22897ae0a05b53913122c1997306690f4632e045d4452da543291687b8bbe9d",
+                    "resource_dependency_identity": "580a8041b654fc20480c56af374c82db718ec8fa59e7135579d36c29e603da3b",
+                    "snapshot_id": {
+                      "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                    }
+                  },
+                  "support": {
+                    "resource_address": {
+                      "value": "src/devtools/context/repository/snapshot.py"
+                    },
+                    "snapshot_id": {
+                      "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                    },
+                    "source_range": {
+                      "end_column_utf8": 29,
+                      "end_line": 61,
+                      "start_column_utf8": 0,
+                      "start_line": 35
+                    }
+                  }
+                },
+                "declaration_kind": "function-def",
+                "declared_name": "resource_at",
+                "derivation_identity": "76ca770f0447ad778fbf598aaa74b53f297de3400759a77213fb69441971e96a",
+                "subject": {
+                  "containing_class_subject_identity": "33d959294083ecd2125fedda317da99a968f468f588ade9748cbd151333a88b5",
+                  "declaration_ordinal": 1,
+                  "derivation_definition_identity": "d22897ae0a05b53913122c1997306690f4632e045d4452da543291687b8bbe9d",
+                  "resource_dependency_identity": "580a8041b654fc20480c56af374c82db718ec8fa59e7135579d36c29e603da3b",
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  }
+                },
+                "support": {
+                  "resource_address": {
+                    "value": "src/devtools/context/repository/snapshot.py"
+                  },
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  },
+                  "source_range": {
+                    "end_column_utf8": 29,
+                    "end_line": 61,
+                    "start_column_utf8": 4,
+                    "start_line": 52
+                  }
+                }
+              }
+            }
+          ],
+          "complete_native_evidence": {
+            "arm": "C",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "477686ee211ecb37835daa8e6a802887639327e4963bc36a519197c383ef7bc6",
+            "ordinal": 3
+          },
+          "disposition": "resolved",
+          "reason": "Exact direct class-body method syntax matched in the observed class.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "cf1c9669156f1680068aad976936c93c4952ce089fdd57408998c346177f2c34"
+            },
+            "locator": {
+              "containing_class": {
+                "base_syntax": [],
+                "declared_name": "RepositorySnapshot",
+                "derivation_identity": "76ca770f0447ad778fbf598aaa74b53f297de3400759a77213fb69441971e96a",
+                "subject": {
+                  "declaration_ordinal": 1,
+                  "derivation_definition_identity": "d22897ae0a05b53913122c1997306690f4632e045d4452da543291687b8bbe9d",
+                  "resource_dependency_identity": "580a8041b654fc20480c56af374c82db718ec8fa59e7135579d36c29e603da3b",
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  }
+                },
+                "support": {
+                  "resource_address": {
+                    "value": "src/devtools/context/repository/snapshot.py"
+                  },
+                  "snapshot_id": {
+                    "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                  },
+                  "source_range": {
+                    "end_column_utf8": 29,
+                    "end_line": 61,
+                    "start_column_utf8": 0,
+                    "start_line": 35
+                  }
+                }
+              },
+              "declared_name": "resource_at"
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 666,
+                "start": 599
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "python-direct-method-containment"
+        }
+      ],
+      "obligation": "integrity",
+      "purpose": "Inspect existing devtools.context.repository.snapshot.RepositorySnapshot.resource_at: establish its native contract specified by this task clause",
+      "reason": "Exact direct class-body method syntax matched in the observed class.",
+      "request_identity": "f00ef57a14eb5fc486659a03d5c6003be020a475a93b9f804b3b85a1f3cf94e6",
+      "role": "INSPECT_EXISTING",
+      "runtime_ns": 293285900,
+      "span": {
+        "end": 666,
+        "start": 599
+      },
+      "targets": [
+        {
+          "address": "src/devtools/context/repository/snapshot.py",
+          "content_identity": "492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098",
+          "depth_saved": 70,
+          "exact_tier_position": 1,
+          "native_rank": 71,
+          "routed_position": 1
+        }
+      ],
+      "text": "devtools.context.repository.snapshot.RepositorySnapshot.resource_at"
+    },
+    {
+      "arm": "C",
+      "disposition": "RESOLVED",
+      "family": "PYTHON_MODULE",
+      "hint": "H07",
+      "hint_identity": "d9100147c6fbdd12dc162735ce8ca06095a3aabc0f94618693d712299b215beb",
+      "locator": {
+        "dotted_name": "devtools.context.planning.rendering",
+        "kind": null
+      },
+      "mechanism": "python-module-exact-name-lookup",
+      "native_accounts": [
+        {
+          "candidates": [
+            {
+              "evidence_type": "devtools.context.python.modules.interpretation.PythonModuleInterpretation",
+              "referent": {
+                "dotted_name": "devtools.context.planning.rendering",
+                "kind": "ordinary-module",
+                "module_root": {
+                  "value": "src"
+                },
+                "repository_id": {
+                  "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+                },
+                "resource": {
+                  "address": {
+                    "value": "src/devtools/context/planning/rendering.py"
+                  },
+                  "byte_size": 2316,
+                  "content": "# Copyright (c) 2026\n\"\"\"Deterministic presentation of a realized repository disclosure.\"\"\"\n\nfrom __future__ import annotations\n\nfrom dataclasses import dataclass, replace\nfrom typing import TYPE_CHECKING\n\nfrom devtools.models.interaction import ModelRequest, Prompt\n\nif TYPE_CHECKING:\n    from devtools.context.planning.materialization import ContextDisclosure\n\n\n@dataclass(frozen=True, slots=True)\nclass RenderedContextDisclosure:\n    \"\"\"Retain text and the exact realized Context it presents.\"\"\"\n\n    disclosure: ContextDisclosure\n    text: str\n\n\ndef render_context_disclosure(\n    disclosure: ContextDisclosure,\n) -> RenderedContextDisclosure:\n    \"\"\"Render planned item order without reselecting or changing information.\"\"\"\n    parts = [\n        \"Repository Context disclosure\\n\",\n        f\"Purpose: {disclosure.plan.purpose}\\n\",\n        f\"Plan identity: {disclosure.plan.identity}\\n\",\n        f\"Snapshot identity: {disclosure.plan.snapshot_id}\\n\",\n        f\"Items: {len(disclosure.items)}\\n\",\n    ]\n    for ordinal, item in enumerate(disclosure.items, start=1):\n        parts.extend(\n            (\n                f\"\\nDisclosure item {ordinal}: {item.representation}\\n\",\n                f\"Option identity: {item.option_identity}\\n\",\n                item.text,\n            ),\n        )\n    return RenderedContextDisclosure(disclosure, \"\".join(parts))\n\n\ndef assemble_context_disclosure_model_request(\n    *,\n    task_request: ModelRequest,\n    context: RenderedContextDisclosure,\n) -> ModelRequest:\n    \"\"\"Place realized Context after the unchanged task and copy all settings.\"\"\"\n    task_text = task_request.prompt.content\n    prompt_content = \"\".join(\n        (\n            f\"Task/instruction UTF-8 byte length: {len(task_text.encode('utf-8'))}\\n\",\n            \"--- task/instruction begins ---\\n\",\n            task_text,\n            \"\\n--- task/instruction ends ---\\n\\n\",\n            (\n                \"Supporting repository Context UTF-8 byte length: \"\n                f\"{len(context.text.encode('utf-8'))}\\n\"\n            ),\n            \"--- supporting repository Context begins ---\\n\",\n            context.text,\n            \"\\n--- supporting repository Context ends ---\\n\",\n        ),\n    )\n    return replace(\n        task_request,\n        prompt=Prompt(prompt_content, role=task_request.prompt.role),\n    )\n",
+                  "content_identity": {
+                    "value": "741a33e77ec223f64a1b381a156cb25db53473d818bb556432c3b36cbec75ea7"
+                  },
+                  "encoding": "utf-8"
+                },
+                "snapshot_id": {
+                  "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+                }
+              }
+            }
+          ],
+          "complete_native_evidence": {
+            "arm": "C",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "9b3a973796530683f664cfacce6ada090823eb3ebc485ac5dec33af3a3a69da3",
+            "ordinal": 4
+          },
+          "disposition": "resolved",
+          "reason": "Exact dotted name matched within the supplied explicit-root universe.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "d9100147c6fbdd12dc162735ce8ca06095a3aabc0f94618693d712299b215beb"
+            },
+            "locator": {
+              "dotted_name": "devtools.context.planning.rendering",
+              "kind": null
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 1893,
+                "start": 1858
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "python-module-exact-name-lookup"
+        }
+      ],
+      "obligation": "compatibility",
+      "purpose": "Inspect existing devtools.context.planning.rendering: establish its native contract specified by this task clause",
+      "reason": "Exact dotted name matched within the supplied explicit-root universe.",
+      "request_identity": "ee37549193fc85fdced1e87e95dcda12dc735b53f8d8db147b8dc823631d0adc",
+      "role": "INSPECT_EXISTING",
+      "runtime_ns": 259754300,
+      "span": {
+        "end": 1893,
+        "start": 1858
+      },
+      "targets": [
+        {
+          "address": "src/devtools/context/planning/rendering.py",
+          "content_identity": "741a33e77ec223f64a1b381a156cb25db53473d818bb556432c3b36cbec75ea7",
+          "depth_saved": 1,
+          "exact_tier_position": 1,
+          "native_rank": 2,
+          "routed_position": 1
+        }
+      ],
+      "text": "devtools.context.planning.rendering"
+    },
+    {
+      "arm": "C",
+      "disposition": "RESOLVED",
+      "family": "RESOURCE_ADDRESS",
+      "hint": "H09",
+      "hint_identity": "00fdd66ff260770b2dc6715e971b285106a97b12ae6e424403fdbee83b353cff",
+      "locator": {
+        "address": {
+          "value": "src/devtools/context/planning/docs/overview.md"
+        }
+      },
+      "mechanism": "repository-snapshot-resource-at",
+      "native_accounts": [
+        {
+          "candidates": [
+            {
+              "evidence_type": "devtools.context.repository.resource.RepositoryResourceOccurrence",
+              "referent": {
+                "address": {
+                  "value": "src/devtools/context/planning/docs/overview.md"
+                },
+                "byte_size": 4084,
+                "content": "# Explicit repository Context plans\n\nThe devtools.context.planning package owns the first production\n[ADR-0004](../../../../../docs/architecture/decisions/ADR-0004-context-disclosure-planning-and-assembly.md)\nDisclosurePlan and ContextDisclosure values. A caller supplies a purpose,\nan observed RepositorySnapshot, and an ordered set of concrete disclosure\nchoices. plan_disclosures records that choice; it does no retrieval, ranking,\nautomatic selection, cost optimization, or sufficiency assessment.\n\n~~~text\nInformationNeed / caller purpose\n          |\n          v\n       Retrieval (optional; native evidence remains independent)\n          |\n          v\ncandidate evidence / explicitly known target\n          |\n          v\ncaller chooses representations --> DisclosurePlan\n                                  /             \\\n                                 v               v\n                      qualified Reference   whole resource\n                                 \\               /\n                                  v             v\n                            ContextDisclosure\n                                  |\n                          deterministic rendering\n                                  |\n                         copied ModelRequest / Agent\n                                  |\n                        later need may create another plan\n~~~\n\nDisclosurePlan binds purpose, repository and snapshot identities, ordered\nchoices, and optional preceding-plan identity. The plan's deterministic\nidentity changes when purpose, applicability, order, choice, or lineage changes.\nEach concrete choice names an implemented representation and retains its own\nnative support. The common PlannedDisclosure protocol only permits the two\ncurrent consumers to participate in one plan; it is not a generic fact ontology,\nlanguage-independent parser, or materializer registry.\n\nmaterialize_disclosure_plan rechecks the supplied snapshot and requires each\nmaterialized item to match its planned choice. It fails on stale, missing, or\nincompatible dependencies. A ContextDisclosure retains one item per choice,\nexact content identities and addresses, text, and the native materialized\nprovenance. Rendering preserves plan order and does not infer new facts.\nassemble_context_disclosure_model_request copies a caller's ModelRequest and\nappends already-rendered Context after the unchanged task.\n\nImplemented choices:\n\n- WholeResourceDisclosureOption: explicitly chosen observed resource,\n  materialized from retained snapshot content. It is a coarse representation,\n  never a silent fallback.\n- PythonQualifiedReferenceDisclosureOption: adapts the existing Python-specific\n  qualified Reference/direct Call path. Its existing fact, derivation,\n  source/target content checks, exact UTF-8 extraction, and bounded Call\n  meaning remain intact.\n\nThe caller may construct a later plan with a different or refined purpose and\npreceding_plan_identity. This preserves lineage but does not implement an agent\nrecovery controller or prove that a model retained prior information. No token\nbudget field is selected: ADR-0004 distinguishes hard capacity, policy budget,\nand remaining capacity but selects no universal cost function. A future planner\ncan consume retrieval evidence and explicit constraints without changing the\nplan/materialization distinction. Retrieval rank does not itself decide\nrepresentation, quantity, or adequacy.\n\n[ADR-0005](../../../../../docs/architecture/decisions/ADR-0005-obligation-driven-repository-localization.md)\nplaces Localization before this package. The semantic kernel at\n`devtools.context.localization` represents caller obligations, native witness\nidentities, snapshot-qualified assessments, and bounded frame readiness. It does\nnot provide automatic Context links. Its one-way BM25 acquisition adapter, grounding,\nbounded structural generation and explicit resolution recording are implemented.\nCurrent `plan_disclosures`\nremains caller-directed; it does not resolve obligations, transfer obligation\nprovenance, or establish representation coverage/capacity.\n",
+                "content_identity": {
+                  "value": "a679cfa5ee0591036eaab418fa386a0885ef748f98287b8dd49846c093b068bd"
+                },
+                "encoding": "utf-8"
+              }
+            }
+          ],
+          "complete_native_evidence": {
+            "arm": "C",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "801f44c392bb9f7777f3052fffc14e7a1a89cd10cbdac44644107ee298263d65",
+            "ordinal": 5
+          },
+          "disposition": "resolved",
+          "reason": "Exact address identifies one observed resource occurrence.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "00fdd66ff260770b2dc6715e971b285106a97b12ae6e424403fdbee83b353cff"
+            },
+            "locator": {
+              "address": {
+                "value": "src/devtools/context/planning/docs/overview.md"
+              }
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 2585,
+                "start": 2539
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "repository-snapshot-resource-at"
+        }
+      ],
+      "obligation": "documentation",
+      "purpose": "Inspect existing src/devtools/context/planning/docs/overview.md: establish its native contract specified by this task clause",
+      "reason": "Exact address identifies one observed resource occurrence.",
+      "request_identity": "41f1962b000c7d04ebe8c3c3c5c1db64afa38c30dc4cb24b1b07508629794552",
+      "role": "INSPECT_EXISTING",
+      "runtime_ns": 168152100,
+      "span": {
+        "end": 2585,
+        "start": 2539
+      },
+      "targets": [
+        {
+          "address": "src/devtools/context/planning/docs/overview.md",
+          "content_identity": "a679cfa5ee0591036eaab418fa386a0885ef748f98287b8dd49846c093b068bd",
+          "depth_saved": 19,
+          "exact_tier_position": 1,
+          "native_rank": 20,
+          "routed_position": 1
+        }
+      ],
+      "text": "src/devtools/context/planning/docs/overview.md"
+    },
+    {
+      "arm": "C",
+      "disposition": "RESOLVED",
+      "family": "RESOURCE_ADDRESS",
+      "hint": "H10",
+      "hint_identity": "6f05d43a1a6346a973fd41349d2d10969431e7e13707cebfbfa4e0c2e340a31f",
+      "locator": {
+        "address": {
+          "value": "pyproject.toml"
+        }
+      },
+      "mechanism": "repository-snapshot-resource-at",
+      "native_accounts": [
+        {
+          "candidates": [
+            {
+              "evidence_type": "devtools.context.repository.resource.RepositoryResourceOccurrence",
+              "referent": {
+                "address": {
+                  "value": "pyproject.toml"
+                },
+                "byte_size": 1368,
+                "content": "[build-system]\nrequires = [\"hatchling\"]\nbuild-backend = \"hatchling.build\"\n\n[project]\nname = \"devtools\"\nversion = \"0.1.0\"\ndescription = \"Composable developer-tool primitives for Python callers and AI agents.\"\nreadme = \"README.md\"\nrequires-python = \">=3.12\"\ndependencies = [\n    \"huggingface-hub>=1.30.0\",\n]\n\n[tool.hatch.build.targets.wheel]\npackages = [\"src/devtools\"]\n\n[dependency-groups]\ndev = [\n    \"mypy\",\n    \"pytest\",\n    \"pytest-cov\",\n    \"ruff\",\n]\nincrement-26 = [\n    \"einops==0.8.1\",\n    \"torch==2.14.0\",\n    \"transformers==5.17.0\",\n]\nincrement-27 = [\n    \"bm25s==0.3.11\",\n]\n\n[tool.pytest.ini_options]\ntestpaths = [\"tests\"]\naddopts = [\n    \"--strict-config\",\n    \"--strict-markers\",\n    \"--cov=devtools\",\n    \"--cov-branch\",\n    \"--cov-report=term-missing\",\n    \"--cov-fail-under=100\",\n]\nmarkers = [\n    \"live_codex: opt-in test that contacts the locally authenticated Codex CLI\",\n]\n\n[tool.coverage.run]\nbranch = true\nsource = [\"devtools\"]\n\n[tool.coverage.report]\nshow_missing = true\nskip_covered = false\nfail_under = 100\n\n[tool.ruff]\ntarget-version = \"py312\"\nline-length = 88\n\n[tool.ruff.lint]\nselect = [\"ALL\"]\nignore = [\n    \"D203\",\n    \"D213\",\n]\n\n[tool.ruff.lint.per-file-ignores]\n\"tests/**/*.py\" = [\n    \"S101\",\n]\n\n[tool.mypy]\npython_version = \"3.12\"\nstrict = true\nfiles = [\"src\", \"tests\", \"experiments\"]\nexplicit_package_bases = true\nmypy_path = [\"src\"]\n",
+                "content_identity": {
+                  "value": "e013670bd2a7ea0dc22304788444ac0f1106f179a1e2af7d1b96ee7e1548b145"
+                },
+                "encoding": "utf-8"
+              }
+            }
+          ],
+          "complete_native_evidence": {
+            "arm": "C",
+            "artifact": "exact_resolutions.json.gz",
+            "graph_sha256": "298ddaeaf54ee55a93eafeed3d29cb90e62adb2985421a9b882dce55fd0f409f",
+            "ordinal": 6
+          },
+          "disposition": "resolved",
+          "reason": "Exact address identifies one observed resource occurrence.",
+          "request": {
+            "anchor": {
+              "task": {
+                "value": "case-0013-context-disclosure-manifest"
+              },
+              "value": "6f05d43a1a6346a973fd41349d2d10969431e7e13707cebfbfa4e0c2e340a31f"
+            },
+            "locator": {
+              "address": {
+                "value": "pyproject.toml"
+              }
+            },
+            "provenance": {
+              "explanation": "Task-only caller syntax reference before frame preparation",
+              "source_identity": "case-0013-context-disclosure-manifest",
+              "span": {
+                "end": 2899,
+                "start": 2885
+              }
+            },
+            "repository_id": {
+              "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            }
+          },
+          "resolver": "repository-snapshot-resource-at"
+        }
+      ],
+      "obligation": "validation",
+      "purpose": "Inspect existing pyproject.toml: establish its native contract specified by this task clause",
+      "reason": "Exact address identifies one observed resource occurrence.",
+      "request_identity": "d9b7c3e0299c143db75acc9e83da06c75002fa6fe98a57ab348b14a335547e25",
+      "role": "INSPECT_EXISTING",
+      "runtime_ns": 166018200,
+      "span": {
+        "end": 2899,
+        "start": 2885
+      },
+      "targets": [
+        {
+          "address": "pyproject.toml",
+          "content_identity": "e013670bd2a7ea0dc22304788444ac0f1106f179a1e2af7d1b96ee7e1548b145",
+          "depth_saved": 3,
+          "exact_tier_position": 1,
+          "native_rank": 4,
+          "routed_position": 1
+        }
+      ],
+      "text": "pyproject.toml"
+    }
+  ],
+  "lexical_fallback": "PRESERVED",
+  "native_rank_score_contributions": "PRESERVED",
+  "runtime_ns": {
+    "arm:A": 2200,
+    "arm:B": 4315308700,
+    "arm:C": 3688711500,
+    "frame:assembly": 143357300,
+    "frame:declarations": 5801200,
+    "frame:modules": 64734500,
+    "frame:resources": 16312200,
+    "ground:B:H01:1": 105510300,
+    "ground:B:H02:1": 105791600,
+    "ground:B:H03:1": 104107000,
+    "ground:B:H03:2": 3123900,
+    "ground:B:H04:1": 97426900,
+    "ground:B:H05:1": 97809400,
+    "ground:B:H06:1": 357800,
+    "ground:B:H07:1": 96262800,
+    "ground:B:H08:1": 230100,
+    "ground:B:H09:1": 102900,
+    "ground:B:H10:1": 95600,
+    "ground:C:H01:1": 106795200,
+    "ground:C:H02:1": 108827200,
+    "ground:C:H03:1": 101230400,
+    "ground:C:H03:2": 5239600,
+    "ground:C:H07:1": 101513900,
+    "ground:C:H09:1": 121900,
+    "ground:C:H10:1": 260900,
+    "index-build": 2466962400,
+    "lexical:compatibility": 36961200,
+    "lexical:documentation": 33014300,
+    "lexical:exports": 46753800,
+    "lexical:global": 130993800,
+    "lexical:integrity": 38851300,
+    "lexical:manifest": 45832200,
+    "lexical:projection": 42847200,
+    "lexical:structure": 40449400,
+    "lexical:tests": 38797800,
+    "lexical:validation": 33381600,
+    "policy:B": 11488300,
+    "policy:C": 12087900,
+    "present:B:compatibility": 210471000,
+    "present:B:documentation": 212541300,
+    "present:B:exports": 211981000,
+    "present:B:integrity": 188467500,
+    "present:B:manifest": 235170100,
+    "present:B:projection": 210060200,
+    "present:B:structure": 224128900,
+    "present:B:tests": 230328600,
+    "present:B:validation": 87518600,
+    "present:C:compatibility": 207793100,
+    "present:C:documentation": 227769200,
+    "present:C:exports": 206933900,
+    "present:C:integrity": 230328300,
+    "present:C:manifest": 213385100,
+    "present:C:projection": 227394600,
+    "present:C:structure": 229847300,
+    "present:C:tests": 237549300,
+    "present:C:validation": 223209100,
+    "purposes:shared": 5482600,
+    "route:B:H01": 257037300,
+    "route:B:H02": 260523000,
+    "route:B:H03": 268754600,
+    "route:B:H04": 247334800,
+    "route:B:H05": 265771400,
+    "route:B:H06": 176938200,
+    "route:B:H07": 249993300,
+    "route:B:H08": 158666200,
+    "route:B:H09": 152910600,
+    "route:B:H10": 154649400,
+    "route:C:H01": 260393700,
+    "route:C:H02": 261882700,
+    "route:C:H03": 293285900,
+    "route:C:H07": 259754300,
+    "route:C:H09": 168152100,
+    "route:C:H10": 166018200
+  },
+  "scope": "TASK-ROLE-CONDITIONED EXACT-ROUTE ADMISSION",
+  "search_policy_failure": "NOT_ASSESSED",
+  "stage_a": "FROZEN",
+  "stage_b": "CAPTURED",
+  "u3_outcome": "NOT_SELECTED"
+}

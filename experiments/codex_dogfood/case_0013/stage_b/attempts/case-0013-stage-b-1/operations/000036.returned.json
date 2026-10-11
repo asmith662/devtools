@@ -1,0 +1,104 @@
+{
+  "canonical": {
+    "gzip_b85": "ABzY8000000{^{MO>f&U488YP2tL=TWjp@Zt-yw%Ko3K^+b{&QL^sA9$&=)uS<(MK*|B4{wTC3@mP3$`qWJhok$k!!#1WFCc0Q1A_75RX?Y9-@1(v*#_Yx~(Ab7#S;7hsHD9o*h1_#;m<zU7OT}fS-LW&tXI%&6&ye@H7i(-pPqdh3<vK$={V619|+k&HDcoHaupj$l7r$=Ch0Oty|CWR)DX%vR!N^Xc*BhhtLl?8GltwL?>4=te5YiSnFiyME|sLc$D84y~QHn<rZe=xduW$c(;)dcKt+!`rMy<k!pd^C$vGAN5*(9pejP_ni;6A!Ig*+3W9f~}?c+$)@m(Y=4nKD36@P^UR=pqM$6c+#X&a*G0HvzgBD*cO;nyH&xb4Z}&pK9RF#(WIFH{bTz4|47+gS7=9PZVP4IdS;-}^*kE5oom;=O;$=>D|9y?iu`cz>A;&uXbQ7i+>WGQEmJq0;&{ME@q0NDU>X8?%!edhCM?A?Vmze@2Fs8qEC_=vpc&7&pJGfswnQ(d!IDxB{g{JK`MbuxPuuCy_t8v*zdWbBhSxFRygSHl_%yPK>l6+b*yfB@c!=%*<B*Fb%hQOb=<*1bZWu!3CIJszihh_!=-E$tMh(Y)$m4`XSsq7m%qY*i$oFlI6F<t6l!j591wMoU<Vl$D+zUKFN+a-WEd()j&LZy6@dx7WJJB40lRb1lWu}vx{EOakXGct}7+&u^-*zqebl&aMH~Ok`dsUSngmrY)h*y2<SX8_7=v5uc5xuW~ACDLx8*tFA8&1=KTq(*Ou|$=qh~5bUkHm70s#zOIhPf?mJMUqGq_U_$?XAayqQ$c6%m4UhI=-WVxdq7k>(n0}W)tt1VTvA4n`lO$?}u~@*?=;w*z?~5*jKB*Z)iBS<(xGjKaLj8w|%J=-P*<98O3NocWd2S=R?iAeM@os;&)+YrWXb`?TY^W4fk1Hl%^1RVd|>vvu(fIla7*d*hjlsYf7zk;ApnS4U9|KclRr``=Fp&yIb2VpD%s`4uq5|CJX=o",
+    "sha256": "cb8725801f9b1edeb1b136c7f0c55dabda437e4f61b6b38e9699d52d43098db8"
+  },
+  "entered_sha256": "f6174e01313f191d9cb4ce8fe262078dbd70730bf0f1716c0ca6d476f2dc9533",
+  "event": 70,
+  "execution": "case-0013-stage-b-1",
+  "frame": {
+    "corpus_id": "33afe5a67237b2743ee4ecc9bdb43c3c7edaf765f246d2c1fc704c9d31847d25",
+    "frame_identity": "1d6ddb8cc25ba05e133b760337a932f6c1d783fa1350353aaaa29a1d98edd30a",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+  },
+  "input_sha256": "d44d3568b4b2af2d30cdb1286ff7760d50f839b21e23f04b6ea32be9a7268e91",
+  "native": {
+    "gzip_b85": "ABzY8000000{?4Zow|+z0($t;i}FkJQmmY;JPa(X45wthQj=xSY@8B1MI-ASf|;Qr%aB!~g2L}{urx_bHApr}w6HX_NVZJ1G)qpgG_*)HHZ@7HNH#VxPBJ!3N=ZsFvP?BMG)Oj0HApiwHZ?RfNHsD~Ni;G{nUb26mFvX7kd*-<_5rQSYEqSD0E#MV0@-drLQ~T(%Uu&B);2{C0OA|c2DtzL00",
+    "sha256": "ebc9717a888da8828fcbe5db13936147874eef3162a833255a37e974912489d1"
+  },
+  "operation": {
+    "durability_inside_call_ns": 0,
+    "identity": "ground:B:H08:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "94ae0c2a8958c9e96cd918e354d8c343b31bdbd29e710c5e0f135110e27da21d"
+      },
+      "locator": {
+        "address": {
+          "value": "tests/context/planning/test_manifest.py"
+        }
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 2241,
+          "start": 2202
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08"
+    ],
+    "runtime_ns": 230100,
+    "serialized_return_sha256": "1821c88cf432befba99ae6efa02ee0f9c4a0785edb8c878171726369419347b1",
+    "status": "RETURNED",
+    "wall_call_ns": 230100
+  },
+  "prior_chain_sha256": "f6174e01313f191d9cb4ce8fe262078dbd70730bf0f1716c0ca6d476f2dc9533",
+  "runtime_identity": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+    "unicode": "16.0.0"
+  },
+  "sequence": 36,
+  "state": "RETURNED"
+}

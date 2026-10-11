@@ -26,8 +26,11 @@ current sequence or imply that Retrieval is solved.
 Current upstream checkpoint: U1 is COMPLETE / INFORMATION_NEED_AUTHORING_DEFECT;
 U2 is COMPLETE / EXACT_HINT_ROUTING_SUPPORTED; U3 is CURRENT at
 [Case 0013 Stage A](../../../experiments/codex_dogfood/case_0013/STAGE_A_REVIEW.md).
-The prospective selective-routing task/treatment is frozen for review, with
-zero acquisition executions and no gold. R1.7 remains retained, R2 true BM25F
+The prospective selective-routing task/treatment remains frozen;
+[Stage B](../../../experiments/codex_dogfood/case_0013/stage_b/attempts/case-0013-stage-b-1/STAGE_B_REVIEW.md)
+is captured once. This first slice tests task-role-conditioned exact-route
+admission, with no gold, unknown effectiveness and no U3 outcome selected.
+R1.7 remains retained, R2 true BM25F
 mandatory and downstream Localization preserved. No epic concern is closed,
 no feature or production routing is implemented, and historical checkpoint
 paragraphs below retain their original meaning.

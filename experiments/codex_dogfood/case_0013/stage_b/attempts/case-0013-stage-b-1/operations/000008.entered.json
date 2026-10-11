@@ -1,0 +1,38 @@
+{
+  "event": 15,
+  "execution": "case-0013-stage-b-1",
+  "frame": {
+    "corpus_id": "33afe5a67237b2743ee4ecc9bdb43c3c7edaf765f246d2c1fc704c9d31847d25",
+    "frame_identity": "1d6ddb8cc25ba05e133b760337a932f6c1d783fa1350353aaaa29a1d98edd30a",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+  },
+  "input_sha256": "ee2bcc045cb37443ea9320f4905f22189116f37b9e257a4179ca51d88bea1cdd",
+  "operation": {
+    "identity": "lexical:integrity",
+    "inputs": {
+      "maximum_results": 531,
+      "query": "RepositorySnapshot resource_at content identity foreign stale missing resources support validation materialization"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "9275ec5e3ebede902b608a92ae1a749f9f6927c5074817846ce7592d7d9175d9",
+  "runtime_identity": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+    "unicode": "16.0.0"
+  },
+  "sequence": 8,
+  "state": "ENTERED"
+}

@@ -1,0 +1,89 @@
+{
+  "event": 57,
+  "execution": "case-0013-stage-b-1",
+  "frame": {
+    "corpus_id": "33afe5a67237b2743ee4ecc9bdb43c3c7edaf765f246d2c1fc704c9d31847d25",
+    "frame_identity": "1d6ddb8cc25ba05e133b760337a932f6c1d783fa1350353aaaa29a1d98edd30a",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+  },
+  "input_sha256": "09616af7aa060840016c834c061f7cd289881796a8798c052928ce4f1bdef3b1",
+  "operation": {
+    "identity": "ground:B:H05:1",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "61cfacc7c887ac636e0a99bb1dfa3600946f955d13e272f7039ba540d1477a05"
+      },
+      "locator": {
+        "declared_name": "describe_context_disclosure",
+        "kind": "function",
+        "module": {
+          "dotted_name": "devtools.context.planning.manifest",
+          "kind": null
+        }
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 1147,
+          "start": 1085
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "bb90c41e73d27ecbb7cdd86b064b98df9c6050ee6b2c7d3eda1a02dd6d4a496e",
+  "runtime_identity": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+    "unicode": "16.0.0"
+  },
+  "sequence": 30,
+  "state": "ENTERED"
+}

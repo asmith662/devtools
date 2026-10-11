@@ -77,6 +77,10 @@
   route decisions, locators, queries, frame, arms, metrics, cost plan, failure
   taxonomy, decision rule and future Astra High blind-gold policy. It contains
   no acquisition outcomes or gold and authorizes no production change.
+  [Case 0013 Stage B](../experiments/codex_dogfood/case_0013/stage_b/attempts/case-0013-stage-b-1/STAGE_B_REVIEW.md)
+  owns immutable native operation returns, independent B/C route execution,
+  complete lexical/exact-first mechanical views and captured costs. Gold is
+  absent, effectiveness unknown and U3 outcome not selected.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),
   [Cases 0004–0008 history](architecture/localization.md#prospective-cases-0004-0008-and-structural-breadth-closure)

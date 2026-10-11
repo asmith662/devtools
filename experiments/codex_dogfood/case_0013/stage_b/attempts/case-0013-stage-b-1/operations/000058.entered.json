@@ -1,0 +1,139 @@
+{
+  "event": 113,
+  "execution": "case-0013-stage-b-1",
+  "frame": {
+    "corpus_id": "33afe5a67237b2743ee4ecc9bdb43c3c7edaf765f246d2c1fc704c9d31847d25",
+    "frame_identity": "1d6ddb8cc25ba05e133b760337a932f6c1d783fa1350353aaaa29a1d98edd30a",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+  },
+  "input_sha256": "0ae298f4eb4bf3db04634064a4c1ac6bc27f524cbd0d9ed2e24aa7b47ac31e3c",
+  "operation": {
+    "identity": "ground:C:H03:2",
+    "inputs": {
+      "anchor": {
+        "task": {
+          "value": "case-0013-context-disclosure-manifest"
+        },
+        "value": "cf1c9669156f1680068aad976936c93c4952ce089fdd57408998c346177f2c34"
+      },
+      "locator": {
+        "containing_class": {
+          "base_syntax": [],
+          "declared_name": "RepositorySnapshot",
+          "derivation_identity": "76ca770f0447ad778fbf598aaa74b53f297de3400759a77213fb69441971e96a",
+          "subject": {
+            "declaration_ordinal": 1,
+            "derivation_definition_identity": "d22897ae0a05b53913122c1997306690f4632e045d4452da543291687b8bbe9d",
+            "resource_dependency_identity": "580a8041b654fc20480c56af374c82db718ec8fa59e7135579d36c29e603da3b",
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            }
+          },
+          "support": {
+            "resource_address": {
+              "value": "src/devtools/context/repository/snapshot.py"
+            },
+            "snapshot_id": {
+              "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+            },
+            "source_range": {
+              "end_column_utf8": 29,
+              "end_line": 61,
+              "start_column_utf8": 0,
+              "start_line": 35
+            }
+          }
+        },
+        "declared_name": "resource_at"
+      },
+      "provenance": {
+        "explanation": "Task-only caller syntax reference before frame preparation",
+        "source_identity": "case-0013-context-disclosure-manifest",
+        "span": {
+          "end": 666,
+          "start": 599
+        }
+      },
+      "repository_id": {
+        "value": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009"
+      },
+      "snapshot_id": {
+        "value": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+      },
+      "task": {
+        "value": "case-0013-context-disclosure-manifest"
+      }
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1",
+      "route:B:H03",
+      "ground:B:H03:1",
+      "ground:B:H03:2",
+      "route:B:H04",
+      "ground:B:H04:1",
+      "route:B:H05",
+      "ground:B:H05:1",
+      "route:B:H06",
+      "ground:B:H06:1",
+      "route:B:H07",
+      "ground:B:H07:1",
+      "route:B:H08",
+      "ground:B:H08:1",
+      "route:B:H09",
+      "ground:B:H09:1",
+      "route:B:H10",
+      "ground:B:H10:1",
+      "present:B:structure",
+      "present:B:integrity",
+      "present:B:manifest",
+      "present:B:projection",
+      "present:B:compatibility",
+      "present:B:exports",
+      "present:B:tests",
+      "present:B:documentation",
+      "present:B:validation",
+      "arm:C",
+      "policy:C",
+      "route:C:H01",
+      "ground:C:H01:1",
+      "route:C:H02",
+      "ground:C:H02:1",
+      "route:C:H03",
+      "ground:C:H03:1"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "09ef5596dfb3de7330bf31faddc3ca743cee829cad4d56a78335f48487b23ed7",
+  "runtime_identity": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+    "unicode": "16.0.0"
+  },
+  "sequence": 58,
+  "state": "ENTERED"
+}

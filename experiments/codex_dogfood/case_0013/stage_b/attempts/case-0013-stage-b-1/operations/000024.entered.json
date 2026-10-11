@@ -1,0 +1,110 @@
+{
+  "event": 46,
+  "execution": "case-0013-stage-b-1",
+  "frame": {
+    "corpus_id": "33afe5a67237b2743ee4ecc9bdb43c3c7edaf765f246d2c1fc704c9d31847d25",
+    "frame_identity": "1d6ddb8cc25ba05e133b760337a932f6c1d783fa1350353aaaa29a1d98edd30a",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "724d78c6bf7677c1db06228e3826f891467b32a43af848df030ae116a0cd9371"
+  },
+  "input_sha256": "89ced5b7627c6f6ef26dc35fc26688188bd9a335870eef13d839e9dc77cb4681",
+  "operation": {
+    "identity": "route:B:H03",
+    "inputs": {
+      "arm": "B",
+      "request": {
+        "association": {
+          "hint": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "cf1c9669156f1680068aad976936c93c4952ce089fdd57408998c346177f2c34"
+          },
+          "lane": {
+            "task": {
+              "value": "case-0013-context-disclosure-manifest"
+            },
+            "value": "integrity"
+          },
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 666,
+              "start": 599
+            }
+          },
+          "reason": "Explicit task clause associates this hint with this obligation, without gold"
+        },
+        "hint": {
+          "category": "PYTHON_DIRECT_METHOD",
+          "provenance": {
+            "explanation": "Task-only caller syntax reference before frame preparation",
+            "source_identity": "case-0013-context-disclosure-manifest",
+            "span": {
+              "end": 666,
+              "start": 599
+            }
+          },
+          "rule": "caller-task-review-v1",
+          "span": {
+            "end": 666,
+            "start": 599
+          },
+          "syntactic_form": "caller-reviewed-task-syntax",
+          "task": {
+            "value": "case-0013-context-disclosure-manifest"
+          },
+          "text": "devtools.context.repository.snapshot.RepositorySnapshot.resource_at"
+        },
+        "locator": {
+          "class_name": "RepositorySnapshot",
+          "method_name": "resource_at",
+          "module": {
+            "dotted_name": "devtools.context.repository.snapshot",
+            "kind": null
+          }
+        },
+        "mechanism": "exact-source-class-then-native-direct-method-containment-v1",
+        "reason": "Explicit task syntax; static source locator in a frozen universe; no inferred owner"
+      },
+      "request_identity": "f00ef57a14eb5fc486659a03d5c6003be020a475a93b9f804b3b85a1f3cf94e6"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:resources",
+      "frame:modules",
+      "frame:declarations",
+      "frame:assembly",
+      "index-build",
+      "lexical:global",
+      "lexical:structure",
+      "lexical:integrity",
+      "lexical:manifest",
+      "lexical:projection",
+      "lexical:compatibility",
+      "lexical:exports",
+      "lexical:tests",
+      "lexical:documentation",
+      "lexical:validation",
+      "arm:A",
+      "purposes:shared",
+      "arm:B",
+      "policy:B",
+      "route:B:H01",
+      "ground:B:H01:1",
+      "route:B:H02",
+      "ground:B:H02:1"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "d92a8090aa0de362259478198a981b4e3e6fa3471b282b70dd077c09457d87c4",
+  "runtime_identity": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+    "unicode": "16.0.0"
+  },
+  "sequence": 24,
+  "state": "ENTERED"
+}

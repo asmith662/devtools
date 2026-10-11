@@ -347,7 +347,10 @@ The final reviewed join is complete. Exact native hints supply candidates, not r
 cannot repair missing/incomplete needs. U3 is CURRENT at
 [Case 0013 Stage A](../../experiments/codex_dogfood/case_0013/STAGE_A_REVIEW.md),
 with experiment-only task-visible mechanism selection and full lexical fallback.
-No Case 0013 acquisition, treatment or gold has executed; effectiveness UNKNOWN.
+[Case 0013 Stage B](../../experiments/codex_dogfood/case_0013/stage_b/attempts/case-0013-stage-b-1/STAGE_B_REVIEW.md)
+records the one authorized A/B/C capture. No gold or effectiveness join has
+executed; effectiveness UNKNOWN, U3 outcome NOT_SELECTED. This first slice
+tests task-role-conditioned exact-route admission, not universal routing.
 Later query weighting, mandatory R2 and Localization continuation remain intact. Task != obligation
 != information need != query/acquisition intent != retrieval action. Case 0011
 uses the same production ranker and a human-inspectable experimental trace;

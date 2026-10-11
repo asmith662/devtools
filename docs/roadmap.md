@@ -166,13 +166,18 @@ automating them or changing production query weights.
   A is canonical lexical, B always-on exact-first, C task-only selective routing.
   Existing information-purpose values are reused with explicit routing roles;
   U1's failed need set is not consumed. All obligation lexical lanes remain
-  complete. Stage B, exact/specialized acquisition and gold are NOT EXECUTED;
-  effectiveness UNKNOWN. Future primary gold is one clean treatment-blind
+  complete. [Case 0013 Stage B](../experiments/codex_dogfood/case_0013/stage_b/attempts/case-0013-stage-b-1/STAGE_B_REVIEW.md)
+  is CAPTURED in one authorized attempt: one index, ten shared lexical queries,
+  ten independent B exact requests and six independent C exact requests.
+  Scope is task-role-conditioned exact-route admission only. The frozen
+  10-to-6 difference alone is not effectiveness evidence. Gold is NOT_CREATED;
+  effectiveness UNKNOWN and U3 outcome NOT_SELECTED. Future primary gold is
+  one clean treatment-blind
   GPT-6 Astra High review, without an automatic second adjudication.
   This is experiment-only mechanism selection, not relevance, witness acceptance,
   sufficiency, production routing or sequential search. SEARCH_POLICY_FAILURE
-  remains NOT_ASSESSED. Maintainer review and separate execution authorization
-  precede any frozen A/B/C treatment.
+  remains NOT_ASSESSED. The maintainer reviews the Stage B trace before
+  a completely fresh GPT-6 Astra High treatment-blind gold session.
 
 Human treatment inspection is not blind adjudication; maintainer labels belong
 in MANUAL_AUDIT. R1/R1.5/R1.6 remain complete. R1.7 remains a later query-term
