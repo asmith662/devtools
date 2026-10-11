@@ -62,7 +62,8 @@ evidence; mixed ranking changes fail promotion's no-worse-completion and
 one A/B execution and the frozen full-frame blind packet. Clean Stage C and the
 Stage D join are complete. **R1.6 development and Case 0010 Stage D are complete;
 U1, U2 and U3 are complete**; Case 0013 Stage D supports bounded task-role-
-conditioned exact-route admission. R1.7 is NEXT and R2 is mandatory after R1.7;
+conditioned exact-route admission. R1.7 is CURRENT at frozen Case 0014 Stage A,
+with no prospective retrieval or gold; R2 is mandatory immediately after R1.7;
 canonical production BM25 remains unchanged and semantic-resolution effectiveness
 does not resume yet.
 
@@ -199,16 +200,30 @@ automating them or changing production query weights.
 Human treatment inspection is not blind adjudication; maintainer labels belong
 in MANUAL_AUDIT. R1/R1.5/R1.6 remain complete. U1 = COMPLETE /
 INFORMATION_NEED_AUTHORING_DEFECT; U2 = COMPLETE / EXACT_HINT_ROUTING_SUPPORTED;
-U3 = COMPLETE / SELECTIVE_MECHANISM_ROUTING_SUPPORTED. R1.7 = NEXT. R2 true
+U3 = COMPLETE / SELECTIVE_MECHANISM_ROUTING_SUPPORTED. R1.7 = CURRENT. R2 true
 BM25F = MANDATORY AFTER R1.7; downstream Localization continuation = PRESERVED.
 U1 success is not a condition for R2.
 
-#### R1.7 — Query-term discrimination / weighting investigation — NEXT
+#### R1.7 — Query-term discrimination / weighting investigation — CURRENT
 
 Follow completed prospective R1.6, or combine only if parameter and query effects remain cleanly
 attributable. Use term DF/IDF, footprint and independently judged yields as
 descriptive evidence, not automatic removal/downweighting rules. No query weights
 change in R1.5. Query formulation remains the separate R3 question.
+
+[Case 0014 Stage A](../experiments/codex_dogfood/case_0014/STAGE_A_REVIEW.md)
+freezes a new command-result diagnostic task, six mandatory queries and task-only
+term roles. The [experimental scorer](../experiments/query_term_weighting/README.md)
+retains canonical tokens, whole resources, BM25 statistics, positive candidates
+and filename behavior while applying explicit contribution multipliers. A is
+canonical; B emphasizes literals; C additionally attenuates five generic work
+verbs. C is the primary prospective comparison; B supplies attribution. The
+frozen integer rule distinguishes safe strong ranking value from complementary
+value with bounded regressions and harmful or invalid behavior. Stage B is NOT
+EXECUTED, gold is ABSENT and effectiveness is UNKNOWN. Maintainer reviews Stage A;
+only after authorization execute the prospective treatments once. No production
+weighting or future feature is implemented. R2 remains mandatory immediately
+after R1.7; downstream Localization continuation remains preserved.
 
 #### R2 — True BM25F / field-aware sparse retrieval — MANDATORY AFTER R1.7
 
@@ -266,7 +281,7 @@ canonical baseline
     -> R1.5 diagnostics (done) -> R1.6 sensitivity (done)
     -> U1 manual formulation (complete) -> U2 exact hints (complete)
     -> U3 selective mechanism routing (complete; bounded Case 0013 support)
-    -> R1.7 query terms (NEXT)
+    -> R1.7 query terms (CURRENT; Case 0014 Stage A frozen, no retrieval)
     -> R2 BM25F canonical terms + R2 BM25F identifier-aware terms
        (representation gain, fielding gain and interaction separately measured)
 ```

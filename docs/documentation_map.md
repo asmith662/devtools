@@ -87,7 +87,18 @@
   owns the exact gold/capture join, all witness calculations, costs and unchanged
   prospective gates: SELECTIVE_MECHANISM_ROUTING_SUPPORTED. The bounded result
   establishes task-role-conditioned exact-route admission only; production is
-  unchanged. R1.7 is NEXT; true BM25F is MANDATORY AFTER R1.7.
+  unchanged. R1.7 is CURRENT; true BM25F is MANDATORY AFTER R1.7.
+- [R1.7 query-term weighting](../experiments/query_term_weighting/README.md)
+  owns experimental task/query-only roles, explicit contribution multipliers,
+  native/weighted trace reconstruction and exact prospective gates.
+  [Case 0014 Stage A](../experiments/codex_dogfood/case_0014/STAGE_A_REVIEW.md)
+  owns selection criteria, the new task, six mandatory queries, every analyzed
+  term/provenance/weight, unchanged canonical scorer contract, broad native frame,
+  metrics, cost accounting, failure taxonomy, decision rule and future one-primary
+  treatment-blind GPT-6 Astra High policy. Index builds, query executions,
+  treatment scorings and weighted rankings are zero; gold is absent. Maintainer
+  review and new authorization precede Stage B. This does not implement query
+  weighting in production, the future feature or mandatory subsequent BM25F.
 - [Localization continuity](architecture/localization.md) owns the single
   current [status matrix](architecture/localization.md#capability-status-matrix),
   [Cases 0004–0008 history](architecture/localization.md#prospective-cases-0004-0008-and-structural-breadth-closure)

@@ -1,5 +1,42 @@
 # Implementation Ledger
 
+## Case 0014 prospective query-term discrimination Stage A (2026-10-11)
+
+Froze selection criteria before authoring a new six-obligation command-result
+diagnostic task. Selection used current byte/retention/event/failure contracts,
+not rankings or prior gold. The proposed feature is not implemented. Experimental
+[query-term weighting](../experiments/query_term_weighting/README.md) reuses native
+Unicode query analysis, Localization identities/provenance and unchanged native
+BM25 contributions/statistics. Three arms isolate literal emphasis from attenuation
+of a five-verb repository-independent lexicon, with fixed positive 2/1/0.5 weights.
+Both content and independent 0.25 filename channels retain native evidence and
+summation order. Full candidate identity and collection-order ties are invariant.
+
+[Stage A](../experiments/codex_dogfood/case_0014/STAGE_A_REVIEW.md) seals the task,
+matrix, every query/term/span/role/multiplier, canonical scorer contract, native
+whole-resource frame, metrics, cost accounting, failure taxonomy, exact integer
+decision rule and future one-primary GPT-6 Astra High blind policy. C versus A is
+primary; B gives attribution. Strong support requires meaningful witness gain,
+no mandatory depth or REQUIRED-cell rank regression and nontrivial burden gain;
+complementary value permits prospectively bounded regressions. Effectiveness is
+UNKNOWN: prospective index/query/scoring/ranking counts are all zero; gold absent.
+Controlled synthetic fixtures are separate. Prior-case whole resources are
+excluded by a task-independent leakage rule, without editing retained content.
+
+Corrected stale current-status paragraphs in retrieval documentation and B-0002
+against the completed Case 0013 artifacts; historical checkpoint paragraphs remain.
+U1/U2/U3 retain their exact completed outcomes and bounded U3 conclusion. R1.7
+is CURRENT, BM25F mandatory immediately after R1.7, Localization preserved. No
+production behavior, confirmation/reserve data, live services, prior-case science,
+production routing or weighting is changed. Stage B requires maintainer review
+and new authorization. The epic remains open.
+
+Validation: 26 focused synthetic/Stage A tests pass, including candidate identity,
+native-statistics tamper rejection, score reconstruction, exact gate boundaries,
+blind projection, no-execution guards, overwrite refusal and deterministic replay.
+Scoped Ruff/format and strict mypy pass. The protected development profile passes
+1,588 tests with two skips and 100% production branch coverage. Diff checks pass.
+
 ## Case 0013 primary gold and selective-routing Stage D (2026-10-11)
 
 Authenticated the completed sterile GPT-6 Astra / High primary workspace against

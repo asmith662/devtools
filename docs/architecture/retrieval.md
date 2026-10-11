@@ -264,8 +264,9 @@ sufficiency.** Both research tracks remain necessary.
 [EXPERIMENTAL; INSTRUMENTATION] R1.5 exact retrieval/failure diagnostics
 [EXPERIMENTAL; PROSPECTIVE COMPLETE, MIXED / NO SAFE REPLACEMENT] R1.6 BM25 sensitivity
 [EXPERIMENTAL; COMPLETE] U1 manual needs: INFORMATION_NEED_AUTHORING_DEFECT
-[EXPERIMENTAL; COMPLETE] U2 exact hints: EXACT_HINT_ROUTING_SUPPORTED; U3 Stage A CURRENT
-[ROADMAP; RETAINED AFTER UPSTREAM EVIDENCE] R1.7 query-term discrimination investigation
+[EXPERIMENTAL; COMPLETE] U2 exact hints: EXACT_HINT_ROUTING_SUPPORTED
+[EXPERIMENTAL; COMPLETE] U3: SELECTIVE_MECHANISM_ROUTING_SUPPORTED, bounded exact admission
+[EXPERIMENTAL; STAGE A FROZEN, NOT EXECUTED] R1.7 query-term discrimination, Case 0014
 [MANDATORY ROADMAP; NOT IMPLEMENTED] R2 true BM25F, regardless of R1 outcome
 
 [PRODUCTION, CALLER-DIRECTED] explicit Context choices --> plan
@@ -344,19 +345,23 @@ The [capture recovery contract](../../experiments/codex_dogfood/case_0012/stage_
 permits at most one invocation per frozen operation per explicitly authorized
 attempt, uses immutable native return records, and forbids splicing failed results.
 The final reviewed join is complete. Exact native hints supply candidates, not relevance, witnesses or readiness, and
-cannot repair missing/incomplete needs. U3 is CURRENT at
-[Case 0013 Stage A](../../experiments/codex_dogfood/case_0013/STAGE_A_REVIEW.md),
+cannot repair missing/incomplete needs. U3 is COMPLETE /
+SELECTIVE_MECHANISM_ROUTING_SUPPORTED at
+[Case 0013 Stage D](../../experiments/codex_dogfood/case_0013/stage_d/STAGE_D_REVIEW.md),
 with experiment-only task-visible mechanism selection and full lexical fallback.
-[Case 0013 Stage B](../../experiments/codex_dogfood/case_0013/stage_b/attempts/case-0013-stage-b-1/STAGE_B_REVIEW.md)
-records the one authorized A/B/C capture. No gold or effectiveness join has
-executed; effectiveness UNKNOWN, U3 outcome NOT_SELECTED. This first slice
-tests task-role-conditioned exact-route admission, not universal routing.
+Its reviewed gold joins the one authorized native capture. This result establishes
+only task-role-conditioned exact-route admission; it does not establish universal,
+graph, semantic, learned or arbitrary need-by-mechanism routing or sequential search.
 Later query weighting, mandatory R2 and Localization continuation remain intact. Task != obligation
 != information need != query/acquisition intent != retrieval action. Case 0011
 uses the same production ranker and a human-inspectable experimental trace;
 SEARCH_POLICY_FAILURE is separately defined and not implemented by U1. R1.7
-and mandatory R2 remain on the roadmap. No field aggregation,
-query weighting or semantic-resolution experiment is implemented here.
+is CURRENT at [Case 0014 Stage A](../../experiments/codex_dogfood/case_0014/STAGE_A_REVIEW.md):
+query-side contribution multipliers are experimental infrastructure, with zero
+prospective indexing/retrieval/scoring and no gold. Native representation,
+statistics, positive candidates, ties and production behavior remain unchanged.
+True BM25F is mandatory immediately afterward. No field aggregation or production
+query weighting is implemented here; semantic-resolution continuation is preserved.
 
 Open adjudications include the placement of identifier evidence, the smallest
 scientifically useful BM25F field schema, semantic retrieval granularity,

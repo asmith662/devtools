@@ -1,0 +1,13 @@
+Add an opt-in deterministic human-readable diagnostic renderer for an already completed `CommandResult` in `devtools.resources.commands`.
+
+O1. Preserve the structured `Command` executable and arguments, `exit_code`, `duration`, and `succeeded`/`failed` meaning. A nonzero exit is an ordinary completed result. Rendering must be a pure operation: do not execute a command, invoke a shell, retry, or mutate the result.
+
+O2. Render `stdout` and `stderr` as separately labeled UTF-8 diagnostic excerpts. Retain the original bytes unchanged. Use explicit replacement decoding for invalid or incomplete UTF-8, disclose decoding loss separately, and never imply that decoded text is the original byte stream.
+
+O3. Add a caller-configurable nonnegative per-stream character display limit, with a default of 2048 characters. Show only a leading decoded prefix and disclose omitted display characters. Distinguish this display limit from `CommandOutputPolicy` byte retention and from `stdout_truncated`/`stderr_truncated`; a zero display limit must remain informative about omitted output.
+
+O4. Preserve and display `events_dropped` independently of output truncation. Do not reconstruct event interleaving or fabricate missing events. Do not create a `CommandResult` for timeout, cancellation, or executable-not-found failures: this renderer accepts only an existing completed result.
+
+O5. Provide a small explicit public API through `src/devtools/resources/commands/__init__.py` with deterministic output, immutable inputs and documented decoding/display policy. Keep presentation in the commands domain; do not add logging, Evidence/Trace infrastructure, subprocess ownership, persistence, or a claim of secret redaction.
+
+O6. Add controlled tests under `tests/resources/commands/` and update the package documentation under `src/devtools/resources/commands/docs/` for success/nonzero exit, empty output, valid/invalid/incomplete UTF-8, zero/default/custom display bounds, independent retention flags, event loss, deterministic output, and input immutability. Preserve the protected development validation profile documented in `docs/development/validation.md`.
