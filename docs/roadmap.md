@@ -178,6 +178,8 @@ automating them or changing production query weights.
   sufficiency, production routing or sequential search. SEARCH_POLICY_FAILURE
   remains NOT_ASSESSED. The maintainer reviews the Stage B trace before
   a completely fresh GPT-6 Astra High treatment-blind gold session.
+  The [five-file blind packet and stable sterile preparation](../experiments/codex_dogfood/case_0013/stage_c/PREPARATION.json)
+  are validated. Astra has not been started; gold remains NOT_CREATED.
 
 Human treatment inspection is not blind adjudication; maintainer labels belong
 in MANUAL_AUDIT. R1/R1.5/R1.6 remain complete. R1.7 remains a later query-term

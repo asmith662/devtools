@@ -23,6 +23,17 @@ def test_physical_packet_tamper(tmp_path: Path) -> None:
         validate_packet.validate(root)
 
 
+def test_relative_destination_uses_explicit_repository_base(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(packet, "ROOT", tmp_path)
+    packet.publish(Path("nested/packet"), packet.render(packet.payload()))
+    root = tmp_path / "nested/packet"
+    validate_packet.validate(root)
+    with pytest.raises(FileExistsError, match="overwrite refused"):
+        packet.publish(Path("nested/packet"), packet.render(packet.payload()))
+
+
 def test_reparse_lstat_is_rejected_without_following_target(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:

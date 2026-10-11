@@ -1,0 +1,52 @@
+{
+  "case": "case-0013",
+  "double_build": "PASS; two independent Python processes; exact five-file byte equality",
+  "effectiveness": "UNKNOWN",
+  "gold": "NOT_CREATED",
+  "initial_whitelist": [
+    "README.md",
+    "integrity.json",
+    "manifest.json",
+    "resources.json.gz",
+    "validate_packet.py"
+  ],
+  "metadata_allowlist": "PASS; exact Stage A task/obligation/resource projection; no frame/treatment enrichment",
+  "model": "GPT-6 Astra",
+  "packet": {
+    "archive_sha256": "7d501a60f1107e1d7e5de17d37ad61732e7d173b8d3554975d516586002d9558",
+    "canonical_payload_sha256": "1305f78b76f482750807bb376c820515990683d13b8d107be9725729b7a8ece6",
+    "files": [
+      "README.md",
+      "integrity.json",
+      "manifest.json",
+      "resources.json.gz",
+      "validate_packet.py"
+    ],
+    "integrity_sha256": "683a0d244b3c166821db046d107b2b5cdd00e1d2753d1b924c9ca2054df60f16",
+    "manifest_sha256": "9653a664db91faa1c41ade168e2da528d3601b809d08386d9c13cc96a24bb0f4",
+    "status": "PASS; NO ADJUDICATION"
+  },
+  "reasoning": "High",
+  "reviewer_started": false,
+  "scope": "TASK-ROLE-CONDITIONED EXACT-ROUTE ADMISSION",
+  "source_destination_byte_equality": "PASS",
+  "stage_a_commit": "6b18b6e12bbab5a0e131e0afe2fb57b5410b4f16",
+  "stage_b_commit": "2937e49feb566443f943b91267c59b60b2c7494a",
+  "stage_b_integrity_sha256": "b2132804733e7c457deaccfe759cbdfc1c6546eb6a9164b1592d1e12f8c9f999",
+  "standalone_validator": {
+    "archive_sha256": "7d501a60f1107e1d7e5de17d37ad61732e7d173b8d3554975d516586002d9558",
+    "canonical_payload_sha256": "1305f78b76f482750807bb376c820515990683d13b8d107be9725729b7a8ece6",
+    "files": [
+      "README.md",
+      "integrity.json",
+      "manifest.json",
+      "resources.json.gz",
+      "validate_packet.py"
+    ],
+    "integrity_sha256": "683a0d244b3c166821db046d107b2b5cdd00e1d2753d1b924c9ca2054df60f16",
+    "manifest_sha256": "9653a664db91faa1c41ade168e2da528d3601b809d08386d9c13cc96a24bb0f4",
+    "status": "PASS; NO ADJUDICATION"
+  },
+  "sterile_workspace": "C:\\Users\\recoveryadmin\\CodexSterile\\case_0013_stage_c_7d501a60f110",
+  "u3_outcome": "NOT_SELECTED"
+}

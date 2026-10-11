@@ -11,6 +11,7 @@ import json
 from pathlib import Path
 from typing import Any
 
+from devtools.core.paths import resolve_path
 from experiments.codex_dogfood.case_0009.artifacts import (
     ROOT,
     binary,
@@ -103,6 +104,7 @@ def render(value: dict[str, Any]) -> dict[str, bytes]:
 
 def publish(root: Path, result: dict[str, bytes]) -> None:
     """Require a fresh destination and publish exclusively without any overwrite."""
+    root = resolve_path(root, base_directory=ROOT).value
     if root.exists():
         raise FileExistsError("Blind packet overwrite refused")
     if set(result) != validate_packet.FILES:
@@ -118,6 +120,7 @@ def publish(root: Path, result: dict[str, bytes]) -> None:
 
 async def build(root: Path) -> dict[str, Any]:
     """Authenticate capture gate, then build allowlisted independent semantic inputs."""
+    root = resolve_path(root, base_directory=ROOT).value
     await authenticate()
     # This gate reads mechanics only; the payload function never consumes them.
     from experiments.codex_dogfood.case_0013.stage_b.execute import (
