@@ -1,0 +1,147 @@
+{
+  "adversarial_mutations": [
+    {
+      "name": "altered_cell_identity",
+      "status": "REJECTED"
+    },
+    {
+      "name": "missing_cell",
+      "status": "REJECTED"
+    },
+    {
+      "name": "duplicate_cell",
+      "status": "REJECTED"
+    },
+    {
+      "name": "invalid_label",
+      "status": "REJECTED"
+    },
+    {
+      "name": "invalid_resource",
+      "status": "REJECTED"
+    },
+    {
+      "name": "invalid_span",
+      "status": "REJECTED"
+    },
+    {
+      "name": "altered_unit",
+      "status": "REJECTED"
+    },
+    {
+      "name": "invalid_evidence_class",
+      "status": "REJECTED"
+    },
+    {
+      "name": "invalid_support_alternative",
+      "status": "REJECTED"
+    },
+    {
+      "name": "invalid_witness",
+      "status": "REJECTED"
+    },
+    {
+      "name": "witness_nonminimality",
+      "status": "REJECTED"
+    },
+    {
+      "name": "invalid_task_combination",
+      "status": "REJECTED"
+    },
+    {
+      "name": "invalid_sufficient_union",
+      "status": "REJECTED"
+    },
+    {
+      "name": "invalid_inclusion_minimal_union",
+      "status": "REJECTED"
+    },
+    {
+      "name": "invalid_sufficient_unit_union",
+      "status": "REJECTED"
+    },
+    {
+      "name": "invalid_obligation_indispensability",
+      "status": "REJECTED"
+    },
+    {
+      "name": "invalid_task_indispensability",
+      "status": "REJECTED"
+    },
+    {
+      "name": "altered_gap",
+      "status": "REJECTED"
+    },
+    {
+      "name": "altered_limitation",
+      "status": "REJECTED"
+    },
+    {
+      "name": "altered_obligation",
+      "status": "REJECTED"
+    },
+    {
+      "name": "altered_task_identity",
+      "status": "REJECTED"
+    },
+    {
+      "name": "altered_resource_frame",
+      "status": "REJECTED"
+    },
+    {
+      "name": "valid_but_changed_label",
+      "status": "REJECTED"
+    },
+    {
+      "name": "tampered_blindness",
+      "status": "REJECTED"
+    },
+    {
+      "name": "tampered_hashes",
+      "status": "REJECTED"
+    },
+    {
+      "name": "overwrite_refusal",
+      "status": "REJECTED"
+    }
+  ],
+  "adversarial_rejected": 26,
+  "cells": 3090,
+  "checks": {
+    "cell_frame": "PASS",
+    "evidence_classes": "PASS",
+    "gaps_limitations_binding": "PASS",
+    "hash_reconstruction": "PASS",
+    "inclusion_minimal_unions": "PASS",
+    "label_vocabulary": "PASS",
+    "markdown_reconstruction": "PASS",
+    "obligation_intersections": "PASS",
+    "overwrite_refusal": "PASS",
+    "packet_identity": "PASS",
+    "resource_frame": "PASS",
+    "resource_identities": "PASS",
+    "resource_unions": "PASS",
+    "six_exact_obligations": "PASS",
+    "statistics_reconstruction": "PASS",
+    "support_alternatives": "PASS",
+    "support_spans": "PASS",
+    "task_combinations": "PASS",
+    "task_identity": "PASS",
+    "task_intersections": "PASS",
+    "unit_identities": "PASS",
+    "unit_unions": "PASS",
+    "witness_completeness": "PASS",
+    "witness_minimality": "PASS"
+  },
+  "duplicate_cells": 0,
+  "missing_cells": 0,
+  "obligations": 6,
+  "original_packet_preservation": "All five original physical file digests match sealed expected values.",
+  "resources": 515,
+  "schema": "case-0014-stage-c-validation-v1",
+  "scientific_replay": "Exact canonical bytes reconstructed; --verify compares each physical artifact in a separate Python invocation.",
+  "semantic_validation_boundary": "Computational checks validate authored evidence structures and byte identity; semantic sufficiency remains the single primary adjudicator judgment.",
+  "status": "PASS",
+  "unexpected_cells": 0,
+  "unresolved_cells": 0
+}

@@ -63,7 +63,8 @@ one A/B execution and the frozen full-frame blind packet. Clean Stage C and the
 Stage D join are complete. **R1.6 development and Case 0010 Stage D are complete;
 U1, U2 and U3 are complete**; Case 0013 Stage D supports bounded task-role-
 conditioned exact-route admission. R1.7 is CURRENT with Case 0014 Stage A frozen
-and Stage B captured once, with no gold or selected outcome; R2 is mandatory immediately after R1.7;
+and Stage B captured once, with primary-derived reviewed gold and no selected outcome;
+R2 is mandatory immediately after R1.7;
 canonical production BM25 remains unchanged and semantic-resolution effectiveness
 does not resume yet.
 
@@ -223,12 +224,16 @@ value with bounded regressions and harmful or invalid behavior.
 [Stage B](../experiments/codex_dogfood/case_0014/stage_b/attempts/case-0014-stage-b-1/STAGE_B_REVIEW.md)
 is CAPTURED once: one native index, six obligation queries and one unchanged
 whole-task reference lane; A/B/C share all captured native contributions and
-candidate identities. Mechanical attribution/replay pass. Gold is NOT_CREATED,
-effectiveness UNKNOWN and outcome NOT_SELECTED; the frozen rule is not applied.
-Maintainer reviews the capture before one fresh treatment-blind Astra High primary.
+candidate identities. Mechanical attribution/replay pass.
+The completed treatment-blind Astra High primary is imported byte-for-byte;
+[reviewed gold](../experiments/codex_dogfood/case_0014/adjudication/reviewed/REVIEWED_GOLD.md)
+preserves its full semantic object with no transformation, reconciliation or
+second reviewer. Effectiveness remains UNKNOWN and outcome NOT_SELECTED at this
+gold-publication checkpoint; the frozen rule has not yet been applied.
 The [blind packet](../experiments/codex_dogfood/case_0014/stage_c/PUBLICATION.md)
 is independently double-built and validated in a fresh stable sterile workspace;
-Astra has not started. No gold-dependent evaluation occurs at this checkpoint.
+its historical preparation record remains unchanged in meaning. Stage D is
+authorized after the reviewed-gold checkpoint validates, commits and pushes.
 No production weighting or future feature is implemented. R2 remains mandatory immediately
 after R1.7; downstream Localization continuation remains preserved.
 

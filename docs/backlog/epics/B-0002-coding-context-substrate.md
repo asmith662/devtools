@@ -31,7 +31,8 @@ That result establishes only task-role-conditioned exact-route admission.
 R1.7 is CURRENT at
 [Case 0014 Stage A](../../../experiments/codex_dogfood/case_0014/STAGE_A_REVIEW.md),
 with [Stage B](../../../experiments/codex_dogfood/case_0014/stage_b/attempts/case-0014-stage-b-1/STAGE_B_REVIEW.md)
-captured once, no gold, unknown effectiveness and no selected outcome. R2 true BM25F
+captured once, primary-derived reviewed gold, unknown effectiveness and no selected
+outcome at the gold-publication checkpoint. R2 true BM25F
 is mandatory immediately after R1.7 and downstream Localization preserved. No epic concern is closed,
 no feature or production routing is implemented, and historical checkpoint
 paragraphs below retain their original meaning.

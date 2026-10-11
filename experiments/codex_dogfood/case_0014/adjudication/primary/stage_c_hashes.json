@@ -1,0 +1,30 @@
+{
+  "algorithm": "SHA-256",
+  "excluded": [
+    "stage_c_hashes.json (self-reference)",
+    "derived operational scratch",
+    "local handoff"
+  ],
+  "original_sha256": {
+    "README.md": "9ddc93464c2bb150047be75daa7b2c942fbf0dbde799f959108348257af953cf",
+    "integrity.json": "944610c45844451713e9f3c22e4c4fd6bb0916d90fd39e899e958ca01eb4fdef",
+    "manifest.json": "4a3c69da5e4c31bf1440c4221f580ba8b08a8417505fb46d98d15ddbe4a4f86a",
+    "resources.json.gz": "59a7f62ecc1ec4083bb44b144d6a28a78eb544e87a4b04f5a501dd6542ac9c37",
+    "validate_packet.py": "74b39dc5f0474e2416748934054aca94bc84e6be62b02154d1107ae19f9ecfc8"
+  },
+  "packet_digest_scopes": {
+    "archive_sha256": "59a7f62ecc1ec4083bb44b144d6a28a78eb544e87a4b04f5a501dd6542ac9c37",
+    "canonical_payload_sha256": "e33e50d2641db38ffd8e8c4bfb218631de05d1046a6fac9623c735f412e3f467",
+    "integrity_sha256": "944610c45844451713e9f3c22e4c4fd6bb0916d90fd39e899e958ca01eb4fdef",
+    "manifest_sha256": "4a3c69da5e4c31bf1440c4221f580ba8b08a8417505fb46d98d15ddbe4a4f86a"
+  },
+  "schema": "case-0014-stage-c-hashes-v1",
+  "scientific_sha256": {
+    "STAGE_C_REVIEW.md": "628f2f1b86627c33f76807dd3875c7fd49b7dc7fb307f85a808e873de1dd4a4f",
+    "stage_c_builder.py": "5f0e25a082118ee37651adc64d0d57228eaf0e7d7496d53f9798997c6762ddeb",
+    "stage_c_method.md": "e2a76a8feef89f0f5207333d4d3feaa67bb67c5b427f84b7844edb37703a713b",
+    "stage_c_review.json": "cee15c825f70eee62162cf772f66597dfbfa6f51ef6567780ea161b08a7b59ea",
+    "stage_c_statistics.json": "cb42c54dfde3cf88e492c3e40e3fe1f946b0eedeee5e172799d56ae4ffbbcefa",
+    "stage_c_validation.json": "019cc61f46284e898615e911c64bd0e2c20c1356ad942c5e87d892163c7e920a"
+  }
+}

@@ -1,5 +1,9 @@
 # Case 0014 blind packet publication
 
+Historical packet-preparation checkpoint below. The completed primary is now
+authenticated and imported in [the reviewed-gold publication](../adjudication/reviewed/PUBLICATION.md).
+Preparation-time statements that Astra had not started remain historical.
+
 The packet descends from completed treatment capture
 `06e816693fed9165467c3afde42298e6dcefe615`. No treatment is rerun by packet
 preparation. Gold is NOT_CREATED, effectiveness UNKNOWN and outcome NOT_SELECTED.
