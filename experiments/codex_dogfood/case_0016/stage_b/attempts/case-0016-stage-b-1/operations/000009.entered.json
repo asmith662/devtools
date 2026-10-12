@@ -1,0 +1,44 @@
+{
+  "event": 17,
+  "execution": "case-0016-stage-b-1",
+  "frame": {
+    "corpus_id": "1e0df552f370938fcbbbf489a4bf433a25b4a218b1f624b72a21e463bcbdc7b0",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "636f86afb0fef7b8ccdd9adfd1c9f64dea76139b90d3d098f8f2b811bd90dfca"
+  },
+  "input_sha256": "27e89e42518394decb321bae035f386e8449e3dee71285faf854abc9314c9461",
+  "operation": {
+    "identity": "ri:references:src/devtools/agents/conversation/conversation.py",
+    "inputs": {
+      "address": "src/devtools/agents/conversation/conversation.py",
+      "content_identity": "cf5d3a46b219f33a3ea7f2f7808e4b8a3c3c09341d5a66f1b6e107e050f1c8a7",
+      "universe": "6d873cfcbdf40c22f565ce69f7685e01e788f7f29a5afbe07a3fca960bb40f7b"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "lexical:fields",
+      "lexical:index",
+      "ri:module-universe",
+      "ri:references:scripts/validate_development.py",
+      "ri:references:src/devtools/__init__.py",
+      "ri:references:src/devtools/agents/__init__.py",
+      "ri:references:src/devtools/agents/conversation/__init__.py"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "d0b6c71543c1863a55fff07094c9fc5fc5b439597a9aee5ce99d17e43a38b32c",
+  "runtime_identity": {
+    "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": [
+      3,
+      14,
+      0
+    ]
+  },
+  "sequence": 9,
+  "state": "ENTERED"
+}

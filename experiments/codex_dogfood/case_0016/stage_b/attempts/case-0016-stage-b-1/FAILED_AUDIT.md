@@ -1,0 +1,110 @@
+# Case 0016 Stage B failed publication audit
+
+NO RETRY. This attempt is not successful Stage B evidence. No treatment query, graph, PPR, fusion, reference query, map or gold exists.
+
+```json
+{
+  "Astra_started": false,
+  "SEARCH_POLICY_FAILURE": "NOT_ASSESSED",
+  "actual_counts": {
+    "exact_seed_resolutions": 0,
+    "fusion_executions": 0,
+    "gold": "ABSENT",
+    "graph_construction_executions": 0,
+    "lexical_query_executions": 0,
+    "pagerank_executions": 0,
+    "reference_query_executions": 0,
+    "repository_map_diagnostics": 0,
+    "ri_reference_derivations": 162,
+    "treatment_rankings": 0
+  },
+  "authentication": {
+    "amended_authenticated_files": 193,
+    "amended_integrity_sha256": "c93c4594c3821211d3129f4fb9c19c41c2ccf035abb12f8de7c2025f0dbbf505",
+    "deterministic_stage_a_replay": "PASS",
+    "frame": {
+      "corpus_id": "1e0df552f370938fcbbbf489a4bf433a25b4a218b1f624b72a21e463bcbdc7b0",
+      "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+      "snapshot_id": "636f86afb0fef7b8ccdd9adfd1c9f64dea76139b90d3d098f8f2b811bd90dfca"
+    },
+    "initial_counts": {
+      "exact_seed_resolutions": 0,
+      "fusion_executions": 0,
+      "gold": "ABSENT",
+      "graph_construction_executions": 0,
+      "lexical_query_executions": 0,
+      "pagerank_executions": 0,
+      "reference_query_executions": 0,
+      "repository_map_diagnostics": 0,
+      "ri_reference_derivations": 0,
+      "treatment_rankings": 0
+    },
+    "original_authenticated_files": 191,
+    "original_integrity_sha256": "84529a786ada2d814a56039328f902fa6e28ddb93e7488d41b83282b2ee67009",
+    "original_stage_a": "e2cc61600705eb5faccb814cb19f81aac5645a73",
+    "protocol_sha256": "a8b4c7bc5b1fe5eea36c40c0f46c579b68f363c5aed3720a36e489089d4cb283",
+    "stage_a": "e05d9d08297496c4ff5a8e0be1084c4ce1c99a35"
+  },
+  "authoritative_operations_returned": 166,
+  "confirmation_reserve": "NOT_ACCESSED",
+  "costs": {
+    "frame_preparation_ns": 5801493000,
+    "lexical_fields_ns": 1119109900,
+    "lexical_index_ns": 5420095100,
+    "module_universe_ns": 19643700,
+    "note": "Captured immutable single-run runtimes only; no complete capture/publication cost exists.",
+    "partial_RI_derivation_ns": 31183832300
+  },
+  "effectiveness": "UNKNOWN",
+  "exception": {
+    "error": "Permission denied while writing file: C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\codex_dogfood\\case_0016\\stage_b\\attempts\\case-0016-stage-b-1\\raw_checkpoint.json.",
+    "error_type": "FilesystemPermissionError",
+    "execution": "case-0016-stage-b-1",
+    "native_return": "DURABLE; NO RERUN; SUMMARY DERIVED",
+    "operation": "ri:references:src/devtools/models/interaction/providers/__init__.py",
+    "returned_chain_sha256": "4633d7a8b8ca8f014d3e87b612850e40075436eaf6d8014db4d9c5158557b3a5"
+  },
+  "execution": "case-0016-stage-b-1",
+  "failure_operation": "ri:references:src/devtools/models/interaction/providers/__init__.py",
+  "failure_operation_number": 166,
+  "failure_phase": "derived raw_checkpoint.json publication AFTER durable native RETURNED",
+  "feature_implementation": "NOT_IMPLEMENTED",
+  "frame": {
+    "corpus_id": "1e0df552f370938fcbbbf489a4bf433a25b4a218b1f624b72a21e463bcbdc7b0",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "636f86afb0fef7b8ccdd9adfd1c9f64dea76139b90d3d098f8f2b811bd90dfca"
+  },
+  "frame_resources_authenticated": 514,
+  "gold": "ABSENT",
+  "immutable_journal_events": 332,
+  "journal_chain_sha256": "4633d7a8b8ca8f014d3e87b612850e40075436eaf6d8014db4d9c5158557b3a5",
+  "operation_schedule_sha256": "1c5e255a800c872a397506805cc0da6942803be519a681f35def8a58383e71b6",
+  "outcome": "NOT_SELECTED",
+  "packet": "NOT_BUILT",
+  "partial_assessment_outcomes": {
+    "method-unresolved": 278,
+    "module-unresolved": 437,
+    "resolved": 491,
+    "shadowed-binding": 5606,
+    "target-not-supported-declaration": 260,
+    "unresolved-binding": 1774,
+    "unsupported-expression": 136,
+    "unsupported-receiver": 764,
+    "unsupported-scope": 5559
+  },
+  "partial_native_assessments": 15305,
+  "partial_native_positive_references": 491,
+  "production_behavior": "UNCHANGED",
+  "publication_failures": 1,
+  "python_resources_assessed": 162,
+  "python_resources_scheduled": 415,
+  "reader": "PASS: immutable claim/context/chained records, native/canonical equality, source bindings, full frame identity; no scientific calls",
+  "remaining_schedule_operations_not_invoked": 298,
+  "retries": 0,
+  "scientific_exceptions": 0,
+  "status": "FAILED_PUBLICATION / NO RETRY / NOT A SUCCESSFUL STAGE B",
+  "sterile_workspace": "NOT_CREATED"
+}
+```
+
+The immediate filesystem cause is not established. The recorded permission error concerns derived raw_checkpoint.json; the native return is already immutable. A read-only PowerShell inspection of this convenience file overlapped execution; Windows file sharing is a plausible contributor, not proven. No process was blocked/stopped and no repair/retry was attempted.

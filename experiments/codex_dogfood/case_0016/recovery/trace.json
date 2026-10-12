@@ -1,0 +1,76 @@
+{
+  "active_mutable_writes": 0,
+  "amendment": "CAPTURE_DURABILITY_ONLY",
+  "attempt_1": {
+    "authenticated_artifacts": 673,
+    "execution": "case-0016-stage-b-1",
+    "failed_audit_sha256": "90b6c21765505836e228182771e193aad1782d7c97f6240e748d222548267307",
+    "journal_chain": "4633d7a8b8ca8f014d3e87b612850e40075436eaf6d8014db4d9c5158557b3a5",
+    "journal_events": 332,
+    "operations_returned": 166,
+    "publication_failures": 1,
+    "retries": 0,
+    "scientific_exceptions": 0,
+    "status": "FAILED_AUDIT_ONLY"
+  },
+  "attempt_2_initial_counts": {
+    "exact_seed_resolutions": 0,
+    "fusion_executions": 0,
+    "gold": "ABSENT",
+    "graph_construction_executions": 0,
+    "lexical_query_executions": 0,
+    "pagerank_executions": 0,
+    "reference_query_executions": 0,
+    "repository_map_diagnostics": 0,
+    "ri_reference_derivations": 0,
+    "treatment_rankings": 0
+  },
+  "attempt_2_operation_count": 464,
+  "attempt_2_schedule_sha256": "e89c95ef5428d5e5625f889419c1d02d430a298d16eabc859d387faa3a267e00",
+  "authoritative": [
+    "execution.claim",
+    "execution_started.json",
+    "immutable ENTERED/RETURNED/FAILED_NO_RETURN",
+    "native/canonical return payloads",
+    "journal chain",
+    "execution_completed.json"
+  ],
+  "confirmation_reserve": "NOT_ACCESSED",
+  "derived": [
+    "append-only progress",
+    "on-demand/final raw checkpoint",
+    "human status"
+  ],
+  "effectiveness": "UNKNOWN",
+  "gold": "ABSENT",
+  "outcome": "NOT_SELECTED",
+  "scientific_AST": "IDENTICAL",
+  "scientific_contract": "UNCHANGED",
+  "stage_a": {
+    "amended_authenticated_files": 193,
+    "amended_integrity_sha256": "c93c4594c3821211d3129f4fb9c19c41c2ccf035abb12f8de7c2025f0dbbf505",
+    "deterministic_stage_a_replay": "PASS",
+    "frame": {
+      "corpus_id": "1e0df552f370938fcbbbf489a4bf433a25b4a218b1f624b72a21e463bcbdc7b0",
+      "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+      "snapshot_id": "636f86afb0fef7b8ccdd9adfd1c9f64dea76139b90d3d098f8f2b811bd90dfca"
+    },
+    "initial_counts": {
+      "exact_seed_resolutions": 0,
+      "fusion_executions": 0,
+      "gold": "ABSENT",
+      "graph_construction_executions": 0,
+      "lexical_query_executions": 0,
+      "pagerank_executions": 0,
+      "reference_query_executions": 0,
+      "repository_map_diagnostics": 0,
+      "ri_reference_derivations": 0,
+      "treatment_rankings": 0
+    },
+    "original_authenticated_files": 191,
+    "original_integrity_sha256": "84529a786ada2d814a56039328f902fa6e28ddb93e7488d41b83282b2ee67009",
+    "original_stage_a": "e2cc61600705eb5faccb814cb19f81aac5645a73",
+    "protocol_sha256": "a8b4c7bc5b1fe5eea36c40c0f46c579b68f363c5aed3720a36e489089d4cb283",
+    "stage_a": "e05d9d08297496c4ff5a8e0be1084c4ce1c99a35"
+  }
+}

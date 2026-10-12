@@ -1,0 +1,53 @@
+{
+  "event": 35,
+  "execution": "case-0016-stage-b-1",
+  "frame": {
+    "corpus_id": "1e0df552f370938fcbbbf489a4bf433a25b4a218b1f624b72a21e463bcbdc7b0",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "636f86afb0fef7b8ccdd9adfd1c9f64dea76139b90d3d098f8f2b811bd90dfca"
+  },
+  "input_sha256": "617990d0bfa7e5bff57ad1dcb783192deeac3d6fc0ec01f67b9437fe59447922",
+  "operation": {
+    "identity": "ri:references:src/devtools/context/__init__.py",
+    "inputs": {
+      "address": "src/devtools/context/__init__.py",
+      "content_identity": "e2392c9351df7a0f17f23f2ccd15e3fd1436c4e59eb7e0ee9eb7d0d0c32a445c",
+      "universe": "6d873cfcbdf40c22f565ce69f7685e01e788f7f29a5afbe07a3fca960bb40f7b"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "lexical:fields",
+      "lexical:index",
+      "ri:module-universe",
+      "ri:references:scripts/validate_development.py",
+      "ri:references:src/devtools/__init__.py",
+      "ri:references:src/devtools/agents/__init__.py",
+      "ri:references:src/devtools/agents/conversation/__init__.py",
+      "ri:references:src/devtools/agents/conversation/conversation.py",
+      "ri:references:src/devtools/agents/conversation/history.py",
+      "ri:references:src/devtools/agents/conversation/message.py",
+      "ri:references:src/devtools/agents/integrations/__init__.py",
+      "ri:references:src/devtools/agents/integrations/codex/__init__.py",
+      "ri:references:src/devtools/agents/integrations/codex/agent.py",
+      "ri:references:src/devtools/agents/integrations/codex/errors.py",
+      "ri:references:src/devtools/agents/integrations/codex/models.py",
+      "ri:references:src/devtools/agents/integrations/codex/parsing.py"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "0b6bd150469fcc1327c4b2354953f20e6d9b15b9fb50be922c25d646891dc6ab",
+  "runtime_identity": {
+    "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": [
+      3,
+      14,
+      0
+    ]
+  },
+  "sequence": 18,
+  "state": "ENTERED"
+}
