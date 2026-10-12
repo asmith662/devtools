@@ -65,7 +65,7 @@ U1, U2 and U3 are complete**; Case 0013 Stage D supports bounded task-role-
 conditioned exact-route admission. R1.7 is COMPLETE /
 QUERY_TERM_WEIGHTING_HARMFUL at Case 0014 Stage D, with unchanged primary-derived
 reviewed gold and the prospectively frozen decision rule. R2 true BM25F is
-CURRENT / STAGE_A_FROZEN at Case 0015; maintainer review precedes execution.
+CURRENT / STAGE_B_CAPTURED at Case 0015; blind primary adjudication is next.
 canonical production BM25 remains unchanged and semantic-resolution effectiveness
 does not resume yet.
 
@@ -203,7 +203,7 @@ Human treatment inspection is not blind adjudication; maintainer labels belong
 in MANUAL_AUDIT. R1/R1.5/R1.6 remain complete. U1 = COMPLETE /
 INFORMATION_NEED_AUTHORING_DEFECT; U2 = COMPLETE / EXACT_HINT_ROUTING_SUPPORTED;
 U3 = COMPLETE / SELECTIVE_MECHANISM_ROUTING_SUPPORTED. R1.7 = COMPLETE /
-QUERY_TERM_WEIGHTING_HARMFUL. R2 true BM25F = CURRENT / STAGE_A_FROZEN;
+QUERY_TERM_WEIGHTING_HARMFUL. R2 true BM25F = CURRENT / STAGE_B_CAPTURED;
 downstream Localization continuation = PRESERVED.
 U1 success is not a condition for R2.
 
@@ -263,14 +263,19 @@ BM25F Arm B. Field-normalized tf combines before one union IDF and one
 saturation. k1=1.2, both b=0.75, weights content=1.0 and filename=0.25;
 every query multiplier=1.0. The new future strict-bounded-filesystem-read task
 has six mandatory obligations and identical frozen queries across arms.
-[Experiment infrastructure](../experiments/bm25f/README.md) is tested only on
-synthetic fixtures. Prospective index/query/scoring/ranking executions are zero;
-gold is absent. Production and confirmation/reserve status are unchanged.
+[Experiment infrastructure](../experiments/bm25f/README.md) retains its frozen
+scientific semantics. [Case 0015 current publication](../experiments/codex_dogfood/case_0015/CURRENT.md)
+owns the metadata-only recovery, immutable failed attempt 1 and authoritative
+attempt 2: all 17 operations returned once, candidate identity and exact arithmetic
+pass. The blind packet double-build and fresh sterile validator pass. Gold is
+NOT_CREATED; effectiveness UNKNOWN; outcome NOT_SELECTED. Production remains
+UNCHANGED; confirmation/reserve NOT_ACCESSED; SEARCH_POLICY_FAILURE NOT_ASSESSED.
 The frozen rule distinguishes safe replacement, bounded complementary value,
 harm and invalid experiments through task-relative witnesses and REQUIRED ranks.
 
-Next: maintainer reviews frozen Case 0015 R2 Stage A. Only after authorization
-execute canonical additive BM25 and true BM25F prospectively exactly once.
+Next: maintainer reviews authoritative Case 0015 Stage B attempt 2. Then start a
+COMPLETELY FRESH GPT-6 Astra / High session in the newly prepared sterile workspace
+for one clean treatment-blind primary adjudication. No gold has been created.
 The broader field/identifier comparison directions below remain future hypotheses;
 they are not arms or fields in this first frozen two-field, two-arm slice.
 

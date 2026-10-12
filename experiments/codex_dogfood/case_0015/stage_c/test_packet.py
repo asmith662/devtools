@@ -5,10 +5,14 @@
 from __future__ import annotations
 
 import copy
+import gzip
+import json
 from typing import TYPE_CHECKING, Any
 
 import pytest
 
+from experiments.codex_dogfood.case_0009.artifacts import binary, json_bytes, read_json
+from experiments.codex_dogfood.case_0015 import blind, freeze, protocol
 from experiments.codex_dogfood.case_0015.stage_b.execute import CAPTURE
 from experiments.codex_dogfood.case_0015.stage_c import packet, validate_packet
 
@@ -59,6 +63,24 @@ def test_original_obligation_resource_frame_tamper(value: dict[str, Any]) -> Non
     changed["eligible_resources"][0]["content"] += "tamper"
     with pytest.raises(ValueError, match="identity"):
         validate_packet.validate_payload(changed)
+
+
+def test_only_sealed_publication_metadata_is_omitted(
+    value: dict[str, Any],
+) -> None:
+    """Only frame_policy metadata is omitted; all semantic bytes remain exact."""
+    loaded = read_json(freeze.CASE / "protocol.json")
+    assert set(loaded) == set(protocol.authored()) | {"frame_policy"}
+    base = {k: v for k, v in loaded.items() if k != "frame_policy"}
+    assert json_bytes(base) == json_bytes(protocol.authored())
+    assert value == blind.packet(
+        protocol.authored(),
+        json.loads(
+            gzip.decompress(
+                binary(freeze.CASE / "resources.json.gz"),
+            ),
+        ),
+    )
     changed = copy.deepcopy(value)
     changed["obligations"][0]["task_span"]["end"] -= 1
     with pytest.raises(ValueError, match="obligation"):

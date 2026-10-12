@@ -1,0 +1,52 @@
+{
+  "SEARCH_POLICY_FAILURE": "NOT_ASSESSED",
+  "astra_started": false,
+  "authoritative_execution": "case-0015-stage-b-2",
+  "confirmation_reserve": "NOT_ACCESSED",
+  "digest_scopes": {
+    "archive_sha256": "a2445d3fe86bda2d5d2eb6264bbb0578cbd8772bb8db658cc79bc32001b77741",
+    "canonical_payload_sha256": "5f90696d95d5514253454612a0301a4f08f48223bea2818069f4cfe856a0e859",
+    "files": [
+      "README.md",
+      "integrity.json",
+      "manifest.json",
+      "resources.json.gz",
+      "validate_packet.py"
+    ],
+    "integrity_sha256": "5b5dc7e6ff3c797f8f56dd7fd90e5083a33471dfd80bfdfc3201e30ac9a4febc",
+    "manifest_sha256": "6a3a0dbd7eb8eaffeacafb47edf86decd50665e9cb25d0b9a32b8208c19e12ad",
+    "status": "PASS; NO ADJUDICATION"
+  },
+  "effectiveness": "UNKNOWN",
+  "future_reviewer": {
+    "automatic_second_reviewer": false,
+    "model": "GPT-6 Astra",
+    "reasoning": "High"
+  },
+  "gold": "NOT_CREATED",
+  "implementation_sha256": {
+    "__init__.py": "29721f8128201993f1901519ab066e9bc3cc8fee30d72e0f6a77869bd5a6503b",
+    "packet.py": "dbf434203e33ca01a044cb3c614d9c185d19264c6772a9e363c81452cec72737",
+    "test_packet.py": "c67fff723695e421161e648d85f1192ea52f0d2e5f78dfb488abe3071bc212f8",
+    "validate_packet.py": "71c95c20175fee971583fc25a65e46bcfe39442b126d02ded23c7c28943f1209"
+  },
+  "independent_process_double_build": "EXACT_BYTES_IDENTICAL",
+  "initial_file_sha256": {
+    "README.md": "d7fd2e1fc656a35b30cca813200998c77852dacad07e8eb13d082d6205fbe618",
+    "integrity.json": "5b5dc7e6ff3c797f8f56dd7fd90e5083a33471dfd80bfdfc3201e30ac9a4febc",
+    "manifest.json": "6a3a0dbd7eb8eaffeacafb47edf86decd50665e9cb25d0b9a32b8208c19e12ad",
+    "resources.json.gz": "a2445d3fe86bda2d5d2eb6264bbb0578cbd8772bb8db658cc79bc32001b77741",
+    "validate_packet.py": "71c95c20175fee971583fc25a65e46bcfe39442b126d02ded23c7c28943f1209"
+  },
+  "leakage_validation": "PASS; strict allowlists and deep tripwires",
+  "outcome": "NOT_SELECTED",
+  "production_behavior": "UNCHANGED",
+  "publication_repair": "Stage A adds sealed frame_policy metadata to authored protocol. Verify full sealed protocol digest, omit only frame_policy at blind projector input, require exact authored canonical-byte equality. Frozen scientific files unchanged; no native rerun.",
+  "recovery_checkpoint": "cc9aaef40dec218e63fae7de835298ef76bd241f",
+  "schema": "case-0015-blind-publication-v1",
+  "stage_a": "d7e28de0e103bdf0e494a0156311fa1c14b6c9f8",
+  "stage_b_checkpoint": "a4e3f6ee2446e0b54ec1477c0fab69abfbd4c716",
+  "standalone_validator": "PASS; NO ADJUDICATION",
+  "sterile_file_identity": "EXACT_PACKET_BYTES",
+  "sterile_workspace": "C:\\Users\\recoveryadmin\\CodexSterile\\case_0015_stage_c_a2445d3fe86b"
+}

@@ -88,7 +88,7 @@
   prospective gates: SELECTIVE_MECHANISM_ROUTING_SUPPORTED. The bounded result
   establishes task-role-conditioned exact-route admission only; production is
   unchanged. R1.7 is COMPLETE / QUERY_TERM_WEIGHTING_HARMFUL;
-  true BM25F is CURRENT / STAGE_A_FROZEN at Case 0015.
+  true BM25F is CURRENT / STAGE_B_CAPTURED at Case 0015.
 - [R1.7 query-term weighting](../experiments/query_term_weighting/README.md)
   owns experimental task/query-only roles, explicit contribution multipliers,
   native/weighted trace reconstruction and exact prospective gates.
@@ -480,9 +480,13 @@ owns the prospective first R2 slice, task/queries, exact frame, two-field/two-ar
 contract, blind-gold policy and frozen integer outcome rule.
 [True BM25F infrastructure](../experiments/bm25f/README.md) owns experiment-only
 canonical field adaptation, union df, pre-saturation aggregation and lossless
-traces. R2 is CURRENT / STAGE_A_FROZEN; prospective execution is zero and gold
-absent. Production remains unchanged. Maintainer review precedes separately
-authorized exactly-once Stage B.
+traces. [Case 0015 current publication](../experiments/codex_dogfood/case_0015/CURRENT.md)
+links the capture-only recovery, failed attempt 1 and authoritative Stage B attempt 2.
+[Blind packet publication](../experiments/codex_dogfood/case_0015/stage_c/PUBLICATION.md)
+owns deterministic double-build, leakage guards and fresh sterile validation.
+R2 is CURRENT / STAGE_B_CAPTURED; gold absent, effectiveness UNKNOWN and outcome
+NOT_SELECTED. Production remains unchanged. Maintainer review precedes one fresh
+GPT-6 Astra / High treatment-blind primary adjudication.
 
 The `orchestration` and `governance` domains remain recognized sparse
 namespaces without reusable implementation APIs. Evaluation now provides the

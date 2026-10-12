@@ -22,7 +22,7 @@ from experiments.codex_dogfood.case_0009.artifacts import (
     put_text,
     read_json,
 )
-from experiments.codex_dogfood.case_0015 import blind, freeze
+from experiments.codex_dogfood.case_0015 import blind, freeze, protocol
 from experiments.codex_dogfood.case_0015.stage_b.authenticate import authenticate
 from experiments.codex_dogfood.case_0015.stage_b.execute import CAPTURE, source_hashes
 from experiments.codex_dogfood.case_0015.stage_c import validate_packet
@@ -72,6 +72,19 @@ started no Astra session.
 def payload() -> dict[str, Any]:
     """Apply the exact frozen allowlist; no treatment results are read for projection."""
     design = read_json(freeze.CASE / "protocol.json")
+    authored = protocol.authored()
+    if (
+        digest(binary(freeze.CASE / "protocol.json"))
+        != "5603bd782616516674a153e2824687b684a07c27347ad5998989333f96aa6747"
+    ):
+        raise ValueError("Sealed protocol digest differs")
+    if set(design) != set(authored) | {"frame_policy"}:
+        raise ValueError("Unexpected protocol publication metadata")
+    design = {k: v for k, v in design.items() if k != "frame_policy"}
+    if json_bytes(design) != json_bytes(authored):
+        raise ValueError("Frozen blind projection protocol bytes differ")
+    # Stage A's publisher adds sealed frame_policy metadata to the exact authored
+    # protocol. It is not part of the blind semantic projection or its guard.
     resources = json.loads(gzip.decompress(binary(freeze.CASE / "resources.json.gz")))
     value = blind.packet(design, resources)
     validate_packet.validate_payload(value)

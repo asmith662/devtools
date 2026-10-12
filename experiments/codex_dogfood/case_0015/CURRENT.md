@@ -21,7 +21,10 @@ R2 = CURRENT. Production behavior = UNCHANGED. Confirmation/reserve = NOT_ACCESS
 SEARCH_POLICY_FAILURE = NOT_ASSESSED. Gold = NOT_CREATED. Effectiveness = UNKNOWN.
 Outcome = NOT_SELECTED. No outcome rule or witness/effectiveness analysis is applied.
 
-At the treatment checkpoint, blind packet = NOT_CREATED and Astra started = NO.
-The authorized next operation is deterministic blind packet construction and
-validation, followed by a fresh stable sterile workspace; no adjudication here.
+Blind packet = [FROZEN](stage_c/PUBLICATION.md). Independent double-build,
+leakage/tamper/overwrite guards, exact five-file byte identity and fresh stable
+sterile standalone validation pass. Astra started = NO. Future primary reviewer:
+GPT-6 Astra / High, one clean treatment-blind adjudication, no automatic second
+reviewer. Next: maintainer reviews authoritative Stage B attempt 2, then starts a
+COMPLETELY FRESH Astra High session in the newly prepared sterile workspace.
 This publication-status file is mutable metadata outside the scientific seals.
