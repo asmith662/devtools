@@ -297,6 +297,16 @@ prospective evaluation slice. Do not start another lexical weighting/parameter
 micro-experiment first. This roadmap records direction, not graph implementation
 authorization in the Case 0015 task. Richer field models, optimized BM25F,
 learned ranking, fusion and sequential localization remain future work.
+Graph-3 now has a prospective [Case 0016 Stage A freeze](../experiments/codex_dogfood/case_0016/STAGE_A_REVIEW.md):
+reference-only resource PPR with sqrt occurrence weights, uniform existing-exact
+plus top-10 canonical lexical seeds, and equal-weight production RRF. C versus A
+is primary; B versus A and an 8192-byte definition-map diagnostic explain
+structural contributions. The production stationary walk and RRF arithmetic are
+reused; new task conditioning/projection/diagnostic/gates are experiment-owned.
+Stage B remains NOT EXECUTED, gold ABSENT and usefulness NOT EVALUATED. Next:
+maintainer reviews this frozen task/protocol, then separately executes the three
+arms prospectively exactly once. No production graph promotion or feature
+implementation follows from Stage A, and no lexical micro-experiment intervenes.
 The broader field/identifier comparison directions below remain future hypotheses;
 they are not arms or fields in this first frozen two-field, two-arm slice.
 

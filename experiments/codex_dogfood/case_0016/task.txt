@@ -1,0 +1,15 @@
+Add an explicit caller-selected resource-pointer disclosure choice to common Context Planning, alongside existing whole-resource and qualified-reference choices.
+
+O1. A pointer identifies an already observed repository resource without including its source body. Reuse the existing snapshot/resource identity and lookup contracts, and inspect the whole-resource choice in src/devtools/context/planning/resource.py. Preserve repository identity, snapshot identity, canonical resource address and content identity; a pointer is orientation evidence, not proof of relevance, adequacy or task completion.
+
+O2. Integrate the new immutable choice with PlannedDisclosure, DisclosurePlan and materialize_disclosure_plan. Its deterministic option identity must bind representation, purpose and exact resource applicability. Mixed plans preserve caller order and the one-item-per-choice contract; reject duplicate identical choices and incompatible purpose or frames using existing conventions.
+
+O3. Materialization uses only retained RepositorySnapshot state. Authenticate the supplied observed occurrence through RepositorySnapshot.resource_at, reject foreign/stale snapshots, missing resources and changed content before publishing a MaterializedDisclosureItem, and preserve exact native resource provenance. Do not reacquire files or silently expand a pointer to whole source.
+
+O4. Define a deterministic human-readable pointer representation containing purpose, repository/snapshot identities, resource address, content identity and the observed source UTF-8 byte count, with an explicit statement that source is not disclosed. Keep support address/content pairs aligned even though the represented text omits source. Non-ASCII addresses and source text must be handled faithfully; the byte count is observed source size, not represented Context size.
+
+O5. Preserve render_context_disclosure and assemble_context_disclosure_model_request behavior for mixed pointer/whole-resource/qualified-reference plans: task precedes supporting Context, item order is unchanged, and copied ModelRequest preserves prompt role and all other fields. Export the new choice through the common planning and outer Context facades, without Retrieval dependencies or Python-specific logic in common assembly.
+
+O6. Add focused tests under tests/context/planning/ and update src/devtools/context/planning/docs/overview.md and governing architecture documentation for explicit choice, applicability, native provenance, mixed ordering, deterministic identity/rendering, non-ASCII byte accounting, rejection cases and unchanged existing choices. Follow docs/development/validation.md and scripts/validate_development.py, retaining configured production coverage and strict typing. Do not implement automatic selection, budgeting, truncation, semantic resolution, persistence, authorization or agent execution.
+
+Operational boundary: this is a future development specification for a prospective acquisition experiment. Freeze Stage A only; do not implement this feature or execute prospective retrieval or adjudication.

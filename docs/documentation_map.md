@@ -536,6 +536,13 @@ and the pending prospective evaluation protocol. ADR-0003 and ADR-0004 continue
 to govern Retrieval/Context ownership; the research disposition distinguishes
 this devtools adaptation from Aider's task-weighted PageRank/rendering pipeline.
 
+The [Graph-3 Case 0016 Stage A review](../experiments/codex_dogfood/case_0016/STAGE_A_REVIEW.md)
+owns the current machinery/gap audit, exact Graph-1/2 history, new prospective
+task, references-only uniformly seeded PPR/RRF contract and blind-gold/outcome
+rules. [Experimental composition](../experiments/task_conditioned_graph/README.md)
+reuses production stationary-walk and RRF arithmetic. The freeze contains no
+prospective graph, exact seed result, retrieval ranking, diagnostic map or gold.
+
 
 The [Python modules source selector](../src/devtools/context/python/modules/docs/overview.md#exact-source-declaration-selection)
 owns exact native class/function selection independently of conservative direct

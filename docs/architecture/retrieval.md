@@ -63,6 +63,15 @@ No default graph rank, structural insertion rule or universal Selector follows.
 
 ## Canonical lexical representation and scoring
 
+The prospective [Graph-3 Case 0016 Stage A](../../experiments/codex_dogfood/case_0016/STAGE_A_REVIEW.md)
+is experiment-owned references-only resource PPR with sqrt occurrence weights,
+uniform exact-existing plus top-10 lexical personalization, and unchanged
+equal-channel production RRF arithmetic. Primary effectiveness will be C versus
+A; graph-only B and definition-map rendering are diagnostics. Its task, gates,
+provenance and ownership audit are frozen before execution; no effectiveness
+claim or production change is established. Production graph/map APIs above
+retain their distinct semantics.
+
 The [canonical analyzer](../../src/devtools/context/retrieval/lexical/analysis.py)
 matches ordinary Unicode `\w+` spans and case-folds them. It does **not** split
 snake_case, camelCase, PascalCase, acronym boundaries or identifier components.
