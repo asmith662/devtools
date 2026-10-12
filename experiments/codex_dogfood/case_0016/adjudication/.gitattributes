@@ -1,0 +1,5 @@
+# Override inherited Python text normalization at the immutable import boundary.
+primary/* -text -eol
+reviewed/* -text -eol
+# The sealed builder contains three CRLF lines and a retained final blank line.
+primary/stage_c_builder.py whitespace=cr-at-eol,-blank-at-eof

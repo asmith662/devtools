@@ -549,3 +549,10 @@ owns exact native class/function selection independently of conservative direct
 binding lookup. [Localization grounding](../src/devtools/context/localization/docs/overview.md#exact-task-anchor-grounding)
 consumes that selection for static declaration identities, including decorated
 declarations, without runtime/import identity or witness acceptance claims.
+
+The [Case 0016 primary publication](../experiments/codex_dogfood/case_0016/adjudication/PUBLICATION.md)
+owns the immutable sole treatment-blind Astra High import and authentication.
+[Reviewed gold](../experiments/codex_dogfood/case_0016/adjudication/reviewed/REVIEWED_GOLD.md)
+preserves all primary semantics directly: 3,084 cells, 48 units, 22 witnesses,
+864 task combinations and no gaps. No reconciliation or second reviewer is used.
+This development-gold checkpoint does not itself evaluate Graph-3 effectiveness.

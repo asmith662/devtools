@@ -1,0 +1,157 @@
+{
+  "adversarial_failed": 0,
+  "adversarial_mutations": [
+    {
+      "name": "altered_cell_identity",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "missing_cell",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "duplicate_cell",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "invalid_label",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "invalid_resource_identity",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "invalid_span",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "altered_semantic_unit",
+      "result": "REJECTED",
+      "semantic_seal_enabled": true
+    },
+    {
+      "name": "invalid_evidence_class",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "broken_support_alternative",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "invalid_witness",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "redundant_nonminimal_witness",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "invalid_task_combination",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "invalid_sufficient_union",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "invalid_inclusion_minimal_union",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "invalid_sufficient_unit_union",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "invalid_obligation_indispensability",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "invalid_task_indispensability",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "altered_gap",
+      "result": "REJECTED",
+      "semantic_seal_enabled": true
+    },
+    {
+      "name": "altered_limitation",
+      "result": "REJECTED",
+      "semantic_seal_enabled": true
+    },
+    {
+      "name": "altered_ambiguity",
+      "result": "REJECTED",
+      "semantic_seal_enabled": true
+    },
+    {
+      "name": "tampered_scientific_hash",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    },
+    {
+      "name": "overwrite_refusal",
+      "result": "REJECTED",
+      "semantic_seal_enabled": false
+    }
+  ],
+  "adversarial_passed": 22,
+  "checked": [
+    "exact task and obligation binding",
+    "514 native resource identities",
+    "3084 unique ordered cells",
+    "labels",
+    "positive identities/spans",
+    "semantic units/evidence classes",
+    "support alternatives",
+    "required-unit support",
+    "all minimal witnesses",
+    "independent deletion minimality",
+    "obligation intersections",
+    "task-combination mathematics",
+    "sufficient resource unions",
+    "inclusion-minimality",
+    "sufficient semantic-unit unions",
+    "task intersections",
+    "frozen gaps/limitations/ambiguities",
+    "self-review",
+    "deterministic statistics/Markdown",
+    "scientific hashes",
+    "overwrite refusal",
+    "original packet preservation"
+  ],
+  "completeness": {
+    "actual_cells": 3084,
+    "duplicates": 0,
+    "expected_cells": 3084,
+    "missing": 0,
+    "obligations": 6,
+    "resources": 514,
+    "unexpected": 0,
+    "unresolved": 0
+  },
+  "packet_authentication": "PASS; original five files byte-identical; initial whitelist not rerun",
+  "primary_semantic_sha256": "afaaf490085b901aa0abd9256548a01ee5f97d09faf654931624f6525fc629c8",
+  "replay_contract": "verify rebuilds this bundle in the invoking Python process and requires every published derived byte and hash to match exactly. Publication is not completion until a separate verify invocation succeeds.",
+  "schema": "case-0016-validation-v1",
+  "semantic_limit": "Mechanical consistency and frozen-primary replay, not an independent semantic review.",
+  "separate_process_replay_command": "python -B stage_c_builder.py verify",
+  "status": "PASS"
+}
