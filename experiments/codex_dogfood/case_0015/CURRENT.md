@@ -17,14 +17,16 @@ R1.7 = COMPLETE / QUERY_TERM_WEIGHTING_HARMFUL. Anchor emphasis caused harmful
 REQUIRED regressions; generic attenuation added REQUIRED improvements with no
 additional REQUIRED regressions in Case 0014. This remains query-side evidence
 only. Identifier-aware R1 remains separate; U2/U3 remain exact mechanism routing.
-R2 = CURRENT. Production behavior = UNCHANGED. Confirmation/reserve = NOT_ACCESSED.
-SEARCH_POLICY_FAILURE = NOT_ASSESSED. Gold = NOT_CREATED. Effectiveness = UNKNOWN.
-Outcome = NOT_SELECTED. No outcome rule or witness/effectiveness analysis is applied.
+R2 = CURRENT / REVIEWED_GOLD_PUBLISHED. Production behavior = UNCHANGED.
+Confirmation/reserve = NOT_ACCESSED. SEARCH_POLICY_FAILURE = NOT_ASSESSED.
+Gold = [REVIEWED](adjudication/reviewed/REVIEWED_GOLD.md). Effectiveness = UNKNOWN.
+Outcome = NOT_SELECTED. Stage D has not started.
 
-Blind packet = [FROZEN](stage_c/PUBLICATION.md). Independent double-build,
-leakage/tamper/overwrite guards, exact five-file byte identity and fresh stable
-sterile standalone validation pass. Astra started = NO. Future primary reviewer:
-GPT-6 Astra / High, one clean treatment-blind adjudication, no automatic second
-reviewer. Next: maintainer reviews authoritative Stage B attempt 2, then starts a
-COMPLETELY FRESH Astra High session in the newly prepared sterile workspace.
+Blind packet = [FROZEN](stage_c/PUBLICATION.md). All five original inputs remain
+byte-identical. The completed GPT-6 Astra / High primary is authenticated and
+[imported](adjudication/PUBLICATION.md) without semantic modification. Reviewed
+gold is its direct deterministic representation; no reconciliation or second
+reviewer. Replay, support algebra and mutation checks pass. Next: after the
+reviewed checkpoint validates, commits and pushes, execute authorized Stage D
+against captured attempt 2 under the prospectively frozen R2 gates.
 This publication-status file is mutable metadata outside the scientific seals.

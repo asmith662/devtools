@@ -1,0 +1,119 @@
+{
+  "adversarial_mutations": [
+    {
+      "name": "altered_cell_identity",
+      "result": "REJECTED"
+    },
+    {
+      "name": "missing_cell",
+      "result": "REJECTED"
+    },
+    {
+      "name": "duplicate_cell",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_label",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_resource",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_support_span",
+      "result": "REJECTED"
+    },
+    {
+      "name": "altered_unit",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_evidence_class",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_alternative",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_witness",
+      "result": "REJECTED"
+    },
+    {
+      "name": "redundant_witness",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_task_combination",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_sufficient_union",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_minimal_union",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_sufficient_unit_union",
+      "result": "REJECTED"
+    },
+    {
+      "name": "invalid_indispensability",
+      "result": "REJECTED"
+    },
+    {
+      "name": "altered_gap",
+      "result": "REJECTED"
+    },
+    {
+      "name": "altered_limitation",
+      "result": "REJECTED"
+    },
+    {
+      "name": "tampered_hashes",
+      "result": "REJECTED"
+    },
+    {
+      "name": "overwrite_refusal",
+      "result": "REJECTED"
+    }
+  ],
+  "adversarial_rejected": 20,
+  "canonical_payload_sha256": "5f90696d95d5514253454612a0301a4f08f48223bea2818069f4cfe856a0e859",
+  "checks": [
+    "exact original input bytes",
+    "exact task and six obligations",
+    "exact native 515-resource frame",
+    "complete ordered 3090-cell frame",
+    "positive identities and exact original spans",
+    "unique semantic units and evidence classes",
+    "minimal support alternatives",
+    "complete minimal witnesses",
+    "obligation intersections",
+    "complete task product",
+    "distinct sufficient resource and unit unions",
+    "inclusion-minimal resource unions",
+    "task intersections",
+    "reviewed gaps and limitations",
+    "deterministic statistics and Markdown",
+    "scientific hashes and overwrite refusal"
+  ],
+  "completeness": {
+    "actual_cells": 3090,
+    "duplicate_cells": 0,
+    "expected_cells": 3090,
+    "missing_cells": 0,
+    "obligations": 6,
+    "resources": 515,
+    "unexpected_cells": 0,
+    "unresolved_cells": 0
+  },
+  "packet_preservation": "PASS",
+  "schema": "case-0015-deterministic-validation-v1",
+  "semantic_commitment_sha256": "5600a7c294e7d3a5b6dab07795ff7da3b027b3282af5b1b1ab9b1cfce05077e5",
+  "status": "PASS",
+  "verification_contract": "The --verify command regenerates each derived artifact in memory and requires exact byte equality against disk, reauthenticates original inputs and checks scientific hashes without writing."
+}

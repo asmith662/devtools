@@ -484,9 +484,14 @@ traces. [Case 0015 current publication](../experiments/codex_dogfood/case_0015/C
 links the capture-only recovery, failed attempt 1 and authoritative Stage B attempt 2.
 [Blind packet publication](../experiments/codex_dogfood/case_0015/stage_c/PUBLICATION.md)
 owns deterministic double-build, leakage guards and fresh sterile validation.
-R2 is CURRENT / STAGE_B_CAPTURED; gold absent, effectiveness UNKNOWN and outcome
-NOT_SELECTED. Production remains unchanged. Maintainer review precedes one fresh
-GPT-6 Astra / High treatment-blind primary adjudication.
+The [primary import](../experiments/codex_dogfood/case_0015/adjudication/PUBLICATION.md)
+owns the immutable completed Astra High primary authentication;
+[reviewed gold](../experiments/codex_dogfood/case_0015/adjudication/reviewed/REVIEWED_GOLD.md)
+owns its direct unchanged representation and support algebra. No reconciliation
+or second reviewer is used. R2 is CURRENT / REVIEWED_GOLD_PUBLISHED;
+effectiveness UNKNOWN and outcome
+NOT_SELECTED. Production remains unchanged. Authorized Stage D follows the
+validated, committed and pushed reviewed-gold checkpoint.
 
 The `orchestration` and `governance` domains remain recognized sparse
 namespaces without reusable implementation APIs. Evaluation now provides the
