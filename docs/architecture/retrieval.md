@@ -293,7 +293,7 @@ sufficiency.** Both research tracks remain necessary.
 [EXPERIMENTAL; COMPLETE] U3: SELECTIVE_MECHANISM_ROUTING_SUPPORTED, bounded exact admission
 [EXPERIMENTAL; COMPLETE] R1.7: QUERY_TERM_WEIGHTING_HARMFUL, Case 0014
 [EXPERIMENTAL; COMPLETE] R2 true BM25F, Case 0015: BM25F_HARMFUL
-[EXPERIMENTAL; COMPLETE] GRAPH-3, Case 0016: GRAPH_HARMFUL; maintainer review next
+[EXPERIMENTAL; COMPLETE] GRAPH-3, Case 0016: GRAPH_HARMFUL; scientific verdict unchanged
 
 [PRODUCTION, CALLER-DIRECTED] explicit Context choices --> plan
                      --> exact materialization --> rendering / assembly
@@ -308,6 +308,18 @@ Reference/declaration materialization exist; an automatic budgeted planner,
 obligation handoff, search controller, elimination and stopping policy do not.
 
 ## Governing experiment constraints and unresolved choices
+
+The separate [retrieval-performance baseline](../../experiments/performance/retrieval/README.md)
+classifies engineering cost independently of relevance outcomes. It measures
+current canonical BM25, the production stationary-walk/RRF primitives and bounded
+propagated-flow composition on retained Case 0016 state. Warm computation is
+VIABLE at that workload scale; native scientific wrappers include substantial
+provenance revalidation/profiling overhead. Full RI/index/graph preparation is
+snapshot work, not a per-query obligation, and incremental maintenance remains
+required before production consideration. The current canonical BM25 API's
+filename-index rebuild is measured honestly and remains unchanged. The roadmap
+requires baseline review and optimization of the measured bottleneck before
+further retrieval-effectiveness work. GRAPH_HARMFUL is not reopened.
 
 Future protocols must declare their primary [failure class](taxonomy.md#retrieval-and-localization-failure-classes)
 before treatment execution. Report representation versus fielding gains

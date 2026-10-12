@@ -67,8 +67,10 @@ QUERY_TERM_WEIGHTING_HARMFUL at Case 0014 Stage D, with unchanged primary-derive
 reviewed gold and the prospectively frozen decision rule. R2 true BM25F is
 COMPLETE / BM25F_HARMFUL at Case 0015 under the frozen rule. GRAPH-3 is COMPLETE /
 GRAPH_HARMFUL at [Case 0016 Stage D](../experiments/codex_dogfood/case_0016/stage_d/STAGE_D_REVIEW.md).
-The next step is maintainer review of the completed verdict and causal diagnostics;
-no subsequent retrieval increment is selected here.
+The separate retrieval-performance engineering baseline is COMPLETE; maintainer
+review of the measured baseline and optimization of its highest-priority measured
+bottleneck must precede any further retrieval-effectiveness experiment.
+No subsequent effectiveness increment is selected here.
 Canonical production BM25 remains unchanged and semantic-resolution effectiveness
 does not resume yet.
 
@@ -327,6 +329,30 @@ confirmation/reserve = NOT_ACCESSED. No resource-pointer implementation or
 production graph promotion follows. Next: **Maintainer reviews the completed
 Graph-3 Stage D verdict and causal diagnostics.** No next Graph increment is
 selected or started in this task.
+#### Retrieval performance characterization — COMPLETE
+
+**RETRIEVAL_PERFORMANCE_BASELINE = COMPLETE** at the
+[engineering performance report](../experiments/performance/retrieval/README.md).
+Canonical BM25 and complete warm graph-assisted computation are **VIABLE** on
+the retained 514-resource / 415-Python-resource Case 0016 workload. Pure PPR,
+propagated flow and production RRF meet the online engineering budget.
+These performance classifications are independent of the unchanged
+GRAPH-3 = COMPLETE / GRAPH_HARMFUL scientific verdict.
+
+Snapshot preparation, full RI derivation and graph construction are offline
+costs. Existing experiment wrappers repeat native provenance validation and
+capture-wide profiling; their seconds-long timings are not pure kernel/RRF
+latency. The current canonical BM25 API also rebuilds a snapshot-owned filename
+index on every request. Retaining it is the first measured optimization priority,
+followed by incremental RI/index/graph maintenance and experiment-verifier
+amplification. No optimization or production behavior change occurs here.
+
+Maintainer reviews the measured retrieval-performance baseline. Then optimize
+the highest-priority measured bottleneck before authorizing any further
+retrieval-effectiveness experiment. No Graph-4 or other effectiveness increment
+is selected. SEARCH_POLICY_FAILURE remains NOT_ASSESSED; confirmation/reserve
+remain NOT_ACCESSED.
+
 The broader field/identifier comparison directions below remain future hypotheses;
 they are not arms or fields in this first frozen two-field, two-arm slice.
 
@@ -388,7 +414,9 @@ canonical baseline
     -> R1.7 query terms (COMPLETE; Case 0014 QUERY_TERM_WEIGHTING_HARMFUL)
     -> R2 canonical two-field BM25F (COMPLETE; Case 0015 BM25F_HARMFUL)
     -> GRAPH-3 propagated References (COMPLETE; Case 0016 GRAPH_HARMFUL)
-    -> Maintainer review of the completed Stage D verdict and causal diagnostics
+    -> Retrieval performance baseline (COMPLETE; warm computation VIABLE)
+    -> Maintainer review of measured baseline
+    -> Optimize highest-priority measured bottleneck before further effectiveness work
        (later richer fields/optimized BM25F/learned ranking/fusion/sequential work retained)
 ```
 

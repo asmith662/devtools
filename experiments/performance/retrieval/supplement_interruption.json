@@ -1,0 +1,142 @@
+{
+  "progress_before_stop": [
+    {
+      "elapsed_ns": 15500,
+      "phase": "START",
+      "surface": "supplement_input_preparation",
+      "timestamp": "2026-10-12T20:06:29.849443+00:00",
+      "total_elapsed_ns": 16600
+    },
+    {
+      "elapsed_ns": 15238278400,
+      "phase": "COMPLETE",
+      "surface": "supplement_input_preparation",
+      "timestamp": "2026-10-12T20:06:45.087672+00:00",
+      "total_elapsed_ns": 15238281800
+    },
+    {
+      "elapsed_ns": 64600,
+      "phase": "START",
+      "repetitions": 3,
+      "surface": "module_interpretation_universe",
+      "timestamp": "2026-10-12T20:06:45.101339+00:00",
+      "total_elapsed_ns": 15251958600,
+      "warmup": 0
+    },
+    {
+      "elapsed_ns": 139603000,
+      "median_ms": 44.8123,
+      "p95_ms": 45.0134,
+      "phase": "COMPLETE",
+      "surface": "module_interpretation_universe",
+      "timestamp": "2026-10-12T20:06:45.240897+00:00",
+      "total_elapsed_ns": 15391496900
+    },
+    {
+      "elapsed_ns": 37700,
+      "phase": "START",
+      "repetitions": 50,
+      "surface": "Q1.frozen_exact_lookup_hit",
+      "timestamp": "2026-10-12T20:06:45.262015+00:00",
+      "total_elapsed_ns": 15412606000,
+      "warmup": 10
+    },
+    {
+      "elapsed_ns": 7012900,
+      "median_ms": 0.03215,
+      "p95_ms": 0.0343,
+      "phase": "COMPLETE",
+      "surface": "Q1.frozen_exact_lookup_hit",
+      "timestamp": "2026-10-12T20:06:45.268987+00:00",
+      "total_elapsed_ns": 15419580800
+    },
+    {
+      "elapsed_ns": 58100,
+      "phase": "START",
+      "repetitions": 50,
+      "surface": "Q6.frozen_exact_lookup_hit",
+      "timestamp": "2026-10-12T20:06:45.276431+00:00",
+      "total_elapsed_ns": 15427045500,
+      "warmup": 10
+    },
+    {
+      "elapsed_ns": 8190200,
+      "median_ms": 0.0158,
+      "p95_ms": 0.0171,
+      "phase": "COMPLETE",
+      "surface": "Q6.frozen_exact_lookup_hit",
+      "timestamp": "2026-10-12T20:06:45.284583+00:00",
+      "total_elapsed_ns": 15435177200
+    },
+    {
+      "elapsed_ns": 48600,
+      "phase": "START",
+      "repetitions": 3,
+      "surface": "native_reference_key_preparation",
+      "timestamp": "2026-10-12T20:06:45.290543+00:00",
+      "total_elapsed_ns": 15441145700,
+      "warmup": 0
+    },
+    {
+      "elapsed_ns": 15138623000,
+      "repetition": 1,
+      "surface": "native_reference_key_preparation",
+      "timestamp": "2026-10-12T20:07:00.429113+00:00",
+      "total": 3,
+      "total_elapsed_ns": 30579719600
+    },
+    {
+      "elapsed_ns": 29042784700,
+      "repetition": 2,
+      "surface": "native_reference_key_preparation",
+      "timestamp": "2026-10-12T20:07:14.333278+00:00",
+      "total": 3,
+      "total_elapsed_ns": 44483881300
+    },
+    {
+      "elapsed_ns": 43534135200,
+      "repetition": 3,
+      "surface": "native_reference_key_preparation",
+      "timestamp": "2026-10-12T20:07:28.824628+00:00",
+      "total": 3,
+      "total_elapsed_ns": 58975231700
+    },
+    {
+      "elapsed_ns": 43549084500,
+      "median_ms": 14476.4266,
+      "p95_ms": 15131.5808,
+      "phase": "COMPLETE",
+      "surface": "native_reference_key_preparation",
+      "timestamp": "2026-10-12T20:07:28.839592+00:00",
+      "total_elapsed_ns": 58990181400
+    },
+    {
+      "elapsed_ns": 35400,
+      "phase": "START",
+      "repetitions": 3,
+      "surface": "native_lexical_authentication_Q1",
+      "timestamp": "2026-10-12T20:07:28.845645+00:00",
+      "total_elapsed_ns": 58996234700,
+      "warmup": 0
+    },
+    {
+      "elapsed_ns": 119616100,
+      "median_ms": 37.0276,
+      "p95_ms": 39.5845,
+      "phase": "COMPLETE",
+      "surface": "native_lexical_authentication_Q1",
+      "timestamp": "2026-10-12T20:07:28.965213+00:00",
+      "total_elapsed_ns": 59115815000
+    },
+    {
+      "elapsed_ns": 33700,
+      "phase": "START",
+      "repetitions": 3,
+      "surface": "diagnostic_definition_wrapper_Q1",
+      "timestamp": "2026-10-12T20:07:28.972190+00:00",
+      "total_elapsed_ns": 59122778700,
+      "warmup": 0
+    }
+  ],
+  "reason": "Instrumentation correction: supplemental offline measurements overlapped the bounded profiler. Stopped supplementary run; primary baseline timings unaffected. Restart supplement only after profiler exits; no fastest-sample selection."
+}

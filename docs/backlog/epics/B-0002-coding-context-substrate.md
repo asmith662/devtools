@@ -50,6 +50,14 @@ promotion or resolution of this epic. Maintainer review of the verdict and causa
 diagnostics is next; no subsequent Graph increment is selected here.
 Richer fields, optimized BM25F, learned ranking, fusion and
 sequential localization remain future work. No epic pressure is resolved;
+the separate [retrieval-performance baseline](../../../experiments/performance/retrieval/README.md)
+adds engineering evidence without changing any scientific result. Snapshot
+preparation/full RI/graph construction must be amortized, and incremental
+RI/index/graph maintenance is REQUIRED production work. The existing per-resource
+RI operation is a candidate primitive, not a complete invalidation pipeline.
+The current canonical filename index is rebuilt per query; retaining snapshot
+state is the first measured optimization recommendation. No maintenance system
+or optimization is implemented or concern closed in this increment.
 downstream Localization is preserved. SEARCH_POLICY_FAILURE = NOT_ASSESSED;
 confirmation/reserve = NOT_ACCESSED; production behavior = UNCHANGED. No epic concern is closed,
 no feature or production routing is implemented, and historical checkpoint

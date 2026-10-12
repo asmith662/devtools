@@ -562,3 +562,11 @@ owns the authoritative attempt-2/gold join, all REQUIRED ranks and witnesses,
 prefix burdens, self/cross Reference flow, labeled novel/top-K diagnostics,
 captured costs and exact frozen GRAPH_HARMFUL outcome. The roadmap records
 GRAPH-3 COMPLETE; production is unchanged and no further increment is selected.
+
+The [retrieval-performance characterization](../experiments/performance/retrieval/README.md)
+owns the separate engineering latency/memory baseline, raw samples and bounded
+Stage D profiler. It distinguishes snapshot build, incremental-update candidates,
+warm query computation, Context materialization and experiment-only overhead.
+It uses Case 0016 as an immutable workload/output reference, without joining gold
+or reopening GRAPH_HARMFUL. Maintainer review and optimization of the measured
+bottleneck precede any further retrieval-effectiveness experiment.

@@ -1,0 +1,39 @@
+{
+  "bound_note": "Lower bound is the last heartbeat while the worker was running; process wall includes preparation and cleanup. Worker hard cap is 120 seconds.",
+  "category": "EXPERIMENT_ONLY",
+  "components": {
+    "binary": {
+      "calls": 1288,
+      "inclusive_ns": 1748570300
+    },
+    "describe": {
+      "calls": 429,
+      "inclusive_ns": 33552054200
+    },
+    "digest": {
+      "calls": 3040,
+      "inclusive_ns": 321521000
+    },
+    "json_bytes": {
+      "calls": 1287,
+      "inclusive_ns": 18646077300
+    },
+    "read_json": {
+      "calls": 931,
+      "inclusive_ns": 553321900
+    },
+    "unpack": {
+      "calls": 894,
+      "inclusive_ns": 34863928900
+    }
+  },
+  "last_observed_running_elapsed_ns": 100716270200,
+  "limit_seconds": 120,
+  "phase": "native_return_authentication",
+  "phase_elapsed_lower_bound_ns": 100716270200,
+  "phase_started_counter_ns": 11988701024200,
+  "process_elapsed_ns": 120172596300,
+  "raw_bytes": 4689753,
+  "status": "TIME_LIMIT_STOPPED_NOT_REPEATED",
+  "timestamp": "2026-10-12T20:06:57.585874+00:00"
+}

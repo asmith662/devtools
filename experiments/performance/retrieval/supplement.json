@@ -1,0 +1,243 @@
+{
+  "implementation_sha256": {
+    "memory.py": "7aa502a0608aaa67e6a6bebcae802c799ddfbe978294b60130a858c7e7529100",
+    "supplement.py": "dbe4f6f549dd6896b344bf36264b3cc0d6a6bba86bc4577447e911d9e4a2590a"
+  },
+  "measurements": {
+    "Q1.frozen_exact_lookup_hit": {
+      "category": "ONLINE_QUERY",
+      "note": "",
+      "samples_ns": [
+        32500,
+        31900,
+        31500,
+        31300,
+        31400,
+        31300,
+        51300,
+        31500,
+        31600,
+        31300,
+        31300,
+        31500,
+        31200,
+        31400,
+        31300,
+        31200,
+        31200,
+        31400,
+        31300,
+        31400,
+        31800,
+        33100,
+        31600,
+        31600,
+        31300,
+        31400,
+        31200,
+        31300,
+        31300,
+        31300,
+        31300,
+        31400,
+        31200,
+        31300,
+        31300,
+        31300,
+        31300,
+        31200,
+        31200,
+        31300,
+        31300,
+        31300,
+        31300,
+        31400,
+        31600,
+        31300,
+        31300,
+        31300,
+        31500,
+        31300
+      ],
+      "summary": {
+        "maximum_ns": 51300,
+        "mean_ns": 31822,
+        "median_ns": 31300.0,
+        "minimum_ns": 31200,
+        "n": 50,
+        "p95_ns": 32500,
+        "standard_deviation_ns": 2801.163329761405
+      },
+      "viability": "VIABLE",
+      "warmup": 10
+    },
+    "Q6.frozen_exact_lookup_hit": {
+      "category": "ONLINE_QUERY",
+      "note": "",
+      "samples_ns": [
+        16700,
+        16100,
+        16000,
+        15600,
+        15700,
+        15500,
+        15600,
+        15500,
+        15500,
+        16100,
+        15500,
+        15600,
+        15600,
+        15500,
+        15500,
+        15500,
+        15500,
+        15500,
+        15500,
+        15500,
+        15500,
+        15500,
+        15500,
+        15500,
+        15500,
+        15600,
+        15500,
+        15500,
+        15500,
+        15600,
+        15600,
+        15500,
+        15500,
+        15600,
+        15500,
+        15500,
+        15500,
+        15600,
+        15500,
+        15500,
+        15500,
+        15500,
+        15500,
+        15600,
+        15600,
+        15500,
+        15500,
+        15600,
+        15500,
+        15600
+      ],
+      "summary": {
+        "maximum_ns": 16700,
+        "mean_ns": 15588,
+        "median_ns": 15500.0,
+        "minimum_ns": 15500,
+        "n": 50,
+        "p95_ns": 16100,
+        "standard_deviation_ns": 209.41824180333478
+      },
+      "viability": "VIABLE",
+      "warmup": 10
+    },
+    "diagnostic_definition_wrapper_Q1": {
+      "category": "CONTEXT_MATERIALIZATION",
+      "note": "Existing full diagnostic wrapper includes require_ranking, repeated native identity work and source extraction; compare cached pure projection in baseline. Not part of warm retrieval.",
+      "samples_ns": [
+        20777680300,
+        20766072500,
+        20808764800
+      ],
+      "summary": {
+        "maximum_ns": 20808764800,
+        "mean_ns": 20784172533.333332,
+        "median_ns": 20777680300,
+        "minimum_ns": 20766072500,
+        "n": 3,
+        "p95_ns": 20808764800,
+        "standard_deviation_ns": 18023502.06560559
+      },
+      "warmup": 0
+    },
+    "module_interpretation_universe": {
+      "category": "OFFLINE_SNAPSHOT_BUILD",
+      "note": "Existing src/. module-root interpretations, before RI derivation.",
+      "samples_ns": [
+        43609500,
+        43586500,
+        43458800
+      ],
+      "summary": {
+        "maximum_ns": 43609500,
+        "mean_ns": 43551600,
+        "median_ns": 43586500,
+        "minimum_ns": 43458800,
+        "n": 3,
+        "p95_ns": 43609500,
+        "standard_deviation_ns": 66287.90739393322
+      },
+      "warmup": 0
+    },
+    "native_lexical_authentication_Q1": {
+      "category": "EXPERIMENT_ONLY",
+      "note": "",
+      "samples_ns": [
+        38197500,
+        38010100,
+        41574400
+      ],
+      "summary": {
+        "maximum_ns": 41574400,
+        "mean_ns": 39260666.666666664,
+        "median_ns": 38197500,
+        "minimum_ns": 38010100,
+        "n": 3,
+        "p95_ns": 41574400,
+        "standard_deviation_ns": 1637844.3441168503
+      },
+      "warmup": 0
+    },
+    "native_reference_key_preparation": {
+      "category": "OFFLINE_SNAPSHOT_BUILD",
+      "note": "Query-independent native identity/provenance keys; excluded from warm computation.",
+      "samples_ns": [
+        14471432400,
+        13582722900,
+        13693786900
+      ],
+      "summary": {
+        "maximum_ns": 14471432400,
+        "mean_ns": 13915980733.333334,
+        "median_ns": 13693786900,
+        "minimum_ns": 13582722900,
+        "n": 3,
+        "p95_ns": 14471432400,
+        "standard_deviation_ns": 395372160.98766434
+      },
+      "warmup": 0
+    }
+  },
+  "retained_python_object_graph": {
+    "lexical_index_statistics": {
+      "bytes": 78121782,
+      "distinct_objects": 1567434
+    },
+    "limitation": "Shared objects counted once per surface; overlapping surfaces cannot be summed. sys.getsizeof container/dataclass traversal excludes interpreter/global state and unvisited non-dataclass native internals; not RSS.",
+    "native_reference_analyses": {
+      "bytes": 28948990,
+      "distinct_objects": 402589
+    },
+    "native_resource_graph": {
+      "bytes": 16565797,
+      "distinct_objects": 177751
+    },
+    "normalized_graph_rows": {
+      "bytes": 96472,
+      "distinct_objects": 1839
+    },
+    "positive_native_references": {
+      "bytes": 15802752,
+      "distinct_objects": 174810
+    }
+  },
+  "schema": "retrieval-performance-supplement-v1",
+  "status": "COMPLETE"
+}

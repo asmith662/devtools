@@ -1,0 +1,4259 @@
+{
+  "category": "EXPERIMENT_ONLY",
+  "full_stage_d_verify": "NOT_RUN",
+  "gate_evaluation": "NOT_PERFORMED",
+  "gold_join": "NOT_PERFORMED",
+  "phase_limit_seconds": 120,
+  "phases": {
+    "artifact_hashing": {
+      "category": "EXPERIMENT_ONLY",
+      "components": {},
+      "limit_seconds": 120,
+      "phase": "artifact_hashing",
+      "phase_started_counter_ns": 11983447965700,
+      "raw_bytes": 4689753,
+      "samples_ns": [
+        249277400,
+        245483300,
+        254932300
+      ],
+      "status": "COMPLETE",
+      "summary": {
+        "maximum_ns": 254932300,
+        "mean_ns": 249897666.66666666,
+        "median_ns": 249277400,
+        "minimum_ns": 245483300,
+        "n": 3,
+        "p95_ns": 254932300,
+        "standard_deviation_ns": 3882391.72876148
+      },
+      "timestamp": "2026-10-12T20:06:52.332818+00:00"
+    },
+    "native_return_authentication": {
+      "bound_note": "Lower bound is the last heartbeat while the worker was running; process wall includes preparation and cleanup. Worker hard cap is 120 seconds.",
+      "category": "EXPERIMENT_ONLY",
+      "components": {
+        "binary": {
+          "calls": 1288,
+          "inclusive_ns": 1748570300
+        },
+        "describe": {
+          "calls": 429,
+          "inclusive_ns": 33552054200
+        },
+        "digest": {
+          "calls": 3040,
+          "inclusive_ns": 321521000
+        },
+        "json_bytes": {
+          "calls": 1287,
+          "inclusive_ns": 18646077300
+        },
+        "read_json": {
+          "calls": 931,
+          "inclusive_ns": 553321900
+        },
+        "unpack": {
+          "calls": 894,
+          "inclusive_ns": 34863928900
+        }
+      },
+      "last_observed_running_elapsed_ns": 100716270200,
+      "limit_seconds": 120,
+      "phase": "native_return_authentication",
+      "phase_elapsed_lower_bound_ns": 100716270200,
+      "phase_started_counter_ns": 11988701024200,
+      "process_elapsed_ns": 120172596300,
+      "raw_bytes": 4689753,
+      "status": "TIME_LIMIT_STOPPED_NOT_REPEATED",
+      "timestamp": "2026-10-12T20:06:57.585874+00:00"
+    },
+    "stage_d_deepcopy": {
+      "category": "EXPERIMENT_ONLY",
+      "components": {},
+      "limit_seconds": 120,
+      "phase": "stage_d_deepcopy",
+      "phase_started_counter_ns": 11985963883300,
+      "raw_bytes": 4689753,
+      "samples_ns": [
+        15457300,
+        13814900,
+        13483700
+      ],
+      "status": "COMPLETE",
+      "summary": {
+        "maximum_ns": 15457300,
+        "mean_ns": 14251966.666666666,
+        "median_ns": 13814900,
+        "minimum_ns": 13483700,
+        "n": 3,
+        "p95_ns": 15457300,
+        "standard_deviation_ns": 862957.9724541759
+      },
+      "timestamp": "2026-10-12T20:06:54.848735+00:00"
+    },
+    "stage_d_json_encoding": {
+      "category": "EXPERIMENT_ONLY",
+      "components": {},
+      "limit_seconds": 120,
+      "phase": "stage_d_json_encoding",
+      "phase_started_counter_ns": 11986871481200,
+      "raw_bytes": 4689753,
+      "samples_ns": [
+        15978700,
+        15755100,
+        16572300
+      ],
+      "status": "COMPLETE",
+      "summary": {
+        "maximum_ns": 16572300,
+        "mean_ns": 16102033.333333334,
+        "median_ns": 15978700,
+        "minimum_ns": 15755100,
+        "n": 3,
+        "p95_ns": 16572300,
+        "standard_deviation_ns": 344830.6766451552
+      },
+      "timestamp": "2026-10-12T20:06:55.756319+00:00"
+    },
+    "stage_d_json_parse": {
+      "category": "EXPERIMENT_ONLY",
+      "components": {},
+      "limit_seconds": 120,
+      "phase": "stage_d_json_parse",
+      "phase_started_counter_ns": 11985052043800,
+      "raw_bytes": 4689753,
+      "samples_ns": [
+        10540100,
+        11975600,
+        9827400
+      ],
+      "status": "COMPLETE",
+      "summary": {
+        "maximum_ns": 11975600,
+        "mean_ns": 10781033.333333334,
+        "median_ns": 10540100,
+        "minimum_ns": 9827400,
+        "n": 3,
+        "p95_ns": 11975600,
+        "standard_deviation_ns": 893393.3300748457
+      },
+      "timestamp": "2026-10-12T20:06:53.936896+00:00",
+      "top_level_fields": 35
+    },
+    "stage_d_markdown_json_sections": {
+      "category": "EXPERIMENT_ONLY",
+      "components": {},
+      "limit_seconds": 120,
+      "phase": "stage_d_markdown_json_sections",
+      "phase_started_counter_ns": 11987789191200,
+      "raw_bytes": 4689753,
+      "rendered_section_bytes": 4483356,
+      "samples_ns": [
+        16910300,
+        16322400,
+        16364200
+      ],
+      "status": "COMPLETE",
+      "summary": {
+        "maximum_ns": 16910300,
+        "mean_ns": 16532300,
+        "median_ns": 16364200,
+        "minimum_ns": 16322400,
+        "n": 3,
+        "p95_ns": 16910300,
+        "standard_deviation_ns": 267830.55588686414
+      },
+      "timestamp": "2026-10-12T20:06:56.674030+00:00"
+    }
+  },
+  "schema": "bounded-stage-d-profiler-v1",
+  "source_audit": {
+    "experiments/codex_dogfood/case_0012/stage_b/durability.py": {
+      "functions": {
+        "atomic": {
+          "calls": [
+            {
+              "function": "write",
+              "line": 32
+            },
+            {
+              "function": "TextFile",
+              "line": 32
+            },
+            {
+              "function": "resolve_path",
+              "line": 32
+            },
+            {
+              "function": "json_bytes(value).decode",
+              "line": 32
+            },
+            {
+              "function": "json_bytes",
+              "line": 32
+            }
+          ],
+          "line": 30,
+          "loop_lines": []
+        },
+        "exclusive": {
+          "calls": [
+            {
+              "function": "path.open",
+              "line": 41
+            },
+            {
+              "function": "stream.write",
+              "line": 42
+            },
+            {
+              "function": "stream.flush",
+              "line": 43
+            },
+            {
+              "function": "os.fsync",
+              "line": 44
+            },
+            {
+              "function": "json_bytes",
+              "line": 42
+            },
+            {
+              "function": "stream.fileno",
+              "line": 44
+            }
+          ],
+          "line": 35,
+          "loop_lines": []
+        },
+        "pack": {
+          "calls": [
+            {
+              "function": "gzip.compress",
+              "line": 49
+            },
+            {
+              "function": "base64.b85encode(compressed).decode",
+              "line": 51
+            },
+            {
+              "function": "digest",
+              "line": 52
+            },
+            {
+              "function": "base64.b85encode",
+              "line": 51
+            }
+          ],
+          "line": 47,
+          "loop_lines": []
+        },
+        "unpack": {
+          "calls": [
+            {
+              "function": "base64.b85decode",
+              "line": 58
+            },
+            {
+              "function": "gzip.decompress",
+              "line": 61
+            },
+            {
+              "function": "digest",
+              "line": 59
+            },
+            {
+              "function": "ValueError",
+              "line": 60
+            }
+          ],
+          "line": 56,
+          "loop_lines": []
+        }
+      },
+      "sha256": "9711616d3a122b72c2abe26a16fcced1d1f4ea7b25b413a944f88e57215ccf39"
+    },
+    "experiments/codex_dogfood/case_0016/adjudication/reviewed/materialize.py": {
+      "functions": {
+        "authenticate": {
+          "calls": [
+            {
+              "function": "require",
+              "line": 56
+            },
+            {
+              "function": "importlib.util.spec_from_file_location",
+              "line": 60
+            },
+            {
+              "function": "require",
+              "line": 63
+            },
+            {
+              "function": "importlib.util.module_from_spec",
+              "line": 66
+            },
+            {
+              "function": "spec.loader.exec_module",
+              "line": 67
+            },
+            {
+              "function": "module.ORIGINAL_HASHES.items",
+              "line": 69
+            },
+            {
+              "function": "gzip.decompress",
+              "line": 73
+            },
+            {
+              "function": "require",
+              "line": 74
+            },
+            {
+              "function": "json.loads",
+              "line": 75
+            },
+            {
+              "function": "load",
+              "line": 76
+            },
+            {
+              "function": "module.validate_review",
+              "line": 77
+            },
+            {
+              "function": "module.bundle(review, packet).items",
+              "line": 78
+            },
+            {
+              "function": "require",
+              "line": 81
+            },
+            {
+              "function": "require",
+              "line": 88
+            },
+            {
+              "function": "require",
+              "line": 70
+            },
+            {
+              "function": "(PACKET / 'resources.json.gz').read_bytes",
+              "line": 73
+            },
+            {
+              "function": "require",
+              "line": 79
+            },
+            {
+              "function": "sha",
+              "line": 74
+            },
+            {
+              "function": "module.bundle",
+              "line": 78
+            },
+            {
+              "function": "set",
+              "line": 89
+            },
+            {
+              "function": "sha",
+              "line": 57
+            },
+            {
+              "function": "sha",
+              "line": 71
+            },
+            {
+              "function": "(primary / name).read_bytes",
+              "line": 79
+            },
+            {
+              "function": "review['primary']['blindness']['access'].values",
+              "line": 89
+            },
+            {
+              "function": "(primary / n).read_bytes",
+              "line": 57
+            },
+            {
+              "function": "(PACKET / name).read_bytes",
+              "line": 71
+            }
+          ],
+          "line": 54,
+          "loop_lines": [
+            69,
+            78
+          ]
+        },
+        "construct_gold": {
+          "calls": [
+            {
+              "function": "authenticate",
+              "line": 95
+            },
+            {
+              "function": "load",
+              "line": 96
+            },
+            {
+              "function": "json.loads",
+              "line": 97
+            },
+            {
+              "function": "load",
+              "line": 98
+            },
+            {
+              "function": "require",
+              "line": 99
+            },
+            {
+              "function": "require",
+              "line": 104
+            },
+            {
+              "function": "require",
+              "line": 109
+            },
+            {
+              "function": "gzip.decompress",
+              "line": 97
+            },
+            {
+              "function": "(CASE / 'resources.json.gz').read_bytes",
+              "line": 97
+            }
+          ],
+          "line": 94,
+          "loop_lines": []
+        },
+        "encoded": {
+          "calls": [
+            {
+              "function": "(json.dumps(value, sort_keys=True, indent=2, ensure_ascii=True) + '\\n').encode",
+              "line": 36
+            },
+            {
+              "function": "json.dumps",
+              "line": 37
+            }
+          ],
+          "line": 35,
+          "loop_lines": []
+        },
+        "import_primary": {
+          "calls": [
+            {
+              "function": "require",
+              "line": 230
+            },
+            {
+              "function": "require",
+              "line": 235
+            },
+            {
+              "function": "load",
+              "line": 236
+            },
+            {
+              "function": "publication['packet_artifact_sha256'].items",
+              "line": 237
+            },
+            {
+              "function": "write_new",
+              "line": 243
+            },
+            {
+              "function": "authenticate",
+              "line": 244
+            },
+            {
+              "function": "write_new",
+              "line": 271
+            },
+            {
+              "function": "(STERILE / n).read_bytes",
+              "line": 234
+            },
+            {
+              "function": "require",
+              "line": 238
+            },
+            {
+              "function": "str",
+              "line": 253
+            },
+            {
+              "function": "encoded",
+              "line": 271
+            },
+            {
+              "function": "destination.exists",
+              "line": 231
+            },
+            {
+              "function": "(ADJ / 'IMPORT.json').exists",
+              "line": 231
+            },
+            {
+              "function": "sha",
+              "line": 235
+            },
+            {
+              "function": "raw.items",
+              "line": 243
+            },
+            {
+              "function": "raw.items",
+              "line": 235
+            },
+            {
+              "function": "sha",
+              "line": 239
+            },
+            {
+              "function": "(STERILE / name).read_bytes",
+              "line": 240
+            },
+            {
+              "function": "(PACKET / name).read_bytes",
+              "line": 240
+            },
+            {
+              "function": "(STERILE / name).read_bytes",
+              "line": 239
+            }
+          ],
+          "line": 228,
+          "loop_lines": [
+            237
+          ]
+        },
+        "load": {
+          "calls": [
+            {
+              "function": "json.loads",
+              "line": 46
+            },
+            {
+              "function": "path.read_bytes",
+              "line": 46
+            }
+          ],
+          "line": 45,
+          "loop_lines": []
+        },
+        "main": {
+          "calls": [
+            {
+              "function": "argparse.ArgumentParser",
+              "line": 275
+            },
+            {
+              "function": "parser.add_argument",
+              "line": 276
+            },
+            {
+              "function": "parser.parse_args",
+              "line": 277
+            },
+            {
+              "function": "import_primary",
+              "line": 279
+            },
+            {
+              "function": "write_new",
+              "line": 281
+            },
+            {
+              "function": "sys.stdout.write",
+              "line": 283
+            },
+            {
+              "function": "encoded(verify()).decode",
+              "line": 283
+            },
+            {
+              "function": "outputs().items",
+              "line": 281
+            },
+            {
+              "function": "encoded",
+              "line": 283
+            },
+            {
+              "function": "verify",
+              "line": 283
+            },
+            {
+              "function": "outputs",
+              "line": 281
+            }
+          ],
+          "line": 274,
+          "loop_lines": []
+        },
+        "outputs": {
+          "calls": [
+            {
+              "function": "construct_gold",
+              "line": 157
+            },
+            {
+              "function": "validate",
+              "line": 158
+            },
+            {
+              "function": "encoded",
+              "line": 206
+            },
+            {
+              "function": "(ADJ / 'primary/STAGE_C_REVIEW.md').read_bytes().decode",
+              "line": 163
+            },
+            {
+              "function": "encoded",
+              "line": 193
+            },
+            {
+              "function": "encoded",
+              "line": 194
+            },
+            {
+              "function": "('\\n'.join(parts).rstrip() + '\\n').encode",
+              "line": 195
+            },
+            {
+              "function": "encoded",
+              "line": 196
+            },
+            {
+              "function": "sha",
+              "line": 209
+            },
+            {
+              "function": "sha",
+              "line": 210
+            },
+            {
+              "function": "(ADJ / 'primary/STAGE_C_REVIEW.md').read_bytes",
+              "line": 163
+            },
+            {
+              "function": "load",
+              "line": 201
+            },
+            {
+              "function": "sha",
+              "line": 208
+            },
+            {
+              "function": "Path(__file__).read_bytes",
+              "line": 209
+            },
+            {
+              "function": "(ADJ / 'IMPORT.json').read_bytes",
+              "line": 210
+            },
+            {
+              "function": "encoded(value).decode",
+              "line": 191
+            },
+            {
+              "function": "'\\n'.join(parts).rstrip",
+              "line": 195
+            },
+            {
+              "function": "files.items",
+              "line": 208
+            },
+            {
+              "function": "Path",
+              "line": 209
+            },
+            {
+              "function": "encoded",
+              "line": 191
+            },
+            {
+              "function": "'\\n'.join",
+              "line": 195
+            }
+          ],
+          "line": 156,
+          "loop_lines": [
+            165
+          ]
+        },
+        "require": {
+          "calls": [
+            {
+              "function": "ValueError",
+              "line": 51
+            }
+          ],
+          "line": 49,
+          "loop_lines": []
+        },
+        "sha": {
+          "calls": [
+            {
+              "function": "sha256(raw).hexdigest",
+              "line": 42
+            },
+            {
+              "function": "sha256",
+              "line": 42
+            }
+          ],
+          "line": 41,
+          "loop_lines": []
+        },
+        "validate": {
+          "calls": [
+            {
+              "function": "authenticate",
+              "line": 138
+            },
+            {
+              "function": "module.validate_review",
+              "line": 139
+            },
+            {
+              "function": "require",
+              "line": 140
+            },
+            {
+              "function": "module.statistics",
+              "line": 144
+            },
+            {
+              "function": "construct_gold",
+              "line": 141
+            }
+          ],
+          "line": 137,
+          "loop_lines": []
+        },
+        "verify": {
+          "calls": [
+            {
+              "function": "outputs",
+              "line": 218
+            },
+            {
+              "function": "files.items",
+              "line": 219
+            },
+            {
+              "function": "require",
+              "line": 220
+            },
+            {
+              "function": "load",
+              "line": 224
+            },
+            {
+              "function": "sha",
+              "line": 223
+            },
+            {
+              "function": "(ROOT / name).read_bytes",
+              "line": 220
+            },
+            {
+              "function": "files.items",
+              "line": 223
+            }
+          ],
+          "line": 217,
+          "loop_lines": [
+            219
+          ]
+        },
+        "write_new": {
+          "calls": [
+            {
+              "function": "any",
+              "line": 148
+            },
+            {
+              "function": "files.items",
+              "line": 150
+            },
+            {
+              "function": "FileExistsError",
+              "line": 149
+            },
+            {
+              "function": "path.parent.mkdir",
+              "line": 151
+            },
+            {
+              "function": "path.exists",
+              "line": 148
+            },
+            {
+              "function": "path.open",
+              "line": 152
+            },
+            {
+              "function": "stream.write",
+              "line": 153
+            }
+          ],
+          "line": 147,
+          "loop_lines": [
+            150
+          ]
+        }
+      },
+      "sha256": "a3c1acb180670437512950d0e93e43fc827be8cc0784a4ed15d25154d92d0c0d"
+    },
+    "experiments/codex_dogfood/case_0016/stage_b/reporting.py": {
+      "functions": {
+        "derived": {
+          "calls": [
+            {
+              "function": "reconstruct",
+              "line": 588
+            },
+            {
+              "function": "json_bytes",
+              "line": 607
+            },
+            {
+              "function": "checkpoint_bytes",
+              "line": 608
+            },
+            {
+              "function": "json_bytes",
+              "line": 609
+            },
+            {
+              "function": "json_bytes",
+              "line": 629
+            },
+            {
+              "function": "json_bytes",
+              "line": 638
+            },
+            {
+              "function": "render(summary, costs).encode",
+              "line": 639
+            },
+            {
+              "function": "read_json",
+              "line": 600
+            },
+            {
+              "function": "gzip.compress",
+              "line": 604
+            },
+            {
+              "function": "json_bytes",
+              "line": 604
+            },
+            {
+              "function": "artifacts.items",
+              "line": 605
+            },
+            {
+              "function": "digest",
+              "line": 636
+            },
+            {
+              "function": "render",
+              "line": 639
+            },
+            {
+              "function": "files.items",
+              "line": 636
+            }
+          ],
+          "line": 586,
+          "loop_lines": []
+        },
+        "near": {
+          "calls": [
+            {
+              "function": "ValueError",
+              "line": 52
+            },
+            {
+              "function": "math.isfinite",
+              "line": 51
+            },
+            {
+              "function": "abs",
+              "line": 51
+            }
+          ],
+          "line": 49,
+          "loop_lines": []
+        },
+        "publish": {
+          "calls": [
+            {
+              "function": "time.perf_counter_ns",
+              "line": 649
+            },
+            {
+              "function": "derived",
+              "line": 650
+            },
+            {
+              "function": "time.perf_counter_ns",
+              "line": 652
+            },
+            {
+              "function": "files.items",
+              "line": 653
+            },
+            {
+              "function": "exclusive",
+              "line": 658
+            },
+            {
+              "function": "exclusive",
+              "line": 671
+            },
+            {
+              "function": "verify",
+              "line": 685
+            },
+            {
+              "function": "(root / 'integrity.json').exists",
+              "line": 647
+            },
+            {
+              "function": "(root / 'summary.json').exists",
+              "line": 647
+            },
+            {
+              "function": "FileExistsError",
+              "line": 648
+            },
+            {
+              "function": "time.perf_counter_ns",
+              "line": 651
+            },
+            {
+              "function": "name.endswith",
+              "line": 654
+            },
+            {
+              "function": "p.relative_to(root).as_posix",
+              "line": 667
+            },
+            {
+              "function": "digest",
+              "line": 667
+            },
+            {
+              "function": "put_binary",
+              "line": 655
+            },
+            {
+              "function": "put_text",
+              "line": 657
+            },
+            {
+              "function": "binary",
+              "line": 667
+            },
+            {
+              "function": "sorted",
+              "line": 668
+            },
+            {
+              "function": "p.is_file",
+              "line": 669
+            },
+            {
+              "function": "source_hashes",
+              "line": 676
+            },
+            {
+              "function": "digest",
+              "line": 678
+            },
+            {
+              "function": "raw.decode",
+              "line": 657
+            },
+            {
+              "function": "time.perf_counter_ns",
+              "line": 662
+            },
+            {
+              "function": "p.relative_to",
+              "line": 667
+            },
+            {
+              "function": "root.rglob",
+              "line": 668
+            },
+            {
+              "function": "binary",
+              "line": 679
+            }
+          ],
+          "line": 645,
+          "loop_lines": [
+            653
+          ]
+        },
+        "reconstruct": {
+          "calls": [
+            {
+              "function": "Journal.load",
+              "line": 181
+            },
+            {
+              "function": "journal.ready",
+              "line": 182
+            },
+            {
+              "function": "json.loads",
+              "line": 185
+            },
+            {
+              "function": "read_json",
+              "line": 186
+            },
+            {
+              "function": "read_json",
+              "line": 187
+            },
+            {
+              "function": "zip",
+              "line": 209
+            },
+            {
+              "function": "union_statistics",
+              "line": 222
+            },
+            {
+              "function": "validate_fields",
+              "line": 225
+            },
+            {
+              "function": "Counter",
+              "line": 232
+            },
+            {
+              "function": "zip",
+              "line": 234
+            },
+            {
+              "function": "require_view",
+              "line": 265
+            },
+            {
+              "function": "enumerate",
+              "line": 297
+            },
+            {
+              "function": "validate_native",
+              "line": 508
+            },
+            {
+              "function": "gzip.decompress",
+              "line": 185
+            },
+            {
+              "function": "ValueError",
+              "line": 198
+            },
+            {
+              "function": "digest",
+              "line": 200
+            },
+            {
+              "function": "ValueError",
+              "line": 201
+            },
+            {
+              "function": "ValueError",
+              "line": 208
+            },
+            {
+              "function": "references.extend",
+              "line": 263
+            },
+            {
+              "function": "ValueError",
+              "line": 269
+            },
+            {
+              "function": "len",
+              "line": 271
+            },
+            {
+              "function": "len",
+              "line": 272
+            },
+            {
+              "function": "sum",
+              "line": 273
+            },
+            {
+              "function": "sum",
+              "line": 274
+            },
+            {
+              "function": "sum",
+              "line": 275
+            },
+            {
+              "function": "len",
+              "line": 278
+            },
+            {
+              "function": "dict",
+              "line": 279
+            },
+            {
+              "function": "validate_native",
+              "line": 306
+            },
+            {
+              "function": "tuple",
+              "line": 311
+            },
+            {
+              "function": "require_ranking",
+              "line": 322
+            },
+            {
+              "function": "sorted",
+              "line": 337
+            },
+            {
+              "function": "contribution.sort",
+              "line": 367
+            },
+            {
+              "function": "enumerate",
+              "line": 380
+            },
+            {
+              "function": "validate_projection",
+              "line": 426
+            },
+            {
+              "function": "query_reports.append",
+              "line": 428
+            },
+            {
+              "function": "native_surface",
+              "line": 481
+            },
+            {
+              "function": "ValueError",
+              "line": 507
+            },
+            {
+              "function": "len",
+              "line": 526
+            },
+            {
+              "function": "len",
+              "line": 527
+            },
+            {
+              "function": "len",
+              "line": 531
+            },
+            {
+              "function": "dict",
+              "line": 532
+            },
+            {
+              "function": "sum",
+              "line": 533
+            },
+            {
+              "function": "len",
+              "line": 536
+            },
+            {
+              "function": "describe",
+              "line": 552
+            },
+            {
+              "function": "describe",
+              "line": 555
+            },
+            {
+              "function": "describe",
+              "line": 556
+            },
+            {
+              "function": "native_surface",
+              "line": 564
+            },
+            {
+              "function": "binary",
+              "line": 185
+            },
+            {
+              "function": "digest",
+              "line": 192
+            },
+            {
+              "function": "source_hashes",
+              "line": 194
+            },
+            {
+              "function": "tuple",
+              "line": 195
+            },
+            {
+              "function": "schedule",
+              "line": 195
+            },
+            {
+              "function": "tuple",
+              "line": 196
+            },
+            {
+              "function": "schedule",
+              "line": 196
+            },
+            {
+              "function": "binary",
+              "line": 200
+            },
+            {
+              "function": "len",
+              "line": 203
+            },
+            {
+              "function": "tuple",
+              "line": 207
+            },
+            {
+              "function": "ValueError",
+              "line": 221
+            },
+            {
+              "function": "r['address'].endswith",
+              "line": 229
+            },
+            {
+              "function": "ValueError",
+              "line": 243
+            },
+            {
+              "function": "ValueError",
+              "line": 252
+            },
+            {
+              "function": "frame.snapshot.resource_at",
+              "line": 254
+            },
+            {
+              "function": "sorted",
+              "line": 280
+            },
+            {
+              "function": "ValueError",
+              "line": 301
+            },
+            {
+              "function": "asdict",
+              "line": 303
+            },
+            {
+              "function": "list",
+              "line": 304
+            },
+            {
+              "function": "tuple",
+              "line": 309
+            },
+            {
+              "function": "tuple",
+              "line": 309
+            },
+            {
+              "function": "ValueError",
+              "line": 310
+            },
+            {
+              "function": "ValueError",
+              "line": 319
+            },
+            {
+              "function": "ValueError",
+              "line": 329
+            },
+            {
+              "function": "str",
+              "line": 331
+            },
+            {
+              "function": "str",
+              "line": 334
+            },
+            {
+              "function": "str",
+              "line": 336
+            },
+            {
+              "function": "ValueError",
+              "line": 342
+            },
+            {
+              "function": "ValueError",
+              "line": 352
+            },
+            {
+              "function": "ValueError",
+              "line": 375
+            },
+            {
+              "function": "ValueError",
+              "line": 379
+            },
+            {
+              "function": "describe",
+              "line": 493
+            },
+            {
+              "function": "describe",
+              "line": 504
+            },
+            {
+              "function": "asdict",
+              "line": 514
+            },
+            {
+              "function": "list",
+              "line": 515
+            },
+            {
+              "function": "sorted",
+              "line": 532
+            },
+            {
+              "function": "outcomes.values",
+              "line": 533
+            },
+            {
+              "function": "tuple",
+              "line": 555
+            },
+            {
+              "function": "binary",
+              "line": 192
+            },
+            {
+              "function": "str",
+              "line": 204
+            },
+            {
+              "function": "str",
+              "line": 205
+            },
+            {
+              "function": "str",
+              "line": 206
+            },
+            {
+              "function": "str",
+              "line": 211
+            },
+            {
+              "function": "str",
+              "line": 212
+            },
+            {
+              "function": "str",
+              "line": 213
+            },
+            {
+              "function": "r['address'].endswith",
+              "line": 235
+            },
+            {
+              "function": "str",
+              "line": 240
+            },
+            {
+              "function": "len",
+              "line": 245
+            },
+            {
+              "function": "len",
+              "line": 246
+            },
+            {
+              "function": "tuple",
+              "line": 247
+            },
+            {
+              "function": "_extract_source_segment",
+              "line": 257
+            },
+            {
+              "function": "ValueError",
+              "line": 261
+            },
+            {
+              "function": "len",
+              "line": 273
+            },
+            {
+              "function": "len",
+              "line": 276
+            },
+            {
+              "function": "set",
+              "line": 278
+            },
+            {
+              "function": "Counter((len(e.references) for e in view.edges)).items",
+              "line": 280
+            },
+            {
+              "function": "map",
+              "line": 309
+            },
+            {
+              "function": "frame.snapshot.resource_at",
+              "line": 312
+            },
+            {
+              "function": "tuple",
+              "line": 316
+            },
+            {
+              "function": "tuple",
+              "line": 316
+            },
+            {
+              "function": "set",
+              "line": 337
+            },
+            {
+              "function": "list",
+              "line": 339
+            },
+            {
+              "function": "len",
+              "line": 344
+            },
+            {
+              "function": "ar.get",
+              "line": 357
+            },
+            {
+              "function": "br.get",
+              "line": 358
+            },
+            {
+              "function": "ar.get",
+              "line": 363
+            },
+            {
+              "function": "str",
+              "line": 384
+            },
+            {
+              "function": "ValueError",
+              "line": 397
+            },
+            {
+              "function": "any",
+              "line": 401
+            },
+            {
+              "function": "ValueError",
+              "line": 406
+            },
+            {
+              "function": "str",
+              "line": 410
+            },
+            {
+              "function": "str",
+              "line": 411
+            },
+            {
+              "function": "len",
+              "line": 412
+            },
+            {
+              "function": "enumerate",
+              "line": 422
+            },
+            {
+              "function": "len",
+              "line": 432
+            },
+            {
+              "function": "len",
+              "line": 433
+            },
+            {
+              "function": "len",
+              "line": 434
+            },
+            {
+              "function": "len",
+              "line": 435
+            },
+            {
+              "function": "len",
+              "line": 436
+            },
+            {
+              "function": "len",
+              "line": 437
+            },
+            {
+              "function": "len",
+              "line": 438
+            },
+            {
+              "function": "sorted",
+              "line": 439
+            },
+            {
+              "function": "sorted",
+              "line": 440
+            },
+            {
+              "function": "list",
+              "line": 443
+            },
+            {
+              "function": "len",
+              "line": 445
+            },
+            {
+              "function": "math.fsum",
+              "line": 448
+            },
+            {
+              "function": "math.fsum",
+              "line": 449
+            },
+            {
+              "function": "math.fsum",
+              "line": 452
+            },
+            {
+              "function": "math.fsum",
+              "line": 455
+            },
+            {
+              "function": "sum",
+              "line": 458
+            },
+            {
+              "function": "sum",
+              "line": 459
+            },
+            {
+              "function": "sum",
+              "line": 462
+            },
+            {
+              "function": "len",
+              "line": 474
+            },
+            {
+              "function": "str",
+              "line": 484
+            },
+            {
+              "function": "r.score.hex",
+              "line": 487
+            },
+            {
+              "function": "outcomes.items",
+              "line": 532
+            },
+            {
+              "function": "type(view.nodes[0])",
+              "line": 312
+            },
+            {
+              "function": "any",
+              "line": 314
+            },
+            {
+              "function": "map",
+              "line": 316
+            },
+            {
+              "function": "str",
+              "line": 337
+            },
+            {
+              "function": "map",
+              "line": 339
+            },
+            {
+              "function": "enumerate",
+              "line": 353
+            },
+            {
+              "function": "enumerate",
+              "line": 353
+            },
+            {
+              "function": "set",
+              "line": 365
+            },
+            {
+              "function": "set",
+              "line": 365
+            },
+            {
+              "function": "str",
+              "line": 390
+            },
+            {
+              "function": "str",
+              "line": 442
+            },
+            {
+              "function": "map",
+              "line": 443
+            },
+            {
+              "function": "str",
+              "line": 467
+            },
+            {
+              "function": "len",
+              "line": 496
+            },
+            {
+              "function": "Counter",
+              "line": 280
+            },
+            {
+              "function": "type",
+              "line": 312
+            },
+            {
+              "function": "str",
+              "line": 400
+            },
+            {
+              "function": "next",
+              "line": 416
+            },
+            {
+              "function": "set",
+              "line": 435
+            },
+            {
+              "function": "set",
+              "line": 435
+            },
+            {
+              "function": "set",
+              "line": 436
+            },
+            {
+              "function": "set",
+              "line": 436
+            },
+            {
+              "function": "set",
+              "line": 437
+            },
+            {
+              "function": "set",
+              "line": 437
+            },
+            {
+              "function": "set",
+              "line": 438
+            },
+            {
+              "function": "set",
+              "line": 438
+            },
+            {
+              "function": "set",
+              "line": 439
+            },
+            {
+              "function": "set",
+              "line": 439
+            },
+            {
+              "function": "set",
+              "line": 440
+            },
+            {
+              "function": "set",
+              "line": 440
+            },
+            {
+              "function": "len",
+              "line": 468
+            },
+            {
+              "function": "len",
+              "line": 469
+            },
+            {
+              "function": "len",
+              "line": 470
+            },
+            {
+              "function": "len",
+              "line": 280
+            },
+            {
+              "function": "str",
+              "line": 314
+            },
+            {
+              "function": "any",
+              "line": 317
+            },
+            {
+              "function": "set",
+              "line": 468
+            },
+            {
+              "function": "set",
+              "line": 468
+            },
+            {
+              "function": "set",
+              "line": 469
+            },
+            {
+              "function": "set",
+              "line": 469
+            },
+            {
+              "function": "set",
+              "line": 470
+            },
+            {
+              "function": "set",
+              "line": 470
+            },
+            {
+              "function": "str",
+              "line": 317
+            }
+          ],
+          "line": 179,
+          "loop_lines": [
+            209,
+            234,
+            297,
+            253,
+            380,
+            395
+          ]
+        },
+        "render": {
+          "calls": [
+            {
+              "function": "json_bytes(costs).decode",
+              "line": 579
+            },
+            {
+              "function": "json_bytes(summary).decode",
+              "line": 577
+            },
+            {
+              "function": "json_bytes",
+              "line": 579
+            },
+            {
+              "function": "json_bytes",
+              "line": 577
+            }
+          ],
+          "line": 570,
+          "loop_lines": []
+        },
+        "validate_projection": {
+          "calls": [
+            {
+              "function": "members.items",
+              "line": 155
+            },
+            {
+              "function": "near",
+              "line": 68
+            },
+            {
+              "function": "ranking.view.snapshot.resource_at",
+              "line": 73
+            },
+            {
+              "function": "ValueError",
+              "line": 154
+            },
+            {
+              "function": "near",
+              "line": 156
+            },
+            {
+              "function": "len",
+              "line": 169
+            },
+            {
+              "function": "ValueError",
+              "line": 176
+            },
+            {
+              "function": "math.fsum",
+              "line": 68
+            },
+            {
+              "function": "next",
+              "line": 74
+            },
+            {
+              "function": "ValueError",
+              "line": 78
+            },
+            {
+              "function": "ranking.view.snapshot.resource_at",
+              "line": 96
+            },
+            {
+              "function": "next",
+              "line": 104
+            },
+            {
+              "function": "_extract_source_segment",
+              "line": 125
+            },
+            {
+              "function": "supports.append",
+              "line": 140
+            },
+            {
+              "function": "ValueError",
+              "line": 147
+            },
+            {
+              "function": "set",
+              "line": 148
+            },
+            {
+              "function": "set",
+              "line": 148
+            },
+            {
+              "function": "tuple",
+              "line": 148
+            },
+            {
+              "function": "tuple",
+              "line": 148
+            },
+            {
+              "function": "math.fsum",
+              "line": 157
+            },
+            {
+              "function": "len",
+              "line": 163
+            },
+            {
+              "function": "text.encode",
+              "line": 169
+            },
+            {
+              "function": "len",
+              "line": 172
+            },
+            {
+              "function": "ValueError",
+              "line": 95
+            },
+            {
+              "function": "_extract_source_segment",
+              "line": 99
+            },
+            {
+              "function": "ValueError",
+              "line": 103
+            },
+            {
+              "function": "ValueError",
+              "line": 116
+            },
+            {
+              "function": "text.splitlines",
+              "line": 126
+            },
+            {
+              "function": "ValueError",
+              "line": 138
+            },
+            {
+              "function": "math.fsum",
+              "line": 141
+            },
+            {
+              "function": "tuple",
+              "line": 141
+            },
+            {
+              "function": "sorted",
+              "line": 149
+            },
+            {
+              "function": "(text + line).encode",
+              "line": 163
+            },
+            {
+              "function": "len",
+              "line": 70
+            },
+            {
+              "function": "str",
+              "line": 92
+            },
+            {
+              "function": "sorted",
+              "line": 142
+            },
+            {
+              "function": "len",
+              "line": 68
+            },
+            {
+              "function": "str",
+              "line": 74
+            },
+            {
+              "function": "len",
+              "line": 129
+            },
+            {
+              "function": "len",
+              "line": 129
+            },
+            {
+              "function": "str",
+              "line": 157
+            },
+            {
+              "function": "str",
+              "line": 107
+            },
+            {
+              "function": "str",
+              "line": 108
+            },
+            {
+              "function": "text.splitlines",
+              "line": 129
+            }
+          ],
+          "line": 55,
+          "loop_lines": [
+            60,
+            72,
+            155,
+            161,
+            69,
+            80
+          ]
+        },
+        "verify": {
+          "calls": [
+            {
+              "function": "read_json",
+              "line": 690
+            },
+            {
+              "function": "derived(root).items",
+              "line": 703
+            },
+            {
+              "function": "p.relative_to(root).as_posix",
+              "line": 692
+            },
+            {
+              "function": "any",
+              "line": 698
+            },
+            {
+              "function": "(root / 'capture_failure.json').exists",
+              "line": 700
+            },
+            {
+              "function": "ValueError",
+              "line": 702
+            },
+            {
+              "function": "root.rglob",
+              "line": 693
+            },
+            {
+              "function": "set",
+              "line": 697
+            },
+            {
+              "function": "source_hashes",
+              "line": 699
+            },
+            {
+              "function": "derived",
+              "line": 703
+            },
+            {
+              "function": "binary",
+              "line": 704
+            },
+            {
+              "function": "ValueError",
+              "line": 705
+            },
+            {
+              "function": "p.relative_to",
+              "line": 692
+            },
+            {
+              "function": "p.is_file",
+              "line": 694
+            },
+            {
+              "function": "digest",
+              "line": 698
+            },
+            {
+              "function": "seal['sha256'].items",
+              "line": 698
+            },
+            {
+              "function": "binary",
+              "line": 698
+            }
+          ],
+          "line": 688,
+          "loop_lines": [
+            703
+          ]
+        }
+      },
+      "sha256": "fbf5bdb6f622f349ece628a49771d22a4f898d2534dfb52acbcc7d1013d50f2d"
+    },
+    "experiments/codex_dogfood/case_0016/stage_d/analysis.py": {
+      "functions": {
+        "expected": {
+          "calls": [
+            {
+              "function": "reporting.enrich",
+              "line": 24
+            },
+            {
+              "function": "validation.validate",
+              "line": 25
+            },
+            {
+              "function": "copy.deepcopy",
+              "line": 46
+            },
+            {
+              "function": "reporting.markdown",
+              "line": 61
+            },
+            {
+              "function": "m.encoded",
+              "line": 97
+            },
+            {
+              "function": "('# Case 0016 Stage D trace\\n\\nCaptured inputs only; no retrieval, graph, RI, PPR or fusion execution; no semantic reviewer.\\n\\n```json\\n' + m.encoded(trace).decode() + '```\\n').encode",
+              "line": 98
+            },
+            {
+              "function": "m.encoded",
+              "line": 106
+            },
+            {
+              "function": "metrics.analyze",
+              "line": 24
+            },
+            {
+              "function": "copy.deepcopy",
+              "line": 34
+            },
+            {
+              "function": "validation.validate",
+              "line": 49
+            },
+            {
+              "function": "ValueError",
+              "line": 53
+            },
+            {
+              "function": "m.encoded",
+              "line": 63
+            },
+            {
+              "function": "m.encoded",
+              "line": 66
+            },
+            {
+              "function": "m.sha",
+              "line": 104
+            },
+            {
+              "function": "validation.validate",
+              "line": 41
+            },
+            {
+              "function": "ValueError",
+              "line": 45
+            },
+            {
+              "function": "adversarial.append",
+              "line": 51
+            },
+            {
+              "function": "len",
+              "line": 75
+            },
+            {
+              "function": "len",
+              "line": 77
+            },
+            {
+              "function": "len",
+              "line": 78
+            },
+            {
+              "function": "m.sha",
+              "line": 95
+            },
+            {
+              "function": "p.read_bytes",
+              "line": 104
+            },
+            {
+              "function": "sorted",
+              "line": 104
+            },
+            {
+              "function": "m.sha",
+              "line": 116
+            },
+            {
+              "function": "adversarial.append",
+              "line": 43
+            },
+            {
+              "function": "files.items",
+              "line": 95
+            },
+            {
+              "function": "PACKAGE.glob",
+              "line": 104
+            },
+            {
+              "function": "m.sha",
+              "line": 109
+            },
+            {
+              "function": "(m.CASE.parents[1] / 'task_conditioned_graph/gates.py').read_bytes",
+              "line": 117
+            },
+            {
+              "function": "m.encoded(trace).decode",
+              "line": 100
+            },
+            {
+              "function": "files.items",
+              "line": 109
+            },
+            {
+              "function": "m.encoded",
+              "line": 100
+            }
+          ],
+          "line": 23,
+          "loop_lines": [
+            28
+          ]
+        },
+        "main": {
+          "calls": [
+            {
+              "function": "argparse.ArgumentParser",
+              "line": 141
+            },
+            {
+              "function": "parser.add_argument",
+              "line": 142
+            },
+            {
+              "function": "sys.stdout.write",
+              "line": 144
+            },
+            {
+              "function": "sys.stdout.flush",
+              "line": 147
+            },
+            {
+              "function": "authentication.authenticate",
+              "line": 148
+            },
+            {
+              "function": "sys.stdout.write",
+              "line": 149
+            },
+            {
+              "function": "sys.stdout.flush",
+              "line": 152
+            },
+            {
+              "function": "parser.parse_args",
+              "line": 143
+            },
+            {
+              "function": "expected",
+              "line": 154
+            },
+            {
+              "function": "m.write_new",
+              "line": 155
+            },
+            {
+              "function": "sys.stdout.write",
+              "line": 156
+            },
+            {
+              "function": "sys.stdout.write",
+              "line": 165
+            },
+            {
+              "function": "m.encoded({'status': 'BUILT; SEPARATE VERIFY REQUIRED', 'sha256': {n: m.sha(b) for n, b in files.items()}}).decode",
+              "line": 157
+            },
+            {
+              "function": "m.encoded(verify(data)).decode",
+              "line": 165
+            },
+            {
+              "function": "files.items",
+              "line": 155
+            },
+            {
+              "function": "m.encoded",
+              "line": 157
+            },
+            {
+              "function": "m.encoded",
+              "line": 165
+            },
+            {
+              "function": "verify",
+              "line": 165
+            },
+            {
+              "function": "m.sha",
+              "line": 160
+            },
+            {
+              "function": "files.items",
+              "line": 160
+            }
+          ],
+          "line": 140,
+          "loop_lines": []
+        },
+        "verify": {
+          "calls": [
+            {
+              "function": "expected",
+              "line": 127
+            },
+            {
+              "function": "files.items",
+              "line": 128
+            },
+            {
+              "function": "m.require",
+              "line": 129
+            },
+            {
+              "function": "m.load",
+              "line": 135
+            },
+            {
+              "function": "m.sha",
+              "line": 136
+            },
+            {
+              "function": "(PACKAGE / name).read_bytes",
+              "line": 130
+            },
+            {
+              "function": "files.items",
+              "line": 136
+            }
+          ],
+          "line": 126,
+          "loop_lines": [
+            128
+          ]
+        }
+      },
+      "sha256": "6c17c0fb314b34d4a95f8716cffcec21430989f37fd9f7d61ea438f19c7a3c12"
+    },
+    "experiments/codex_dogfood/case_0016/stage_d/authentication.py": {
+      "functions": {
+        "authenticate": {
+          "calls": [
+            {
+              "function": "asyncio.run",
+              "line": 152
+            },
+            {
+              "function": "surface",
+              "line": 153
+            },
+            {
+              "function": "m.require",
+              "line": 159
+            },
+            {
+              "function": "seal['sha256'].items",
+              "line": 160
+            },
+            {
+              "function": "read_inputs",
+              "line": 173
+            },
+            {
+              "function": "checkpoints",
+              "line": 152
+            },
+            {
+              "function": "p.relative_to(a.CAPTURE).as_posix",
+              "line": 155
+            },
+            {
+              "function": "m.require",
+              "line": 161
+            },
+            {
+              "function": "sys.stdout.write",
+              "line": 166
+            },
+            {
+              "function": "sys.stdout.flush",
+              "line": 169
+            },
+            {
+              "function": "reporting.verify",
+              "line": 170
+            },
+            {
+              "function": "sys.stdout.write",
+              "line": 171
+            },
+            {
+              "function": "sys.stdout.flush",
+              "line": 172
+            },
+            {
+              "function": "a.CAPTURE.rglob",
+              "line": 156
+            },
+            {
+              "function": "set",
+              "line": 159
+            },
+            {
+              "function": "p.relative_to",
+              "line": 155
+            },
+            {
+              "function": "p.is_file",
+              "line": 157
+            },
+            {
+              "function": "m.sha",
+              "line": 162
+            },
+            {
+              "function": "(a.CAPTURE / name).read_bytes",
+              "line": 162
+            }
+          ],
+          "line": 151,
+          "loop_lines": [
+            160
+          ]
+        },
+        "checkpoints": {
+          "calls": [
+            {
+              "function": "sys.stdout.write",
+              "line": 45
+            },
+            {
+              "function": "sys.stdout.flush",
+              "line": 46
+            },
+            {
+              "function": "m.require",
+              "line": 48
+            },
+            {
+              "function": "m.ROOT.relative_to(ROOT).as_posix",
+              "line": 52
+            },
+            {
+              "function": "m.outputs().items",
+              "line": 53
+            },
+            {
+              "function": "m.require",
+              "line": 58
+            },
+            {
+              "function": "a.CAPTURE.relative_to(ROOT).as_posix",
+              "line": 62
+            },
+            {
+              "function": "surface",
+              "line": 63
+            },
+            {
+              "function": "m.require",
+              "line": 64
+            },
+            {
+              "function": "asyncio.Semaphore",
+              "line": 70
+            },
+            {
+              "function": "sys.stdout.write",
+              "line": 81
+            },
+            {
+              "function": "sys.stdout.flush",
+              "line": 84
+            },
+            {
+              "function": "a.authenticate",
+              "line": 44
+            },
+            {
+              "function": "recovery.authenticate_recovery",
+              "line": 47
+            },
+            {
+              "function": "git_identity.verify",
+              "line": 51
+            },
+            {
+              "function": "m.require",
+              "line": 54
+            },
+            {
+              "function": "m.require",
+              "line": 75
+            },
+            {
+              "function": "asyncio.gather",
+              "line": 80
+            },
+            {
+              "function": "git",
+              "line": 43
+            },
+            {
+              "function": "m.ROOT.relative_to",
+              "line": 52
+            },
+            {
+              "function": "m.outputs",
+              "line": 53
+            },
+            {
+              "function": "m.sha",
+              "line": 59
+            },
+            {
+              "function": "a.CAPTURE.relative_to",
+              "line": 62
+            },
+            {
+              "function": "(a.CAPTURE / 'integrity.json').read_bytes",
+              "line": 66
+            },
+            {
+              "function": "seal['sha256'].items",
+              "line": 69
+            },
+            {
+              "function": "(a.CAPTURE / 'integrity.json').read_bytes",
+              "line": 59
+            },
+            {
+              "function": "git",
+              "line": 65
+            },
+            {
+              "function": "git",
+              "line": 74
+            },
+            {
+              "function": "git",
+              "line": 55
+            },
+            {
+              "function": "m.sha",
+              "line": 76
+            },
+            {
+              "function": "(a.CAPTURE / name).read_bytes",
+              "line": 76
+            },
+            {
+              "function": "blob",
+              "line": 80
+            },
+            {
+              "function": "important.items",
+              "line": 80
+            }
+          ],
+          "line": 35,
+          "loop_lines": [
+            36,
+            53
+          ]
+        },
+        "read_inputs": {
+          "calls": [
+            {
+              "function": "m.verify",
+              "line": 178
+            },
+            {
+              "function": "m.load",
+              "line": 179
+            },
+            {
+              "function": "surface",
+              "line": 180
+            },
+            {
+              "function": "m.require",
+              "line": 181
+            },
+            {
+              "function": "m.require",
+              "line": 187
+            },
+            {
+              "function": "m.require",
+              "line": 200
+            },
+            {
+              "function": "m.require",
+              "line": 222
+            },
+            {
+              "function": "surface",
+              "line": 223
+            },
+            {
+              "function": "m.require",
+              "line": 224
+            },
+            {
+              "function": "json.loads",
+              "line": 231
+            },
+            {
+              "function": "m.require",
+              "line": 233
+            },
+            {
+              "function": "references",
+              "line": 256
+            },
+            {
+              "function": "m.require",
+              "line": 258
+            },
+            {
+              "function": "m.require",
+              "line": 263
+            },
+            {
+              "function": "gzip.decompress",
+              "line": 231
+            },
+            {
+              "function": "m.load",
+              "line": 246
+            },
+            {
+              "function": "surface",
+              "line": 249
+            },
+            {
+              "function": "surface",
+              "line": 250
+            },
+            {
+              "function": "surface",
+              "line": 252
+            },
+            {
+              "function": "surface",
+              "line": 253
+            },
+            {
+              "function": "surface",
+              "line": 254
+            },
+            {
+              "function": "surface",
+              "line": 257
+            },
+            {
+              "function": "all",
+              "line": 264
+            },
+            {
+              "function": "(m.CASE / 'resources.json.gz').read_bytes",
+              "line": 231
+            },
+            {
+              "function": "surface",
+              "line": 251
+            },
+            {
+              "function": "len",
+              "line": 234
+            },
+            {
+              "function": "len",
+              "line": 234
+            },
+            {
+              "function": "surface('capture_costs.json').items",
+              "line": 264
+            },
+            {
+              "function": "enumerate",
+              "line": 237
+            },
+            {
+              "function": "arm.lower",
+              "line": 251
+            },
+            {
+              "function": "surface",
+              "line": 264
+            }
+          ],
+          "line": 176,
+          "loop_lines": []
+        },
+        "references": {
+          "calls": [
+            {
+              "function": "Graph",
+              "line": 101
+            },
+            {
+              "function": "g.items",
+              "line": 102
+            },
+            {
+              "function": "zip",
+              "line": 105
+            },
+            {
+              "function": "m.require",
+              "line": 147
+            },
+            {
+              "function": "surface",
+              "line": 101
+            },
+            {
+              "function": "g.fields",
+              "line": 106
+            },
+            {
+              "function": "m.require",
+              "line": 107
+            },
+            {
+              "function": "zip",
+              "line": 112
+            },
+            {
+              "function": "g.fields",
+              "line": 102
+            },
+            {
+              "function": "surface",
+              "line": 103
+            },
+            {
+              "function": "g.items",
+              "line": 113
+            },
+            {
+              "function": "g.fields",
+              "line": 115
+            },
+            {
+              "function": "g.fields",
+              "line": 128
+            },
+            {
+              "function": "m.require",
+              "line": 137
+            },
+            {
+              "function": "len",
+              "line": 147
+            },
+            {
+              "function": "g.plain",
+              "line": 117
+            },
+            {
+              "function": "g.plain",
+              "line": 130
+            },
+            {
+              "function": "native_fields.items",
+              "line": 118
+            },
+            {
+              "function": "target.items",
+              "line": 130
+            },
+            {
+              "function": "native_fields.items",
+              "line": 134
+            },
+            {
+              "function": "g.plain",
+              "line": 108
+            },
+            {
+              "function": "g.plain",
+              "line": 109
+            }
+          ],
+          "line": 99,
+          "loop_lines": [
+            105,
+            112
+          ]
+        },
+        "surface": {
+          "calls": [
+            {
+              "function": "json.loads",
+              "line": 28
+            },
+            {
+              "function": "name.endswith",
+              "line": 30
+            },
+            {
+              "function": "gzip.decompress",
+              "line": 29
+            },
+            {
+              "function": "path.read_bytes",
+              "line": 31
+            },
+            {
+              "function": "path.read_bytes",
+              "line": 29
+            }
+          ],
+          "line": 26,
+          "loop_lines": []
+        }
+      },
+      "sha256": "37aeed562ef0f7602c98de7f195515c19fd11310467f706e7759c29537e00c22"
+    },
+    "experiments/codex_dogfood/case_0016/stage_d/metrics.py": {
+      "functions": {
+        "analyze": {
+          "calls": [
+            {
+              "function": "m.require",
+              "line": 118
+            },
+            {
+              "function": "enumerate",
+              "line": 124
+            },
+            {
+              "function": "gold['minimal_witnesses'].items",
+              "line": 315
+            },
+            {
+              "function": "range",
+              "line": 455
+            },
+            {
+              "function": "any",
+              "line": 543
+            },
+            {
+              "function": "gates.DecisionInputs",
+              "line": 552
+            },
+            {
+              "function": "gates.decide",
+              "line": 570
+            },
+            {
+              "function": "m.require",
+              "line": 126
+            },
+            {
+              "function": "m.require",
+              "line": 130
+            },
+            {
+              "function": "m.require",
+              "line": 182
+            },
+            {
+              "function": "sorted",
+              "line": 186
+            },
+            {
+              "function": "m.require",
+              "line": 190
+            },
+            {
+              "function": "next",
+              "line": 220
+            },
+            {
+              "function": "flow",
+              "line": 221
+            },
+            {
+              "function": "gates.meaningful_rank",
+              "line": 223
+            },
+            {
+              "function": "required.append",
+              "line": 266
+            },
+            {
+              "function": "enumerate",
+              "line": 323
+            },
+            {
+              "function": "gates.meaningful_depth",
+              "line": 335
+            },
+            {
+              "function": "select",
+              "line": 343
+            },
+            {
+              "function": "sorted",
+              "line": 389
+            },
+            {
+              "function": "sorted",
+              "line": 409
+            },
+            {
+              "function": "sorted",
+              "line": 416
+            },
+            {
+              "function": "sorted",
+              "line": 457
+            },
+            {
+              "function": "any",
+              "line": 547
+            },
+            {
+              "function": "any",
+              "line": 551
+            },
+            {
+              "function": "m.require",
+              "line": 140
+            },
+            {
+              "function": "enumerate",
+              "line": 145
+            },
+            {
+              "function": "m.require",
+              "line": 201
+            },
+            {
+              "function": "ranks[arm][o].get",
+              "line": 219
+            },
+            {
+              "function": "bool",
+              "line": 230
+            },
+            {
+              "function": "failures.append",
+              "line": 256
+            },
+            {
+              "function": "any",
+              "line": 259
+            },
+            {
+              "function": "failures.append",
+              "line": 265
+            },
+            {
+              "function": "witnesses.append",
+              "line": 324
+            },
+            {
+              "function": "select",
+              "line": 333
+            },
+            {
+              "function": "gates.bounded",
+              "line": 348
+            },
+            {
+              "function": "unit_results.append",
+              "line": 374
+            },
+            {
+              "function": "len",
+              "line": 392
+            },
+            {
+              "function": "len",
+              "line": 393
+            },
+            {
+              "function": "label_counts",
+              "line": 395
+            },
+            {
+              "function": "sum",
+              "line": 396
+            },
+            {
+              "function": "sorted",
+              "line": 420
+            },
+            {
+              "function": "len",
+              "line": 421
+            },
+            {
+              "function": "len",
+              "line": 423
+            },
+            {
+              "function": "len",
+              "line": 425
+            },
+            {
+              "function": "len",
+              "line": 427
+            },
+            {
+              "function": "sorted",
+              "line": 433
+            },
+            {
+              "function": "len",
+              "line": 460
+            },
+            {
+              "function": "label_counts",
+              "line": 461
+            },
+            {
+              "function": "flow",
+              "line": 488
+            },
+            {
+              "function": "positives.append",
+              "line": 505
+            },
+            {
+              "function": "dict",
+              "line": 517
+            },
+            {
+              "function": "sum",
+              "line": 518
+            },
+            {
+              "function": "tuple",
+              "line": 553
+            },
+            {
+              "function": "tuple",
+              "line": 557
+            },
+            {
+              "function": "tuple",
+              "line": 558
+            },
+            {
+              "function": "tuple",
+              "line": 562
+            },
+            {
+              "function": "any",
+              "line": 567
+            },
+            {
+              "function": "sum",
+              "line": 584
+            },
+            {
+              "function": "sorted",
+              "line": 585
+            },
+            {
+              "function": "len",
+              "line": 119
+            },
+            {
+              "function": "len",
+              "line": 119
+            },
+            {
+              "function": "m.require",
+              "line": 146
+            },
+            {
+              "function": "bindings.append",
+              "line": 160
+            },
+            {
+              "function": "set",
+              "line": 183
+            },
+            {
+              "function": "ranks['A'][o].get",
+              "line": 197
+            },
+            {
+              "function": "ranks['B'][o].get",
+              "line": 198
+            },
+            {
+              "function": "ranks['A'][o].get",
+              "line": 237
+            },
+            {
+              "function": "any",
+              "line": 257
+            },
+            {
+              "function": "failures.append",
+              "line": 258
+            },
+            {
+              "function": "next",
+              "line": 288
+            },
+            {
+              "function": "gates.bounded",
+              "line": 295
+            },
+            {
+              "function": "witness",
+              "line": 318
+            },
+            {
+              "function": "bool",
+              "line": 350
+            },
+            {
+              "function": "selected.items",
+              "line": 385
+            },
+            {
+              "function": "selected.items",
+              "line": 390
+            },
+            {
+              "function": "len",
+              "line": 394
+            },
+            {
+              "function": "len",
+              "line": 394
+            },
+            {
+              "function": "set",
+              "line": 457
+            },
+            {
+              "function": "set",
+              "line": 457
+            },
+            {
+              "function": "Counter",
+              "line": 517
+            },
+            {
+              "function": "set",
+              "line": 522
+            },
+            {
+              "function": "str",
+              "line": 536
+            },
+            {
+              "function": "sum",
+              "line": 589
+            },
+            {
+              "function": "set",
+              "line": 119
+            },
+            {
+              "function": "m.require",
+              "line": 149
+            },
+            {
+              "function": "set",
+              "line": 183
+            },
+            {
+              "function": "set",
+              "line": 183
+            },
+            {
+              "function": "next",
+              "line": 239
+            },
+            {
+              "function": "flow",
+              "line": 240
+            },
+            {
+              "function": "overtakers.append",
+              "line": 241
+            },
+            {
+              "function": "ranks[arm][o].get",
+              "line": 284
+            },
+            {
+              "function": "gates.meaningful_depth",
+              "line": 351
+            },
+            {
+              "function": "len",
+              "line": 397
+            },
+            {
+              "function": "selected.items",
+              "line": 449
+            },
+            {
+              "function": "ranks['C'][o].get",
+              "line": 467
+            },
+            {
+              "function": "flow",
+              "line": 479
+            },
+            {
+              "function": "next",
+              "line": 492
+            },
+            {
+              "function": "sorted",
+              "line": 526
+            },
+            {
+              "function": "sorted",
+              "line": 527
+            },
+            {
+              "function": "len",
+              "line": 530
+            },
+            {
+              "function": "label_counts",
+              "line": 533
+            },
+            {
+              "function": "label_counts",
+              "line": 534
+            },
+            {
+              "function": "label_counts",
+              "line": 538
+            },
+            {
+              "function": "selected.values",
+              "line": 551
+            },
+            {
+              "function": "len",
+              "line": 141
+            },
+            {
+              "function": "len",
+              "line": 141
+            },
+            {
+              "function": "set",
+              "line": 142
+            },
+            {
+              "function": "set",
+              "line": 142
+            },
+            {
+              "function": "all",
+              "line": 150
+            },
+            {
+              "function": "all",
+              "line": 366
+            },
+            {
+              "function": "bool",
+              "line": 370
+            },
+            {
+              "function": "resources[s]['content'].encode",
+              "line": 397
+            },
+            {
+              "function": "selected.values",
+              "line": 555
+            },
+            {
+              "function": "seed_diagnostic.values",
+              "line": 567
+            },
+            {
+              "function": "novel.values",
+              "line": 584
+            },
+            {
+              "function": "novel.values",
+              "line": 586
+            },
+            {
+              "function": "ranks['B'][o].get",
+              "line": 247
+            },
+            {
+              "function": "all",
+              "line": 438
+            },
+            {
+              "function": "novel.values",
+              "line": 589
+            },
+            {
+              "function": "next",
+              "line": 439
+            }
+          ],
+          "line": 111,
+          "loop_lines": [
+            124,
+            214,
+            315,
+            359,
+            382,
+            455,
+            134,
+            195,
+            323,
+            360,
+            485,
+            521,
+            145,
+            236,
+            362,
+            524
+          ]
+        },
+        "flow": {
+          "calls": [
+            {
+              "function": "next",
+              "line": 76
+            },
+            {
+              "function": "math.fsum",
+              "line": 80
+            },
+            {
+              "function": "math.fsum",
+              "line": 81
+            },
+            {
+              "function": "m.require",
+              "line": 83
+            },
+            {
+              "function": "sorted",
+              "line": 87
+            },
+            {
+              "function": "math.isclose",
+              "line": 84
+            },
+            {
+              "function": "sorted",
+              "line": 101
+            }
+          ],
+          "line": 75,
+          "loop_lines": []
+        },
+        "label_counts": {
+          "calls": [
+            {
+              "function": "Counter",
+              "line": 17
+            }
+          ],
+          "line": 16,
+          "loop_lines": []
+        },
+        "prefix": {
+          "calls": [
+            {
+              "function": "sorted",
+              "line": 22
+            },
+            {
+              "function": "set",
+              "line": 22
+            },
+            {
+              "function": "len",
+              "line": 25
+            },
+            {
+              "function": "len",
+              "line": 26
+            },
+            {
+              "function": "label_counts",
+              "line": 28
+            },
+            {
+              "function": "sum",
+              "line": 29
+            },
+            {
+              "function": "len",
+              "line": 27
+            },
+            {
+              "function": "len",
+              "line": 27
+            },
+            {
+              "function": "len",
+              "line": 30
+            },
+            {
+              "function": "resources[s]['content'].encode",
+              "line": 30
+            }
+          ],
+          "line": 21,
+          "loop_lines": []
+        },
+        "select": {
+          "calls": [
+            {
+              "function": "min",
+              "line": 63
+            }
+          ],
+          "line": 60,
+          "loop_lines": []
+        },
+        "witness": {
+          "calls": [
+            {
+              "function": "all",
+              "line": 45
+            },
+            {
+              "function": "ranks.get",
+              "line": 44
+            },
+            {
+              "function": "max",
+              "line": 46
+            },
+            {
+              "function": "member_ranks.values",
+              "line": 46
+            },
+            {
+              "function": "prefix",
+              "line": 54
+            },
+            {
+              "function": "member_ranks.values",
+              "line": 45
+            }
+          ],
+          "line": 35,
+          "loop_lines": []
+        }
+      },
+      "sha256": "01fe4217c6dcbae72a277f8b3599e66e296db66f34af3a8187620e02fa8ff7d0"
+    },
+    "experiments/codex_dogfood/case_0016/stage_d/reporting.py": {
+      "functions": {
+        "change": {
+          "calls": [],
+          "line": 15,
+          "loop_lines": []
+        },
+        "enrich": {
+          "calls": [
+            {
+              "function": "change",
+              "line": 62
+            },
+            {
+              "function": "movement",
+              "line": 66
+            },
+            {
+              "function": "movement",
+              "line": 72
+            },
+            {
+              "function": "movement",
+              "line": 82
+            },
+            {
+              "function": "movement",
+              "line": 85
+            },
+            {
+              "function": "change",
+              "line": 95
+            },
+            {
+              "function": "sorted",
+              "line": 219
+            },
+            {
+              "function": "sum",
+              "line": 35
+            },
+            {
+              "function": "sum",
+              "line": 39
+            },
+            {
+              "function": "sum",
+              "line": 42
+            },
+            {
+              "function": "sum",
+              "line": 43
+            },
+            {
+              "function": "sum",
+              "line": 46
+            },
+            {
+              "function": "sum",
+              "line": 49
+            },
+            {
+              "function": "sum",
+              "line": 52
+            },
+            {
+              "function": "change",
+              "line": 61
+            },
+            {
+              "function": "sum",
+              "line": 63
+            },
+            {
+              "function": "sum",
+              "line": 64
+            },
+            {
+              "function": "any",
+              "line": 80
+            },
+            {
+              "function": "change",
+              "line": 94
+            },
+            {
+              "function": "any",
+              "line": 121
+            },
+            {
+              "function": "any",
+              "line": 125
+            },
+            {
+              "function": "any",
+              "line": 129
+            },
+            {
+              "function": "sum",
+              "line": 155
+            },
+            {
+              "function": "sum",
+              "line": 159
+            },
+            {
+              "function": "sorted",
+              "line": 198
+            },
+            {
+              "function": "dict",
+              "line": 221
+            },
+            {
+              "function": "dict",
+              "line": 222
+            },
+            {
+              "function": "target.pop",
+              "line": 223
+            },
+            {
+              "function": "reach['A']['obligation_completeness'].values",
+              "line": 63
+            },
+            {
+              "function": "reach['C']['obligation_completeness'].values",
+              "line": 64
+            },
+            {
+              "function": "len",
+              "line": 190
+            },
+            {
+              "function": "selected.values",
+              "line": 67
+            },
+            {
+              "function": "range",
+              "line": 157
+            },
+            {
+              "function": "operations.items",
+              "line": 161
+            },
+            {
+              "function": "k.startswith",
+              "line": 161
+            },
+            {
+              "function": "selected.values",
+              "line": 47
+            },
+            {
+              "function": "selected.values",
+              "line": 50
+            },
+            {
+              "function": "selected.values",
+              "line": 122
+            },
+            {
+              "function": "range",
+              "line": 155
+            },
+            {
+              "function": "range",
+              "line": 159
+            }
+          ],
+          "line": 29,
+          "loop_lines": [
+            55,
+            88,
+            219
+          ]
+        },
+        "markdown": {
+          "calls": [
+            {
+              "function": "result['primary_answers'].items",
+              "line": 242
+            },
+            {
+              "function": "sorted",
+              "line": 285
+            },
+            {
+              "function": "result['selected_witnesses'].items",
+              "line": 356
+            },
+            {
+              "function": "lines.extend",
+              "line": 370
+            },
+            {
+              "function": "result['graph_novel'].items",
+              "line": 383
+            },
+            {
+              "function": "lines.extend",
+              "line": 399
+            },
+            {
+              "function": "'\\n'.join(lines).encode",
+              "line": 466
+            },
+            {
+              "function": "lines.append",
+              "line": 316
+            },
+            {
+              "function": "lines.append",
+              "line": 337
+            },
+            {
+              "function": "lines.append",
+              "line": 368
+            },
+            {
+              "function": "lines.append",
+              "line": 384
+            },
+            {
+              "function": "', '.join",
+              "line": 292
+            },
+            {
+              "function": "rank",
+              "line": 295
+            },
+            {
+              "function": "rank",
+              "line": 296
+            },
+            {
+              "function": "rank",
+              "line": 298
+            },
+            {
+              "function": "rank",
+              "line": 306
+            },
+            {
+              "function": "'; '.join",
+              "line": 313
+            },
+            {
+              "function": "', '.join",
+              "line": 314
+            },
+            {
+              "function": "str",
+              "line": 363
+            },
+            {
+              "function": "str",
+              "line": 364
+            },
+            {
+              "function": "str",
+              "line": 365
+            },
+            {
+              "function": "m.encoded(value).decode().rstrip",
+              "line": 457
+            },
+            {
+              "function": "'\\n'.join",
+              "line": 466
+            },
+            {
+              "function": "' | '.join",
+              "line": 282
+            },
+            {
+              "function": "'|'.join",
+              "line": 283
+            },
+            {
+              "function": "rank",
+              "line": 334
+            },
+            {
+              "function": "result['dimensions'].items",
+              "line": 372
+            },
+            {
+              "function": "enumerate",
+              "line": 399
+            },
+            {
+              "function": "' | '.join",
+              "line": 317
+            },
+            {
+              "function": "', '.join",
+              "line": 330
+            },
+            {
+              "function": "' | '.join",
+              "line": 339
+            },
+            {
+              "function": "' | '.join",
+              "line": 368
+            },
+            {
+              "function": "' | '.join",
+              "line": 386
+            },
+            {
+              "function": "str",
+              "line": 399
+            },
+            {
+              "function": "m.encoded(value).decode",
+              "line": 457
+            },
+            {
+              "function": "rank",
+              "line": 360
+            },
+            {
+              "function": "', '.join",
+              "line": 343
+            },
+            {
+              "function": "str",
+              "line": 389
+            },
+            {
+              "function": "m.encoded",
+              "line": 457
+            },
+            {
+              "function": "str",
+              "line": 317
+            },
+            {
+              "function": "rank",
+              "line": 331
+            },
+            {
+              "function": "w['arms'][arm]['member_ranks'].items",
+              "line": 331
+            },
+            {
+              "function": "str",
+              "line": 391
+            }
+          ],
+          "line": 233,
+          "loop_lines": [
+            242,
+            285,
+            328,
+            356,
+            383,
+            409
+          ]
+        },
+        "movement": {
+          "calls": [
+            {
+              "function": "any",
+              "line": 22
+            },
+            {
+              "function": "any",
+              "line": 24
+            }
+          ],
+          "line": 21,
+          "loop_lines": []
+        },
+        "rank": {
+          "calls": [
+            {
+              "function": "str",
+              "line": 12
+            }
+          ],
+          "line": 11,
+          "loop_lines": []
+        }
+      },
+      "sha256": "885d73299295119ec8f35b9da77680932afd95ec5114754dca0771fec3f47e50"
+    },
+    "experiments/codex_dogfood/case_0016/stage_d/validation.py": {
+      "functions": {
+        "validate": {
+          "calls": [
+            {
+              "function": "m.require",
+              "line": 23
+            },
+            {
+              "function": "m.require",
+              "line": 116
+            },
+            {
+              "function": "result['selected_witnesses'].items",
+              "line": 161
+            },
+            {
+              "function": "enumerate",
+              "line": 249
+            },
+            {
+              "function": "result['top_k'].items",
+              "line": 265
+            },
+            {
+              "function": "tuple",
+              "line": 290
+            },
+            {
+              "function": "tuple",
+              "line": 294
+            },
+            {
+              "function": "m.require",
+              "line": 297
+            },
+            {
+              "function": "tuple",
+              "line": 302
+            },
+            {
+              "function": "tuple",
+              "line": 306
+            },
+            {
+              "function": "m.require",
+              "line": 310
+            },
+            {
+              "function": "gates.decide",
+              "line": 315
+            },
+            {
+              "function": "m.require",
+              "line": 327
+            },
+            {
+              "function": "m.require",
+              "line": 46
+            },
+            {
+              "function": "m.require",
+              "line": 50
+            },
+            {
+              "function": "m.require",
+              "line": 57
+            },
+            {
+              "function": "m.require",
+              "line": 61
+            },
+            {
+              "function": "m.require",
+              "line": 83
+            },
+            {
+              "function": "m.require",
+              "line": 98
+            },
+            {
+              "function": "m.require",
+              "line": 185
+            },
+            {
+              "function": "m.require",
+              "line": 190
+            },
+            {
+              "function": "Counter",
+              "line": 206
+            },
+            {
+              "function": "m.require",
+              "line": 207
+            },
+            {
+              "function": "m.require",
+              "line": 221
+            },
+            {
+              "function": "m.require",
+              "line": 230
+            },
+            {
+              "function": "result['graph_novel'].items",
+              "line": 249
+            },
+            {
+              "function": "m.require",
+              "line": 251
+            },
+            {
+              "function": "m.require",
+              "line": 256
+            },
+            {
+              "function": "diagnostics.items",
+              "line": 266
+            },
+            {
+              "function": "gates.DecisionInputs",
+              "line": 316
+            },
+            {
+              "function": "labels.items",
+              "line": 21
+            },
+            {
+              "function": "ranks['A'][o].get",
+              "line": 45
+            },
+            {
+              "function": "ranks['C'][o].get",
+              "line": 45
+            },
+            {
+              "function": "m.require",
+              "line": 76
+            },
+            {
+              "function": "math.isclose",
+              "line": 84
+            },
+            {
+              "function": "m.require",
+              "line": 93
+            },
+            {
+              "function": "m.require",
+              "line": 105
+            },
+            {
+              "function": "gold['minimal_witnesses'].values",
+              "line": 114
+            },
+            {
+              "function": "m.require",
+              "line": 127
+            },
+            {
+              "function": "all",
+              "line": 134
+            },
+            {
+              "function": "m.require",
+              "line": 136
+            },
+            {
+              "function": "Counter",
+              "line": 147
+            },
+            {
+              "function": "m.require",
+              "line": 148
+            },
+            {
+              "function": "m.require",
+              "line": 180
+            },
+            {
+              "function": "m.require",
+              "line": 240
+            },
+            {
+              "function": "set",
+              "line": 250
+            },
+            {
+              "function": "set",
+              "line": 250
+            },
+            {
+              "function": "view['comparisons'].items",
+              "line": 280
+            },
+            {
+              "function": "len",
+              "line": 24
+            },
+            {
+              "function": "range",
+              "line": 39
+            },
+            {
+              "function": "len",
+              "line": 117
+            },
+            {
+              "function": "set",
+              "line": 118
+            },
+            {
+              "function": "ranks[arm][o].get",
+              "line": 133
+            },
+            {
+              "function": "max",
+              "line": 135
+            },
+            {
+              "function": "m.require",
+              "line": 143
+            },
+            {
+              "function": "sorted",
+              "line": 145
+            },
+            {
+              "function": "min",
+              "line": 168
+            },
+            {
+              "function": "result['selected_witnesses'].items",
+              "line": 198
+            },
+            {
+              "function": "set",
+              "line": 268
+            },
+            {
+              "function": "m.require",
+              "line": 272
+            },
+            {
+              "function": "pair.split",
+              "line": 281
+            },
+            {
+              "function": "m.require",
+              "line": 282
+            },
+            {
+              "function": "result['selected_witnesses'].values",
+              "line": 292
+            },
+            {
+              "function": "tuple",
+              "line": 298
+            },
+            {
+              "function": "tuple",
+              "line": 299
+            },
+            {
+              "function": "tuple",
+              "line": 311
+            },
+            {
+              "function": "tuple",
+              "line": 312
+            },
+            {
+              "function": "ranks[arm][o].get",
+              "line": 47
+            },
+            {
+              "function": "math.fsum",
+              "line": 78
+            },
+            {
+              "function": "expected_ranks.values",
+              "line": 135
+            },
+            {
+              "function": "sorted",
+              "line": 200
+            },
+            {
+              "function": "len",
+              "line": 208
+            },
+            {
+              "function": "len",
+              "line": 209
+            },
+            {
+              "function": "sum",
+              "line": 212
+            },
+            {
+              "function": "len",
+              "line": 222
+            },
+            {
+              "function": "len",
+              "line": 224
+            },
+            {
+              "function": "all",
+              "line": 235
+            },
+            {
+              "function": "sum",
+              "line": 259
+            },
+            {
+              "function": "map",
+              "line": 298
+            },
+            {
+              "function": "map",
+              "line": 299
+            },
+            {
+              "function": "expected_ranks.values",
+              "line": 134
+            },
+            {
+              "function": "sorted",
+              "line": 149
+            },
+            {
+              "function": "len",
+              "line": 150
+            },
+            {
+              "function": "len",
+              "line": 151
+            },
+            {
+              "function": "sum",
+              "line": 158
+            },
+            {
+              "function": "len",
+              "line": 210
+            },
+            {
+              "function": "len",
+              "line": 210
+            },
+            {
+              "function": "sorted",
+              "line": 268
+            },
+            {
+              "function": "set",
+              "line": 149
+            },
+            {
+              "function": "set",
+              "line": 151
+            },
+            {
+              "function": "len",
+              "line": 212
+            },
+            {
+              "function": "bool",
+              "line": 245
+            },
+            {
+              "function": "int",
+              "line": 268
+            },
+            {
+              "function": "sum",
+              "line": 275
+            },
+            {
+              "function": "len",
+              "line": 283
+            },
+            {
+              "function": "len",
+              "line": 158
+            },
+            {
+              "function": "resources[s]['content'].encode",
+              "line": 212
+            },
+            {
+              "function": "resources[s]['content'].encode",
+              "line": 158
+            },
+            {
+              "function": "set",
+              "line": 158
+            }
+          ],
+          "line": 14,
+          "loop_lines": [
+            43,
+            121,
+            161,
+            195,
+            228,
+            249,
+            265,
+            72,
+            92,
+            125,
+            162,
+            231,
+            266,
+            271,
+            280
+          ]
+        }
+      },
+      "sha256": "2cef6eb19fabb18dc14fc51bafb8e6965036ca304ce0401fe40ef688d9c09232"
+    }
+  }
+}

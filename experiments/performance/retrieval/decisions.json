@@ -1,0 +1,95 @@
+{
+  "decisions": [
+    {
+      "answer": "YES",
+      "evidence": "Median/p95 32.2803/45.3682 ms; VIABLE; target 50 ms median.",
+      "number": "1",
+      "question": "Is canonical BM25 fast enough for the online agent loop?"
+    },
+    {
+      "answer": "YES",
+      "evidence": "Hit median/p95 0.0604/0.0711 ms; current tuple scan.",
+      "number": "2",
+      "question": "Is exact resource lookup fast enough?"
+    },
+    {
+      "answer": "YES",
+      "evidence": "Median/p95 27.1726/31.0794 ms; VIABLE; target 250 ms budget.",
+      "number": "3",
+      "question": "Is pure current PPR fast enough?"
+    },
+    {
+      "answer": "YES",
+      "evidence": "Median/p95 1.5900/1.9686 ms; VIABLE; target 250 ms budget.",
+      "number": "4",
+      "question": "Is propagated-flow projection fast enough?"
+    },
+    {
+      "answer": "YES",
+      "evidence": "Median/p95 0.7757/1.2897 ms; VIABLE; target 250 ms budget.",
+      "number": "5",
+      "question": "Is production RRF fast enough?"
+    },
+    {
+      "answer": "YES",
+      "evidence": "Median/p95 66.7613/87.2052 ms; VIABLE; target 250 ms median / 1 s p95.",
+      "number": "6",
+      "question": "Is COMPLETE warm graph-assisted retrieval fast enough?"
+    },
+    {
+      "answer": "NO",
+      "evidence": "They include native view/lexical authentication and a Python callback around the entire rank wrapper. Journal publication happens after this timer.",
+      "number": "7",
+      "question": "Are prior 15-18 second B timings representative of retrieval computation?"
+    },
+    {
+      "answer": "NO",
+      "evidence": "fuse() calls require_ranking(), reconstructing/validating the view and lexical frame before the tiny RRF primitive.",
+      "number": "8",
+      "question": "Are prior ~3 second C timings representative of actual RRF?"
+    },
+    {
+      "answer": "NO",
+      "evidence": "Median pure full pass 288.760 seconds across three samples.",
+      "number": "9",
+      "question": "Can full RI derivation happen synchronously for every query?"
+    },
+    {
+      "answer": "NO",
+      "evidence": "Median 288.760 seconds; incremental maintenance is required.",
+      "number": "10",
+      "question": "Can full RI derivation reasonably happen after every edit?"
+    },
+    {
+      "answer": "CONDITIONAL",
+      "evidence": "Pure graph median 1.747 seconds, excluding RI/provenance. Coalesced background rebuilding is feasible; synchronous per-edit rebuilding is unsuitable.",
+      "number": "11",
+      "question": "Can graph reconstruction happen after every edit?"
+    },
+    {
+      "answer": "YES",
+      "evidence": "One-resource RI exists but no complete invalidation system. Changed sources/declarations, affected referencers, outgoing graph rows and lexical statistics must be maintained.",
+      "number": "12",
+      "question": "Is incremental RI/graph maintenance required for production?"
+    },
+    {
+      "answer": "CONDITIONAL",
+      "evidence": "Cached projection/render medians 0.5668/0.5592 ms are small. Current diagnostic wrappers add audit/identity work; this is separate from required query arithmetic.",
+      "number": "13",
+      "question": "Is definition/map materialization a meaningful online bottleneck?"
+    },
+    {
+      "answer": "CONDITIONAL",
+      "evidence": "Confirmed repeated native replay and reviewed-primary/adversarial reconstruction amplify experiment-only work. The historical run has no retained phase trace; exact attribution of every second is unavailable. Bounded mechanical diagnostics and static call counts are retained; no complete verifier or gold join was rerun.",
+      "number": "14",
+      "question": "Why did Stage D verification take approximately 55 minutes?"
+    },
+    {
+      "answer": "YES",
+      "evidence": "retain the canonical filename index as snapshot state instead of rebuilding it per query. Follow measured online targets, then offline ownership/incremental work, then verifier amplification.",
+      "number": "15",
+      "question": "What single performance bottleneck should be fixed FIRST?"
+    }
+  ],
+  "status": "RETRIEVAL_PERFORMANCE_BASELINE = COMPLETE"
+}
