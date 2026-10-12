@@ -39,10 +39,16 @@ The exact unchanged Astra High gold/attempt-2 join preserves all REQUIRED reach
 and six obligation completions, but establishes no meaningful gains. O6 depth
 worsens 137 to 138 and AGENTS.md's O6 rank 2 to 3 exceeds the complementary bound.
 This is document-field-combination evidence under fixed CONTENT/FILENAME fields
-and parameters, distinct from R1.7 query-side evidence. The next planned direction
-is GRAPH / REPOSITORY-MAP RETRIEVAL: investigate and freeze a minimum strong
-Aider-style structural architecture and prospective slice before further lexical
-micro-experiments. Richer fields, optimized BM25F, learned ranking, fusion and
+and parameters, distinct from R1.7 query-side evidence. GRAPH-3 is now COMPLETE /
+GRAPH_HARMFUL at [Case 0016 Stage D](../../../experiments/codex_dogfood/case_0016/stage_d/STAGE_D_REVIEW.md).
+The exact sole-primary/attempt-2 join preserves all REQUIRED reach and six
+completions, but 26 REQUIRED-rank and five selected-depth regressions exceed
+prospective bounds. O2 and five meaningful ranks improve; all 37 graph-novel
+occurrences are UNNECESSARY under their own obligations, and prefix burden grows.
+This is bounded propagated-reference/RRF development evidence, not production
+promotion or resolution of this epic. Maintainer review of the verdict and causal
+diagnostics is next; no subsequent Graph increment is selected here.
+Richer fields, optimized BM25F, learned ranking, fusion and
 sequential localization remain future work. No epic pressure is resolved;
 downstream Localization is preserved. SEARCH_POLICY_FAILURE = NOT_ASSESSED;
 confirmation/reserve = NOT_ACCESSED; production behavior = UNCHANGED. No epic concern is closed,

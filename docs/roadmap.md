@@ -65,9 +65,10 @@ U1, U2 and U3 are complete**; Case 0013 Stage D supports bounded task-role-
 conditioned exact-route admission. R1.7 is COMPLETE /
 QUERY_TERM_WEIGHTING_HARMFUL at Case 0014 Stage D, with unchanged primary-derived
 reviewed gold and the prospectively frozen decision rule. R2 true BM25F is
-COMPLETE / BM25F_HARMFUL at Case 0015 under the frozen rule. The next high-level
-retrieval direction is GRAPH / REPOSITORY-MAP RETRIEVAL: investigate and freeze
-a minimum strong Aider-style structural architecture and prospective slice.
+COMPLETE / BM25F_HARMFUL at Case 0015 under the frozen rule. GRAPH-3 is COMPLETE /
+GRAPH_HARMFUL at [Case 0016 Stage D](../experiments/codex_dogfood/case_0016/stage_d/STAGE_D_REVIEW.md).
+The next step is maintainer review of the completed verdict and causal diagnostics;
+no subsequent retrieval increment is selected here.
 Canonical production BM25 remains unchanged and semantic-resolution effectiveness
 does not resume yet.
 
@@ -290,12 +291,9 @@ UNCHANGED; confirmation/reserve NOT_ACCESSED; SEARCH_POLICY_FAILURE NOT_ASSESSED
 The frozen rule distinguishes safe replacement, bounded complementary value,
 harm and invalid experiments through task-relative witnesses and REQUIRED ranks.
 
-Next direction: **GRAPH / REPOSITORY-MAP RETRIEVAL**. Begin the graph /
-repository-map retrieval increment by investigating and freezing the minimum
-strong Aider-style / repository-map structural retrieval architecture and a
-prospective evaluation slice. Do not start another lexical weighting/parameter
-micro-experiment first. This roadmap records direction, not graph implementation
-authorization in the Case 0015 task. Richer field models, optimized BM25F,
+The GRAPH / REPOSITORY-MAP RETRIEVAL direction now has the completed Graph-3
+Case 0016 result below. This does not authorize another retrieval increment.
+Richer field models, optimized BM25F,
 learned ranking, fusion and sequential localization remain future work.
 Graph-3 now has a prospective [Case 0016 Stage A freeze](../experiments/codex_dogfood/case_0016/STAGE_A_REVIEW.md):
 reference-only resource PPR with sqrt occurrence weights, uniform existing-exact
@@ -306,10 +304,29 @@ unchanged by the prospective propagated-flow amendment: B now ranks only incomin
 Reference flow; stationary/restart/dangling mass is internal evidence, excluding
 seed-only graph-channel votes. Definition maps order primarily by definition flow.
 New task conditioning/projection/diagnostic/gates remain experiment-owned.
-Stage B remains NOT EXECUTED, gold ABSENT and usefulness NOT EVALUATED. Next:
-maintainer reviews this frozen task/protocol, then separately executes the three
-arms prospectively exactly once. No production graph promotion or feature
-implementation follows from Stage A, and no lexical micro-experiment intervenes.
+GRAPH-3 is **COMPLETE / GRAPH_HARMFUL** at
+[Case 0016 Stage D](../experiments/codex_dogfood/case_0016/stage_d/STAGE_D_REVIEW.md).
+Authoritative Stage B attempt 2 is joined to the sole treatment-blind Astra High
+primary-derived reviewed gold with semantic_transformation = NONE. C preserves
+all 17 REQUIRED resources, 36 REQUIRED cells, 27 repository-supported units,
+48 total units and six obligation completions. O2 selected depth improves 36 to
+6, and five REQUIRED ranks improve meaningfully; 30 REQUIRED ranks regress,
+26 beyond frozen bounds. Five selected depths regress beyond their bounds.
+Selected-prefix resources/occurrences increase 257/393 to 270/432; bytes increase
+2,140,989 to 2,188,189. All 37 B-only occurrences (21 distinct resources) are
+UNNECESSARY under their own obligations; there is no REQUIRED rescue.
+Harmful precedence applies before complementary gains. Self/cross flow is a
+post-gold diagnostic: O2 resource.py and O5 planned_reference.py direct incoming
+flow is entirely cross-resource; the three materialization.py meaningful gains
+have majority self-flow. No edge ablation or new threshold changes the gate.
+U1 = COMPLETE / INFORMATION_NEED_AUTHORING_DEFECT; U2 = COMPLETE /
+EXACT_HINT_ROUTING_SUPPORTED; U3 = COMPLETE / SELECTIVE_MECHANISM_ROUTING_SUPPORTED;
+R1.7 = COMPLETE / QUERY_TERM_WEIGHTING_HARMFUL; R2 = COMPLETE / BM25F_HARMFUL.
+SEARCH_POLICY_FAILURE = NOT_ASSESSED; production behavior = UNCHANGED;
+confirmation/reserve = NOT_ACCESSED. No resource-pointer implementation or
+production graph promotion follows. Next: **Maintainer reviews the completed
+Graph-3 Stage D verdict and causal diagnostics.** No next Graph increment is
+selected or started in this task.
 The broader field/identifier comparison directions below remain future hypotheses;
 they are not arms or fields in this first frozen two-field, two-arm slice.
 
@@ -370,7 +387,8 @@ canonical baseline
     -> U3 selective mechanism routing (complete; bounded Case 0013 support)
     -> R1.7 query terms (COMPLETE; Case 0014 QUERY_TERM_WEIGHTING_HARMFUL)
     -> R2 canonical two-field BM25F (COMPLETE; Case 0015 BM25F_HARMFUL)
-    -> GRAPH / REPOSITORY-MAP RETRIEVAL architecture and prospective slice
+    -> GRAPH-3 propagated References (COMPLETE; Case 0016 GRAPH_HARMFUL)
+    -> Maintainer review of the completed Stage D verdict and causal diagnostics
        (later richer fields/optimized BM25F/learned ranking/fusion/sequential work retained)
 ```
 

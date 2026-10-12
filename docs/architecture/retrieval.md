@@ -76,6 +76,18 @@ propagated Reference flow rather than total stationary PPR mass. Full stationary
 state remains internal provenance; restart/dangling-only seeds have no B rank or
 graph-channel RRF contribution. Production graph/map APIs are unchanged.
 
+[Case 0016 Stage D](../../experiments/codex_dogfood/case_0016/stage_d/STAGE_D_REVIEW.md)
+completes this development slice as **GRAPH_HARMFUL** under the unchanged rule.
+The single clean Astra High primary remains semantically unchanged. C preserves
+all necessary reach and six completions, with an O2 witness gain and five
+meaningful REQUIRED-rank gains, but 26 unbounded REQUIRED-rank regressions and
+five unbounded selected-depth regressions take precedence. All 37 B-only
+occurrences are obligation-relative UNNECESSARY; selected-prefix burden grows.
+Self/cross incoming-flow shares describe captured mechanism support only and
+introduce no threshold or new treatment. Production graph/map APIs, Context
+Planning and downstream Localization remain unchanged. Maintainer review is next;
+no production promotion or subsequent retrieval increment is selected here.
+
 The [canonical analyzer](../../src/devtools/context/retrieval/lexical/analysis.py)
 matches ordinary Unicode `\w+` spans and case-folds them. It does **not** split
 snake_case, camelCase, PascalCase, acronym boundaries or identifier components.
@@ -281,7 +293,7 @@ sufficiency.** Both research tracks remain necessary.
 [EXPERIMENTAL; COMPLETE] U3: SELECTIVE_MECHANISM_ROUTING_SUPPORTED, bounded exact admission
 [EXPERIMENTAL; COMPLETE] R1.7: QUERY_TERM_WEIGHTING_HARMFUL, Case 0014
 [EXPERIMENTAL; COMPLETE] R2 true BM25F, Case 0015: BM25F_HARMFUL
-[PLANNED] Next retrieval direction: GRAPH / REPOSITORY-MAP RETRIEVAL
+[EXPERIMENTAL; COMPLETE] GRAPH-3, Case 0016: GRAPH_HARMFUL; maintainer review next
 
 [PRODUCTION, CALLER-DIRECTED] explicit Context choices --> plan
                      --> exact materialization --> rendering / assembly

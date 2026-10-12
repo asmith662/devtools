@@ -556,3 +556,9 @@ owns the immutable sole treatment-blind Astra High import and authentication.
 preserves all primary semantics directly: 3,084 cells, 48 units, 22 witnesses,
 864 task combinations and no gaps. No reconciliation or second reviewer is used.
 This development-gold checkpoint does not itself evaluate Graph-3 effectiveness.
+
+[Case 0016 Stage D](../experiments/codex_dogfood/case_0016/stage_d/STAGE_D_REVIEW.md)
+owns the authoritative attempt-2/gold join, all REQUIRED ranks and witnesses,
+prefix burdens, self/cross Reference flow, labeled novel/top-K diagnostics,
+captured costs and exact frozen GRAPH_HARMFUL outcome. The roadmap records
+GRAPH-3 COMPLETE; production is unchanged and no further increment is selected.
