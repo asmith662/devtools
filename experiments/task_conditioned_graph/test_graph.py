@@ -19,7 +19,11 @@ from devtools.context.repository.resource import RepositoryResourceAddress
 from devtools.context.retrieval.graph.pagerank import GraphRankingSettings
 from devtools.context.retrieval.graph.walk import stationary_distribution
 from devtools.core.paths import ResolvedPath
-from experiments.task_conditioned_graph.diagnostic import definitions, render_map
+from experiments.task_conditioned_graph.diagnostic import (
+    definitions,
+    render_map,
+    validate_definitions,
+)
 from experiments.task_conditioned_graph.evidence import (
     graph_evidence,
     validate_evidence,
@@ -111,7 +115,6 @@ def test_unresolved_no_guessed_edge_self_reference_and_degree(tmp_path: Path) ->
     assert "disconnected.md" not in {str(r.address) for r in result.resources}
     assert "self.py" not in {str(r.address) for r in result.resources}
     assert {str(r.address) for r in result.resources} == {
-        "source.py",
         "left.py",
         "right.py",
     }
@@ -120,7 +123,7 @@ def test_unresolved_no_guessed_edge_self_reference_and_degree(tmp_path: Path) ->
     assert rows["left.py"].score / rows["right.py"].score == pytest.approx(2)
 
 
-def test_uniform_seeds_ppr_flow_graph_novel_and_native_rrf(tmp_path: Path) -> None:
+def test_uniform_seeds_ppr_flow_graph_novel_and_native_rrf(tmp_path: Path) -> None:  # noqa: PLR0915 -- complete provenance fixture
     snapshot, _, refs, _ = _facts(tmp_path)
     lexical = _lexical(tmp_path, snapshot, query_text="value")
     view = build_reference_view(snapshot, refs)
@@ -132,25 +135,36 @@ def test_uniform_seeds_ppr_flow_graph_novel_and_native_rrf(tmp_path: Path) -> No
     result = rank(snapshot, view, lexical, (exact, exact))
     assert len(result.exact) == 1
     rows = {str(r.address): r for r in result.resources}
-    assert rows["consumer.py"].restart == pytest.approx(0.15 / 2)
-    assert rows["unrelated.py"].restart == pytest.approx(0.15 / 2)
+    states = {str(s.address): s for s in result.states}
+    assert states["consumer.py"].direct_restart_mass == pytest.approx(0.15 / 2)
+    assert states["unrelated.py"].direct_restart_mass == pytest.approx(0.15 / 2)
+    assert states["consumer.py"].stationary_mass > 0
+    assert states["consumer.py"].incoming_structural_flow == 0
+    assert "consumer.py" not in rows
+    assert "unrelated.py" not in rows
     assert rows["pkg/target.py"].seed is False
-    assert rows["pkg/target.py"].restart == rows["pkg/target.py"].dangling == 0
-    assert rows["pkg/target.py"].incoming[0][1] == pytest.approx(
-        rows["pkg/target.py"].score, abs=1e-10
+    assert (
+        states["pkg/target.py"].direct_restart_mass
+        == states["pkg/target.py"].dangling_return_mass
+        == 0
     )
-    assert sum(r.score for r in result.resources) == pytest.approx(1)
-    for row in result.resources:
-        assert row.score == pytest.approx(
-            row.restart + row.dangling + sum(flow for _, flow in row.incoming),
+    assert states["pkg/target.py"].incoming[0][1] == rows["pkg/target.py"].score
+    assert sum(s.stationary_mass for s in result.states) == pytest.approx(1)
+    for row in result.states:
+        assert row.stationary_mass == pytest.approx(
+            row.direct_restart_mass
+            + row.dangling_return_mass
+            + row.incoming_structural_flow,
             abs=1e-10,
         )
     fused = dict(fuse(result))
-    assert fused[RepositoryResourceAddress("consumer.py")] == 1 / 61 + 1 / (
-        60 + rows["consumer.py"].rank
-    )
-    assert fused[exact.address] == 1 / (60 + rows["unrelated.py"].rank)
-    assert set(fused) == {r.address for r in result.resources}
+    assert fused[RepositoryResourceAddress("consumer.py")] == 1 / 61
+    assert exact.address not in fused
+    assert fused[RepositoryResourceAddress("pkg/target.py")] == 1 / 61
+    assert set(fused) == {
+        RepositoryResourceAddress("consumer.py"),
+        RepositoryResourceAddress("pkg/target.py"),
+    }
     assert result == rank(snapshot, view, lexical, (exact,))
     encoded = graph_evidence(result)
     assert encoded == graph_evidence(result)
@@ -170,6 +184,21 @@ def test_uniform_seeds_ppr_flow_graph_novel_and_native_rrf(tmp_path: Path) -> No
         r.identity for r in refs
     }
     assert projected[0].header.startswith("def f():")
+    validate_definitions(projected, result)
+    flow = 0.85 * states["consumer.py"].stationary_mass * view.edges[0].probability
+    assert rows["pkg/target.py"].score == flow
+    assert projected[0].incoming_flow == pytest.approx(flow)
+    assert all(
+        s.pair_flow == flow and s.per_occurrence_flow == flow / 3
+        for s in projected[0].occurrence_flows
+    )
+    assert {s.reference for s in projected[0].occurrence_flows} == set(refs)
+    assert all(
+        s.source_resource == "consumer.py" and s.definition_owner == "pkg/target.py"
+        for s in projected[0].occurrence_flows
+    )
+    with pytest.raises(ValueError, match="aggregation"):
+        validate_definitions((replace(projected[0], incoming_flow=99),), result)
     mapped = render_map(projected)
     assert mapped["effectiveness_arm"] is False
     assert render_map(projected, budget=mapped["utf8_bytes"])["admitted"] == 1
@@ -191,11 +220,9 @@ def test_no_seeds_abstains_exact_only_and_stable_ties(tmp_path: Path) -> None:
         for n in ("unrelated.py", "pkg/__init__.py")
     )
     result = rank(snapshot, view, lexical, exact)
-    assert [str(r.address) for r in result.resources] == [
-        "pkg/__init__.py",
-        "unrelated.py",
-    ]
-    assert all(r.score == 0.5 for r in result.resources)
+    assert result.resources == ()
+    assert all(s.stationary_mass == 0.5 for s in result.states if s.seed)
+    assert all(s.incoming_structural_flow == 0 for s in result.states)
 
 
 def test_exact_native_literal_resolution_existing_absent_and_no_fuzzy(
@@ -238,7 +265,8 @@ def test_top_ten_seed_bound(tmp_path: Path) -> None:
     assert len(lexical.matches) == 12
     assert len(seed_union(snapshot, lexical, (snapshot.resources[-1],))) == 11
     result = rank(snapshot, build_reference_view(snapshot, ()), lexical)
-    assert len(result.resources) == 10
+    assert len(result.resources) == 0
+    assert len([s for s in result.states if s.stationary_mass > 0]) == 10
     assert len(fuse(result)) == 12
     assert dict(fuse(result))[snapshot.resources[-1].address] == 1 / 72
 
@@ -347,4 +375,4 @@ def test_ranking_does_not_parse_or_use_native_frontier(
         forbid,
     )
     result = rank(snapshot, build_reference_view(snapshot, refs), lexical)
-    assert len(result.resources) == 2
+    assert len(result.resources) == 1

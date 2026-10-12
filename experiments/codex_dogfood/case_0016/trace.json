@@ -5681,10 +5681,10 @@
   "protocol": {
     "arms": {
       "A": "CANONICAL_BM25",
-      "B": "TASK_CONDITIONED_REFERENCE_PPR",
+      "B": "TASK_CONDITIONED_REFERENCE_PPR_FLOW",
       "C": "BM25_GRAPH_RRF"
     },
-    "attribution_policy": "Graph-contributed gain requires captured B membership/rank/propagated-reference flow and deterministic RRF ablation showing the necessary-evidence/witness gain disappears without B. Seed-only rank carryover must be reported separately; no propagation claim from seed status alone. Noise/hub/dilution classifications require demonstrated necessary-evidence/overtaker consequence, not raw degree/score. B-only poor ordering does not itself select hybrid failure.",
+    "attribution_policy": "Graph-contributed gain requires positive Arm-B propagated structural flow, relevant captured native reference provenance, hybrid RRF movement and deterministic graph-channel ablation showing the gain disappears without B. Restart, dangling return and seed identity alone cannot contribute a B rank/vote. SEED_CARRYOVER_WITHOUT_PROPAGATED_VALUE identifies forbidden positive seed-only ranking or diagnostic internal state, never valid graph-channel credit. Noise/hub/dilution classifications require demonstrated necessary-evidence/overtaker consequence, not raw degree/score. B-only poor ordering does not itself select hybrid failure.",
     "canonical_bm25": {
       "analyzer": "Native Unicode word spans/casefold, distinct query terms",
       "b": 0.75,
@@ -5705,7 +5705,7 @@
       "burden_scope": "Selected mandatory witness prefixes only; union resources/bytes across obligations, retain repeated occurrences and obligation-relative labels; no fictional global task ranking",
       "cost_and_map": "Descriptive only; no outcome threshold",
       "implementation": "experiments/task_conditioned_graph/gates.py",
-      "implementation_checks": "Native RI frame/content/support, reference-only projection, occurrence count/sqrt/row arithmetic, seed sources/K/uniform mass, dangling/restart/convergence, full positive ranks/ties, RRF union/arithmetic, exact native joins, unchanged reference lane, once-only execution and valid blind gold",
+      "implementation_checks": "Native RI frame/content/support, unchanged reference projection/count/sqrt/rows/seeds/PPR; full stationary accounting and pair flow sums; B membership/score/order exactly positive incoming flow, reject seed-only/total-stationary ranking; definition occurrence/aggregate sums equal pair/resource flows; production RRF consumes corrected flow ranks only; exact native joins, unchanged reference lane, once-only execution and valid blind gold",
       "meaningful_required_rank": "Both reached, A_rank-C_rank >= 2 AND 5*C_rank <= 4*A_rank",
       "meaningful_witness": "A incomplete and C complete OR A_depth > 0 AND 5*C_depth <= 4*A_depth",
       "precedence": [
@@ -5723,7 +5723,7 @@
       "strong_burden": "Positive baseline unique and occurrence counts; (10*C_unique <= 9*A_unique OR 10*C_occurrences <= 9*A_occurrences) AND all unique/occurrence/distinct-byte dimensions nonincreasing",
       "zero_resource_witness": "Complete at depth 0, zero prefix/burden, task-backed units unranked; 0-to-0 not meaningful, no division"
     },
-    "definition_projection": "Referenced native definitions in positively ranked owners; definition/subject identity, name, exact native span, incoming per-reference flow and parent resource rank/score. No symbol aggregation changes resource ranks.",
+    "definition_projection": "Positive pair flow = d*pi(source)*P(source,target); divide equally among distinct native reference occurrences, aggregate by resolved definition identity. Retain source/target resources, native reference occurrence/span/expression, resolved definition/owner/span, pair/per-occurrence/aggregated definition flow and parent propagated resource rank/score. Validate sums against resource pair flow. Diagnostic only; no symbol aggregation changes resource ranks.",
     "diagnostics": [
       "Top-K overlap/entered/exited/inversions at 10/20/50, labels only after blind gold",
       "Seed versus propagated mass/rank share, top incoming contributors and responsible reference identifiers",
@@ -5856,7 +5856,7 @@
     "historical_comparison": "Later compare retained Graph-1/2 expansion size, ranked concentration, novel evidence yield, path explosion, reverse/fan-out noise and discovered required evidence; nonmatched cases prohibit a controlled causal superiority claim. No historical rerun or raw path-count effectiveness metric.",
     "increment": "GRAPH-3 / TASK-CONDITIONED REPOSITORY-MAP RETRIEVAL",
     "map_diagnostic": {
-      "budget": "Whole lines in parent-rank / incoming-flow / definition-identity order, stop at first blocked line; omissions metadata; no token estimator",
+      "budget": "Whole lines in descending propagated definition-flow / parent propagated-resource-rank / definition-identity order, stop at first blocked line; omissions metadata; no token estimator",
       "effectiveness_arm": false,
       "header_characters": 240,
       "maximum_utf8_bytes": 8192,
@@ -5908,9 +5908,16 @@
       "kernel": "devtools.context.retrieval.graph.walk.stationary_distribution",
       "maximum_iterations": 200,
       "restart": 0.15,
-      "result": "All positive resource mass bounded by N; descending score then canonical address (no lexical-rank tie preference)",
+      "result": "Arm B score is propagated_reference_score(v) = d * fsum(pi(u) * P(u,v)), exactly incoming_structural_flow(v). Only positive structural flow enters B; descending propagated score then canonical address. Stationary mass/restart/dangling do not rank or fuse.",
       "tolerance": 1e-10,
-      "trace": "Exact/lexical seed provenance, score, seed flag, direct restart, dangling return, incoming edge stationary flows. Edge flow divided equally among its native occurrences for definition diagnostics; scores are not relevance probabilities."
+      "trace": "Every node retains stationary_mass, direct_restart_mass, dangling_return_mass, incoming_structural_flow and native incoming pair flows. Retain each seed and whether it appears in B. Stationary = restart + dangling + incoming within unchanged 2*tolerance accounting convention; full mass normalization unchanged. Seeds with zero flow are excluded from B. Edge flow divided equally among native occurrences; no flow-score renormalization."
+    },
+    "prospective_amendment": {
+      "prior_integrity_sha256": "84529a786ada2d814a56039328f902fa6e28ddb93e7488d41b83282b2ee67009",
+      "prior_stage_a_checkpoint": "e2cc61600705eb5faccb814cb19f81aac5645a73",
+      "reason": "Remove seed restart/dangling carryover from Arm-B structural ranking; stationary PageRank is source importance, propagated reference flow is retrieval evidence",
+      "scientific_status": "PROSPECTIVE / no Case 0016 execution before amendment",
+      "unchanged": "Task/obligations/queries/frame/RI/view/edge/seeds/PPR/A/RRF/gold/metrics/burden/failure classes/gate thresholds and precedence remain frozen"
     },
     "requirement_matrix": [
       {

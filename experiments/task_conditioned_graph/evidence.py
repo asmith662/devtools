@@ -12,6 +12,7 @@ from typing import TYPE_CHECKING
 from devtools.context.python.function.materialization import _extract_source_segment
 from devtools.core.identity import Identity
 from experiments.codex_dogfood.case_0009.artifacts import json_bytes
+from experiments.task_conditioned_graph.diagnostic import definitions
 from experiments.task_conditioned_graph.ranking import require_ranking
 
 if TYPE_CHECKING:
@@ -57,6 +58,7 @@ def graph_evidence(result: Ranking) -> bytes:
     snapshot = result.view.snapshot
     require_ranking(result)
     facts = {}
+    states = {s.address: s for s in result.states}
     for edge in result.view.edges:
         for fact in edge.references:
             source = snapshot.resource_at(fact.occurrence.resource_address)
@@ -70,7 +72,7 @@ def graph_evidence(result: Ranking) -> bytes:
             }
     return json_bytes(
         {
-            "schema": "graph3-experimental-reference-evidence-v1",
+            "schema": "graph3-experimental-reference-flow-evidence-v2",
             "repository_id": str(snapshot.repository_id),
             "snapshot_id": str(snapshot.id),
             "nodes": [
@@ -87,6 +89,11 @@ def graph_evidence(result: Ranking) -> bytes:
                     "raw_reference_count": len(e.references),
                     "weight_hex": e.weight.hex(),
                     "probability_hex": e.probability.hex(),
+                    "pair_flow_hex": (
+                        result.settings.damping
+                        * states[e.source].stationary_mass
+                        * e.probability
+                    ).hex(),
                     "facts": [r.identity for r in e.references],
                 }
                 for e in result.view.edges
@@ -103,6 +110,23 @@ def graph_evidence(result: Ranking) -> bytes:
             "iterations": result.iterations,
             "converged": True,
             "ranked_resources": native(result.resources),
+            "definition_projection": native(definitions(result)),
+            "ppr_internal_states": native(result.states),
+            "seed_accounting": [
+                {
+                    "state": native(s),
+                    "appears_in_arm_b": any(
+                        r.address == s.address for r in result.resources
+                    ),
+                }
+                for s in result.states
+                if s.seed
+            ],
+            "ranking_score": (
+                "incoming_structural_flow = damping * sum(source stationary_mass "
+                "* reference transition_probability); "
+                "restart/dangling are not graph scores"
+            ),
             "flow_meaning": (
                 "restart = direct seed, dangling = personalized return, incoming = "
                 "propagated stationary edge flow; edge index resolves exact provenance"

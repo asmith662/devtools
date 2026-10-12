@@ -9,6 +9,10 @@ from typing import Any
 from experiments.codex_dogfood.case_0009.artifacts import ROOT, binary
 
 START = "941678aab144b274216ab1482843ab194a1f5e88"
+PRIOR_STAGE_A = "e2cc61600705eb5faccb814cb19f81aac5645a73"
+PRIOR_INTEGRITY_SHA256 = (
+    "84529a786ada2d814a56039328f902fa6e28ddb93e7488d41b83282b2ee67009"
+)
 CASE = ROOT / "experiments/codex_dogfood/case_0016"
 PACKAGE = ROOT / "experiments/task_conditioned_graph"
 COUNTS: dict[str, int | str] = dict.fromkeys(
@@ -100,7 +104,7 @@ def authored() -> dict[str, Any]:
         ],
         "arms": {
             "A": "CANONICAL_BM25",
-            "B": "TASK_CONDITIONED_REFERENCE_PPR",
+            "B": "TASK_CONDITIONED_REFERENCE_PPR_FLOW",
             "C": "BM25_GRAPH_RRF",
         },
         "comparisons": {
@@ -173,17 +177,17 @@ def authored() -> dict[str, Any]:
             "initial": "personalization",
             "dangling": "personalization",
             "convergence": "L1 delta <= tolerance, deterministic supplied node/row order; normalize returned mass. Nonconvergence is PAGERANK_APPLICATION_DEFECT; no silent fallback or parameter change.",
-            "result": "All positive resource mass bounded by N; descending score then canonical address (no lexical-rank tie preference)",
-            "trace": "Exact/lexical seed provenance, score, seed flag, direct restart, dangling return, incoming edge stationary flows. Edge flow divided equally among its native occurrences for definition diagnostics; scores are not relevance probabilities.",
+            "result": "Arm B score is propagated_reference_score(v) = d * fsum(pi(u) * P(u,v)), exactly incoming_structural_flow(v). Only positive structural flow enters B; descending propagated score then canonical address. Stationary mass/restart/dangling do not rank or fuse.",
+            "trace": "Every node retains stationary_mass, direct_restart_mass, dangling_return_mass, incoming_structural_flow and native incoming pair flows. Retain each seed and whether it appears in B. Stationary = restart + dangling + incoming within unchanged 2*tolerance accounting convention; full mass normalization unchanged. Seeds with zero flow are excluded from B. Edge flow divided equally among native occurrences; no flow-score renormalization.",
         },
-        "definition_projection": "Referenced native definitions in positively ranked owners; definition/subject identity, name, exact native span, incoming per-reference flow and parent resource rank/score. No symbol aggregation changes resource ranks.",
+        "definition_projection": "Positive pair flow = d*pi(source)*P(source,target); divide equally among distinct native reference occurrences, aggregate by resolved definition identity. Retain source/target resources, native reference occurrence/span/expression, resolved definition/owner/span, pair/per-occurrence/aggregated definition flow and parent propagated resource rank/score. Validate sums against resource pair flow. Diagnostic only; no symbol aggregation changes resource ranks.",
         "map_diagnostic": {
             "owner_boundary": "Experiment rendering only; production Context representation remains a later decision",
             "effectiveness_arm": False,
             "maximum_utf8_bytes": 8192,
             "header_characters": 240,
             "representation": "Exact first native declaration line excerpt plus explicit excerpt marker, name/address/location; not complete signature/body/decorators",
-            "budget": "Whole lines in parent-rank / incoming-flow / definition-identity order, stop at first blocked line; omissions metadata; no token estimator",
+            "budget": "Whole lines in descending propagated definition-flow / parent propagated-resource-rank / definition-identity order, stop at first blocked line; omissions metadata; no token estimator",
             "score_effect": "NONE",
         },
         "fusion": {
@@ -216,7 +220,7 @@ def authored() -> dict[str, Any]:
         ],
         "historical_comparison": "Later compare retained Graph-1/2 expansion size, ranked concentration, novel evidence yield, path explosion, reverse/fan-out noise and discovered required evidence; nonmatched cases prohibit a controlled causal superiority claim. No historical rerun or raw path-count effectiveness metric.",
         "failure_taxonomy": FAILURES,
-        "attribution_policy": "Graph-contributed gain requires captured B membership/rank/propagated-reference flow and deterministic RRF ablation showing the necessary-evidence/witness gain disappears without B. Seed-only rank carryover must be reported separately; no propagation claim from seed status alone. Noise/hub/dilution classifications require demonstrated necessary-evidence/overtaker consequence, not raw degree/score. B-only poor ordering does not itself select hybrid failure.",
+        "attribution_policy": "Graph-contributed gain requires positive Arm-B propagated structural flow, relevant captured native reference provenance, hybrid RRF movement and deterministic graph-channel ablation showing the gain disappears without B. Restart, dangling return and seed identity alone cannot contribute a B rank/vote. SEED_CARRYOVER_WITHOUT_PROPAGATED_VALUE identifies forbidden positive seed-only ranking or diagnostic internal state, never valid graph-channel credit. Noise/hub/dilution classifications require demonstrated necessary-evidence/overtaker consequence, not raw degree/score. B-only poor ordering does not itself select hybrid failure.",
         "decision_rule": {
             "implementation": "experiments/task_conditioned_graph/gates.py",
             "primary": "C versus A only",
@@ -237,7 +241,7 @@ def authored() -> dict[str, Any]:
                 "No loss/unbounded regression, graph-contributed meaningful rank/witness gain or novel REQUIRED reach rescue => COMPLEMENTARY_GRAPH_VALUE",
                 "Otherwise => NO_MATERIAL_VALUE",
             ],
-            "implementation_checks": "Native RI frame/content/support, reference-only projection, occurrence count/sqrt/row arithmetic, seed sources/K/uniform mass, dangling/restart/convergence, full positive ranks/ties, RRF union/arithmetic, exact native joins, unchanged reference lane, once-only execution and valid blind gold",
+            "implementation_checks": "Native RI frame/content/support, unchanged reference projection/count/sqrt/rows/seeds/PPR; full stationary accounting and pair flow sums; B membership/score/order exactly positive incoming flow, reject seed-only/total-stationary ranking; definition occurrence/aggregate sums equal pair/resource flows; production RRF consumes corrected flow ranks only; exact native joins, unchanged reference lane, once-only execution and valid blind gold",
             "cost_and_map": "Descriptive only; no outcome threshold",
         },
         "gold_policy": {
@@ -289,4 +293,11 @@ def authored() -> dict[str, Any]:
             "no_tuning": True,
         },
         "no_execution": COUNTS,
+        "prospective_amendment": {
+            "prior_stage_a_checkpoint": PRIOR_STAGE_A,
+            "prior_integrity_sha256": PRIOR_INTEGRITY_SHA256,
+            "reason": "Remove seed restart/dangling carryover from Arm-B structural ranking; stationary PageRank is source importance, propagated reference flow is retrieval evidence",
+            "scientific_status": "PROSPECTIVE / no Case 0016 execution before amendment",
+            "unchanged": "Task/obligations/queries/frame/RI/view/edge/seeds/PPR/A/RRF/gold/metrics/burden/failure classes/gate thresholds and precedence remain frozen",
+        },
     }

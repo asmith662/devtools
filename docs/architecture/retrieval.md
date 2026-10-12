@@ -71,6 +71,10 @@ A; graph-only B and definition-map rendering are diagnostics. Its task, gates,
 provenance and ownership audit are frozen before execution; no effectiveness
 claim or production change is established. Production graph/map APIs above
 retain their distinct semantics.
+The prospective amendment to Case 0016 makes B's resource score incoming
+propagated Reference flow rather than total stationary PPR mass. Full stationary
+state remains internal provenance; restart/dangling-only seeds have no B rank or
+graph-channel RRF contribution. Production graph/map APIs are unchanged.
 
 The [canonical analyzer](../../src/devtools/context/retrieval/lexical/analysis.py)
 matches ordinary Unicode `\w+` spans and case-folds them. It does **not** split

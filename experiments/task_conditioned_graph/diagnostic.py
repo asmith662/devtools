@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any
 
@@ -11,10 +12,27 @@ from devtools.context.python.function.materialization import _extract_source_seg
 from experiments.task_conditioned_graph.ranking import require_ranking
 
 if TYPE_CHECKING:
+    from devtools.context.python.references.declarations.model import (
+        PythonDeclarationReferenceKnowledge,
+    )
     from experiments.task_conditioned_graph.ranking import Ranking
 
 MAP_BYTES = 8192
 HEADER_CHARACTERS = 240
+
+
+@dataclass(frozen=True)
+class DefinitionOccurrenceFlow:
+    """Exact native occurrence bridge from source importance to definition flow."""
+
+    source_resource: str
+    target_resource: str
+    reference: PythonDeclarationReferenceKnowledge
+    referenced_expression: str
+    definition_identity: str
+    definition_owner: str
+    pair_flow: float
+    per_occurrence_flow: float
 
 
 @dataclass(frozen=True)
@@ -31,6 +49,7 @@ class DefinitionProjection:
     parent_score: float
     incoming_flow: float
     reference_flows: tuple[tuple[str, float], ...]
+    occurrence_flows: tuple[DefinitionOccurrenceFlow, ...]
 
 
 def definitions(result: Ranking) -> tuple[DefinitionProjection, ...]:
@@ -42,17 +61,32 @@ def definitions(result: Ranking) -> tuple[DefinitionProjection, ...]:
     """
     require_ranking(result)
     rows = {r.address: r for r in result.resources}
-    grouped: dict[str, list[tuple[Any, float]]] = {}
+    states = {s.address: s for s in result.states}
+    grouped: dict[str, list[DefinitionOccurrenceFlow]] = {}
     for row in rows.values():
-        for edge_index, flow in row.incoming:
+        for edge_index, flow in states[row.address].incoming:
+            if flow <= 0:
+                continue
             edge = result.view.edges[edge_index]
             for reference in edge.references:
+                source = result.view.snapshot.resource_at(edge.source)
                 grouped.setdefault(reference.target_declaration.identity, []).append(
-                    (reference, flow / len(edge.references))
+                    DefinitionOccurrenceFlow(
+                        str(edge.source),
+                        str(edge.target),
+                        reference,
+                        _extract_source_segment(
+                            source.content, reference.occurrence.source_range
+                        ),
+                        reference.target_declaration.identity,
+                        str(reference.target_resource.address),
+                        flow,
+                        flow / len(edge.references),
+                    )
                 )
     projected = []
     for identity, supports in grouped.items():
-        declaration = supports[0][0].target_declaration
+        declaration = supports[0].reference.target_declaration
         address = declaration.support.resource_address
         row = rows[address]
         span = declaration.support.source_range
@@ -77,13 +111,32 @@ def definitions(result: Ranking) -> tuple[DefinitionProjection, ...]:
                 header,
                 row.rank,
                 row.score,
-                sum(flow for _, flow in supports),
-                tuple(sorted((ref.identity, flow) for ref, flow in supports)),
+                math.fsum(s.per_occurrence_flow for s in supports),
+                tuple(
+                    sorted(
+                        (s.reference.identity, s.per_occurrence_flow) for s in supports
+                    )
+                ),
+                tuple(sorted(supports, key=lambda s: s.reference.identity)),
             )
         )
+    for address, row in rows.items():
+        total = math.fsum(
+            p.incoming_flow for p in projected if p.address == str(address)
+        )
+        if abs(total - row.score) > 2 * result.settings.tolerance:
+            raise ValueError("Definition flow sum differs from resource pair flow")
     return tuple(
-        sorted(projected, key=lambda r: (r.parent_rank, -r.incoming_flow, r.definition))
+        sorted(projected, key=lambda r: (-r.incoming_flow, r.parent_rank, r.definition))
     )
+
+
+def validate_definitions(
+    projected: tuple[DefinitionProjection, ...], result: Ranking
+) -> None:
+    """Reject definition/occurrence flow tamper without stationary iteration."""
+    if projected != definitions(result):
+        raise ValueError("Definition-flow provenance/aggregation mismatch")
 
 
 def render_map(

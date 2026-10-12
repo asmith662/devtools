@@ -8,9 +8,12 @@ import argparse
 import asyncio
 import gzip
 import io
+import json
 import tarfile
 from typing import TYPE_CHECKING, Any
 
+from devtools.core.paths import resolve_path
+from devtools.resources.filesystem import TextFile, write
 from experiments.codex_dogfood.case_0009.artifacts import (
     ROOT,
     binary,
@@ -43,6 +46,7 @@ AUTHORED = (
     "AUDIT.md",
     "README.md",
     ".gitattributes",
+    "AMENDMENT.md",
 )
 
 
@@ -133,6 +137,8 @@ def render(design: dict[str, Any], metadata: dict[str, Any]) -> str:
         [
             "# Case 0016 Graph-3 Stage A review\n\nStage B NOT EXECUTED; gold ABSENT; effectiveness NOT_EVALUATED.\n\n",
             binary(CASE / "AUDIT.md").decode(),
+            "\n\n## Prospective amendment\n\n",
+            binary(CASE / "AMENDMENT.md").decode(),
             "\n\n## Selection\n\n",
             binary(CASE / "SELECTION.md").decode(),
             "\n\n## Frozen selection criteria\n\n```json\n",
@@ -176,6 +182,14 @@ async def expected() -> dict[str, bytes]:
         "excluded_prior_case_resources": excluded,
         "task_query_independent": True,
     }
+    original = await authenticate_original()
+    require_unchanged_contract(original["protocol"], design)
+    if (
+        digest(json_bytes(metadata)) != original["seal"]["artifacts"]["frame.json"]
+        or digest(gzip.compress(json_bytes(resources), mtime=0))
+        != original["seal"]["artifacts"]["resources.json.gz"]
+    ):
+        raise ValueError("Amendment changed frozen frame/resources")
     trace = {
         "case": "0016",
         "source_head": protocol.START,
@@ -195,6 +209,9 @@ async def expected() -> dict[str, bytes]:
         "implementation and authored seals",
         "deterministic JSON/Markdown/gzip byte replay",
         "closed no-execution allowlist and gold absence",
+        "original Stage A seal and all committed blob identities",
+        "restricted prospective contract amendment; unchanged task/frame/RI/seeds/PPR/RRF/gates",
+        "flow-only B membership/ranking/fusion, full stationary accounting, definition-flow sums",
     ]
     values = {
         "resources.json.gz": gzip.compress(json_bytes(resources), mtime=0),
@@ -220,6 +237,9 @@ async def expected() -> dict[str, bytes]:
         {
             "schema": "case-0016-graph3-stage-a-integrity-v1",
             "source_head": protocol.START,
+            "prior_stage_a_checkpoint": protocol.PRIOR_STAGE_A,
+            "prior_integrity_sha256": protocol.PRIOR_INTEGRITY_SHA256,
+            "original_stage_a_authenticated_files": original["authenticated_files"],
             "artifacts": {k: digest(v) for k, v in sorted(values.items())},
             "authored": {p: digest(binary(CASE / p)) for p in AUTHORED},
             "implementation": {
@@ -238,6 +258,104 @@ async def expected() -> dict[str, bytes]:
         }
     )
     return values
+
+
+async def authenticate_original() -> dict[str, Any]:
+    """Authenticate original Git seal/inputs without any treatment operation."""
+    await git("merge-base", "--is-ancestor", protocol.PRIOR_STAGE_A, "HEAD")
+    prefix = "experiments/codex_dogfood/case_0016/"
+    raw = await git("show", protocol.PRIOR_STAGE_A + ":" + prefix + "integrity.json")
+    if digest(raw) != protocol.PRIOR_INTEGRITY_SHA256:
+        raise ValueError("Original Stage A integrity hash mismatch")
+    seal = json.loads(raw)
+    expected_files = {
+        prefix + p: h
+        for section in ("artifacts", "authored")
+        for p, h in seal[section].items()
+    }
+    expected_files.update(seal["implementation"])
+    expected_files.update(seal["historical_development"])
+    semaphore = asyncio.Semaphore(4)
+
+    async def check(path: str, sha: str) -> None:
+        async with semaphore:
+            data = await git("show", protocol.PRIOR_STAGE_A + ":" + path)
+        if digest(data) != sha:
+            raise ValueError("Original sealed blob mismatch: " + path)
+        # All reused native code, gates, view, seed policy and historical sources
+        # remain byte-identical. Only authorized experiment consumers may change.
+        unchanged = not path.startswith(
+            (prefix, "experiments/task_conditioned_graph/")
+        ) or path.endswith(("/gates.py", "/view.py", "/seeds.py"))
+        if unchanged and digest(binary(ROOT / path)) != sha:
+            raise ValueError("Unchanged implementation changed: " + path)
+
+    await asyncio.gather(*(check(p, h) for p, h in expected_files.items()))
+    original_protocol = json.loads(
+        await git("show", protocol.PRIOR_STAGE_A + ":" + prefix + "protocol.json")
+    )
+    original_trace = json.loads(
+        await git("show", protocol.PRIOR_STAGE_A + ":" + prefix + "trace.json")
+    )
+    if (
+        original_trace["no_execution"] != protocol.COUNTS
+        or seal["no_execution"] != protocol.COUNTS
+    ):
+        raise ValueError("Original Stage A is not unexecuted")
+    for name in (
+        "task.txt",
+        "SELECTION.md",
+        "SELECTION_CRITERIA.json",
+        "AUDIT.md",
+        ".gitattributes",
+    ):
+        if digest(binary(CASE / name)) != seal["authored"][name]:
+            raise ValueError("Immutable authored input changed: " + name)
+    return {
+        "seal": seal,
+        "protocol": original_protocol,
+        "authenticated_files": len(expected_files) + 1,
+    }
+
+
+def require_unchanged_contract(
+    original: dict[str, Any], amended: dict[str, Any]
+) -> None:
+    """Allow only the expressly authorized ranking/diagnostic clarification."""
+    before = json.loads(json_bytes(original))
+    after = json.loads(json_bytes(amended))
+    after.pop("prospective_amendment")
+    for value in (before, after):
+        value["arms"].pop("B")
+        value["pagerank"].pop("result")
+        value["pagerank"].pop("trace")
+        value.pop("definition_projection")
+        value["map_diagnostic"].pop("budget")
+        value.pop("attribution_policy")
+        value["decision_rule"].pop("implementation_checks")
+    if before != after:
+        raise ValueError("Unauthorized prospective contract change")
+
+
+async def amend(destination: Path) -> None:
+    """Replace only original unexecuted artifacts once, preserving immutable bytes."""
+    no_execution(destination)
+    original = await authenticate_original()
+    for name, sha in original["seal"]["artifacts"].items():
+        if digest(binary(destination / name)) != sha:
+            raise ValueError("Refusing amendment overwrite of non-original artifacts")
+    if (
+        digest(binary(destination / "integrity.json"))
+        != protocol.PRIOR_INTEGRITY_SHA256
+    ):
+        raise ValueError("Refusing amendment overwrite of non-original seal")
+    values = await expected()
+    for name, raw in values.items():
+        if name in {"frame.json", "resources.json.gz"}:
+            if binary(destination / name) != raw:
+                raise ValueError("Immutable frame/resources changed")
+            continue
+        write(TextFile(resolve_path(destination / name), raw.decode()), overwrite=True)
 
 
 async def publish(destination: Path) -> None:
@@ -263,9 +381,13 @@ async def verify(destination: Path) -> None:
 def main() -> None:
     """Stage A CLI has no retrieval execution path."""
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--verify", action="store_true")
+    actions = parser.add_mutually_exclusive_group()
+    actions.add_argument("--verify", action="store_true")
+    actions.add_argument("--amend", action="store_true")
     args = parser.parse_args()
-    asyncio.run(verify(CASE) if args.verify else publish(CASE))
+    asyncio.run(
+        verify(CASE) if args.verify else amend(CASE) if args.amend else publish(CASE)
+    )
     print("Case 0016 Graph-3 Stage A PASS; prospective execution counts=0; gold ABSENT")
 
 

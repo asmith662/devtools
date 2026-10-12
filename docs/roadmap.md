@@ -302,7 +302,10 @@ reference-only resource PPR with sqrt occurrence weights, uniform existing-exact
 plus top-10 canonical lexical seeds, and equal-weight production RRF. C versus A
 is primary; B versus A and an 8192-byte definition-map diagnostic explain
 structural contributions. The production stationary walk and RRF arithmetic are
-reused; new task conditioning/projection/diagnostic/gates are experiment-owned.
+unchanged by the prospective propagated-flow amendment: B now ranks only incoming
+Reference flow; stationary/restart/dangling mass is internal evidence, excluding
+seed-only graph-channel votes. Definition maps order primarily by definition flow.
+New task conditioning/projection/diagnostic/gates remain experiment-owned.
 Stage B remains NOT EXECUTED, gold ABSENT and usefulness NOT EVALUATED. Next:
 maintainer reviews this frozen task/protocol, then separately executes the three
 arms prospectively exactly once. No production graph promotion or feature

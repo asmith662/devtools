@@ -12,11 +12,18 @@ because its linear weights and omitted self transitions differ from this slice.
 ranking.py reuses graph.walk.stationary_distribution and fusion's canonical
 _fused_resource_order, with uniform exact plus top-10 positive lexical seeds.
 No seeds abstains; no convergence fails; no paths/frontiers score candidates.
+PPR stationary mass is internal source importance. Arm B ranks only positive
+incoming reference flow, d*sum(pi(source)*P(source,target)), then address. Full
+PPR accounting remains on every node, including seed-only nodes excluded from B.
+Fusion rejects stationary-mass ranks or restart/dangling-only graph votes.
 Definition projection preserves native identities/spans and incoming occurrence
 flows. diagnostic.py reuses native UTF-8 source-segment extraction and renders
 explicit first-line declaration excerpts under an exact 8192-byte ceiling.
 The diagnostic is not a treatment, signature completeness claim or Context
-budget policy. It never affects PPR, RRF, candidate membership or gates.
+representation policy. Definitions now order by propagated definition flow,
+then parent propagated-resource rank and definition identity; equal-per-occurrence
+pair allocation and 8192/240 byte/header limits remain frozen.
+It never affects PPR, RRF, candidate membership or gates.
 
 Run controlled fixtures only:
 `uv run pytest -c experiments/task_conditioned_graph/pytest.ini experiments/task_conditioned_graph experiments/codex_dogfood/case_0016/test_freeze.py`

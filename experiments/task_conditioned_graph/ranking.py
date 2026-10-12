@@ -33,14 +33,24 @@ SETTINGS = GraphRankingSettings()
 
 @dataclass(frozen=True)
 class RankedResource:
-    """Stationary mass separated into restart, dangling and structural flow."""
+    """Positive incoming-reference-flow evidence; stationary mass is internal."""
 
     address: RepositoryResourceAddress
     rank: int
     score: float
     seed: bool
-    restart: float
-    dangling: float
+
+
+@dataclass(frozen=True)
+class PprResourceState:
+    """Complete internal PPR accounting, including seed-only and zero nodes."""
+
+    address: RepositoryResourceAddress
+    stationary_mass: float
+    seed: bool
+    direct_restart_mass: float
+    dangling_return_mass: float
+    incoming_structural_flow: float
     incoming: tuple[tuple[int, float], ...]
 
 
@@ -55,6 +65,7 @@ class Ranking:
     resources: tuple[RankedResource, ...]
     iterations: int
     settings: GraphRankingSettings
+    states: tuple[PprResourceState, ...]
 
 
 def seed_union(
@@ -94,13 +105,11 @@ def rank(
 
     No seeds means an empty graph ranking, never global PageRank. Nonconvergence
     is an application defect, not a silently accepted effectiveness result.
-    Retain all positive resources (bounded by observed frame size).
+    Retain all node states, but rank only positive incoming reference flow.
     """
     require_view(snapshot, view)
     seeds = seed_union(snapshot, lexical, exact)
     exact_unique = tuple(sorted(set(exact), key=lambda r: str(r.address)))
-    if not seeds:
-        return Ranking(view, lexical, exact_unique, seeds, (), 0, settings)
     positions = {node: i for i, node in enumerate(view.nodes)}
     personalization = [1 / len(seeds) if node in seeds else 0.0 for node in view.nodes]
     outgoing: list[list[tuple[int, float]]] = [[] for _ in view.nodes]
@@ -108,13 +117,16 @@ def rank(
         outgoing[positions[edge.source]].append(
             (positions[edge.target], edge.probability)
         )
-    scores, iterations, converged = stationary_distribution(
-        outgoing,
-        personalization,
-        damping=settings.damping,
-        tolerance=settings.tolerance,
-        maximum_iterations=settings.maximum_iterations,
-    )
+    if seeds:
+        scores, iterations, converged = stationary_distribution(
+            outgoing,
+            personalization,
+            damping=settings.damping,
+            tolerance=settings.tolerance,
+            maximum_iterations=settings.maximum_iterations,
+        )
+    else:
+        scores, iterations, converged = [0.0] * len(view.nodes), 0, True
     if not converged:
         raise ValueError("PPR did not converge under frozen iteration bound")
     dangling = math.fsum(scores[i] for i, edges in enumerate(outgoing) if not edges)
@@ -123,23 +135,40 @@ def rank(
         incoming.setdefault(edge.target, []).append(
             (i, settings.damping * scores[positions[edge.source]] * edge.probability)
         )
-    ordered = sorted(
-        (n for n in view.nodes if scores[positions[n]] > 0),
-        key=lambda n: (-scores[positions[n]], str(n)),
-    )
-    resources = tuple(
-        RankedResource(
+    states = tuple(
+        PprResourceState(
             n,
-            i,
             scores[positions[n]],
             n in seeds,
             (1 - settings.damping) * personalization[positions[n]],
             settings.damping * dangling * personalization[positions[n]],
+            math.fsum(flow for _, flow in incoming.get(n, ())),
             tuple(sorted(incoming.get(n, ()), key=lambda x: (-x[1], x[0]))),
         )
-        for i, n in enumerate(ordered, 1)
+        for n in view.nodes
     )
-    return Ranking(view, lexical, exact_unique, seeds, resources, iterations, settings)
+    return Ranking(
+        view,
+        lexical,
+        exact_unique,
+        seeds,
+        _flow_ranking(states),
+        iterations,
+        settings,
+        states,
+    )
+
+
+def _flow_ranking(states: tuple[PprResourceState, ...]) -> tuple[RankedResource, ...]:
+    """Project positive structural flow only, with canonical address ties."""
+    ordered = sorted(
+        (s for s in states if s.incoming_structural_flow > 0),
+        key=lambda s: (-s.incoming_structural_flow, str(s.address)),
+    )
+    return tuple(
+        RankedResource(s.address, i, s.incoming_structural_flow, s.seed)
+        for i, s in enumerate(ordered, 1)
+    )
 
 
 def fuse(result: Ranking) -> tuple[tuple[RepositoryResourceAddress, float], ...]:
@@ -154,7 +183,7 @@ def fuse(result: Ranking) -> tuple[tuple[RepositoryResourceAddress, float], ...]
     )
 
 
-def require_ranking(result: Ranking) -> None:  # noqa: C901, PLR0912 -- explicit audit gates
+def require_ranking(result: Ranking) -> None:
     """Check native frame, seeds, ordered ranks and stationary flow without PPR.
 
     This is algebraic validation, never another treatment or iterative replay.
@@ -163,45 +192,39 @@ def require_ranking(result: Ranking) -> None:  # noqa: C901, PLR0912 -- explicit
     require_view(snapshot, result.view)
     if result.seeds != seed_union(snapshot, result.lexical, result.exact):
         raise ValueError("Ranking personalization provenance mismatch")
-    if not result.seeds:
-        if result.resources or result.iterations:
-            raise ValueError("Unseeded ranking must abstain")
-        return
-    if not 1 <= result.iterations <= result.settings.maximum_iterations:
+    if not result.seeds and (result.resources or result.iterations):
+        raise ValueError("Unseeded ranking must abstain")
+    if (
+        result.seeds
+        and not 1 <= result.iterations <= result.settings.maximum_iterations
+    ):
         raise ValueError("Invalid PPR iteration account")
-    rows = {r.address: r for r in result.resources}
-    if len(rows) != len(result.resources) or any(
-        r.address not in result.view.nodes
-        or r.rank != i
-        or not math.isfinite(r.score)
-        or r.score <= 0
-        for i, r in enumerate(result.resources, 1)
+    if tuple(s.address for s in result.states) != result.view.nodes or any(
+        not math.isfinite(s.stationary_mass) or s.stationary_mass < 0
+        for s in result.states
     ):
-        raise ValueError("Invalid graph ranking membership/ranks/scores")
-    if result.resources != tuple(
-        sorted(result.resources, key=lambda r: (-r.score, str(r.address)))
+        raise ValueError("Invalid complete PPR state frame/mass")
+    rows = {s.address: s for s in result.states}
+    expected_mass = 1 if result.seeds else 0
+    if not math.isclose(
+        math.fsum(s.stationary_mass for s in rows.values()),
+        expected_mass,
+        abs_tol=1e-12,
     ):
-        raise ValueError("Graph ranking tie/order mismatch")
-    if not math.isclose(math.fsum(r.score for r in rows.values()), 1, abs_tol=1e-12):
-        raise ValueError("Graph ranking mass mismatch")
+        raise ValueError("PPR stationary mass mismatch")
     sources = {e.source for e in result.view.edges}
     dangling_mass = math.fsum(
-        r.score for r in rows.values() if r.address not in sources
+        r.stationary_mass for r in rows.values() if r.address not in sources
     )
     incoming: dict[RepositoryResourceAddress, list[tuple[int, float]]] = {}
     for i, edge in enumerate(result.view.edges):
         flow = (
             result.settings.damping
-            * (rows[edge.source].score if edge.source in rows else 0)
+            * rows[edge.source].stationary_mass
             * edge.probability
         )
         incoming.setdefault(edge.target, []).append((i, flow))
-        if flow > 0 and edge.target not in rows:
-            raise ValueError("Positive structural flow target missing from ranking")
-    for address in result.seeds:
-        if address not in rows:
-            raise ValueError("Positive restart seed missing from ranking")
-    for row in result.resources:
+    for row in result.states:
         mass = 1 / len(result.seeds) if row.address in result.seeds else 0
         expected_restart = (1 - result.settings.damping) * mass
         expected_dangling = result.settings.damping * dangling_mass * mass
@@ -210,15 +233,22 @@ def require_ranking(result: Ranking) -> None:  # noqa: C901, PLR0912 -- explicit
         )
         if (
             row.seed != (row.address in result.seeds)
-            or row.restart != expected_restart
-            or row.dangling != expected_dangling
+            or row.direct_restart_mass != expected_restart
+            or row.dangling_return_mass != expected_dangling
             or row.incoming != expected_incoming
+            or row.incoming_structural_flow
+            != math.fsum(f for _, f in expected_incoming)
             or abs(
-                row.score
-                - row.restart
-                - row.dangling
+                row.stationary_mass
+                - row.direct_restart_mass
+                - row.dangling_return_mass
                 - math.fsum(f for _, f in row.incoming)
             )
             > 2 * result.settings.tolerance
         ):
             raise ValueError("Graph ranking stationary/provenance mismatch")
+    if result.resources != _flow_ranking(result.states):
+        raise ValueError(
+            "Invalid graph flow membership/ranks/scores; "
+            "seed-only or stationary ranking forbidden"
+        )

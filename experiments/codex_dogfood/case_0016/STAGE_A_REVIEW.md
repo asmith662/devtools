@@ -135,6 +135,41 @@ by the finite observed frame; display diagnostics use top 10/20/50 and the map
 byte ceiling. No unbounded path-family publication is planned.
 
 
+## Prospective amendment
+
+# Prospective propagated-reference-flow amendment
+
+Prior Stage A: e2cc61600705eb5faccb814cb19f81aac5645a73.
+Prior integrity SHA-256: 84529a786ada2d814a56039328f902fa6e28ddb93e7488d41b83282b2ee67009.
+Status: PROSPECTIVE; no Case 0016 execution or gold before amendment.
+
+The original stationary-mass B ranking could give lexical seeds a second RRF
+vote from restart/dangling personalization without structural evidence. PPR now
+remains internal source importance; TASK_CONDITIONED_REFERENCE_PPR_FLOW ranks
+only positive incoming flow, d * sum(pi(source) * P(source,target)). No additional
+arm or stationary-mass fusion is introduced. Seed-only state is retained as
+diagnostic evidence and excluded from B. Genuine incoming flow can qualify seeds.
+
+Every node retains stationary, direct restart, dangling return and incoming
+structural flow. The existing algebraic convention remains 2*tolerance for
+stationary accounting, with frozen kernel/convergence unchanged. Definition
+diagnostics aggregate equal-per-occurrence pair flow and order primarily by that
+definition flow, then existing parent-resource rank and definition identity ties.
+Map byte/header bounds remain 8192/240. Production RRF uses corrected B ranks.
+
+Task identity/text, obligations/queries, frame/content, RI derivation, graph/view
+policy, reference identities, counts/sqrt/rows/self edges, exact locators, K=10,
+uniform seeds, no-seed behavior, damping/tolerance/iterations/dangling behavior,
+Arm A, RRF arithmetic/weights/ties, gold policy, metrics/burden, failure classes,
+gate thresholds/precedence and historical Graph-1/2 evidence remain unchanged.
+Original checkpoint remains immutable historical evidence in Git. The amended
+publication authenticates its original seal, checks a restricted protocol diff,
+preserves frame/resources bytes and refuses a second amendment overwrite.
+
+No prospective retrieval, exact resolution, RI References, graph, PPR, fusion,
+rankings, map or gold is produced. Controlled fixtures remain segregated.
+
+
 ## Selection
 
 # Case 0016 selection
@@ -288,7 +323,7 @@ Operational boundary: this is a future development specification for a prospecti
 ```json
 {
   "A": "CANONICAL_BM25",
-  "B": "TASK_CONDITIONED_REFERENCE_PPR",
+  "B": "TASK_CONDITIONED_REFERENCE_PPR_FLOW",
   "C": "BM25_GRAPH_RRF"
 }
 ```
@@ -405,9 +440,9 @@ Operational boundary: this is a future development specification for a prospecti
   "kernel": "devtools.context.retrieval.graph.walk.stationary_distribution",
   "maximum_iterations": 200,
   "restart": 0.15,
-  "result": "All positive resource mass bounded by N; descending score then canonical address (no lexical-rank tie preference)",
+  "result": "Arm B score is propagated_reference_score(v) = d * fsum(pi(u) * P(u,v)), exactly incoming_structural_flow(v). Only positive structural flow enters B; descending propagated score then canonical address. Stationary mass/restart/dangling do not rank or fuse.",
   "tolerance": 1e-10,
-  "trace": "Exact/lexical seed provenance, score, seed flag, direct restart, dangling return, incoming edge stationary flows. Edge flow divided equally among its native occurrences for definition diagnostics; scores are not relevance probabilities."
+  "trace": "Every node retains stationary_mass, direct_restart_mass, dangling_return_mass, incoming_structural_flow and native incoming pair flows. Retain each seed and whether it appears in B. Stationary = restart + dangling + incoming within unchanged 2*tolerance accounting convention; full mass normalization unchanged. Seeds with zero flow are excluded from B. Edge flow divided equally among native occurrences; no flow-score renormalization."
 }
 ```
 
@@ -415,7 +450,7 @@ Operational boundary: this is a future development specification for a prospecti
 ## definition projection
 
 ```json
-"Referenced native definitions in positively ranked owners; definition/subject identity, name, exact native span, incoming per-reference flow and parent resource rank/score. No symbol aggregation changes resource ranks."
+"Positive pair flow = d*pi(source)*P(source,target); divide equally among distinct native reference occurrences, aggregate by resolved definition identity. Retain source/target resources, native reference occurrence/span/expression, resolved definition/owner/span, pair/per-occurrence/aggregated definition flow and parent propagated resource rank/score. Validate sums against resource pair flow. Diagnostic only; no symbol aggregation changes resource ranks."
 ```
 
 
@@ -423,7 +458,7 @@ Operational boundary: this is a future development specification for a prospecti
 
 ```json
 {
-  "budget": "Whole lines in parent-rank / incoming-flow / definition-identity order, stop at first blocked line; omissions metadata; no token estimator",
+  "budget": "Whole lines in descending propagated definition-flow / parent propagated-resource-rank / definition-identity order, stop at first blocked line; omissions metadata; no token estimator",
   "effectiveness_arm": false,
   "header_characters": 240,
   "maximum_utf8_bytes": 8192,
@@ -532,7 +567,7 @@ Operational boundary: this is a future development specification for a prospecti
 ## attribution policy
 
 ```json
-"Graph-contributed gain requires captured B membership/rank/propagated-reference flow and deterministic RRF ablation showing the necessary-evidence/witness gain disappears without B. Seed-only rank carryover must be reported separately; no propagation claim from seed status alone. Noise/hub/dilution classifications require demonstrated necessary-evidence/overtaker consequence, not raw degree/score. B-only poor ordering does not itself select hybrid failure."
+"Graph-contributed gain requires positive Arm-B propagated structural flow, relevant captured native reference provenance, hybrid RRF movement and deterministic graph-channel ablation showing the gain disappears without B. Restart, dangling return and seed identity alone cannot contribute a B rank/vote. SEED_CARRYOVER_WITHOUT_PROPAGATED_VALUE identifies forbidden positive seed-only ranking or diagnostic internal state, never valid graph-channel credit. Noise/hub/dilution classifications require demonstrated necessary-evidence/overtaker consequence, not raw degree/score. B-only poor ordering does not itself select hybrid failure."
 ```
 
 
@@ -544,7 +579,7 @@ Operational boundary: this is a future development specification for a prospecti
   "burden_scope": "Selected mandatory witness prefixes only; union resources/bytes across obligations, retain repeated occurrences and obligation-relative labels; no fictional global task ranking",
   "cost_and_map": "Descriptive only; no outcome threshold",
   "implementation": "experiments/task_conditioned_graph/gates.py",
-  "implementation_checks": "Native RI frame/content/support, reference-only projection, occurrence count/sqrt/row arithmetic, seed sources/K/uniform mass, dangling/restart/convergence, full positive ranks/ties, RRF union/arithmetic, exact native joins, unchanged reference lane, once-only execution and valid blind gold",
+  "implementation_checks": "Native RI frame/content/support, unchanged reference projection/count/sqrt/rows/seeds/PPR; full stationary accounting and pair flow sums; B membership/score/order exactly positive incoming flow, reject seed-only/total-stationary ranking; definition occurrence/aggregate sums equal pair/resource flows; production RRF consumes corrected flow ranks only; exact native joins, unchanged reference lane, once-only execution and valid blind gold",
   "meaningful_required_rank": "Both reached, A_rank-C_rank >= 2 AND 5*C_rank <= 4*A_rank",
   "meaningful_witness": "A incomplete and C complete OR A_depth > 0 AND 5*C_depth <= 4*A_depth",
   "precedence": [
@@ -645,6 +680,19 @@ Operational boundary: this is a future development specification for a prospecti
   "repository_map_diagnostics": 0,
   "ri_reference_derivations": 0,
   "treatment_rankings": 0
+}
+```
+
+
+## prospective amendment
+
+```json
+{
+  "prior_integrity_sha256": "84529a786ada2d814a56039328f902fa6e28ddb93e7488d41b83282b2ee67009",
+  "prior_stage_a_checkpoint": "e2cc61600705eb5faccb814cb19f81aac5645a73",
+  "reason": "Remove seed restart/dangling carryover from Arm-B structural ranking; stationary PageRank is source importance, propagated reference flow is retrieval evidence",
+  "scientific_status": "PROSPECTIVE / no Case 0016 execution before amendment",
+  "unchanged": "Task/obligations/queries/frame/RI/view/edge/seeds/PPR/A/RRF/gold/metrics/burden/failure classes/gate thresholds and precedence remain frozen"
 }
 ```
 
