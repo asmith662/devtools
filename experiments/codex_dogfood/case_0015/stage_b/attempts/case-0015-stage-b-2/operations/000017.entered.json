@@ -1,0 +1,56 @@
+{
+  "event": 33,
+  "execution": "case-0015-stage-b-2",
+  "frame": {
+    "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 515,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "9846f13fdce6c8fc896f673fb7d1f6e0a40b0aeeea24ad71b73d4527e367c494",
+    "source_head": "53a1d087a24e7880f305e167e2d5f3bbb727ff61"
+  },
+  "input_sha256": "2705f4b936d230ee155f4408375203460380f8ad2e667138e9bf3d26b14fce9c",
+  "operation": {
+    "identity": "query:reference",
+    "inputs": {
+      "canonical": true,
+      "maximum_results": 515,
+      "text": "Implement strict bounded acquisition for the existing codec-backed filesystem read API.\n\nO1. In `src/devtools/resources/filesystem/reading.py`, replace the complete `read_bytes()` acquisition used by `read()` with bounded chunk acquisition when `max_bytes` is finite. Preserve the public `ResolvedPath`, `file_format`, `max_bytes` and `DEFAULT_MAX_READ_BYTES` contract, including the 16 MiB default, `None` as explicitly unbounded, negative-limit rejection, zero-limit behavior and acceptance at the exact byte boundary. A preliminary stat check may remain, but a growing file must not cause an unbounded read before rejection.\n\nO2. Define the finite acquisition bound precisely: retain at most `max_bytes` payload bytes and acquire at most one additional byte to distinguish exact-boundary EOF from oversized input; bound individual read requests and release the stream on success and every failure. Raise `FileTooLargeError` on excess instead of returning a truncated model. Do not claim a bound on decoded model memory, a stable file snapshot, race-free pathname checks, containment, authorization or locking.\n\nO3. Preserve `resolve_file_format` and `resolve_codec` behavior, explicit format override and suffix inference. Pass complete accepted bytes to the existing codecs without rewriting content. Preserve the concrete `TextFile`, `MarkdownFile`, `CsvFile`, `JsonObjectFile`, `JsonListFile` and `JsonScalarFile` results, UTF-8 decoding, original line endings, encoding and byte-size metadata. Split multibyte input across acquisition chunks without introducing replacement decoding; codec decoding failures remain `TextDecodingError` or the existing format-domain error.\n\nO4. Preserve existing filesystem error boundaries for a missing path, non-regular file, permission denial, unsupported format and oversized input. Normalize permission failures during stream opening and chunk reads to `FilesystemPermissionError` with causal exceptions. Do not change atomic `write()` behavior, format resolution ownership, core path resolution or any Tool authorization boundary; use the existing filesystem package rather than adding a generic streaming framework.\n\nO5. Add controlled tests in `tests/resources/filesystem/test_reading.py` and relevant codec/model tests for empty input, zero/exact/over-limit bytes, negative and unbounded limits, growth after stat, short chunk reads, EOF, stream closure on exceptions, opening/read permission failures, multibyte UTF-8 split across chunks, invalid UTF-8, explicit format overrides and all currently supported rich result types. Demonstrate the finite request/retention bound with deterministic instrumented streams rather than unreliable process-memory measurements or live filesystem races.\n\nO6. Update `src/devtools/resources/filesystem/docs/io.md`, the filesystem overview and roadmap, and public API documentation where needed to describe the acquisition bound and remaining limitations accurately. Preserve existing callers and the protected development validation profile in `docs/development/validation.md`, `scripts/validate_development.py` and `pyproject.toml`; run the protected profile, Ruff, formatting, mypy and diff checks. Do not add binary codecs, new file formats, streaming format parsers, secure filesystem policy or production retrieval changes.\n"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "fields:prepare",
+      "index:native-prepare",
+      "statistics:union-prepare",
+      "query:Q1:A",
+      "query:Q1:B",
+      "query:Q2:A",
+      "query:Q2:B",
+      "query:Q3:A",
+      "query:Q3:B",
+      "query:Q4:A",
+      "query:Q4:B",
+      "query:Q5:A",
+      "query:Q5:B",
+      "query:Q6:A",
+      "query:Q6:B"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "5bbf9fe3a154b20afd4025dfeaa7a29f25fea54ee88b054e14c0a96e0191d0ee",
+  "runtime_identity": {
+    "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": [
+      3,
+      14,
+      0
+    ]
+  },
+  "sequence": 17,
+  "state": "ENTERED"
+}

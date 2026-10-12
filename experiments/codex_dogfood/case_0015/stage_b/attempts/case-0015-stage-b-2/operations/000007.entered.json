@@ -1,0 +1,58 @@
+{
+  "event": 13,
+  "execution": "case-0015-stage-b-2",
+  "frame": {
+    "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 515,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "9846f13fdce6c8fc896f673fb7d1f6e0a40b0aeeea24ad71b73d4527e367c494",
+    "source_head": "53a1d087a24e7880f305e167e2d5f3bbb727ff61"
+  },
+  "input_sha256": "cbe2fc4f6ac1e7210417e165d405efe4d58cb6d88d9115ffe598c3899fa371ec",
+  "operation": {
+    "identity": "query:Q2:A",
+    "inputs": {
+      "arm": "CANONICAL_ADDITIVE_BM25",
+      "maximum_results": 515,
+      "obligation": {
+        "task": {
+          "value": "case-0015-strict-bounded-filesystem-read-v1"
+        },
+        "value": "O2"
+      },
+      "query": {
+        "task": {
+          "value": "case-0015-strict-bounded-filesystem-read-v1"
+        },
+        "value": "Q2"
+      },
+      "text": "filesystem bounded chunk acquisition payload bytes EOF FileTooLargeError stream closure memory stat snapshot containment authorization locking"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "fields:prepare",
+      "index:native-prepare",
+      "statistics:union-prepare",
+      "query:Q1:A",
+      "query:Q1:B"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "dba52526daaa67211062a9acd1c0cc1a577a33bc225bdccb366fb59650ddb63b",
+  "runtime_identity": {
+    "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": [
+      3,
+      14,
+      0
+    ]
+  },
+  "sequence": 7,
+  "state": "ENTERED"
+}

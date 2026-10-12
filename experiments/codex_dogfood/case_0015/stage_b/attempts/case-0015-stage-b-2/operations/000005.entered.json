@@ -1,0 +1,56 @@
+{
+  "event": 9,
+  "execution": "case-0015-stage-b-2",
+  "frame": {
+    "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 515,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "9846f13fdce6c8fc896f673fb7d1f6e0a40b0aeeea24ad71b73d4527e367c494",
+    "source_head": "53a1d087a24e7880f305e167e2d5f3bbb727ff61"
+  },
+  "input_sha256": "c303c4080f3f2c4d5d9a37c9d085c5b9ecd2875cf3c18b316ef1545d853ed26e",
+  "operation": {
+    "identity": "query:Q1:A",
+    "inputs": {
+      "arm": "CANONICAL_ADDITIVE_BM25",
+      "maximum_results": 515,
+      "obligation": {
+        "task": {
+          "value": "case-0015-strict-bounded-filesystem-read-v1"
+        },
+        "value": "O1"
+      },
+      "query": {
+        "task": {
+          "value": "case-0015-strict-bounded-filesystem-read-v1"
+        },
+        "value": "Q1"
+      },
+      "text": "reading.py read read_bytes ResolvedPath file_format max_bytes DEFAULT_MAX_READ_BYTES finite unbounded negative zero exact byte boundary growing file"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "fields:prepare",
+      "index:native-prepare",
+      "statistics:union-prepare"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "14b16bce6f0d9a3c207f9f02477dd2c1470dad5628ecf687abc231674e63e26e",
+  "runtime_identity": {
+    "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": [
+      3,
+      14,
+      0
+    ]
+  },
+  "sequence": 5,
+  "state": "ENTERED"
+}

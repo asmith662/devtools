@@ -1,0 +1,1392 @@
+{
+  "claims": "Mechanical capture only; no gold, witness analysis or outcome selection",
+  "complete_surfaces": {
+    "arm_a": "arm_a.json.gz",
+    "arm_b": "arm_b.json.gz",
+    "complete_contributions": "contributions.json.gz",
+    "decomposition": "decomposition.json.gz",
+    "field_observations": "fields.json.gz",
+    "native_statistics": "native_statistics.json.gz",
+    "reference": "reference.json.gz",
+    "top_k": "top_k.json.gz",
+    "union_statistics": "union_statistics.json.gz"
+  },
+  "costs": {
+    "arm_a_native_retrieval_ns": 72046400,
+    "arm_b_bm25f_scoring_ns": 27285623700,
+    "capture_wall_ns": 102810183300,
+    "charged_A_ns": 10614691700,
+    "charged_B_ns": 37828269000,
+    "counting": "Top-level scientific intervals only. Shared charged once to each arm. Native filename construction inside A/reference included in native timing. Durability, mechanical checks, wall and publication are descriptive; no double counting or outcome selection.",
+    "derived_publication": {
+      "derived_artifact_construction_ns": 54359943800,
+      "large_surface_publication_ns": 8206600,
+      "scope": "Descriptive, excluded from mechanism cost; metadata/receipt/integrity publication itself is outside these measured intervals."
+    },
+    "journal_publication_durability_ns": 55140891800,
+    "mechanical_between_operation_validation_ns": 9541811400,
+    "query_operations_ns": {
+      "query:Q1:A": 7068800,
+      "query:Q1:B": 13811381000,
+      "query:Q2:A": 34358200,
+      "query:Q2:B": 2542072900,
+      "query:Q3:A": 6820100,
+      "query:Q3:B": 2574438300,
+      "query:Q4:A": 6685800,
+      "query:Q4:B": 2823340300,
+      "query:Q5:A": 8571900,
+      "query:Q5:B": 2821112400,
+      "query:Q6:A": 8541600,
+      "query:Q6:B": 2713278800,
+      "query:reference": 24904000
+    },
+    "reference_ns": 24904000,
+    "shared_charged_equally_ns": 10542645300,
+    "shared_operations_ns": {
+      "fields:prepare": 223800600,
+      "frame:prepare": 7658899900,
+      "index:native-prepare": 2622225800,
+      "statistics:union-prepare": 37719000
+    }
+  },
+  "schema": "case-0015-stage-b-trace-v1",
+  "summary": {
+    "SEARCH_POLICY_FAILURE": "NOT_ASSESSED",
+    "attempt_1": "FAILED_AUDIT_ONLY; no treatment executed",
+    "attempt_2": "AUTHORITATIVE STAGE B CAPTURE",
+    "bm25f_union_statistics_preparations": 1,
+    "candidate_counts": {
+      "Q1": 290,
+      "Q2": 307,
+      "Q3": 156,
+      "Q4": 221,
+      "Q5": 425,
+      "Q6": 408
+    },
+    "candidate_identity": "PASS",
+    "case": "0015",
+    "decomposition_reconstruction": "PASS",
+    "diagnostic_aggregates": {
+      "Q1": {
+        "cross_field_single_saturation_delta": {
+          "exact": {
+            "denominator": 18014398509481984,
+            "numerator": -50814154605246513
+          },
+          "float_display": {
+            "float_hex": "-0x1.690e68a59d706p+1"
+          }
+        },
+        "pre_saturation_weight_delta": {
+          "exact": {
+            "denominator": 2251799813685248,
+            "numerator": 2597204250323703
+          },
+          "float_display": {
+            "float_hex": "0x1.27449797fd5eep+0"
+          }
+        },
+        "union_idf_delta": {
+          "exact": {
+            "denominator": 36028797018963968,
+            "numerator": -76116457520411753
+          },
+          "float_display": {
+            "float_hex": "-0x1.0e6b83cc10b47p+1"
+          }
+        }
+      },
+      "Q2": {
+        "cross_field_single_saturation_delta": {
+          "exact": {
+            "denominator": 2251799813685248,
+            "numerator": -9491938640040207
+          },
+          "float_display": {
+            "float_hex": "-0x1.0dc6f176f4888p+2"
+          }
+        },
+        "pre_saturation_weight_delta": {
+          "exact": {
+            "denominator": 2251799813685248,
+            "numerator": 4125828183457719
+          },
+          "float_display": {
+            "float_hex": "0x1.d50d6768eff6ep+0"
+          }
+        },
+        "union_idf_delta": {
+          "exact": {
+            "denominator": 18014398509481984,
+            "numerator": -74201940588152911
+          },
+          "float_display": {
+            "float_hex": "-0x1.079e459666c85p+2"
+          }
+        }
+      },
+      "Q3": {
+        "cross_field_single_saturation_delta": {
+          "exact": {
+            "denominator": 18014398509481984,
+            "numerator": -17
+          },
+          "float_display": {
+            "float_hex": "-0x1.1000000000000p-50"
+          }
+        },
+        "pre_saturation_weight_delta": {
+          "exact": {
+            "denominator": 1,
+            "numerator": 0
+          },
+          "float_display": {
+            "float_hex": "0x0.0p+0"
+          }
+        },
+        "union_idf_delta": {
+          "exact": {
+            "denominator": 18014398509481984,
+            "numerator": -581
+          },
+          "float_display": {
+            "float_hex": "-0x1.2280000000000p-45"
+          }
+        }
+      },
+      "Q4": {
+        "cross_field_single_saturation_delta": {
+          "exact": {
+            "denominator": 36028797018963968,
+            "numerator": -100643496130229603
+          },
+          "float_display": {
+            "float_hex": "-0x1.658eb9fbcbb56p+1"
+          }
+        },
+        "pre_saturation_weight_delta": {
+          "exact": {
+            "denominator": 2251799813685248,
+            "numerator": 2506394462032215
+          },
+          "float_display": {
+            "float_hex": "0x1.1cf1adf2722aep+0"
+          }
+        },
+        "union_idf_delta": {
+          "exact": {
+            "denominator": 36028797018963968,
+            "numerator": -76115292749222653
+          },
+          "float_display": {
+            "float_hex": "-0x1.0e6a749a4ad30p+1"
+          }
+        }
+      },
+      "Q5": {
+        "cross_field_single_saturation_delta": {
+          "exact": {
+            "denominator": 2251799813685248,
+            "numerator": -12452040006446369
+          },
+          "float_display": {
+            "float_hex": "-0x1.61e883ea81690p+2"
+          }
+        },
+        "pre_saturation_weight_delta": {
+          "exact": {
+            "denominator": 1125899906842624,
+            "numerator": 4922916864618931
+          },
+          "float_display": {
+            "float_hex": "0x1.17d5de6f971b3p+2"
+          }
+        },
+        "union_idf_delta": {
+          "exact": {
+            "denominator": 36028797018963968,
+            "numerator": -563863082912188449
+          },
+          "float_display": {
+            "float_hex": "-0x1.f4cf9f21bc021p+3"
+          }
+        }
+      },
+      "Q6": {
+        "cross_field_single_saturation_delta": {
+          "exact": {
+            "denominator": 18014398509481984,
+            "numerator": -186646091395663717
+          },
+          "float_display": {
+            "float_hex": "-0x1.4b8cd0cc2d43bp+3"
+          }
+        },
+        "pre_saturation_weight_delta": {
+          "exact": {
+            "denominator": 562949953421312,
+            "numerator": 10036499483136047
+          },
+          "float_display": {
+            "float_hex": "0x1.1d412513d8818p+4"
+          }
+        },
+        "union_idf_delta": {
+          "exact": {
+            "denominator": 36028797018963968,
+            "numerator": -954030778502829377
+          },
+          "float_display": {
+            "float_hex": "-0x1.a7acbe072e6abp+4"
+          }
+        }
+      }
+    },
+    "effectiveness": "UNKNOWN",
+    "execution": "case-0015-stage-b-2",
+    "failures": 0,
+    "field_statistics": {
+      "N": 515,
+      "content_average_length": {
+        "float_hex": "0x1.d8c755007f412p+8"
+      },
+      "distinct_union_terms": 9251,
+      "filename_average_length": {
+        "float_hex": "0x1.82bbe626c5d74p+0"
+      }
+    },
+    "formula_reconstruction": "PASS",
+    "frame": {
+      "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+      "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+      "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+      "resource_count": 515,
+      "resource_order": "canonical resource address ascending",
+      "snapshot_id": "9846f13fdce6c8fc896f673fb7d1f6e0a40b0aeeea24ad71b73d4527e367c494",
+      "source_head": "53a1d087a24e7880f305e167e2d5f3bbb727ff61"
+    },
+    "gold": "ABSENT",
+    "journal_events": 34,
+    "journal_pairs": 17,
+    "largest_movements": {
+      "Q1": {
+        "downward": [
+          {
+            "A_rank": 151,
+            "A_score": {
+              "float_hex": "0x1.2a25d458f5f68p+2"
+            },
+            "B_rank": 207,
+            "B_score": {
+              "float_hex": "0x1.88d5aec46ffc5p+1"
+            },
+            "address": "src/devtools/resources/filesystem/models/markdown/file.py",
+            "content_identity": "3be01d5cb97e24f38004f176980c510a17abf2ef420a1c312ea8664f138fa76b",
+            "document_identity": "c176a151b370e412a92215a094b4311b90014509e96ddf661a89dc88ff5b12db",
+            "score_delta": {
+              "float_hex": "-0x1.96ebf3daf7e16p+0"
+            },
+            "upward_positions": -56
+          },
+          {
+            "A_rank": 51,
+            "A_score": {
+              "float_hex": "0x1.1a601d04e79bcp+3"
+            },
+            "B_rank": 60,
+            "B_score": {
+              "float_hex": "0x1.05d8086a3f962p+3"
+            },
+            "address": "docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md",
+            "content_identity": "270a3fddbbbc84c6e4bbbb9d109343a4027316182364f1282885b8868374fcfe",
+            "document_identity": "9326dbd823befd40c56e5d011c4e5207ef1bda0e3693e9844b01f598fd73186e",
+            "score_delta": {
+              "float_hex": "-0x1.488149aa805a0p-1"
+            },
+            "upward_positions": -9
+          },
+          {
+            "A_rank": 1,
+            "A_score": {
+              "float_hex": "0x1.b42ae8e1e23ebp+5"
+            },
+            "B_rank": 1,
+            "B_score": {
+              "float_hex": "0x1.a7c6d39d09080p+5"
+            },
+            "address": "src/devtools/resources/filesystem/reading.py",
+            "content_identity": "9ffd4595f59e0402287b4493741254b9814e7e8d27b01576a6236179c2afec01",
+            "document_identity": "551835eab71031358c40234bf41d6e16d90cf10d0ad1e358d1998fb4cfd1ff40",
+            "score_delta": {
+              "float_hex": "-0x1.8c82a89b26d60p+0"
+            },
+            "upward_positions": 0
+          },
+          {
+            "A_rank": 2,
+            "A_score": {
+              "float_hex": "0x1.95c573ece577fp+5"
+            },
+            "B_rank": 2,
+            "B_score": {
+              "float_hex": "0x1.95c573ece577fp+5"
+            },
+            "address": "tests/resources/filesystem/test_reading.py",
+            "content_identity": "e0265fd4fe72d258cce383f0b607bfda687c0ae489bf015ba9e8d906f80647d5",
+            "document_identity": "8e96628d2d763e51d053bc268521086b5fd1028fbeccffe2880daa0e1a67fc33",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 0
+          },
+          {
+            "A_rank": 3,
+            "A_score": {
+              "float_hex": "0x1.537c174edbc44p+5"
+            },
+            "B_rank": 3,
+            "B_score": {
+              "float_hex": "0x1.537c174edbc44p+5"
+            },
+            "address": "src/devtools/resources/filesystem/docs/io.md",
+            "content_identity": "ddacd421164e1bd27440d320d6bb7b84d70d5c018d40492b05a8b23ed5da1af0",
+            "document_identity": "056c45cb2a7af24772252cbf85d3123cfc157e4c9302589afc6285ddd4854300",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 0
+          }
+        ],
+        "upward": [
+          {
+            "A_rank": 52,
+            "A_score": {
+              "float_hex": "0x1.1735be5990538p+3"
+            },
+            "B_rank": 51,
+            "B_score": {
+              "float_hex": "0x1.1735be5990538p+3"
+            },
+            "address": "tests/agents/conversation/test_live.py",
+            "content_identity": "8d785c1dd2043953ec624b38a3f7875ed56523421666f0cdabdadf3ff468bf20",
+            "document_identity": "bcf1ba96f5651167486aa790e81cc04a5fded625f7b63324a8ad6016a3cb2342",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 1
+          },
+          {
+            "A_rank": 53,
+            "A_score": {
+              "float_hex": "0x1.173143e258555p+3"
+            },
+            "B_rank": 52,
+            "B_score": {
+              "float_hex": "0x1.173143e258555p+3"
+            },
+            "address": "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md",
+            "content_identity": "1978bad723268d286560db009f6ef5aeff4a6186563711b1571813c71166e127",
+            "document_identity": "93e43be4313117786436dcfefe158087b9dd36571d305602382f986632bd2f80",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 1
+          },
+          {
+            "A_rank": 54,
+            "A_score": {
+              "float_hex": "0x1.0d92467b13e08p+3"
+            },
+            "B_rank": 53,
+            "B_score": {
+              "float_hex": "0x1.0d92467b13e08p+3"
+            },
+            "address": "src/devtools/resources/filesystem/codecs/markdown.py",
+            "content_identity": "3662893e3f5974d201e647f00d32ac4acdac70530920847e0f5b171c1515970c",
+            "document_identity": "7046bd2386f5056490abe59642fa0cf490a417d6522d70613d3aecf3c9ee9993",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 1
+          },
+          {
+            "A_rank": 55,
+            "A_score": {
+              "float_hex": "0x1.0c620b3cfb3acp+3"
+            },
+            "B_rank": 54,
+            "B_score": {
+              "float_hex": "0x1.0c620b3cfb3acp+3"
+            },
+            "address": "tests/context/repository/test_corpus.py",
+            "content_identity": "21c37c52abdccaf1c01ced1932de242cd21025511cc2bf63b883454d3ddb29a0",
+            "document_identity": "ba391e447a764f4997fdebc4f7034aa7600509cd10cebd7446347c40338c3396",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 1
+          },
+          {
+            "A_rank": 56,
+            "A_score": {
+              "float_hex": "0x1.0c530d6960ddfp+3"
+            },
+            "B_rank": 55,
+            "B_score": {
+              "float_hex": "0x1.0c530d6960de0p+3"
+            },
+            "address": "tests/context/retrieval/lexical/test_index.py",
+            "content_identity": "50cafbcaede0c499cbffc96c26e4c61bb7a2263a5652a5d213d2730c56273e0e",
+            "document_identity": "d759a011e1623cf4ce0b3d0944d07e977e7a314af8d041338232f58ea3cfca95",
+            "score_delta": {
+              "float_hex": "0x1.0000000000000p-49"
+            },
+            "upward_positions": 1
+          }
+        ]
+      },
+      "Q2": {
+        "downward": [
+          {
+            "A_rank": 57,
+            "A_score": {
+              "float_hex": "0x1.d6d7bd8add081p+2"
+            },
+            "B_rank": 98,
+            "B_score": {
+              "float_hex": "0x1.6cacbbb151a4cp+2"
+            },
+            "address": "src/devtools/tools/filesystem.py",
+            "content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+            "document_identity": "afc0c3f533dec2574fcafbba4799bfaa6d4f211da3cbdb20157e609b865e537e",
+            "score_delta": {
+              "float_hex": "-0x1.a8ac07662d8d4p+0"
+            },
+            "upward_positions": -41
+          },
+          {
+            "A_rank": 96,
+            "A_score": {
+              "float_hex": "0x1.79e8efc8db8bcp+2"
+            },
+            "B_rank": 134,
+            "B_score": {
+              "float_hex": "0x1.0e7fb0032ddedp+2"
+            },
+            "address": "src/devtools/context/repository/snapshot.py",
+            "content_identity": "492cd324fd1ebacae7f990fa534ca1251d41aeaa65f2b385155f88a56c835098",
+            "document_identity": "71672ee68667154dfaa647de6e53e8680fc81f07cdb4281e8fca2a4ce41be6d7",
+            "score_delta": {
+              "float_hex": "-0x1.ada4ff16b6b3cp+0"
+            },
+            "upward_positions": -38
+          },
+          {
+            "A_rank": 34,
+            "A_score": {
+              "float_hex": "0x1.1ab56afa12e41p+3"
+            },
+            "B_rank": 54,
+            "B_score": {
+              "float_hex": "0x1.e04a34f8bd96cp+2"
+            },
+            "address": "src/devtools/context/python/classes/containment.py",
+            "content_identity": "47a4bec4b1e0d9ba2449efbe3bf5aa9e381660ca22eb3c904006e796d3316c4f",
+            "document_identity": "fdf5ea2c18fbae4e67ffa276e4aac88463b68753e7cd839635b0179173fe9175",
+            "score_delta": {
+              "float_hex": "-0x1.548283eda0c58p+0"
+            },
+            "upward_positions": -20
+          },
+          {
+            "A_rank": 36,
+            "A_score": {
+              "float_hex": "0x1.16c68afc4a1ddp+3"
+            },
+            "B_rank": 55,
+            "B_score": {
+              "float_hex": "0x1.d9dfca07b4b9ap+2"
+            },
+            "address": "src/devtools/context/python/function/containment.py",
+            "content_identity": "7af4524a28e61dc608e35c9ab4ff34c0bc486fb1ef54a3521f9fb0735eb25d69",
+            "document_identity": "c58c277bd0efe01f5fc81064b7bf2f5c500c8babc9b13bf89154b59a2e6eaaa8",
+            "score_delta": {
+              "float_hex": "-0x1.4eb52fc37e080p+0"
+            },
+            "upward_positions": -19
+          },
+          {
+            "A_rank": 10,
+            "A_score": {
+              "float_hex": "0x1.01cace3a4b345p+4"
+            },
+            "B_rank": 11,
+            "B_score": {
+              "float_hex": "0x1.f2b5c520c7213p+3"
+            },
+            "address": "docs/backlog/items/B-0009-build-bounded-local-coding-worker-harness.md",
+            "content_identity": "99df09b180f72681a3a8c12489e6054edbd4119701b153cf94b992a74eaa8baf",
+            "document_identity": "571a3646d8b565891c80729cd67a57cf1cdfce85c2ea0c2a6eacfa16f5c63640",
+            "score_delta": {
+              "float_hex": "-0x1.0dfd753cf4770p-1"
+            },
+            "upward_positions": -1
+          }
+        ],
+        "upward": [
+          {
+            "A_rank": 37,
+            "A_score": {
+              "float_hex": "0x1.0aea289688cfbp+3"
+            },
+            "B_rank": 35,
+            "B_score": {
+              "float_hex": "0x1.0aea289688cfcp+3"
+            },
+            "address": "docs/backlog/items/B-0008-investigate-repository-context-discovery.md",
+            "content_identity": "b6fba18919857fdcc652ba3147fdae731f1fd4a2e2e37b8ec3880baf47eefa04",
+            "document_identity": "5ba0f47cfc35c20cc91140d70b43fe04d792fc5a92f83e651693f9fe092df1f8",
+            "score_delta": {
+              "float_hex": "0x1.0000000000000p-49"
+            },
+            "upward_positions": 2
+          },
+          {
+            "A_rank": 38,
+            "A_score": {
+              "float_hex": "0x1.081915bece6a2p+3"
+            },
+            "B_rank": 36,
+            "B_score": {
+              "float_hex": "0x1.081915bece6a3p+3"
+            },
+            "address": "tests/tools/test_command.py",
+            "content_identity": "19fd42287878a7aba3c710bf3749466449119cd8fdb0a3307064b56048156bd6",
+            "document_identity": "5ab394192d3463bd0e16c2c33654d62537634b21bd543e79b9bd8aa09bda7535",
+            "score_delta": {
+              "float_hex": "0x1.0000000000000p-49"
+            },
+            "upward_positions": 2
+          },
+          {
+            "A_rank": 39,
+            "A_score": {
+              "float_hex": "0x1.02f99775feb94p+3"
+            },
+            "B_rank": 37,
+            "B_score": {
+              "float_hex": "0x1.02f99775feb94p+3"
+            },
+            "address": "src/devtools/resources/filesystem/codecs/text.py",
+            "content_identity": "e408f6ca75508acc25debc8023d15d78e03665c509e7e0c478fddea8ce46b303",
+            "document_identity": "5cc2d0c08b1afc7ed9ec1bc8c89e8d68f932edbce3cbbce3a3de6528c0c99bb7",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 2
+          },
+          {
+            "A_rank": 40,
+            "A_score": {
+              "float_hex": "0x1.008e2a248c50fp+3"
+            },
+            "B_rank": 38,
+            "B_score": {
+              "float_hex": "0x1.008e2a248c50ep+3"
+            },
+            "address": "src/devtools/resources/filesystem/codecs/markdown.py",
+            "content_identity": "3662893e3f5974d201e647f00d32ac4acdac70530920847e0f5b171c1515970c",
+            "document_identity": "7046bd2386f5056490abe59642fa0cf490a417d6522d70613d3aecf3c9ee9993",
+            "score_delta": {
+              "float_hex": "-0x1.0000000000000p-49"
+            },
+            "upward_positions": 2
+          },
+          {
+            "A_rank": 41,
+            "A_score": {
+              "float_hex": "0x1.fbbab7a47b51cp+2"
+            },
+            "B_rank": 39,
+            "B_score": {
+              "float_hex": "0x1.fbbab7a47b51bp+2"
+            },
+            "address": "tests/tools/test_runtime_integration.py",
+            "content_identity": "82979c703980afb5f5508789155c45bb06adc7a5a7d6a973c74c251b602cde1e",
+            "document_identity": "3b1b3e11e9c6cd98a2bd9c633e009a64d38e00fa9dc82def527da989af422529",
+            "score_delta": {
+              "float_hex": "-0x1.0000000000000p-50"
+            },
+            "upward_positions": 2
+          }
+        ]
+      },
+      "Q3": {
+        "downward": [
+          {
+            "A_rank": 1,
+            "A_score": {
+              "float_hex": "0x1.9f0dbfcf305c5p+5"
+            },
+            "B_rank": 1,
+            "B_score": {
+              "float_hex": "0x1.9f0dbfcf305c5p+5"
+            },
+            "address": "src/devtools/resources/filesystem/__init__.py",
+            "content_identity": "97cb3d29f27274b9c32be47b2e84b3ec51a8f4af978e0c6f022e32544819fa5e",
+            "document_identity": "89c6154318932141de8a9643105bead3a09793b59e5d81f6ac26a28374dce579",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 0
+          },
+          {
+            "A_rank": 2,
+            "A_score": {
+              "float_hex": "0x1.66b78c80ef727p+5"
+            },
+            "B_rank": 2,
+            "B_score": {
+              "float_hex": "0x1.66b78c80ef727p+5"
+            },
+            "address": "tests/resources/filesystem/test_reading.py",
+            "content_identity": "e0265fd4fe72d258cce383f0b607bfda687c0ae489bf015ba9e8d906f80647d5",
+            "document_identity": "8e96628d2d763e51d053bc268521086b5fd1028fbeccffe2880daa0e1a67fc33",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 0
+          },
+          {
+            "A_rank": 3,
+            "A_score": {
+              "float_hex": "0x1.513290bcf8062p+5"
+            },
+            "B_rank": 3,
+            "B_score": {
+              "float_hex": "0x1.513290bcf8062p+5"
+            },
+            "address": "tests/resources/filesystem/codecs/test_json.py",
+            "content_identity": "1b03c4f7a0c8a8da3c91f921e9a58743a0674e185b2b1b7e479a583e90ebf7e4",
+            "document_identity": "0b6c0e5d8d4b341f22d92fc21fc608be60849c4d1e5ad8db66a699e384517f5d",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 0
+          },
+          {
+            "A_rank": 4,
+            "A_score": {
+              "float_hex": "0x1.41976a8e4bb95p+5"
+            },
+            "B_rank": 4,
+            "B_score": {
+              "float_hex": "0x1.41976a8e4bb94p+5"
+            },
+            "address": "src/devtools/resources/filesystem/codecs/json.py",
+            "content_identity": "1ed913e313d22fe9e38fe68da1d2f948b6f19ef23421ebb951efabc988885e93",
+            "document_identity": "12dd9da02cf96ac940eadf741f1925dc1251fef44d067c224019f8f185675890",
+            "score_delta": {
+              "float_hex": "-0x1.0000000000000p-47"
+            },
+            "upward_positions": 0
+          },
+          {
+            "A_rank": 5,
+            "A_score": {
+              "float_hex": "0x1.3839d329b8281p+5"
+            },
+            "B_rank": 5,
+            "B_score": {
+              "float_hex": "0x1.3839d329b8280p+5"
+            },
+            "address": "src/devtools/resources/filesystem/models/__init__.py",
+            "content_identity": "e09ae5eeb0da9afd9f4921634debfd2af6e9fbcf84a98450526c62f52e5fcf5c",
+            "document_identity": "627f10061190df2438ba7c63973f307b5591e4c08e600b08f91c228530f54121",
+            "score_delta": {
+              "float_hex": "-0x1.0000000000000p-47"
+            },
+            "upward_positions": 0
+          }
+        ],
+        "upward": [
+          {
+            "A_rank": 1,
+            "A_score": {
+              "float_hex": "0x1.9f0dbfcf305c5p+5"
+            },
+            "B_rank": 1,
+            "B_score": {
+              "float_hex": "0x1.9f0dbfcf305c5p+5"
+            },
+            "address": "src/devtools/resources/filesystem/__init__.py",
+            "content_identity": "97cb3d29f27274b9c32be47b2e84b3ec51a8f4af978e0c6f022e32544819fa5e",
+            "document_identity": "89c6154318932141de8a9643105bead3a09793b59e5d81f6ac26a28374dce579",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 0
+          },
+          {
+            "A_rank": 2,
+            "A_score": {
+              "float_hex": "0x1.66b78c80ef727p+5"
+            },
+            "B_rank": 2,
+            "B_score": {
+              "float_hex": "0x1.66b78c80ef727p+5"
+            },
+            "address": "tests/resources/filesystem/test_reading.py",
+            "content_identity": "e0265fd4fe72d258cce383f0b607bfda687c0ae489bf015ba9e8d906f80647d5",
+            "document_identity": "8e96628d2d763e51d053bc268521086b5fd1028fbeccffe2880daa0e1a67fc33",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 0
+          },
+          {
+            "A_rank": 3,
+            "A_score": {
+              "float_hex": "0x1.513290bcf8062p+5"
+            },
+            "B_rank": 3,
+            "B_score": {
+              "float_hex": "0x1.513290bcf8062p+5"
+            },
+            "address": "tests/resources/filesystem/codecs/test_json.py",
+            "content_identity": "1b03c4f7a0c8a8da3c91f921e9a58743a0674e185b2b1b7e479a583e90ebf7e4",
+            "document_identity": "0b6c0e5d8d4b341f22d92fc21fc608be60849c4d1e5ad8db66a699e384517f5d",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 0
+          },
+          {
+            "A_rank": 4,
+            "A_score": {
+              "float_hex": "0x1.41976a8e4bb95p+5"
+            },
+            "B_rank": 4,
+            "B_score": {
+              "float_hex": "0x1.41976a8e4bb94p+5"
+            },
+            "address": "src/devtools/resources/filesystem/codecs/json.py",
+            "content_identity": "1ed913e313d22fe9e38fe68da1d2f948b6f19ef23421ebb951efabc988885e93",
+            "document_identity": "12dd9da02cf96ac940eadf741f1925dc1251fef44d067c224019f8f185675890",
+            "score_delta": {
+              "float_hex": "-0x1.0000000000000p-47"
+            },
+            "upward_positions": 0
+          },
+          {
+            "A_rank": 5,
+            "A_score": {
+              "float_hex": "0x1.3839d329b8281p+5"
+            },
+            "B_rank": 5,
+            "B_score": {
+              "float_hex": "0x1.3839d329b8280p+5"
+            },
+            "address": "src/devtools/resources/filesystem/models/__init__.py",
+            "content_identity": "e09ae5eeb0da9afd9f4921634debfd2af6e9fbcf84a98450526c62f52e5fcf5c",
+            "document_identity": "627f10061190df2438ba7c63973f307b5591e4c08e600b08f91c228530f54121",
+            "score_delta": {
+              "float_hex": "-0x1.0000000000000p-47"
+            },
+            "upward_positions": 0
+          }
+        ]
+      },
+      "Q4": {
+        "downward": [
+          {
+            "A_rank": 40,
+            "A_score": {
+              "float_hex": "0x1.1eccbac5a9f47p+3"
+            },
+            "B_rank": 46,
+            "B_score": {
+              "float_hex": "0x1.0c127ade9d24ep+3"
+            },
+            "address": "docs/backlog/items/B-0035-investigate-tool-facing-capability-exposure.md",
+            "content_identity": "acee48b767ae4d30136ffc2ae4044e3b5be9fd2999846dd99869b3ee44287602",
+            "document_identity": "c4e154142503ca4bf8b22fc8e8a550422e6d14cff3cc965351d15d4da8655dfe",
+            "score_delta": {
+              "float_hex": "-0x1.2ba3fe70ccf90p-1"
+            },
+            "upward_positions": -6
+          },
+          {
+            "A_rank": 1,
+            "A_score": {
+              "float_hex": "0x1.a5d8cbc4525f4p+5"
+            },
+            "B_rank": 1,
+            "B_score": {
+              "float_hex": "0x1.a5d8cbc4525f4p+5"
+            },
+            "address": "src/devtools/resources/filesystem/__init__.py",
+            "content_identity": "97cb3d29f27274b9c32be47b2e84b3ec51a8f4af978e0c6f022e32544819fa5e",
+            "document_identity": "89c6154318932141de8a9643105bead3a09793b59e5d81f6ac26a28374dce579",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 0
+          },
+          {
+            "A_rank": 2,
+            "A_score": {
+              "float_hex": "0x1.9547372ed5069p+5"
+            },
+            "B_rank": 2,
+            "B_score": {
+              "float_hex": "0x1.88e321e9fbcfep+5"
+            },
+            "address": "src/devtools/resources/filesystem/reading.py",
+            "content_identity": "9ffd4595f59e0402287b4493741254b9814e7e8d27b01576a6236179c2afec01",
+            "document_identity": "551835eab71031358c40234bf41d6e16d90cf10d0ad1e358d1998fb4cfd1ff40",
+            "score_delta": {
+              "float_hex": "-0x1.8c82a89b26d60p+0"
+            },
+            "upward_positions": 0
+          },
+          {
+            "A_rank": 3,
+            "A_score": {
+              "float_hex": "0x1.75028cf16f161p+5"
+            },
+            "B_rank": 3,
+            "B_score": {
+              "float_hex": "0x1.75028cf16f161p+5"
+            },
+            "address": "src/devtools/resources/filesystem/docs/overview.md",
+            "content_identity": "480fc3dedeb480d2b72ddc2c2c6086b9acc4452ee5166cb2fd54e7ee6943056e",
+            "document_identity": "8312f21fe924d101d1087d0902480d3dca602e515f7862cab1b6f01aa506e8d3",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 0
+          },
+          {
+            "A_rank": 4,
+            "A_score": {
+              "float_hex": "0x1.48599830051bap+5"
+            },
+            "B_rank": 4,
+            "B_score": {
+              "float_hex": "0x1.48599830051bap+5"
+            },
+            "address": "tests/resources/filesystem/test_reading.py",
+            "content_identity": "e0265fd4fe72d258cce383f0b607bfda687c0ae489bf015ba9e8d906f80647d5",
+            "document_identity": "8e96628d2d763e51d053bc268521086b5fd1028fbeccffe2880daa0e1a67fc33",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 0
+          }
+        ],
+        "upward": [
+          {
+            "A_rank": 41,
+            "A_score": {
+              "float_hex": "0x1.195d7afd0b8ffp+3"
+            },
+            "B_rank": 40,
+            "B_score": {
+              "float_hex": "0x1.195d7afd0b900p+3"
+            },
+            "address": "src/devtools/resources/commands/docs/events.md",
+            "content_identity": "376647e8d3f3e9923e8c09bdfd55023c724abedd76d0d23596ebd8172162150c",
+            "document_identity": "86d9325dbaf5fc3c9a7dad13bd1f922218d2a617afb5292335605c8a1f05c99f",
+            "score_delta": {
+              "float_hex": "0x1.0000000000000p-49"
+            },
+            "upward_positions": 1
+          },
+          {
+            "A_rank": 42,
+            "A_score": {
+              "float_hex": "0x1.18bc2b763e677p+3"
+            },
+            "B_rank": 41,
+            "B_score": {
+              "float_hex": "0x1.18bc2b763e677p+3"
+            },
+            "address": "tests/agents/integrations/codex/test_live.py",
+            "content_identity": "b705ab7d34b2b7327ec5e86563123101bb9f293b15260a627905fd8524549e64",
+            "document_identity": "bc102965e1848562621739b54e6bdc9e5777dbceaf2dc08d4e8e91a4ac7a67a3",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 1
+          },
+          {
+            "A_rank": 43,
+            "A_score": {
+              "float_hex": "0x1.113130b6ca921p+3"
+            },
+            "B_rank": 42,
+            "B_score": {
+              "float_hex": "0x1.113130b6ca921p+3"
+            },
+            "address": "src/devtools/observability/evidence/docs/overview.md",
+            "content_identity": "98431aec7bfdfc9c7a4396d6921a5f4174312ccb791b93741b03f8eb0b27c4e7",
+            "document_identity": "4ea3a599fda31dbf6b92e5c55fa3d3416c98b97e60abbeb9119353910ee7392c",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 1
+          },
+          {
+            "A_rank": 44,
+            "A_score": {
+              "float_hex": "0x1.0da492b205c43p+3"
+            },
+            "B_rank": 43,
+            "B_score": {
+              "float_hex": "0x1.0da492b205c43p+3"
+            },
+            "address": "docs/backlog/items/B-0012-investigate-governed-effect-semantics.md",
+            "content_identity": "27922033df5cb70819286d39b97da02a3f22d733a83fb026eae4d1df43c7299a",
+            "document_identity": "50a13c505510c08acbde149c4e774c9f0a09089b5f4ae9bf81796ba79b670990",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 1
+          },
+          {
+            "A_rank": 45,
+            "A_score": {
+              "float_hex": "0x1.0d3b5202e3ca7p+3"
+            },
+            "B_rank": 44,
+            "B_score": {
+              "float_hex": "0x1.0d3b5202e3ca7p+3"
+            },
+            "address": "src/devtools/resources/filesystem/docs/markdown.md",
+            "content_identity": "9cc457eebfad885e0c469a4a9eb129be94f35c85d0f2a1b2e82e33da19598ca7",
+            "document_identity": "a33a21b028e82df0a4adc260af2eef5dcc01c204f02826fbd83e5ac8432bb3b3",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 1
+          }
+        ]
+      },
+      "Q5": {
+        "downward": [
+          {
+            "A_rank": 306,
+            "A_score": {
+              "float_hex": "0x1.46f6ddc7bdf7ep+1"
+            },
+            "B_rank": 408,
+            "B_score": {
+              "float_hex": "0x1.82bc4b3337867p+0"
+            },
+            "address": "src/devtools/models/interaction/models.py",
+            "content_identity": "6eb9d64480b0c9ab9ad6e0185f63006d0b7635e824cac8d7c111211d9926466f",
+            "document_identity": "4e1cded7a20da8216abfbe52f6dc2db1ca2c04cdede2d40793162e86c4d87d17",
+            "score_delta": {
+              "float_hex": "-0x1.0b31705c44695p+0"
+            },
+            "upward_positions": -102
+          },
+          {
+            "A_rank": 302,
+            "A_score": {
+              "float_hex": "0x1.5cc2182af6e48p+1"
+            },
+            "B_rank": 394,
+            "B_score": {
+              "float_hex": "0x1.a60c88c6210eap+0"
+            },
+            "address": "src/devtools/agents/integrations/codex/models.py",
+            "content_identity": "b8ef93dea4e2d85e83c282eb31ab8908a4ada43b1e31496a399d0bc8a42b2d90",
+            "document_identity": "63527658a4ba89ad41939312396e74d168f278683e3514100eeef7aebd289317",
+            "score_delta": {
+              "float_hex": "-0x1.1377a78fccba6p+0"
+            },
+            "upward_positions": -92
+          },
+          {
+            "A_rank": 346,
+            "A_score": {
+              "float_hex": "0x1.b3df79c2fafe1p+0"
+            },
+            "B_rank": 392,
+            "B_score": {
+              "float_hex": "0x1.aac2ec260d29ep+0"
+            },
+            "address": "src/devtools/core/system/detection.py",
+            "content_identity": "af034fbaecdf97680a7d6745336028ce10306daa0e3b7bce5cd8c10340e601c7",
+            "document_identity": "4660ec8c908d0d8a71bc5badbc7082d62cfeb2d8c24848e513840b6e6acc05ce",
+            "score_delta": {
+              "float_hex": "-0x1.2391b39dba860p-5"
+            },
+            "upward_positions": -46
+          },
+          {
+            "A_rank": 347,
+            "A_score": {
+              "float_hex": "0x1.b1843e01b625fp+0"
+            },
+            "B_rank": 393,
+            "B_score": {
+              "float_hex": "0x1.a8744c917fdd0p+0"
+            },
+            "address": "src/devtools/context/python/project_configuration/__init__.py",
+            "content_identity": "b63c08a6a5b534fd4c41f8c1cd5b6408b3d38805e83ab4ee284d88efc7fe7470",
+            "document_identity": "e7d8ec4568322dcbcd863cad67638b5765ea383b1957f0e60fbdf2616d95becc",
+            "score_delta": {
+              "float_hex": "-0x1.21fe2e06c91e0p-5"
+            },
+            "upward_positions": -46
+          },
+          {
+            "A_rank": 300,
+            "A_score": {
+              "float_hex": "0x1.61b4b775ae3c7p+1"
+            },
+            "B_rank": 345,
+            "B_score": {
+              "float_hex": "0x1.ae3f232ba1596p+0"
+            },
+            "address": "src/devtools/core/system/models.py",
+            "content_identity": "7c16b78f1616fa8b6dd89ef3a8be7db70121aa4af243a6f586ff4489e88523e9",
+            "document_identity": "35afc8427151881bee7abba4e0af36c242d84551ec43524d590f3ed36ee6f9bb",
+            "score_delta": {
+              "float_hex": "-0x1.152a4bbfbb1f8p+0"
+            },
+            "upward_positions": -45
+          }
+        ],
+        "upward": [
+          {
+            "A_rank": 348,
+            "A_score": {
+              "float_hex": "0x1.aed213abeda2bp+0"
+            },
+            "B_rank": 341,
+            "B_score": {
+              "float_hex": "0x1.aed213abeda2bp+0"
+            },
+            "address": "tests/agents/conversation/__init__.py",
+            "content_identity": "e9c90fef7a2be899ab41d3d384bc2f24da729af15655ad1269467fac307391fd",
+            "document_identity": "d1e153e2a1f735f75da9161230da521b8c8f741b609cb971bfa05bba82d61e4a",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 7
+          },
+          {
+            "A_rank": 349,
+            "A_score": {
+              "float_hex": "0x1.aed213abeda2bp+0"
+            },
+            "B_rank": 342,
+            "B_score": {
+              "float_hex": "0x1.aed213abeda2bp+0"
+            },
+            "address": "tests/evaluation/__init__.py",
+            "content_identity": "7b2ba91a1ed4b1b4e3416ef7323831b088a2ed08174d46e8727dc09ad718f69d",
+            "document_identity": "a3386b3ff3e01f4b14c4647d1f0ad72cee9dc3aac8650570827b543e172882b5",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 7
+          },
+          {
+            "A_rank": 350,
+            "A_score": {
+              "float_hex": "0x1.aed213abeda2bp+0"
+            },
+            "B_rank": 343,
+            "B_score": {
+              "float_hex": "0x1.aed213abeda2bp+0"
+            },
+            "address": "tests/observability/evidence/__init__.py",
+            "content_identity": "3da89ca2ca4351ec7917dfe8968829b6eec8b7c99a4b5d0fbec90191a90f9591",
+            "document_identity": "2f28363c4be5501df96c33cf4be4179701c00272a1a754d1df2264486bb7a0d7",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 7
+          },
+          {
+            "A_rank": 351,
+            "A_score": {
+              "float_hex": "0x1.aed213abeda2bp+0"
+            },
+            "B_rank": 344,
+            "B_score": {
+              "float_hex": "0x1.aed213abeda2bp+0"
+            },
+            "address": "tests/persistence/__init__.py",
+            "content_identity": "edb967950ec1437b730ec9317b1ddf71b553e84dcc71fff66825f0afa8f6ee5e",
+            "document_identity": "19c8ab310844f246f4889dfbb4b029952f3172a3576b86e161c4f1d732494dcb",
+            "score_delta": {
+              "float_hex": "0x0.0p+0"
+            },
+            "upward_positions": 7
+          },
+          {
+            "A_rank": 352,
+            "A_score": {
+              "float_hex": "0x1.ae31fb43bc4b7p+0"
+            },
+            "B_rank": 346,
+            "B_score": {
+              "float_hex": "0x1.ae31fb43bc4b8p+0"
+            },
+            "address": "tests/agents/__init__.py",
+            "content_identity": "95cb59fa30a936329c46138d6d327cb5ece9753d4c3419617e61529f519add89",
+            "document_identity": "752c56dd736f6067dcc19988e2e3e0e4bd1520851b0a0bab0082f41d18ed3e55",
+            "score_delta": {
+              "float_hex": "0x1.0000000000000p-52"
+            },
+            "upward_positions": 6
+          }
+        ]
+      },
+      "Q6": {
+        "downward": [
+          {
+            "A_rank": 94,
+            "A_score": {
+              "float_hex": "0x1.1384fca53d68fp+3"
+            },
+            "B_rank": 114,
+            "B_score": {
+              "float_hex": "0x1.dbfe9fb2056edp+2"
+            },
+            "address": "src/devtools/resources/commands/docs/execution.md",
+            "content_identity": "0494eb9c87561cd8bf45aa19d956edab17d7fe1b89abae5e5aa672e4949eb1f9",
+            "document_identity": "562fb83e53618c6205f6efcd12f7eec0368bca5a850a79cac7e09e51dc876f7b",
+            "score_delta": {
+              "float_hex": "-0x1.2c2d6661d58c4p+0"
+            },
+            "upward_positions": -20
+          },
+          {
+            "A_rank": 72,
+            "A_score": {
+              "float_hex": "0x1.547a5b0c71d59p+3"
+            },
+            "B_rank": 88,
+            "B_score": {
+              "float_hex": "0x1.1f64da1fac23ep+3"
+            },
+            "address": "src/devtools/tools/filesystem.py",
+            "content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+            "document_identity": "afc0c3f533dec2574fcafbba4799bfaa6d4f211da3cbdb20157e609b865e537e",
+            "score_delta": {
+              "float_hex": "-0x1.a8ac07662d8d8p+0"
+            },
+            "upward_positions": -16
+          },
+          {
+            "A_rank": 124,
+            "A_score": {
+              "float_hex": "0x1.a6b8b4d0ea966p+2"
+            },
+            "B_rank": 140,
+            "B_score": {
+              "float_hex": "0x1.7fb91199e3881p+2"
+            },
+            "address": "tests/context/localization/test_kernel.py",
+            "content_identity": "58d0404d46dd986aaa3c7efd943f9c34497913388912f6bfa3dc9b4c45e9dbd7",
+            "document_identity": "52c66504cce0c20103cd504a32fbae74d9d907e11ac68b0c727fd3dedf78951f",
+            "score_delta": {
+              "float_hex": "-0x1.37fd19b838728p-1"
+            },
+            "upward_positions": -16
+          },
+          {
+            "A_rank": 90,
+            "A_score": {
+              "float_hex": "0x1.1afac8c0ddebcp+3"
+            },
+            "B_rank": 105,
+            "B_score": {
+              "float_hex": "0x1.e8a3bd7e0e082p+2"
+            },
+            "address": "src/devtools/resources/commands/docs/command.md",
+            "content_identity": "dcd243222036d0e93f9714a24354fb59fc7f90b82b063d1f9697d48b7de2c219",
+            "document_identity": "cbe233602d53b557622fbdae88922e3ec2b19fde62c58b6420b69b15dbf3803c",
+            "score_delta": {
+              "float_hex": "-0x1.3547500eb73d8p+0"
+            },
+            "upward_positions": -15
+          },
+          {
+            "A_rank": 89,
+            "A_score": {
+              "float_hex": "0x1.1c3465e78c87bp+3"
+            },
+            "B_rank": 103,
+            "B_score": {
+              "float_hex": "0x1.eab70750de22cp+2"
+            },
+            "address": "src/devtools/resources/commands/docs/events.md",
+            "content_identity": "376647e8d3f3e9923e8c09bdfd55023c724abedd76d0d23596ebd8172162150c",
+            "document_identity": "86d9325dbaf5fc3c9a7dad13bd1f922218d2a617afb5292335605c8a1f05c99f",
+            "score_delta": {
+              "float_hex": "-0x1.36c711f8ebb28p+0"
+            },
+            "upward_positions": -14
+          }
+        ],
+        "upward": [
+          {
+            "A_rank": 198,
+            "A_score": {
+              "float_hex": "0x1.ee0552f873489p+1"
+            },
+            "B_rank": 181,
+            "B_score": {
+              "float_hex": "0x1.102f1a01820f7p+2"
+            },
+            "address": "src/devtools/evaluation/docs/overview.md",
+            "content_identity": "f4bf6befadb975bc67b23dad16e10b41765327f1866d19d8521c0e5efbfcf7bf",
+            "document_identity": "a85e192ce8cc90049355cc1274cbd99ab8ca3a47a5aa62c820c5bf5d80a2c8ff",
+            "score_delta": {
+              "float_hex": "0x1.92c7085486b28p-2"
+            },
+            "upward_positions": 17
+          },
+          {
+            "A_rank": 199,
+            "A_score": {
+              "float_hex": "0x1.eae20727fcaffp+1"
+            },
+            "B_rank": 183,
+            "B_score": {
+              "float_hex": "0x1.0e9d741946c32p+2"
+            },
+            "address": "src/devtools/context/localization/routing/docs/overview.md",
+            "content_identity": "22082bd1aff0e0e30609b53ac63c4b28c7897c442732ab58787304fe74a5ae0d",
+            "document_identity": "3772b24b1207dd23238f873e96b4560efdad58ed5bc4398a5a091b2019c5c900",
+            "score_delta": {
+              "float_hex": "0x1.92c7085486b28p-2"
+            },
+            "upward_positions": 16
+          },
+          {
+            "A_rank": 232,
+            "A_score": {
+              "float_hex": "0x1.7486f8c886bdep+1"
+            },
+            "B_rank": 216,
+            "B_score": {
+              "float_hex": "0x1.a6dfd9d317943p+1"
+            },
+            "address": "src/devtools/context/python/classes/docs/overview.md",
+            "content_identity": "83660bad67230c9ac59b4b93fd4bd8702a957ff6ef2d96824a509a38c33749e9",
+            "document_identity": "f314cf97f061855c388b7f8d3fbbb30dc290a621feedd4371b0ae7dc1ed638cd",
+            "score_delta": {
+              "float_hex": "0x1.92c7085486b28p-2"
+            },
+            "upward_positions": 16
+          },
+          {
+            "A_rank": 113,
+            "A_score": {
+              "float_hex": "0x1.dd71a6b31be9cp+2"
+            },
+            "B_rank": 100,
+            "B_score": {
+              "float_hex": "0x1.f69e17386454fp+2"
+            },
+            "address": "src/devtools/core/identity/docs/overview.md",
+            "content_identity": "49232ef5c3a6fca94691bd6dfe84468497d1e17958a349d56dfcd731730cd3b4",
+            "document_identity": "fe91279815b097915f61055c22b9cb826efac26880e6a831bb43e6ba7fd0f38d",
+            "score_delta": {
+              "float_hex": "0x1.92c7085486b30p-2"
+            },
+            "upward_positions": 13
+          },
+          {
+            "A_rank": 147,
+            "A_score": {
+              "float_hex": "0x1.6c69ecc103d4fp+2"
+            },
+            "B_rank": 135,
+            "B_score": {
+              "float_hex": "0x1.85965d464c401p+2"
+            },
+            "address": "src/devtools/models/benchmarks/docs/overview.md",
+            "content_identity": "e06e6abd5f9c3422bbe5159810f443048d2b896174d4c3fcd756b21706bc6973",
+            "document_identity": "bc87c4532d382ab87005c353f75c596865c277b44e3dd5538c37c46b7a470833",
+            "score_delta": {
+              "float_hex": "0x1.92c7085486b20p-2"
+            },
+            "upward_positions": 12
+          }
+        ]
+      }
+    },
+    "native_arm_a_authenticity": "PASS",
+    "native_content_index_builds": 1,
+    "native_intrinsic_filename_builds": 7,
+    "native_retries": 0,
+    "operation_counts": {
+      "fields:prepare": 1,
+      "frame:prepare": 1,
+      "index:native-prepare": 1,
+      "query:Q1:A": 1,
+      "query:Q1:B": 1,
+      "query:Q2:A": 1,
+      "query:Q2:B": 1,
+      "query:Q3:A": 1,
+      "query:Q3:B": 1,
+      "query:Q4:A": 1,
+      "query:Q4:B": 1,
+      "query:Q5:A": 1,
+      "query:Q5:B": 1,
+      "query:Q6:A": 1,
+      "query:Q6:B": 1,
+      "query:reference": 1,
+      "statistics:union-prepare": 1
+    },
+    "outcome": "NOT_SELECTED",
+    "recovery_checkpoint": "cc9aaef40dec218e63fae7de835298ef76bd241f",
+    "reference_safety": "PASS",
+    "shared_field_preparations": 1,
+    "stage_a": "d7e28de0e103bdf0e494a0156311fa1c14b6c9f8",
+    "stage_b": "CAPTURED",
+    "top_k_inversions": {
+      "Q1": {
+        "10": 0,
+        "20": 0,
+        "50": 0
+      },
+      "Q2": {
+        "10": 1,
+        "20": 1,
+        "50": 34
+      },
+      "Q3": {
+        "10": 0,
+        "20": 0,
+        "50": 0
+      },
+      "Q4": {
+        "10": 0,
+        "20": 0,
+        "50": 6
+      },
+      "Q5": {
+        "10": 2,
+        "20": 11,
+        "50": 24
+      },
+      "Q6": {
+        "10": 2,
+        "20": 4,
+        "50": 45
+      }
+    },
+    "total_candidate_occurrences": 1807
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "event": 21,
+  "execution": "case-0015-stage-b-2",
+  "frame": {
+    "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 515,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "9846f13fdce6c8fc896f673fb7d1f6e0a40b0aeeea24ad71b73d4527e367c494",
+    "source_head": "53a1d087a24e7880f305e167e2d5f3bbb727ff61"
+  },
+  "input_sha256": "03f590bd8b1a379603ffea9be310bde1a940bc49d4c19f68b3501a3726f9ced4",
+  "operation": {
+    "identity": "query:Q4:A",
+    "inputs": {
+      "arm": "CANONICAL_ADDITIVE_BM25",
+      "maximum_results": 515,
+      "obligation": {
+        "task": {
+          "value": "case-0015-strict-bounded-filesystem-read-v1"
+        },
+        "value": "O4"
+      },
+      "query": {
+        "task": {
+          "value": "case-0015-strict-bounded-filesystem-read-v1"
+        },
+        "value": "Q4"
+      },
+      "text": "filesystem reading FilesystemNotFoundError NotAFileError FilesystemPermissionError FileTooLargeError FileFormatError permission stream opening chunk read write atomic paths Tool authorization"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "fields:prepare",
+      "index:native-prepare",
+      "statistics:union-prepare",
+      "query:Q1:A",
+      "query:Q1:B",
+      "query:Q2:A",
+      "query:Q2:B",
+      "query:Q3:A",
+      "query:Q3:B"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "35df0a3e3531200443737abe48aa615f5db11477d433feb981a326b060bcbac3",
+  "runtime_identity": {
+    "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": [
+      3,
+      14,
+      0
+    ]
+  },
+  "sequence": 11,
+  "state": "ENTERED"
+}

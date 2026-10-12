@@ -1,0 +1,38 @@
+{
+  "arm_a_native_retrieval_ns": 72046400,
+  "arm_b_bm25f_scoring_ns": 27285623700,
+  "capture_wall_ns": 102810183300,
+  "charged_A_ns": 10614691700,
+  "charged_B_ns": 37828269000,
+  "counting": "Top-level scientific intervals only. Shared charged once to each arm. Native filename construction inside A/reference included in native timing. Durability, mechanical checks, wall and publication are descriptive; no double counting or outcome selection.",
+  "derived_publication": {
+    "derived_artifact_construction_ns": 54359943800,
+    "large_surface_publication_ns": 8206600,
+    "scope": "Descriptive, excluded from mechanism cost; metadata/receipt/integrity publication itself is outside these measured intervals."
+  },
+  "journal_publication_durability_ns": 55140891800,
+  "mechanical_between_operation_validation_ns": 9541811400,
+  "query_operations_ns": {
+    "query:Q1:A": 7068800,
+    "query:Q1:B": 13811381000,
+    "query:Q2:A": 34358200,
+    "query:Q2:B": 2542072900,
+    "query:Q3:A": 6820100,
+    "query:Q3:B": 2574438300,
+    "query:Q4:A": 6685800,
+    "query:Q4:B": 2823340300,
+    "query:Q5:A": 8571900,
+    "query:Q5:B": 2821112400,
+    "query:Q6:A": 8541600,
+    "query:Q6:B": 2713278800,
+    "query:reference": 24904000
+  },
+  "reference_ns": 24904000,
+  "shared_charged_equally_ns": 10542645300,
+  "shared_operations_ns": {
+    "fields:prepare": 223800600,
+    "frame:prepare": 7658899900,
+    "index:native-prepare": 2622225800,
+    "statistics:union-prepare": 37719000
+  }
+}
