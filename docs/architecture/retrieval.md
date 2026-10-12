@@ -267,7 +267,8 @@ sufficiency.** Both research tracks remain necessary.
 [EXPERIMENTAL; COMPLETE] U2 exact hints: EXACT_HINT_ROUTING_SUPPORTED
 [EXPERIMENTAL; COMPLETE] U3: SELECTIVE_MECHANISM_ROUTING_SUPPORTED, bounded exact admission
 [EXPERIMENTAL; COMPLETE] R1.7: QUERY_TERM_WEIGHTING_HARMFUL, Case 0014
-[EXPERIMENTAL; CURRENT, STAGE_A_FROZEN] R2 true BM25F, Case 0015; not executed
+[EXPERIMENTAL; COMPLETE] R2 true BM25F, Case 0015: BM25F_HARMFUL
+[PLANNED] Next retrieval direction: GRAPH / REPOSITORY-MAP RETRIEVAL
 
 [PRODUCTION, CALLER-DIRECTED] explicit Context choices --> plan
                      --> exact materialization --> rendering / assembly
@@ -371,12 +372,26 @@ SEARCH_POLICY_FAILURE remains NOT_ASSESSED; confirmation/reserve NOT_ACCESSED.
 Native representation,
 statistics, positive candidates, ties and production behavior remain unchanged.
 [Case 0015 Stage A](../../experiments/codex_dogfood/case_0015/STAGE_A_REVIEW.md)
-makes R2 CURRENT / STAGE_A_FROZEN. Experiment-owned two-field BM25F combines
+freezes the evaluated R2 contract. Experiment-owned two-field BM25F combines
 canonical content/filename normalized tf before one union IDF and saturation;
 the first slice freezes only canonical additive A versus true BM25F B with
-unchanged field representations and fixed native parameter prior. It has no
-prospective index, query, score, rank or gold. No production field aggregation
-or query weighting is implemented; semantic-resolution continuation is preserved.
+unchanged field representations and fixed native parameter prior.
+[Case 0015 Stage D](../../experiments/codex_dogfood/case_0015/stage_d/STAGE_D_REVIEW.md)
+joins the once-only authoritative attempt 2 to unchanged clean Astra High
+primary-derived gold: R2 = COMPLETE / BM25F_HARMFUL. All six obligations remain
+complete, including O2's task-backed zero-resource witness. All 11 required
+resources, 21 cells, 17 repository units and 42 total units remain reachable.
+No meaningful gains exist; O6 completion worsens 137 to 138 and AGENTS.md's
+O6 rank 2 to 3 exceeds the frozen complementary bound. Required reading.py also
+worsens 137 to 138. Filename-inside-tf and interacting union-IDF effects explain
+actual necessary-evidence crossings; this is document-field-combination evidence
+only. No second reviewer, reconciliation or treatment rerun occurred.
+The next planned direction is GRAPH / REPOSITORY-MAP RETRIEVAL architecture and
+a prospective evaluation slice, with richer fields, optimized BM25F, learned
+ranking, fusion and sequential localization retained for later work. No production
+field aggregation or query weighting is implemented; semantic-resolution
+continuation is preserved. SEARCH_POLICY_FAILURE remains NOT_ASSESSED;
+production UNCHANGED; confirmation/reserve NOT_ACCESSED.
 R1.7 anchor emphasis caused the harmful REQUIRED regressions; generic attenuation
 added REQUIRED gains with no additional REQUIRED regressions in that case.
 Identifier-aware R1 remains a separate view; U2/U3 remain exact-routing evidence.

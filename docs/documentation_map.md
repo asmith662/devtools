@@ -88,7 +88,8 @@
   prospective gates: SELECTIVE_MECHANISM_ROUTING_SUPPORTED. The bounded result
   establishes task-role-conditioned exact-route admission only; production is
   unchanged. R1.7 is COMPLETE / QUERY_TERM_WEIGHTING_HARMFUL;
-  true BM25F is CURRENT / STAGE_B_CAPTURED at Case 0015.
+  true BM25F is COMPLETE / BM25F_HARMFUL at Case 0015. The next planned retrieval
+  direction is GRAPH / REPOSITORY-MAP RETRIEVAL.
 - [R1.7 query-term weighting](../experiments/query_term_weighting/README.md)
   owns experimental task/query-only roles, explicit contribution multipliers,
   native/weighted trace reconstruction and exact prospective gates.
@@ -488,10 +489,12 @@ The [primary import](../experiments/codex_dogfood/case_0015/adjudication/PUBLICA
 owns the immutable completed Astra High primary authentication;
 [reviewed gold](../experiments/codex_dogfood/case_0015/adjudication/reviewed/REVIEWED_GOLD.md)
 owns its direct unchanged representation and support algebra. No reconciliation
-or second reviewer is used. R2 is CURRENT / REVIEWED_GOLD_PUBLISHED;
-effectiveness UNKNOWN and outcome
-NOT_SELECTED. Production remains unchanged. Authorized Stage D follows the
-validated, committed and pushed reviewed-gold checkpoint.
+or second reviewer is used. [Stage D](../experiments/codex_dogfood/case_0015/stage_d/STAGE_D_REVIEW.md)
+owns the exact attempt-2/gold join, all REQUIRED ranks, witnesses, burdens,
+mechanism attribution, costs and frozen gate decisions. R2 is COMPLETE /
+BM25F_HARMFUL. Production remains unchanged; confirmation/reserve NOT_ACCESSED;
+SEARCH_POLICY_FAILURE NOT_ASSESSED. The roadmap owns the next GRAPH /
+REPOSITORY-MAP RETRIEVAL direction; no structural implementation follows here.
 
 The `orchestration` and `governance` domains remain recognized sparse
 namespaces without reusable implementation APIs. Evaluation now provides the

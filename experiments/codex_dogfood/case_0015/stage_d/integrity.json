@@ -1,0 +1,41 @@
+{
+  "excluded": [
+    ".local",
+    "self hash to avoid cycle"
+  ],
+  "implementation_sha256": {
+    "analysis.py": "def4fdcd13492782aa6dd7c11824318c111656ce21207618ddf01bca2e85f03b",
+    "authentication.py": "46958f2263b944c1731d6e39f6560fdd939cecc293c043164f5e112bbd99897a",
+    "reporting.py": "f39cc83858ded895a26d4d4b7003618160e454a652604e18c57e8cf86c47bdce",
+    "test_analysis.py": "3568e03787717e628fc4c5daf3b6f06573114ac6d9bb04d386c553aae818b776"
+  },
+  "inputs": {
+    "ancestry": "PASS",
+    "attempt_1": "FAILED_AUDIT_ONLY; ISOLATED; NOT_LOADED_AS_TREATMENT",
+    "blind_packet": "6646f369af5e4b7908288d5c2af673148c2805c9",
+    "primary_sha256": {
+      "STAGE_C_REVIEW.md": "08f9ea50efbec6586f69629872874461e56335f68178cc29364d46fa3aaaa1be",
+      "stage_c_builder.py": "5322777cd14c485ba72e388731d11da3fa63903466a51ddbbbb8f32bcee45e19",
+      "stage_c_hashes.json": "1e5420fb77646cf19dbaa869861a89718ac4e68b1060cf3b1a02ff25c26c2efd",
+      "stage_c_method.md": "8dd63021d327c9be33f3e639927b457e56b1d4cc7c4cf7cdfb7ffafd8665c6ac",
+      "stage_c_review.json": "20b2c858bd8d02a79576b1d48f9d773738e32231f03277232c6d9e84b148cd77",
+      "stage_c_statistics.json": "496b5fbb1e76c108b62448c8a3dddf35daf3c8ac344a7645b24526918fc24d3b",
+      "stage_c_validation.json": "9a9637af76d8d5271da6d25018eb7c08f0eeacff23ba54560eda906b433d533c"
+    },
+    "recovery": "cc9aaef40dec218e63fae7de835298ef76bd241f",
+    "reviewed_gold": "c29d73cc48f1428eb93a184261ce815cf4e6b1c0",
+    "reviewed_hashes_sha256": "527ab795418df522a2e9b2227a472b100da92fb7cfe1b04aeb90404607db764f",
+    "stage_a": "d7e28de0e103bdf0e494a0156311fa1c14b6c9f8",
+    "stage_b": "a4e3f6ee2446e0b54ec1477c0fab69abfbd4c716",
+    "stage_b_integrity_sha256": "b7b23678205360384692d4a8934e25fba3572275bcd1385d0ff32f830651e572"
+  },
+  "schema": "case-0015-stage-d-integrity-v1",
+  "sha256": {
+    "STAGE_D_REVIEW.md": "dd20a1a3702a505f3900f0c99b4931064b0ce880ab9cd3f49f5cb5c1c3c6c4eb",
+    "TRACE.md": "0adf84f41b8005f2054c07cd0144934b080b97cee722d229372c3fe35911f871",
+    "analysis.json": "0ca31ba0048f893b1a64e933055547844c1f2cf64a19b05438b3e9f35b2cb9cf",
+    "analysis.md": "dd20a1a3702a505f3900f0c99b4931064b0ce880ab9cd3f49f5cb5c1c3c6c4eb",
+    "trace.json": "a8ed3d849df70e2b7310c94a58e5656be13dbe0a4c631a8615b566ff92328847",
+    "validation.json": "32ac9efa0afe0fbc04b5b1b379a4af6526c5e8ac6f81e1b79c2aa7d0fc820dcc"
+  }
+}

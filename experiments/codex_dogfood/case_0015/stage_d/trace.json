@@ -1,0 +1,893 @@
+{
+  "claims": {
+    "SEARCH_POLICY_FAILURE": "NOT_ASSESSED",
+    "confirmation_reserve": "NOT_ACCESSED",
+    "production": "UNCHANGED",
+    "scientific_reruns": 0,
+    "semantic_reviewers_added": 0,
+    "semantic_transformation": "NONE"
+  },
+  "gate_evidence": {
+    "application": true,
+    "contract": true,
+    "depths": [
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        34,
+        34
+      ],
+      [
+        29,
+        29
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        137,
+        138
+      ]
+    ],
+    "occurrences": [
+      203,
+      204
+    ],
+    "reach": true,
+    "required_ranks": [
+      [
+        15,
+        15
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        19,
+        19
+      ],
+      [
+        33,
+        30
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        46,
+        46
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        14,
+        13
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        27,
+        27
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        137,
+        138
+      ],
+      [
+        34,
+        34
+      ],
+      [
+        29,
+        29
+      ],
+      [
+        51,
+        48
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        23,
+        23
+      ],
+      [
+        30,
+        30
+      ]
+    ],
+    "unique_resources": [
+      162,
+      162
+    ],
+    "utf8_bytes": [
+      1364603,
+      1346862
+    ]
+  },
+  "gates": {
+    "bounded_regressions": false,
+    "burden_safe": false,
+    "completion_safe": true,
+    "depth_safe": false,
+    "meaningful_obligation_indices": [],
+    "outcome": "BM25F_HARMFUL",
+    "required_rank_gain": false,
+    "required_rank_safe": false,
+    "ten_percent_burden_gain": false
+  },
+  "joins": {
+    "cells": 3090,
+    "duplicate": 0,
+    "identity_dimensions": [
+      "case",
+      "task",
+      "obligation",
+      "RepositoryId",
+      "SnapshotId",
+      "CorpusId",
+      "resource address",
+      "document identity",
+      "content identity"
+    ],
+    "missing": 0,
+    "required_cells": 21,
+    "resources": 515,
+    "stale_frame": 0,
+    "unexpected": 0,
+    "units": 42,
+    "witnesses": 12
+  },
+  "journal": {
+    "canonical_return_sha256": {
+      "fields:prepare": "c939e6221593b2ff75d0789fd19faad96d4a6546361e83f2188fd6b69dc9fab1",
+      "frame:prepare": "7ddc29e571ab2650042a446fa45661b1fa717692888660c618c8711ac4300bc2",
+      "index:native-prepare": "8c3c48864d6868366bc37d6cf775e907032990c27e60b4ee3e63e5820ed3c251",
+      "query:Q1:A": "eddb9d5c0f0aadd8f96db6978730f13af90bf6c02762d3794e859938e61444cd",
+      "query:Q1:B": "e9d1e9e57e73f3790d53e9eb279702dccbc114c55279bc13360e520e3598cc52",
+      "query:Q2:A": "65225e56d7ba3cc99c9d5616bc9ec5a622cd92c5a8974f65609edbff0f7e9b55",
+      "query:Q2:B": "7f4ef84780869ad32340e59fc6861c388d15357abc70ff7984a5b0e6b8b6aa6a",
+      "query:Q3:A": "fee9be68e750e41cb3dcf46874f8d024e250c6fee90b029faf13e344ee486a4e",
+      "query:Q3:B": "65d2378282f9ef683a774998ad0ff1588a21f2c2d8c7fcd8b084492b637150ae",
+      "query:Q4:A": "15ea5f7cdaf88d90360ad14378c40b1b2a87036a721b6c10d04e960633a0f06d",
+      "query:Q4:B": "f6515401a03adbda58614aa525cf5b6dae4a90f768b26e7357e0b967c2c6493e",
+      "query:Q5:A": "edb763fd38d29a02b10a13d9a1fb5a7433606b5957b83c1bf020baf121532c1c",
+      "query:Q5:B": "43151882959f18791f2cda0133b0cde1f9aff6a68d81ba62ec48fcbe55db6e5e",
+      "query:Q6:A": "1ccd443c18dc9b3f2006b57de55b15ad0d1cf61a20ee29151f89244ab4c17806",
+      "query:Q6:B": "2ddacf325a86befebe79e8df1742f4a48def62c9f495881fc53f954cc29c89c4",
+      "query:reference": "502054d46641c6a6c70a4d48bc1464101c519ccc3fe6b0597a43d7b325708e91",
+      "statistics:union-prepare": "0845569f960c992bb3019ecfa485c0687aa95e90e24dfbf6694fb17e05a17c57"
+    },
+    "chain_sha256": "5987eeb2bd066e4d4fad75317285d1bbd7ebcf279e33f97308874dfff8cc80c7",
+    "events": 34,
+    "failures": 0,
+    "native_retries": 0,
+    "operations": [
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "frame:prepare",
+        "inputs": {
+          "archive_sha256": "ba27e1394862e9ec376f407367fe5a57404ec0b0498b8404bf321f834dc5874c"
+        },
+        "invocations": 1,
+        "prior_operations": [],
+        "runtime_ns": 7658899900,
+        "serialized_return_sha256": "7ddc29e571ab2650042a446fa45661b1fa717692888660c618c8711ac4300bc2",
+        "status": "RETURNED",
+        "wall_call_ns": 7658899900
+      },
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "fields:prepare",
+        "inputs": {
+          "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+          "fields": [
+            "CONTENT",
+            "FILENAME"
+          ]
+        },
+        "invocations": 1,
+        "prior_operations": [
+          "frame:prepare"
+        ],
+        "runtime_ns": 223800600,
+        "serialized_return_sha256": "c939e6221593b2ff75d0789fd19faad96d4a6546361e83f2188fd6b69dc9fab1",
+        "status": "RETURNED",
+        "wall_call_ns": 223800600
+      },
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "index:native-prepare",
+        "inputs": {
+          "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+          "documents": 515
+        },
+        "invocations": 1,
+        "prior_operations": [
+          "frame:prepare",
+          "fields:prepare"
+        ],
+        "runtime_ns": 2622225800,
+        "serialized_return_sha256": "8c3c48864d6868366bc37d6cf775e907032990c27e60b4ee3e63e5820ed3c251",
+        "status": "RETURNED",
+        "wall_call_ns": 2622225800
+      },
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "statistics:union-prepare",
+        "inputs": {
+          "N": 515,
+          "rule": "document once across fields"
+        },
+        "invocations": 1,
+        "prior_operations": [
+          "frame:prepare",
+          "fields:prepare",
+          "index:native-prepare"
+        ],
+        "runtime_ns": 37719000,
+        "serialized_return_sha256": "0845569f960c992bb3019ecfa485c0687aa95e90e24dfbf6694fb17e05a17c57",
+        "status": "RETURNED",
+        "wall_call_ns": 37719000
+      },
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "query:Q1:A",
+        "inputs": {
+          "arm": "CANONICAL_ADDITIVE_BM25",
+          "maximum_results": 515,
+          "obligation": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "O1"
+          },
+          "query": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "Q1"
+          },
+          "text": "reading.py read read_bytes ResolvedPath file_format max_bytes DEFAULT_MAX_READ_BYTES finite unbounded negative zero exact byte boundary growing file"
+        },
+        "invocations": 1,
+        "prior_operations": [
+          "frame:prepare",
+          "fields:prepare",
+          "index:native-prepare",
+          "statistics:union-prepare"
+        ],
+        "runtime_ns": 7068800,
+        "serialized_return_sha256": "eddb9d5c0f0aadd8f96db6978730f13af90bf6c02762d3794e859938e61444cd",
+        "status": "RETURNED",
+        "wall_call_ns": 7068800
+      },
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "query:Q1:B",
+        "inputs": {
+          "arm": "TRUE_BM25F",
+          "maximum_results": 515,
+          "obligation": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "O1"
+          },
+          "parameters": {
+            "b_content": {
+              "float_hex": "0x1.8000000000000p-1"
+            },
+            "b_filename": {
+              "float_hex": "0x1.8000000000000p-1"
+            },
+            "content_weight": {
+              "float_hex": "0x1.0000000000000p+0"
+            },
+            "filename_weight": {
+              "float_hex": "0x1.0000000000000p-2"
+            },
+            "k1": {
+              "float_hex": "0x1.3333333333333p+0"
+            }
+          },
+          "query": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "Q1"
+          },
+          "text": "reading.py read read_bytes ResolvedPath file_format max_bytes DEFAULT_MAX_READ_BYTES finite unbounded negative zero exact byte boundary growing file"
+        },
+        "invocations": 1,
+        "prior_operations": [
+          "frame:prepare",
+          "fields:prepare",
+          "index:native-prepare",
+          "statistics:union-prepare",
+          "query:Q1:A"
+        ],
+        "runtime_ns": 13811381000,
+        "serialized_return_sha256": "e9d1e9e57e73f3790d53e9eb279702dccbc114c55279bc13360e520e3598cc52",
+        "status": "RETURNED",
+        "wall_call_ns": 13811381000
+      },
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "query:Q2:A",
+        "inputs": {
+          "arm": "CANONICAL_ADDITIVE_BM25",
+          "maximum_results": 515,
+          "obligation": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "O2"
+          },
+          "query": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "Q2"
+          },
+          "text": "filesystem bounded chunk acquisition payload bytes EOF FileTooLargeError stream closure memory stat snapshot containment authorization locking"
+        },
+        "invocations": 1,
+        "prior_operations": [
+          "frame:prepare",
+          "fields:prepare",
+          "index:native-prepare",
+          "statistics:union-prepare",
+          "query:Q1:A",
+          "query:Q1:B"
+        ],
+        "runtime_ns": 34358200,
+        "serialized_return_sha256": "65225e56d7ba3cc99c9d5616bc9ec5a622cd92c5a8974f65609edbff0f7e9b55",
+        "status": "RETURNED",
+        "wall_call_ns": 34358200
+      },
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "query:Q2:B",
+        "inputs": {
+          "arm": "TRUE_BM25F",
+          "maximum_results": 515,
+          "obligation": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "O2"
+          },
+          "parameters": {
+            "b_content": {
+              "float_hex": "0x1.8000000000000p-1"
+            },
+            "b_filename": {
+              "float_hex": "0x1.8000000000000p-1"
+            },
+            "content_weight": {
+              "float_hex": "0x1.0000000000000p+0"
+            },
+            "filename_weight": {
+              "float_hex": "0x1.0000000000000p-2"
+            },
+            "k1": {
+              "float_hex": "0x1.3333333333333p+0"
+            }
+          },
+          "query": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "Q2"
+          },
+          "text": "filesystem bounded chunk acquisition payload bytes EOF FileTooLargeError stream closure memory stat snapshot containment authorization locking"
+        },
+        "invocations": 1,
+        "prior_operations": [
+          "frame:prepare",
+          "fields:prepare",
+          "index:native-prepare",
+          "statistics:union-prepare",
+          "query:Q1:A",
+          "query:Q1:B",
+          "query:Q2:A"
+        ],
+        "runtime_ns": 2542072900,
+        "serialized_return_sha256": "7f4ef84780869ad32340e59fc6861c388d15357abc70ff7984a5b0e6b8b6aa6a",
+        "status": "RETURNED",
+        "wall_call_ns": 2542072900
+      },
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "query:Q3:A",
+        "inputs": {
+          "arm": "CANONICAL_ADDITIVE_BM25",
+          "maximum_results": 515,
+          "obligation": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "O3"
+          },
+          "query": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "Q3"
+          },
+          "text": "resolve_file_format resolve_codec TextFile MarkdownFile CsvFile JsonObjectFile JsonListFile JsonScalarFile UTF-8 decoding encoding byte_size line endings TextDecodingError"
+        },
+        "invocations": 1,
+        "prior_operations": [
+          "frame:prepare",
+          "fields:prepare",
+          "index:native-prepare",
+          "statistics:union-prepare",
+          "query:Q1:A",
+          "query:Q1:B",
+          "query:Q2:A",
+          "query:Q2:B"
+        ],
+        "runtime_ns": 6820100,
+        "serialized_return_sha256": "fee9be68e750e41cb3dcf46874f8d024e250c6fee90b029faf13e344ee486a4e",
+        "status": "RETURNED",
+        "wall_call_ns": 6820100
+      },
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "query:Q3:B",
+        "inputs": {
+          "arm": "TRUE_BM25F",
+          "maximum_results": 515,
+          "obligation": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "O3"
+          },
+          "parameters": {
+            "b_content": {
+              "float_hex": "0x1.8000000000000p-1"
+            },
+            "b_filename": {
+              "float_hex": "0x1.8000000000000p-1"
+            },
+            "content_weight": {
+              "float_hex": "0x1.0000000000000p+0"
+            },
+            "filename_weight": {
+              "float_hex": "0x1.0000000000000p-2"
+            },
+            "k1": {
+              "float_hex": "0x1.3333333333333p+0"
+            }
+          },
+          "query": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "Q3"
+          },
+          "text": "resolve_file_format resolve_codec TextFile MarkdownFile CsvFile JsonObjectFile JsonListFile JsonScalarFile UTF-8 decoding encoding byte_size line endings TextDecodingError"
+        },
+        "invocations": 1,
+        "prior_operations": [
+          "frame:prepare",
+          "fields:prepare",
+          "index:native-prepare",
+          "statistics:union-prepare",
+          "query:Q1:A",
+          "query:Q1:B",
+          "query:Q2:A",
+          "query:Q2:B",
+          "query:Q3:A"
+        ],
+        "runtime_ns": 2574438300,
+        "serialized_return_sha256": "65d2378282f9ef683a774998ad0ff1588a21f2c2d8c7fcd8b084492b637150ae",
+        "status": "RETURNED",
+        "wall_call_ns": 2574438300
+      },
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "query:Q4:A",
+        "inputs": {
+          "arm": "CANONICAL_ADDITIVE_BM25",
+          "maximum_results": 515,
+          "obligation": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "O4"
+          },
+          "query": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "Q4"
+          },
+          "text": "filesystem reading FilesystemNotFoundError NotAFileError FilesystemPermissionError FileTooLargeError FileFormatError permission stream opening chunk read write atomic paths Tool authorization"
+        },
+        "invocations": 1,
+        "prior_operations": [
+          "frame:prepare",
+          "fields:prepare",
+          "index:native-prepare",
+          "statistics:union-prepare",
+          "query:Q1:A",
+          "query:Q1:B",
+          "query:Q2:A",
+          "query:Q2:B",
+          "query:Q3:A",
+          "query:Q3:B"
+        ],
+        "runtime_ns": 6685800,
+        "serialized_return_sha256": "15ea5f7cdaf88d90360ad14378c40b1b2a87036a721b6c10d04e960633a0f06d",
+        "status": "RETURNED",
+        "wall_call_ns": 6685800
+      },
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "query:Q4:B",
+        "inputs": {
+          "arm": "TRUE_BM25F",
+          "maximum_results": 515,
+          "obligation": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "O4"
+          },
+          "parameters": {
+            "b_content": {
+              "float_hex": "0x1.8000000000000p-1"
+            },
+            "b_filename": {
+              "float_hex": "0x1.8000000000000p-1"
+            },
+            "content_weight": {
+              "float_hex": "0x1.0000000000000p+0"
+            },
+            "filename_weight": {
+              "float_hex": "0x1.0000000000000p-2"
+            },
+            "k1": {
+              "float_hex": "0x1.3333333333333p+0"
+            }
+          },
+          "query": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "Q4"
+          },
+          "text": "filesystem reading FilesystemNotFoundError NotAFileError FilesystemPermissionError FileTooLargeError FileFormatError permission stream opening chunk read write atomic paths Tool authorization"
+        },
+        "invocations": 1,
+        "prior_operations": [
+          "frame:prepare",
+          "fields:prepare",
+          "index:native-prepare",
+          "statistics:union-prepare",
+          "query:Q1:A",
+          "query:Q1:B",
+          "query:Q2:A",
+          "query:Q2:B",
+          "query:Q3:A",
+          "query:Q3:B",
+          "query:Q4:A"
+        ],
+        "runtime_ns": 2823340300,
+        "serialized_return_sha256": "f6515401a03adbda58614aa525cf5b6dae4a90f768b26e7357e0b967c2c6493e",
+        "status": "RETURNED",
+        "wall_call_ns": 2823340300
+      },
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "query:Q5:A",
+        "inputs": {
+          "arm": "CANONICAL_ADDITIVE_BM25",
+          "maximum_results": 515,
+          "obligation": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "O5"
+          },
+          "query": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "Q5"
+          },
+          "text": "tests/resources/filesystem/test_reading.py codecs models empty zero exact over-limit negative unbounded growth stat short reads EOF closure permission multibyte UTF-8 invalid format override"
+        },
+        "invocations": 1,
+        "prior_operations": [
+          "frame:prepare",
+          "fields:prepare",
+          "index:native-prepare",
+          "statistics:union-prepare",
+          "query:Q1:A",
+          "query:Q1:B",
+          "query:Q2:A",
+          "query:Q2:B",
+          "query:Q3:A",
+          "query:Q3:B",
+          "query:Q4:A",
+          "query:Q4:B"
+        ],
+        "runtime_ns": 8571900,
+        "serialized_return_sha256": "edb763fd38d29a02b10a13d9a1fb5a7433606b5957b83c1bf020baf121532c1c",
+        "status": "RETURNED",
+        "wall_call_ns": 8571900
+      },
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "query:Q5:B",
+        "inputs": {
+          "arm": "TRUE_BM25F",
+          "maximum_results": 515,
+          "obligation": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "O5"
+          },
+          "parameters": {
+            "b_content": {
+              "float_hex": "0x1.8000000000000p-1"
+            },
+            "b_filename": {
+              "float_hex": "0x1.8000000000000p-1"
+            },
+            "content_weight": {
+              "float_hex": "0x1.0000000000000p+0"
+            },
+            "filename_weight": {
+              "float_hex": "0x1.0000000000000p-2"
+            },
+            "k1": {
+              "float_hex": "0x1.3333333333333p+0"
+            }
+          },
+          "query": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "Q5"
+          },
+          "text": "tests/resources/filesystem/test_reading.py codecs models empty zero exact over-limit negative unbounded growth stat short reads EOF closure permission multibyte UTF-8 invalid format override"
+        },
+        "invocations": 1,
+        "prior_operations": [
+          "frame:prepare",
+          "fields:prepare",
+          "index:native-prepare",
+          "statistics:union-prepare",
+          "query:Q1:A",
+          "query:Q1:B",
+          "query:Q2:A",
+          "query:Q2:B",
+          "query:Q3:A",
+          "query:Q3:B",
+          "query:Q4:A",
+          "query:Q4:B",
+          "query:Q5:A"
+        ],
+        "runtime_ns": 2821112400,
+        "serialized_return_sha256": "43151882959f18791f2cda0133b0cde1f9aff6a68d81ba62ec48fcbe55db6e5e",
+        "status": "RETURNED",
+        "wall_call_ns": 2821112400
+      },
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "query:Q6:A",
+        "inputs": {
+          "arm": "CANONICAL_ADDITIVE_BM25",
+          "maximum_results": 515,
+          "obligation": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "O6"
+          },
+          "query": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "Q6"
+          },
+          "text": "src/devtools/resources/filesystem/docs/io.md overview roadmap public API docs/development/validation.md scripts/validate_development.py pyproject.toml protected validation Ruff formatting mypy binary formats streaming security"
+        },
+        "invocations": 1,
+        "prior_operations": [
+          "frame:prepare",
+          "fields:prepare",
+          "index:native-prepare",
+          "statistics:union-prepare",
+          "query:Q1:A",
+          "query:Q1:B",
+          "query:Q2:A",
+          "query:Q2:B",
+          "query:Q3:A",
+          "query:Q3:B",
+          "query:Q4:A",
+          "query:Q4:B",
+          "query:Q5:A",
+          "query:Q5:B"
+        ],
+        "runtime_ns": 8541600,
+        "serialized_return_sha256": "1ccd443c18dc9b3f2006b57de55b15ad0d1cf61a20ee29151f89244ab4c17806",
+        "status": "RETURNED",
+        "wall_call_ns": 8541600
+      },
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "query:Q6:B",
+        "inputs": {
+          "arm": "TRUE_BM25F",
+          "maximum_results": 515,
+          "obligation": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "O6"
+          },
+          "parameters": {
+            "b_content": {
+              "float_hex": "0x1.8000000000000p-1"
+            },
+            "b_filename": {
+              "float_hex": "0x1.8000000000000p-1"
+            },
+            "content_weight": {
+              "float_hex": "0x1.0000000000000p+0"
+            },
+            "filename_weight": {
+              "float_hex": "0x1.0000000000000p-2"
+            },
+            "k1": {
+              "float_hex": "0x1.3333333333333p+0"
+            }
+          },
+          "query": {
+            "task": {
+              "value": "case-0015-strict-bounded-filesystem-read-v1"
+            },
+            "value": "Q6"
+          },
+          "text": "src/devtools/resources/filesystem/docs/io.md overview roadmap public API docs/development/validation.md scripts/validate_development.py pyproject.toml protected validation Ruff formatting mypy binary formats streaming security"
+        },
+        "invocations": 1,
+        "prior_operations": [
+          "frame:prepare",
+          "fields:prepare",
+          "index:native-prepare",
+          "statistics:union-prepare",
+          "query:Q1:A",
+          "query:Q1:B",
+          "query:Q2:A",
+          "query:Q2:B",
+          "query:Q3:A",
+          "query:Q3:B",
+          "query:Q4:A",
+          "query:Q4:B",
+          "query:Q5:A",
+          "query:Q5:B",
+          "query:Q6:A"
+        ],
+        "runtime_ns": 2713278800,
+        "serialized_return_sha256": "2ddacf325a86befebe79e8df1742f4a48def62c9f495881fc53f954cc29c89c4",
+        "status": "RETURNED",
+        "wall_call_ns": 2713278800
+      },
+      {
+        "durability_inside_call_ns": 0,
+        "identity": "query:reference",
+        "inputs": {
+          "canonical": true,
+          "maximum_results": 515,
+          "text": "Implement strict bounded acquisition for the existing codec-backed filesystem read API.\n\nO1. In `src/devtools/resources/filesystem/reading.py`, replace the complete `read_bytes()` acquisition used by `read()` with bounded chunk acquisition when `max_bytes` is finite. Preserve the public `ResolvedPath`, `file_format`, `max_bytes` and `DEFAULT_MAX_READ_BYTES` contract, including the 16 MiB default, `None` as explicitly unbounded, negative-limit rejection, zero-limit behavior and acceptance at the exact byte boundary. A preliminary stat check may remain, but a growing file must not cause an unbounded read before rejection.\n\nO2. Define the finite acquisition bound precisely: retain at most `max_bytes` payload bytes and acquire at most one additional byte to distinguish exact-boundary EOF from oversized input; bound individual read requests and release the stream on success and every failure. Raise `FileTooLargeError` on excess instead of returning a truncated model. Do not claim a bound on decoded model memory, a stable file snapshot, race-free pathname checks, containment, authorization or locking.\n\nO3. Preserve `resolve_file_format` and `resolve_codec` behavior, explicit format override and suffix inference. Pass complete accepted bytes to the existing codecs without rewriting content. Preserve the concrete `TextFile`, `MarkdownFile`, `CsvFile`, `JsonObjectFile`, `JsonListFile` and `JsonScalarFile` results, UTF-8 decoding, original line endings, encoding and byte-size metadata. Split multibyte input across acquisition chunks without introducing replacement decoding; codec decoding failures remain `TextDecodingError` or the existing format-domain error.\n\nO4. Preserve existing filesystem error boundaries for a missing path, non-regular file, permission denial, unsupported format and oversized input. Normalize permission failures during stream opening and chunk reads to `FilesystemPermissionError` with causal exceptions. Do not change atomic `write()` behavior, format resolution ownership, core path resolution or any Tool authorization boundary; use the existing filesystem package rather than adding a generic streaming framework.\n\nO5. Add controlled tests in `tests/resources/filesystem/test_reading.py` and relevant codec/model tests for empty input, zero/exact/over-limit bytes, negative and unbounded limits, growth after stat, short chunk reads, EOF, stream closure on exceptions, opening/read permission failures, multibyte UTF-8 split across chunks, invalid UTF-8, explicit format overrides and all currently supported rich result types. Demonstrate the finite request/retention bound with deterministic instrumented streams rather than unreliable process-memory measurements or live filesystem races.\n\nO6. Update `src/devtools/resources/filesystem/docs/io.md`, the filesystem overview and roadmap, and public API documentation where needed to describe the acquisition bound and remaining limitations accurately. Preserve existing callers and the protected development validation profile in `docs/development/validation.md`, `scripts/validate_development.py` and `pyproject.toml`; run the protected profile, Ruff, formatting, mypy and diff checks. Do not add binary codecs, new file formats, streaming format parsers, secure filesystem policy or production retrieval changes.\n"
+        },
+        "invocations": 1,
+        "prior_operations": [
+          "frame:prepare",
+          "fields:prepare",
+          "index:native-prepare",
+          "statistics:union-prepare",
+          "query:Q1:A",
+          "query:Q1:B",
+          "query:Q2:A",
+          "query:Q2:B",
+          "query:Q3:A",
+          "query:Q3:B",
+          "query:Q4:A",
+          "query:Q4:B",
+          "query:Q5:A",
+          "query:Q5:B",
+          "query:Q6:A",
+          "query:Q6:B"
+        ],
+        "runtime_ns": 24904000,
+        "serialized_return_sha256": "502054d46641c6a6c70a4d48bc1464101c519ccc3fe6b0597a43d7b325708e91",
+        "status": "RETURNED",
+        "wall_call_ns": 24904000
+      }
+    ],
+    "pairs": 17,
+    "status": "PASS"
+  },
+  "native_authentication": {
+    "bm25f_reconstruction": "EXACT",
+    "candidate_counts": {
+      "Q1": 290,
+      "Q2": 307,
+      "Q3": 156,
+      "Q4": 221,
+      "Q5": 425,
+      "Q6": 408
+    },
+    "candidate_identity": "EXACT",
+    "decomposition": "EXACT",
+    "field_observations": "EXACT",
+    "native_arm_a": "AUTHENTIC",
+    "native_operations": 0,
+    "reference": "UNCHANGED",
+    "scientific_reruns": 0,
+    "statistics": "EXACT",
+    "status": "PASS"
+  },
+  "provenance": {
+    "ancestry": "PASS",
+    "attempt_1": "FAILED_AUDIT_ONLY; ISOLATED; NOT_LOADED_AS_TREATMENT",
+    "blind_packet": "6646f369af5e4b7908288d5c2af673148c2805c9",
+    "primary_sha256": {
+      "STAGE_C_REVIEW.md": "08f9ea50efbec6586f69629872874461e56335f68178cc29364d46fa3aaaa1be",
+      "stage_c_builder.py": "5322777cd14c485ba72e388731d11da3fa63903466a51ddbbbb8f32bcee45e19",
+      "stage_c_hashes.json": "1e5420fb77646cf19dbaa869861a89718ac4e68b1060cf3b1a02ff25c26c2efd",
+      "stage_c_method.md": "8dd63021d327c9be33f3e639927b457e56b1d4cc7c4cf7cdfb7ffafd8665c6ac",
+      "stage_c_review.json": "20b2c858bd8d02a79576b1d48f9d773738e32231f03277232c6d9e84b148cd77",
+      "stage_c_statistics.json": "496b5fbb1e76c108b62448c8a3dddf35daf3c8ac344a7645b24526918fc24d3b",
+      "stage_c_validation.json": "9a9637af76d8d5271da6d25018eb7c08f0eeacff23ba54560eda906b433d533c"
+    },
+    "recovery": "cc9aaef40dec218e63fae7de835298ef76bd241f",
+    "reviewed_gold": "c29d73cc48f1428eb93a184261ce815cf4e6b1c0",
+    "reviewed_hashes_sha256": "527ab795418df522a2e9b2227a472b100da92fb7cfe1b04aeb90404607db764f",
+    "stage_a": "d7e28de0e103bdf0e494a0156311fa1c14b6c9f8",
+    "stage_b": "a4e3f6ee2446e0b54ec1477c0fab69abfbd4c716",
+    "stage_b_integrity_sha256": "b7b23678205360384692d4a8934e25fba3572275bcd1385d0ff32f830651e572"
+  },
+  "schema": "case-0015-stage-d-trace-v1"
+}

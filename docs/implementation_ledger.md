@@ -1,5 +1,28 @@
 # Implementation Ledger
 
+## Case 0015 R2 primary publication and effectiveness (2026-10-12)
+
+Imported the completed clean GPT-6 Astra / High primary byte-for-byte, authenticated
+the five original packet inputs separately, and replayed the sealed builder with
+exact derived bytes. All excluded access categories attest NO; no second reviewer
+or reconciliation. [Reviewed gold](../experiments/codex_dogfood/case_0015/adjudication/reviewed/REVIEWED_GOLD.md)
+retains all 3,090 judgments, 42 units, 12 witnesses and task sufficiency unchanged.
+Checkpoint `c29d73cc48f1428eb93a184261ce815cf4e6b1c0` was validated and pushed
+before [Stage D](../experiments/codex_dogfood/case_0015/stage_d/STAGE_D_REVIEW.md).
+
+The authoritative 17-operation attempt 2 is authenticated through committed seals,
+inert journal graphs and exact arithmetic, without native reruns or attempt-1
+reuse. The unchanged frozen gates yield **BM25F_HARMFUL**. REQUIRED reach and six
+obligation completions tie, but no meaningful gains exist. O6 completion depth
+worsens 137 to 138; AGENTS.md O6 rank 2 to 3 violates the complementary rank bound.
+O2's empty witness is complete at zero in both arms. Prefix occurrences increase
+203 to 204 while unique resources tie at 162 and bytes fall by 17,741.
+This is bounded document-field-combination evidence, distinct from query-side
+R1.7. Production UNCHANGED; confirmation/reserve NOT_ACCESSED;
+SEARCH_POLICY_FAILURE NOT_ASSESSED. The next roadmap direction is GRAPH /
+REPOSITORY-MAP RETRIEVAL architecture and a prospective slice, without another
+lexical weighting/parameter micro-experiment or graph implementation in this task.
+
 ## Case 0014 blind adjudication packet freeze (2026-10-11)
 
 After the completed Stage B checkpoint `06e816693fed9165467c3afde42298e6dcefe615`,

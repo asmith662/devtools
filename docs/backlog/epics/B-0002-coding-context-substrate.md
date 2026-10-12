@@ -33,11 +33,17 @@ R1.7 is COMPLETE / QUERY_TERM_WEIGHTING_HARMFUL at
 The single captured treatment and unchanged primary-derived reviewed gold establish
 selected-completion/burden gains with seven unbounded REQUIRED-cell regressions
 under the prospective rule. This is query-side weighting evidence only; no
-production weighting is authorized. R2 true BM25F is CURRENT / STAGE_A_FROZEN at
-[Case 0015](../../../experiments/codex_dogfood/case_0015/STAGE_A_REVIEW.md), with
-experiment-only CONTENT/FILENAME BM25F, fixed parameters, zero prospective
-execution and absent gold. This first slice holds representation fixed; broader
-identifier/field studies remain separate future work. No epic pressure is resolved;
+production weighting is authorized. R2 true BM25F is COMPLETE / BM25F_HARMFUL at
+[Case 0015 Stage D](../../../experiments/codex_dogfood/case_0015/stage_d/STAGE_D_REVIEW.md).
+The exact unchanged Astra High gold/attempt-2 join preserves all REQUIRED reach
+and six obligation completions, but establishes no meaningful gains. O6 depth
+worsens 137 to 138 and AGENTS.md's O6 rank 2 to 3 exceeds the complementary bound.
+This is document-field-combination evidence under fixed CONTENT/FILENAME fields
+and parameters, distinct from R1.7 query-side evidence. The next planned direction
+is GRAPH / REPOSITORY-MAP RETRIEVAL: investigate and freeze a minimum strong
+Aider-style structural architecture and prospective slice before further lexical
+micro-experiments. Richer fields, optimized BM25F, learned ranking, fusion and
+sequential localization remain future work. No epic pressure is resolved;
 downstream Localization is preserved. SEARCH_POLICY_FAILURE = NOT_ASSESSED;
 confirmation/reserve = NOT_ACCESSED; production behavior = UNCHANGED. No epic concern is closed,
 no feature or production routing is implemented, and historical checkpoint

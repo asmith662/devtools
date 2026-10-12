@@ -65,8 +65,10 @@ U1, U2 and U3 are complete**; Case 0013 Stage D supports bounded task-role-
 conditioned exact-route admission. R1.7 is COMPLETE /
 QUERY_TERM_WEIGHTING_HARMFUL at Case 0014 Stage D, with unchanged primary-derived
 reviewed gold and the prospectively frozen decision rule. R2 true BM25F is
-CURRENT / STAGE_B_CAPTURED at Case 0015; blind primary adjudication is next.
-canonical production BM25 remains unchanged and semantic-resolution effectiveness
+COMPLETE / BM25F_HARMFUL at Case 0015 under the frozen rule. The next high-level
+retrieval direction is GRAPH / REPOSITORY-MAP RETRIEVAL: investigate and freeze
+a minimum strong Aider-style structural architecture and prospective slice.
+Canonical production BM25 remains unchanged and semantic-resolution effectiveness
 does not resume yet.
 
 #### R1.5 — Retrieval Diagnostics and Failure Attribution — DONE
@@ -203,7 +205,7 @@ Human treatment inspection is not blind adjudication; maintainer labels belong
 in MANUAL_AUDIT. R1/R1.5/R1.6 remain complete. U1 = COMPLETE /
 INFORMATION_NEED_AUTHORING_DEFECT; U2 = COMPLETE / EXACT_HINT_ROUTING_SUPPORTED;
 U3 = COMPLETE / SELECTIVE_MECHANISM_ROUTING_SUPPORTED. R1.7 = COMPLETE /
-QUERY_TERM_WEIGHTING_HARMFUL. R2 true BM25F = CURRENT / STAGE_B_CAPTURED;
+QUERY_TERM_WEIGHTING_HARMFUL. R2 true BM25F = COMPLETE / BM25F_HARMFUL;
 downstream Localization continuation = PRESERVED.
 U1 success is not a condition for R2.
 
@@ -254,7 +256,7 @@ generic-operation attenuation produced additional REQUIRED improvements with
 no additional REQUIRED regressions. That bounded result does not authorize a
 new query-weighting treatment or production weighting. Downstream Localization is preserved.
 
-#### R2 — True BM25F / field-aware sparse retrieval — CURRENT
+#### R2 — True BM25F / field-aware sparse retrieval — COMPLETE
 
 [Case 0015 Stage A](../experiments/codex_dogfood/case_0015/STAGE_A_REVIEW.md)
 freezes the first isolation-preserving R2 slice: canonical whole-content and
@@ -267,15 +269,34 @@ has six mandatory obligations and identical frozen queries across arms.
 scientific semantics. [Case 0015 current publication](../experiments/codex_dogfood/case_0015/CURRENT.md)
 owns the metadata-only recovery, immutable failed attempt 1 and authoritative
 attempt 2: all 17 operations returned once, candidate identity and exact arithmetic
-pass. The blind packet double-build and fresh sterile validator pass. Gold is
-NOT_CREATED; effectiveness UNKNOWN; outcome NOT_SELECTED. Production remains
+pass. The completed clean Astra High primary is imported byte-for-byte and
+[reviewed gold](../experiments/codex_dogfood/case_0015/adjudication/reviewed/REVIEWED_GOLD.md)
+preserves all 3,090 judgments, 42 units and 12 witnesses with semantic
+transformation NONE, no reconciliation and no second reviewer. The reviewed
+checkpoint was validated, committed and pushed before
+[Stage D](../experiments/codex_dogfood/case_0015/stage_d/STAGE_D_REVIEW.md).
+The exact frozen result is **BM25F_HARMFUL**: all six obligations and REQUIRED
+reach are preserved, but no meaningful witness or REQUIRED-rank gain exists.
+O6 selected depth worsens 137 to 138; AGENTS.md under O6 worsens rank 2 to 3,
+exceeding the frozen 20% complementary rank bound. The other REQUIRED regression
+is reading.py under O6, 137 to 138. Prefix occurrences rise 203 to 204; unique
+resources tie at 162, bytes fall 1,364,603 to 1,346,862. Strong safety, strong
+burden and complementary safety fail. O2 is complete at depth zero in both arms;
+it is not a meaningful gain. Filename-inside-tf effects contribute to actual
+necessary-resource overtakers; union-IDF also harms the AGENTS.md crossing.
+These are bounded document-field-combination results, distinct from R1.7's
+query-side evidence. No automatic productionization follows. Production remains
 UNCHANGED; confirmation/reserve NOT_ACCESSED; SEARCH_POLICY_FAILURE NOT_ASSESSED.
 The frozen rule distinguishes safe replacement, bounded complementary value,
 harm and invalid experiments through task-relative witnesses and REQUIRED ranks.
 
-Next: maintainer reviews authoritative Case 0015 Stage B attempt 2. Then start a
-COMPLETELY FRESH GPT-6 Astra / High session in the newly prepared sterile workspace
-for one clean treatment-blind primary adjudication. No gold has been created.
+Next direction: **GRAPH / REPOSITORY-MAP RETRIEVAL**. Begin the graph /
+repository-map retrieval increment by investigating and freezing the minimum
+strong Aider-style / repository-map structural retrieval architecture and a
+prospective evaluation slice. Do not start another lexical weighting/parameter
+micro-experiment first. This roadmap records direction, not graph implementation
+authorization in the Case 0015 task. Richer field models, optimized BM25F,
+learned ranking, fusion and sequential localization remain future work.
 The broader field/identifier comparison directions below remain future hypotheses;
 they are not arms or fields in this first frozen two-field, two-arm slice.
 
@@ -335,8 +356,9 @@ canonical baseline
     -> U1 manual formulation (complete) -> U2 exact hints (complete)
     -> U3 selective mechanism routing (complete; bounded Case 0013 support)
     -> R1.7 query terms (COMPLETE; Case 0014 QUERY_TERM_WEIGHTING_HARMFUL)
-    -> R2 BM25F canonical terms + R2 BM25F identifier-aware terms
-       (representation gain, fielding gain and interaction separately measured)
+    -> R2 canonical two-field BM25F (COMPLETE; Case 0015 BM25F_HARMFUL)
+    -> GRAPH / REPOSITORY-MAP RETRIEVAL architecture and prospective slice
+       (later richer fields/optimized BM25F/learned ranking/fusion/sequential work retained)
 ```
 
 #### R3 — Query representation
