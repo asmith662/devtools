@@ -1,0 +1,44 @@
+{
+  "entered_sha256": "92d8bfa17a93e1886cdaac7df0d2461736068d3fc26ca90cb612edf4ef5adbf0",
+  "event": 6,
+  "execution": "case-0015-stage-b-1",
+  "frame": {
+    "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 515,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "9846f13fdce6c8fc896f673fb7d1f6e0a40b0aeeea24ad71b73d4527e367c494",
+    "source_head": "53a1d087a24e7880f305e167e2d5f3bbb727ff61"
+  },
+  "input_sha256": "8c1450c137fa33bf18b62f69ef2c9cb67f53ca0be07edd79dd3d6101ca14b502",
+  "operation": {
+    "error": "",
+    "error_type": "MemoryError",
+    "identity": "index:native-prepare",
+    "inputs": {
+      "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+      "documents": 515
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "fields:prepare"
+    ],
+    "runtime_ns": 876333089600,
+    "status": "FAILED_NO_RETURN"
+  },
+  "prior_chain_sha256": "92d8bfa17a93e1886cdaac7df0d2461736068d3fc26ca90cb612edf4ef5adbf0",
+  "runtime_identity": {
+    "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": [
+      3,
+      14,
+      0
+    ]
+  },
+  "sequence": 3,
+  "state": "FAILED_NO_RETURN"
+}

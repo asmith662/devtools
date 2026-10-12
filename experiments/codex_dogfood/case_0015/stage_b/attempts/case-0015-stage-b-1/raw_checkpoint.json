@@ -1,0 +1,42 @@
+{
+  "active": [],
+  "execution": "case-0015-stage-b-1",
+  "journal_chain_sha256": "70ada7048d3aec1ec85f1af1f4973f6d74e15951a4895d666400321814bcfb22",
+  "journal_events": 4,
+  "operations": [
+    {
+      "durability_inside_call_ns": 0,
+      "identity": "frame:prepare",
+      "inputs": {
+        "archive_sha256": "ba27e1394862e9ec376f407367fe5a57404ec0b0498b8404bf321f834dc5874c"
+      },
+      "invocations": 1,
+      "prior_operations": [],
+      "runtime_ns": 5723334100,
+      "serialized_return_sha256": "dcd8f0856e8a367959d4c81f21e23dda3daf00907a12eb69a77e8028a9ecdae0",
+      "status": "RETURNED",
+      "wall_call_ns": 5723334100
+    },
+    {
+      "durability_inside_call_ns": 0,
+      "identity": "fields:prepare",
+      "inputs": {
+        "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+        "fields": [
+          "CONTENT",
+          "FILENAME"
+        ]
+      },
+      "invocations": 1,
+      "prior_operations": [
+        "frame:prepare"
+      ],
+      "runtime_ns": 474560100,
+      "serialized_return_sha256": "eb9146871aaa27c176c7aab12cdf06f8d061b712326b91977373df7f99bb6d0b",
+      "status": "RETURNED",
+      "wall_call_ns": 474560100
+    }
+  ],
+  "schema": "case-0012-derived-journal-summary-v2",
+  "state": "STARTED"
+}

@@ -1,0 +1,105 @@
+{
+  "all_stage_a_sealed_bytes": "UNCHANGED",
+  "attempt_2_initial_operations": 0,
+  "effectiveness": "UNKNOWN",
+  "failed_audit": {
+    "scientific_scope_excludes": [
+      ".local/",
+      "operational result handoff"
+    ],
+    "sha256": {
+      "FAILED_AUDIT.md": "a9ef03c5e6f8340ff69afc1c92826cc28abfaea50fb8df2c97646fb7be29406b",
+      "capture_failure.json": "abdd55fa0c06f94c6c1a08f6b9bba1b8c415d41eea015f938f0bdfa05e782eab",
+      "execution.claim": "3d52ebdcaf49c960ab5b2fd5dc4beaa254cdebd7d7bf98d34ef14e526e91a84d",
+      "execution_started.json": "f938afe20862f0ecb332a01f0c086572e564ffb69401fa9372fe52272cac8454",
+      "native_context.json": "c1f981a9ab8da7935a8d39234909c5a8e6b00ccd421c450991f31dc42897ab60",
+      "operations/000001.entered.json": "5b5fa7e865756116c79bd44c5579712ca66bca7a52d6ccefbc084664a686c483",
+      "operations/000001.returned.json": "92ffc4e974c64ce37a610ac6c067d4d2f889bede158ee8ddd5bded0b2ed9271a",
+      "operations/000002.entered.json": "9ab21b9d59688d085d158b1f82b80eab315c9c086d50d7ccf928f868116ea598",
+      "operations/000002.returned.json": "70ada7048d3aec1ec85f1af1f4973f6d74e15951a4895d666400321814bcfb22",
+      "operations/000003.entered.json": "92d8bfa17a93e1886cdaac7df0d2461736068d3fc26ca90cb612edf4ef5adbf0",
+      "operations/000003.failed_no_return.json": "3e72f47a1d1313f76777a6589b7afe10f2f641a8c7542ad0b9b709559d7810ba",
+      "raw_checkpoint.json": "8a12a395f4897ee84b06554f5a0bef2d0a444264072b1fbc7345c79fdfc7f2c1"
+    },
+    "state": "FAILED_AUDIT_ONLY; NOT AUTHORITATIVE STAGE B"
+  },
+  "failed_manifest_sha256": "fefc01dbaefbcbe47d1e2d8edb02bb0ab76c7a18487c0828e8d02d264c86513a",
+  "fingerprint_schema": "case-0015-field-state-fingerprint-v2",
+  "gold": "ABSENT",
+  "implementation": {
+    "experiments/codex_dogfood/case_0012/stage_b/canonical.py": "0646a1a5ba42584d8e75022bc4c1a34f79fd38c99222665de1e89c5f1b02b6c7",
+    "experiments/codex_dogfood/case_0012/stage_b/durability.py": "9711616d3a122b72c2abe26a16fcced1d1f4ea7b25b413a944f88e57215ccf39",
+    "experiments/codex_dogfood/case_0012/stage_b/graph.py": "bac8824ceffe4555944a79e4d0d386aebb6f2738a36ed4ae8239017baf9b58e5",
+    "experiments/codex_dogfood/case_0015/STATUS.md": "63c30843b95c5523134fb1279b3abfa5e4ddffbdfb5615cf165120db28a4f2b4",
+    "experiments/codex_dogfood/case_0015/recovery/.gitattributes": "261a9fc1aeb21ce2fbbf5c3dad48d6ac3c0b6acc2a3ef0a6025c50325fe2d171",
+    "experiments/codex_dogfood/case_0015/recovery/README.md": "9fd53884a7d56a91115c44e54d43c5ce38911a184ee3b90beb1ffedf4a61d615",
+    "experiments/codex_dogfood/case_0015/recovery/__init__.py": "6a2505965e2b1b089d5e97cc5956b10e5d5334879a0ed4586bd44b777b315472",
+    "experiments/codex_dogfood/case_0015/recovery/attempt1_sources/.gitattributes": "4f1cc3a349adb40d9098c6c27939e254b52e306c28701cd58cb6a4caaae455f3",
+    "experiments/codex_dogfood/case_0015/recovery/attempt1_sources/README.md": "df04cd3e215b32280d871fcad783edeecb81464e833a863a6d0c83745501511f",
+    "experiments/codex_dogfood/case_0015/recovery/attempt1_sources/__init__.py": "b3a813209b722277cd884768ab88169e282d5e357c02013fb7d6423d96e5bd95",
+    "experiments/codex_dogfood/case_0015/recovery/attempt1_sources/authenticate.py": "f8926f10aba51c88ebc57b2117a458da03a2e816c67e0fe3157a1a3aac4e7b3c",
+    "experiments/codex_dogfood/case_0015/recovery/attempt1_sources/execute.py": "9e0777989332f8a2ecbfa189d2ee531ab6495eca934dc6aaee9b45f002430759",
+    "experiments/codex_dogfood/case_0015/recovery/attempt1_sources/reporting.py": "609251d8cacba3934bf81506da0a51fcf3d8e15dfa959607286e164124901b15",
+    "experiments/codex_dogfood/case_0015/recovery/attempt1_sources/test_capture.py": "845e565401fc73e340255c5a8b91ae04c1e98e328b381ea1bd045d93bcee895b",
+    "experiments/codex_dogfood/case_0015/recovery/attempt1_sources/validation.py": "b24b557c56befabdd2b49a3737f290609b3d2e66dbbeb22db43ea4b313797d44",
+    "experiments/codex_dogfood/case_0015/recovery/freeze.py": "1adc75b267a5fabed328b9c6fb3867926c07cddbdb8a764fe74edcb7a137f5d8",
+    "experiments/codex_dogfood/case_0015/stage_b/.gitattributes": "4f1cc3a349adb40d9098c6c27939e254b52e306c28701cd58cb6a4caaae455f3",
+    "experiments/codex_dogfood/case_0015/stage_b/README.md": "16e7fefd4b1a3a9cab732ad512d86123869f3aa89ca5df102cfefd65ed5ea01e",
+    "experiments/codex_dogfood/case_0015/stage_b/__init__.py": "b3a813209b722277cd884768ab88169e282d5e357c02013fb7d6423d96e5bd95",
+    "experiments/codex_dogfood/case_0015/stage_b/authenticate.py": "f8926f10aba51c88ebc57b2117a458da03a2e816c67e0fe3157a1a3aac4e7b3c",
+    "experiments/codex_dogfood/case_0015/stage_b/execute.py": "6ad925d5a6a2757c9ed0084d5a6203807c28b4e4b5daac30ac966a6ed2f9f212",
+    "experiments/codex_dogfood/case_0015/stage_b/fingerprint.py": "5d2ee41f36a9a704a66a83872ea5b1f26862ed5c75d936b73da66b8309bb08f0",
+    "experiments/codex_dogfood/case_0015/stage_b/legacy.py": "0554e4af21da0f0c2b0cc427990230011307dd335196b0301800c61dc26368b7",
+    "experiments/codex_dogfood/case_0015/stage_b/probe.py": "c637b5e1c57e66e608902e7a4b7df1c890a93a2cff034ea1d96dc349b0e5b859",
+    "experiments/codex_dogfood/case_0015/stage_b/records.py": "6fb78910ac24145482aac26cdff122948fa7b4f1425ab4bdaae5d359e6913c6c",
+    "experiments/codex_dogfood/case_0015/stage_b/reporting.py": "e9c9885c76c3f9207a7f409d9f5be4864d176039b6916eda7a8187d189558f97",
+    "experiments/codex_dogfood/case_0015/stage_b/test_capture.py": "510e83b4fd1d3999d3db72bc56d213592a07880148719a9f5f062184ae58bdf9",
+    "experiments/codex_dogfood/case_0015/stage_b/test_recovery.py": "4814357a45dbb40a4b583089233055d53e949f37501ab66bd9b3f0d3f3de82aa",
+    "experiments/codex_dogfood/case_0015/stage_b/validation.py": "04d75846bdafa2cfb0e1d2628743d05268fca02799d3b80ef5a04c0a391d0d2c",
+    "experiments/codex_dogfood/case_0015/stage_c/.gitattributes": "4f1cc3a349adb40d9098c6c27939e254b52e306c28701cd58cb6a4caaae455f3",
+    "experiments/codex_dogfood/case_0015/stage_c/__init__.py": "29721f8128201993f1901519ab066e9bc3cc8fee30d72e0f6a77869bd5a6503b",
+    "experiments/codex_dogfood/case_0015/stage_c/packet.py": "dde0dbd41f60284b39089f03961d373311ae48c039bd4e5617d16cfad509946e",
+    "experiments/codex_dogfood/case_0015/stage_c/test_packet.py": "87f995fead8fc34fb2b04b1b449c595856acd05dbd8b9fb6634c229d8f598639",
+    "experiments/codex_dogfood/case_0015/stage_c/validate_packet.py": "71c95c20175fee971583fc25a65e46bcfe39442b126d02ded23c7c28943f1209"
+  },
+  "legacy_attempt_1": "FAILED_AUDIT_ONLY; NO_RETRY; NO_TREATMENT",
+  "outcome": "NOT_SELECTED",
+  "readonly_prepared_fingerprint": "fe82e1dac9f562bdb0dc460cd8944f1bbd9f67239e14f1d3e3ecbc961dfcce5b",
+  "record_schemas": [
+    "case-0015-prepared-frame-v2",
+    "case-0015-prepared-fields-v2"
+  ],
+  "schema": "case-0015-capture-metadata-recovery-v2",
+  "stage_a": {
+    "frame": {
+      "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+      "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+      "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+      "resource_count": 515,
+      "resource_order": "canonical resource address ascending",
+      "snapshot_id": "9846f13fdce6c8fc896f673fb7d1f6e0a40b0aeeea24ad71b73d4527e367c494",
+      "source_head": "53a1d087a24e7880f305e167e2d5f3bbb727ff61"
+    },
+    "initial_counts": {
+      "gold": "ABSENT",
+      "prospective_bm25f_scorings": 0,
+      "prospective_frame_retrieval_executions": 0,
+      "prospective_index_builds": 0,
+      "prospective_obligation_queries": 0,
+      "prospective_reference_queries": 0,
+      "prospective_treatment_rankings": 0
+    },
+    "integrity_sha256": "86438745a88c79fa0fafd132f454fcc807de0afc93d7d01a210f740338896619",
+    "protocol_sha256": "5603bd782616516674a153e2824687b684a07c27347ad5998989333f96aa6747",
+    "stage_a": "d7e28de0e103bdf0e494a0156311fa1c14b6c9f8",
+    "status": "PASS"
+  },
+  "status": "FROZEN_METADATA_CAPTURE_ONLY; NO_SUCCESSFUL_STAGE_B",
+  "validation": {
+    "formatter": "PASS",
+    "protected_development": "1588 PASSED; 2 SKIPPED; 100% branch coverage",
+    "ruff": "PASS",
+    "strict_mypy": "PASS",
+    "synthetic_tests": "128 PASSED; 3 pre-capture guarded skips"
+  }
+}

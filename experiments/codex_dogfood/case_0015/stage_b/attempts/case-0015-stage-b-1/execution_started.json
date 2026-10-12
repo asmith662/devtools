@@ -1,0 +1,93 @@
+{
+  "authentication": {
+    "frame": {
+      "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+      "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+      "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+      "resource_count": 515,
+      "resource_order": "canonical resource address ascending",
+      "snapshot_id": "9846f13fdce6c8fc896f673fb7d1f6e0a40b0aeeea24ad71b73d4527e367c494",
+      "source_head": "53a1d087a24e7880f305e167e2d5f3bbb727ff61"
+    },
+    "initial_counts": {
+      "gold": "ABSENT",
+      "prospective_bm25f_scorings": 0,
+      "prospective_frame_retrieval_executions": 0,
+      "prospective_index_builds": 0,
+      "prospective_obligation_queries": 0,
+      "prospective_reference_queries": 0,
+      "prospective_treatment_rankings": 0
+    },
+    "integrity_sha256": "86438745a88c79fa0fafd132f454fcc807de0afc93d7d01a210f740338896619",
+    "protocol_sha256": "5603bd782616516674a153e2824687b684a07c27347ad5998989333f96aa6747",
+    "stage_a": "d7e28de0e103bdf0e494a0156311fa1c14b6c9f8",
+    "status": "PASS"
+  },
+  "case": "0015",
+  "effectiveness": "UNKNOWN",
+  "execution": "case-0015-stage-b-1",
+  "frame": {
+    "corpus_id": "4c54a18a6fba0aa33c248a2f4776627bbfcffba740cb8e752a6f47662b1d33fa",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 515,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "9846f13fdce6c8fc896f673fb7d1f6e0a40b0aeeea24ad71b73d4527e367c494",
+    "source_head": "53a1d087a24e7880f305e167e2d5f3bbb727ff61"
+  },
+  "gold": "ABSENT",
+  "implementation_sha256": {
+    "experiments/codex_dogfood/case_0012/stage_b/canonical.py": "0646a1a5ba42584d8e75022bc4c1a34f79fd38c99222665de1e89c5f1b02b6c7",
+    "experiments/codex_dogfood/case_0012/stage_b/durability.py": "9711616d3a122b72c2abe26a16fcced1d1f4ea7b25b413a944f88e57215ccf39",
+    "experiments/codex_dogfood/case_0012/stage_b/graph.py": "bac8824ceffe4555944a79e4d0d386aebb6f2738a36ed4ae8239017baf9b58e5",
+    "experiments/codex_dogfood/case_0015/stage_b/.gitattributes": "4f1cc3a349adb40d9098c6c27939e254b52e306c28701cd58cb6a4caaae455f3",
+    "experiments/codex_dogfood/case_0015/stage_b/README.md": "df04cd3e215b32280d871fcad783edeecb81464e833a863a6d0c83745501511f",
+    "experiments/codex_dogfood/case_0015/stage_b/__init__.py": "b3a813209b722277cd884768ab88169e282d5e357c02013fb7d6423d96e5bd95",
+    "experiments/codex_dogfood/case_0015/stage_b/authenticate.py": "f8926f10aba51c88ebc57b2117a458da03a2e816c67e0fe3157a1a3aac4e7b3c",
+    "experiments/codex_dogfood/case_0015/stage_b/execute.py": "9e0777989332f8a2ecbfa189d2ee531ab6495eca934dc6aaee9b45f002430759",
+    "experiments/codex_dogfood/case_0015/stage_b/reporting.py": "609251d8cacba3934bf81506da0a51fcf3d8e15dfa959607286e164124901b15",
+    "experiments/codex_dogfood/case_0015/stage_b/test_capture.py": "845e565401fc73e340255c5a8b91ae04c1e98e328b381ea1bd045d93bcee895b",
+    "experiments/codex_dogfood/case_0015/stage_b/validation.py": "b24b557c56befabdd2b49a3737f290609b3d2e66dbbeb22db43ea4b313797d44"
+  },
+  "initial_counts": {
+    "gold": "ABSENT",
+    "prospective_bm25f_scorings": 0,
+    "prospective_frame_retrieval_executions": 0,
+    "prospective_index_builds": 0,
+    "prospective_obligation_queries": 0,
+    "prospective_reference_queries": 0,
+    "prospective_treatment_rankings": 0
+  },
+  "operation_schedule": [
+    "frame:prepare",
+    "fields:prepare",
+    "index:native-prepare",
+    "statistics:union-prepare",
+    "query:Q1:A",
+    "query:Q1:B",
+    "query:Q2:A",
+    "query:Q2:B",
+    "query:Q3:A",
+    "query:Q3:B",
+    "query:Q4:A",
+    "query:Q4:B",
+    "query:Q5:A",
+    "query:Q5:B",
+    "query:Q6:A",
+    "query:Q6:B",
+    "query:reference"
+  ],
+  "outcome": "NOT_SELECTED",
+  "protocol_sha256": "5603bd782616516674a153e2824687b684a07c27347ad5998989333f96aa6747",
+  "runtime": {
+    "executable": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+    "implementation": "cpython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": [
+      3,
+      14,
+      0
+    ]
+  },
+  "stage_a": "d7e28de0e103bdf0e494a0156311fa1c14b6c9f8"
+}
