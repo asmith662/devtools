@@ -30,6 +30,35 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
+### Independent historical development population — FROZEN
+
+The original Increment 25 development population (8/8 used) and Increment 27
+expanded development population (24/24 executed) are exhausted. The unchanged
+[source-exhaustion audit](../experiments/development_population/extension_01/audit/README.md)
+found 78 raw / 77 canonical / zero eligible bounded backlog assignments; it
+selected no case and froze no population.
+
+The independently authorized
+[historical development extension](../experiments/development_population/extension_01/historical/README.md)
+now freezes 15 original engineering tasks in deterministic prospective use order.
+The [first public task](../experiments/development_population/extension_01/historical/selected_next_case.json)
+is `historical-development-001`, “Implement repository lexical statistics and
+inverted index,” at untouched parent commit
+`71e938d809d794f2f07dd30cb772f1e9bc89c9d3` / tree
+`d6c9398be0bf36e16d6bf57a65f16d5f513eab00`.
+Its child implementation is a restricted reference implementation, never relevance
+gold. No retrieval, obligations, new gold or treatment design is performed here.
+Maintainer review precedes prospective treatment design against this already
+selected task; Stage A/B/C must not open the child implementation or its paths.
+
+U1/U2/U3, R1.7/R2 and GRAPH-3 retain their completed scientific dispositions.
+GRAPH-3 remains COMPLETE / GRAPH_HARMFUL; the performance baseline remains
+COMPLETE and verifier architecture remains COMPLETE /
+SEALED_AND_DEEP_VERIFICATION_SEPARATED. Production retrieval is unchanged;
+SEARCH_POLICY_FAILURE remains NOT_ASSESSED. Incremental RI remains REQUIRED /
+NOT_IMPLEMENTED and filename-index caching remains PENDING / NOT_IMPLEMENTED.
+The next structural-evidence treatment remains **PENDING DESIGN**, not selected.
+
 Two coordinated tracks preserve ADR-0005 and the implemented Localization
 contracts while correcting retrieval-foundation sequencing. The
 [current retrieval foundation](architecture/retrieval.md) owns the production

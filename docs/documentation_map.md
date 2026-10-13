@@ -580,3 +580,13 @@ The [earlier engineering diagnostic](../experiments/performance/retrieval/verifi
 preserves the incomplete 180-second native-replay repair as history. Layered
 verification measurements are appended to the performance report; no accepted
 scientific outcome or production retrieval behavior changes.
+
+The [historical development-population extension](../experiments/development_population/extension_01/historical/README.md)
+owns treatment-independent episode eligibility, the complete administrative
+inventory, deterministic population/use order and the selected untouched parent
+frame. Its public task cards are the only task surfaces for future Stage A/B/C;
+child implementation provenance is restricted until post-gold / Stage D and is
+not relevance gold. The unchanged
+[backlog source-exhaustion audit](../experiments/development_population/extension_01/audit/README.md)
+is NON-POPULATION evidence: zero eligible assignments, no freeze and no selection.
+Treatment design and execution remain separately authorized future work.

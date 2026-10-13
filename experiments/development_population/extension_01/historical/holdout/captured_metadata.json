@@ -1,0 +1,3550 @@
+{
+  "prior": {
+    "dogfood_tasks": {
+      "experiments/codex_dogfood/case_0011/task.txt": "37b23f717a8c35ecf390c3169aff24bd7c39f271afc9208fb7d9e780f91239d1",
+      "experiments/codex_dogfood/case_0012/task.txt": "698dd6efc7763650e587e80538ec228d979ae5cd48ba9f749a612f3e44b2a70d",
+      "experiments/codex_dogfood/case_0013/task.txt": "2765485d84f6480961d570a597f10aa3d1819c7960461e4c089537bdb40f6b8f",
+      "experiments/codex_dogfood/case_0014/task.txt": "102209ef72b925b02b9089bff1b5a23d3d19a6337b406c545338c061bf6b77a2",
+      "experiments/codex_dogfood/case_0015/task.txt": "a5626ce2aea7ff59d3b368e2a35ec2f4e88e7c8049fe35a42852ad1735f8e468",
+      "experiments/codex_dogfood/case_0016/task.txt": "edbc2c71fe35ba31226de28b8b8f222e99d2b38b7d4da9fe2660381e5add56af"
+    },
+    "excluded_id_prefixes": [
+      "004d3829a475",
+      "0f7a13667ef3",
+      "2a4f058d5262",
+      "4ba894f29abf",
+      "4ce485f737e4",
+      "514fdb223b40",
+      "5b75000b60f7",
+      "5bdc70483eed",
+      "5c5bdf4212ac",
+      "5fdf5fe05527",
+      "6156c70be14b",
+      "64cd17d51701",
+      "66ed2049de72",
+      "6b0e9c52fb26",
+      "6f304a8c737c",
+      "739c82bd3398",
+      "7594b8450649",
+      "842e90e63f37",
+      "858bfa85787e",
+      "85cfd9ff68a0",
+      "8994c4e58644",
+      "9009cc143957",
+      "901246bd802a",
+      "9efe3dc31e80",
+      "ab24906f07ed",
+      "ac797431db35",
+      "add3c3ed5195",
+      "b5280a3c38ca",
+      "bb9f807bcd61",
+      "c0fabcb195e2",
+      "ca9963afa999",
+      "d58c0504b671",
+      "d9e58cd09390",
+      "e0a344227af1",
+      "e142585a95da",
+      "e976f7f20898",
+      "eadb6f231f57",
+      "f61e24db3528"
+    ],
+    "expanded_identity": "758f338af25a5f88fa66229d5ed29f1065a244f4116e0ac843e169114624254c",
+    "expanded_sha256": "846e88929234261ac8e0fc3c872b65c329bb571f129181597bae1be8a9a7b800",
+    "original_identity": "df4128bf1a6afc246aff072ff3922e4b9deb0205c95b74310a64d29497c02c0b",
+    "original_sha256": "23435d68aedff808084fe33c611140343870a1222bf1fcd3a8d47d175e41cfe3"
+  },
+  "repair_text_rejections": {
+    "504f89685d63": "Commit text does not state the mounting defect or required corrected behavior.",
+    "9e994e1c10be": "Commit text does not state the validation defect or required corrected behavior."
+  },
+  "rows": [
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "c03adc82e4a8b6a50ef4aaa74dbc7f051dfcfc20f2978df362cd92b3c4bba266",
+      "child": "dc0ba53182d5d90a9db1b0783f73446c412d5850",
+      "child_tree": "61e942663046da186616ad4bb88934d188ba8fc1",
+      "commit_metadata_sha256": "506f0d504a72500b9f22ecbbd2ac1334046e4feaebd0067cf39f2fcfd571f374",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "8986be0231059ea307fb63151872a4f8682dd4692f2b9fd30255b24d42fc79a6",
+      "parent_tree": "1aa975334eeac7659ed905574366b784d606baf7",
+      "parents": [
+        "f624234d84b81217c9db13ae6875437dcd22dc39"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Reconcile structural retrieval research punctuation",
+      "task_text": "Reconcile structural retrieval research punctuation\n",
+      "timestamp": 1790182503,
+      "total_files": 1
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "26e559981ff0b57c3ddbb6db8ba9bccb678179e9064b7778d52f2d11bfa843d2",
+      "child": "f624234d84b81217c9db13ae6875437dcd22dc39",
+      "child_tree": "1aa975334eeac7659ed905574366b784d606baf7",
+      "commit_metadata_sha256": "f279dffc82c1fa20da817b03b6fc91075f542164f5b564c24216633269fcdbbc",
+      "diff_sha256": "843810c5b74ba093057c973ce33356d049a740b503eaccf4afadcd440f97c32c",
+      "lines": 1156,
+      "numstat_sha256": "41180dc8c36ca1680a2a289e987aaeddaf6f24c22f87a762e6d9c81f7ed32416",
+      "parent_tree": "7ba4961739d1c66e175b10e4c8214cc2f6809822",
+      "parents": [
+        "ca95a89f076e4f4297fbca1f48d37d9959dbdb3a"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "ELIGIBLE",
+      "subject": "Add imported-member binding resolution",
+      "task_text": "Add imported-member binding resolution\n",
+      "timestamp": 1790182148,
+      "total_files": 5
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "8851382fb5e99633e942e19b660e81b6eeffdf5a0a4237a664fb0c59ba7ea6ea",
+      "child": "ca95a89f076e4f4297fbca1f48d37d9959dbdb3a",
+      "child_tree": "7ba4961739d1c66e175b10e4c8214cc2f6809822",
+      "commit_metadata_sha256": "5da4df313b334c783ba8efab6e76b0be418b40733bc4c4e58001ff1299ecf6ad",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "6f8a5188c689ec7389bc5097136896df089332dfa59caf462eadbb2208de1a1b",
+      "parent_tree": "23143f5264f5013dbd73c68d4e7748568dd9843d",
+      "parents": [
+        "64c2817f115df32ad4ebc1bc2b7eb0cf0800b291"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Reconcile structural retrieval research",
+      "task_text": "Reconcile structural retrieval research\n",
+      "timestamp": 1790175035,
+      "total_files": 9
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "4b4b097bd4c5796a44b4c6f24bbce526b89100788ae7d67c03b4680a6e1b5cd8",
+      "child": "64c2817f115df32ad4ebc1bc2b7eb0cf0800b291",
+      "child_tree": "23143f5264f5013dbd73c68d4e7748568dd9843d",
+      "commit_metadata_sha256": "54cfbc7516e8d2461cfe1ad9756ad242f6e9f66df4f1afd82fa4ca315b2532e0",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "8d89e1080a52b091ac85d3ea874ce85ec4910bad92a094a06b4cd9417013b383",
+      "parent_tree": "047373510007a384f6ab1ae9d4e5e33899437fcf",
+      "parents": [
+        "de97a7abcf3a33ac484323fc06de3dc36902d06b"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Reconcile heterogeneous retrieval direction",
+      "task_text": "Reconcile heterogeneous retrieval direction\n",
+      "timestamp": 1790172541,
+      "total_files": 8
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        ".b0002-purpose-relative-ranking-comparison.json",
+        "docs",
+        "experiments",
+        "tests"
+      ],
+      "changed_path_sha256": "d30d06ff7026b52a68a8e458addf3e3e90d989d46658a8b7663270a4b2befbdb",
+      "child": "de97a7abcf3a33ac484323fc06de3dc36902d06b",
+      "child_tree": "047373510007a384f6ab1ae9d4e5e33899437fcf",
+      "commit_metadata_sha256": "598203f16ecaf2c5bef449c95563d401e24972d21af8a1c0031307682d201ea1",
+      "diff_sha256": null,
+      "lines": 70,
+      "numstat_sha256": "8224ee22558457b9d98bc997f134fdb7c6581f68f9563b5e3ae9118d19fe309c",
+      "parent_tree": "803d2381fc1c0254409e0d790a1e328194ac4c61",
+      "parents": [
+        "eea1c95079b6b9012748e9828770eabd4258f603"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Evaluate purpose-relative repository ranking",
+      "task_text": "Evaluate purpose-relative repository ranking\n",
+      "timestamp": 1790168479,
+      "total_files": 9
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        ".b0002-increment-23-blinded-adjudication-package.json",
+        ".b0002-increment-23-frozen-adjudication.json",
+        ".b0002-increment-23-hidden-surface-capture.json",
+        ".b0002-increment-23-invalid-blinded-adjudication-package.invalidation.json",
+        ".b0002-increment-23-invalid-blinded-adjudication-package.json",
+        ".b0002-increment-23-neutral-resource-mapping.json",
+        ".b0002-purpose-relative-independent-validation.json",
+        ".gitattributes",
+        "docs",
+        "experiments",
+        "tests"
+      ],
+      "changed_path_sha256": "7fbb81fd3bc718643d75420bdaba60c7eab8510eb4fb44b0a170492304de090b",
+      "child": "eea1c95079b6b9012748e9828770eabd4258f603",
+      "child_tree": "803d2381fc1c0254409e0d790a1e328194ac4c61",
+      "commit_metadata_sha256": "46f49e5d3dde999b2b4a78cfc97b68da65ef3bf3d9330cf3ef77796b72a65410",
+      "diff_sha256": null,
+      "lines": 1072,
+      "numstat_sha256": "3c7847350e9a068cd55e55df0089a8fc4c59618061b5664e0b955085e314ed1b",
+      "parent_tree": "3ddffcedeae425a13f25cd863182f4f59a0ee3e1",
+      "parents": [
+        "0f61f3d328bad3d4743130e2e1fb1e8f6698fb19"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Complete independent purpose-relative retrieval validation",
+      "task_text": "Complete independent purpose-relative retrieval validation\n",
+      "timestamp": 1790167442,
+      "total_files": 24
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        ".b0002-purpose-relative-admission-rule.json",
+        "docs",
+        "experiments",
+        "tests"
+      ],
+      "changed_path_sha256": "f728ce989e20112ee7e24c093239bd551739c037575c022c8917a43d343bef92",
+      "child": "0f61f3d328bad3d4743130e2e1fb1e8f6698fb19",
+      "child_tree": "3ddffcedeae425a13f25cd863182f4f59a0ee3e1",
+      "commit_metadata_sha256": "c96a89152f554623ea640a06cbe367541c10ada7452f7f9b6dc8afac2eb23628",
+      "diff_sha256": null,
+      "lines": 410,
+      "numstat_sha256": "938eaf02e78724f9274afee4691b013cdd947d0e3b66687007c602e91dd189f2",
+      "parent_tree": "091749e387c91b2b2808e291d83f175ba0a7f8b4",
+      "parents": [
+        "251e290c985d1b93aa97b346ee44dbb949f21932"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Evaluate purpose-relative retrieval admission",
+      "task_text": "Evaluate purpose-relative retrieval admission\n",
+      "timestamp": 1790099522,
+      "total_files": 18
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "303858e5c9c0e4982216c808c6ba2181997605e39fb1ce8dcb280e4690dbe014",
+      "child": "251e290c985d1b93aa97b346ee44dbb949f21932",
+      "child_tree": "091749e387c91b2b2808e291d83f175ba0a7f8b4",
+      "commit_metadata_sha256": "e2fa9f73c603e84f58ee3bfee2b831dfc2f0e0fde230b073e9b8abeba0c27ab5",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "959f0c51bd28dd7713391824f4436d4d421d2ebe672f877cc4ddd3b38427a312",
+      "parent_tree": "205bfc8f832e8d49015b1f0894c898e2d800c6c6",
+      "parents": [
+        "dac034702a5637736b59812382a308d1b2ca54ba"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Synthesize retrieval architecture research",
+      "task_text": "Synthesize retrieval architecture research\n",
+      "timestamp": 1790039753,
+      "total_files": 3
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        ".b0002-purpose-relative-oracle-headroom.json",
+        "docs",
+        "experiments",
+        "tests"
+      ],
+      "changed_path_sha256": "a6346433540312ef24cb7cb738561bfd05f87204b7fa5bc06b09687328cabdbd",
+      "child": "dac034702a5637736b59812382a308d1b2ca54ba",
+      "child_tree": "205bfc8f832e8d49015b1f0894c898e2d800c6c6",
+      "commit_metadata_sha256": "f75c7bbb239a1897dcd60d5f42cdf1a75ac3886ab50d6f0ec0e36eefe068ecea",
+      "diff_sha256": null,
+      "lines": 164,
+      "numstat_sha256": "ade2dc2c1596e48d82efc79cfef910f7f5b5a453223f2dcbf84f57f5a1f1a9af",
+      "parent_tree": "cfae2653d32df7843b71cccceada49e8d14873f9",
+      "parents": [
+        "b76abf41b79cc71daae351309459eae2609885b6"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Evaluate purpose-relative retrieval headroom",
+      "task_text": "Evaluate purpose-relative retrieval headroom\n",
+      "timestamp": 1790038437,
+      "total_files": 8
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "57eec72ca0acde662c859996133cdad2eb665cf429be12c1129b4298c2e720e6",
+      "child": "b76abf41b79cc71daae351309459eae2609885b6",
+      "child_tree": "cfae2653d32df7843b71cccceada49e8d14873f9",
+      "commit_metadata_sha256": "4699d074a2ef4c249dda2351737bcea04b56878e85ae85fe864a2da2074faa16",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "437e4cd1827d64433a45944599a42cdf715542332034469cc62bbf18ee048869",
+      "parent_tree": "ac1afa724074f3aefdd8fe6de233dddcd9384ce0",
+      "parents": [
+        "aab810f3d69f7c9012ccb1b51c2c1722adac2854"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Reconcile recovered architecture research",
+      "task_text": "Reconcile recovered architecture research\n",
+      "timestamp": 1790032553,
+      "total_files": 19
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        ".b0002-import-relationship-comparison.json",
+        "docs",
+        "experiments",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "d79965d3ff006894ed9c5c76500b16a14e2d6a58401cc607f5345cb1c47ca763",
+      "child": "aab810f3d69f7c9012ccb1b51c2c1722adac2854",
+      "child_tree": "ac1afa724074f3aefdd8fe6de233dddcd9384ce0",
+      "commit_metadata_sha256": "e2e35357e0c7d96fe8abf22340425d3b225f1b14ec6abdd50a3fab8b532d199c",
+      "diff_sha256": "ded062bb86ee4e6b0a9e90457326fbac62f2e9bb9cb7ede5c542cc757ffa32d1",
+      "lines": 872,
+      "numstat_sha256": "d488c981012926ccb6eee378fb4f9434119ef8e08c216c664b02fb957cffaa5c",
+      "parent_tree": "be89449e1f2c89c307130868aa51cf9e717a2f49",
+      "parents": [
+        "d493c26bbb1866cb9e5ead8f23f02aac3a7f12b9"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "ELIGIBLE",
+      "subject": "Implement qualified repository import relations",
+      "task_text": "Implement qualified repository import relations\n",
+      "timestamp": 1790010818,
+      "total_files": 14
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "39165f54d92ccda6cee6894aff4c9d4a6181808f08636caf2a42769ce32da379",
+      "child": "d493c26bbb1866cb9e5ead8f23f02aac3a7f12b9",
+      "child_tree": "be89449e1f2c89c307130868aa51cf9e717a2f49",
+      "commit_metadata_sha256": "94f70487e70e96dd0a901017e30aed77ed71e20d227df64a605d731c36f962b5",
+      "diff_sha256": "932425dd66a81c184bca00eaafa2bf34531cbffe6ec4af34656360df630a9c3f",
+      "lines": 649,
+      "numstat_sha256": "356d99cd41f55bab99a5fdc5cd8941cdeb1e497265774db1776b194fac32e782",
+      "parent_tree": "e5162ff402ff4a72654fc8e1d98408bdd28427f7",
+      "parents": [
+        "4ce485f737e47e135822a614127133f93f0ecfee"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 4,
+      "reason": "ELIGIBLE",
+      "subject": "Implement qualified repository Python import resolution",
+      "task_text": "Implement qualified repository Python import resolution\n",
+      "timestamp": 1790004885,
+      "total_files": 9
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "b54a1a4e3d79513dcd173c2aaf876f5f1e365a977d55d9fa7841f02a1097f691",
+      "child": "4ce485f737e47e135822a614127133f93f0ecfee",
+      "child_tree": "e5162ff402ff4a72654fc8e1d98408bdd28427f7",
+      "commit_metadata_sha256": "99799b4c29693b688f6587e8e598d3e29db18071dbbed4517f6c8e8ded38958f",
+      "diff_sha256": null,
+      "lines": 436,
+      "numstat_sha256": "c63b06cf0aba8ed8694bdb21417c01dfd5a1b08eff8183a02c1128d85beeaa2a",
+      "parent_tree": "9b1552ff3c09104cd992a5980f536db84e13f096",
+      "parents": [
+        "4b9428daf78f81864d11ecf7ac2193e868ff3591"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1790002232,
+      "total_files": 8
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "b6cd1f04c41ff4da08fbc86e56a7c5bc82fac3a6179ea54281f8d3c8d791a9b3",
+      "child": "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+      "child_tree": "9b1552ff3c09104cd992a5980f536db84e13f096",
+      "commit_metadata_sha256": "2718232a82aef812455f35a035f87ec667a1722bbe5b841bbd8a0b0f3e229e21",
+      "diff_sha256": "f86f20c11e4c9610f46416cea032df7cb4cfcaba7f1404dab55d5ba3a9360d7d",
+      "lines": 227,
+      "numstat_sha256": "20d8245a9443fc7aa6e8e189db79faa6d963fcd84f2a01dcfeb2bee16368bc19",
+      "parent_tree": "bde2d0512f7bc36385d29cd2bad5f2e098950988",
+      "parents": [
+        "6bd9061f94646c02fb50a9e24dc73fc203c11a30"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "ELIGIBLE",
+      "subject": "Implement Python import declaration derivation",
+      "task_text": "Implement Python import declaration derivation\n",
+      "timestamp": 1790000624,
+      "total_files": 5
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        ".b0002-structural-expansion-comparison.json",
+        "docs",
+        "experiments",
+        "tests"
+      ],
+      "changed_path_sha256": "187e1492b36d7ab0fd8225d83494d62e18c1819cc8c361c6ec60a681b709f5e8",
+      "child": "6bd9061f94646c02fb50a9e24dc73fc203c11a30",
+      "child_tree": "bde2d0512f7bc36385d29cd2bad5f2e098950988",
+      "commit_metadata_sha256": "97f5ad881fc4c85f60d6bd6576a3b547665e043cfeac4d6d12757f1fc999e99f",
+      "diff_sha256": null,
+      "lines": 344,
+      "numstat_sha256": "1daad75714f709e56a0976531b76f001ba1f0babe60136e8fa974aaa9c05eef6",
+      "parent_tree": "3865ed507eed57dbb07e06e1965aaf6fa21275ae",
+      "parents": [
+        "6f4ba018da0f14b91604f2a6307ec60965db8fcc"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Evaluate structural repository expansion",
+      "task_text": "Evaluate structural repository expansion\n",
+      "timestamp": 1789999572,
+      "total_files": 4
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "experiments",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "090769b0d6486ba265c8e6fce82b8d1952fb224163a8c9ddcb6c85f00c9c4cae",
+      "child": "6f4ba018da0f14b91604f2a6307ec60965db8fcc",
+      "child_tree": "3865ed507eed57dbb07e06e1965aaf6fa21275ae",
+      "commit_metadata_sha256": "2d567415778e2dc808b19ae2de480d4f42bf4316fa1ffd0ee9c234c0403691af",
+      "diff_sha256": "81bd2b0e8e27778504b4814d147a1e386fdeea9af15072eaaffd94315796b17b",
+      "lines": 643,
+      "numstat_sha256": "e3af3346a401caa233ae29e2f52b5faa0909ca43ce605fce8a628ce4ad087f8b",
+      "parent_tree": "87f925a834e6893bc3ec6b50cf3cb73f34edfd16",
+      "parents": [
+        "0733092f5001ce157f7c190ff17574701fa01d58"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 6,
+      "reason": "ELIGIBLE",
+      "subject": "Implement weighted filename BM25 retrieval",
+      "task_text": "Implement weighted filename BM25 retrieval\n",
+      "timestamp": 1789995506,
+      "total_files": 15
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        ".b0002-bm25-filename-promotion-gate.json",
+        "docs",
+        "experiments",
+        "tests"
+      ],
+      "changed_path_sha256": "6f697eeeef2cb5785689660a2d59f28033547e93b7da8941148551fd0bf1350f",
+      "child": "0733092f5001ce157f7c190ff17574701fa01d58",
+      "child_tree": "87f925a834e6893bc3ec6b50cf3cb73f34edfd16",
+      "commit_metadata_sha256": "706f1bb4be02827c667e3e6ad19d0df43303338b3d655057636edbbe4a0f29d7",
+      "diff_sha256": null,
+      "lines": 54,
+      "numstat_sha256": "7e3f73057ade93a01d398a8d9dfe9c73049800c1281663941852824342a3f2cd",
+      "parent_tree": "bee2a2165f6d7539c0e1026bafd143228405460e",
+      "parents": [
+        "d54d2a8d5a6801b94a40439d77a439217f47b74d"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Gate filename lexical retrieval for production",
+      "task_text": "Gate filename lexical retrieval for production\n",
+      "timestamp": 1789989731,
+      "total_files": 4
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        ".b0002-bm25-filename-calibration.json",
+        "docs",
+        "experiments",
+        "tests"
+      ],
+      "changed_path_sha256": "70df194553df4531c8604d110d6fb20061f9a51e85519635632a614c3fee12d3",
+      "child": "d54d2a8d5a6801b94a40439d77a439217f47b74d",
+      "child_tree": "bee2a2165f6d7539c0e1026bafd143228405460e",
+      "commit_metadata_sha256": "5119c4762cf210743e81231c7d2aa2bb80905f42dab631af123b155a9149d171",
+      "diff_sha256": null,
+      "lines": 52,
+      "numstat_sha256": "8e9a57eee02cba3c6c035cc2874aeaa88378fb91cac1e8d8e474171e8c11155d",
+      "parent_tree": "0ebe0b9405054c87927c134b8c364ab46dd7bfbf",
+      "parents": [
+        "1cace8ea48249a2e86dcafef2154dce61b235466"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Calibrate filename lexical retrieval weighting",
+      "task_text": "Calibrate filename lexical retrieval weighting\n",
+      "timestamp": 1789988660,
+      "total_files": 4
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        ".b0002-bm25-address-comparison.json",
+        "docs",
+        "experiments",
+        "tests"
+      ],
+      "changed_path_sha256": "b2634e96387ed7488804ff2d6ac7dc7270b73af4f981e2d714412136a118f0df",
+      "child": "1cace8ea48249a2e86dcafef2154dce61b235466",
+      "child_tree": "0ebe0b9405054c87927c134b8c364ab46dd7bfbf",
+      "commit_metadata_sha256": "c4ad3ce82d98b6fe9dce6f5d2f584aa429d60d87317410637cd48df16ce5d31d",
+      "diff_sha256": null,
+      "lines": 93,
+      "numstat_sha256": "e72adfd55d490cc68cf8c29a982ec113128dffa06faa68cd09a0522d01157760",
+      "parent_tree": "76af72c343ba20b0ad626e15f1560ac0cad20a2d",
+      "parents": [
+        "7965743451d5ad98a7887528c64fa4a4824611ed"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Evaluate repository address lexical retrieval",
+      "task_text": "Evaluate repository address lexical retrieval\n",
+      "timestamp": 1789981756,
+      "total_files": 4
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        ".b0002-bm25-identifier-comparison.json",
+        "docs",
+        "experiments",
+        "tests"
+      ],
+      "changed_path_sha256": "25e119d955f68a23594ceeaa7a9c680545f493b4113b0ae3845a247633a3617e",
+      "child": "7965743451d5ad98a7887528c64fa4a4824611ed",
+      "child_tree": "76af72c343ba20b0ad626e15f1560ac0cad20a2d",
+      "commit_metadata_sha256": "5884271fd45f2c68643b32a0daa58af41872a70d0695855daa332a35c04b14c8",
+      "diff_sha256": null,
+      "lines": 151,
+      "numstat_sha256": "c00868ea6ae027cdd3d00c52fe13860d2e4cf5fbd1f44f4cf38ef4367797dddd",
+      "parent_tree": "8f52eb1ca601522432c12ba475c25894be0acbfd",
+      "parents": [
+        "65511257cff1c8346e8295da3c9f6faf85259cff"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Evaluate identifier-aware lexical retrieval",
+      "task_text": "Evaluate identifier-aware lexical retrieval\n",
+      "timestamp": 1789952541,
+      "total_files": 4
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        ".b0002-bm25-real-repository-baseline.json",
+        "docs",
+        "scripts",
+        "tests"
+      ],
+      "changed_path_sha256": "61ee326686cf541921bb10c67e5ba432a11a290759ba014b13b858c10a4366df",
+      "child": "65511257cff1c8346e8295da3c9f6faf85259cff",
+      "child_tree": "8f52eb1ca601522432c12ba475c25894be0acbfd",
+      "commit_metadata_sha256": "d013c7778c061faf2c809309a7ca28c74dc1bd7d77b7675b12e22274f04b735e",
+      "diff_sha256": null,
+      "lines": 173,
+      "numstat_sha256": "67cdd2a7bb8ecece9b6a14e7315707c83d30d599b197ac6f4125362d6c03256c",
+      "parent_tree": "06eae7fbee8e62cca3ea803aaf4735f454ad4d53",
+      "parents": [
+        "c7b33639d4d7421940c4f50ee11b8492674a02bd"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Implement real-repository BM25 retrieval benchmark",
+      "task_text": "Implement real-repository BM25 retrieval benchmark\n",
+      "timestamp": 1789942794,
+      "total_files": 7
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "56976fe2124dd672e5751b2f13678b3da7768394b375393ce3ef3f5655e49b17",
+      "child": "c7b33639d4d7421940c4f50ee11b8492674a02bd",
+      "child_tree": "06eae7fbee8e62cca3ea803aaf4735f454ad4d53",
+      "commit_metadata_sha256": "75ece5b2b1de8a7fa0d13a0a36fd9b241a70efa14b3d397934cce5240a06c072",
+      "diff_sha256": null,
+      "lines": 575,
+      "numstat_sha256": "6a4f860bfff972454e35ccc16c7f301fa99b5f5010d50b01828763f74cff7f0e",
+      "parent_tree": "d0f5f7303bf099f100037ac7111f29abf0559e53",
+      "parents": [
+        "aa09746f46e294c33934ee06ed73eab8c284fe4d"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 4,
+      "reason": "EXPERIMENT_OR_MECHANICAL",
+      "subject": "Implement deterministic BM25 retrieval evaluation",
+      "task_text": "Implement deterministic BM25 retrieval evaluation\n",
+      "timestamp": 1789940567,
+      "total_files": 9
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "792b909e7ba36eedb4d31ea8730c25949283a939852db2b8311cd24070fe79a2",
+      "child": "aa09746f46e294c33934ee06ed73eab8c284fe4d",
+      "child_tree": "d0f5f7303bf099f100037ac7111f29abf0559e53",
+      "commit_metadata_sha256": "9688f9a44a9ff9bab0552314f39de4de47666c963e040ad520d18dc00009c6c7",
+      "diff_sha256": "48cfb4c4b82e331fee3a11d55f944a0f53d1cc36616d4dab36cd132911c1f097",
+      "lines": 656,
+      "numstat_sha256": "df84126fad8aee49c1d45d00f87349f6326fc3b52a56bc03915708198155e44f",
+      "parent_tree": "7ba746d5ed881261fef94aa800302f699108c8d1",
+      "parents": [
+        "8a0b4f533a5f16084b7c52f9e42c47712cea4f83"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 5,
+      "reason": "ELIGIBLE",
+      "subject": "Implement bounded BM25 repository retrieval",
+      "task_text": "Implement bounded BM25 repository retrieval\n",
+      "timestamp": 1789939728,
+      "total_files": 10
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "AGENTS.md",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "4d6e892091694f73b1d74d1c17fab267bac9061be17a1910e2f8b9492fa33e75",
+      "child": "8a0b4f533a5f16084b7c52f9e42c47712cea4f83",
+      "child_tree": "7ba746d5ed881261fef94aa800302f699108c8d1",
+      "commit_metadata_sha256": "09a1b78ea5cffd7419c96ffefeef93b510082374c5db8a3f1a9ade3a17c19903",
+      "diff_sha256": null,
+      "lines": 1723,
+      "numstat_sha256": "d4394b6e1073b48fd343744751b9e687fa94bb893dde90d96e1b5fec88a12a31",
+      "parent_tree": "8a63398820186ee134b070d7b9df4bde7d7a2af7",
+      "parents": [
+        "43d3aaa1074473be8d338e695d4cecd613befb80"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 8,
+      "reason": "EXPERIMENT_OR_MECHANICAL",
+      "subject": "Reorganize lexical retrieval package ownership",
+      "task_text": "Reorganize lexical retrieval package ownership\n",
+      "timestamp": 1789938655,
+      "total_files": 16
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "88a3075e82cbbade379fee349198a42a48fc5ea8d2c099f0ba07ee73fbccb07c",
+      "child": "43d3aaa1074473be8d338e695d4cecd613befb80",
+      "child_tree": "8a63398820186ee134b070d7b9df4bde7d7a2af7",
+      "commit_metadata_sha256": "5b7e4554c7de848d4328b5d64b65206fec22066f155d0b3623f9e91a9c1a5013",
+      "diff_sha256": "1b017806892cfc4120ef314f8436c6c2f2597ffd059f06594e4f560108b88df9",
+      "lines": 492,
+      "numstat_sha256": "8dd39bd5e1cbb9eda857cb3b263fe501079f96e9c763e8f3403100e811faeed5",
+      "parent_tree": "d6c9398be0bf36e16d6bf57a65f16d5f513eab00",
+      "parents": [
+        "71e938d809d794f2f07dd30cb772f1e9bc89c9d3"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 4,
+      "reason": "ELIGIBLE",
+      "subject": "Implement repository lexical statistics and inverted index",
+      "task_text": "Implement repository lexical statistics and inverted index\n",
+      "timestamp": 1789938148,
+      "total_files": 8
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "fd8bab5e075b77320237efb80cb00dc0973022fe94a07e9cf31bf0ecfffa0a53",
+      "child": "71e938d809d794f2f07dd30cb772f1e9bc89c9d3",
+      "child_tree": "d6c9398be0bf36e16d6bf57a65f16d5f513eab00",
+      "commit_metadata_sha256": "5bba8c7b9c428c83253b702c8f873d4fa8dbd595dd4eb08e13585a289fab3797",
+      "diff_sha256": "24a73f3250caf483eaf45b0a3752ee582f27eb8b3b721d81f663f6acb2f6f3a3",
+      "lines": 375,
+      "numstat_sha256": "9da017f682830ed8c3c8c0a17d00e6218d58d4840b028f8e789d16e052157e05",
+      "parent_tree": "39b55816c7b98fcf7e7bc75459c8992701727566",
+      "parents": [
+        "858bfa85787ec0d548aac8212bdba0ca7ccb300f"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 3,
+      "reason": "ELIGIBLE",
+      "subject": "Implement heterogeneous repository lexical analysis",
+      "task_text": "Implement heterogeneous repository lexical analysis\n",
+      "timestamp": 1789936647,
+      "total_files": 8
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "2bb5a13d02d82b1ddff4bfe4d2d6294616aa2853412f46c892aca9f57a8db49e",
+      "child": "858bfa85787ec0d548aac8212bdba0ca7ccb300f",
+      "child_tree": "39b55816c7b98fcf7e7bc75459c8992701727566",
+      "commit_metadata_sha256": "eed6cac54b2a087de0f3e6554a5a50a564183eb21f441aa95d2248a682b7c542",
+      "diff_sha256": null,
+      "lines": 390,
+      "numstat_sha256": "c5ac082e22abba27374a298247b8a105ff378b89ca2921ecc05814d29f31cad3",
+      "parent_tree": "bec1ba6763c943d5c973e376fa4a5e56285d1b22",
+      "parents": [
+        "004d3829a4754cce1e632288450a0f6ada682282"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 3,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789935815,
+      "total_files": 7
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "0adf62f633ea7ed46ee50fae787b2e098fdf53250ec988f7902f33df205387ab",
+      "child": "004d3829a4754cce1e632288450a0f6ada682282",
+      "child_tree": "bec1ba6763c943d5c973e376fa4a5e56285d1b22",
+      "commit_metadata_sha256": "c9e6b2eb93d26f248d8e1c630439e61487023c4d874c937b4ec297271bcc70be",
+      "diff_sha256": null,
+      "lines": 465,
+      "numstat_sha256": "099babe59789df9d7e6510369f8b4fc9115fc6b3eab6d6eac7aeeaa0889933f2",
+      "parent_tree": "d4197abfd6296e21a8a200f2cc704572c1309ffb",
+      "parents": [
+        "514fdb223b40b932174e52a16d3cb360a74fb3a5"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 3,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789935184,
+      "total_files": 7
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "62d11770f8489855d8575980cbad4e104292027b606b6259b80acfb52dda0b3d",
+      "child": "514fdb223b40b932174e52a16d3cb360a74fb3a5",
+      "child_tree": "d4197abfd6296e21a8a200f2cc704572c1309ffb",
+      "commit_metadata_sha256": "3408d341ba8eba618f672384b01ac531c626942eaed1f38ed73e567c287b59f4",
+      "diff_sha256": null,
+      "lines": 105,
+      "numstat_sha256": "7fd676962a49bd26970fb08fc6bb9114d4f0805d28599c6f7b0110fc476e5a3e",
+      "parent_tree": "6479729596d1a7f1945b7a796ff6f1c0082c33dd",
+      "parents": [
+        "5fdf5fe0552712d25a8b0237cd4b6fcc35744aa5"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 3,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789924488,
+      "total_files": 8
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "8dd84d73ce1556a6160256f3874127ef5f2d5def8ba0ff41f0fb8d7224e4ef29",
+      "child": "5fdf5fe0552712d25a8b0237cd4b6fcc35744aa5",
+      "child_tree": "6479729596d1a7f1945b7a796ff6f1c0082c33dd",
+      "commit_metadata_sha256": "05306293a9a85f4e08e5a5462319e66cb2829d60cab91abce4d4994b39ce98ab",
+      "diff_sha256": null,
+      "lines": 268,
+      "numstat_sha256": "2f32be8b10506a6a804ebff8342a623deb55c78e35c3b993305dedf4079ab3cc",
+      "parent_tree": "e10a4357736830c8c4600f459502604a1d3c61e8",
+      "parents": [
+        "b8e533042d6904554cce28a1402148ee2454a67d"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 4,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789923928,
+      "total_files": 22
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        ".b0002-python-function-context-live-report.json",
+        ".qwen-selection-stress-bounded-live-report.json",
+        ".qwen-selection-stress-live-report.json",
+        ".qwen-selection-stress-termination-live-report.json",
+        ".qwen-selection-stress-thinking-disabled-live-report.json",
+        "architecture-archaeology-dossier.md",
+        "docs",
+        "evaluation-architecture-investigation-dossier.md",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "7dad1cfc1c3c2567a19029d82b1334f5bcce75ffe5f0d6cea16864fcb49ea287",
+      "child": "b8e533042d6904554cce28a1402148ee2454a67d",
+      "child_tree": "e10a4357736830c8c4600f459502604a1d3c61e8",
+      "commit_metadata_sha256": "fa0f3b32f4b18ed3b33a1868235db5947e5f8b8e0ad0cea07546607be1a6d772",
+      "diff_sha256": null,
+      "lines": 10444,
+      "numstat_sha256": "c0959fa4b26b48fcb35a5756696222e0cde35bd71e1fc05ea89aaedb6e27c4a5",
+      "parent_tree": "887b29ec71b9dbe0b37a76f1f26c1f26f3d30b9b",
+      "parents": [
+        "ab24906f07eda8430dd9e53db9e807f546d81f7e"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 26,
+      "reason": "SIZE_OR_BINARY_BOUND",
+      "subject": "Repository reorganization",
+      "task_text": "Repository reorganization\n",
+      "timestamp": 1789921591,
+      "total_files": 64
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "997c6b86ac6e98c10f8671423f103a27bc335e00572c659838aef6fa947ee382",
+      "child": "ab24906f07eda8430dd9e53db9e807f546d81f7e",
+      "child_tree": "887b29ec71b9dbe0b37a76f1f26c1f26f3d30b9b",
+      "commit_metadata_sha256": "624ed57cd1b94d7736ae4fc1220613bae33e590c2829f8c151ef1888247425d3",
+      "diff_sha256": null,
+      "lines": 647,
+      "numstat_sha256": "2f6215a9faae3d915569008d5eb6fcb1881af9cfeab506aba4a2b1a4165317c6",
+      "parent_tree": "550bba205497da294474c8d95aebea589b340f15",
+      "parents": [
+        "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789916627,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "ea26c917ef466cba24b4fb89be16fba0e18e09d9d5be289209b7a815b19049dd",
+      "child": "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+      "child_tree": "550bba205497da294474c8d95aebea589b340f15",
+      "commit_metadata_sha256": "adb6a4afee90ed68d5436618463479eca5280f2dd9c0f216c00b690ee4fb646a",
+      "diff_sha256": null,
+      "lines": 487,
+      "numstat_sha256": "00dee7bbe10f04084d2a9e47d53f4f7b8a22e3b2481b6fc0bd6704fa73e43f6d",
+      "parent_tree": "1bd0d834f85469c5ad07f687b340fa816e6d2879",
+      "parents": [
+        "bb9f807bcd61d1e29dfe164ce44a10704f59560f"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789915399,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "abe904a34ae3ab728a2604e505799393bdfc61f683aa5d8f2a2fcbf6cefc35a8",
+      "child": "bb9f807bcd61d1e29dfe164ce44a10704f59560f",
+      "child_tree": "1bd0d834f85469c5ad07f687b340fa816e6d2879",
+      "commit_metadata_sha256": "16725cecac31b75c7c432ab19ce0e4a71b6553a1f88be613278560e6cb8fa270",
+      "diff_sha256": null,
+      "lines": 309,
+      "numstat_sha256": "3650c814765361e72b698c96ad82fb8b5e153616e7e64b3be40a84a3b9aac1a2",
+      "parent_tree": "52e66d232c0a054ddd8fe8827240c00d0809373d",
+      "parents": [
+        "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789914745,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "eda05d66ffd193b7fb30a9b60fba9c630e3bebda7c0b8243f0eec685ed29e9fb",
+      "child": "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+      "child_tree": "52e66d232c0a054ddd8fe8827240c00d0809373d",
+      "commit_metadata_sha256": "88cc779bae6c3801b6becdbfce12432fa28bb2447c0bb2dda38e653abc7c3a62",
+      "diff_sha256": null,
+      "lines": 316,
+      "numstat_sha256": "c3331ddebcef40904340dae3bc7ac7272da364756c6a7c38ce8489270bff6f93",
+      "parent_tree": "fad441d6018cfc270bc503f9d8d8e92332ac910e",
+      "parents": [
+        "ac797431db35c26b1b42625db3054273346a4a83"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 1,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789914175,
+      "total_files": 4
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "adfa4295b354f7d69bd82324cdfd289995e814711444a098b37e2e5aaef51c07",
+      "child": "ac797431db35c26b1b42625db3054273346a4a83",
+      "child_tree": "fad441d6018cfc270bc503f9d8d8e92332ac910e",
+      "commit_metadata_sha256": "d37a0e6e6b402cf4ee7fc7d951f04b6fcd1e9760d9f7b10c29a67dde8bf0f423",
+      "diff_sha256": null,
+      "lines": 300,
+      "numstat_sha256": "d1c41c71b05614871cc52d1f8496fed7ef643a19b9c14692b3a2430eac60cb5d",
+      "parent_tree": "bafb92a0cfcc8faa3a0505245940be1e1247eebb",
+      "parents": [
+        "2a4f058d5262f8d89672d3436d69237b9053e2d2"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789913732,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "efd1c779a8fcbadd322629eef19ab4e43bb67df56ef8f420152b94b5ce7e4459",
+      "child": "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+      "child_tree": "bafb92a0cfcc8faa3a0505245940be1e1247eebb",
+      "commit_metadata_sha256": "cf42b08e5b97269690c5f5c7592d6f7c333b2bfe935ffca154f25f18644b9f8f",
+      "diff_sha256": null,
+      "lines": 190,
+      "numstat_sha256": "9d97c6de457140f69421859ca10246301c0ff75ab4d1c803e31b1ab46de8caa8",
+      "parent_tree": "72cbc077720855233aeb832afa65eefc471626d1",
+      "parents": [
+        "7594b845064971862d2067bc3166258c9f50416b"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789913223,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "1f39f4e4c661bc6a3c160cb7f0d3adaf69a86638b99b5306737ceda86749ffb0",
+      "child": "7594b845064971862d2067bc3166258c9f50416b",
+      "child_tree": "72cbc077720855233aeb832afa65eefc471626d1",
+      "commit_metadata_sha256": "43c2fda6b8c91f68c5823f69d76bbf8aff84b05b5ef99c4b32005258d7833ad5",
+      "diff_sha256": null,
+      "lines": 291,
+      "numstat_sha256": "d8d8cdf89b9a3db8c3c4ec6ffb0e6541dd4a63fc8a13d690d201ff088c51248e",
+      "parent_tree": "50fdedf5b12d073e3707905d99fcf7593a63880c",
+      "parents": [
+        "b5280a3c38cabfc3c425d49556986a112866da55"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789912696,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "experiments",
+        "scripts",
+        "tests"
+      ],
+      "changed_path_sha256": "1743c55e1329f88ac2289c971b0791009feef5c36c27a06a9310aab36a2823b3",
+      "child": "b5280a3c38cabfc3c425d49556986a112866da55",
+      "child_tree": "50fdedf5b12d073e3707905d99fcf7593a63880c",
+      "commit_metadata_sha256": "9238d2d5a00dab97e1f03f79db9c1bd3bce830e566c4203c2591603c8e30fca2",
+      "diff_sha256": null,
+      "lines": 174,
+      "numstat_sha256": "d9f794e4d93a619495fbe73b002d54c5420d0ff72f5cddbd457e771930261dcb",
+      "parent_tree": "cfe8944322924616e834b026e92ef94c53f8b6a4",
+      "parents": [
+        "6156c70be14bd9385ffe133dea7b2c87bd271eee"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789864083,
+      "total_files": 3
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "1a07fb120dcecf2112501c550416e9c46278cdf8919dab1d8ef97f6991ff5b8f",
+      "child": "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+      "child_tree": "cfe8944322924616e834b026e92ef94c53f8b6a4",
+      "commit_metadata_sha256": "97aed59cec24b2f647723b43e53f881850e09736e49cfc784673ed1d42b0199a",
+      "diff_sha256": null,
+      "lines": 261,
+      "numstat_sha256": "d45bb7f226a6e39dc1066a5d30a73a4903bcb85e64a1f030a1b07c94c9c623f2",
+      "parent_tree": "06c72a11d6d2a8af72f857c4276f189ba1f4e61e",
+      "parents": [
+        "e142585a95da66cfa2aee967b6877bb640e8c431"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789863448,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "00e4d236f18f1d183c791d4f139a29a494344233a52e85dd5ec83d0a275d18f7",
+      "child": "e142585a95da66cfa2aee967b6877bb640e8c431",
+      "child_tree": "06c72a11d6d2a8af72f857c4276f189ba1f4e61e",
+      "commit_metadata_sha256": "b8d8f69473f5d7d16968de5e55ccc1a754be175e1146c653fd2a883ff666f2a8",
+      "diff_sha256": null,
+      "lines": 277,
+      "numstat_sha256": "fbeea7143015ada581ebedd58638e0215d02bdb5cd832382278b2873d4a1480c",
+      "parent_tree": "bfc42346899bbe28324ec6dac48a6c3700bec9e6",
+      "parents": [
+        "5bdc70483eedad98cada468d6224e2739829a812"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789862966,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "48720e0bc91ec681476489011939b65637d68aebaa55bb2396cb520c82e4ca94",
+      "child": "5bdc70483eedad98cada468d6224e2739829a812",
+      "child_tree": "bfc42346899bbe28324ec6dac48a6c3700bec9e6",
+      "commit_metadata_sha256": "60bf438e46691c9eacbace0b72be77f58b729451fde8754660a020ce3d7f5cb9",
+      "diff_sha256": null,
+      "lines": 411,
+      "numstat_sha256": "78ce90aa1a99204f7ec7e40ad6059db9e65f64d0ff4391be847d7d88551f7464",
+      "parent_tree": "c159d016dd01bfe1aa91dfdedc1314c832bda857",
+      "parents": [
+        "e976f7f20898b9c1c915fc40ff08ec823a173000"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789861917,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "f2ac82b61afe1a099d29299f84649b9bd3e8c92c0199702eaa413dfb1de4ec5c",
+      "child": "e976f7f20898b9c1c915fc40ff08ec823a173000",
+      "child_tree": "c159d016dd01bfe1aa91dfdedc1314c832bda857",
+      "commit_metadata_sha256": "bdf0daea995bc26a79c61bdaad30302121f969b34b062f18759fa2f46bf20895",
+      "diff_sha256": null,
+      "lines": 251,
+      "numstat_sha256": "c0b1ae05adae3a8091981c4b1e2fdb8a68312e362578dfe44aeca291ee82a670",
+      "parent_tree": "72f1eb4a75e2e9e90d9426f93681bcd0d98d78e2",
+      "parents": [
+        "45b2a5205fa82ba4c818a4b76485db0f0e1dfa05"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789860888,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "375cd59b1a9a46384cd2fc19599ec499147e0e96e28c65cdbee324db72d103b1",
+      "child": "45b2a5205fa82ba4c818a4b76485db0f0e1dfa05",
+      "child_tree": "72f1eb4a75e2e9e90d9426f93681bcd0d98d78e2",
+      "commit_metadata_sha256": "9f3f444ef9098b98a6be177feb3942d521720e29870a474684b56d4f1eb5295c",
+      "diff_sha256": "160be7bab3ea441752f35ed45185d5a35d65d04545c787db6f83727b9105ce49",
+      "lines": 249,
+      "numstat_sha256": "ab5a240fbc5b422dab8583dd33e18ebefa9033c474601a6949fd4cca0aace0ba",
+      "parent_tree": "4d49dcfea18f40762b70bbc11b60514db1c438ae",
+      "parents": [
+        "66ed2049de72aa5c2762ab506174c711639bbbf8"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "ELIGIBLE",
+      "subject": "Implement exact-name Python function retrieval",
+      "task_text": "Implement exact-name Python function retrieval\n",
+      "timestamp": 1789860334,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "dc87df6ffefba389d2d74bf4cc08f119aa51a0ff9e0cadd56569c4eb3d284aeb",
+      "child": "66ed2049de72aa5c2762ab506174c711639bbbf8",
+      "child_tree": "4d49dcfea18f40762b70bbc11b60514db1c438ae",
+      "commit_metadata_sha256": "81c151c529948ad7a5d92b4c966566b8aff5e53744dbd4c95deab65571dc882e",
+      "diff_sha256": null,
+      "lines": 635,
+      "numstat_sha256": "4821533487fade305a17b803a250f809a5096c45f1f61176a40e86cbebf91988",
+      "parent_tree": "c0ce4bff26d0a88bf8368e85326cf443112f5d6b",
+      "parents": [
+        "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789856771,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "b06aacee5927922e39366674d1cc6436e3f38e71ccf2acc3021c1eefa60879c2",
+      "child": "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+      "child_tree": "c0ce4bff26d0a88bf8368e85326cf443112f5d6b",
+      "commit_metadata_sha256": "7b089642d26d06d290c0029b4ab01aabcd0ce7e0d2a7cc4865a7017d6ba01277",
+      "diff_sha256": null,
+      "lines": 522,
+      "numstat_sha256": "d4cc0d0590ce729b9adc848d190d34b095cba5fa95ab4c33404c931a9022105f",
+      "parent_tree": "e5a532f6ad5945e696fb18ff63a4a35b250a5576",
+      "parents": [
+        "3f11ca00bb76435ded833925b72372094a578775"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789853492,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "cd868c6af928bfda8eb9a1de3ed36e669c15f4155a36b3700d97eaa3a7209e6d",
+      "child": "3f11ca00bb76435ded833925b72372094a578775",
+      "child_tree": "e5a532f6ad5945e696fb18ff63a4a35b250a5576",
+      "commit_metadata_sha256": "3b21af6e21ac5e18ce196340e8a633c3576ae38501b44ad6d2a5c36fba09b4a5",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "a73eb48398d6f77f6ee0cc1a5f29640ae10fce37dd447c211ba0703b1f88be1c",
+      "parent_tree": "ab286ace6afd36e02fe1bc92091c2beff152dc2d",
+      "parents": [
+        "23daa000ea16e71196da6eb70d4595be7c913279"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Record first repository intelligence design transition",
+      "task_text": "Record first repository intelligence design transition\n",
+      "timestamp": 1789773071,
+      "total_files": 2
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "README.md"
+      ],
+      "changed_path_sha256": "74be48ce0e0b20c03d10be144d8ba5bedbd4c222a008bdb2ff7980a95170ac99",
+      "child": "23daa000ea16e71196da6eb70d4595be7c913279",
+      "child_tree": "ab286ace6afd36e02fe1bc92091c2beff152dc2d",
+      "commit_metadata_sha256": "c460df2f20632704e9735704adc2d29ad78ccd99b34ef1263223195425016ef2",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "01248b2d3ac065594737c63a333dd9157d7a5f50b669379f8ada3c5717a3dcd9",
+      "parent_tree": "d3b8e1444cf8c09ba5652cbcc618b167a4d13aad",
+      "parents": [
+        "40822c748ba4ac0d2ca82132d880920deea5732e"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Clarify devtools project purpose and long-term direction",
+      "task_text": "Clarify devtools project purpose and long-term direction\n",
+      "timestamp": 1789772381,
+      "total_files": 1
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src"
+      ],
+      "changed_path_sha256": "e3f3bf5f1c217e7b3a0e9884fec5302b94d7aa57516761dac58804778b87a2fd",
+      "child": "40822c748ba4ac0d2ca82132d880920deea5732e",
+      "child_tree": "d3b8e1444cf8c09ba5652cbcc618b167a4d13aad",
+      "commit_metadata_sha256": "bf281eb452c62e0214d9a8ac61693484a07bc1c68742e5e52361d6d0b7b25978",
+      "diff_sha256": null,
+      "lines": 22,
+      "numstat_sha256": "42454b981abc028d968859300c44ff144359f0c875c3efd1a4407b5fcf96db17",
+      "parent_tree": "9138086071c480c6139672946ac8a564cab18a40",
+      "parents": [
+        "b6561ca2672822ceaed3f70edc82d3187e5d8e3a"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 3,
+      "reason": "EXPERIMENT_OR_MECHANICAL",
+      "subject": "Reconcile evaluation semantics and open repository intelligence implementation",
+      "task_text": "Reconcile evaluation semantics and open repository intelligence implementation\n",
+      "timestamp": 1789766871,
+      "total_files": 15
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "f749cbcefe292e41e68b62e6f123a49ce8bab1f1c5d8673cb818f97d55fc981b",
+      "child": "b6561ca2672822ceaed3f70edc82d3187e5d8e3a",
+      "child_tree": "9138086071c480c6139672946ac8a564cab18a40",
+      "commit_metadata_sha256": "87b6a64251e8dc69794619708314d65fd0f6cbaf7db20c9762cd69c52d8ca29b",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "9424df1d083f0b442ecc9764b3e047f79a6fd6dd1a7b034a854cd987508ccde2",
+      "parent_tree": "aeb1d9ac6adf222257960c26b215f6d61adcd0b2",
+      "parents": [
+        "989cc21bd64801f741bc3adeda34d4c3c3784a9b"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Reconcile external semantic state architecture",
+      "task_text": "Reconcile external semantic state architecture\n",
+      "timestamp": 1789749208,
+      "total_files": 7
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "3e6c27a8db7bcb7ad97832055c2d9069c39bcbd2bfd93c47b59436f9d77c8095",
+      "child": "989cc21bd64801f741bc3adeda34d4c3c3784a9b",
+      "child_tree": "aeb1d9ac6adf222257960c26b215f6d61adcd0b2",
+      "commit_metadata_sha256": "d00edb1e4e4e8b97a13357143478c0926f5539c7ca4f9c7cfa3682066cb5642c",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "b7a1043d5446090a94376603803c44f6b58c79c2d9a6e7d4b6bd569618de58ca",
+      "parent_tree": "3d8abcd2c9c6feb57487a7435ea19d886cbef865",
+      "parents": [
+        "624ef13d52180c84e808bfa9e5dd505c32ceb5b8"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Preserve final preimplementation architecture pressure",
+      "task_text": "Preserve final preimplementation architecture pressure\n",
+      "timestamp": 1789746901,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "e8c0bf67dea16cc0a1bfab9658d4b7584c493565b7ff8d9f9231ab52925e7475",
+      "child": "624ef13d52180c84e808bfa9e5dd505c32ceb5b8",
+      "child_tree": "3d8abcd2c9c6feb57487a7435ea19d886cbef865",
+      "commit_metadata_sha256": "6e608cf36d0a7d088008f762b72edad8362d64281f776885836d34c6b700c261",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "81631f1a0a37c2b3dda8002d8c472282d2870a844af30d2f3491050bad3b848c",
+      "parent_tree": "5dff89683656c80e73ca395e9705964ac37d2915",
+      "parents": [
+        "03da26a7fc2ccaace073c458ddf8c4702d0bb76b"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Clarify repository epistemic semantics",
+      "task_text": "Clarify repository epistemic semantics\n",
+      "timestamp": 1789691172,
+      "total_files": 9
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "8fd70de35931c41e13bc99051519d22206f70e9cefea783a647797a39588c6d6",
+      "child": "03da26a7fc2ccaace073c458ddf8c4702d0bb76b",
+      "child_tree": "5dff89683656c80e73ca395e9705964ac37d2915",
+      "commit_metadata_sha256": "c869c6f337744323cb32a11e39631fc580b646c12dc0dc7320dd67febd8833ff",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "6d1bd32672083a8b284141ac7d05e0faeef6f1f1c83a63876e4a98442b5e0318",
+      "parent_tree": "30b3ffcefef2f363c3408253ab42d0d464e8c001",
+      "parents": [
+        "c19fd8cc6616aa13b0a3bfb9802a12b9cd5ad3db"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Reconcile derived knowledge and context synthesis boundaries",
+      "task_text": "Reconcile derived knowledge and context synthesis boundaries\n",
+      "timestamp": 1789686925,
+      "total_files": 8
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "1ebc869db65e8862ee702d7ada94d80e7648bee6237db543920ab428de8c8ec6",
+      "child": "c19fd8cc6616aa13b0a3bfb9802a12b9cd5ad3db",
+      "child_tree": "30b3ffcefef2f363c3408253ab42d0d464e8c001",
+      "commit_metadata_sha256": "37585efdef1168f9123796c4e72974345cfe88c249146cce35e4278b4c8abc00",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "4feb02ceec86b70229cfb4addfbacd17ddfab83717baad2126c5bbc811efd4df",
+      "parent_tree": "5553f3843957a05721e9b87114c9cb21784e17dd",
+      "parents": [
+        "0c962bb8d1833a3efb0d77020c7151499ff74c9d"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Strengthen composable repository graph architecture",
+      "task_text": "Strengthen composable repository graph architecture\n",
+      "timestamp": 1789677027,
+      "total_files": 5
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "803a04c8d1f7dbc4a0236d2dbb5095507ea9b803eeb465f795210ab608d4deca",
+      "child": "0c962bb8d1833a3efb0d77020c7151499ff74c9d",
+      "child_tree": "5553f3843957a05721e9b87114c9cb21784e17dd",
+      "commit_metadata_sha256": "68bc69c9e48ca13e1e6889aa18ce1c283b6b44a33fea926b908911f0820d457e",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "124e25c56c207a0596844829bd123529a94da749d5ea9b204427d09b16e75767",
+      "parent_tree": "d06a23298799d0d7114f521b5c82e627d7b729dc",
+      "parents": [
+        "d306fd18264fb83a9ee2a16bb812978b8a759d63"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Refine derivation dependency and provenance granularity",
+      "task_text": "Refine derivation dependency and provenance granularity\n",
+      "timestamp": 1789673938,
+      "total_files": 4
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "786890f72d8020b639375a5051ca528e90ad39abaf537b299f91ad780c649547",
+      "child": "d306fd18264fb83a9ee2a16bb812978b8a759d63",
+      "child_tree": "d06a23298799d0d7114f521b5c82e627d7b729dc",
+      "commit_metadata_sha256": "938df080604419b23424f152eb109ce1937e4d64f67969accd3ff0c39e25b17d",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "a2724da4bba00fdf980c5c7826fc7222f2849afcc40c7316f8931a812d1568b9",
+      "parent_tree": "1792bee36c0c8f211a204c4e9462afcf00a0b130",
+      "parents": [
+        "4f85af831e6fcf5a041f9c2b2ab1ad684c01515a"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Refine RelevanceEvidence representation semantics",
+      "task_text": "Refine RelevanceEvidence representation semantics\n",
+      "timestamp": 1789669656,
+      "total_files": 4
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "3d9487ec6c4e2ebe5dc5363827388f7720fd83399fc29f31f35ba02eac3f776b",
+      "child": "4f85af831e6fcf5a041f9c2b2ab1ad684c01515a",
+      "child_tree": "1792bee36c0c8f211a204c4e9462afcf00a0b130",
+      "commit_metadata_sha256": "36728202c8660e5ab35cde9242462bc3a039be79a9e9528c8abe7dc074ee6191",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "483a246b64fe365ff92f08e0afcfcde2cc79c82b4623a921cdc59c5b2f124784",
+      "parent_tree": "1bd9a7befaf0f176e198b7b6ecb075034f91cd2d",
+      "parents": [
+        "da40485073be7f48759c15448ebdfda4064e07c8"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Refine InformationNeed to conceptual acquisition purpose",
+      "task_text": "Refine InformationNeed to conceptual acquisition purpose\n",
+      "timestamp": 1789669064,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src"
+      ],
+      "changed_path_sha256": "d41509c15e03d1c3816c12271afa8f1e6da638172c45b894c2732864ab1753dd",
+      "child": "da40485073be7f48759c15448ebdfda4064e07c8",
+      "child_tree": "1bd9a7befaf0f176e198b7b6ecb075034f91cd2d",
+      "commit_metadata_sha256": "c235061b04c9a541903087f8b8664ec6ce4c53981309c2bfd49eae6dbb8f5026",
+      "diff_sha256": null,
+      "lines": 7,
+      "numstat_sha256": "c00a84ae3f366e95ff3f1ce42a726ec57d822060be5cc8ba47f0317553763afb",
+      "parent_tree": "edd74802fb5b80c3e86e66ae7ee6ba6d6100f86c",
+      "parents": [
+        "7ff69df7196fe2c3bf67fa894c492b45583e5cfd"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 1,
+      "reason": "INSUFFICIENT_TASK_TEXT",
+      "subject": "Reconcile architecture documentation before adversarial review",
+      "task_text": "Reconcile architecture documentation before adversarial review\n",
+      "timestamp": 1789664781,
+      "total_files": 4
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "f749cbcefe292e41e68b62e6f123a49ce8bab1f1c5d8673cb818f97d55fc981b",
+      "child": "7ff69df7196fe2c3bf67fa894c492b45583e5cfd",
+      "child_tree": "edd74802fb5b80c3e86e66ae7ee6ba6d6100f86c",
+      "commit_metadata_sha256": "dc847bec2fb6276d38e80fbe719b8b4f7c0dcfbe2e48a758f9c2c768be9e0e42",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "73963dd34ea8de3fc4ee3046f4c90d17deabf6dbc6408e6156fd3ca8234a2889",
+      "parent_tree": "0c605dcdf87af09c2801ba7ca03b915816143966",
+      "parents": [
+        "b63e8bc1ea5b469c3a481bf91273863460254a60"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Define repository intelligence capability boundary",
+      "task_text": "Define repository intelligence capability boundary\n",
+      "timestamp": 1789661095,
+      "total_files": 7
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "f749cbcefe292e41e68b62e6f123a49ce8bab1f1c5d8673cb818f97d55fc981b",
+      "child": "b63e8bc1ea5b469c3a481bf91273863460254a60",
+      "child_tree": "0c605dcdf87af09c2801ba7ca03b915816143966",
+      "commit_metadata_sha256": "79b1115ed74c451934e465496889e6fa22206eab95cfd0fbe0ac047f93e51c7e",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "07caaefa230cbd89222136f7941107a08feb5a2c4e02dcbdec948b06f719189d",
+      "parent_tree": "db86d150a06827c275f0fb5a30f6fdd4c6d70091",
+      "parents": [
+        "28a90f0a331135475fafb6e8df267bffae02bdef"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Define derivation and derived knowledge semantics",
+      "task_text": "Define derivation and derived knowledge semantics\n",
+      "timestamp": 1789658932,
+      "total_files": 7
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "f749cbcefe292e41e68b62e6f123a49ce8bab1f1c5d8673cb818f97d55fc981b",
+      "child": "28a90f0a331135475fafb6e8df267bffae02bdef",
+      "child_tree": "db86d150a06827c275f0fb5a30f6fdd4c6d70091",
+      "commit_metadata_sha256": "84caf43dd3b37bf0ba536fb172f5a875f89dacacfc3316c99eef64c89eb1bf1b",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "d5570a2c33254064ba0a32f6208cc2a332e25ceafe1e460a8ad9e0f177b670cb",
+      "parent_tree": "64a0a117fa62a05b2c91972b54f0e640eda52d18",
+      "parents": [
+        "0553b66c1dee3c3ec5cb4f978acc2968a1c1277d"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Define repository snapshot and incremental maintenance semantics",
+      "task_text": "Define repository snapshot and incremental maintenance semantics\n",
+      "timestamp": 1789655926,
+      "total_files": 7
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "b2849af3f1150be933d71ce72063bff8b51c02e2087dfbd5fddd25f3c9186b23",
+      "child": "0553b66c1dee3c3ec5cb4f978acc2968a1c1277d",
+      "child_tree": "64a0a117fa62a05b2c91972b54f0e640eda52d18",
+      "commit_metadata_sha256": "521350b7dd33192cc9f1ae1daf0eb2a16650f62a82aaca956c8676031fb776ee",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "4ce2d9e3a829e74b4af17284e1c0e363cf159a64e8ef28dd3949083fdca193fd",
+      "parent_tree": "2c84e21c53e77cbe8ee01f084669d878900a22c5",
+      "parents": [
+        "4728577fb408b9a0101f0630d9a9d13117a4b07f"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Define repository subject and decomposition semantics",
+      "task_text": "Define repository subject and decomposition semantics\n",
+      "timestamp": 1789608819,
+      "total_files": 8
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "cb1b81b4effda2187a03bfc4e1d653c63b0fca5f999487c727ff3872d4b983e9",
+      "child": "4728577fb408b9a0101f0630d9a9d13117a4b07f",
+      "child_tree": "2c84e21c53e77cbe8ee01f084669d878900a22c5",
+      "commit_metadata_sha256": "d16c71da1adaa8dab9f05e3cb64b3644eec71aa134e9d4fcbb69ceb62fce942e",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "314c27e7226826f8b8d4a5977c46ca79c7199052a60d3b36dfb6923b8942d323",
+      "parent_tree": "ba50aa6345757a3301a46fc537f139a6c43588da",
+      "parents": [
+        "079eb4a9ddaea613e985d66945e785c668928f74"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Refine context disclosure representation and materialization semantics",
+      "task_text": "Refine context disclosure representation and materialization semantics\n",
+      "timestamp": 1789606662,
+      "total_files": 7
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src"
+      ],
+      "changed_path_sha256": "2e36ba274ce8bc5b745fd11c200456869a935d232780ad50738180b1a5990d12",
+      "child": "079eb4a9ddaea613e985d66945e785c668928f74",
+      "child_tree": "ba50aa6345757a3301a46fc537f139a6c43588da",
+      "commit_metadata_sha256": "89c1b9797f0549c51e3910ce443e80f0edf503ff9c9943498cc7f3a8c6b11afe",
+      "diff_sha256": null,
+      "lines": 2,
+      "numstat_sha256": "5b48b6d3745b42bc3ebc1128cd7caec0c7cc401fc2e2bb85b86775facfb43075",
+      "parent_tree": "7031c83c06e6fd61bf6660a068b4ff94670ffbe7",
+      "parents": [
+        "7d18afdb4338647fcc82c65abce66e135f7a7f2e"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 1,
+      "reason": "INSUFFICIENT_TASK_TEXT",
+      "subject": "Document context disclosure and assembly architecture",
+      "task_text": "Document context disclosure and assembly architecture\n",
+      "timestamp": 1789605783,
+      "total_files": 8
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "0193e69c64d13af6bbbd3977ba7b8864f08c247b9586dfc0581b8d80e271f14c",
+      "child": "7d18afdb4338647fcc82c65abce66e135f7a7f2e",
+      "child_tree": "7031c83c06e6fd61bf6660a068b4ff94670ffbe7",
+      "commit_metadata_sha256": "1e8941a792e38d4b2fda93b49f7c1aff3faa391ca5531cc9d15305ba1166684b",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "3eacc0e48e897c569e575edab0a259e1833971da1fdf88a4112f82b992bd38f2",
+      "parent_tree": "44ef1d7975372523b303a5ee35bc8c93731e8533",
+      "parents": [
+        "d43be0272fa0c058f5146d7b2dede2db33d2fe33"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Document repository retrieval and relevance architecture",
+      "task_text": "Document repository retrieval and relevance architecture\n",
+      "timestamp": 1789588510,
+      "total_files": 7
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "19f6c05489635c0c8d4500fde15f0304db68dc7de964d689e366de8368d49412",
+      "child": "d43be0272fa0c058f5146d7b2dede2db33d2fe33",
+      "child_tree": "44ef1d7975372523b303a5ee35bc8c93731e8533",
+      "commit_metadata_sha256": "07f5134cdbbf2ec71a50ba68766ae9f60d52930a64f191847cebd4f8fa019420",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "c826496f2a7cfd22e4f0e6c9bd0c86011f0522dfecf8d1e472bb24a11f51e63a",
+      "parent_tree": "dd8203830820435af75dc92c2be0c4d75f0ad3d1",
+      "parents": [
+        "d9e58cd09390b38664bfb1e1070baab7a73cc2de"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Document repository intelligence identity and derivation architecture",
+      "task_text": "Document repository intelligence identity and derivation architecture\n",
+      "timestamp": 1789588162,
+      "total_files": 9
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "experiments",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "5520ebd6d708a4bbc9f82e9ae3c7e39f8fe6517d4bee96addb7c04d9c1ab8a38",
+      "child": "d9e58cd09390b38664bfb1e1070baab7a73cc2de",
+      "child_tree": "dd8203830820435af75dc92c2be0c4d75f0ad3d1",
+      "commit_metadata_sha256": "20eb6040f7860dc6fd03baeca6fd536626f844cd778ec349354526d6c099fc61",
+      "diff_sha256": null,
+      "lines": 899,
+      "numstat_sha256": "509107b99e156f5aeabf2d13c73473ae6e1fc94686443d2fe8d88db768ea5b63",
+      "parent_tree": "17b98500035a649ecf6cddf785a14842c6eb8d4f",
+      "parents": [
+        "4ba894f29abff77de563e7c0297a616bb69dbad4"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 12,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789507082,
+      "total_files": 19
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "experiments",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "25d3209acd41e3bcce306471d15ca9b490b7fe145fe3d4efb927199f899614d1",
+      "child": "4ba894f29abff77de563e7c0297a616bb69dbad4",
+      "child_tree": "17b98500035a649ecf6cddf785a14842c6eb8d4f",
+      "commit_metadata_sha256": "97e1ecb96a1c10d49d9caf3f70f4355e8e232b28e79dbebca9213df62ac82c12",
+      "diff_sha256": null,
+      "lines": 883,
+      "numstat_sha256": "d9ce0339c3842492d0bc884c88f4e733dbfb0e4912daddddb768ac92dd0660ea",
+      "parent_tree": "86b9aa136a192ecda19010d00e68a23e5427418b",
+      "parents": [
+        "6f304a8c737cb8632c47101c62813e33fa0ab3a4"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 10,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789478858,
+      "total_files": 15
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "experiments",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "74646c360007b1541c3e81ef69337a839bac1bfd0a15c0ea9262329b739272fe",
+      "child": "6f304a8c737cb8632c47101c62813e33fa0ab3a4",
+      "child_tree": "86b9aa136a192ecda19010d00e68a23e5427418b",
+      "commit_metadata_sha256": "714477477c412d3d724dc11cade4e577436e1fa94788d4bb0450f9ab7088236b",
+      "diff_sha256": null,
+      "lines": 644,
+      "numstat_sha256": "8376d89a51eb284c769bb71c00116f7ca64c17e70a3b7075089825ae12905a5c",
+      "parent_tree": "201126b3cda42b4659b341a8d1257db14761a22b",
+      "parents": [
+        "0f627dd0d21969fdf1383607d6191b3b1393d28f"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 8,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789477413,
+      "total_files": 27
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "experiments"
+      ],
+      "changed_path_sha256": "bef12406c823d63fbe0bc3f53ee38d1767240cb1bf748dc2e38ce135f293a605",
+      "child": "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+      "child_tree": "201126b3cda42b4659b341a8d1257db14761a22b",
+      "commit_metadata_sha256": "1817204d66241eb0329863f475b41285e1aa91b2ed0c808acda8d6e614086e53",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "d50430a6f509fc74877600c94a5e81a634e50666591661d90da223f8d0c81cee",
+      "parent_tree": "69cd6d692d7210f1620da8fd66a04880a01de03c",
+      "parents": [
+        "eadb6f231f571b67f4089a9156cfe7716a73b91b"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Accept cohesive ModelInteraction architecture",
+      "task_text": "Accept cohesive ModelInteraction architecture\n",
+      "timestamp": 1789476184,
+      "total_files": 13
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "experiments",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "a41cfdbd3db1a20cd9505946233d855911d542fcafa5e4c7b36e03a3c30152e5",
+      "child": "eadb6f231f571b67f4089a9156cfe7716a73b91b",
+      "child_tree": "69cd6d692d7210f1620da8fd66a04880a01de03c",
+      "commit_metadata_sha256": "de0cd210277fe76662a06b3f695e4fa6cf2306a5be2de6c06736be3a6d804b0a",
+      "diff_sha256": null,
+      "lines": 284,
+      "numstat_sha256": "b240f23cfa1c9f1c1221855deb5bbc439ee522927867ce54d9adfeac4116e41c",
+      "parent_tree": "7d772e804870a206f08110518032f79dc8836cce",
+      "parents": [
+        "739c82bd3398181c0278286c32444ee0526586a9"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 6,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789426482,
+      "total_files": 23
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "experiments",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "2e9712262bd68dcbf76590ea4387357600eb704e07a5df860ba9bbe592e12a34",
+      "child": "739c82bd3398181c0278286c32444ee0526586a9",
+      "child_tree": "7d772e804870a206f08110518032f79dc8836cce",
+      "commit_metadata_sha256": "069077b3b6905407002176b0c87d3393041c27dc22bd4ea4c6e22da4602c92f4",
+      "diff_sha256": null,
+      "lines": 213,
+      "numstat_sha256": "108de0c53f963e0448f3f29f0d32cbe0e789e81e4f04b305d34819e7ef747fd8",
+      "parent_tree": "6b244b5b9421efb2c2a81e3fae4522d95b0f754e",
+      "parents": [
+        "5b75000b60f7e7ccc8a6b77daa64cc905361d728"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 3,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789425448,
+      "total_files": 11
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "experiments",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "2c5b1005b9b0388cd77d2d74a09448000a09b410882fdf71646fbd8265a72f52",
+      "child": "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+      "child_tree": "6b244b5b9421efb2c2a81e3fae4522d95b0f754e",
+      "commit_metadata_sha256": "c84f13f3da3c54056a6d3290aa1c32b62d79b0f08a4c2da589e8864839e9f254",
+      "diff_sha256": null,
+      "lines": 222,
+      "numstat_sha256": "a02c18c9466f872d7d8e27a944c3b1d4041f41157ddfce3af2f02455b189aad5",
+      "parent_tree": "cdf8568c6e85fac3cc3f1b8ee0910f63e0039fb8",
+      "parents": [
+        "9efe3dc31e80d99f0d0027e81f2979e76b472f91"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 5,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789424284,
+      "total_files": 13
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "experiments",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "1b8e8e8e39c4c2d712f2280685835209a01c91739289f953e3b71e2e5ead4644",
+      "child": "9efe3dc31e80d99f0d0027e81f2979e76b472f91",
+      "child_tree": "cdf8568c6e85fac3cc3f1b8ee0910f63e0039fb8",
+      "commit_metadata_sha256": "8854cdd3bb530eac6fb1339b04a034a2ae5cec8eef543438076984e81a89a69d",
+      "diff_sha256": null,
+      "lines": 312,
+      "numstat_sha256": "f45909276a9d7085c6355b77d87f5582ddb6832b56a3eaf591913c6e2414abb0",
+      "parent_tree": "d72424b5657f386caef76aa4e04b756d6ace25ba",
+      "parents": [
+        "842e90e63f37c47ea26f4db8e1ebcd1ff5992967"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 6,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789422388,
+      "total_files": 21
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "experiments",
+        "scripts",
+        "tests"
+      ],
+      "changed_path_sha256": "e8219155676dbb017d8aa06251a904415bdced7c2deba55250c37aa07a695412",
+      "child": "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+      "child_tree": "d72424b5657f386caef76aa4e04b756d6ace25ba",
+      "commit_metadata_sha256": "b0c1e8a0466735a4c452376995f05771a8f210bf61f5d1c8546ac20ba3ea940d",
+      "diff_sha256": null,
+      "lines": 34,
+      "numstat_sha256": "82b66ff4d1437c74c26b340c5993728becce382e49bbc65ca758bd8d1e7a214b",
+      "parent_tree": "c96586fc80555abe149a8562a4f20dab75c64ee4",
+      "parents": [
+        "901246bd802abfd615e1ea851c35a23e233bc37a"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789410188,
+      "total_files": 3
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "experiments",
+        "scripts",
+        "tests"
+      ],
+      "changed_path_sha256": "ae5874f93c46b5efb98e9cf2d0b59d967b14208d14fa5849aef7f50856e0563c",
+      "child": "901246bd802abfd615e1ea851c35a23e233bc37a",
+      "child_tree": "c96586fc80555abe149a8562a4f20dab75c64ee4",
+      "commit_metadata_sha256": "201de5dcbbb21a6db2424b9f86d1e4f4729d422a4e684acc71b94c428b34f144",
+      "diff_sha256": null,
+      "lines": 236,
+      "numstat_sha256": "e7b1defc1502c80a5a11872528c01376477c341e23423c33c395f58e2acd52f6",
+      "parent_tree": "1b1c451a0320886dc2e4c1d656780108df1abede",
+      "parents": [
+        "9009cc143957c070cd92ff173899d9fe2f399bc1"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789409617,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "experiments",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "fadd64ca264f7356620e5ddcb97e7f6185c3554972ef9508b6eff0df266e5fd2",
+      "child": "9009cc143957c070cd92ff173899d9fe2f399bc1",
+      "child_tree": "1b1c451a0320886dc2e4c1d656780108df1abede",
+      "commit_metadata_sha256": "ca784e35933d8d6790869d24c9313de62d3e7cd4c89947113f3f977d275bc07a",
+      "diff_sha256": null,
+      "lines": 326,
+      "numstat_sha256": "45f62fbfd0a46ff4b614164a2fe9aa457594febaa7720095e2dc6033edd50884",
+      "parent_tree": "ada94f70d7140dccba0b4c6ad79523a8cf34d4d3",
+      "parents": [
+        "d58c0504b671703090cacec2f0123fa83220446e"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 5,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789407631,
+      "total_files": 15
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "experiments",
+        "scripts",
+        "tests"
+      ],
+      "changed_path_sha256": "ae5874f93c46b5efb98e9cf2d0b59d967b14208d14fa5849aef7f50856e0563c",
+      "child": "d58c0504b671703090cacec2f0123fa83220446e",
+      "child_tree": "ada94f70d7140dccba0b4c6ad79523a8cf34d4d3",
+      "commit_metadata_sha256": "a6d4f61217328c3156d79c2ef74a45579b9c5f85cef37a5d05bd149d8cd9a5a6",
+      "diff_sha256": null,
+      "lines": 78,
+      "numstat_sha256": "a3bc7e113e25dcc6ade125134c7ad368ad84c76e7b4bde8e6f3056ee9f4cf025",
+      "parent_tree": "d3ae25e9b10942030bd9f221507c517d0a8a4498",
+      "parents": [
+        "add3c3ed519555d75d533a3a5446786617592508"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789396017,
+      "total_files": 6
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "experiments",
+        "scripts",
+        "tests"
+      ],
+      "changed_path_sha256": "8ace5f88e3ab3df12fc32eacbe5861dd98a348f23e5b6581070aef7edcb069c7",
+      "child": "add3c3ed519555d75d533a3a5446786617592508",
+      "child_tree": "d3ae25e9b10942030bd9f221507c517d0a8a4498",
+      "commit_metadata_sha256": "706885231d6138d6370b146e9150ffb417939b25793a86e352c008b5832feb77",
+      "diff_sha256": null,
+      "lines": 211,
+      "numstat_sha256": "bb510111919dd0afc3f89df1c2a00b546ad893be501df402cd0cf628e381d88b",
+      "parent_tree": "249c756ef9c4deffe79d87cbc241fcb67226f558",
+      "parents": [
+        "5c5bdf4212ac7ace151b496ef548caa2a559c1bc"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789394314,
+      "total_files": 7
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "experiments",
+        "tests"
+      ],
+      "changed_path_sha256": "61371b4bffd40271b8c3161e24c73361cc5deefbd2856560fda00aa3341b0851",
+      "child": "5c5bdf4212ac7ace151b496ef548caa2a559c1bc",
+      "child_tree": "249c756ef9c4deffe79d87cbc241fcb67226f558",
+      "commit_metadata_sha256": "fb4ddb56ca562910a93b1a5c68fe995e53bd0a6a74c987b796974ff16bfb18f6",
+      "diff_sha256": null,
+      "lines": 269,
+      "numstat_sha256": "b7c8e2f6f6514ae4f291dca88527bb8e34155c00c018db8c0f88a42841a39bba",
+      "parent_tree": "750ee5462642596f1144920f2725a2b09c4331c7",
+      "parents": [
+        "8994c4e586445ada44a5123c710a509da6da99de"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789391268,
+      "total_files": 5
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "experiments",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "56710e5b9545664686ce0d7b0e9d352c4161643fe86abe5742f52e2c0241b777",
+      "child": "8994c4e586445ada44a5123c710a509da6da99de",
+      "child_tree": "750ee5462642596f1144920f2725a2b09c4331c7",
+      "commit_metadata_sha256": "4478d74c0ba4b989e6a6ab72f39c9991345aed02a00281f117428480bf638492",
+      "diff_sha256": null,
+      "lines": 258,
+      "numstat_sha256": "1a6a0f7f530d956bf74ebcbb244c04f1065c077785c3fe1e4e2c49d3235039b2",
+      "parent_tree": "76f16d1510b17dcf1f669ff8de2d1802ecf0ddce",
+      "parents": [
+        "886fef9217205f1292f54ee14105c8930bffc629"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1789339968,
+      "total_files": 7
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "7d3d403e1202b9b657e35af80c84d55802f61eeee911e137b3b7e9e8030adb17",
+      "child": "886fef9217205f1292f54ee14105c8930bffc629",
+      "child_tree": "76f16d1510b17dcf1f669ff8de2d1802ecf0ddce",
+      "commit_metadata_sha256": "ee9d3b077450f62b7a646b5c1a21135cfa7652eff76788cc9a473ee80d90f671",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "cdba8a2999cf102efe5c9f6b95ca476fdd3784c4d68332478efdf82ae9b764a7",
+      "parent_tree": "165457fe919e694602003273b3985b445cc24cde",
+      "parents": [
+        "8f245d6dad27ce8a0b0576f8ff3c6051fb7d4262"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "updated docs/backlog",
+      "task_text": "updated docs/backlog\n",
+      "timestamp": 1789338479,
+      "total_files": 50
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        ".qwen-two-action-read-only-report.json",
+        "AGENTS.md",
+        "docs",
+        "experiments",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "90dd92320962c1d4f57c77908b815ae4150c002a3e5332d6267fafbbf98e4ade",
+      "child": "8f245d6dad27ce8a0b0576f8ff3c6051fb7d4262",
+      "child_tree": "165457fe919e694602003273b3985b445cc24cde",
+      "commit_metadata_sha256": "9b6ffbaf639cf068a85d3655e16458b34c7857d665b1439f825ab3c1682a7a18",
+      "diff_sha256": null,
+      "lines": 47506,
+      "numstat_sha256": "d1f8aa81384ce66bbff16c300399b8ad5c9ef2c55dba3bf39454a2060aa05d83",
+      "parent_tree": "89614a2cc6459d329e8ffa8b1c9ee3c81a5cb157",
+      "parents": [
+        "2405aff6c714179da5ec7dd4da0d86b9f0e915d7"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 258,
+      "reason": "SIZE_OR_BINARY_BOUND",
+      "subject": "Establish twelve-domain framework architecture",
+      "task_text": "Establish twelve-domain framework architecture\n",
+      "timestamp": 1789334781,
+      "total_files": 450
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        ".qwen-two-action-read-only-report.json",
+        "experiments",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "b5e4d1b971c71bc67841ab426adb29b4e583d536342a734ba3b6757667018c41",
+      "child": "2405aff6c714179da5ec7dd4da0d86b9f0e915d7",
+      "child_tree": "89614a2cc6459d329e8ffa8b1c9ee3c81a5cb157",
+      "commit_metadata_sha256": "8f1d6d5be6f3447651f7c1b2a6608e5ca0c7e323b0251d5f59ef38d8bf6047de",
+      "diff_sha256": null,
+      "lines": 1169,
+      "numstat_sha256": "db66237027298b6df4329c33d4fbb41810881bb5139ff453eb4f5ccebe55a1d0",
+      "parent_tree": "22f5a73b5b4e2b0248ffe23b4467e685b95646f8",
+      "parents": [
+        "1ed8ddb3fbae2efbea07592b00bd932d0cb8423e"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 3,
+      "reason": "INSUFFICIENT_TASK_TEXT",
+      "subject": "Qwen Two Read Acceptance",
+      "task_text": "Qwen Two Read Acceptance\n",
+      "timestamp": 1789314505,
+      "total_files": 10
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "experiments",
+        "pyproject.toml",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "ce285618a78c574b49da768e5bc6feb4513823cf7923390f37a4af50dea1838b",
+      "child": "1ed8ddb3fbae2efbea07592b00bd932d0cb8423e",
+      "child_tree": "22f5a73b5b4e2b0248ffe23b4467e685b95646f8",
+      "commit_metadata_sha256": "5b515d38d8482419a49b8db8d608c9205b7a645d4b8b69289e00b77df524b7f8",
+      "diff_sha256": null,
+      "lines": 8835,
+      "numstat_sha256": "9ead3e630b221f3796a8c9b571cdb5223506c50d3a4cc19300f7618c5405f689",
+      "parent_tree": "dbc0fb7ff3a8d6e2f48ecec5f8b1697609bd7829",
+      "parents": [
+        "638404298e301bd95d63878b7ef4e2d1b85efb39"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 47,
+      "reason": "SIZE_OR_BINARY_BOUND",
+      "subject": "Establish Interaction boundary and reorganize providers",
+      "task_text": "Establish Interaction boundary and reorganize providers\n",
+      "timestamp": 1789248201,
+      "total_files": 104
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "ff102e2a92154c68ff44706de77b4b2e486f95b703336b6e7f289c7318b9afec",
+      "child": "638404298e301bd95d63878b7ef4e2d1b85efb39",
+      "child_tree": "dbc0fb7ff3a8d6e2f48ecec5f8b1697609bd7829",
+      "commit_metadata_sha256": "2ac91dbbbfc337a0870e8b29580ea09465ef5a9dded71d9ece98a16c0ca432d5",
+      "diff_sha256": null,
+      "lines": 739,
+      "numstat_sha256": "73e95a453751edc4bbd0fb1be8b2cac0454b5e9c0231934669afbe0dc248f241",
+      "parent_tree": "bba13979e9c3dc8fe8db77e8f716539e2df9cf1f",
+      "parents": [
+        "15fc8146c673f89a455dc060fe732cf0536697a5"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "INSUFFICIENT_TASK_TEXT",
+      "subject": "Qwen Two Read Acceptance",
+      "task_text": "Qwen Two Read Acceptance\n",
+      "timestamp": 1789224723,
+      "total_files": 5
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "2d8836fa145a14dbf89ff4cda2664083ae7b61322be7ae1491419b6943252ef3",
+      "child": "15fc8146c673f89a455dc060fe732cf0536697a5",
+      "child_tree": "bba13979e9c3dc8fe8db77e8f716539e2df9cf1f",
+      "commit_metadata_sha256": "4428e7eba34cb2e6d308735cb1dedc2fbc7d501f1b6c7d94292995bb40f81eeb",
+      "diff_sha256": null,
+      "lines": 2056,
+      "numstat_sha256": "cef1e3374e058c3a59be74c4d5f22f4061234803b3882f36df6bd6ac49ea28e2",
+      "parent_tree": "95c6c88f5b2761934f46589751642feb43943499",
+      "parents": [
+        "2e607379359bf3989d77bc39e33a58789f198593"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 7,
+      "reason": "SIZE_OR_BINARY_BOUND",
+      "subject": "Persistent Qwen Development Lifecycle",
+      "task_text": "Persistent Qwen Development Lifecycle\n",
+      "timestamp": 1789175221,
+      "total_files": 17
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "97fa5b5edd791340c8c66325ac3e258a623a380168a595e355302c372258506a",
+      "child": "2e607379359bf3989d77bc39e33a58789f198593",
+      "child_tree": "95c6c88f5b2761934f46589751642feb43943499",
+      "commit_metadata_sha256": "af15e689d427808b3e54b5c22250d51d5fc990a99f0d40d969ab268a0005d6e1",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "2c5b0c02fa32ba8db128a044896137872a1cc088072759f4682b1c9740241000",
+      "parent_tree": "b8e14975ba26d3ff2c1f7d5e4fbc252aca69785a",
+      "parents": [
+        "fb7b555c211130f20e91e8e6842a596c2b9c20fc"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Expand architecture backlog from framework comparison",
+      "task_text": "Expand architecture backlog from framework comparison\n",
+      "timestamp": 1789135371,
+      "total_files": 22
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "327e9a6ff0af88392eb5d820cde17b729152ef6b400062f11644ad4a47271645",
+      "child": "fb7b555c211130f20e91e8e6842a596c2b9c20fc",
+      "child_tree": "b8e14975ba26d3ff2c1f7d5e4fbc252aca69785a",
+      "commit_metadata_sha256": "e38ce848079a49f46e24508551c3c0f35efa81f2600c9bdb7d834717563b885c",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "0ca6393483330a10cd3991c390bfbfdebf0405b9f44b1e7f9749d7e093e660cb",
+      "parent_tree": "7fe151123e8ecf9fb035354f8f51b2697d201bc5",
+      "parents": [
+        "2d2f730bf73525067b444b94438b7fc6677790cf"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Enrich architecture backlog from framework comparison",
+      "task_text": "Enrich architecture backlog from framework comparison\n",
+      "timestamp": 1789087280,
+      "total_files": 11
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs"
+      ],
+      "changed_path_sha256": "ba957eec4c2a9a7392f550ef540038ae565cfd562fbce43cb9a3926671685472",
+      "child": "2d2f730bf73525067b444b94438b7fc6677790cf",
+      "child_tree": "7fe151123e8ecf9fb035354f8f51b2697d201bc5",
+      "commit_metadata_sha256": "c17287b686bbb545d8cb96e302de89395f3e447e6152d308b7dfd9f076edbc3f",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "759eb038eea2ecab8b1200eb3af5701d03d7027504512eeb3e8be518c18ce5a1",
+      "parent_tree": "402533e8f68c0c62c49316989a90d9e7b1b93479",
+      "parents": [
+        "da358c3887c8a48beaa9e75f1f4d48a4f4f826c5"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Record architecture backlog milestone",
+      "task_text": "Record architecture backlog milestone\n",
+      "timestamp": 1789053583,
+      "total_files": 1
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src"
+      ],
+      "changed_path_sha256": "2853e2b7788779d7fc4122a83b1c242342799bbd28a5d7fe7830f913a0a13cf2",
+      "child": "da358c3887c8a48beaa9e75f1f4d48a4f4f826c5",
+      "child_tree": "402533e8f68c0c62c49316989a90d9e7b1b93479",
+      "commit_metadata_sha256": "059ad679e6e172db1c4cbe13f9ff1d2937b743dd3a2fb239e310a375addcc082",
+      "diff_sha256": null,
+      "lines": 8,
+      "numstat_sha256": "b0c3a04e03f5900c6f90c59fd4bc4ccb8aa82c08e5d73d725a68d2ea939cdec0",
+      "parent_tree": "198bd5048f9b474745fb4d774e1d02a4ef763dc8",
+      "parents": [
+        "504f89685d6359928b9595ec354f0a23a8d5b600"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 1,
+      "reason": "INSUFFICIENT_TASK_TEXT",
+      "subject": "Establish architecture backlog",
+      "task_text": "Establish architecture backlog\n",
+      "timestamp": 1789053206,
+      "total_files": 21
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "b0edbbe051e2e39540f2680735377dd939267a6bcee4a987b55085188e98f9fe",
+      "child": "504f89685d6359928b9595ec354f0a23a8d5b600",
+      "child_tree": "198bd5048f9b474745fb4d774e1d02a4ef763dc8",
+      "commit_metadata_sha256": "d53d04915b791386f5bf29bbbf3b63838203132326559a182afc3ce941ed043f",
+      "diff_sha256": null,
+      "lines": 53,
+      "numstat_sha256": "0b03e875f49db1060748178b71836fb9a636940113e2c37ea52ba627142340c9",
+      "parent_tree": "f0afa84a1190e18b34272a04613486b8ff4adf90",
+      "parents": [
+        "9e994e1c10be723b68b6bcc00a3309182858240c"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 1,
+      "reason": "INSUFFICIENT_REPAIR_SPECIFICATION",
+      "subject": "Fix llama.cpp GGUF file mounting",
+      "task_text": "Fix llama.cpp GGUF file mounting\n",
+      "timestamp": 1788970334,
+      "total_files": 2
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "66e4c66dbf85a7d10c0a6fdccb888c0982ced86ed46252ade31df69147f75017",
+      "child": "9e994e1c10be723b68b6bcc00a3309182858240c",
+      "child_tree": "f0afa84a1190e18b34272a04613486b8ff4adf90",
+      "commit_metadata_sha256": "bb223292191e8348a8db85946c13ebbf52d5a7adb9e8da12af55840db4c42b1a",
+      "diff_sha256": null,
+      "lines": 72,
+      "numstat_sha256": "5fc82c1a829f95f3e7eca98c2c260a03bba843445ecaf656a14c56877df38598",
+      "parent_tree": "8a8e344ee6c22394c3f3723710f252ac25d48787",
+      "parents": [
+        "f3b19e8ed23c5658052b4cafb74e28cc636dbd53"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 1,
+      "reason": "INSUFFICIENT_REPAIR_SPECIFICATION",
+      "subject": "Fix Hugging Face GGUF snapshot validation",
+      "task_text": "Fix Hugging Face GGUF snapshot validation\n",
+      "timestamp": 1788968309,
+      "total_files": 2
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "scripts",
+        "tests"
+      ],
+      "changed_path_sha256": "7ecc1c385ec2382b3363889e10591f9c516ae52ef04644fc2cc3e1c57a24a04d",
+      "child": "f3b19e8ed23c5658052b4cafb74e28cc636dbd53",
+      "child_tree": "8a8e344ee6c22394c3f3723710f252ac25d48787",
+      "commit_metadata_sha256": "16ce9fae3e17dea645e74d76170efeb645886cee8b9bf4c120a3ff37fe4d9aea",
+      "diff_sha256": null,
+      "lines": 6,
+      "numstat_sha256": "a4222efb3f908ac549400fc95f97f85cdf99cc84131b0378728a610bffb9d36d",
+      "parent_tree": "9b5ed0152131f7c74d77fb47cd9efebe4414b202",
+      "parents": [
+        "159f0cc595c6a59280cb1268eebbd352fe4caffd"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Pin Qwen3.8 llama.cpp runtime",
+      "task_text": "Pin Qwen3.8 llama.cpp runtime\n",
+      "timestamp": 1788965761,
+      "total_files": 3
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "ffc3d625f6a49e31052d478659db26e0459f4180617ec05e70b92c586f8d599f",
+      "child": "159f0cc595c6a59280cb1268eebbd352fe4caffd",
+      "child_tree": "9b5ed0152131f7c74d77fb47cd9efebe4414b202",
+      "commit_metadata_sha256": "2784ee8cf7e9cb544eb9c7e72d421952f9159d735d3263232aba7016e9fe22b1",
+      "diff_sha256": null,
+      "lines": 413,
+      "numstat_sha256": "ddc6094dfa0374a9079c577f82ac819c1c3379abf9e9ee3799a7c79cb8cc90e5",
+      "parent_tree": "ea6713ea724aadc2f68ce8a1334414190a36bf41",
+      "parents": [
+        "ed4081453d2231e394566077a52f1a1a59a01231"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 5,
+      "reason": "EXPERIMENT_OR_MECHANICAL",
+      "subject": "Add Qwen3.8 llama.cpp experiment profile",
+      "task_text": "Add Qwen3.8 llama.cpp experiment profile\n",
+      "timestamp": 1788959223,
+      "total_files": 10
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "pyproject.toml",
+        "src",
+        "tests",
+        "uv.lock"
+      ],
+      "changed_path_sha256": "a3775cc66fa07bf04d36370742193f6a986f438ba41f97ebac9ba3dfcc9945be",
+      "child": "ed4081453d2231e394566077a52f1a1a59a01231",
+      "child_tree": "ea6713ea724aadc2f68ce8a1334414190a36bf41",
+      "commit_metadata_sha256": "faf79cef16d8795f09312f9b55ac13c55836e06a2b317ff7d4b5c2eed4591a44",
+      "diff_sha256": "878b022ba1b684b03f90dfd7f9b34e5532ff9eed093f42e5555fe42e2ba3088f",
+      "lines": 285,
+      "numstat_sha256": "5775db7102832eb0a6999715f9410c8ec9c29b6375d60d0fcf08aeb0ee9217be",
+      "parent_tree": "81bfe4549e118cbaf717c2da61688b101f128748",
+      "parents": [
+        "22f234787d5a692b19ca27a8658929011603179d"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "ELIGIBLE",
+      "subject": "Add exact Hugging Face GGUF acquisition",
+      "task_text": "Add exact Hugging Face GGUF acquisition\n",
+      "timestamp": 1788954427,
+      "total_files": 5
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "be96448fb29d2792db085fe87422fd955c5211ac8c47ed7b1d98bfb5756e35bb",
+      "child": "22f234787d5a692b19ca27a8658929011603179d",
+      "child_tree": "81bfe4549e118cbaf717c2da61688b101f128748",
+      "commit_metadata_sha256": "390b3329d1acafc8cd8cf5011618f64d0da0927f9c588e81dfff5689acca3aba",
+      "diff_sha256": "efe46f037db09aaaeb7c0513e37a568881d6e5b79474c21f0b836c690c0b6c24",
+      "lines": 1070,
+      "numstat_sha256": "0c04c389529a4d0a58c3d24917896b10921796b4c3175f48150f4d384e1de30a",
+      "parent_tree": "952663d2cf28b7cd620cff55d64d265d1d1e6ee6",
+      "parents": [
+        "9e2295fb4748f09594805f3536ed506ad317eac6"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 3,
+      "reason": "ELIGIBLE",
+      "subject": "Add experimental llama.cpp serving",
+      "task_text": "Add experimental llama.cpp serving\n",
+      "timestamp": 1788914780,
+      "total_files": 4
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "04101fec17e0541fa7d73cc6811fd5b95fc8cf11e2f0acfed921424ff3cc3ebc",
+      "child": "9e2295fb4748f09594805f3536ed506ad317eac6",
+      "child_tree": "952663d2cf28b7cd620cff55d64d265d1d1e6ee6",
+      "commit_metadata_sha256": "00ea22540aad3a9cff4974850b94e3e97aa43914d923b6b947eac62c5bde9269",
+      "diff_sha256": "5ec7667ad1a69e789841e326872d8d5bd76cf09ba056781b5828dba07db968bb",
+      "lines": 168,
+      "numstat_sha256": "0fc2085dd3328b31af2d34d863fdadb16950436cbaa176bda55adbab8104e313",
+      "parent_tree": "12a504a2106467d8b32fc062d15923c7b9250fd9",
+      "parents": [
+        "2465af00dc305a6c2a15a90455bf09e62e428e39"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 5,
+      "reason": "ELIGIBLE",
+      "subject": "Add vLLM CUDA graph estimate control",
+      "task_text": "Add vLLM CUDA graph estimate control\n",
+      "timestamp": 1788907916,
+      "total_files": 10
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "04101fec17e0541fa7d73cc6811fd5b95fc8cf11e2f0acfed921424ff3cc3ebc",
+      "child": "2465af00dc305a6c2a15a90455bf09e62e428e39",
+      "child_tree": "12a504a2106467d8b32fc062d15923c7b9250fd9",
+      "commit_metadata_sha256": "7b23cc8bd7573f87d68d6b027fe29e081f930a996d29082b5131f51ae1fff612",
+      "diff_sha256": null,
+      "lines": 132,
+      "numstat_sha256": "3e59b904f9f4bca7d3de1ae7c3ff5322b4382eee9379cd4425edca7e1c3c32d3",
+      "parent_tree": "193348ce70df4e10a2aa44e09cbd037101440175",
+      "parents": [
+        "ef96ce9db9d0b38c11eee4824fc6a04b5c375cf4"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 5,
+      "reason": "EXPERIMENT_OR_MECHANICAL",
+      "subject": "Enable vLLM WSL2 pinned memory",
+      "task_text": "Enable vLLM WSL2 pinned memory\n",
+      "timestamp": 1788824212,
+      "total_files": 10
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "04101fec17e0541fa7d73cc6811fd5b95fc8cf11e2f0acfed921424ff3cc3ebc",
+      "child": "ef96ce9db9d0b38c11eee4824fc6a04b5c375cf4",
+      "child_tree": "193348ce70df4e10a2aa44e09cbd037101440175",
+      "commit_metadata_sha256": "309ae4b6e45faa5344276f66d84b145e6fd0068a5a20cc0d7f1d886e9fc67d99",
+      "diff_sha256": "5977e8b39300ef80521cd25b7d964f39a680c6304a026c2746580a15f47f2cf8",
+      "lines": 390,
+      "numstat_sha256": "38aa69ad1ceb0438980329e9657e23598a86c64583faa3bc3f7a768cae1b644b",
+      "parent_tree": "739d829553a39f9cf8fd0a96305f3352c17b912f",
+      "parents": [
+        "5f4d3c5112b7a55386321f8c17db3521ed7d80bb"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 5,
+      "reason": "ELIGIBLE",
+      "subject": "Add vLLM prefetch offload",
+      "task_text": "Add vLLM prefetch offload\n",
+      "timestamp": 1788820341,
+      "total_files": 10
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "04101fec17e0541fa7d73cc6811fd5b95fc8cf11e2f0acfed921424ff3cc3ebc",
+      "child": "5f4d3c5112b7a55386321f8c17db3521ed7d80bb",
+      "child_tree": "739d829553a39f9cf8fd0a96305f3352c17b912f",
+      "commit_metadata_sha256": "4f067225e66baa4d306772c04e0eebea057452c69cbd19e373bb0e4000d57764",
+      "diff_sha256": "b7134f6a861dc2b908aaa170f832862404e8fd34064e87a615ee9365e81f5034",
+      "lines": 144,
+      "numstat_sha256": "1b7c958f0c7eb64c2fe27ae2ef52543a9c5238c9bc1d4c0f5bb969b56a82eee6",
+      "parent_tree": "b63225c8f037a8f2f8db0b7467d607a693d4d6af",
+      "parents": [
+        "1e712c29aec32d4911d7ca2372c27a04511c999c"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 5,
+      "reason": "ELIGIBLE",
+      "subject": "Add vLLM CPU weight offload",
+      "task_text": "Add vLLM CPU weight offload\n",
+      "timestamp": 1788794602,
+      "total_files": 10
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "8bf183ab04dfc89c90569cccd6e61edc9d829a7cb866a8b145a23626efaf7c7f",
+      "child": "1e712c29aec32d4911d7ca2372c27a04511c999c",
+      "child_tree": "b63225c8f037a8f2f8db0b7467d607a693d4d6af",
+      "commit_metadata_sha256": "de2910ab2f3a345d5bfd472fe2ca970d950138cb0eeaf67632d23e58268225a5",
+      "diff_sha256": "c3d202443ee807770e28fe0bcaff656300ac50de9f76d35a5afe52373759917d",
+      "lines": 383,
+      "numstat_sha256": "597cc6cda4492343ef57096d70fe201ee3cf07161df5bb009eafd7712807bd32",
+      "parent_tree": "ff4a59a4d595ea98280dc079f9eb3b509104acd3",
+      "parents": [
+        "512cf5559dbb346e361145ffe1a5bbacdd4ca566"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 3,
+      "reason": "ELIGIBLE",
+      "subject": "Preserve vLLM startup failure diagnostics",
+      "task_text": "Preserve vLLM startup failure diagnostics\n",
+      "timestamp": 1788791160,
+      "total_files": 4
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "scripts",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "981b6cf7fa33b1e5951a199f390479822b9cf7ce1baa415c8b54a3af090b9131",
+      "child": "512cf5559dbb346e361145ffe1a5bbacdd4ca566",
+      "child_tree": "ff4a59a4d595ea98280dc079f9eb3b509104acd3",
+      "commit_metadata_sha256": "5837492873dd9d3f4ccb444d4c754b7008c10fd62fc7ad3aa12803599fcc63d9",
+      "diff_sha256": null,
+      "lines": 169,
+      "numstat_sha256": "e485cbc55a5534e1639f79749162cac3f84a10e94a2da082daf9b67b2c66b0d5",
+      "parent_tree": "2c8a9bfb10d2e5c84a6818addf281e732d33d6df",
+      "parents": [
+        "832ce86f5860a0a60bb867c58272dfc4403fea5f"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "INSUFFICIENT_TASK_TEXT",
+      "subject": "Experimental vLLM Model-Serving Lifecycle \u2014 Slice 1B",
+      "task_text": "Experimental vLLM Model-Serving Lifecycle \u2014 Slice 1B\n",
+      "timestamp": 1788787229,
+      "total_files": 5
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "scripts",
+        "tests"
+      ],
+      "changed_path_sha256": "e2cf4dc95ccfbc95e31b05425cbb9a7f8aa145b48d933f90ddb5eff7677f85e7",
+      "child": "832ce86f5860a0a60bb867c58272dfc4403fea5f",
+      "child_tree": "2c8a9bfb10d2e5c84a6818addf281e732d33d6df",
+      "commit_metadata_sha256": "2945e2d3bf7a5807356bbdec6a0b5fa507a6c7592b1d1c7b89a266aee1ae3ef8",
+      "diff_sha256": null,
+      "lines": 292,
+      "numstat_sha256": "9267a562a0d25f35c91578fa28aa3a241e76632a70f9681f32f7b611c16e8530",
+      "parent_tree": "0d964fb92893b152ad49d70714e00e4ad8dea21b",
+      "parents": [
+        "f61e24db352859a06ac76d159ea92b71f82016a4"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Experimental vLLM Model-Serving Lifecycle \u2014 Slice 1B",
+      "task_text": "Experimental vLLM Model-Serving Lifecycle \u2014 Slice 1B\n",
+      "timestamp": 1788708454,
+      "total_files": 2
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "7e79426de2ca52f2f05689b53c805c9767ee1246c8785df3a87603bbe9d5b994",
+      "child": "f61e24db352859a06ac76d159ea92b71f82016a4",
+      "child_tree": "0d964fb92893b152ad49d70714e00e4ad8dea21b",
+      "commit_metadata_sha256": "0ba7ca4ef568ec947896f8bc1bb87e2f5eccdfda41ece49395a48295d63f2f2a",
+      "diff_sha256": null,
+      "lines": 1665,
+      "numstat_sha256": "c498e2e69c39b44e8797239f8a7ac27c8a0e79d5a98d2647893bf0ce985c17c5",
+      "parent_tree": "a79b9abc78538d2aa4adf17bc2c30717a9b08a78",
+      "parents": [
+        "365366aa10c5660043257ce841e6fff923a49b7c"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 5,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1788706923,
+      "total_files": 9
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "tests"
+      ],
+      "changed_path_sha256": "37cca5a3dc905b353d3eda1f7ed6b3fac9ba1f48dfd460e63e6012467c1e563f",
+      "child": "365366aa10c5660043257ce841e6fff923a49b7c",
+      "child_tree": "a79b9abc78538d2aa4adf17bc2c30717a9b08a78",
+      "commit_metadata_sha256": "9a114658834c9992aa35c0940d07d53f522bef9982d89384f299f6490c6f37ff",
+      "diff_sha256": null,
+      "lines": 78,
+      "numstat_sha256": "8e731b76e745de4bbe3a392c670acaaf10626e26cf210a883dd79766ff5de1e5",
+      "parent_tree": "58c0c47b8e3c2c3087a27dee17ae088d33d2d6e5",
+      "parents": [
+        "111a9226df04c573e3dedd893860724b1c1061af"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "NO_PRODUCTION_CHANGE",
+      "subject": "Experimental vLLM Model-Serving Lifecycle \u2014 Slice 1A",
+      "task_text": "Experimental vLLM Model-Serving Lifecycle \u2014 Slice 1A\n",
+      "timestamp": 1788656052,
+      "total_files": 1
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "d88f1c6cd2201cad71c723bc545dd9e40aa1baeccc8a08687cda5ef2ebcca6dd",
+      "child": "111a9226df04c573e3dedd893860724b1c1061af",
+      "child_tree": "58c0c47b8e3c2c3087a27dee17ae088d33d2d6e5",
+      "commit_metadata_sha256": "00f0d14c86873a42972b9cedd6ee7823e8ac38698efb9b4a2d1974e8d6cc7da8",
+      "diff_sha256": null,
+      "lines": 290,
+      "numstat_sha256": "8cfebad482716b45569e62518053a8a2e7e4583c86bc53fb07a285ab84a4bc24",
+      "parent_tree": "8f419a67ea2c1237ee48351a4ef5539a85c2d102",
+      "parents": [
+        "246f76edf7e4840d33b25f1451858c65164f0c0e"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "INSUFFICIENT_TASK_TEXT",
+      "subject": "Experimental vLLM Model-Serving Lifecycle \u2014 Slice 1A",
+      "task_text": "Experimental vLLM Model-Serving Lifecycle \u2014 Slice 1A\n",
+      "timestamp": 1788655056,
+      "total_files": 3
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "f9e6ab2078eed2a11d6bfd2936d967d6aeb97bfef3e588ee0fc6b40e29bc42c7",
+      "child": "246f76edf7e4840d33b25f1451858c65164f0c0e",
+      "child_tree": "8f419a67ea2c1237ee48351a4ef5539a85c2d102",
+      "commit_metadata_sha256": "8a5cbd2110dca0d8cba0d249c4ff9c82f2d4388bf1b895ea280e51dc494379b6",
+      "diff_sha256": null,
+      "lines": 1127,
+      "numstat_sha256": "84ddf7ab48090c01939a8d354bacc7fe9e361d5cad2eb472c657ac61008006bb",
+      "parent_tree": "c86d72d15b279399f1a3911e80a381070a671224",
+      "parents": [
+        "ca9963afa9991495e25486a22bc7155217e942bd"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 5,
+      "reason": "INSUFFICIENT_TASK_TEXT",
+      "subject": "Experimental vLLM Model-Serving Lifecycle \u2014 Slice 1A",
+      "task_text": "Experimental vLLM Model-Serving Lifecycle \u2014 Slice 1A\n",
+      "timestamp": 1788654380,
+      "total_files": 8
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "3a45c6a1e016417ddc12864f0b1450fcfba68d642373403ee3cb3498b6372997",
+      "child": "ca9963afa9991495e25486a22bc7155217e942bd",
+      "child_tree": "c86d72d15b279399f1a3911e80a381070a671224",
+      "commit_metadata_sha256": "2fd3bc681f11b65d2a286e6e6e3d337576aecedab6cd7ee585758bba5d7873eb",
+      "diff_sha256": null,
+      "lines": 60,
+      "numstat_sha256": "f74844d8e2a947aafb46263a1f8facf7d4063dfa8635175e4e447934c7b6f325",
+      "parent_tree": "4456ad0aef7b1da2609fa94684e54a8542c641bb",
+      "parents": [
+        "37972492fcec1918453173903d06918257eb6e4a"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 1,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1788138490,
+      "total_files": 2
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "e3d35068ed69bd9ea675d82fbfe3cc0357a7b3bb29b1e3ce1540d96816cee578",
+      "child": "37972492fcec1918453173903d06918257eb6e4a",
+      "child_tree": "4456ad0aef7b1da2609fa94684e54a8542c641bb",
+      "commit_metadata_sha256": "75945c353fa731f49b2680cbaab7d0f4dd2027d202dde71fd399852951c42e16",
+      "diff_sha256": null,
+      "lines": 943,
+      "numstat_sha256": "c50b029387e1ae9e0becab446b396224cac745ccceb8f5aff2ba2cdc73aae49d",
+      "parent_tree": "31394f894493950ed25ede515ad74b0b699f5c66",
+      "parents": [
+        "64cd17d51701a58c6327cfa1ac48146873c179dc"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 7,
+      "reason": "INSUFFICIENT_TASK_TEXT",
+      "subject": "ReadRepositoryFileTool",
+      "task_text": "ReadRepositoryFileTool\n",
+      "timestamp": 1788134935,
+      "total_files": 12
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "deb4fbfbb36978c0d901892b3f0600b5fab8ddfe8e25f89dd915ec2a5aa12c8a",
+      "child": "64cd17d51701a58c6327cfa1ac48146873c179dc",
+      "child_tree": "31394f894493950ed25ede515ad74b0b699f5c66",
+      "commit_metadata_sha256": "a9cce167e414c3c635c887b9fc90e97f2712229a4f23a319e02d44c8fc510a18",
+      "diff_sha256": null,
+      "lines": 463,
+      "numstat_sha256": "e999155fcd6ba39eb03d3b133cf3b3fce17115a94b6fe98d51c98208e3426b91",
+      "parent_tree": "bba71dcba38340116f5a42a47d82677ce2b88fa0",
+      "parents": [
+        "0f7a13667ef3d0d56bc0a7df43230b98fbbe00f0"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 2,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1788056460,
+      "total_files": 4
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "48056020f5a6fdb09ed048b53f976ce5123d5aba79e095ac7435bf49b1850589",
+      "child": "0f7a13667ef3d0d56bc0a7df43230b98fbbe00f0",
+      "child_tree": "bba71dcba38340116f5a42a47d82677ce2b88fa0",
+      "commit_metadata_sha256": "92a14dfd11c815a2b9aa4e7ed05ff21b97955d33898619b3f04d12406f4f10be",
+      "diff_sha256": null,
+      "lines": 1301,
+      "numstat_sha256": "61bf980305340dd5798742af3ca7a74cc7fb86135e5aa06ff214586269dcdf0f",
+      "parent_tree": "c10e2ad18ac6f56a5f913431faab8afce1900438",
+      "parents": [
+        "c0fabcb195e20d6775d1b16ef2116bee287c1f84"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 5,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1788046044,
+      "total_files": 13
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": null,
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "2c689abd5a92907447d4e6d263dc09a66150e6f339b9c5e89489f06f05eb9219",
+      "child": "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+      "child_tree": "c10e2ad18ac6f56a5f913431faab8afce1900438",
+      "commit_metadata_sha256": "a6a284d9e4a3fc85d651c1def624f0015555772942557923511f5622d1a666da",
+      "diff_sha256": null,
+      "lines": 2396,
+      "numstat_sha256": "166170dca30d1bb39273534350e38c7f4c34bb159af1c23bf0b118673bb27336",
+      "parent_tree": "38158618a1e97fada6b4d9a4e99c8d5cf5feb64c",
+      "parents": [
+        "9c42bd9b3da3f468bb7bbf0b8235596187dc64c3"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 7,
+      "reason": "PREVIOUS_POPULATION_OR_HELDOUT",
+      "subject": null,
+      "task_text": null,
+      "timestamp": 1788043309,
+      "total_files": 17
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "7aba93e7211925fc7e4ec3e0eb2172e29eaada33250f1dacf81c6a1cf9ef6e6a",
+      "child": "9c42bd9b3da3f468bb7bbf0b8235596187dc64c3",
+      "child_tree": "38158618a1e97fada6b4d9a4e99c8d5cf5feb64c",
+      "commit_metadata_sha256": "4e331880bd29132953b5129105520e81804cbf19369b7575e44bcdf50c3f6bc3",
+      "diff_sha256": null,
+      "lines": 1671,
+      "numstat_sha256": "63c83998829b9f7dc3a5c1bafa5dda95387cce4647cb69754376423db65337fb",
+      "parent_tree": "2bad0fd70fce8feb8d304546110e1c25342ac29a",
+      "parents": [
+        "243fac616131e0f8d31f2f515920dd7d6f79ef86"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 9,
+      "reason": "INSUFFICIENT_TASK_TEXT",
+      "subject": "added persistence",
+      "task_text": "added persistence\n",
+      "timestamp": 1786908032,
+      "total_files": 17
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "8744478a5d18ac194e952fdbf43d22408563945434152341a5ada8310c92e492",
+      "child": "243fac616131e0f8d31f2f515920dd7d6f79ef86",
+      "child_tree": "2bad0fd70fce8feb8d304546110e1c25342ac29a",
+      "commit_metadata_sha256": "1ff707bc5d3d2cbbaf50b9d92c333bae1a5132f2ca73f8ca2179232c9651343a",
+      "diff_sha256": null,
+      "lines": 857,
+      "numstat_sha256": "be4a57c1dd02a221d411c66b5c395e15274184490aa3f04eb75de4869a3683ed",
+      "parent_tree": "fb65afaa9f221737b722ca461c1b0cda9a6c6954",
+      "parents": [
+        "8c69e4e5b2a9724ee32be68cc33897682afb5a28"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 4,
+      "reason": "INSUFFICIENT_TASK_TEXT",
+      "subject": "implemented runtime",
+      "task_text": "implemented runtime\n",
+      "timestamp": 1786901112,
+      "total_files": 11
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "71fc67ec182a40c6abafce016d2d39a5ebadbeef9e0fc463f3e5fb3bd0ddafa9",
+      "child": "8c69e4e5b2a9724ee32be68cc33897682afb5a28",
+      "child_tree": "fb65afaa9f221737b722ca461c1b0cda9a6c6954",
+      "commit_metadata_sha256": "97df07c4984518dfce1a26d0668b02fd422ea36f9ae1ed8071175d6193f94931",
+      "diff_sha256": null,
+      "lines": 1069,
+      "numstat_sha256": "532e00673cfd8855ce39901451b09029d8d877fbbf9276cc2cdee6a231af88ee",
+      "parent_tree": "b4bfdcfd189ce5d877911e7e8df7f298c1040fc2",
+      "parents": [
+        "4e279045455aa83df78f721cd073900468affb29"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 4,
+      "reason": "INSUFFICIENT_TASK_TEXT",
+      "subject": "implemented session",
+      "task_text": "implemented session\n",
+      "timestamp": 1786892799,
+      "total_files": 12
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "ba667b8e2df7f8764a2b5473493f93643e2b9808a58bfee5d7e763bc26516a8d",
+      "child": "4e279045455aa83df78f721cd073900468affb29",
+      "child_tree": "b4bfdcfd189ce5d877911e7e8df7f298c1040fc2",
+      "commit_metadata_sha256": "ea5ac5a23ff0e6d7dc5ddd92c5374fab8bfb8ed13abcea410e5e7d8f137068f4",
+      "diff_sha256": null,
+      "lines": 1382,
+      "numstat_sha256": "4bf06207a291cac5fd52c4718cbae08edafecf3e7a8cf7b0c4966748eb21f144",
+      "parent_tree": "bc741c7078fcfd85f2545a723e2191b2660945e2",
+      "parents": [
+        "944b8c0533d4fbf786044adf766a9e6231370807"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 13,
+      "reason": "SIZE_OR_BINARY_BOUND",
+      "subject": "message history",
+      "task_text": "message history\n",
+      "timestamp": 1786812179,
+      "total_files": 28
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "pyproject.toml",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "660c12b40fa915ff2a17b166ea6ba7e72ffab20113d8f6422dc21c2a050f9f8c",
+      "child": "944b8c0533d4fbf786044adf766a9e6231370807",
+      "child_tree": "bc741c7078fcfd85f2545a723e2191b2660945e2",
+      "commit_metadata_sha256": "a254cbabbda64059ba4dc61e92b2c77de964875dee7397d043a042fd4c269aae",
+      "diff_sha256": null,
+      "lines": 6699,
+      "numstat_sha256": "61e163233c75c61efcd9887b86b7c10a2873640eeb227f33498d9c27199ca8ac",
+      "parent_tree": "cc846c5ef288703f3447e43db11411fd60e9ce81",
+      "parents": [
+        "a7342e0b7c7792c9eca783a15a7dd2c452c8b5fa"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 64,
+      "reason": "SIZE_OR_BINARY_BOUND",
+      "subject": "agents and codex wrapper",
+      "task_text": "agents and codex wrapper\n",
+      "timestamp": 1786807723,
+      "total_files": 110
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "91f962df3b822829c548b1a1c28b2576a1e82a719206f5bb17ae61c1eae4c8f4",
+      "child": "a7342e0b7c7792c9eca783a15a7dd2c452c8b5fa",
+      "child_tree": "cc846c5ef288703f3447e43db11411fd60e9ce81",
+      "commit_metadata_sha256": "3acee4bacaeee1ae95b14a03896de0b041e2d07e80ea126c9917b6dbda4027e8",
+      "diff_sha256": null,
+      "lines": 422,
+      "numstat_sha256": "0807cf8cd1c4ca8b17d457025a3f852e66a422a2efe1dc78df9c7397fd10086b",
+      "parent_tree": "894532051021098f9e06b49a149ceed82bac7cdb",
+      "parents": [
+        "2f66a64e8fa9c534ec0a0700f95c6dfa6aaa6498"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 4,
+      "reason": "INSUFFICIENT_TASK_TEXT",
+      "subject": "Filesystems",
+      "task_text": "Filesystems\n",
+      "timestamp": 1786294547,
+      "total_files": 10
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        "docs",
+        "pyproject.toml",
+        "src",
+        "tests"
+      ],
+      "changed_path_sha256": "1c60937f3302b4845ff0a9f54df9f0a21916e6f3102d8a58aca92c24a30c4d77",
+      "child": "2f66a64e8fa9c534ec0a0700f95c6dfa6aaa6498",
+      "child_tree": "894532051021098f9e06b49a149ceed82bac7cdb",
+      "commit_metadata_sha256": "71db9a446c4dd94e0db43cd370b3d5badf1ec949391b301481b26670b6f3d66f",
+      "diff_sha256": null,
+      "lines": 5154,
+      "numstat_sha256": "2554f2d1e922d5e27371dce31f38df74e039f0ac86a768740160e2def6ea437f",
+      "parent_tree": "897593a886d9ccf0a4e5360c3399bee710e85c8c",
+      "parents": [
+        "891fc354c8e17854d8a1540c4e465743100c26bb"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 47,
+      "reason": "SIZE_OR_BINARY_BOUND",
+      "subject": "Filesystems",
+      "task_text": "Filesystems\n",
+      "timestamp": 1786294087,
+      "total_files": 79
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        ".gitignore",
+        "README.md",
+        "docs",
+        "pyproject.toml",
+        "src",
+        "tests",
+        "uv.lock"
+      ],
+      "changed_path_sha256": "af06de35f3daf7b893551b5147cb476e4e7ae17faf331c1a29d163c387a39dc2",
+      "child": "891fc354c8e17854d8a1540c4e465743100c26bb",
+      "child_tree": "897593a886d9ccf0a4e5360c3399bee710e85c8c",
+      "commit_metadata_sha256": "d18749ede914a607281083c9e1db40921ea7539b7ca5028982df083bb5a59769",
+      "diff_sha256": null,
+      "lines": 266,
+      "numstat_sha256": "f58204bf3a281a4b43e11ef0dcec449c6cce83b520edb2e6fa37ee23c9e06565",
+      "parent_tree": "82e3a754b6a0fcb238b03c0e47d05219fbf9cf89",
+      "parents": [
+        "7eb988a966097e9556882095f0c6642283d0117d"
+      ],
+      "prior_task_duplicate": null,
+      "production_files": 5,
+      "reason": "INSUFFICIENT_TASK_TEXT",
+      "subject": "paths",
+      "task_text": "paths\n",
+      "timestamp": 1786151554,
+      "total_files": 14
+    },
+    {
+      "binary_production_test": false,
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "categories": [
+        ".gitignore"
+      ],
+      "changed_path_sha256": "667bfb8847bc7138a002aae4eb6e3ff80b1626c26e7127b40b304d8cb62337e0",
+      "child": "7eb988a966097e9556882095f0c6642283d0117d",
+      "child_tree": "82e3a754b6a0fcb238b03c0e47d05219fbf9cf89",
+      "commit_metadata_sha256": "4126cef25fda90a8f1f7d0f2cf88b43fd698fb6b078b15ae7254dc4b32a5e365",
+      "diff_sha256": null,
+      "lines": 0,
+      "numstat_sha256": "197952ce9e3bf77efe7ff3568aedf66c83a00cd43d6a1c654ca7321fe5ee85be",
+      "parent_tree": null,
+      "parents": [],
+      "prior_task_duplicate": null,
+      "production_files": 0,
+      "reason": "ROOT_OR_MERGE",
+      "subject": "first commit",
+      "task_text": "first commit\n",
+      "timestamp": 1786067381,
+      "total_files": 1
+    }
+  ],
+  "rules": {
+    "actionability": "A concrete engineering verb and a specific stated behavior/capability/contract, not a bare domain or identifier. Ambiguous implementation/mechanical intent rejects rather than opening a semantic patch.",
+    "anchor": "e0a6d817d7a155f5f77241902e4710c8b6b2807b",
+    "deduplication": "Identical normalized task text and explicit work-item identity when present; lexicographically smallest child SHA representative. Semantically identical assignments may be listed explicitly with rationale before selection, never based on retrieval evidence.",
+    "eligibility_frozen_before_metadata_review": true,
+    "exclusions": [
+      "previous development or held-out episode identity",
+      "merge/root",
+      "revert",
+      "no production change",
+      "evaluation/experiment/gold/population/verifier/performance infrastructure",
+      "size/binary bound",
+      "generated/format/lint/version/lock-only or pure relocation",
+      "opaque or insufficient task",
+      "external-only correctness",
+      "same previously evaluated task obligation"
+    ],
+    "holdout": "Mechanical patch bytes may be hashed without decoding/semantic inspection before selection. Replay consumes captured digest envelopes and never reopens a selected child's paths/patch after selection.",
+    "preferred_scope_tip": "dc0ba53182d5d90a9db1b0783f73446c412d5850",
+    "production_requirement": "At least one src/devtools/ source file; accompanying tests/docs/config permitted",
+    "public_surface": "Exact task text/source hashes and parent commit/tree only. No child identity, changed-path data, semantic patch, gold or ranking in selected task surface.",
+    "schema": "historical-development-eligibility-v1",
+    "scope_expansion": "Only if fewer than 8 eligible episodes in preferred scope, expand once to all first-parent history through starting HEAD under identical rules. No intermediate windows.",
+    "selection": "Target16; eligible8..15 chooseall; below8 stop. Seed = SHA256(canonical JSON array of domain, startingHEAD, historyScopeDigest, originalFreezeDigest, expandedFreezeDigest, eligibleInventoryDigest). Keys = SHA256(seed raw bytes + UTF8 candidateID), sort raw bytes then candidateID; firstN; no reroll.",
+    "size": {
+      "binary_production_test_allowed": false,
+      "maximum_production_files": 10,
+      "maximum_production_test_changed_lines": 2000,
+      "maximum_total_changed_files": 24
+    },
+    "size_rationale": "Pre-anchor aggregate production episodes have median 9 total files/3 production files/413 production-test lines, p90 23 files/10 production files/1723 lines. Rounded engineering-scale ceilings admit bounded work while excluding giant migrations; fixed before task metadata review.",
+    "starting_head": "07ca25ad2c37fae5106597ba2f49ce2b40372a30",
+    "task_authority": "Exact original subject plus body, no synthetic rewriting. Commit-message-only mode; parent-work-item augmentation is not used in this extension.",
+    "traversal": "first-parent, newest to oldest, reachable from starting HEAD; exactly one parent required"
+  },
+  "schema": "historical-development-captured-metadata-v1",
+  "scope": {
+    "aggregate_size_distribution": {
+      "anchor": "e0a6d817d7a155f5f77241902e4710c8b6b2807b",
+      "production_files": {
+        "max": 258,
+        "median": 3,
+        "min": 1,
+        "n": 75,
+        "p75": 5,
+        "p90": 10
+      },
+      "production_test_lines": {
+        "max": 47506,
+        "median": 413,
+        "min": 2,
+        "n": 75,
+        "p75": 899,
+        "p90": 1723
+      },
+      "scanned_commits": 122,
+      "scope_tip": "dc0ba53182d5d90a9db1b0783f73446c412d5850",
+      "single_parent_production_changes": 75,
+      "starting_head": "07ca25ad2c37fae5106597ba2f49ce2b40372a30",
+      "total_changed_files": {
+        "max": 450,
+        "median": 9,
+        "min": 2,
+        "n": 75,
+        "p75": 15,
+        "p90": 23
+      }
+    },
+    "all_first_parent_count": 284,
+    "all_first_parent_sha256": "b9a8158d9e476023fd8c838213a0a51f34a0431c446350dea220e79ed251f916",
+    "anchor_commit": "e0a6d817d7a155f5f77241902e4710c8b6b2807b",
+    "anchor_parent": "dc0ba53182d5d90a9db1b0783f73446c412d5850",
+    "expanded_forward": false,
+    "schema": "historical-development-history-scope-v1",
+    "scope_commits": [
+      "dc0ba53182d5d90a9db1b0783f73446c412d5850",
+      "f624234d84b81217c9db13ae6875437dcd22dc39",
+      "ca95a89f076e4f4297fbca1f48d37d9959dbdb3a",
+      "64c2817f115df32ad4ebc1bc2b7eb0cf0800b291",
+      "de97a7abcf3a33ac484323fc06de3dc36902d06b",
+      "eea1c95079b6b9012748e9828770eabd4258f603",
+      "0f61f3d328bad3d4743130e2e1fb1e8f6698fb19",
+      "251e290c985d1b93aa97b346ee44dbb949f21932",
+      "dac034702a5637736b59812382a308d1b2ca54ba",
+      "b76abf41b79cc71daae351309459eae2609885b6",
+      "aab810f3d69f7c9012ccb1b51c2c1722adac2854",
+      "d493c26bbb1866cb9e5ead8f23f02aac3a7f12b9",
+      "4ce485f737e47e135822a614127133f93f0ecfee",
+      "4b9428daf78f81864d11ecf7ac2193e868ff3591",
+      "6bd9061f94646c02fb50a9e24dc73fc203c11a30",
+      "6f4ba018da0f14b91604f2a6307ec60965db8fcc",
+      "0733092f5001ce157f7c190ff17574701fa01d58",
+      "d54d2a8d5a6801b94a40439d77a439217f47b74d",
+      "1cace8ea48249a2e86dcafef2154dce61b235466",
+      "7965743451d5ad98a7887528c64fa4a4824611ed",
+      "65511257cff1c8346e8295da3c9f6faf85259cff",
+      "c7b33639d4d7421940c4f50ee11b8492674a02bd",
+      "aa09746f46e294c33934ee06ed73eab8c284fe4d",
+      "8a0b4f533a5f16084b7c52f9e42c47712cea4f83",
+      "43d3aaa1074473be8d338e695d4cecd613befb80",
+      "71e938d809d794f2f07dd30cb772f1e9bc89c9d3",
+      "858bfa85787ec0d548aac8212bdba0ca7ccb300f",
+      "004d3829a4754cce1e632288450a0f6ada682282",
+      "514fdb223b40b932174e52a16d3cb360a74fb3a5",
+      "5fdf5fe0552712d25a8b0237cd4b6fcc35744aa5",
+      "b8e533042d6904554cce28a1402148ee2454a67d",
+      "ab24906f07eda8430dd9e53db9e807f546d81f7e",
+      "e0a344227af1c8a810eebd7a9aa5a683a4e0ab61",
+      "bb9f807bcd61d1e29dfe164ce44a10704f59560f",
+      "85cfd9ff68a0d863cab44151e047f1e51d2d1ce6",
+      "ac797431db35c26b1b42625db3054273346a4a83",
+      "2a4f058d5262f8d89672d3436d69237b9053e2d2",
+      "7594b845064971862d2067bc3166258c9f50416b",
+      "b5280a3c38cabfc3c425d49556986a112866da55",
+      "6156c70be14bd9385ffe133dea7b2c87bd271eee",
+      "e142585a95da66cfa2aee967b6877bb640e8c431",
+      "5bdc70483eedad98cada468d6224e2739829a812",
+      "e976f7f20898b9c1c915fc40ff08ec823a173000",
+      "45b2a5205fa82ba4c818a4b76485db0f0e1dfa05",
+      "66ed2049de72aa5c2762ab506174c711639bbbf8",
+      "6b0e9c52fb2695cf04ca5e10fef080dfa89e0a5f",
+      "3f11ca00bb76435ded833925b72372094a578775",
+      "23daa000ea16e71196da6eb70d4595be7c913279",
+      "40822c748ba4ac0d2ca82132d880920deea5732e",
+      "b6561ca2672822ceaed3f70edc82d3187e5d8e3a",
+      "989cc21bd64801f741bc3adeda34d4c3c3784a9b",
+      "624ef13d52180c84e808bfa9e5dd505c32ceb5b8",
+      "03da26a7fc2ccaace073c458ddf8c4702d0bb76b",
+      "c19fd8cc6616aa13b0a3bfb9802a12b9cd5ad3db",
+      "0c962bb8d1833a3efb0d77020c7151499ff74c9d",
+      "d306fd18264fb83a9ee2a16bb812978b8a759d63",
+      "4f85af831e6fcf5a041f9c2b2ab1ad684c01515a",
+      "da40485073be7f48759c15448ebdfda4064e07c8",
+      "7ff69df7196fe2c3bf67fa894c492b45583e5cfd",
+      "b63e8bc1ea5b469c3a481bf91273863460254a60",
+      "28a90f0a331135475fafb6e8df267bffae02bdef",
+      "0553b66c1dee3c3ec5cb4f978acc2968a1c1277d",
+      "4728577fb408b9a0101f0630d9a9d13117a4b07f",
+      "079eb4a9ddaea613e985d66945e785c668928f74",
+      "7d18afdb4338647fcc82c65abce66e135f7a7f2e",
+      "d43be0272fa0c058f5146d7b2dede2db33d2fe33",
+      "d9e58cd09390b38664bfb1e1070baab7a73cc2de",
+      "4ba894f29abff77de563e7c0297a616bb69dbad4",
+      "6f304a8c737cb8632c47101c62813e33fa0ab3a4",
+      "0f627dd0d21969fdf1383607d6191b3b1393d28f",
+      "eadb6f231f571b67f4089a9156cfe7716a73b91b",
+      "739c82bd3398181c0278286c32444ee0526586a9",
+      "5b75000b60f7e7ccc8a6b77daa64cc905361d728",
+      "9efe3dc31e80d99f0d0027e81f2979e76b472f91",
+      "842e90e63f37c47ea26f4db8e1ebcd1ff5992967",
+      "901246bd802abfd615e1ea851c35a23e233bc37a",
+      "9009cc143957c070cd92ff173899d9fe2f399bc1",
+      "d58c0504b671703090cacec2f0123fa83220446e",
+      "add3c3ed519555d75d533a3a5446786617592508",
+      "5c5bdf4212ac7ace151b496ef548caa2a559c1bc",
+      "8994c4e586445ada44a5123c710a509da6da99de",
+      "886fef9217205f1292f54ee14105c8930bffc629",
+      "8f245d6dad27ce8a0b0576f8ff3c6051fb7d4262",
+      "2405aff6c714179da5ec7dd4da0d86b9f0e915d7",
+      "1ed8ddb3fbae2efbea07592b00bd932d0cb8423e",
+      "638404298e301bd95d63878b7ef4e2d1b85efb39",
+      "15fc8146c673f89a455dc060fe732cf0536697a5",
+      "2e607379359bf3989d77bc39e33a58789f198593",
+      "fb7b555c211130f20e91e8e6842a596c2b9c20fc",
+      "2d2f730bf73525067b444b94438b7fc6677790cf",
+      "da358c3887c8a48beaa9e75f1f4d48a4f4f826c5",
+      "504f89685d6359928b9595ec354f0a23a8d5b600",
+      "9e994e1c10be723b68b6bcc00a3309182858240c",
+      "f3b19e8ed23c5658052b4cafb74e28cc636dbd53",
+      "159f0cc595c6a59280cb1268eebbd352fe4caffd",
+      "ed4081453d2231e394566077a52f1a1a59a01231",
+      "22f234787d5a692b19ca27a8658929011603179d",
+      "9e2295fb4748f09594805f3536ed506ad317eac6",
+      "2465af00dc305a6c2a15a90455bf09e62e428e39",
+      "ef96ce9db9d0b38c11eee4824fc6a04b5c375cf4",
+      "5f4d3c5112b7a55386321f8c17db3521ed7d80bb",
+      "1e712c29aec32d4911d7ca2372c27a04511c999c",
+      "512cf5559dbb346e361145ffe1a5bbacdd4ca566",
+      "832ce86f5860a0a60bb867c58272dfc4403fea5f",
+      "f61e24db352859a06ac76d159ea92b71f82016a4",
+      "365366aa10c5660043257ce841e6fff923a49b7c",
+      "111a9226df04c573e3dedd893860724b1c1061af",
+      "246f76edf7e4840d33b25f1451858c65164f0c0e",
+      "ca9963afa9991495e25486a22bc7155217e942bd",
+      "37972492fcec1918453173903d06918257eb6e4a",
+      "64cd17d51701a58c6327cfa1ac48146873c179dc",
+      "0f7a13667ef3d0d56bc0a7df43230b98fbbe00f0",
+      "c0fabcb195e20d6775d1b16ef2116bee287c1f84",
+      "9c42bd9b3da3f468bb7bbf0b8235596187dc64c3",
+      "243fac616131e0f8d31f2f515920dd7d6f79ef86",
+      "8c69e4e5b2a9724ee32be68cc33897682afb5a28",
+      "4e279045455aa83df78f721cd073900468affb29",
+      "944b8c0533d4fbf786044adf766a9e6231370807",
+      "a7342e0b7c7792c9eca783a15a7dd2c452c8b5fa",
+      "2f66a64e8fa9c534ec0a0700f95c6dfa6aaa6498",
+      "891fc354c8e17854d8a1540c4e465743100c26bb",
+      "7eb988a966097e9556882095f0c6642283d0117d"
+    ],
+    "scope_tip": "dc0ba53182d5d90a9db1b0783f73446c412d5850",
+    "starting_head": "07ca25ad2c37fae5106597ba2f49ce2b40372a30",
+    "traversal": "FIRST_PARENT"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "deduplication": "Only identical substantive obligations: preserve lexicographically smallest candidate identity as representative and list duplicates with rationale. Sharing a package is insufficient.",
+  "extraction": {
+    "backlog": "One candidate per complete canonical B-XXXX record. Retain exact committed UTF-8 text, title and metadata. No invented subtask decomposition.",
+    "roadmap": "One candidate per Markdown heading level 2 through 6, containing its heading and text up to the next heading of any level. Empty navigation sections remain inventoried. No synthesized obligations or recombined sentences."
+  },
+  "future_seed": "SHA256 of domain-separated canonical inputs: devtools-development-extension-v1, starting HEAD, exact original and expanded freeze digests, canonical inventory digest. No manually chosen seed or reroll.",
+  "prohibited_inputs": [
+    "relevance labels",
+    "gold",
+    "BM25 scores/ranks",
+    "graph/reference relations",
+    "predicted structural usefulness",
+    "target-file predictions"
+  ],
+  "rejections": [
+    "SUPERSEDED",
+    "ALREADY_IMPLEMENTED",
+    "WHOLE_PROGRAM_EPIC",
+    "RESEARCH_OR_UNSETTLED_SEMANTICS",
+    "EVALUATION_INFRASTRUCTURE",
+    "DOCUMENTATION_MAINTENANCE_PROGRAM",
+    "HISTORICAL_OR_NAVIGATION",
+    "PREVIOUSLY_EVALUATED"
+  ],
+  "requirements": [
+    "Committed source at starting HEAD",
+    "Not previously evaluated and not a confirmation/reserve task",
+    "Concrete repository-changing engineering assignment with correctness defined by existing source wording",
+    "Repository-observable correctness",
+    "Bounded rather than whole-program epic",
+    "Self-contained without inventing unresolved semantics or requiring inaccessible external state",
+    "Substantive work not already completely implemented",
+    "Primary purpose independent of retrieval evaluation, benchmark/gold/population/verifier machinery"
+  ],
+  "schema": "development-extension-eligibility-v1",
+  "scope_rationale": "Every canonical backlog record plus the complete accepted roadmap; selected by source authority, not retrieval mechanism.",
+  "selection": "Only after complete eligibility inventory; >=16 eligible choose16, 8..15 chooseall, <8 stop without population freeze/commit/push.",
+  "source_scope": [
+    "docs/backlog/epics/*.md",
+    "docs/backlog/items/*.md",
+    "docs/roadmap.md"
+  ],
+  "starting_head": "07ca25ad2c37fae5106597ba2f49ce2b40372a30"
+}

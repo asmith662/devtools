@@ -1,0 +1,317 @@
+{
+  "candidate_inventory_sha256": "90d7ff21a07d0136b3b747d5f019d2f5b306d69f27719effdd27957367201d48",
+  "eligibility_rules_sha256": "cb80d857c5444191191ab9ad9526b81bb9cc38443b818086ea8b6b52e0af508a",
+  "gold": "NOT_CREATED",
+  "history_scope_sha256": "4ce1d1195779ac3012dae71156d0bb881bd9c8af0621a07051ce6d24d563f26f",
+  "implementation_sha256": {
+    "README.md": "a68459cdf2d5f1eef8dcc8859c6cfc025ac487bf0ac63b06c162b7faa9828b14",
+    "__init__.py": "3a3912e501168e4afda5eadaa5822d073bb8576396f7c9c482eb3d227bf3041b",
+    "builder.py": "0a62b0c9af00511272ba9a8440572b05b71f87384acc31ec386c15b82cd52ca1",
+    "test_population.py": "a316ad32d781c350c0c368739677417e0e856e9528894a0797b34ced2292dc73"
+  },
+  "input_receipt_sha256": "f1128adc5fef3abfc701bada6f069cf42bfd0447068a38ddcd5cd9773a50a426",
+  "next_case_id": "historical-development-001",
+  "population_id": "devtools-historical-development-extension-v1",
+  "prior_task_exclusions_sha256": "e5ebb4f576f58ddeee43e07eee62ef8035936c9f2b0f22449d4ee8d4f561ec72",
+  "retrieval_execution": "NOT_RUN",
+  "schema": "historical-development-population-freeze-v1",
+  "selected_development_tasks": [
+    {
+      "case_id": "historical-development-001",
+      "frame": {
+        "kind": "GIT_PARENT_TREE",
+        "native_repository_snapshot": "NOT_CONSTRUCTED",
+        "parent_commit": "71e938d809d794f2f07dd30cb772f1e9bc89c9d3",
+        "parent_tree": "d6c9398be0bf36e16d6bf57a65f16d5f513eab00"
+      },
+      "population_id": "devtools-historical-development-extension-v1",
+      "schema": "historical-development-public-task-v1",
+      "selection_position": 1,
+      "task_source": {
+        "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+        "provenance_reference": "historical-development-001/commit-message",
+        "task_sha256": "d1f9e3c61d35d350e0859e2fb02595d46a8baf8e6323aed736497f1ea2ed7d43"
+      },
+      "task_text": "Implement repository lexical statistics and inverted index\n",
+      "title": "Implement repository lexical statistics and inverted index"
+    },
+    {
+      "case_id": "historical-development-002",
+      "frame": {
+        "kind": "GIT_PARENT_TREE",
+        "native_repository_snapshot": "NOT_CONSTRUCTED",
+        "parent_commit": "d493c26bbb1866cb9e5ead8f23f02aac3a7f12b9",
+        "parent_tree": "be89449e1f2c89c307130868aa51cf9e717a2f49"
+      },
+      "population_id": "devtools-historical-development-extension-v1",
+      "schema": "historical-development-public-task-v1",
+      "selection_position": 2,
+      "task_source": {
+        "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+        "provenance_reference": "historical-development-002/commit-message",
+        "task_sha256": "c540758bc3ab5600a985737892b93beb9045e7c56f00f44ef78ada4ab4369c97"
+      },
+      "task_text": "Implement qualified repository import relations\n",
+      "title": "Implement qualified repository import relations"
+    },
+    {
+      "case_id": "historical-development-003",
+      "frame": {
+        "kind": "GIT_PARENT_TREE",
+        "native_repository_snapshot": "NOT_CONSTRUCTED",
+        "parent_commit": "2465af00dc305a6c2a15a90455bf09e62e428e39",
+        "parent_tree": "12a504a2106467d8b32fc062d15923c7b9250fd9"
+      },
+      "population_id": "devtools-historical-development-extension-v1",
+      "schema": "historical-development-public-task-v1",
+      "selection_position": 3,
+      "task_source": {
+        "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+        "provenance_reference": "historical-development-003/commit-message",
+        "task_sha256": "3d50e75a9e222adf01648aaa7276f1e36d02c0c74ad86c22715a63bf2b1a09b1"
+      },
+      "task_text": "Add vLLM CUDA graph estimate control\n",
+      "title": "Add vLLM CUDA graph estimate control"
+    },
+    {
+      "case_id": "historical-development-004",
+      "frame": {
+        "kind": "GIT_PARENT_TREE",
+        "native_repository_snapshot": "NOT_CONSTRUCTED",
+        "parent_commit": "0733092f5001ce157f7c190ff17574701fa01d58",
+        "parent_tree": "87f925a834e6893bc3ec6b50cf3cb73f34edfd16"
+      },
+      "population_id": "devtools-historical-development-extension-v1",
+      "schema": "historical-development-public-task-v1",
+      "selection_position": 4,
+      "task_source": {
+        "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+        "provenance_reference": "historical-development-004/commit-message",
+        "task_sha256": "b43b6b2c4e4093e7656c20bef86af3e0eb83b5dcbfb301928ddca46ef9b9b22c"
+      },
+      "task_text": "Implement weighted filename BM25 retrieval\n",
+      "title": "Implement weighted filename BM25 retrieval"
+    },
+    {
+      "case_id": "historical-development-005",
+      "frame": {
+        "kind": "GIT_PARENT_TREE",
+        "native_repository_snapshot": "NOT_CONSTRUCTED",
+        "parent_commit": "512cf5559dbb346e361145ffe1a5bbacdd4ca566",
+        "parent_tree": "ff4a59a4d595ea98280dc079f9eb3b509104acd3"
+      },
+      "population_id": "devtools-historical-development-extension-v1",
+      "schema": "historical-development-public-task-v1",
+      "selection_position": 5,
+      "task_source": {
+        "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+        "provenance_reference": "historical-development-005/commit-message",
+        "task_sha256": "60b10eb5028fd0fc4e82b06cb5e5339d8124bc7d71e0e5fddca70a1e35d10f13"
+      },
+      "task_text": "Preserve vLLM startup failure diagnostics\n",
+      "title": "Preserve vLLM startup failure diagnostics"
+    },
+    {
+      "case_id": "historical-development-006",
+      "frame": {
+        "kind": "GIT_PARENT_TREE",
+        "native_repository_snapshot": "NOT_CONSTRUCTED",
+        "parent_commit": "6bd9061f94646c02fb50a9e24dc73fc203c11a30",
+        "parent_tree": "bde2d0512f7bc36385d29cd2bad5f2e098950988"
+      },
+      "population_id": "devtools-historical-development-extension-v1",
+      "schema": "historical-development-public-task-v1",
+      "selection_position": 6,
+      "task_source": {
+        "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+        "provenance_reference": "historical-development-006/commit-message",
+        "task_sha256": "8452fc77f18d1d35e06647369ad2cb428379c841ba7604c961420ea73edda136"
+      },
+      "task_text": "Implement Python import declaration derivation\n",
+      "title": "Implement Python import declaration derivation"
+    },
+    {
+      "case_id": "historical-development-007",
+      "frame": {
+        "kind": "GIT_PARENT_TREE",
+        "native_repository_snapshot": "NOT_CONSTRUCTED",
+        "parent_commit": "66ed2049de72aa5c2762ab506174c711639bbbf8",
+        "parent_tree": "4d49dcfea18f40762b70bbc11b60514db1c438ae"
+      },
+      "population_id": "devtools-historical-development-extension-v1",
+      "schema": "historical-development-public-task-v1",
+      "selection_position": 7,
+      "task_source": {
+        "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+        "provenance_reference": "historical-development-007/commit-message",
+        "task_sha256": "406f82e07a4f5d6323ac06ef89f6ccccf8fc121933f4f4198195eb28711ba64d"
+      },
+      "task_text": "Implement exact-name Python function retrieval\n",
+      "title": "Implement exact-name Python function retrieval"
+    },
+    {
+      "case_id": "historical-development-008",
+      "frame": {
+        "kind": "GIT_PARENT_TREE",
+        "native_repository_snapshot": "NOT_CONSTRUCTED",
+        "parent_commit": "1e712c29aec32d4911d7ca2372c27a04511c999c",
+        "parent_tree": "b63225c8f037a8f2f8db0b7467d607a693d4d6af"
+      },
+      "population_id": "devtools-historical-development-extension-v1",
+      "schema": "historical-development-public-task-v1",
+      "selection_position": 8,
+      "task_source": {
+        "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+        "provenance_reference": "historical-development-008/commit-message",
+        "task_sha256": "70a0efcf2712fef7811bd256e82fd080dd6d7559623d656a4179317301d0e13b"
+      },
+      "task_text": "Add vLLM CPU weight offload\n",
+      "title": "Add vLLM CPU weight offload"
+    },
+    {
+      "case_id": "historical-development-009",
+      "frame": {
+        "kind": "GIT_PARENT_TREE",
+        "native_repository_snapshot": "NOT_CONSTRUCTED",
+        "parent_commit": "5f4d3c5112b7a55386321f8c17db3521ed7d80bb",
+        "parent_tree": "739d829553a39f9cf8fd0a96305f3352c17b912f"
+      },
+      "population_id": "devtools-historical-development-extension-v1",
+      "schema": "historical-development-public-task-v1",
+      "selection_position": 9,
+      "task_source": {
+        "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+        "provenance_reference": "historical-development-009/commit-message",
+        "task_sha256": "80fadee73bd8d912b393793247cd860ebbaa146adb4fac6b8f206c9044e3dceb"
+      },
+      "task_text": "Add vLLM prefetch offload\n",
+      "title": "Add vLLM prefetch offload"
+    },
+    {
+      "case_id": "historical-development-010",
+      "frame": {
+        "kind": "GIT_PARENT_TREE",
+        "native_repository_snapshot": "NOT_CONSTRUCTED",
+        "parent_commit": "ca95a89f076e4f4297fbca1f48d37d9959dbdb3a",
+        "parent_tree": "7ba4961739d1c66e175b10e4c8214cc2f6809822"
+      },
+      "population_id": "devtools-historical-development-extension-v1",
+      "schema": "historical-development-public-task-v1",
+      "selection_position": 10,
+      "task_source": {
+        "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+        "provenance_reference": "historical-development-010/commit-message",
+        "task_sha256": "263fd3c8f6d9a5aba9e833859afe89fbcf16407ea36bb7884b40da87e6a599f7"
+      },
+      "task_text": "Add imported-member binding resolution\n",
+      "title": "Add imported-member binding resolution"
+    },
+    {
+      "case_id": "historical-development-011",
+      "frame": {
+        "kind": "GIT_PARENT_TREE",
+        "native_repository_snapshot": "NOT_CONSTRUCTED",
+        "parent_commit": "8a0b4f533a5f16084b7c52f9e42c47712cea4f83",
+        "parent_tree": "7ba746d5ed881261fef94aa800302f699108c8d1"
+      },
+      "population_id": "devtools-historical-development-extension-v1",
+      "schema": "historical-development-public-task-v1",
+      "selection_position": 11,
+      "task_source": {
+        "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+        "provenance_reference": "historical-development-011/commit-message",
+        "task_sha256": "1df6831501be042107b0efba1110161f2b68750aac28124437cbde5fc2a0ba6e"
+      },
+      "task_text": "Implement bounded BM25 repository retrieval\n",
+      "title": "Implement bounded BM25 repository retrieval"
+    },
+    {
+      "case_id": "historical-development-012",
+      "frame": {
+        "kind": "GIT_PARENT_TREE",
+        "native_repository_snapshot": "NOT_CONSTRUCTED",
+        "parent_commit": "22f234787d5a692b19ca27a8658929011603179d",
+        "parent_tree": "81bfe4549e118cbaf717c2da61688b101f128748"
+      },
+      "population_id": "devtools-historical-development-extension-v1",
+      "schema": "historical-development-public-task-v1",
+      "selection_position": 12,
+      "task_source": {
+        "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+        "provenance_reference": "historical-development-012/commit-message",
+        "task_sha256": "e530986c9f8512305d522253dd8912f462a8ef013d5eba815e45bd0bc17fdb21"
+      },
+      "task_text": "Add exact Hugging Face GGUF acquisition\n",
+      "title": "Add exact Hugging Face GGUF acquisition"
+    },
+    {
+      "case_id": "historical-development-013",
+      "frame": {
+        "kind": "GIT_PARENT_TREE",
+        "native_repository_snapshot": "NOT_CONSTRUCTED",
+        "parent_commit": "9e2295fb4748f09594805f3536ed506ad317eac6",
+        "parent_tree": "952663d2cf28b7cd620cff55d64d265d1d1e6ee6"
+      },
+      "population_id": "devtools-historical-development-extension-v1",
+      "schema": "historical-development-public-task-v1",
+      "selection_position": 13,
+      "task_source": {
+        "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+        "provenance_reference": "historical-development-013/commit-message",
+        "task_sha256": "c5b98c5e3f913e03acbd6b481bb04415d160c834c6fa2253047670bad179ee7e"
+      },
+      "task_text": "Add experimental llama.cpp serving\n",
+      "title": "Add experimental llama.cpp serving"
+    },
+    {
+      "case_id": "historical-development-014",
+      "frame": {
+        "kind": "GIT_PARENT_TREE",
+        "native_repository_snapshot": "NOT_CONSTRUCTED",
+        "parent_commit": "4ce485f737e47e135822a614127133f93f0ecfee",
+        "parent_tree": "e5162ff402ff4a72654fc8e1d98408bdd28427f7"
+      },
+      "population_id": "devtools-historical-development-extension-v1",
+      "schema": "historical-development-public-task-v1",
+      "selection_position": 14,
+      "task_source": {
+        "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+        "provenance_reference": "historical-development-014/commit-message",
+        "task_sha256": "0da239c1849f1098e7f9706e674edf9a3aff568f4895880208829ae421652075"
+      },
+      "task_text": "Implement qualified repository Python import resolution\n",
+      "title": "Implement qualified repository Python import resolution"
+    },
+    {
+      "case_id": "historical-development-015",
+      "frame": {
+        "kind": "GIT_PARENT_TREE",
+        "native_repository_snapshot": "NOT_CONSTRUCTED",
+        "parent_commit": "858bfa85787ec0d548aac8212bdba0ca7ccb300f",
+        "parent_tree": "39b55816c7b98fcf7e7bc75459c8992701727566"
+      },
+      "population_id": "devtools-historical-development-extension-v1",
+      "schema": "historical-development-public-task-v1",
+      "selection_position": 15,
+      "task_source": {
+        "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+        "provenance_reference": "historical-development-015/commit-message",
+        "task_sha256": "9442b72cc4814bc23cfd3beb3ac9c8fd9a36a8fa74b613eca70c6510e0efdab9"
+      },
+      "task_text": "Implement heterogeneous repository lexical analysis\n",
+      "title": "Implement heterogeneous repository lexical analysis"
+    }
+  ],
+  "selection_sha256": "f8001402319c3a9ed6c9d09553d5453d13a0bc2e636aebdea54ebc6c329f3942",
+  "source_exhaustion_role": "NON_POPULATION / SOURCE_EXHAUSTION_AUDIT",
+  "source_exhaustion_sha256": {
+    "README.md": "914a880e570de0bd95cc1be8f2210971b0d9e94e3ebfb618a870cccd9826cd93",
+    "access_record.json": "c1612ce78ef6ad11bbab1e2b2096f79d953b96feffa5df3c4194e08b7ed18730",
+    "candidate_inventory.json": "c033f34f12c155aea2f1f73df0e56f353831c9df7dfca4a0de2b075157c776b3",
+    "eligibility_rules.json": "b2347fe0f031d03e1d236dcec9b0d5e1185bfa834072506a8a319a769e364833",
+    "source_hashes.json": "507516040ecf92ae737ff369ef2106fb5695be5195cdd212daf5a7d943ef9e95",
+    "validation.json": "64111b0f968d7f9efba5c32a6e3dd1f0d1b183af7b26223adeead09c19582545"
+  },
+  "starting_head": "07ca25ad2c37fae5106597ba2f49ce2b40372a30",
+  "treatment_design": "PENDING"
+}

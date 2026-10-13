@@ -1,0 +1,35 @@
+{
+  "actionability": "A concrete engineering verb and a specific stated behavior/capability/contract, not a bare domain or identifier. Ambiguous implementation/mechanical intent rejects rather than opening a semantic patch.",
+  "anchor": "e0a6d817d7a155f5f77241902e4710c8b6b2807b",
+  "deduplication": "Identical normalized task text and explicit work-item identity when present; lexicographically smallest child SHA representative. Semantically identical assignments may be listed explicitly with rationale before selection, never based on retrieval evidence.",
+  "eligibility_frozen_before_metadata_review": true,
+  "exclusions": [
+    "previous development or held-out episode identity",
+    "merge/root",
+    "revert",
+    "no production change",
+    "evaluation/experiment/gold/population/verifier/performance infrastructure",
+    "size/binary bound",
+    "generated/format/lint/version/lock-only or pure relocation",
+    "opaque or insufficient task",
+    "external-only correctness",
+    "same previously evaluated task obligation"
+  ],
+  "holdout": "Mechanical patch bytes may be hashed without decoding/semantic inspection before selection. Replay consumes captured digest envelopes and never reopens a selected child's paths/patch after selection.",
+  "preferred_scope_tip": "dc0ba53182d5d90a9db1b0783f73446c412d5850",
+  "production_requirement": "At least one src/devtools/ source file; accompanying tests/docs/config permitted",
+  "public_surface": "Exact task text/source hashes and parent commit/tree only. No child identity, changed-path data, semantic patch, gold or ranking in selected task surface.",
+  "schema": "historical-development-eligibility-v1",
+  "scope_expansion": "Only if fewer than 8 eligible episodes in preferred scope, expand once to all first-parent history through starting HEAD under identical rules. No intermediate windows.",
+  "selection": "Target16; eligible8..15 chooseall; below8 stop. Seed = SHA256(canonical JSON array of domain, startingHEAD, historyScopeDigest, originalFreezeDigest, expandedFreezeDigest, eligibleInventoryDigest). Keys = SHA256(seed raw bytes + UTF8 candidateID), sort raw bytes then candidateID; firstN; no reroll.",
+  "size": {
+    "binary_production_test_allowed": false,
+    "maximum_production_files": 10,
+    "maximum_production_test_changed_lines": 2000,
+    "maximum_total_changed_files": 24
+  },
+  "size_rationale": "Pre-anchor aggregate production episodes have median 9 total files/3 production files/413 production-test lines, p90 23 files/10 production files/1723 lines. Rounded engineering-scale ceilings admit bounded work while excluding giant migrations; fixed before task metadata review.",
+  "starting_head": "07ca25ad2c37fae5106597ba2f49ce2b40372a30",
+  "task_authority": "Exact original subject plus body, no synthetic rewriting. Commit-message-only mode; parent-work-item augmentation is not used in this extension.",
+  "traversal": "first-parent, newest to oldest, reachable from starting HEAD; exactly one parent required"
+}
