@@ -623,3 +623,12 @@ STRUCTURAL_DISCRIMINATION_SIGNAL, plus descriptive totals, complete case traces,
 primary provenance and non-gating interpretation. Case 0019 sufficiency remains
 conditional on unresolved provider-contract semantics. No production promotion,
 new cohort gate, historical child access or confirmation/reserve access follows.
+
+The separate [support-source quality diagnostic](../experiments/structural_discrimination/post_hoc/source_quality/README.md)
+owns a **POST_HOC / ORACLE / NON_GATING / NOT_RUNTIME_AVAILABLE** decomposition of
+the completed result. Its [analysis](../experiments/structural_discrimination/post_hoc/source_quality/analysis.md)
+reports source-label/target-label cross-tabs, target source-quality groups and
+unchanged local outcomes using same-obligation gold. It adds no prospective gate,
+runtime filter or amendment to Stage D. The original categories, totals and
+published interpretation remain authoritative and unchanged; historical child,
+confirmation and reserve inputs remain sealed.
