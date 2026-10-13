@@ -6,12 +6,15 @@ from __future__ import annotations
 
 import asyncio
 import copy
+import gzip
 import json
 from typing import TYPE_CHECKING, Any
 
 import pytest
 
+from experiments.codex_dogfood.case_0009.artifacts import json_bytes
 from experiments.codex_dogfood.case_0015.freeze import frame
+from experiments.structural_discrimination.stage_b import capture
 from experiments.structural_discrimination.stage_c import packet, validate_packet
 
 if TYPE_CHECKING:
@@ -123,3 +126,25 @@ def test_frozen_semantic_binding_rejects_mutation(field: str) -> None:
     altered[field] = "foreign"
     with pytest.raises(ValueError, match="identity"):
         validate_packet.validate_payload(altered, bound)
+
+
+def test_actual_stage_a_spec_shape_projects_only_semantic_fields(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    value = synthetic_payload()
+    spec = {
+        **value,
+        "schema": "administrative-formulation-tag",
+        "resources": "complete resources supplied separately",
+    }
+    (tmp_path / "blind_spec.json").write_bytes(json_bytes(spec))
+    (tmp_path / "resources.json.gz").write_bytes(
+        gzip.compress(json_bytes(value["resources"]), mtime=0),
+    )
+    monkeypatch.setattr(capture, "case_root", lambda _case: tmp_path)
+    assert packet.payload("0017") == value
+    files, _bound = packet.render(packet.payload("0017"))
+    assert b"administrative-formulation-tag" not in gzip.decompress(
+        files["resources.json.gz"],
+    )

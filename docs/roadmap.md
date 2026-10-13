@@ -82,6 +82,16 @@ no usefulness, pair utility or structural-discrimination outcome is inferred.
 Independent blind packet preparation follows the treatment publication; clean
 isolated primary adjudication remains separately authorized future work.
 
+All three independent [blind packets](../experiments/structural_discrimination/stage_c/README.md)
+are now frozen after treatment checkpoint
+`95840e11b6cc14acd8a47754af3d1a8b673ee70d`. They contain only each case's
+task/obligations/interpretation limits and complete unchanged parent frame, with
+neutral packet schemas and standalone integrity validation. Each receives a
+fresh sterile workspace after packet publication. One mutually isolated GPT-6
+Astra / High primary per case is the recorded next boundary; no primary, second
+reviewer, reconciliation or gold has started. The structural mechanism remains
+identical across the cohort, and child implementations remain closed.
+
 Two coordinated tracks preserve ADR-0005 and the implemented Localization
 contracts while correcting retrieval-foundation sequencing. The
 [current retrieval foundation](architecture/retrieval.md) owns the production

@@ -604,3 +604,10 @@ implementations remain restricted. The subsequent
 owns the three exactly-once mechanical captures and completion proofs. Its
 normal verifier authenticates sealed canonical surfaces without another deep
 native replay. No semantic adjudication or effectiveness evaluation has run.
+
+The [independent blind-packet owner](../experiments/structural_discrimination/stage_c/README.md)
+projects the frozen semantic disclosure contract only after all three captures
+are published. It owns deterministic five-file packets, neutral metadata schemas,
+standalone validation and fresh sterile copying. Packet provenance is outside
+the reviewer files; no rank, annotation, child implementation or other-case
+surface is disclosed to a primary reviewer. Reviewer launch is a separate task.

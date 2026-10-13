@@ -1,7 +1,11 @@
 # Independent blind semantic packets
 
 Packet construction requires all three completed captures to authenticate from
-the same accepted treatment commit and clean synchronized main. Only after that
+the same accepted treatment commit and synchronized main. The treatment checkpoint
+is clean when published; packet preparation may then edit only its owned Python
+tooling, with an empty index and every captured input/source hash still matching.
+Sterile preparation again requires the fully clean published packet checkpoint.
+Only after that treatment publication
 boundary does it project the exact Stage A blind specifications/resources. It
 never reads native capture returns, rankings, annotations, pairs, child holdouts
 or gold to author a semantic packet. Treatment validation returns are used only
@@ -13,6 +17,9 @@ only with that case's exact blind payload/task/obligation/gap/frame digests and
 counts. It contains no other case or evaluator identity. Original repository
 text is preserved even if it naturally mentions retrieval: metadata allowlists
 and fixed digests exclude treatment leakage without deleting repository evidence.
+The Stage A specification's administrative schema tag is not a semantic input;
+it is omitted, and the packet uses neutral treatment-blind schema names. Original
+task, obligations, gaps, frame and resources are preserved exactly.
 
 One fresh mutually isolated GPT-6 Astra / High primary per case is recorded,
 not started. No automatic second reviewer or reconciliation. Preparation and

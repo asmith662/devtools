@@ -36,6 +36,9 @@ def payload(case: str) -> Any:
     """Project only the exact frozen blind input allowlist, never treatment output."""
     root = capture.case_root(case)
     blind = json.loads(binary(root / "blind_spec.json"))
+    # Administrative Stage A schema names are not semantic inputs and must not
+    # disclose the formulation. All task/obligation/gap/frame fields stay exact.
+    blind.pop("schema")
     rows = json.loads(gzip.decompress(binary(root / "resources.json.gz")))
     blind["resources"] = [
         {k: row[k] for k in sorted(validate_packet.RESOURCE)} for row in rows
@@ -145,15 +148,17 @@ def publish(root: Path, files: Any, bound: Any) -> Any:
     return validate_packet.validate(root, bound)
 
 
-async def synchronized(checkpoint: str) -> None:
-    """Require the supplied accepted main checkpoint, clean index/tracked tree."""
+async def synchronized(checkpoint: str, *, preparing: bool = False) -> None:
+    """Authenticate main; permit only owned packet-tooling edits during preparation."""
+    changed = (await git("diff", "--name-only")).decode().splitlines()
+    allowed = {p.relative_to(ROOT).as_posix() for p in PACKAGE.glob("*.py")}
     if (
         (await git("rev-parse", "HEAD")).decode().strip() != checkpoint
         or (await git("rev-parse", "origin/main")).decode().strip() != checkpoint
         or (await git("ls-remote", "origin", "refs/heads/main")).decode().split()[0]
         != checkpoint
         or (await git("branch", "--show-current")).decode().strip() != "main"
-        or (await git("diff", "--name-only")).strip()
+        or (bool(changed) and (not preparing or not set(changed) <= allowed))
         or (await git("diff", "--cached", "--name-only")).strip()
     ):
         raise ValueError("Exact committed/pushed clean checkpoint required")
@@ -161,7 +166,7 @@ async def synchronized(checkpoint: str) -> None:
 
 async def build(checkpoint: str) -> Any:
     """Publish only after every authoritative treatment is committed and verified."""
-    await synchronized(checkpoint)
+    await synchronized(checkpoint, preparing=True)
     await verify_all(checkpoint)
     if any((capture.case_root(case) / "stage_c").exists() for case in capture.CASES):
         raise FileExistsError("Packet publication already exists")
