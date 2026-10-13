@@ -1,0 +1,131 @@
+{
+  "baseline": {
+    "historical_full": "~55+ minutes observed; phase attribution unavailable",
+    "native_authentication": ">100.7s observed; hard stop at 120s",
+    "previous_full_attempt": "180.264s / HARD_WALL_EXCEEDED",
+    "warm_online_median_ms": 66.76,
+    "warm_online_p95_ms": 87.21
+  },
+  "candidate_authentication": {
+    "mismatches_at_start": 0,
+    "prior_manifest_entries": 78
+  },
+  "complete_deep_runs": 0,
+  "durable_state": {
+    "GRAPH-3": "COMPLETE / GRAPH_HARMFUL",
+    "RETRIEVAL_PERFORMANCE_BASELINE": "COMPLETE",
+    "SEARCH_POLICY_FAILURE": "NOT_ASSESSED",
+    "confirmation_reserve": "NOT_ACCESSED",
+    "filename_index_optimization": "PENDING",
+    "incremental_RI": "REQUIRED / NOT_IMPLEMENTED",
+    "production_behavior": "UNCHANGED"
+  },
+  "equivalence": {
+    "cells": 3084,
+    "gates": "IDENTICAL",
+    "outcome": "GRAPH_HARMFUL",
+    "required_cells": 36,
+    "sealed_diff": "NONE",
+    "stage_d_artifacts": 7,
+    "witnesses": 22
+  },
+  "implementation_sha256": {
+    "experiments/codex_dogfood/verification/__init__.py": "1e65c7394d8b6cf1a3a06c90dcd9b0cfb1a50fcd12538d903c92b42859c0001e",
+    "experiments/codex_dogfood/verification/archive.py": "9d3a6e6c756d8548f0047badceedc03c6fecf033bd82547e1a9c0733c1040e87",
+    "experiments/codex_dogfood/verification/audit.py": "e6ea72662900db7d98a2b53d05282fe9bbe66ce6f118e6ff1db9a4fba6bb5065",
+    "experiments/codex_dogfood/verification/bindings.py": "cb9503fa05f499edc36c1136b8a6c949ead9be8da4c2655ab54a7d23ef970074",
+    "experiments/codex_dogfood/verification/blocks.py": "8d18a519ecc49d093c16b887c58792db2da8f6296195d0f0a17b2e7c9364c106",
+    "experiments/codex_dogfood/verification/bounded.py": "36a7bd79f663f2bb16dec277a58c5cc1950b7201426b88abfa13ab57c97e986b",
+    "experiments/codex_dogfood/verification/case_0016.py": "01661ced7d30d7a7d87c4b3b2f2aded596e1e68de7a79c0011295a2e47575822",
+    "experiments/codex_dogfood/verification/completion.py": "b194787a04acffb827f6de48f2cc298d5f8a6bc9aa8a913d314ad96ef5f0226b",
+    "experiments/codex_dogfood/verification/diagnostics.py": "fb310c1be7c0e73e5e649b0cb3ff55157c4cf1e6b000111aa4632a48cf143b16",
+    "experiments/codex_dogfood/verification/encoding.py": "504ceafda47feab4313d33d3314491ecf901df31825542980c65cb5bc0ad16ea",
+    "experiments/codex_dogfood/verification/fields.py": "93b346450f090b4346db81472f6955d7d132092dafe9e7ee9ba9ef69fc39fb7d",
+    "experiments/codex_dogfood/verification/journal.py": "01ead5b640c2d7405d54bd03c902579257e4365c6eb4520c11a1d570be537bb2",
+    "experiments/codex_dogfood/verification/native.py": "b757702348375e338573e49260a555cb441b8b84f88ec7275b22f2cc473a85ef",
+    "experiments/codex_dogfood/verification/proof.py": "786ea2eb729bd3cc3bc9b34fbc8ed33c4359694bc525a82cee0d5d06dc21a2b7",
+    "experiments/codex_dogfood/verification/references.py": "0d6fec6e1e25672a3b2ddfca018fad743ae0f5b0e2e68b3ab11ca3d093a88f12",
+    "experiments/codex_dogfood/verification/rows.py": "30958de18d505b9ff4e652e76e14547ee8cf4c932e156d389bd2baa4c7ee4164",
+    "experiments/codex_dogfood/verification/spans.py": "bb7308a1349d648a78073dce9e3573dc55381a66df1d2ef0f61cf7b157c2ccb5",
+    "experiments/codex_dogfood/verification/test_native.py": "05f41b5b9549d4f675f6a18fec94b6a99f8a0bb372bc3efcdd4d613a1a844f69",
+    "experiments/codex_dogfood/verification/test_proof.py": "0365a633d83bd1c6d26bb5708b5ca967c9f483b640bdc059f43267fa7cc40e1f",
+    "experiments/codex_dogfood/verification/test_replay.py": "4f4d980f105e3fafb755f8ec7619612e3c40d1b469753b8fa059b736ad5088a6"
+  },
+  "managed_parent_wall_ns": 23121708600,
+  "normal_large_runs": 1,
+  "normal_verification": {
+    "capture_time_deep_proof": "AUTHENTICATED",
+    "counts": {
+      "capture_completion_proof_authentication": 1,
+      "completion_envelopes": 465,
+      "deep_correspondence_executions": 0,
+      "markdown_rendering": 1,
+      "metrics_construction": 1,
+      "native_archives_decoded": 0,
+      "primary_adversarial_bundle": 1,
+      "primary_authentication": 1,
+      "primary_bundle_executions": 1,
+      "reporting_enrichment": 1,
+      "reviewed_gold_authentication": 1,
+      "stage_d_semantic_validation": 6
+    },
+    "outcome": "GRAPH_HARMFUL",
+    "sha256": {
+      "STAGE_D_REVIEW.md": "5b1b53132bf7a69a9294464578bfc84e21bea8e577a26d798986f8e0866cb56e",
+      "TRACE.md": "55a55baa040bd6565d7fd9b40e47fd02ff33bfae8013721a8891963c8130ebbc",
+      "analysis.json": "2873051fa8f9f2d2cf91f21d85d65ef7b03eb5c49c8f2c4537c94f2df4ead7e8",
+      "analysis.md": "5b1b53132bf7a69a9294464578bfc84e21bea8e577a26d798986f8e0866cb56e",
+      "integrity.json": "79474ae1a8688550b267bd88e856340204714b15f70bd8bbfc10e5ae90ff1125",
+      "trace.json": "eef08220365a313975270bf51fd8dc6f29a33d262f981aad1998e45887dfa76a",
+      "validation.json": "b33050f2d0b6e7a7ea263779ac05ef088ff536bccc679ec34f03b134508bb6f3"
+    },
+    "status": "PASS",
+    "timings_ns": {
+      "artifact_encoding_hashing": 456594700,
+      "canonical_artifact_hash_authentication": 96742000,
+      "canonical_scientific_loading_indexing": 1778645700,
+      "capture_completion_proof_authentication": 3783331900,
+      "capture_seal_identity": 194121400,
+      "checkpoint_authentication": 15110433200,
+      "committed_byte_comparison": 16318100,
+      "complete_optimized_verify": 22446164800,
+      "completion_chain_source_authentication": 2162877200,
+      "expected_artifacts_total": 722916400,
+      "journal_archive_byte_authentication": 1304174000,
+      "markdown_rendering": 52581800,
+      "metrics_construction": 138016900,
+      "primary_authentication": 900172900,
+      "reporting_enrichment": 3219600,
+      "reviewed_gold_authentication": 28451300,
+      "sealed_historical_audit": 21032300,
+      "stage_d_input_authentication_total": 21700076600,
+      "stage_d_validation": 72503400
+    },
+    "verification_level": "SEALED_DOWNSTREAM"
+  },
+  "repair_commit": "Owning Git checkpoint: Separate sealed and deep experiment verification",
+  "residual_bottleneck": "Checkpoint authentication (15.1104332s), including managed Git blob reads and Stage A/recovery replay",
+  "schema": "layered-experiment-verification-engineering-v1",
+  "starting_head": "9374da59ac72e170d3439032e799e811f595ac09",
+  "status": "COMPLETE / SEALED_AND_DEEP_VERIFICATION_SEPARATED",
+  "trust": {
+    "authority": "4925f8896edc49b6162d191a6d348f78dd958a48",
+    "capture_implementations": 40,
+    "capture_seal": "b94bcd6dd1b7b0be12b487da70041c1f72b05fa2aa8234c589ad6b9829d734b0",
+    "case_0016_compatibility": "SUFFICIENT / AUDITED_CODE_BOUND_PUBLICATION",
+    "files": 1888,
+    "historical_attestation": "Publication after successful derived/reconstruct/Journal.load; completion alone is insufficient",
+    "persistent_trust_cache": false,
+    "proof_reexecution": false,
+    "scientific_implementations": 172
+  },
+  "validation": {
+    "combined_focused": "100 passed in 180.30s",
+    "diff_checks": "PASS; final staged check required before commit",
+    "final_proof_native_subset": "22 passed in 23.93s",
+    "format": "34 files PASS",
+    "protected": "1588 passed, 2 skipped in 36.91s; 100% branch coverage",
+    "ruff": "PASS",
+    "strict_mypy": "31 files PASS"
+  }
+}

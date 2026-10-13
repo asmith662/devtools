@@ -570,3 +570,13 @@ warm query computation, Context materialization and experiment-only overhead.
 It uses Case 0016 as an immutable workload/output reference, without joining gold
 or reopening GRAPH_HARMFUL. Maintainer review and optimization of the measured
 bottleneck precede any further retrieval-effectiveness experiment.
+
+
+The [sealed/deep experiment verification contract](../experiments/codex_dogfood/verification/README.md)
+owns the experiment-only capture proof, routine downstream integrity boundary and
+explicit forensic replay. It authenticates proof/input/implementation bindings
+per invocation and retains a read-only audited Case 0016 compatibility adapter.
+The [earlier engineering diagnostic](../experiments/performance/retrieval/verifier_repair/results.json)
+preserves the incomplete 180-second native-replay repair as history. Layered
+verification measurements are appended to the performance report; no accepted
+scientific outcome or production retrieval behavior changes.

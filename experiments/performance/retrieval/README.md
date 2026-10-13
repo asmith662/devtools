@@ -410,3 +410,180 @@ These samples were taken after the primary run and remain separately retained in
 The primary latency run had no concurrent diagnostic process. An initial supplemental offline run overlapped the bounded profiler and was stopped; its progress is retained in supplement_interruption.json. The final supplement was rerun after the profiler exited. The early native-authentication diagnostic interval therefore had concurrent offline key preparation; its wall timing is descriptive, and no historical additive phase split is claimed. The diagnostic was stopped once at the hard 120-second worker limit and not repeated. See run_notes.json for the complete scope and byte-authentication record.
 
 Focused tests: 8 passed. Protected development validation: 1,588 passed, two live tests skipped, 100% configured production branch coverage. Scoped Ruff, formatting, strict mypy, diff checks and performance-artifact validation passed. Full Stage D deterministic verification was not run. The committed Stage D analysis bytes were authenticated before using them as opaque profiling data.
+
+## Bounded verifier repair: acceptance failed
+
+The invocation-local [repair candidate](../../codex_dogfood/verification/README.md)
+is **INCOMPLETE / HARD_WALL_EXCEEDED**. It is not a completed performance repair.
+No repair checkpoint was committed or pushed. Scientific Case 0016 sources,
+gold, gates, artifacts and `GRAPH_HARMFUL` remain unchanged.
+
+One separate-process optimized full verification reached its 180-second hard wall
+and was terminated without repetition. Parent wall including termination was
+180.264 seconds. The last saved progress at 176.886 seconds showed 438/465
+native/canonical envelope comparisons started, 4,118,429 checked node bindings and
+20,339 shared-block authentications. The last logged operation was
+`query:Q3:exact`. Full native authentication and Stage D construction did not finish.
+
+Primary authentication, its primary bundle and its 22-check adversarial bundle
+each ran once, replacing approximately six nested primary authentications in the
+historical top-level call structure. Primary authentication took 828.724 ms;
+reviewed-gold authentication took 29.467 ms. Checkpoint authentication took
+11.855 seconds and exact capture-byte authentication took 1.602 seconds. No
+new invocation can inherit trusted state from a previous invocation.
+
+The adapter uses an explicit read-only authenticated input bundle, private sealed
+function bindings, identity/resource/state/pair indices, exact row totals from one
+canonical pair ordering, UTF-8 source indices and invocation-local native graph
+blocks. It leaves all sealed implementations untouched. It keeps journal envelope
+checks and requires exact capture seals before native deserialization/comparison.
+
+Isolated Stage B algebra/artifact reconstruction passed exact derived-byte
+comparison in 60.561 seconds, excluding journal authentication. Focused Stage D
+construction reproduced all seven artifacts exactly, including all 36 REQUIRED
+cells, 22 witnesses and gates. Its rounded diagnostic metrics/Markdown times were
+28/8 ms; those observations overlapped protected tests and are not full verifier
+timings. Validation/encoding timings for the full verifier are NOT_ASSESSED because
+construction was not reached.
+
+The remaining blocker is native/canonical correspondence over repeatedly captured
+reachable graphs and archive decoding. A bounded profile of an earlier candidate
+recorded 13.85 million calls in 21.301 seconds for Q1 A, including 257,331 per-node
+JSON decodes (5.846 inclusive seconds). Smaller lexical-state blocks reduced a
+subsequent Q1 A correspondence probe from 27.791 to 4.554 seconds, but the complete
+input-authentication path still exceeded the required wall. This does not implicate
+retrieval kernels or reopen the Graph-3 verdict. A complete alias-aware unique-state
+authentication strategy remains necessary before this candidate can be accepted.
+
+The previous native-authentication diagnostic remains >100.7 seconds observed with
+a 120-second stop; the historical full verifier remains approximately 55+ minutes
+without exact phase attribution. No completed full-runtime speedup is claimed.
+All prior benchmark samples and implementation bindings are unchanged. The original
+engineering manifest is retained in `verifier_repair/baseline_integrity.json`; the
+current engineering manifest only refreshes this README hash. Raw attempts,
+progress, profiles, sealed-file audit and summary are in
+[`verifier_repair/`](verifier_repair/).
+
+Validation: final repair tests 13 passed; existing Stage D/gold/gate/performance and
+early repair selection 55 passed; protected development 1,588 passed, 2 skipped,
+100% production branch coverage. Scoped Ruff/format, strict mypy and diff checks
+pass. The hard-wall failure blocks a completed repair checkpoint. Filename-index
+optimization and incremental RI remain separate pending work. No next retrieval
+experiment was designed or executed.
+## Verifier continuation — qualification remains incomplete
+
+The previous incomplete candidate was preserved and authenticated: all 33 recorded
+candidate hashes and 26 sealed scientific hashes matched at entry. No scientific
+source, gold, gate, treatment or Stage D artifact changed. No commit or push occurred.
+The previous 180-second failure and all baseline performance samples remain intact.
+
+The continuation removes per-binding canonical JSON decoding through exact-content
+fragment caching, one-array RI/new-tail parsing, and immutable closure byte programs.
+The original journal loader retains the claim, ordering, chain, native archive,
+shared pickle memo and completion checks. Optional existing NumPy operations
+accelerate exact base85 decoding and dense ordinal binding; no dependency was added.
+Cache trust remains invocation-local and follows physical capture authentication.
+
+The final bounded representative run took 48.695 seconds, including its initialization
+and final cyclic collection. Q1 A correspondence is **1.144 seconds**, B **1.584
+seconds**, and C **39.006 ms**. A uses **22 JSON decodes**, versus 257,331 in the
+retained earlier profile; the separate entry diagnostic found 26,931 decodes across
+25,128 exact payloads in the starting candidate. These measurements describe
+different candidate revisions and are retained separately.
+
+A fails the required <=500 ms qualification. The complete native projection has
+not qualified <=60 seconds, so **no new full verifier was launched**. Repair status
+is **INCOMPLETE / MICROBENCHMARK_GATE_FAILED**. The 90-second proving run remains
+unused. This is not a completed verifier checkpoint and has no repair commit.
+
+The archive inventory covers 465 envelopes and 930 native/canonical bindings:
+927 distinct encoded blocks, one repeated block, three duplicate decompressions.
+Thus repeated identical archives have limited yield; large shared canonical
+closures and their ordinal layouts dominate. The representative counters are
+626,781 unique nodes, 641,306 recursive visits, 128 closure hits, and 70,604 total
+JSON decodes. Current remaining work is exact shared-block relocation/rendering
+and unique-state validation, before an eligible full proving run.
+
+Focused validation passes 85 tests, including all seven retained Stage D bytes,
+the 3,084 gold cells, 36 REQUIRED cells, 22 witnesses and unchanged gates/outcome.
+Protected development validation passes 1,588 tests with two skips and 100%
+production branch coverage. Ruff, formatting and strict typing pass. Focused
+equivalence is not complete authentication of all 465 envelopes.
+
+Raw runs, the decoder frequency table, archive inventory, projection limitations
+and machine-readable status are retained under
+[verifier_repair/continuation](verifier_repair/continuation/results.json).
+Production Retrieval remains unchanged; GRAPH-3 remains COMPLETE / GRAPH_HARMFUL;
+the performance baseline remains COMPLETE. Incremental RI and filename-index work
+remain separate and pending; confirmation/reserve were not accessed.
+
+## Layered verification repair (completed)
+
+This checkpoint separates proof execution from authentication of a completed proof.
+Normal verification is now the standard downstream integrity path; explicit deep
+forensic replay remains available. No historical scientific artifact or retrieval
+behavior changes. The preceding failed candidate and all baseline samples remain
+unchanged as historical engineering evidence.
+
+The [verification contract](../../codex_dogfood/verification/README.md) documents
+the acyclic trust chain and future content-addressed completion proof. Case 0016
+uses a read-only audited compatibility rule: its accepted integrity seal binds
+1,888 files, 40 capture implementations, the successful validation/publication and
+the deep-proof producer control flow. The execution marker binds another 172
+scientific implementations through Stage A. Completion alone is insufficient;
+the accepted outer publication occurs only after native/canonical proof succeeds.
+The rule accepts this exact committed seal, not arbitrary legacy PASS summaries.
+
+| Surface | Ownership | Measured result |
+| --- | --- | --- |
+| Warm online retrieval (unchanged baseline) | ONLINE_QUERY | 66.76 ms median; 87.21 ms p95; VIABLE |
+| Capture-time deep validation | EXPERIMENT_ONLY | Expensive, sealed once; not online cost |
+| Normal completed-experiment verification | EXPERIMENT_ONLY | 22.446 s child; 23.122 s managed wall; PASS <=30 s |
+| Explicit deep forensic replay | EXPERIMENT_ONLY | Full Case 0016 runtime not remeasured here |
+
+The one clean child ran under a 60-second wall and reproduced all seven committed
+Stage D artifacts exactly, including 3,084 gold cells, 36 REQUIRED results, 22
+witnesses, gates and GRAPH_HARMFUL. Native archives decoded = 0; deep correspondence
+executions = 0. Capture-time deep proof = AUTHENTICATED, not REEXECUTED.
+
+| Normal phase | Time (seconds) |
+| --- | ---: |
+| Historical sealed-byte audit | 0.021 |
+| Primary authentication / one 22-check adversarial bundle | 0.900 |
+| Reviewed-gold authentication | 0.028 |
+| Checkpoint/ancestry/committed-blob authentication | 15.110 |
+| Capture/completion proof authentication total | 3.783 |
+| Canonical artifact hashing (within capture total) | 0.097 |
+| Journal/archive byte hashing (within capture total; no decode) | 1.304 |
+| Completion chain/source checks (within capture total) | 2.163 |
+| Seal/file-set identity (within capture total) | 0.194 |
+| Canonical loading and input indexing | 1.779 |
+| Metrics | 0.138 |
+| Enrichment | 0.003 |
+| Semantic validation plus five adversarial mutations | 0.073 |
+| Markdown | 0.053 |
+| Artifact encoding/hashing | 0.457 |
+| Committed-byte comparison | 0.016 |
+
+Nested phase times are not additive with their owning total. The 10-second desired
+target was not met; the 30-second acceptance target passed. Checkpoint authentication
+is the remaining largest measured phase, not retrieval or native graph traversal.
+Versus the approximate historical 55-minute observation, ordinary verification is
+about 147 times shorter; this is a changed proof-reexecution boundary, not an
+equal-work speedup of forensic replay. The prior 180-second failure did not complete
+and is not a valid exact speedup denominator.
+
+Primary authentication fell from approximately six recursive executions to one;
+the primary adversarial bundle executes once. Normal journal/native reconstruction
+count is zero; journal envelopes and the completed chain are authenticated once.
+Each fresh invocation reauthenticates authoritative bytes independently. No trusted
+filesystem or global cache is introduced. Deep parse/block/alias optimizations and
+all earlier diagnostics are retained for forensic use.
+
+Repair commit: the owning Git checkpoint, **Separate sealed and deep experiment
+verification**. [Raw bounded run](verifier_repair/layered/normal_verify.json),
+[parsed result](verifier_repair/layered/normal_verification.json) and
+[repair record](verifier_repair/layered/results.json) preserve timings and evidence.
+Full RI (~289 s), incremental maintenance requirement and the ~19.6 ms filename
+index optimization remain unchanged and separate. No next retrieval experiment
+is designed or executed in this checkpoint.

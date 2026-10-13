@@ -87,6 +87,17 @@ experiments -> devtools
 devtools -/> experiments
 ```
 
+Completed repository experiments may separate capture-time deep proof from
+routine downstream verification. Proof reuse requires cryptographic binding of
+the exact authoritative inputs, proof implementation, result bytes and completion
+identity to an accepted immutable capture publication. Normal verification
+authenticates those bindings and reconstructs downstream semantics; explicit
+forensic replay re-establishes raw native/canonical correspondence. Unknown or
+invalid proof fails without silently launching deep replay. This is experiment
+verification ownership, not production Repository Intelligence or Retrieval
+semantics. The bounded implementation and audited historical compatibility rule
+are documented in [experiment verification](../experiments/codex_dogfood/verification/README.md).
+
 The diagram permits only dependencies justified by a concrete package API.
 Notably, core does not depend upward, model interaction does not depend on
 Codex, execution does not depend on observability, and Runtime does not own

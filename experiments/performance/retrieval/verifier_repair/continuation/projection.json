@@ -1,0 +1,26 @@
+{
+  "maximum_authorization_ns": 60000000000,
+  "measured_category_subtotal_ns": 59779228300,
+  "method": "Unadjusted cold frame/index/graph plus six query-category samples; 415 RI and unmeasured categories excluded. Shared-state overlap is not corrected. Descriptive screen, not a reliable complete forecast.",
+  "qualified": false,
+  "reason": "Q1 A hard pre-full gate fails; a trustworthy <=60s full native forecast is not established.",
+  "schedule_categories": {
+    "CONTEXT": 1,
+    "RI": 415,
+    "frame:prepare": 1,
+    "graph:construct": 1,
+    "graph:validate": 1,
+    "lexical:fields": 1,
+    "lexical:index": 1,
+    "query:A": 6,
+    "query:B": 6,
+    "query:C": 6,
+    "query:definitions": 6,
+    "query:exact": 6,
+    "query:map": 6,
+    "query:reference": 1,
+    "query:seeds": 6,
+    "ri:module-universe": 1
+  },
+  "schedule_envelopes": 465
+}

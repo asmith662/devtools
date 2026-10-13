@@ -1,0 +1,80 @@
+{
+  "baseline": {
+    "historical_full_verify": "approximately 55+ minutes; exact phases not recorded",
+    "native_authentication_hard_stop_seconds": 120,
+    "native_authentication_observed_lower_bound_ns": 100716270200
+  },
+  "baseline_samples": "UNCHANGED; baseline manifest retained separately; engineering README hash refreshed",
+  "commit": null,
+  "focused_gate_outcome": "GRAPH_HARMFUL; EXACT",
+  "focused_required_cells": 36,
+  "focused_stage_d_expected_artifacts": "PASS all seven exact retained bytes; fixture inputs, not full authentication",
+  "focused_witnesses": 22,
+  "full_failure_followed_by_algorithm_changes": false,
+  "full_stage_d_construction": "NOT_REACHED",
+  "full_verify_runs": 1,
+  "hard_wall_seconds": 180,
+  "isolated_construction_timings_rounded_ms": {
+    "markdown": 8,
+    "metrics": 28
+  },
+  "isolated_stage_b_construction": "PASS exact derived-byte comparison; journal auth excluded",
+  "isolated_stage_b_construction_ns": 60560638900,
+  "isolated_timing_note": "Rounded focused-test observations; overlapped protected test execution. Validation/encoding exact timings were not retained. Not a full verifier timing.",
+  "journal_loads_after": "1 attempted; did not complete",
+  "journal_loads_before": "1 top-level load; 465 repeated graph descriptions",
+  "last_progress": {
+    "canonical_envelopes_started": 438,
+    "counts": {
+      "journal_native_authentication": 1,
+      "primary_adversarial_bundle": 1,
+      "primary_authentication": 1,
+      "primary_bundle_executions": 1,
+      "reviewed_gold_authentication": 1
+    },
+    "elapsed_ns": 176886025700,
+    "native_nodes_checked": 4118429,
+    "shared_blocks_authenticated": 20339,
+    "timestamp": "2026-10-12T21:22:45.193320+00:00",
+    "timings_ns": {
+      "capture_byte_authentication": 1601747100,
+      "checkpoint_authentication": 11854584300,
+      "primary_authentication": 828723600,
+      "reviewed_gold_authentication": 29467000,
+      "sealed_historical_audit": 27496600
+    }
+  },
+  "next_repair_requirement": "Replace residual per-return reachable-graph traversal with a complete alias-aware unique-state authentication strategy and reduce repeated canonical archive decoding; retain all envelope/hash/content checks. This task permits no second full proving run.",
+  "outcome": "GRAPH_HARMFUL; UNCHANGED",
+  "post_full_changes": "Documentation, focused capture-seal rejection test, line wrapping and engineering result publication only",
+  "primary_adversarial_bundles_after": 1,
+  "primary_authentication_calls_after": 1,
+  "primary_authentication_calls_before": "approximately 6, static call structure",
+  "process_wall_ns_including_termination": 180263578600,
+  "production_changed": false,
+  "profile_evidence": "probe_profile.json: 13,852,967 calls / 21.301 profiled seconds for Q1 A; recursive visit 19.884 inclusive seconds, 257,331 json.loads calls / 5.846 inclusive seconds. Earlier candidate; inclusive times overlap.",
+  "push": "NOT_PERFORMED; full acceptance failed",
+  "remaining_cause": "Native/canonical per-return correspondence and archive decoding. Last saved progress: 438/465 envelope comparisons started, 4,118,429 node bindings, 20,339 shared-block hits; operation 437 was query:Q3:exact. Stage D was not reached.",
+  "reviewed_cells": 3084,
+  "scientific_files_changed": false,
+  "starting_head": "9374da59ac72e170d3439032e799e811f595ac09",
+  "status": "INCOMPLETE / HARD_WALL_EXCEEDED",
+  "unchanged": {
+    "RETRIEVAL_PERFORMANCE_BASELINE": "COMPLETE",
+    "SEARCH_POLICY_FAILURE": "NOT_ASSESSED",
+    "confirmation_reserve": "NOT_ACCESSED",
+    "filename_index": "PENDING",
+    "incremental_RI": "REQUIRED; not implemented"
+  },
+  "validation": {
+    "cached_diff": "PASS; index empty",
+    "diff": "PASS",
+    "existing_plus_early_repair_tests": "55 passed in 142.60 seconds",
+    "final_repair_tests": "13 passed in 9.35 seconds",
+    "formatter": "PASS",
+    "isolated_expected_test": "1 passed in 1.64 seconds",
+    "mypy": "PASS strict, 10 files",
+    "protected": "1588 passed, 2 skipped, 100% production branch coverage, 34.89 seconds",
+    "ruff": "PASS after formatting"
+  }
+}

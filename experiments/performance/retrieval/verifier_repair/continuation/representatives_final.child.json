@@ -1,0 +1,1426 @@
+{
+  "archive_decompressions": 10,
+  "cache_hits": 128,
+  "envelopes": 10,
+  "gc_policy": "SCOPED_DISABLED; COLLECTION INCLUDED IN PARENT WALL; RESTORED",
+  "implementation_sha256": {
+    "__init__.py": "1e65c7394d8b6cf1a3a06c90dcd9b0cfb1a50fcd12538d903c92b42859c0001e",
+    "archive.py": "9d3a6e6c756d8548f0047badceedc03c6fecf033bd82547e1a9c0733c1040e87",
+    "audit.py": "e6ea72662900db7d98a2b53d05282fe9bbe66ce6f118e6ff1db9a4fba6bb5065",
+    "bindings.py": "cb9503fa05f499edc36c1136b8a6c949ead9be8da4c2655ab54a7d23ef970074",
+    "blocks.py": "8d18a519ecc49d093c16b887c58792db2da8f6296195d0f0a17b2e7c9364c106",
+    "bounded.py": "6f29ac71e6aff5f28e8ea5eb8fbb9a77c83773c7020f6b03026bef8eb3e031a8",
+    "case_0016.py": "ca43496c6c344b98ed8bdaaff3cbb0e02c2dfc2c70dfac936c3aca23cb409693",
+    "diagnostics.py": "3777974bb144107ca5b7afa2f53d14658692da7336dfdbce6d222ff71317098a",
+    "encoding.py": "504ceafda47feab4313d33d3314491ecf901df31825542980c65cb5bc0ad16ea",
+    "fields.py": "93b346450f090b4346db81472f6955d7d132092dafe9e7ee9ba9ef69fc39fb7d",
+    "journal.py": "01ead5b640c2d7405d54bd03c902579257e4365c6eb4520c11a1d570be537bb2",
+    "native.py": "b757702348375e338573e49260a555cb441b8b84f88ec7275b22f2cc473a85ef",
+    "references.py": "0d6fec6e1e25672a3b2ddfca018fad743ae0f5b0e2e68b3ab11ca3d093a88f12",
+    "rows.py": "30958de18d505b9ff4e652e76e14547ee8cf4c932e156d389bd2baa4c7ee4164",
+    "spans.py": "bb7308a1349d648a78073dce9e3573dc55381a66df1d2ef0f61cf7b157c2ccb5",
+    "test_native.py": "05f41b5b9549d4f675f6a18fec94b6a99f8a0bb372bc3efcdd4d613a1a844f69",
+    "test_replay.py": "4f4d980f105e3fafb755f8ec7619612e3c40d1b469753b8fa059b736ad5088a6"
+  },
+  "json_decodes": 70604,
+  "recursive_visits": 641306,
+  "returns": [
+    {
+      "archive_ns": 9669900,
+      "block_events": [],
+      "block_hits": 0,
+      "certificate_times_ns": {
+        "certificate": 20662300
+      },
+      "correspond_ns": 51971000,
+      "identity": "frame:prepare",
+      "json_decodes": 2586,
+      "pass": true,
+      "recursive_visits": 3101,
+      "unique_nodes": 3101
+    },
+    {
+      "archive_ns": 180287000,
+      "block_events": [],
+      "block_hits": 3,
+      "certificate_times_ns": {
+        "certificate": 7548803900
+      },
+      "correspond_ns": 22924194600,
+      "identity": "lexical:index",
+      "json_decodes": 1,
+      "pass": true,
+      "recursive_visits": 492294,
+      "unique_nodes": 495389
+    },
+    {
+      "archive_ns": 399500,
+      "block_events": [],
+      "block_hits": 0,
+      "certificate_times_ns": {
+        "certificate": 7548803900
+      },
+      "correspond_ns": 7840800,
+      "identity": "ri:references:src/devtools/__init__.py",
+      "json_decodes": 8,
+      "pass": true,
+      "recursive_visits": 12,
+      "unique_nodes": 495395
+    },
+    {
+      "archive_ns": 30285200,
+      "block_events": [],
+      "block_hits": 0,
+      "certificate_times_ns": {
+        "certificate": 8050220900
+      },
+      "correspond_ns": 863721300,
+      "identity": "ri:references:tests/models/serving/test_vllm.py",
+      "json_decodes": 1,
+      "pass": true,
+      "recursive_visits": 9776,
+      "unique_nodes": 503922
+    },
+    {
+      "archive_ns": 139048100,
+      "block_events": [
+        {
+          "bytes": 35293,
+          "foreign": 11,
+          "lookup_ns": 342600,
+          "members": 117,
+          "numbers_ns": 84500,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 98100
+        },
+        {
+          "bytes": 35290,
+          "foreign": 11,
+          "lookup_ns": 271600,
+          "members": 117,
+          "numbers_ns": 63500,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 86100
+        },
+        {
+          "bytes": 35290,
+          "foreign": 11,
+          "lookup_ns": 236100,
+          "members": 117,
+          "numbers_ns": 56000,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 73600
+        },
+        {
+          "bytes": 35290,
+          "foreign": 11,
+          "lookup_ns": 242600,
+          "members": 117,
+          "numbers_ns": 63000,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 74600
+        },
+        {
+          "bytes": 39538,
+          "foreign": 15,
+          "lookup_ns": 2342400,
+          "members": 130,
+          "numbers_ns": 2124400,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 72900
+        },
+        {
+          "bytes": 35290,
+          "foreign": 11,
+          "lookup_ns": 259300,
+          "members": 117,
+          "numbers_ns": 62900,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 87700
+        },
+        {
+          "bytes": 39534,
+          "foreign": 15,
+          "lookup_ns": 241900,
+          "members": 130,
+          "numbers_ns": 62300,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 70400
+        },
+        {
+          "bytes": 35290,
+          "foreign": 11,
+          "lookup_ns": 245800,
+          "members": 117,
+          "numbers_ns": 60100,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 80300
+        },
+        {
+          "bytes": 35293,
+          "foreign": 11,
+          "lookup_ns": 263200,
+          "members": 117,
+          "numbers_ns": 60200,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 85500
+        },
+        {
+          "bytes": 39532,
+          "foreign": 15,
+          "lookup_ns": 242500,
+          "members": 130,
+          "numbers_ns": 61300,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 71000
+        },
+        {
+          "bytes": 40006,
+          "foreign": 15,
+          "lookup_ns": 230800,
+          "members": 131,
+          "numbers_ns": 58400,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 65400
+        },
+        {
+          "bytes": 35290,
+          "foreign": 11,
+          "lookup_ns": 2290400,
+          "members": 117,
+          "numbers_ns": 57000,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 69600
+        },
+        {
+          "bytes": 35290,
+          "foreign": 11,
+          "lookup_ns": 250100,
+          "members": 117,
+          "numbers_ns": 56200,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 78300
+        },
+        {
+          "bytes": 39532,
+          "foreign": 15,
+          "lookup_ns": 250900,
+          "members": 130,
+          "numbers_ns": 59500,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 82000
+        },
+        {
+          "bytes": 39538,
+          "foreign": 15,
+          "lookup_ns": 245100,
+          "members": 130,
+          "numbers_ns": 53900,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 86000
+        },
+        {
+          "bytes": 39532,
+          "foreign": 15,
+          "lookup_ns": 216800,
+          "members": 130,
+          "numbers_ns": 53300,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 60300
+        },
+        {
+          "bytes": 39532,
+          "foreign": 15,
+          "lookup_ns": 219800,
+          "members": 130,
+          "numbers_ns": 56900,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 61400
+        },
+        {
+          "bytes": 39533,
+          "foreign": 15,
+          "lookup_ns": 313600,
+          "members": 130,
+          "numbers_ns": 67400,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 96700
+        },
+        {
+          "bytes": 39538,
+          "foreign": 15,
+          "lookup_ns": 249500,
+          "members": 130,
+          "numbers_ns": 60200,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 73800
+        },
+        {
+          "bytes": 39545,
+          "foreign": 15,
+          "lookup_ns": 233200,
+          "members": 130,
+          "numbers_ns": 59200,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 67100
+        },
+        {
+          "bytes": 35290,
+          "foreign": 11,
+          "lookup_ns": 238300,
+          "members": 117,
+          "numbers_ns": 56900,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 72400
+        },
+        {
+          "bytes": 39533,
+          "foreign": 15,
+          "lookup_ns": 234900,
+          "members": 130,
+          "numbers_ns": 58100,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 66800
+        },
+        {
+          "bytes": 54280,
+          "foreign": 12,
+          "lookup_ns": 565800,
+          "members": 146,
+          "numbers_ns": 340200,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 120600
+        },
+        {
+          "bytes": 57620,
+          "foreign": 16,
+          "lookup_ns": 327800,
+          "members": 155,
+          "numbers_ns": 78300,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 105400
+        },
+        {
+          "bytes": 57618,
+          "foreign": 16,
+          "lookup_ns": 305300,
+          "members": 155,
+          "numbers_ns": 80300,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 89000
+        },
+        {
+          "bytes": 57618,
+          "foreign": 16,
+          "lookup_ns": 300200,
+          "members": 155,
+          "numbers_ns": 93100,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 76400
+        },
+        {
+          "bytes": 57619,
+          "foreign": 16,
+          "lookup_ns": 280000,
+          "members": 155,
+          "numbers_ns": 76000,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 76200
+        },
+        {
+          "bytes": 57619,
+          "foreign": 16,
+          "lookup_ns": 256000,
+          "members": 155,
+          "numbers_ns": 67400,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 66700
+        },
+        {
+          "bytes": 57618,
+          "foreign": 16,
+          "lookup_ns": 255700,
+          "members": 155,
+          "numbers_ns": 67200,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 65900
+        },
+        {
+          "bytes": 57619,
+          "foreign": 16,
+          "lookup_ns": 248700,
+          "members": 155,
+          "numbers_ns": 65100,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 63000
+        },
+        {
+          "bytes": 57620,
+          "foreign": 16,
+          "lookup_ns": 264600,
+          "members": 155,
+          "numbers_ns": 77000,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 66900
+        },
+        {
+          "bytes": 57620,
+          "foreign": 16,
+          "lookup_ns": 271300,
+          "members": 155,
+          "numbers_ns": 83100,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 65800
+        },
+        {
+          "bytes": 57619,
+          "foreign": 16,
+          "lookup_ns": 287000,
+          "members": 155,
+          "numbers_ns": 92400,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 72100
+        }
+      ],
+      "block_hits": 33,
+      "certificate_times_ns": {
+        "certificate": 14842535300
+      },
+      "correspond_ns": 12579107500,
+      "identity": "graph:construct",
+      "json_decodes": 63243,
+      "pass": true,
+      "recursive_visits": 113854,
+      "unique_nodes": 615080
+    },
+    {
+      "archive_ns": 359400,
+      "block_events": [],
+      "block_hits": 0,
+      "certificate_times_ns": {
+        "certificate": 14842535300
+      },
+      "correspond_ns": 3870500,
+      "identity": "graph:validate",
+      "json_decodes": 1,
+      "pass": true,
+      "recursive_visits": 0,
+      "unique_nodes": 615080
+    },
+    {
+      "archive_ns": 593512700,
+      "block_events": [
+        {
+          "bytes": 140014,
+          "foreign": 0,
+          "lookup_ns": 743800,
+          "members": 522,
+          "numbers_ns": 263400,
+          "passed": true,
+          "type": "RepositoryTextCorpusDefinition",
+          "vector_ns": 172500
+        },
+        {
+          "bytes": 3154356,
+          "foreign": 0,
+          "lookup_ns": 8503500,
+          "members": 1543,
+          "numbers_ns": 3345900,
+          "passed": true,
+          "type": "tuple",
+          "vector_ns": 1670100
+        },
+        {
+          "bytes": 268223,
+          "foreign": 515,
+          "lookup_ns": 1328200,
+          "members": 1029,
+          "numbers_ns": 670500,
+          "passed": true,
+          "type": "tuple",
+          "vector_ns": 228600
+        },
+        {
+          "bytes": 80170574,
+          "foreign": 514,
+          "lookup_ns": 279932100,
+          "members": 243502,
+          "numbers_ns": 150880800,
+          "passed": true,
+          "type": "tuple",
+          "vector_ns": 41828400
+        },
+        {
+          "bytes": 36043224,
+          "foreign": 242987,
+          "lookup_ns": 253603700,
+          "members": 143697,
+          "numbers_ns": 179648000,
+          "passed": true,
+          "type": "tuple",
+          "vector_ns": 29642000
+        },
+        {
+          "bytes": 2429026,
+          "foreign": 0,
+          "lookup_ns": 8613200,
+          "members": 9145,
+          "numbers_ns": 4072900,
+          "passed": true,
+          "type": "tuple",
+          "vector_ns": 1582600
+        },
+        {
+          "bytes": 27498496,
+          "foreign": 71848,
+          "lookup_ns": 166014200,
+          "members": 89623,
+          "numbers_ns": 113683300,
+          "passed": true,
+          "type": "tuple",
+          "vector_ns": 20762100
+        }
+      ],
+      "block_hits": 7,
+      "certificate_times_ns": {
+        "certificate": 14915439700
+      },
+      "correspond_ns": 1144126500,
+      "identity": "query:Q1:A",
+      "json_decodes": 22,
+      "pass": true,
+      "recursive_visits": 8805,
+      "unique_nodes": 623878
+    },
+    {
+      "archive_ns": 707916600,
+      "block_events": [
+        {
+          "bytes": 46146833,
+          "foreign": 0,
+          "lookup_ns": 202350600,
+          "members": 118281,
+          "numbers_ns": 121717500,
+          "passed": true,
+          "type": "ReferenceView",
+          "vector_ns": 28613600
+        },
+        {
+          "bytes": 269554,
+          "foreign": 515,
+          "lookup_ns": 1126800,
+          "members": 1029,
+          "numbers_ns": 465600,
+          "passed": true,
+          "type": "tuple",
+          "vector_ns": 220100
+        },
+        {
+          "bytes": 80275368,
+          "foreign": 514,
+          "lookup_ns": 284576800,
+          "members": 243502,
+          "numbers_ns": 144966600,
+          "passed": true,
+          "type": "tuple",
+          "vector_ns": 46176700
+        },
+        {
+          "bytes": 36146759,
+          "foreign": 242987,
+          "lookup_ns": 238766000,
+          "members": 143697,
+          "numbers_ns": 159387000,
+          "passed": true,
+          "type": "tuple",
+          "vector_ns": 32951400
+        },
+        {
+          "bytes": 2429026,
+          "foreign": 0,
+          "lookup_ns": 8323600,
+          "members": 9145,
+          "numbers_ns": 3786600,
+          "passed": true,
+          "type": "tuple",
+          "vector_ns": 1497500
+        },
+        {
+          "bytes": 27498496,
+          "foreign": 71848,
+          "lookup_ns": 506215000,
+          "members": 89623,
+          "numbers_ns": 452140800,
+          "passed": true,
+          "type": "tuple",
+          "vector_ns": 19872500
+        },
+        {
+          "bytes": 969610,
+          "foreign": 514,
+          "lookup_ns": 3506300,
+          "members": 4388,
+          "numbers_ns": 1665100,
+          "passed": true,
+          "type": "tuple",
+          "vector_ns": 459000
+        },
+        {
+          "bytes": 408428,
+          "foreign": 1291,
+          "lookup_ns": 1140800,
+          "members": 1544,
+          "numbers_ns": 366600,
+          "passed": true,
+          "type": "tuple",
+          "vector_ns": 419300
+        }
+      ],
+      "block_hits": 8,
+      "certificate_times_ns": {
+        "certificate": 14952188900
+      },
+      "correspond_ns": 1584191700,
+      "identity": "query:Q1:B",
+      "json_decodes": 16,
+      "pass": true,
+      "recursive_visits": 4709,
+      "unique_nodes": 625194
+    },
+    {
+      "archive_ns": 933000,
+      "block_events": [],
+      "block_hits": 0,
+      "certificate_times_ns": {
+        "certificate": 14952188900
+      },
+      "correspond_ns": 39005800,
+      "identity": "query:Q1:C",
+      "json_decodes": 420,
+      "pass": true,
+      "recursive_visits": 839,
+      "unique_nodes": 625614
+    },
+    {
+      "archive_ns": 41055700,
+      "block_events": [
+        {
+          "bytes": 26512,
+          "foreign": 11,
+          "lookup_ns": 323500,
+          "members": 78,
+          "numbers_ns": 68800,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 129200
+        },
+        {
+          "bytes": 26512,
+          "foreign": 11,
+          "lookup_ns": 305900,
+          "members": 78,
+          "numbers_ns": 57400,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 113400
+        },
+        {
+          "bytes": 23866,
+          "foreign": 11,
+          "lookup_ns": 271400,
+          "members": 70,
+          "numbers_ns": 61200,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 95200
+        },
+        {
+          "bytes": 23866,
+          "foreign": 11,
+          "lookup_ns": 417200,
+          "members": 70,
+          "numbers_ns": 54300,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 219500
+        },
+        {
+          "bytes": 28508,
+          "foreign": 19,
+          "lookup_ns": 319100,
+          "members": 69,
+          "numbers_ns": 58500,
+          "passed": true,
+          "type": "PythonImportedMemberResolution",
+          "vector_ns": 104000
+        },
+        {
+          "bytes": 26484,
+          "foreign": 20,
+          "lookup_ns": 266900,
+          "members": 68,
+          "numbers_ns": 64500,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 81500
+        },
+        {
+          "bytes": 26484,
+          "foreign": 20,
+          "lookup_ns": 227200,
+          "members": 68,
+          "numbers_ns": 49900,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 72600
+        },
+        {
+          "bytes": 26484,
+          "foreign": 20,
+          "lookup_ns": 358900,
+          "members": 68,
+          "numbers_ns": 62400,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 121200
+        },
+        {
+          "bytes": 26482,
+          "foreign": 20,
+          "lookup_ns": 302300,
+          "members": 68,
+          "numbers_ns": 54800,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 94500
+        },
+        {
+          "bytes": 26484,
+          "foreign": 20,
+          "lookup_ns": 374500,
+          "members": 68,
+          "numbers_ns": 57000,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 109000
+        },
+        {
+          "bytes": 26482,
+          "foreign": 20,
+          "lookup_ns": 431400,
+          "members": 68,
+          "numbers_ns": 70300,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 107200
+        },
+        {
+          "bytes": 26484,
+          "foreign": 20,
+          "lookup_ns": 290900,
+          "members": 68,
+          "numbers_ns": 52300,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 97700
+        },
+        {
+          "bytes": 26482,
+          "foreign": 20,
+          "lookup_ns": 271600,
+          "members": 68,
+          "numbers_ns": 57600,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 87400
+        },
+        {
+          "bytes": 26482,
+          "foreign": 20,
+          "lookup_ns": 247800,
+          "members": 68,
+          "numbers_ns": 52500,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 70800
+        },
+        {
+          "bytes": 30413,
+          "foreign": 19,
+          "lookup_ns": 294100,
+          "members": 73,
+          "numbers_ns": 56800,
+          "passed": true,
+          "type": "PythonImportedMemberResolution",
+          "vector_ns": 94100
+        },
+        {
+          "bytes": 26484,
+          "foreign": 20,
+          "lookup_ns": 268300,
+          "members": 68,
+          "numbers_ns": 50100,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 81900
+        },
+        {
+          "bytes": 26484,
+          "foreign": 20,
+          "lookup_ns": 247600,
+          "members": 68,
+          "numbers_ns": 55500,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 72700
+        },
+        {
+          "bytes": 26483,
+          "foreign": 20,
+          "lookup_ns": 234500,
+          "members": 68,
+          "numbers_ns": 52300,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 73100
+        },
+        {
+          "bytes": 26484,
+          "foreign": 20,
+          "lookup_ns": 290300,
+          "members": 68,
+          "numbers_ns": 70700,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 81100
+        },
+        {
+          "bytes": 25019,
+          "foreign": 20,
+          "lookup_ns": 241600,
+          "members": 64,
+          "numbers_ns": 59500,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 62300
+        },
+        {
+          "bytes": 25019,
+          "foreign": 20,
+          "lookup_ns": 245000,
+          "members": 64,
+          "numbers_ns": 49000,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 77500
+        },
+        {
+          "bytes": 25017,
+          "foreign": 20,
+          "lookup_ns": 432000,
+          "members": 64,
+          "numbers_ns": 60300,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 229800
+        },
+        {
+          "bytes": 25017,
+          "foreign": 20,
+          "lookup_ns": 257100,
+          "members": 64,
+          "numbers_ns": 53400,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 74500
+        },
+        {
+          "bytes": 25019,
+          "foreign": 20,
+          "lookup_ns": 394100,
+          "members": 64,
+          "numbers_ns": 111400,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 90300
+        },
+        {
+          "bytes": 25019,
+          "foreign": 20,
+          "lookup_ns": 279700,
+          "members": 64,
+          "numbers_ns": 54600,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 98900
+        },
+        {
+          "bytes": 25019,
+          "foreign": 20,
+          "lookup_ns": 273800,
+          "members": 64,
+          "numbers_ns": 55800,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 79700
+        },
+        {
+          "bytes": 25019,
+          "foreign": 20,
+          "lookup_ns": 308900,
+          "members": 64,
+          "numbers_ns": 56400,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 93800
+        },
+        {
+          "bytes": 25017,
+          "foreign": 20,
+          "lookup_ns": 290000,
+          "members": 64,
+          "numbers_ns": 60200,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 103200
+        },
+        {
+          "bytes": 25019,
+          "foreign": 20,
+          "lookup_ns": 258900,
+          "members": 64,
+          "numbers_ns": 54200,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 81200
+        },
+        {
+          "bytes": 25019,
+          "foreign": 20,
+          "lookup_ns": 239700,
+          "members": 64,
+          "numbers_ns": 51900,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 72500
+        },
+        {
+          "bytes": 25019,
+          "foreign": 20,
+          "lookup_ns": 263000,
+          "members": 64,
+          "numbers_ns": 54400,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 74200
+        },
+        {
+          "bytes": 25017,
+          "foreign": 20,
+          "lookup_ns": 286100,
+          "members": 64,
+          "numbers_ns": 62100,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 80500
+        },
+        {
+          "bytes": 25018,
+          "foreign": 20,
+          "lookup_ns": 283900,
+          "members": 64,
+          "numbers_ns": 69900,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 98300
+        },
+        {
+          "bytes": 25018,
+          "foreign": 20,
+          "lookup_ns": 256400,
+          "members": 64,
+          "numbers_ns": 56900,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 67500
+        },
+        {
+          "bytes": 23001,
+          "foreign": 11,
+          "lookup_ns": 315400,
+          "members": 66,
+          "numbers_ns": 84500,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 98300
+        },
+        {
+          "bytes": 27690,
+          "foreign": 15,
+          "lookup_ns": 765700,
+          "members": 80,
+          "numbers_ns": 84900,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 79900
+        },
+        {
+          "bytes": 27209,
+          "foreign": 15,
+          "lookup_ns": 310600,
+          "members": 79,
+          "numbers_ns": 65400,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 100100
+        },
+        {
+          "bytes": 38295,
+          "foreign": 20,
+          "lookup_ns": 422400,
+          "members": 100,
+          "numbers_ns": 122700,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 120200
+        },
+        {
+          "bytes": 27094,
+          "foreign": 20,
+          "lookup_ns": 250100,
+          "members": 74,
+          "numbers_ns": 76000,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 56500
+        },
+        {
+          "bytes": 27290,
+          "foreign": 20,
+          "lookup_ns": 313800,
+          "members": 72,
+          "numbers_ns": 70100,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 120100
+        },
+        {
+          "bytes": 27291,
+          "foreign": 20,
+          "lookup_ns": 235200,
+          "members": 72,
+          "numbers_ns": 49200,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 71900
+        },
+        {
+          "bytes": 27290,
+          "foreign": 20,
+          "lookup_ns": 253600,
+          "members": 72,
+          "numbers_ns": 61200,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 80400
+        },
+        {
+          "bytes": 27290,
+          "foreign": 20,
+          "lookup_ns": 251500,
+          "members": 72,
+          "numbers_ns": 55500,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 69800
+        },
+        {
+          "bytes": 27291,
+          "foreign": 20,
+          "lookup_ns": 294500,
+          "members": 72,
+          "numbers_ns": 53100,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 99400
+        },
+        {
+          "bytes": 26493,
+          "foreign": 20,
+          "lookup_ns": 255200,
+          "members": 68,
+          "numbers_ns": 58700,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 77900
+        },
+        {
+          "bytes": 32261,
+          "foreign": 20,
+          "lookup_ns": 356300,
+          "members": 79,
+          "numbers_ns": 63700,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 119600
+        },
+        {
+          "bytes": 50518,
+          "foreign": 20,
+          "lookup_ns": 306400,
+          "members": 118,
+          "numbers_ns": 75500,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 86900
+        },
+        {
+          "bytes": 50612,
+          "foreign": 20,
+          "lookup_ns": 286100,
+          "members": 118,
+          "numbers_ns": 69000,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 82600
+        },
+        {
+          "bytes": 50676,
+          "foreign": 20,
+          "lookup_ns": 484000,
+          "members": 118,
+          "numbers_ns": 96900,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 141500
+        },
+        {
+          "bytes": 50676,
+          "foreign": 20,
+          "lookup_ns": 340300,
+          "members": 118,
+          "numbers_ns": 89100,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 105300
+        },
+        {
+          "bytes": 50677,
+          "foreign": 20,
+          "lookup_ns": 311900,
+          "members": 118,
+          "numbers_ns": 74700,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 92500
+        },
+        {
+          "bytes": 50675,
+          "foreign": 20,
+          "lookup_ns": 313400,
+          "members": 118,
+          "numbers_ns": 66400,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 92400
+        },
+        {
+          "bytes": 25725,
+          "foreign": 11,
+          "lookup_ns": 270300,
+          "members": 74,
+          "numbers_ns": 68500,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 79800
+        },
+        {
+          "bytes": 29968,
+          "foreign": 15,
+          "lookup_ns": 275500,
+          "members": 87,
+          "numbers_ns": 59400,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 87900
+        },
+        {
+          "bytes": 25725,
+          "foreign": 11,
+          "lookup_ns": 142300,
+          "members": 74,
+          "numbers_ns": 39000,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 50900
+        },
+        {
+          "bytes": 50687,
+          "foreign": 20,
+          "lookup_ns": 394900,
+          "members": 118,
+          "numbers_ns": 91000,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 123700
+        },
+        {
+          "bytes": 50685,
+          "foreign": 20,
+          "lookup_ns": 327700,
+          "members": 118,
+          "numbers_ns": 93600,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 80400
+        },
+        {
+          "bytes": 50686,
+          "foreign": 20,
+          "lookup_ns": 322900,
+          "members": 118,
+          "numbers_ns": 72200,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 101100
+        },
+        {
+          "bytes": 50687,
+          "foreign": 20,
+          "lookup_ns": 293800,
+          "members": 118,
+          "numbers_ns": 75800,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 81100
+        },
+        {
+          "bytes": 50686,
+          "foreign": 20,
+          "lookup_ns": 302700,
+          "members": 118,
+          "numbers_ns": 79900,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 84300
+        },
+        {
+          "bytes": 50687,
+          "foreign": 20,
+          "lookup_ns": 288900,
+          "members": 118,
+          "numbers_ns": 72800,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 83100
+        },
+        {
+          "bytes": 48938,
+          "foreign": 11,
+          "lookup_ns": 354000,
+          "members": 138,
+          "numbers_ns": 78500,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 106900
+        },
+        {
+          "bytes": 50682,
+          "foreign": 20,
+          "lookup_ns": 310100,
+          "members": 118,
+          "numbers_ns": 93600,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 81100
+        },
+        {
+          "bytes": 50683,
+          "foreign": 20,
+          "lookup_ns": 327800,
+          "members": 118,
+          "numbers_ns": 74000,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 96900
+        },
+        {
+          "bytes": 50683,
+          "foreign": 20,
+          "lookup_ns": 306000,
+          "members": 118,
+          "numbers_ns": 73300,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 87900
+        },
+        {
+          "bytes": 50683,
+          "foreign": 20,
+          "lookup_ns": 332200,
+          "members": 118,
+          "numbers_ns": 86600,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 82300
+        },
+        {
+          "bytes": 23073,
+          "foreign": 11,
+          "lookup_ns": 289800,
+          "members": 66,
+          "numbers_ns": 53200,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 96500
+        },
+        {
+          "bytes": 27771,
+          "foreign": 15,
+          "lookup_ns": 262800,
+          "members": 80,
+          "numbers_ns": 55300,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 82000
+        },
+        {
+          "bytes": 20129,
+          "foreign": 10,
+          "lookup_ns": 320600,
+          "members": 68,
+          "numbers_ns": 82900,
+          "passed": true,
+          "type": "PythonModuleDeclarationLookup",
+          "vector_ns": 109900
+        },
+        {
+          "bytes": 24355,
+          "foreign": 14,
+          "lookup_ns": 299600,
+          "members": 81,
+          "numbers_ns": 99400,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 71400
+        },
+        {
+          "bytes": 25205,
+          "foreign": 14,
+          "lookup_ns": 301800,
+          "members": 83,
+          "numbers_ns": 68500,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 92100
+        },
+        {
+          "bytes": 24365,
+          "foreign": 14,
+          "lookup_ns": 240700,
+          "members": 81,
+          "numbers_ns": 52900,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 73000
+        },
+        {
+          "bytes": 30462,
+          "foreign": 15,
+          "lookup_ns": 353400,
+          "members": 88,
+          "numbers_ns": 75300,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 134900
+        },
+        {
+          "bytes": 24833,
+          "foreign": 14,
+          "lookup_ns": 343900,
+          "members": 82,
+          "numbers_ns": 60600,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 130400
+        },
+        {
+          "bytes": 24823,
+          "foreign": 14,
+          "lookup_ns": 288500,
+          "members": 82,
+          "numbers_ns": 60200,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 89500
+        },
+        {
+          "bytes": 24843,
+          "foreign": 14,
+          "lookup_ns": 291800,
+          "members": 82,
+          "numbers_ns": 73300,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 99400
+        },
+        {
+          "bytes": 50691,
+          "foreign": 20,
+          "lookup_ns": 316900,
+          "members": 118,
+          "numbers_ns": 76700,
+          "passed": true,
+          "type": "PythonDeclarationReferenceKnowledge",
+          "vector_ns": 85600
+        }
+      ],
+      "block_hits": 77,
+      "certificate_times_ns": {
+        "certificate": 15696336800
+      },
+      "correspond_ns": 1278663700,
+      "identity": "query:Q1:definitions",
+      "json_decodes": 4306,
+      "pass": true,
+      "recursive_visits": 7916,
+      "unique_nodes": 626781
+    }
+  ],
+  "scope": "REPRESENTATIVE_AUTHENTICATION_ONLY",
+  "status": "PASS",
+  "unique_nodes": 626781
+}

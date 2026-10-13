@@ -1,0 +1,164 @@
+# Copyright (c) 2026
+# ruff: noqa: ANN401, C901, PLR0911, PLR0912, PLR0915, PLR2004 -- exact graph boundary
+"""Authenticate unique node content once and each envelope's ordinal bindings.
+
+Canonical node templates are retained only after checking native type, ordered
+fields/items and exact primitive values. Reuse still checks every canonical byte
+and every local reference target. No retained output is used as semantic authority.
+"""
+
+from __future__ import annotations
+
+import json
+import re
+import time
+from dataclasses import is_dataclass
+from typing import Any
+
+
+class Correspondence:
+    """Invocation-local authenticated native content and per-envelope references."""
+
+    def __init__(self, memo: Any) -> None:
+        self.memo = memo
+        self.nodes: dict[int, Any] = {}
+        self.hits = 0
+        self.refs = re.compile(rb'"ref": ([0-9]+)')
+        self.times: dict[str, int] = {}
+
+    def authenticate(self, root: Any, raw: bytes) -> bool:
+        began = time.perf_counter_ns()
+        starts = [m.start() + 1 for m in re.finditer(rb"\n    \{\n", raw)]
+        ends = [m.end() for m in re.finditer(rb"\n    \}", raw)]
+        if len(starts) != len(ends):
+            return False
+        tail = raw.rfind(b'\n  "root":')
+        if tail < 0:
+            return False
+        envelope = self.memo.parse(b"{" + raw[tail:])
+        if envelope.get("schema") != "case-0012-native-graph-v1" or set(envelope) != {
+            "root",
+            "schema",
+        }:
+            return False
+        if root is None or type(root) in (bool, int, float, str):
+            return not starts and self.primitive(root, envelope["root"])
+        if envelope["root"] != {"ref": 0}:
+            return False
+        self.times["scan"] = time.perf_counter_ns() - began
+        bulk = None
+        if len(self.nodes) < 10000 and len(starts) > 10000:
+            bulk = json.loads(raw)["nodes"]
+            self.memo.json_decodes += 1
+        seen: dict[int, int] = {}
+        stack = [root]
+        records: list[Any] = []
+        start = time.perf_counter_ns()
+        while stack:
+            item = stack.pop()
+            if id(item) in seen:
+                continue
+            ordinal = len(records)
+            if ordinal >= len(starts):
+                return False
+            seen[id(item)] = ordinal
+            cached = self.nodes.get(id(item))
+            mutable = isinstance(item, (dict, list)) or (
+                is_dataclass(item)
+                and not vars(type(item))["__dataclass_params__"].frozen
+            )
+            if cached is None or mutable:
+                node_raw = raw[starts[ordinal] : ends[ordinal]]
+                node = bulk[ordinal] if bulk is not None else self.memo.parse(node_raw)
+                cached = self.check(item, node, node_raw)
+                if cached is None:
+                    return False
+                self.memo.recursive_visits += 1
+                self.memo.unique_nodes[id(item)] = item
+                if not mutable:
+                    self.nodes[id(item)] = cached
+            else:
+                self.hits += 1
+            records.append(cached)
+            stack.extend(reversed(cached[1]))
+        if len(records) != len(starts):
+            return False
+        self.times["traverse"] = time.perf_counter_ns() - start
+        start = time.perf_counter_ns()
+        body = raw[starts[0] : ends[-1]]
+        expected = b",\n".join(row[3] for row in records)
+        if self.refs.sub(b'"ref": @', body) != expected:
+            return False
+        self.times["skeleton"] = time.perf_counter_ns() - start
+        start = time.perf_counter_ns()
+        ordinals = [str(i).encode("ascii") for i in range(len(records))]
+        wanted = [ordinals[seen[id(child)]] for row in records for child in row[2]]
+        if self.refs.findall(body) != wanted:
+            return False
+        self.times["references"] = time.perf_counter_ns() - start
+        self.memo.nodes_checked += len(records)
+        return True
+
+    @staticmethod
+    def primitive(value: Any, expected: Any) -> bool:
+        return type(value) is type(expected) and (
+            value.hex() == expected.hex()
+            if isinstance(value, float)
+            else value == expected
+        )
+
+    def check(self, item: Any, node: Any, raw: bytes) -> Any:
+        kind, value = self.memo.description(item)
+        key = "items" if kind == "mapping" else kind
+        if (
+            set(node) != {"type", key}
+            or node["type"] != type(item).__module__ + "." + type(item).__qualname__
+        ):
+            return None
+        children: list[Any] = []
+        ordered: list[Any] = []
+
+        def match(value: Any, expected: Any) -> bool:
+            if value is None or type(value) in (bool, int, float, str):
+                return self.primitive(value, expected)
+            if (
+                not isinstance(expected, dict)
+                or set(expected) != {"ref"}
+                or type(expected["ref"]) is not int
+                or expected["ref"] < 0
+            ):
+                return False
+            children.append(value)
+            return True
+
+        actual = node[key]
+        if kind == "fields":
+            if set(actual) != {name for name, _ in value} or not all(
+                match(v, actual[k]) for k, v in value
+            ):
+                return None
+            ordered = [
+                v
+                for _, v in sorted(value)
+                if v is not None and type(v) not in (bool, int, float, str)
+            ]
+        elif kind == "mapping":
+            if len(value) != len(actual) or not all(
+                len(pair) == 2 and match(k, pair[0]) and match(v, pair[1])
+                for (k, v), pair in zip(value, actual, strict=True)
+            ):
+                return None
+            ordered = children
+        elif kind == "items":
+            if len(value) != len(actual) or not all(
+                match(v, other) for v, other in zip(value, actual, strict=True)
+            ):
+                return None
+            ordered = children
+        elif value != actual:
+            return None
+        # The native encoder emits scalar Identity/Path/Enum values in this
+        # workload. Unsupported reference-shaped encoder values fail closed.
+        if kind == "value" and self.refs.search(raw):
+            return None
+        return (item, tuple(children), tuple(ordered), self.refs.sub(b'"ref": @', raw))
