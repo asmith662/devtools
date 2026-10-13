@@ -1,0 +1,101 @@
+{
+  "ablation": {
+    "empty_reference_validation_ablations": 3,
+    "primary_annotation_passes": 3,
+    "ranking_side_effect": "NONE",
+    "status": "PASS"
+  },
+  "case": "0017",
+  "confirmation_reserve_access": "NO",
+  "execution": "case-0017-stage-b-1",
+  "frame": {
+    "corpus_id": "32d70eb6fef4210e2ef4ccb48486bab51357e4f84e277c3e2b84f17bd89ddf91",
+    "python_resource_count": 262,
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 357,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_head": "71e938d809d794f2f07dd30cb772f1e9bc89c9d3",
+    "source_tree": "d6c9398be0bf36e16d6bf57a65f16d5f513eab00"
+  },
+  "gold_access": "NO",
+  "graph_only_admissions": 0,
+  "holdout_access": "NO",
+  "interpretation_gaps": [],
+  "ppr_executions": 0,
+  "queries": [
+    {
+      "a_results": 96,
+      "local_pairs": 2,
+      "obligation": "O1",
+      "qualifying_occurrences": 3,
+      "status": "PASS",
+      "support_source_target_pairs": 3,
+      "supported_targets": 2,
+      "timings": {
+        "annotation_construction_ns": 887200,
+        "canonical_a_ns": 20173900,
+        "complete_online_equivalent_ns": 107019100,
+        "predecessor_pairs_ns": 44500,
+        "support_projection_ns": 85913500
+      }
+    },
+    {
+      "a_results": 124,
+      "local_pairs": 5,
+      "obligation": "O2",
+      "qualifying_occurrences": 17,
+      "status": "PASS",
+      "support_source_target_pairs": 5,
+      "supported_targets": 5,
+      "timings": {
+        "annotation_construction_ns": 1430000,
+        "canonical_a_ns": 21624100,
+        "complete_online_equivalent_ns": 106710900,
+        "predecessor_pairs_ns": 46000,
+        "support_projection_ns": 83610800
+      }
+    },
+    {
+      "a_results": 184,
+      "local_pairs": 6,
+      "obligation": "O3",
+      "qualifying_occurrences": 64,
+      "status": "PASS",
+      "support_source_target_pairs": 8,
+      "supported_targets": 6,
+      "timings": {
+        "annotation_construction_ns": 1498100,
+        "canonical_a_ns": 18243000,
+        "complete_online_equivalent_ns": 112298900,
+        "predecessor_pairs_ns": 46600,
+        "support_projection_ns": 92511200
+      }
+    }
+  ],
+  "rank_modifications": 0,
+  "ri": {
+    "assessments": 24110,
+    "cross_resource_references": 431,
+    "direct_cross_resource_pairs": 80,
+    "outcomes": {
+      "member-unresolved": 151,
+      "method-unresolved": 78,
+      "module-unresolved": 1493,
+      "resolved": 1718,
+      "shadowed-binding": 10304,
+      "target-not-supported-declaration": 2270,
+      "unresolved-binding": 1862,
+      "unsupported-expression": 545,
+      "unsupported-receiver": 635,
+      "unsupported-scope": 5054
+    },
+    "positive_references": 1718,
+    "resources_derived": 262,
+    "self_references": 1287
+  },
+  "rrf_executions": 0,
+  "status": "CAPTURED; NO GOLD; NO EFFECTIVENESS INTERPRETATION",
+  "task": "Implement repository lexical statistics and inverted index\n"
+}

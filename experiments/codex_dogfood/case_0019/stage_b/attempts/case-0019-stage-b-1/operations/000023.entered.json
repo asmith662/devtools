@@ -1,0 +1,52 @@
+{
+  "event": 45,
+  "execution": "case-0019-stage-b-1",
+  "frame": {
+    "corpus_id": "eb20830bed8817e886f21cae6ceffbb15da7dc1f6ccae8667cf2208a6b659ef6",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "6781f26ecb733009de8b1e8427211f74ed7cd8f36ad8c07fe0e7595af145e028"
+  },
+  "input_sha256": "8d4ba1c64c0e473db644ddd0797983dfa2a99994bf5f299a02e2e85a0d943490",
+  "operation": {
+    "identity": "ri:references:src/devtools/context/__init__.py",
+    "inputs": {
+      "content_identity": "7eae64ca4b680bffcfd3a21719f3d31dff0c88b11386a05d2f19514255c0459d",
+      "source": "src/devtools/context/__init__.py"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "lexical:fields",
+      "lexical:index",
+      "ri:module-universe",
+      "ri:references:src/devtools/__init__.py",
+      "ri:references:src/devtools/agents/__init__.py",
+      "ri:references:src/devtools/agents/models.py",
+      "ri:references:src/devtools/agents/protocols.py",
+      "ri:references:src/devtools/codex/__init__.py",
+      "ri:references:src/devtools/codex/agent.py",
+      "ri:references:src/devtools/codex/errors.py",
+      "ri:references:src/devtools/codex/models.py",
+      "ri:references:src/devtools/codex/parsing.py",
+      "ri:references:src/devtools/commands/__init__.py",
+      "ri:references:src/devtools/commands/errors.py",
+      "ri:references:src/devtools/commands/events.py",
+      "ri:references:src/devtools/commands/execution.py",
+      "ri:references:src/devtools/commands/handle.py",
+      "ri:references:src/devtools/commands/models/__init__.py",
+      "ri:references:src/devtools/commands/models/command.py",
+      "ri:references:src/devtools/commands/models/output.py",
+      "ri:references:src/devtools/commands/models/result.py"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "223e7c4b73820d99a682a52069cb6299a74667defdcc2edb287e32870ea40d86",
+  "runtime_identity": {
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0"
+  },
+  "sequence": 23,
+  "state": "ENTERED"
+}

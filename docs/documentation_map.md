@@ -599,4 +599,8 @@ execution/proof boundaries. Its [complete Stage A review](../experiments/structu
 binds Cases 0017–0019 to the first three public historical tasks and exact parent
 observations. Candidate membership, BM25 scores and ordering remain unchanged;
 no structural reranking or production Localization policy is authorized. Child
-implementations remain restricted, and no capture or adjudication has run.
+implementations remain restricted. The subsequent
+[Stage B cohort capture](../experiments/structural_discrimination/stage_b/COHORT_REVIEW.md)
+owns the three exactly-once mechanical captures and completion proofs. Its
+normal verifier authenticates sealed canonical surfaces without another deep
+native replay. No semantic adjudication or effectiveness evaluation has run.

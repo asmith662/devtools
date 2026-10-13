@@ -1,0 +1,368 @@
+# Cohort treatment capture
+
+Mechanical only; no semantic labels or usefulness inference.
+
+```json
+{
+  "cases": [
+    {
+      "completion_proof_sha256": "4107324b4506f133eb461a8768ed862e9fd6db0e100e71b9610521b2aea3fff1",
+      "deep_correspondence_executions": 0,
+      "integrity_sha256": "bdd7161a2174bf51e79d3c8f20b31f6d12559f9d8e1c53ef23aa5029306b7b57",
+      "native_archives_decoded": 0,
+      "proof": "CAPTURE_TIME_DEEP_PROOF_AUTHENTICATED",
+      "status": "PASS",
+      "summary": {
+        "ablation": {
+          "empty_reference_validation_ablations": 3,
+          "primary_annotation_passes": 3,
+          "ranking_side_effect": "NONE",
+          "status": "PASS"
+        },
+        "case": "0017",
+        "confirmation_reserve_access": "NO",
+        "execution": "case-0017-stage-b-1",
+        "frame": {
+          "corpus_id": "32d70eb6fef4210e2ef4ccb48486bab51357e4f84e277c3e2b84f17bd89ddf91",
+          "python_resource_count": 262,
+          "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+          "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+          "resource_count": 357,
+          "resource_order": "canonical resource address ascending",
+          "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+          "source_head": "71e938d809d794f2f07dd30cb772f1e9bc89c9d3",
+          "source_tree": "d6c9398be0bf36e16d6bf57a65f16d5f513eab00"
+        },
+        "gold_access": "NO",
+        "graph_only_admissions": 0,
+        "holdout_access": "NO",
+        "interpretation_gaps": [],
+        "ppr_executions": 0,
+        "queries": [
+          {
+            "a_results": 96,
+            "local_pairs": 2,
+            "obligation": "O1",
+            "qualifying_occurrences": 3,
+            "status": "PASS",
+            "support_source_target_pairs": 3,
+            "supported_targets": 2,
+            "timings": {
+              "annotation_construction_ns": 887200,
+              "canonical_a_ns": 20173900,
+              "complete_online_equivalent_ns": 107019100,
+              "predecessor_pairs_ns": 44500,
+              "support_projection_ns": 85913500
+            }
+          },
+          {
+            "a_results": 124,
+            "local_pairs": 5,
+            "obligation": "O2",
+            "qualifying_occurrences": 17,
+            "status": "PASS",
+            "support_source_target_pairs": 5,
+            "supported_targets": 5,
+            "timings": {
+              "annotation_construction_ns": 1430000,
+              "canonical_a_ns": 21624100,
+              "complete_online_equivalent_ns": 106710900,
+              "predecessor_pairs_ns": 46000,
+              "support_projection_ns": 83610800
+            }
+          },
+          {
+            "a_results": 184,
+            "local_pairs": 6,
+            "obligation": "O3",
+            "qualifying_occurrences": 64,
+            "status": "PASS",
+            "support_source_target_pairs": 8,
+            "supported_targets": 6,
+            "timings": {
+              "annotation_construction_ns": 1498100,
+              "canonical_a_ns": 18243000,
+              "complete_online_equivalent_ns": 112298900,
+              "predecessor_pairs_ns": 46600,
+              "support_projection_ns": 92511200
+            }
+          }
+        ],
+        "rank_modifications": 0,
+        "ri": {
+          "assessments": 24110,
+          "cross_resource_references": 431,
+          "direct_cross_resource_pairs": 80,
+          "outcomes": {
+            "member-unresolved": 151,
+            "method-unresolved": 78,
+            "module-unresolved": 1493,
+            "resolved": 1718,
+            "shadowed-binding": 10304,
+            "target-not-supported-declaration": 2270,
+            "unresolved-binding": 1862,
+            "unsupported-expression": 545,
+            "unsupported-receiver": 635,
+            "unsupported-scope": 5054
+          },
+          "positive_references": 1718,
+          "resources_derived": 262,
+          "self_references": 1287
+        },
+        "rrf_executions": 0,
+        "status": "CAPTURED; NO GOLD; NO EFFECTIVENESS INTERPRETATION",
+        "task": "Implement repository lexical statistics and inverted index\n"
+      }
+    },
+    {
+      "completion_proof_sha256": "b6b93b0e142c3ea6024506b1575d94a161b890a5d410726ea48458d796b43987",
+      "deep_correspondence_executions": 0,
+      "integrity_sha256": "091bbcd51987345c7a03f462854873180a7ad79d9624f47708797e1d999f4e06",
+      "native_archives_decoded": 0,
+      "proof": "CAPTURE_TIME_DEEP_PROOF_AUTHENTICATED",
+      "status": "PASS",
+      "summary": {
+        "ablation": {
+          "empty_reference_validation_ablations": 3,
+          "primary_annotation_passes": 3,
+          "ranking_side_effect": "NONE",
+          "status": "PASS"
+        },
+        "case": "0018",
+        "confirmation_reserve_access": "NO",
+        "execution": "case-0018-stage-b-1",
+        "frame": {
+          "corpus_id": "7ce2a9e4a048fcb3d1a4e8c625be8c951a84dc0c5cac70809c6427a8bb50eb33",
+          "python_resource_count": 287,
+          "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+          "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+          "resource_count": 382,
+          "resource_order": "canonical resource address ascending",
+          "snapshot_id": "bf0f8d2a30e2be56053a2098a4800ad3d43a70c41707b618ad36c197b6b6b827",
+          "source_head": "d493c26bbb1866cb9e5ead8f23f02aac3a7f12b9",
+          "source_tree": "be89449e1f2c89c307130868aa51cf9e717a2f49"
+        },
+        "gold_access": "NO",
+        "graph_only_admissions": 0,
+        "holdout_access": "NO",
+        "interpretation_gaps": [],
+        "ppr_executions": 0,
+        "queries": [
+          {
+            "a_results": 290,
+            "local_pairs": 33,
+            "obligation": "O1",
+            "qualifying_occurrences": 370,
+            "status": "PASS",
+            "support_source_target_pairs": 65,
+            "supported_targets": 33,
+            "timings": {
+              "annotation_construction_ns": 4171400,
+              "canonical_a_ns": 27441200,
+              "complete_online_equivalent_ns": 123288600,
+              "predecessor_pairs_ns": 122400,
+              "support_projection_ns": 91553600
+            }
+          },
+          {
+            "a_results": 296,
+            "local_pairs": 27,
+            "obligation": "O2",
+            "qualifying_occurrences": 309,
+            "status": "PASS",
+            "support_source_target_pairs": 53,
+            "supported_targets": 27,
+            "timings": {
+              "annotation_construction_ns": 5877000,
+              "canonical_a_ns": 26270100,
+              "complete_online_equivalent_ns": 143145600,
+              "predecessor_pairs_ns": 166900,
+              "support_projection_ns": 110831600
+            }
+          },
+          {
+            "a_results": 318,
+            "local_pairs": 36,
+            "obligation": "O3",
+            "qualifying_occurrences": 392,
+            "status": "PASS",
+            "support_source_target_pairs": 70,
+            "supported_targets": 36,
+            "timings": {
+              "annotation_construction_ns": 5228300,
+              "canonical_a_ns": 13981100,
+              "complete_online_equivalent_ns": 122940700,
+              "predecessor_pairs_ns": 226900,
+              "support_projection_ns": 103504400
+            }
+          }
+        ],
+        "rank_modifications": 0,
+        "ri": {
+          "assessments": 26744,
+          "cross_resource_references": 645,
+          "direct_cross_resource_pairs": 117,
+          "outcomes": {
+            "member-unresolved": 151,
+            "method-unresolved": 92,
+            "module-unresolved": 1567,
+            "resolved": 2061,
+            "shadowed-binding": 11324,
+            "target-not-supported-declaration": 2354,
+            "unresolved-binding": 2083,
+            "unsupported-expression": 615,
+            "unsupported-receiver": 675,
+            "unsupported-scope": 5822
+          },
+          "positive_references": 2061,
+          "resources_derived": 287,
+          "self_references": 1416
+        },
+        "rrf_executions": 0,
+        "status": "CAPTURED; NO GOLD; NO EFFECTIVENESS INTERPRETATION",
+        "task": "Implement qualified repository import relations\n"
+      }
+    },
+    {
+      "completion_proof_sha256": "0f6ce39604a92d7e8c36ab911828615bfa5a1ae6521aea3938e81c77ec6705fa",
+      "deep_correspondence_executions": 0,
+      "integrity_sha256": "3eb74719f76211bf1ca41932952c19f653874ee7d07bd4ff7ea32316fad8f6b0",
+      "native_archives_decoded": 0,
+      "proof": "CAPTURE_TIME_DEEP_PROOF_AUTHENTICATED",
+      "status": "PASS",
+      "summary": {
+        "ablation": {
+          "empty_reference_validation_ablations": 3,
+          "primary_annotation_passes": 3,
+          "ranking_side_effect": "NONE",
+          "status": "PASS"
+        },
+        "case": "0019",
+        "confirmation_reserve_access": "NO",
+        "execution": "case-0019-stage-b-1",
+        "frame": {
+          "corpus_id": "eb20830bed8817e886f21cae6ceffbb15da7dc1f6ccae8667cf2208a6b659ef6",
+          "python_resource_count": 182,
+          "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+          "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+          "resource_count": 222,
+          "resource_order": "canonical resource address ascending",
+          "snapshot_id": "6781f26ecb733009de8b1e8427211f74ed7cd8f36ad8c07fe0e7595af145e028",
+          "source_head": "2465af00dc305a6c2a15a90455bf09e62e428e39",
+          "source_tree": "12a504a2106467d8b32fc062d15923c7b9250fd9"
+        },
+        "gold_access": "NO",
+        "graph_only_admissions": 0,
+        "holdout_access": "NO",
+        "interpretation_gaps": [
+          "The task/parent do not specify the provider option spelling, value domain, provider-version applicability or default. These are not invented from child knowledge. The freeze evaluates repository integration evidence for the stated control; Stage C must retain any residual task/provider-contract gap rather than assume complete task satisfaction."
+        ],
+        "ppr_executions": 0,
+        "queries": [
+          {
+            "a_results": 47,
+            "local_pairs": 2,
+            "obligation": "O1",
+            "qualifying_occurrences": 26,
+            "status": "PASS",
+            "support_source_target_pairs": 2,
+            "supported_targets": 2,
+            "timings": {
+              "annotation_construction_ns": 603300,
+              "canonical_a_ns": 10808300,
+              "complete_online_equivalent_ns": 44725300,
+              "predecessor_pairs_ns": 37000,
+              "support_projection_ns": 33276700
+            }
+          },
+          {
+            "a_results": 75,
+            "local_pairs": 6,
+            "obligation": "O2",
+            "qualifying_occurrences": 57,
+            "status": "PASS",
+            "support_source_target_pairs": 7,
+            "supported_targets": 6,
+            "timings": {
+              "annotation_construction_ns": 909500,
+              "canonical_a_ns": 18971000,
+              "complete_online_equivalent_ns": 51230600,
+              "predecessor_pairs_ns": 47900,
+              "support_projection_ns": 31302200
+            }
+          },
+          {
+            "a_results": 130,
+            "local_pairs": 4,
+            "obligation": "O3",
+            "qualifying_occurrences": 43,
+            "status": "PASS",
+            "support_source_target_pairs": 5,
+            "supported_targets": 4,
+            "timings": {
+              "annotation_construction_ns": 1048800,
+              "canonical_a_ns": 12022500,
+              "complete_online_equivalent_ns": 49705600,
+              "predecessor_pairs_ns": 16800,
+              "support_projection_ns": 36617500
+            }
+          }
+        ],
+        "rank_modifications": 0,
+        "ri": {
+          "assessments": 15893,
+          "cross_resource_references": 328,
+          "direct_cross_resource_pairs": 64,
+          "outcomes": {
+            "member-unresolved": 71,
+            "method-unresolved": 55,
+            "module-unresolved": 1124,
+            "resolved": 1268,
+            "shadowed-binding": 6707,
+            "target-not-supported-declaration": 1724,
+            "unresolved-binding": 1179,
+            "unsupported-expression": 352,
+            "unsupported-receiver": 432,
+            "unsupported-scope": 2981
+          },
+          "positive_references": 1268,
+          "resources_derived": 182,
+          "self_references": 940
+        },
+        "rrf_executions": 0,
+        "status": "CAPTURED; NO GOLD; NO EFFECTIVENESS INTERPRETATION",
+        "task": "Add vLLM CUDA graph estimate control\n"
+      }
+    }
+  ],
+  "online_equivalent": {
+    "median_ns": 107019100,
+    "n": 9,
+    "p95_definition": "nearest rank; one scientific sample per obligation; mixed workload descriptive only",
+    "p95_ns": 143145600,
+    "samples_ns": [
+      107019100,
+      106710900,
+      112298900,
+      123288600,
+      143145600,
+      122940700,
+      44725300,
+      51230600,
+      49705600
+    ]
+  },
+  "stage_a_checkpoint": "48d896b16a992887236285b50e54b159c7c0bb1b",
+  "status": "ALL_THREE_CAPTURED; NO GOLD; NO SCIENTIFIC INTERPRETATION",
+  "totals": {
+    "a_candidate_occurrences": 1560,
+    "cross_resource_reference_occurrences": 1404,
+    "direct_cross_resource_pairs": 261,
+    "local_predecessor_pairs": 121,
+    "positive_native_references": 5047,
+    "qualifying_support_occurrences": 1281,
+    "support_source_target_pairs": 218,
+    "supported_target_occurrences": 121
+  }
+}
+```

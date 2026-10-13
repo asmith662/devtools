@@ -1,0 +1,101 @@
+{
+  "ablation": {
+    "empty_reference_validation_ablations": 3,
+    "primary_annotation_passes": 3,
+    "ranking_side_effect": "NONE",
+    "status": "PASS"
+  },
+  "case": "0018",
+  "confirmation_reserve_access": "NO",
+  "execution": "case-0018-stage-b-1",
+  "frame": {
+    "corpus_id": "7ce2a9e4a048fcb3d1a4e8c625be8c951a84dc0c5cac70809c6427a8bb50eb33",
+    "python_resource_count": 287,
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 382,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "bf0f8d2a30e2be56053a2098a4800ad3d43a70c41707b618ad36c197b6b6b827",
+    "source_head": "d493c26bbb1866cb9e5ead8f23f02aac3a7f12b9",
+    "source_tree": "be89449e1f2c89c307130868aa51cf9e717a2f49"
+  },
+  "gold_access": "NO",
+  "graph_only_admissions": 0,
+  "holdout_access": "NO",
+  "interpretation_gaps": [],
+  "ppr_executions": 0,
+  "queries": [
+    {
+      "a_results": 290,
+      "local_pairs": 33,
+      "obligation": "O1",
+      "qualifying_occurrences": 370,
+      "status": "PASS",
+      "support_source_target_pairs": 65,
+      "supported_targets": 33,
+      "timings": {
+        "annotation_construction_ns": 4171400,
+        "canonical_a_ns": 27441200,
+        "complete_online_equivalent_ns": 123288600,
+        "predecessor_pairs_ns": 122400,
+        "support_projection_ns": 91553600
+      }
+    },
+    {
+      "a_results": 296,
+      "local_pairs": 27,
+      "obligation": "O2",
+      "qualifying_occurrences": 309,
+      "status": "PASS",
+      "support_source_target_pairs": 53,
+      "supported_targets": 27,
+      "timings": {
+        "annotation_construction_ns": 5877000,
+        "canonical_a_ns": 26270100,
+        "complete_online_equivalent_ns": 143145600,
+        "predecessor_pairs_ns": 166900,
+        "support_projection_ns": 110831600
+      }
+    },
+    {
+      "a_results": 318,
+      "local_pairs": 36,
+      "obligation": "O3",
+      "qualifying_occurrences": 392,
+      "status": "PASS",
+      "support_source_target_pairs": 70,
+      "supported_targets": 36,
+      "timings": {
+        "annotation_construction_ns": 5228300,
+        "canonical_a_ns": 13981100,
+        "complete_online_equivalent_ns": 122940700,
+        "predecessor_pairs_ns": 226900,
+        "support_projection_ns": 103504400
+      }
+    }
+  ],
+  "rank_modifications": 0,
+  "ri": {
+    "assessments": 26744,
+    "cross_resource_references": 645,
+    "direct_cross_resource_pairs": 117,
+    "outcomes": {
+      "member-unresolved": 151,
+      "method-unresolved": 92,
+      "module-unresolved": 1567,
+      "resolved": 2061,
+      "shadowed-binding": 11324,
+      "target-not-supported-declaration": 2354,
+      "unresolved-binding": 2083,
+      "unsupported-expression": 615,
+      "unsupported-receiver": 675,
+      "unsupported-scope": 5822
+    },
+    "positive_references": 2061,
+    "resources_derived": 287,
+    "self_references": 1416
+  },
+  "rrf_executions": 0,
+  "status": "CAPTURED; NO GOLD; NO EFFECTIVENESS INTERPRETATION",
+  "task": "Implement qualified repository import relations\n"
+}

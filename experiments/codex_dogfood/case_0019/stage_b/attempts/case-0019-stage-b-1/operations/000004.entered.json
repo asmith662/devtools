@@ -1,0 +1,36 @@
+{
+  "event": 7,
+  "execution": "case-0019-stage-b-1",
+  "frame": {
+    "corpus_id": "eb20830bed8817e886f21cae6ceffbb15da7dc1f6ccae8667cf2208a6b659ef6",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "6781f26ecb733009de8b1e8427211f74ed7cd8f36ad8c07fe0e7595af145e028"
+  },
+  "input_sha256": "3b2a4819ab782ff199d03cc4c9f0ca782c27971548a2548f73208c44af739d6d",
+  "operation": {
+    "identity": "ri:module-universe",
+    "inputs": {
+      "root_preference": false,
+      "roots": [
+        "src",
+        "."
+      ]
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "lexical:fields",
+      "lexical:index"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "48438a68917d62698311d9cc6a31a8a7acbbe8a3ab2d652c66c0d6041baafa8d",
+  "runtime_identity": {
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0"
+  },
+  "sequence": 4,
+  "state": "ENTERED"
+}

@@ -1,0 +1,41 @@
+{
+  "event": 23,
+  "execution": "case-0018-stage-b-1",
+  "frame": {
+    "corpus_id": "7ce2a9e4a048fcb3d1a4e8c625be8c951a84dc0c5cac70809c6427a8bb50eb33",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "bf0f8d2a30e2be56053a2098a4800ad3d43a70c41707b618ad36c197b6b6b827"
+  },
+  "input_sha256": "ebfd6e79250dc5730374e03b0ee606be329e72ff9b305930f3d1ada2e21d49bc",
+  "operation": {
+    "identity": "ri:references:src/devtools/agents/integrations/codex/__init__.py",
+    "inputs": {
+      "content_identity": "a1a7d27e543172933a53a5f2e4b507f15d1ee1fcca84b3923ed6b3df617e147f",
+      "source": "src/devtools/agents/integrations/codex/__init__.py"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "lexical:fields",
+      "lexical:index",
+      "ri:module-universe",
+      "ri:references:src/devtools/__init__.py",
+      "ri:references:src/devtools/agents/__init__.py",
+      "ri:references:src/devtools/agents/conversation/__init__.py",
+      "ri:references:src/devtools/agents/conversation/conversation.py",
+      "ri:references:src/devtools/agents/conversation/history.py",
+      "ri:references:src/devtools/agents/conversation/message.py",
+      "ri:references:src/devtools/agents/integrations/__init__.py"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "8999c94f0dca660fccf47466fc1e70428ebe1d648b09f9d6224b2e12df01cc97",
+  "runtime_identity": {
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0"
+  },
+  "sequence": 12,
+  "state": "ENTERED"
+}

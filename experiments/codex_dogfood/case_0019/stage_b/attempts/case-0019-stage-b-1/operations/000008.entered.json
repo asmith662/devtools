@@ -1,0 +1,37 @@
+{
+  "event": 15,
+  "execution": "case-0019-stage-b-1",
+  "frame": {
+    "corpus_id": "eb20830bed8817e886f21cae6ceffbb15da7dc1f6ccae8667cf2208a6b659ef6",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "6781f26ecb733009de8b1e8427211f74ed7cd8f36ad8c07fe0e7595af145e028"
+  },
+  "input_sha256": "7d27425092bd224932629dbe353ef26ed599d00773caec779a7e87879e7ea7ef",
+  "operation": {
+    "identity": "ri:references:src/devtools/agents/protocols.py",
+    "inputs": {
+      "content_identity": "ee30b82de86bc219077e6443082d3dd8aa3d0870f1de72eede73e484e3866494",
+      "source": "src/devtools/agents/protocols.py"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "lexical:fields",
+      "lexical:index",
+      "ri:module-universe",
+      "ri:references:src/devtools/__init__.py",
+      "ri:references:src/devtools/agents/__init__.py",
+      "ri:references:src/devtools/agents/models.py"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "5b54c28e2e418cc4a5c870356a8c91a5e35f2b42724e10f24fa0973234d3c265",
+  "runtime_identity": {
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0"
+  },
+  "sequence": 8,
+  "state": "ENTERED"
+}

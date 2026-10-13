@@ -1,0 +1,49 @@
+{
+  "event": 39,
+  "execution": "case-0018-stage-b-1",
+  "frame": {
+    "corpus_id": "7ce2a9e4a048fcb3d1a4e8c625be8c951a84dc0c5cac70809c6427a8bb50eb33",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "bf0f8d2a30e2be56053a2098a4800ad3d43a70c41707b618ad36c197b6b6b827"
+  },
+  "input_sha256": "d569b21aeebebb252152962a58f5d45c99c2fea06b60d0ed4f3555dc81588749",
+  "operation": {
+    "identity": "ri:references:src/devtools/context/python/function/candidates.py",
+    "inputs": {
+      "content_identity": "7011e4bec1b143a6ce891a7df1eaf7dde774d299039c98da26ccf09938626350",
+      "source": "src/devtools/context/python/function/candidates.py"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "lexical:fields",
+      "lexical:index",
+      "ri:module-universe",
+      "ri:references:src/devtools/__init__.py",
+      "ri:references:src/devtools/agents/__init__.py",
+      "ri:references:src/devtools/agents/conversation/__init__.py",
+      "ri:references:src/devtools/agents/conversation/conversation.py",
+      "ri:references:src/devtools/agents/conversation/history.py",
+      "ri:references:src/devtools/agents/conversation/message.py",
+      "ri:references:src/devtools/agents/integrations/__init__.py",
+      "ri:references:src/devtools/agents/integrations/codex/__init__.py",
+      "ri:references:src/devtools/agents/integrations/codex/agent.py",
+      "ri:references:src/devtools/agents/integrations/codex/errors.py",
+      "ri:references:src/devtools/agents/integrations/codex/models.py",
+      "ri:references:src/devtools/agents/integrations/codex/parsing.py",
+      "ri:references:src/devtools/context/__init__.py",
+      "ri:references:src/devtools/context/python/__init__.py",
+      "ri:references:src/devtools/context/python/function/__init__.py"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "a5561575651b83b714f2adaea84f3c65dbe7d9db56be521cb22804bf87a42cf0",
+  "runtime_identity": {
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0"
+  },
+  "sequence": 20,
+  "state": "ENTERED"
+}

@@ -1,0 +1,103 @@
+{
+  "ablation": {
+    "empty_reference_validation_ablations": 3,
+    "primary_annotation_passes": 3,
+    "ranking_side_effect": "NONE",
+    "status": "PASS"
+  },
+  "case": "0019",
+  "confirmation_reserve_access": "NO",
+  "execution": "case-0019-stage-b-1",
+  "frame": {
+    "corpus_id": "eb20830bed8817e886f21cae6ceffbb15da7dc1f6ccae8667cf2208a6b659ef6",
+    "python_resource_count": 182,
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 222,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "6781f26ecb733009de8b1e8427211f74ed7cd8f36ad8c07fe0e7595af145e028",
+    "source_head": "2465af00dc305a6c2a15a90455bf09e62e428e39",
+    "source_tree": "12a504a2106467d8b32fc062d15923c7b9250fd9"
+  },
+  "gold_access": "NO",
+  "graph_only_admissions": 0,
+  "holdout_access": "NO",
+  "interpretation_gaps": [
+    "The task/parent do not specify the provider option spelling, value domain, provider-version applicability or default. These are not invented from child knowledge. The freeze evaluates repository integration evidence for the stated control; Stage C must retain any residual task/provider-contract gap rather than assume complete task satisfaction."
+  ],
+  "ppr_executions": 0,
+  "queries": [
+    {
+      "a_results": 47,
+      "local_pairs": 2,
+      "obligation": "O1",
+      "qualifying_occurrences": 26,
+      "status": "PASS",
+      "support_source_target_pairs": 2,
+      "supported_targets": 2,
+      "timings": {
+        "annotation_construction_ns": 603300,
+        "canonical_a_ns": 10808300,
+        "complete_online_equivalent_ns": 44725300,
+        "predecessor_pairs_ns": 37000,
+        "support_projection_ns": 33276700
+      }
+    },
+    {
+      "a_results": 75,
+      "local_pairs": 6,
+      "obligation": "O2",
+      "qualifying_occurrences": 57,
+      "status": "PASS",
+      "support_source_target_pairs": 7,
+      "supported_targets": 6,
+      "timings": {
+        "annotation_construction_ns": 909500,
+        "canonical_a_ns": 18971000,
+        "complete_online_equivalent_ns": 51230600,
+        "predecessor_pairs_ns": 47900,
+        "support_projection_ns": 31302200
+      }
+    },
+    {
+      "a_results": 130,
+      "local_pairs": 4,
+      "obligation": "O3",
+      "qualifying_occurrences": 43,
+      "status": "PASS",
+      "support_source_target_pairs": 5,
+      "supported_targets": 4,
+      "timings": {
+        "annotation_construction_ns": 1048800,
+        "canonical_a_ns": 12022500,
+        "complete_online_equivalent_ns": 49705600,
+        "predecessor_pairs_ns": 16800,
+        "support_projection_ns": 36617500
+      }
+    }
+  ],
+  "rank_modifications": 0,
+  "ri": {
+    "assessments": 15893,
+    "cross_resource_references": 328,
+    "direct_cross_resource_pairs": 64,
+    "outcomes": {
+      "member-unresolved": 71,
+      "method-unresolved": 55,
+      "module-unresolved": 1124,
+      "resolved": 1268,
+      "shadowed-binding": 6707,
+      "target-not-supported-declaration": 1724,
+      "unresolved-binding": 1179,
+      "unsupported-expression": 352,
+      "unsupported-receiver": 432,
+      "unsupported-scope": 2981
+    },
+    "positive_references": 1268,
+    "resources_derived": 182,
+    "self_references": 940
+  },
+  "rrf_executions": 0,
+  "status": "CAPTURED; NO GOLD; NO EFFECTIVENESS INTERPRETATION",
+  "task": "Add vLLM CUDA graph estimate control\n"
+}

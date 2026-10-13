@@ -1,0 +1,53 @@
+{
+  "event": 47,
+  "execution": "case-0017-stage-b-1",
+  "frame": {
+    "corpus_id": "32d70eb6fef4210e2ef4ccb48486bab51357e4f84e277c3e2b84f17bd89ddf91",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49"
+  },
+  "input_sha256": "cd3325a777fcbce1d1f8c1058f2ca2c5ed918eb1a455c72ce2872970cf66a05d",
+  "operation": {
+    "identity": "ri:references:src/devtools/context/python/function/rendering.py",
+    "inputs": {
+      "content_identity": "eb65b07b1992b931b19178e1b0d78ac08199a97a465d7cc06f17824fb1a62e74",
+      "source": "src/devtools/context/python/function/rendering.py"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "lexical:fields",
+      "lexical:index",
+      "ri:module-universe",
+      "ri:references:src/devtools/__init__.py",
+      "ri:references:src/devtools/agents/__init__.py",
+      "ri:references:src/devtools/agents/conversation/__init__.py",
+      "ri:references:src/devtools/agents/conversation/conversation.py",
+      "ri:references:src/devtools/agents/conversation/history.py",
+      "ri:references:src/devtools/agents/conversation/message.py",
+      "ri:references:src/devtools/agents/integrations/__init__.py",
+      "ri:references:src/devtools/agents/integrations/codex/__init__.py",
+      "ri:references:src/devtools/agents/integrations/codex/agent.py",
+      "ri:references:src/devtools/agents/integrations/codex/errors.py",
+      "ri:references:src/devtools/agents/integrations/codex/models.py",
+      "ri:references:src/devtools/agents/integrations/codex/parsing.py",
+      "ri:references:src/devtools/context/__init__.py",
+      "ri:references:src/devtools/context/python/__init__.py",
+      "ri:references:src/devtools/context/python/function/__init__.py",
+      "ri:references:src/devtools/context/python/function/candidates.py",
+      "ri:references:src/devtools/context/python/function/declarations.py",
+      "ri:references:src/devtools/context/python/function/disclosure.py",
+      "ri:references:src/devtools/context/python/function/materialization.py"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "0af95906cbfbc941910f2cca30a01c010b1d133ae91fd434d27e635a09f4ca44",
+  "runtime_identity": {
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0"
+  },
+  "sequence": 24,
+  "state": "ENTERED"
+}

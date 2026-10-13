@@ -1,0 +1,35 @@
+{
+  "event": 11,
+  "execution": "case-0017-stage-b-1",
+  "frame": {
+    "corpus_id": "32d70eb6fef4210e2ef4ccb48486bab51357e4f84e277c3e2b84f17bd89ddf91",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49"
+  },
+  "input_sha256": "1365f94e08c1dbfb9951523472954fba04038735d0cb9edbf81c31e11cc42cda",
+  "operation": {
+    "identity": "ri:references:src/devtools/agents/__init__.py",
+    "inputs": {
+      "content_identity": "eb779ab47d81c35e1ef711d588d03959324c175d12df9960f788f31ce29b8744",
+      "source": "src/devtools/agents/__init__.py"
+    },
+    "invocations": 1,
+    "prior_operations": [
+      "frame:prepare",
+      "lexical:fields",
+      "lexical:index",
+      "ri:module-universe",
+      "ri:references:src/devtools/__init__.py"
+    ],
+    "runtime_ns": null,
+    "status": "ENTERED"
+  },
+  "prior_chain_sha256": "f4a20dd6f9167387d1bad15d36849bcd7667d7a029781a47d25cbb8b4d00a5e7",
+  "runtime_identity": {
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0"
+  },
+  "sequence": 6,
+  "state": "ENTERED"
+}

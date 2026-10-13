@@ -72,6 +72,16 @@ gold must not tune later cohort members. Child holdouts remain closed until the
 primary scientific evaluation is complete. No treatment capture or gold was
 created at this Stage A checkpoint; production behavior remains unchanged.
 
+The [cohort treatment capture](../experiments/structural_discrimination/stage_b/COHORT_REVIEW.md)
+now records successful independent attempts for Cases 0017–0019 under that
+unchanged protocol. All three exact parent captures precede semantic gold. Native
+References, unchanged A ranks, annotations, original predecessor pairs and
+algorithm-only timings are retained, with one capture-finalization deep proof
+per case and sealed normal verification thereafter. This is mechanical evidence;
+no usefulness, pair utility or structural-discrimination outcome is inferred.
+Independent blind packet preparation follows the treatment publication; clean
+isolated primary adjudication remains separately authorized future work.
+
 Two coordinated tracks preserve ADR-0005 and the implemented Localization
 contracts while correcting retrieval-foundation sequencing. The
 [current retrieval foundation](architecture/retrieval.md) owns the production
