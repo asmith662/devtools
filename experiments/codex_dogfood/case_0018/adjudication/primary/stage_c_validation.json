@@ -1,0 +1,169 @@
+{
+  "adjudication_completeness": {
+    "actual_cells": 1146,
+    "all_minimal_witnesses_independent_powerset_check": "PASS",
+    "duplicates": 0,
+    "encoded_primary_decisions": "PASS",
+    "expected_cells": 1146,
+    "indispensability_and_all_task_combinations": "PASS",
+    "missing": 0,
+    "native_identities": "PASS",
+    "positive_spans": "PASS",
+    "status": "PASS",
+    "support_alternative_antichains": "PASS",
+    "unexpected": 0,
+    "unresolved": 0
+  },
+  "adversarial_mutations": [
+    {
+      "detector": "Duplicate/missing cells",
+      "mutation": "delete one cell",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Duplicate/missing cells",
+      "mutation": "duplicate a cell replacing another",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Unexpected/missing cells",
+      "mutation": "foreign resource cell",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Unexpected/missing cells",
+      "mutation": "foreign obligation cell",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Unresolved/empty rationale",
+      "mutation": "unresolved decision",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Review frame",
+      "mutation": "wrong snapshot frame",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Cell native identity",
+      "mutation": "wrong native content identity",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Frozen obligation changed",
+      "mutation": "changed frozen obligation",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Exact quote mismatch",
+      "mutation": "fabricated positive quote",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Exact quote mismatch",
+      "mutation": "off-by-one exact span",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Necessity label inconsistent",
+      "mutation": "promote unrelated resource by proximity",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Missing/nonminimal complete witness: O1",
+      "mutation": "drop alternative support",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Invented empty repository support",
+      "mutation": "invent task-empty support for repository unit",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Missing/nonminimal complete witness: O1",
+      "mutation": "omit a minimal witness",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Missing/nonminimal complete witness: O1",
+      "mutation": "inflate a minimal witness",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Obligation indispensability",
+      "mutation": "invent obligation indispensability",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Missing task combinations",
+      "mutation": "omit task witness combination",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Task minimal unions",
+      "mutation": "corrupt sufficient union",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Task indispensability",
+      "mutation": "invent task indispensability",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Task-empty witness lost",
+      "mutation": "remove task-empty goal witness",
+      "result": "REJECTED"
+    },
+    {
+      "detector": "Encoded primary semantic decision differs",
+      "mutation": "forge routing verification",
+      "result": "REJECTED"
+    }
+  ],
+  "adversarial_mutations_rejected": 21,
+  "case_id": "case-0018",
+  "hash_freeze": "stage_c_hashes.json; excludes itself and byte-identical report mirror",
+  "local_report_gate": "Creation is permitted only after --build exits successfully and --verify passes with self-review COMPLETE.",
+  "original_packet_preservation": {
+    "sha256": {
+      "README.md": "ef6241e6971553a124fd5abde64c5aa0a9611ab7a9495316ffaf52023f953de8",
+      "integrity.json": "6f3955479aa6fbb4ae80189256f0a49160ad592cfd9089201cd222556ba726f1",
+      "manifest.json": "6381d26ed9c406c6a28aa243bf5346c65e5fbe74c3a59e14f99fb4f2007bea85",
+      "resources.json.gz": "ef761a2d124b26181889580719baf8cc082897be6b7fce9fb86b69cbf4f1c831",
+      "validate_packet.py": "0d74cc32d2522aa336fea568130b270802c03844975567deece2fe0d835acfe6"
+    },
+    "status": "PASS"
+  },
+  "same_reviewer_self_review": {
+    "checks": [
+      "Rechecked the original task against all frozen satisfaction/exclusion clauses; preserved three typed gaps and no unjustified fourth obligation.",
+      "Reviewed every positive cell, exact support span, alternative and minimal witness; challenged whether a fact was truly necessary or only an implementation detail.",
+      "Rechecked all 382 content-screening records against negative cells; all 350 resources unnecessary across every obligation had no targeted import/relationship hits, and their content subjects fell outside the bounded capability.",
+      "Challenged package proximity, ordinary import use sites, facade/edit-destination bias, generic design analogies and historical implementation leakage.",
+      "Checked unique positive module resolution, relative/nonpositive behavior, alias multiplicity, collision versus repeated-entry handling and foreign/stale state qualification.",
+      "Confirmed tests can substitute for supported behavioral facts but do not prove unseen runtime behavior; no tests or resource code were executed.",
+      "Checked source occurrence provenance versus semantic identity and rejected universal invalidation merely because a snapshot changed.",
+      "Recomputed and inspected all final labels, obligation witnesses, complete task combinations, unit/resource unions and indispensability after the correction.",
+      "Reviewed completeness, exact spans, independent powerset validation and all 21 adversarial rejection results before final publication."
+    ],
+    "corrections": [
+      "Narrowed U6 from exact universe hash/order implementation to repository/membership admission and repeated-entry rejection; added resolver tests as an alternative. Opaque identity can be retained without reproducing its hash algorithm.",
+      "This changes R057/O3, R280/O2 and R280/O3 from HELPFUL_ONLY to REQUIRED through newly available minimal witnesses. R092 ceases to be individually indispensable; R089 remains the sole resource indispensable for each obligation and the task under the declared information model."
+    ],
+    "passes": 1,
+    "reconciliation": false,
+    "reviewer": "same designated primary",
+    "second_reviewer": false,
+    "status": "COMPLETE"
+  },
+  "schema": "stage-c-clean-primary-validation-v1",
+  "scientific_validation_limit": "Deterministic consistency/tamper checks are not a second semantic reviewer.",
+  "separate_process_exact_replay": {
+    "comparison": "7 scientific files; no normalization or semantic transformation",
+    "method": "The --build controller publishes root outputs only after separate-process reconstruction equals every scientific byte, including a copy of this builder.",
+    "publication_scope": "PASS is a final-root publication assertion; scratch --emit files are candidates until the controller completes the comparison.",
+    "status": "PASS"
+  },
+  "status": "PASS"
+}

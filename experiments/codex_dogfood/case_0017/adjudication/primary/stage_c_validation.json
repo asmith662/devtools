@@ -1,0 +1,135 @@
+{
+  "adversarial_mutations": [
+    {
+      "mutation": "cell identity",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "missing cell",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "duplicate cell",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "unexpected cell",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "invalid label",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "resource identity",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "positive span",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "semantic unit identity",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "semantic unit meaning",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "evidence class",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "support alternative",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "witness incomplete",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "witness redundant superset",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "missing alternative witness",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "sufficient union",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "task combination arithmetic",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "obligation indispensability",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "task indispensability",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "gap",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "ambiguity",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "scientific hash",
+      "result": "REJECTED"
+    },
+    {
+      "mutation": "overwrite existing file",
+      "result": "REJECTED"
+    }
+  ],
+  "adversarial_rejected": 22,
+  "case_id": "case-0017",
+  "checks": {
+    "evidence classes": "PASS",
+    "frame": "PASS",
+    "gaps and ambiguities": "PASS",
+    "identities": "PASS",
+    "intersections": "PASS",
+    "labels": "PASS",
+    "obligations": "PASS",
+    "original packet preservation": "PASS",
+    "overwrite refusal": "PASS",
+    "packet binding": "PASS",
+    "positive spans": "PASS",
+    "support alternatives": "PASS",
+    "task": "PASS",
+    "task-level mathematics": "PASS",
+    "units": "PASS",
+    "witness completeness": "PASS",
+    "witness minimality": "PASS"
+  },
+  "completeness_gate": {
+    "actual_cells": 1071,
+    "duplicates": 0,
+    "expected_cells": 1071,
+    "missing": 0,
+    "obligations": 3,
+    "resources": 357,
+    "unexpected": 0,
+    "unresolved": 0
+  },
+  "deterministic_codec": "sorted ensure_ascii JSON, indent=2, LF; Markdown UTF-8 LF",
+  "packet_binding": {
+    "archive_sha256": "64dad46fb86c69cdb4de0b9e6314290bbcfcd2f7a23e4f6daef2f570dab591ac",
+    "canonical_payload_sha256": "e80a6088e42290c7fb68ec09f2c10a2e695b1314642dc329402917efac914556",
+    "integrity_sha256": "b9c3f0a30e8f05710e43201da8fed9e6fc2d93cd2fc29b36a1ef10ff22dd52d6",
+    "manifest_sha256": "5d1976523476a659d952b38bffa91e3ffce89d935ad0455b49f28f2780b29d5c"
+  },
+  "replay_requirement": "Separate python -B stage_c_builder.py --verify process must reproduce every generated scientific byte and verify all hashes; actual run receipt is operational .scratch/verification.json.",
+  "schema": "stage-c-validation-v1",
+  "scientific_hash_scope": "stage_c_hashes.json binds six artifacts and excludes itself; its own digest is reported in the final handoff.",
+  "semantic_validation_limit": "Arithmetic and integrity validation do not constitute another semantic reviewer.",
+  "status": "PASS"
+}

@@ -1,0 +1,403 @@
+{
+  "actual_cells": 1071,
+  "case_id": "case-0017",
+  "complete_task_combinations": [
+    {
+      "id": "TC001",
+      "resource_ids": [
+        "R001",
+        "R098"
+      ],
+      "unit_ids": [
+        "R01",
+        "R03",
+        "R04",
+        "R05",
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10"
+      ],
+      "witness_ids": [
+        "O1-W01",
+        "O2-W01",
+        "O3-W01"
+      ]
+    },
+    {
+      "id": "TC002",
+      "resource_ids": [
+        "R001",
+        "R098",
+        "R271"
+      ],
+      "unit_ids": [
+        "R01",
+        "R03",
+        "R04",
+        "R05",
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10"
+      ],
+      "witness_ids": [
+        "O1-W01",
+        "O2-W01",
+        "O3-W02"
+      ]
+    },
+    {
+      "id": "TC003",
+      "resource_ids": [
+        "R001",
+        "R098",
+        "R271"
+      ],
+      "unit_ids": [
+        "R01",
+        "R03",
+        "R04",
+        "R05",
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10"
+      ],
+      "witness_ids": [
+        "O1-W01",
+        "O2-W02",
+        "O3-W01"
+      ]
+    },
+    {
+      "id": "TC004",
+      "resource_ids": [
+        "R001",
+        "R098",
+        "R271"
+      ],
+      "unit_ids": [
+        "R01",
+        "R03",
+        "R04",
+        "R05",
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10"
+      ],
+      "witness_ids": [
+        "O1-W01",
+        "O2-W02",
+        "O3-W02"
+      ]
+    },
+    {
+      "id": "TC005",
+      "resource_ids": [
+        "R001",
+        "R098",
+        "R271"
+      ],
+      "unit_ids": [
+        "R01",
+        "R03",
+        "R04",
+        "R05",
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10"
+      ],
+      "witness_ids": [
+        "O1-W02",
+        "O2-W01",
+        "O3-W01"
+      ]
+    },
+    {
+      "id": "TC006",
+      "resource_ids": [
+        "R001",
+        "R098",
+        "R271"
+      ],
+      "unit_ids": [
+        "R01",
+        "R03",
+        "R04",
+        "R05",
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10"
+      ],
+      "witness_ids": [
+        "O1-W02",
+        "O2-W01",
+        "O3-W02"
+      ]
+    },
+    {
+      "id": "TC007",
+      "resource_ids": [
+        "R001",
+        "R098",
+        "R271"
+      ],
+      "unit_ids": [
+        "R01",
+        "R03",
+        "R04",
+        "R05",
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10"
+      ],
+      "witness_ids": [
+        "O1-W02",
+        "O2-W02",
+        "O3-W01"
+      ]
+    },
+    {
+      "id": "TC008",
+      "resource_ids": [
+        "R001",
+        "R271"
+      ],
+      "unit_ids": [
+        "R01",
+        "R03",
+        "R04",
+        "R05",
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10"
+      ],
+      "witness_ids": [
+        "O1-W02",
+        "O2-W02",
+        "O3-W02"
+      ]
+    }
+  ],
+  "corroboration_count": 1,
+  "distinct_sufficient_resource_unions": [
+    [
+      "R001",
+      "R098"
+    ],
+    [
+      "R001",
+      "R271"
+    ],
+    [
+      "R001",
+      "R098",
+      "R271"
+    ]
+  ],
+  "duplicates": 0,
+  "expected_cells": 1071,
+  "inclusion_minimal_resource_count_range": [
+    2,
+    2
+  ],
+  "inclusion_minimal_sufficient_resource_unions": [
+    [
+      "R001",
+      "R098"
+    ],
+    [
+      "R001",
+      "R271"
+    ]
+  ],
+  "label_counts_by_obligation": {
+    "O1": {
+      "HELPFUL_ONLY": 8,
+      "REQUIRED": 2,
+      "UNNECESSARY": 347
+    },
+    "O2": {
+      "HELPFUL_ONLY": 8,
+      "REQUIRED": 2,
+      "UNNECESSARY": 347
+    },
+    "O3": {
+      "HELPFUL_ONLY": 15,
+      "REQUIRED": 3,
+      "UNNECESSARY": 339
+    }
+  },
+  "missing": 0,
+  "obligation_intersections": {
+    "O1": {
+      "resource_ids": [],
+      "unit_ids": [
+        "R01",
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05"
+      ]
+    },
+    "O2": {
+      "resource_ids": [],
+      "unit_ids": [
+        "R01",
+        "T03",
+        "T04",
+        "T05",
+        "T06"
+      ]
+    },
+    "O3": {
+      "resource_ids": [
+        "R001"
+      ],
+      "unit_ids": [
+        "R01",
+        "R03",
+        "R04",
+        "R05",
+        "T03",
+        "T07",
+        "T08",
+        "T09",
+        "T10"
+      ]
+    }
+  },
+  "obligations": 3,
+  "required_resource_union": [
+    "R001",
+    "R098",
+    "R271"
+  ],
+  "resource_count_range": [
+    2,
+    3
+  ],
+  "resources": 357,
+  "semantic_unit_classes": {
+    "REPOSITORY_SUPPORTED": 4,
+    "TASK_AND_REPOSITORY_SUPPORTED": 0,
+    "TASK_BACKED": 10
+  },
+  "semantic_unit_count": 14,
+  "semantic_unit_count_range": [
+    14,
+    14
+  ],
+  "semantic_unit_counts_by_obligation": {
+    "O1": 6,
+    "O2": 5,
+    "O3": 9
+  },
+  "sufficient_resource_union_count": 3,
+  "sufficient_semantic_unit_unions": [
+    [
+      "R01",
+      "R03",
+      "R04",
+      "R05",
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "T05",
+      "T06",
+      "T07",
+      "T08",
+      "T09",
+      "T10"
+    ]
+  ],
+  "support_alternative_count": 10,
+  "task_combination_count": 8,
+  "task_indispensable_resource_ids": [
+    "R001"
+  ],
+  "task_indispensable_unit_ids": [
+    "R01",
+    "R03",
+    "R04",
+    "R05",
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08",
+    "T09",
+    "T10"
+  ],
+  "total_label_counts": {
+    "HELPFUL_ONLY": 31,
+    "REQUIRED": 7,
+    "UNNECESSARY": 1033
+  },
+  "unexpected": 0,
+  "unresolved": 0,
+  "witness_counts_by_obligation": {
+    "O1": 2,
+    "O2": 2,
+    "O3": 2
+  }
+}

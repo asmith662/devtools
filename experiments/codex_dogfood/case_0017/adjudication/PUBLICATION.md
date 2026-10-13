@@ -1,0 +1,71 @@
+# Case 0017 authoritative Stage C primary import
+
+The seven original scientific artifacts in `primary/` were imported byte-for-byte from the original sterile workspace, never the uploaded copies. Original five packet files equal the accepted packet commit. The documented primary verifier passed in a separate process before import and again over imported bytes in a fresh local verification workspace. Original packet preservation passed. No second reviewer or reconciliation; designation GPT-6 Astra / High, with host routing not independently verified.
+
+`reviewed/gold.json` is an exact identity/label projection, with a pointer to each original primary cell. It does not change spans, units, alternatives, witnesses or semantic qualifications, which remain authoritative in `primary/`.
+
+Case 0017 corrections and retired unit are preserved. Case 0018 interpretation/design/repository qualifications remain explicit. Case 0019 repository-integration sufficiency and indispensability are CONDITIONAL; its provider-contract TASK_INTERPRETATION_GAP remains PRESENT. Unconditional future task witness/combination count is zero, unions empty, range and indispensability undefined.
+
+Artifact authentication:
+
+```json
+{
+  "authority": "SOLE DESIGNATED PRIMARY; AUTHORITATIVE STAGE C GOLD",
+  "blindness": {
+    "model": "GPT-6 Astra",
+    "original_attestation": {
+      "Git/history": "NO",
+      "Reference treatment evidence": "NO",
+      "child diff": "NO",
+      "child implementation": "NO",
+      "child paths": "NO",
+      "confirmation": "NO",
+      "graph/PPR/RRF": "NO",
+      "lexical ranks/scores": "NO",
+      "other cohort cases": "NO",
+      "parent directories": "NO",
+      "predecessor pairs": "NO",
+      "prior Codex session": "NO",
+      "prior gold": "NO",
+      "queries": "NO",
+      "repository checkout": "NO",
+      "reserve": "NO",
+      "sibling workspaces": "NO",
+      "structural annotations": "NO",
+      "support pairs": "NO",
+      "treatment timings": "NO",
+      "web": "NO"
+    },
+    "reasoning": "High",
+    "reconciliation_count": 0,
+    "routing": "HOST ROUTING NOT INDEPENDENTLY VERIFIED",
+    "second_reviewer_count": 0,
+    "status": "PASS"
+  },
+  "case": "0017",
+  "gold_projection_sha256": "8850edd79fb6c97d9e5872ca94b02434bd54e0fc5f6ef745a5cf51f5b159aeae",
+  "operational_artifacts": "EXCLUDED",
+  "original_packet_preservation": "ALL FIVE EXACT",
+  "packet_checkpoint": "1b43203e908e725465a407b556f60a583dacfb1c",
+  "packet_sha256": {
+    "README.md": "90985acd6359932a7524aab6d01bb1a00427b1d9eda534bf6f7be06de52a88b1",
+    "integrity.json": "b9c3f0a30e8f05710e43201da8fed9e6fc2d93cd2fc29b36a1ef10ff22dd52d6",
+    "manifest.json": "5d1976523476a659d952b38bffa91e3ffce89d935ad0455b49f28f2780b29d5c",
+    "resources.json.gz": "64dad46fb86c69cdb4de0b9e6314290bbcfcd2f7a23e4f6daef2f570dab591ac",
+    "validate_packet.py": "ce921a581595854ce136973c5a6cb8d12da1e22df6de8041ac522e31faf481f6"
+  },
+  "semantic_transformation": "NONE",
+  "sha256": {
+    "STAGE_C_REVIEW.md": "0d0d359c01cd11661251c04f4deac4f79a5437bd2464e058353551660036e0c2",
+    "stage_c_builder.py": "07eff746e1d25f3cc49128ce81a08cc0c4116b4cebfe9f26d003ec419f9da75e",
+    "stage_c_hashes.json": "a67d9fe43d1682b90e317eb23761d84ef2ec4419af7e05379f2ec79fbe47f2c4",
+    "stage_c_method.md": "57a5c73452fc3ccb845e9ba59bc178d9c8c4eae31570139fae6c41a0ddd6abae",
+    "stage_c_review.json": "70e8159ae12c24bdb6f9f5faa2a0bda07c820bb1dbfd08fcddab0dadeb23f21f",
+    "stage_c_statistics.json": "7d4f7f2a5385d95c406b3dfb5ec0d134301224ae14e4bcd363055d73b98559b2",
+    "stage_c_validation.json": "3b6f40e839f0fb9aab4a5496ee135aab6a88987b45c7a6f67c2e7c082d19c76a"
+  },
+  "source": "C:\\Users\\recoveryadmin\\CodexSterile\\case_0017_stage_c_64dad46fb86c",
+  "sterile_replay": "PASS; documented separate-process verification completed before import",
+  "writer": "No concrete competing writer with this exact worktree in command line; OS process listing is not a proof of exclusivity."
+}
+```

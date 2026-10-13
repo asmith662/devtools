@@ -1,0 +1,137 @@
+{
+  "actual_cells": 666,
+  "adversarial_mutations": [
+    {
+      "mutation": "cell_missing",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "cell_duplicate",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "cell_unexpected_identity",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "cell_required_inflation",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "positive_native_identity",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "span_offset",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "span_quote",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "inferability_future_contract",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "unit_missing",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "unit_claim",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "alternative_missing",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "alternative_resource",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "witness_superset",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "witness_missing",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "union_corruption",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "task_combination_corruption",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "unit_union_corruption",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "obligation_indispensability",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "task_indispensability",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "unit_indispensability",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "gap_silenced",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "gap_reclassified",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "unconditional_satisfaction_claim",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "input_hash_corruption",
+      "result": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "scientific_hash_corruption",
+      "result": "REJECTED_AS_REQUIRED"
+    }
+  ],
+  "blindness_attestation": "PASS",
+  "duplicates": 0,
+  "expected_cells": 666,
+  "gap_records": "PASS",
+  "independent_subset_witness_check": "PASS",
+  "intersections_and_task_arithmetic": "PASS",
+  "missing": 0,
+  "native_identity_and_span_checks": "PASS",
+  "obligations": 3,
+  "original_packet_preserved": true,
+  "resources": 222,
+  "same_primary_self_review": "PASS",
+  "schema": "stage-c-validation-v1",
+  "semantic_truth_limit": "Verification replays and protects the primary judgment; no second semantic reviewer is implied.",
+  "separate_process_replay": {
+    "exact_bytes_required": [
+      "stage_c_review.json",
+      "stage_c_statistics.json",
+      "STAGE_C_REVIEW.md",
+      "stage_c_validation.json",
+      "stage_c_hashes.json",
+      "stage_c_method.md",
+      "stage_c_builder.py"
+    ],
+    "note": "The verify/handoff commands enforce this gate; this deterministic file is not its own execution receipt.",
+    "observed_receipt": ".scratch/verification_receipt.json",
+    "required": true
+  },
+  "status": "PASS",
+  "unexpected": 0,
+  "units_and_alternatives": "PASS",
+  "unresolved": 0
+}

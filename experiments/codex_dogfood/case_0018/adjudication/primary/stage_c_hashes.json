@@ -1,0 +1,25 @@
+{
+  "algorithm": "SHA-256 over exact bytes",
+  "canonical_payload_sha256": "66aa4b49ee362d786e4c879db318f9c94d56e2d960743a983653d11c77e72b4f",
+  "exclusions": {
+    ".local/codex-result.md": "must equal STAGE_C_REVIEW.md byte-for-byte",
+    ".scratch": "non-scientific operational artifacts",
+    "stage_c_hashes.json": "self-reference avoided"
+  },
+  "original_packet": {
+    "README.md": "ef6241e6971553a124fd5abde64c5aa0a9611ab7a9495316ffaf52023f953de8",
+    "integrity.json": "6f3955479aa6fbb4ae80189256f0a49160ad592cfd9089201cd222556ba726f1",
+    "manifest.json": "6381d26ed9c406c6a28aa243bf5346c65e5fbe74c3a59e14f99fb4f2007bea85",
+    "resources.json.gz": "ef761a2d124b26181889580719baf8cc082897be6b7fce9fb86b69cbf4f1c831",
+    "validate_packet.py": "0d74cc32d2522aa336fea568130b270802c03844975567deece2fe0d835acfe6"
+  },
+  "schema": "stage-c-clean-primary-hashes-v1",
+  "scientific_files": {
+    "STAGE_C_REVIEW.md": "90c4f6b88c26f353577d42553686e4a32a6bfbef6d70e9c0edd69f9c31bb421e",
+    "stage_c_builder.py": "c127f8291709517e653475ddf006a642374ef520c89db0c26e5f667cf61512fd",
+    "stage_c_method.md": "ca81c51ae46e024ef2e386bc74bfb5ba869333d690ea7dc7d6fd116b6f95d5b3",
+    "stage_c_review.json": "8eb6fa5710c1353c041f4f351ce680de4010819fb25b753ec661fe849726f7a6",
+    "stage_c_statistics.json": "2d99ca2ca9f7dda4f6829b328eba83b2eb609e7e1da84476d06378dd980c0534",
+    "stage_c_validation.json": "f1d47eed10baa76f63450de9a8bd137aebc35bd0cfa543c6383231b1cc6d09cc"
+  }
+}
