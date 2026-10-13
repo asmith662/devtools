@@ -1,0 +1,56 @@
+{
+  "ambiguities": [
+    "New relation type/helper names and representation are unspecified.",
+    "Only the bounded module portion of imports is required; imported-member/runtime semantics are excluded by parent contracts."
+  ],
+  "case_id": "case-0018",
+  "gold_status": "NOT_CREATED",
+  "interpretation_gaps": [],
+  "obligations": [
+    {
+      "excluded_interpretation": "No runtime importability, imported-member binding, synthetic reverse edges or external dependency truth.",
+      "id": "O1",
+      "obligation_identity": {
+        "task": "case-0018:historical-development-002",
+        "value": "O1"
+      },
+      "requirement": "Represent qualified repository import relationships from established import resolution.",
+      "satisfaction": "Establish a directed source-to-target repository relation only from a unique positive bounded import-module resolution, retaining declaration, source/target resource content, snapshot and interpretation provenance."
+    },
+    {
+      "excluded_interpretation": "No guessing by path, root precedence, target-first selection or external-versus-missing classification.",
+      "id": "O2",
+      "obligation_identity": {
+        "task": "case-0018:historical-development-002",
+        "value": "O2"
+      },
+      "requirement": "Preserve qualified nonpositive and ambiguous import outcomes.",
+      "satisfaction": "Do not turn unresolved, ambiguous, unsupported or stale/foreign resolution into a positive relation; retain bounded disposition and provenance, with deterministic duplicate/occurrence accounting."
+    },
+    {
+      "excluded_interpretation": "No new retrieval treatment, recursive import closure, generic graph framework or child-specific API shape.",
+      "id": "O3",
+      "obligation_identity": {
+        "task": "case-0018:historical-development-002",
+        "value": "O3"
+      },
+      "requirement": "Integrate and validate qualified import relations without changing existing import truth.",
+      "satisfaction": "Reuse parent import/module primitives, expose and document the bounded relation capability, and test positive, nonpositive, relative, duplicate and changed-frame behavior without adding ranking or runtime execution."
+    }
+  ],
+  "parent_frame": {
+    "corpus_id": "7ce2a9e4a048fcb3d1a4e8c625be8c951a84dc0c5cac70809c6427a8bb50eb33",
+    "python_resource_count": 287,
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 382,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "bf0f8d2a30e2be56053a2098a4800ad3d43a70c41707b618ad36c197b6b6b827",
+    "source_head": "d493c26bbb1866cb9e5ead8f23f02aac3a7f12b9",
+    "source_tree": "be89449e1f2c89c307130868aa51cf9e717a2f49"
+  },
+  "resources": "Complete resources.json.gz accompanies this spec; authoring basis/queries/needs/protocol/evaluator are omitted",
+  "schema": "direct-discrimination-future-blind-spec-v1",
+  "task_identity": "case-0018:historical-development-002",
+  "task_text": "Implement qualified repository import relations\n"
+}

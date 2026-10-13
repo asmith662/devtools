@@ -1,0 +1,472 @@
+{
+  "authoring_order": "Own-parent interpretation0017 fixed before source semantics of later parents; same authoring protocol; no outcome or gold",
+  "cases": [
+    {
+      "ambiguities": [
+        "Public type/helper names and package layout are unspecified.",
+        "Index representation and construction API are unspecified; no scoring/ranking capability is requested."
+      ],
+      "authoring_basis_sha256": {
+        "AGENTS.md": "60afe4779d59d7c9ebe6e029cc60ab148301c6c87502547a198e7ba6d929061c",
+        "docs/architecture.md": "3049475fe0e4682eb056ba00812a81c4e3be61f9ea6a8d5f8581f81eacaa84a3",
+        "docs/architecture/decisions/ADR-0003-information-need-retrieval-evidence-and-ranking.md": "9e675dde5dd6838d69438d66e8b13dce075788bc1a8692e8f25ca7c5878688c4",
+        "src/devtools/context/retrieval/lexical.py": "7f900f80a348047086f40d67f1d72135441edefc67f1e2ce844f18b7bc40ba2b",
+        "tests/context/retrieval/test_lexical.py": "f2da2189b6ab56409897ca03e8e6f963b88136db7ae3ac3aa548fd472ab4cff1"
+      },
+      "case_id": "case-0017",
+      "exact_route": "NOT_APPLICABLE",
+      "interpretation_gaps": [],
+      "no_execution": {
+        "bm25": 0,
+        "exact_lookup": 0,
+        "gold": 0,
+        "local_pairs": 0,
+        "pagerank": 0,
+        "reference_derivation": 0,
+        "rrf": 0,
+        "semantic_reviewer": 0,
+        "structural_annotation": 0
+      },
+      "obligations": [
+        {
+          "excluded_interpretation": "No new tokenizer, identifier splitting, BM25 score, ranking or resource acquisition.",
+          "facts_to_discover": "Retained whole-document lexical observations, their normalized terms, repetition, exact document/resource identity and collection ordering.",
+          "future_action": "one canonical A acquisition followed by annotation of the unchanged native result",
+          "id": "O1",
+          "information_need_identity": "N1",
+          "need": "Which native observations and collection identities determine document/corpus lexical frequency and length statistics without changing text analysis?",
+          "obligation_identity": {
+            "task": "case-0017:historical-development-001",
+            "value": "O1"
+          },
+          "query": "repository lexical document corpus term frequency statistics",
+          "query_association": "O1",
+          "query_derivation": "One unweighted natural-language serialization of the authored need, using task/parent concepts only; no output tuning",
+          "query_identity": {
+            "task": "case-0017:historical-development-001",
+            "value": "Q1"
+          },
+          "requirement": "Implement repository lexical statistics.",
+          "satisfaction": "Derive deterministic document term frequencies/lengths and corpus document counts, document frequencies and average document length from existing lexical observations, accounting explicitly for empty documents/collections and preserving provenance.",
+          "task_backed_source_span": {
+            "end": 58,
+            "start": 0
+          },
+          "task_interpretation": "Caller-authored minimum implementation predicate; the source span supplies the task, not a claim that every criterion is verbatim original text"
+        },
+        {
+          "excluded_interpretation": "No query execution, relevance score, rank, persistent index service or incremental maintenance system.",
+          "facts_to_discover": "Observed lexical terms and exact documents/resources to which their occurrences belong; deterministic collection order.",
+          "future_action": "one canonical A acquisition followed by annotation of the unchanged native result",
+          "id": "O2",
+          "information_need_identity": "N2",
+          "need": "How should normalized terms index the exact retained documents and their frequency evidence while preserving native repository provenance?",
+          "obligation_identity": {
+            "task": "case-0017:historical-development-001",
+            "value": "O2"
+          },
+          "query": "lexical inverted index term postings document occurrences resource identity",
+          "query_association": "O2",
+          "query_derivation": "One unweighted natural-language serialization of the authored need, using task/parent concepts only; no output tuning",
+          "query_identity": {
+            "task": "case-0017:historical-development-001",
+            "value": "Q2"
+          },
+          "requirement": "Implement a repository inverted index.",
+          "satisfaction": "Provide deterministic term-to-document postings based on the lexical statistics/observations, retaining document identity and frequency information without rescanning the filesystem or claiming relevance.",
+          "task_backed_source_span": {
+            "end": 58,
+            "start": 0
+          },
+          "task_interpretation": "Caller-authored minimum implementation predicate; the source span supplies the task, not a claim that every criterion is verbatim original text"
+        },
+        {
+          "excluded_interpretation": "No unrelated architectural migration, child-specific API names or treatment-dependent tests.",
+          "facts_to_discover": "Heterogeneous Unicode word/casefold analysis, public exports, test/validation conventions and separation of observation, statistics, retrieval and Context selection.",
+          "future_action": "one canonical A acquisition followed by annotation of the unchanged native result",
+          "id": "O3",
+          "information_need_identity": "N3",
+          "need": "What compatibility and validation contracts must the new statistics/index preserve at the existing lexical-analysis and repository-document boundaries?",
+          "obligation_identity": {
+            "task": "case-0017:historical-development-001",
+            "value": "O3"
+          },
+          "query": "lexical analysis unicode word casefold ordered observations empty corpus deterministic tests exports",
+          "query_association": "O3",
+          "query_derivation": "One unweighted natural-language serialization of the authored need, using task/parent concepts only; no output tuning",
+          "query_identity": {
+            "task": "case-0017:historical-development-001",
+            "value": "Q3"
+          },
+          "requirement": "Integrate and validate the statistics/index capability under the parent repository contracts.",
+          "satisfaction": "Keep existing lexical observations unchanged, expose the capability coherently, document its boundary and validate deterministic heterogeneous, repeated-term and empty-input behavior using the parent development conventions.",
+          "task_backed_source_span": {
+            "end": 58,
+            "start": 0
+          },
+          "task_interpretation": "Caller-authored minimum implementation predicate; the source span supplies the task, not a claim that every criterion is verbatim original text"
+        }
+      ],
+      "parent_frame": {
+        "corpus_id": "32d70eb6fef4210e2ef4ccb48486bab51357e4f84e277c3e2b84f17bd89ddf91",
+        "python_resource_count": 262,
+        "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+        "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+        "resource_count": 357,
+        "resource_order": "canonical resource address ascending",
+        "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "source_head": "71e938d809d794f2f07dd30cb772f1e9bc89c9d3",
+        "source_tree": "d6c9398be0bf36e16d6bf57a65f16d5f513eab00"
+      },
+      "population_case_id": "historical-development-001",
+      "public_task_card": {
+        "case_id": "historical-development-001",
+        "frame": {
+          "kind": "GIT_PARENT_TREE",
+          "native_repository_snapshot": "NOT_CONSTRUCTED",
+          "parent_commit": "71e938d809d794f2f07dd30cb772f1e9bc89c9d3",
+          "parent_tree": "d6c9398be0bf36e16d6bf57a65f16d5f513eab00"
+        },
+        "population_id": "devtools-historical-development-extension-v1",
+        "schema": "historical-development-public-task-v1",
+        "selection_position": 1,
+        "task_source": {
+          "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+          "provenance_reference": "historical-development-001/commit-message",
+          "task_sha256": "d1f9e3c61d35d350e0859e2fb02595d46a8baf8e6323aed736497f1ea2ed7d43"
+        },
+        "task_text": "Implement repository lexical statistics and inverted index\n",
+        "title": "Implement repository lexical statistics and inverted index"
+      },
+      "schema": "direct-structural-discrimination-case-stage-a-v1",
+      "shared_protocol_sha256": "6167a9b28da52ce42ac7c9186fade322a078a3f5158ba87067b1c3cf4df0b52f",
+      "status": "STAGE_A_FROZEN; STAGE_B_NOT_EXECUTED; GOLD_ABSENT; EFFECTIVENESS_NOT_EVALUATED",
+      "task_identity": "case-0017:historical-development-001",
+      "task_provenance": {
+        "explanation": "Exact original commit message; minimum predicates interpreted from own parent only",
+        "source_sha256": "d1f9e3c61d35d350e0859e2fb02595d46a8baf8e6323aed736497f1ea2ed7d43"
+      },
+      "task_text": "Implement repository lexical statistics and inverted index\n"
+    },
+    {
+      "ambiguities": [
+        "New relation type/helper names and representation are unspecified.",
+        "Only the bounded module portion of imports is required; imported-member/runtime semantics are excluded by parent contracts."
+      ],
+      "authoring_basis_sha256": {
+        "AGENTS.md": "f4f697a819463771b8805a312777435de41e7270741cbd607354a979122c08f5",
+        "docs/architecture.md": "a875c1413841f5edfa98819a971d0ca52b91e24c98a69cabc464ce868e05bee0",
+        "src/devtools/context/python/imports/declarations.py": "556d2752adf7bec22cf17fc5cdf886c6bf1933654b5904a27dab92a6cac25178",
+        "src/devtools/context/python/imports/resolution.py": "f8826818723cf63ff6e6b735a20bc7fceb4c68fcb90454f98a0931349f45675c",
+        "src/devtools/context/python/modules/interpretation.py": "513c653a2f35578ff2cfeb19cc96badd6de10688c0c5bf2732a04ac2ec84d14c",
+        "tests/context/python/imports/test_resolution.py": "81008500a67f3898e5c707ce6617feda178c2a6b0c00fdd4f81eb4f43e7543e8"
+      },
+      "case_id": "case-0018",
+      "exact_route": "NOT_APPLICABLE",
+      "interpretation_gaps": [],
+      "no_execution": {
+        "bm25": 0,
+        "exact_lookup": 0,
+        "gold": 0,
+        "local_pairs": 0,
+        "pagerank": 0,
+        "reference_derivation": 0,
+        "rrf": 0,
+        "semantic_reviewer": 0,
+        "structural_annotation": 0
+      },
+      "obligations": [
+        {
+          "excluded_interpretation": "No runtime importability, imported-member binding, synthetic reverse edges or external dependency truth.",
+          "facts_to_discover": "Source declaration occurrence and source module/resource, uniquely resolved target module/resource, explicit interpretation universe and native identity dependencies.",
+          "future_action": "one canonical A acquisition followed by annotation of the unchanged native result",
+          "id": "O1",
+          "information_need_identity": "N1",
+          "need": "Which native import declaration, resolution and module interpretation evidence supports a qualified source-to-target repository relationship?",
+          "obligation_identity": {
+            "task": "case-0018:historical-development-002",
+            "value": "O1"
+          },
+          "query": "qualified repository module import relation source target snapshot provenance",
+          "query_association": "O1",
+          "query_derivation": "One unweighted natural-language serialization of the authored need, using task/parent concepts only; no output tuning",
+          "query_identity": {
+            "task": "case-0018:historical-development-002",
+            "value": "Q1"
+          },
+          "requirement": "Represent qualified repository import relationships from established import resolution.",
+          "satisfaction": "Establish a directed source-to-target repository relation only from a unique positive bounded import-module resolution, retaining declaration, source/target resource content, snapshot and interpretation provenance.",
+          "task_backed_source_span": {
+            "end": 47,
+            "start": 0
+          },
+          "task_interpretation": "Caller-authored minimum implementation predicate; the source span supplies the task, not a claim that every criterion is verbatim original text"
+        },
+        {
+          "excluded_interpretation": "No guessing by path, root precedence, target-first selection or external-versus-missing classification.",
+          "facts_to_discover": "Absolute/relative module-portion rules, multiple module roots, missing/ambiguous sources, unresolved targets, unsupported relative levels and universe-qualified absence.",
+          "future_action": "one canonical A acquisition followed by annotation of the unchanged native result",
+          "id": "O2",
+          "information_need_identity": "N2",
+          "need": "What resolution and frame guards prevent unsupported or competing import interpretations from becoming unqualified repository relations?",
+          "obligation_identity": {
+            "task": "case-0018:historical-development-002",
+            "value": "O2"
+          },
+          "query": "import resolution resolved ambiguous unsupported module universe relative repository identity",
+          "query_association": "O2",
+          "query_derivation": "One unweighted natural-language serialization of the authored need, using task/parent concepts only; no output tuning",
+          "query_identity": {
+            "task": "case-0018:historical-development-002",
+            "value": "Q2"
+          },
+          "requirement": "Preserve qualified nonpositive and ambiguous import outcomes.",
+          "satisfaction": "Do not turn unresolved, ambiguous, unsupported or stale/foreign resolution into a positive relation; retain bounded disposition and provenance, with deterministic duplicate/occurrence accounting.",
+          "task_backed_source_span": {
+            "end": 47,
+            "start": 0
+          },
+          "task_interpretation": "Caller-authored minimum implementation predicate; the source span supplies the task, not a claim that every criterion is verbatim original text"
+        },
+        {
+          "excluded_interpretation": "No new retrieval treatment, recursive import closure, generic graph framework or child-specific API shape.",
+          "facts_to_discover": "Existing declarations/resolutions/module universe APIs, tests and documentation authority; static repository truth versus Retrieval and runtime behavior.",
+          "future_action": "one canonical A acquisition followed by annotation of the unchanged native result",
+          "id": "O3",
+          "information_need_identity": "N3",
+          "need": "How can the relation consumer integrate with existing import/module identities and validation while preserving the static Repository Intelligence boundary?",
+          "obligation_identity": {
+            "task": "case-0018:historical-development-002",
+            "value": "O3"
+          },
+          "query": "python import declarations module interpretation relations deterministic tests static repository intelligence",
+          "query_association": "O3",
+          "query_derivation": "One unweighted natural-language serialization of the authored need, using task/parent concepts only; no output tuning",
+          "query_identity": {
+            "task": "case-0018:historical-development-002",
+            "value": "Q3"
+          },
+          "requirement": "Integrate and validate qualified import relations without changing existing import truth.",
+          "satisfaction": "Reuse parent import/module primitives, expose and document the bounded relation capability, and test positive, nonpositive, relative, duplicate and changed-frame behavior without adding ranking or runtime execution.",
+          "task_backed_source_span": {
+            "end": 47,
+            "start": 0
+          },
+          "task_interpretation": "Caller-authored minimum implementation predicate; the source span supplies the task, not a claim that every criterion is verbatim original text"
+        }
+      ],
+      "parent_frame": {
+        "corpus_id": "7ce2a9e4a048fcb3d1a4e8c625be8c951a84dc0c5cac70809c6427a8bb50eb33",
+        "python_resource_count": 287,
+        "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+        "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+        "resource_count": 382,
+        "resource_order": "canonical resource address ascending",
+        "snapshot_id": "bf0f8d2a30e2be56053a2098a4800ad3d43a70c41707b618ad36c197b6b6b827",
+        "source_head": "d493c26bbb1866cb9e5ead8f23f02aac3a7f12b9",
+        "source_tree": "be89449e1f2c89c307130868aa51cf9e717a2f49"
+      },
+      "population_case_id": "historical-development-002",
+      "public_task_card": {
+        "case_id": "historical-development-002",
+        "frame": {
+          "kind": "GIT_PARENT_TREE",
+          "native_repository_snapshot": "NOT_CONSTRUCTED",
+          "parent_commit": "d493c26bbb1866cb9e5ead8f23f02aac3a7f12b9",
+          "parent_tree": "be89449e1f2c89c307130868aa51cf9e717a2f49"
+        },
+        "population_id": "devtools-historical-development-extension-v1",
+        "schema": "historical-development-public-task-v1",
+        "selection_position": 2,
+        "task_source": {
+          "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+          "provenance_reference": "historical-development-002/commit-message",
+          "task_sha256": "c540758bc3ab5600a985737892b93beb9045e7c56f00f44ef78ada4ab4369c97"
+        },
+        "task_text": "Implement qualified repository import relations\n",
+        "title": "Implement qualified repository import relations"
+      },
+      "schema": "direct-structural-discrimination-case-stage-a-v1",
+      "shared_protocol_sha256": "6167a9b28da52ce42ac7c9186fade322a078a3f5158ba87067b1c3cf4df0b52f",
+      "status": "STAGE_A_FROZEN; STAGE_B_NOT_EXECUTED; GOLD_ABSENT; EFFECTIVENESS_NOT_EVALUATED",
+      "task_identity": "case-0018:historical-development-002",
+      "task_provenance": {
+        "explanation": "Exact original commit message; minimum predicates interpreted from own parent only",
+        "source_sha256": "c540758bc3ab5600a985737892b93beb9045e7c56f00f44ef78ada4ab4369c97"
+      },
+      "task_text": "Implement qualified repository import relations\n"
+    },
+    {
+      "ambiguities": [
+        "Caller API and helper names are unspecified.",
+        "The provider-specific control encoding is unspecified; no bool, environment variable or command flag name is assumed.",
+        "No live GPU/model execution or provider-performance promise is implied."
+      ],
+      "authoring_basis_sha256": {
+        "docs/architecture.md": "1be2714652a492ed2a70f35aaed5f9e0ad9b3e8b68328ff957727940ffd24bd2",
+        "src/devtools/model_serving/docs/overview.md": "ccd724b4ee6f9885d8555f7f378e5033fbae8f55d376f046f87be2eff62f8bea",
+        "src/devtools/model_serving/vllm.py": "822836fc5b922e9d24fb94cf733b925f9fbfc0e846fc196ba96278f41717a222",
+        "tests/model_serving/test_vllm.py": "a2a6db57c7d347b0e1ca1d70f2ee9d0483c685ad4f3f8115f571e45d2405dc29"
+      },
+      "case_id": "case-0019",
+      "exact_route": "NOT_APPLICABLE",
+      "interpretation_gaps": [
+        "The task/parent do not specify the provider option spelling, value domain, provider-version applicability or default. These are not invented from child knowledge. The freeze evaluates repository integration evidence for the stated control; Stage C must retain any residual task/provider-contract gap rather than assume complete task satisfaction."
+      ],
+      "no_execution": {
+        "bm25": 0,
+        "exact_lookup": 0,
+        "gold": 0,
+        "local_pairs": 0,
+        "pagerank": 0,
+        "reference_derivation": 0,
+        "rrf": 0,
+        "semantic_reviewer": 0,
+        "structural_annotation": 0
+      },
+      "obligations": [
+        {
+          "excluded_interpretation": "No automatic tuning, new serving-provider framework, assumed field name/type/default or global GPU-memory policy.",
+          "facts_to_discover": "Existing immutable provider-specific serving configuration, structural validation and established caller-selected option conventions.",
+          "future_action": "one canonical A acquisition followed by annotation of the unchanged native result",
+          "id": "O1",
+          "information_need_identity": "N1",
+          "need": "How are explicit provider configuration choices represented and validated so a CUDA graph estimation control can be added without changing existing defaults?",
+          "obligation_identity": {
+            "task": "case-0019:historical-development-003",
+            "value": "O1"
+          },
+          "query": "vLLM CUDA graph estimate control serving configuration validation defaults",
+          "query_association": "O1",
+          "query_derivation": "One unweighted natural-language serialization of the authored need, using task/parent concepts only; no output tuning",
+          "query_identity": {
+            "task": "case-0019:historical-development-003",
+            "value": "Q1"
+          },
+          "requirement": "Expose an explicit caller-selected vLLM CUDA graph estimation control.",
+          "satisfaction": "Represent the caller's CUDA graph estimation choice coherently in the existing provider configuration, with validation appropriate to its supported provider contract and reproducible retention; omission preserves the parent launch behavior.",
+          "task_backed_source_span": {
+            "end": 36,
+            "start": 0
+          },
+          "task_interpretation": "Caller-authored minimum implementation predicate; the source span supplies the task, not a claim that every criterion is verbatim original text"
+        },
+        {
+          "excluded_interpretation": "No guessed provider option, server mutation, model invocation, benchmark tuning or live Docker acceptance in this retrieval experiment.",
+          "facts_to_discover": "Deterministic Docker/provider argv/environment construction, pinned model/image configuration, option forwarding and owned-container lifecycle/readiness/error boundaries.",
+          "future_action": "one canonical A acquisition followed by annotation of the unchanged native result",
+          "id": "O2",
+          "information_need_identity": "N2",
+          "need": "Where and under which lifecycle constraints are caller settings translated into reproducible provider launch arguments or environment values?",
+          "obligation_identity": {
+            "task": "case-0019:historical-development-003",
+            "value": "O2"
+          },
+          "query": "vLLM launch command Docker environment arguments configuration ownership readiness",
+          "query_association": "O2",
+          "query_derivation": "One unweighted natural-language serialization of the authored need, using task/parent concepts only; no output tuning",
+          "query_identity": {
+            "task": "case-0019:historical-development-003",
+            "value": "Q2"
+          },
+          "requirement": "Propagate the explicit estimation control through the owned vLLM launch.",
+          "satisfaction": "Forward an explicit supported choice faithfully through the existing launch representation, preserve unrelated options and omission behavior, and keep ownership/readiness/error semantics unchanged; do not claim provider runtime effects absent external proof.",
+          "task_backed_source_span": {
+            "end": 36,
+            "start": 0
+          },
+          "task_interpretation": "Caller-authored minimum implementation predicate; the source span supplies the task, not a claim that every criterion is verbatim original text"
+        },
+        {
+          "excluded_interpretation": "No hardware latency/accuracy guarantee, external-provider implementation claim, new benchmark or inferred child test wording.",
+          "facts_to_discover": "Existing mocked configuration and command-construction tests, disabled/default versus explicit option conventions and serving documentation authority.",
+          "future_action": "one canonical A acquisition followed by annotation of the unchanged native result",
+          "id": "O3",
+          "information_need_identity": "N3",
+          "need": "Which existing no-live-service tests and serving documentation constrain validation of a new caller-selected launch control?",
+          "obligation_identity": {
+            "task": "case-0019:historical-development-003",
+            "value": "O3"
+          },
+          "query": "vLLM serving configuration launch tests explicit optional settings documentation",
+          "query_association": "O3",
+          "query_derivation": "One unweighted natural-language serialization of the authored need, using task/parent concepts only; no output tuning",
+          "query_identity": {
+            "task": "case-0019:historical-development-003",
+            "value": "Q3"
+          },
+          "requirement": "Document and validate the control's bounded configuration/launch contract.",
+          "satisfaction": "Add focused no-live-service checks for omitted, explicit and invalid control input/forwarding as applicable, document the supported contract and limits, and preserve existing configuration and lifecycle tests.",
+          "task_backed_source_span": {
+            "end": 36,
+            "start": 0
+          },
+          "task_interpretation": "Caller-authored minimum implementation predicate; the source span supplies the task, not a claim that every criterion is verbatim original text"
+        }
+      ],
+      "parent_frame": {
+        "corpus_id": "eb20830bed8817e886f21cae6ceffbb15da7dc1f6ccae8667cf2208a6b659ef6",
+        "python_resource_count": 182,
+        "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+        "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+        "resource_count": 222,
+        "resource_order": "canonical resource address ascending",
+        "snapshot_id": "6781f26ecb733009de8b1e8427211f74ed7cd8f36ad8c07fe0e7595af145e028",
+        "source_head": "2465af00dc305a6c2a15a90455bf09e62e428e39",
+        "source_tree": "12a504a2106467d8b32fc062d15923c7b9250fd9"
+      },
+      "population_case_id": "historical-development-003",
+      "public_task_card": {
+        "case_id": "historical-development-003",
+        "frame": {
+          "kind": "GIT_PARENT_TREE",
+          "native_repository_snapshot": "NOT_CONSTRUCTED",
+          "parent_commit": "2465af00dc305a6c2a15a90455bf09e62e428e39",
+          "parent_tree": "12a504a2106467d8b32fc062d15923c7b9250fd9"
+        },
+        "population_id": "devtools-historical-development-extension-v1",
+        "schema": "historical-development-public-task-v1",
+        "selection_position": 3,
+        "task_source": {
+          "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+          "provenance_reference": "historical-development-003/commit-message",
+          "task_sha256": "3d50e75a9e222adf01648aaa7276f1e36d02c0c74ad86c22715a63bf2b1a09b1"
+        },
+        "task_text": "Add vLLM CUDA graph estimate control\n",
+        "title": "Add vLLM CUDA graph estimate control"
+      },
+      "schema": "direct-structural-discrimination-case-stage-a-v1",
+      "shared_protocol_sha256": "6167a9b28da52ce42ac7c9186fade322a078a3f5158ba87067b1c3cf4df0b52f",
+      "status": "STAGE_A_FROZEN; STAGE_B_NOT_EXECUTED; GOLD_ABSENT; EFFECTIVENESS_NOT_EVALUATED",
+      "task_identity": "case-0019:historical-development-003",
+      "task_provenance": {
+        "explanation": "Exact original commit message; minimum predicates interpreted from own parent only",
+        "source_sha256": "3d50e75a9e222adf01648aaa7276f1e36d02c0c74ad86c22715a63bf2b1a09b1"
+      },
+      "task_text": "Add vLLM CUDA graph estimate control\n"
+    }
+  ],
+  "confirmation_reserve_access": "NO",
+  "holdout_access": "NO",
+  "modern_harness_source": "Inspected/bound as evaluator only; isolated from parent-only obligation authority and clean reviewer input",
+  "no_execution": {
+    "bm25": 0,
+    "exact_lookup": 0,
+    "gold": 0,
+    "local_pairs": 0,
+    "pagerank": 0,
+    "reference_derivation": 0,
+    "rrf": 0,
+    "semantic_reviewer": 0,
+    "structural_annotation": 0
+  },
+  "population_freeze_sha256": "062d56eb131c97e0dcac62f77cd503de0a83ff80b54d1900d36fc3c3e56286c4",
+  "population_selection_seed": "55a91301a1249ecaf0513c0e8d1340a27a02ed12b78aabc3fa71773f39020637",
+  "runtime": {
+    "implementation": "CPython",
+    "python": "3.14.0"
+  },
+  "schema": "direct-structural-discrimination-cohort-stage-a-v1",
+  "selection": "first THREE existing frozen population entries, no sampling/reroll",
+  "starting_head": "8d2420bbbb873834c9bd0511cee1e193ce34ff6d"
+}

@@ -589,4 +589,14 @@ child implementation provenance is restricted until post-gold / Stage D and is
 not relevance gold. The unchanged
 [backlog source-exhaustion audit](../experiments/development_population/extension_01/audit/README.md)
 is NON-POPULATION evidence: zero eligible assignments, no freeze and no selection.
-Treatment design and execution remain separately authorized future work.
+Population selection preceded treatment design; execution remains separately
+authorized future work.
+
+The [direct structural discrimination protocol](../experiments/structural_discrimination/README.md)
+owns the prospective three-case Stage A experiment decision, native evidence
+schema, local predecessor diagnostic, blind-gold interpretation and staged
+execution/proof boundaries. Its [complete Stage A review](../experiments/structural_discrimination/STAGE_A_REVIEW.md)
+binds Cases 0017–0019 to the first three public historical tasks and exact parent
+observations. Candidate membership, BM25 scores and ordering remain unchanged;
+no structural reranking or production Localization policy is authorized. Child
+implementations remain restricted, and no capture or adjudication has run.

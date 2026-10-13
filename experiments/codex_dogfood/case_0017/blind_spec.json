@@ -1,0 +1,56 @@
+{
+  "ambiguities": [
+    "Public type/helper names and package layout are unspecified.",
+    "Index representation and construction API are unspecified; no scoring/ranking capability is requested."
+  ],
+  "case_id": "case-0017",
+  "gold_status": "NOT_CREATED",
+  "interpretation_gaps": [],
+  "obligations": [
+    {
+      "excluded_interpretation": "No new tokenizer, identifier splitting, BM25 score, ranking or resource acquisition.",
+      "id": "O1",
+      "obligation_identity": {
+        "task": "case-0017:historical-development-001",
+        "value": "O1"
+      },
+      "requirement": "Implement repository lexical statistics.",
+      "satisfaction": "Derive deterministic document term frequencies/lengths and corpus document counts, document frequencies and average document length from existing lexical observations, accounting explicitly for empty documents/collections and preserving provenance."
+    },
+    {
+      "excluded_interpretation": "No query execution, relevance score, rank, persistent index service or incremental maintenance system.",
+      "id": "O2",
+      "obligation_identity": {
+        "task": "case-0017:historical-development-001",
+        "value": "O2"
+      },
+      "requirement": "Implement a repository inverted index.",
+      "satisfaction": "Provide deterministic term-to-document postings based on the lexical statistics/observations, retaining document identity and frequency information without rescanning the filesystem or claiming relevance."
+    },
+    {
+      "excluded_interpretation": "No unrelated architectural migration, child-specific API names or treatment-dependent tests.",
+      "id": "O3",
+      "obligation_identity": {
+        "task": "case-0017:historical-development-001",
+        "value": "O3"
+      },
+      "requirement": "Integrate and validate the statistics/index capability under the parent repository contracts.",
+      "satisfaction": "Keep existing lexical observations unchanged, expose the capability coherently, document its boundary and validate deterministic heterogeneous, repeated-term and empty-input behavior using the parent development conventions."
+    }
+  ],
+  "parent_frame": {
+    "corpus_id": "32d70eb6fef4210e2ef4ccb48486bab51357e4f84e277c3e2b84f17bd89ddf91",
+    "python_resource_count": 262,
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 357,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_head": "71e938d809d794f2f07dd30cb772f1e9bc89c9d3",
+    "source_tree": "d6c9398be0bf36e16d6bf57a65f16d5f513eab00"
+  },
+  "resources": "Complete resources.json.gz accompanies this spec; authoring basis/queries/needs/protocol/evaluator are omitted",
+  "schema": "direct-discrimination-future-blind-spec-v1",
+  "task_identity": "case-0017:historical-development-001",
+  "task_text": "Implement repository lexical statistics and inverted index\n"
+}

@@ -1,0 +1,153 @@
+{
+  "annotation": {
+    "ablation": "Remove Reference inputs and rebuild annotations: empty support/local-pair surfaces, exact same native A object/order/scores/membership. This establishes channel dependence, not causal relevance.",
+    "native_support": "Reuse PythonDirectStructuralResourceEvidence with reference-to-definition direction and verbatim native fact; no automatic CandidateWitnessHypothesis or accepted witness",
+    "order": "Targets in original A order; sources by A rank then address; occurrences by canonical native fact identity",
+    "output": "AnnotatedLexicalSurface retains original native A object/order/scores/membership and explicit same-obligation target/source evidence; no Arm C",
+    "rank_change": false
+  },
+  "authoring_protocol": "Task -> minimum mandatory predicates -> uncertainties -> one plain-language query each; parent architecture/source/tests constrain compatibility, never child or retrieval outputs. No exact locator is present in these original task messages.",
+  "baseline": {
+    "api": "devtools.context.retrieval.lexical.bm25.retrieve_repository_text_documents_by_bm25",
+    "b": 0.75,
+    "exact_routing": "NOT_APPLICABLE: none of the three original messages contains an exact resource/declaration locator. No route, role preference, guessed path or exact-seed lookup is added.",
+    "filename_weight": 0.25,
+    "historical_adapter": "Fixed current accepted canonical evaluator applied mechanically to unchanged historical parent documents. Parent code is data, never imported/executed or patched. Some frames predate BM25/current RI; no claim those historical snapshots implemented this evaluator. Modern harness code is isolated from task/obligation authoring and blind gold.",
+    "implementation_checkpoint": "8d2420bbbb873834c9bd0511cee1e193ce34ff6d",
+    "k1": 1.2,
+    "membership": "positive total scores only, maximum_results = frame resource_count (complete positive ranking)",
+    "query_api": "devtools.context.retrieval.lexical.bm25.analyze_repository_text_lexical_query",
+    "representation": "whole-resource exact parent UTF-8 text; no windows, stemming or identifier splitting",
+    "score": "independent content BM25 + 0.25 * independent filename-stem BM25; not BM25F",
+    "ties": "descending native score, then native document collection position; collection canonical address order",
+    "tokenization": "unicode-word-span-casefold-v1; unsplit Unicode word spans; distinct query terms"
+  },
+  "conditioning": "Caller-authored obligation InformationNeed, one exact associated lexical query and its A order; not task-global source strength or automatic task interpretation.",
+  "eligibility": {
+    "graph_only_admission": false,
+    "source": "source in A(O), target in A(O), source != target, A_rank(source,O) < A_rank(target,O), exact positive native source -> target Reference",
+    "source_authority": "Stronger lexical rank is the tested purpose-relative condition, not accepted semantic authority or a witness",
+    "target": "A(O) membership only; same repository/snapshot/corpus/document/content binding",
+    "top_k_source_cutoff": null
+  },
+  "failure_taxonomy": [
+    "EXPERIMENTAL_CONTRACT_DEFECT",
+    "REFERENCE_RESOLUTION_DEFECT",
+    "GRAPH_EDGE_PROVENANCE_DEFECT",
+    "STRUCTURAL_SIGNAL_ABSENT",
+    "STRUCTURAL_SIGNAL_REDUNDANT_WITH_LEXICAL",
+    "STRUCTURAL_EVIDENCE_NOT_PURPOSE_RELATIVE"
+  ],
+  "formulation": "ANNOTATED_LEXICAL_CANDIDATES; DISCRIMINATION_DIAGNOSTIC; NO_RERANKING",
+  "frame_policy": {
+    "byte_authentication": "Archive exact parent only; validate every extracted regular file against listed parent Git blob OID, bind physical SHA256 and native content/document identities. Never use child tree, diff or paths.",
+    "maximum_resource_bytes": 1048576,
+    "maximum_resources": 10000,
+    "maximum_traversal_entries": 20000,
+    "observation": "Complete explicit included UTF-8 resources, not an atomic full-repository or external-environment claim",
+    "owner": "case_0015.freeze.eligible and frame: established broad text selection and canonical native observation/corpus/document construction",
+    "scope": "Root README.md/AGENTS.md/pyproject.toml and scripts/validate_development.py where present; .py/.md/.toml/.yaml/.yml under src/tests/docs; exclude experiments, tests/experiments, docs/research, docs/reports, ledger and confirmation/reserve paths before content reads"
+  },
+  "holdout_boundary": "All Stage A/B/C and primary Stage D scientific evaluation use only public tasks/parent frames. Only after capture, blind gold and primary evaluation freeze may separately authorized post-result external validity access child implementation; never retroactively changes gold/category.",
+  "hypothesis": "Within A(O), an exact direct cross-resource Reference from a lexically stronger source for the same obligation provides incremental target-usefulness discrimination evidence.",
+  "local_comparison": {
+    "beneficial": "label(T) > label(P)",
+    "categories": {
+      "MIXED_STRUCTURAL_DISCRIMINATION_SIGNAL": "both strong classes >=1",
+      "NO_MATERIAL_STRUCTURAL_DISCRIMINATION_SIGNAL": "neither strong class exists",
+      "STRUCTURAL_DISCRIMINATION_CONTRADICTED": "strong harmful >=1 and strong beneficial =0",
+      "STRUCTURAL_DISCRIMINATION_SIGNAL": "strong beneficial >=1 and strong harmful =0"
+    },
+    "category_implementation": "experiments.structural_discrimination.decision.case_category",
+    "execution": "No promotion performed; each pair is independent. Do not simulate simultaneous swaps or infer cumulative reranking safety.",
+    "harmful": "label(T) < label(P)",
+    "identity": "case/task/obligation/query + repository/snapshot/corpus + target and predecessor exact document/content/resource identities",
+    "neutral": "label(T) == label(P)",
+    "pair": "Every supported target T with A rank > 1 paired with original A rank(T)-1 predecessor P under the same obligation; target at rank1 has no pair and cannot have a stronger source",
+    "precedence": "Input/proof/frame/join/native provenance defect => invalid experiment (EXPERIMENTAL_CONTRACT_DEFECT or demonstrated RI/provenance defect), no valid signal category. Otherwise exact four-category rule. No production-support conclusion.",
+    "strong_beneficial": "T REQUIRED and P UNNECESSARY",
+    "strong_harmful": "T UNNECESSARY and P REQUIRED",
+    "utility_order": [
+      "REQUIRED",
+      "HELPFUL_ONLY",
+      "UNNECESSARY"
+    ]
+  },
+  "no_retuning": "Same mechanism/eligibility/pair/category/authoring protocol for all three; task-specific needs/queries frozen together before capture; no Case0017 result used to modify0018/0019; all three captures precede any gold-based mechanism revision",
+  "non_goals": [
+    "graph-only discovery",
+    "PPR effectiveness",
+    "global graph ranking",
+    "RRF",
+    "learned reranking",
+    "multi-hop",
+    "self-reference usefulness",
+    "other relation families",
+    "Context budgets",
+    "automatic agent success",
+    "child changed-file recall",
+    "child implementation similarity",
+    "SEARCH_POLICY_FAILURE",
+    "production promotion",
+    "incremental RI",
+    "filename-index optimization"
+  ],
+  "performance": {
+    "clock": "time.perf_counter_ns",
+    "concern_p95_ms": 1000,
+    "exclude": "RI/index build, diagnostic rendering/materialization, journal durability, provenance serialization, hashing, validation/reporting, deep proof, Git; no cost gate changes effectiveness categories",
+    "offline": "Parent observation, lexical index/statistics, module universe/full RI, prepared native fact validation/identity ordering amortized per snapshot",
+    "online": "Query analysis + canonical BM25 API + direct Reference lookup/filter/projection + annotation/local-pair construction including normal API guards",
+    "samples": "Exactly one scientific computation per O/Q, three per case/nine cohort; retain raw component ns, n, median and nearest-rank p95 over each case/cohort. Single-run descriptive workload samples, not repeated latency distributions; no treatment repetitions merely for timing.",
+    "target_median_ms": 250,
+    "timing": "Time computational closures only; complete warm online-equivalent = sum query-analysis/A and annotation computation times for the same O. Publish journal only outside closures; raw native results already retained in memory. Never time serialization as retrieval."
+  },
+  "references": {
+    "api": "devtools.context.python.references.derive_python_declaration_references",
+    "diffusion": false,
+    "direction": "REFERENCER_RESOURCE -> DEFINER_RESOURCE",
+    "duplicates": "Same exact fact/occurrence input deduplicated; conflicting native identity/occurrence rejects; distinct occurrences retained, no count used as relevance score",
+    "module_universe": "interpret_python_module_resources under src for src/ .py, and . for other retained .py; union explicit interpretations without root preference, retain exclusions; no discovery beyond frame",
+    "multi_hop": false,
+    "other_families": "EXCLUDED: Imports, Calls, containment, inheritance, mirrors/tests, proximity, configuration, reverse synthetic edges",
+    "pagerank": false,
+    "positive_type": "PythonDeclarationReferenceKnowledge: function, class or supported method declaration target",
+    "prepare": "Snapshot build: authenticate native endpoints/declared dependencies once and cache canonical fact order/identity in invocation-local PreparedReferences; no persisted trust cache",
+    "routes": "All existing positive native routes, including qualified import/facade support internal to resolving a Reference. Imports and Call tags do not become separate structural edge families.",
+    "runtime": "Pinned current evaluator/lock/runtime; parent source parsed as retained text using native Python 3.12 grammar feature setting; no parent imports/runtime execution",
+    "self_edges": "EXCLUDED from support; optional cheap unique self-occurrence count is descriptive only",
+    "source_scope": "Every retained .py source once in canonical address order, regardless of query/rank; complete assessment coverage retained, native resolution is bounded/non-exhaustive"
+  },
+  "schema": "direct-structural-discrimination-protocol-v1",
+  "stage_b": {
+    "authorization": "NOT_AUTHORIZED_BY_STAGE_A; later separately authorized capture for ALL THREE before any gold-dependent mechanism revision",
+    "capture": "Native A, all positive/nonpositive RI assessments, prepared fact identity scope, complete annotations and local pairs, costs and canonical scientific artifacts; no gold, reranking, extra query lane or child input",
+    "deep_proof": "At finalization authenticate journal, native/canonical correspondence, alias/type/order/frame/runtime and scientific construction against captured native returns without re-executing the treatment; proof.publish_proof CompletionBindings + authoritative outer capture commit anchor",
+    "exactly_once": "Every scheduled scientific operation ENTERED/RETURNED once, ordinal inputs/hash chain/runtime/frame bound; no automatic retry after entry or partial acquisition admission. Failed attempt audit isolated; new attempt only separately authorized.",
+    "schedule": "Per case: authenticate Stage A; claim execution; retain frame; lexical analysis/statistics/index once; explicit module universe once; Reference derivation once per eligible .py; prepare fact evidence once; for each O/Q canonical query analysis+A once and annotation/local-pair construction once; authenticate/seal capture"
+  },
+  "stage_c": {
+    "allowed": "Exact task, frozen obligations/criteria/interpretation limits, complete retained parent resources and exact resource/frame identities",
+    "forbidden": "Queries/need wording, A ranks/scores/membership labels, structural annotations/Reference treatment evidence, source eligibility, pair targets/predecessors, other cohort case material/results, modern evaluator source, child implementation/paths/diff, confirmation/reserve",
+    "judgments": "Every parent resource x obligation cell: REQUIRED/HELPFUL_ONLY/UNNECESSARY, positive source spans/rationale, semantic units/support alternatives, minimal witnesses and task/obligation indispensability where defined; preserve gaps/limitations/ambiguities; no changed-file surrogate",
+    "primary": "One clean GPT-6 Astra / High primary per case, designated configuration; no automatic second reviewer/reconciliation; accurately retain host-routing/blindness attestation",
+    "publication": "Byte-identical primary import and deterministic reviewed projection with semantic_transformation NONE; authentication once per invocation; unresolved identities/labels reject the Stage D join, never assumed UNNECESSARY"
+  },
+  "stage_d": {
+    "cohort": "After all three blind gold freezes, report all case categories and sum pair/target label counts. Occurrence-level unit is (case,snapshot,obligation,target); distinct identities reported separately. Useful cross-resource support proportion = useful supported targets / all supported targets, with native occurrence/source-weighted diagnostics separately named. No significance or numeric acceptance threshold; no architectural acceptance after first case.",
+    "interpretation": "Maintainer later distinguishes consistently useful signal, mixed/purpose-insufficient signal, or absent/noisy/redundant signal. No such conclusion is encoded now.",
+    "join": "Exact case/task/obligation/query association + RepositoryId/SnapshotId/CorpusId + address/document/content identity; no filename-only/stale/duplicate/missing join",
+    "metrics": [
+      "Every supported target/source/occurrence and independent predecessor pair with beneficial/neutral/harmful and strong classes",
+      "Supported/unsupported A targets; supported REQUIRED/HELPFUL_ONLY/UNNECESSARY; REQUIRED without support; task-/obligation-indispensable support where gold provides it",
+      "Useful-supported rate and baseline A useful rate with exact counts/denominators; report NOT_DEFINED for zero denominator",
+      "Descriptive source counts, occurrence counts, best source rank and best-source-to-target rank distance; no post-gold thresholds",
+      "For each supported target count UNNECESSARY A resources strictly between best source and target under the same obligation; no implicit promotion authorization",
+      "Structural ablation removes annotations/pairs and preserves A exactly; support must trace to exact qualifying native facts"
+    ],
+    "mode": "Normal SEALED proof authentication; no automatic raw native replay",
+    "unchanged_ranking": "A/annotated candidate reach, rank, completion depths and burdens are identical by contract, not measured improvement. Any change rejects capture. No Graph-3 harmful/rank-gain gates are repurposed."
+  },
+  "status": "STAGE_A_FROZEN; STAGE_B_NOT_EXECUTED; GOLD_ABSENT; EFFECTIVENESS_NOT_EVALUATED",
+  "taxonomy_guard": "No labels assigned before observation. Bounded unresolved RI/missing support is not itself a defect or negative relevance. Purpose/noise mechanism claims need demonstrated label/provenance consequences, not degree/count alone."
+}

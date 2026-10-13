@@ -1,0 +1,59 @@
+{
+  "ambiguities": [
+    "Caller API and helper names are unspecified.",
+    "The provider-specific control encoding is unspecified; no bool, environment variable or command flag name is assumed.",
+    "No live GPU/model execution or provider-performance promise is implied."
+  ],
+  "case_id": "case-0019",
+  "gold_status": "NOT_CREATED",
+  "interpretation_gaps": [
+    "The task/parent do not specify the provider option spelling, value domain, provider-version applicability or default. These are not invented from child knowledge. The freeze evaluates repository integration evidence for the stated control; Stage C must retain any residual task/provider-contract gap rather than assume complete task satisfaction."
+  ],
+  "obligations": [
+    {
+      "excluded_interpretation": "No automatic tuning, new serving-provider framework, assumed field name/type/default or global GPU-memory policy.",
+      "id": "O1",
+      "obligation_identity": {
+        "task": "case-0019:historical-development-003",
+        "value": "O1"
+      },
+      "requirement": "Expose an explicit caller-selected vLLM CUDA graph estimation control.",
+      "satisfaction": "Represent the caller's CUDA graph estimation choice coherently in the existing provider configuration, with validation appropriate to its supported provider contract and reproducible retention; omission preserves the parent launch behavior."
+    },
+    {
+      "excluded_interpretation": "No guessed provider option, server mutation, model invocation, benchmark tuning or live Docker acceptance in this retrieval experiment.",
+      "id": "O2",
+      "obligation_identity": {
+        "task": "case-0019:historical-development-003",
+        "value": "O2"
+      },
+      "requirement": "Propagate the explicit estimation control through the owned vLLM launch.",
+      "satisfaction": "Forward an explicit supported choice faithfully through the existing launch representation, preserve unrelated options and omission behavior, and keep ownership/readiness/error semantics unchanged; do not claim provider runtime effects absent external proof."
+    },
+    {
+      "excluded_interpretation": "No hardware latency/accuracy guarantee, external-provider implementation claim, new benchmark or inferred child test wording.",
+      "id": "O3",
+      "obligation_identity": {
+        "task": "case-0019:historical-development-003",
+        "value": "O3"
+      },
+      "requirement": "Document and validate the control's bounded configuration/launch contract.",
+      "satisfaction": "Add focused no-live-service checks for omitted, explicit and invalid control input/forwarding as applicable, document the supported contract and limits, and preserve existing configuration and lifecycle tests."
+    }
+  ],
+  "parent_frame": {
+    "corpus_id": "eb20830bed8817e886f21cae6ceffbb15da7dc1f6ccae8667cf2208a6b659ef6",
+    "python_resource_count": 182,
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 222,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "6781f26ecb733009de8b1e8427211f74ed7cd8f36ad8c07fe0e7595af145e028",
+    "source_head": "2465af00dc305a6c2a15a90455bf09e62e428e39",
+    "source_tree": "12a504a2106467d8b32fc062d15923c7b9250fd9"
+  },
+  "resources": "Complete resources.json.gz accompanies this spec; authoring basis/queries/needs/protocol/evaluator are omitted",
+  "schema": "direct-discrimination-future-blind-spec-v1",
+  "task_identity": "case-0019:historical-development-003",
+  "task_text": "Add vLLM CUDA graph estimate control\n"
+}

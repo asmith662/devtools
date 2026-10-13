@@ -47,9 +47,8 @@ inverted index,” at untouched parent commit
 `71e938d809d794f2f07dd30cb772f1e9bc89c9d3` / tree
 `d6c9398be0bf36e16d6bf57a65f16d5f513eab00`.
 Its child implementation is a restricted reference implementation, never relevance
-gold. No retrieval, obligations, new gold or treatment design is performed here.
-Maintainer review precedes prospective treatment design against this already
-selected task; Stage A/B/C must not open the child implementation or its paths.
+gold. Population selection preceded treatment design; Stage A/B/C must not open
+the child implementation or its paths.
 
 U1/U2/U3, R1.7/R2 and GRAPH-3 retain their completed scientific dispositions.
 GRAPH-3 remains COMPLETE / GRAPH_HARMFUL; the performance baseline remains
@@ -57,7 +56,21 @@ COMPLETE and verifier architecture remains COMPLETE /
 SEALED_AND_DEEP_VERIFICATION_SEPARATED. Production retrieval is unchanged;
 SEARCH_POLICY_FAILURE remains NOT_ASSESSED. Incremental RI remains REQUIRED /
 NOT_IMPLEMENTED and filename-index caching remains PENDING / NOT_IMPLEMENTED.
-The next structural-evidence treatment remains **PENDING DESIGN**, not selected.
+The [direct structural discrimination cohort](../experiments/structural_discrimination/README.md)
+is now **STAGE A FROZEN / NOT EXECUTED**. Cases 0017–0019 bind the first three
+historical population entries, their untouched parent frames, obligations and
+queries. One shared mechanism annotates unchanged canonical lexical candidates
+with direct cross-resource native References from a stronger candidate for the
+same obligation. It does not rank, promote, diffuse or acquire graph-only targets.
+The local predecessor comparison tests signal direction after blind gold; it is
+not a production ranking rule or an architectural ownership decision.
+
+Maintainer review precedes exactly-once Stage B capture for **all three cases**
+under the frozen mechanism, then isolated blind primary Stage C adjudication and
+sealed Stage D identity joins/case categories/cohort diagnostics. Earlier case
+gold must not tune later cohort members. Child holdouts remain closed until the
+primary scientific evaluation is complete. No treatment capture or gold was
+created at this Stage A checkpoint; production behavior remains unchanged.
 
 Two coordinated tracks preserve ADR-0005 and the implemented Localization
 contracts while correcting retrieval-foundation sequencing. The
