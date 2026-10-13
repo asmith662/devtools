@@ -238,6 +238,13 @@ Run Ruff, formatting, mypy, and diff checks separately as documented. Do not
 run confirmation validation or live model/Docker tests for ordinary work;
 those require explicit authorization and are reported separately.
 
+Approved experiment-controller runs may use the experiment-only intermediate
+checkpoint policy in [development validation](docs/development/validation.md#approved-experiment-controller-validation-tiers).
+PACKET/B/C checkpoints require focused deterministic and integrity checks; final
+Stage D, production-source changes and controller engineering increments require
+full protected development validation. This exception never changes the production
+coverage gate or authorizes confirmation/live-model tests.
+
 For read-only audits: do not fix while inspecting; list evidence inspected,
 separate fact from interpretation, report findings by severity, and do not
 stage or commit.

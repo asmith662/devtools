@@ -632,3 +632,15 @@ unchanged local outcomes using same-obligation gold. It adds no prospective gate
 runtime filter or amendment to Stage D. The original categories, totals and
 published interpretation remain authoritative and unchanged; historical child,
 confirmation and reserve inputs remain sealed.
+
+The [approved experiment controller](../experiments/orchestration/README.md) owns
+engineering automation for immutable prospective runs: approval-bound plans,
+sterile workers, exactly-once recovery, bounded concurrency, preparation caches,
+progress and serialized checkpoints. Its
+[adapter contract](../experiments/orchestration/CONTRACT.md) defines fixed
+packet/B/C/import/D transport; its
+[engineering report](../experiments/orchestration/engineering/REPORT.md) records
+synthetic and read-only adoption evidence. It does not own scientific semantics,
+a general autonomous Agent or production Retrieval. The
+[validation tiers](development/validation.md#approved-experiment-controller-validation-tiers)
+retain the protected production profile and final validation requirement.

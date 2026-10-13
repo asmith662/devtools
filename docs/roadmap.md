@@ -30,6 +30,47 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
+### Automated experiment mechanics
+
+[EXPERIMENT_CONTROLLER](../experiments/orchestration/README.md) = **COMPLETE**
+for the engineering lifecycle increment. It is implemented as
+experiment-owned engineering infrastructure; its completion evidence is recorded
+in the [engineering report](../experiments/orchestration/engineering/REPORT.md).
+It executes an approved immutable protocol with two normal human gates, bounded
+case/B-C concurrency, sterile reviewers, exactly-once claims, authenticated imports,
+serialized publication, explicit validation tiers and a non-authoritative historical
+immutable preparation-byte cache. It is not the autonomous Agent or a ranking
+policy. **LIVE_INCREMENTAL_RI = REQUIRED / NOT_IMPLEMENTED** remains separate.
+
+Final publication retains full protected production validation and explicit
+supported-source static scopes. Immutable imported reviewer builders are not
+reformatted to satisfy blanket whole-repository style checks; the engineering
+report preserves those pre-existing failures and the scope rationale.
+
+The immediate sequence is:
+
+1. Automated experiment controller engineering increment.
+2. **PURPOSE_RELATIVE_SOURCE_GROUNDING / NOT_STARTED** cohort: purpose-relative
+   source grounding plus selective direct structural pursuit.
+3. Search-policy / iterative evidence-pursuit cohort.
+4. Obligation-sufficiency / Context cohort.
+5. Live incremental RI completion.
+6. Deliberate autonomous-Agent integration.
+
+The next scientific cohort is not designed or executed by this engineering task.
+The maintainer reviews the controller, then approves committed prospective Stage A
+before execution and reviews Stage D afterward. Later hypotheses are not accepted
+production features. Prior scientific dispositions are unchanged: U1
+INFORMATION_NEED_AUTHORING_DEFECT; U2 EXACT_HINT_ROUTING_SUPPORTED; U3
+SELECTIVE_MECHANISM_ROUTING_SUPPORTED; R1.7 QUERY_TERM_WEIGHTING_HARMFUL;
+R2 BM25F_HARMFUL; GRAPH-3 GRAPH_HARMFUL (all COMPLETE). Direct structural
+discrimination remains COMPLETE. Source quality remains POST_HOC / ORACLE /
+NON_GATING / NOT_RUNTIME_AVAILABLE and SOURCE_QUALITY_LOOKS_EXPLANATORY.
+Retrieval performance remains COMPLETE; verifier remains COMPLETE /
+SEALED_AND_DEEP_VERIFICATION_SEPARATED. Historical population remains FROZEN.
+Production retrieval is unchanged; SEARCH_POLICY_FAILURE is NOT_ASSESSED.
+Confirmation/reserve remain NOT_ACCESSED; historical child access is unauthorized.
+
 ### Independent historical development population — FROZEN
 
 The original Increment 25 development population (8/8 used) and Increment 27

@@ -1,0 +1,162 @@
+{
+  "adoption": {
+    "Stage_A": "COMPLETE/AUTHENTICATED",
+    "cases": {
+      "0017": {
+        "Stage_B": "COMPLETE/SEALED",
+        "Stage_C": "IMPORTED",
+        "Stage_D": "COMPLETE",
+        "packet": "COMPLETE/FROZEN"
+      },
+      "0018": {
+        "Stage_B": "COMPLETE/SEALED",
+        "Stage_C": "IMPORTED",
+        "Stage_D": "COMPLETE",
+        "packet": "COMPLETE/FROZEN"
+      },
+      "0019": {
+        "Stage_B": "COMPLETE/SEALED",
+        "Stage_C": "IMPORTED",
+        "Stage_D": "COMPLETE",
+        "packet": "COMPLETE/FROZEN"
+      }
+    },
+    "deep_replays": 0,
+    "mode": "READ_ONLY_ADOPTION",
+    "scientific_executions": 0,
+    "verification": {
+      "case_categories": {
+        "0017": "NO_MATERIAL_STRUCTURAL_DISCRIMINATION_SIGNAL",
+        "0018": "STRUCTURAL_DISCRIMINATION_SIGNAL",
+        "0019": "NO_MATERIAL_STRUCTURAL_DISCRIMINATION_SIGNAL"
+      },
+      "exact_output": true,
+      "join_defects": 0,
+      "mode": "verify",
+      "status": "PASS",
+      "totals": {
+        "A_candidate_occurrences": 1560,
+        "A_gold_labels": {
+          "HELPFUL_ONLY": 105,
+          "REQUIRED": 39,
+          "UNNECESSARY": 1416
+        },
+        "baseline_A_useful_candidate_occurrences": 144,
+        "baseline_A_useful_rate": {
+          "denominator": 1560,
+          "numerator": 144,
+          "proportion": 0.09230769230769231
+        },
+        "distinct_source_target_obligation_pairs": 218,
+        "local_pairs": 121,
+        "pair_counts": {
+          "BENEFICIAL": 7,
+          "HARMFUL": 4,
+          "NEUTRAL": 110,
+          "STRONG_BENEFICIAL": 1,
+          "STRONG_HARMFUL": 0
+        },
+        "qualifying_support_occurrences": 1281,
+        "required_in_A": 39,
+        "required_in_A_support_coverage": {
+          "denominator": 39,
+          "numerator": 6,
+          "proportion": 0.15384615384615385
+        },
+        "supported_REQUIRED_in_A": 6,
+        "supported_gold_labels": {
+          "HELPFUL_ONLY": 9,
+          "REQUIRED": 6,
+          "UNNECESSARY": 106
+        },
+        "supported_targets": 121,
+        "supported_useful_rate": {
+          "denominator": 121,
+          "numerator": 15,
+          "proportion": 0.12396694214876033
+        },
+        "supported_useful_target_occurrences": 15,
+        "unsupported_REQUIRED_in_A": 33
+      }
+    }
+  },
+  "confirmation_reserve_access": false,
+  "controller_implementation": {
+    "__init__.py": "311618eb0152055a2c7af5675acba2d44d65e4a72eb4be4eac991d5c0c501f6b",
+    "__main__.py": "4bfddf5eb166cc159a0cb6d8408e87f1cd3ed26a1ae9d8876822441594fa5422",
+    "cache.py": "621f88dcbae62f48128a10a26614b439159b01a88365c3d2d4a6cc7cadc724c4",
+    "controller.py": "24e34d24abc71787186ba15d7ee1a0d2c6c8be27f2ee0e73ab8ec3f3d8464335",
+    "isolation.py": "3a70c05a482318e3f09e01a012904947fc25d3db87b476abc938208358fa2d21",
+    "lease.py": "42d17ccebfa850945b905a590db6ec311fd318ff388257f7ac117883843b2fb7",
+    "model.py": "51883ba1047a2e3587a43c553a8ed2ab8f83a911acbc403685c70e3d5bf3bb98",
+    "publication.py": "1a67d883a16562f14acb19452b80a0560450e9f5e0d06e25985e8cb5763bbac0",
+    "storage.py": "6aff6bd20ce8d1ce76244a1ab1e89aa06b4b9b02b79504b702178ab67e757251",
+    "workers/__init__.py": "97580554bfed72f4cc61eee619c7d770bd4ab7907adc3b6650f8d9b3231105de",
+    "workers/codex.py": "724f5f40f8d6b9872fc8e4404e97958e8b602b14051538b775b13c86929de00a",
+    "workers/process.py": "1a142ca2397479299ea6e134c576cecf240233f040d862c148df3822fb0d9161",
+    "workers/supervisor.py": "26dde8304cf7d3d76518eaae10474b7a64de1626b5b026a3724cf839ab9a8424"
+  },
+  "existing_capture_packet_sealed_proof": {
+    "passed": 40
+  },
+  "existing_synthetic_journals": {
+    "passed": 3
+  },
+  "focused_controller": {
+    "full_suite_passed": 65,
+    "live_models": 0,
+    "post_byte_policy_publication_integration_passed": 5,
+    "unique_tests_passed": 66
+  },
+  "formatter_controller": "PASS",
+  "full_suite_controller_implementation": {
+    "__init__.py": "311618eb0152055a2c7af5675acba2d44d65e4a72eb4be4eac991d5c0c501f6b",
+    "__main__.py": "4bfddf5eb166cc159a0cb6d8408e87f1cd3ed26a1ae9d8876822441594fa5422",
+    "cache.py": "621f88dcbae62f48128a10a26614b439159b01a88365c3d2d4a6cc7cadc724c4",
+    "controller.py": "24e34d24abc71787186ba15d7ee1a0d2c6c8be27f2ee0e73ab8ec3f3d8464335",
+    "isolation.py": "3a70c05a482318e3f09e01a012904947fc25d3db87b476abc938208358fa2d21",
+    "lease.py": "42d17ccebfa850945b905a590db6ec311fd318ff388257f7ac117883843b2fb7",
+    "model.py": "51883ba1047a2e3587a43c553a8ed2ab8f83a911acbc403685c70e3d5bf3bb98",
+    "publication.py": "c8a579f9cc371ec0ef462aa5161330e14bd218402de8e3dbc5ddb0bbc135f0bd",
+    "storage.py": "6aff6bd20ce8d1ce76244a1ab1e89aa06b4b9b02b79504b702178ab67e757251",
+    "workers/__init__.py": "97580554bfed72f4cc61eee619c7d770bd4ab7907adc3b6650f8d9b3231105de",
+    "workers/codex.py": "724f5f40f8d6b9872fc8e4404e97958e8b602b14051538b775b13c86929de00a",
+    "workers/process.py": "1a142ca2397479299ea6e134c576cecf240233f040d862c148df3822fb0d9161",
+    "workers/supervisor.py": "26dde8304cf7d3d76518eaae10474b7a64de1626b5b026a3724cf839ab9a8424"
+  },
+  "git_diff_checks": "PASS; implementation whitespace retained; immutable scientific data authenticated without byte normalization",
+  "global_baseline": {
+    "broad_mypy": "LEGACY_ERRORS_OBSERVED_THEN_INTERRUPTED",
+    "formatter": "CRASH_WHILE_REPORTING_EXISTING_ARCHIVE",
+    "immutable_bytes_changed": false,
+    "ruff_findings": 22150,
+    "supported_source_formatting_unchanged_files": 62
+  },
+  "historical_child_access": false,
+  "live_reviewers": 0,
+  "protected_development": {
+    "executions": 1,
+    "passed": 1588,
+    "production_branch_coverage_percent": 100,
+    "skipped_live": 2
+  },
+  "publication_verification": "containing Git commit and mandatory final handoff record final HEAD, synchronized remote and diff checks",
+  "real_codex_transport_probe": {
+    "command": "codex.cmd --version",
+    "exit_code": 0,
+    "stdout": "codex-cli 0.162.1"
+  },
+  "ruff_supported_source": "PASS",
+  "schema": "experiment-controller-engineering-validation-v1",
+  "scientific_publication_bytes": "RAW_CRLF_AND_TRAILING_SPACES_PRESERVED_AND_GIT_BLOB_VERIFIED",
+  "scientific_treatments": 0,
+  "strict_mypy_controller": {
+    "files": 19,
+    "status": "PASS"
+  },
+  "strict_mypy_supported_source": {
+    "files": 434,
+    "status": "PASS"
+  },
+  "validation_scope_policy": "docs/development/validation.md#approved-experiment-controller-validation-tiers"
+}

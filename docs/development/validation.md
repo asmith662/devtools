@@ -42,3 +42,35 @@ git diff --check
 
 When changes are staged, also run `git diff --cached --check`. This profile is
 test selection, not a general validation pipeline or confirmation mechanism.
+
+## Approved experiment-controller validation tiers
+
+The [experiment controller](../../experiments/orchestration/README.md) automates
+fixed scientific checkpoints without changing the protected production profile.
+For experiment-only intermediate PACKET, B and C publications, focused stage
+contracts, deterministic validation/replay, sealed integrity and declared focused
+suites are sufficient. These are CHECKPOINT validations; LOCAL checks support
+implementation work. They do not justify bypassing a failed scientific validator.
+
+Final D publication requires FINAL: complete experiment verification, the full
+protected development command above and supported-source static checks, once at
+that boundary. The controller's mandatory static floor is Ruff over `src`, `tests`
+and `experiments/orchestration`, strict mypy over `src`, protected `tests` (excluding
+`tests/experiments/`) and `experiments/orchestration`, and formatter verification
+of `experiments/orchestration`. The approved plan additionally freezes complete
+verification and applicable static checks for active experiment adapters.
+Immutable imported scientific builders and retained historical programs are inputs,
+not supported implementation source to normalize or lint retrospectively. Unchanged
+production formatting is not rewritten by an artifact publication. Changed
+production source retains its applicable formatting checks. Any change under
+`src/devtools/` also requires FINAL before publication.
+Controller engineering increments themselves run protected development validation
+before their final publication. No tier relaxes the production branch-coverage
+gate or authorizes confirmation, live models or historical scientific deep replay.
+The synthetic temporary-repository fixture replaces framework validation only in
+its test subclass; the shipped controller always schedules the mandatory commands.
+
+Scientific run payloads additionally use explicit Git data attributes to retain
+original CRLF and meaningful whitespace. Their byte hashes, schemas and
+stage-specific deterministic validators remain mandatory; imported data are not
+code to normalize. Controller implementation files retain whitespace checks.
