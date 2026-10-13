@@ -1,0 +1,2068 @@
+# Case 0017 Stage D complete local-pair trace
+
+COUNTERFACTUAL DIAGNOSTICS ONLY. Captured A rankings are unchanged. Each source remains eligible regardless of its gold label.
+
+Stage C cell pointers refer to ../adjudication/primary/stage_c_review.json. Full native support provenance is preserved from sealed Stage B.
+
+## 0017 / O1 / target rank 33
+
+Target `src/devtools/context/repository/resource.py`: A rank 33, gold **HELPFUL_ONLY**, primary /cells/282.
+
+Original predecessor `src/devtools/models/serving/huggingface.py`: A rank 32, gold **UNNECESSARY**, primary /cells/480.
+
+Classification **BENEFICIAL**; strong classification: **NO**. Distinct sources 2; qualifying occurrences 2; best source rank 2; rank distance 31; intervening UNNECESSARY 23.
+
+Exact supporting source addresses/ranks, source labels and native fact/derivation/declaration/subject/range provenance IDs:
+
+```json
+[
+  {
+    "a_rank": 2,
+    "address": "src/devtools/context/repository/document.py",
+    "content_identity": "7282f290f5b5b78c3d2014097aac5cc1cc6012ef6d4489ea83d2411deb980daf",
+    "document_identity": "ba623a37cd1339842a7eef88b7f294ac14a1b139d86cbc414710c4bf45fad2cd",
+    "primary_cell_pointer": "/cells/273",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_gold_label": "HELPFUL_ONLY",
+    "supports": [
+      {
+        "derivation_identity": "490c22003de02742d52376e99f3eb4536e017826fbd07b7db46918ca2da94e6e",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "91a7675828aa9f14b563a7ed214787b137d728b0187d2c332bb1c993a48a45c2",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "src/devtools/context/repository/document.py",
+        "source_range_utf8": {
+          "end_column_utf8": 24,
+          "end_line": 26,
+          "start_column_utf8": 8,
+          "start_line": 26
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/context/repository/resource.py",
+        "target_content_identity": "a1d3fbdcff843b2a2b672307a4b204bf4d4ea8fca96b2cf2cfc0533b28e1421c",
+        "target_declaration_identity": "fce372e7691bd6934c0d5233f2cd2b0691fccc07277c78d6426d13435941ebe2",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "1835e9e39e8e0e484922c1f434e8b13accafce73c350cde72880d88bc0fb1706"
+      }
+    ]
+  },
+  {
+    "a_rank": 9,
+    "address": "src/devtools/context/repository/corpus.py",
+    "content_identity": "3424ce325df02cd6fdca1e7a3344cb5ddfa6d48c8692777bf17dcff3f4eb0477",
+    "document_identity": "eb0c8651d77d8d754a458293960a87b3df80dc51b64495fbb40268a3b3018d91",
+    "primary_cell_pointer": "/cells/267",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_gold_label": "HELPFUL_ONLY",
+    "supports": [
+      {
+        "derivation_identity": "99364ae9c49b0fe03ff3a6f7c2e0171e967abc03135835ad98907768c6b5a5f9",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "cd77eb64226096a8ed054e880239bd01e3d1e16fb3beef88b0f7d1bd33b29142",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "src/devtools/context/repository/corpus.py",
+        "source_range_utf8": {
+          "end_column_utf8": 24,
+          "end_line": 31,
+          "start_column_utf8": 8,
+          "start_line": 31
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/context/repository/resource.py",
+        "target_content_identity": "a1d3fbdcff843b2a2b672307a4b204bf4d4ea8fca96b2cf2cfc0533b28e1421c",
+        "target_declaration_identity": "fce372e7691bd6934c0d5233f2cd2b0691fccc07277c78d6426d13435941ebe2",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "1835e9e39e8e0e484922c1f434e8b13accafce73c350cde72880d88bc0fb1706"
+      }
+    ]
+  }
+]
+```
+
+
+## 0017 / O1 / target rank 95
+
+Target `src/devtools/models/serving/vllm.py`: A rank 95, gold **UNNECESSARY**, primary /cells/489.
+
+Original predecessor `tests/scripts/test_vllm_benchmark_driver.py`: A rank 94, gold **UNNECESSARY**, primary /cells/1053.
+
+Classification **NEUTRAL**; strong classification: **NO**. Distinct sources 1; qualifying occurrences 1; best source rank 89; rank distance 6; intervening UNNECESSARY 5.
+
+Exact supporting source addresses/ranks, source labels and native fact/derivation/declaration/subject/range provenance IDs:
+
+```json
+[
+  {
+    "a_rank": 89,
+    "address": "tests/models/benchmarks/test_models.py",
+    "content_identity": "582423270354ce5925f1c493a10062f906204462e976712730d51cde04f9a1df",
+    "document_identity": "76b599267e9da2809aeb635279dbc7ecae6f6267a7ce611993e7d9c3ed0a5be0",
+    "primary_cell_pointer": "/cells/885",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_gold_label": "UNNECESSARY",
+    "supports": [
+      {
+        "derivation_identity": "d2b7b71e85d237fa7b42502c6768bbaf8a22f78b0a3d8675b1bacf2a5ce82178",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "9f9ddff04f44c17ad5627faa4a0e79a9bda6176e47391c20f95a2619011b621e",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/models/benchmarks/test_models.py",
+        "source_range_utf8": {
+          "end_column_utf8": 23,
+          "end_line": 154,
+          "start_column_utf8": 13,
+          "start_line": 154
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/models/serving/vllm.py",
+        "target_content_identity": "bb7f8c016464fd19407031de00636dd0578982324ef9f62cb51b8844339fbc43",
+        "target_declaration_identity": "6c2017050b0510867633c69e77dc88ec5750bdce59710e549ae108a15dfb8084",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "294d5fb2c09be41b9a1073d0bc492aca3da61306cf7fd92a351a7064b9da2ebd"
+      }
+    ]
+  }
+]
+```
+
+
+## 0017 / O2 / target rank 8
+
+Target `src/devtools/context/repository/resource.py`: A rank 8, gold **HELPFUL_ONLY**, primary /cells/283.
+
+Original predecessor `src/devtools/context/repository/discovery.py`: A rank 7, gold **UNNECESSARY**, primary /cells/271.
+
+Classification **BENEFICIAL**; strong classification: **NO**. Distinct sources 1; qualifying occurrences 1; best source rank 5; rank distance 3; intervening UNNECESSARY 1.
+
+Exact supporting source addresses/ranks, source labels and native fact/derivation/declaration/subject/range provenance IDs:
+
+```json
+[
+  {
+    "a_rank": 5,
+    "address": "src/devtools/context/repository/document.py",
+    "content_identity": "7282f290f5b5b78c3d2014097aac5cc1cc6012ef6d4489ea83d2411deb980daf",
+    "document_identity": "ba623a37cd1339842a7eef88b7f294ac14a1b139d86cbc414710c4bf45fad2cd",
+    "primary_cell_pointer": "/cells/274",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_gold_label": "HELPFUL_ONLY",
+    "supports": [
+      {
+        "derivation_identity": "490c22003de02742d52376e99f3eb4536e017826fbd07b7db46918ca2da94e6e",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "91a7675828aa9f14b563a7ed214787b137d728b0187d2c332bb1c993a48a45c2",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "src/devtools/context/repository/document.py",
+        "source_range_utf8": {
+          "end_column_utf8": 24,
+          "end_line": 26,
+          "start_column_utf8": 8,
+          "start_line": 26
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/context/repository/resource.py",
+        "target_content_identity": "a1d3fbdcff843b2a2b672307a4b204bf4d4ea8fca96b2cf2cfc0533b28e1421c",
+        "target_declaration_identity": "fce372e7691bd6934c0d5233f2cd2b0691fccc07277c78d6426d13435941ebe2",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "1835e9e39e8e0e484922c1f434e8b13accafce73c350cde72880d88bc0fb1706"
+      }
+    ]
+  }
+]
+```
+
+
+## 0017 / O2 / target rank 46
+
+Target `src/devtools/core/conversion/conversion.py`: A rank 46, gold **UNNECESSARY**, primary /cells/301.
+
+Original predecessor `src/devtools/context/python/function/candidates.py`: A rank 45, gold **UNNECESSARY**, primary /cells/241.
+
+Classification **NEUTRAL**; strong classification: **NO**. Distinct sources 1; qualifying occurrences 1; best source rank 23; rank distance 23; intervening UNNECESSARY 21.
+
+Exact supporting source addresses/ranks, source labels and native fact/derivation/declaration/subject/range provenance IDs:
+
+```json
+[
+  {
+    "a_rank": 23,
+    "address": "src/devtools/resources/filesystem/models/json/list.py",
+    "content_identity": "b855a01565970c7c0cf19e77c796713ed08ddf8905fa1beb37d3cabe85811424",
+    "document_identity": "feb4be49ba273ee1b7a7cd5209d7bcfd330ea20b6195d04e7d045305df955d4f",
+    "primary_cell_pointer": "/cells/649",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_gold_label": "UNNECESSARY",
+    "supports": [
+      {
+        "derivation_identity": "3f00b614885493f1d3f0724157c2a063bf63f26b85cf4172665902dfe8613590",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "94e3d868467d683466e3eaf13f2b70c928138aadc644700a01fe4297e107eaac",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "src/devtools/resources/filesystem/models/json/list.py",
+        "source_range_utf8": {
+          "end_column_utf8": 26,
+          "end_line": 107,
+          "start_column_utf8": 15,
+          "start_line": 107
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/conversion/conversion.py",
+        "target_content_identity": "0af4ad387dbf34e649b2da8f2245e5272ae7a72592021f3cbb4f85f197e74abf",
+        "target_declaration_identity": "80b259b3e899604a5f91f3f57ff2b1b1ec345f4dc47b32ba309f07b346173271",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "5cf3ac4b5c7eae0fd3318beb2c4440382172c68914cd6db7278151ff20f5da46"
+      }
+    ]
+  }
+]
+```
+
+
+## 0017 / O2 / target rank 68
+
+Target `src/devtools/agents/conversation/message.py`: A rank 68, gold **UNNECESSARY**, primary /cells/205.
+
+Original predecessor `src/devtools/core/identity/models.py`: A rank 67, gold **UNNECESSARY**, primary /cells/316.
+
+Classification **NEUTRAL**; strong classification: **NO**. Distinct sources 1; qualifying occurrences 1; best source rank 42; rank distance 26; intervening UNNECESSARY 25.
+
+Exact supporting source addresses/ranks, source labels and native fact/derivation/declaration/subject/range provenance IDs:
+
+```json
+[
+  {
+    "a_rank": 42,
+    "address": "src/devtools/persistence/json.py",
+    "content_identity": "cf5624d0f4d6c2fea576105cecaa0df5753cf088e2c4f2063167ca2d0f171264",
+    "document_identity": "054b8b3f80d046b70e54bee873d2bbda22f5c0098c05ce6e19300a789f03c017",
+    "primary_cell_pointer": "/cells/535",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_gold_label": "UNNECESSARY",
+    "supports": [
+      {
+        "derivation_identity": "3108e0746ab132d07fc8d805f2f34dde4a2efdae1c108c95af94de603269ad44",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "53450be62fd2c7efeeb60b6db7f431efc959e1ef6901ff30ae487d867bf0f171",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "src/devtools/persistence/json.py",
+        "source_range_utf8": {
+          "end_column_utf8": 36,
+          "end_line": 140,
+          "start_column_utf8": 13,
+          "start_line": 140
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/agents/conversation/message.py",
+        "target_content_identity": "48bce3f036e3f1aaeb4e340ac78f57cb12f37ee8e90399abcd410ac39e9a4922",
+        "target_declaration_identity": "ca61b2a124b5df84c2ba517ec215d1cef615096b36688a798b27374af4d8c089",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "8a4dc754f8f9cbf9f9079313d32c907b513e812a529d67e0c93f83d4d0a684a7"
+      }
+    ]
+  }
+]
+```
+
+
+## 0017 / O2 / target rank 122
+
+Target `src/devtools/models/serving/vllm.py`: A rank 122, gold **UNNECESSARY**, primary /cells/490.
+
+Original predecessor `tests/models/interaction/test_models.py`: A rank 121, gold **UNNECESSARY**, primary /cells/904.
+
+Classification **NEUTRAL**; strong classification: **NO**. Distinct sources 1; qualifying occurrences 12; best source rank 80; rank distance 42; intervening UNNECESSARY 41.
+
+Exact supporting source addresses/ranks, source labels and native fact/derivation/declaration/subject/range provenance IDs:
+
+```json
+[
+  {
+    "a_rank": 80,
+    "address": "tests/models/serving/test_vllm.py",
+    "content_identity": "66510589d97c1ec89bc405e4aed376407e606215c2bb8fecf89cf36b1ea0beb8",
+    "document_identity": "27026b44bdb5d69c4be214080f44e2ffda60d025ed1959e6fe0a0fbde1a31684",
+    "primary_cell_pointer": "/cells/922",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_gold_label": "UNNECESSARY",
+    "supports": [
+      {
+        "derivation_identity": "9032ca2c8c325ef7ab86ee57047fd4e50f52e58fe13736b838f5ac09494b5ab3",
+        "direct_call_tag_diagnostic_only": false,
+        "fact_identity": "00b03e987b9e95422f1f4c0db1862656d15647d7e0caa0fcdc2e3426ee6cc54b",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/models/serving/test_vllm.py",
+        "source_range_utf8": {
+          "end_column_utf8": 22,
+          "end_line": 942,
+          "start_column_utf8": 12,
+          "start_line": 942
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/models/serving/vllm.py",
+        "target_content_identity": "bb7f8c016464fd19407031de00636dd0578982324ef9f62cb51b8844339fbc43",
+        "target_declaration_identity": "6c2017050b0510867633c69e77dc88ec5750bdce59710e549ae108a15dfb8084",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "294d5fb2c09be41b9a1073d0bc492aca3da61306cf7fd92a351a7064b9da2ebd"
+      },
+      {
+        "derivation_identity": "9032ca2c8c325ef7ab86ee57047fd4e50f52e58fe13736b838f5ac09494b5ab3",
+        "direct_call_tag_diagnostic_only": false,
+        "fact_identity": "1ad4d4ee48b03e49fd5625e05b1a917e9501b41c2ab061a39d208d56e0507876",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/models/serving/test_vllm.py",
+        "source_range_utf8": {
+          "end_column_utf8": 34,
+          "end_line": 376,
+          "start_column_utf8": 24,
+          "start_line": 376
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/models/serving/vllm.py",
+        "target_content_identity": "bb7f8c016464fd19407031de00636dd0578982324ef9f62cb51b8844339fbc43",
+        "target_declaration_identity": "6c2017050b0510867633c69e77dc88ec5750bdce59710e549ae108a15dfb8084",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "294d5fb2c09be41b9a1073d0bc492aca3da61306cf7fd92a351a7064b9da2ebd"
+      },
+      {
+        "derivation_identity": "9032ca2c8c325ef7ab86ee57047fd4e50f52e58fe13736b838f5ac09494b5ab3",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "37abd057db4bee040c252daebef9e0fb1a26c4c9dcdfeee31301ccff92e888d4",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/models/serving/test_vllm.py",
+        "source_range_utf8": {
+          "end_column_utf8": 23,
+          "end_line": 910,
+          "start_column_utf8": 13,
+          "start_line": 910
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/models/serving/vllm.py",
+        "target_content_identity": "bb7f8c016464fd19407031de00636dd0578982324ef9f62cb51b8844339fbc43",
+        "target_declaration_identity": "6c2017050b0510867633c69e77dc88ec5750bdce59710e549ae108a15dfb8084",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "294d5fb2c09be41b9a1073d0bc492aca3da61306cf7fd92a351a7064b9da2ebd"
+      },
+      {
+        "derivation_identity": "9032ca2c8c325ef7ab86ee57047fd4e50f52e58fe13736b838f5ac09494b5ab3",
+        "direct_call_tag_diagnostic_only": false,
+        "fact_identity": "7c1b47653b9e56274e5f8ce5e672a015665933a0b77ff4344113e539356729ca",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/models/serving/test_vllm.py",
+        "source_range_utf8": {
+          "end_column_utf8": 34,
+          "end_line": 400,
+          "start_column_utf8": 24,
+          "start_line": 400
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/models/serving/vllm.py",
+        "target_content_identity": "bb7f8c016464fd19407031de00636dd0578982324ef9f62cb51b8844339fbc43",
+        "target_declaration_identity": "6c2017050b0510867633c69e77dc88ec5750bdce59710e549ae108a15dfb8084",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "294d5fb2c09be41b9a1073d0bc492aca3da61306cf7fd92a351a7064b9da2ebd"
+      },
+      {
+        "derivation_identity": "9032ca2c8c325ef7ab86ee57047fd4e50f52e58fe13736b838f5ac09494b5ab3",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "96b1d70d96e1a512c89eb5f5517b2df443f308432f412300059710c051e313b6",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/models/serving/test_vllm.py",
+        "source_range_utf8": {
+          "end_column_utf8": 23,
+          "end_line": 1141,
+          "start_column_utf8": 13,
+          "start_line": 1141
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/models/serving/vllm.py",
+        "target_content_identity": "bb7f8c016464fd19407031de00636dd0578982324ef9f62cb51b8844339fbc43",
+        "target_declaration_identity": "6c2017050b0510867633c69e77dc88ec5750bdce59710e549ae108a15dfb8084",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "294d5fb2c09be41b9a1073d0bc492aca3da61306cf7fd92a351a7064b9da2ebd"
+      },
+      {
+        "derivation_identity": "9032ca2c8c325ef7ab86ee57047fd4e50f52e58fe13736b838f5ac09494b5ab3",
+        "direct_call_tag_diagnostic_only": false,
+        "fact_identity": "9d1fc8d7537b2c5dcd36f1f435c375a8ab0b03d8954eadac98555167cbddcb2f",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/models/serving/test_vllm.py",
+        "source_range_utf8": {
+          "end_column_utf8": 34,
+          "end_line": 680,
+          "start_column_utf8": 24,
+          "start_line": 680
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/models/serving/vllm.py",
+        "target_content_identity": "bb7f8c016464fd19407031de00636dd0578982324ef9f62cb51b8844339fbc43",
+        "target_declaration_identity": "6c2017050b0510867633c69e77dc88ec5750bdce59710e549ae108a15dfb8084",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "294d5fb2c09be41b9a1073d0bc492aca3da61306cf7fd92a351a7064b9da2ebd"
+      },
+      {
+        "derivation_identity": "9032ca2c8c325ef7ab86ee57047fd4e50f52e58fe13736b838f5ac09494b5ab3",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "c678e1437ab7f4b8aa5e18a14394708ab219d49aa30501c655b2e793dd32a4dd",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/models/serving/test_vllm.py",
+        "source_range_utf8": {
+          "end_column_utf8": 23,
+          "end_line": 1041,
+          "start_column_utf8": 13,
+          "start_line": 1041
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/models/serving/vllm.py",
+        "target_content_identity": "bb7f8c016464fd19407031de00636dd0578982324ef9f62cb51b8844339fbc43",
+        "target_declaration_identity": "6c2017050b0510867633c69e77dc88ec5750bdce59710e549ae108a15dfb8084",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "294d5fb2c09be41b9a1073d0bc492aca3da61306cf7fd92a351a7064b9da2ebd"
+      },
+      {
+        "derivation_identity": "9032ca2c8c325ef7ab86ee57047fd4e50f52e58fe13736b838f5ac09494b5ab3",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "ca9255faa358de468ec7276f4ef52845f404287197263485907cb54f649a4ff1",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/models/serving/test_vllm.py",
+        "source_range_utf8": {
+          "end_column_utf8": 23,
+          "end_line": 949,
+          "start_column_utf8": 13,
+          "start_line": 949
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/models/serving/vllm.py",
+        "target_content_identity": "bb7f8c016464fd19407031de00636dd0578982324ef9f62cb51b8844339fbc43",
+        "target_declaration_identity": "6c2017050b0510867633c69e77dc88ec5750bdce59710e549ae108a15dfb8084",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "294d5fb2c09be41b9a1073d0bc492aca3da61306cf7fd92a351a7064b9da2ebd"
+      },
+      {
+        "derivation_identity": "9032ca2c8c325ef7ab86ee57047fd4e50f52e58fe13736b838f5ac09494b5ab3",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "cfabb9f6927a1ac1fe26210b1c6161c873225431127292c59a383aaf7c9d9f94",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/models/serving/test_vllm.py",
+        "source_range_utf8": {
+          "end_column_utf8": 23,
+          "end_line": 594,
+          "start_column_utf8": 13,
+          "start_line": 594
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/models/serving/vllm.py",
+        "target_content_identity": "bb7f8c016464fd19407031de00636dd0578982324ef9f62cb51b8844339fbc43",
+        "target_declaration_identity": "6c2017050b0510867633c69e77dc88ec5750bdce59710e549ae108a15dfb8084",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "294d5fb2c09be41b9a1073d0bc492aca3da61306cf7fd92a351a7064b9da2ebd"
+      },
+      {
+        "derivation_identity": "9032ca2c8c325ef7ab86ee57047fd4e50f52e58fe13736b838f5ac09494b5ab3",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "d83d4993efeb85605512769162bca6b6d9fd5b9655180ed8c45edcc63796ed9b",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/models/serving/test_vllm.py",
+        "source_range_utf8": {
+          "end_column_utf8": 23,
+          "end_line": 128,
+          "start_column_utf8": 13,
+          "start_line": 128
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/models/serving/vllm.py",
+        "target_content_identity": "bb7f8c016464fd19407031de00636dd0578982324ef9f62cb51b8844339fbc43",
+        "target_declaration_identity": "6c2017050b0510867633c69e77dc88ec5750bdce59710e549ae108a15dfb8084",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "294d5fb2c09be41b9a1073d0bc492aca3da61306cf7fd92a351a7064b9da2ebd"
+      },
+      {
+        "derivation_identity": "9032ca2c8c325ef7ab86ee57047fd4e50f52e58fe13736b838f5ac09494b5ab3",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "ea105fd0697d3683f2390a0bcfb66cee4e200d574af884f6ae7a48d1771aa8f9",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/models/serving/test_vllm.py",
+        "source_range_utf8": {
+          "end_column_utf8": 23,
+          "end_line": 1196,
+          "start_column_utf8": 13,
+          "start_line": 1196
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/models/serving/vllm.py",
+        "target_content_identity": "bb7f8c016464fd19407031de00636dd0578982324ef9f62cb51b8844339fbc43",
+        "target_declaration_identity": "6c2017050b0510867633c69e77dc88ec5750bdce59710e549ae108a15dfb8084",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "294d5fb2c09be41b9a1073d0bc492aca3da61306cf7fd92a351a7064b9da2ebd"
+      },
+      {
+        "derivation_identity": "9032ca2c8c325ef7ab86ee57047fd4e50f52e58fe13736b838f5ac09494b5ab3",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "f5140cedc42ff29ab5478234c0f79dbf9454ca0b73a7a6c23afd31afc6d33746",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/models/serving/test_vllm.py",
+        "source_range_utf8": {
+          "end_column_utf8": 23,
+          "end_line": 997,
+          "start_column_utf8": 13,
+          "start_line": 997
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/models/serving/vllm.py",
+        "target_content_identity": "bb7f8c016464fd19407031de00636dd0578982324ef9f62cb51b8844339fbc43",
+        "target_declaration_identity": "6c2017050b0510867633c69e77dc88ec5750bdce59710e549ae108a15dfb8084",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "294d5fb2c09be41b9a1073d0bc492aca3da61306cf7fd92a351a7064b9da2ebd"
+      }
+    ]
+  }
+]
+```
+
+
+## 0017 / O2 / target rank 124
+
+Target `src/devtools/models/interaction/providers/llama_cpp.py`: A rank 124, gold **UNNECESSARY**, primary /cells/451.
+
+Original predecessor `tests/scripts/test_vllm_benchmark_driver.py`: A rank 123, gold **UNNECESSARY**, primary /cells/1054.
+
+Classification **NEUTRAL**; strong classification: **NO**. Distinct sources 1; qualifying occurrences 2; best source rank 116; rank distance 8; intervening UNNECESSARY 7.
+
+Exact supporting source addresses/ranks, source labels and native fact/derivation/declaration/subject/range provenance IDs:
+
+```json
+[
+  {
+    "a_rank": 116,
+    "address": "tests/observability/evidence/test_model_interaction.py",
+    "content_identity": "b736d5348b8c5a9aa918cc53c46405399c1506092b79acf8a2102cdc5862a812",
+    "document_identity": "e6aee6e5d7ba7e7e722752348dbf953bba15033c5a065ef8a9615b28fa40c4f4",
+    "primary_cell_pointer": "/cells/934",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_gold_label": "UNNECESSARY",
+    "supports": [
+      {
+        "derivation_identity": "4cc50bf47c027f457fa1392761eddabe4904787a61f0463e6c42b94b002e1cb6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "168cb71a812f53f464f4c2904598e0a2901b1db130325696c7253f3ecd489eeb",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/observability/evidence/test_model_interaction.py",
+        "source_range_utf8": {
+          "end_column_utf8": 37,
+          "end_line": 415,
+          "start_column_utf8": 18,
+          "start_line": 415
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/models/interaction/providers/llama_cpp.py",
+        "target_content_identity": "565429b2a31457b4450465072539d1587dd3a191cfd13df988467f8be0901a3d",
+        "target_declaration_identity": "e335d88de35973133f7c9716cfd883eff682b79b9dc3a3ea7dc27aebcc1e8bcf",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "a698b91360dba0a63e30f70f8804e8bd3ad7618ac4328eccfff16dfb6b44229e"
+      },
+      {
+        "derivation_identity": "4cc50bf47c027f457fa1392761eddabe4904787a61f0463e6c42b94b002e1cb6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "5d5a60e9d60c13c7d7ef636da242d8582d8772c3a92a81b4add4ff69bd08b861",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/observability/evidence/test_model_interaction.py",
+        "source_range_utf8": {
+          "end_column_utf8": 37,
+          "end_line": 257,
+          "start_column_utf8": 18,
+          "start_line": 257
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/models/interaction/providers/llama_cpp.py",
+        "target_content_identity": "565429b2a31457b4450465072539d1587dd3a191cfd13df988467f8be0901a3d",
+        "target_declaration_identity": "e335d88de35973133f7c9716cfd883eff682b79b9dc3a3ea7dc27aebcc1e8bcf",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "a698b91360dba0a63e30f70f8804e8bd3ad7618ac4328eccfff16dfb6b44229e"
+      }
+    ]
+  }
+]
+```
+
+
+## 0017 / O3 / target rank 69
+
+Target `src/devtools/core/paths/resolution.py`: A rank 69, gold **UNNECESSARY**, primary /cells/335.
+
+Original predecessor `src/devtools/persistence/sqlite.py`: A rank 68, gold **UNNECESSARY**, primary /cells/539.
+
+Classification **NEUTRAL**; strong classification: **NO**. Distinct sources 2; qualifying occurrences 21; best source rank 53; rank distance 16; intervening UNNECESSARY 15.
+
+Exact supporting source addresses/ranks, source labels and native fact/derivation/declaration/subject/range provenance IDs:
+
+```json
+[
+  {
+    "a_rank": 53,
+    "address": "src/devtools/context/repository/discovery.py",
+    "content_identity": "1e5d07bddab1549f1a0852d9ba82186721f662d61434fafdfbbda9f8c13ec198",
+    "document_identity": "dfafd24ae78c7b2d67cbe0f17c6d5df5ffc733b30e1edee89624e43b60dbfe89",
+    "primary_cell_pointer": "/cells/272",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_gold_label": "UNNECESSARY",
+    "supports": [
+      {
+        "derivation_identity": "f778f97e31d2c6a1ffcb553202cbc6ff28b72e055486fe5a963cf939351d8ca7",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "01b4456e5ee0952aa6109932f9dd2192d236aae5d059004b22a4efcd9a5a5041",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "src/devtools/context/repository/discovery.py",
+        "source_range_utf8": {
+          "end_column_utf8": 36,
+          "end_line": 157,
+          "start_column_utf8": 24,
+          "start_line": 157
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "3a47af1d1f44882242c9ff31d52e3fd3de2e19685f67186f9d69cd8e16b1aa41",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "0899f39e0e8483307c79c78bb7cddead3081292b6c8c5fd71a71f703c6fe7bda"
+      },
+      {
+        "derivation_identity": "f778f97e31d2c6a1ffcb553202cbc6ff28b72e055486fe5a963cf939351d8ca7",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "561e4ac658e55bf60ad4a5542df335f388692a6d5ef58bf5b78183d4778b826b",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "src/devtools/context/repository/discovery.py",
+        "source_range_utf8": {
+          "end_column_utf8": 34,
+          "end_line": 109,
+          "start_column_utf8": 22,
+          "start_line": 109
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "3a47af1d1f44882242c9ff31d52e3fd3de2e19685f67186f9d69cd8e16b1aa41",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "0899f39e0e8483307c79c78bb7cddead3081292b6c8c5fd71a71f703c6fe7bda"
+      }
+    ]
+  },
+  {
+    "a_rank": 59,
+    "address": "tests/core/paths/test_resolution.py",
+    "content_identity": "5f34ec0ac3a2580a7a75533d98c503e65084bf00f49f9d736b8c11f0b3ecbeb2",
+    "document_identity": "3339ce5906f32477be6a3261caf7eb2c73fa7186b78ed2be80d23a9dde3fd90f",
+    "primary_cell_pointer": "/cells/836",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_gold_label": "UNNECESSARY",
+    "supports": [
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "07f46efe53d6d9b196dd19a302e4a220837116448302fb5ec6c140ed16f05626",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 21,
+          "end_line": 29,
+          "start_column_utf8": 11,
+          "start_line": 29
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "0941e1c6de19e98b22feb06ff5b0964f40785d1ce37111b8ac2a6dbdab3effcf",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "a2b1319686e223982ffdd15a29d062efd90c8b5ab904cc06b09f7f22b0db5632"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "0bbcfacbcd003201a69cb0898262bbb91c10f17006268d5ac2d8170550009861",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 23,
+          "end_line": 149,
+          "start_column_utf8": 11,
+          "start_line": 149
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "878a380431ce3af367b3075935b53df08975127583f68d35f6e3a355ebd4973a",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "f57bf9d899ce760054bd75455058c9a8a866394e106d0ec81980cbe8ab71da9c"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "17ed24de1ac213cb7f979c581e47c61adfeb9fd2b501ca56fdd5e4f675fdf5d7",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 36,
+          "end_line": 116,
+          "start_column_utf8": 20,
+          "start_line": 116
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "43d212bd8859b306bd058411ab6044a7987b3bfc9390afdbe0dfca994daeb494",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "cfc0b44d61e2981611824d48ee85bee3fd869a2cf9aeab9f595ea78c06256ca0"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "30d7029821e2142f8c0c92ffa3bbbc9d956f171f0391d19a9fa2df8b58cffd77",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 32,
+          "end_line": 87,
+          "start_column_utf8": 20,
+          "start_line": 87
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "3a47af1d1f44882242c9ff31d52e3fd3de2e19685f67186f9d69cd8e16b1aa41",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "0899f39e0e8483307c79c78bb7cddead3081292b6c8c5fd71a71f703c6fe7bda"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "33f35dfb8fdb256eb4dff639e2511e70aa41c28efde3ba3f77ebea85b1e30178",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 24,
+          "end_line": 128,
+          "start_column_utf8": 8,
+          "start_line": 128
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "43d212bd8859b306bd058411ab6044a7987b3bfc9390afdbe0dfca994daeb494",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "cfc0b44d61e2981611824d48ee85bee3fd869a2cf9aeab9f595ea78c06256ca0"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "399a5856c27b9c0e39a0b5c2c2c43cfeeb41c0cd09c4b839f787d94706ced869",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 20,
+          "end_line": 105,
+          "start_column_utf8": 8,
+          "start_line": 105
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "3a47af1d1f44882242c9ff31d52e3fd3de2e19685f67186f9d69cd8e16b1aa41",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "0899f39e0e8483307c79c78bb7cddead3081292b6c8c5fd71a71f703c6fe7bda"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "404a14d0007ace5e93f24af62caf84ba8e0f0fa6393d948e0f6e38012d3a5b7b",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 18,
+          "end_line": 35,
+          "start_column_utf8": 8,
+          "start_line": 35
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "0941e1c6de19e98b22feb06ff5b0964f40785d1ce37111b8ac2a6dbdab3effcf",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "a2b1319686e223982ffdd15a29d062efd90c8b5ab904cc06b09f7f22b0db5632"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "6a9aa1a3802d81c006a21b4b478813b70bd951bbe815ae22a0c208a56efbe9b2",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 25,
+          "end_line": 46,
+          "start_column_utf8": 11,
+          "start_line": 46
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "a8fdc7586f77d2d185a9ff2bdcc827b712ac4ba17e514e9d9febe194fff0afff",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "3ea2f5e2cda596e45a7bb5a420e1ef4c15518136988d5cd03a3f35f3db85a925"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "71c97709759e7e8ba78f4af2ebb8e3dfe4a641f5843cba6302411170b7b8b2e9",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 25,
+          "end_line": 52,
+          "start_column_utf8": 11,
+          "start_line": 52
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "a8fdc7586f77d2d185a9ff2bdcc827b712ac4ba17e514e9d9febe194fff0afff",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "3ea2f5e2cda596e45a7bb5a420e1ef4c15518136988d5cd03a3f35f3db85a925"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "75998e18b6130f23b43393de86933ee689bbaf7b2baa5923c500a4fe859a4278",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 22,
+          "end_line": 76,
+          "start_column_utf8": 8,
+          "start_line": 76
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "a8fdc7586f77d2d185a9ff2bdcc827b712ac4ba17e514e9d9febe194fff0afff",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "3ea2f5e2cda596e45a7bb5a420e1ef4c15518136988d5cd03a3f35f3db85a925"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "a2e0536fc0fdf3f73be15b94ed78fc4e68fc36c73a821948f794753058192906",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 23,
+          "end_line": 148,
+          "start_column_utf8": 11,
+          "start_line": 148
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "3dd498ded66184c846df73dd35997edfc15381d750ccc53dd9ddddf23e7206b0",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "4cae11e67c6301198f044350ee789ee2a8adf103a84ea1a345ea3988e61bab5c"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "a39adfb7d91d161f3a600f30cfcaa8fca6b4fb29c81418d7916875c1d4f26502",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 22,
+          "end_line": 70,
+          "start_column_utf8": 8,
+          "start_line": 70
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "a8fdc7586f77d2d185a9ff2bdcc827b712ac4ba17e514e9d9febe194fff0afff",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "3ea2f5e2cda596e45a7bb5a420e1ef4c15518136988d5cd03a3f35f3db85a925"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "a4f38c3e220cf0f724c6438c4ef16171b16fc8e9f57abc8fc015a680952964b8",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 28,
+          "end_line": 150,
+          "start_column_utf8": 11,
+          "start_line": 150
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "51e94d68aad7a503d723fa01097ad815d412905331cdb4facfdc2ef90cf0c7e3",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "badab7eb89634e838a3283df54dfe0387ab2e3b913456a9ba2fd42205c7c553a"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "c2b4c094761ab2445f9a4290191dd57516e2092d449edb983086af8787ce22e2",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 20,
+          "end_line": 111,
+          "start_column_utf8": 8,
+          "start_line": 111
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "3a47af1d1f44882242c9ff31d52e3fd3de2e19685f67186f9d69cd8e16b1aa41",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "0899f39e0e8483307c79c78bb7cddead3081292b6c8c5fd71a71f703c6fe7bda"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "c91af43b2ad003f70e6a6e5b6f128a109285f131b36e3cab97c64c474f0276eb",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 32,
+          "end_line": 94,
+          "start_column_utf8": 20,
+          "start_line": 94
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "3a47af1d1f44882242c9ff31d52e3fd3de2e19685f67186f9d69cd8e16b1aa41",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "0899f39e0e8483307c79c78bb7cddead3081292b6c8c5fd71a71f703c6fe7bda"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "ccc2df3c59bd561d04eeb63659f48c35a5cad0f4db0f2fea9ff4302bc94fa8a6",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 24,
+          "end_line": 131,
+          "start_column_utf8": 8,
+          "start_line": 131
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "43d212bd8859b306bd058411ab6044a7987b3bfc9390afdbe0dfca994daeb494",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "cfc0b44d61e2981611824d48ee85bee3fd869a2cf9aeab9f595ea78c06256ca0"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "e41189e96382cb90a10b58a58f53422e4260daf2c7129de8f16c85df6c5ce852",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 25,
+          "end_line": 40,
+          "start_column_utf8": 11,
+          "start_line": 40
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "a8fdc7586f77d2d185a9ff2bdcc827b712ac4ba17e514e9d9febe194fff0afff",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "3ea2f5e2cda596e45a7bb5a420e1ef4c15518136988d5cd03a3f35f3db85a925"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "ea8ae581ed9c0c2c971e7c358512294c0b637831e6e0789b98c7dbf548fe07fc",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 21,
+          "end_line": 28,
+          "start_column_utf8": 11,
+          "start_line": 28
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "0941e1c6de19e98b22feb06ff5b0964f40785d1ce37111b8ac2a6dbdab3effcf",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "a2b1319686e223982ffdd15a29d062efd90c8b5ab904cc06b09f7f22b0db5632"
+      },
+      {
+        "derivation_identity": "2b99ab22ed58432eeb2ca1014b7f0b87c38310104e7aca660996db621356a759",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "f0a015d36c64a1c46912497656fe424ca879b38bff705a069786252259f715d5",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/paths/test_resolution.py",
+        "source_range_utf8": {
+          "end_column_utf8": 22,
+          "end_line": 64,
+          "start_column_utf8": 8,
+          "start_line": 64
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/paths/resolution.py",
+        "target_content_identity": "8a6984e55364f45dff03267778fe2ac92ffbec06117ac9da6bf8c0b5cfbc757b",
+        "target_declaration_identity": "a8fdc7586f77d2d185a9ff2bdcc827b712ac4ba17e514e9d9febe194fff0afff",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "3ea2f5e2cda596e45a7bb5a420e1ef4c15518136988d5cd03a3f35f3db85a925"
+      }
+    ]
+  }
+]
+```
+
+
+## 0017 / O3 / target rank 86
+
+Target `src/devtools/context/repository/resource.py`: A rank 86, gold **HELPFUL_ONLY**, primary /cells/284.
+
+Original predecessor `tests/tools/test_execution.py`: A rank 85, gold **UNNECESSARY**, primary /cells/1064.
+
+Classification **BENEFICIAL**; strong classification: **NO**. Distinct sources 2; qualifying occurrences 2; best source rank 7; rank distance 79; intervening UNNECESSARY 71.
+
+Exact supporting source addresses/ranks, source labels and native fact/derivation/declaration/subject/range provenance IDs:
+
+```json
+[
+  {
+    "a_rank": 7,
+    "address": "src/devtools/context/repository/corpus.py",
+    "content_identity": "3424ce325df02cd6fdca1e7a3344cb5ddfa6d48c8692777bf17dcff3f4eb0477",
+    "document_identity": "eb0c8651d77d8d754a458293960a87b3df80dc51b64495fbb40268a3b3018d91",
+    "primary_cell_pointer": "/cells/269",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_gold_label": "HELPFUL_ONLY",
+    "supports": [
+      {
+        "derivation_identity": "99364ae9c49b0fe03ff3a6f7c2e0171e967abc03135835ad98907768c6b5a5f9",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "cd77eb64226096a8ed054e880239bd01e3d1e16fb3beef88b0f7d1bd33b29142",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "src/devtools/context/repository/corpus.py",
+        "source_range_utf8": {
+          "end_column_utf8": 24,
+          "end_line": 31,
+          "start_column_utf8": 8,
+          "start_line": 31
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/context/repository/resource.py",
+        "target_content_identity": "a1d3fbdcff843b2a2b672307a4b204bf4d4ea8fca96b2cf2cfc0533b28e1421c",
+        "target_declaration_identity": "fce372e7691bd6934c0d5233f2cd2b0691fccc07277c78d6426d13435941ebe2",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "1835e9e39e8e0e484922c1f434e8b13accafce73c350cde72880d88bc0fb1706"
+      }
+    ]
+  },
+  {
+    "a_rank": 10,
+    "address": "src/devtools/context/repository/document.py",
+    "content_identity": "7282f290f5b5b78c3d2014097aac5cc1cc6012ef6d4489ea83d2411deb980daf",
+    "document_identity": "ba623a37cd1339842a7eef88b7f294ac14a1b139d86cbc414710c4bf45fad2cd",
+    "primary_cell_pointer": "/cells/275",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_gold_label": "HELPFUL_ONLY",
+    "supports": [
+      {
+        "derivation_identity": "490c22003de02742d52376e99f3eb4536e017826fbd07b7db46918ca2da94e6e",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "91a7675828aa9f14b563a7ed214787b137d728b0187d2c332bb1c993a48a45c2",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "src/devtools/context/repository/document.py",
+        "source_range_utf8": {
+          "end_column_utf8": 24,
+          "end_line": 26,
+          "start_column_utf8": 8,
+          "start_line": 26
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/context/repository/resource.py",
+        "target_content_identity": "a1d3fbdcff843b2a2b672307a4b204bf4d4ea8fca96b2cf2cfc0533b28e1421c",
+        "target_declaration_identity": "fce372e7691bd6934c0d5233f2cd2b0691fccc07277c78d6426d13435941ebe2",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "1835e9e39e8e0e484922c1f434e8b13accafce73c350cde72880d88bc0fb1706"
+      }
+    ]
+  }
+]
+```
+
+
+## 0017 / O3 / target rank 90
+
+Target `src/devtools/tools/filesystem.py`: A rank 90, gold **UNNECESSARY**, primary /cells/701.
+
+Original predecessor `src/devtools/models/benchmarks/models.py`: A rank 89, gold **UNNECESSARY**, primary /cells/422.
+
+Classification **NEUTRAL**; strong classification: **NO**. Distinct sources 1; qualifying occurrences 22; best source rank 79; rank distance 11; intervening UNNECESSARY 9.
+
+Exact supporting source addresses/ranks, source labels and native fact/derivation/declaration/subject/range provenance IDs:
+
+```json
+[
+  {
+    "a_rank": 79,
+    "address": "tests/tools/test_filesystem.py",
+    "content_identity": "efdc0111f7a8d7f0b07cd504ddc2e08e243285143ca0afa1dab2fb333b2b1b96",
+    "document_identity": "53235d26ab70274fa227fbdfa7cb72eb0f3b74a9992d787ed15e08df2e3ae590",
+    "primary_cell_pointer": "/cells/1067",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_gold_label": "UNNECESSARY",
+    "supports": [
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "014a0ec72286ca02b18416578b63a6d4ab38c5fc971e4559697a8a362d7bc151",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 38,
+          "end_line": 167,
+          "start_column_utf8": 16,
+          "start_line": 167
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "03b506559c8bbcf69bcc6ea9e85cd6541cb43024c1be7fe2586af66e5f5c1483",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "66900ffdbb09f3de7a70ddb4d5daa4c84a6762cb28dd5f334c8b7c90e0e15634"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "0455ff27ea4874e1f60541c31b544f69cc488e80e5e5daf513cad517aa359fd0",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 39,
+          "end_line": 437,
+          "start_column_utf8": 12,
+          "start_line": 437
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "5f3eee77f2f03a40f995f98cc154bf1baa425e489ff07fd99283e839a2720bd7",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "651bead03315576042dab3c790de5f675b396ceab7b78cac2027a14b4647fc87"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "0bef06f1a65c2ace9d7d18bf365bc83c85c7fb16159f44fd4db695e98a88ee75",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 38,
+          "end_line": 243,
+          "start_column_utf8": 16,
+          "start_line": 243
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "03b506559c8bbcf69bcc6ea9e85cd6541cb43024c1be7fe2586af66e5f5c1483",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "66900ffdbb09f3de7a70ddb4d5daa4c84a6762cb28dd5f334c8b7c90e0e15634"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "0e19694a0b0c8c61e9d032fde3ac671e4ac48a5cddab34cf5eb61df5f377dd2a",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 38,
+          "end_line": 184,
+          "start_column_utf8": 16,
+          "start_line": 184
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "03b506559c8bbcf69bcc6ea9e85cd6541cb43024c1be7fe2586af66e5f5c1483",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "66900ffdbb09f3de7a70ddb4d5daa4c84a6762cb28dd5f334c8b7c90e0e15634"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "242c5f063995056516a918829ca3b844efd194e83fd5d240d8f91ef992923088",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 38,
+          "end_line": 262,
+          "start_column_utf8": 16,
+          "start_line": 262
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "03b506559c8bbcf69bcc6ea9e85cd6541cb43024c1be7fe2586af66e5f5c1483",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "66900ffdbb09f3de7a70ddb4d5daa4c84a6762cb28dd5f334c8b7c90e0e15634"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "28c24050362f6042631c0ec1d7a5e008cd52260f8f506b6f45617306f4e3a661",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 42,
+          "end_line": 411,
+          "start_column_utf8": 15,
+          "start_line": 411
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "5f3eee77f2f03a40f995f98cc154bf1baa425e489ff07fd99283e839a2720bd7",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "651bead03315576042dab3c790de5f675b396ceab7b78cac2027a14b4647fc87"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "3adc6e3fbcfbe8c8d7d160dc985c45893f912e059573b21e22e672d6efabfb02",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 38,
+          "end_line": 79,
+          "start_column_utf8": 16,
+          "start_line": 79
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "03b506559c8bbcf69bcc6ea9e85cd6541cb43024c1be7fe2586af66e5f5c1483",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "66900ffdbb09f3de7a70ddb4d5daa4c84a6762cb28dd5f334c8b7c90e0e15634"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "50abf4f13abf1233eb49f6f5ee9179ea89803b5c9024b9486e577de3ded17ec0",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 37,
+          "end_line": 280,
+          "start_column_utf8": 15,
+          "start_line": 280
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "03b506559c8bbcf69bcc6ea9e85cd6541cb43024c1be7fe2586af66e5f5c1483",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "66900ffdbb09f3de7a70ddb4d5daa4c84a6762cb28dd5f334c8b7c90e0e15634"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "5785691e29b6c3a95b31959217009a8d12a2db975f094b67299d4e9bd14cd986",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 39,
+          "end_line": 332,
+          "start_column_utf8": 12,
+          "start_line": 332
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "5f3eee77f2f03a40f995f98cc154bf1baa425e489ff07fd99283e839a2720bd7",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "651bead03315576042dab3c790de5f675b396ceab7b78cac2027a14b4647fc87"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "5928711b44e115930e82d068be665c435c8aec74cfcac3295307ff67a2d3f41f",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 34,
+          "end_line": 221,
+          "start_column_utf8": 12,
+          "start_line": 221
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "03b506559c8bbcf69bcc6ea9e85cd6541cb43024c1be7fe2586af66e5f5c1483",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "66900ffdbb09f3de7a70ddb4d5daa4c84a6762cb28dd5f334c8b7c90e0e15634"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "5f0c3fb2bcead8ddbca916ea5d801705ef8afd3c246856a00aff47f9795c5407",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 39,
+          "end_line": 375,
+          "start_column_utf8": 12,
+          "start_line": 375
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "5f3eee77f2f03a40f995f98cc154bf1baa425e489ff07fd99283e839a2720bd7",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "651bead03315576042dab3c790de5f675b396ceab7b78cac2027a14b4647fc87"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "65e84d18f4dd22cff6b5a4a0f643ea7fa339205cf3e954833a2f76f0bac24589",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 35,
+          "end_line": 451,
+          "start_column_utf8": 8,
+          "start_line": 451
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "5f3eee77f2f03a40f995f98cc154bf1baa425e489ff07fd99283e839a2720bd7",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "651bead03315576042dab3c790de5f675b396ceab7b78cac2027a14b4647fc87"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "724743409be7d6b743d03cbf75b2a1fb165ed9786767476e1b6a037821b1058a",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 34,
+          "end_line": 202,
+          "start_column_utf8": 12,
+          "start_line": 202
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "03b506559c8bbcf69bcc6ea9e85cd6541cb43024c1be7fe2586af66e5f5c1483",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "66900ffdbb09f3de7a70ddb4d5daa4c84a6762cb28dd5f334c8b7c90e0e15634"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "8cda70684a1164c9680a46b2efdff961586005342f2cf32c8ee916d88ef910f0",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 38,
+          "end_line": 458,
+          "start_column_utf8": 11,
+          "start_line": 458
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "5f3eee77f2f03a40f995f98cc154bf1baa425e489ff07fd99283e839a2720bd7",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "651bead03315576042dab3c790de5f675b396ceab7b78cac2027a14b4647fc87"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "9f490cdc51d499f67522b92cf056666f5a96fa2dc7550404acc5cae1cd1d5715",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 38,
+          "end_line": 132,
+          "start_column_utf8": 16,
+          "start_line": 132
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "03b506559c8bbcf69bcc6ea9e85cd6541cb43024c1be7fe2586af66e5f5c1483",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "66900ffdbb09f3de7a70ddb4d5daa4c84a6762cb28dd5f334c8b7c90e0e15634"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "a6300c20a34543452d7019b80c66fe89428bdbfa6e73fdb72b96d8ccbcb26bb1",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 43,
+          "end_line": 394,
+          "start_column_utf8": 16,
+          "start_line": 394
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "5f3eee77f2f03a40f995f98cc154bf1baa425e489ff07fd99283e839a2720bd7",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "651bead03315576042dab3c790de5f675b396ceab7b78cac2027a14b4647fc87"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "ab24d4d8586aeeadbb62a0a749afe3f123b463946a25d4741b1192d46f607f94",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 39,
+          "end_line": 305,
+          "start_column_utf8": 12,
+          "start_line": 305
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "5f3eee77f2f03a40f995f98cc154bf1baa425e489ff07fd99283e839a2720bd7",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "651bead03315576042dab3c790de5f675b396ceab7b78cac2027a14b4647fc87"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "af6323d0c0e240b2b30838711b48fce6229e7be7e39140c4d539d4c983e83601",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 37,
+          "end_line": 50,
+          "start_column_utf8": 15,
+          "start_line": 50
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "03b506559c8bbcf69bcc6ea9e85cd6541cb43024c1be7fe2586af66e5f5c1483",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "66900ffdbb09f3de7a70ddb4d5daa4c84a6762cb28dd5f334c8b7c90e0e15634"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "c6afe1436089b9d0d9be28773db6407648910f87eb575ab550c7392f04fd10e2",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 38,
+          "end_line": 149,
+          "start_column_utf8": 16,
+          "start_line": 149
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "03b506559c8bbcf69bcc6ea9e85cd6541cb43024c1be7fe2586af66e5f5c1483",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "66900ffdbb09f3de7a70ddb4d5daa4c84a6762cb28dd5f334c8b7c90e0e15634"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "cd8d7d5b89388daef262a11277997c942e5618fe87912809b98d755f8bfc1667",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 43,
+          "end_line": 484,
+          "start_column_utf8": 16,
+          "start_line": 484
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "5f3eee77f2f03a40f995f98cc154bf1baa425e489ff07fd99283e839a2720bd7",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "651bead03315576042dab3c790de5f675b396ceab7b78cac2027a14b4647fc87"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "d69c1b0aa70b13d4933abb06775722331a65de6ea6a235419ae7d3e10938eb3d",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 39,
+          "end_line": 353,
+          "start_column_utf8": 12,
+          "start_line": 353
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "5f3eee77f2f03a40f995f98cc154bf1baa425e489ff07fd99283e839a2720bd7",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "651bead03315576042dab3c790de5f675b396ceab7b78cac2027a14b4647fc87"
+      },
+      {
+        "derivation_identity": "d58c3adeb7db876920758da38985aecefb16ab33a42f6b3c30012140d8a62da6",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "f4a1f67d5f2120ecadd8249b1cb5b0e6939c85563ffa423d7051ae7f35d9b727",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/tools/test_filesystem.py",
+        "source_range_utf8": {
+          "end_column_utf8": 34,
+          "end_line": 112,
+          "start_column_utf8": 12,
+          "start_line": 112
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/tools/filesystem.py",
+        "target_content_identity": "c2810fc51756bf158b8061382cf09b2447121fe2c7f17e75cb2f6037b397300c",
+        "target_declaration_identity": "03b506559c8bbcf69bcc6ea9e85cd6541cb43024c1be7fe2586af66e5f5c1483",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "66900ffdbb09f3de7a70ddb4d5daa4c84a6762cb28dd5f334c8b7c90e0e15634"
+      }
+    ]
+  }
+]
+```
+
+
+## 0017 / O3 / target rank 101
+
+Target `src/devtools/core/time/parsing.py`: A rank 101, gold **UNNECESSARY**, primary /cells/389.
+
+Original predecessor `src/devtools/resources/filesystem/models/text.py`: A rank 100, gold **UNNECESSARY**, primary /cells/671.
+
+Classification **NEUTRAL**; strong classification: **NO**. Distinct sources 1; qualifying occurrences 7; best source rank 15; rank distance 86; intervening UNNECESSARY 79.
+
+Exact supporting source addresses/ranks, source labels and native fact/derivation/declaration/subject/range provenance IDs:
+
+```json
+[
+  {
+    "a_rank": 15,
+    "address": "tests/core/time/test_parsing.py",
+    "content_identity": "de9b7a2ba6d7c57112f2c0f82fb58165ee5b774ef6020051d927d9200a88cf63",
+    "document_identity": "a3f3c90ae6548f028f6f50e5cdc1c3465b0fca7ca52c20064252a5a9027f48b7",
+    "primary_cell_pointer": "/cells/866",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_gold_label": "UNNECESSARY",
+    "supports": [
+      {
+        "derivation_identity": "308c8e1a266f0d7c81a8636c81f99b6c8168c88c03c6483855a2d8fb3b908905",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "10b98eb876a890e954fa33112bf9cf9e2860004e257e0431595a7c0a192c2a2d",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/time/test_parsing.py",
+        "source_range_utf8": {
+          "end_column_utf8": 31,
+          "end_line": 71,
+          "start_column_utf8": 16,
+          "start_line": 71
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/time/parsing.py",
+        "target_content_identity": "457df61541f03242a6b29008d6fa4db77b6774b14c3646a83d7f1c2aa2de2d9c",
+        "target_declaration_identity": "1970ccfb4017ebc1404973a51789f402686c830e892da6a82076d8f188d6149f",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "3a6cfe22202ed07f5bf1d039d12e9dbee2567f4e960c29eee39b06cd81f106fc"
+      },
+      {
+        "derivation_identity": "308c8e1a266f0d7c81a8636c81f99b6c8168c88c03c6483855a2d8fb3b908905",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "29564ae7871d39356070df13c9d39e098479a37860bc4d200f5b664f04a7c878",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/time/test_parsing.py",
+        "source_range_utf8": {
+          "end_column_utf8": 26,
+          "end_line": 66,
+          "start_column_utf8": 11,
+          "start_line": 66
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/time/parsing.py",
+        "target_content_identity": "457df61541f03242a6b29008d6fa4db77b6774b14c3646a83d7f1c2aa2de2d9c",
+        "target_declaration_identity": "1970ccfb4017ebc1404973a51789f402686c830e892da6a82076d8f188d6149f",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "3a6cfe22202ed07f5bf1d039d12e9dbee2567f4e960c29eee39b06cd81f106fc"
+      },
+      {
+        "derivation_identity": "308c8e1a266f0d7c81a8636c81f99b6c8168c88c03c6483855a2d8fb3b908905",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "3e681dee8e5db8adc791c2701a833ed714d0a7bbf1e422dc6c29ae11679e7e65",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/time/test_parsing.py",
+        "source_range_utf8": {
+          "end_column_utf8": 26,
+          "end_line": 29,
+          "start_column_utf8": 11,
+          "start_line": 29
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/time/parsing.py",
+        "target_content_identity": "457df61541f03242a6b29008d6fa4db77b6774b14c3646a83d7f1c2aa2de2d9c",
+        "target_declaration_identity": "1970ccfb4017ebc1404973a51789f402686c830e892da6a82076d8f188d6149f",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "3a6cfe22202ed07f5bf1d039d12e9dbee2567f4e960c29eee39b06cd81f106fc"
+      },
+      {
+        "derivation_identity": "308c8e1a266f0d7c81a8636c81f99b6c8168c88c03c6483855a2d8fb3b908905",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "9cdd868fbafb17cba00b056073514bf3fdd018ce071d408d5c3ca20157e3470d",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/time/test_parsing.py",
+        "source_range_utf8": {
+          "end_column_utf8": 26,
+          "end_line": 37,
+          "start_column_utf8": 11,
+          "start_line": 37
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/time/parsing.py",
+        "target_content_identity": "457df61541f03242a6b29008d6fa4db77b6774b14c3646a83d7f1c2aa2de2d9c",
+        "target_declaration_identity": "1970ccfb4017ebc1404973a51789f402686c830e892da6a82076d8f188d6149f",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "3a6cfe22202ed07f5bf1d039d12e9dbee2567f4e960c29eee39b06cd81f106fc"
+      },
+      {
+        "derivation_identity": "308c8e1a266f0d7c81a8636c81f99b6c8168c88c03c6483855a2d8fb3b908905",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "b8413f002bed8871995a6b1f9d5c172c478b6be7cc25a2376dfd70391332cddf",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/time/test_parsing.py",
+        "source_range_utf8": {
+          "end_column_utf8": 23,
+          "end_line": 80,
+          "start_column_utf8": 8,
+          "start_line": 80
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/time/parsing.py",
+        "target_content_identity": "457df61541f03242a6b29008d6fa4db77b6774b14c3646a83d7f1c2aa2de2d9c",
+        "target_declaration_identity": "1970ccfb4017ebc1404973a51789f402686c830e892da6a82076d8f188d6149f",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "3a6cfe22202ed07f5bf1d039d12e9dbee2567f4e960c29eee39b06cd81f106fc"
+      },
+      {
+        "derivation_identity": "308c8e1a266f0d7c81a8636c81f99b6c8168c88c03c6483855a2d8fb3b908905",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "d8a5552e06320f2452aa4871e3355fad304f1843a26826e5b03b45880edc0970",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/time/test_parsing.py",
+        "source_range_utf8": {
+          "end_column_utf8": 26,
+          "end_line": 22,
+          "start_column_utf8": 11,
+          "start_line": 22
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/time/parsing.py",
+        "target_content_identity": "457df61541f03242a6b29008d6fa4db77b6774b14c3646a83d7f1c2aa2de2d9c",
+        "target_declaration_identity": "1970ccfb4017ebc1404973a51789f402686c830e892da6a82076d8f188d6149f",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "3a6cfe22202ed07f5bf1d039d12e9dbee2567f4e960c29eee39b06cd81f106fc"
+      },
+      {
+        "derivation_identity": "308c8e1a266f0d7c81a8636c81f99b6c8168c88c03c6483855a2d8fb3b908905",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "db082c6756bcf38d40693da996ec933fa800be0e5489ad5408cff19bb62b792b",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/core/time/test_parsing.py",
+        "source_range_utf8": {
+          "end_column_utf8": 26,
+          "end_line": 44,
+          "start_column_utf8": 11,
+          "start_line": 44
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/core/time/parsing.py",
+        "target_content_identity": "457df61541f03242a6b29008d6fa4db77b6774b14c3646a83d7f1c2aa2de2d9c",
+        "target_declaration_identity": "1970ccfb4017ebc1404973a51789f402686c830e892da6a82076d8f188d6149f",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "3a6cfe22202ed07f5bf1d039d12e9dbee2567f4e960c29eee39b06cd81f106fc"
+      }
+    ]
+  }
+]
+```
+
+
+## 0017 / O3 / target rank 104
+
+Target `src/devtools/agents/conversation/conversation.py`: A rank 104, gold **UNNECESSARY**, primary /cells/191.
+
+Original predecessor `src/devtools/core/paths/docs/resolution.md`: A rank 103, gold **UNNECESSARY**, primary /cells/326.
+
+Classification **NEUTRAL**; strong classification: **NO**. Distinct sources 1; qualifying occurrences 2; best source rank 82; rank distance 22; intervening UNNECESSARY 19.
+
+Exact supporting source addresses/ranks, source labels and native fact/derivation/declaration/subject/range provenance IDs:
+
+```json
+[
+  {
+    "a_rank": 82,
+    "address": "tests/agents/conversation/test_session.py",
+    "content_identity": "65cef479981456b043a3bbbb834a69aa1084381c39a405316f2507e487bf9959",
+    "document_identity": "8b0ff4fa17c0b7be966ab06f563f6f391b4416dd67839dd5363353069f0ab9b7",
+    "primary_cell_pointer": "/cells/731",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_gold_label": "UNNECESSARY",
+    "supports": [
+      {
+        "derivation_identity": "33133a244662f179ec727e67c757c9949274547c2c5e7e95afdb61825efbc52a",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "7e1dc521ad89ea6656dfabd8130a38ecd7847e098de5da21570f4fd9e5514ba4",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/agents/conversation/test_session.py",
+        "source_range_utf8": {
+          "end_column_utf8": 26,
+          "end_line": 75,
+          "start_column_utf8": 14,
+          "start_line": 75
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/agents/conversation/conversation.py",
+        "target_content_identity": "cf5d3a46b219f33a3ea7f2f7808e4b8a3c3c09341d5a66f1b6e107e050f1c8a7",
+        "target_declaration_identity": "6e76a5dcb6e974f4377cc29f0e682f0cf1c532854ce4d2362ad0cbf14f090f50",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "d767a48af0d1215d688fc11aa29a4a43727491592ac7d515c73f02f4df5353ca"
+      },
+      {
+        "derivation_identity": "33133a244662f179ec727e67c757c9949274547c2c5e7e95afdb61825efbc52a",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "8c159e90c59ffdfe5a305681aa613f750f78ba77c830f16a322e5fc740f25596",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "imported-member",
+        "source_address": "tests/agents/conversation/test_session.py",
+        "source_range_utf8": {
+          "end_column_utf8": 23,
+          "end_line": 50,
+          "start_column_utf8": 11,
+          "start_line": 50
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/agents/conversation/conversation.py",
+        "target_content_identity": "cf5d3a46b219f33a3ea7f2f7808e4b8a3c3c09341d5a66f1b6e107e050f1c8a7",
+        "target_declaration_identity": "6e76a5dcb6e974f4377cc29f0e682f0cf1c532854ce4d2362ad0cbf14f090f50",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "d767a48af0d1215d688fc11aa29a4a43727491592ac7d515c73f02f4df5353ca"
+      }
+    ]
+  }
+]
+```
+
+
+## 0017 / O3 / target rank 144
+
+Target `src/devtools/persistence/json.py`: A rank 144, gold **UNNECESSARY**, primary /cells/536.
+
+Original predecessor `tests/agents/conversation/message/__init__.py`: A rank 143, gold **UNNECESSARY**, primary /cells/722.
+
+Classification **NEUTRAL**; strong classification: **NO**. Distinct sources 1; qualifying occurrences 10; best source rank 19; rank distance 125; intervening UNNECESSARY 118.
+
+Exact supporting source addresses/ranks, source labels and native fact/derivation/declaration/subject/range provenance IDs:
+
+```json
+[
+  {
+    "a_rank": 19,
+    "address": "tests/persistence/test_json.py",
+    "content_identity": "e4aac80c8b2fbb70694dbb3cd678ecc9d2a996bcd71836c557d6745539b72d7f",
+    "document_identity": "5b391d5c240d0a95ac12883e5a31bea0ed5fdeac3b6d49f5d1b944b6cc5065fc",
+    "primary_cell_pointer": "/cells/947",
+    "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+    "source_gold_label": "UNNECESSARY",
+    "supports": [
+      {
+        "derivation_identity": "8928524d87714c0c729dda7d650ecaa3c5be558dd1258d9bfcb643a7e71b10ef",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "051d93bac148548eb60a47d2cdb4e0a19c73599216a396035613d5f5dcd37350",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/persistence/test_json.py",
+        "source_range_utf8": {
+          "end_column_utf8": 64,
+          "end_line": 114,
+          "start_column_utf8": 40,
+          "start_line": 114
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/persistence/json.py",
+        "target_content_identity": "cf5624d0f4d6c2fea576105cecaa0df5753cf088e2c4f2063167ca2d0f171264",
+        "target_declaration_identity": "2fb3294930ceb6701100d07722cc795340ba7c82db66f69c7f69455f8adbf0b0",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "632c18d721e1f7fb8f72c21cf0ea0e39a6ad26aa9fb0507754cc50a410b65cdf"
+      },
+      {
+        "derivation_identity": "8928524d87714c0c729dda7d650ecaa3c5be558dd1258d9bfcb643a7e71b10ef",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "1f96c4257497ccbc8ddf9b43f2c74bf6bc341a0b3ef37bb47833540b031f5298",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/persistence/test_json.py",
+        "source_range_utf8": {
+          "end_column_utf8": 43,
+          "end_line": 95,
+          "start_column_utf8": 19,
+          "start_line": 95
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/persistence/json.py",
+        "target_content_identity": "cf5624d0f4d6c2fea576105cecaa0df5753cf088e2c4f2063167ca2d0f171264",
+        "target_declaration_identity": "2fb3294930ceb6701100d07722cc795340ba7c82db66f69c7f69455f8adbf0b0",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "632c18d721e1f7fb8f72c21cf0ea0e39a6ad26aa9fb0507754cc50a410b65cdf"
+      },
+      {
+        "derivation_identity": "8928524d87714c0c729dda7d650ecaa3c5be558dd1258d9bfcb643a7e71b10ef",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "62dda567672c5b8aa266565cd90e16132c3a6eeb43a6b1c828c400642109d934",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/persistence/test_json.py",
+        "source_range_utf8": {
+          "end_column_utf8": 47,
+          "end_line": 78,
+          "start_column_utf8": 23,
+          "start_line": 78
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/persistence/json.py",
+        "target_content_identity": "cf5624d0f4d6c2fea576105cecaa0df5753cf088e2c4f2063167ca2d0f171264",
+        "target_declaration_identity": "2fb3294930ceb6701100d07722cc795340ba7c82db66f69c7f69455f8adbf0b0",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "632c18d721e1f7fb8f72c21cf0ea0e39a6ad26aa9fb0507754cc50a410b65cdf"
+      },
+      {
+        "derivation_identity": "8928524d87714c0c729dda7d650ecaa3c5be558dd1258d9bfcb643a7e71b10ef",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "6632ceabf01559d7bd4fc29ec7dceef404e167fb22ee41406337af9fa4f0a8fc",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/persistence/test_json.py",
+        "source_range_utf8": {
+          "end_column_utf8": 32,
+          "end_line": 184,
+          "start_column_utf8": 8,
+          "start_line": 184
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/persistence/json.py",
+        "target_content_identity": "cf5624d0f4d6c2fea576105cecaa0df5753cf088e2c4f2063167ca2d0f171264",
+        "target_declaration_identity": "9b74776a35497e08bd6b7c1d838bf577cc97adaa832719b2513337331d04f755",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "dfca3b5c875f2ad5c4ffcafb9d66d9e9a90da8535ab86c0a9ae26df5f4037f8d"
+      },
+      {
+        "derivation_identity": "8928524d87714c0c729dda7d650ecaa3c5be558dd1258d9bfcb643a7e71b10ef",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "6a3f617856c9bcf67aadb6a9659b5393a6359f01f64a38c2f7a2b1363b3a2301",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/persistence/test_json.py",
+        "source_range_utf8": {
+          "end_column_utf8": 39,
+          "end_line": 114,
+          "start_column_utf8": 15,
+          "start_line": 114
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/persistence/json.py",
+        "target_content_identity": "cf5624d0f4d6c2fea576105cecaa0df5753cf088e2c4f2063167ca2d0f171264",
+        "target_declaration_identity": "9b74776a35497e08bd6b7c1d838bf577cc97adaa832719b2513337331d04f755",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "dfca3b5c875f2ad5c4ffcafb9d66d9e9a90da8535ab86c0a9ae26df5f4037f8d"
+      },
+      {
+        "derivation_identity": "8928524d87714c0c729dda7d650ecaa3c5be558dd1258d9bfcb643a7e71b10ef",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "70adb08e53a07eeee4cde296b5b4daf5fbe0834748590b9b57868baab4437f68",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/persistence/test_json.py",
+        "source_range_utf8": {
+          "end_column_utf8": 32,
+          "end_line": 195,
+          "start_column_utf8": 8,
+          "start_line": 195
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/persistence/json.py",
+        "target_content_identity": "cf5624d0f4d6c2fea576105cecaa0df5753cf088e2c4f2063167ca2d0f171264",
+        "target_declaration_identity": "9b74776a35497e08bd6b7c1d838bf577cc97adaa832719b2513337331d04f755",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "dfca3b5c875f2ad5c4ffcafb9d66d9e9a90da8535ab86c0a9ae26df5f4037f8d"
+      },
+      {
+        "derivation_identity": "8928524d87714c0c729dda7d650ecaa3c5be558dd1258d9bfcb643a7e71b10ef",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "a2f3d5b7e2c0386ddd28591aa104883d97458b7d58caeabf7d39d96e7b3d8e58",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/persistence/test_json.py",
+        "source_range_utf8": {
+          "end_column_utf8": 39,
+          "end_line": 87,
+          "start_column_utf8": 15,
+          "start_line": 87
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/persistence/json.py",
+        "target_content_identity": "cf5624d0f4d6c2fea576105cecaa0df5753cf088e2c4f2063167ca2d0f171264",
+        "target_declaration_identity": "9b74776a35497e08bd6b7c1d838bf577cc97adaa832719b2513337331d04f755",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "dfca3b5c875f2ad5c4ffcafb9d66d9e9a90da8535ab86c0a9ae26df5f4037f8d"
+      },
+      {
+        "derivation_identity": "8928524d87714c0c729dda7d650ecaa3c5be558dd1258d9bfcb643a7e71b10ef",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "b0520346c693d4dc5c2eb50afcd7af877c6e54e52672f865693e51818100616d",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/persistence/test_json.py",
+        "source_range_utf8": {
+          "end_column_utf8": 32,
+          "end_line": 208,
+          "start_column_utf8": 8,
+          "start_line": 208
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/persistence/json.py",
+        "target_content_identity": "cf5624d0f4d6c2fea576105cecaa0df5753cf088e2c4f2063167ca2d0f171264",
+        "target_declaration_identity": "9b74776a35497e08bd6b7c1d838bf577cc97adaa832719b2513337331d04f755",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "dfca3b5c875f2ad5c4ffcafb9d66d9e9a90da8535ab86c0a9ae26df5f4037f8d"
+      },
+      {
+        "derivation_identity": "8928524d87714c0c729dda7d650ecaa3c5be558dd1258d9bfcb643a7e71b10ef",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "bfee50326ac121044ede164c2cbcc8014a09f7b81e7111e2c960f46ab0ad4c1c",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/persistence/test_json.py",
+        "source_range_utf8": {
+          "end_column_utf8": 35,
+          "end_line": 86,
+          "start_column_utf8": 11,
+          "start_line": 86
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/persistence/json.py",
+        "target_content_identity": "cf5624d0f4d6c2fea576105cecaa0df5753cf088e2c4f2063167ca2d0f171264",
+        "target_declaration_identity": "2fb3294930ceb6701100d07722cc795340ba7c82db66f69c7f69455f8adbf0b0",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "632c18d721e1f7fb8f72c21cf0ea0e39a6ad26aa9fb0507754cc50a410b65cdf"
+      },
+      {
+        "derivation_identity": "8928524d87714c0c729dda7d650ecaa3c5be558dd1258d9bfcb643a7e71b10ef",
+        "direct_call_tag_diagnostic_only": true,
+        "fact_identity": "fd1741a12fa26f920917127949e1ee93756c3df1da4adeabdc92f6455371e27d",
+        "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+        "native_route": "one-facade-imported-member",
+        "source_address": "tests/persistence/test_json.py",
+        "source_range_utf8": {
+          "end_column_utf8": 32,
+          "end_line": 169,
+          "start_column_utf8": 8,
+          "start_line": 169
+        },
+        "source_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_address": "src/devtools/persistence/json.py",
+        "target_content_identity": "cf5624d0f4d6c2fea576105cecaa0df5753cf088e2c4f2063167ca2d0f171264",
+        "target_declaration_identity": "9b74776a35497e08bd6b7c1d838bf577cc97adaa832719b2513337331d04f755",
+        "target_snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+        "target_subject_identity": "dfca3b5c875f2ad5c4ffcafb9d66d9e9a90da8535ab86c0a9ae26df5f4037f8d"
+      }
+    ]
+  }
+]
+```

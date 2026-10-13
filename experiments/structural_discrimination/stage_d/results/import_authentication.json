@@ -1,0 +1,511 @@
+{
+  "cases": {
+    "0017": {
+      "stage_b": {
+        "completion_proof_sha256": "4107324b4506f133eb461a8768ed862e9fd6db0e100e71b9610521b2aea3fff1",
+        "deep_correspondence_executions": 0,
+        "integrity_sha256": "bdd7161a2174bf51e79d3c8f20b31f6d12559f9d8e1c53ef23aa5029306b7b57",
+        "native_archives_decoded": 0,
+        "proof": "CAPTURE_TIME_DEEP_PROOF_AUTHENTICATED",
+        "status": "PASS",
+        "summary": {
+          "ablation": {
+            "empty_reference_validation_ablations": 3,
+            "primary_annotation_passes": 3,
+            "ranking_side_effect": "NONE",
+            "status": "PASS"
+          },
+          "case": "0017",
+          "confirmation_reserve_access": "NO",
+          "execution": "case-0017-stage-b-1",
+          "frame": {
+            "corpus_id": "32d70eb6fef4210e2ef4ccb48486bab51357e4f84e277c3e2b84f17bd89ddf91",
+            "python_resource_count": 262,
+            "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+            "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+            "resource_count": 357,
+            "resource_order": "canonical resource address ascending",
+            "snapshot_id": "0d49c0c3279ef4704a708a06a8ca05ac5c8eb89021802f24e695fb88b36e2d49",
+            "source_head": "71e938d809d794f2f07dd30cb772f1e9bc89c9d3",
+            "source_tree": "d6c9398be0bf36e16d6bf57a65f16d5f513eab00"
+          },
+          "gold_access": "NO",
+          "graph_only_admissions": 0,
+          "holdout_access": "NO",
+          "interpretation_gaps": [],
+          "ppr_executions": 0,
+          "queries": [
+            {
+              "a_results": 96,
+              "local_pairs": 2,
+              "obligation": "O1",
+              "qualifying_occurrences": 3,
+              "status": "PASS",
+              "support_source_target_pairs": 3,
+              "supported_targets": 2,
+              "timings": {
+                "annotation_construction_ns": 887200,
+                "canonical_a_ns": 20173900,
+                "complete_online_equivalent_ns": 107019100,
+                "predecessor_pairs_ns": 44500,
+                "support_projection_ns": 85913500
+              }
+            },
+            {
+              "a_results": 124,
+              "local_pairs": 5,
+              "obligation": "O2",
+              "qualifying_occurrences": 17,
+              "status": "PASS",
+              "support_source_target_pairs": 5,
+              "supported_targets": 5,
+              "timings": {
+                "annotation_construction_ns": 1430000,
+                "canonical_a_ns": 21624100,
+                "complete_online_equivalent_ns": 106710900,
+                "predecessor_pairs_ns": 46000,
+                "support_projection_ns": 83610800
+              }
+            },
+            {
+              "a_results": 184,
+              "local_pairs": 6,
+              "obligation": "O3",
+              "qualifying_occurrences": 64,
+              "status": "PASS",
+              "support_source_target_pairs": 8,
+              "supported_targets": 6,
+              "timings": {
+                "annotation_construction_ns": 1498100,
+                "canonical_a_ns": 18243000,
+                "complete_online_equivalent_ns": 112298900,
+                "predecessor_pairs_ns": 46600,
+                "support_projection_ns": 92511200
+              }
+            }
+          ],
+          "rank_modifications": 0,
+          "ri": {
+            "assessments": 24110,
+            "cross_resource_references": 431,
+            "direct_cross_resource_pairs": 80,
+            "outcomes": {
+              "member-unresolved": 151,
+              "method-unresolved": 78,
+              "module-unresolved": 1493,
+              "resolved": 1718,
+              "shadowed-binding": 10304,
+              "target-not-supported-declaration": 2270,
+              "unresolved-binding": 1862,
+              "unsupported-expression": 545,
+              "unsupported-receiver": 635,
+              "unsupported-scope": 5054
+            },
+            "positive_references": 1718,
+            "resources_derived": 262,
+            "self_references": 1287
+          },
+          "rrf_executions": 0,
+          "status": "CAPTURED; NO GOLD; NO EFFECTIVENESS INTERPRETATION",
+          "task": "Implement repository lexical statistics and inverted index\n"
+        }
+      },
+      "stage_c": {
+        "blindness": {
+          "model": "GPT-6 Astra",
+          "original_attestation": {
+            "Git/history": "NO",
+            "Reference treatment evidence": "NO",
+            "child diff": "NO",
+            "child implementation": "NO",
+            "child paths": "NO",
+            "confirmation": "NO",
+            "graph/PPR/RRF": "NO",
+            "lexical ranks/scores": "NO",
+            "other cohort cases": "NO",
+            "parent directories": "NO",
+            "predecessor pairs": "NO",
+            "prior Codex session": "NO",
+            "prior gold": "NO",
+            "queries": "NO",
+            "repository checkout": "NO",
+            "reserve": "NO",
+            "sibling workspaces": "NO",
+            "structural annotations": "NO",
+            "support pairs": "NO",
+            "treatment timings": "NO",
+            "web": "NO"
+          },
+          "reasoning": "High",
+          "reconciliation_count": 0,
+          "routing": "HOST ROUTING NOT INDEPENDENTLY VERIFIED",
+          "second_reviewer_count": 0,
+          "status": "PASS"
+        },
+        "case": "0017",
+        "gold_projection_sha256": "8850edd79fb6c97d9e5872ca94b02434bd54e0fc5f6ef745a5cf51f5b159aeae",
+        "packet_sha256": {
+          "README.md": "90985acd6359932a7524aab6d01bb1a00427b1d9eda534bf6f7be06de52a88b1",
+          "integrity.json": "b9c3f0a30e8f05710e43201da8fed9e6fc2d93cd2fc29b36a1ef10ff22dd52d6",
+          "manifest.json": "5d1976523476a659d952b38bffa91e3ffce89d935ad0455b49f28f2780b29d5c",
+          "resources.json.gz": "64dad46fb86c69cdb4de0b9e6314290bbcfcd2f7a23e4f6daef2f570dab591ac",
+          "validate_packet.py": "ce921a581595854ce136973c5a6cb8d12da1e22df6de8041ac522e31faf481f6"
+        },
+        "primary_sha256": {
+          "STAGE_C_REVIEW.md": "0d0d359c01cd11661251c04f4deac4f79a5437bd2464e058353551660036e0c2",
+          "stage_c_builder.py": "07eff746e1d25f3cc49128ce81a08cc0c4116b4cebfe9f26d003ec419f9da75e",
+          "stage_c_hashes.json": "a67d9fe43d1682b90e317eb23761d84ef2ec4419af7e05379f2ec79fbe47f2c4",
+          "stage_c_method.md": "57a5c73452fc3ccb845e9ba59bc178d9c8c4eae31570139fae6c41a0ddd6abae",
+          "stage_c_review.json": "70e8159ae12c24bdb6f9f5faa2a0bda07c820bb1dbfd08fcddab0dadeb23f21f",
+          "stage_c_statistics.json": "7d4f7f2a5385d95c406b3dfb5ec0d134301224ae14e4bcd363055d73b98559b2",
+          "stage_c_validation.json": "3b6f40e839f0fb9aab4a5496ee135aab6a88987b45c7a6f67c2e7c082d19c76a"
+        },
+        "status": "PASS"
+      }
+    },
+    "0018": {
+      "stage_b": {
+        "completion_proof_sha256": "b6b93b0e142c3ea6024506b1575d94a161b890a5d410726ea48458d796b43987",
+        "deep_correspondence_executions": 0,
+        "integrity_sha256": "091bbcd51987345c7a03f462854873180a7ad79d9624f47708797e1d999f4e06",
+        "native_archives_decoded": 0,
+        "proof": "CAPTURE_TIME_DEEP_PROOF_AUTHENTICATED",
+        "status": "PASS",
+        "summary": {
+          "ablation": {
+            "empty_reference_validation_ablations": 3,
+            "primary_annotation_passes": 3,
+            "ranking_side_effect": "NONE",
+            "status": "PASS"
+          },
+          "case": "0018",
+          "confirmation_reserve_access": "NO",
+          "execution": "case-0018-stage-b-1",
+          "frame": {
+            "corpus_id": "7ce2a9e4a048fcb3d1a4e8c625be8c951a84dc0c5cac70809c6427a8bb50eb33",
+            "python_resource_count": 287,
+            "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+            "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+            "resource_count": 382,
+            "resource_order": "canonical resource address ascending",
+            "snapshot_id": "bf0f8d2a30e2be56053a2098a4800ad3d43a70c41707b618ad36c197b6b6b827",
+            "source_head": "d493c26bbb1866cb9e5ead8f23f02aac3a7f12b9",
+            "source_tree": "be89449e1f2c89c307130868aa51cf9e717a2f49"
+          },
+          "gold_access": "NO",
+          "graph_only_admissions": 0,
+          "holdout_access": "NO",
+          "interpretation_gaps": [],
+          "ppr_executions": 0,
+          "queries": [
+            {
+              "a_results": 290,
+              "local_pairs": 33,
+              "obligation": "O1",
+              "qualifying_occurrences": 370,
+              "status": "PASS",
+              "support_source_target_pairs": 65,
+              "supported_targets": 33,
+              "timings": {
+                "annotation_construction_ns": 4171400,
+                "canonical_a_ns": 27441200,
+                "complete_online_equivalent_ns": 123288600,
+                "predecessor_pairs_ns": 122400,
+                "support_projection_ns": 91553600
+              }
+            },
+            {
+              "a_results": 296,
+              "local_pairs": 27,
+              "obligation": "O2",
+              "qualifying_occurrences": 309,
+              "status": "PASS",
+              "support_source_target_pairs": 53,
+              "supported_targets": 27,
+              "timings": {
+                "annotation_construction_ns": 5877000,
+                "canonical_a_ns": 26270100,
+                "complete_online_equivalent_ns": 143145600,
+                "predecessor_pairs_ns": 166900,
+                "support_projection_ns": 110831600
+              }
+            },
+            {
+              "a_results": 318,
+              "local_pairs": 36,
+              "obligation": "O3",
+              "qualifying_occurrences": 392,
+              "status": "PASS",
+              "support_source_target_pairs": 70,
+              "supported_targets": 36,
+              "timings": {
+                "annotation_construction_ns": 5228300,
+                "canonical_a_ns": 13981100,
+                "complete_online_equivalent_ns": 122940700,
+                "predecessor_pairs_ns": 226900,
+                "support_projection_ns": 103504400
+              }
+            }
+          ],
+          "rank_modifications": 0,
+          "ri": {
+            "assessments": 26744,
+            "cross_resource_references": 645,
+            "direct_cross_resource_pairs": 117,
+            "outcomes": {
+              "member-unresolved": 151,
+              "method-unresolved": 92,
+              "module-unresolved": 1567,
+              "resolved": 2061,
+              "shadowed-binding": 11324,
+              "target-not-supported-declaration": 2354,
+              "unresolved-binding": 2083,
+              "unsupported-expression": 615,
+              "unsupported-receiver": 675,
+              "unsupported-scope": 5822
+            },
+            "positive_references": 2061,
+            "resources_derived": 287,
+            "self_references": 1416
+          },
+          "rrf_executions": 0,
+          "status": "CAPTURED; NO GOLD; NO EFFECTIVENESS INTERPRETATION",
+          "task": "Implement qualified repository import relations\n"
+        }
+      },
+      "stage_c": {
+        "blindness": {
+          "model": "GPT-6 Astra",
+          "original_attestation": {
+            "acquisition_queries_needs_ranks_scores_accessed": false,
+            "changed_paths_or_child_diff_accessed": false,
+            "confirmation_or_reserve_accessed": false,
+            "designation": "sole clean treatment-blind primary",
+            "evaluator_implementation_accessed": false,
+            "evidence_scope": "five original packet files inside the sterile workspace only",
+            "excluded_external_categories_accessed": [],
+            "git_or_history_accessed": false,
+            "historical_child_accessed": false,
+            "host_routing_independently_verified": false,
+            "initial_exact_five_check": "PASS; no .git, .local, extras, directories, symlinks, junctions or reparse points.",
+            "initial_validator_result": "PASS; NO ADJUDICATION",
+            "native_packet_metadata_encountered": [
+              "parent_frame.source_head",
+              "parent_frame.source_tree"
+            ],
+            "native_repository_content_caveat": "Earlier benchmark prose/numbers and ordinary query/ranking code are unchanged parent content, not external treatment evidence; no effectiveness inference uses them.",
+            "other_case_or_prior_session_accessed": false,
+            "outside_workspace_evidence_accessed": [],
+            "packet_validator_used": "validate_packet.py authenticates inputs only; it supplies no adjudication or evaluator gold.",
+            "reconciliation": false,
+            "repository_checkout_accessed": false,
+            "requested_model": "GPT-6 Astra",
+            "requested_reasoning": "High",
+            "second_reviewer": false,
+            "structural_annotations_or_reference_treatment_accessed": false,
+            "tools_used": "Local PowerShell/Python standard-library inspection and authored deterministic builders; no resource source code executed.",
+            "web_accessed": false
+          },
+          "reasoning": "High",
+          "reconciliation_count": 0,
+          "routing": "HOST ROUTING NOT INDEPENDENTLY VERIFIED",
+          "second_reviewer_count": 0,
+          "status": "PASS"
+        },
+        "case": "0018",
+        "gold_projection_sha256": "270fdd97b5f342d7f1a494a233b4f81ba7cc4fdefcb43cd1f6bdc2f69aa27c14",
+        "packet_sha256": {
+          "README.md": "ef6241e6971553a124fd5abde64c5aa0a9611ab7a9495316ffaf52023f953de8",
+          "integrity.json": "6f3955479aa6fbb4ae80189256f0a49160ad592cfd9089201cd222556ba726f1",
+          "manifest.json": "6381d26ed9c406c6a28aa243bf5346c65e5fbe74c3a59e14f99fb4f2007bea85",
+          "resources.json.gz": "ef761a2d124b26181889580719baf8cc082897be6b7fce9fb86b69cbf4f1c831",
+          "validate_packet.py": "0d74cc32d2522aa336fea568130b270802c03844975567deece2fe0d835acfe6"
+        },
+        "primary_sha256": {
+          "STAGE_C_REVIEW.md": "90c4f6b88c26f353577d42553686e4a32a6bfbef6d70e9c0edd69f9c31bb421e",
+          "stage_c_builder.py": "c127f8291709517e653475ddf006a642374ef520c89db0c26e5f667cf61512fd",
+          "stage_c_hashes.json": "a14aa34c576e33d1f49fb6f8b273ebd7068ec102a4c491cbfb41cb8d83c72184",
+          "stage_c_method.md": "ca81c51ae46e024ef2e386bc74bfb5ba869333d690ea7dc7d6fd116b6f95d5b3",
+          "stage_c_review.json": "8eb6fa5710c1353c041f4f351ce680de4010819fb25b753ec661fe849726f7a6",
+          "stage_c_statistics.json": "2d99ca2ca9f7dda4f6829b328eba83b2eb609e7e1da84476d06378dd980c0534",
+          "stage_c_validation.json": "f1d47eed10baa76f63450de9a8bd137aebc35bd0cfa543c6383231b1cc6d09cc"
+        },
+        "status": "PASS"
+      }
+    },
+    "0019": {
+      "stage_b": {
+        "completion_proof_sha256": "0f6ce39604a92d7e8c36ab911828615bfa5a1ae6521aea3938e81c77ec6705fa",
+        "deep_correspondence_executions": 0,
+        "integrity_sha256": "3eb74719f76211bf1ca41932952c19f653874ee7d07bd4ff7ea32316fad8f6b0",
+        "native_archives_decoded": 0,
+        "proof": "CAPTURE_TIME_DEEP_PROOF_AUTHENTICATED",
+        "status": "PASS",
+        "summary": {
+          "ablation": {
+            "empty_reference_validation_ablations": 3,
+            "primary_annotation_passes": 3,
+            "ranking_side_effect": "NONE",
+            "status": "PASS"
+          },
+          "case": "0019",
+          "confirmation_reserve_access": "NO",
+          "execution": "case-0019-stage-b-1",
+          "frame": {
+            "corpus_id": "eb20830bed8817e886f21cae6ceffbb15da7dc1f6ccae8667cf2208a6b659ef6",
+            "python_resource_count": 182,
+            "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+            "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+            "resource_count": 222,
+            "resource_order": "canonical resource address ascending",
+            "snapshot_id": "6781f26ecb733009de8b1e8427211f74ed7cd8f36ad8c07fe0e7595af145e028",
+            "source_head": "2465af00dc305a6c2a15a90455bf09e62e428e39",
+            "source_tree": "12a504a2106467d8b32fc062d15923c7b9250fd9"
+          },
+          "gold_access": "NO",
+          "graph_only_admissions": 0,
+          "holdout_access": "NO",
+          "interpretation_gaps": [
+            "The task/parent do not specify the provider option spelling, value domain, provider-version applicability or default. These are not invented from child knowledge. The freeze evaluates repository integration evidence for the stated control; Stage C must retain any residual task/provider-contract gap rather than assume complete task satisfaction."
+          ],
+          "ppr_executions": 0,
+          "queries": [
+            {
+              "a_results": 47,
+              "local_pairs": 2,
+              "obligation": "O1",
+              "qualifying_occurrences": 26,
+              "status": "PASS",
+              "support_source_target_pairs": 2,
+              "supported_targets": 2,
+              "timings": {
+                "annotation_construction_ns": 603300,
+                "canonical_a_ns": 10808300,
+                "complete_online_equivalent_ns": 44725300,
+                "predecessor_pairs_ns": 37000,
+                "support_projection_ns": 33276700
+              }
+            },
+            {
+              "a_results": 75,
+              "local_pairs": 6,
+              "obligation": "O2",
+              "qualifying_occurrences": 57,
+              "status": "PASS",
+              "support_source_target_pairs": 7,
+              "supported_targets": 6,
+              "timings": {
+                "annotation_construction_ns": 909500,
+                "canonical_a_ns": 18971000,
+                "complete_online_equivalent_ns": 51230600,
+                "predecessor_pairs_ns": 47900,
+                "support_projection_ns": 31302200
+              }
+            },
+            {
+              "a_results": 130,
+              "local_pairs": 4,
+              "obligation": "O3",
+              "qualifying_occurrences": 43,
+              "status": "PASS",
+              "support_source_target_pairs": 5,
+              "supported_targets": 4,
+              "timings": {
+                "annotation_construction_ns": 1048800,
+                "canonical_a_ns": 12022500,
+                "complete_online_equivalent_ns": 49705600,
+                "predecessor_pairs_ns": 16800,
+                "support_projection_ns": 36617500
+              }
+            }
+          ],
+          "rank_modifications": 0,
+          "ri": {
+            "assessments": 15893,
+            "cross_resource_references": 328,
+            "direct_cross_resource_pairs": 64,
+            "outcomes": {
+              "member-unresolved": 71,
+              "method-unresolved": 55,
+              "module-unresolved": 1124,
+              "resolved": 1268,
+              "shadowed-binding": 6707,
+              "target-not-supported-declaration": 1724,
+              "unresolved-binding": 1179,
+              "unsupported-expression": 352,
+              "unsupported-receiver": 432,
+              "unsupported-scope": 2981
+            },
+            "positive_references": 1268,
+            "resources_derived": 182,
+            "self_references": 940
+          },
+          "rrf_executions": 0,
+          "status": "CAPTURED; NO GOLD; NO EFFECTIVENESS INTERPRETATION",
+          "task": "Add vLLM CUDA graph estimate control\n"
+        }
+      },
+      "stage_c": {
+        "blindness": {
+          "model": "GPT-6 Astra",
+          "original_attestation": {
+            "Git/history": "NO",
+            "Reference treatment evidence": "NO",
+            "child diff": "NO",
+            "child implementation": "NO",
+            "child paths": "NO",
+            "confirmation": "NO",
+            "current modern vLLM implementation": "NO",
+            "graph/PPR/RRF": "NO",
+            "lexical ranks/scores": "NO",
+            "other cohort cases": "NO",
+            "parent directories": "NO",
+            "predecessor pairs": "NO",
+            "prior Codex session": "NO",
+            "prior gold": "NO",
+            "queries": "NO",
+            "repository checkout": "NO",
+            "reserve": "NO",
+            "sibling workspaces": "NO",
+            "structural annotations": "NO",
+            "support pairs": "NO",
+            "treatment timings": "NO",
+            "web": "NO"
+          },
+          "reasoning": "High",
+          "reconciliation_count": 0,
+          "routing": "HOST ROUTING NOT INDEPENDENTLY VERIFIED",
+          "second_reviewer_count": 0,
+          "status": "PASS"
+        },
+        "case": "0019",
+        "gold_projection_sha256": "77ffb2444cf2b0fa5bb6b4fa66ebdc483e0627dffe352fdcc5d04fddf637322b",
+        "packet_sha256": {
+          "README.md": "17c7a5c68d9374381bc000689e415d68b1b79784d7c7a9babda26b985a6c5a29",
+          "integrity.json": "d5aee029ad6d832d94f2787cff448af06bdc64d014db5707c6cc9934b52a8494",
+          "manifest.json": "a082dab178c3dd2e7f7b5683ec1766bbc44c4888ba8534a3d497e6bc4a72eb4a",
+          "resources.json.gz": "9cdf7234c3ded1f193a1f64f9f458c98f66aa354c95eadf13845b0649d1f5373",
+          "validate_packet.py": "72558691d636a60e77454f691951800177cf807d8dd103c510831b4a7516428a"
+        },
+        "primary_sha256": {
+          "STAGE_C_REVIEW.md": "53e6c4e872657eb57109377d9ae4f940bca9a30a4c5c50255d97af799fd76b31",
+          "stage_c_builder.py": "c9543031397011c524cfd3baedb35a273e3ef5fba0244b257e38c04349e78727",
+          "stage_c_hashes.json": "f594f3935c37a90026c7cfd23d13ae8fcf3d9ba288f6fbc5e84c8b5beaa1be96",
+          "stage_c_method.md": "2493255e36404a9dd45405a5a5a7b87a785cbad5ed372d31e1a4e675210874f7",
+          "stage_c_review.json": "2358963f24e206af79d7238e3f362445cc23dc0f747fb24c53e11f8e375e725b",
+          "stage_c_statistics.json": "aba918fca90d351ed15c16766276e66417b7adc81ce71f61292674d34b9cc13c",
+          "stage_c_validation.json": "665c1f62db5b88f032daf3cb989d2f74da76559e99f4bcfb7d98e3d64480bfee"
+        },
+        "status": "PASS"
+      }
+    }
+  },
+  "stage_a": {
+    "checkpoint": "48d896b16a992887236285b50e54b159c7c0bb1b",
+    "integrity_sha256": "12be78dcf5f16838943cb07fe230af9174a5a3280ee0c5953db60c9b9d642041",
+    "protocol_sha256": "6167a9b28da52ce42ac7c9186fade322a078a3f5158ba87067b1c3cf4df0b52f",
+    "status": "PASS"
+  },
+  "stage_b_checkpoint": "95840e11b6cc14acd8a47754af3d1a8b673ee70d",
+  "stage_c_checkpoint": "2a93f91d96ebd8deb927550822e4e2c40f2bd1db"
+}

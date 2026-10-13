@@ -56,41 +56,55 @@ COMPLETE and verifier architecture remains COMPLETE /
 SEALED_AND_DEEP_VERIFICATION_SEPARATED. Production retrieval is unchanged;
 SEARCH_POLICY_FAILURE remains NOT_ASSESSED. Incremental RI remains REQUIRED /
 NOT_IMPLEMENTED and filename-index caching remains PENDING / NOT_IMPLEMENTED.
-The [direct structural discrimination cohort](../experiments/structural_discrimination/README.md)
-is now **STAGE A FROZEN / NOT EXECUTED**. Cases 0017–0019 bind the first three
-historical population entries, their untouched parent frames, obligations and
-queries. One shared mechanism annotates unchanged canonical lexical candidates
-with direct cross-resource native References from a stronger candidate for the
-same obligation. It does not rank, promote, diffuse or acquire graph-only targets.
-The local predecessor comparison tests signal direction after blind gold; it is
-not a production ranking rule or an architectural ownership decision.
+The [direct structural discrimination cohort](../experiments/structural_discrimination/stage_d/results/STAGE_D_REVIEW.md)
+is **STAGE C: THREE PRIMARY GOLD SETS IMPORTED / STAGE D: COMPLETE**.
+Cases 0017-0019 use the same previously frozen Stage A mechanism, unchanged
+Stage B lexical candidates/ranks and direct cross-resource native Reference
+annotations. The Stage B checkpoint is
+`95840e11b6cc14acd8a47754af3d1a8b673ee70d`; the blind-packet checkpoint is
+`1b43203e908e725465a407b556f60a583dacfb1c`; the immutable Stage C import is
+`2a93f91d96ebd8deb927550822e4e2c40f2bd1db`.
+Original sterile primary bytes are authoritative, with one designated GPT-6 Astra /
+High primary per case, no second reviewer and no reconciliation. Separate-process
+verification preserves all original packet and scientific bytes. Host routing is
+not independently verified. Normal sealed Stage B verification performs no deep
+native replay or scientific reacquisition.
 
-Maintainer review precedes exactly-once Stage B capture for **all three cases**
-under the frozen mechanism, then isolated blind primary Stage C adjudication and
-sealed Stage D identity joins/case categories/cohort diagnostics. Earlier case
-gold must not tune later cohort members. Child holdouts remain closed until the
-primary scientific evaluation is complete. No treatment capture or gold was
-created at this Stage A checkpoint; production behavior remains unchanged.
+Frozen case categories are:
 
-The [cohort treatment capture](../experiments/structural_discrimination/stage_b/COHORT_REVIEW.md)
-now records successful independent attempts for Cases 0017–0019 under that
-unchanged protocol. All three exact parent captures precede semantic gold. Native
-References, unchanged A ranks, annotations, original predecessor pairs and
-algorithm-only timings are retained, with one capture-finalization deep proof
-per case and sealed normal verification thereafter. This is mechanical evidence;
-no usefulness, pair utility or structural-discrimination outcome is inferred.
-Independent blind packet preparation follows the treatment publication; clean
-isolated primary adjudication remains separately authorized future work.
+- Case 0017: **NO_MATERIAL_STRUCTURAL_DISCRIMINATION_SIGNAL**.
+- Case 0018: **STRUCTURAL_DISCRIMINATION_SIGNAL**.
+- Case 0019: **NO_MATERIAL_STRUCTURAL_DISCRIMINATION_SIGNAL**.
 
-All three independent [blind packets](../experiments/structural_discrimination/stage_c/README.md)
-are now frozen after treatment checkpoint
-`95840e11b6cc14acd8a47754af3d1a8b673ee70d`. They contain only each case's
-task/obligations/interpretation limits and complete unchanged parent frame, with
-neutral packet schemas and standalone integrity validation. Each receives a
-fresh sterile workspace after packet publication. One mutually isolated GPT-6
-Astra / High primary per case is the recorded next boundary; no primary, second
-reviewer, reconciliation or gold has started. The structural mechanism remains
-identical across the cohort, and child implementations remain closed.
+The 121 local counterfactual pairs are 7 beneficial, 110 neutral and 4 harmful,
+with 1 strong beneficial and 0 strong harmful. Supported targets are 6 REQUIRED,
+9 HELPFUL_ONLY and 106 UNNECESSARY. Supported useful rate is 15/121; baseline A
+useful rate is 144/1560. REQUIRED-in-A support coverage is 6/39. All 39 REQUIRED
+cells are in A; structure cannot rescue lexical non-reach in this experiment.
+There are 1,281 qualifying support occurrences and 218 distinct
+source->target/obligation pairs. Actual rank modifications, PPR, RRF, graph-only
+admissions and self-reference contribution are zero. Captured nine-sample median
+is 107.0191 ms and nearest-rank p95/max-nine is 143.1456 ms; no timing was rerun.
+
+The **non-gating interpretation** is mixed/ambiguous enough that stronger
+purpose-relative conditions appear necessary before bounded consumption. The
+single strong signal, high neutrality/noise and low required coverage establish
+neither a cohort success gate nor a production ranking rule. Case 0018's explicit
+interpretation/design/repository qualifications remain. Case 0019's judgments and
+indispensability are CONDITIONAL REPOSITORY-INTEGRATION; future provider option
+spelling, domain, applicability and default remain unresolved. Its conditional
+sufficient union does not close the PRESENT task interpretation gap; unconditional
+future task satisfaction has zero complete witnesses/combinations, empty unions
+and undefined range/indispensability.
+
+Exact next step: maintainer reviews the completed three-case result and decides
+whether a future prospective experiment should A) consume direct structural
+evidence in a bounded promotion/discrimination policy, B) require stronger
+purpose-relative structural conditions, or C) stop near-term direct-Reference
+discrimination work. Do not design or execute that experiment here. Historical
+child implementations/paths/diffs remain closed despite Stage D completion;
+opening them requires separate later authorization. Confirmation/reserve remain
+NOT_ACCESSED. Production behavior is unchanged and the mechanism is not promoted.
 
 Two coordinated tracks preserve ADR-0005 and the implemented Localization
 contracts while correcting retrieval-foundation sequencing. The

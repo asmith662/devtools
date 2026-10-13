@@ -1,0 +1,55 @@
+{
+  "adversarial_tests": "stage_d/test_analysis.py and stage_c/test_import.py; test receipts are separate",
+  "cases": {
+    "0017": {
+      "A_ablation_identity": "PASS",
+      "a_gold_cell_joins": 404,
+      "frame_obligation_resource_document_content": "EXACT",
+      "gold_cells": 1071,
+      "join_defects": 0,
+      "predecessor_gold_cell_joins": 13,
+      "qualifying_occurrences": 84,
+      "status": "PASS",
+      "supporting_source_gold_cell_joins": 16,
+      "target_gold_cell_joins": 13
+    },
+    "0018": {
+      "A_ablation_identity": "PASS",
+      "a_gold_cell_joins": 904,
+      "frame_obligation_resource_document_content": "EXACT",
+      "gold_cells": 1146,
+      "join_defects": 0,
+      "predecessor_gold_cell_joins": 96,
+      "qualifying_occurrences": 1071,
+      "status": "PASS",
+      "supporting_source_gold_cell_joins": 188,
+      "target_gold_cell_joins": 96
+    },
+    "0019": {
+      "A_ablation_identity": "PASS",
+      "a_gold_cell_joins": 252,
+      "frame_obligation_resource_document_content": "EXACT",
+      "gold_cells": 666,
+      "join_defects": 0,
+      "predecessor_gold_cell_joins": 12,
+      "qualifying_occurrences": 126,
+      "status": "PASS",
+      "supporting_source_gold_cell_joins": 14,
+      "target_gold_cell_joins": 12
+    }
+  },
+  "deterministic_verification": "Reconstruction compares all artifact bytes; run separate-process verify after publication",
+  "join_defects": 0,
+  "source_implementation_sha256": {
+    "experiments/structural_discrimination/decision.py": "7af8ad9fff1a951039e265e6f5453223184f0500606ca6766728aaf26f34951e",
+    "experiments/structural_discrimination/stage_c/import_gold.py": "a125166f5227852d5a7ce7424cd66794aa7a4e6ffca4edf7c26a8d0465386e5e",
+    "experiments/structural_discrimination/stage_d/.gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "experiments/structural_discrimination/stage_d/README.md": "7ac03630e337ed6d57fe679d2c3b83995d1b630986d1fff87f4e5f078f7f29b4",
+    "experiments/structural_discrimination/stage_d/__init__.py": "89506211fff4a9011eaf87d6ed425b25a46cdca8051e62059df897c5fca5e497",
+    "experiments/structural_discrimination/stage_d/analyze.py": "0f10e677c6e137a93460f4a2757f10f94082a27dc3fb201ecf89247b574977d0",
+    "experiments/structural_discrimination/stage_d/join.py": "9c918010c0ce52d966281684bba7e9fb0250717112f73aec7571392ff7a625da",
+    "experiments/structural_discrimination/stage_d/reporting.py": "583edf1fe53f8a6c1d46737f2e2dd281a52e7e765354ea92599878eeabaa01d8",
+    "experiments/structural_discrimination/stage_d/test_analysis.py": "febb3b41a8c44853a6ff1b6dfb488ca8ec834737a6e0d6d5fbfd56d72809b9ea"
+  },
+  "status": "PASS"
+}

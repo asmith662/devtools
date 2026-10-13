@@ -603,11 +603,23 @@ implementations remain restricted. The subsequent
 [Stage B cohort capture](../experiments/structural_discrimination/stage_b/COHORT_REVIEW.md)
 owns the three exactly-once mechanical captures and completion proofs. Its
 normal verifier authenticates sealed canonical surfaces without another deep
-native replay. No semantic adjudication or effectiveness evaluation has run.
+native replay. All three sole-primary gold sets are now imported and Stage D is
+complete.
 
 The [independent blind-packet owner](../experiments/structural_discrimination/stage_c/README.md)
 projects the frozen semantic disclosure contract only after all three captures
 are published. It owns deterministic five-file packets, neutral metadata schemas,
 standalone validation and fresh sterile copying. Packet provenance is outside
 the reviewer files; no rank, annotation, child implementation or other-case
-surface is disclosed to a primary reviewer. Reviewer launch is a separate task.
+surface is disclosed to a primary reviewer. The original sterile primaries are now
+byte-identically imported at `2a93f91d96ebd8deb927550822e4e2c40f2bd1db`.
+
+The [Stage D owner](../experiments/structural_discrimination/stage_d/README.md)
+owns committed-input authentication, exact frame/resource/obligation/content joins,
+ordinal pair classification, category calculation and deterministic output seals.
+The [completed cohort review](../experiments/structural_discrimination/stage_d/results/STAGE_D_REVIEW.md)
+records Cases 0017/0019 NO_MATERIAL_STRUCTURAL_DISCRIMINATION_SIGNAL and Case 0018
+STRUCTURAL_DISCRIMINATION_SIGNAL, plus descriptive totals, complete case traces,
+primary provenance and non-gating interpretation. Case 0019 sufficiency remains
+conditional on unresolved provider-contract semantics. No production promotion,
+new cohort gate, historical child access or confirmation/reserve access follows.
