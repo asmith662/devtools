@@ -672,3 +672,9 @@ preserves the original scientific protocol and all 21 Stage A artifact bytes whi
 rebinding the explicit static scope and nested grounding operational adapter.
 Its separate replacement prospective plan requires new exact-run maintainer review;
 the failed run's approval remains historical-only.
+
+The [corrected unapproved source-grounding plan review](../experiments/source_grounding/plans/CORRECTED_PLAN_REVIEW.md)
+binds the exact superseding checkpoint, current controller, explicit static
+ownership and unchanged models/science. It records materialized-publication
+regression and the exact new run identity for maintainer review; it grants no
+execution authority.

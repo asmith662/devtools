@@ -1,0 +1,207 @@
+{
+  "approval_artifact": "NONE",
+  "cases": [
+    "0020",
+    "0021",
+    "0022"
+  ],
+  "controller_run_invoked": false,
+  "controller_sha256": "d978e96fa12384dd3d9d0c06384cc803bda86e4b860e3359c635f82f7bc2e41a",
+  "controller_unique_tests_passed": 97,
+  "dependency_graph": "prepare -> packet -> PACKET publication -> independent B/C -> exact import -> B/C publication -> deterministic D",
+  "execution_authorized": "NO",
+  "focused_source_grounding_tests": 78,
+  "launcher_preflight": {
+    "commands": [
+      "--version",
+      "exec --help"
+    ],
+    "live_model_calls": 0,
+    "status": "PASS",
+    "version": "codex-cli 0.162.1"
+  },
+  "materialized_regression": {
+    "actual_checkpoint_commands": [
+      {
+        "argv": [
+          "uv",
+          "run",
+          "pytest",
+          "--no-cov",
+          "-q",
+          "experiments/source_grounding/test_contracts.py",
+          "experiments/source_grounding/test_scope.py"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "f8813031268b7f3bd2599f9892444a064df1724dd03013a49d546f4546cbbd38"
+      },
+      {
+        "argv": [
+          "uv",
+          "run",
+          "ruff",
+          "check",
+          "experiments/source_grounding/__init__.py",
+          "experiments/source_grounding/analysis.py",
+          "experiments/source_grounding/capture.py",
+          "experiments/source_grounding/cases.py",
+          "experiments/source_grounding/contracts.py",
+          "experiments/source_grounding/entry.py",
+          "experiments/source_grounding/freeze.py",
+          "experiments/source_grounding/packets.py",
+          "experiments/source_grounding/plan.py",
+          "experiments/source_grounding/preflight.py",
+          "experiments/source_grounding/reviewer.py",
+          "experiments/source_grounding/test_contracts.py",
+          "experiments/source_grounding/test_scope.py",
+          "experiments/source_grounding/timing.py",
+          "experiments/source_grounding/workers.py"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+      },
+      {
+        "argv": [
+          "uv",
+          "run",
+          "ruff",
+          "format",
+          "--check",
+          "experiments/source_grounding/__init__.py",
+          "experiments/source_grounding/analysis.py",
+          "experiments/source_grounding/capture.py",
+          "experiments/source_grounding/cases.py",
+          "experiments/source_grounding/contracts.py",
+          "experiments/source_grounding/entry.py",
+          "experiments/source_grounding/freeze.py",
+          "experiments/source_grounding/packets.py",
+          "experiments/source_grounding/plan.py",
+          "experiments/source_grounding/preflight.py",
+          "experiments/source_grounding/reviewer.py",
+          "experiments/source_grounding/test_contracts.py",
+          "experiments/source_grounding/test_scope.py",
+          "experiments/source_grounding/timing.py",
+          "experiments/source_grounding/workers.py"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "d41ae50829b47e318b0787bc39d2a2ea2d52b518cfc7900d2efd569e6d26ab88"
+      },
+      {
+        "argv": [
+          "uv",
+          "run",
+          "mypy",
+          "--strict",
+          "experiments/source_grounding/__init__.py",
+          "experiments/source_grounding/analysis.py",
+          "experiments/source_grounding/capture.py",
+          "experiments/source_grounding/cases.py",
+          "experiments/source_grounding/contracts.py",
+          "experiments/source_grounding/entry.py",
+          "experiments/source_grounding/freeze.py",
+          "experiments/source_grounding/packets.py",
+          "experiments/source_grounding/plan.py",
+          "experiments/source_grounding/preflight.py",
+          "experiments/source_grounding/reviewer.py",
+          "experiments/source_grounding/test_contracts.py",
+          "experiments/source_grounding/test_scope.py",
+          "experiments/source_grounding/timing.py",
+          "experiments/source_grounding/workers.py"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "61a62a318fa6bf09a97778c351a33c9175e14fc182f248ae957f3efef9249a7b"
+      }
+    ],
+    "generated_control_diagnostics": 1221,
+    "generated_files": 6,
+    "maintained_defect": "F821_DETECTED",
+    "manifest_sha256": "767fadaece487e35e1a006ae5f3295c8ae83e85e9d4bb1bbb82122e614d7ea16",
+    "model_invocations": 0,
+    "scientific_execution": 0,
+    "stage_a_checkpoint": "f03523e2d06150e4497b038a49c20885db956810",
+    "static_scope": [
+      "experiments/source_grounding/__init__.py",
+      "experiments/source_grounding/analysis.py",
+      "experiments/source_grounding/capture.py",
+      "experiments/source_grounding/cases.py",
+      "experiments/source_grounding/contracts.py",
+      "experiments/source_grounding/entry.py",
+      "experiments/source_grounding/freeze.py",
+      "experiments/source_grounding/packets.py",
+      "experiments/source_grounding/plan.py",
+      "experiments/source_grounding/preflight.py",
+      "experiments/source_grounding/reviewer.py",
+      "experiments/source_grounding/test_contracts.py",
+      "experiments/source_grounding/test_scope.py",
+      "experiments/source_grounding/timing.py",
+      "experiments/source_grounding/workers.py"
+    ],
+    "status": "PASS",
+    "synthetic_originals_removed_after_verification": true
+  },
+  "models": {
+    "gold": {
+      "auth_file": "C:/Users/recoveryadmin/.codex/auth.json",
+      "cli_version": "0.162.1",
+      "environment_allowlist": [
+        "PATH",
+        "SYSTEMROOT",
+        "WINDIR",
+        "TEMP",
+        "TMP",
+        "USERPROFILE",
+        "APPDATA",
+        "LOCALAPPDATA",
+        "COMSPEC"
+      ],
+      "kind": "codex",
+      "model": "GPT-6 Astra",
+      "model_id": "gpt-6-astra",
+      "prompt_file": "INSTRUCTIONS.md",
+      "reasoning": "High"
+    },
+    "grounding": {
+      "auth_file": "C:/Users/recoveryadmin/.codex/auth.json",
+      "cli_version": "0.162.1",
+      "environment_allowlist": [
+        "PATH",
+        "SYSTEMROOT",
+        "WINDIR",
+        "TEMP",
+        "TMP",
+        "USERPROFILE",
+        "APPDATA",
+        "LOCALAPPDATA",
+        "COMSPEC"
+      ],
+      "kind": "codex",
+      "model": "GPT-6 Sol",
+      "model_id": "gpt-6-sol",
+      "prompt_file": "INSTRUCTIONS.md",
+      "reasoning": "High"
+    }
+  },
+  "plan_path": "experiments/source_grounding/plans/corrected-run-plan.json",
+  "plan_rebuild": "EXACT",
+  "plan_sha256": "4e54e6d756b1f852d5ba5be2ccbdd237ccda1397f6cbb9fca01c3137551f4c0f",
+  "prospective_committed_authentication": "REQUIRED_AFTER_PUBLICATION",
+  "protected_development": {
+    "executions": 1,
+    "passed": 1588,
+    "production_branch_coverage_percent": 100.0,
+    "reused_from": "0c87a23da9804890a573ef51a515fa5009482a88",
+    "skipped": 2
+  },
+  "run_id": "54a77aed2c0212d5dd9b0dacb717d9c7bd72cb11361614aae979fe72ae7c8d2b",
+  "schema": "experiment-controller-plan-v2",
+  "scientific_entered": 0,
+  "scientific_semantics": "21_STAGE_A_ARTIFACTS_BYTE_IDENTICAL",
+  "stage_a_checkpoint": "f03523e2d06150e4497b038a49c20885db956810",
+  "stage_a_replay": {
+    "artifacts": 22,
+    "scientific_artifacts_preserved": 21,
+    "status": "PASS"
+  },
+  "status": "CANDIDATE_VALID",
+  "worktree_and_staged_diff_checks": "REQUIRED_BEFORE_PUBLICATION"
+}

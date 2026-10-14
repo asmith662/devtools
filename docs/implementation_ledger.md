@@ -1,5 +1,17 @@
 # Implementation Ledger
 
+## Corrected unapproved source-grounding plan (2026-10-14)
+
+Published the separate v2 [prospective plan](../experiments/source_grounding/plans/CORRECTED_PLAN_REVIEW.md)
+bound to superseding Stage A `f03523e2d06150e4497b038a49c20885db956810` and the
+current controller. Materializing the six original generated payload types
+reproduced 1,221 direct Ruff diagnostics; all four replacement checkpoint commands
+passed, while a maintained-source F821 defect still failed. Plan rebuild and
+non-live launcher preflight pass. Committed prospective authentication must report
+PLAN_VALID / execution_authorized NO. The original approved failed run is preserved
+as historical evidence. No new approval, scientific run, primary, cohort gold,
+Stage B/C/D, child or confirmation/reserve access is authorized by publication.
+
 ## Superseding source-grounding execution binding (2026-10-14)
 
 Rebound Stage A implementation integrity for explicit maintained-source static
