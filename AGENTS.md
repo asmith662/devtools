@@ -244,6 +244,9 @@ PACKET/B/C checkpoints require focused deterministic and integrity checks; final
 Stage D, production-source changes and controller engineering increments require
 full protected development validation. This exception never changes the production
 coverage gate or authorizes confirmation/live-model tests.
+Execution-approval-only publications use the linked policy's bounded plan,
+authority and Git-integrity checks before scientific entry. They add no source
+or scientific result and do not relax final or controller-engineering validation.
 
 For read-only audits: do not fix while inspecting; list evidence inspected,
 separate fact from interpretation, report findings by severity, and do not

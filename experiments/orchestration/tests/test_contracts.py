@@ -13,6 +13,7 @@ from typing import Any
 import pytest
 
 from experiments.codex_dogfood.case_0009.artifacts import digest
+from experiments.orchestration.authority import ApprovalRequest
 from experiments.orchestration.controller import Controller, expand
 from experiments.orchestration.isolation import candidate, semantic_receipt, sterile
 from experiments.orchestration.model import RunPlan
@@ -107,7 +108,7 @@ def test_blindness_attestation(field: str) -> None:
 def test_scientific_failure_is_dead(tmp_path: Path, fault: str) -> None:
     async def run() -> None:
         c = await fixture(tmp_path / "repo", tmp_path / "work", fault=fault)
-        result = await c.run()
+        result = await c.run(await c.execution_authorization())
         assert result["status"].startswith("BLOCKED"), result
         assert "D" not in result["publications"]
         assert not c.journal("alpha", "D", "ENTERED").exists()
@@ -117,7 +118,7 @@ def test_scientific_failure_is_dead(tmp_path: Path, fault: str) -> None:
         assert any(v["status"] == "QUARANTINED" for v in result["stages"].values())
         before = {p: binary(p) for p in c.science.glob("journal/*/*/ENTERED.json")}
         with pytest.raises(ValueError, match="Failed attempt dead"):
-            await c.run(resume=True)
+            await c.run(await c.execution_authorization(), resume=True)
         assert before == {
             p: binary(p) for p in c.science.glob("journal/*/*/ENTERED.json")
         }
@@ -238,7 +239,7 @@ def test_bounded_parallel_independent_branches(
                     completed.append(case + "/" + stage)
 
         monkeypatch.setattr(c, "process", tracked)
-        result = await c.run()
+        result = await c.run(await c.execution_authorization())
         assert result["status"].startswith("COMPLETE"), result
         assert maxima == 3
         assert overlap
@@ -271,7 +272,7 @@ def test_bounded_parallel_independent_branches(
         )
         assert (await c.verify())["verification"] == "PASS"
         summary = binary(c.science / "D/controller_summary.json")
-        await c.run(resume=True)
+        await c.run(await c.execution_authorization(), resume=True)
         assert binary(c.science / "D/controller_summary.json") == summary
 
     asyncio.run(run())
@@ -339,32 +340,28 @@ def test_descendant_cleanup(tmp_path: Path) -> None:
 
 
 def test_cache_validated_hit_and_rejected_recompute(tmp_path: Path) -> None:
-    from experiments.orchestration.model import RunPlan
-    from experiments.orchestration.tests.test_controller import FixtureController
-
     async def run() -> None:
         first = await fixture(tmp_path / "repo", tmp_path / "work")
         case = first.plan.cases[0]
         inputs = await first.input_files(case)
         assert await first.prepare(case, inputs)
-        value = first.plan.value
-        value["attempt"] = 2
-        second = FixtureController(
-            first.repository,
-            RunPlan.parse(value),
-            first.work_root,
+        second = await fixture(
+            tmp_path / "second-repo",
+            tmp_path / "second-work",
+            attempt=2,
         )
+        second.cache = first.cache
         assert await second.prepare(case, inputs)
         assert second.state["stages"]["alpha/prepare"]["cache_status"] == "CACHE_HIT"
         assert not (second.operational / "logs/alpha/prepare").exists()
         for path in first.cache.root.glob("*.json"):
             path.write_bytes(b"broken")
-        value["attempt"] = 3
-        third = FixtureController(
-            first.repository,
-            RunPlan.parse(value),
-            first.work_root,
+        third = await fixture(
+            tmp_path / "third-repo",
+            tmp_path / "third-work",
+            attempt=3,
         )
+        third.cache = first.cache
         assert await third.prepare(case, inputs)
         result = third.state["stages"]["alpha/prepare"]
         assert result["prior_cache_status"] == "CACHE_REJECTED"
@@ -382,7 +379,7 @@ def test_preflight_validator_cannot_leak_into_reviewer_workspace(
             tmp_path / "work",
             fault="packet-preflight-leak",
         )
-        result = await c.run()
+        result = await c.run(await c.execution_authorization())
         assert result["status"].startswith("BLOCKED")
         assert not c.journal("alpha", "C", "ENTERED").exists()
         assert "D" not in result["publications"]
@@ -394,7 +391,6 @@ def test_preflight_validator_cannot_leak_into_reviewer_workspace(
 def test_codex_version_mismatch_before_scientific_review(tmp_path: Path) -> None:
     import sys
 
-    from experiments.codex_dogfood.case_0009.artifacts import json_bytes
     from experiments.orchestration.tests.test_controller import FixtureController
 
     async def run() -> None:
@@ -408,23 +404,17 @@ def test_codex_version_mismatch_before_scientific_review(tmp_path: Path) -> None
         )
         plan = RunPlan.parse(value)
         (c.repository.root / "plan.json").write_bytes(plan.canonical)
-        (c.repository.root / "approval.json").write_bytes(
-            json_bytes(
-                {
-                    "approved": True,
-                    "stage_a_checkpoint": value["stage_a"]["checkpoint"],
-                    "plan_sha256": digest(plan.canonical),
-                },
-            ),
-        )
-        await c.repository.git("add", "plan.json", "approval.json")
+        await c.repository.git("add", "plan.json")
         await c.repository.git("commit", "-m", "Approve version preflight fixture")
         c = await FixtureController.from_plan(
             c.repository.root,
             "plan.json",
             c.work_root,
         )
-        result = await c.run()
+        await c.approve(
+            ApprovalRequest(c.run_id, "fixture", "explicit version test grant"),
+        )
+        result = await c.run(await c.execution_authorization())
         assert result["status"].startswith("BLOCKED")
         assert not list(c.science.glob("journal/*/C/ENTERED.json"))
         assert any(
@@ -587,7 +577,7 @@ def test_commit_race_stops_before_push(
         (("stage_a", "checkpoint"), "main"),
         (("stage_a", "protocol", "sha256"), "not-a-digest"),
         (("stage_a", "protocol", "path"), "holdout/secret.json"),
-        (("approval",), ".local/codex-result.md"),
+        (("stage_a", "integrity", "path"), ".local/codex-result.md"),
         (("semantic", "environment_allowlist"), ["PYTHONPATH"]),
         (("validation", "final"), [[""]]),
         (("cache", "enabled"), "yes"),

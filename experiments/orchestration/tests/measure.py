@@ -10,8 +10,9 @@ import time
 from pathlib import Path
 from typing import Any
 
-from experiments.codex_dogfood.case_0009.artifacts import digest, json_bytes
+from experiments.codex_dogfood.case_0009.artifacts import json_bytes
 from experiments.orchestration.__main__ import adopt_completed
+from experiments.orchestration.authority import ApprovalRequest
 from experiments.orchestration.controller import Controller, implementation
 from experiments.orchestration.model import RunPlan
 from experiments.orchestration.storage import exclusive
@@ -21,7 +22,7 @@ from experiments.orchestration.tests.test_controller import FixtureController, f
 async def measured(controller: Controller) -> dict[str, Any]:
     """Keep timing descriptive; authenticate the complete fixture result."""
     start = time.perf_counter()
-    result = await controller.run()
+    result = await controller.run(await controller.execution_authorization())
     if not result["status"].startswith("COMPLETE"):
         raise ValueError(str(result))
     elapsed = time.perf_counter() - start
@@ -55,16 +56,7 @@ async def main() -> None:
     value["attempt"] = 2
     plan = RunPlan.parse(value)
     (parallel.repository.root / "plan.json").write_bytes(plan.canonical)
-    (parallel.repository.root / "approval.json").write_bytes(
-        json_bytes(
-            {
-                "approved": True,
-                "stage_a_checkpoint": value["stage_a"]["checkpoint"],
-                "plan_sha256": digest(plan.canonical),
-            },
-        ),
-    )
-    await parallel.repository.git("add", "plan.json", "approval.json")
+    await parallel.repository.git("add", "plan.json")
     await parallel.repository.git(
         "commit",
         "-m",
@@ -74,6 +66,9 @@ async def main() -> None:
         parallel.repository.root,
         "plan.json",
         parallel.work_root,
+    )
+    await cached.approve(
+        ApprovalRequest(cached.run_id, "fixture", "explicit cache benchmark grant"),
     )
     cached_result = await measured(cached)
     repo_root = Path(__file__).resolve().parents[3]

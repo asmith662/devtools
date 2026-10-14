@@ -634,7 +634,8 @@ published interpretation remain authoritative and unchanged; historical child,
 confirmation and reserve inputs remain sealed.
 
 The [approved experiment controller](../experiments/orchestration/README.md) owns
-engineering automation for immutable prospective runs: approval-bound plans,
+engineering automation for immutable prospective runs: separately validated plans,
+immutable exact-run maintainer approval,
 sterile workers, exactly-once recovery, bounded concurrency, preparation caches,
 progress and serialized checkpoints. Its
 [adapter contract](../experiments/orchestration/CONTRACT.md) defines fixed
@@ -644,3 +645,8 @@ synthetic and read-only adoption evidence. It does not own scientific semantics,
 a general autonomous Agent or production Retrieval. The
 [validation tiers](development/validation.md#approved-experiment-controller-validation-tiers)
 retain the protected production profile and final validation requirement.
+
+The [controller authority correction](../experiments/orchestration/engineering/authority/README.md)
+records the separate Stage A/plan commits, unapproved plan authentication and
+explicit one-command maintainer approval/execution boundary. Plan validity and
+execution authority are distinct; legacy scientific results are unchanged.

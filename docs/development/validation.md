@@ -67,6 +67,13 @@ production source retains its applicable formatting checks. Any change under
 Controller engineering increments themselves run protected development validation
 before their final publication. No tier relaxes the production branch-coverage
 gate or authorizes confirmation, live models or historical scientific deep replay.
+An execution-approval-only publication adds no source or scientific result. Its
+bounded checkpoint checks authenticate the committed prospective plan, exact
+Stage A and implementation/disclosure hashes, authority schema/digest and clean
+synchronized Git state. Approval commit/push must authenticate before scientific
+entry. It does not repeat the protected suite or launch a worker. Changes to the
+approval implementation itself remain controller engineering changes and require
+the full protected profile before publication; final D validation is unchanged.
 The synthetic temporary-repository fixture replaces framework validation only in
 its test subclass; the shipped controller always schedules the mandatory commands.
 

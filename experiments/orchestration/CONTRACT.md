@@ -1,4 +1,4 @@
-# Fixed adapter and run-plan contract v1
+# Prospective plan v2 and immutable execution approval v1
 
 A plan is declarative orchestration metadata. The scientific question, obligations,
 labels, treatment, adjudication instructions, joins and gates belong to the
@@ -10,10 +10,9 @@ Required fields:
 
 | Field | Contract |
 |---|---|
-| `schema` | `approved-experiment-controller-v1` |
+| `schema` | `experiment-controller-plan-v2` |
 | `name`, `attempt` | Administrative name; explicit positive attempt number |
 | `stage_a` | `checkpoint` (full immutable Git OID, reachable from the approved main checkpoint); `protocol` and `integrity`, each `{path, sha256}` at that commit |
-| `approval` | Committed repository path to explicit approval receipt |
 | `cases` | Ordered `{id, frame, inputs}`; frame includes `repository_id`, `snapshot_id`, `corpus_id`, `parent_tree`; inputs are `{path, name, sha256}` Stage A Git blobs |
 | `commands` | Nonempty direct argv for `prepare`, `prepare_validate`, `packet`, `packet_validate`, `B`, `B_validate`, `C_validate`, `import`, `import_validate`, `D`, `D_validate` |
 | `semantic` | `kind: codex` or `process`; model display designation, reasoning, packet `prompt_file`, environment allowlist; Codex also needs frozen `model_id`, `cli_version: 0.162.1`, optional executable/auth_file; process needs frozen direct `argv` |
@@ -26,24 +25,81 @@ Required fields:
 | `implementation` | Explicit adapter repository path -> committed exact SHA-256; include all transitive derivation/validator dependencies |
 | `cache` | `enabled`, `observation_semantics`, `configuration`, `surfaces`; only pure deterministic preparation qualifies |
 
-An approval receipt is exactly:
+## Prospective validation and authority
 
-```json
-{
-  "approved": true,
-  "stage_a_checkpoint": "<approved Stage A commit>",
-  "plan_sha256": "<digest of RunPlan.canonical>"
-}
+The scientific Stage A commit precedes the plan commit. `Controller.from_plan`
+authenticates canonical committed plan bytes, the exact reachable Stage A
+protocol/integrity, case disclosures and pinned implementations. The v2 plan must
+have a separate commit from its Stage A checkpoint. It never reads or creates
+approval to establish plan validity. `plan_report()` reports PLAN_VALID and no
+execution authority, including the prospective run ID, cases, models, fixed
+branch dependencies and publication/validation policy.
+
+A v2 plan has no `approval` field or mutable approval status. Run identity remains
+SHA-256 of canonical prospective plan plus complete controller implementation map.
+Timestamps and subsequent approval are excluded. Approval cannot select a new
+attempt, alter scientific semantics or revive an entered failed operation.
+
+An explicit `ApprovalRequest(run_id, principal, reference, kind)` carries a
+maintainer decision delivered by the trusted CLI/host. `approve(request)` requires
+freshly validated clean synchronized main, an exact matching run ID, and no
+existing approval/run. It publishes once under:
+
+```text
+<publication.root>/<run-id>/authorization/approval.json
+<publication.root>/<run-id>/authorization/publications/APPROVAL.json
 ```
 
-The plan and this receipt must be committed before execution. Approval binds the
-complete launcher/model/configuration, publication policy and adapter versions.
-Run identity additionally binds the complete controller implementation digest map.
-Operational timestamps, PID, cache directory and progress are excluded from identity.
-A changed scientific attempt requires a new explicitly approved attempt number.
-`push: false` supports isolated integration/offline repositories; normal live cohort
-plans must approve `push: true` and an actual synchronized origin/main. No fixture
-plan or approval is a scientific authorization.
+The canonical approval JSON has exactly:
+
+| Field | Meaning |
+|---|---|
+| `schema` | `experiment-execution-approval-v1` |
+| `plan_sha256`, `run_id` | Exact immutable prospective plan and run |
+| `stage_a_checkpoint` | Exact scientific Stage A commit |
+| `controller_sha256` | SHA-256 of canonical complete controller implementation map |
+| `plan_path`, `plan_checkpoint` | Committed prospective plan address and latest owning commit |
+| `review_checkpoint` | Clean synchronized main authenticated for explicit approval |
+| `authority` | Exact `kind` (MAINTAINER_CLI or TRUSTED_HOST), nonempty `principal`, `reference`, `action: EXECUTE_EXACT_RUN_ONCE` |
+| `approved_at` | Canonical UTC Timestamp; audit metadata, not scientific identity |
+| `sha256` | SHA-256 of canonical approval excluding this field |
+
+The publication receipt separately binds the complete approval artifact hash and
+actual Git parent. The commit subject is `Approve experiment run <first-12-run-id>`.
+With push policy enabled, push and clean local/origin/actual-remote agreement must
+succeed before authorization is returned. A local commit with failed push remains
+NOT_AUTHORIZED; retain it and reconcile explicitly. No rollback/retry occurs.
+
+`execution_authorization()` authenticates this immutable single-publication
+history, exact committed/current bytes, prospective bindings, source versions,
+Stage A and synchronized repository, then returns `ExecutionAuthorization` with
+run ID, plan hash, full approval hash and approval commit. It creates nothing.
+`run(authorization)` requires that value and reauthenticates it under the writer
+lease before any scientific ENTERED event. Mere `run()` is insufficient even on
+an approved controller. Resume authenticates the same receipt and immutable run
+context; existing failed/ambiguous attempts remain dead.
+
+Normal CLI: `plan <plan>` validates without authority; `run <plan> --approve
+<exact-run-id> --work-root <external-root>` is the explicit one-command maintainer
+action; `verify-approval <plan>` authenticates authority; `verify <run-id>`
+authenticates scientific completion. `status <plan>` covers PLANNED/APPROVED before
+entry; `status <run-id>` covers the scientific lifecycle. Approval is separate
+from the PACKET/B/C/D scientific checkpoints and does not add a human gate.
+
+The host must authenticate the authority decision. These experiment-local Python
+values and Git receipts are not protection against malicious arbitrary Python or
+an untrusted process granted repository credentials. Future Agent exposure must
+not grant approval issuance to model proposals. Existing governance/Tool docs
+establish no universal authorization substrate; none is invented here.
+
+`approved-experiment-controller-v1` remains parseable with its old `approval`
+locator, preserving canonical legacy identity. Legacy Boolean receipts are not
+accepted for new execution; they cannot be implicitly migrated. The original
+engineering records remain authoritative at their original commit. Read-only
+adoption of historical 0017-0019 remains independent of this flow.
+
+`push: false` remains an explicitly frozen isolated/offline-fixture policy. Normal
+live plans require `push: true`. No synthetic approval grants scientific authority.
 
 ## Stage transport
 

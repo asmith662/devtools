@@ -1,0 +1,140 @@
+{
+  "complete_controller_suite": {
+    "bounded_pytest_processes": 3,
+    "coverage": [
+      "unapproved plan validity and stable identity",
+      "no authority before durable approval",
+      "exact immutable approval bindings",
+      "commit/push/divergence failures",
+      "fresh/restarted/dead attempts",
+      "case and worker concurrency",
+      "sterile packet isolation",
+      "process cleanup",
+      "cache integrity and approval",
+      "Git one-writer publication",
+      "CLI explicit approve/run",
+      "deterministic summary and completion verification",
+      "authority inspection does not revoke active grant"
+    ],
+    "partitions": [
+      {
+        "command": "uv run pytest --no-cov experiments/orchestration/tests/test_authority.py -q",
+        "passed": 21,
+        "seconds": 293.53
+      },
+      {
+        "command": "uv run pytest --no-cov experiments/orchestration/tests/test_contracts.py::test_cache_validated_hit_and_rejected_recompute experiments/orchestration/tests/test_controller.py::test_three_case_integration experiments/orchestration/tests/test_controller.py::test_resume_boundary -q",
+        "passed": 4,
+        "seconds": 249.24
+      },
+      {
+        "command": "uv run pytest --no-cov experiments/orchestration/tests/test_contracts.py experiments/orchestration/tests/test_controller.py -k \"not test_cache_validated_hit_and_rejected_recompute and not test_three_case_integration and not test_resume_boundary\" -q",
+        "deselected": 4,
+        "passed": 62,
+        "seconds": 742.36
+      }
+    ],
+    "partitions_disjoint": true,
+    "unique_tests_passed": 87
+  },
+  "controller_identity_sha256": "8055f2af58f4b78c1cecdf15159184c5ebe7564fe45d84e70b3b601b561f12ca",
+  "controller_implementation": {
+    "__init__.py": "311618eb0152055a2c7af5675acba2d44d65e4a72eb4be4eac991d5c0c501f6b",
+    "__main__.py": "73f560410453e32f062ef60d9b8d3da180bb47427a53e93f2e8cb2e3ba2b0868",
+    "authority.py": "cef0eea941aa1f4553996fc3d6acb46f65473fac64478a26f0ef7410bd7bbbb8",
+    "cache.py": "621f88dcbae62f48128a10a26614b439159b01a88365c3d2d4a6cc7cadc724c4",
+    "controller.py": "621206cb2891f8e01aec53f07f4f13d6f2982bd9ec869d9958afdfdf1056edb6",
+    "isolation.py": "3a70c05a482318e3f09e01a012904947fc25d3db87b476abc938208358fa2d21",
+    "lease.py": "42d17ccebfa850945b905a590db6ec311fd318ff388257f7ac117883843b2fb7",
+    "model.py": "9deb955fee08fd2e486829ea04f32d76ad9aa63177987eb43019bd3c958bc6ca",
+    "publication.py": "1a67d883a16562f14acb19452b80a0560450e9f5e0d06e25985e8cb5763bbac0",
+    "storage.py": "6aff6bd20ce8d1ce76244a1ab1e89aa06b4b9b02b79504b702178ab67e757251",
+    "workers/__init__.py": "97580554bfed72f4cc61eee619c7d770bd4ab7907adc3b6650f8d9b3231105de",
+    "workers/codex.py": "724f5f40f8d6b9872fc8e4404e97958e8b602b14051538b775b13c86929de00a",
+    "workers/process.py": "1a142ca2397479299ea6e134c576cecf240233f040d862c148df3822fb0d9161",
+    "workers/supervisor.py": "26dde8304cf7d3d76518eaae10474b7a64de1626b5b026a3724cf839ab9a8424"
+  },
+  "development_failures_resolved": [
+    "Malformed TimestampParsingError normalized to ValueError at approval boundary",
+    "Old cache fixture entered a new unapproved attempt; migrated to separately approved synthetic attempts"
+  ],
+  "formatter": {
+    "command": "uv run ruff format --check experiments/orchestration",
+    "files": 25,
+    "status": "PASS"
+  },
+  "historical_adoption": {
+    "cases": {
+      "0017": {
+        "Stage_A": "COMPLETE/AUTHENTICATED",
+        "Stage_B": "COMPLETE/SEALED",
+        "Stage_C": "IMPORTED",
+        "Stage_D": "COMPLETE"
+      },
+      "0018": {
+        "Stage_A": "COMPLETE/AUTHENTICATED",
+        "Stage_B": "COMPLETE/SEALED",
+        "Stage_C": "IMPORTED",
+        "Stage_D": "COMPLETE"
+      },
+      "0019": {
+        "Stage_A": "COMPLETE/AUTHENTICATED",
+        "Stage_B": "COMPLETE/SEALED",
+        "Stage_C": "IMPORTED",
+        "Stage_D": "COMPLETE"
+      }
+    },
+    "command": "uv run python -m experiments.orchestration adopt",
+    "deep_replays": 0,
+    "scientific_executions": 0,
+    "status": "PASS"
+  },
+  "historical_engineering_bytes_preserved": {
+    "experiments/orchestration/engineering/REPORT.md": "c2ec59313e749b74d1da3a55d23923ee3ebafb134453025b5fc613411ae03bcb",
+    "experiments/orchestration/engineering/integrity.json": "2326cc7c25d090f4c96307807407ee7c6f5de02cef234743465e23150df20e5d",
+    "experiments/orchestration/engineering/measurements.json": "dda724d6c98e8b901f44433525126dc84c6c4284addf06d1240f34e204530581",
+    "experiments/orchestration/engineering/validation.json": "29ff8999eb472e6bb0821b1ab41ac686e9fd2cb98ca40872723b53f860f45751"
+  },
+  "invariants": {
+    "EXPERIMENT_CONTROLLER": "COMPLETE",
+    "LIVE_INCREMENTAL_RI": "REQUIRED / NOT_IMPLEMENTED",
+    "PURPOSE_RELATIVE_SOURCE_GROUNDING": "NOT_STARTED",
+    "SEARCH_POLICY_FAILURE": "NOT_ASSESSED",
+    "confirmation_reserve_access": false,
+    "historical_child_access": false,
+    "live_model_calls": 0,
+    "new_cases_created": 0,
+    "new_scientific_plans_created": 0,
+    "production_behavior": "UNCHANGED",
+    "real_execution_approvals_created": 0,
+    "real_scientific_runs": 0
+  },
+  "protected_development": {
+    "command": "uv run python scripts/validate_development.py",
+    "executions": 1,
+    "passed": 1588,
+    "production_coverage_percent": 100.0,
+    "seconds": 42.46,
+    "skipped_opt_in_live_tests": 2
+  },
+  "publication_gates": [
+    "git diff --check",
+    "git diff --cached --check",
+    "exact owned paths only",
+    "local main = origin/main = actual remote main",
+    "tracked worktree/index clean after publication"
+  ],
+  "ruff": {
+    "command": "uv run ruff check src tests experiments/orchestration",
+    "status": "PASS"
+  },
+  "schema": "experiment-controller-authority-validation-v1",
+  "scope": "ENGINEERING_ONLY_SYNTHETIC_WORKERS_NO_SCIENTIFIC_EXECUTION",
+  "starting_checkpoint": "c26d8efaf89ec8bcbe999be23a103e233016a801",
+  "status": "PASS",
+  "strict_mypy": {
+    "command": "uv run mypy src tests experiments/orchestration --exclude tests/experiments/",
+    "files": 436,
+    "status": "PASS"
+  }
+}

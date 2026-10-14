@@ -14,7 +14,8 @@ from typing import Any
 from experiments.codex_dogfood.case_0009.artifacts import digest, json_bytes
 from experiments.orchestration.storage import require, safe
 
-SCHEMA = "approved-experiment-controller-v1"
+SCHEMA = "experiment-controller-plan-v2"
+LEGACY_SCHEMA = "approved-experiment-controller-v1"
 STAGES = ("prepare", "packet", "B", "C", "import", "D")
 BOUNDARIES = ("PACKET", "B", "C", "D")
 
@@ -62,7 +63,6 @@ class RunPlan:
                 "name",
                 "attempt",
                 "stage_a",
-                "approval",
                 "cases",
                 "commands",
                 "semantic",
@@ -74,11 +74,13 @@ class RunPlan:
                 "implementation",
                 "controller_implementation",
                 "cache",
-            },
+            }
+            | ({"approval"} if value.get("schema") == LEGACY_SCHEMA else set()),
             "Run-plan field contract",
         )
         require(
-            value["schema"] == SCHEMA and value["retry"] == "NEVER_SCIENTIFIC",
+            value["schema"] in {SCHEMA, LEGACY_SCHEMA}
+            and value["retry"] == "NEVER_SCIENTIFIC",
             "Unsupported plan/retry policy",
         )
         require(
@@ -92,7 +94,8 @@ class RunPlan:
             and re.fullmatch(r"(?:[0-9a-f]{40}|[0-9a-f]{64})", stage_a["checkpoint"]),
             "Stage A requires a full immutable Git object identity",
         )
-        safe(Path.cwd(), value["approval"])
+        if value["schema"] == LEGACY_SCHEMA:
+            safe(Path.cwd(), value["approval"])
         for name in ("protocol", "integrity"):
             artifact = stage_a[name]
             require(

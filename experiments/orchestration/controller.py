@@ -21,6 +21,14 @@ from experiments.codex_dogfood.case_0009.artifacts import (
     digest,
     json_bytes,
 )
+from experiments.orchestration.authority import (
+    ApprovalRequest,
+    ExecutionAuthorization,
+    approval,
+)
+from experiments.orchestration.authority import (
+    authenticate as authenticate_approval,
+)
 from experiments.orchestration.cache import PreparationCache
 from experiments.orchestration.isolation import (
     PRIMARY,
@@ -32,6 +40,7 @@ from experiments.orchestration.isolation import (
 )
 from experiments.orchestration.lease import writer
 from experiments.orchestration.model import (
+    SCHEMA,
     RunPlan,
     StageState,
     validation_tier,
@@ -109,7 +118,11 @@ class Controller:
             "automatic_scientific_retries": 0,
         }
         self.thread_ids: set[str] = set()
-        self.approved_head = repository.expected_head
+        self.approved_head = ""
+        self.validated_head = ""
+        self.plan_address = ""
+        self.plan_checkpoint = ""
+        self._authorization: ExecutionAuthorization | None = None
 
     @property
     def plan(self) -> RunPlan:
@@ -138,7 +151,7 @@ class Controller:
         plan_address: str,
         work_root: Path,
     ) -> Controller:
-        """Authenticate committed approval/plan/Stage A and pinned adapter sources."""
+        """Validate a committed prospective plan without granting execution authority."""
         plan_path = safe(root, plan_address)
         repo = Repository(root, push=False)
         head = (await repo.git("rev-parse", "HEAD")).decode().strip()
@@ -148,6 +161,7 @@ class Controller:
             "Run plan differs from committed bytes",
         )
         plan = RunPlan.parse(json.loads(raw))
+        require(raw == plan.canonical, "Plan bytes must be canonical")
         value = plan.value
         require(
             value["controller_implementation"] == implementation(),
@@ -159,23 +173,42 @@ class Controller:
         )
         await repo.authenticate(head)
         controller = cls(repo, plan, work_root)
-        controller.approved_head = head
-        await controller.authenticate_approved_inputs(head)
+        controller.validated_head = head
+        controller.plan_address = plan_address
+        controller.plan_checkpoint = (
+            (await repo.git("log", "-1", "--format=%H", "--", plan_address))
+            .decode()
+            .strip()
+        )
+        if value["schema"] == SCHEMA:
+            require(
+                controller.plan_checkpoint != value["stage_a"]["checkpoint"],
+                "Stage A must be committed before the prospective plan",
+            )
+            await repo.git(
+                "merge-base",
+                "--is-ancestor",
+                value["stage_a"]["checkpoint"],
+                controller.plan_checkpoint,
+            )
+        await controller.authenticate_plan_inputs(head)
         return controller
 
-    async def authenticate_approved_inputs(self, head: str) -> None:
-        """Authenticate approval, reachable Stage A and exact frozen adapter sources."""
+    async def authenticate_plan_inputs(self, head: str) -> None:
+        """Authenticate prospective inputs independently of any approval artifact."""
         repo, root, value = self.repository, self.repository.root, self.value
-        approval = json.loads(await repo.git("show", head + ":" + value["approval"]))
         require(
-            approval
-            == {
-                "approved": True,
-                "stage_a_checkpoint": value["stage_a"]["checkpoint"],
-                "plan_sha256": digest(self.plan.canonical),
-            },
-            "Explicit committed approval required",
+            value["controller_implementation"] == implementation(),
+            "Controller implementation differs",
         )
+        if self.plan_address:
+            safe(root, self.plan_address)
+            require(
+                await repo.git("show", head + ":" + self.plan_address)
+                == self.plan.canonical
+                == binary(safe(root, self.plan_address)),
+                "Committed prospective plan changed",
+            )
         await repo.git(
             "merge-base",
             "--is-ancestor",
@@ -198,6 +231,157 @@ class Controller:
                 digest(committed) == sha and binary(safe(root, address)) == committed,
                 "Adapter implementation changed",
             )
+        for case in self.plan.cases:
+            await self.input_files(case)
+
+    def plan_report(self) -> dict[str, Any]:
+        """Report mechanical validity; validation confers no execution capability."""
+        return {
+            "status": "PLAN_VALID",
+            "execution_authorized": "NO",
+            "authority": "NOT_GRANTED_BY_PLAN_VALIDATION",
+            "schema": self.value["schema"],
+            "stage_a_checkpoint": self.value["stage_a"]["checkpoint"],
+            "plan_sha256": digest(self.plan.canonical),
+            "plan_checkpoint": self.plan_checkpoint,
+            "run_id": self.run_id,
+            "models": self.value["semantic"],
+            "cases": [c.identity for c in self.plan.cases],
+            "dependency_graph": {
+                "prepare": [],
+                "packet": ["prepare"],
+                "B": ["prepare", "PACKET-publication"],
+                "C": ["packet", "PACKET-publication"],
+                "import": ["all-B-sealed", "all-C-valid"],
+                "D": ["B-publication", "C-publication"],
+            },
+            "concurrency": self.value["concurrency"],
+            "validation": self.value["validation"],
+            "publication": self.value["publication"],
+            "retry": self.value["retry"],
+        }
+
+    def approval_binding(self, review_checkpoint: str) -> dict[str, Any]:
+        """Bind an authority decision to one already-known prospective identity."""
+        return {
+            "plan_sha256": digest(self.plan.canonical),
+            "run_id": self.run_id,
+            "stage_a_checkpoint": self.value["stage_a"]["checkpoint"],
+            "controller_sha256": digest(json_bytes(implementation())),
+            "plan_path": self.plan_address,
+            "plan_checkpoint": self.plan_checkpoint,
+            "review_checkpoint": review_checkpoint,
+        }
+
+    @property
+    def approval_prefix(self) -> str:
+        """Keep authority in immutable repository artifacts, outside operational state."""
+        return str(self.prefix) + "/authorization"
+
+    async def approve(self, request: ApprovalRequest) -> ExecutionAuthorization:
+        """Publish a supplied maintainer grant; never infer it from plan validity."""
+        require(
+            isinstance(request, ApprovalRequest),
+            "Explicit approval request required",
+        )
+        request.validate(self.run_id)
+        require(
+            self.value["schema"] == SCHEMA,
+            "Legacy approval semantics are read-only",
+        )
+        require(self.validated_head and self.plan_address, "Validate the plan first")
+        with writer(self.repository.root):
+            await self.repository.authenticate(self.validated_head)
+            await self.authenticate_plan_inputs(self.validated_head)
+            require(
+                not (self.science / "run.json").exists()
+                and not (self.science / "authorization").exists(),
+                "Approval is immutable; existing attempts cannot be replaced",
+            )
+            value = approval(
+                request,
+                self.approval_binding(self.validated_head),
+                str(Timestamp.now()),
+            )
+
+            async def validate(_boundary: str, _paths: tuple[str, ...]) -> None:
+                authenticate_approval(value, self.approval_binding(self.validated_head))
+                await self.authenticate_plan_inputs(self.validated_head)
+
+            await self.repository.commit(
+                "APPROVAL",
+                self.approval_prefix,
+                {"approval.json": json_bytes(value)},
+                "Approve experiment run " + self.run_id[:12],
+                validate,
+            )
+            return await self.execution_authorization()
+
+    async def execution_authorization(self) -> ExecutionAuthorization:
+        """Authenticate durable authority after restart; never create an approval."""
+        require(
+            self.value["schema"] == SCHEMA,
+            "Legacy approval semantics are read-only",
+        )
+        repo = self.repository
+        path = self.approval_prefix + "/approval.json"
+        require(
+            safe(repo.root, path).exists(),
+            "Execution NOT_AUTHORIZED: approval absent",
+        )
+        head = (await repo.git("rev-parse", "HEAD")).decode().strip()
+        await repo.authenticate(head, self.prefix)
+        history = (
+            (await repo.git("log", "--format=%H", "--", path)).decode().splitlines()
+        )
+        require(len(history) == 1, "Approval must be committed once and immutable")
+        checkpoint = history[0]
+        raw = await repo.git("show", checkpoint + ":" + path)
+        require(raw == binary(safe(repo.root, path)), "Uncommitted/altered approval")
+        value = json.loads(raw)
+        require(isinstance(value, dict), "Malformed execution approval")
+        # These locators remain untrusted until the exact plan and full binding authenticate.
+        address = value.get("plan_path", "")
+        require(isinstance(address, str), "Malformed approval plan path")
+        safe(repo.root, address)
+        require(
+            not self.plan_address or self.plan_address == address,
+            "Approval plan path differs",
+        )
+        self.plan_address = address
+        self.plan_checkpoint = (
+            (await repo.git("log", "-1", "--format=%H", "--", address)).decode().strip()
+        )
+        review = (await repo.git("rev-parse", checkpoint + "^")).decode().strip()
+        authenticate_approval(value, self.approval_binding(review))
+        require(raw == json_bytes(value), "Approval bytes must be canonical")
+        marker = self.science / "authorization/publications/APPROVAL.json"
+        receipt = load(marker)
+        require(
+            binary(marker)
+            == await repo.git(
+                "show",
+                checkpoint + ":" + marker.relative_to(repo.root).as_posix(),
+            )
+            and receipt
+            == {
+                "boundary": "APPROVAL",
+                "parent_head": review,
+                "sha256": {"approval.json": digest(raw)},
+            },
+            "Approval publication receipt differs",
+        )
+        await repo.git("merge-base", "--is-ancestor", checkpoint, head)
+        await self.authenticate_plan_inputs(head)
+        self.approved_head = checkpoint
+        result = ExecutionAuthorization(
+            self.run_id,
+            digest(self.plan.canonical),
+            digest(raw),
+            checkpoint,
+        )
+        self._authorization = result
+        return result
 
     def progress(self, case: str, stage: str, status: str, **fields: Any) -> None:
         """Persist reconstructible status and operational progress without authority."""
@@ -372,6 +556,7 @@ class Controller:
         inputs: dict[str, bytes],
     ) -> Any:
         """Claim once, preserve failed identities, and quarantine surviving siblings."""
+        require(self._authorization is not None, "Execution NOT_AUTHORIZED")
         case_id = case.identity
         returned = self.journal(case_id, stage, "RETURNED")
         if returned.exists():
@@ -700,13 +885,29 @@ class Controller:
         self._state["publications"][boundary] = commit
         self.progress("cohort", boundary + "-publication", "COMPLETE", commit=commit)
 
-    async def run(self, *, resume: bool = False) -> dict[str, Any]:
+    async def run(
+        self,
+        authorization: ExecutionAuthorization | None = None,
+        *,
+        resume: bool = False,
+    ) -> dict[str, Any]:
         """Hold the exact worktree writer lease through the fixed cohort lifecycle."""
+        require(
+            isinstance(authorization, ExecutionAuthorization),
+            "Execution authorization value required",
+        )
         with writer(self.repository.root):
+            require(
+                authorization == await self.execution_authorization(),
+                "Execution authorization differs from durable approval",
+            )
             return await self._run(resume=resume)
 
     async def _run(self, *, resume: bool = False) -> dict[str, Any]:
         """Execute fixed branches, stopping all new dependent work on failure."""
+        if self._authorization is None:
+            message = "Execution NOT_AUTHORIZED"
+            raise ValueError(message)
         require(
             self.value["controller_implementation"] == implementation(),
             "Approved controller implementation differs",
@@ -714,6 +915,10 @@ class Controller:
         context = self.science / "run.json"
         if resume:
             saved = load(context)
+            require(
+                saved["approval_checkpoint"] == self._authorization.checkpoint,
+                "Resume approval context differs",
+            )
             self.approved_head = saved["approval_checkpoint"]
             expected = self.approved_head
             for boundary in ("PACKET", "B", "C", "D"):
@@ -727,7 +932,7 @@ class Controller:
                 "Use authenticated from_plan API before execution",
             )
             await self.repository.authenticate(self.approved_head, self.prefix)
-        await self.authenticate_approved_inputs(self.approved_head)
+        await self.authenticate_plan_inputs(self.approved_head)
         if resume:
             require(
                 load(context)
@@ -923,7 +1128,17 @@ class Controller:
 
     async def verify(self) -> dict[str, Any]:
         """Verify committed scientific boundaries, never .local handoff authority."""
+        authorization = await self.execution_authorization()
         result = self.status()
+        context = load(self.science / "run.json")
+        require(
+            context["approval_checkpoint"] == authorization.checkpoint
+            and context["plan"] == self.value
+            and context["implementation"] == implementation(),
+            "Run approval context differs",
+        )
+        result["execution_authorized"] = "YES"
+        result["approval"] = authorization.__dict__
         await self.repository.git("diff", "--exit-code", "HEAD", "--", self.prefix)
         for boundary in result["publications"]:
             await self.publication_identity(boundary)
@@ -955,6 +1170,7 @@ class Controller:
 
     async def prepare(self, case: Any, inputs: dict[str, bytes]) -> Any:
         """Reuse pure immutable preparation only after fresh exact adapter validation."""
+        require(self._authorization is not None, "Execution NOT_AUTHORIZED")
         config = self.value["cache"]
         if (
             not config["enabled"]
@@ -1072,12 +1288,21 @@ class Controller:
 
     def status(self) -> dict[str, Any]:
         """Reconstruct from immutable scientific receipts, not mutable .local authority."""
+        if not (self.science / "run.json").exists():
+            return {
+                "run_id": self.run_id,
+                "status": "APPROVED" if self._authorization else "PLANNED",
+                "execution_authorized": "YES" if self._authorization else "NO",
+                "stages": {},
+                "publications": {},
+            }
         require(
             load(self.science / "run.json")["run_id"] == self.run_id,
             "Run identity missing",
         )
         result: dict[str, Any] = {
             "run_id": self.run_id,
+            "execution_authorized": "YES" if self._authorization else "UNVERIFIED",
             "stages": {},
             "publications": {},
         }
@@ -1103,9 +1328,9 @@ class Controller:
             if "D" in result["publications"]
             else "BLOCKED"
             if any(v.startswith("DEAD") for v in result["stages"].values())
-            else "ACTIVE_OR_INTERRUPTED; SEE_OPERATIONAL_HEARTBEAT"
+            else "RUNNING_OR_INTERRUPTED; SEE_OPERATIONAL_HEARTBEAT"
             if any(v.startswith("ENTERED") for v in result["stages"].values())
-            else "INCOMPLETE; SAFE_QUEUED_WORK_MAY_RESUME"
+            else "APPROVED; SAFE_QUEUED_WORK_MAY_RESUME"
         )
         try:
             if (self.operational / "state.json").exists():

@@ -1176,3 +1176,17 @@ equally persuasive relevance votes. Keep the lexical channel available for
 governance/docs and declaration-free facades; current evidence does not justify
 default resource RRF. The Localization adapter did not change core Retrieval
 scoring or configuration graph projection.
+
+### Experiment controller authority correction
+
+EXPERIMENT_CONTROLLER remains COMPLETE with prospective plan validity separated
+from immutable exact-run execution approval. Normal prospective publication is a
+Stage A commit followed by a separate unapproved run-plan commit; Gate 1 reviews
+both and the exact run ID. One explicit maintainer approval/run command publishes
+authority before scientific entry. See the
+[correction record](../experiments/orchestration/engineering/authority/README.md).
+PURPOSE_RELATIVE_SOURCE_GROUNDING remains NOT_STARTED; no Cases 0020-0022 or
+scientific run plan are created by this engineering correction. The next task is
+to resume Stage A, return both checkpoints and an unapproved exact run ID for
+review, and stop before execution. Accepted results, SEARCH_POLICY_FAILURE =
+NOT_ASSESSED and LIVE_INCREMENTAL_RI = REQUIRED / NOT_IMPLEMENTED are unchanged.

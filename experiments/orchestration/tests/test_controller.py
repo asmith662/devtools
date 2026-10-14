@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: S101, D103, PLR2004, PLC0415, ASYNC240, FBT001 -- synthetic engineering fixtures
+# ruff: noqa: S101, D103, PLR2004, PLC0415, ASYNC240, FBT001, PLR0913 -- synthetic engineering fixtures
 """Prove fixed cohort infrastructure without scientific workers or network models."""
 
 from __future__ import annotations
@@ -14,8 +14,9 @@ from typing import Any
 
 import pytest
 
-from experiments.codex_dogfood.case_0009.artifacts import digest, json_bytes
+from experiments.codex_dogfood.case_0009.artifacts import digest
 from experiments.orchestration import isolation
+from experiments.orchestration.authority import ApprovalRequest
 from experiments.orchestration.cache import PreparationCache
 from experiments.orchestration.controller import Controller, implementation
 from experiments.orchestration.model import RunPlan, validation_tier
@@ -56,6 +57,8 @@ async def fixture(
     *,
     concurrency: int = 6,
     fault: str = "",
+    approved: bool = True,
+    attempt: int = 1,
 ) -> Controller:
     root.mkdir()
     repo = Repository(root, push=False)
@@ -108,9 +111,9 @@ async def fixture(
     commands["C_validate"] = [*command, "validate", "C", "{case}", "{frame}"]
     check = [*command, "check", "validation", "cohort", "{}"]
     value: dict[str, Any] = {
-        "schema": "approved-experiment-controller-v1",
+        "schema": "experiment-controller-plan-v2",
         "name": "synthetic-three-case",
-        "attempt": 1,
+        "attempt": attempt,
         "stage_a": {
             "checkpoint": stage_a,
             "protocol": {
@@ -122,7 +125,6 @@ async def fixture(
                 "sha256": digest((root / "integrity.json").read_bytes()),
             },
         },
-        "approval": "approval.json",
         "cases": cases,
         "commands": commands,
         "semantic": {
@@ -158,25 +160,39 @@ async def fixture(
     value["semantic"]["argv"].append(fault)
     plan = RunPlan.parse(value)
     (root / "plan.json").write_bytes(plan.canonical)
-    (root / "approval.json").write_bytes(
-        json_bytes(
-            {
-                "approved": True,
-                "stage_a_checkpoint": stage_a,
-                "plan_sha256": digest(plan.canonical),
-            },
-        ),
-    )
     await repo.git("add", ".")
-    await repo.git("commit", "-m", "Approve fixture controller plan")
-    return await FixtureController.from_plan(root, "plan.json", work)
+    await repo.git("commit", "-m", "Publish unapproved fixture plan")
+    controller = await FixtureController.from_plan(root, "plan.json", work)
+    if approved:
+        await controller.approve(
+            ApprovalRequest(
+                controller.run_id,
+                "fixture",
+                "explicit synthetic host grant",
+            ),
+        )
+    return controller
 
 
 def test_three_case_integration(tmp_path: Path) -> None:
     async def run() -> None:
-        controller = await fixture(tmp_path / "repository", tmp_path / "work")
+        controller = await fixture(
+            tmp_path / "repository",
+            tmp_path / "work",
+            approved=False,
+        )
+        identity = controller.run_id
+        assert controller.plan_report()["execution_authorized"] == "NO"
+        assert controller.status()["status"] == "PLANNED"
+        with pytest.raises(ValueError, match="authorization value"):
+            await controller.run()
+        assert not list(controller.science.glob("journal/*/*/ENTERED.json"))
+        grant = ApprovalRequest(identity, "fixture", "explicit integration approval")
+        await controller.approve(grant)
+        assert controller.run_id == identity
+        assert controller.status()["status"] == "APPROVED"
         start = time.perf_counter()
-        result = await controller.run()
+        result = await controller.run(await controller.execution_authorization())
         assert result["status"] == "COMPLETE; MAINTAINER_REVIEW_READY", result
         assert set(result["publications"]) == {"PACKET", "B", "C", "D"}
         assert not await controller.repository.git("status", "--porcelain=v1")
@@ -203,7 +219,10 @@ def test_three_case_integration(tmp_path: Path) -> None:
             controller.plan,
             controller.work_root,
         )
-        resumed = await restarted.run(resume=True)
+        resumed = await restarted.run(
+            await restarted.execution_authorization(),
+            resume=True,
+        )
         assert resumed["status"].startswith("COMPLETE"), resumed
         # Corrupt handoff/progress cannot change authenticated scientific status.
         (restarted.operational / "state.json").write_bytes(
@@ -261,7 +280,7 @@ def test_plan_identity_and_authentication(tmp_path: Path) -> None:
         changed["retry"] = "AUTOMATIC"
         with pytest.raises(ValueError, match="retry"):
             RunPlan.parse(changed)
-        save(controller.repository.root / "approval.json", {"approved": False})
+        save(controller.repository.root / "protocol.json", {"altered": True})
         with pytest.raises(ValueError, match=r"tracked|approval"):
             await Controller.from_plan(
                 controller.repository.root,
@@ -351,7 +370,7 @@ def test_resume_boundary(tmp_path: Path, entered: bool) -> None:
         )
         if entered:
             exclusive(c.journal("alpha", "prepare", "ENTERED"), {"run_id": c.run_id})
-        result = await c.run(resume=True)
+        result = await c.run(await c.execution_authorization(), resume=True)
         assert result["status"].startswith("BLOCKED" if entered else "COMPLETE"), result
 
     asyncio.run(run())

@@ -8,32 +8,51 @@ Context and Runtime do not depend on it.
 
 ## Operator guide
 
-1. Freeze the experiment-specific adapters, packet instructions, Stage A, ordered
-   cases and run plan. Commit a separate explicit approval receipt binding the
-   canonical plan digest and Stage A checkpoint. Review both before approval.
-2. From the clean synchronized main worktree:
+1. Commit the scientific Stage A protocol/artifacts **first**. Then create and
+   commit the prospective run plan naming that exact Stage A commit. These are
+   two commits, with no self-reference and no approval receipt. Together they
+   form the prospective package for Gate 1.
+2. Validate without authority, and return both commits and the exact run ID for
+   maintainer review:
 
    ```text
-   uv run python -m experiments.orchestration plan experiments/<experiment>/run-plan.json --work-root C:/ExperimentWorkers
-   uv run python -m experiments.orchestration run experiments/<experiment>/run-plan.json --work-root C:/ExperimentWorkers
+   uv run python -m experiments.orchestration plan experiments/<experiment>/run-plan.json
    ```
 
-   `plan` is a read-only preflight; `run` needs no intermediate interaction.
-   Workspaces must be outside the canonical worktree and on a trusted local disk.
-3. Use the returned immutable digest as the run ID:
+   This reports PLAN_VALID and EXECUTION_AUTHORIZED = NO. It starts no worker,
+   creates no approval and does not change plan bytes. Plan validity != approval;
+   a plan commit != approval. Models, cases, dependencies, validation/publication
+   policy and the immutable run ID are visible before approval.
+3. After review, the maintainer issues **one explicit command**, without prompts:
 
    ```text
+   uv run python -m experiments.orchestration run experiments/<experiment>/run-plan.json --approve <exact-reviewed-run-id> --work-root C:/ExperimentWorkers
+   ```
+
+   The exact ID protects against approving a different plan. The controller
+   commits/pushes an immutable approval receipt, authenticates remote durability,
+   and only then enters scientific work. Approval does not change run identity.
+   Workspaces remain outside any checkout on a trusted local disk. Workers never
+   publish. A publication failure stops before scientific entry and preserves
+   local state for reconciliation; no automatic push or scientific retry occurs.
+4. Inspect progress and eventually review Stage D (Gate 2):
+
+   ```text
+   uv run python -m experiments.orchestration status experiments/<experiment>/run-plan.json
+   uv run python -m experiments.orchestration verify-approval experiments/<experiment>/run-plan.json
    uv run python -m experiments.orchestration status <run-id>
    uv run python -m experiments.orchestration verify <run-id>
    uv run python -m experiments.orchestration resume <run-id> --work-root C:/ExperimentWorkers
    ```
 
-   Status/verify emit structured JSON with per-case stages, failure boundaries and
-   publication receipts. Operational `progress.json`, `progress.log`, `state.json`,
-   bounded process logs, PIDs, exit codes and archive references live under ignored
-   `.local/experiment-runs/<run-id>/`. No terminal scrollback is required.
-4. Review the final Stage D result. This is the second normal human gate.
-   A failed or ambiguous operation instead requires a maintainer decision.
+   Plan-address status works before a run exists: PLANNED or authenticated
+   APPROVED. Run status reconstructs RUNNING/interrupted, COMPLETE-candidate and
+   DEAD/BLOCKED from scientific receipts; verify authenticates completed results.
+   Operational progress/streams/PIDs remain ignored and non-authoritative.
+   An already-durable approval can be used with `run <plan> --work-root ...`
+   without `--approve`; approval publication is never overwritten. An approved
+   never-entered run starts this way. An unapproved plan has nothing scientific
+   to resume. Entered failures retain the existing dead-attempt semantics.
 
 No live scientific run plan is supplied by this increment. The next cohort is
 **PURPOSE_RELATIVE_SOURCE_GROUNDING / NOT_STARTED**. Do not manufacture a plan by
@@ -43,19 +62,32 @@ copying the synthetic test fixture into a scientific protocol.
 
 ```python
 controller = await Controller.from_plan(repository, committed_plan_address, work_root)
-preview_identity = controller.run_id
-result = await controller.run()  # or explicit resume=True for a proven safe state
+preview = controller.plan_report()  # no approval required; grants no authority
+# Only a trusted host may deliver a pre-existing explicit maintainer grant:
+authorization = await controller.approve(host_supplied_approval_request)
+# After restart: authenticate the existing immutable approval, without minting one.
+authorization = await controller.execution_authorization()
+result = await controller.run(authorization)  # bare run() rejects, even after approval
 status = await controller.verify()
 ```
 
-`experiments.orchestration.controller.Controller` and `model.RunPlan` are the
-Agent-callable seam. Results include run identity, current state, failure boundary,
-publication commits and review readiness. The eventual trusted Tool can wrap this
-API without screen scraping. There is no Tool wrapper, general workflow DSL,
-Agent loop, recursive planning or framework orchestration API here.
+`Controller`, `RunPlan`, `ApprovalRequest` and `ExecutionAuthorization` form the
+narrow experiment-owned callable seam. A future Agent may validate/report freely;
+its Tool must receive a host-issued authority value and must not expose grant
+construction or `approve` as an ungoverned model capability. The trusted host
+verifies the maintainer identity and decision. The CLI's explicit `--approve`
+action is that boundary for human operators. Principal/reference fields retain
+that decision, rather than treating model text or successful validation as approval.
+
+This is not an OS/cryptographic authorization framework: arbitrary trusted Python
+or a process with repository push credentials cannot be distinguished from a human
+by this package. Do not grant an untrusted Agent unrestricted CLI/Git/approval
+access. Mechanical checks require both the explicit API value and the committed,
+unchanged, exact-run receipt before entry. There is no new universal governance
+registry, Tool wrapper, Agent loop or production orchestration API.
 
 The [adapter contract](CONTRACT.md) specifies declarative metadata and exact
-transport. The [engineering report](engineering/REPORT.md) records validation,
+transport. The original [engineering report](engineering/REPORT.md) records validation,
 measurements and limits. The fixed stages are preparation, packet, B, C, import
 and D; publication boundaries are PACKET, B, C and D. Earlier completed scientific
 packages retain their ownership and byte identity.
@@ -203,3 +235,13 @@ production validation and current-source lint/type checks while keeping scientif
 payloads immutable. Changed production code still requires applicable formatting
 and full protected validation before publication. This is an engineering scope
 policy, never a scientific-outcome or gold-dependent selection rule.
+
+## Authority contract correction
+
+The [authority correction record](engineering/authority/README.md) owns current
+plan/approval validation evidence. The original engineering manifest and report
+remain byte-identical historical records at commit
+`c26d8efaf89ec8bcbe999be23a103e233016a801`; their original source hashes describe
+that implementation, not the corrected current implementation. Legacy v1 plans
+remain readable; old Boolean approval receipts cannot authorize v2 execution.
+Historical adoption of 0017-0019 is independent and requires no retroactive receipt.
