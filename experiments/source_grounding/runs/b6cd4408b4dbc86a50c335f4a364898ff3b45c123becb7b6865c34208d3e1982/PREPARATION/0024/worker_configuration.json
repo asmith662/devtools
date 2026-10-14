@@ -1,0 +1,492 @@
+{
+  "baseline": {
+    "analysis": "unicode-word-span-casefold-v1",
+    "b": 0.75,
+    "exact_route": "NOT_APPLICABLE",
+    "filename_weight": 0.25,
+    "k1": 1.2,
+    "positive_universe": "complete"
+  },
+  "cases": [
+    "0022",
+    "0023",
+    "0024"
+  ],
+  "cohort_gate": null,
+  "concurrency": {
+    "cases": 3,
+    "maximum_total_model_workers_including_nested_grounding": 3,
+    "semantic": 1,
+    "workers": 3
+  },
+  "design": "README.md",
+  "design_sha256": "d34342bf881180e273c2427a7d565be5b7a2b4aba989f2173496be55e0624b29",
+  "gold_instructions_sha256": "457be17dcf615485471dedde1fe46818715713ddd620da76658f153075a5b763",
+  "gold_labels": [
+    "REQUIRED",
+    "HELPFUL_ONLY",
+    "UNNECESSARY"
+  ],
+  "gold_model": {
+    "model": "GPT-6 Astra",
+    "model_id": "gpt-6-astra",
+    "reasoning": "High"
+  },
+  "grace": 10,
+  "grounding_instructions_sha256": "11e60d58e0d6a2d9c45d3b615bb163f8fab7f255854de8743ea646a4f91a8a5e",
+  "grounding_model": {
+    "model": "GPT-6 Sol",
+    "model_id": "gpt-6-sol",
+    "reasoning": "High"
+  },
+  "grounding_timeout": 7200,
+  "grounding_verdicts": [
+    "GROUNDED_SOURCE",
+    "NOT_GROUNDED_SOURCE",
+    "UNCERTAIN_SOURCE"
+  ],
+  "launcher": {
+    "cli_version": "0.162.1",
+    "continuation": false,
+    "fresh": true
+  },
+  "no_execution": {
+    "approval": 0,
+    "gold": 0,
+    "gold_workers": 0,
+    "grounding_workers": 0,
+    "references": 0,
+    "retrieval": 0,
+    "scientific_entered": 0,
+    "stage_d": 0
+  },
+  "population_sha256": "062d56eb131c97e0dcac62f77cd503de0a83ff80b54d1900d36fc3c3e56286c4",
+  "ranking_modifications": 0,
+  "retry": "NEVER_SCIENTIFIC",
+  "schema": "purpose-relative-source-grounding-stage-a-v1",
+  "status": "FROZEN / NOT_AUTHORIZED / NOT_EXECUTED",
+  "supersession": {
+    "case_0022": "EXACT_SIX_ORIGINAL_FILES_REUSED; ORIGINAL_PROTOCOL_DIGEST_RETAINED; GLOBAL_EXECUTION_BINDING_SUPERSEDED",
+    "child_access": false,
+    "confirmation_reserve_access": false,
+    "disclosure_content_meaning": "UNCHANGED",
+    "engineering_checkpoint": "3f49fd359b767701ad43796d8fc247e2182841d1",
+    "evidence_representation": "MODEL_CHOOSES_EXACT_QUOTE_AND_OVERLAPPING_OCCURRENCE; HOST_DERIVES_IDENTITY_AND_UNICODE_BOUNDS; NO_REPAIR",
+    "failed_semantic_judgments_used": false,
+    "gold_access": false,
+    "invalidation_checkpoint": "f25daa62edc8a79584aca4347fa58d86ede865f6",
+    "prior_stage_a": "f03523e2d06150e4497b038a49c20885db956810",
+    "reason": "0020/0021 infrastructure-invalidated; 0022 scientifically unentered; next untouched public positions 7/8",
+    "runtime_delivery": "HOST_STDIN_DISCLOSURE; TOOL_FREE_STRUCTURED_RESPONSE",
+    "scientific_hypothesis": "UNCHANGED",
+    "semantic_labels_and_canonical_spans": "UNCHANGED"
+  },
+  "validation_timeout": 3600,
+  "worker_timeout": 21600,
+  "workers": {
+    "gold": {
+      "auth_file": "C:/Users/recoveryadmin/.codex/auth.json",
+      "blindness": [
+        "NO_ACCESS:repository",
+        "NO_ACCESS:git_history",
+        "NO_ACCESS:parent_siblings",
+        "NO_ACCESS:prior_session",
+        "NO_ACCESS:web",
+        "NO_ACCESS:queries",
+        "NO_ACCESS:ranks_scores",
+        "NO_ACCESS:annotations",
+        "NO_ACCESS:references_treatment",
+        "NO_ACCESS:pairs",
+        "NO_ACCESS:timings",
+        "NO_ACCESS:graph_ppr_rrf",
+        "NO_ACCESS:other_cases",
+        "NO_ACCESS:child",
+        "NO_ACCESS:prior_gold",
+        "NO_ACCESS:confirmation_reserve"
+      ],
+      "builder_argv": [
+        "{python}",
+        "-B",
+        "{workspace}/stage_c_builder.py",
+        "build"
+      ],
+      "cli_version": "0.162.1",
+      "environment_allowlist": [
+        "PATH",
+        "SYSTEMROOT",
+        "WINDIR",
+        "TEMP",
+        "TMP",
+        "USERPROFILE",
+        "APPDATA",
+        "LOCALAPPDATA",
+        "COMSPEC",
+        "SystemDrive",
+        "ProgramFiles",
+        "ProgramW6432",
+        "ProgramData",
+        "ALLUSERSPROFILE",
+        "PUBLIC",
+        "HOMEDRIVE",
+        "HOMEPATH"
+      ],
+      "evidence_locator": "exact-quote-overlapping-occurrence-v1",
+      "kind": "codex",
+      "model": "GPT-6 Astra",
+      "model_id": "gpt-6-astra",
+      "prompt_file": "INSTRUCTIONS.md",
+      "reasoning": "High",
+      "response_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "cells": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "label": {
+                  "enum": [
+                    "REQUIRED",
+                    "HELPFUL_ONLY",
+                    "UNNECESSARY"
+                  ],
+                  "type": "string"
+                },
+                "obligation": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "source_key": {
+                  "type": "string"
+                },
+                "spans": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "occurrence": {
+                        "type": "integer"
+                      },
+                      "quote": {
+                        "type": "string"
+                      },
+                      "source_key": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "source_key",
+                      "quote",
+                      "occurrence"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "obligation",
+                "source_key",
+                "spans",
+                "reason",
+                "label"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "gaps": {
+            "additionalProperties": false,
+            "properties": {
+              "REPOSITORY_INFORMATION_GAP": {
+                "type": "string"
+              },
+              "TASK_GAP": {
+                "type": "string"
+              },
+              "TASK_INTERPRETATION_GAP": {
+                "type": "string"
+              },
+              "qualification": {
+                "type": "string"
+              },
+              "unconditional_sufficiency": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "TASK_INTERPRETATION_GAP",
+              "TASK_GAP",
+              "REPOSITORY_INFORMATION_GAP",
+              "unconditional_sufficiency",
+              "qualification"
+            ],
+            "type": "object"
+          },
+          "self_review": {
+            "type": "string"
+          },
+          "units": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "alternatives": {
+                  "items": {
+                    "items": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "occurrence": {
+                          "type": "integer"
+                        },
+                        "quote": {
+                          "type": "string"
+                        },
+                        "source_key": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "source_key",
+                        "quote",
+                        "occurrence"
+                      ],
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "type": "array"
+                },
+                "basis": {
+                  "enum": [
+                    "TASK_BACKED",
+                    "REPOSITORY_SUPPORTED",
+                    "TASK_AND_REPOSITORY_SUPPORTED"
+                  ],
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "necessity": {
+                  "type": "string"
+                },
+                "obligation": {
+                  "type": "string"
+                },
+                "statement": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "obligation",
+                "statement",
+                "basis",
+                "necessity",
+                "alternatives"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "cells",
+          "units",
+          "gaps",
+          "self_review"
+        ],
+        "type": "object"
+      },
+      "runtime": {
+        "approval": "never",
+        "cli_version": "0.162.1",
+        "delivery": "UTF8_STDIN",
+        "fresh": true,
+        "network": false,
+        "response": "NATIVE_JSON_SCHEMA_AND_FINAL_MESSAGE",
+        "schema": "host-disclosure-semantic-runtime-v1",
+        "scientific_filesystem_dependency": false,
+        "tools": "DISABLED; TOOL_ATTEMPT_REJECTS_RESPONSE",
+        "web": "disabled",
+        "windows_sandbox": "mxc"
+      },
+      "smoke_receipt": {
+        "path": "experiments/orchestration/engineering/host_disclosure/smoke-receipt.json",
+        "sha256": "ddf86e8b45f31ff4a2e531e8050e63df1fe26615e9e7acaea44b7752e3b888f2"
+      }
+    },
+    "grounding": {
+      "auth_file": "C:/Users/recoveryadmin/.codex/auth.json",
+      "blindness": [
+        "NO_ACCESS:repository",
+        "NO_ACCESS:git_history",
+        "NO_ACCESS:parent_siblings",
+        "NO_ACCESS:prior_session",
+        "NO_ACCESS:web",
+        "NO_ACCESS:queries",
+        "NO_ACCESS:ranks_scores",
+        "NO_ACCESS:annotations",
+        "NO_ACCESS:references_treatment",
+        "NO_ACCESS:pairs",
+        "NO_ACCESS:timings",
+        "NO_ACCESS:graph_ppr_rrf",
+        "NO_ACCESS:other_cases",
+        "NO_ACCESS:child",
+        "NO_ACCESS:prior_gold",
+        "NO_ACCESS:confirmation_reserve"
+      ],
+      "builder_argv": [
+        "{python}",
+        "-B",
+        "{workspace}/stage_c_builder.py",
+        "build"
+      ],
+      "cli_version": "0.162.1",
+      "environment_allowlist": [
+        "PATH",
+        "SYSTEMROOT",
+        "WINDIR",
+        "TEMP",
+        "TMP",
+        "USERPROFILE",
+        "APPDATA",
+        "LOCALAPPDATA",
+        "COMSPEC",
+        "SystemDrive",
+        "ProgramFiles",
+        "ProgramW6432",
+        "ProgramData",
+        "ALLUSERSPROFILE",
+        "PUBLIC",
+        "HOMEDRIVE",
+        "HOMEPATH"
+      ],
+      "evidence_locator": "exact-quote-overlapping-occurrence-v1",
+      "kind": "codex",
+      "model": "GPT-6 Sol",
+      "model_id": "gpt-6-sol",
+      "prompt_file": "INSTRUCTIONS.md",
+      "reasoning": "High",
+      "response_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "cells": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "additional_information": {
+                  "type": "string"
+                },
+                "assumptions": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "obligation": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "source_key": {
+                  "type": "string"
+                },
+                "spans": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "occurrence": {
+                        "type": "integer"
+                      },
+                      "quote": {
+                        "type": "string"
+                      },
+                      "source_key": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "source_key",
+                      "quote",
+                      "occurrence"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "statement": {
+                  "type": "string"
+                },
+                "uncertainty": {
+                  "type": "string"
+                },
+                "verdict": {
+                  "enum": [
+                    "GROUNDED_SOURCE",
+                    "NOT_GROUNDED_SOURCE",
+                    "UNCERTAIN_SOURCE"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "obligation",
+                "source_key",
+                "spans",
+                "reason",
+                "verdict",
+                "statement",
+                "assumptions",
+                "uncertainty",
+                "additional_information"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "gaps": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "self_review": {
+            "type": "string"
+          },
+          "units": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "cells",
+          "units",
+          "gaps",
+          "self_review"
+        ],
+        "type": "object"
+      },
+      "runtime": {
+        "approval": "never",
+        "cli_version": "0.162.1",
+        "delivery": "UTF8_STDIN",
+        "fresh": true,
+        "network": false,
+        "response": "NATIVE_JSON_SCHEMA_AND_FINAL_MESSAGE",
+        "schema": "host-disclosure-semantic-runtime-v1",
+        "scientific_filesystem_dependency": false,
+        "tools": "DISABLED; TOOL_ATTEMPT_REJECTS_RESPONSE",
+        "web": "disabled",
+        "windows_sandbox": "mxc"
+      },
+      "smoke_receipt": {
+        "path": "experiments/orchestration/engineering/host_disclosure/smoke-receipt.json",
+        "sha256": "ddf86e8b45f31ff4a2e531e8050e63df1fe26615e9e7acaea44b7752e3b888f2"
+      }
+    }
+  }
+}

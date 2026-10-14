@@ -1,0 +1,93 @@
+{
+  "authoring_basis": {
+    "AGENTS.md": "f4f697a819463771b8805a312777435de41e7270741cbd607354a979122c08f5",
+    "src/devtools/context/python/function/declarations.py": "a256b2dfcd13bc2ee127207c29e576fddc618d2a6582f8f9f3d5b4ff38057876",
+    "src/devtools/context/python/source_candidacy.py": "da511e0d429ea94a7013120309a666db902cbeeaec45f19190425d913196cc73"
+  },
+  "case": "0022",
+  "frame": {
+    "corpus_id": "50f56ba18fe77f80be9d2a7a18d642274788deed10ab5d7397968b185cc19dce",
+    "parent_tree": "bde2d0512f7bc36385d29cd2bad5f2e098950988",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "e1e9c4c14f6bfae4d788a778271189d327eec4af60014f123ddf9344b707d3f9"
+  },
+  "obligations": [
+    {
+      "exact_route": "NOT_APPLICABLE",
+      "exclusions": "No target resolution, import execution, runtime binding truth, graph traversal, guessed child symbols or prescribed new public type names.",
+      "facts": "Observed Python resource content, AST source ranges, absolute/from/relative import syntax, alias entries, source occurrence and derivation identity conventions.",
+      "gap": "RESOLVED_WITH_EXPLICIT_QUALIFICATION: interpret declaration derivation as static source import syntax and provenance, including absolute/from/relative forms and aliases; do not require import resolution or runtime importability. Public API/layout and bounded traversal choices remain explicit design freedom.",
+      "id": "O1",
+      "information_need_identity": "N1",
+      "need": "How are static Python import syntax and individual declaration occurrences represented with exact source and derivation provenance?",
+      "obligation_identity": {
+        "task": "case-0022:historical-development-006",
+        "value": "O1"
+      },
+      "query": "python import declaration syntax from relative alias source occurrence derivation",
+      "query_identity": {
+        "task": "case-0022:historical-development-006",
+        "value": "Q1"
+      },
+      "requirement": "Implement Python import declaration derivation.",
+      "routing": "LEXICAL",
+      "satisfaction": "Derive deterministic static import declaration records from observed Python source, retaining syntactic form, module/name/alias/relative-level information as applicable and exact native source/frame provenance."
+    },
+    {
+      "exact_route": "NOT_APPLICABLE",
+      "exclusions": "No dependency discovery policy, module interpretation service, semantic relevance inference or general language framework.",
+      "facts": "Existing Python source candidacy, native declaration analysis and coverage, parser errors, resource selection, identity separation, exports and test conventions.",
+      "gap": "RESOLVED_WITH_EXPLICIT_QUALIFICATION: interpret declaration derivation as static source import syntax and provenance, including absolute/from/relative forms and aliases; do not require import resolution or runtime importability. Public API/layout and bounded traversal choices remain explicit design freedom.",
+      "id": "O2",
+      "information_need_identity": "N2",
+      "need": "Which native Python analysis, coverage and resource identity contracts constrain bounded import declaration derivation?",
+      "obligation_identity": {
+        "task": "case-0022:historical-development-006",
+        "value": "O2"
+      },
+      "query": "python declaration analysis coverage parser resource snapshot provenance deterministic tests",
+      "query_identity": {
+        "task": "case-0022:historical-development-006",
+        "value": "Q2"
+      },
+      "requirement": "Bound, integrate and validate import declaration analysis.",
+      "routing": "LEXICAL",
+      "satisfaction": "State the supported static traversal/coverage boundary; preserve deterministic repeated declarations and aliases, distinguish parse failure from successful empty coverage, reject foreign inputs and integrate/test/document using parent RI conventions."
+    }
+  ],
+  "parent_frame": {
+    "corpus_id": "50f56ba18fe77f80be9d2a7a18d642274788deed10ab5d7397968b185cc19dce",
+    "python_resource_count": 277,
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 372,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "e1e9c4c14f6bfae4d788a778271189d327eec4af60014f123ddf9344b707d3f9",
+    "source_head": "6bd9061f94646c02fb50a9e24dc73fc203c11a30",
+    "source_tree": "bde2d0512f7bc36385d29cd2bad5f2e098950988"
+  },
+  "population": {
+    "case_id": "historical-development-006",
+    "frame": {
+      "kind": "GIT_PARENT_TREE",
+      "native_repository_snapshot": "NOT_CONSTRUCTED",
+      "parent_commit": "6bd9061f94646c02fb50a9e24dc73fc203c11a30",
+      "parent_tree": "bde2d0512f7bc36385d29cd2bad5f2e098950988"
+    },
+    "population_id": "devtools-historical-development-extension-v1",
+    "schema": "historical-development-public-task-v1",
+    "selection_position": 6,
+    "task_source": {
+      "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+      "provenance_reference": "historical-development-006/commit-message",
+      "task_sha256": "8452fc77f18d1d35e06647369ad2cb428379c841ba7604c961420ea73edda136"
+    },
+    "task_text": "Implement Python import declaration derivation\n",
+    "title": "Implement Python import declaration derivation"
+  },
+  "protocol_sha256": "9a88f322c39f7fd8bf19c938fd53cd2005769f8374829e18d5cb8f3bce84ae5a",
+  "schema": "source-grounding-case-stage-a-v1",
+  "status": "FROZEN / NOT_AUTHORIZED / NOT_EXECUTED",
+  "task_identity": "case-0022:historical-development-006",
+  "task_text": "Implement Python import declaration derivation\n"
+}
