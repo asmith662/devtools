@@ -44,9 +44,12 @@ authenticate historical identity independently.
 Default events are flushed to stderr:
 
 ```text
-<UTC> +<total elapsed>s case=<case/cohort> stage=<stage> op=<operation> <STARTED/PID/HEARTBEAT/COMPLETE/FAILED> duration_seconds=<seconds> model="GPT-6 Sol" reasoning="High" pid=<PID> workspace=<absolute> instruction_sha256=<digest> command=<sanitized argv>
+HH:MM:SS +MM:SS case operation STARTED|HEARTBEAT|COMPLETE model/reasoning pid=PID duration
 ```
 
+The latest [runtime hardening](../host_disclosure/README.md) makes normal lines
+compact. Detailed paths, commands, identities and PID/queue updates remain retained;
+`--verbose-events` exposes them and failures always display full diagnostics.
 Authentication, plan progress, approval publication, case queues, owned child
 starts/PIDs, completion, validation progress, publication and final run state are
 visible. Codex prompt bodies and credential arguments are redacted; prompt,

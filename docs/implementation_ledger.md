@@ -1,5 +1,19 @@
 # Implementation Ledger
 
+## Host-disclosed semantic worker hardening (2026-10-14)
+
+The [engineering boundary](../experiments/orchestration/engineering/host_disclosure/README.md)
+replaces model filesystem interaction with host-authenticated stdin disclosure and
+one native schema-constrained final response. Models choose exact quote content
+and overlapping occurrences; the host derives canonical identities/Unicode spans
+without repair, persists the review and invokes existing scientific builders.
+Both fresh synthetic Luna/Medium actual caller paths passed with zero tools and
+seven authenticated artifacts, recorded in the runtime smoke receipt. Failed
+earlier captures remain untouched. Progress is append-only/failure-isolated and
+console rendering compact; detailed logs/follow remain available. Scientific
+labels, witness semantics, model designations, blindness and no-retry policy are
+preserved. This promotes no production abstraction and authorizes no science.
+
 ## Corrected unapproved source-grounding plan (2026-10-14)
 
 Published the separate v2 [prospective plan](../experiments/source_grounding/plans/CORRECTED_PLAN_REVIEW.md)

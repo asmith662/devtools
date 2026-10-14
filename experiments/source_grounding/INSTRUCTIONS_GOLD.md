@@ -1,7 +1,8 @@
 # One independent blind semantic gold primary
 
-You are the designated GPT-6 Astra / High primary for this case only. Authenticate
-with `python -B stage_c_builder.py packet`. Read only this packet and your outputs.
+You are the designated GPT-6 Astra / High primary for this case only. The host supplies
+the complete frozen instructions and authenticated packet directly in this invocation.
+Do not use shell or tools, inspect the filesystem, or create files.
 Do not access repository checkout, Git/history, parent/sibling workspace, prior
 session, web, other case, prior gold, child state, confirmation or reserve. Do not
 run source code, tests, retrieval, graph/RI analyses, another model or reviewer.
@@ -28,24 +29,30 @@ list is permitted only with an explicit repository-information gap and
 unconditional_sufficiency=false. Report zero complete witnesses rather than
 fabricating support. Keep any useful partial information judgments qualified.
 
-Author canonical sorted ASCII JSON `stage_c_review.json`, UTF-8/indent=2/LF/final
-newline, with exactly schema="blind-primary-review-v1", case, frame,
-packet_sha256 (canonical packet.json SHA-256), attestation, cells, units, gaps,
-self_review. Case/frame are exact packet values. Every resource x obligation cell
+Return only one strict JSON object with exactly cells, units, gaps and self_review,
+matching the supplied response schema. The host creates canonical `stage_c_review.json`,
+assigns the exact case/frame/packet digest and records single-primary invocation metadata.
+Every resource x obligation cell
 must appear exactly once in obligation then resource address order, with:
 
 ```
 obligation: exact packet obligation id
-source: {address, document_identity, content_identity}
+source_key: exact opaque key from the disclosed resource
 label: REQUIRED | HELPFUL_ONLY | UNNECESSARY
 spans: exact own-source evidence for every useful label
 reason: nonempty task-relative own-content justification
 ```
 
-Each span is {source: the exact three-field resource identity, start, end, quote}.
-Offsets are Unicode characters, end exclusive; exact quote equality is required.
+Each evidence locator is {source_key, quote, occurrence}. quote is an exact nonempty
+Unicode substring copied from complete disclosed source content. occurrence is
+1-based among all exact matches searched left-to-right by Unicode code-point
+index INCLUDING OVERLAPS (advance one code point after each match). For example
+"aa" in "aaa" has occurrences 1 at index 0 and 2 at index 1. Do not supply raw
+offsets or canonical identities. The host maps source_key and derives canonical
+start/end, end exclusive. Invalid locators fail; the host never trims, normalizes,
+guesses, repairs or substitutes evidence, labels or units.
 Units contain exactly {id, obligation, statement, basis, necessity, alternatives}.
-Alternatives are lists of lists of these exact spans. Record a necessary unit per
+Alternatives are lists of lists of these evidence locators. Record a necessary unit per
 obligation even if entirely task-backed; reject unsupported repository assertions.
 
 Gaps has exactly TASK_INTERPRETATION_GAP, TASK_GAP, REPOSITORY_INFORMATION_GAP
@@ -58,7 +65,7 @@ or indispensability. Conditional witnesses must never be described as closing a
 task gap. An authoring qualification is visible, not a reason to silently abandon
 the frozen obligations.
 
-Attestation has model="GPT-6 Astra", reasoning="High", second_reviewer=false,
+The host's scientific attestation records model="GPT-6 Astra", reasoning="High", second_reviewer=false,
 reconciliation=false, host_routing_independently_verified=false, and blindness:
 
 ```
@@ -70,14 +77,16 @@ reconciliation=false, host_routing_independently_verified=false, and blindness:
  "NO_ACCESS:confirmation_reserve"]
 ```
 
-Only attest truthfully; a breached boundary stops scientific output. Host routing
-is an unverified recorded limitation. No query, A ranking, source-candidate status,
+The host rejects tool attempts and separately records authorized-only disclosure and
+no scientific filesystem dependency. Host routing remains an unverified limitation.
+No query, A ranking, source-candidate status,
 grounding verdict/rationale, BROAD/QUALIFIED evidence, Reference treatment,
 predecessor, treatment timing/cost or other-case information is authorized.
 
 Conduct one same-primary audit of task interpretation, every positive cell, units,
-alternatives, exact spans, unnecessary cells and minimal witnesses. Record it in
-self_review; make any own corrections before publication. Run
-`python -B stage_c_builder.py build` then `python -B stage_c_builder.py verify`.
-Do not modify the frozen builder or packet. The seven scientific files are
+alternatives, exact quote copying, occurrence correctness, gaps, unnecessary cells
+and minimal witnesses. Audit content, not character arithmetic. Record it in
+self_review; make any own corrections before returning the structured response.
+The host runs the frozen builder and validator without revising your judgments.
+The seven scientific files are
 authoritative only after controller authentication; handoff text is not gold. Stop.

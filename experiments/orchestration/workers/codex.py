@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: ANN401, E501 -- installed CLI external-Agent boundary
+# ruff: noqa: ANN401 -- installed CLI external-Agent boundary
 """Launch only fresh isolated Codex primaries with frozen model/configuration."""
 
 from __future__ import annotations
@@ -8,27 +8,37 @@ import json
 import shutil
 from typing import TYPE_CHECKING, Any
 
-from experiments.orchestration.storage import require, safe
+from experiments.orchestration.storage import require
+from experiments.orchestration.workers import runtime
 
 if TYPE_CHECKING:
     from pathlib import Path
 
 
-def argv(configuration: Any, workspace: Path) -> list[str]:
-    """Build the installed 0.162.1 fresh exec interface; never resume/fork."""
+def executable(configuration: Any) -> str:
+    """Resolve the frozen external CLI without constructing a model invocation."""
     executable = configuration.get("executable", "codex")
-    executable = (
-        shutil.which("codex.cmd") or executable if executable == "codex" else executable
+    return str(
+        shutil.which("codex.cmd") or executable
+        if executable == "codex"
+        else executable,
     )
-    instruction = safe(workspace, configuration["prompt_file"])
-    require(instruction.is_file(), "Frozen instruction artifact missing")
-    prompt = (
-        "Authenticate this case's packet. Read "
-        + configuration["prompt_file"]
-        + ". Perform exactly one primary adjudication under that authoritative contract; validate the required scientific artifacts, preserve packet bytes, and stop. Do not access any external case/repository/history or another review."
+
+
+def argv(
+    configuration: Any,
+    workspace: Path,
+    *,
+    schema: Path | None = None,
+    response: Path | None = None,
+) -> list[str]:
+    """Build the installed 0.162.1 stdin/schema interface; never resume/fork."""
+    require(
+        schema is not None and response is not None,
+        "Host-owned response schema/capture required",
     )
-    return [
-        executable,
+    arguments = [
+        executable(configuration),
         "--no-daemon",
         "-a",
         "never",
@@ -37,8 +47,6 @@ def argv(configuration: Any, workspace: Path) -> list[str]:
         "--ignore-rules",
         "--ephemeral",
         "--skip-git-repo-check",
-        "--sandbox",
-        "workspace-write",
         "--cd",
         str(workspace),
         "--model",
@@ -48,5 +56,11 @@ def argv(configuration: Any, workspace: Path) -> list[str]:
         "-c",
         'web_search="disabled"',
         "--json",
-        prompt,
+        "--output-schema",
+        str(schema),
+        "--output-last-message",
+        str(response),
+        "-",
     ]
+    arguments[-1:-1] = runtime.overrides(configuration["runtime"], workspace)
+    return arguments

@@ -22,7 +22,8 @@ from experiments.codex_dogfood.verification.proof import (
     authenticate_proof,
     publish_proof,
 )
-from experiments.orchestration.storage import bundle, load, require, save
+from experiments.orchestration.observation import append_operational
+from experiments.orchestration.storage import bundle, load, require
 from experiments.source_grounding import contracts
 from experiments.structural_discrimination.evidence import prepare_references
 from experiments.structural_discrimination.stage_b import capture
@@ -186,8 +187,8 @@ def execute(
     def call(identity: str, inputs: Any, fn: Any) -> Any:
         nonlocal position
         require(identity == operations[position], "Prospective schedule")
-        save(
-            root / "progress.json",
+        append_operational(
+            root / "operational-progress.jsonl",
             {"operation": identity, "current": position, "total": len(operations)},
         )
         value = journal.call(identity, inputs, fn)

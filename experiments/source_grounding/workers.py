@@ -16,7 +16,6 @@ import time
 from pathlib import Path
 from typing import Any
 
-from devtools.agents.integrations.codex.parsing import parse_codex_turn_output
 from devtools.core.time import Timestamp
 from experiments.codex_dogfood.case_0009.artifacts import digest, json_bytes, put_binary
 from experiments.orchestration.isolation import (
@@ -25,37 +24,50 @@ from experiments.orchestration.isolation import (
     semantic_outputs,
     sterile,
 )
-from experiments.orchestration.observation import PROCESS_FIELDS, process_metadata
-from experiments.orchestration.storage import bundle, load, materialize, require, safe
-from experiments.orchestration.workers import codex
-from experiments.orchestration.workers.process import invoke
-from experiments.source_grounding import contracts, packets, reviewer
-
-ENVIRONMENT = (
-    "PATH",
-    "SYSTEMROOT",
-    "WINDIR",
-    "TEMP",
-    "TMP",
-    "USERPROFILE",
-    "APPDATA",
-    "LOCALAPPDATA",
-    "COMSPEC",
+from experiments.orchestration.observation import (
+    PROCESS_FIELDS,
+    append_operational,
+    process_metadata,
 )
+from experiments.orchestration.storage import bundle, load, materialize, require, safe
+from experiments.orchestration.workers import evidence, runtime, semantic
+from experiments.orchestration.workers.process import invoke
+from experiments.source_grounding import contracts, packets, response, reviewer
+
+ENVIRONMENT = runtime.ENVIRONMENT
 AUTH_FILE = "C:/Users/recoveryadmin/.codex/auth.json"
 
 
-def configuration(model: str) -> Any:
+def configuration(
+    model: str,
+    *,
+    reasoning: str = "High",
+    gold: bool | None = None,
+) -> Any:
     """Freeze explicit requested model identity, never infer it from results."""
+    receipt = Path(__file__).resolve().parents[2] / runtime.SMOKE_ADDRESS
     return {
         "kind": "codex",
         "model": "GPT-6 " + model,
         "model_id": "gpt-6-" + model.lower(),
-        "reasoning": "High",
+        "reasoning": reasoning,
         "cli_version": "0.162.1",
         "prompt_file": "INSTRUCTIONS.md",
         "auth_file": AUTH_FILE,
         "environment_allowlist": list(ENVIRONMENT),
+        "runtime": runtime.configuration(),
+        "evidence_locator": evidence.CONTRACT,
+        "smoke_receipt": {
+            "path": runtime.SMOKE_ADDRESS,
+            "sha256": digest(receipt.read_bytes()),
+        }
+        if receipt.exists() and model != "Luna"
+        else None,
+        "response_schema": response.schema(
+            gold=model == "Astra" if gold is None else gold,
+        ),
+        "blindness": ["NO_ACCESS:" + name for name in reviewer.BLINDNESS],
+        "builder_argv": ["{python}", "-B", "{workspace}/stage_c_builder.py", "build"],
     }
 
 
@@ -153,13 +165,20 @@ async def command(  # noqa: PLR0913 -- invocation plus operational observer meta
     return result
 
 
-async def authenticate_primary(root: Path, case: str, frame: Any, logs: Path) -> Any:
+async def authenticate_primary(
+    root: Path,
+    case: str,
+    frame: Any,
+    logs: Path,
+    config: Any = None,
+) -> Any:
     """Authenticate seven original artifacts with separate-process exact replay."""
     p = reviewer.packet(root)
     require(p["case"] == case and p["frame"] == frame, "Primary foreign case/frame")
     review = load(root / "stage_c_review.json")
-    statistics = reviewer.validate(review, p)
-    outputs = reviewer.products(root)
+    designation = (config["model"], config["reasoning"]) if config else None
+    statistics = reviewer.validate(review, p, designation)
+    outputs = reviewer.products(root, designation)
     require(
         all((root / n).read_bytes() == raw for n, raw in outputs.items()),
         "Primary exact deterministic outputs",
@@ -172,6 +191,11 @@ async def authenticate_primary(root: Path, case: str, frame: Any, logs: Path) ->
             "verify",
             "--root",
             str(root),
+            *(
+                ["--model", config["model"], "--reasoning", config["reasoning"]]
+                if config
+                else []
+            ),
         ],
         root,
         logs,
@@ -194,9 +218,7 @@ def grounding_observer(root: Path) -> Any:
         fields.setdefault("timestamp", str(Timestamp.now()))
         fields["operation"] = "source-grounding-worker"
         fields["process_role"] = "source grounding"
-        with (root.parent / "operational.log").open("ab") as stream:
-            stream.write((json.dumps(fields, sort_keys=True) + "\n").encode())
-            stream.flush()
+        append_operational(root.parent / "operational.log", fields)
 
     return observe
 
@@ -212,7 +234,14 @@ async def ground(
     files = packet_files(payload, instructions, builder)
     sterile(root, files)
     reviewer.packet(root)
-    require(config == configuration("Sol"), "Frozen source-grounding configuration")
+    require(
+        config == configuration("Sol")
+        or (
+            payload["case"].startswith("SYNTHETIC-")
+            and config == configuration("Luna", reasoning="Medium", gold=False)
+        ),
+        "Frozen source-grounding configuration",
+    )
     operational = root.parent / "grounding-operation"
     version = await command(
         [shutil.which("codex.cmd") or "codex", "--version"],
@@ -230,30 +259,52 @@ async def ground(
     env = {k: os.environ[k] for k in ENVIRONMENT if k in os.environ}
     env["CODEX_HOME"] = str(auth)
     start = time.perf_counter_ns()
-    result = await command(
-        codex.argv(config, root),
-        root,
+    result = await semantic.primary(
+        config,
+        files["packet.json"],
+        files["INSTRUCTIONS.md"],
+        config["response_schema"],
+        payload["case"] + "/grounding-primary",
         operational / "worker",
-        7200,
         env,
+        7200,
+        10,
         observer=grounding_observer(root),
         metadata={**process_metadata(config, root), "process_role": "source grounding"},
     )
     elapsed = time.perf_counter_ns() - start
-    turn = parse_codex_turn_output(result.stdout)
+    write_files(
+        root,
+        {
+            "stage_c_review.json": json_bytes(
+                semantic.review(result["payload"], payload, config),
+            ),
+        },
+    )
+    await command(
+        [
+            sys.executable,
+            "-B",
+            str(root / "stage_c_builder.py"),
+            "build",
+            "--model",
+            config["model"],
+            "--reasoning",
+            config["reasoning"],
+        ],
+        root,
+        operational / "builder",
+    )
     preserve_packet(root, files)
     await authenticate_primary(
         root,
         payload["case"],
         payload["frame"],
         operational / "validation",
+        config,
     )
     review = load(root / "stage_c_review.json")
-    usage = []
-    for line in result.stdout.decode().splitlines():
-        event = json.loads(line)
-        if event.get("type") == "turn.completed":
-            usage.append(event.get("usage"))
+    usage = [result["provenance"]["usage"]]
     tokens = {
         key: sum(u[key] for u in usage)
         if usage and all(isinstance(u, dict) and type(u.get(key)) is int for u in usage)
@@ -273,7 +324,7 @@ async def ground(
             "model_usage": usage,
             "model_tokens": tokens,
             "usage_availability": "CLI_REPORTED" if any(usage) else "NOT_AVAILABLE",
-            "grounding_thread_id": turn.thread_id,
+            "grounding_thread_id": result["provenance"]["thread_id"],
         },
     }
 

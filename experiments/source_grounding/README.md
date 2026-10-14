@@ -70,6 +70,13 @@ Both channels use the same original predecessor at target rank minus one.
 
 ## Disclosure and independent gold
 
+Current semantic transport is [host disclosure](../orchestration/engineering/host_disclosure/README.md).
+Models choose exact quote content and an explicit overlapping occurrence using
+opaque packet-local source keys. The host deterministically derives the original
+canonical identities and Unicode spans, writes the review and runs the unchanged
+scientific validator. Invalid locators fail without repair. This changes execution
+and representation ownership, not grounding/gold meanings or disclosed content.
+
 The grounding packet is one complete case batch of independent source/obligation
 records. Each contains only case/task, obligation criteria/exclusions/gap, native
 source/document/content identity and full source content. Neither InformationNeed

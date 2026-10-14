@@ -12,7 +12,9 @@ import time
 from typing import TYPE_CHECKING, Any
 
 from devtools.core.time import Timestamp
+from devtools.resources.filesystem.errors import FilesystemError
 from experiments.codex_dogfood.case_0009.artifacts import digest
+from experiments.orchestration.storage import load, no_links, save
 
 HEARTBEAT_SECONDS = 15.0
 
@@ -89,12 +91,13 @@ def process_metadata(config: Any, workspace: Path) -> dict[str, Any]:
 class Console:
     """Render bounded operational dictionaries on stderr, or JSONL for a viewer."""
 
-    def __init__(self, *, json_output: bool = False) -> None:
+    def __init__(self, *, json_output: bool = False, verbose: bool = False) -> None:
         """Start a monotonic display clock; no execution state is created."""
         self.started = time.perf_counter()
         self.json_output = json_output
+        self.verbose = verbose
 
-    def emit(self, event: dict[str, Any]) -> None:
+    def emit(self, event: dict[str, Any]) -> None:  # noqa: C901, PLR0912 -- fixed compact/verbose renderers
         """Flush each lifecycle record without making console IO authoritative."""
         value = {
             "timestamp": str(Timestamp.now()),
@@ -104,6 +107,46 @@ class Console:
         if self.json_output:
             line = json.dumps(value, sort_keys=True)
             stream = sys.stdout
+        elif not self.verbose and value.get("status") != "FAILED":
+            if value.get("status") in {"PID", "QUEUED", "RUNNING", "PROGRESS"}:
+                return
+            seconds = int(value["elapsed_seconds"])
+            stage = value.get("operation", value.get("stage", "controller"))
+            if value.get("stage") == "C" and value.get("semantic"):
+                stage = "GOLD"
+            if value.get("process_role") == "source grounding":
+                stage = "GROUNDING"
+            fields = [
+                str(value["timestamp"])[11:19],
+                f"+{seconds // 60:02}:{seconds % 60:02}",
+                str(value.get("case", "cohort")),
+                str(stage).upper(),
+                str(value.get("status", "UPDATE")),
+            ]
+            if value.get("model"):
+                fields.append(
+                    str(value["model"]).replace("GPT-6 ", "")
+                    + "/"
+                    + str(value.get("reasoning", "")),
+                )
+            if value.get("pid"):
+                fields.append("pid=" + str(value["pid"]))
+            if value.get("duration_seconds") is not None:
+                fields.append(f"{value['duration_seconds']:.2f}s")
+            if value.get("operation_progress"):
+                fields.append(
+                    "progress="
+                    + json.dumps(value["operation_progress"], ensure_ascii=True),
+                )
+            if value.get("status") == "HEARTBEAT":
+                fields.append(
+                    "observed; timeout_remaining="
+                    + str(round(value.get("timeout_remaining_seconds", 0), 1))
+                    + "s",
+                )
+            line, stream = " ".join(fields), sys.stderr
+            if value.get("snapshot"):
+                line += "\n  logs=" + str(value["snapshot"].get("log_root", ""))
         else:
             fields = [
                 value["timestamp"],
@@ -140,7 +183,7 @@ class Console:
                 "commit",
             ):
                 if value.get(name) is not None:
-                    fields.append(  # noqa: PERF401 -- conditional operational fields
+                    fields.append(
                         name + "=" + json.dumps(value[name], ensure_ascii=True),
                     )
             if "argv" in value:
@@ -158,8 +201,74 @@ class Console:
                 if value.get(name):
                     line += "\n  " + name + ": " + str(value[name])[:6000]
             stream = sys.stderr
-        with contextlib.suppress(OSError):
+        with contextlib.suppress(OSError, ValueError):
             print(line, file=stream, flush=True)
+
+
+def append_operational(path: Path, value: dict[str, Any]) -> bool:
+    """Append a non-authoritative JSONL record without replacing a reader target.
+
+    Failed or incomplete telemetry never declares success and cannot stop science.
+    This deliberately uses an append stream at an interprocess operational boundary;
+    canonical atomic filesystem writes still own required scientific captures.
+    """
+    try:
+        no_links(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("ab") as stream:
+            stream.write((json.dumps(value, sort_keys=True) + "\n").encode())
+            stream.flush()
+    except (OSError, FilesystemError, ValueError, TypeError):
+        return False
+    return True
+
+
+def operational_snapshot(path: Path, value: Any) -> bool:
+    """Best-effort convenience view; immutable journals remain authoritative."""
+    try:
+        save(path, value)
+    except (OSError, FilesystemError, ValueError, TypeError):
+        return False
+    return True
+
+
+def latest_operational(path: Path) -> dict[str, Any]:
+    """Read a bounded complete append record; unknown/corrupt telemetry is explicit."""
+    try:
+        no_links(path)
+        with path.open("rb") as stream:
+            stream.seek(max(0, path.stat().st_size - 65536))
+            raw = stream.read(65536)
+        lines = raw.split(b"\n")[:-1]
+        if not lines:
+            return {"telemetry_unavailable": True}
+        value = json.loads(lines[-1])
+        return value if isinstance(value, dict) else {"telemetry_unavailable": True}
+    except (OSError, FilesystemError, ValueError):
+        return {"telemetry_unavailable": True}
+
+
+def read_snapshot(path: Path) -> dict[str, Any]:
+    """Unknown telemetry remains unknown; immutable journals decide completion."""
+    try:
+        value = load(path)
+        return value if isinstance(value, dict) else {"telemetry_unavailable": True}
+    except (OSError, FilesystemError, ValueError, TypeError):
+        return {"telemetry_unavailable": True}
+
+
+def notify_operational(observer: Any, event: dict[str, Any]) -> None:
+    """Contain observer defects; required durability and cancellation still fail."""
+    if observer is not None:
+        try:
+            observer(event)
+        except Exception as error:  # noqa: BLE001 -- telemetry never owns science
+            with contextlib.suppress(OSError, ValueError):
+                print(  # noqa: T201 -- operational warning on stderr
+                    "TELEMETRY_UNAVAILABLE: " + type(error).__name__,
+                    file=sys.stderr,
+                    flush=True,
+                )
 
 
 def diagnostic(path: Path, *, first: bool = False) -> str:
@@ -188,7 +297,8 @@ async def observed_wait[T](
         while not task.done():
             await asyncio.wait({task}, timeout=interval)
             if not task.done() and observer is not None:
-                observer(
+                notify_operational(
+                    observer,
                     {
                         **event,
                         "status": "HEARTBEAT",

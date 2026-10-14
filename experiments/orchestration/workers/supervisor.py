@@ -20,7 +20,7 @@ from devtools.core.paths import resolve_path
 from devtools.core.time import Duration, Timestamp
 from devtools.resources.commands import Command
 from devtools.resources.commands.events import CommandStderr, CommandStdout
-from experiments.orchestration.storage import load, require, save
+from experiments.orchestration.storage import binary, load, require, save
 from experiments.orchestration.workers.process import TreeExecutor
 
 
@@ -81,7 +81,7 @@ def windows_job() -> object | None:
     return int(handle)  # Held until exit; the OS terminates owned descendants.
 
 
-async def main() -> int:
+async def main() -> int:  # noqa: C901 -- one owned subprocess with optional stdin
     """Create tree ownership before the child, then bound its canonical lifecycle."""
     spec = load(Path(sys.argv[1]))
     job = windows_job()
@@ -90,6 +90,7 @@ async def main() -> int:
         Path(spec["pid_file"]),
         spec["grace"],
         Path(spec["log_root"]) if "log_root" in spec else None,
+        binary(Path(spec["stdin_file"])) if spec.get("stdin_file") else None,
     )
     if os.name != "nt":
 
@@ -117,6 +118,8 @@ async def main() -> int:
                 sys.stderr.buffer.write(event.data)
                 sys.stderr.buffer.flush()
         result = await execution
+        if executor.stdin_task is not None:
+            await executor.stdin_task
     except BaseException as error:
         if "log_root" in spec:
             save(

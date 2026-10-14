@@ -13,6 +13,7 @@ from typing import TYPE_CHECKING, Any
 from experiments.codex_dogfood.case_0009.artifacts import digest, json_bytes
 from experiments.orchestration.authority import authenticate
 from experiments.orchestration.model import RunPlan
+from experiments.orchestration.observation import read_snapshot
 from experiments.orchestration.publication import Repository
 from experiments.orchestration.storage import binary, load, no_links, require, safe
 
@@ -189,7 +190,7 @@ async def snapshot(root: Path, run_id: str) -> dict[str, Any]:
             )
         publications[marker.stem] = commit
     state: Any = (
-        load(operational / "state.json")
+        read_snapshot(operational / "state.json")
         if (operational / "state.json").exists()
         else {}
     )
@@ -260,7 +261,7 @@ async def follow(
                 except ValueError:
                     pass
         state = (
-            load(path.parent / "state.json")
+            read_snapshot(path.parent / "state.json")
             if (path.parent / "state.json").exists()
             else {}
         )

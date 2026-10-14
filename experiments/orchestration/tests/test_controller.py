@@ -326,20 +326,29 @@ def test_cache(tmp_path: Path) -> None:
 
 
 def test_codex_fresh_command(tmp_path: Path) -> None:
-    (tmp_path / "README.md").write_text("Frozen primary instructions", encoding="utf-8")
+    from experiments.orchestration.workers import runtime
+
     config = {
         "model_id": "frozen-account-model",
         "reasoning": "high",
         "prompt_file": "README.md",
         "executable": "codex-fixture",
+        "runtime": runtime.configuration(),
     }
-    command = argv(config, tmp_path)
+    command = argv(
+        config,
+        tmp_path,
+        schema=tmp_path.parent / "schema.json",
+        response=tmp_path.parent / "response.txt",
+    )
     assert "resume" not in command
     assert "fork" not in command
     assert "--ephemeral" in command
     assert "--ignore-user-config" in command
     assert command[command.index("--model") + 1] == "frozen-account-model"
     assert str(tmp_path) == command[command.index("--cd") + 1]
+    assert command[-1] == "-"
+    assert "features.shell_tool=false" in command
 
 
 @pytest.mark.parametrize(

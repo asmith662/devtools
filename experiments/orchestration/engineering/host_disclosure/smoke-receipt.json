@@ -1,0 +1,214 @@
+{
+  "Astra_calls": 0,
+  "Sol_calls": 0,
+  "automatic_model_retries": 0,
+  "checks": {
+    "artifacts": true,
+    "direct": true,
+    "isolation": true,
+    "nested": true,
+    "no_scientific_filesystem_dependency": true,
+    "no_tools": true
+  },
+  "evidence_locator_contract": "exact-quote-overlapping-occurrence-v1",
+  "evidence_locator_implementation_sha256": "d13c8981bf3549d04645910fa75dc918a4a6d3b1baf1dc65211ea5327259da7c",
+  "final_message_extraction": "--output-last-message equals sole completed assistant message",
+  "host_builder_implementation_sha256": "b8f3cc6b796d9f8fc7cd2758762ede0ea6f413aceed864c5cc561799ce5998c4",
+  "model": "GPT-6 Luna",
+  "paths": {
+    "direct": {
+      "builder_verify": "PASS",
+      "canonical_spans": [
+        {
+          "end": 48,
+          "quote": "The imaginary valve opens at eleven lunar ticks.",
+          "source": {
+            "address": "synthetic/valve.txt",
+            "content_identity": "5e2cca492a6668f35676964253b671f484e311ad021041ac8a33a87615d2c577",
+            "document_identity": "7e846427a38769af7d8ac2b88cc4222caeba3fd9ebbb067096f082ccb902f19d"
+          },
+          "start": 0
+        }
+      ],
+      "case": "SYNTHETIC-V2-GOLD-n43kp4gu",
+      "empty_cwd_unchanged": true,
+      "host_artifacts": {
+        "STAGE_C_REVIEW.md": "c3e35440c34ec1954e655ecfc9dfdc25d632cbd5f8d5b6fc02840b76b0135105",
+        "stage_c_builder.py": "59589200c0392836bf00d86ee10a85d6ca3938a45349531bbe258d6148afe36e",
+        "stage_c_hashes.json": "fec7dd2a345ff5abb5afef03fb73cfbc74fa26cce4837757b194deb06193ae7e",
+        "stage_c_method.md": "892e2c1cdcd34c7f73267ef9fde3833713fc0807253adf211953a8531abf70ed",
+        "stage_c_review.json": "f9da38ee277bcba155ef719f4000892be69fb412b4edf04c485cc19155f0a073",
+        "stage_c_statistics.json": "013114c445ccd8d2c6728ea5243d9197f843995a4bdb013417c9dbca731e6ae5",
+        "stage_c_validation.json": "fd48b8868a5e99f45d791e031f3f201e36df791a6268c1cc989e4931ea92d599"
+      },
+      "instruction_sha256": "57e4aae3e0428ada8de77d0acaeb424f5c0f555637551681cdf956bc2af830bd",
+      "locator_resolution": "PASS",
+      "logs": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\host-disclosure-smoke-v2-n43kp4gu\\direct\\fixture-repository\\.local\\experiment-runs\\4c7837897d7717c2344c45d7f4bc4c6bf54ffb2b5463d3059ab77352e27f5ead\\logs\\SYNTHETIC-V2-GOLD-n43kp4gu\\C-semantic",
+      "packet_sha256": "1332020872493e997b751ef955020d0fbc65a9cec2560b76f13f1618a734cde3",
+      "response_schema_sha256": "1244f4263acde1b62766a4f5761b08883b4ed3725b725a9c52be5da6e2572c85",
+      "retained_streams": {
+        "final-response.txt": "c34bc30674c7c81653d32ba65a091189105d0278ec2e8e2beddfadfb560f81b2",
+        "process/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "process/stdin.bin": "a46d7a2bf1e68fd810675230521b9082ae0df348a41c3c5395f3995629b4f9de",
+        "process/stdout.log": "07ab112469b6971644d44dec53a1c613c2d7c0da01537b32c078c7255670b077"
+      },
+      "semantic_receipt": {
+        "case": "SYNTHETIC-V2-GOLD-n43kp4gu",
+        "evidence_projection": "PASS",
+        "frame": {
+          "corpus_id": "a0282300a7be7ceb3042a055e3f6a7566bb12d5aa2936de9f9d8efddf5218599",
+          "parent_tree": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "repository_id": "SYNTHETIC-REPOSITORY",
+          "snapshot_id": "89cf8c0c3f676ec9869eff221783d43ea3e0b89480033e32a5b4421f5fa229a4"
+        },
+        "host_routing_independently_verified": false,
+        "input_sha256": "a46d7a2bf1e68fd810675230521b9082ae0df348a41c3c5395f3995629b4f9de",
+        "instruction_sha256": "57e4aae3e0428ada8de77d0acaeb424f5c0f555637551681cdf956bc2af830bd",
+        "invocation": "4c7837897d7717c2344c45d7f4bc4c6bf54ffb2b5463d3059ab77352e27f5ead/SYNTHETIC-V2-GOLD-n43kp4gu/C",
+        "model": "GPT-6 Luna",
+        "packet_sha256": "1332020872493e997b751ef955020d0fbc65a9cec2560b76f13f1618a734cde3",
+        "payload": "PRESENT",
+        "process_exit": 0,
+        "reasoning": "Medium",
+        "response_schema_sha256": "1244f4263acde1b62766a4f5761b08883b4ed3725b725a9c52be5da6e2572c85",
+        "response_sha256": "c34bc30674c7c81653d32ba65a091189105d0278ec2e8e2beddfadfb560f81b2",
+        "schema_validation": "PASS",
+        "scientific_artifact_authentication": "HOST_BUILDER_REQUIRED",
+        "scientific_filesystem_dependency": false,
+        "status": "PASS",
+        "thread_id": "01a13c17-bb33-7cf3-a71a-070975686121",
+        "tool_calls": 0,
+        "transport": "PASS",
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 11532,
+          "output_tokens": 684,
+          "reasoning_output_tokens": 103
+        }
+      },
+      "sentinels_absent_from_disclosure_transcript_response": true,
+      "status": "PASS",
+      "tool_calls": 0
+    },
+    "nested": {
+      "builder_verify": "PASS",
+      "canonical_spans": [
+        {
+          "end": 48,
+          "quote": "The imaginary valve opens at eleven lunar ticks.",
+          "source": {
+            "address": "synthetic/valve.txt",
+            "content_identity": "5e2cca492a6668f35676964253b671f484e311ad021041ac8a33a87615d2c577",
+            "document_identity": "7e846427a38769af7d8ac2b88cc4222caeba3fd9ebbb067096f082ccb902f19d"
+          },
+          "start": 0
+        }
+      ],
+      "case": "SYNTHETIC-V2-GROUNDING-n43kp4gu",
+      "empty_cwd_unchanged": true,
+      "host_artifacts": {
+        "STAGE_C_REVIEW.md": "f54bb30eeaffa8e13508c2298efef469a802409354569fac64c1a3ab00f4a914",
+        "stage_c_builder.py": "04a3daca7bd81640f5c31fef1673c8756691a09fc57e6ede81777f6a2ab11fa8",
+        "stage_c_hashes.json": "0aceaf843b33d3be6076a9eef5bd82c45fd4dbefe0804595241a6afefaffd781",
+        "stage_c_method.md": "892e2c1cdcd34c7f73267ef9fde3833713fc0807253adf211953a8531abf70ed",
+        "stage_c_review.json": "0dad2ac6b509c9ccd2fedd4f4528fd710961d4c3c4cd4118dc8381d368a2722a",
+        "stage_c_statistics.json": "3df765ebbac059e94c6c095bb16abb362a2b85fdef08a16a92cae62db6d1f9f4",
+        "stage_c_validation.json": "67b44235303f3b43e90e938228a7b0b98bcf2dc38e34404c9797d3d9b8ac1842"
+      },
+      "instruction_sha256": "235dc8749d58c58d10277e8a53d6fe83fc6647496034d834403ec26f933cf700",
+      "locator_resolution": "PASS",
+      "logs": "C:\\Users\\RECOVE~1\\AppData\\Local\\Temp\\host-disclosure-smoke-v2-n43kp4gu\\nested\\grounding-operation\\worker",
+      "packet_sha256": "6d2309346f8ca32ca2fa0f5b4c80cf6ffdf3d4a6b1c610c78e2c3ca5161fa3fb",
+      "response_schema_sha256": "8aacd0f000f54d0ae0448d47520952510a7a801f303cca9079994126b6f53ad3",
+      "retained_streams": {
+        "final-response.txt": "b2ccdd695f90c82cf024de59e338c7bf1c8f3bdb483baf64e0cacbca7db18ea3",
+        "process/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "process/stdin.bin": "c54570f3d1ff437698a62a5b8f8d6b0dac1eb4deb6b7589de69eb3da9e8737fb",
+        "process/stdout.log": "6879d3f2b24a9d8e4b243d7ed24a3d979abd5e9a618c588d688f916f3530a275"
+      },
+      "semantic_receipt": {
+        "case": "SYNTHETIC-V2-GROUNDING-n43kp4gu",
+        "evidence_projection": "PASS",
+        "frame": {
+          "corpus_id": "a0282300a7be7ceb3042a055e3f6a7566bb12d5aa2936de9f9d8efddf5218599",
+          "parent_tree": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "repository_id": "SYNTHETIC-REPOSITORY",
+          "snapshot_id": "89cf8c0c3f676ec9869eff221783d43ea3e0b89480033e32a5b4421f5fa229a4"
+        },
+        "host_routing_independently_verified": false,
+        "input_sha256": "c54570f3d1ff437698a62a5b8f8d6b0dac1eb4deb6b7589de69eb3da9e8737fb",
+        "instruction_sha256": "235dc8749d58c58d10277e8a53d6fe83fc6647496034d834403ec26f933cf700",
+        "invocation": "SYNTHETIC-V2-GROUNDING-n43kp4gu/grounding-primary",
+        "model": "GPT-6 Luna",
+        "packet_sha256": "6d2309346f8ca32ca2fa0f5b4c80cf6ffdf3d4a6b1c610c78e2c3ca5161fa3fb",
+        "payload": "PRESENT",
+        "process_exit": 0,
+        "reasoning": "Medium",
+        "response_schema_sha256": "8aacd0f000f54d0ae0448d47520952510a7a801f303cca9079994126b6f53ad3",
+        "response_sha256": "b2ccdd695f90c82cf024de59e338c7bf1c8f3bdb483baf64e0cacbca7db18ea3",
+        "schema_validation": "PASS",
+        "scientific_artifact_authentication": "HOST_BUILDER_REQUIRED",
+        "scientific_filesystem_dependency": false,
+        "status": "PASS",
+        "thread_id": "01a13c17-e04f-7390-8a01-0b7880656928",
+        "tool_calls": 0,
+        "transport": "PASS",
+        "usage": {
+          "cache_write_input_tokens": 0,
+          "cached_input_tokens": 0,
+          "input_tokens": 11098,
+          "output_tokens": 427,
+          "reasoning_output_tokens": 0
+        }
+      },
+      "sentinels_absent_from_disclosure_transcript_response": true,
+      "status": "PASS",
+      "tool_calls": 0
+    }
+  },
+  "reasoning": "Medium",
+  "runtime": {
+    "cli_version": "0.162.1",
+    "configuration": {
+      "approval": "never",
+      "cli_version": "0.162.1",
+      "delivery": "UTF8_STDIN",
+      "fresh": true,
+      "network": false,
+      "response": "NATIVE_JSON_SCHEMA_AND_FINAL_MESSAGE",
+      "schema": "host-disclosure-semantic-runtime-v1",
+      "scientific_filesystem_dependency": false,
+      "tools": "DISABLED; TOOL_ATTEMPT_REJECTS_RESPONSE",
+      "web": "disabled",
+      "windows_sandbox": "mxc"
+    },
+    "controller_semantic_invocation": "1a9df241a5c1735ea078be4f4c70d1e276ef773bc5549bded0f69b64aba0b9a4",
+    "isolation_implementation": "9c86b7dbf4e6a52a198ec75c44a77bfbe235d08d979faa2a33b954b65d44b719",
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0",
+    "semantic_implementation": {
+      "codex.py": "3862044aeba99a068d889a11a692bc79b591abad22e7422b0bd6bf7693335bd7",
+      "evidence.py": "d13c8981bf3549d04645910fa75dc918a4a6d3b1baf1dc65211ea5327259da7c",
+      "process.py": "cfc728534a89e8658c2953439de1d456c5e77693fe1cbc84588a44f77202e9d8",
+      "semantic.py": "e466c69312861cd2460e565b49dc54594637f08e8260485c856ebfb5423f7245",
+      "supervisor.py": "2c73404feb5cd86acc144a4d51661ea6dc8e89efcd68947df75f5ad37269a111"
+    },
+    "source_grounding_adapter": {
+      "packets.py": "63a259d1d92121997eeb0a6684ac0a3692955b0bfdbbb49e0329e7056c7e365a",
+      "response.py": "d790de833354647ab832cba1ef6ddaefe7f207d68d1e6130aaa34acd18449490",
+      "reviewer.py": "b8f3cc6b796d9f8fc7cd2758762ede0ea6f413aceed864c5cc561799ce5998c4",
+      "workers.py": "c74d5f449304bd13fa570f835e145772a6bdec78f2f20985cb25b8e223b52357"
+    }
+  },
+  "runtime_sha256": "4f1a72cc759c862f646e7465191f51fb3b855eeec8bd6a1b55cd2a6f282cf766",
+  "schema": "semantic-worker-smoke-v1",
+  "scientific": false,
+  "scientific_execution": 0,
+  "semantic_response_schema_implementation_sha256": "d790de833354647ab832cba1ef6ddaefe7f207d68d1e6130aaa34acd18449490",
+  "shared_invocation": "experiments.orchestration.workers.semantic.primary",
+  "status": "PASS",
+  "stdin_disclosure": "UTF8_STDIN; host-authenticated original packet/instruction digests; exact content projection",
+  "structured_response": "--output-schema; strict JSON object; no duplicate keys/prose",
+  "transport_model_independence": "CLI/runtime sandbox and transport properties assumed model-independent; semantic quality remains model-dependent."
+}

@@ -685,3 +685,11 @@ own the later approved run's failure: PACKET published, 0020 B/C and 0021 B
 entered, both cases invalidated without scientific evidence or retry, and 0022
 scientifically unentered. The failed live Luna engineering smoke is not a compatible
 preflight receipt. No replacement cohort or plan is authorized by these records.
+
+The [host-disclosed semantic-worker boundary](../experiments/orchestration/engineering/host_disclosure/README.md)
+owns stdin disclosure, structured final-response capture, exact-content locators,
+host-derived canonical spans and host-owned artifact builders. Operational progress
+is append-only and failure-isolated; human rendering is compact by default. Real
+semantic entry requires a compatible successful direct/nested synthetic runtime
+smoke receipt. This changes experiment execution, not production ModelInteraction,
+Localization semantics or scientific execution authority.

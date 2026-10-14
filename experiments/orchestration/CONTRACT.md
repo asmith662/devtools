@@ -156,6 +156,17 @@ requires every `primary/<file>` byte to match the original primary.
 
 ## Primary worker outputs
 
+The current Codex path uses the [host-disclosure semantic contract](engineering/host_disclosure/README.md).
+Its frozen semantic configuration includes runtime permissions, compatible smoke
+receipt binding, native response schema, exact-content locator contract and host
+builder argv. The model receives projected authorized content through stdin and
+returns one structured judgment response. The host maps source keys, resolves
+exact quote occurrences to original canonical spans, serializes the review and
+executes the existing scientific builder. Payload/schema/locator validity is
+distinct from process/transport success and final artifact authentication. The
+canonical seven-file representation below remains unchanged. Synthetic Luna
+designation overrides are accepted only for explicitly synthetic packets.
+
 Exactly these scientific artifacts are collected:
 
 ```text

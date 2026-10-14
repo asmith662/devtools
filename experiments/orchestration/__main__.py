@@ -115,6 +115,12 @@ async def main() -> None:
     )
     parser.add_argument("--json", action="store_true", help="JSON status/follow output")
     parser.add_argument(
+        "--verbose-events",
+        "--verbose",
+        action="store_true",
+        help="Detailed operational events on stderr",
+    )
+    parser.add_argument(
         "--approve",
         metavar="RUN_ID",
         help="Explicit maintainer grant for this exact reviewed run",
@@ -127,7 +133,7 @@ async def main() -> None:
         "--follow requires a run ID",
     )
     require(not args.json or args.command == "status", "--json is status-only")
-    console = Console()
+    console = Console(verbose=args.verbose_events)
     root = args.repository.resolve()
     require(
         args.approve is None or args.command == "run",
@@ -142,7 +148,11 @@ async def main() -> None:
         and not args.identity.endswith(".json")
     ):
         if args.follow:
-            await follow(root, args.identity, Console(json_output=args.json))
+            await follow(
+                root,
+                args.identity,
+                Console(json_output=args.json, verbose=args.verbose_events),
+            )
             return
         result = await snapshot(root, args.identity)
     elif args.command in {"plan", "run", "verify-approval"} or (

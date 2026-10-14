@@ -19,9 +19,12 @@ from devtools.core.paths import resolve_path
 from devtools.core.time import Duration, Timestamp
 from devtools.resources.commands import Command, CommandExecutor, CommandOutputPolicy
 from devtools.resources.commands.events import CommandStderr, CommandStdout
+from experiments.codex_dogfood.case_0009.artifacts import put_binary
 from experiments.orchestration.observation import (
     HEARTBEAT_SECONDS,
     diagnostic,
+    latest_operational,
+    notify_operational,
     sanitized,
 )
 from experiments.orchestration.storage import load, save
@@ -36,6 +39,7 @@ class TreeExecutor(CommandExecutor):
         pid_file: Path,
         grace: float,
         stream_directory: Path | None = None,
+        stdin_bytes: bytes | None = None,
     ) -> None:
         """Bind explicit environment, process identity and cleanup grace."""
         super().__init__(
@@ -47,6 +51,8 @@ class TreeExecutor(CommandExecutor):
         self.environment, self.pid_file, self.grace = environment, pid_file, grace
         self.child: asyncio.subprocess.Process | None = None
         self.stream_directory = stream_directory
+        self.stdin_bytes = stdin_bytes
+        self.stdin_task: asyncio.Task[None] | None = None
 
     async def _create_process(self, command: Command) -> asyncio.subprocess.Process:
         """Launch an owned POSIX session or hidden Windows supervisor, never a shell."""
@@ -60,9 +66,25 @@ class TreeExecutor(CommandExecutor):
             cwd=str(command.working_directory) if command.working_directory else None,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
+            stdin=asyncio.subprocess.PIPE
+            if self.stdin_bytes is not None
+            else asyncio.subprocess.DEVNULL,
             **options,
         )
         self.child = process
+        if self.stdin_bytes is not None:
+
+            async def deliver() -> None:
+                assert process.stdin is not None  # noqa: S101 -- pipe selected above
+                try:
+                    process.stdin.write(self.stdin_bytes or b"")
+                    await process.stdin.drain()
+                except (BrokenPipeError, ConnectionResetError):
+                    pass  # Process/transport authentication rejects an incomplete turn.
+                finally:
+                    process.stdin.close()
+
+            self.stdin_task = asyncio.create_task(deliver())
         save(
             self.pid_file,
             {
@@ -144,6 +166,7 @@ async def invoke(
     observer: Any = None,
     metadata: Any = None,
     heartbeat_seconds: float = HEARTBEAT_SECONDS,
+    stdin_bytes: bytes | None = None,
 ) -> Any:
     """Run one supervisor; capture bounded output/PID and never retry."""
     logs.mkdir(parents=True, exist_ok=True)
@@ -164,7 +187,8 @@ async def invoke(
 
     def notify(status: str, **fields: Any) -> None:
         if observer is not None:
-            observer(
+            notify_operational(
+                observer,
                 {
                     "timestamp": str(Timestamp.now()),
                     **common,
@@ -175,6 +199,8 @@ async def invoke(
 
     notify("QUEUED")
     spec = logs / "process.json"
+    if stdin_bytes is not None:
+        put_binary(logs / "stdin.bin", stdin_bytes)
     save(
         spec,
         {
@@ -185,6 +211,7 @@ async def invoke(
             "grace": grace,
             "pid_file": str(logs / "child.json"),
             "log_root": str(logs),
+            "stdin_file": str(logs / "stdin.bin") if stdin_bytes is not None else None,
         },
     )
     supervisor = Path(__file__).with_name("supervisor.py")
@@ -216,15 +243,12 @@ async def invoke(
                 notify("PID", pid=pid, launch_utc=record.get("launch_utc"))
             now = time.perf_counter()
             if now >= next_heartbeat and not result_task.done():
-                counter: Any = {}
-                with contextlib.suppress(ValueError, OSError):
-                    if (cwd / "progress.json").exists():
-                        progress = load(cwd / "progress.json")
-                        counter = {
-                            k: progress[k]
-                            for k in ("operation", "current", "total")
-                            if k in progress
-                        }
+                progress = latest_operational(cwd / "operational-progress.jsonl")
+                counter = {
+                    k: progress[k]
+                    for k in ("operation", "current", "total", "telemetry_unavailable")
+                    if k in progress
+                }
                 notify(
                     "HEARTBEAT",
                     pid=pid,

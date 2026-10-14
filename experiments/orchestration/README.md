@@ -138,6 +138,14 @@ reviewer input, inherited PYTHONPATH or Codex session state.
 
 ## Semantic and process boundary
 
+The current [host-disclosure boundary](engineering/host_disclosure/README.md)
+supersedes the filesystem-interacting launcher described historically below.
+Models return schema-constrained judgments and exact-content locators through
+stdin/final-message transport; the host derives canonical spans, writes artifacts
+and executes builders. A compatible successful real synthetic runtime receipt is
+required before real-case semantic entry. The default console is compact; detailed
+events remain retained and available with `--verbose-events` or on failure.
+
 The complete local Codex adapter targets installed **codex-cli 0.162.1** and uses a
 fresh `exec` with ephemeral sessions, ignored user config/rules, no daemon,
 noninteractive approval, explicit sterile CWD, workspace-write sandbox, disabled

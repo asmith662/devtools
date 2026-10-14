@@ -30,7 +30,7 @@ def test_live_process_streams_pid_heartbeat_and_failure(
 ) -> None:
     async def run() -> None:
         events: list[dict[str, Any]] = []
-        console = Console()
+        console = Console(verbose=True)
 
         def observe(event: dict[str, Any]) -> None:
             events.append(event)
@@ -119,7 +119,7 @@ def test_sanitized_prompt_identity_is_stable() -> None:
 def test_nested_semantic_bridge_is_operational(tmp_path: Path, capsys: Any) -> None:
     async def run() -> None:
         c = await fixture(tmp_path / "repo", tmp_path / "work")
-        c.reporter = Console()
+        c.reporter = Console(verbose=True)
         workspace = tmp_path / "bridge"
         workspace.mkdir()
         events = [
@@ -238,6 +238,7 @@ def test_cli_stdout_json_and_lifecycle_stderr(
                 str(c.work_root),
                 "--approve",
                 c.run_id,
+                "--verbose-events",
             ],
         )
         await cli.main()
@@ -266,7 +267,7 @@ def test_publication_failure_visibility(
 ) -> None:
     async def run() -> None:
         c = await fixture(tmp_path / "repo", tmp_path / "work")
-        c.reporter = Console()
+        c.reporter = Console(verbose=True)
 
         async def fail(*_args: Any) -> str:
             raise ValueError("fixture publication ambiguity")
@@ -302,6 +303,48 @@ def test_authentication_wait_heartbeat() -> None:
         assert events and all(e["status"] == "HEARTBEAT" for e in events)
 
     asyncio.run(run())
+
+
+def test_compact_and_verbose_rendering(capsys: Any) -> None:
+    event = {
+        "case": "0020",
+        "stage": "C",
+        "operation": "GOLD",
+        "status": "STARTED",
+        "semantic": True,
+        "model": "GPT-6 Astra",
+        "reasoning": "High",
+        "pid": 123,
+        "argv": ["codex", "--private", "frame-json"],
+        "workspace": "private-workspace",
+        "instruction_sha256": "a" * 64,
+        "stdout_path": "full-log-path",
+    }
+    Console().emit(event)
+    compact = capsys.readouterr()
+    assert not compact.out
+    assert "0020 GOLD STARTED Astra/High pid=123" in compact.err
+    assert all(
+        text not in compact.err
+        for text in ("frame-json", "private-workspace", "full-log-path", "a" * 64)
+    )
+    Console(verbose=True).emit(event)
+    verbose = capsys.readouterr()
+    assert "private-workspace" in verbose.err and "full-log-path" in verbose.err
+    Console().emit(
+        {
+            **event,
+            "status": "FAILED",
+            "first_diagnostic": "specific fault",
+            "exit_code": 7,
+        },
+    )
+    failed = capsys.readouterr()
+    assert (
+        "=== FAILED ===" in failed.err
+        and "specific fault" in failed.err
+        and "full-log-path" in failed.err
+    )
 
 
 def test_zero_exit_validator_rejection_prints_failure(
@@ -379,6 +422,6 @@ def test_follow_live_progress_and_terminal_stop(
     output = capsys.readouterr()
     assert (
         "HEARTBEAT" in output.err
-        and "GPT-6 Astra" in output.err
+        and "Astra/High" in output.err
         and "pid=42" in output.err
     )

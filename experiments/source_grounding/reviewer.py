@@ -253,7 +253,7 @@ def span(evidence: Any, resources: Any) -> str:
     return str(identity["address"])
 
 
-def attestation(value: Any, model: str) -> None:
+def attestation(value: Any, model: str, reasoning: str = "High") -> None:
     """Authenticate the single primary's behavioral statement; no routing claims."""
     require(
         set(value)
@@ -269,7 +269,7 @@ def attestation(value: Any, model: str) -> None:
     )
     require(
         value["model"] == model
-        and value["reasoning"] == "High"
+        and value["reasoning"] == reasoning
         and value["second_reviewer"] is False
         and value["reconciliation"] is False
         and value["host_routing_independently_verified"] is False,
@@ -290,7 +290,7 @@ def minimal(unions: Any) -> list[list[str]]:
     )
 
 
-def validate(review: Any, p: Any) -> Any:
+def validate(review: Any, p: Any, designation: Any = None) -> Any:
     """Validate labels, units, evidence and exact complete judgment frame."""
     require(
         set(review)
@@ -315,7 +315,18 @@ def validate(review: Any, p: Any) -> Any:
         "Review frame/input identity",
     )
     gold = p["schema"] == "blind-semantic-gold-packet-v1"
-    attestation(review["attestation"], "GPT-6 Astra" if gold else "GPT-6 Sol")
+    scientific = ("GPT-6 Astra" if gold else "GPT-6 Sol", "High")
+    require(
+        designation is None
+        or designation == scientific
+        or (
+            p["case"].startswith("SYNTHETIC-")
+            and designation == ("GPT-6 Luna", "Medium")
+        ),
+        "Non-scientific designation is restricted to synthetic Luna smoke",
+    )
+    model, reasoning = designation or scientific
+    attestation(review["attestation"], model, reasoning)
     require(
         isinstance(review["self_review"], str) and review["self_review"].strip(),
         "Same-primary audit required",
@@ -530,7 +541,7 @@ def validate(review: Any, p: Any) -> Any:
     }
 
 
-def products(root: Path) -> dict[str, bytes]:
+def products(root: Path, designation: Any = None) -> dict[str, bytes]:
     """Derive scientific reports from immutable primary decisions only."""
     p = packet(root)
     review = json.loads((root / "stage_c_review.json").read_bytes())
@@ -538,7 +549,7 @@ def products(root: Path) -> dict[str, bytes]:
         (root / "stage_c_review.json").read_bytes() == canonical(review),
         "Canonical primary review required",
     )
-    statistics = validate(review, p)
+    statistics = validate(review, p, designation)
     files = {
         "stage_c_statistics.json": canonical(statistics),
         "stage_c_validation.json": canonical(
@@ -581,11 +592,16 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("mode", choices=("packet", "build", "verify"))
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parent)
+    parser.add_argument("--model")
+    parser.add_argument("--reasoning", default="High")
     args = parser.parse_args()
     if args.mode == "packet":
         packet(args.root)
     else:
-        files = products(args.root)
+        files = products(
+            args.root,
+            (args.model, args.reasoning) if args.model else None,
+        )
         if args.mode == "build":
             require(
                 not any((args.root / n).exists() for n in files),

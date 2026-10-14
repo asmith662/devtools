@@ -14,7 +14,6 @@ from contextlib import nullcontext
 from pathlib import Path
 from typing import Any
 
-from devtools.agents.integrations.codex.parsing import parse_codex_turn_output
 from devtools.core.paths import resolve_path
 from devtools.core.time import Timestamp
 from experiments.codex_dogfood.case_0009.artifacts import (
@@ -48,8 +47,11 @@ from experiments.orchestration.model import (
 from experiments.orchestration.observation import (
     PROCESS_FIELDS,
     Console,
+    append_operational,
     diagnostic,
+    notify_operational,
     observed_wait,
+    operational_snapshot,
     process_metadata,
 )
 from experiments.orchestration.publication import Repository
@@ -64,7 +66,7 @@ from experiments.orchestration.storage import (
     safe,
     save,
 )
-from experiments.orchestration.workers import codex
+from experiments.orchestration.workers import codex, runtime, semantic
 from experiments.orchestration.workers.process import invoke
 
 PACKAGE = Path(__file__).resolve().parent
@@ -286,6 +288,15 @@ class Controller:
                 )
         for case in self.plan.cases:
             await self.input_files(case)
+        config = value["semantic"]
+        if config.get("runtime") == runtime.configuration():
+            runtime.authenticate_configuration(config)
+            smoke = config["smoke_receipt"]
+            require(
+                await repo.git("show", head + ":" + smoke["path"])
+                == binary(safe(root, smoke["path"])),
+                "Uncommitted runtime smoke receipt",
+            )
 
     def plan_report(self) -> dict[str, Any]:
         """Report mechanical validity; validation confers no execution capability."""
@@ -484,13 +495,24 @@ class Controller:
             self._state.setdefault("failures", []).append(update)
         # Validation of a prospective plan must never create execution state.
         if self._state["status"] == "RUNNING" and (self.science / "run.json").exists():
-            self.operational.mkdir(parents=True, exist_ok=True)
-            save(self.operational / "progress.json", update)
-            save(self.operational / "state.json", self._state)
-            with (self.operational / "progress.log").open("ab") as stream:
-                stream.write((json.dumps(update, sort_keys=True) + "\n").encode())
+            self.persist_operational(update)
         if self.reporter:
-            self.reporter.emit(update)
+            notify_operational(self.reporter.emit, update)
+
+    def persist_operational(self, update: dict[str, Any]) -> None:
+        """Telemetry failure cannot defeat required immutable scientific journals."""
+        results = (
+            append_operational(self.operational / "progress.log", update),
+            operational_snapshot(self.operational / "progress.json", update),
+            operational_snapshot(self.operational / "state.json", self._state),
+        )
+        if not all(results):
+            self._state["telemetry_unavailable"] = True
+            if self.reporter:
+                notify_operational(
+                    self.reporter.emit,
+                    {"case": "cohort", "stage": "telemetry", "status": "UNAVAILABLE"},
+                )
 
     def progress(self, case: str, stage: str, status: str, **fields: Any) -> None:
         """Persist reconstructible status and operational progress without authority."""
@@ -515,12 +537,8 @@ class Controller:
             **fields,
         }
         if self.reporter:
-            self.reporter.emit(update)
-        save(self.operational / "progress.json", update)
-        save(self.operational / "state.json", self._state)
-        self.operational.mkdir(parents=True, exist_ok=True)
-        with (self.operational / "progress.log").open("ab") as stream:
-            stream.write((json.dumps(update, sort_keys=True) + "\n").encode())
+            notify_operational(self.reporter.emit, update)
+        self.persist_operational(update)
 
     def stage_root(self, case: str, stage: str) -> Path:
         """Resolve only owned isolated worker directories."""
@@ -558,6 +576,40 @@ class Controller:
             "Environment may not inject repository or prior Codex sessions",
         )
         return {name: os.environ[name] for name in names if name in os.environ}
+
+    async def semantic_primary(self, root: Path, case: str, environment: Any) -> Any:
+        """Host owns disclosure, review bytes and builder; model owns judgments."""
+        config = self.value["semantic"]
+        logs = self.operational / "logs" / case / "C-semantic"
+        result = await semantic.primary(
+            config,
+            binary(root / "packet.json"),
+            binary(root / config["prompt_file"]),
+            config["response_schema"],
+            self.run_id + "/" + case + "/C",
+            logs,
+            environment,
+            self.value["timeouts"]["worker"],
+            self.value["timeouts"]["grace"],
+            observer=lambda event: self.operational_event(case, "C", event),
+            metadata={"operation": "GOLD", "process_role": "blind semantic gold"},
+        )
+        packet = load(root / "packet.json")
+        exclusive(
+            root / "stage_c_review.json",
+            semantic.review(result["payload"], packet, config),
+        )
+        await self.process(
+            expand(
+                config["builder_argv"],
+                {"python": sys.executable, "workspace": str(root)},
+            ),
+            root,
+            case,
+            "C-builder",
+            "validation",
+        )
+        return result
 
     async def process(
         self,
@@ -774,7 +826,7 @@ class Controller:
                     config = self.value["semantic"]
                     if config["kind"] == "codex":
                         version = await self.process(
-                            [codex.argv(config, root)[0], "--version"],
+                            [codex.executable(config), "--version"],
                             root,
                             case_id,
                             "C-version",
@@ -785,6 +837,7 @@ class Controller:
                             == "codex-cli " + config["cli_version"],
                             "Codex CLI version differs; no reviewer entered",
                         )
+                        runtime.authenticate_configuration(config)
                     preserve_packet(root, inputs)
                     require(
                         {p.name for p in root.iterdir()} == set(inputs),
@@ -824,14 +877,8 @@ class Controller:
                                 else {},
                             )
                             env["CODEX_HOME"] = str(auth_root)
-                            result = await self.process(
-                                codex.argv(config, root),
-                                root,
-                                case_id,
-                                stage,
-                                environment=env,
-                            )
-                            thread = parse_codex_turn_output(result.stdout).thread_id
+                            result = await self.semantic_primary(root, case_id, env)
+                            thread = result["provenance"]["thread_id"]
                             require(
                                 thread not in self.thread_ids,
                                 "Reviewer conversation reused across cases",
