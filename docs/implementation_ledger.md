@@ -1,5 +1,16 @@
 # Implementation Ledger
 
+## Host-disclosure replacement prospective plan (2026-10-14)
+
+Published a separate [unapproved v2 plan](../experiments/source_grounding/plans/HOST_DISCLOSURE_PLAN_REVIEW.md)
+for Cases 0022/0023/0024, bound to Stage A
+`f1c0839bba3e39bc3973099164c48d46e5bf631a`, current controller/runtime and successful
+synthetic smoke receipt. Deterministic rebuild and candidate input authentication
+pass. Actual plan CHECKPOINT commands pass over materialized invalid generated
+payloads while maintained defects fail. Committed prospective authentication is
+required before completion; plan validation grants no authority. No new approval,
+scientific run, treatment, gold, D, child or confirmation/reserve access occurs.
+
 ## Replacement source-grounding prospective Stage A (2026-10-14)
 
 The [superseding review](../experiments/source_grounding/REPLACEMENT_STAGE_A_REVIEW.md)

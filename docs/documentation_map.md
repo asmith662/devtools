@@ -700,3 +700,8 @@ positions 6/7/8 and parent-only authoring. It preserves all six original 0022 fi
 and supersedes runtime/implementation bindings using the successful host-disclosure
 smoke receipt. A separate prospective unapproved plan must bind its exact commit;
 old failed-run approvals remain historical-only.
+
+The [host-disclosure prospective plan review](../experiments/source_grounding/plans/HOST_DISCLOSURE_PLAN_REVIEW.md)
+owns the separate unapproved v2 plan for 0022/0023/0024 and its exact Stage A,
+runtime receipt, implementation/static-scope and run identity. PLAN_VALID remains
+distinct from execution authorization; no replacement scientific run is entered.
