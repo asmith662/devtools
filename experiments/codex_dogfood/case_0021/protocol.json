@@ -1,0 +1,93 @@
+{
+  "authoring_basis": {
+    "src/devtools/model_serving/errors.py": "28d838a8b2cbd56a10084149458a1707e665a0a9b2fe0b3cdd1c624f5cee64dd",
+    "src/devtools/model_serving/vllm.py": "e21084bffa9c12117a5671cd860390a61ef41acd60284a023fcaaab2beaba6ea",
+    "tests/model_serving/test_vllm.py": "06fe61e12bfd6f83ea6856d44bd68976e7c22a8d03b6dd87daf61af0036bcabd"
+  },
+  "case": "0021",
+  "frame": {
+    "corpus_id": "4279b61e2fb7f756490cdffb137eb4c6587f46c45966916013ebd19951a76c80",
+    "parent_tree": "ff4a59a4d595ea98280dc079f9eb3b509104acd3",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "588beb05a112a7d647ee42bf2fb2051c477947dd8f8049c3ac689143ae3dad34"
+  },
+  "obligations": [
+    {
+      "exact_route": "NOT_APPLICABLE",
+      "exclusions": "No changed serving provider, speculative modern vLLM flags, general telemetry platform or live Docker execution requirement.",
+      "facts": "Detached Docker launch, exact owned container identity, readiness polling, stopped-container and timeout exceptions, available diagnostic command/result surfaces.",
+      "gap": "No blocking task interpretation gap. Diagnostic representation, bounded volume and API names are design freedom; no provider/version feature is assumed.",
+      "id": "O1",
+      "information_need_identity": "N1",
+      "need": "Where do vLLM startup, readiness and container diagnostics originate and where can failure context be lost?",
+      "obligation_identity": {
+        "task": "case-0021:historical-development-005",
+        "value": "O1"
+      },
+      "query": "vLLM startup failure readiness timeout container diagnostics logs error",
+      "query_identity": {
+        "task": "case-0021:historical-development-005",
+        "value": "Q1"
+      },
+      "requirement": "Preserve vLLM startup failure diagnostics.",
+      "routing": "LEXICAL",
+      "satisfaction": "Keep useful bounded launch/readiness failure context available to the caller when startup fails, including failures after a successful detached launch, rather than losing it during cleanup or replacing the original failure."
+    },
+    {
+      "exact_route": "NOT_APPLICABLE",
+      "exclusions": "No restart/retry policy, destructive changes to unrelated containers, service-management redesign or historical child test names.",
+      "facts": "Owned-container cleanup, inspection failure, cancellation, bounded command outputs, readiness error contracts and fake-executor tests.",
+      "gap": "No blocking task interpretation gap. Diagnostic representation, bounded volume and API names are design freedom; no provider/version feature is assumed.",
+      "id": "O2",
+      "information_need_identity": "N2",
+      "need": "Which ownership, cleanup, command failure and exception contracts must diagnostic preservation retain?",
+      "obligation_identity": {
+        "task": "case-0021:historical-development-005",
+        "value": "O2"
+      },
+      "query": "vLLM ownership cleanup startup exception command output diagnostic failure tests",
+      "query_identity": {
+        "task": "case-0021:historical-development-005",
+        "value": "Q2"
+      },
+      "requirement": "Preserve serving lifecycle safety and validate the diagnostic behavior.",
+      "routing": "LEXICAL",
+      "satisfaction": "Maintain exact-container ownership, cleanup and exception lineage; diagnostic collection failure must not erase the primary startup failure. Test representative launch/readiness/diagnostic failures deterministically and document the supported boundary."
+    }
+  ],
+  "parent_frame": {
+    "corpus_id": "4279b61e2fb7f756490cdffb137eb4c6587f46c45966916013ebd19951a76c80",
+    "python_resource_count": 182,
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 222,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "588beb05a112a7d647ee42bf2fb2051c477947dd8f8049c3ac689143ae3dad34",
+    "source_head": "512cf5559dbb346e361145ffe1a5bbacdd4ca566",
+    "source_tree": "ff4a59a4d595ea98280dc079f9eb3b509104acd3"
+  },
+  "population": {
+    "case_id": "historical-development-005",
+    "frame": {
+      "kind": "GIT_PARENT_TREE",
+      "native_repository_snapshot": "NOT_CONSTRUCTED",
+      "parent_commit": "512cf5559dbb346e361145ffe1a5bbacdd4ca566",
+      "parent_tree": "ff4a59a4d595ea98280dc079f9eb3b509104acd3"
+    },
+    "population_id": "devtools-historical-development-extension-v1",
+    "schema": "historical-development-public-task-v1",
+    "selection_position": 5,
+    "task_source": {
+      "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+      "provenance_reference": "historical-development-005/commit-message",
+      "task_sha256": "60b10eb5028fd0fc4e82b06cb5e5339d8124bc7d71e0e5fddca70a1e35d10f13"
+    },
+    "task_text": "Preserve vLLM startup failure diagnostics\n",
+    "title": "Preserve vLLM startup failure diagnostics"
+  },
+  "protocol_sha256": "9a88f322c39f7fd8bf19c938fd53cd2005769f8374829e18d5cb8f3bce84ae5a",
+  "schema": "source-grounding-case-stage-a-v1",
+  "status": "FROZEN / NOT_AUTHORIZED / NOT_EXECUTED",
+  "task_identity": "case-0021:historical-development-005",
+  "task_text": "Preserve vLLM startup failure diagnostics\n"
+}

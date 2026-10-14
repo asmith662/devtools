@@ -650,3 +650,13 @@ The [controller authority correction](../experiments/orchestration/engineering/a
 records the separate Stage A/plan commits, unapproved plan authentication and
 explicit one-command maintainer approval/execution boundary. Plan validity and
 execution authority are distinct; legacy scientific results are unchanged.
+
+The [purpose-relative source-grounding protocol](../experiments/source_grounding/README.md)
+and [Stage A review](../experiments/source_grounding/STAGE_A_REVIEW.md) own the
+prospective Cases 0020-0022 cohort: canonical lexical A, unchanged BROAD direct
+References, own-content three-way source grounding and grounded-only QUALIFIED
+support, without ranking changes. Independent blind gold and deterministic D
+remain future work. Stage A is followed by a separate unapproved v2 controller
+plan bound to its exact commit; neither checkpoint authorizes execution. This
+experiment promotes no production Localization or acquisition policy and opens
+no child holdout, confirmation or reserve.

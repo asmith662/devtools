@@ -1,5 +1,21 @@
 # Implementation Ledger
 
+## Purpose-relative source-grounding prospective Stage A (2026-10-14)
+
+Recovered the interrupted uncommitted scientific-design candidate without reset,
+deletion or reroll. [Stage A review](../experiments/source_grounding/STAGE_A_REVIEW.md)
+records public historical-development positions 4-6 as Cases 0020-0022, exact
+parent-only frames, canonical A, unchanged BROAD and own-content grounding before
+QUALIFIED direct support. Rankings remain unchanged. The experiment owns its
+future Sol/High treatment, independent Astra/High primary, exact import and
+deterministic analysis adapters; production and backlog promotion are unchanged.
+Original candidates are preserved operationally; neither publication boundary
+had completed before shutdown. Synthetic contracts, protected development and
+scoped static checks precede publication. A separate prospective v2 plan must
+bind the exact scientific commit. No approval, scientific entry, semantic-model
+call, treatment, gold, Stage D, child holdout or confirmation/reserve access
+occurs here.
+
 ## Case 0015 R2 primary publication and effectiveness (2026-10-12)
 
 Imported the completed clean GPT-6 Astra / High primary byte-for-byte, authenticated
