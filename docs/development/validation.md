@@ -81,3 +81,11 @@ Scientific run payloads additionally use explicit Git data attributes to retain
 original CRLF and meaningful whitespace. Their byte hashes, schemas and
 stage-specific deterministic validators remain mandatory; imported data are not
 code to normalize. Controller implementation files retain whitespace checks.
+
+Active experiment adapter static commands must name deterministic maintained
+implementation file addresses. LOCAL, CHECKPOINT and FINAL must not recursively
+discover `runs/`, generated PREPARATION/PACKET programs or immutable primary bytes.
+Generated payloads retain packet schemas, exact byte identity, hashes, standalone
+validators and deterministic replay; excluding them from implementation style
+checks does not waive scientific validation. The source-grounding scope regression
+materializes hostile generated payloads and verifies maintained defects still fail.

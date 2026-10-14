@@ -1,5 +1,17 @@
 # Implementation Ledger
 
+## Experiment controller live visibility and failure preservation (2026-10-14)
+
+Preserved the approved blocked source-grounding run before removing only its
+byte-verified untracked repository candidates. The [engineering record](../experiments/orchestration/engineering/observability/README.md)
+pins archive manifest, approval checkpoint and failure provenance. No B/C/D,
+retrieval, References or model worker entered that run. Added flushed stderr
+lifecycle events, live exact child logs, explicit process timestamps, heartbeat,
+nested semantic operational reporting and read-only status follow. Uncommitted
+publication candidates now block status. Synthetic processes validate visibility;
+protected development validation precedes publication. Production behavior,
+scientific semantics, authority and no-retry policy remain unchanged.
+
 ## Purpose-relative source-grounding prospective Stage A (2026-10-14)
 
 Recovered the interrupted uncommitted scientific-design candidate without reset,

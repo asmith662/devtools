@@ -1,0 +1,23 @@
+{
+  "schema": "experiment-failure-preservation-v1",
+  "run_id": "5cb532eb162b3d8f7cf7c8f96c424c9a9d905307b19fbe18ad7a99ee7e91dc7a",
+  "approval_commit": "5afa0433d3720c03714cd1d57d641af55c014612",
+  "status": "FAILED/BLOCKED",
+  "failure_class": "GENERATED_ARTIFACT_SCOPE_DEFECT",
+  "failed_operation": "cohort/PACKET-checkpoint-1",
+  "failed_argv": ["uv", "run", "ruff", "check", "experiments/source_grounding"],
+  "exit_code": 1,
+  "diagnostics": 1221,
+  "packet_publication": "UNPUBLISHED",
+  "approval_disposition": "HISTORICAL_ONLY_FOR_ORIGINAL_BYTES",
+  "archive_root": ".local/experiment-failures/5cb532eb162b3d8f7cf7c8f96c424c9a9d905307b19fbe18ad7a99ee7e91dc7a",
+  "manifest_sha256": "8e931a868bf204e4ea4ef2c8074df83bd54a47eb01fb49ee3ed1b02a10d693b9",
+  "archive_entries": 208,
+  "archive_bytes": 17208113,
+  "repository_candidates": 51,
+  "repository_candidate_bytes": 6848242,
+  "scientific_entered": {"B": 0, "lexical_acquisition": 0, "References": 0, "Sol": 0, "C": 0, "Astra": 0, "gold": 0, "D": 0},
+  "automatic_scientific_retries": 0,
+  "preserved_originals": ["tracked approval", ".local/experiment-runs/old-run-id", "C:/ExperimentWorkers/old-run-id"],
+  "removed_originals": "Only authenticated untracked repository candidates, after copy and byte verification"
+}

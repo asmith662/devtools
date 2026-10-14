@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: T201, PLC0415, ASYNC240 -- human operator CLI
+# ruff: noqa: T201, PLC0415, ASYNC240, PLR0915 -- human operator CLI
 """Plan/run/resume/status/verify approved experiment cohorts."""
 
 from __future__ import annotations
@@ -8,12 +8,15 @@ import argparse
 import asyncio
 import getpass
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
 from experiments.orchestration.authority import ApprovalRequest
 from experiments.orchestration.controller import Controller, implementation
+from experiments.orchestration.follow import follow, snapshot
 from experiments.orchestration.model import RunPlan
+from experiments.orchestration.observation import Console
 from experiments.orchestration.publication import Repository
 from experiments.orchestration.storage import load, require, safe
 
@@ -106,11 +109,25 @@ async def main() -> None:
     parser.add_argument("--repository", type=Path, default=Path.cwd())
     parser.add_argument("--work-root", type=Path)
     parser.add_argument(
+        "--follow",
+        action="store_true",
+        help="Read-only live status; Ctrl-C detaches",
+    )
+    parser.add_argument("--json", action="store_true", help="JSON status/follow output")
+    parser.add_argument(
         "--approve",
         metavar="RUN_ID",
         help="Explicit maintainer grant for this exact reviewed run",
     )
     args = parser.parse_args()
+    require(not args.follow or args.command == "status", "--follow is status-only")
+    require(
+        not args.follow
+        or (args.identity is not None and not args.identity.endswith(".json")),
+        "--follow requires a run ID",
+    )
+    require(not args.json or args.command == "status", "--json is status-only")
+    console = Console()
     root = args.repository.resolve()
     require(
         args.approve is None or args.command == "run",
@@ -119,6 +136,15 @@ async def main() -> None:
     result: Any
     if args.command == "adopt":
         result = await adopt_completed(root)
+    elif (
+        args.command == "status"
+        and args.identity
+        and not args.identity.endswith(".json")
+    ):
+        if args.follow:
+            await follow(root, args.identity, Console(json_output=args.json))
+            return
+        result = await snapshot(root, args.identity)
     elif args.command in {"plan", "run", "verify-approval"} or (
         args.command == "status" and args.identity and args.identity.endswith(".json")
     ):
@@ -133,6 +159,7 @@ async def main() -> None:
             args.work_root.resolve()
             if args.work_root
             else root.parent / "controller-status-unused",
+            reporter=console,
         )
         result = await prospective_command(controller, args.command, args.approve)
     else:
@@ -164,7 +191,7 @@ async def main() -> None:
             if args.work_root
             else root.parent / "controller-status-unused"
         )
-        controller = Controller(repo, plan, work)
+        controller = Controller(repo, plan, work, reporter=console)
         controller.approved_head = run["approval_checkpoint"]
         if args.command == "resume":
             result = await controller.run(
@@ -185,4 +212,31 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        Console().emit(
+            {
+                "operation": "viewer" if "--follow" in sys.argv else "controller",
+                "status": "DETACHED" if "--follow" in sys.argv else "CANCELLED",
+            },
+        )
+    except (ValueError, OSError, KeyError) as error:
+        Console().emit(
+            {
+                "operation": "authentication-or-boundary",
+                "status": "FAILED",
+                "failure_category": "AUTHENTICATION_OR_BOUNDARY",
+                "error": str(error),
+            },
+        )
+        print(
+            json.dumps(
+                {
+                    "status": "BLOCKED; MAINTAINER_DECISION_REQUIRED",
+                    "failure_category": "AUTHENTICATION_OR_BOUNDARY",
+                    "error": str(error),
+                },
+            ),
+        )
+        raise SystemExit(1) from error

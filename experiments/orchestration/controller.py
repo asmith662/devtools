@@ -45,6 +45,13 @@ from experiments.orchestration.model import (
     StageState,
     validation_tier,
 )
+from experiments.orchestration.observation import (
+    PROCESS_FIELDS,
+    Console,
+    diagnostic,
+    observed_wait,
+    process_metadata,
+)
 from experiments.orchestration.publication import Repository
 from experiments.orchestration.storage import (
     binary,
@@ -84,7 +91,13 @@ def implementation() -> dict[str, str]:
 class Controller:
     """Run one immutable approved fixed Stage A/packet/B/C/import/D lifecycle."""
 
-    def __init__(self, repository: Repository, plan: RunPlan, work_root: Path) -> None:
+    def __init__(
+        self,
+        repository: Repository,
+        plan: RunPlan,
+        work_root: Path,
+        reporter: Console | None = None,
+    ) -> None:
         """Bind distinct canonical and isolated computation roots."""
         no_links(work_root)
         work_root = resolve_path(work_root).value
@@ -117,6 +130,8 @@ class Controller:
             "publications": {},
             "automatic_scientific_retries": 0,
         }
+        self.reporter = reporter
+        self.verified_publications: set[str] = set()
         self.thread_ids: set[str] = set()
         self.approved_head = ""
         self.validated_head = ""
@@ -150,8 +165,13 @@ class Controller:
         root: Path,
         plan_address: str,
         work_root: Path,
+        reporter: Console | None = None,
     ) -> Controller:
         """Validate a committed prospective plan without granting execution authority."""
+        if reporter:
+            reporter.emit(
+                {"operation": "controller-authentication", "status": "STARTED"},
+            )
         plan_path = safe(root, plan_address)
         repo = Repository(root, push=False)
         head = (await repo.git("rev-parse", "HEAD")).decode().strip()
@@ -171,8 +191,23 @@ class Controller:
             value["publication"]["remote"],
             value["publication"]["push"],
         )
-        await repo.authenticate(head)
+        await observed_wait(
+            repo.authenticate(head),
+            reporter.emit if reporter else None,
+            {"operation": "controller-authentication"},
+        )
         controller = cls(repo, plan, work_root)
+        controller.reporter = reporter
+        controller.operational_event(
+            "cohort",
+            "controller",
+            {"operation": "controller-authentication", "status": "COMPLETE"},
+        )
+        controller.operational_event(
+            "cohort",
+            "controller",
+            {"operation": "plan-authentication", "status": "STARTED"},
+        )
         controller.validated_head = head
         controller.plan_address = plan_address
         controller.plan_checkpoint = (
@@ -192,6 +227,11 @@ class Controller:
                 controller.plan_checkpoint,
             )
         await controller.authenticate_plan_inputs(head)
+        controller.operational_event(
+            "cohort",
+            "controller",
+            {"operation": "plan-authentication", "status": "COMPLETE"},
+        )
         return controller
 
     async def authenticate_plan_inputs(self, head: str) -> None:
@@ -225,12 +265,25 @@ class Controller:
                 digest(content) == artifact["sha256"],
                 "Stage A artifact digest differs",
             )
-        for address, sha in value["implementation"].items():
+        for index, (address, sha) in enumerate(value["implementation"].items()):
             committed = await repo.git("show", head + ":" + address)
             require(
                 digest(committed) == sha and binary(safe(root, address)) == committed,
                 "Adapter implementation changed",
             )
+            if index % 32 == 0:
+                self.operational_event(
+                    "cohort",
+                    "controller",
+                    {
+                        "operation": "plan-authentication",
+                        "status": "PROGRESS",
+                        "operation_progress": {
+                            "current": index + 1,
+                            "total": len(value["implementation"]),
+                        },
+                    },
+                )
         for case in self.plan.cases:
             await self.input_files(case)
 
@@ -308,7 +361,7 @@ class Controller:
                 authenticate_approval(value, self.approval_binding(self.validated_head))
                 await self.authenticate_plan_inputs(self.validated_head)
 
-            await self.repository.commit(
+            await self.observed_publication(
                 "APPROVAL",
                 self.approval_prefix,
                 {"approval.json": json_bytes(value)},
@@ -383,6 +436,62 @@ class Controller:
         self._authorization = result
         return result
 
+    def semantic_summary(self) -> dict[str, Any]:
+        """Report observed entry separately from model OS-process acquisition."""
+        models = self._state.get("semantic_processes", {})
+        return {
+            "B_entered": any(self.science.glob("journal/*/B/ENTERED.json")),
+            "Sol_launched": any(
+                v.get("process_role") == "source grounding" and v.get("pid")
+                for v in models.values()
+            ),
+            "C_entered": any(self.science.glob("journal/*/C/ENTERED.json")),
+            "Astra_launched": any(
+                v.get("process_role") == "blind semantic gold" and v.get("pid")
+                for v in models.values()
+            ),
+            "gold_exists": any(self.science.glob("journal/*/import/RETURNED.json"))
+            or any(self.science.glob("journal/*/C/RETURNED.json")),
+            "automatic_scientific_retries": 0,
+        }
+
+    def operational_event(self, case: str, stage: str, event: dict[str, Any]) -> None:
+        """Render process observations without declaring scientific completion."""
+        update = {
+            "timestamp": str(Timestamp.now()),
+            "elapsed_seconds": time.perf_counter() - self.started,
+            "run_id": self.run_id,
+            "case": case,
+            "stage": stage,
+            "worker_type": "OPERATIONAL",
+            "completed": 0,
+            "total": len(self.plan.cases) * 5 + 1,
+            **event,
+        }
+        if event.get("semantic"):
+            self._state.setdefault("semantic_processes", {})[
+                case + "/" + str(event.get("process_role", stage))
+            ] = update
+        if "argv" in event:
+            self._state.setdefault("process_observations", {})[case] = update
+        if event.get("status") == "FAILED":
+            update["semantic_summary"] = self.semantic_summary()
+            self._state["last_failure"] = update
+            self._state.setdefault(
+                "failure_category",
+                event.get("failure_category", "UNKNOWN"),
+            )
+            self._state.setdefault("failures", []).append(update)
+        # Validation of a prospective plan must never create execution state.
+        if self._state["status"] == "RUNNING" and (self.science / "run.json").exists():
+            self.operational.mkdir(parents=True, exist_ok=True)
+            save(self.operational / "progress.json", update)
+            save(self.operational / "state.json", self._state)
+            with (self.operational / "progress.log").open("ab") as stream:
+                stream.write((json.dumps(update, sort_keys=True) + "\n").encode())
+        if self.reporter:
+            self.reporter.emit(update)
+
     def progress(self, case: str, stage: str, status: str, **fields: Any) -> None:
         """Persist reconstructible status and operational progress without authority."""
         self._state["stages"][case + "/" + stage] = {"status": status, **fields}
@@ -405,6 +514,8 @@ class Controller:
             "status": status,
             **fields,
         }
+        if self.reporter:
+            self.reporter.emit(update)
         save(self.operational / "progress.json", update)
         save(self.operational / "state.json", self._state)
         self.operational.mkdir(parents=True, exist_ok=True)
@@ -461,6 +572,14 @@ class Controller:
         logs = self.operational / "logs" / case / stage
         logs.mkdir(parents=True, exist_ok=True)
         invocation_logs = logs / f"{len(tuple(logs.iterdir())):06}"
+        metadata: dict[str, Any] = {"operation": stage}
+        if stage == "C":
+            metadata.update(process_metadata(self.value["semantic"], workspace))
+            metadata["process_role"] = "blind semantic gold"
+
+        def observe(event: dict[str, Any]) -> None:
+            self.operational_event(case, stage, event)
+
         operation = asyncio.create_task(
             invoke(
                 argv,
@@ -469,51 +588,63 @@ class Controller:
                 self.value["timeouts"][timeout],
                 self.value["timeouts"]["grace"],
                 invocation_logs,
+                observer=observe,
+                metadata=metadata,
             ),
         )
+        offset = 0
+        pending = b""
+        bridge = workspace / "operational.log"
+
+        def read_bridge() -> None:
+            nonlocal offset, pending
+            if stage != "B" or not bridge.is_file() or bridge.is_symlink():
+                return
+            try:
+                with bridge.open("rb") as stream:
+                    stream.seek(offset)
+                    raw = stream.read(65536)
+                    offset = stream.tell()
+                rows = (pending + raw).split(b"\n")
+                pending = rows.pop()[-65536:]
+                for row in rows:
+                    try:
+                        event = json.loads(row)
+                        if (
+                            isinstance(event, dict)
+                            and event.get("process_role") == "source grounding"
+                        ):
+                            observe({k: event[k] for k in PROCESS_FIELDS if k in event})
+                    except (ValueError, TypeError):
+                        pass  # A malformed operational observation grants no authority.
+            except OSError:
+                pass
+
         try:
             while not operation.done():
-                await asyncio.wait({operation}, timeout=1)
-                if not operation.done():
-                    try:
-                        fields = (
-                            load(workspace / "progress.json")
-                            if (workspace / "progress.json").exists()
-                            else {}
-                        )
-                        if not isinstance(fields, dict):
-                            fields = {}
-                    except (ValueError, OSError):
-                        fields = {}
-                    self.progress(
-                        case,
-                        stage,
-                        "RUNNING",
-                        operation_progress={
-                            k: fields[k]
-                            for k in ("operation", "current", "total")
-                            if k in fields
-                        },
-                        heartbeat=True,
-                    )
+                await asyncio.wait({operation}, timeout=0.2)
+                read_bridge()
             result = await operation
+            read_bridge()
         except BaseException:
             operation.cancel()
             await asyncio.gather(operation, return_exceptions=True)
             raise
-        if stage not in {"prepare", "packet", "B", "C", "import", "D"}:
-            self.progress(
-                case,
-                stage,
-                "PROCESS_FAILED"
-                if result.failed or result.stdout_truncated
-                else "PROCESS_RETURNED",
-                exit_code=result.exit_code,
-                duration_seconds=result.duration.total_seconds,
-            )
         require(
-            not result.failed and not result.stdout_truncated,
-            "Worker failed/timed out/truncated; no retry",
+            not result.failed
+            and not result.stdout_truncated
+            and not result.stderr_truncated,
+            "Process failed: "
+            + case
+            + "/"
+            + stage
+            + "; "
+            + str(
+                self._state.get("last_failure", {}).get("failure_category", "UNKNOWN"),
+            )
+            + "; logs="
+            + str(invocation_logs)
+            + "; no automatic retry",
         )
         return result
 
@@ -526,9 +657,39 @@ class Controller:
             stage + "-validate",
             "validation",
         )
-        receipt = json.loads(result.stdout.decode().splitlines()[-1])
-        require(receipt["status"] == "PASS", "Validator rejected candidate")
-        return receipt
+        try:
+            receipt = json.loads(result.stdout.decode().splitlines()[-1])
+            require(receipt["status"] == "PASS", "Validator rejected candidate")
+            return receipt
+        except (ValueError, KeyError, IndexError) as error:
+            self.failure_event(case, stage + "-validate", error, "VALIDATOR_REJECTION")
+            raise
+
+    def failure_event(
+        self,
+        case: str,
+        stage: str,
+        error: BaseException,
+        category: str,
+    ) -> None:
+        """Show rejection after a zero exit without hiding the last process logs."""
+        previous = self._state.get("process_observations", {}).get(case, {})
+        event = {k: previous[k] for k in PROCESS_FIELDS if k in previous}
+        event.update(
+            timestamp=str(Timestamp.now()),
+            status="FAILED",
+            operation=stage,
+            failure_category=category,
+            error=str(error),
+        )
+        for field, name in (
+            ("stdout_tail", "stdout_path"),
+            ("stderr_tail", "stderr_path"),
+        ):
+            if event.get(name):
+                event[field] = diagnostic(Path(event[name]))
+        event["first_diagnostic"] = str(error)
+        self.operational_event(case, stage, event)
 
     async def worker(
         self,
@@ -541,6 +702,7 @@ class Controller:
             return await self._worker(case, stage, inputs)
         except (ValueError, OSError, KeyError) as error:
             self.blocked = True
+            self.failure_event(case.identity, stage, error, "PRE_ENTRY_REJECTION")
             self.progress(
                 case.identity,
                 stage,
@@ -767,6 +929,7 @@ class Controller:
                     return receipt, files
                 except BaseException as error:
                     self.blocked = True
+                    self.failure_event(case_id, stage, error, "SCIENTIFIC_INTEGRITY")
                     exclusive(
                         self.journal(case_id, stage, "FAILED"),
                         {
@@ -841,6 +1004,15 @@ class Controller:
                     "tests/experiments/",
                 ],
             ]
+        self.operational_event(
+            "cohort",
+            boundary + "-" + tier,
+            {
+                "status": "STARTED",
+                "operation": "validation",
+                "operation_progress": {"current": 0, "total": len(commands)},
+            },
+        )
         for index, argv in enumerate(commands):
             result = await self.process(
                 expand(
@@ -853,6 +1025,71 @@ class Controller:
                 "validation",
             )
             require(not result.failed, "Checkpoint validation failed")
+            self.operational_event(
+                "cohort",
+                boundary + "-" + tier,
+                {
+                    "status": "PROGRESS",
+                    "operation": "validation",
+                    "operation_progress": {
+                        "current": index + 1,
+                        "total": len(commands),
+                    },
+                },
+            )
+        self.operational_event(
+            "cohort",
+            boundary + "-" + tier,
+            {"status": "COMPLETE", "operation": "validation"},
+        )
+
+    async def observed_publication(
+        self,
+        boundary: str,
+        prefix: str,
+        files: dict[str, bytes],
+        subject: str,
+        validate: Any,
+    ) -> str:
+        """Report the existing serialized publisher; never retry ambiguous effects."""
+        stage = boundary + "-publication"
+        started = time.perf_counter()
+        self.operational_event(
+            "cohort",
+            stage,
+            {"operation": stage, "status": "STARTED"},
+        )
+        try:
+            commit = await observed_wait(
+                self.repository.commit(boundary, prefix, files, subject, validate),
+                lambda event: self.operational_event("cohort", stage, event),
+                {"operation": stage},
+            )
+        except BaseException as error:
+            self.operational_event(
+                "cohort",
+                stage,
+                {
+                    "operation": stage,
+                    "status": "FAILED",
+                    "error": str(error),
+                    "failure_category": "PUBLICATION",
+                    "duration_seconds": time.perf_counter() - started,
+                },
+            )
+            raise
+        self.verified_publications.add(boundary)
+        self.operational_event(
+            "cohort",
+            stage,
+            {
+                "operation": stage,
+                "status": "COMPLETE",
+                "commit": commit,
+                "duration_seconds": time.perf_counter() - started,
+            },
+        )
+        return commit
 
     async def publish(self, boundary: str, results: Any) -> None:
         """Serialize candidate publication in original case order, never completion order."""
@@ -875,7 +1112,7 @@ class Controller:
                         for n, raw in self.completed_files(receipt).items()
                     },
                 )
-        commit = await self.repository.commit(
+        commit = await self.observed_publication(
             boundary,
             self.prefix,
             files,
@@ -1056,7 +1293,7 @@ class Controller:
             # Cohort artifacts use one owner, not synthetic duplicate case results.
             marker = safe(self.science, "publications/D.json")
             if not marker.exists():
-                commit = await self.repository.commit(
+                commit = await self.observed_publication(
                     "D",
                     self.prefix,
                     {
@@ -1073,7 +1310,13 @@ class Controller:
         except (ValueError, OSError, KeyError) as error:
             self._state["status"] = "BLOCKED; MAINTAINER_DECISION_REQUIRED"
             self._state["failure_boundary"] = str(error)
-        self.progress("cohort", "run", self._state["status"])
+        self._state["semantic_summary"] = self.semantic_summary()
+        self.progress(
+            "cohort",
+            "run",
+            self._state["status"],
+            semantic_summary=self.semantic_summary(),
+        )
         return self.state
 
     def final_summary(self) -> dict[str, Any]:
@@ -1124,6 +1367,7 @@ class Controller:
                 digest(committed) == sha and binary(artifact) == committed,
                 "Published artifact changed",
             )
+        self.verified_publications.add(boundary)
         return commit
 
     async def verify(self) -> dict[str, Any]:
@@ -1165,6 +1409,11 @@ class Controller:
                 "Final operation journal integrity differs",
             )
             result["status"] = "COMPLETE; MAINTAINER_REVIEW_READY"
+        if (
+            set(result["publications"]) <= self.verified_publications
+            and "D" not in result["publications"]
+        ):
+            result["status"] = self.status()["status"]
         result["verification"] = "PASS"
         return result
 
@@ -1324,7 +1573,9 @@ class Controller:
         for receipt in (self.science / "publications").glob("*.json"):
             result["publications"][receipt.stem] = load(receipt)
         result["status"] = (
-            "COMPLETE_CANDIDATE; COMMITTED_VERIFICATION_REQUIRED"
+            "BLOCKED; MAINTAINER_DECISION_REQUIRED; PUBLICATION_AUTHENTICATION_REQUIRED"
+            if set(result["publications"]) - self.verified_publications
+            else "COMPLETE_CANDIDATE; COMMITTED_VERIFICATION_REQUIRED"
             if "D" in result["publications"]
             else "BLOCKED"
             if any(v.startswith("DEAD") for v in result["stages"].values())

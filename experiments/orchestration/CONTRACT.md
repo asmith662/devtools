@@ -230,3 +230,25 @@ Run-owned scientific artifacts use `-text -whitespace` publication attributes:
 raw CRLF/trailing-space data must not be normalized or rejected as code style.
 Artifact hashes, expected ownership and deterministic validators remain mandatory.
 The controller package itself retains whitespace checking with CR-at-EOL support.
+
+## Operational observation contract
+
+The [operational guide](engineering/observability/README.md) owns live event fields,
+15-second heartbeat semantics, stream retention and read-only follow behavior.
+UTC launch/exit observations and monotonic durations are persisted explicitly.
+Default events use stderr; final execution JSON remains stdout. Full child streams
+are mirrored before bounded event-queue loss; canonical capture bounds and failure
+policy remain unchanged. Model/prompt content is never printed by lifecycle events.
+
+An adapter may append JSONL `operational.log` in its outer B workspace to expose
+the nested grounding process. Only `observation.PROCESS_FIELDS` are forwarded;
+the role must be `source grounding`. This is an experiment-specific operational
+bridge, not a scientific input, completion proof, authority receipt, retry decision
+or framework Event/Trace/Telemetry substrate. It remains outside sterile reviewer
+inputs and scientific candidate sets. The maintained adapter pins its implementation
+through Stage A; bridge observations never alter scientific inputs or outputs.
+
+Implementation static validation uses explicit maintained file ownership in all
+tiers. Run payloads, imported primaries and generated builders retain their
+scientific schema/hash/replay checks and are excluded from source lint/type/style
+discovery. The mandatory FINAL controller/production floor remains required.

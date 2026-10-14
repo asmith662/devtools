@@ -10,16 +10,17 @@ import ctypes
 import os
 import signal
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 sys.path[:0] = [str(ROOT), str(ROOT / "src")]
 
 from devtools.core.paths import resolve_path
-from devtools.core.time import Duration
+from devtools.core.time import Duration, Timestamp
 from devtools.resources.commands import Command
 from devtools.resources.commands.events import CommandStderr, CommandStdout
-from experiments.orchestration.storage import load, require
+from experiments.orchestration.storage import load, require, save
 from experiments.orchestration.workers.process import TreeExecutor
 
 
@@ -88,6 +89,7 @@ async def main() -> int:
         {n: os.environ[n] for n in spec["environment_names"] if n in os.environ},
         Path(spec["pid_file"]),
         spec["grace"],
+        Path(spec["log_root"]) if "log_root" in spec else None,
     )
     if os.name != "nt":
 
@@ -104,15 +106,40 @@ async def main() -> int:
         .cwd(resolve_path(spec["cwd"]))
         .with_timeout(Duration.seconds(spec["timeout"]))
     )
-    execution = executor.start(command)
-    async for event in execution.events():
-        if isinstance(event, CommandStdout):
-            sys.stdout.buffer.write(event.data)
-            sys.stdout.buffer.flush()
-        elif isinstance(event, CommandStderr):
-            sys.stderr.buffer.write(event.data)
-            sys.stderr.buffer.flush()
-    result = await execution
+    started = time.perf_counter()
+    try:
+        execution = executor.start(command)
+        async for event in execution.events():
+            if isinstance(event, CommandStdout):
+                sys.stdout.buffer.write(event.data)
+                sys.stdout.buffer.flush()
+            elif isinstance(event, CommandStderr):
+                sys.stderr.buffer.write(event.data)
+                sys.stderr.buffer.flush()
+        result = await execution
+    except BaseException as error:
+        if "log_root" in spec:
+            save(
+                Path(spec["log_root"]) / "child-exit.json",
+                {
+                    "status": "FAILED_OR_TIMEOUT",
+                    "error": type(error).__name__,
+                    "exit_utc": str(Timestamp.now()),
+                    "duration_seconds": time.perf_counter() - started,
+                },
+            )
+        raise
+    if "log_root" in spec:
+        save(
+            Path(spec["log_root"]) / "child-exit.json",
+            {
+                "status": "COMPLETE",
+                "exit_utc": str(Timestamp.now()),
+                "duration_seconds": result.duration.total_seconds,
+                "exit_code": result.exit_code,
+                "events_dropped": result.events_dropped,
+            },
+        )
     _ = job
     return result.exit_code
 

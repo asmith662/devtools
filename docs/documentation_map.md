@@ -660,3 +660,9 @@ remain future work. Stage A is followed by a separate unapproved v2 controller
 plan bound to its exact commit; neither checkpoint authorizes execution. This
 experiment promotes no production Localization or acquisition policy and opens
 no child holdout, confirmation or reserve.
+
+The [controller visibility and failed-run preservation record](../experiments/orchestration/engineering/observability/README.md)
+owns default live stderr lifecycle events, streaming logs, heartbeat semantics,
+read-only status follow and conservative publication status. It records the
+historical blocked source-grounding PACKET checkpoint and verified forensic
+archive; its old approval cannot authorize changed implementation bytes.

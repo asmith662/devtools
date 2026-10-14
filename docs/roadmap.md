@@ -47,6 +47,12 @@ supported-source static scopes. Immutable imported reviewer builders are not
 reformatted to satisfy blanket whole-repository style checks; the engineering
 report preserves those pre-existing failures and the scope rationale.
 
+The [live visibility increment](../experiments/orchestration/engineering/observability/README.md)
+adds stderr lifecycle events, streaming logs, heartbeat and read-only status follow.
+The approved source-grounding run stopped at an unpublished PACKET static check;
+its forensic archive and original approval are preserved. Changed implementation
+bytes require a separately reviewed replacement plan and new exact-run approval.
+
 The immediate sequence is:
 
 1. Automated experiment controller engineering increment.

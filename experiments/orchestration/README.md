@@ -54,9 +54,18 @@ Context and Runtime do not depend on it.
    never-entered run starts this way. An unapproved plan has nothing scientific
    to resume. Entered failures retain the existing dead-attempt semantics.
 
-No live scientific run plan is supplied by this increment. The next cohort is
-**PURPOSE_RELATIVE_SOURCE_GROUNDING / NOT_STARTED**. Do not manufacture a plan by
-copying the synthetic test fixture into a scientific protocol.
+The [live visibility and preservation record](engineering/observability/README.md)
+documents the blocked source-grounding run and operational reporting contract.
+Its old approval is historical-only after implementation changes. Replacement
+prospective checkpoints require separate maintainer review and new exact-run
+approval. Do not manufacture scientific authority from a synthetic test fixture.
+
+Normal execution flushes lifecycle events to stderr and leaves final JSON on
+stdout. Use `status <run-id> --follow` for a read-only live viewer, or add `--json`
+for JSONL. Ctrl-C detaches the viewer only. A 15-second heartbeat reports continued
+supervisor observation, not useful model progress. Full child logs flush during
+execution; failures immediately show diagnostics, identities and absolute log
+paths. Historical status authenticates original bindings even after code upgrades.
 
 ## Callable contract and ownership
 
