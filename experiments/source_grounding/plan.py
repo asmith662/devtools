@@ -19,9 +19,9 @@ from experiments.orchestration.controller import implementation
 from experiments.orchestration.model import RunPlan
 from experiments.orchestration.storage import require
 from experiments.source_grounding.cases import CASES
-from experiments.source_grounding.freeze import PACKAGE, PREFIX
+from experiments.source_grounding.freeze import PACKAGE, PREFIX, STAGE_A_PREFIX
 
-PLAN_ADDRESS = "experiments/source_grounding/plans/corrected-run-plan.json"
+PLAN_ADDRESS = "experiments/source_grounding/plans/host-disclosure-run-plan.json"
 
 
 def source_scope(bound_implementation: dict[str, str]) -> list[str]:
@@ -76,7 +76,7 @@ async def derive(checkpoint: str) -> Any:
     )
     integrity_raw = await git(
         "show",
-        checkpoint + ":" + PREFIX + "stage_a/integrity.json",
+        checkpoint + ":" + STAGE_A_PREFIX + "integrity.json",
     )
     integrity = json.loads(integrity_raw)
     cases = []
@@ -92,8 +92,8 @@ async def derive(checkpoint: str) -> Any:
             "INSTRUCTIONS_GROUNDING.md": PREFIX + "INSTRUCTIONS_GROUNDING.md",
             "INSTRUCTIONS_GOLD.md": PREFIX + "INSTRUCTIONS_GOLD.md",
             "reviewer_codec.py": PREFIX + "reviewer.py",
-            "implementation.json": PREFIX + "stage_a/integrity.json",
-            "worker_configuration.json": PREFIX + "stage_a/protocol.json",
+            "implementation.json": STAGE_A_PREFIX + "integrity.json",
+            "worker_configuration.json": STAGE_A_PREFIX + "protocol.json",
         }
         cases.append(
             {
@@ -147,28 +147,28 @@ async def derive(checkpoint: str) -> Any:
     checks = validation_commands(integrity["implementation"])
     value = {
         "schema": "experiment-controller-plan-v2",
-        "name": "purpose-relative-source-grounding-02",
-        "attempt": 2,
+        "name": "purpose-relative-source-grounding-host-disclosure-03",
+        "attempt": 3,
         "stage_a": {
             "checkpoint": checkpoint,
             "protocol": {
-                "path": PREFIX + "stage_a/protocol.json",
+                "path": STAGE_A_PREFIX + "protocol.json",
                 "sha256": digest(
                     await git(
                         "show",
-                        checkpoint + ":" + PREFIX + "stage_a/protocol.json",
+                        checkpoint + ":" + STAGE_A_PREFIX + "protocol.json",
                     ),
                 ),
             },
             "integrity": {
-                "path": PREFIX + "stage_a/integrity.json",
+                "path": STAGE_A_PREFIX + "integrity.json",
                 "sha256": digest(integrity_raw),
             },
         },
         "cases": cases,
         "commands": commands,
         "semantic": json.loads(
-            await git("show", checkpoint + ":" + PREFIX + "stage_a/protocol.json"),
+            await git("show", checkpoint + ":" + STAGE_A_PREFIX + "protocol.json"),
         )["workers"]["gold"],
         "publication": {
             "root": PREFIX + "runs",

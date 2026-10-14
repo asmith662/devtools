@@ -1,7 +1,10 @@
 # Purpose-relative source grounding and selective direct structural pursuit
 
 Prospective development experiment. Stage A only; no treatment or gold is present.
-The three cases are public historical-development positions 4–6, without reroll.
+The replacement cases are public historical-development positions 6–8, without reroll:
+0022 is reused exactly; 0023/0024 are the next untouched entries. Entered Cases
+0020/0021 were infrastructure-invalidated and cannot be retried or used as evidence.
+The original positions 4–6 protocol remains immutable historical authority.
 There is no production behavior change, promotion policy or cohort success gate.
 
 The completed broad experiment motivates this question but supplies no fitted

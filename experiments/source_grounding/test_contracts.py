@@ -22,7 +22,7 @@ from experiments.codex_dogfood.verification.journal import journal_type
 from experiments.codex_dogfood.verification.native import NativeMemo
 from experiments.orchestration.isolation import semantic_outputs, sterile
 from experiments.source_grounding import contracts, reviewer, workers
-from experiments.source_grounding.cases import CASES
+from experiments.source_grounding.cases import CASES, ORIGINAL_CASES
 from experiments.source_grounding.timing import summarize
 from experiments.source_grounding.workers import (
     authenticate_primary,
@@ -178,8 +178,9 @@ def grounding_review(p: Any) -> Any:
 
 
 def test_population_cases_and_authored_obligations() -> None:
-    assert list(CASES) == ["0020", "0021", "0022"]
-    assert [c["position"] for c in CASES.values()] == [4, 5, 6]
+    assert list(CASES) == ["0022", "0023", "0024"]
+    assert [c["position"] for c in CASES.values()] == [6, 7, 8]
+    assert CASES["0022"] == ORIGINAL_CASES["0022"]
     for case in CASES.values():
         assert [o["id"] for o in case["obligations"]] == ["O1", "O2"]
         assert case["gap"].strip()
@@ -497,6 +498,27 @@ def test_frozen_frame_bindings_without_treatment() -> None:
         assert not (root / "stage_b").exists() and not (root / "adjudication").exists()
     assert configuration("Sol")["model_id"] == "gpt-6-sol"
     assert configuration("Astra")["model_id"] == "gpt-6-astra"
+
+
+def test_replacement_frozen_parent_bindings_without_treatment() -> None:
+    expected = {
+        "0023": (
+            "66ed2049de72aa5c2762ab506174c711639bbbf8",
+            "4d49dcfea18f40762b70bbc11b60514db1c438ae",
+        ),
+        "0024": (
+            "1e712c29aec32d4911d7ca2372c27a04511c999c",
+            "b63225c8f037a8f2f8db0b7467d607a693d4d6af",
+        ),
+    }
+    for case, (parent, tree) in expected.items():
+        root = ROOT / f"experiments/codex_dogfood/case_{case}"
+        if not (root / "frame.json").exists():
+            # Source contracts also run before Stage A materialization.
+            continue
+        frame = json.loads((root / "frame.json").read_bytes())
+        assert (frame["source_head"], frame["source_tree"]) == (parent, tree)
+        assert not (root / "stage_b").exists() and not (root / "adjudication").exists()
 
 
 @pytest.mark.parametrize("field", ["case", "frame"])

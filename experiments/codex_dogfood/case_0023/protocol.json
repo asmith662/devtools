@@ -1,0 +1,94 @@
+{
+  "authoring_basis": {
+    "AGENTS.md": "60afe4779d59d7c9ebe6e029cc60ab148301c6c87502547a198e7ba6d929061c",
+    "src/devtools/context/python_declarations.py": "f1fbb9d964f6279d90dd972d6e6e06b7dd9a506c828a124213cd05b9b167c98e",
+    "src/devtools/context/repository.py": "2d3b99347bc501d14f58374e8420b8c7673dfd0d4920fdc32d90fe86e25ef1d3",
+    "tests/context/test_python_declarations.py": "6d43c576f689304084ef32a6b09b25b3004560332563566f6a902a0993e1e7a3"
+  },
+  "case": "0023",
+  "frame": {
+    "corpus_id": "87bffb6770173c29c8013903440b73039832ba2452258db1c867f3bf8d66d201",
+    "parent_tree": "4d49dcfea18f40762b70bbc11b60514db1c438ae",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "f8a2b1ca40eb6a5a58a98defc1442f40f2d64237e90c816e730774f9f9ccbe84"
+  },
+  "obligations": [
+    {
+      "exact_route": "NOT_APPLICABLE",
+      "exclusions": "No runtime execution, dynamic name resolution, prescribed child symbols, mandatory nested/method traversal expansion, lexical reranking or graph admission.",
+      "facts": "Declared function name, synchronous/asynchronous forms, snapshot-local subjects, source occurrences and derivation provenance in parent function declaration knowledge.",
+      "gap": "RESOLVED_WITH_EXPLICIT_QUALIFICATION: exact-name retrieval consumes supported static Python function declaration knowledge, not runtime bindings. The parent's direct module-body coverage remains explicit; nested/method expansion, API names and presentation are design freedom, not hidden requirements.",
+      "id": "O1",
+      "information_need_identity": "N1",
+      "need": "How can exact declared Python function names select source-grounded declaration knowledge while preserving subject and occurrence provenance?",
+      "obligation_identity": {
+        "task": "case-0023:historical-development-007",
+        "value": "O1"
+      },
+      "query": "python function declared name exact retrieval declaration knowledge subject source occurrence provenance",
+      "query_identity": {
+        "task": "case-0023:historical-development-007",
+        "value": "Q1"
+      },
+      "requirement": "Implement exact-name Python function retrieval.",
+      "routing": "LEXICAL",
+      "satisfaction": "Retrieve supported function declarations by exact declared-name equality, retaining each matching declaration's source, subject and derivation provenance; do not substitute substring/fuzzy matching or infer runtime binding identity."
+    },
+    {
+      "exact_route": "NOT_APPLICABLE",
+      "exclusions": "No automatic repository discovery, whole-program binding completeness, semantic relevance ranking, new universal retrieval framework or unrelated architecture migration.",
+      "facts": "Parent declaration coverage, parse errors, snapshot/resource identities, repeated names, synchronous/asynchronous declarations and integration/test conventions.",
+      "gap": "RESOLVED_WITH_EXPLICIT_QUALIFICATION: exact-name retrieval consumes supported static Python function declaration knowledge, not runtime bindings. The parent's direct module-body coverage remains explicit; nested/method expansion, API names and presentation are design freedom, not hidden requirements.",
+      "id": "O2",
+      "information_need_identity": "N2",
+      "need": "Which declaration coverage, snapshot identity and test contracts constrain deterministic exact-name function retrieval?",
+      "obligation_identity": {
+        "task": "case-0023:historical-development-007",
+        "value": "O2"
+      },
+      "query": "python function declaration coverage snapshot resource identity exact matching repeated names parse failure tests",
+      "query_identity": {
+        "task": "case-0023:historical-development-007",
+        "value": "Q2"
+      },
+      "requirement": "Bound, integrate and validate exact-name function retrieval.",
+      "routing": "LEXICAL",
+      "satisfaction": "Preserve explicit coverage and frame boundaries, distinguish successful no-match from unavailable analysis, retain repeated matching declarations deterministically, and validate/document exact matching and foreign-input handling under parent conventions."
+    }
+  ],
+  "parent_frame": {
+    "corpus_id": "87bffb6770173c29c8013903440b73039832ba2452258db1c867f3bf8d66d201",
+    "python_resource_count": 225,
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 320,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "f8a2b1ca40eb6a5a58a98defc1442f40f2d64237e90c816e730774f9f9ccbe84",
+    "source_head": "66ed2049de72aa5c2762ab506174c711639bbbf8",
+    "source_tree": "4d49dcfea18f40762b70bbc11b60514db1c438ae"
+  },
+  "population": {
+    "case_id": "historical-development-007",
+    "frame": {
+      "kind": "GIT_PARENT_TREE",
+      "native_repository_snapshot": "NOT_CONSTRUCTED",
+      "parent_commit": "66ed2049de72aa5c2762ab506174c711639bbbf8",
+      "parent_tree": "4d49dcfea18f40762b70bbc11b60514db1c438ae"
+    },
+    "population_id": "devtools-historical-development-extension-v1",
+    "schema": "historical-development-public-task-v1",
+    "selection_position": 7,
+    "task_source": {
+      "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+      "provenance_reference": "historical-development-007/commit-message",
+      "task_sha256": "406f82e07a4f5d6323ac06ef89f6ccccf8fc121933f4f4198195eb28711ba64d"
+    },
+    "task_text": "Implement exact-name Python function retrieval\n",
+    "title": "Implement exact-name Python function retrieval"
+  },
+  "protocol_sha256": "19e8596e340d023c45e5619cf742a2891cafaf9d09829b21cd7a302a78a5a07f",
+  "schema": "source-grounding-case-stage-a-v1",
+  "status": "FROZEN / NOT_AUTHORIZED / NOT_EXECUTED",
+  "task_identity": "case-0023:historical-development-007",
+  "task_text": "Implement exact-name Python function retrieval\n"
+}

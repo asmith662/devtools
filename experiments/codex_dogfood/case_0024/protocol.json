@@ -1,0 +1,93 @@
+{
+  "authoring_basis": {
+    "src/devtools/model_serving/errors.py": "57a7c7bb7d1ae2faa1068e0468b21bb0f487aa045b88421d170d25aa4ec56166",
+    "src/devtools/model_serving/vllm.py": "d69b21c07ddb5c636d4d887f06d6a99ba20bf3e6209e4c6c9fd13632663814bc",
+    "tests/model_serving/test_vllm.py": "de2e89d0b4ec5edefc7394dbd57cbfc6ba1ff2267bfe1c2be89a5628a7f1fe8d"
+  },
+  "case": "0024",
+  "frame": {
+    "corpus_id": "d79161fb36f8da1a6fba1a99f16c020e42beac7395019c63c18ba594d982b42f",
+    "parent_tree": "b63225c8f037a8f2f8db0b7467d607a693d4d6af",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939"
+  },
+  "obligations": [
+    {
+      "exact_route": "NOT_APPLICABLE",
+      "exclusions": "No KV-cache swap substitution, CPU-only backend, prescribed child field name or numeric tuning, GPU service execution, hardware provisioning or performance claim.",
+      "facts": "Immutable provider configuration, structural validation and deterministic Docker argv with a distinct vLLM provider argument segment.",
+      "gap": "No blocking task interpretation gap. CPU weight offload is an optional vLLM provider launch setting for model weights, not CPU-only execution or KV-cache swap. Configuration units/API/default representation remain design freedom; no provider-version availability or performance improvement is assumed.",
+      "id": "O1",
+      "information_need_identity": "N1",
+      "need": "How does provider configuration become deterministic vLLM Docker launch arguments for optional CPU model-weight offload?",
+      "obligation_identity": {
+        "task": "case-0024:historical-development-008",
+        "value": "O1"
+      },
+      "query": "vllm CPU weight offload serving configuration Docker provider launch model arguments",
+      "query_identity": {
+        "task": "case-0024:historical-development-008",
+        "value": "Q1"
+      },
+      "requirement": "Add vLLM CPU weight offload.",
+      "routing": "LEXICAL",
+      "satisfaction": "Represent a caller-selected CPU model-weight offload setting in the vLLM serving configuration and serialize it into the provider launch arguments, preserving exact model/revision, cache mount, GPU and server configuration ownership."
+    },
+    {
+      "exact_route": "NOT_APPLICABLE",
+      "exclusions": "No live model/Docker validation requirement, generic serving-provider framework, deployment/version compatibility assertion or throughput/latency guarantee.",
+      "facts": "Parent configuration constraints, default/disabled behavior, exact argv tests, managed container ownership, startup diagnostics and readiness/cleanup lifecycle.",
+      "gap": "No blocking task interpretation gap. CPU weight offload is an optional vLLM provider launch setting for model weights, not CPU-only execution or KV-cache swap. Configuration units/API/default representation remain design freedom; no provider-version availability or performance improvement is assumed.",
+      "id": "O2",
+      "information_need_identity": "N2",
+      "need": "Which vLLM configuration validation, default command and owned serving lifecycle contracts constrain CPU weight offload integration?",
+      "obligation_identity": {
+        "task": "case-0024:historical-development-008",
+        "value": "O2"
+      },
+      "query": "vllm offload configuration validation defaults deterministic command readiness ownership startup diagnostics tests",
+      "query_identity": {
+        "task": "case-0024:historical-development-008",
+        "value": "Q2"
+      },
+      "requirement": "Validate and integrate CPU weight offload without changing default serving behavior.",
+      "routing": "LEXICAL",
+      "satisfaction": "Reject structurally invalid offload configuration, define omitted/disabled behavior compatibly with the parent effective launch, retain deterministic serialization and owned readiness/cleanup diagnostics, and test/document the bounded provider configuration contract."
+    }
+  ],
+  "parent_frame": {
+    "corpus_id": "d79161fb36f8da1a6fba1a99f16c020e42beac7395019c63c18ba594d982b42f",
+    "python_resource_count": 182,
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "representation": "native exact decoded whole UTF-8 text; no windows/subtokens/fields changed",
+    "resource_count": 222,
+    "resource_order": "canonical resource address ascending",
+    "snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+    "source_head": "1e712c29aec32d4911d7ca2372c27a04511c999c",
+    "source_tree": "b63225c8f037a8f2f8db0b7467d607a693d4d6af"
+  },
+  "population": {
+    "case_id": "historical-development-008",
+    "frame": {
+      "kind": "GIT_PARENT_TREE",
+      "native_repository_snapshot": "NOT_CONSTRUCTED",
+      "parent_commit": "1e712c29aec32d4911d7ca2372c27a04511c999c",
+      "parent_tree": "b63225c8f037a8f2f8db0b7467d607a693d4d6af"
+    },
+    "population_id": "devtools-historical-development-extension-v1",
+    "schema": "historical-development-public-task-v1",
+    "selection_position": 8,
+    "task_source": {
+      "kind": "EXACT_ORIGINAL_GIT_COMMIT_MESSAGE",
+      "provenance_reference": "historical-development-008/commit-message",
+      "task_sha256": "70a0efcf2712fef7811bd256e82fd080dd6d7559623d656a4179317301d0e13b"
+    },
+    "task_text": "Add vLLM CPU weight offload\n",
+    "title": "Add vLLM CPU weight offload"
+  },
+  "protocol_sha256": "19e8596e340d023c45e5619cf742a2891cafaf9d09829b21cd7a302a78a5a07f",
+  "schema": "source-grounding-case-stage-a-v1",
+  "status": "FROZEN / NOT_AUTHORIZED / NOT_EXECUTED",
+  "task_identity": "case-0024:historical-development-008",
+  "task_text": "Add vLLM CPU weight offload\n"
+}

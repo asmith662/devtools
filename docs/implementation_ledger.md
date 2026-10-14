@@ -1,5 +1,17 @@
 # Implementation Ledger
 
+## Replacement source-grounding prospective Stage A (2026-10-14)
+
+The [superseding review](../experiments/source_grounding/REPLACEMENT_STAGE_A_REVIEW.md)
+freezes public positions 6/7/8 as Cases 0022/0023/0024 after published successful
+runtime engineering. Case 0022 retains all six original scientific files; new
+authoring uses public task and authenticated parent only. Entered infrastructure
+failures 0020/0021 stay invalidated and unused. The separate versioned global
+protocol/integrity bind tool-free host disclosure, exact-content evidence locators,
+host canonical projection and the successful live synthetic receipt. Scientific
+hypothesis, models, labels, witnesses, ranking/Reference semantics, D and economics
+are unchanged. No new science, gold, child, confirmation or reserve access occurs.
+
 ## Host-disclosed semantic worker hardening (2026-10-14)
 
 The [engineering boundary](../experiments/orchestration/engineering/host_disclosure/README.md)

@@ -34,6 +34,7 @@ from experiments.structural_discrimination.frames import (
 
 PACKAGE = Path(__file__).resolve().parent
 PREFIX = "experiments/source_grounding/"
+STAGE_A_PREFIX = PREFIX + "stage_a/host-disclosure-03/"
 STATUS = "FROZEN / NOT_AUTHORIZED / NOT_EXECUTED"
 
 
@@ -63,6 +64,13 @@ def implementations() -> dict[str, str]:
         ROOT / "experiments/bm25f/scoring.py",
         ROOT / "experiments/exact_hint_routing/behavior.py",
         ROOT / "experiments/exact_hint_routing/serialization.py",
+        *(
+            p
+            for p in (ROOT / "experiments/orchestration").rglob("*.py")
+            if "tests" not in p.parts
+        ),
+        ROOT
+        / "experiments/orchestration/engineering/host_disclosure/smoke-receipt.json",
     }
     return {
         p.relative_to(ROOT).as_posix(): digest(p.read_bytes())
@@ -84,7 +92,8 @@ async def cards() -> list[Any]:
         )
     selected: list[Any] = json.loads(
         (ROOT / POPULATION / "population_freeze.json").read_bytes()
-    )["selected_development_tasks"][3:6]
+    )["selected_development_tasks"]
+    selected = [selected[CASES[case]["position"] - 1] for case in CASES]
     for case, card in zip(CASES, selected, strict=True):
         require(
             card["selection_position"] == CASES[case]["position"]
@@ -219,6 +228,22 @@ def protocol() -> Any:
     return {
         "schema": "purpose-relative-source-grounding-stage-a-v1",
         "status": STATUS,
+        "supersession": {
+            "prior_stage_a": "f03523e2d06150e4497b038a49c20885db956810",
+            "engineering_checkpoint": "3f49fd359b767701ad43796d8fc247e2182841d1",
+            "invalidation_checkpoint": "f25daa62edc8a79584aca4347fa58d86ede865f6",
+            "reason": "0020/0021 infrastructure-invalidated; 0022 scientifically unentered; next untouched public positions 7/8",
+            "scientific_hypothesis": "UNCHANGED",
+            "semantic_labels_and_canonical_spans": "UNCHANGED",
+            "disclosure_content_meaning": "UNCHANGED",
+            "runtime_delivery": "HOST_STDIN_DISCLOSURE; TOOL_FREE_STRUCTURED_RESPONSE",
+            "evidence_representation": "MODEL_CHOOSES_EXACT_QUOTE_AND_OVERLAPPING_OCCURRENCE; HOST_DERIVES_IDENTITY_AND_UNICODE_BOUNDS; NO_REPAIR",
+            "case_0022": "EXACT_SIX_ORIGINAL_FILES_REUSED; ORIGINAL_PROTOCOL_DIGEST_RETAINED; GLOBAL_EXECUTION_BINDING_SUPERSEDED",
+            "failed_semantic_judgments_used": False,
+            "gold_access": False,
+            "child_access": False,
+            "confirmation_reserve_access": False,
+        },
         "cases": list(CASES),
         "population_sha256": POPULATION_SHA,
         "design": "README.md",
@@ -282,7 +307,7 @@ def protocol() -> Any:
 
 async def build() -> dict[str, bytes]:
     """Derive only Stage A files from authenticated public/parent inputs."""
-    files = {PREFIX + "stage_a/protocol.json": json_bytes(protocol())}
+    files = {STAGE_A_PREFIX + "protocol.json": json_bytes(protocol())}
     cohort = []
     for case, card in zip(CASES, await cards(), strict=True):
         authored = CASES[case]
@@ -327,19 +352,34 @@ async def build() -> dict[str, bytes]:
             "protocol_sha256": digest(json_bytes(protocol())),
         }
         prefix = f"experiments/codex_dogfood/case_{case}/"
-        files.update(
-            {
-                prefix + "protocol.json": json_bytes(design),
-                prefix + "frame.json": json_bytes(metadata),
-                prefix + "resources.json.gz": gzip.compress(json_bytes(rows), mtime=0),
-                prefix + "task.txt": card["task_text"].encode(),
-                prefix + "README.md": (
-                    f"# Case {case}: prospective source grounding\n\nFROZEN / NOT_AUTHORIZED / NOT_EXECUTED.\n\nSee ../../source_grounding/README.md and protocol.json. Exact parent resources only; no child/gold/treatment.\n"
-                ).encode(),
-                prefix
-                + ".gitattributes": b"*.json -text\n*.gz -text\n*.txt -text\n*.md text eol=lf\n",
-            },
-        )
+        generated = {
+            prefix + "protocol.json": json_bytes(design),
+            prefix + "frame.json": json_bytes(metadata),
+            prefix + "resources.json.gz": gzip.compress(json_bytes(rows), mtime=0),
+            prefix + "task.txt": card["task_text"].encode(),
+            prefix + "README.md": (
+                f"# Case {case}: prospective source grounding\n\nFROZEN / NOT_AUTHORIZED / NOT_EXECUTED.\n\nSee ../../source_grounding/README.md and protocol.json. Exact parent resources only; no child/gold/treatment.\n"
+            ).encode(),
+            prefix
+            + ".gitattributes": b"*.json -text\n*.gz -text\n*.txt -text\n*.md text eol=lf\n",
+        }
+        if case == "0022":
+            # Reuse all original scientific authoring and parent bytes exactly.
+            for name in generated:
+                raw = await git(
+                    "show", "f25daa62edc8a79584aca4347fa58d86ede865f6:" + name
+                )
+                require((ROOT / name).read_bytes() == raw, "Reused 0022 bytes changed")
+                generated[name] = raw
+            old = json.loads(generated[prefix + "protocol.json"])
+            require(
+                old["population"] == card
+                and old["frame"] == frame
+                and old["obligations"] == obligations
+                and old["authoring_basis"] == design["authoring_basis"],
+                "0022 scientific authoring changed",
+            )
+        files.update(generated)
         cohort.append(
             {
                 "case": case,
@@ -352,17 +392,17 @@ async def build() -> dict[str, bytes]:
                 "python_resources": metadata["python_resource_count"],
             },
         )
-    files[PREFIX + "stage_a/cohort.json"] = json_bytes(cohort)
-    files[PREFIX + "stage_a/validation.json"] = json_bytes(
+    files[STAGE_A_PREFIX + "cohort.json"] = json_bytes(cohort)
+    files[STAGE_A_PREFIX + "validation.json"] = json_bytes(
         {
             "status": "PASS",
             "population": "PUBLIC_ONLY_AUTHENTICATED",
             "parent_observation": "PASS",
             "scientific_execution": "NOT_STARTED",
-            "deterministic_contract_tests": "required before publication; see STAGE_A_REVIEW.md",
+            "deterministic_contract_tests": "PASS; focused contracts/runtime/static-scope; see REPLACEMENT_STAGE_A_REVIEW.md",
         },
     )
-    files[PREFIX + "stage_a/integrity.json"] = json_bytes(
+    files[STAGE_A_PREFIX + "integrity.json"] = json_bytes(
         {
             "schema": "source-grounding-stage-a-integrity-v1",
             "artifacts": {n: digest(v) for n, v in files.items()},
@@ -380,11 +420,16 @@ async def main() -> None:
     files = await build()
     if args.mode == "build":
         require(
-            not any((ROOT / n).exists() for n in files),
+            not any(
+                (ROOT / n).exists()
+                for n in files
+                if not n.startswith("experiments/codex_dogfood/case_0022/")
+            ),
             "Stage A overwrite refused",
         )
         for name, raw in files.items():
-            put_binary(ROOT / name, raw)
+            if not name.startswith("experiments/codex_dogfood/case_0022/"):
+                put_binary(ROOT / name, raw)
     else:
         require(
             all((ROOT / n).read_bytes() == raw for n, raw in files.items()),

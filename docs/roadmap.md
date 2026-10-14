@@ -56,20 +56,23 @@ bytes require a separately reviewed replacement plan and new exact-run approval.
 The immediate sequence is:
 
 1. Automated experiment controller engineering increment.
-2. **PURPOSE_RELATIVE_SOURCE_GROUNDING / BLOCKED_INFRASTRUCTURE_INVALIDATION**:
+2. **PURPOSE_RELATIVE_SOURCE_GROUNDING / PROSPECTIVE_REPLACEMENT_FROZEN**:
    the later approved run published PACKET and entered 0020 B/C and 0021 B.
    [The invalidation record](../experiments/source_grounding/invalidations/54a77aed2c0212d5dd9b0dacb717d9c7bd72cb11361614aae979fe72ae7c8d2b/invalidation.json)
    retires 0020/0021 as infrastructure-invalidated, not scientific evidence;
    neither may retry. 0022 remains scientifically unentered. No gold or D exists.
-   [Real-worker preflight](../experiments/orchestration/engineering/runtime/README.md)
-   is blocked by the tested CLI's new-artifact permission boundary. No replacement
-   cohort or plan is frozen; both prior approvals remain historical-only.
+   [Host-disclosure runtime engineering](../experiments/orchestration/engineering/host_disclosure/README.md)
+   passed both fresh synthetic Luna/Medium caller paths with host-derived spans and
+   host-owned artifacts. [Replacement Stage A](../experiments/source_grounding/REPLACEMENT_STAGE_A_REVIEW.md)
+   freezes 0022/0023/0024 from public positions 6/7/8. A separate unapproved plan
+   must bind that exact checkpoint; both prior approvals remain historical-only.
 3. Search-policy / iterative evidence-pursuit cohort.
 4. Obligation-sufficiency / Context cohort.
 5. Live incremental RI completion.
 6. Deliberate autonomous-Agent integration.
 
-The next scientific cohort is not designed or executed by this engineering task.
+No replacement scientific execution occurs in this engineering/prospective task.
+The later search-policy cohort remains undesigned and unexecuted.
 The maintainer reviews the controller, then approves committed prospective Stage A
 before execution and reviews Stage D afterward. Later hypotheses are not accepted
 production features. Prior scientific dispositions are unchanged: U1

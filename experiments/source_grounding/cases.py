@@ -93,3 +93,68 @@ CASES: dict[str, Any] = {
         ],
     },
 }
+
+# Immutable historical authoring remains available; entered cases are never reused.
+ORIGINAL_CASES = CASES
+CASES = {
+    "0022": ORIGINAL_CASES["0022"],
+    "0023": {
+        "position": 7,
+        "basis": [
+            "AGENTS.md",
+            "src/devtools/context/python_declarations.py",
+            "src/devtools/context/repository.py",
+            "tests/context/test_python_declarations.py",
+        ],
+        "gap": "RESOLVED_WITH_EXPLICIT_QUALIFICATION: exact-name retrieval consumes supported static Python function declaration knowledge, not runtime bindings. The parent's direct module-body coverage remains explicit; nested/method expansion, API names and presentation are design freedom, not hidden requirements.",
+        "obligations": [
+            {
+                "id": "O1",
+                "requirement": "Implement exact-name Python function retrieval.",
+                "facts": "Declared function name, synchronous/asynchronous forms, snapshot-local subjects, source occurrences and derivation provenance in parent function declaration knowledge.",
+                "satisfaction": "Retrieve supported function declarations by exact declared-name equality, retaining each matching declaration's source, subject and derivation provenance; do not substitute substring/fuzzy matching or infer runtime binding identity.",
+                "exclusions": "No runtime execution, dynamic name resolution, prescribed child symbols, mandatory nested/method traversal expansion, lexical reranking or graph admission.",
+                "need": "How can exact declared Python function names select source-grounded declaration knowledge while preserving subject and occurrence provenance?",
+                "query": "python function declared name exact retrieval declaration knowledge subject source occurrence provenance",
+            },
+            {
+                "id": "O2",
+                "requirement": "Bound, integrate and validate exact-name function retrieval.",
+                "facts": "Parent declaration coverage, parse errors, snapshot/resource identities, repeated names, synchronous/asynchronous declarations and integration/test conventions.",
+                "satisfaction": "Preserve explicit coverage and frame boundaries, distinguish successful no-match from unavailable analysis, retain repeated matching declarations deterministically, and validate/document exact matching and foreign-input handling under parent conventions.",
+                "exclusions": "No automatic repository discovery, whole-program binding completeness, semantic relevance ranking, new universal retrieval framework or unrelated architecture migration.",
+                "need": "Which declaration coverage, snapshot identity and test contracts constrain deterministic exact-name function retrieval?",
+                "query": "python function declaration coverage snapshot resource identity exact matching repeated names parse failure tests",
+            },
+        ],
+    },
+    "0024": {
+        "position": 8,
+        "basis": [
+            "src/devtools/model_serving/vllm.py",
+            "tests/model_serving/test_vllm.py",
+            "src/devtools/model_serving/errors.py",
+        ],
+        "gap": "No blocking task interpretation gap. CPU weight offload is an optional vLLM provider launch setting for model weights, not CPU-only execution or KV-cache swap. Configuration units/API/default representation remain design freedom; no provider-version availability or performance improvement is assumed.",
+        "obligations": [
+            {
+                "id": "O1",
+                "requirement": "Add vLLM CPU weight offload.",
+                "facts": "Immutable provider configuration, structural validation and deterministic Docker argv with a distinct vLLM provider argument segment.",
+                "satisfaction": "Represent a caller-selected CPU model-weight offload setting in the vLLM serving configuration and serialize it into the provider launch arguments, preserving exact model/revision, cache mount, GPU and server configuration ownership.",
+                "exclusions": "No KV-cache swap substitution, CPU-only backend, prescribed child field name or numeric tuning, GPU service execution, hardware provisioning or performance claim.",
+                "need": "How does provider configuration become deterministic vLLM Docker launch arguments for optional CPU model-weight offload?",
+                "query": "vllm CPU weight offload serving configuration Docker provider launch model arguments",
+            },
+            {
+                "id": "O2",
+                "requirement": "Validate and integrate CPU weight offload without changing default serving behavior.",
+                "facts": "Parent configuration constraints, default/disabled behavior, exact argv tests, managed container ownership, startup diagnostics and readiness/cleanup lifecycle.",
+                "satisfaction": "Reject structurally invalid offload configuration, define omitted/disabled behavior compatibly with the parent effective launch, retain deterministic serialization and owned readiness/cleanup diagnostics, and test/document the bounded provider configuration contract.",
+                "exclusions": "No live model/Docker validation requirement, generic serving-provider framework, deployment/version compatibility assertion or throughput/latency guarantee.",
+                "need": "Which vLLM configuration validation, default command and owned serving lifecycle contracts constrain CPU weight offload integration?",
+                "query": "vllm offload configuration validation defaults deterministic command readiness ownership startup diagnostics tests",
+            },
+        ],
+    },
+}

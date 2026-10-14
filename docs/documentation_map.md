@@ -693,3 +693,10 @@ is append-only and failure-isolated; human rendering is compact by default. Real
 semantic entry requires a compatible successful direct/nested synthetic runtime
 smoke receipt. This changes experiment execution, not production ModelInteraction,
 Localization semantics or scientific execution authority.
+
+The [replacement prospective Stage A](../experiments/source_grounding/REPLACEMENT_STAGE_A_REVIEW.md)
+owns the next scientifically unentered cohort, Cases 0022/0023/0024, exact public
+positions 6/7/8 and parent-only authoring. It preserves all six original 0022 files
+and supersedes runtime/implementation bindings using the successful host-disclosure
+smoke receipt. A separate prospective unapproved plan must bind its exact commit;
+old failed-run approvals remain historical-only.

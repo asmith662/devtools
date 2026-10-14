@@ -1,6 +1,6 @@
 # Copyright (c) 2026
 # ruff: noqa: T201 -- non-live launcher preflight only
-"""Check installed launcher/version/help/argv. Never issue a model request."""
+"""Authenticate compatible runtime smoke and inert argv; no new model request."""
 
 from __future__ import annotations
 
@@ -13,8 +13,7 @@ from pathlib import Path
 from devtools.core.paths import resolve_path
 from experiments.codex_dogfood.case_0009.artifacts import ROOT, digest
 from experiments.orchestration.storage import require
-from experiments.orchestration.workers import codex
-from experiments.source_grounding.freeze import PACKAGE
+from experiments.orchestration.workers import codex, runtime
 from experiments.source_grounding.workers import command, configuration
 
 
@@ -51,14 +50,18 @@ async def main() -> None:
         ),
         "Installed launcher contract differs",
     )
-    # Real packets use this exact basename; no packet or semantic output is built.
-    (root / "INSTRUCTIONS.md").write_bytes(
-        (PACKAGE / "INSTRUCTIONS_GOLD.md").read_bytes(),
-    )
+    empty = root / "empty-cwd"
+    empty.mkdir()
     commands = []
     for model in ("Sol", "Astra"):
         config = configuration(model)
-        argv = codex.argv(config, root)
+        runtime.authenticate_configuration(config)
+        argv = codex.argv(
+            config,
+            empty,
+            schema=root / "response-schema.json",
+            response=root / "final-response.txt",
+        )
         require(
             config["model_id"] in argv
             and 'model_reasoning_effort="high"' in argv
@@ -83,6 +86,7 @@ async def main() -> None:
                 "executable": executable,
                 "configurations": commands,
                 "live_model_calls": 0,
+                "compatible_successful_runtime_smoke": "PASS",
             },
         ),
     )
