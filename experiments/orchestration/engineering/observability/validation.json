@@ -1,0 +1,96 @@
+{
+  "complete_controller_suite": {
+    "development_failures_resolved": "Implementation-hash fixtures intentionally reject bytes changed during an in-progress test; all affected cases rerun after edits settled.",
+    "final_code_focused": {
+      "commands": [
+        "test_observation.py",
+        "test_scientific_failure_is_dead",
+        "test_resume_boundary",
+        "test_preflight_validator_cannot_leak_into_reviewer_workspace",
+        "test_codex_version_mismatch_before_scientific_review"
+      ],
+      "passed": 22
+    },
+    "method": "All four test files passed (96 tests); after adding zero-exit rejection reporting, focused final-code tests covered all new observation tests, eight failure modes, resume boundaries and preflight/version rejection (new total 97 unique).",
+    "partitions": {
+      "test_authority.py": {
+        "passed": 21,
+        "seconds": 383.94
+      },
+      "test_contracts.py": {
+        "passed": 53,
+        "seconds": 756.73
+      },
+      "test_controller.py": {
+        "passed": 13,
+        "seconds": 288.5
+      },
+      "test_observation.py_initial": {
+        "passed": 9,
+        "seconds": 135.21
+      }
+    },
+    "unique_tests_passed": 97
+  },
+  "controller_implementation": {
+    "__init__.py": "311618eb0152055a2c7af5675acba2d44d65e4a72eb4be4eac991d5c0c501f6b",
+    "__main__.py": "0da9ff8b07bf08180956faee0d4a73c22026d9bcba48e0130e1622868290ad79",
+    "authority.py": "cef0eea941aa1f4553996fc3d6acb46f65473fac64478a26f0ef7410bd7bbbb8",
+    "cache.py": "621f88dcbae62f48128a10a26614b439159b01a88365c3d2d4a6cc7cadc724c4",
+    "controller.py": "b93bed5d369c1f16633410dd286b80a1a693edbf16e8e805561353ed9c2812ae",
+    "follow.py": "3818926cb235d8aa0fd7d09bc98b15de25371d097266470f286e17e2814e9616",
+    "isolation.py": "3a70c05a482318e3f09e01a012904947fc25d3db87b476abc938208358fa2d21",
+    "lease.py": "42d17ccebfa850945b905a590db6ec311fd318ff388257f7ac117883843b2fb7",
+    "model.py": "9deb955fee08fd2e486829ea04f32d76ad9aa63177987eb43019bd3c958bc6ca",
+    "observation.py": "7ccfd657846c8e1dd85c3c434ef2f56558b830070421246876c0b555d0bb617d",
+    "publication.py": "1a67d883a16562f14acb19452b80a0560450e9f5e0d06e25985e8cb5763bbac0",
+    "storage.py": "6aff6bd20ce8d1ce76244a1ab1e89aa06b4b9b02b79504b702178ab67e757251",
+    "workers/__init__.py": "97580554bfed72f4cc61eee619c7d770bd4ab7907adc3b6650f8d9b3231105de",
+    "workers/codex.py": "724f5f40f8d6b9872fc8e4404e97958e8b602b14051538b775b13c86929de00a",
+    "workers/process.py": "9d1cd3b2be8cba1c21df4c896ac61b3a260494190444f807e592363ad3916fe4",
+    "workers/supervisor.py": "f9fcc5b068fc6ac6a2ab291622206d3d71928fe62ea8efb333466df68b0260ec"
+  },
+  "controller_sha256": "d978e96fa12384dd3d9d0c06384cc803bda86e4b860e3359c635f82f7bc2e41a",
+  "forensic_manifest_sha256": "8e931a868bf204e4ea4ef2c8074df83bd54a47eb01fb49ee3ed1b02a10d693b9",
+  "formatter": {
+    "command": "uv run ruff format --check experiments/orchestration",
+    "files": 29,
+    "status": "PASS"
+  },
+  "invariants": {
+    "confirmation_reserve_access": false,
+    "gold_access": false,
+    "historical_child_access": false,
+    "live_model_calls": 0,
+    "production_behavior": "UNCHANGED",
+    "real_execution_approvals_created": 0,
+    "real_scientific_runs": 0
+  },
+  "protected_development": {
+    "command": "uv run python scripts/validate_development.py",
+    "executions": 1,
+    "passed": 1588,
+    "production_bytes_unchanged_after_validation": true,
+    "production_coverage_percent": 100.0,
+    "seconds": 23.43,
+    "skipped_opt_in_live_tests": 2
+  },
+  "publication_gates": [
+    "worktree and staged diff checks",
+    "explicit owned files",
+    "local/origin/actual remote agreement",
+    "clean tracked/index/nonignored-untracked state"
+  ],
+  "ruff": {
+    "command": "uv run ruff check src tests experiments/orchestration",
+    "status": "PASS"
+  },
+  "schema": "experiment-controller-observability-validation-v1",
+  "starting_checkpoint": "5afa0433d3720c03714cd1d57d641af55c014612",
+  "status": "PASS",
+  "strict_mypy": {
+    "command": "uv run mypy --strict src tests experiments/orchestration --exclude tests/experiments/",
+    "files": 439,
+    "status": "PASS"
+  }
+}
