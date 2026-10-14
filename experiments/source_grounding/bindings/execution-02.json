@@ -1,0 +1,77 @@
+{
+  "approval": "NONE_FOR_REPLACEMENT",
+  "child_access": false,
+  "confirmation_reserve_access": false,
+  "controller_checkpoint": "0c87a23da9804890a573ef51a515fa5009482a88",
+  "controller_sha256": "d978e96fa12384dd3d9d0c06384cc803bda86e4b860e3359c635f82f7bc2e41a",
+  "gold_access": false,
+  "implementation_added": {
+    "experiments/source_grounding/test_scope.py": "73e8be3e449f0219c39513901a4929e58cbc9a4338589b7b63c5f0e1d479c1c0"
+  },
+  "implementation_changes": {
+    "experiments/source_grounding/plan.py": {
+      "new": "d9bf7b7c732fac7ca95dedbf96cb281fc3e24945160f70472ce910701a43e2fc",
+      "old": "b9bc59b30058f842aea59c5d0ec6ff99131524341f7b5a07c7536ddcd7b23c69"
+    },
+    "experiments/source_grounding/timing.py": {
+      "new": "5ea909113bd8f5da71d0e239ec2d5ab121a5ebf4483f795a2f6260fdea090320",
+      "old": "030ca71945ba6ca9c66b331ef4910e72e20c17f8c28182da55de787462e74104"
+    },
+    "experiments/source_grounding/workers.py": {
+      "new": "deb81643e88099561571503eddd0c04eb6628291c69ddf33f36dabcb59a230db",
+      "old": "87d05291986df6bced947c81155faaf18b15d457669031ee5a1d5cf430e715e8"
+    }
+  },
+  "integrity_sha256": "1c868f11a3ce9dd3b542663bf3c1a2b442675d6d60498c9b28153804052bf3cd",
+  "maintained_static_scope": [
+    "experiments/source_grounding/__init__.py",
+    "experiments/source_grounding/analysis.py",
+    "experiments/source_grounding/capture.py",
+    "experiments/source_grounding/cases.py",
+    "experiments/source_grounding/contracts.py",
+    "experiments/source_grounding/entry.py",
+    "experiments/source_grounding/freeze.py",
+    "experiments/source_grounding/packets.py",
+    "experiments/source_grounding/plan.py",
+    "experiments/source_grounding/preflight.py",
+    "experiments/source_grounding/reviewer.py",
+    "experiments/source_grounding/test_contracts.py",
+    "experiments/source_grounding/test_scope.py",
+    "experiments/source_grounding/timing.py",
+    "experiments/source_grounding/workers.py"
+  ],
+  "old_approval": "HISTORICAL_ONLY_FOR_ORIGINAL_BYTES",
+  "operational_changes": [
+    "explicit source ownership in all validation tiers",
+    "nested grounding process observation outside sterile inputs",
+    "exclude process observations from operational stage-completion timing"
+  ],
+  "protocol_sha256": "9a88f322c39f7fd8bf19c938fd53cd2005769f8374829e18d5cb8f3bce84ae5a",
+  "schema": "source-grounding-prospective-execution-binding-v1",
+  "scientific_artifacts_preserved": {
+    "experiments/codex_dogfood/case_0020/.gitattributes": "d8a4c29f4275487be5e089fd9b9463f86285b21910c064ae4abebdbb807af85e",
+    "experiments/codex_dogfood/case_0020/README.md": "06850cb265c1723ed546bf58d800c935a5d3abd79a864b8d99451d2db0a0ea33",
+    "experiments/codex_dogfood/case_0020/frame.json": "3dd573e95be51a82c65bccb369fb5261c8896183c2956094de18ab5f5abd152b",
+    "experiments/codex_dogfood/case_0020/protocol.json": "3ace45f9bb2af9e36948ec254c3cb03aa15f3542e80d09854a0819f2dbac9103",
+    "experiments/codex_dogfood/case_0020/resources.json.gz": "4f764d6f05cc3ca5ca99e7a415ffaede9868b8e15db56622f66a5a90efc4fa0e",
+    "experiments/codex_dogfood/case_0020/task.txt": "b43b6b2c4e4093e7656c20bef86af3e0eb83b5dcbfb301928ddca46ef9b9b22c",
+    "experiments/codex_dogfood/case_0021/.gitattributes": "d8a4c29f4275487be5e089fd9b9463f86285b21910c064ae4abebdbb807af85e",
+    "experiments/codex_dogfood/case_0021/README.md": "f7e52da2df6e3deebbf325d004e7b041ce1f20340a6e7c1927fafd1beb11865d",
+    "experiments/codex_dogfood/case_0021/frame.json": "1d561d553fa5d40b58b348d5d4ebcd9482641e59fe6eb0fe9e3ddabed83529a0",
+    "experiments/codex_dogfood/case_0021/protocol.json": "613f3d37aace43e7bf36795fbe8690636f14f9c125ada9876358a9fb17c1b17b",
+    "experiments/codex_dogfood/case_0021/resources.json.gz": "f1c73055e8ce31b6bace952fd378d969a7679e857f3e7c1175494ab9581cbbcc",
+    "experiments/codex_dogfood/case_0021/task.txt": "60b10eb5028fd0fc4e82b06cb5e5339d8124bc7d71e0e5fddca70a1e35d10f13",
+    "experiments/codex_dogfood/case_0022/.gitattributes": "d8a4c29f4275487be5e089fd9b9463f86285b21910c064ae4abebdbb807af85e",
+    "experiments/codex_dogfood/case_0022/README.md": "320f222c9330855ab783a64a8c6758a37a80e00abe6992e3de5c50f00441f924",
+    "experiments/codex_dogfood/case_0022/frame.json": "4eb392d31f35acdf8d131ba11ab6bc32bd0701035fee2195847946b22528a148",
+    "experiments/codex_dogfood/case_0022/protocol.json": "0212121ef5fbd182efcdc6cb7a3813f0361ecb8491d19b4dc29efe423b8251fb",
+    "experiments/codex_dogfood/case_0022/resources.json.gz": "1e7b38e5bf1b213c32e06cba0e8d9e59db1841880fd25df745a22823b0bd8211",
+    "experiments/codex_dogfood/case_0022/task.txt": "8452fc77f18d1d35e06647369ad2cb428379c841ba7604c961420ea73edda136",
+    "experiments/source_grounding/stage_a/cohort.json": "a5e6b3891d01a5b225057417931035388cbf41194a5647a9d55d8ebb1b9f700d",
+    "experiments/source_grounding/stage_a/protocol.json": "9a88f322c39f7fd8bf19c938fd53cd2005769f8374829e18d5cb8f3bce84ae5a",
+    "experiments/source_grounding/stage_a/validation.json": "3cccd4d4c36a1dc5b16735cb2afe808ee901476d6949d50a035aad8a591452f0"
+  },
+  "scientific_execution": 0,
+  "scientific_semantics": "BYTE_IDENTICAL",
+  "supersedes_stage_a_checkpoint": "981086bf7c15033be0f16b493002330241d4b858"
+}

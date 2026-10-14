@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Any
 
 from devtools.agents.integrations.codex.parsing import parse_codex_turn_output
+from devtools.core.time import Timestamp
 from experiments.codex_dogfood.case_0009.artifacts import digest, json_bytes, put_binary
 from experiments.orchestration.isolation import (
     PRIMARY,
@@ -24,6 +25,7 @@ from experiments.orchestration.isolation import (
     semantic_outputs,
     sterile,
 )
+from experiments.orchestration.observation import PROCESS_FIELDS, process_metadata
 from experiments.orchestration.storage import bundle, load, materialize, require, safe
 from experiments.orchestration.workers import codex
 from experiments.orchestration.workers.process import invoke
@@ -119,12 +121,15 @@ def gold_packet(design: Any, rows: Any) -> Any:
     }
 
 
-async def command(
+async def command(  # noqa: PLR0913 -- invocation plus operational observer metadata
     argv: list[str],
     root: Path,
     logs: Path,
     timeout: int = 3600,
     env: Any = None,
+    *,
+    observer: Any = None,
+    metadata: Any = None,
 ) -> Any:
     """Use the controller's owned process-tree lifecycle; never retry."""
     result = await invoke(
@@ -136,6 +141,8 @@ async def command(
         timeout,
         10,
         logs,
+        observer=observer,
+        metadata=metadata,
     )
     require(
         not result.failed
@@ -179,6 +186,21 @@ async def authenticate_primary(root: Path, case: str, frame: Any, logs: Path) ->
     }
 
 
+def grounding_observer(root: Path) -> Any:
+    """Append operational identity outside sterile packet and scientific outputs."""
+
+    def observe(event: Any) -> None:
+        fields = {k: event[k] for k in PROCESS_FIELDS if k in event}
+        fields.setdefault("timestamp", str(Timestamp.now()))
+        fields["operation"] = "source-grounding-worker"
+        fields["process_role"] = "source grounding"
+        with (root.parent / "operational.log").open("ab") as stream:
+            stream.write((json.dumps(fields, sort_keys=True) + "\n").encode())
+            stream.flush()
+
+    return observe
+
+
 async def ground(
     root: Path,
     payload: Any,
@@ -214,6 +236,8 @@ async def ground(
         operational / "worker",
         7200,
         env,
+        observer=grounding_observer(root),
+        metadata={**process_metadata(config, root), "process_role": "source grounding"},
     )
     elapsed = time.perf_counter_ns() - start
     turn = parse_codex_turn_output(result.stdout)

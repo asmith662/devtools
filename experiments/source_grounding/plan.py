@@ -21,6 +21,46 @@ from experiments.orchestration.storage import require
 from experiments.source_grounding.cases import CASES
 from experiments.source_grounding.freeze import PACKAGE, PREFIX
 
+PLAN_ADDRESS = "experiments/source_grounding/plans/corrected-run-plan.json"
+
+
+def source_scope(bound_implementation: dict[str, str]) -> list[str]:
+    """Name every maintained adapter module; never recurse into scientific data."""
+    owned = sorted(
+        p.relative_to(PACKAGE.parents[1]).as_posix() for p in PACKAGE.glob("*.py")
+    )
+    frozen = sorted(
+        address
+        for address in bound_implementation
+        if address.startswith(PREFIX)
+        and address.endswith(".py")
+        and "/" not in address[len(PREFIX) :]
+    )
+    require(
+        bool(owned) and frozen == owned,
+        "Maintained static source ownership differs from Stage A",
+    )
+    return frozen
+
+
+def validation_commands(bound_implementation: dict[str, str]) -> list[list[str]]:
+    """Use the same exact source addresses for all implementation static tools."""
+    scope = source_scope(bound_implementation)
+    return [
+        [
+            "uv",
+            "run",
+            "pytest",
+            "--no-cov",
+            "-q",
+            "experiments/source_grounding/test_contracts.py",
+            "experiments/source_grounding/test_scope.py",
+        ],
+        ["uv", "run", "ruff", "check", *scope],
+        ["uv", "run", "ruff", "format", "--check", *scope],
+        ["uv", "run", "mypy", "--strict", *scope],
+    ]
+
 
 async def derive(checkpoint: str) -> Any:
     """Bind committed Stage A, never require or create execution approval."""
@@ -104,24 +144,11 @@ async def derive(checkpoint: str) -> Any:
     }
     # File execution must use installed framework + repo-owned experiment imports.
     # workers.py bootstraps only its trusted code root, never into semantic input.
-    tests = [
-        "uv",
-        "run",
-        "pytest",
-        "--no-cov",
-        "-q",
-        "experiments/source_grounding/test_contracts.py",
-    ]
-    checks = [
-        tests,
-        ["uv", "run", "ruff", "check", "experiments/source_grounding"],
-        ["uv", "run", "ruff", "format", "--check", "experiments/source_grounding"],
-        ["uv", "run", "mypy", "--strict", "experiments/source_grounding"],
-    ]
+    checks = validation_commands(integrity["implementation"])
     value = {
         "schema": "experiment-controller-plan-v2",
-        "name": "purpose-relative-source-grounding-01",
-        "attempt": 1,
+        "name": "purpose-relative-source-grounding-02",
+        "attempt": 2,
         "stage_a": {
             "checkpoint": checkpoint,
             "protocol": {
@@ -160,7 +187,15 @@ async def derive(checkpoint: str) -> Any:
             "checkpoint": checks,
             "final": [
                 *checks,
-                ["uv", "run", "python", "-m", "experiments.source_grounding.timing"],
+                [
+                    "uv",
+                    "run",
+                    "python",
+                    "-m",
+                    "experiments.source_grounding.timing",
+                    "--plan",
+                    PLAN_ADDRESS,
+                ],
             ],
         },
         "concurrency": {"cases": 3, "workers": 3, "semantic": 1},
@@ -192,7 +227,7 @@ async def main() -> None:
     parser.add_argument("--stage-a", required=True)
     args = parser.parse_args()
     raw = json_bytes(await derive(args.stage_a))
-    path = PACKAGE / "plans/run-plan.json"
+    path = PACKAGE.parents[1] / PLAN_ADDRESS
     if args.mode == "build":
         require(not path.exists(), "Run plan overwrite refused")
         put_binary(path, raw)

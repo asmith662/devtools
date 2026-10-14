@@ -22,7 +22,7 @@ def summarize(events: list[Any]) -> Any:
         starts: dict[str, float] = {}
         ends = {}
         for event in events:
-            if event["stage"] != stage:
+            if event.get("worker_type") == "OPERATIONAL" or event["stage"] != stage:
                 continue
             case = event["case"]
             if event["status"] == "RUNNING":

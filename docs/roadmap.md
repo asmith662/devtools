@@ -56,8 +56,10 @@ bytes require a separately reviewed replacement plan and new exact-run approval.
 The immediate sequence is:
 
 1. Automated experiment controller engineering increment.
-2. **PURPOSE_RELATIVE_SOURCE_GROUNDING / NOT_STARTED** cohort: purpose-relative
-   source grounding plus selective direct structural pursuit.
+2. **PURPOSE_RELATIVE_SOURCE_GROUNDING / SCIENTIFIC_EXECUTION_NOT_STARTED**:
+   frozen Cases 0020-0022 and [superseding prospective execution bindings](../experiments/source_grounding/bindings/README.md).
+   The corrected unapproved plan requires maintainer review; the failed original
+   run and approval are historical-only. No B/C/D or semantic worker entered.
 3. Search-policy / iterative evidence-pursuit cohort.
 4. Obligation-sufficiency / Context cohort.
 5. Live incremental RI completion.

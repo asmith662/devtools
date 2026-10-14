@@ -1,5 +1,17 @@
 # Implementation Ledger
 
+## Superseding source-grounding execution binding (2026-10-14)
+
+Rebound Stage A implementation integrity for explicit maintained-source static
+validation and nested grounding operational visibility. The [binding review](../experiments/source_grounding/bindings/README.md)
+and `execution-02.json` preserve every original scientific artifact byte and all
+unchanged implementation digests. Cases, parent frames, scientific clauses,
+models, instructions and analysis remain unchanged. Focused contracts, static
+scope fixtures and exact Stage A replay pass; protected validation is reused
+from the preceding controller engineering publication. A separate corrected plan
+must bind this exact prospective checkpoint. No treatment, real primary, gold,
+Stage D, child or confirmation/reserve access occurs.
+
 ## Experiment controller live visibility and failure preservation (2026-10-14)
 
 Preserved the approved blocked source-grounding run before removing only its

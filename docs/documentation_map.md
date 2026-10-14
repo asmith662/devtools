@@ -666,3 +666,9 @@ owns default live stderr lifecycle events, streaming logs, heartbeat semantics,
 read-only status follow and conservative publication status. It records the
 historical blocked source-grounding PACKET checkpoint and verified forensic
 archive; its old approval cannot authorize changed implementation bytes.
+
+The [superseding source-grounding execution binding](../experiments/source_grounding/bindings/README.md)
+preserves the original scientific protocol and all 21 Stage A artifact bytes while
+rebinding the explicit static scope and nested grounding operational adapter.
+Its separate replacement prospective plan requires new exact-run maintainer review;
+the failed run's approval remains historical-only.
