@@ -1,0 +1,112 @@
+{
+  "baseline": {
+    "analysis": "unicode-word-span-casefold-v1",
+    "b": 0.75,
+    "exact_route": "NOT_APPLICABLE",
+    "filename_weight": 0.25,
+    "k1": 1.2,
+    "positive_universe": "complete"
+  },
+  "cases": [
+    "0020",
+    "0021",
+    "0022"
+  ],
+  "cohort_gate": null,
+  "concurrency": {
+    "cases": 3,
+    "maximum_total_model_workers_including_nested_grounding": 3,
+    "semantic": 1,
+    "workers": 3
+  },
+  "design": "README.md",
+  "design_sha256": "5c543a653d9e258e2c02f3ce0b9201afcf8ea21d5c7c007dc46300a62c6a9347",
+  "gold_instructions_sha256": "97e5920646a4e932fabde9e95976fd9a6a952b67d6013adc7281ded3e6acb56e",
+  "gold_labels": [
+    "REQUIRED",
+    "HELPFUL_ONLY",
+    "UNNECESSARY"
+  ],
+  "gold_model": {
+    "model": "GPT-6 Astra",
+    "model_id": "gpt-6-astra",
+    "reasoning": "High"
+  },
+  "grace": 10,
+  "grounding_instructions_sha256": "4616d14f6aebc08a15586365df3947a7858682d6a69e992f5742b31905ced87a",
+  "grounding_model": {
+    "model": "GPT-6 Sol",
+    "model_id": "gpt-6-sol",
+    "reasoning": "High"
+  },
+  "grounding_timeout": 7200,
+  "grounding_verdicts": [
+    "GROUNDED_SOURCE",
+    "NOT_GROUNDED_SOURCE",
+    "UNCERTAIN_SOURCE"
+  ],
+  "launcher": {
+    "cli_version": "0.162.1",
+    "continuation": false,
+    "fresh": true
+  },
+  "no_execution": {
+    "approval": 0,
+    "gold": 0,
+    "gold_workers": 0,
+    "grounding_workers": 0,
+    "references": 0,
+    "retrieval": 0,
+    "scientific_entered": 0,
+    "stage_d": 0
+  },
+  "population_sha256": "062d56eb131c97e0dcac62f77cd503de0a83ff80b54d1900d36fc3c3e56286c4",
+  "ranking_modifications": 0,
+  "retry": "NEVER_SCIENTIFIC",
+  "schema": "purpose-relative-source-grounding-stage-a-v1",
+  "status": "FROZEN / NOT_AUTHORIZED / NOT_EXECUTED",
+  "validation_timeout": 3600,
+  "worker_timeout": 21600,
+  "workers": {
+    "gold": {
+      "auth_file": "C:/Users/recoveryadmin/.codex/auth.json",
+      "cli_version": "0.162.1",
+      "environment_allowlist": [
+        "PATH",
+        "SYSTEMROOT",
+        "WINDIR",
+        "TEMP",
+        "TMP",
+        "USERPROFILE",
+        "APPDATA",
+        "LOCALAPPDATA",
+        "COMSPEC"
+      ],
+      "kind": "codex",
+      "model": "GPT-6 Astra",
+      "model_id": "gpt-6-astra",
+      "prompt_file": "INSTRUCTIONS.md",
+      "reasoning": "High"
+    },
+    "grounding": {
+      "auth_file": "C:/Users/recoveryadmin/.codex/auth.json",
+      "cli_version": "0.162.1",
+      "environment_allowlist": [
+        "PATH",
+        "SYSTEMROOT",
+        "WINDIR",
+        "TEMP",
+        "TMP",
+        "USERPROFILE",
+        "APPDATA",
+        "LOCALAPPDATA",
+        "COMSPEC"
+      ],
+      "kind": "codex",
+      "model": "GPT-6 Sol",
+      "model_id": "gpt-6-sol",
+      "prompt_file": "INSTRUCTIONS.md",
+      "reasoning": "High"
+    }
+  }
+}
