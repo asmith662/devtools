@@ -678,3 +678,10 @@ binds the exact superseding checkpoint, current controller, explicit static
 ownership and unchanged models/science. It records materialized-publication
 regression and the exact new run identity for maintainer review; it grants no
 execution authority.
+
+The [real semantic-worker runtime diagnostic](../experiments/orchestration/engineering/runtime/README.md)
+and [infrastructure invalidation](../experiments/source_grounding/invalidations/54a77aed2c0212d5dd9b0dacb717d9c7bd72cb11361614aae979fe72ae7c8d2b/invalidation.json)
+own the later approved run's failure: PACKET published, 0020 B/C and 0021 B
+entered, both cases invalidated without scientific evidence or retry, and 0022
+scientifically unentered. The failed live Luna engineering smoke is not a compatible
+preflight receipt. No replacement cohort or plan is authorized by these records.

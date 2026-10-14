@@ -1,0 +1,70 @@
+{
+  "Stage_D_entered": false,
+  "approval_checkpoint": "bebfd834fa9544309243b04a3804b0371239e67e",
+  "approval_path": "experiments/source_grounding/runs/54a77aed2c0212d5dd9b0dacb717d9c7bd72cb11361614aae979fe72ae7c8d2b/authorization/approval.json",
+  "approval_sha256": "ef15fdd75b42848847672ca5dda73f7517e55673d7658cb76d9d656cc2c891a1",
+  "approval_use": "HISTORICAL_ONLY; NO_RETRY",
+  "automatic_scientific_retries": 0,
+  "cases": {
+    "0020": {
+      "Astra_launched": true,
+      "B_entered": true,
+      "C_entered": true,
+      "Sol_launched": false,
+      "disposition": "INFRASTRUCTURE_INVALIDATED",
+      "failures": [
+        "OPERATIONAL_PROGRESS_ATOMIC_REPLACE_WINERROR_5",
+        "COMMAND_POLICY_REJECTED_INSTRUCTION_READ"
+      ],
+      "retry": "DO_NOT_RETRY",
+      "scientific_evidence": false
+    },
+    "0021": {
+      "Astra_launched": false,
+      "B_entered": true,
+      "C_entered": false,
+      "Sol_launched": true,
+      "disposition": "INFRASTRUCTURE_INVALIDATED",
+      "failures": [
+        "COMMAND_POLICY_REJECTED_INSTRUCTION_READ",
+        "EXIT_ZERO_WITH_MISSING_REQUIRED_REVIEW"
+      ],
+      "retry": "DO_NOT_RETRY",
+      "scientific_evidence": false
+    },
+    "0022": {
+      "Astra_launched": false,
+      "B_entered": false,
+      "C_entered": false,
+      "Sol_launched": false,
+      "disposition": "SCIENTIFICALLY_UNENTERED",
+      "replacement_eligible": true
+    }
+  },
+  "child_access": false,
+  "confirmation_reserve_access": false,
+  "gold_produced": false,
+  "journal_sha256": {
+    "experiments/source_grounding/runs/54a77aed2c0212d5dd9b0dacb717d9c7bd72cb11361614aae979fe72ae7c8d2b/journal/0020/B/ENTERED.json": "298f41a33efffef6fca33af632ba7a5aa9edf88ed619aba0bd2417c9800d19ec",
+    "experiments/source_grounding/runs/54a77aed2c0212d5dd9b0dacb717d9c7bd72cb11361614aae979fe72ae7c8d2b/journal/0020/B/FAILED.json": "a4322009b282198c14b1a309e9074783ae38425f90bf38cee49f9652e0847135",
+    "experiments/source_grounding/runs/54a77aed2c0212d5dd9b0dacb717d9c7bd72cb11361614aae979fe72ae7c8d2b/journal/0020/C/ENTERED.json": "b2fa3f5dfebd0c15ff49358e9884061c2c45d7f8998e9365a6cb01845be35330",
+    "experiments/source_grounding/runs/54a77aed2c0212d5dd9b0dacb717d9c7bd72cb11361614aae979fe72ae7c8d2b/journal/0020/C/FAILED.json": "0c1ca09fc279162e4d177b35d3dd83373b174da60202da1acdef78674cec0007",
+    "experiments/source_grounding/runs/54a77aed2c0212d5dd9b0dacb717d9c7bd72cb11361614aae979fe72ae7c8d2b/journal/0021/B/ENTERED.json": "eba52142e1b2631bea2bc042cf549ec8e32461aa6b0725fd7901aa5edda0d983",
+    "experiments/source_grounding/runs/54a77aed2c0212d5dd9b0dacb717d9c7bd72cb11361614aae979fe72ae7c8d2b/journal/0021/B/FAILED.json": "c194a5b842d0fb0754ca05616188713515434641dd3d05ca78f2b4bbe0009685"
+  },
+  "new_scientific_runs": 0,
+  "packet_checkpoint": "c40abeed691e82ce4b26afc451b08ae3a7e3398b",
+  "packet_publication": "COMPLETE",
+  "partial_model_content_use": "RUNTIME_DIAGNOSIS_ONLY; NO_TREATMENT_OR_GOLD_JUDGMENTS_USED",
+  "preservation": {
+    "all_originals_retained": true,
+    "bytes": 213648067,
+    "files": 1630,
+    "manifest": ".local/experiment-failures/54a77aed2c0212d5dd9b0dacb717d9c7bd72cb11361614aae979fe72ae7c8d2b/manifest.json",
+    "manifest_sha256": "041c9f61cdd6a3f1905b22eb897182b2442a84d31059f368bf3f6921a364d3c5"
+  },
+  "replacement_gate": "BLOCKED; CLI_0.162.1_MXC_CANNOT_CREATE_NEW_NAMED_OUTPUTS_UNDER_TESTED_FILE_ONLY_WRITE_SCOPE",
+  "run_id": "54a77aed2c0212d5dd9b0dacb717d9c7bd72cb11361614aae979fe72ae7c8d2b",
+  "schema": "source-grounding-infrastructure-invalidation-v1",
+  "terminal_status": "BLOCKED; MAINTAINER_DECISION_REQUIRED"
+}

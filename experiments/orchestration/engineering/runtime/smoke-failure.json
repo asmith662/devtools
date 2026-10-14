@@ -1,0 +1,93 @@
+{
+  "checks": {
+    "allowed_input_reads": true,
+    "artifact_schema_valid": false,
+    "builder_verify": false,
+    "command_network_denied": true,
+    "external_repository_sentinel_denied": true,
+    "fresh_thread": true,
+    "input_bytes_preserved": true,
+    "launch": true,
+    "nested_path_tested": false,
+    "parent_sentinel_denied": true,
+    "required_artifact_created": false,
+    "sibling_sentinel_denied": true,
+    "web_disabled_configuration": true
+  },
+  "cli_version": "0.162.1",
+  "failure_category": "PERMITTED_NEW_ARTIFACT_WRITE_DENIED",
+  "logs_sha256": {
+    "stderr.log": "33272c019533966e40e488d946a386132e8e84b71c2e048ed97a487e05d7797a",
+    "stdout.log": "a0c9bca3bfe7e274f985706b536b9806b07385fc96c62ad506c1385835e62d46",
+    "supervisor-stderr.log": "33272c019533966e40e488d946a386132e8e84b71c2e048ed97a487e05d7797a"
+  },
+  "model": "GPT-6 Luna",
+  "permission_scope_probes": [
+    {
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"stage_c_review.json\": \"DENIED\", \"forbidden-extra.txt\": \"DENIED\", \"input.txt\": \"DENIED\"}\r\n",
+      "style": "relative-file"
+    },
+    {
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"stage_c_review.json\": \"DENIED\", \"forbidden-extra.txt\": \"DENIED\", \"input.txt\": \"DENIED\"}\r\n",
+      "style": "absolute-file"
+    },
+    {
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"stage_c_review.json\": \"WRITTEN\", \"forbidden-extra.txt\": \"WRITTEN\", \"input.txt\": \"DENIED\"}\r\n",
+      "style": "workspace-write"
+    }
+  ],
+  "process_exit_code": 0,
+  "reasoning": "Medium",
+  "runtime": {
+    "cli_version": "0.162.1",
+    "configuration": {
+      "approval": "never",
+      "cli_version": "0.162.1",
+      "fresh": true,
+      "network": false,
+      "outputs": [
+        "stage_c_review.json",
+        "stage_c_statistics.json",
+        "STAGE_C_REVIEW.md",
+        "stage_c_validation.json",
+        "stage_c_hashes.json",
+        "stage_c_method.md",
+        "stage_c_builder.py"
+      ],
+      "python_runtime": "C:\\Users\\recoveryadmin\\AppData\\Local\\Programs\\Python\\Python314",
+      "schema": "semantic-worker-runtime-v1",
+      "web": "disabled",
+      "windows_sandbox": "mxc"
+    },
+    "isolation_implementation": "d5057885ab9a0ebbf24c4166ac93cca94c4cddd701da17c3fc235021e8cf29ab",
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0",
+    "semantic_implementation": {
+      "codex.py": "0a0e7994170b2bf10019e163f63b458e39ff72599b268af7092760a2f21a377a",
+      "process.py": "32a41c2cd8250502c202ffb8cfa75a6a2ccca746f737ffebba464fcfccb861fe",
+      "supervisor.py": "f9fcc5b068fc6ac6a2ab291622206d3d71928fe62ea8efb333466df68b0260ec"
+    }
+  },
+  "runtime_candidate_published": false,
+  "runtime_sha256": "2bb260b50d826ce6e16b82f2fbe731a7620a4ccc72f96b5e9c96ce78664c98ae",
+  "schema": "semantic-worker-smoke-v1",
+  "scientific": false,
+  "smoke_path": ".local/semantic-runtime-live-smoke/direct",
+  "status": "FAIL",
+  "thread_id": "01a13bba-db18-7cb1-9b93-9ec23900400b",
+  "usable_as_successful_plan_preflight": false,
+  "usage": {
+    "cache_write_input_tokens": 0,
+    "cached_input_tokens": 87296,
+    "input_tokens": 99139,
+    "output_tokens": 1564,
+    "reasoning_output_tokens": 669
+  },
+  "worker_pid": 17120
+}

@@ -56,10 +56,14 @@ bytes require a separately reviewed replacement plan and new exact-run approval.
 The immediate sequence is:
 
 1. Automated experiment controller engineering increment.
-2. **PURPOSE_RELATIVE_SOURCE_GROUNDING / SCIENTIFIC_EXECUTION_NOT_STARTED**:
-   frozen Cases 0020-0022 and [superseding prospective execution bindings](../experiments/source_grounding/bindings/README.md).
-   The corrected unapproved plan requires maintainer review; the failed original
-   run and approval are historical-only. No B/C/D or semantic worker entered.
+2. **PURPOSE_RELATIVE_SOURCE_GROUNDING / BLOCKED_INFRASTRUCTURE_INVALIDATION**:
+   the later approved run published PACKET and entered 0020 B/C and 0021 B.
+   [The invalidation record](../experiments/source_grounding/invalidations/54a77aed2c0212d5dd9b0dacb717d9c7bd72cb11361614aae979fe72ae7c8d2b/invalidation.json)
+   retires 0020/0021 as infrastructure-invalidated, not scientific evidence;
+   neither may retry. 0022 remains scientifically unentered. No gold or D exists.
+   [Real-worker preflight](../experiments/orchestration/engineering/runtime/README.md)
+   is blocked by the tested CLI's new-artifact permission boundary. No replacement
+   cohort or plan is frozen; both prior approvals remain historical-only.
 3. Search-policy / iterative evidence-pursuit cohort.
 4. Obligation-sufficiency / Context cohort.
 5. Live incremental RI completion.
