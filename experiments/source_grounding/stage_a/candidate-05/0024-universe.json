@@ -1,0 +1,2242 @@
+{
+  "analysis_unit": "SOURCE_TARGET_OBLIGATION_PAIR",
+  "case": "0024",
+  "frame": {
+    "corpus_id": "d79161fb36f8da1a6fba1a99f16c020e42beac7395019c63c18ba594d982b42f",
+    "parent_tree": "b63225c8f037a8f2f8db0b7467d607a693d4d6af",
+    "repository_id": "5cf96d9e-d6a5-44a6-83d3-1e24f6e00009",
+    "snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939"
+  },
+  "occurrences": "All distinct native fact identities retained; no occurrence weighting",
+  "schema": "broad-candidate-discrimination-universe-v1",
+  "sha256": "abeffeba58c0fe7efc6125e428d6c3ccad086ac6838f76e2272904e785598e14",
+  "units": [
+    {
+      "case": "0024",
+      "identity": "82b574b03e3f12d85caa8625a964b32a508908412796aa7c7b76ffdc85277fa8",
+      "obligation_id": "O1",
+      "references": [
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "0788b3b683037ab38a961d456329f2271cb614a5f2a0a30c1a4c964de7fdfefa",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 33,
+            "end_line": 406,
+            "start_column_utf8": 14,
+            "start_line": 406
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "71c79a0266831947f9d7feb6a533aba78d1d87fa96b801235cf5a4f478bb248b",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "cc7c7326700db63247a9017f7c14a6daec9cbe8e263aaa4e12492039aa8f5a66"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "0933e05cea0aed5978001e8db2821aa5881174a52396bc53d5f4da03435a7436",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 36,
+            "end_line": 255,
+            "start_column_utf8": 18,
+            "start_line": 255
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "0d04a2c2d40dadcaf7f54626a1cfad16a0c782d6ac9250ddd2f53af08ac4ad7d",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "178194a0da88fdb99628b238e47b65997edbabca7125218bc34a27574877309d"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "1b98d48ed7947bee038da573594c6a052eb1bec2648ce9a2082fb0f5e0d25a44",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 33,
+            "end_line": 400,
+            "start_column_utf8": 14,
+            "start_line": 400
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "71c79a0266831947f9d7feb6a533aba78d1d87fa96b801235cf5a4f478bb248b",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "cc7c7326700db63247a9017f7c14a6daec9cbe8e263aaa4e12492039aa8f5a66"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "2986f1a7776c797f0e613bd77f43564c13b18d60f3fe1d3590828fe5b5d40cc6",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 33,
+            "end_line": 178,
+            "start_column_utf8": 18,
+            "start_line": 178
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "e63c7f90d444d2a502d4c4696606eb6d81976d1d7b153aa6111e0cece0ee2ddc",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "11e7833d84d72c7ec0c20b85155fc80ce7a0eb9442f31763c8ecf2628db913bd"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "398d049e69fed814d4ef959480a1e7128708fdbac99388367dd2f56c99f3af1b",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 46,
+            "end_line": 233,
+            "start_column_utf8": 18,
+            "start_line": 233
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "d79f2cfef58abab23bbb47243e44092f320d14f50a974a402aa7edc48dd272d4",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "1c1594e9228e10210c22a7d5a02cc4282f1ac73263c9cae9477d8d1b22166fe7"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "4497cdadcad17550f05992471060461586b92bd7d18a6fc496b6192a9ded22b6",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 46,
+            "end_line": 219,
+            "start_column_utf8": 30,
+            "start_line": 219
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "ce2a9c84b700900cadf8e392e7c5d1f9bbeac3c2b6de0156c70ea935e1cb418d",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "e586467b51a44deec66118aad9e3bf5f58c1a1cdc50b1110aa4dbc50a243bbab"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "79e32a04e6342057ac5b11b7e8757bfb977aec6fc203ba1cd61cc4d2c961507e",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 33,
+            "end_line": 390,
+            "start_column_utf8": 14,
+            "start_line": 390
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "71c79a0266831947f9d7feb6a533aba78d1d87fa96b801235cf5a4f478bb248b",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "cc7c7326700db63247a9017f7c14a6daec9cbe8e263aaa4e12492039aa8f5a66"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "959d2d58589678a6664af924c93c8c62100e9d12528a0a9e1854776438751b2f",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 29,
+            "end_line": 375,
+            "start_column_utf8": 14,
+            "start_line": 375
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "e63c7f90d444d2a502d4c4696606eb6d81976d1d7b153aa6111e0cece0ee2ddc",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "11e7833d84d72c7ec0c20b85155fc80ce7a0eb9442f31763c8ecf2628db913bd"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "b1970b3538c0e42ab5a401102876d59425c90c5616c49d91129f646b3d01c6ba",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 35,
+            "end_line": 267,
+            "start_column_utf8": 22,
+            "start_line": 267
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "d592ef76876e732452b811203a55fbef899b930a719fd5871153fed782f93619",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5276b63d907a70339bc084d9a672fce64765ca12590e8b154cd99faec98fce0e"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "f949c0e803ba8ee508bf5f98d66d7f730fde64f84e4083e826306bc54b732a96",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 31,
+            "end_line": 281,
+            "start_column_utf8": 18,
+            "start_line": 281
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "d592ef76876e732452b811203a55fbef899b930a719fd5871153fed782f93619",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5276b63d907a70339bc084d9a672fce64765ca12590e8b154cd99faec98fce0e"
+        }
+      ],
+      "source": {
+        "address": "src/devtools/model_serving/vllm.py",
+        "content_identity": "e2a30de6822557ecfb0e56db88383de05a07ad938fe51147a9a76273be0abf29",
+        "document_identity": "e2bb3ef8173b1ef2246a1f9f2fc4e23d26045aaca5a0d1364c6f694f2ab51380"
+      },
+      "source_a_position": 1,
+      "target": {
+        "address": "src/devtools/model_serving/errors.py",
+        "content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+        "document_identity": "1996ccd365aeb74bf6f861371250b659bbcf7a1a5f58f24187230ac1e272bb57"
+      },
+      "target_a_position": 2
+    },
+    {
+      "case": "0024",
+      "identity": "aeefd74a22e823785be0be1f4da29a2c7b251db074db15d6c24de70fa571d765",
+      "obligation_id": "O1",
+      "references": [
+        {
+          "derivation_identity": "17be8818eddaf62c11ecaee7734c2f1186ec3b38b4774139b09f239c58696348",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "0c902d202126bfdf60bd89d67598731be866a8108db7d43c5e4b115bc0066c31",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "src/devtools/tools/filesystem.py",
+          "source_range_utf8": {
+            "end_column_utf8": 19,
+            "end_line": 49,
+            "start_column_utf8": 15,
+            "start_line": 49
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        }
+      ],
+      "source": {
+        "address": "src/devtools/tools/filesystem.py",
+        "content_identity": "a976b9868ea3ec236496d2516b31bbb645f03e4a54ba2dc68476a80e3e1ee8ef",
+        "document_identity": "97d27b9c43fef58875abea365716c6d39e8ed308c604ac874a2856b16ddd4ba9"
+      },
+      "source_a_position": 19,
+      "target": {
+        "address": "src/devtools/filesystem/reading.py",
+        "content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+        "document_identity": "d1dead5ca20598c9246405ae3cf3f7b832014c3a90f062e715bebe2cda006f7b"
+      },
+      "target_a_position": 59
+    },
+    {
+      "case": "0024",
+      "identity": "66dc9ce336dd59f8265c28980b4fef0f7de6e90f837489fac8d0ec568eeef880",
+      "obligation_id": "O1",
+      "references": [
+        {
+          "derivation_identity": "17be8818eddaf62c11ecaee7734c2f1186ec3b38b4774139b09f239c58696348",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "9d369627c5c5dbd256e99b99e5f4920227c963428bcdacd2ecb898da76e1e899",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "src/devtools/tools/filesystem.py",
+          "source_range_utf8": {
+            "end_column_utf8": 23,
+            "end_line": 54,
+            "start_column_utf8": 11,
+            "start_line": 54
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/paths/resolution.py",
+          "target_content_identity": "fe70de9698af2e43c5f82df8196976eee2c7ed18300174075cf646a53141a116",
+          "target_declaration_identity": "68921720eea78e4e332433d362ba6d62f94d927a692ee3a9f7a9cbae4f629299",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "90681b03d656cb56982506a5b99f8e43fa06843eba258416fc398e0b17c0df37"
+        }
+      ],
+      "source": {
+        "address": "src/devtools/tools/filesystem.py",
+        "content_identity": "a976b9868ea3ec236496d2516b31bbb645f03e4a54ba2dc68476a80e3e1ee8ef",
+        "document_identity": "97d27b9c43fef58875abea365716c6d39e8ed308c604ac874a2856b16ddd4ba9"
+      },
+      "source_a_position": 19,
+      "target": {
+        "address": "src/devtools/paths/resolution.py",
+        "content_identity": "fe70de9698af2e43c5f82df8196976eee2c7ed18300174075cf646a53141a116",
+        "document_identity": "f76c07f901bf265e3dd7ef1f5046120533b084e180c574736b710838872007d4"
+      },
+      "target_a_position": 65
+    },
+    {
+      "case": "0024",
+      "identity": "ce1a24c420149913d231364301ce84b4396f8f850a510ae5da40e9985f40e29e",
+      "obligation_id": "O1",
+      "references": [
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "02ad5aea4a74a04a0ec7cdf928210c30d366b9eafecb0a9035d478f9258fbb68",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 15,
+            "end_line": 128,
+            "start_column_utf8": 11,
+            "start_line": 128
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "1e551f306d41b016c57af2a00b8ad64513f010f564956cb79a1c53d5c7dc2775",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 15,
+            "end_line": 47,
+            "start_column_utf8": 11,
+            "start_line": 47
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "2023c691cd9307268a1202e259a2871ccf941df59792cbca5e4cf10bcfc55c3b",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 15,
+            "end_line": 74,
+            "start_column_utf8": 11,
+            "start_line": 74
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "30e41ed50b5694f5a483cc388ad7320f0c6ff0ca7ad0697c94f90e41b88fc0d2",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 15,
+            "end_line": 176,
+            "start_column_utf8": 11,
+            "start_line": 176
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "341ccc308e34d905b37b19f8e2aed3bbd83fd880ff941f4272d9efac6186f372",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 12,
+            "end_line": 154,
+            "start_column_utf8": 8,
+            "start_line": 154
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "3bdcb6382e63e6faee0cf898412a39afc6cfb542e975d345208743c0c33c54ff",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 12,
+            "end_line": 214,
+            "start_column_utf8": 8,
+            "start_line": 214
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "481b68da3a895dbd88a2a5c20eb7b7f4b118e41798409fc317f9bb58ee10ee95",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 12,
+            "end_line": 233,
+            "start_column_utf8": 8,
+            "start_line": 233
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "57705b4af304f31e38c7f77002034845046265fc1bd3e1d2aac9888e3c78fa27",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 12,
+            "end_line": 197,
+            "start_column_utf8": 8,
+            "start_line": 197
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "5d2580660be7378a0c8c220c216607c2597ee67a4586b306cb55eeae3145927e",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 12,
+            "end_line": 224,
+            "start_column_utf8": 8,
+            "start_line": 224
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "64ffe032d6a802a81520dd8605c200106aada14ec9ff746f861a381e950af046",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 26,
+            "end_line": 162,
+            "start_column_utf8": 22,
+            "start_line": 162
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "6545fb10a71822f66317a859b23ed88f2a3b7283634a5a29328f95f8b2995eae",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 15,
+            "end_line": 102,
+            "start_column_utf8": 11,
+            "start_line": 102
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "6dc85d716f96f61446cadfb56b26a71ba38c6774eddc40ec13a055e83ef9a62e",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 15,
+            "end_line": 89,
+            "start_column_utf8": 11,
+            "start_line": 89
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "6fba7b3ead70fe8355322387d39193e6a95fa0e920836c559dc171765f8a389d",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 15,
+            "end_line": 142,
+            "start_column_utf8": 11,
+            "start_line": 142
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "74b3f20984b0c508d8da4691837d74ae5ae1b0ba0f2eee487f8317b2c4c3dba4",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 15,
+            "end_line": 60,
+            "start_column_utf8": 11,
+            "start_line": 60
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "b10787623e25bd58f45da34d95ae0872364936efd2844cbb78d648bd650f8367",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 12,
+            "end_line": 168,
+            "start_column_utf8": 8,
+            "start_line": 168
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "b8ffb6fe92ff616deacfbc33ec1717330d2bdbea85e8f604b3c55d7e42693a3d",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 12,
+            "end_line": 165,
+            "start_column_utf8": 8,
+            "start_line": 165
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "c907a7c04248286e216c514091e39b0dbe7e3acd0a873fe11244faebeca7d7b1",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 15,
+            "end_line": 116,
+            "start_column_utf8": 11,
+            "start_line": 116
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        },
+        {
+          "derivation_identity": "9146adfa69590ab925e180815a3c74f5885c033e0b7aa3953f210bf20398a2ec",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "f49411aa1d45197cdea4cab99be55756fcdb89a6b4c6613db565d29a164cab9f",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/filesystem/test_reading.py",
+          "source_range_utf8": {
+            "end_column_utf8": 12,
+            "end_line": 151,
+            "start_column_utf8": 8,
+            "start_line": 151
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/filesystem/reading.py",
+          "target_content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+          "target_declaration_identity": "51a79f05f3303dd9cbde73144e6f328d29e0bb9c9e8e8f83dcbeda4c6a2d7637",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5c343ab3bbaa30d2ce5f4c6f6b45fe8eeb937e1701e3547efa91e9fb76e6bbd3"
+        }
+      ],
+      "source": {
+        "address": "tests/filesystem/test_reading.py",
+        "content_identity": "b6a106c7dea09881ab91b334943f85bf0075704afe166be64027e4f6b2475d59",
+        "document_identity": "d6fc5e8fe9655ef353a712da131ad3390516dd90d2dc4104fd17c294eb474ad2"
+      },
+      "source_a_position": 47,
+      "target": {
+        "address": "src/devtools/filesystem/reading.py",
+        "content_identity": "11233374a76ece39c50b82486cc1d8c660d2e5fd516312b5b88c5e3d0e914688",
+        "document_identity": "d1dead5ca20598c9246405ae3cf3f7b832014c3a90f062e715bebe2cda006f7b"
+      },
+      "target_a_position": 59
+    },
+    {
+      "case": "0024",
+      "identity": "8cdb79f54914c17fceb45766c0386ef033e81af3efc918515148d82365c700d9",
+      "obligation_id": "O1",
+      "references": [
+        {
+          "derivation_identity": "e8ab74779891832c190ff1b7eb23ac14f22fe9acc0de43ced90b7d2493ed9299",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "0d5f08e3fe6b88bd36230079d1550134d0accb17a3cee99e028195e228fa4ae2",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_benchmarks/test_storage.py",
+          "source_range_utf8": {
+            "end_column_utf8": 33,
+            "end_line": 151,
+            "start_column_utf8": 12,
+            "start_line": 151
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_benchmarks/storage.py",
+          "target_content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+          "target_declaration_identity": "b1315b62dc0ace343143754c2542d6f64b96077c7432f378711933e721953cc1",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "fbfec52a2c8914a15166cc836a3ce93758a4ffaec359108cd3d5a00ee8b2805c"
+        },
+        {
+          "derivation_identity": "e8ab74779891832c190ff1b7eb23ac14f22fe9acc0de43ced90b7d2493ed9299",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "1f25c3cf4e3534707ed2b7c978367ff83ca4ce1beccebb2972c06ecc06a02526",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_benchmarks/test_storage.py",
+          "source_range_utf8": {
+            "end_column_utf8": 33,
+            "end_line": 80,
+            "start_column_utf8": 12,
+            "start_line": 80
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_benchmarks/storage.py",
+          "target_content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+          "target_declaration_identity": "b1315b62dc0ace343143754c2542d6f64b96077c7432f378711933e721953cc1",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "fbfec52a2c8914a15166cc836a3ce93758a4ffaec359108cd3d5a00ee8b2805c"
+        },
+        {
+          "derivation_identity": "e8ab74779891832c190ff1b7eb23ac14f22fe9acc0de43ced90b7d2493ed9299",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "404a8a9b585db8ff92601411cbf482095debbda5106f08e419e35754d4197bfb",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_benchmarks/test_storage.py",
+          "source_range_utf8": {
+            "end_column_utf8": 32,
+            "end_line": 73,
+            "start_column_utf8": 11,
+            "start_line": 73
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_benchmarks/storage.py",
+          "target_content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+          "target_declaration_identity": "a0aad27c6cbf2ef9e83f14433d354a25d974df23db24368f35b17a5f9d74e8b0",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "3d0347d944ea3175a9b35434562aa697ffc18f843fe3aa57a21bde982d45951a"
+        },
+        {
+          "derivation_identity": "e8ab74779891832c190ff1b7eb23ac14f22fe9acc0de43ced90b7d2493ed9299",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "77db7e00ae86cf5d9a6f1c54ad0f4bfb76241c5078c4a16a1dac576c05d1bf73",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_benchmarks/test_storage.py",
+          "source_range_utf8": {
+            "end_column_utf8": 32,
+            "end_line": 93,
+            "start_column_utf8": 11,
+            "start_line": 93
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_benchmarks/storage.py",
+          "target_content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+          "target_declaration_identity": "b1315b62dc0ace343143754c2542d6f64b96077c7432f378711933e721953cc1",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "fbfec52a2c8914a15166cc836a3ce93758a4ffaec359108cd3d5a00ee8b2805c"
+        },
+        {
+          "derivation_identity": "e8ab74779891832c190ff1b7eb23ac14f22fe9acc0de43ced90b7d2493ed9299",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "9d4f868bbe9c9526bdbda2a6f5d7a3134b5467df21d4498d6606029071e5a0e7",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_benchmarks/test_storage.py",
+          "source_range_utf8": {
+            "end_column_utf8": 29,
+            "end_line": 136,
+            "start_column_utf8": 8,
+            "start_line": 136
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_benchmarks/storage.py",
+          "target_content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+          "target_declaration_identity": "b1315b62dc0ace343143754c2542d6f64b96077c7432f378711933e721953cc1",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "fbfec52a2c8914a15166cc836a3ce93758a4ffaec359108cd3d5a00ee8b2805c"
+        },
+        {
+          "derivation_identity": "e8ab74779891832c190ff1b7eb23ac14f22fe9acc0de43ced90b7d2493ed9299",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "a346ccf5289e69181e2b99f44bcf0e25a86041f419d0fc157de86fd9c6a6eb8c",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_benchmarks/test_storage.py",
+          "source_range_utf8": {
+            "end_column_utf8": 29,
+            "end_line": 120,
+            "start_column_utf8": 8,
+            "start_line": 120
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_benchmarks/storage.py",
+          "target_content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+          "target_declaration_identity": "a0aad27c6cbf2ef9e83f14433d354a25d974df23db24368f35b17a5f9d74e8b0",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "3d0347d944ea3175a9b35434562aa697ffc18f843fe3aa57a21bde982d45951a"
+        },
+        {
+          "derivation_identity": "e8ab74779891832c190ff1b7eb23ac14f22fe9acc0de43ced90b7d2493ed9299",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "b1f3ab5e0ecb1b6078906a4f8849a94c4267a79ee58b2f0186ce4d9f2584aba4",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_benchmarks/test_storage.py",
+          "source_range_utf8": {
+            "end_column_utf8": 32,
+            "end_line": 64,
+            "start_column_utf8": 11,
+            "start_line": 64
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_benchmarks/storage.py",
+          "target_content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+          "target_declaration_identity": "b1315b62dc0ace343143754c2542d6f64b96077c7432f378711933e721953cc1",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "fbfec52a2c8914a15166cc836a3ce93758a4ffaec359108cd3d5a00ee8b2805c"
+        },
+        {
+          "derivation_identity": "e8ab74779891832c190ff1b7eb23ac14f22fe9acc0de43ced90b7d2493ed9299",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "d9ac19cabf1baf817a02572a6d77d5dd01ec107fc1e9ee3a9f4484e093f01459",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_benchmarks/test_storage.py",
+          "source_range_utf8": {
+            "end_column_utf8": 34,
+            "end_line": 81,
+            "start_column_utf8": 13,
+            "start_line": 81
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_benchmarks/storage.py",
+          "target_content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+          "target_declaration_identity": "b1315b62dc0ace343143754c2542d6f64b96077c7432f378711933e721953cc1",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "fbfec52a2c8914a15166cc836a3ce93758a4ffaec359108cd3d5a00ee8b2805c"
+        }
+      ],
+      "source": {
+        "address": "tests/model_benchmarks/test_storage.py",
+        "content_identity": "03db08fce1b468098310c09f0130fa33267bfef5e703195b59c0079e5bf62d63",
+        "document_identity": "016319b5017a53d87fa2e58dc7715372d7ef91392ac1e6d1a51ae5f5927fbe71"
+      },
+      "source_a_position": 10,
+      "target": {
+        "address": "src/devtools/model_benchmarks/storage.py",
+        "content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+        "document_identity": "47dade0a655bb3d1a0869db428c41babaabf4e6f7e2189849c3f6ef0a3f6d399"
+      },
+      "target_a_position": 11
+    },
+    {
+      "case": "0024",
+      "identity": "7e0c28c2d343bb772e50980225d955681664a9b48d5f7d085695ee63a684a739",
+      "obligation_id": "O2",
+      "references": [
+        {
+          "derivation_identity": "29179602e4db76035bdbdb0aa59afb46bfda024f977d8edb9d4c4698f5b77e5a",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "95706ba4cd70c7b4b86f6e1787ff6a2892395008158e366cdd4de310f6ce9857",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/codex/agent.py",
+          "source_range_utf8": {
+            "end_column_utf8": 34,
+            "end_line": 85,
+            "start_column_utf8": 18,
+            "start_line": 85
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/codex/errors.py",
+          "target_content_identity": "efbdeba3848aef33b7d210052496447c9d5fb190674178cebed08405a58074ff",
+          "target_declaration_identity": "0392c59a5523a71f42064f28a843572b9355a691428450aefe61cbf07789c030",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "e79164aa79a9ce29ee86dadb2c46d9ae6a016e4f563d8b9aaaed86fb6bc0d13b"
+        },
+        {
+          "derivation_identity": "29179602e4db76035bdbdb0aa59afb46bfda024f977d8edb9d4c4698f5b77e5a",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "95f44912c9bbba07b5c18343288e37c5bab2e8d2d44338e917e297b730e4eb05",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/codex/agent.py",
+          "source_range_utf8": {
+            "end_column_utf8": 35,
+            "end_line": 82,
+            "start_column_utf8": 18,
+            "start_line": 82
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/codex/errors.py",
+          "target_content_identity": "efbdeba3848aef33b7d210052496447c9d5fb190674178cebed08405a58074ff",
+          "target_declaration_identity": "4f1a629ecfdbcf2ed10c5b53571b038f5cb8fc456b08d83d48c04bd27967d120",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "9b1b4f582af63dee106579c37a96c754eb9cfc0610d3b41276368e8117e3c790"
+        }
+      ],
+      "source": {
+        "address": "src/devtools/codex/agent.py",
+        "content_identity": "f9ea6307d8286b4dc9547d55553f4c2fec144099143160ebf7e31e2e9f123936",
+        "document_identity": "283e13d0f5b77051160e3bbcaf101c77477bb5b9a8553b0e9b3a50a2ec4d1646"
+      },
+      "source_a_position": 22,
+      "target": {
+        "address": "src/devtools/codex/errors.py",
+        "content_identity": "efbdeba3848aef33b7d210052496447c9d5fb190674178cebed08405a58074ff",
+        "document_identity": "e4a614a5a4c482b021a40190d1d13fd583598568f2cff6b4d9a3d8876306d4c7"
+      },
+      "target_a_position": 81
+    },
+    {
+      "case": "0024",
+      "identity": "60d6e92cacf0c8dbbafddce8b6308bad16e5fa257ff228a7fd3fc75be908fb2f",
+      "obligation_id": "O2",
+      "references": [
+        {
+          "derivation_identity": "14e13bc9eb51853195579f03580903f2e187f200f104b148385832eb8d07d197",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "0813ded799821c1eec455194514aadf70ff2b3512ba323f61a094bdd674f476f",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/commands/execution.py",
+          "source_range_utf8": {
+            "end_column_utf8": 38,
+            "end_line": 203,
+            "start_column_utf8": 18,
+            "start_line": 203
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/commands/errors.py",
+          "target_content_identity": "f9c739a2cd9c2aa41ccbbb4fefce66e11db348845f51a4c9c5f6019ac2192795",
+          "target_declaration_identity": "ca1d756baedf78fbea440705f2aa7c5ff5ede9dcef70cd570d967e6cc97ee672",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "0ef88b73b2587eb5e97b1615cb4c4cc5bade3eae53936172d73f73d39aaa53f4"
+        },
+        {
+          "derivation_identity": "14e13bc9eb51853195579f03580903f2e187f200f104b148385832eb8d07d197",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "0d4ef7f5a0804651715d927dfc6e379a7a12fe10853896c086da2b49c8b0ac46",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/commands/execution.py",
+          "source_range_utf8": {
+            "end_column_utf8": 30,
+            "end_line": 249,
+            "start_column_utf8": 18,
+            "start_line": 249
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/commands/errors.py",
+          "target_content_identity": "f9c739a2cd9c2aa41ccbbb4fefce66e11db348845f51a4c9c5f6019ac2192795",
+          "target_declaration_identity": "ef605975eb9d9436823164d4e1976f8f3c5ed4164fd3385e51946257f52c1089",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "86a91eede9ccfe4af6a62fd0d6261bb05d33bf50a83cb4a18dc1ba4963543cbb"
+        },
+        {
+          "derivation_identity": "14e13bc9eb51853195579f03580903f2e187f200f104b148385832eb8d07d197",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "63781d97cc7bf5f036dbb6c354b68da29d5511b087ec06f9f61da5eaaf05e02a",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/commands/execution.py",
+          "source_range_utf8": {
+            "end_column_utf8": 34,
+            "end_line": 146,
+            "start_column_utf8": 22,
+            "start_line": 146
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/commands/errors.py",
+          "target_content_identity": "f9c739a2cd9c2aa41ccbbb4fefce66e11db348845f51a4c9c5f6019ac2192795",
+          "target_declaration_identity": "ef605975eb9d9436823164d4e1976f8f3c5ed4164fd3385e51946257f52c1089",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "86a91eede9ccfe4af6a62fd0d6261bb05d33bf50a83cb4a18dc1ba4963543cbb"
+        },
+        {
+          "derivation_identity": "14e13bc9eb51853195579f03580903f2e187f200f104b148385832eb8d07d197",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "77c522b7bf414bed83b361489b9b94a000504a52bc44a407a3c3be875745f2a0",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/commands/execution.py",
+          "source_range_utf8": {
+            "end_column_utf8": 38,
+            "end_line": 115,
+            "start_column_utf8": 26,
+            "start_line": 115
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/commands/errors.py",
+          "target_content_identity": "f9c739a2cd9c2aa41ccbbb4fefce66e11db348845f51a4c9c5f6019ac2192795",
+          "target_declaration_identity": "ef605975eb9d9436823164d4e1976f8f3c5ed4164fd3385e51946257f52c1089",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "86a91eede9ccfe4af6a62fd0d6261bb05d33bf50a83cb4a18dc1ba4963543cbb"
+        },
+        {
+          "derivation_identity": "14e13bc9eb51853195579f03580903f2e187f200f104b148385832eb8d07d197",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "86b807b2b884cf93a9ad89c512d94c80f9bff2ad60407c40dab2455a00e4b19d",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/commands/execution.py",
+          "source_range_utf8": {
+            "end_column_utf8": 41,
+            "end_line": 122,
+            "start_column_utf8": 22,
+            "start_line": 122
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/commands/errors.py",
+          "target_content_identity": "f9c739a2cd9c2aa41ccbbb4fefce66e11db348845f51a4c9c5f6019ac2192795",
+          "target_declaration_identity": "17476cd960bf5a50bc6de0d6b4d056920fada308ffcb55f2cefe15cd02ddb80a",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "78b1a17ba05208e988741b815337dde354510b2f025eae7c8cc848bc4eb073b6"
+        },
+        {
+          "derivation_identity": "14e13bc9eb51853195579f03580903f2e187f200f104b148385832eb8d07d197",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "c8bcc99b685c48fd510bef4b627cae84b27ee033df04f936e76c2376afbc4a88",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/commands/execution.py",
+          "source_range_utf8": {
+            "end_column_utf8": 57,
+            "end_line": 129,
+            "start_column_utf8": 38,
+            "start_line": 129
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/commands/errors.py",
+          "target_content_identity": "f9c739a2cd9c2aa41ccbbb4fefce66e11db348845f51a4c9c5f6019ac2192795",
+          "target_declaration_identity": "17476cd960bf5a50bc6de0d6b4d056920fada308ffcb55f2cefe15cd02ddb80a",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "78b1a17ba05208e988741b815337dde354510b2f025eae7c8cc848bc4eb073b6"
+        },
+        {
+          "derivation_identity": "14e13bc9eb51853195579f03580903f2e187f200f104b148385832eb8d07d197",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "e6628f072cddebd04e47016ac6364b57868d6f3d06767346d30b1c49cd03602d",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/commands/execution.py",
+          "source_range_utf8": {
+            "end_column_utf8": 36,
+            "end_line": 129,
+            "start_column_utf8": 16,
+            "start_line": 129
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/commands/errors.py",
+          "target_content_identity": "f9c739a2cd9c2aa41ccbbb4fefce66e11db348845f51a4c9c5f6019ac2192795",
+          "target_declaration_identity": "ca1d756baedf78fbea440705f2aa7c5ff5ede9dcef70cd570d967e6cc97ee672",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "0ef88b73b2587eb5e97b1615cb4c4cc5bade3eae53936172d73f73d39aaa53f4"
+        }
+      ],
+      "source": {
+        "address": "src/devtools/commands/execution.py",
+        "content_identity": "6062be2b0271fd1e81ffc10e2b3fb8da2ab873948fc1afcfde4dd129d24ad6cd",
+        "document_identity": "d3fbdedaaa3df7f439f63fabdbd581db397a8f40a8815686454e7ed3abde2676"
+      },
+      "source_a_position": 52,
+      "target": {
+        "address": "src/devtools/commands/errors.py",
+        "content_identity": "f9c739a2cd9c2aa41ccbbb4fefce66e11db348845f51a4c9c5f6019ac2192795",
+        "document_identity": "a2cb859564c6ff8bd01de9b1ab589f654d65cdff8023a216596b8dd49f714bed"
+      },
+      "target_a_position": 65
+    },
+    {
+      "case": "0024",
+      "identity": "d5bf8f3a45f68a26a109b8491fbe8b4e18b1aa11eff62c640fe13f7edb9d82fd",
+      "obligation_id": "O2",
+      "references": [
+        {
+          "derivation_identity": "14e13bc9eb51853195579f03580903f2e187f200f104b148385832eb8d07d197",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "34185d3495259fa27ce835988856db775acdf6685bbe8f543c86586b888d5a9d",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/commands/execution.py",
+          "source_range_utf8": {
+            "end_column_utf8": 31,
+            "end_line": 58,
+            "start_column_utf8": 15,
+            "start_line": 58
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/commands/handle.py",
+          "target_content_identity": "7cc05c460e79955c6d36edf8b46eb4ee3314eb60e7116b5f4129b9aec4863d23",
+          "target_declaration_identity": "55c458acec3d869f54d66546f60bffeb8e6be443d396f770012a99a4e9b7a130",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "bb6dc90cc64b7b75b1e4cd7d23c169630daa47986089873333c4a5aba63a5bd6"
+        }
+      ],
+      "source": {
+        "address": "src/devtools/commands/execution.py",
+        "content_identity": "6062be2b0271fd1e81ffc10e2b3fb8da2ab873948fc1afcfde4dd129d24ad6cd",
+        "document_identity": "d3fbdedaaa3df7f439f63fabdbd581db397a8f40a8815686454e7ed3abde2676"
+      },
+      "source_a_position": 52,
+      "target": {
+        "address": "src/devtools/commands/handle.py",
+        "content_identity": "7cc05c460e79955c6d36edf8b46eb4ee3314eb60e7116b5f4129b9aec4863d23",
+        "document_identity": "292e2106000f511491087016a527aafd75292b449a6bb8c230f6233c90d18be3"
+      },
+      "target_a_position": 57
+    },
+    {
+      "case": "0024",
+      "identity": "2c5f89d50b979ce49f96090275b2a9015d921b96b249e5d491bcd3028be23d4d",
+      "obligation_id": "O2",
+      "references": [
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "0788b3b683037ab38a961d456329f2271cb614a5f2a0a30c1a4c964de7fdfefa",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 33,
+            "end_line": 406,
+            "start_column_utf8": 14,
+            "start_line": 406
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "71c79a0266831947f9d7feb6a533aba78d1d87fa96b801235cf5a4f478bb248b",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "cc7c7326700db63247a9017f7c14a6daec9cbe8e263aaa4e12492039aa8f5a66"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "0933e05cea0aed5978001e8db2821aa5881174a52396bc53d5f4da03435a7436",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 36,
+            "end_line": 255,
+            "start_column_utf8": 18,
+            "start_line": 255
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "0d04a2c2d40dadcaf7f54626a1cfad16a0c782d6ac9250ddd2f53af08ac4ad7d",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "178194a0da88fdb99628b238e47b65997edbabca7125218bc34a27574877309d"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "1b98d48ed7947bee038da573594c6a052eb1bec2648ce9a2082fb0f5e0d25a44",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 33,
+            "end_line": 400,
+            "start_column_utf8": 14,
+            "start_line": 400
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "71c79a0266831947f9d7feb6a533aba78d1d87fa96b801235cf5a4f478bb248b",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "cc7c7326700db63247a9017f7c14a6daec9cbe8e263aaa4e12492039aa8f5a66"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "2986f1a7776c797f0e613bd77f43564c13b18d60f3fe1d3590828fe5b5d40cc6",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 33,
+            "end_line": 178,
+            "start_column_utf8": 18,
+            "start_line": 178
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "e63c7f90d444d2a502d4c4696606eb6d81976d1d7b153aa6111e0cece0ee2ddc",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "11e7833d84d72c7ec0c20b85155fc80ce7a0eb9442f31763c8ecf2628db913bd"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "398d049e69fed814d4ef959480a1e7128708fdbac99388367dd2f56c99f3af1b",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 46,
+            "end_line": 233,
+            "start_column_utf8": 18,
+            "start_line": 233
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "d79f2cfef58abab23bbb47243e44092f320d14f50a974a402aa7edc48dd272d4",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "1c1594e9228e10210c22a7d5a02cc4282f1ac73263c9cae9477d8d1b22166fe7"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "4497cdadcad17550f05992471060461586b92bd7d18a6fc496b6192a9ded22b6",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 46,
+            "end_line": 219,
+            "start_column_utf8": 30,
+            "start_line": 219
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "ce2a9c84b700900cadf8e392e7c5d1f9bbeac3c2b6de0156c70ea935e1cb418d",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "e586467b51a44deec66118aad9e3bf5f58c1a1cdc50b1110aa4dbc50a243bbab"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "79e32a04e6342057ac5b11b7e8757bfb977aec6fc203ba1cd61cc4d2c961507e",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 33,
+            "end_line": 390,
+            "start_column_utf8": 14,
+            "start_line": 390
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "71c79a0266831947f9d7feb6a533aba78d1d87fa96b801235cf5a4f478bb248b",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "cc7c7326700db63247a9017f7c14a6daec9cbe8e263aaa4e12492039aa8f5a66"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "959d2d58589678a6664af924c93c8c62100e9d12528a0a9e1854776438751b2f",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 29,
+            "end_line": 375,
+            "start_column_utf8": 14,
+            "start_line": 375
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "e63c7f90d444d2a502d4c4696606eb6d81976d1d7b153aa6111e0cece0ee2ddc",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "11e7833d84d72c7ec0c20b85155fc80ce7a0eb9442f31763c8ecf2628db913bd"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "b1970b3538c0e42ab5a401102876d59425c90c5616c49d91129f646b3d01c6ba",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 35,
+            "end_line": 267,
+            "start_column_utf8": 22,
+            "start_line": 267
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "d592ef76876e732452b811203a55fbef899b930a719fd5871153fed782f93619",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5276b63d907a70339bc084d9a672fce64765ca12590e8b154cd99faec98fce0e"
+        },
+        {
+          "derivation_identity": "d26f7e7d10b9963aea74fea66fc8fd5be4d4cb5968f4317807d8da08974287e7",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "f949c0e803ba8ee508bf5f98d66d7f730fde64f84e4083e826306bc54b732a96",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "src/devtools/model_serving/vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 31,
+            "end_line": 281,
+            "start_column_utf8": 18,
+            "start_line": 281
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "d592ef76876e732452b811203a55fbef899b930a719fd5871153fed782f93619",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5276b63d907a70339bc084d9a672fce64765ca12590e8b154cd99faec98fce0e"
+        }
+      ],
+      "source": {
+        "address": "src/devtools/model_serving/vllm.py",
+        "content_identity": "e2a30de6822557ecfb0e56db88383de05a07ad938fe51147a9a76273be0abf29",
+        "document_identity": "e2bb3ef8173b1ef2246a1f9f2fc4e23d26045aaca5a0d1364c6f694f2ab51380"
+      },
+      "source_a_position": 2,
+      "target": {
+        "address": "src/devtools/model_serving/errors.py",
+        "content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+        "document_identity": "1996ccd365aeb74bf6f861371250b659bbcf7a1a5f58f24187230ac1e272bb57"
+      },
+      "target_a_position": 4
+    },
+    {
+      "case": "0024",
+      "identity": "545669968d6517b1eda5807f0b7b35adf8f12216999caf10a74f3a46b8d9fb9b",
+      "obligation_id": "O2",
+      "references": [
+        {
+          "derivation_identity": "e8ab74779891832c190ff1b7eb23ac14f22fe9acc0de43ced90b7d2493ed9299",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "0d5f08e3fe6b88bd36230079d1550134d0accb17a3cee99e028195e228fa4ae2",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_benchmarks/test_storage.py",
+          "source_range_utf8": {
+            "end_column_utf8": 33,
+            "end_line": 151,
+            "start_column_utf8": 12,
+            "start_line": 151
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_benchmarks/storage.py",
+          "target_content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+          "target_declaration_identity": "b1315b62dc0ace343143754c2542d6f64b96077c7432f378711933e721953cc1",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "fbfec52a2c8914a15166cc836a3ce93758a4ffaec359108cd3d5a00ee8b2805c"
+        },
+        {
+          "derivation_identity": "e8ab74779891832c190ff1b7eb23ac14f22fe9acc0de43ced90b7d2493ed9299",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "1f25c3cf4e3534707ed2b7c978367ff83ca4ce1beccebb2972c06ecc06a02526",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_benchmarks/test_storage.py",
+          "source_range_utf8": {
+            "end_column_utf8": 33,
+            "end_line": 80,
+            "start_column_utf8": 12,
+            "start_line": 80
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_benchmarks/storage.py",
+          "target_content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+          "target_declaration_identity": "b1315b62dc0ace343143754c2542d6f64b96077c7432f378711933e721953cc1",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "fbfec52a2c8914a15166cc836a3ce93758a4ffaec359108cd3d5a00ee8b2805c"
+        },
+        {
+          "derivation_identity": "e8ab74779891832c190ff1b7eb23ac14f22fe9acc0de43ced90b7d2493ed9299",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "404a8a9b585db8ff92601411cbf482095debbda5106f08e419e35754d4197bfb",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_benchmarks/test_storage.py",
+          "source_range_utf8": {
+            "end_column_utf8": 32,
+            "end_line": 73,
+            "start_column_utf8": 11,
+            "start_line": 73
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_benchmarks/storage.py",
+          "target_content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+          "target_declaration_identity": "a0aad27c6cbf2ef9e83f14433d354a25d974df23db24368f35b17a5f9d74e8b0",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "3d0347d944ea3175a9b35434562aa697ffc18f843fe3aa57a21bde982d45951a"
+        },
+        {
+          "derivation_identity": "e8ab74779891832c190ff1b7eb23ac14f22fe9acc0de43ced90b7d2493ed9299",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "77db7e00ae86cf5d9a6f1c54ad0f4bfb76241c5078c4a16a1dac576c05d1bf73",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_benchmarks/test_storage.py",
+          "source_range_utf8": {
+            "end_column_utf8": 32,
+            "end_line": 93,
+            "start_column_utf8": 11,
+            "start_line": 93
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_benchmarks/storage.py",
+          "target_content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+          "target_declaration_identity": "b1315b62dc0ace343143754c2542d6f64b96077c7432f378711933e721953cc1",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "fbfec52a2c8914a15166cc836a3ce93758a4ffaec359108cd3d5a00ee8b2805c"
+        },
+        {
+          "derivation_identity": "e8ab74779891832c190ff1b7eb23ac14f22fe9acc0de43ced90b7d2493ed9299",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "9d4f868bbe9c9526bdbda2a6f5d7a3134b5467df21d4498d6606029071e5a0e7",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_benchmarks/test_storage.py",
+          "source_range_utf8": {
+            "end_column_utf8": 29,
+            "end_line": 136,
+            "start_column_utf8": 8,
+            "start_line": 136
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_benchmarks/storage.py",
+          "target_content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+          "target_declaration_identity": "b1315b62dc0ace343143754c2542d6f64b96077c7432f378711933e721953cc1",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "fbfec52a2c8914a15166cc836a3ce93758a4ffaec359108cd3d5a00ee8b2805c"
+        },
+        {
+          "derivation_identity": "e8ab74779891832c190ff1b7eb23ac14f22fe9acc0de43ced90b7d2493ed9299",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "a346ccf5289e69181e2b99f44bcf0e25a86041f419d0fc157de86fd9c6a6eb8c",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_benchmarks/test_storage.py",
+          "source_range_utf8": {
+            "end_column_utf8": 29,
+            "end_line": 120,
+            "start_column_utf8": 8,
+            "start_line": 120
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_benchmarks/storage.py",
+          "target_content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+          "target_declaration_identity": "a0aad27c6cbf2ef9e83f14433d354a25d974df23db24368f35b17a5f9d74e8b0",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "3d0347d944ea3175a9b35434562aa697ffc18f843fe3aa57a21bde982d45951a"
+        },
+        {
+          "derivation_identity": "e8ab74779891832c190ff1b7eb23ac14f22fe9acc0de43ced90b7d2493ed9299",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "b1f3ab5e0ecb1b6078906a4f8849a94c4267a79ee58b2f0186ce4d9f2584aba4",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_benchmarks/test_storage.py",
+          "source_range_utf8": {
+            "end_column_utf8": 32,
+            "end_line": 64,
+            "start_column_utf8": 11,
+            "start_line": 64
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_benchmarks/storage.py",
+          "target_content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+          "target_declaration_identity": "b1315b62dc0ace343143754c2542d6f64b96077c7432f378711933e721953cc1",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "fbfec52a2c8914a15166cc836a3ce93758a4ffaec359108cd3d5a00ee8b2805c"
+        },
+        {
+          "derivation_identity": "e8ab74779891832c190ff1b7eb23ac14f22fe9acc0de43ced90b7d2493ed9299",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "d9ac19cabf1baf817a02572a6d77d5dd01ec107fc1e9ee3a9f4484e093f01459",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_benchmarks/test_storage.py",
+          "source_range_utf8": {
+            "end_column_utf8": 34,
+            "end_line": 81,
+            "start_column_utf8": 13,
+            "start_line": 81
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_benchmarks/storage.py",
+          "target_content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+          "target_declaration_identity": "b1315b62dc0ace343143754c2542d6f64b96077c7432f378711933e721953cc1",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "fbfec52a2c8914a15166cc836a3ce93758a4ffaec359108cd3d5a00ee8b2805c"
+        }
+      ],
+      "source": {
+        "address": "tests/model_benchmarks/test_storage.py",
+        "content_identity": "03db08fce1b468098310c09f0130fa33267bfef5e703195b59c0079e5bf62d63",
+        "document_identity": "016319b5017a53d87fa2e58dc7715372d7ef91392ac1e6d1a51ae5f5927fbe71"
+      },
+      "source_a_position": 27,
+      "target": {
+        "address": "src/devtools/model_benchmarks/storage.py",
+        "content_identity": "fb095436d0e6d9bf52af060e75f20d1b4df4096a058351b5d677c4d0fe96ffc0",
+        "document_identity": "47dade0a655bb3d1a0869db428c41babaabf4e6f7e2189849c3f6ef0a3f6d399"
+      },
+      "target_a_position": 69
+    },
+    {
+      "case": "0024",
+      "identity": "0b80561b819fe4379de16c25d0acb9cb3cca43d87ca47142c7d2112ac10c08d7",
+      "obligation_id": "O2",
+      "references": [
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "05c8135673947bfe25fbf10bedbb763d9b55b761585627c01d404cbdd4b41fdc",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 42,
+            "end_line": 1038,
+            "start_column_utf8": 23,
+            "start_line": 1038
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "71c79a0266831947f9d7feb6a533aba78d1d87fa96b801235cf5a4f478bb248b",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "cc7c7326700db63247a9017f7c14a6daec9cbe8e263aaa4e12492039aa8f5a66"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "0a12dd859f6e3d6386b72fda57343441be202dd9527f5ed65db1ffa04ede5f4d",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 41,
+            "end_line": 790,
+            "start_column_utf8": 23,
+            "start_line": 790
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "0d04a2c2d40dadcaf7f54626a1cfad16a0c782d6ac9250ddd2f53af08ac4ad7d",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "178194a0da88fdb99628b238e47b65997edbabca7125218bc34a27574877309d"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "2ca4ee60c277d03ae576380be9c222af49c4cbe8279f20e51a4e83501b9ecbdb",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 36,
+            "end_line": 1001,
+            "start_column_utf8": 23,
+            "start_line": 1001
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "d592ef76876e732452b811203a55fbef899b930a719fd5871153fed782f93619",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5276b63d907a70339bc084d9a672fce64765ca12590e8b154cd99faec98fce0e"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "3a1493f41e76d17fad5c4af56390d4fbac78dc9e7b82d790fc06bd1351542105",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 39,
+            "end_line": 686,
+            "start_column_utf8": 23,
+            "start_line": 686
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "ce2a9c84b700900cadf8e392e7c5d1f9bbeac3c2b6de0156c70ea935e1cb418d",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "e586467b51a44deec66118aad9e3bf5f58c1a1cdc50b1110aa4dbc50a243bbab"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "3d43109d38aded3afe66cb1ddfe3ed3bfc239745e59ad21f58dce8cb107a672e",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 36,
+            "end_line": 983,
+            "start_column_utf8": 23,
+            "start_line": 983
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "d592ef76876e732452b811203a55fbef899b930a719fd5871153fed782f93619",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5276b63d907a70339bc084d9a672fce64765ca12590e8b154cd99faec98fce0e"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "489ead3fcfa57df6f3cda50511d248e1002a7dd26b5820298d0b0661ad749f87",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 51,
+            "end_line": 412,
+            "start_column_utf8": 23,
+            "start_line": 412
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "d79f2cfef58abab23bbb47243e44092f320d14f50a974a402aa7edc48dd272d4",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "1c1594e9228e10210c22a7d5a02cc4282f1ac73263c9cae9477d8d1b22166fe7"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "5c4cef797b8a45419acc41c59712f815a90db73fd81abf58f72505884f924ddc",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 39,
+            "end_line": 603,
+            "start_column_utf8": 23,
+            "start_line": 603
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "ce2a9c84b700900cadf8e392e7c5d1f9bbeac3c2b6de0156c70ea935e1cb418d",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "e586467b51a44deec66118aad9e3bf5f58c1a1cdc50b1110aa4dbc50a243bbab"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "64570ae2fbf4c638bc5c11b7d3390dd01c4cdc97c792078f5493af4b8875c8af",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 51,
+            "end_line": 564,
+            "start_column_utf8": 23,
+            "start_line": 564
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "d79f2cfef58abab23bbb47243e44092f320d14f50a974a402aa7edc48dd272d4",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "1c1594e9228e10210c22a7d5a02cc4282f1ac73263c9cae9477d8d1b22166fe7"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "68da67ba0227972199bda1c67f9719c3d3277eef2363a76170b290fa879743f1",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 38,
+            "end_line": 314,
+            "start_column_utf8": 23,
+            "start_line": 314
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "e63c7f90d444d2a502d4c4696606eb6d81976d1d7b153aa6111e0cece0ee2ddc",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "11e7833d84d72c7ec0c20b85155fc80ce7a0eb9442f31763c8ecf2628db913bd"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "69176538470f25a77ec25d11bbb9da2057f70ef05288c2b091ee16f95ab5335d",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 51,
+            "end_line": 908,
+            "start_column_utf8": 23,
+            "start_line": 908
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "d79f2cfef58abab23bbb47243e44092f320d14f50a974a402aa7edc48dd272d4",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "1c1594e9228e10210c22a7d5a02cc4282f1ac73263c9cae9477d8d1b22166fe7"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "796642874fde1f214840d804ffbfb38d5150bfbd857a7127cc8cf19517b7486d",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 42,
+            "end_line": 878,
+            "start_column_utf8": 23,
+            "start_line": 878
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "71c79a0266831947f9d7feb6a533aba78d1d87fa96b801235cf5a4f478bb248b",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "cc7c7326700db63247a9017f7c14a6daec9cbe8e263aaa4e12492039aa8f5a66"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "88236e5a8d31bba6a5a4296b5d436054910072789b99e1a58284eca1915cbde0",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 38,
+            "end_line": 288,
+            "start_column_utf8": 23,
+            "start_line": 288
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "e63c7f90d444d2a502d4c4696606eb6d81976d1d7b153aa6111e0cece0ee2ddc",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "11e7833d84d72c7ec0c20b85155fc80ce7a0eb9442f31763c8ecf2628db913bd"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "a4e9d02525e0f673371cf345780e6c1b15a1155d966ab85bc6bb046da8487e84",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 39,
+            "end_line": 643,
+            "start_column_utf8": 23,
+            "start_line": 643
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "ce2a9c84b700900cadf8e392e7c5d1f9bbeac3c2b6de0156c70ea935e1cb418d",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "e586467b51a44deec66118aad9e3bf5f58c1a1cdc50b1110aa4dbc50a243bbab"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "b611ec310677abde772f21d4a0a12bdc23a2d731b06174e55de68f32590c9b6f",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 38,
+            "end_line": 378,
+            "start_column_utf8": 23,
+            "start_line": 378
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "e63c7f90d444d2a502d4c4696606eb6d81976d1d7b153aa6111e0cece0ee2ddc",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "11e7833d84d72c7ec0c20b85155fc80ce7a0eb9442f31763c8ecf2628db913bd"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "b6e77c4a6d386ee54b776bb65a85864e67ced716fa1a3ee97e6c896e1f2421fb",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 42,
+            "end_line": 1041,
+            "start_column_utf8": 23,
+            "start_line": 1041
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "71c79a0266831947f9d7feb6a533aba78d1d87fa96b801235cf5a4f478bb248b",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "cc7c7326700db63247a9017f7c14a6daec9cbe8e263aaa4e12492039aa8f5a66"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "bcca17156c0f7825f5c13f7157cde16cb5c5b32b773dfcf62baf8c2c295a9026",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 30,
+            "end_line": 1018,
+            "start_column_utf8": 14,
+            "start_line": 1018
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "ce2a9c84b700900cadf8e392e7c5d1f9bbeac3c2b6de0156c70ea935e1cb418d",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "e586467b51a44deec66118aad9e3bf5f58c1a1cdc50b1110aa4dbc50a243bbab"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "d2a0387b717032fe9d568d9d82cecb94f431feb2180270f6b88c22f9e231be84",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 42,
+            "end_line": 838,
+            "start_column_utf8": 23,
+            "start_line": 838
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "71c79a0266831947f9d7feb6a533aba78d1d87fa96b801235cf5a4f478bb248b",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "cc7c7326700db63247a9017f7c14a6daec9cbe8e263aaa4e12492039aa8f5a66"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "d6e75dab4a96976130908673c20a2b2370fc8c5b23cc729d384936954d17c9c7",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 39,
+            "end_line": 717,
+            "start_column_utf8": 23,
+            "start_line": 717
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "ce2a9c84b700900cadf8e392e7c5d1f9bbeac3c2b6de0156c70ea935e1cb418d",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "e586467b51a44deec66118aad9e3bf5f58c1a1cdc50b1110aa4dbc50a243bbab"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "d7c54cf582a3108812900281c0095d9eb89fb4e68b5f54a52a6b8fdc22ea6966",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 36,
+            "end_line": 992,
+            "start_column_utf8": 23,
+            "start_line": 992
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "d592ef76876e732452b811203a55fbef899b930a719fd5871153fed782f93619",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5276b63d907a70339bc084d9a672fce64765ca12590e8b154cd99faec98fce0e"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "ea855d6f2c47debbc16e859232328bacb358059213b9d8bbf5b544f3f3f233db",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 36,
+            "end_line": 1010,
+            "start_column_utf8": 23,
+            "start_line": 1010
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "d592ef76876e732452b811203a55fbef899b930a719fd5871153fed782f93619",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "5276b63d907a70339bc084d9a672fce64765ca12590e8b154cd99faec98fce0e"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "f0ad76fe9d8cad071f4dcf4fc2a24bf8c58b0a2a1461ba0966ac33e5a2af5d32",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 38,
+            "end_line": 351,
+            "start_column_utf8": 23,
+            "start_line": 351
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "e63c7f90d444d2a502d4c4696606eb6d81976d1d7b153aa6111e0cece0ee2ddc",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "11e7833d84d72c7ec0c20b85155fc80ce7a0eb9442f31763c8ecf2628db913bd"
+        },
+        {
+          "derivation_identity": "d2db2c19f24d33c5de76a83804ec7d4da22543a249c7f40f6c959d25d263f0fe",
+          "direct_call_tag_diagnostic_only": false,
+          "fact_identity": "f58d18bb570b5abe2b84667dd4986392f1b1274f31ccaad0e442acc54b3a4da3",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/model_serving/test_vllm.py",
+          "source_range_utf8": {
+            "end_column_utf8": 42,
+            "end_line": 835,
+            "start_column_utf8": 23,
+            "start_line": 835
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/model_serving/errors.py",
+          "target_content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+          "target_declaration_identity": "71c79a0266831947f9d7feb6a533aba78d1d87fa96b801235cf5a4f478bb248b",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "cc7c7326700db63247a9017f7c14a6daec9cbe8e263aaa4e12492039aa8f5a66"
+        }
+      ],
+      "source": {
+        "address": "tests/model_serving/test_vllm.py",
+        "content_identity": "ff6140693fbd056d2d99699421b604949dc124db3b9f89fc335623ba01cc643c",
+        "document_identity": "2b910483e211692ff6791ed2ed21fb05ba7076edda646dd2c1595ccfb6dbb9eb"
+      },
+      "source_a_position": 3,
+      "target": {
+        "address": "src/devtools/model_serving/errors.py",
+        "content_identity": "5b0ee25fa7867db9df35db7833ff06eddb9c9beccf2d2c32c3644f8c105d9674",
+        "document_identity": "1996ccd365aeb74bf6f861371250b659bbcf7a1a5f58f24187230ac1e272bb57"
+      },
+      "target_a_position": 4
+    },
+    {
+      "case": "0024",
+      "identity": "68bbe07eb01133623c05ac5cde855c3ac03356fb867c4a6f4e5c3d5227d16b6e",
+      "obligation_id": "O2",
+      "references": [
+        {
+          "derivation_identity": "4fc66bf0ebda1b5f702f71f42bcf7018ea92a17526d116efba6aafe4d01edd6b",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "45cd459efc40634d8dc534599cba191c91072b1b4ec93f2c531c280dc19b282d",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/persistence/test_json.py",
+          "source_range_utf8": {
+            "end_column_utf8": 54,
+            "end_line": 107,
+            "start_column_utf8": 35,
+            "start_line": 107
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/persistence/json.py",
+          "target_content_identity": "1ab42edfd2e39ea57c3ce7e308c8b719c7100774eab8e2dfdb3552b17233460d",
+          "target_declaration_identity": "30cacb52fe9868c3182a71add4ac069d1c6cdb7cc59e7c5b1d4ad6e9460fbb6d",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "fd6a13ec63b7170bc1f29cd42b872bd6729b97382d6541084a8e32f83cda27f0"
+        },
+        {
+          "derivation_identity": "4fc66bf0ebda1b5f702f71f42bcf7018ea92a17526d116efba6aafe4d01edd6b",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "54fd001f9d17af1455e121cdc33129d912dcc4b070c9a158920e341359b72c74",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/persistence/test_json.py",
+          "source_range_utf8": {
+            "end_column_utf8": 38,
+            "end_line": 88,
+            "start_column_utf8": 19,
+            "start_line": 88
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/persistence/json.py",
+          "target_content_identity": "1ab42edfd2e39ea57c3ce7e308c8b719c7100774eab8e2dfdb3552b17233460d",
+          "target_declaration_identity": "30cacb52fe9868c3182a71add4ac069d1c6cdb7cc59e7c5b1d4ad6e9460fbb6d",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "fd6a13ec63b7170bc1f29cd42b872bd6729b97382d6541084a8e32f83cda27f0"
+        },
+        {
+          "derivation_identity": "4fc66bf0ebda1b5f702f71f42bcf7018ea92a17526d116efba6aafe4d01edd6b",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "62207179b8aa7a72cc554a708ce7e670314122e06b1f96988f1ad3a7d6059240",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/persistence/test_json.py",
+          "source_range_utf8": {
+            "end_column_utf8": 42,
+            "end_line": 71,
+            "start_column_utf8": 23,
+            "start_line": 71
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/persistence/json.py",
+          "target_content_identity": "1ab42edfd2e39ea57c3ce7e308c8b719c7100774eab8e2dfdb3552b17233460d",
+          "target_declaration_identity": "30cacb52fe9868c3182a71add4ac069d1c6cdb7cc59e7c5b1d4ad6e9460fbb6d",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "fd6a13ec63b7170bc1f29cd42b872bd6729b97382d6541084a8e32f83cda27f0"
+        },
+        {
+          "derivation_identity": "4fc66bf0ebda1b5f702f71f42bcf7018ea92a17526d116efba6aafe4d01edd6b",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "76b5298d74cee5f0c55aedd1d12973f4a0e91c71f7824a31bb327874d0572c89",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/persistence/test_json.py",
+          "source_range_utf8": {
+            "end_column_utf8": 27,
+            "end_line": 188,
+            "start_column_utf8": 8,
+            "start_line": 188
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/persistence/json.py",
+          "target_content_identity": "1ab42edfd2e39ea57c3ce7e308c8b719c7100774eab8e2dfdb3552b17233460d",
+          "target_declaration_identity": "bac4d69222546c14a100947f3adab717084ccce034646905962db279d7e326f9",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "7bfd3549ccd97efc2944fee6deb0fe9b53181447ff11969d8bc80e450a7141a0"
+        },
+        {
+          "derivation_identity": "4fc66bf0ebda1b5f702f71f42bcf7018ea92a17526d116efba6aafe4d01edd6b",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "82aa108c476a2dd82d94e4d2a503f90d7f7259493aa0f71cdce2307e9df68d5c",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/persistence/test_json.py",
+          "source_range_utf8": {
+            "end_column_utf8": 34,
+            "end_line": 80,
+            "start_column_utf8": 15,
+            "start_line": 80
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/persistence/json.py",
+          "target_content_identity": "1ab42edfd2e39ea57c3ce7e308c8b719c7100774eab8e2dfdb3552b17233460d",
+          "target_declaration_identity": "bac4d69222546c14a100947f3adab717084ccce034646905962db279d7e326f9",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "7bfd3549ccd97efc2944fee6deb0fe9b53181447ff11969d8bc80e450a7141a0"
+        },
+        {
+          "derivation_identity": "4fc66bf0ebda1b5f702f71f42bcf7018ea92a17526d116efba6aafe4d01edd6b",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "b73ac385e5d0b33195ccb68b05c38aeacea1119daf66b101b4490492f856bf0d",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/persistence/test_json.py",
+          "source_range_utf8": {
+            "end_column_utf8": 34,
+            "end_line": 107,
+            "start_column_utf8": 15,
+            "start_line": 107
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/persistence/json.py",
+          "target_content_identity": "1ab42edfd2e39ea57c3ce7e308c8b719c7100774eab8e2dfdb3552b17233460d",
+          "target_declaration_identity": "bac4d69222546c14a100947f3adab717084ccce034646905962db279d7e326f9",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "7bfd3549ccd97efc2944fee6deb0fe9b53181447ff11969d8bc80e450a7141a0"
+        },
+        {
+          "derivation_identity": "4fc66bf0ebda1b5f702f71f42bcf7018ea92a17526d116efba6aafe4d01edd6b",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "b90970f16c9f9b978e980bfa7d412abe2f6bc63e26584f952a0e86a72ebe1144",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/persistence/test_json.py",
+          "source_range_utf8": {
+            "end_column_utf8": 27,
+            "end_line": 162,
+            "start_column_utf8": 8,
+            "start_line": 162
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/persistence/json.py",
+          "target_content_identity": "1ab42edfd2e39ea57c3ce7e308c8b719c7100774eab8e2dfdb3552b17233460d",
+          "target_declaration_identity": "bac4d69222546c14a100947f3adab717084ccce034646905962db279d7e326f9",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "7bfd3549ccd97efc2944fee6deb0fe9b53181447ff11969d8bc80e450a7141a0"
+        },
+        {
+          "derivation_identity": "4fc66bf0ebda1b5f702f71f42bcf7018ea92a17526d116efba6aafe4d01edd6b",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "cceb7bd33ea067ec8c724f125de02c339fdf010e6b73e39fec3c6d81ec4204e2",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/persistence/test_json.py",
+          "source_range_utf8": {
+            "end_column_utf8": 27,
+            "end_line": 201,
+            "start_column_utf8": 8,
+            "start_line": 201
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/persistence/json.py",
+          "target_content_identity": "1ab42edfd2e39ea57c3ce7e308c8b719c7100774eab8e2dfdb3552b17233460d",
+          "target_declaration_identity": "bac4d69222546c14a100947f3adab717084ccce034646905962db279d7e326f9",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "7bfd3549ccd97efc2944fee6deb0fe9b53181447ff11969d8bc80e450a7141a0"
+        },
+        {
+          "derivation_identity": "4fc66bf0ebda1b5f702f71f42bcf7018ea92a17526d116efba6aafe4d01edd6b",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "da42408b3390caaf78fbaa32698a6754e21c43e6b4de5f1ec7afc268708e5efc",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/persistence/test_json.py",
+          "source_range_utf8": {
+            "end_column_utf8": 27,
+            "end_line": 177,
+            "start_column_utf8": 8,
+            "start_line": 177
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/persistence/json.py",
+          "target_content_identity": "1ab42edfd2e39ea57c3ce7e308c8b719c7100774eab8e2dfdb3552b17233460d",
+          "target_declaration_identity": "bac4d69222546c14a100947f3adab717084ccce034646905962db279d7e326f9",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "7bfd3549ccd97efc2944fee6deb0fe9b53181447ff11969d8bc80e450a7141a0"
+        },
+        {
+          "derivation_identity": "4fc66bf0ebda1b5f702f71f42bcf7018ea92a17526d116efba6aafe4d01edd6b",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "e63eb9ab484b17ddf6a31477e64d0f2adec750bb8b398994a5e52407774d13ee",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "one-facade-imported-member",
+          "source_address": "tests/persistence/test_json.py",
+          "source_range_utf8": {
+            "end_column_utf8": 30,
+            "end_line": 79,
+            "start_column_utf8": 11,
+            "start_line": 79
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/persistence/json.py",
+          "target_content_identity": "1ab42edfd2e39ea57c3ce7e308c8b719c7100774eab8e2dfdb3552b17233460d",
+          "target_declaration_identity": "30cacb52fe9868c3182a71add4ac069d1c6cdb7cc59e7c5b1d4ad6e9460fbb6d",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "fd6a13ec63b7170bc1f29cd42b872bd6729b97382d6541084a8e32f83cda27f0"
+        }
+      ],
+      "source": {
+        "address": "tests/persistence/test_json.py",
+        "content_identity": "02a3c7266311b81b9dca25a71561c404a8b314c261b4625f1bfd2b49f2cebd2c",
+        "document_identity": "6dab9a97ea0a5742c1863a66e223dff719d76631ad8af888d20447d676f406d7"
+      },
+      "source_a_position": 47,
+      "target": {
+        "address": "src/devtools/persistence/json.py",
+        "content_identity": "1ab42edfd2e39ea57c3ce7e308c8b719c7100774eab8e2dfdb3552b17233460d",
+        "document_identity": "235ff5143f798864179c351cec61533fb41f5fc09aaf690404256fa14d6316ed"
+      },
+      "target_a_position": 90
+    },
+    {
+      "case": "0024",
+      "identity": "53a23c6a0da2e7c31ac7430d6c43edc1652137e737b6b5c6693c5789620428e7",
+      "obligation_id": "O2",
+      "references": [
+        {
+          "derivation_identity": "4a19f618cdd8b9396069b1f5e42af65f891367392bcdbcb12782419e4a8691bf",
+          "direct_call_tag_diagnostic_only": true,
+          "fact_identity": "13c3a8675690276b7a3661c3cad797c65948387e63582050ebf36c72fed8bc46",
+          "full_native_evidence": "ri_native.json.gz; native journal source-return archive; exact fact identity lookup",
+          "native_route": "imported-member",
+          "source_address": "tests/tools/test_runtime_integration.py",
+          "source_range_utf8": {
+            "end_column_utf8": 32,
+            "end_line": 40,
+            "start_column_utf8": 21,
+            "start_line": 40
+          },
+          "source_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_address": "src/devtools/tools/command.py",
+          "target_content_identity": "831b7f3a140775322e8d4fb22d27f1e32f596074bb8effa72814d0024c053418",
+          "target_declaration_identity": "ee7af68a44d4f81c39a7c07f799396b5e5236526f33504d3410c8875b00035e0",
+          "target_snapshot_id": "a049df16aefff139d33f1698999a75c4d205e03824e34f48580715c81f23e939",
+          "target_subject_identity": "c0ee85ca81215c2625b9bf4b98883568885eb1725a03b39a7e0cd6fd82163ab0"
+        }
+      ],
+      "source": {
+        "address": "tests/tools/test_runtime_integration.py",
+        "content_identity": "14fbd64f5aace02b3bcfd9cbeedf0183532182eadd7c3e8af3f57ea71d9bbeb9",
+        "document_identity": "c9d01508be698d8466bbc4cc584b060ed368f93c38ba3b222b89e4b5ec72389e"
+      },
+      "source_a_position": 7,
+      "target": {
+        "address": "src/devtools/tools/command.py",
+        "content_identity": "831b7f3a140775322e8d4fb22d27f1e32f596074bb8effa72814d0024c053418",
+        "document_identity": "10c0372bf985e2eda71b113790af99ed5f7b08451f38e3da408aea52758da203"
+      },
+      "target_a_position": 38
+    }
+  ]
+}

@@ -91,7 +91,7 @@ bytes require a separately reviewed replacement plan and new exact-run approval.
 The immediate sequence is:
 
 1. Automated experiment controller engineering increment.
-2. **PURPOSE_RELATIVE_SOURCE_GROUNDING / FOUR_CALL_REPLACEMENT_CANDIDATE**:
+2. **PURPOSE_RELATIVE_SOURCE_GROUNDING / FOUR_CALL_STAGE_A_FROZEN / UNAPPROVED**:
    the later approved run published PACKET and entered 0020 B/C and 0021 B.
    [The invalidation record](../experiments/source_grounding/invalidations/54a77aed2c0212d5dd9b0dacb717d9c7bd72cb11361614aae979fe72ae7c8d2b/invalidation.json)
    retires 0020/0021 as infrastructure-invalidated, not scientific evidence;
@@ -104,7 +104,9 @@ The immediate sequence is:
    preserves 0022/0023/0024 from public positions 6/7/8. The unexecuted chunked-04
    Stage A/84-call plan is economically superseded. Candidate discrimination
    adopts B22/B23, executes B24 fresh and uses one blind Astra gold per case.
-   Separate prospective Stage A/plan and exact-run review must bind its four-call
+   [The superseding Stage A](../experiments/source_grounding/stage_a/candidate-05/protocol.json)
+   freezes the candidate universe, sample/census, bounded packets and economics.
+   A separate prospective plan and exact-run review must bind its four-call
    maximum, sampling/packets, capacities and usage economics. Prior approvals
    remain historical-only and grant no authority to the replacement.
 3. Search-policy / iterative evidence-pursuit cohort.
