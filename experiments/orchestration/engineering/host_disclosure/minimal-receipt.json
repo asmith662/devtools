@@ -1,0 +1,257 @@
+{
+  "automatic_invocation_retries": 0,
+  "checks": {
+    "empty_cwd": true,
+    "final_agreement": true,
+    "not_truncated": true,
+    "process": true,
+    "schema": true,
+    "single_invocation": true,
+    "sole_response": true,
+    "usage": true,
+    "zero_tools": true
+  },
+  "claim": "Empirical workload lower bound for this profile; not an absolute maximum or account-wide guarantee",
+  "engineering_only": true,
+  "evidence": {
+    "invocation-claim.json": "97c0dc8cb8ad7f19888c65862f34e1bec893c59cb3ae322f082f15a7e5f859b7",
+    "measurement.json": "9dcd69cffd882733320eb160f7e8c9d11fe94c6b97f7a56d34fdd564794a606b",
+    "preparation.json": "b52ba745c90db1960a75e0c59726d994b0d4db3275581d1ef2db3e599d50ed57",
+    "process-exit.json": "03351242b5ef8bf7e28690b61a6f01561020a2fc3c28b627c7b39b5f8a572f66",
+    "response-schema.json": "04ececa84e0c52413d6531db205a5cad21abdb784d72bb196222763fe9b297bb",
+    "response.json": "9c70c534f211502e6879c6d0864af02fb2e5546ccd6b92f15eab42247fc05a63",
+    "semantic-receipt.json": "b322f4e22f41e576746884f086d0f049633c3d80b2a73d89ac9d1c4c59cf7e45",
+    "stdout.jsonl.gz": "5e36bf2dbad9db57b22e6dabe858972b948abc29b174ed726fc900428401a0a8"
+  },
+  "host_routing_independently_verified": false,
+  "input_bytes": 175,
+  "input_characters": 175,
+  "input_sha256": "866c56a81d42eb40ecbab514230cbe64c21ece3379ff6975da8ad675c7b93964",
+  "invocation": "SYNTHETIC-ASTRA-HIGH-MINIMAL-01",
+  "measurement": {
+    "acceptance_domain": "ENGINEERING_ONLY",
+    "measurement": {
+      "accepted": true,
+      "backend": "Codex",
+      "backend_thread_id": {
+        "availability": "REPORTED",
+        "provenance": "Codex JSONL thread identity",
+        "value": "01a14010-6d60-75d3-ad0f-06cd0cf198bf"
+      },
+      "backend_turn_id": {
+        "availability": "UNKNOWN",
+        "provenance": "Codex JSONL turn identity",
+        "value": null
+      },
+      "completed": true,
+      "disclosed_bytes": {
+        "availability": "DERIVED",
+        "provenance": "Exact UTF-8 stdin disclosure",
+        "value": 175
+      },
+      "disclosed_chars": {
+        "availability": "DERIVED",
+        "provenance": "Exact UTF-8 stdin disclosure",
+        "value": 175
+      },
+      "disclosure_digest": "866c56a81d42eb40ecbab514230cbe64c21ece3379ff6975da8ad675c7b93964",
+      "execution_origin": "EXECUTED",
+      "execution_profile": "SEMANTIC_WORKER",
+      "failure_class": null,
+      "invocation_id": "SYNTHETIC-ASTRA-HIGH-MINIMAL-01",
+      "model_seconds": {
+        "availability": "UNKNOWN",
+        "provenance": "No authoritative model-only duration",
+        "value": null
+      },
+      "model_turns": {
+        "availability": "DERIVED",
+        "provenance": "Observed completed-turn events; absence unknown",
+        "value": 1
+      },
+      "observed_tool_calls": {
+        "availability": "DERIVED",
+        "provenance": "Validated tool-free transport or unavailable",
+        "value": 0
+      },
+      "provider": "OpenAI",
+      "raw_provider_usage_json": "[{\"cache_write_input_tokens\": 0, \"cached_input_tokens\": 0, \"input_tokens\": 9515, \"output_tokens\": 20, \"reasoning_output_tokens\": 0}]",
+      "reasoning_effort": "High",
+      "reported_model": {
+        "availability": "UNKNOWN",
+        "provenance": "No provider model identity event",
+        "value": null
+      },
+      "requested_model": "gpt-6-astra",
+      "response_bytes": {
+        "availability": "DERIVED",
+        "provenance": "Canonical semantic response",
+        "value": 25
+      },
+      "response_chars": {
+        "availability": "DERIVED",
+        "provenance": "Canonical semantic response",
+        "value": 25
+      },
+      "subprocesses": {
+        "availability": "UNKNOWN",
+        "provenance": "No aggregate descendant-process count exposed",
+        "value": null
+      },
+      "task_id": "SYNTHETIC-ASTRA-HIGH-MINIMAL-01",
+      "usage": {
+        "cache_write_tokens": 0,
+        "cached_input_tokens": 0,
+        "input_tokens": 9515,
+        "output_tokens": 20,
+        "reasoning_tokens": 0,
+        "total_tokens": null
+      },
+      "usage_provenance": "Codex turn.completed aggregates; request boundaries unknown",
+      "validated": true,
+      "wall_seconds": {
+        "availability": "DERIVED",
+        "provenance": "Managed process monotonic duration",
+        "value": 5.783986
+      }
+    },
+    "original_capture_sha256": "d46754f04f191a4a8c860958715769c115d655e1a38df3ef5772d5e20d7f4f8f",
+    "schema": "semantic-invocation-measurement-v1",
+    "usage_error": null
+  },
+  "method_response_maximum_bytes": 65536,
+  "profile": {
+    "cli_version": "0.162.1",
+    "configuration": {
+      "approval": "never",
+      "auto_compact_token_limit": 1000000000,
+      "automatic_scientific_retries": 0,
+      "cli_version": "0.162.1",
+      "delivery": "UTF8_STDIN",
+      "fresh": true,
+      "network": false,
+      "provider": "BUILTIN_OPENAI",
+      "provider_transport_retries": "BUILTIN_RUNTIME_DEFAULT",
+      "response": "NATIVE_JSON_SCHEMA_AND_FINAL_MESSAGE",
+      "schema": "host-disclosure-semantic-runtime-v3",
+      "scientific_filesystem_dependency": false,
+      "tools": "DISABLED; TOOL_ATTEMPT_REJECTS_RESPONSE",
+      "underlying_request_count": "UNKNOWN",
+      "web": "disabled",
+      "windows_sandbox": "mxc"
+    },
+    "empty_cwd_policy": "EMPTY_OUTSIDE_CHECKOUT",
+    "execution_profile": "SEMANTIC_WORKER",
+    "framework": {
+      "agents/integrations/codex/parsing.py": "c8b1a9908b6085f92f1d0405b8f757aeb5daa68947bca4a17b56bf6ef045b131",
+      "agents/integrations/codex/usage.py": "25498cb49446520c5efac305f73aa87c94d56cc13b858446f4c9ed4483f38c90",
+      "models/interaction/usage.py": "8f262cc6f832cb464b843a3852953b854ae6044d50f8a27768aa08f8ed2be281",
+      "observability/evidence/invocation.py": "b76dd3cf486d5f14d3e05e00029ed70f82c789fee4dbc81d871d0e47fa8f6c6a"
+    },
+    "implementation": {
+      "accounting.py": "a2e80b98541433f380c0f122c2bcfd873f11d992969a541dcee1c7afdbe5f073",
+      "budget.py": "0e1379f8df9a7aa318a9b9a5fe425041091e887bea7bd7318232c22a8ab02365",
+      "capacity.py": "eb83dd72261dd04ee984778b2cada131851b780d10c36b9998c5d5479ae2442e",
+      "codex.py": "886ef0e715196834089d68a170ca64ccf7b2ad9134b8172a39a5b51355aeaddb",
+      "measurement.py": "9439c578734c180ace144f4b9ce82dca7342b402063fdb28577e08c5f6cc9365",
+      "process.py": "cfc728534a89e8658c2953439de1d456c5e77693fe1cbc84588a44f77202e9d8",
+      "runtime.py": "9f04163bd0c17501ab90958d2d0b66e07b05833cddc7c3cff93ad6860099c907",
+      "schema.py": "fb5270a908ca195c71d10dd8070b513012839e228d27ed56f06d347232f56db2",
+      "semantic.py": "5aa4a5253702baf294aa326e3ded097e6d744db86f2b05534f25a4c00308ea44",
+      "supervisor.py": "2c73404feb5cd86acc144a4d51661ea6dc8e89efcd68947df75f5ad37269a111"
+    },
+    "model_id": "gpt-6-astra",
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0",
+    "reasoning": "High",
+    "transport": "UTF8_STDIN; NATIVE_SCHEMA; SOLE_FINAL_MESSAGE"
+  },
+  "profile_sha256": "244ab3418f87147a5a7c6226223270116fabe9135505cd48ce6d05e82b2eed35",
+  "response_bytes": 25,
+  "response_characters": 25,
+  "response_sha256": "9c70c534f211502e6879c6d0864af02fb2e5546ccd6b92f15eab42247fc05a63",
+  "runtime_catalog": {
+    "active_effective_input_output_capacity": "UNKNOWN",
+    "models": [
+      {
+        "context_window": 272000,
+        "effective_context_window_percent": 95,
+        "max_context_window": 872000,
+        "slug": "gpt-6-astra",
+        "supported_reasoning_levels": [
+          {
+            "description": "Fast responses with lighter reasoning",
+            "effort": "low"
+          },
+          {
+            "description": "Balances speed and reasoning depth for everyday tasks",
+            "effort": "medium"
+          },
+          {
+            "description": "Greater reasoning depth for complex problems",
+            "effort": "high"
+          },
+          {
+            "description": "Extra high reasoning depth for complex problems",
+            "effort": "xhigh"
+          },
+          {
+            "description": "Maximum reasoning depth for the hardest problems",
+            "effort": "max"
+          },
+          {
+            "description": "Maximum reasoning with automatic task delegation",
+            "effort": "ultra"
+          }
+        ]
+      },
+      {
+        "context_window": 272000,
+        "effective_context_window_percent": 95,
+        "max_context_window": 872000,
+        "slug": "gpt-6-sol",
+        "supported_reasoning_levels": [
+          {
+            "description": "Fast responses with lighter reasoning",
+            "effort": "low"
+          },
+          {
+            "description": "Balances speed and reasoning depth for everyday tasks",
+            "effort": "medium"
+          },
+          {
+            "description": "Greater reasoning depth for complex problems",
+            "effort": "high"
+          },
+          {
+            "description": "Extra high reasoning depth for complex problems",
+            "effort": "xhigh"
+          },
+          {
+            "description": "Maximum reasoning depth for the hardest problems",
+            "effort": "max"
+          },
+          {
+            "description": "Maximum reasoning with automatic task delegation",
+            "effort": "ultra"
+          }
+        ]
+      }
+    ],
+    "source_sha256": "83e964a85f1b3be5e1fdd0f121857f95924c87c28cc78b2818039c5f4f5d652a",
+    "status": "REPORTED_RUNTIME_CATALOG"
+  },
+  "schema": "semantic-minimal-calibration-v1",
+  "status": "PASS",
+  "timestamp": "2026-10-15T14:56:26.306488+00:00",
+  "transport_limit": {
+    "characters": 1048576,
+    "cli_version": "0.162.1",
+    "counting": "runtime reports input characters; host uses Python Unicode code points",
+    "evidence_run": "b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982",
+    "operation": "0022/C-semantic",
+    "status": "EMPIRICALLY_OBSERVED",
+    "stderr_sha256": "41233c250f8901de187b0b4199cdb20a0e77e857b31703c5d19305cc4f2ac280"
+  },
+  "underlying_model_request_count": "UNKNOWN"
+}

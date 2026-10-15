@@ -72,3 +72,8 @@ Structured output and capabilities remain unimplemented.
 The configurable llama.cpp implementation is under `providers/`; it communicates
 with an already-running model endpoint. Endpoint lifecycle is separately owned
 by `devtools.models.serving`.
+
+`ModelUsage` additionally retains optional reported cached-input, cache-write and
+reasoning token counts. Unavailable counts remain `None`; overlapping categories
+are not summed into an inferred total. Provenance/availability and invocation
+acceptance belong to the observing consumer, not this reported-value object.

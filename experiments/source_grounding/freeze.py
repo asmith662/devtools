@@ -42,6 +42,7 @@ def implementations() -> dict[str, str]:
     """Bind all local contracts, adapters and transitive native/proof owners."""
     paths = {
         *PACKAGE.glob("*.py"),
+        *(PACKAGE / "chunked").glob("*.py"),
         *PACKAGE.glob("*.md"),
         PACKAGE / ".gitattributes",
         ROOT / "pyproject.toml",

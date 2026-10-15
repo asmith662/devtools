@@ -11,6 +11,9 @@ class ModelUsage:
     input_tokens: int | None = None
     output_tokens: int | None = None
     total_tokens: int | None = None
+    cached_input_tokens: int | None = None
+    cache_write_tokens: int | None = None
+    reasoning_tokens: int | None = None
 
     def __post_init__(self) -> None:
         """Reject impossible token counts while allowing partial provider reports."""
@@ -18,6 +21,9 @@ class ModelUsage:
             (self.input_tokens, "Input token count"),
             (self.output_tokens, "Output token count"),
             (self.total_tokens, "Total token count"),
+            (self.cached_input_tokens, "Cached input token count"),
+            (self.cache_write_tokens, "Cache write token count"),
+            (self.reasoning_tokens, "Reasoning token count"),
         ):
             if value is not None and (
                 isinstance(value, bool) or not isinstance(value, int)

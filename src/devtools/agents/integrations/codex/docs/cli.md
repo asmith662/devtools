@@ -66,8 +66,8 @@ is not a dedicated Codex contract test.
 
 ## JSONL contract
 
-The internal parser receives retained `stdout: bytes` and produces only the
-thread ID and final agent text needed by `CodexAgent`.
+The internal parser receives retained `stdout: bytes` and produces the
+thread ID, final agent text, and separately captured optional usage.
 
 It consumes these current event shapes:
 
@@ -93,6 +93,23 @@ structures, invalid or missing thread IDs, missing final messages, missing
 completion, `turn.failed`, and retained stdout truncation raise
 `CodexOutputError`. UTF-8 and JSON decoder failures remain chained causes where
 they originate the failure.
+
+## Usage accounting
+
+Usage-only parsing is independently callable for process failures and rejected
+artifacts. Observed 0.162.1 `turn.completed.usage` fields are `input_tokens`,
+`cached_input_tokens`, `cache_write_input_tokens`, `output_tokens`, and
+`reasoning_output_tokens`. The normalized `ModelUsage` retains optional cache
+read/write and reasoning counts without deriving a total. The raw usage object
+is preserved separately. Missing values remain unknown, not zero.
+
+A turn aggregate is not an underlying model request. Duplicate completion without
+a new turn, or repeated explicit turn identities, rejects usage capture rather
+than charging twice. A usage error is returned separately from a successful final
+message; callers with mandatory accounting must reject publication separately.
+Unsuccessful command/output errors retain available usage, while truncated streams
+are explicitly incomplete. No new live model validation accompanies these parser
+tests; the older invocation/sandbox compatibility scope above remains unchanged.
 
 ## Retained output and stderr
 

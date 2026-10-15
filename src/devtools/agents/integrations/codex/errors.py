@@ -3,9 +3,17 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from devtools.agents.integrations.codex.usage import CodexUsage
+
 
 class CodexError(Exception):
     """Base error raised by the Codex adapter."""
+
+    usage: tuple[CodexUsage, ...] = ()
+    usage_error: str | None = None
 
 
 class CodexCommandError(CodexError):

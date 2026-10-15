@@ -75,7 +75,8 @@ class RunPlan:
                 "controller_implementation",
                 "cache",
             }
-            | ({"approval"} if value.get("schema") == LEGACY_SCHEMA else set()),
+            | ({"approval"} if value.get("schema") == LEGACY_SCHEMA else set())
+            | ({"adopted_branches"} if "adopted_branches" in value else set()),
             "Run-plan field contract",
         )
         require(
@@ -127,6 +128,24 @@ class RunPlan:
             and len({c["id"] for c in value["cases"]}) == len(value["cases"]),
             "Unique ordered cases required",
         )
+        adopted = value.get("adopted_branches", {})
+        require(
+            isinstance(adopted, dict)
+            and (not adopted or value["schema"] == SCHEMA)
+            and set(adopted) <= {c["id"] for c in value["cases"]},
+            "Prospective adoption case contract",
+        )
+        for binding in adopted.values():
+            require(
+                set(binding) == {"path", "sha256", "compatibility_sha256"}
+                and all(
+                    isinstance(binding[k], str)
+                    and re.fullmatch(r"[0-9a-f]{64}", binding[k])
+                    for k in ("sha256", "compatibility_sha256")
+                ),
+                "Exact adoption seal and compatibility digests required",
+            )
+            safe(Path.cwd(), binding["path"])
         for case in value["cases"]:
             require(
                 set(case) == {"id", "frame", "inputs"}

@@ -9,6 +9,7 @@ from typing import Any
 
 from devtools.agents.integrations.codex.errors import CodexOutputError
 from devtools.agents.integrations.codex.models import CodexTurnOutput
+from devtools.agents.integrations.codex.usage import capture_codex_usage
 
 
 def parse_codex_turn_output(stdout: bytes) -> CodexTurnOutput:
@@ -49,9 +50,19 @@ def parse_codex_turn_output(stdout: bytes) -> CodexTurnOutput:
         msg = "Codex JSONL output did not include turn.completed."
         raise CodexOutputError(msg)
 
+    usage_error = None
+    try:
+        usage = capture_codex_usage(stdout)
+    except CodexOutputError as error:
+        # Optional observation must not redefine an otherwise completed turn.
+        # A consumer requiring accounting must separately reject publication.
+        usage = ()
+        usage_error = str(error)
     return CodexTurnOutput(
         thread_id=state.thread_id,
         final_message=state.final_message,
+        usage=usage,
+        usage_error=usage_error,
     )
 
 

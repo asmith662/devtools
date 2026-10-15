@@ -20,6 +20,7 @@ from experiments.codex_dogfood.case_0009.artifacts import (
     digest,
     json_bytes,
 )
+from experiments.orchestration.adoption import load_branch
 from experiments.orchestration.authority import (
     ApprovalRequest,
     ExecutionAuthorization,
@@ -67,6 +68,7 @@ from experiments.orchestration.storage import (
     save,
 )
 from experiments.orchestration.workers import codex, runtime, semantic
+from experiments.orchestration.workers.accounting import adopted as adopted_usage
 from experiments.orchestration.workers.process import invoke
 
 PACKAGE = Path(__file__).resolve().parent
@@ -288,10 +290,41 @@ class Controller:
                 )
         for case in self.plan.cases:
             await self.input_files(case)
+        for case_id, binding in value.get("adopted_branches", {}).items():
+            branch = load_branch(root, binding)
+            for address, sha256 in branch.value["compatibility"][
+                "scientific_contract"
+            ].items():
+                require(
+                    digest(binary(safe(root, address))) == sha256,
+                    "Adopted scientific contract changed",
+                )
+            require(
+                branch.value["origin"]["case"] == case_id
+                and branch.value["frame"]
+                == next(c.frame for c in self.plan.cases if c.identity == case_id),
+                "Adopted branch case/frame mismatch",
+            )
+            for address in (
+                binding["path"],
+                str(Path(binding["path"]).parent / "closure.json.gz").replace(
+                    "\\",
+                    "/",
+                ),
+            ):
+                require(
+                    await repo.git("show", head + ":" + address)
+                    == binary(safe(root, address)),
+                    "Adoption depends on uncommitted mutable bytes",
+                )
         config = value["semantic"]
         if config.get("runtime") == runtime.configuration():
             runtime.authenticate_configuration(config)
-            smoke = config["smoke_receipt"]
+            smoke = (
+                config.get("capacity_receipt")
+                or config.get("transport_receipt")
+                or config["smoke_receipt"]
+            )
             require(
                 await repo.git("show", head + ":" + smoke["path"])
                 == binary(safe(root, smoke["path"])),
@@ -323,6 +356,7 @@ class Controller:
             "validation": self.value["validation"],
             "publication": self.value["publication"],
             "retry": self.value["retry"],
+            "adopted_branches": self.value.get("adopted_branches", {}),
         }
 
     def approval_binding(self, review_checkpoint: str) -> dict[str, Any]:
@@ -773,6 +807,60 @@ class Controller:
         require(self._authorization is not None, "Execution NOT_AUTHORIZED")
         case_id = case.identity
         returned = self.journal(case_id, stage, "RETURNED")
+        adoption_binding = (
+            self.value.get("adopted_branches", {}).get(case_id)
+            if stage == "B"
+            else None
+        )
+        if adoption_binding is not None:
+            branch = load_branch(self.repository.root, adoption_binding)
+            branch.compatible_inputs(inputs)
+            require(
+                branch.value["origin"]["case"] == case_id
+                and branch.value["frame"] == case.frame,
+                "Adoption case/frame differs",
+            )
+            if returned.exists():
+                require(
+                    load(returned).get("adoption_seal_sha256")
+                    == adoption_binding["sha256"],
+                    "Resumed adoption seal differs",
+                )
+            else:
+                require(
+                    not self.journal(case_id, stage, "ENTERED").exists(),
+                    "Entered attempt cannot become adoption",
+                )
+                root = self.stage_root(case_id, stage)
+                files = branch.materialize(root)
+                receipt = {
+                    "run_id": self.run_id,
+                    "case": case_id,
+                    "stage": stage,
+                    "frame": case.frame,
+                    "inputs_sha256": digest(
+                        json_bytes({n: digest(v) for n, v in inputs.items()}),
+                    ),
+                    "workspace": str(root),
+                    "files": {n: digest(v) for n, v in files.items()},
+                    "validation": branch.value["validation"],
+                    "execution_origin": "ADOPTED",
+                    "adoption_seal_sha256": adoption_binding["sha256"],
+                    "origin": branch.value["origin"],
+                    "original_usage": adopted_usage(
+                        branch.value["original_usage"],
+                        adoption_binding["sha256"],
+                    ),
+                }
+                exclusive(self.journal(case_id, stage, "ADOPTED"), receipt)
+                exclusive(returned, receipt)
+                self.progress(
+                    case_id,
+                    stage,
+                    StageState.COMPLETE,
+                    execution_origin="ADOPTED",
+                )
+                return receipt, files
         if returned.exists():
             receipt = load(returned)
             require(

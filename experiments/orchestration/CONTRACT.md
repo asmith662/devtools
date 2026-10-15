@@ -1,5 +1,11 @@
 # Prospective plan v2 and immutable execution approval v1
 
+The [A1/A2 engineering candidate](../source_grounding/chunked/METHOD.md) adds
+bounded schema/card/coverage and invocation-reservation mechanics, without a new
+scientific plan or authority grant. A future freeze must bind explicit limits and
+durable complete A2 partitions before entry. Scientific no-retry means no second
+controlled invocation, not zero built-in provider transport reconnects.
+
 A plan is declarative orchestration metadata. The scientific question, obligations,
 labels, treatment, adjudication instructions, joins and gates belong to the
 approved Stage A/packet, not controller code. Plans are canonical sorted ASCII JSON
@@ -263,3 +269,32 @@ Implementation static validation uses explicit maintained file ownership in all
 tiers. Run payloads, imported primaries and generated builders retain their
 scientific schema/hash/replay checks and are excluded from source lint/type/style
 discovery. The mandatory FINAL controller/production floor remains required.
+
+## Completed-branch adoption and bounded semantic candidates
+
+Plan-v2 may explicitly bind optional `adopted_branches` by case, repository-owned
+seal path, SHA-256 and compatibility SHA-256. Absence preserves historical plan
+identity and behavior. This is completed independent branch adoption, not a cache.
+The controller authenticates committed seal/closure bytes, original ENTERED and
+RETURNED, sealed PASS, full artifact inventory, completion proof, original
+Stage-A/PACKET/runtime/implementation/disclosure and process/usage identities.
+Eligibility also requires explicit independence and unchanged-scientific-contract
+bindings. Failed or entered-only branches cannot qualify. Seals are governance
+evidence, not independent verification of host routing.
+
+Before reuse, prepared design/resources, instruction, builder and semantic model/
+schema configuration must match the original scientific branch. Changed host
+transport/provenance does not re-execute the old branch. Adoption copies exact
+scientific bytes into a fresh root, records ADOPTED plus RETURNED with origin and
+original usage, and launches no B worker/model or new scientific ENTERED. It does
+not invent an old publication. Existing dead-entry protection remains mandatory;
+an ambiguous partial materialization is preserved and stops instead of rerunning.
+Downstream publication remains serialized and independently authorized.
+
+The [bounded execution candidate](engineering/bounded_execution/README.md) owns
+state-only A1, selective A2 sizing, evidence-card mechanics, fail-closed scientific
+representation and spend review. Exact dynamic budget checks precede semantic
+entry. Complete partitions must be durably reserved under explicit stage/case/
+cohort limits; resume restores reservations and dead identities. No scientific
+limits, C-v2 Stage A, controller scientific graph or plan are authorized by these
+engineering mechanisms. Prospective method review and binding remain required.

@@ -27,14 +27,21 @@ PLAN_ADDRESS = "experiments/source_grounding/plans/host-disclosure-run-plan.json
 def source_scope(bound_implementation: dict[str, str]) -> list[str]:
     """Name every maintained adapter module; never recurse into scientific data."""
     owned = sorted(
-        p.relative_to(PACKAGE.parents[1]).as_posix() for p in PACKAGE.glob("*.py")
+        p.relative_to(PACKAGE.parents[1]).as_posix()
+        for p in [*PACKAGE.glob("*.py"), *(PACKAGE / "chunked").glob("*.py")]
     )
     frozen = sorted(
         address
         for address in bound_implementation
         if address.startswith(PREFIX)
         and address.endswith(".py")
-        and "/" not in address[len(PREFIX) :]
+        and (
+            "/" not in address[len(PREFIX) :]
+            or (
+                address[len(PREFIX) :].startswith("chunked/")
+                and address[len(PREFIX) :].count("/") == 1
+            )
+        )
     )
     require(
         bool(owned) and frozen == owned,
@@ -55,6 +62,7 @@ def validation_commands(bound_implementation: dict[str, str]) -> list[list[str]]
             "-q",
             "experiments/source_grounding/test_contracts.py",
             "experiments/source_grounding/test_scope.py",
+            "experiments/source_grounding/chunked",
         ],
         ["uv", "run", "ruff", "check", *scope],
         ["uv", "run", "ruff", "format", "--check", *scope],

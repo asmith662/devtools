@@ -13,10 +13,12 @@ from devtools.agents.conversation.message import (
 )
 from devtools.agents.integrations.codex.errors import (
     CodexCommandError,
+    CodexError,
     CodexOutputError,
 )
 from devtools.agents.integrations.codex.models import CodexConversationResult
 from devtools.agents.integrations.codex.parsing import parse_codex_turn_output
+from devtools.agents.integrations.codex.usage import capture_codex_usage
 from devtools.models.interaction import ConversationRef, InteractionSource
 from devtools.resources.commands import Command, CommandExecutor
 
@@ -85,13 +87,22 @@ class CodexAgent:
 
         command = self._build_command(message.content, conversation)
         result = await self._executor.execute(command)
-        if result.failed:
-            raise CodexCommandError(result.exit_code)
-        if result.stdout_truncated:
-            msg = "Codex JSONL stdout was truncated by the command output policy."
-            raise CodexOutputError(msg)
-
-        output = parse_codex_turn_output(result.stdout)
+        try:
+            if result.failed:
+                raise CodexCommandError(result.exit_code)
+            if result.stdout_truncated:
+                msg = "Codex JSONL stdout was truncated by the command output policy."
+                raise CodexOutputError(msg)
+            output = parse_codex_turn_output(result.stdout)
+        except CodexError as error:
+            if result.stdout_truncated:
+                error.usage_error = "Truncated stream; complete usage unavailable"
+            else:
+                try:
+                    error.usage = capture_codex_usage(result.stdout)
+                except CodexOutputError as usage_error:
+                    error.usage_error = str(usage_error)
+            raise
         assistant_message = ConversationMessage.new(
             output.final_message,
             role=ConversationMessageRole.ASSISTANT,
@@ -100,6 +111,8 @@ class CodexAgent:
         return CodexConversationResult(
             message=assistant_message,
             conversation=ConversationRef(self.source, output.thread_id),
+            usage=output.usage,
+            usage_error=output.usage_error,
         )
 
     def _build_command(

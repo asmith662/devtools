@@ -16,6 +16,21 @@ from experiments.orchestration.workers import runtime, semantic
 from experiments.source_grounding.response import object_schema
 
 
+def test_preentry_renderer_matches_delivered_legacy_input() -> None:
+    config = {"model": "fake", "reasoning": "High"}
+    packet = json_bytes({"case": "SYNTHETIC-render", "frame": {}, "resources": []})
+    value = semantic.render_disclosure(config, packet, b"immutable instructions", "id")
+    assert value == semantic.render_disclosure(
+        config,
+        packet,
+        b"immutable instructions",
+        "id",
+    )
+    assert b"immutable instructions" in value
+    assert b"SYNTHETIC-render" in value
+    assert value != semantic.render_disclosure(config, packet, b"other", "id")
+
+
 @pytest.mark.parametrize(
     "text",
     [

@@ -46,3 +46,13 @@ When present, disclosed normalized Tool names/descriptions are structural
 Evidence. Tool schemas and returned untrusted call arguments are capture
 controlled. Evidence never retains executable Tool objects, ToolRunner state,
 authorization, or execution outcomes.
+
+`InvocationMeasurement` is a separate optional typed projection for a bounded
+model or external-agent invocation. It composes existing `ModelUsage` with named
+identity, disclosure, duration, outcome and execution-origin fields. `Measured`
+retains per-field availability and provenance; unknown is never zero. Raw provider
+usage remains separate, with no inferred overlapping token total or subscription
+cost. Adoption retains the original invocation identity and usage. This value is
+not a collector, ledger service, execution mechanism or acceptance authority.
+Existing completed-success-only observation limitations above still apply; this
+type alone does not create automatic failed-invocation accounting.

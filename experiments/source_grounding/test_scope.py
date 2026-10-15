@@ -33,7 +33,10 @@ def test_static_scope_excludes_materialized_generated_payloads(tmp_path: Path) -
         generated.write_text("generated=undefined_payload_name\n")
     assert scope == sorted(
         p.relative_to(ROOT).as_posix()
-        for p in (ROOT / "experiments/source_grounding").glob("*.py")
+        for p in [
+            *(ROOT / "experiments/source_grounding").glob("*.py"),
+            *(ROOT / "experiments/source_grounding/chunked").glob("*.py"),
+        ]
     )
     checks = validation_commands(implementations())
     for argv in checks[1:]:

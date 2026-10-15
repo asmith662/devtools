@@ -124,6 +124,25 @@ def test_agent_builds_fresh_read_only_jsonl_command_and_maps_turn(
     assert executor.commands[0].working_directory == ResolvedPath(tmp_path)
 
 
+def test_usage_survives_nonzero_exit_and_invalid_scientific_payload(
+    tmp_path: Path,
+) -> None:
+    """A process failure or unusable final output cannot erase reported tokens."""
+    reported_tokens = 17
+    reported = b'{"type":"turn.completed","usage":{"input_tokens":17}}\n'
+    for exit_code in (0, 1):
+        executor = RecordingExecutor([(exit_code, reported, False)])
+        with pytest.raises(CodexError) as caught:
+            asyncio.run(_agent(executor, tmp_path).send(_user_message()))
+        assert caught.value.usage[0].counts.input_tokens == reported_tokens
+        assert caught.value.usage[0].counts.output_tokens is None
+    executor = RecordingExecutor([(1, b"invalid usage stream", False)])
+    with pytest.raises(CodexCommandError) as caught:
+        asyncio.run(_agent(executor, tmp_path).send(_user_message()))
+    assert caught.value.usage == ()
+    assert caught.value.usage_error is not None
+
+
 def test_agent_builds_resume_command_with_provider_thread_id(tmp_path: Path) -> None:
     """Continued turns use the installed ``exec resume`` grammar."""
     executor = RecordingExecutor([(0, _SUCCESS, False)])

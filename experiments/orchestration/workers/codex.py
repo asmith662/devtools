@@ -63,4 +63,5 @@ def argv(
         "-",
     ]
     arguments[-1:-1] = runtime.overrides(configuration["runtime"], workspace)
+    runtime.preflight(arguments)
     return arguments

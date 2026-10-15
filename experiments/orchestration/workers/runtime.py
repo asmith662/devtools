@@ -1,11 +1,12 @@
 # Copyright (c) 2026
-# ruff: noqa: ANN401 -- frozen external-Agent sandbox configuration
+# ruff: noqa: ANN401, PLC0415 -- lazy capacity import avoids runtime identity cycle
 """Windows MXC semantic-worker access and compatible engineering smoke identity."""
 
 from __future__ import annotations
 
 import json
 import platform
+import tomllib
 from pathlib import Path
 from typing import Any
 
@@ -40,7 +41,7 @@ ENVIRONMENT = (
 def configuration() -> dict[str, Any]:
     """Freeze deny-by-default access; model identity does not select permissions."""
     return {
-        "schema": "host-disclosure-semantic-runtime-v1",
+        "schema": "host-disclosure-semantic-runtime-v3",
         "windows_sandbox": "mxc",
         "approval": "never",
         "cli_version": "0.162.1",
@@ -51,6 +52,11 @@ def configuration() -> dict[str, Any]:
         "network": False,
         "web": "disabled",
         "fresh": True,
+        "provider": "BUILTIN_OPENAI",
+        "provider_transport_retries": "BUILTIN_RUNTIME_DEFAULT",
+        "underlying_request_count": "UNKNOWN",
+        "automatic_scientific_retries": 0,
+        "auto_compact_token_limit": 1000000000,
     }
 
 
@@ -68,7 +74,10 @@ def toml(value: Any) -> str:
 def overrides(value: dict[str, Any], workspace: Path) -> list[str]:
     """Deny scientific filesystem access; no model write authority is granted."""
     require(value == configuration(), "Unsupported semantic isolation/runtime binding")
-    require(not any(workspace.iterdir()), "Semantic CWD must be empty")
+    require(
+        not workspace.exists() or not any(workspace.iterdir()),
+        "Semantic CWD must be empty",
+    )
     filesystem = {
         ":root": "deny",
         ":minimal": "read",
@@ -77,12 +86,14 @@ def overrides(value: dict[str, Any], workspace: Path) -> list[str]:
         ":workspace_roots": "deny",
     }
     settings = {
+        "model_provider": "openai",
         "windows.sandbox": "mxc",
         "default_permissions": "semantic-worker",
         "permissions.semantic-worker.filesystem": filesystem,
         "permissions.semantic-worker.network.enabled": False,
         "web_search": "disabled",
         "project_doc_max_bytes": 0,
+        "model_auto_compact_token_limit": 1000000000,
         "features.skip_host_skill_discovery": True,
         "suppress_unstable_features_warning": True,
         "tools.view_image": False,
@@ -115,6 +126,90 @@ def overrides(value: dict[str, Any], workspace: Path) -> list[str]:
         for key, setting in settings.items()
         for argument in ("-c", key + "=" + toml(setting))
     ]
+
+
+def preflight(argv: list[str]) -> dict[str, Any]:
+    """Validate our closed generated settings, not live model compatibility.
+
+    The installed 0.162.1 debug-model path does not validate exec configuration.
+    Reserved built-in provider IDs cannot be overridden. This profile permits
+    no custom provider tables at all and never edits the user's configuration.
+    """
+    parsed: dict[str, Any] = {}
+    boolean = {
+        "model_provider": str,
+        "project_doc_max_bytes": int,
+        "model_auto_compact_token_limit": int,
+        "windows.sandbox": str,
+        "default_permissions": str,
+        "web_search": str,
+        "model_reasoning_effort": str,
+        "permissions.semantic-worker.filesystem": dict,
+        "permissions.semantic-worker.network.enabled": bool,
+        "suppress_unstable_features_warning": bool,
+        "tools.view_image": bool,
+    }
+    features = {
+        "skip_host_skill_discovery",
+        "plugins",
+        "apps",
+        "remote_plugin",
+        "browser_use",
+        "browser_use_external",
+        "computer_use",
+        "multi_agent",
+        "memories",
+        "hooks",
+        "skill_search",
+        "image_generation",
+        "workspace_dependencies",
+        "shell_tool",
+        "unified_exec",
+        "code_mode_host",
+        "view_image",
+        "goals",
+        "sleep_tool",
+    }
+    for index, argument in enumerate(argv):
+        if argument != "-c":
+            continue
+        require(index + 1 < len(argv), "Missing configuration override")
+        assignment = argv[index + 1]
+        key = assignment.split("=", 1)[0]
+        value = tomllib.loads(assignment)
+        require(
+            "model_providers" not in value,
+            "Provider tables forbidden; built-in provider IDs are reserved",
+        )
+        expected = (
+            bool
+            if key.startswith("features.") and key[9:] in features
+            else boolean.get(key)
+        )
+        require(expected is not None, "Unsupported generated configuration key: " + key)
+        for part in key.split("."):
+            require(
+                isinstance(value, dict) and part in value,
+                "Unsupported configuration shape",
+            )
+            value = value[part]
+        require(type(value) is expected, "Unsupported configuration value type")
+        require(
+            key not in parsed or parsed[key] == value,
+            "Conflicting configuration overrides",
+        )
+        parsed[key] = value
+    return {
+        "schema": "semantic-config-preflight-v1",
+        "status": "PASS",
+        "scope": "KNOWN_SHAPES_AND_RESERVED_PROVIDER_RULES; NOT_LIVE_COMPATIBILITY",
+        "cli_version": "0.162.1",
+        "overrides": parsed,
+        "provider": "BUILTIN_OPENAI",
+        "provider_transport_retries": "BUILTIN_RUNTIME_DEFAULT",
+        "underlying_request_count": "UNKNOWN",
+        "automatic_scientific_retries": 0,
+    }
 
 
 def identity() -> dict[str, Any]:
@@ -172,6 +267,53 @@ def authenticate(receipt: dict[str, Any]) -> None:
 
 def authenticate_configuration(config: Any) -> None:
     """Require exact registered smoke bytes before real-case semantic entry."""
+    transport_binding = config.get("transport_receipt")
+    if transport_binding is not None:
+        from experiments.orchestration.workers.capacity import (
+            authenticate as authenticate_transport,
+        )
+        from experiments.orchestration.workers.capacity import authenticate_files
+
+        require(
+            config["model_id"] == "gpt-6-sol"
+            and config["reasoning"] == "High"
+            and config["runtime"] == configuration(),
+            "Transport-only compatibility requires unchanged Sol/High treatment",
+        )
+        root = Path(__file__).resolve().parents[3]
+        path = safe(root, transport_binding["path"])
+        require(
+            digest(binary(path)) == transport_binding["sha256"],
+            "Transport receipt digest differs",
+        )
+        receipt = load(path)
+        authenticate_transport(
+            receipt,
+            {**config, "model_id": "gpt-6-astra", "bounded_response": True},
+        )
+        authenticate_files(root, receipt)
+        return
+    capacity_binding = config.get("capacity_receipt")
+    if capacity_binding is not None:
+        from experiments.orchestration.workers.capacity import (
+            authenticate as authenticate_capacity,
+        )
+        from experiments.orchestration.workers.capacity import authenticate_files
+
+        require(
+            isinstance(capacity_binding, dict)
+            and set(capacity_binding) == {"path", "sha256"},
+            "Capacity receipt binding required",
+        )
+        root = Path(__file__).resolve().parents[3]
+        path = safe(root, capacity_binding["path"])
+        require(
+            digest(binary(path)) == capacity_binding["sha256"],
+            "Capacity receipt digest differs",
+        )
+        authenticate_capacity(load(path), config)
+        authenticate_files(root, load(path))
+        return
     binding = config.get("smoke_receipt")
     require(
         isinstance(binding, dict) and set(binding) == {"path", "sha256"},

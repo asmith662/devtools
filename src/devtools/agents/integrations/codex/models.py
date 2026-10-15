@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from devtools.agents.conversation import ConversationMessage
+    from devtools.agents.integrations.codex.usage import CodexUsage
     from devtools.models.interaction import ConversationRef
 
 
@@ -21,6 +22,8 @@ class CodexTurnOutput:
 
     thread_id: str
     final_message: str
+    usage: tuple[CodexUsage, ...] = ()
+    usage_error: str | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -29,3 +32,5 @@ class CodexConversationResult:
 
     message: ConversationMessage
     conversation: ConversationRef
+    usage: tuple[CodexUsage, ...] = ()
+    usage_error: str | None = None
