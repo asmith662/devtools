@@ -13,6 +13,12 @@
 
 ## Problem / value
 
+The authorized candidate-discrimination increment promotes a narrow historical
+usage projection over existing ModelUsage/InvocationMeasurement: metadata-only
+Codex import, identity reconciliation, window reporting and empirical forecasts.
+Its [package contract](../../../src/devtools/observability/usage/docs/overview.md)
+does not resolve this broader investigation or introduce Event/Trace/Telemetry.
+
 Current terminal Evidence is immutable factual observation about
 InteractionAttempt outcomes. Trace and Telemetry are distinct future concerns:
 causal/temporal structure and operational measurement respectively.

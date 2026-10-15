@@ -32,6 +32,41 @@ and Evidence ownership terminology, remain in the
 
 ### Automated experiment mechanics
 
+The current bounded increment adds metadata-only observed usage and optional
+prelaunch budgets. Every OpenAI-backed invocation should eventually be visible;
+coverage currently remains partial. The next source-grounding design is
+[candidate discrimination](../experiments/source_grounding/discrimination/METHOD.md):
+three one-call blind Astra gold judgments plus fresh Sol B24, adopting B22/B23.
+The unexecuted chunked-04 maximum of 84 is economically unacceptable for this
+narrow question and is superseded explicitly, without deleting its history.
+The failed b6cd run remains dead: B22/B23 completed, C22 transport-rejected before
+adjudication; no gold/import/D. Statements below about earlier unentered cases
+describe their historical checkpoint, not current scientific branch state.
+
+Return to science after reviewing observed weekly coverage, four-call economics,
+sample/census feasibility and exact prospective plan. Do not extend infrastructure
+indefinitely. Later usage benchmark is document-only: runtime-supported model x
+effort x SEMANTIC_NO_TOOLS/CODING_AGENT/REVIEW_AGENT x MINIMAL/SHORT/MEDIUM/LONG
+x repetitions (3 cheap pilot, then at least 5 for selected comparisons; larger
+samples when variability warrants). Deterministic correctness/acceptance, retries,
+tokens per accepted task, uncached input, reasoning output and wall time are primary.
+Distinguish raw tokens from API estimates and subscription usage. Evaluate Qwen/
+local workers as measured Codex-avoidance routes; route by accepted-outcome cost,
+not model prestige. Deterministic work should replace model work where possible.
+
+SEMANTIC_WORKER keeps frozen disclosure with no tools/network/user rules.
+CODING_WORKER later receives curated bounded capabilities; REVIEW_WORKER remains
+primarily read-only with bounded validation and no publication by default. Do not
+copy the historical user allowlist. Future closeout_feature starts as one
+deterministic repository capability: authenticated scope, safe formatting/statics,
+tests/protected validation, diff/docs/handoff, tree-bound receipt; commit requires
+publication authority and push an exact remote/ref grant. No workflow DSL now.
+ExperimentManagerAgent remains the first bounded autonomous research-oriented
+slice after current source-grounding science, proposing/diagnosing/stopping/
+escalating while the deterministic controller executes and governance grants
+authority. ResearchAgent later adds external research/evidence synthesis. Generic
+Worker/ModelBackend/AgentBackend hierarchies and these agent classes remain deferred.
+
 [EXPERIMENT_CONTROLLER](../experiments/orchestration/README.md) = **COMPLETE**
 for the engineering lifecycle increment. It is implemented as
 experiment-owned engineering infrastructure; its completion evidence is recorded
@@ -56,16 +91,22 @@ bytes require a separately reviewed replacement plan and new exact-run approval.
 The immediate sequence is:
 
 1. Automated experiment controller engineering increment.
-2. **PURPOSE_RELATIVE_SOURCE_GROUNDING / PROSPECTIVE_REPLACEMENT_FROZEN**:
+2. **PURPOSE_RELATIVE_SOURCE_GROUNDING / FOUR_CALL_REPLACEMENT_CANDIDATE**:
    the later approved run published PACKET and entered 0020 B/C and 0021 B.
    [The invalidation record](../experiments/source_grounding/invalidations/54a77aed2c0212d5dd9b0dacb717d9c7bd72cb11361614aae979fe72ae7c8d2b/invalidation.json)
    retires 0020/0021 as infrastructure-invalidated, not scientific evidence;
-   neither may retry. 0022 remains scientifically unentered. No gold or D exists.
+   neither may retry. The subsequent b6cd run completed sealed B22/B23 and
+   quarantined them after C22's pre-adjudication transport rejection. C22 is dead;
+   C23 and B24/C24 never entered. No gold/import/D exists and no retry occurred.
    [Host-disclosure runtime engineering](../experiments/orchestration/engineering/host_disclosure/README.md)
    passed both fresh synthetic Luna/Medium caller paths with host-derived spans and
    host-owned artifacts. [Replacement Stage A](../experiments/source_grounding/REPLACEMENT_STAGE_A_REVIEW.md)
-   freezes 0022/0023/0024 from public positions 6/7/8. A separate unapproved plan
-   must bind that exact checkpoint; both prior approvals remain historical-only.
+   preserves 0022/0023/0024 from public positions 6/7/8. The unexecuted chunked-04
+   Stage A/84-call plan is economically superseded. Candidate discrimination
+   adopts B22/B23, executes B24 fresh and uses one blind Astra gold per case.
+   Separate prospective Stage A/plan and exact-run review must bind its four-call
+   maximum, sampling/packets, capacities and usage economics. Prior approvals
+   remain historical-only and grant no authority to the replacement.
 3. Search-policy / iterative evidence-pursuit cohort.
 4. Obligation-sufficiency / Context cohort.
 5. Live incremental RI completion.
@@ -1200,8 +1241,9 @@ Stage A commit followed by a separate unapproved run-plan commit; Gate 1 reviews
 both and the exact run ID. One explicit maintainer approval/run command publishes
 authority before scientific entry. See the
 [correction record](../experiments/orchestration/engineering/authority/README.md).
-PURPOSE_RELATIVE_SOURCE_GROUNDING remains NOT_STARTED; no Cases 0020-0022 or
-scientific run plan are created by this engineering correction. The next task is
-to resume Stage A, return both checkpoints and an unapproved exact run ID for
-review, and stop before execution. Accepted results, SEARCH_POLICY_FAILURE =
+At that authority-correction checkpoint PURPOSE_RELATIVE_SOURCE_GROUNDING was
+NOT_STARTED; that correction created no Cases 0020-0022 or scientific run plan.
+Its next step was prospective Stage A/plan review before execution; subsequent
+blocked-run and replacement status is recorded in Current sequencing above.
+Accepted results, SEARCH_POLICY_FAILURE =
 NOT_ASSESSED and LIVE_INCREMENTAL_RI = REQUIRED / NOT_IMPLEMENTED are unchanged.

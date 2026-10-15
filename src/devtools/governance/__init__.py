@@ -1,2 +1,2 @@
 # Copyright (c) 2026
-"""Reserved domain for authority, policy, and constraints."""
+"""Numeric usage constraints; broader authority and policy remain reserved."""

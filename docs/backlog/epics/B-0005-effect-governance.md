@@ -13,6 +13,11 @@
 
 ## Problem / value
 
+Narrow pure numeric usage constraints now support explicitly configured observed
+budgets. They grant no authority; controller-local admission remains separate from
+scientific approval. This bounded implementation does not resolve general effect
+governance, delegation, approval workflow or exactly-once external effects.
+
 Preserve pressure for authority, policy, approval, delegation, and safe
 handling of externally meaningful effects. Model proposal, capability exposure,
 and Tool validation do not create authorization.

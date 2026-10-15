@@ -1,5 +1,10 @@
 # `devtools.agents.integrations.codex`
 
+The `sessions` adapter additionally supports metadata-only local usage import.
+It skips content-bearing events and filters exec stdout before reusing the native
+usage parser. Requested model/effort are metadata, not proof of provider revision
+or HTTP request count. See [observed usage](../../../../observability/usage/docs/overview.md).
+
 This package adapts the external Codex agent system. Codex is an Agent
 integration, not a `ModelInteraction` provider: its CLI owns planning,
 repository interaction, sandbox behavior, and its internal action loop.

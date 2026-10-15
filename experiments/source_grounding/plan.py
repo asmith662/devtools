@@ -28,7 +28,11 @@ def source_scope(bound_implementation: dict[str, str]) -> list[str]:
     """Name every maintained adapter module; never recurse into scientific data."""
     owned = sorted(
         p.relative_to(PACKAGE.parents[1]).as_posix()
-        for p in [*PACKAGE.glob("*.py"), *(PACKAGE / "chunked").glob("*.py")]
+        for p in [
+            *PACKAGE.glob("*.py"),
+            *(PACKAGE / "chunked").glob("*.py"),
+            *(PACKAGE / "discrimination").glob("*.py"),
+        ]
     )
     frozen = sorted(
         address
@@ -39,6 +43,10 @@ def source_scope(bound_implementation: dict[str, str]) -> list[str]:
             "/" not in address[len(PREFIX) :]
             or (
                 address[len(PREFIX) :].startswith("chunked/")
+                and address[len(PREFIX) :].count("/") == 1
+            )
+            or (
+                address[len(PREFIX) :].startswith("discrimination/")
                 and address[len(PREFIX) :].count("/") == 1
             )
         )

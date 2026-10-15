@@ -1,5 +1,20 @@
 # Approved experiment cohort controller
 
+Prospective plans now require an economics forecast before approval. Optional
+usage_budget binds a closed fresh-call inventory and matching forecast. Admission
+authenticates that inventory, forecast and complete semantic launcher/profile
+against frozen Stage A. A B operation can be deterministic; its name alone does
+not imply a model call. Semantic calls must be explicitly inventoried.
+Controller admission reserves each controlled turn before ENTERED, checks local rolling/project/
+experiment/stage constraints, and captures all available outcomes. Numeric budget
+permission never grants scientific authority. An ignored `.local/usage/policy.json`
+may configure limits; absent limits are UNSET, not a selected infinite budget.
+Configured limits require a fresh metadata backfill (default maximum age 300s).
+Conflicts/unknown required values fail BUDGET_BLOCKED before launch. Unresolved
+reservations remain charged until explicit reconciliation; no automatic retry.
+Superseded plan markers deny approval/execution without mutating historical plans.
+See [observed usage](../../src/devtools/observability/usage/docs/overview.md).
+
 This experiment-owned controller executes an approved, immutable Stage A contract.
 It is engineering infrastructure, not a researcher or the production autonomous
 Agent. It selects no hypothesis, semantic interpretation, treatment, retry, ranking

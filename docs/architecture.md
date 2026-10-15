@@ -35,7 +35,7 @@ context/        bounded repository observation and future repository intelligenc
 tools/          typed controlled capability boundaries
 execution/      narrow Runtime and specialized InteractionAttempt lifecycle
 orchestration/  reserved workflow coordination
-governance/     reserved authority and policy responsibility
+governance/     narrow numeric usage constraints; broader authority policy reserved
 observability/  Evidence and diagnostic observation
 persistence/    durable representation storage and restoration
 evaluation/     reserved reusable evaluation responsibility
@@ -43,6 +43,14 @@ evaluation/     reserved reusable evaluation responsibility
 
 Sparse domains are intentional. Their presence does not authorize speculative
 APIs.
+
+`observability.usage` projects existing ModelUsage/InvocationMeasurement into
+metadata-only observations, identity reconciliation, windows and forecasts. It
+depends on Models, Core, filesystem and the Codex metadata adapter; execution does
+not depend on it. Pure `governance.usage` numeric constraints have no experiment or
+observability dependency and grant no authority. Experiment-local composition owns
+reservations/admission. See [observed usage](../src/devtools/observability/usage/docs/overview.md).
+Generic Event/Trace/Telemetry, agent loops and broader governance remain deferred.
 
 ## Current boundaries
 

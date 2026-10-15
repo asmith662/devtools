@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: ANN401, PLC0415, PLR2004 -- frozen experiment orchestration metadata
+# ruff: noqa: ANN401, PLC0415, PLR2004, PLR0912 -- frozen experiment orchestration metadata
 """Immutable approved plan and bounded case/stage transport models."""
 
 from __future__ import annotations
@@ -77,7 +77,9 @@ class RunPlan:
             }
             | ({"approval"} if value.get("schema") == LEGACY_SCHEMA else set())
             | ({"adopted_branches"} if "adopted_branches" in value else set())
-            | ({"preserved_evidence"} if "preserved_evidence" in value else set()),
+            | ({"preserved_evidence"} if "preserved_evidence" in value else set())
+            | ({"economics"} if "economics" in value else set())
+            | ({"usage_budget"} if "usage_budget" in value else set()),
             # Preserved journals are exact forensic inputs, never execution grants.
             "Run-plan field contract",
         )
@@ -91,6 +93,91 @@ class RunPlan:
             "Explicit positive attempt required",
         )
         stage_a = value["stage_a"]
+        if "economics" in value:
+            econ = value["economics"]
+            require(
+                isinstance(econ, dict)
+                and econ.get("schema") == "semantic-economics-forecast-v1"
+                and type(econ.get("fresh_calls")) is int
+                and econ["fresh_calls"] >= 0,
+                "Prospective usage forecast schema",
+            )
+        if "usage_budget" in value:
+            budget = value["usage_budget"]
+            require(
+                "economics" in value
+                and set(budget)
+                == {"fresh_call_limit", "model_call_limits", "calls", "authorization"}
+                and type(budget["fresh_call_limit"]) is int
+                and budget["fresh_call_limit"] > 0
+                and budget["authorization"] == "EXACT_PLAN_EXECUTION_APPROVAL"
+                and len(budget["calls"]) == budget["fresh_call_limit"]
+                and sum(budget["model_call_limits"].values())
+                == budget["fresh_call_limit"],
+                "Explicit forecast-bound usage budget required",
+            )
+            required_calls = {c["id"] + "/C" for c in value["cases"]}
+            permitted_calls = required_calls | {
+                c["id"] + "/B"
+                for c in value["cases"]
+                if c["id"] not in value.get("adopted_branches", {})
+            }
+            require(
+                required_calls <= set(budget["calls"]) <= permitted_calls
+                and value["economics"]["fresh_calls"] == budget["fresh_call_limit"],
+                "Every fresh semantic dependency must be budgeted exactly once",
+            )
+            require(
+                all(
+                    k.split("/") == [k.split("/")[0], k.split("/")[-1]]
+                    and k.split("/")[0] in {c["id"] for c in value["cases"]}
+                    and k.split("/")[-1] in {"B", "C"}
+                    and set(call) == {"model", "input_upper", "output_upper"}
+                    and call["model"] in budget["model_call_limits"]
+                    for k, call in budget["calls"].items()
+                ),
+                "Closed logical semantic call inventory required",
+            )
+            require(
+                all(
+                    type(limit) is int
+                    and limit > 0
+                    and sum(c["model"] == model for c in budget["calls"].values())
+                    == limit
+                    for model, limit in budget["model_call_limits"].items()
+                ),
+                "Exact model invocation inventory",
+            )
+            forecasts = {c["invocation"]: c for c in value["economics"]["calls"]}
+            require(
+                set(forecasts) == set(budget["calls"]),
+                "Forecast and semantic inventory differ",
+            )
+            require(
+                all(
+                    call["model"] == forecasts[k]["model"]
+                    and call["input_upper"] == forecasts[k]["input_tokens"]["upper"]
+                    and call["output_upper"] == forecasts[k]["output_tokens"]["upper"]
+                    and all(
+                        v is None or (type(v) is int and v >= 0)
+                        for v in (call["input_upper"], call["output_upper"])
+                    )
+                    for k, call in budget["calls"].items()
+                ),
+                "Budget must bind declared model/token forecast",
+            )
+            require(
+                all(
+                    not k.endswith("/C")
+                    or (
+                        call["model"] == value["semantic"].get("model_id")
+                        and forecasts[k]["reasoning_effort"].casefold()
+                        == value["semantic"]["reasoning"].casefold()
+                    )
+                    for k, call in budget["calls"].items()
+                ),
+                "Semantic model/effort differs from budget forecast",
+            )
         require(
             set(stage_a) == {"checkpoint", "protocol", "integrity"}
             and isinstance(stage_a["checkpoint"], str)

@@ -112,6 +112,11 @@ async def fixture(
     check = [*command, "check", "validation", "cohort", "{}"]
     value: dict[str, Any] = {
         "schema": "experiment-controller-plan-v2",
+        "economics": {
+            "schema": "semantic-economics-forecast-v1",
+            "fresh_calls": 3,
+            "provenance": "SYNTHETIC_NO_MODELS",
+        },
         "name": "synthetic-three-case",
         "attempt": attempt,
         "stage_a": {

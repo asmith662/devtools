@@ -1,5 +1,15 @@
 # Purpose-relative source grounding and selective direct structural pursuit
 
+Current engineering supports the [candidate-surface discrimination design](discrimination/METHOD.md).
+It narrows the claim to useful BROAD direct structural candidates, with one blind
+Astra call per case, adopted B22/B23 and one fresh B24: four fresh calls maximum.
+This is a prospective replacement, never authority to execute. The unapproved
+84-call chunked-04 Stage A/plan remain historical prospective artifacts and must
+not be approved/executed. New Stage A/plan are separately frozen after deterministic
+feasibility and economics review. The global-gold sections below describe the
+earlier method; local discrimination labels replace global witness gold for the
+new design. No repository-wide recall/sufficiency/production claim is authorized.
+
 The prospective [C-v2 method](chunked/METHOD.md) supersedes only the old one-shot
 blind-gold measurement procedure when bound by its separate Stage A and plan.
 Final gold definitions, treatment, cohort authoring and Stage D comparisons remain
@@ -60,8 +70,10 @@ Import/call routes retained by native Reference truth are provenance, not separa
 treatments. A, BROAD and QUALIFIED are evidence surfaces; rankings never change.
 
 Grounding candidates are the distinct (obligation, source) cells emitting at least
-one qualifying BROAD relation. Membership is computed only during future B; Stage A
-does not calculate its size. Each case uses one fresh GPT-6 Sol / High invocation,
+one qualifying BROAD relation. The new candidate-surface Stage A deterministically
+replays membership without grounding or QUALIFIED. The original treatment uses one
+GPT-6 Sol / High invocation; the new run adopts completed 0022/0023 and executes only
+0024 fresh. Treatment retains
 one primary, no continuation, second reviewer, reconciliation or automatic retry.
 
 GROUNDED_SOURCE: own content establishes concrete current-repository facts materially

@@ -36,6 +36,7 @@ def test_static_scope_excludes_materialized_generated_payloads(tmp_path: Path) -
         for p in [
             *(ROOT / "experiments/source_grounding").glob("*.py"),
             *(ROOT / "experiments/source_grounding/chunked").glob("*.py"),
+            *(ROOT / "experiments/source_grounding/discrimination").glob("*.py"),
         ]
     )
     checks = validation_commands(implementations())

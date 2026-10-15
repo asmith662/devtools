@@ -127,6 +127,31 @@ def semantic_receipt(receipt: Any, configuration: Any) -> None:
         "prior_gold",
         "confirmation_reserve",
     }
+    if (
+        configuration.get("authorized_surface")
+        == "TREATMENT_INDEPENDENT_BROAD_CANDIDATES"
+    ):
+        forbidden = {
+            "repository",
+            "git_history",
+            "parent_siblings",
+            "prior_session",
+            "web",
+            "queries",
+            "ranks_scores",
+            "grounding",
+            "qualified",
+            "treatment_results",
+            "timings",
+            "other_cases",
+            "child",
+            "prior_gold",
+            "confirmation_reserve",
+        }
+        require(
+            receipt.get("authorized_surface") == configuration["authorized_surface"],
+            "Candidate-surface disclosure attestation differs",
+        )
     require(
         set(access) == forbidden and all(v is False for v in access.values()),
         "Blindness attestation differs",

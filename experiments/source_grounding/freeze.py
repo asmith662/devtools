@@ -43,6 +43,7 @@ def implementations() -> dict[str, str]:
     paths = {
         *PACKAGE.glob("*.py"),
         *(PACKAGE / "chunked").glob("*.py"),
+        *(PACKAGE / "discrimination").glob("*.py"),
         *PACKAGE.glob("*.md"),
         PACKAGE / ".gitattributes",
         ROOT / "pyproject.toml",

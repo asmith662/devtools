@@ -39,7 +39,7 @@ def configuration() -> Any:
     return original
 
 
-def run(root: Path, args: Any) -> None:
+def run(root: Path, args: Any, *, before: Any = None, after: Any = None) -> None:  # noqa: PLR0915 -- unchanged capture plus admission/accounting hooks
     """Only the explicitly fresh case may acquire treatment or launch Sol."""
     require(args.case == "0024", "Adopted cases cannot execute fresh B")
     design, rows = workers.prepared(
@@ -118,6 +118,8 @@ def run(root: Path, args: Any) -> None:
                 },
             ),
         )
+        if before is not None:
+            before(prepared["raw"])
 
     async def ground(payload: Any) -> Any:
         require(
@@ -213,19 +215,27 @@ def run(root: Path, args: Any) -> None:
         )
 
     asyncio.run(authenticate_version())
-    capture.execute(
-        root,
-        design,
-        rows,
-        ground,
-        implementation=load(root / "implementation.json")["implementation"],
-        run_binding={
-            "run_id": args.run_id,
-            "stage_a_checkpoint": args.stage_a,
-            "packet_checkpoint": args.packet_commit,
-        },
-        grounding_preflight=preflight,
-    )
+    try:
+        capture.execute(
+            root,
+            design,
+            rows,
+            ground,
+            implementation=load(root / "implementation.json")["implementation"],
+            run_binding={
+                "run_id": args.run_id,
+                "stage_a_checkpoint": args.stage_a,
+                "packet_checkpoint": args.packet_commit,
+            },
+            grounding_preflight=preflight,
+        )
+    except BaseException as error:
+        if after is not None:
+            after(False, type(error).__name__)  # noqa: FBT003 -- existing callback contract
+        raise
+    else:
+        if after is not None:
+            after(True, None)  # noqa: FBT003 -- existing callback contract
 
     files = bundle(root, load(root / "integrity.json")["sha256"])
     files.update(

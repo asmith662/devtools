@@ -20,6 +20,7 @@ from experiments.codex_dogfood.case_0009.artifacts import (
     digest,
     json_bytes,
 )
+from experiments.orchestration import usage_budget
 from experiments.orchestration.adoption import load_branch
 from experiments.orchestration.authority import (
     ApprovalRequest,
@@ -273,6 +274,8 @@ class Controller:
                 digest(content) == artifact["sha256"],
                 "Stage A artifact digest differs",
             )
+            if name == "protocol":
+                self.authenticate_usage_protocol(json.loads(content))
         for index, (address, sha) in enumerate(value["implementation"].items()):
             committed = await repo.git("show", head + ":" + address)
             require(
@@ -373,6 +376,8 @@ class Controller:
             "publication": self.value["publication"],
             "retry": self.value["retry"],
             "adopted_branches": self.value.get("adopted_branches", {}),
+            "economics": self.value.get("economics", {"status": "LEGACY_UNKNOWN"}),
+            "usage_budget": self.value.get("usage_budget", {"status": "UNSET"}),
         }
 
     def approval_binding(self, review_checkpoint: str) -> dict[str, Any]:
@@ -392,8 +397,45 @@ class Controller:
         """Keep authority in immutable repository artifacts, outside operational state."""
         return str(self.prefix) + "/authorization"
 
+    def authenticate_usage_protocol(self, protocol: Any) -> None:
+        """Bind forecast, numeric inventory and exact launcher to frozen Stage A."""
+        if "usage_budget" not in self.value:
+            return
+        require(
+            protocol.get("usage_budget") == self.value["usage_budget"]
+            and protocol.get("economics") == self.value["economics"],
+            "Frozen Stage A usage/economics differs",
+        )
+        profile = dict(protocol["semantic_execution"])
+        if "argv" in profile:
+            profile["argv"] = expand(
+                profile["argv"],
+                {"stage_a_checkpoint": self.value["stage_a"]["checkpoint"]},
+            )
+        require(
+            profile == self.value["semantic"],
+            "Frozen semantic execution profile/launcher differs",
+        )
+
+    def require_not_superseded(self) -> None:
+        """Reject approval or execution of a superseded prospective plan."""
+        marker = (
+            self.repository.root
+            / "experiments/orchestration/supersessions"
+            / (self.run_id + ".json")
+        )
+        require(
+            not marker.exists(),
+            "Superseded prospective plan cannot be approved or executed",
+        )
+
     async def approve(self, request: ApprovalRequest) -> ExecutionAuthorization:
         """Publish a supplied maintainer grant; never infer it from plan validity."""
+        self.require_not_superseded()
+        require(
+            "economics" in self.value,
+            "New approvals require a prospective usage forecast",
+        )
         require(
             isinstance(request, ApprovalRequest),
             "Explicit approval request required",
@@ -433,6 +475,7 @@ class Controller:
 
     async def execution_authorization(self) -> ExecutionAuthorization:
         """Authenticate durable authority after restart; never create an approval."""
+        self.require_not_superseded()
         require(
             self.value["schema"] == SCHEMA,
             "Legacy approval semantics are read-only",
@@ -868,6 +911,14 @@ class Controller:
                         adoption_binding["sha256"],
                     ),
                 }
+                if "usage_budget" in self.value:
+                    usage_budget.adoption(
+                        self.repository.root,
+                        self.run_id,
+                        case_id,
+                        receipt["original_usage"],
+                        receipt["origin"]["run_id"],
+                    )
                 exclusive(self.journal(case_id, stage, "ADOPTED"), receipt)
                 exclusive(returned, receipt)
                 self.progress(
@@ -965,6 +1016,16 @@ class Controller:
                     ),
                     "workspace": str(root),
                 }
+                admitted = usage_budget.reserve(
+                    self.repository.root,
+                    self.value,
+                    self.run_id,
+                    case_id,
+                    stage,
+                    authorized=self._authorization is not None,
+                )
+                if admitted is not None:
+                    binding["usage_budget"] = admitted
                 exclusive(self.journal(case_id, stage, "ENTERED"), binding)
                 started = time.perf_counter()
                 self.progress(case_id, stage, StageState.RUNNING)
@@ -1016,6 +1077,13 @@ class Controller:
                             stage,
                         )
                         semantic_receipt(validation, config)
+                        if config.get("fresh_primary_thread"):
+                            thread = validation["thread_id"]
+                            require(
+                                thread not in self.thread_ids,
+                                "Reviewer conversation reused across cases",
+                            )
+                            self.thread_ids.add(thread)
                         preserve_packet(root, inputs)
                         files = {n: (root / n).read_bytes() for n in PRIMARY}
                         extra = config.get("additional_artifacts", [])

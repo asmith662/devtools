@@ -238,7 +238,8 @@
 - Agents: [conversation](../src/devtools/agents/conversation/docs/overview.md)
   and [Codex integration](../src/devtools/agents/integrations/codex/docs/overview.md).
 - Execution: [Runtime](../src/devtools/execution/docs/overview.md).
-- Observability: [Evidence](../src/devtools/observability/evidence/docs/overview.md).
+- Observability: [Evidence](../src/devtools/observability/evidence/docs/overview.md)
+  and [observed usage](../src/devtools/observability/usage/docs/overview.md).
 - Persistence: [overview](../src/devtools/persistence/docs/overview.md),
   [JSON](../src/devtools/persistence/docs/json.md), and
   [SQLite](../src/devtools/persistence/docs/sqlite.md).
@@ -496,8 +497,9 @@ BM25F_HARMFUL. Production remains unchanged; confirmation/reserve NOT_ACCESSED;
 SEARCH_POLICY_FAILURE NOT_ASSESSED. The roadmap owns the next GRAPH /
 REPOSITORY-MAP RETRIEVAL direction; no structural implementation follows here.
 
-The `orchestration` and `governance` domains remain recognized sparse
-namespaces without reusable implementation APIs. Evaluation now provides the
+The `orchestration` domain remains sparse without a reusable workflow API.
+Governance exposes narrow numeric usage constraints granting no execution
+authority; broader authority/policy architecture remains deferred. Evaluation provides the
 bounded expected-versus-observed identity coverage API documented in its
 package overview. Broader Evaluation architecture remains unimplemented.
 
