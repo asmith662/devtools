@@ -1,5 +1,13 @@
 # Purpose-relative source grounding and selective direct structural pursuit
 
+The prospective [C-v2 method](chunked/METHOD.md) supersedes only the old one-shot
+blind-gold measurement procedure when bound by its separate Stage A and plan.
+Final gold definitions, treatment, cohort authoring and Stage D comparisons remain
+unchanged. It uses exhaustive state-only A1, A1-driven exact-evidence A2, host
+archive/cards, global consolidation and exact host reattachment. Original C-v1
+remains dead; completed B22/B23 are immutable adopted branches, not retries.
+The new run is unapproved; these documents authorize no scientific execution.
+
 Prospective development experiment. Stage A only; no treatment or gold is present.
 The replacement cases are public historical-development positions 6–8, without reroll:
 0022 is reused exactly; 0023/0024 are the next untouched entries. Entered Cases

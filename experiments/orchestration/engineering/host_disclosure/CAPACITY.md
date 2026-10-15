@@ -79,3 +79,13 @@ capabilities remain separate provenance and never substitute for certification.
 
 No scientific operation is authorized by the certificate. It does not itself
 finish adoption, controller integration, Stage A or prospective plan publication.
+
+The separate `output-receipt.json` records the final output-only engineering
+probe `SYNTHETIC-ASTRA-HIGH-OUTPUT-01`: 270 synthetic input characters/bytes,
+123 fixed 512-character ASCII blocks, 63357 canonical output characters/bytes.
+It exceeds the largest gold response envelope (61326 bytes), stays below 65536
+bytes, and complements the existing 700000-character/byte input certification.
+It uses the same exact pinned Astra/High profile, native schema and final capture.
+All five usage categories, zero tools, unchanged isolated CWD and no outer retry
+are authenticated from the retained capture. Neither receipt establishes an
+absolute capacity or scientific quality. No further model call is authorized.

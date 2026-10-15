@@ -1,7 +1,8 @@
-# Candidate blind-gold engineering: A1 / A2 / global consolidation
+# Blind-gold C-v2: A1 / A2 / global consolidation
 
-These experiment-owned mechanics are a scientific-method candidate, not a frozen
-Stage A, plan, approval or scientific result. Old blocked runs and journals remain
+These experiment-owned mechanics implement the prospective C-v2 method. Only a
+separately authenticated Stage A and plan bind a scientific run; this document
+does not approve or execute it. Old blocked runs and journals remain
 immutable. No treatment judgment informs this method. Final gold definitions are
 preserved; the acquisition procedure is amended without one-shot equivalence.
 
@@ -73,18 +74,48 @@ independently mandatory.
 Every host-valid semantic response has a constructive maximum <=65536 canonical
 UTF-8 bytes. Native schema validity cannot enforce an aggregate quote-string sum;
 the host enforces that frozen cross-field assertion. Candidate input sizing allows
-<=700000 Unicode characters AND <=700000 UTF-8 bytes, pending compatible empirical
-capacity certification. Actual global input must pass both before semantic entry;
+<=700000 Unicode characters AND <=700000 UTF-8 bytes, bound to the compatible
+large-input CapacityReceipt. A separate OutputCapacityReceipt demonstrates 63357
+canonical output bytes, exceeding the largest gold response maximum (61326).
+Actual global input must pass both before semantic entry;
 the method does not promise completion for every possible upstream finding.
 
-`experiments.orchestration.semantic_limits` has explicit stage/case/cohort limits,
-without scientific defaults. Trusted controller integration must durably bind
-complete partition reservations before first entry, retain snapshots on resume,
-and perform exact input checks before journal persistence. Budget rejection creates
-no entry or launch. Existing approval/dead-journal checks remain independently
-mandatory: budget availability is not authority. Future scientific plan integration
-must bind limits, coverage, partitions and receipts; these mechanics authorize no
-new run or historical resume.
+`execution` and `lifecycle` bind the existing `semantic_limits` mechanism to the
+frozen partition, exact pre-entry input/schema gates and durable reservations.
+A1 requires 3/3/2 calls for 0022/0023/0024. Each case reserves at most 24 A2 calls
+and one global call. Together these imply at most 72 A2, 83 fresh Astra and,
+including fresh 0024 treatment, 84 fresh semantic calls. The per-case maximum is
+28 including treatment. The complete dynamic A2 partition is reserved together;
+an excessive partition stops the whole A2 stage before its first entry, without
+sampling, dropping resources, repacking or changing evidence. These are resource
+governance limits, never relevance or label thresholds. Original adopted Sol
+invocations are not fresh calls or duplicated usage. Existing approval and dead
+journal checks remain mandatory: budget availability is not authority.
+
+`execution.validate` replays exact partitions, coverage, archive, structured
+responses, authorized disclosure bytes, raw process/usage captures and canonical
+artifacts. The standalone canonical builder remains mandatory. Scientific capture
+and usage files travel with the primary artifact closure and survive import
+without transformation. The 128 MiB expanded host capture bound also fails closed.
+No implementation claims every possible upstream result can complete downstream.
+
+`fresh` preserves the original Sol instructions, packet, verdicts and locator
+schema. Its preflight callback runs before the native grounding ENTERED marker;
+its accepted canonical response has a host output limit of 63357 bytes. The
+original unbounded native schema is retained to preserve treatment semantics;
+oversized actual output fails rather than being truncated. CLI transport/tool
+compatibility is assumed model independent; Astra receipts do not establish Sol
+semantic quality or an independently known model context size.
+
+`prospective` reproduces the existing public tasks, parent frames and authoring
+exactly, without child access. Adopted seals remain unchanged. A separately
+bound compatibility statement documents the optional preflight callback and
+original verifier-source attribution; an exact AST comparison proves those are
+the only capture changes. Original completed branches retain original proofs,
+usage, runtime and implementation identities, without retroactive publication.
+Six retained old journals are exact path/hash exceptions to clean-worktree
+authentication, with durable exact copies in the new Stage A. No other dirty
+worktree exception is granted and the originals remain untouched.
 
 A1 is the raw-usefulness selection bottleneck. A2 cannot recover resources A1
 labeled NO_USEFUL; global consolidation cannot recover evidence A2 omitted.

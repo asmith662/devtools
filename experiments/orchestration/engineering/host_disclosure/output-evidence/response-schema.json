@@ -1,0 +1,20 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "blocks": {
+      "items": {
+        "maxLength": 512,
+        "minLength": 512,
+        "pattern": "^[A-Z0-9]+$",
+        "type": "string"
+      },
+      "maxItems": 123,
+      "minItems": 123,
+      "type": "array"
+    }
+  },
+  "required": [
+    "blocks"
+  ],
+  "type": "object"
+}

@@ -1,4 +1,27 @@
-# Bounded blind evidence mechanics — unpublished candidate
+# Bounded blind-gold C-v2
+
+[METHOD.md](METHOD.md) describes the current A1/A2/global procedure and its
+limitations. `execution`, `fresh` and `lifecycle` wire those mechanics into the
+existing deterministic controller. `prospective` builds and exactly replays a
+separate Stage A and unapproved plan. Approval and execution remain separate.
+
+The cohort remains 0022/0023/0024. A1 partitions retain the engineering digests
+and require 3/3/2 calls. Dynamic A2 permits at most 24 calls per case, with
+whole-partition rejection before entry. Consolidation adds at most one call per
+case. With adopted B22/B23 and fresh B24 the maximum is 84 fresh invocations:
+83 Astra/High and one Sol/High.
+
+Current all-positive global maxima are 678468 / 584114 / 406140 characters
+(64.7038% / 55.7055% / 38.7325% of the observed transport ceiling). Worst-case
+Unicode bytes exceed the certified allowance; actual dynamic inputs must pass
+both 700000 characters and 700000 bytes before entry. A2 output is at most
+61326 bytes; global maxima are 55922 / 55090 / 53522 bytes. The separate output
+receipt attains 63357 bytes. These are workload claims, not runtime maxima.
+
+The following notes preserve earlier candidate-02/03 design and sizing history.
+They are superseded by the current method and execution bindings.
+
+## Historical candidate-02/03 notes
 
 The current [A1/A2 method candidate](METHOD.md) supersedes the combined Pass-A
 description below. This retained description records candidate-02/03 history;

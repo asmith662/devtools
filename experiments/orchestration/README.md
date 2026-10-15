@@ -262,3 +262,24 @@ remain byte-identical historical records at commit
 that implementation, not the corrected current implementation. Legacy v1 plans
 remain readable; old Boolean approval receipts cannot authorize v2 execution.
 Historical adoption of 0017-0019 is independent and requires no retroactive receipt.
+
+## Prospective completed-branch and capacity bindings
+
+A v2 plan may explicitly bind a committed prospective compatibility statement for
+an immutable completed branch. It names the unchanged origin seal, original and
+prospective scientific-contract byte maps, and the reviewed unchanged scientific
+semantics claim. This is visible prospective authority, never a fabricated old
+publication. The source-grounding adapter additionally proves its limited capture
+change by AST comparison. Existing seals and original usage are not rewritten.
+
+Plans can name exact path/hash pairs for preserved historical run journal JSON
+files. Those files may remain untracked; changed bytes or unrelated untracked
+files still reject authentication. This does not waive index/worktree checks.
+An explicit closed list of adapter-specific primary artifacts travels unchanged
+through C publication and import, alongside the existing canonical primary set.
+
+The output-capacity receipt complements the large-input receipt. It certifies a
+measured lower bound for the exact pinned semantic-worker profile, not a provider
+maximum. The output-only synthetic probe demonstrates 63357 canonical bytes with
+complete five-field usage, no tools and unchanged isolated CWD. Its authority is
+engineering evidence only; scientific approval remains separate.

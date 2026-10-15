@@ -137,7 +137,12 @@ def bindings(root: Path, hashes: Any) -> CompletionBindings:
             "native_sha256": native,
             "canonical_sha256": canonical,
             "implementation_sha256": marker["implementation"],
-            "verifier_sha256": {"capture.py": digest(Path(__file__).read_bytes())},
+            "verifier_sha256": {
+                "capture.py": marker["implementation"].get(
+                    "experiments/source_grounding/capture.py",
+                    digest(Path(__file__).read_bytes()),
+                )
+            },
             "completion_sha256": native["native/execution_completed.json"],
         },
     )
@@ -151,6 +156,7 @@ def execute(
     *,
     implementation: Any,
     run_binding: Any,
+    grounding_preflight: Any = None,
 ) -> None:
     """One cohort-authorized B operation; never call this during Stage A."""
     operations = [
@@ -252,6 +258,8 @@ def execute(
     broad = projection(design, journal.state["values"])
     contracts.validate_channels(broad, rows)
     grounding_input = contracts.grounding_packet(design, rows, broad)
+    if grounding_preflight is not None:
+        grounding_preflight(grounding_input)
     returned = call(
         "grounding",
         {"packet_sha256": digest(json_bytes(grounding_input))},

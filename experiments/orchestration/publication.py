@@ -34,6 +34,7 @@ class Repository:
         )
         self.lock = asyncio.Lock()
         self.expected_head = ""
+        self.preserved_evidence: dict[str, str] = {}
 
     async def git(self, *args: str) -> bytes:
         """Use the canonical managed command owner for Git, without shell parsing."""
@@ -94,6 +95,13 @@ class Repository:
             .decode()
             .splitlines()
         ):
+            if address in self.preserved_evidence:
+                require(
+                    digest(safe(self.root, address).read_bytes())
+                    == self.preserved_evidence[address],
+                    "Preserved journal changed",
+                )
+                continue
             require(
                 owned_prefix is not None and address.startswith(owned_prefix + "/"),
                 "Unexpected untracked worktree changes",

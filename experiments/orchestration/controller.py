@@ -106,6 +106,9 @@ class Controller:
         no_links(work_root)
         work_root = resolve_path(work_root).value
         self.repository, self._plan, self.work_root = repository, plan, work_root
+        self.repository.preserved_evidence = dict(
+            plan.value.get("preserved_evidence", {}),
+        )
         self._run_id = plan.identity(implementation())
         require(
             not work_root.is_relative_to(repository.root),
@@ -187,6 +190,7 @@ class Controller:
         plan = RunPlan.parse(json.loads(raw))
         require(raw == plan.canonical, "Plan bytes must be canonical")
         value = plan.value
+        repo.preserved_evidence = dict(value.get("preserved_evidence", {}))
         require(
             value["controller_implementation"] == implementation(),
             "Approved controller implementation differs",
@@ -292,9 +296,25 @@ class Controller:
             await self.input_files(case)
         for case_id, binding in value.get("adopted_branches", {}).items():
             branch = load_branch(root, binding)
-            for address, sha256 in branch.value["compatibility"][
-                "scientific_contract"
-            ].items():
+            contract = branch.value["compatibility"]["scientific_contract"]
+            if "prospective_compatibility" in binding:
+                revision = binding["prospective_compatibility"]
+                raw = binary(safe(root, revision["path"]))
+                require(
+                    digest(raw) == revision["sha256"],
+                    "Prospective compatibility digest",
+                )
+                attested = json.loads(raw)
+                require(
+                    attested["origin_seal_sha256"] == binding["sha256"]
+                    and attested["original_contract"] == contract
+                    and set(attested["prospective_contract"]) == set(contract)
+                    and attested["scientific_semantics"] == "UNCHANGED",
+                    "Prospective compatibility contract",
+                )
+                await repo.authenticate_blob(head, revision["path"])
+                contract = attested["prospective_contract"]
+            for address, sha256 in contract.items():
                 require(
                     digest(binary(safe(root, address))) == sha256,
                     "Adopted scientific contract changed",
@@ -998,6 +1018,13 @@ class Controller:
                         semantic_receipt(validation, config)
                         preserve_packet(root, inputs)
                         files = {n: (root / n).read_bytes() for n in PRIMARY}
+                        extra = config.get("additional_artifacts", [])
+                        require(
+                            len(set(extra)) == len(extra)
+                            and not set(extra) & set(PRIMARY),
+                            "Additional primary ownership",
+                        )
+                        files.update({n: binary(safe(root, n)) for n in extra})
                         semantic_outputs(files)
                         save(
                             self.operational / "archives" / (case_id + ".json"),
@@ -1040,8 +1067,9 @@ class Controller:
                             require(
                                 validation["semantic_transformation"] == "NONE"
                                 and all(
-                                    files["primary/" + n] == inputs["primary/" + n]
-                                    for n in PRIMARY
+                                    files[n] == raw
+                                    for n, raw in inputs.items()
+                                    if n.startswith("primary/")
                                 ),
                                 "Import changed primary scientific bytes",
                             )

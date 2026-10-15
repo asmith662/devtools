@@ -23,6 +23,7 @@ from experiments.orchestration.workers import (
     accounting,
     capacity,
     codex,
+    output_capacity,
     runtime,
     schema,
     semantic,
@@ -34,6 +35,7 @@ ROOT = Path(__file__).resolve().parents[4]
 AUTH_FILE = Path("C:/Users/recoveryadmin/.codex/auth.json")
 WORK_ROOT = Path("C:/ExperimentWorkers/SYNTHETIC-ASTRA-HIGH-PROBES-01")
 IDENTITIES = {
+    "output": "SYNTHETIC-ASTRA-HIGH-OUTPUT-01",
     "minimal": "SYNTHETIC-ASTRA-HIGH-MINIMAL-01",
     "capacity": "SYNTHETIC-ASTRA-HIGH-CAPACITY-02",
 }
@@ -77,8 +79,8 @@ def output_schema(mode: str = "capacity") -> dict[str, Any]:
         "properties": {
             "blocks": {
                 "type": "array",
-                "minItems": 116,
-                "maxItems": 116,
+                "minItems": 123 if mode == "output" else 116,
+                "maxItems": 123 if mode == "output" else 116,
                 "items": {
                     "type": "string",
                     "minLength": 512,
@@ -112,6 +114,8 @@ def synthetic_input() -> bytes:
 
 def instructions(mode: str) -> bytes:
     """Use only fictional engineering disclosures with no scientific dependency."""
+    if mode == "output":
+        return b"NON-SCIENTIFIC SYNTHETIC output capacity test. All information is here. Use no tools, filesystem or web; create no files. Return exactly schema JSON: blocks contains exactly 123 strings, each exactly 512 uppercase A characters. Complete every block. No prose or fences.\n"
     if mode == "minimal":
         return b'NON-SCIENTIFIC SYNTHETIC classification: the fictional tag PINE maps to SYNTHETIC_OK. Use no tools, filesystem or web; create no files. Return only {"answer":"SYNTHETIC_OK"}.\n'
     return INSTRUCTION.encode()
@@ -351,13 +355,19 @@ async def execute(root: Path) -> dict[str, Any]:  # noqa: PLR0915 -- explicit si
             "Complete reported usage required",
         )
         require(
-            len(canonical) <= 65536 and (mode == "minimal" or len(canonical) >= 58983),
+            len(canonical) <= 65536
+            and (
+                mode == "minimal"
+                or len(canonical) >= (63000 if mode == "output" else 58983)
+            ),
             "Capacity output envelope not reached",
         )
         measured = accounting.accept(measured, "ENGINEERING_ONLY")
         receipt = {
-            "schema": capacity.SCHEMA
-            if mode == "capacity"
+            "schema": output_capacity.SCHEMA
+            if mode == "output"
+            else capacity.SCHEMA
+            if mode in {"capacity", "output"}
             else "semantic-minimal-calibration-v1",
             "invocation": invocation,
             "status": "PASS",
@@ -396,7 +406,13 @@ async def execute(root: Path) -> dict[str, Any]:  # noqa: PLR0915 -- explicit si
         }
         if mode == "capacity":
             capacity.authenticate(receipt, config)
-        folder = "capacity-evidence" if mode == "capacity" else "minimal-evidence"
+        folder = (
+            "output-evidence"
+            if mode == "output"
+            else "capacity-evidence"
+            if mode == "capacity"
+            else "minimal-evidence"
+        )
         evidence_root = (
             ROOT / "experiments/orchestration/engineering/host_disclosure" / folder
         )
@@ -419,10 +435,15 @@ async def execute(root: Path) -> dict[str, Any]:  # noqa: PLR0915 -- explicit si
         for name, value in files.items():
             put_binary(evidence_root / name, value)
         receipt["evidence"] = {name: digest(value) for name, value in files.items()}
-        capacity.authenticate_files(ROOT, receipt, folder=folder)
+        if mode == "output":
+            output_capacity.authenticate(receipt, config, ROOT)
+        else:
+            capacity.authenticate_files(ROOT, receipt, folder=folder)
         receipt_path = (
-            capacity.RECEIPT_ADDRESS
-            if mode == "capacity"
+            output_capacity.ADDRESS
+            if mode == "output"
+            else capacity.RECEIPT_ADDRESS
+            if mode in {"capacity", "output"}
             else "experiments/orchestration/engineering/host_disclosure/minimal-receipt.json"
         )
         put_binary(ROOT / receipt_path, json_bytes(receipt))

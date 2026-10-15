@@ -1,0 +1,91 @@
+{
+  "acceptance_domain": "ENGINEERING_ONLY",
+  "measurement": {
+    "accepted": true,
+    "backend": "Codex",
+    "backend_thread_id": {
+      "availability": "REPORTED",
+      "provenance": "Codex JSONL thread identity",
+      "value": "01a14064-e5b8-7391-9a35-3773fb1c5747"
+    },
+    "backend_turn_id": {
+      "availability": "UNKNOWN",
+      "provenance": "Codex JSONL turn identity",
+      "value": null
+    },
+    "completed": true,
+    "disclosed_bytes": {
+      "availability": "DERIVED",
+      "provenance": "Exact UTF-8 stdin disclosure",
+      "value": 270
+    },
+    "disclosed_chars": {
+      "availability": "DERIVED",
+      "provenance": "Exact UTF-8 stdin disclosure",
+      "value": 270
+    },
+    "disclosure_digest": "47e748f7885dd88c6356c239662712a4537730c38f7d99641d26bc8574a4b9f2",
+    "execution_origin": "EXECUTED",
+    "execution_profile": "SEMANTIC_WORKER",
+    "failure_class": null,
+    "invocation_id": "SYNTHETIC-ASTRA-HIGH-OUTPUT-01",
+    "model_seconds": {
+      "availability": "UNKNOWN",
+      "provenance": "No authoritative model-only duration",
+      "value": null
+    },
+    "model_turns": {
+      "availability": "DERIVED",
+      "provenance": "Observed completed-turn events; absence unknown",
+      "value": 1
+    },
+    "observed_tool_calls": {
+      "availability": "DERIVED",
+      "provenance": "Validated tool-free transport or unavailable",
+      "value": 0
+    },
+    "provider": "OpenAI",
+    "raw_provider_usage_json": "[{\"cache_write_input_tokens\": 0, \"cached_input_tokens\": 0, \"input_tokens\": 9513, \"output_tokens\": 8808, \"reasoning_output_tokens\": 673}]",
+    "reasoning_effort": "High",
+    "reported_model": {
+      "availability": "UNKNOWN",
+      "provenance": "No provider model identity event",
+      "value": null
+    },
+    "requested_model": "gpt-6-astra",
+    "response_bytes": {
+      "availability": "DERIVED",
+      "provenance": "Canonical semantic response",
+      "value": 63357
+    },
+    "response_chars": {
+      "availability": "DERIVED",
+      "provenance": "Canonical semantic response",
+      "value": 63357
+    },
+    "subprocesses": {
+      "availability": "UNKNOWN",
+      "provenance": "No aggregate descendant-process count exposed",
+      "value": null
+    },
+    "task_id": "SYNTHETIC-ASTRA-HIGH-OUTPUT-01",
+    "usage": {
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 9513,
+      "output_tokens": 8808,
+      "reasoning_tokens": 673,
+      "total_tokens": null
+    },
+    "usage_provenance": "Codex turn.completed aggregates; request boundaries unknown",
+    "validated": true,
+    "wall_seconds": {
+      "availability": "DERIVED",
+      "provenance": "Managed process monotonic duration",
+      "value": 195.635656
+    }
+  },
+  "original_capture_sha256": "f4d3085e9790bf1e84027b07cbdf973c3b7bb5840a006d96b000e79b21294007",
+  "schema": "semantic-invocation-measurement-v1",
+  "usage_error": null
+}

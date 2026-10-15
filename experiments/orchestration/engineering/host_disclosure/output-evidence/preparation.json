@@ -1,0 +1,163 @@
+{
+  "bounds": {
+    "a2_two_cells": {
+      "characters": 61326,
+      "utf8_bytes": 61326
+    },
+    "pass_b": {
+      "444": {
+        "characters": 53522,
+        "utf8_bytes": 53522
+      },
+      "640": {
+        "characters": 55090,
+        "utf8_bytes": 55090
+      },
+      "744": {
+        "characters": 55922,
+        "utf8_bytes": 55922
+      }
+    },
+    "probe": {
+      "characters": 63357,
+      "utf8_bytes": 63357
+    }
+  },
+  "configuration_preflight_sha256": "9c8cf5d90ed31de50b372c451c4c5b1ef28061348935c3702bf71b13bcc2c6b9",
+  "input_bytes": 270,
+  "input_characters": 270,
+  "input_compression_ratio": 0.7518518518518519,
+  "input_sha256": "47e748f7885dd88c6356c239662712a4537730c38f7d99641d26bc8574a4b9f2",
+  "invocation": "SYNTHETIC-ASTRA-HIGH-OUTPUT-01",
+  "mode": "output",
+  "model_invocations": 0,
+  "probe_source_sha256": "9ec2894e7089c43545110b672ff0e0334b49bcd730bba0abc8d650512bc3bd26",
+  "profile": {
+    "cli_version": "0.162.1",
+    "configuration": {
+      "approval": "never",
+      "auto_compact_token_limit": 1000000000,
+      "automatic_scientific_retries": 0,
+      "cli_version": "0.162.1",
+      "delivery": "UTF8_STDIN",
+      "fresh": true,
+      "network": false,
+      "provider": "BUILTIN_OPENAI",
+      "provider_transport_retries": "BUILTIN_RUNTIME_DEFAULT",
+      "response": "NATIVE_JSON_SCHEMA_AND_FINAL_MESSAGE",
+      "schema": "host-disclosure-semantic-runtime-v3",
+      "scientific_filesystem_dependency": false,
+      "tools": "DISABLED; TOOL_ATTEMPT_REJECTS_RESPONSE",
+      "underlying_request_count": "UNKNOWN",
+      "web": "disabled",
+      "windows_sandbox": "mxc"
+    },
+    "empty_cwd_policy": "EMPTY_OUTSIDE_CHECKOUT",
+    "execution_profile": "SEMANTIC_WORKER",
+    "framework": {
+      "agents/integrations/codex/parsing.py": "c8b1a9908b6085f92f1d0405b8f757aeb5daa68947bca4a17b56bf6ef045b131",
+      "agents/integrations/codex/usage.py": "25498cb49446520c5efac305f73aa87c94d56cc13b858446f4c9ed4483f38c90",
+      "models/interaction/usage.py": "8f262cc6f832cb464b843a3852953b854ae6044d50f8a27768aa08f8ed2be281",
+      "observability/evidence/invocation.py": "b76dd3cf486d5f14d3e05e00029ed70f82c789fee4dbc81d871d0e47fa8f6c6a"
+    },
+    "implementation": {
+      "accounting.py": "a2e80b98541433f380c0f122c2bcfd873f11d992969a541dcee1c7afdbe5f073",
+      "budget.py": "0e1379f8df9a7aa318a9b9a5fe425041091e887bea7bd7318232c22a8ab02365",
+      "capacity.py": "eb83dd72261dd04ee984778b2cada131851b780d10c36b9998c5d5479ae2442e",
+      "codex.py": "886ef0e715196834089d68a170ca64ccf7b2ad9134b8172a39a5b51355aeaddb",
+      "measurement.py": "9439c578734c180ace144f4b9ce82dca7342b402063fdb28577e08c5f6cc9365",
+      "process.py": "cfc728534a89e8658c2953439de1d456c5e77693fe1cbc84588a44f77202e9d8",
+      "runtime.py": "9f04163bd0c17501ab90958d2d0b66e07b05833cddc7c3cff93ad6860099c907",
+      "schema.py": "fb5270a908ca195c71d10dd8070b513012839e228d27ed56f06d347232f56db2",
+      "semantic.py": "5aa4a5253702baf294aa326e3ded097e6d744db86f2b05534f25a4c00308ea44",
+      "supervisor.py": "2c73404feb5cd86acc144a4d51661ea6dc8e89efcd68947df75f5ad37269a111"
+    },
+    "model_id": "gpt-6-astra",
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.14.0",
+    "reasoning": "High",
+    "transport": "UTF8_STDIN; NATIVE_SCHEMA; SOLE_FINAL_MESSAGE"
+  },
+  "runtime_catalog": {
+    "active_effective_input_output_capacity": "UNKNOWN",
+    "models": [
+      {
+        "context_window": 272000,
+        "effective_context_window_percent": 95,
+        "max_context_window": 872000,
+        "slug": "gpt-6-astra",
+        "supported_reasoning_levels": [
+          {
+            "description": "Fast responses with lighter reasoning",
+            "effort": "low"
+          },
+          {
+            "description": "Balances speed and reasoning depth for everyday tasks",
+            "effort": "medium"
+          },
+          {
+            "description": "Greater reasoning depth for complex problems",
+            "effort": "high"
+          },
+          {
+            "description": "Extra high reasoning depth for complex problems",
+            "effort": "xhigh"
+          },
+          {
+            "description": "Maximum reasoning depth for the hardest problems",
+            "effort": "max"
+          },
+          {
+            "description": "Maximum reasoning with automatic task delegation",
+            "effort": "ultra"
+          }
+        ]
+      },
+      {
+        "context_window": 272000,
+        "effective_context_window_percent": 95,
+        "max_context_window": 872000,
+        "slug": "gpt-6-sol",
+        "supported_reasoning_levels": [
+          {
+            "description": "Fast responses with lighter reasoning",
+            "effort": "low"
+          },
+          {
+            "description": "Balances speed and reasoning depth for everyday tasks",
+            "effort": "medium"
+          },
+          {
+            "description": "Greater reasoning depth for complex problems",
+            "effort": "high"
+          },
+          {
+            "description": "Extra high reasoning depth for complex problems",
+            "effort": "xhigh"
+          },
+          {
+            "description": "Maximum reasoning depth for the hardest problems",
+            "effort": "max"
+          },
+          {
+            "description": "Maximum reasoning with automatic task delegation",
+            "effort": "ultra"
+          }
+        ]
+      }
+    ],
+    "source_sha256": "f62b69ce9112a64ec75b644a19a21c875699ef51926b1077d5c5aa96544b121a",
+    "status": "REPORTED_RUNTIME_CATALOG"
+  },
+  "schema": "synthetic-capacity-probe-preparation-v1",
+  "schema_sha256": "64966539fd0d734f601021a13a766b5b13e4809e388ffd1bdd30a2ae875f1081",
+  "transport_limit": {
+    "characters": 1048576,
+    "cli_version": "0.162.1",
+    "counting": "runtime reports input characters; host uses Python Unicode code points",
+    "evidence_run": "b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982",
+    "operation": "0022/C-semantic",
+    "status": "EMPIRICALLY_OBSERVED",
+    "stderr_sha256": "41233c250f8901de187b0b4199cdb20a0e77e857b31703c5d19305cc4f2ac280"
+  }
+}

@@ -54,7 +54,7 @@ class RunPlan:
     canonical: bytes
 
     @classmethod
-    def parse(cls, value: Any) -> RunPlan:
+    def parse(cls, value: Any) -> RunPlan:  # noqa: C901, PLR0915 -- explicit versioned authority fields
         """Reject unsupported stages, retry policy and ambiguous authority."""
         require(
             set(value)
@@ -76,7 +76,9 @@ class RunPlan:
                 "cache",
             }
             | ({"approval"} if value.get("schema") == LEGACY_SCHEMA else set())
-            | ({"adopted_branches"} if "adopted_branches" in value else set()),
+            | ({"adopted_branches"} if "adopted_branches" in value else set())
+            | ({"preserved_evidence"} if "preserved_evidence" in value else set()),
+            # Preserved journals are exact forensic inputs, never execution grants.
             "Run-plan field contract",
         )
         require(
@@ -129,6 +131,18 @@ class RunPlan:
             "Unique ordered cases required",
         )
         adopted = value.get("adopted_branches", {})
+        for address, sha256 in value.get("preserved_evidence", {}).items():
+            safe(Path.cwd(), address)
+            require(
+                address.startswith("experiments/")
+                and "/runs/" in address
+                and "/journal/" in address
+                and Path(address).name
+                in {"ENTERED.json", "RETURNED.json", "FAILED.json"}
+                and isinstance(sha256, str)
+                and re.fullmatch(r"[0-9a-f]{64}", sha256),
+                "Only exact historical journal evidence may remain untracked",
+            )
         require(
             isinstance(adopted, dict)
             and (not adopted or value["schema"] == SCHEMA)
@@ -137,7 +151,13 @@ class RunPlan:
         )
         for binding in adopted.values():
             require(
-                set(binding) == {"path", "sha256", "compatibility_sha256"}
+                set(binding)
+                == {"path", "sha256", "compatibility_sha256"}
+                | (
+                    {"prospective_compatibility"}
+                    if "prospective_compatibility" in binding
+                    else set()
+                )
                 and all(
                     isinstance(binding[k], str)
                     and re.fullmatch(r"[0-9a-f]{64}", binding[k])
@@ -146,6 +166,14 @@ class RunPlan:
                 "Exact adoption seal and compatibility digests required",
             )
             safe(Path.cwd(), binding["path"])
+            if "prospective_compatibility" in binding:
+                revision = binding["prospective_compatibility"]
+                require(
+                    set(revision) == {"path", "sha256"}
+                    and re.fullmatch(r"[0-9a-f]{64}", revision["sha256"]),
+                    "Prospective compatibility binding",
+                )
+                safe(Path.cwd(), revision["path"])
         for case in value["cases"]:
             require(
                 set(case) == {"id", "frame", "inputs"}

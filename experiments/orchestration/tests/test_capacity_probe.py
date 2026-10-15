@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: S101, ANN401, ASYNC240, FBT001, PLR2004, COM812 -- fake external processes only
+# ruff: noqa: S101, ANN401, ASYNC240, FBT001, PLR2004, COM812, PLR0915 -- fake external processes only
 """Exercise the actual capacity driver without a model, credentials or host writes."""
 
 import asyncio
@@ -15,11 +15,16 @@ from experiments.codex_dogfood.case_0009.artifacts import json_bytes
 from experiments.orchestration.engineering.host_disclosure import (
     capacity_probe as probe,
 )
-from experiments.orchestration.workers import capacity, schema, semantic
+from experiments.orchestration.workers import (
+    capacity,
+    output_capacity,
+    schema,
+    semantic,
+)
 
 
 @pytest.mark.parametrize("valid", [True, False])
-@pytest.mark.parametrize("mode", ["minimal", "capacity"])
+@pytest.mark.parametrize("mode", ["minimal", "capacity", "output"])
 def test_probe_is_single_attempt_and_retains_usage(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
@@ -53,8 +58,12 @@ def test_probe_is_single_attempt_and_retains_usage(
         assert not any(cwd.iterdir())
         assert argv[argv.index("--model") + 1] == "gpt-6-astra"
         payload = (
-            {"blocks": ["A" * 512] * 116 if valid else []}
-            if mode == "capacity"
+            {
+                "blocks": ["A" * 512] * (123 if mode == "output" else 116)
+                if valid
+                else []
+            }
+            if mode in {"capacity", "output"}
             else {"answer": "SYNTHETIC_OK" if valid else "INVALID"}
         )
         final = schema.canonical(payload)
@@ -109,8 +118,12 @@ def test_probe_is_single_attempt_and_retains_usage(
         receipt = asyncio.run(probe.execute(root))
         if mode == "capacity":
             capacity.authenticate(receipt, probe.configuration())
-        folder = "capacity-evidence" if mode == "capacity" else "minimal-evidence"
-        capacity.authenticate_files(tmp_path, receipt, folder=folder)
+        if mode == "output":
+            output_capacity.authenticate(receipt, probe.configuration(), tmp_path)
+            folder = "output-evidence"
+        else:
+            folder = "capacity-evidence" if mode == "capacity" else "minimal-evidence"
+            capacity.authenticate_files(tmp_path, receipt, folder=folder)
         assert receipt["measurement"]["measurement"]["accepted"] is True
         artifact = (
             tmp_path
@@ -119,8 +132,12 @@ def test_probe_is_single_attempt_and_retains_usage(
             / "response.json"
         )
         artifact.write_bytes(b"tampered")
-        with pytest.raises(ValueError, match="hash mismatch"):
-            capacity.authenticate_files(tmp_path, receipt, folder=folder)
+        if mode == "output":
+            with pytest.raises(ValueError, match="hash"):
+                output_capacity.authenticate(receipt, probe.configuration(), tmp_path)
+        else:
+            with pytest.raises(ValueError, match="hash"):
+                capacity.authenticate_files(tmp_path, receipt, folder=folder)
     else:
         with pytest.raises(ValueError, match=r"cardinality|enum"):
             asyncio.run(probe.execute(root))
