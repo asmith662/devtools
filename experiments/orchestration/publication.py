@@ -53,6 +53,15 @@ class Repository:
         )
         return result.stdout
 
+    async def authenticate_blob(self, head: str, address: str) -> None:
+        """Prove exact committed bytes without streaming large artifacts to stdout."""
+        safe(self.root, address)
+        require(
+            await self.git("rev-parse", head + ":" + address)
+            == await self.git("hash-object", "--no-filters", "--", address),
+            "Artifact depends on uncommitted mutable bytes",
+        )
+
     async def authenticate(
         self,
         expected: str | None = None,

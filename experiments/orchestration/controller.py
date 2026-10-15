@@ -312,11 +312,7 @@ class Controller:
                     "/",
                 ),
             ):
-                require(
-                    await repo.git("show", head + ":" + address)
-                    == binary(safe(root, address)),
-                    "Adoption depends on uncommitted mutable bytes",
-                )
+                await repo.authenticate_blob(head, address)
         config = value["semantic"]
         if config.get("runtime") == runtime.configuration():
             runtime.authenticate_configuration(config)

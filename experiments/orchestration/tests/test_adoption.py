@@ -5,6 +5,7 @@
 import asyncio
 import json
 from copy import deepcopy
+from hashlib import shake_256
 from pathlib import Path
 from types import SimpleNamespace
 from typing import Any
@@ -328,5 +329,60 @@ def test_controller_adoption_never_enters_or_launches_model(tmp_path: Path) -> N
         assert first == second
         assert artifacts == again
         assert load(c.journal("alpha", "B", "ADOPTED"))["origin"]["run_id"] == "old-run"
+
+    asyncio.run(run())
+
+
+def test_plan_authenticates_closure_larger_than_git_stdout_bound(
+    tmp_path: Path,
+) -> None:
+    async def run() -> None:
+        c = await fixture(tmp_path / "repo", tmp_path / "work", approved=False)
+        value, files, _ = branch_fixture()
+        value["frame"] = c.plan.cases[0].frame
+        # Deterministic opaque synthetic bytes; no scientific verdict is involved.
+        payload = shake_256(b"SYNTHETIC-IMMUTABLE-LARGE-CLOSURE").digest(65 << 20)
+        files["artifacts/large.bin"] = payload
+        value["scientific_files"]["large.bin"] = digest(payload)
+        for name in ("ENTERED", "RETURNED"):
+            row = json.loads(files["provenance/" + name + ".json"])
+            row["frame"] = value["frame"]
+            if name == "RETURNED":
+                row["files"] = value["scientific_files"]
+            files["provenance/" + name + ".json"] = json_bytes(row)
+        branch = authenticate(value, files)
+        assert len(branch.compressed) > 64 << 20
+        destination = c.repository.root / "sealed"
+        destination.mkdir()
+        (destination / "seal.json").write_bytes(branch.canonical)
+        (destination / "closure.json.gz").write_bytes(branch.compressed)
+        contract = c.repository.root / "experiments/source_grounding/reviewer.py"
+        contract.parent.mkdir(parents=True)
+        contract.write_bytes(b"fictional builder")
+        plan_value = c.value
+        plan_value["adopted_branches"] = {
+            "alpha": {
+                "path": "sealed/seal.json",
+                "sha256": digest(branch.canonical),
+                "compatibility_sha256": value["compatibility_sha256"],
+            },
+        }
+        (c.repository.root / "plan.json").write_bytes(
+            RunPlan.parse(plan_value).canonical,
+        )
+        await c.repository.git("add", ".")
+        await c.repository.git("commit", "-m", "Synthetic unapproved adoption plan")
+        checked = await FixtureController.from_plan(
+            c.repository.root,
+            "plan.json",
+            c.work_root,
+        )
+        assert checked.plan_report()["execution_authorized"] == "NO"
+        head = (await c.repository.git("rev-parse", "HEAD")).decode().strip()
+        closure = destination / "closure.json.gz"
+        with closure.open("ab") as stream:
+            stream.write(b"mutation")
+        with pytest.raises(ValueError, match="uncommitted mutable"):
+            await c.repository.authenticate_blob(head, "sealed/closure.json.gz")
 
     asyncio.run(run())

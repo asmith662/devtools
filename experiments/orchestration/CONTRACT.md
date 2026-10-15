@@ -282,6 +282,12 @@ Eligibility also requires explicit independence and unchanged-scientific-contrac
 bindings. Failed or entered-only branches cannot qualify. Seals are governance
 evidence, not independent verification of host routing.
 
+Committed adoption bytes are authenticated by exact Git blob identity against
+the unfiltered working bytes, after seal SHA-256 validation. Large immutable
+closures are never streamed through the managed Git stdout capture to compare
+them. The command-output bound remains unchanged; a >64 MiB synthetic closure
+regression exercises prospective plan authentication and mutation rejection.
+
 Before reuse, prepared design/resources, instruction, builder and semantic model/
 schema configuration must match the original scientific branch. Changed host
 transport/provenance does not re-execute the old branch. Adoption copies exact
