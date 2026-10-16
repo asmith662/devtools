@@ -153,7 +153,7 @@ def run(args: Any) -> Any:
         stage in {"D", "D_validate"},
         "Unknown candidate-discrimination stage; no legacy fallback",
     )
-    from experiments.source_grounding.discrimination.prospective import ADDRESS
+    from experiments.source_grounding.discrimination.rebinding import ADDRESS
 
     protocol = load(execution.ROOT / ADDRESS / "protocol.json")
     cases = {}

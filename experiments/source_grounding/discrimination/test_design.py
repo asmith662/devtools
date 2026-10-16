@@ -11,9 +11,9 @@ from experiments.orchestration.workers import schema
 from experiments.source_grounding import contracts
 from experiments.source_grounding.discrimination import (
     analysis,
+    estimators,
     gold,
     sampling,
-    statistics,
 )
 
 
@@ -181,32 +181,32 @@ def test_finite_population_uncertainty_and_undefined() -> None:
     s = {"h": {"N": 20, "n": 10, "weight": 2}}
     x = lambda r: r["x"]
     y = lambda r: r["y"]
-    result = statistics.ratio(rows, s, x, y)
+    result = estimators.ratio(rows, s, x, y)
     assert result["estimate"] == 0.5
     assert result["standard_error"] == pytest.approx((0.5 * (2.5 / 9) / 10) ** 0.5)
-    assert statistics.ratio(rows, s, lambda r: 0, y)["status"] == "UNDEFINED"
-    assert statistics.ratio(rows, s, x, lambda r: 1)["interval_95"] is None
-    census = statistics.ratio(rows, {"h": {"N": 10, "n": 10, "weight": 1}}, x, y)
+    assert estimators.ratio(rows, s, lambda r: 0, y)["status"] == "UNDEFINED"
+    assert estimators.ratio(rows, s, x, lambda r: 1)["interval_95"] is None
+    census = estimators.ratio(rows, {"h": {"N": 10, "n": 10, "weight": 1}}, x, y)
     assert census["status"] == "CENSUS" and census["standard_error"] == 0
     assert (
-        statistics.contrast(rows, s, result, result, x, y, x, y)["risk_difference"] == 0
+        estimators.contrast(rows, s, result, result, x, y, x, y)["risk_difference"] == 0
     )
     assert (
-        statistics.contrast(rows, s, result, {**result, "estimate": 0}, x, y, x, y)[
+        estimators.contrast(rows, s, result, {**result, "estimate": 0}, x, y, x, y)[
             "ratio_status"
         ]
         == "UNDEFINED"
     )
     assert (
-        statistics.variance_total(
+        estimators.variance_total(
             rows[:1],
             {"h": {"N": 4, "n": 1, "weight": 4}},
             {"0": 1},
         )
         is None
     )
-    assert statistics.inclusion(4, 2, 1) == 0.5
-    assert statistics.inclusion(4, 2, 3) == 1
+    assert estimators.inclusion(4, 2, 1) == 0.5
+    assert estimators.inclusion(4, 2, 3) == 1
 
 
 def test_future_join_analysis_uses_only_fictional_labels() -> None:

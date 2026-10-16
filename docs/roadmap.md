@@ -109,6 +109,11 @@ The immediate sequence is:
    A separate prospective plan and exact-run review must bind its four-call
    maximum, sampling/packets, capacities and usage economics. Prior approvals
    remain historical-only and grant no authority to the replacement.
+   The subsequently approved candidate-05 run failed all prepare imports before
+   any treatment/gold entry. The [startup correction](../experiments/orchestration/engineering/startup/README.md)
+   retains the exact scientific design and four-call maximum; candidate-06 is a
+   binding-only replacement requiring new exact-run maintainer approval. The
+   failed preparation run consumed zero semantic calls and must not resume.
 3. Search-policy / iterative evidence-pursuit cohort.
 4. Obligation-sufficiency / Context cohort.
 5. Live incremental RI completion.

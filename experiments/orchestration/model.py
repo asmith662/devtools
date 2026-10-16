@@ -79,7 +79,8 @@ class RunPlan:
             | ({"adopted_branches"} if "adopted_branches" in value else set())
             | ({"preserved_evidence"} if "preserved_evidence" in value else set())
             | ({"economics"} if "economics" in value else set())
-            | ({"usage_budget"} if "usage_budget" in value else set()),
+            | ({"usage_budget"} if "usage_budget" in value else set())
+            | ({"worker_entrypoints"} if "worker_entrypoints" in value else set()),
             # Preserved journals are exact forensic inputs, never execution grants.
             "Run-plan field contract",
         )
@@ -93,6 +94,9 @@ class RunPlan:
             "Explicit positive attempt required",
         )
         stage_a = value["stage_a"]
+        from experiments.orchestration.entrypoints import validate
+
+        validate(value)
         if "economics" in value:
             econ = value["economics"]
             require(
@@ -223,9 +227,18 @@ class RunPlan:
             require(
                 address.startswith("experiments/")
                 and "/runs/" in address
-                and "/journal/" in address
-                and Path(address).name
-                in {"ENTERED.json", "RETURNED.json", "FAILED.json"}
+                and (
+                    (
+                        "/journal/" in address
+                        and Path(address).name
+                        in {"ENTERED.json", "RETURNED.json", "FAILED.json"}
+                    )
+                    or (
+                        Path(address).name == "run.json"
+                        and len(Path(address).parent.name) == 64
+                        and Path(address).parent.parent.name == "runs"
+                    )
+                )
                 and isinstance(sha256, str)
                 and re.fullmatch(r"[0-9a-f]{64}", sha256),
                 "Only exact historical journal evidence may remain untracked",

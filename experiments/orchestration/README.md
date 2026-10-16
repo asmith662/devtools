@@ -1,5 +1,11 @@
 # Approved experiment cohort controller
 
+Prospective Python worker startup is checked before PLAN_VALID and approval.
+The [startup contract and preparation-only recovery](engineering/startup/README.md)
+owns exact script inventory, external-CWD `python -B script --help` subprocesses,
+failure receipts and binding-only scientific replacement. It launches no model
+and creates no scientific ENTERED claim.
+
 Prospective plans now require an economics forecast before approval. Optional
 usage_budget binds a closed fresh-call inventory and matching forecast. Admission
 authenticates that inventory, forecast and complete semantic launcher/profile

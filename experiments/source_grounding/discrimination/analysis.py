@@ -7,7 +7,7 @@ from typing import Any
 
 from experiments.orchestration.storage import require
 from experiments.source_grounding import contracts
-from experiments.source_grounding.discrimination import statistics as stats
+from experiments.source_grounding.discrimination import estimators as stats
 
 CLAIM = "CONDITIONAL_BROAD_CANDIDATE_DISCRIMINATION_ONLY; NO_REPOSITORY_RECALL_SUFFICIENCY_OR_PRODUCTION_ACCEPTANCE"
 DECISION = "ESTIMATION_FIRST; NO_POST_HOC_THRESHOLDS_OR_P_VALUE_GATE"

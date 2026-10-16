@@ -1,5 +1,10 @@
 # Documentation Map
 
+The [experiment worker startup contract](../experiments/orchestration/engineering/startup/README.md)
+owns prospective direct-script preflight and the preparation-only source-grounding
+failure disposition. PLAN_VALID precedes approval only after real worker imports
+pass; corrected execution requires binding-only Stage A and a new exact run ID.
+
 ## Authority and ownership
 
 - [Central architecture](architecture.md) is the canonical current and accepted

@@ -1,0 +1,93 @@
+{
+  "before_fix": {
+    "argv": [
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\source_grounding\\discrimination\\entry.py",
+      "--help"
+    ],
+    "cwd": "C:\\Users\\RECOVE~1\\AppData\\Local\\Temp\\devtools-startup-before-k69ypz80",
+    "cwd_unchanged": true,
+    "exit_code": 1,
+    "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\source_grounding\\discrimination\\entry.py\", line 8, in <module>\r\n    from experiments.source_grounding.discrimination.lifecycle import main\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\source_grounding\\discrimination\\lifecycle.py\", line 20, in <module>\r\n    from experiments.source_grounding.discrimination import analysis, execution\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\source_grounding\\discrimination\\analysis.py\", line 10, in <module>\r\n    from experiments.source_grounding.discrimination import statistics as stats\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\source_grounding\\discrimination\\statistics.py\", line 6, in <module>\r\n    from statistics import variance\r\n  File \"C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\source_grounding\\discrimination\\statistics.py\", line 6, in <module>\r\n    from statistics import variance\r\nImportError: cannot import name 'variance' from 'statistics' (consider renaming 'C:\\\\Users\\\\recoveryadmin\\\\Workspace\\\\tools\\\\devtools\\\\experiments\\\\source_grounding\\\\discrimination\\\\statistics.py' since it has the same name as the standard library module named 'statistics' and prevents importing that standard library module)\r\n",
+    "stdout": ""
+  },
+  "controller": {
+    "collected": 228,
+    "collection_sha256": "0deffe2678d2b9bce5a249452c41a4c7367c0a74957f440f030ef9ed4de5439a",
+    "results": [
+      {
+        "duration": 377.726883,
+        "exit_code": 0,
+        "group": 0,
+        "nodes": 57
+      },
+      {
+        "duration": 337.354503,
+        "exit_code": 0,
+        "group": 1,
+        "nodes": 57
+      },
+      {
+        "duration": 390.046393,
+        "exit_code": 0,
+        "group": 2,
+        "nodes": 57
+      },
+      {
+        "duration": 460.104076,
+        "exit_code": 0,
+        "group": 3,
+        "nodes": 57
+      }
+    ],
+    "status": "PASS"
+  },
+  "focused_tests": 58,
+  "format": "PASS",
+  "live_model_calls": 0,
+  "logs_sha256": {
+    "controller-complete.log": "cfc90626cc45721b8a9de6b8c3339ff6c554e4929a7e76331583ccdfdf7b5350",
+    "format.log": "e88b5d9f100c7c1f8aee6e5858ffe986f1ec171d399faf2ae68aa5117040e0b8",
+    "mypy-discrimination.log": "cc2c7d8bbe8e6305062bfa5e39d9cc9c8f9c8d7ae6e8d4db312f7f8d78c940d1",
+    "mypy-framework.log": "20768e152b6f480fc698ef14fa15032d116000d06efa1058c2fb23410912b64b",
+    "protected-development.log": "34ebeed5309950a38a64ffceca1f518a82ae17443e944213c21f8548ac1d15a2",
+    "ruff.log": "970b87e87522de32a4bff86435045bf4f3e9c5c560443cd281a0b6def297c5e3",
+    "source-grounding.log": "d8054a8dc02c8a5c13b5defdd72ea742b1f661376c692f8bd3992ec2bb484491"
+  },
+  "protected": {
+    "passed": 1627,
+    "production_branch_coverage_percent": 100,
+    "skipped": 2
+  },
+  "ruff": "PASS",
+  "schema": "experiment-startup-engineering-validation-v1",
+  "scientific_entered": 0,
+  "source_grounding_tests": 145,
+  "status": "PASS",
+  "strict_mypy": "PASS",
+  "worker_entrypoint_preflight": {
+    "model_calls": 0,
+    "schema": "python-worker-entrypoint-preflight-v1",
+    "scripts": [
+      {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\experiments\\source_grounding\\discrimination\\entry.py",
+          "--help"
+        ],
+        "cwd": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-worker-preflight-mv1upjqz",
+        "cwd_unchanged": true,
+        "exit_code": 0,
+        "external_cwd": true,
+        "python_version": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+        "script": "experiments/source_grounding/discrimination/entry.py",
+        "sha256": "72ccaa47b4e9bd16b80751a6ab743dd7c64f1f8254de92327ec0321c1d7e0c71",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_sha256": "b1e95fbcf04c45dd973711ef957a0348daec17d4b02b122bd302cc319ca99b46"
+      }
+    ],
+    "status": "PASS"
+  }
+}

@@ -20,7 +20,7 @@ from experiments.codex_dogfood.case_0009.artifacts import (
     digest,
     json_bytes,
 )
-from experiments.orchestration import usage_budget
+from experiments.orchestration import entrypoints, usage_budget
 from experiments.orchestration.adoption import load_branch
 from experiments.orchestration.authority import (
     ApprovalRequest,
@@ -146,6 +146,7 @@ class Controller:
         self.plan_address = ""
         self.plan_checkpoint = ""
         self._authorization: ExecutionAuthorization | None = None
+        self.entrypoint_preflight: dict[str, Any] | None = None
 
     @property
     def plan(self) -> RunPlan:
@@ -236,6 +237,7 @@ class Controller:
                 controller.plan_checkpoint,
             )
         await controller.authenticate_plan_inputs(head)
+        controller.entrypoint_preflight = await entrypoints.check(root, value)
         controller.operational_event(
             "cohort",
             "controller",
@@ -352,6 +354,14 @@ class Controller:
 
     def plan_report(self) -> dict[str, Any]:
         """Report mechanical validity; validation confers no execution capability."""
+        require(
+            "worker_entrypoints" not in self.value
+            or (
+                self.entrypoint_preflight is not None
+                and self.entrypoint_preflight["status"] == "PASS"
+            ),
+            "PLAN_INVALID: worker startup preflight not completed",
+        )
         return {
             "status": "PLAN_VALID",
             "execution_authorized": "NO",
@@ -378,6 +388,7 @@ class Controller:
             "adopted_branches": self.value.get("adopted_branches", {}),
             "economics": self.value.get("economics", {"status": "LEGACY_UNKNOWN"}),
             "usage_budget": self.value.get("usage_budget", {"status": "UNSET"}),
+            "worker_entrypoint_preflight": self.entrypoint_preflight,
         }
 
     def approval_binding(self, review_checkpoint: str) -> dict[str, Any]:
@@ -406,6 +417,10 @@ class Controller:
             and protocol.get("economics") == self.value["economics"],
             "Frozen Stage A usage/economics differs",
         )
+        require(
+            protocol.get("worker_entrypoints") == self.value.get("worker_entrypoints"),
+            "Frozen Stage A worker-entrypoint preflight differs",
+        )
         profile = dict(protocol["semantic_execution"])
         if "argv" in profile:
             profile["argv"] = expand(
@@ -432,6 +447,14 @@ class Controller:
     async def approve(self, request: ApprovalRequest) -> ExecutionAuthorization:
         """Publish a supplied maintainer grant; never infer it from plan validity."""
         self.require_not_superseded()
+        require(
+            "worker_entrypoints" not in self.value
+            or (
+                self.entrypoint_preflight is not None
+                and self.entrypoint_preflight["status"] == "PASS"
+            ),
+            "PLAN_INVALID: worker startup preflight must precede approval",
+        )
         require(
             "economics" in self.value,
             "New approvals require a prospective usage forecast",
