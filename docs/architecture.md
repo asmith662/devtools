@@ -34,7 +34,7 @@ agents/         durable conversation and external agent integrations
 context/        bounded repository observation and future repository intelligence/Context
 tools/          typed controlled capability boundaries
 execution/      narrow Runtime and specialized InteractionAttempt lifecycle
-orchestration/  concrete experiment preparation; broader coordination reserved
+orchestration/  concrete governed experiment lifecycle; broader coordination reserved
 governance/     narrow numeric usage constraints; broader authority policy reserved
 observability/  Evidence and diagnostic observation
 persistence/    durable representation storage and restoration
@@ -52,18 +52,20 @@ observability dependency and grant no authority. Experiment-local composition ow
 reservations/admission. See [observed usage](../src/devtools/observability/usage/docs/overview.md).
 Generic Event/Trace/Telemetry, agent loops and broader governance remain deferred.
 
-`orchestration.experiments.ExperimentExecutionPipeline` implements the approved
-non-executing preparation slice. It coordinates target-owned controller plan
-authentication/startup checks, observed usage and configured budget preview
-through managed subprocesses in an explicit authenticated checkout. Production
+`orchestration.experiments.ExperimentExecutionPipeline` coordinates preparation,
+external authority admission, controller dispatch, observation and terminal
+reconciliation through managed subprocesses in an explicit authenticated checkout. Production
 code never imports experiment implementations into its own process or replaces
 bound target source with feature source. Pipeline-owned versioned receipts are
-separate from controller scientific journals. Preparation grants no authority,
-publishes no approval and dispatches no science. Existing experiment-owned
-controller authority, execution, journals and publication remain unchanged.
+separate from controller scientific journals. Preparation grants no authority.
+Execution consumes the existing exact host-issued approval and requires fresh
+configured budget admission; the pipeline never publishes approval or retries
+science. The experiment-owned controller retains scientific scheduling,
+authority enforcement, operation journals, publication and verification.
 The [package contract](../src/devtools/orchestration/experiments/docs/overview.md)
 defines supported prospective scope, frozen-target budget incompatibility,
-receipt/repetition semantics and the Increment 2 boundary. Generic workflow
+receipt/repetition semantics, conservative unknown-state handling and the
+separately authorized scientific deployment boundary. Generic workflow
 runtime and Agent orchestration remain deferred.
 
 ## Current boundaries

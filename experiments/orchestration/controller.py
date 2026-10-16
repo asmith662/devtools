@@ -147,6 +147,7 @@ class Controller:
         self.plan_checkpoint = ""
         self._authorization: ExecutionAuthorization | None = None
         self.entrypoint_preflight: dict[str, Any] | None = None
+        self.require_budget_policy = False
 
     @property
     def plan(self) -> RunPlan:
@@ -1046,6 +1047,7 @@ class Controller:
                     case_id,
                     stage,
                     authorized=self._authorization is not None,
+                    require_configured=self.require_budget_policy,
                 )
                 if admitted is not None:
                     binding["usage_budget"] = admitted
@@ -1377,6 +1379,7 @@ class Controller:
         authorization: ExecutionAuthorization | None = None,
         *,
         resume: bool = False,
+        require_budget_policy: bool = False,
     ) -> dict[str, Any]:
         """Hold the exact worktree writer lease through the fixed cohort lifecycle."""
         require(
@@ -1388,6 +1391,15 @@ class Controller:
                 authorization == await self.execution_authorization(),
                 "Execution authorization differs from durable approval",
             )
+            self.require_budget_policy = require_budget_policy
+            if require_budget_policy:
+                require(
+                    usage_budget.preview(self.repository.root, self.value, self.run_id)[
+                        "status"
+                    ]
+                    == "BUDGET_CHECK_PASS",
+                    "BUDGET_BLOCKED: configured fresh admission required",
+                )
             return await self._run(resume=resume)
 
     async def _run(self, *, resume: bool = False) -> dict[str, Any]:

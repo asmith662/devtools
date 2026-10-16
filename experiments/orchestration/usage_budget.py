@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: ANN401, PLR0913, PLR0917, PLC0415 -- bounded controller admission/measurement composition
+# ruff: noqa: ANN401, PLR0913, PLR0917, PLC0415, COM812 -- bounded controller admission/measurement composition
 """Reserve declared observed-usage allowances before scientific entry.
 
 This local manifest is not a billing service or execution authority. The
@@ -31,6 +31,7 @@ def reserve(
     stage: str,
     *,
     authorized: bool,
+    require_configured: bool = False,
 ) -> Any:
     """Reserve a complete logical call before ENTERED; reject conflicts/re-entry."""
     if "usage_budget" not in plan:
@@ -54,7 +55,15 @@ def reserve(
             identity not in state["calls"],
             "BUDGET_BLOCKED: invocation already reserved; no retry",
         )
+        require(
+            not require_configured or ledger_path.exists(),
+            "BUDGET_BLOCKED: observed usage ledger required at reservation",
+        )
         local = _assess_call(root, policy, run_id, stage, call, state)
+        require(
+            not require_configured or bool(local["limits"]),
+            "BUDGET_BLOCKED: configured policy required at reservation",
+        )
         admission = {
             "invocation": identity,
             "run_id": run_id,
@@ -85,7 +94,6 @@ def _assess_call(
     state: Any,
 ) -> Any:
     """Share existing numeric policy between reservation and read-only preview."""
-    ledger_path = root / ".local/usage/ledger.json"
     own = [v for v in state["calls"].values() if v["run_id"] == run_id]
     require(
         len(own) < policy["fresh_call_limit"],
@@ -96,6 +104,21 @@ def _assess_call(
         < policy["model_call_limits"][call["model"]],
         "BUDGET_BLOCKED: model call limit",
     )
+    return _check_local(
+        root,
+        run_id,
+        stage,
+        call,
+        state,
+        UsageAmount(1, call["input_upper"], call["output_upper"]),
+    )
+
+
+def _check_local(
+    root: Path, run_id: str, stage: str, call: Any, state: Any, proposed: UsageAmount
+) -> Any:
+    """Apply the existing configured-scope policy without allocating a reservation."""
+    ledger_path = root / ".local/usage/ledger.json"
     # Optional local numeric constraints are never silently configured.
     local_path = ledger_path.parent / "policy.json"
     local = load(local_path) if local_path.exists() else {"limits": []}
@@ -178,7 +201,6 @@ def _assess_call(
             if all(v["output_upper"] is not None for v in pending)
             else None,
         )
-        proposed = UsageAmount(1, call["input_upper"], call["output_upper"])
         rule = UsageBudget(
             scope,
             item["identity"],
@@ -223,6 +245,36 @@ def preview(root: Path, plan: Any, run_id: str) -> Any:
         "status": "BUDGET_CHECK_PASS" if configured else "UNSET",
         "fresh_calls": len(policy["calls"]),
         "reservation_created": False,
+    }
+
+
+def consumption(root: Path, plan: Any, run_id: str) -> Any:
+    """Assess observed consumption/outstanding reservations through the same policy."""
+    folder = root / ".local/usage"
+    if not (folder / "ledger.json").exists() or "usage_budget" not in plan:
+        return {"status": "UNAVAILABLE"}
+    state = (
+        load(folder / "reservations.json")
+        if (folder / "reservations.json").exists()
+        else {"calls": {}}
+    )
+    decisions = {}
+    for key, call in plan["usage_budget"]["calls"].items():
+        try:
+            local = _check_local(
+                root, run_id, key.split("/")[1], call, state, UsageAmount(0, 0, 0)
+            )
+            decisions[key] = {
+                "status": "BUDGET_CHECK_PASS" if local["limits"] else "UNSET"
+            }
+        except (ValueError, OSError, KeyError) as error:
+            decisions[key] = {"status": "BUDGET_BLOCKED", "reason": str(error)}
+    return {
+        "status": "BUDGET_CHECK_PASS"
+        if decisions
+        and all(v["status"] == "BUDGET_CHECK_PASS" for v in decisions.values())
+        else "UNAVAILABLE_OR_BLOCKED",
+        "decisions": decisions,
     }
 
 

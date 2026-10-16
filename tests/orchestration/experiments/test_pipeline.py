@@ -90,7 +90,7 @@ def test_repeat_and_history(
     assert not receipts.history(subject.receipt_root, "other.json")
     assert "AUTHORIZED=NO" in summary(one)
     assert "UNKNOWN" in summary(one)
-    assert not hasattr(subject, "execute")
+    assert hasattr(subject, "execute")
     assert not hasattr(subject, "approve")
     assert list(subject.target.iterdir()) == [subject.target / "plan.json"]
 

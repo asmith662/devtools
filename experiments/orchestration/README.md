@@ -1,9 +1,18 @@
 # Approved experiment cohort controller
 
-The production [ExperimentExecutionPipeline preparation slice](../../src/devtools/orchestration/experiments/docs/overview.md)
+The production [ExperimentExecutionPipeline](../../src/devtools/orchestration/experiments/docs/overview.md)
 provides `python -m devtools.orchestration.experiments prepare <plan> --target <checkout>`,
-plus preparation status/history. It invokes this controller in the authenticated
-target environment, without approval publication or scientific dispatch.
+plus `execute`, observation-only `reconcile`, and status/history. Preparation
+invokes this controller in the authenticated target environment without approval
+publication or scientific dispatch. Execution requires a fresh bound preparation,
+existing exact host-issued approval, persistent external receipts and current
+configured budget admission. `experiments.orchestration.pipeline` composes this
+controller; it owns no scientific scheduler. The controller's optional
+`require_budget_policy=True` admission requires configured policy/observed ledger
+under its existing writer lease and at each controlled-call reservation.
+Terminal closeout uses controller verification, publications and usage evidence;
+missing termination/publication evidence requires reconciliation, never retry.
+The ignored target dispatch claim survives interruption and blocks relaunch.
 `usage_budget.preview` shares numeric checks with reservation admission while
 keeping proposed reservations in memory. Older frozen target controllers without
 that seam remain inspectable but cannot yield READY_FOR_APPROVAL through this

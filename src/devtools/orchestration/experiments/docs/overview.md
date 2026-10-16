@@ -1,6 +1,6 @@
-# ExperimentExecutionPipeline: preparation version 1
+# ExperimentExecutionPipeline: governed execution version 2
 
-Increment 1 implements concrete, non-executing preparation of prospective
+Increment 1 provides concrete, non-executing preparation of prospective
 experiment-controller plans. The callable `ExperimentExecutionPipeline` and
 operator CLI coordinate existing owners; they define no workflow DSL, generic
 Run/Step/Attempt runtime, Agent, model routing or scientific execution mechanism.
@@ -13,8 +13,9 @@ interpreter, using normal Python imports in its CWD. It calls the existing
 experiment `Controller.from_plan`, `plan_report`, `require_not_superseded`,
 worker startup preflight, usage observatory and read-only budget `preview`.
 The controller retains plan/source/Stage A authentication, scientific journals,
-approval, execution, publication and reconciliation ownership. The pipeline
-never calls `approve`, `run`, `reserve`, a scientific adapter command, or a model.
+approval, execution, publication and reconciliation ownership. The preparation path never calls `approve`, `run`, `reserve`, a scientific
+adapter command, or a model. Execution consumes existing exact authority and
+invokes `Controller.run` in the target process; it never publishes approval.
 
 ## Operator commands
 
@@ -61,7 +62,7 @@ Authentication runs before and after target checks. Startup is limited to the
 existing bound external-CWD `python -B script --help` behavior. No worker root
 is created or used, and bytecode writing is disabled in target subprocesses.
 
-The pipeline supports prospective never-entered, unapproved plans. Controller
+Preparation supports prospective never-entered, unapproved plans. Controller
 supersession rejection is reused. Any existing scientific run directory requires
 separate controller reconciliation and is refused, including approvals,
 dead/interrupted/completed runs and orphan or empty state. Preparation does not read or reinterpret their
@@ -115,7 +116,7 @@ Terminal results bind stage receipt digests. Files are written once through the
 filesystem owner's atomic-write behavior. Status authenticates schema, payload
 and referenced-stage integrity. These hashes detect corruption; they are not
 signatures, tamper-proof storage, approval or authority. No durable scientific
-schema is modified. Pipeline version is `1`.
+schema is modified. Pipeline version is `2`; preparation-v1 remains readable.
 
 Receipts retain pipeline/attempt identity, plan digest, target identity,
 stage dispositions and wall/elapsed timings, diagnostics, observed validation,
@@ -156,10 +157,152 @@ supersession and a feature interpreter. Existing budget tests cover shared
 reservation semantics and combined-inventory preview refusal.
 
 [B-0048](../../../../../docs/backlog/items/B-0048-experiment-pipeline-authorized-execution.md)
-owns Increment 2: target deployment/binding compatibility, host-issued exact-plan
-authority, dispatch through the existing controller, conservative reconciliation
-and terminal closeout, with no duplicate scientific truth. Approval and live
-science require their own authorization. The roadmap remains
+records the validated Increment 2 engineering below and its separate remaining
+scientific deployment. Approval and live science require their own authorization.
+The roadmap remains
 `ExperimentExecutionPipeline -> ExperimentManagerAgent -> ResearchAgent`,
 separately `FeatureCloseoutPipeline -> CodingAgent`; none of those future Agents
 or the separate closeout pipeline is implemented here.
+
+
+## Increment 2: externally authorized execution
+
+The concrete lifecycle is prepare, await external exact authority, revalidate,
+dispatch through the target controller, observe, reconcile and report. Production
+orchestration owns requests, transport and operator receipts; the controller
+continues to own scientific scheduling, operation claims, no-retry rules,
+publication and verification. No universal workflow runtime or new authority
+framework is introduced.
+
+```text
+uv run python -B -m devtools.orchestration.experiments execute experiments/example/plan.json --target C:/AuthenticatedTarget --work-root C:/ExternalWorkers --receipts C:/RetainedPipelineReceipts
+uv run python -B -m devtools.orchestration.experiments status experiments/example/plan.json --receipts C:/RetainedPipelineReceipts
+uv run python -B -m devtools.orchestration.experiments reconcile experiments/example/plan.json --target C:/AuthenticatedTarget --receipts C:/RetainedPipelineReceipts
+uv run python -B -m devtools.orchestration.experiments status --active --receipts C:/RetainedPipelineReceipts
+```
+
+Execution requires an explicit persistent external receipt directory outside OS
+temporary storage, plus an external worker root. The pipeline selects the latest
+preparation for the exact target/plan or accepts `--preparation <receipt>`.
+Execution requires a fresh version-2 preparation containing the target Python
+binary SHA-256 and version. Older preparation-v1 envelopes remain readable for
+history, but receipts missing that binding cannot admit execution. The target
+rechecks the executable path, bytes and version before admission and reconciliation.
+Neither that reference nor the `execute` command grants scientific authority.
+The pipeline offers no approval-publication flag. A trusted host must already
+have issued and durably published the existing controller approval. Deployment
+of that authority mechanism remains distinct from pipeline preparation.
+
+The target adapter authenticates the committed approval with
+`Controller.execution_authorization`: exact plan, scientific run, source/controller
+binding, immutable approval history, review parent, approval publication and
+remote policy. The target must be at the exact approval checkpoint. Preparation
+may name that checkpoint or its authenticated review parent, allowing the expected
+approval commit without accepting arbitrary target advancement. Missing, changed,
+superseded or mismatched authority fails before scientific dispatch. Targets must
+contain the execution contract; feature modules are never substituted into them.
+
+Before dispatch the target repeats plan/source authentication, startup admission,
+prospective-state and supersession checks, exact approval authentication, current
+usage and configured budget preview. Receipt writes establish storage readiness.
+The controller then reauthenticates authority under its existing OS writer lease.
+`Controller.run(..., require_budget_policy=True)` repeats configured admission
+under that lease, and actual controlled-call reservations require configuration
+and an observed ledger as well. Preview is never a reservation. The existing
+scope/freshness/unknown-value policy is shared by admission and post-run consumption
+assessment; no numeric allowances or subscription accounting are invented.
+
+A durable external dispatch request is written before process launch. A target
+claim at `.local/experiment-pipeline-dispatch/<scientific-run>.json` is created
+under the controller writer lease before invoking `run`. It is a conservative
+pipeline intent, not a scientific ENTERED claim or authority. Its presence blocks
+another pipeline dispatch, including from a different receipt directory. It is
+never automatically cleared, repaired or retried. The controller still enforces
+its own immutable run identity and operation journals. The pipeline never calls
+scientific resume or silently selects a replacement attempt. A claim without a
+run context remains an uncertain launch unless a recorded controller return
+proves failure before entry. Confirmed failure with only preparation stages is
+reported separately from B/C scientific stage entry.
+
+Managed command handles stream structured controller observations during the
+single target process. Existing controller supervision retains per-operation
+limits, worker tree ownership and stage ordering. Progress logs retain timestamps,
+case/stage/operation, status and durations with operational provenance. They are
+not proof of scientific completion. No polling process farm, event bus or model
+text interpretation is added. The outer dispatch has no new arbitrary deadline;
+controller worker/validation limits remain authoritative. Cancellation terminates
+and reaps the immediate managed adapter; surviving controller workers may still
+finish under their existing supervision. Interruption is not rollback or proof
+of zero model calls.
+
+## Execution receipts and reconciliation
+
+`experiment-execution-v1` extends the existing receipt envelope without changing
+preparation-v1 or scientific durable schemas. Each `ExecutionId` directory owns
+start, admission request/result, dispatch request/result, controller-return and
+terminal result receipts. Admission/dispatch timings and total elapsed duration
+are retained. Requests reference preparation identity/digest, exact plan/target,
+worker root, scientific run and authenticated approval. The target claim binds the
+request digest. Structured operational progress is separate from immutable
+receipts and authoritative scientific journals.
+
+`reconcile` and `status --refresh --target ...` only observe. They select the
+latest actual dispatch intent rather than treating a later refused duplicate as
+the active scientific run. Each reconciliation appends an integrity-checked
+receipt with a new report path; original receipts are preserved. Status/history
+support plan/latest lookup, and `status --active` selects unresolved execution
+where unambiguous. Full identities and evidence remain available with `--json`.
+
+| Execution disposition | Meaning |
+|---|---|
+| `ADMISSION_REFUSED` | Authority, preparation, bindings, policy or duplicate-state checks refused before this pipeline request launched dispatch. |
+| `INTERRUPTED_BEFORE_DISPATCH` | Observation canceled before the consequential request. |
+| `DISPATCH_COMPLETION_UNKNOWN` | Request may have reached the controller; no scientific retry is permitted. |
+| `FAILED_BEFORE_SCIENTIFIC_ENTRY` | Target recorded controller failure without a scientific run context. |
+| `CONTROLLER_FAILED` | Authenticated controller records show failure; existing scientific no-retry semantics remain. |
+| `RECONCILIATION_REQUIRED` | Live, interrupted, orphan, altered or incomplete evidence cannot establish terminal closeout. |
+| `COMPLETE_WITH_PARTIAL_ACCOUNTING` | Scientific publication verified, but consumption/budget evidence remains partial or unavailable. |
+| `COMPLETE` | Controller return, scientific publications and observed-scope accounting/budget checks authenticated. Scientific conclusions still require maintainer review. |
+
+A process exit code never determines scientific success. Closeout uses
+`Controller.verify`, journal bindings, all PACKET/B/C/D publication identities and
+available controller-return evidence bound to the exact dispatch request, attempt
+and scientific run. Missing termination proof remains unknown
+even when some publications exist. An incomplete publication or dirty scientific
+state cannot become successful closeout. Safe repeated observation never calls
+`run` again. Ambiguous cases require explicit operator reconciliation outside this
+increment; no speculative automatic repair or stale-claim deletion is provided.
+
+Usage snapshots preserve local rolling observations and the execution-window,
+run-attributed report, with ledger/policy/backfill/reservation references. Original
+consumption and adopted dependencies are reconciled by the existing observatory.
+Input, cached input, output and reasoning categories remain separate; no overlapping
+categories are added. Closeout reports forecast upper amounts beside reported
+subtotals and unknown counts, plus actual consumption/outstanding-reservation
+assessment through the same configured budget policy. Missing measurements,
+unsettled reservations, conflicts, unallocated timestamps and unknown categories
+prevent complete accounting. These are observed local scopes, not account-wide
+usage, billing or inferred acceptance of scientific conclusions.
+
+## Engineering completion and controlled deployment
+
+Increment 2 is validated through isolated authenticated synthetic checkouts,
+external synthetic grants and harmless local substitute workers. Test-only frozen
+controller copies replace the expensive framework checkpoint floor with the
+existing fixture validator contract; the shipped controller retains that floor.
+The workers simulate judgments/usage and invoke no provider-backed models.
+
+The protected source-grounding checkout remains at `9225029`, unapproved and
+unentered. Its controller lacks this execution/preview contract and its local
+numeric policy is unset. Engineering implementation does not deploy it or rebind
+its frozen scientific plan. The next controlled task is to establish an
+authenticated successor execution checkout and binding-only scientific successor,
+configure explicit budget policy and fresh usage evidence, obtain exact human
+approval, then execute and evaluate the existing experiment. None of those
+scientific deployment actions is performed by this engineering increment.
+
+Remaining limitations are deliberate: no automatic science retry/resume, no
+remote/mobile approval UX, no distributed lease, no receipt relocation protocol,
+and no account-wide quota service. Filesystem retention and trusted host access
+remain operator responsibilities. Broader Agent and separate feature-closeout
+roadmaps remain as stated above.

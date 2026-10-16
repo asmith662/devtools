@@ -10,14 +10,17 @@ import json
 import os
 import time
 from pathlib import Path
-from typing import Any, cast
+from typing import TYPE_CHECKING, Any, cast
 
 from devtools.core.paths import resolve_path
 from devtools.core.time import Duration, Timestamp
-from devtools.orchestration.experiments import receipts
+from devtools.orchestration.experiments import execution, receipts
 from devtools.orchestration.experiments.target import PROGRAM
 from devtools.resources.commands import Command, CommandExecutor, CommandOutputPolicy
 from devtools.resources.filesystem import FileFormat, TextFile, read
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
 
 
 class PreparationError(ValueError):
@@ -30,9 +33,9 @@ class PreparationError(ValueError):
 
 
 class ExperimentExecutionPipeline:
-    """Prepare one prospective plan; no approval or scientific dispatch methods."""
+    """Coordinate preparation and externally authorized controller execution."""
 
-    version = "1"
+    version = "2"
 
     def __init__(self, target: Path, receipt_root: Path, python: Path) -> None:
         """Require explicit target/environment and separate pipeline receipt storage."""
@@ -45,6 +48,27 @@ class ExperimentExecutionPipeline:
         self.executor = CommandExecutor(
             output_policy=CommandOutputPolicy(max_stdout_bytes=16 << 20),
         )
+
+    async def execute(
+        self,
+        plan: Path,
+        work_root: Path,
+        *,
+        preparation: Path | None = None,
+        observer: Callable[[dict[str, Any]], None] | None = None,
+    ) -> dict[str, Any]:
+        """Consume exact approval; validation and flags never mint authority."""
+        return await execution.execute(
+            self,
+            plan,
+            work_root,
+            preparation=preparation,
+            observer=observer,
+        )
+
+    async def reconcile(self, plan: Path | None = None) -> dict[str, Any]:
+        """Observe controller state without scientific retry or dispatch."""
+        return await execution.reconcile(self, plan)
 
     async def _git(self, *args: str) -> str:
         result = await self.executor.execute(
@@ -227,6 +251,52 @@ def target_python(target: Path) -> Path:
 
 def summary(result: dict[str, Any]) -> str:
     """Render human readiness, coverage and authority without manual run IDs."""
+    if result.get("kind") == "execution":
+        closeout = result.get("closeout", {})
+        return "\n".join(
+            [
+                f"{result['disposition']}: {result['plan']}",
+                f"Target: {result['target']}",
+                f"Exact approval observed: {result.get('authorization', 'NONE')}",
+                (
+                    f"Dispatch requested: {result.get('dispatch_requested', False)}; "
+                    "automatic scientific retries: 0"
+                ),
+                f"Elapsed: {result.get('elapsed_seconds', 'UNKNOWN')} seconds",
+                "Controller status: "
+                + str(
+                    closeout.get("scientific_evidence", {}).get("status", "UNRESOLVED")
+                ),
+                "Publications: "
+                + json.dumps(
+                    sorted(
+                        closeout.get("scientific_evidence", {}).get("publications", {})
+                    )
+                ),
+                "Expected/observed fresh calls: "
+                + json.dumps(
+                    {
+                        "expected": (closeout.get("forecast") or {}).get("fresh_calls"),
+                        "observed": (
+                            (closeout.get("usage") or {}).get("experiment") or {}
+                        ).get("fresh_invocations"),
+                        "adopted_dependencies": (
+                            (closeout.get("usage") or {}).get("experiment") or {}
+                        ).get("adopted_dependencies"),
+                    }
+                ),
+                "Observed token categories: "
+                + json.dumps(
+                    ((closeout.get("usage") or {}).get("experiment") or {}).get(
+                        "tokens"
+                    )
+                ),
+                "Accounting: " + str(closeout.get("accounting", "UNRESOLVED")),
+                "Scientific acceptance: UNASSESSED; maintainer review required",
+                "Diagnostics: " + str(result.get("error", "NONE")),
+                f"Durable pipeline report: {result['report']}",
+            ]
+        )
     validation = result.get("validation", {})
     baseline = result.get("usage", {})
     observed = baseline.get("observation") or {}

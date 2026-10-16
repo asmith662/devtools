@@ -1,19 +1,19 @@
 # B-0048 — Experiment pipeline authorized execution and terminal closeout
 
 - type: STORY
-- status: BACKLOG
-- decision_maturity: SEMANTICS_PARTIAL
+- status: VALIDATED
+- decision_maturity: READY_FOR_IMPLEMENTATION
 - necessity: FUTURE_REQUIRED
 - architectural_significance: SUPPORTING
 - urgency: SOON
 - evidence_basis: REPOSITORY
-- scope: ExperimentExecutionPipeline Increment 2, beyond non-executing preparation
+- scope: ExperimentExecutionPipeline Increment 2 engineering; scientific deployment remains separate
 - primary_domain: orchestration
 - supporting_domains: governance, observability, experiments
 - hard_dependencies: none
 - pressure_dependencies: B-0038, B-0034, B-0042
-- operational_dependencies: authenticated target with read-only budget preview; explicit scientific maintainer authority
-- promotion_trigger: separately authorized execution/closeout increment with a supported target
+- operational_dependencies: authenticated target with governed execution contract; configured budget and fresh usage; exact scientific maintainer authority
+- promotion_trigger: satisfied for bounded synthetic engineering; live deployment requires separate authority
 - validation_level: INTEGRATION
 
 ## Implemented boundary and remaining pressure
@@ -41,6 +41,33 @@ authoritative scientific journal/result status into operator receipts. Add
 terminal closeout and explicit conservative reconciliation for interrupted or
 ambiguous outcomes. Never retry dead scientific calls or duplicate mutable
 scientific truth. Preparation snapshots are not grants or reservations.
+
+## Validated engineering outcome and remaining deployment
+
+Increment 2 implements exact external approval consumption, fresh target and
+interpreter binding checks, current budget admission, dispatch through
+`Controller.run`, structured progress, conservative dispatch-intent retention,
+read-only reconciliation and publication/usage closeout. Versioned execution
+receipts extend preparation history without changing scientific journals.
+Controller approval and per-operation reservations remain authoritative.
+
+Isolated committed synthetic checkouts exercise the real managed target-process
+path, actual external controller approvals, harmless workers and PACKET/B/C/D
+publications. They cover missing/mismatched authority, changed bindings,
+supersession, unavailable/refused budget, failure before scientific stages,
+confirmed synthetic entry, cancellation/unknown completion, duplicate refusal,
+incomplete publications and partial/missing accounting. No provider-backed model
+or frozen source-grounding scientific call is used. Production static and
+protected development gates remain required for the engineering checkpoint.
+
+Scientific deployment is **not complete**. Establish an authenticated successor
+execution checkout and binding-only scientific successor, configure explicit
+budget policy and fresh usage evidence, obtain exact human approval, then execute
+and evaluate the existing experiment under separate authorization. Preserve the
+permanently dead prior run and the four-fresh-call bound. The frozen `9225029`
+target lacks the preview/execution contracts and has no approval; this increment
+does not modify it. No automatic retry, receipt relocation protocol, remote/mobile
+approval UX, distributed execution or scientific interpretation is implemented.
 
 The consumer is a human operator now and a future ExperimentManagerAgent.
 Remain concrete until repeated consumers justify more general semantics.

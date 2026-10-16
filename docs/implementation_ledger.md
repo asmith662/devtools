@@ -1,5 +1,28 @@
 # Implementation Ledger
 
+## ExperimentExecutionPipeline governed execution Increment 2 (2026-10-16)
+
+The [concrete experiment pipeline](../src/devtools/orchestration/experiments/docs/overview.md)
+adds exact external approval consumption, fresh target/interpreter and budget
+admission, target-owned controller dispatch, structured operational progress,
+observation-only reconciliation and terminal publication/usage closeout.
+Execution receipts extend preparation history; a durable target dispatch claim
+blocks automatic relaunch after ambiguous interruption. Scientific scheduling,
+authority enforcement, operation journals and publication remain controller-owned.
+The shared numeric policy also assesses post-run consumption without inventing
+allowances, subscription accounting or a competing execution journal.
+
+Isolated authenticated synthetic checkouts use external grants and harmless
+substitute workers to exercise success, authority/binding/budget refusals,
+failure, interruption, duplicate prevention, incomplete publication and partial
+accounting. Protected production validation retains 100% branch coverage.
+The existing follow-detach fixture now waits for an observed blocked status
+before cancellation, retaining its read-only assertions without a disk-speed race.
+[B-0048](backlog/items/B-0048-experiment-pipeline-authorized-execution.md) records
+engineering completion separately from scientific deployment. The frozen
+source-grounding target remains unapproved/unexecuted and BUDGET_UNAVAILABLE;
+no scientific inputs, historical evidence or main state are changed.
+
 ## Host-disclosure replacement prospective plan (2026-10-14)
 
 Published a separate [unapproved v2 plan](../experiments/source_grounding/plans/HOST_DISCLOSURE_PLAN_REVIEW.md)

@@ -156,6 +156,7 @@ def test_nested_semantic_bridge_is_operational(tmp_path: Path, capsys: Any) -> N
 def test_uncommitted_publication_is_blocked_and_follow_detaches(
     tmp_path: Path,
     capsys: Any,
+    monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     async def run() -> None:
         c = await fixture(tmp_path / "repo", tmp_path / "work")
@@ -184,10 +185,21 @@ def test_uncommitted_publication_is_blocked_and_follow_detaches(
             for p in root.rglob("*")
             if p.is_file()
         }
+        # Detach after the first actual blocked snapshot, independent of disk speed.
+        rendered = asyncio.Event()
+        console = Console()
+        emit = console.emit
+
+        def observed(event: dict[str, Any]) -> None:
+            emit(event)
+            if str(event.get("status", "")).startswith("BLOCKED"):
+                rendered.set()
+
+        monkeypatch.setattr(console, "emit", observed)
         viewer = asyncio.create_task(
-            follow(c.repository.root, c.run_id, Console(), interval=0.02),
+            follow(c.repository.root, c.run_id, console, interval=0.02),
         )
-        await asyncio.sleep(0.4)
+        await asyncio.wait_for(rendered.wait(), 5)
         viewer.cancel()
         with pytest.raises(asyncio.CancelledError):
             await viewer

@@ -56,6 +56,11 @@ async def main():
         )
         result = checked.plan_report()
         result["name"] = value["name"]
+        result["executable"] = {
+            "path": sys.executable,
+            "version": sys.version,
+            "sha256": hashlib.sha256(binary(Path(sys.executable))).hexdigest(),
+        }
         await checked.repository.authenticate(expected_head)
     elif stage == "usage":
         path = root / ".local/usage/ledger.json"

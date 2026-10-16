@@ -2,6 +2,7 @@
 # ruff: noqa: ANN401, S101, PLR2004, PT018, E501 -- explicit synthetic admission fixtures
 """No-launch usage admission, reservations and original adoption attribution."""
 
+from dataclasses import replace
 from pathlib import Path
 from types import SimpleNamespace
 from typing import Any
@@ -9,11 +10,13 @@ from typing import Any
 import pytest
 
 from devtools.core.time import Duration, Timestamp
+from devtools.observability.usage import Attribution, Purpose
 from devtools.observability.usage.ingestion import from_capture
 from devtools.observability.usage.storage import load
 from devtools.observability.usage.storage import save as save_observations
 from experiments.orchestration import usage_budget
 from experiments.orchestration.controller import Controller
+from experiments.orchestration.pipeline import usage
 from experiments.orchestration.storage import save
 from experiments.orchestration.workers import accounting, measurement
 
@@ -45,6 +48,40 @@ def capture() -> Any:
         validated=True,
         failure=None,
     )
+
+
+def test_pipeline_fresh_and_adopted_accounting(tmp_path: Path) -> None:
+    """Project original and reused evidence without charging the reuse twice."""
+    started = str(Timestamp.now())
+    original = from_capture(
+        capture(),
+        timestamp=Timestamp.now(),
+        source="SYNTHETIC",
+        source_digest="original",
+        attribution=Attribution("devtools", Purpose.SCIENCE, "previous", "one", "B"),
+    )
+    fresh = replace(
+        original,
+        invocation_id="fresh",
+        thread_id="fresh-thread",
+        attribution=Attribution("project", Purpose.SCIENCE, "current"),
+    )
+    save_observations(tmp_path / ".local/usage/ledger.json", (original, fresh))
+    usage_budget.adoption(
+        tmp_path,
+        "current",
+        "one",
+        accounting.accept(capture(), "SYNTHETIC"),
+        "previous",
+    )
+    result = usage({"target": str(tmp_path), "run_id": "current", "started": started})
+    assert result["experiment"]["fresh_invocations"] == 1
+    assert result["experiment"]["adopted_dependencies"] == 1
+    assert result["experiment"]["tokens"]["input_tokens"] == 10
+    assert result["experiment"]["tokens"]["cached_input_tokens"] == 2
+    assert result["experiment"]["tokens"]["output_tokens"] == 4
+    assert result["experiment"]["tokens"]["reasoning_tokens"] == 1
+    assert result["local"]["fresh_invocations"] == 2
 
 
 def test_reservation_authority_and_no_retry(tmp_path: Path) -> None:
@@ -279,3 +316,81 @@ def test_preview_is_read_only_and_assesses_whole_inventory(tmp_path: Path) -> No
     usage_budget.reserve(tmp_path, value, "run", "one", "C", authorized=True)
     with pytest.raises(ValueError, match="reconciliation"):
         usage_budget.preview(tmp_path, value, "run")
+
+
+def test_strict_reservation_and_terminal_consumption(tmp_path: Path) -> None:
+    """Execution cannot lose configured admission; closeout shares the same rules."""
+    local = tmp_path / ".local/usage"
+    assert usage_budget.consumption(tmp_path, plan(), "run")["status"] == "UNAVAILABLE"
+    with pytest.raises(ValueError, match="ledger required"):
+        usage_budget.reserve(
+            tmp_path,
+            plan(),
+            "run",
+            "one",
+            "C",
+            authorized=True,
+            require_configured=True,
+        )
+    save_observations(local / "ledger.json", ())
+    with pytest.raises(ValueError, match="configured policy"):
+        usage_budget.reserve(
+            tmp_path,
+            plan(),
+            "run",
+            "one",
+            "C",
+            authorized=True,
+            require_configured=True,
+        )
+    assert (
+        usage_budget.consumption(tmp_path, plan(), "run")["status"]
+        == "UNAVAILABLE_OR_BLOCKED"
+    )
+    save(
+        local / "policy.json",
+        {
+            "limits": [
+                {
+                    "scope": "OBSERVED_WINDOW",
+                    "identity": "local",
+                    "limits": {
+                        "fresh_calls": 0,
+                        "input_tokens": None,
+                        "output_tokens": None,
+                    },
+                },
+            ],
+        },
+    )
+    save(local / "backfill.json", {"observed_at": str(Timestamp.now())})
+    row = from_capture(
+        capture(),
+        timestamp=Timestamp.now(),
+        source="SYNTHETIC",
+        source_digest="synthetic",
+    )
+    save_observations(local / "ledger.json", (row,))
+    blocked = usage_budget.consumption(tmp_path, plan(), "run")
+    assert blocked["status"] == "UNAVAILABLE_OR_BLOCKED"
+    assert "EXCEEDED" in blocked["decisions"]["one/C"]["reason"]
+    save(
+        local / "policy.json",
+        {
+            "limits": [
+                {
+                    "scope": "OBSERVED_WINDOW",
+                    "identity": "local",
+                    "limits": {
+                        "fresh_calls": 10,
+                        "input_tokens": None,
+                        "output_tokens": None,
+                    },
+                },
+            ],
+        },
+    )
+    assert (
+        usage_budget.consumption(tmp_path, plan(), "run")["status"]
+        == "BUDGET_CHECK_PASS"
+    )

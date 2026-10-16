@@ -502,9 +502,9 @@ BM25F_HARMFUL. Production remains unchanged; confirmation/reserve NOT_ACCESSED;
 SEARCH_POLICY_FAILURE NOT_ASSESSED. The roadmap owns the next GRAPH /
 REPOSITORY-MAP RETRIEVAL direction; no structural implementation follows here.
 
-The [experiment preparation pipeline](../src/devtools/orchestration/experiments/docs/overview.md)
-owns the concrete non-executing preparation API/CLI, target-checkout compatibility,
-versioned receipts, status/history and Increment 2 boundary. It composes the
+The [governed experiment pipeline](../src/devtools/orchestration/experiments/docs/overview.md)
+owns preparation, externally authorized execution, observation-only reconciliation,
+target-checkout compatibility, versioned receipts and status/history. It composes the
 experiment controller through target-owned subprocess contracts and grants no
 scientific authority. The `orchestration` domain has no generic workflow API.
 Governance exposes narrow numeric usage constraints granting no execution
