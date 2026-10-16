@@ -1,0 +1,169 @@
+{
+  "Astra": 3,
+  "Sol": 1,
+  "adopted_dependencies": 2,
+  "adopted_new_consumption": 0,
+  "budget_authorization": "EXACT_PLAN_APPROVAL_AND_PRELAUNCH_OBSERVED_BUDGET_CHECK_REQUIRED",
+  "calls": [
+    {
+      "calibrations": [
+        "SYNTHETIC-ASTRA-HIGH-MINIMAL-01",
+        "SYNTHETIC-ASTRA-HIGH-CAPACITY-02",
+        "SYNTHETIC-ASTRA-HIGH-OUTPUT-01"
+      ],
+      "disclosed_bytes": 466418,
+      "disclosed_characters": 466405,
+      "disclosure_digest": "fd6192c31b60e5111d7aa8130b4e5fbaa9cbc9a2945fa90d9c0dd65f4450d595",
+      "execution_profile": "SEMANTIC_WORKER",
+      "input_tokens": {
+        "availability": "ESTIMATED",
+        "lower": 9513,
+        "provenance": "LOW_CONFIDENCE_MATCHED_EMPIRICAL_BRACKET; WITHIN_OBSERVED_BYTE_ENVELOPE",
+        "upper": 534177
+      },
+      "invocation": "0022/C",
+      "model": "gpt-6-astra",
+      "observed_small_input_floor": {
+        "availability": "REPORTED",
+        "lower": 9513,
+        "provenance": "Observed small-disclosure calls; not proven fixed overhead",
+        "upper": 9515
+      },
+      "output_tokens": {
+        "availability": "ESTIMATED",
+        "lower": 0,
+        "provenance": "LOW_CONFIDENCE_BYTE_PLANNING_CEILING; NOT_A_TOKENIZER_OR_CAPACITY_BOUND",
+        "upper": 62376
+      },
+      "reasoning_effort": "High",
+      "response_maximum_bytes": 62376
+    },
+    {
+      "calibrations": [
+        "SYNTHETIC-ASTRA-HIGH-MINIMAL-01",
+        "SYNTHETIC-ASTRA-HIGH-CAPACITY-02",
+        "SYNTHETIC-ASTRA-HIGH-OUTPUT-01"
+      ],
+      "disclosed_bytes": 455193,
+      "disclosed_characters": 455167,
+      "disclosure_digest": "aaca50f14ab49ef6dea85019d44eaf0bbe4c1a08dc2e2a87948f5a757cb61ff8",
+      "execution_profile": "SEMANTIC_WORKER",
+      "input_tokens": {
+        "availability": "ESTIMATED",
+        "lower": 9513,
+        "provenance": "LOW_CONFIDENCE_MATCHED_EMPIRICAL_BRACKET; WITHIN_OBSERVED_BYTE_ENVELOPE",
+        "upper": 534177
+      },
+      "invocation": "0023/C",
+      "model": "gpt-6-astra",
+      "observed_small_input_floor": {
+        "availability": "REPORTED",
+        "lower": 9513,
+        "provenance": "Observed small-disclosure calls; not proven fixed overhead",
+        "upper": 9515
+      },
+      "output_tokens": {
+        "availability": "ESTIMATED",
+        "lower": 0,
+        "provenance": "LOW_CONFIDENCE_BYTE_PLANNING_CEILING; NOT_A_TOKENIZER_OR_CAPACITY_BOUND",
+        "upper": 49916
+      },
+      "reasoning_effort": "High",
+      "response_maximum_bytes": 49916
+    },
+    {
+      "calibrations": [
+        "SYNTHETIC-ASTRA-HIGH-MINIMAL-01",
+        "SYNTHETIC-ASTRA-HIGH-CAPACITY-02",
+        "SYNTHETIC-ASTRA-HIGH-OUTPUT-01"
+      ],
+      "disclosed_bytes": 167224,
+      "disclosed_characters": 167218,
+      "disclosure_digest": "43ced3b0398a596021ca6c5c4c563bb644ba404bf6106acef024a9cef02d8c13",
+      "execution_profile": "SEMANTIC_WORKER",
+      "input_tokens": {
+        "availability": "ESTIMATED",
+        "lower": 9513,
+        "provenance": "LOW_CONFIDENCE_MATCHED_EMPIRICAL_BRACKET; WITHIN_OBSERVED_BYTE_ENVELOPE",
+        "upper": 534177
+      },
+      "invocation": "0024/C",
+      "model": "gpt-6-astra",
+      "observed_small_input_floor": {
+        "availability": "REPORTED",
+        "lower": 9513,
+        "provenance": "Observed small-disclosure calls; not proven fixed overhead",
+        "upper": 9515
+      },
+      "output_tokens": {
+        "availability": "ESTIMATED",
+        "lower": 0,
+        "provenance": "LOW_CONFIDENCE_BYTE_PLANNING_CEILING; NOT_A_TOKENIZER_OR_CAPACITY_BOUND",
+        "upper": 16274
+      },
+      "reasoning_effort": "High",
+      "response_maximum_bytes": 16274
+    },
+    {
+      "calibrations": [
+        "0022/grounding-primary",
+        "0023/grounding-primary"
+      ],
+      "disclosed_bytes": 150768,
+      "disclosed_characters": 150768,
+      "disclosure_digest": "f85a7faf300b9e1346347771f0480335b32562be29dd15b30bcab285ac6c5d77",
+      "execution_profile": "SEMANTIC_WORKER",
+      "input_tokens": {
+        "availability": "ESTIMATED",
+        "lower": 0,
+        "provenance": "LOW_CONFIDENCE_MATCHED_EMPIRICAL_BRACKET; WITHIN_OBSERVED_BYTE_ENVELOPE",
+        "upper": 154148
+      },
+      "invocation": "0024/B",
+      "model": "gpt-6-sol",
+      "observed_small_input_floor": {
+        "availability": "UNKNOWN",
+        "lower": null,
+        "provenance": "No compatible reported calibration",
+        "upper": null
+      },
+      "output_tokens": {
+        "availability": "ESTIMATED",
+        "lower": 0,
+        "provenance": "LOW_CONFIDENCE_BYTE_PLANNING_CEILING; NOT_A_TOKENIZER_OR_CAPACITY_BOUND",
+        "upper": 63357
+      },
+      "reasoning_effort": "High",
+      "response_maximum_bytes": 63357
+    }
+  ],
+  "confidence": "LOW; EMPIRICAL_ENVELOPES_NOT_CONFIDENCE_OR_TOKENIZER_BOUNDS",
+  "fresh_calls": 4,
+  "input_range": [
+    28539,
+    1756679
+  ],
+  "maximum_fresh_calls": 4,
+  "observed_window_contribution": {
+    "coverage": "PARTIAL_OBSERVED_USAGE_NOT_SUBSCRIPTION_QUOTA",
+    "fresh_call_share_formula": "100 * 4 / baseline.observed_fresh_invocations",
+    "input_share_formula": "100 * input_range / baseline.reported_input_subtotal",
+    "local_report": ".local/usage/candidate-discrimination-economics.json",
+    "provenance": "DERIVED_PRIVATE_OBSERVED_SNAPSHOT"
+  },
+  "output_range": [
+    0,
+    191923
+  ],
+  "private_observed_baseline": {
+    "coverage": "PARTIAL_OBSERVED_LOCAL_NOT_ACCOUNT_WIDE",
+    "observed_at": "2026-10-15T22:23:18.832479+00:00",
+    "path": ".local/usage/rolling-7-days-baseline.json",
+    "personal_history_published": false,
+    "schema": "private-observed-usage-snapshot-binding-v1",
+    "sha256": "5f18ef6261f208e663107190c4ac3e0d2da7f9a77a481ea21047156a89906506"
+  },
+  "schema": "semantic-economics-forecast-v1",
+  "subscription_or_API_cost": "NOT_INFERRED",
+  "weekly_numeric_limit": "UNSET"
+}

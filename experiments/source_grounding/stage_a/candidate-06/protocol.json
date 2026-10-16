@@ -1,0 +1,806 @@
+{
+  "adopted_branches": {
+    "0022": {
+      "compatibility_sha256": "2c2d982f949d7725ae0d46e4903db445cdc85661bcc89af46e369c355c1c4a9e",
+      "path": "experiments/orchestration/engineering/adopted_branches/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/0022/seal.json",
+      "prospective_compatibility": {
+        "path": "experiments/source_grounding/stage_a/chunked-04/0022-adoption-compatibility.json",
+        "sha256": "37503ee9c288c31f804ed5ee6361bc3a969590d866589ee4304fd619fb31ac35"
+      },
+      "sha256": "12bb1f669bd4db7c1a0bdc83f072b0959949b778bc654cdf45c800420818f0f7"
+    },
+    "0023": {
+      "compatibility_sha256": "401ca304622d6c8fa4399b732472ccdd97d0d136d083fde8cbb5e09b6d8e71df",
+      "path": "experiments/orchestration/engineering/adopted_branches/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/0023/seal.json",
+      "prospective_compatibility": {
+        "path": "experiments/source_grounding/stage_a/chunked-04/0023-adoption-compatibility.json",
+        "sha256": "38b6a51ae7649a40ea6aa81973b716de5417df0bd6728bd655bd581655e9e766"
+      },
+      "sha256": "91fb32bfd6ab8548fb9dba30a0cb1a80e8fb7ac2de40d2f78f384e8cdf674328"
+    }
+  },
+  "baseline": {
+    "analysis": "unicode-word-span-casefold-v1",
+    "b": 0.75,
+    "exact_route": "NOT_APPLICABLE",
+    "filename_weight": 0.25,
+    "k1": 1.2,
+    "positive_universe": "complete"
+  },
+  "binding_revision": {
+    "engineering_checkpoint": "b185a75cea4428479c983be4b19f98683bb0050f",
+    "failed_approval_checkpoint": "52e697cea6b4ce066898031938e127f0c565fc3a",
+    "failed_approval_use": "HISTORICAL_ONLY; DO_NOT_RESUME",
+    "failed_run_id": "b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6",
+    "maximum_fresh_calls": 4,
+    "only_change": "Correct executable module ownership and prospectively gate real direct-script startup before PLAN_VALID",
+    "previous_path": "experiments/source_grounding/stage_a/candidate-05",
+    "previous_stage_a": "27badaca445dcda280e69b65fb662b1523d3d1a0",
+    "schema": "candidate-startup-binding-only-v1",
+    "scientific_contract": "ALL_FROZEN_SCIENTIFIC_SEMANTICS_UNCHANGED",
+    "scientific_method": "UNCHANGED",
+    "unchanged_scientific_files": {
+      "0022-selection.json": "c28e47ad6d665466cc057201e8714e7a02701bdc89fe92e7c6aca163b2e44238",
+      "0022-universe.json": "eb39783234bf5bc6173f87d5915d335695aa49c17b8c3bc2449f9c9a0b8a8232",
+      "0023-selection.json": "2c5f8e112700bb518cd6701fec81073c9dc7208991cdbb2049454cadfdeaed22",
+      "0023-universe.json": "28f83e312ecd42e3e7d32b0003c72ce77719d4d03295a3c6530b7da23f5e63a1",
+      "0024-selection.json": "0ffd09a499feb23761ef7ead16b0f28293954dfd9bf4c376393f9fb8d150baad",
+      "0024-treatment-template.bin": "f85a7faf300b9e1346347771f0480335b32562be29dd15b30bcab285ac6c5d77",
+      "0024-universe.json": "d42dbdc437bbdd321b4bb829016fa9e39ef5be4dd47328f047db30fb67adc238",
+      "METHOD.md": "da1f00a06502c23a835bcb0855962206d905a921ab943d7ebd4efde4490d2001",
+      "cohort.json": "2cc9fd55a1a833088ffa26b8759c57cff48ce4e80a783ad661cf354e4608a2a5",
+      "economics.json": "144b237452cc30ba2e451eca27eb817b6040214045fad181e8c8c75c2a173f5a"
+    }
+  },
+  "candidate_discrimination": {
+    "Astra": 3,
+    "Sol": 1,
+    "attained_output_bytes": 63357,
+    "automatic_scientific_retry": 0,
+    "cases": {
+      "0022": {
+        "allocation": {
+          "O1": {
+            "N": 49,
+            "inclusion_probability": 0.5714285714285714,
+            "n": 28,
+            "planning_margin_95": 0.1225,
+            "weight": 1.75
+          },
+          "O2": {
+            "N": 34,
+            "inclusion_probability": 0.6470588235294118,
+            "n": 22,
+            "planning_margin_95": 0.1259935719205121,
+            "weight": 1.5454545454545454
+          }
+        },
+        "input": {
+          "census_upper_bytes": 645291,
+          "census_upper_characters": 645261,
+          "characters": 466405,
+          "sha256": "fd6192c31b60e5111d7aa8130b4e5fbaa9cbc9a2945fa90d9c0dd65f4450d595",
+          "utf8_bytes": 466418
+        },
+        "output_maximum": {
+          "characters": 62376,
+          "utf8_bytes": 62376
+        },
+        "population": 83,
+        "sample": 50,
+        "selection_sha256": "82bf1fcb6e98e8a411cc4f03865b1a83690a6962bdb1f86af519d6cbfb8a156e",
+        "universe_sha256": "de98b053f54b8d46e2963eae46232532b9969a8617368b14846d095facd837b2"
+      },
+      "0023": {
+        "allocation": {
+          "O1": {
+            "N": 22,
+            "inclusion_probability": 1.0,
+            "n": 22,
+            "planning_margin_95": 0.0,
+            "weight": 1.0
+          },
+          "O2": {
+            "N": 18,
+            "inclusion_probability": 1.0,
+            "n": 18,
+            "planning_margin_95": 0.0,
+            "weight": 1.0
+          }
+        },
+        "input": {
+          "census_upper_bytes": 455193,
+          "census_upper_characters": 455167,
+          "characters": 455167,
+          "sha256": "aaca50f14ab49ef6dea85019d44eaf0bbe4c1a08dc2e2a87948f5a757cb61ff8",
+          "utf8_bytes": 455193
+        },
+        "output_maximum": {
+          "characters": 49916,
+          "utf8_bytes": 49916
+        },
+        "population": 40,
+        "sample": 40,
+        "selection_sha256": "7f31ee41b3d34c9bca95a2b74b67d9936e9c8377f1f9d9bd81d6d6cb33bec36f",
+        "universe_sha256": "216723304d765d0797129517d477dca83aa1e2aba4fbd8ebaa0e20ec33dd85c9"
+      },
+      "0024": {
+        "allocation": {
+          "O1": {
+            "N": 5,
+            "inclusion_probability": 1.0,
+            "n": 5,
+            "planning_margin_95": 0.0,
+            "weight": 1.0
+          },
+          "O2": {
+            "N": 8,
+            "inclusion_probability": 1.0,
+            "n": 8,
+            "planning_margin_95": 0.0,
+            "weight": 1.0
+          }
+        },
+        "input": {
+          "census_upper_bytes": 167224,
+          "census_upper_characters": 167218,
+          "characters": 167218,
+          "sha256": "43ced3b0398a596021ca6c5c4c563bb644ba404bf6106acef024a9cef02d8c13",
+          "utf8_bytes": 167224
+        },
+        "output_maximum": {
+          "characters": 16274,
+          "utf8_bytes": 16274
+        },
+        "population": 13,
+        "sample": 13,
+        "selection_sha256": "db499dbc4d84825519f2e82d713bb4d459d79cd3b6225d264c02bed7e03c6622",
+        "universe_sha256": "abeffeba58c0fe7efc6125e428d6c3ccad086ac6838f76e2272904e785598e14"
+      }
+    },
+    "claim_boundary": "CONDITIONAL_BROAD_CANDIDATE_DISCRIMINATION_ONLY; NO_REPOSITORY_RECALL_SUFFICIENCY_OR_PRODUCTION_ACCEPTANCE",
+    "decision_protocol": "ESTIMATION_FIRST; NO_POST_HOC_THRESHOLDS_OR_P_VALUE_GATE",
+    "fresh_calls": 4,
+    "input_bytes": 700000,
+    "input_chars": 700000,
+    "output_method_bytes": 65536,
+    "planning_margin": 0.15,
+    "seed": "PURPOSE_RELATIVE_SOURCE_GROUNDING-CANDIDATE-DISCRIMINATION-01",
+    "treatment_template_sha256": "f85a7faf300b9e1346347771f0480335b32562be29dd15b30bcab285ac6c5d77",
+    "usage": "FIVE_SEPARATE_CATEGORIES_OR_UNKNOWN; MANDATORY_BEFORE_PUBLICATION"
+  },
+  "cases": [
+    "0022",
+    "0023",
+    "0024"
+  ],
+  "cohort_gate": null,
+  "concurrency": {
+    "cases": 3,
+    "maximum_total_model_workers_including_nested_grounding": 3,
+    "semantic": 1,
+    "workers": 3
+  },
+  "design": "discrimination/METHOD.md",
+  "design_scope": "CONDITIONAL_BROAD_CANDIDATE_DISCRIMINATION_ONLY; NO_REPOSITORY_RECALL_SUFFICIENCY_OR_PRODUCTION_ACCEPTANCE",
+  "design_sha256": "da1f00a06502c23a835bcb0855962206d905a921ab943d7ebd4efde4490d2001",
+  "economics": {
+    "Astra": 3,
+    "Sol": 1,
+    "adopted_dependencies": 2,
+    "adopted_new_consumption": 0,
+    "budget_authorization": "EXACT_PLAN_APPROVAL_AND_PRELAUNCH_OBSERVED_BUDGET_CHECK_REQUIRED",
+    "calls": [
+      {
+        "calibrations": [
+          "SYNTHETIC-ASTRA-HIGH-MINIMAL-01",
+          "SYNTHETIC-ASTRA-HIGH-CAPACITY-02",
+          "SYNTHETIC-ASTRA-HIGH-OUTPUT-01"
+        ],
+        "disclosed_bytes": 466418,
+        "disclosed_characters": 466405,
+        "disclosure_digest": "fd6192c31b60e5111d7aa8130b4e5fbaa9cbc9a2945fa90d9c0dd65f4450d595",
+        "execution_profile": "SEMANTIC_WORKER",
+        "input_tokens": {
+          "availability": "ESTIMATED",
+          "lower": 9513,
+          "provenance": "LOW_CONFIDENCE_MATCHED_EMPIRICAL_BRACKET; WITHIN_OBSERVED_BYTE_ENVELOPE",
+          "upper": 534177
+        },
+        "invocation": "0022/C",
+        "model": "gpt-6-astra",
+        "observed_small_input_floor": {
+          "availability": "REPORTED",
+          "lower": 9513,
+          "provenance": "Observed small-disclosure calls; not proven fixed overhead",
+          "upper": 9515
+        },
+        "output_tokens": {
+          "availability": "ESTIMATED",
+          "lower": 0,
+          "provenance": "LOW_CONFIDENCE_BYTE_PLANNING_CEILING; NOT_A_TOKENIZER_OR_CAPACITY_BOUND",
+          "upper": 62376
+        },
+        "reasoning_effort": "High",
+        "response_maximum_bytes": 62376
+      },
+      {
+        "calibrations": [
+          "SYNTHETIC-ASTRA-HIGH-MINIMAL-01",
+          "SYNTHETIC-ASTRA-HIGH-CAPACITY-02",
+          "SYNTHETIC-ASTRA-HIGH-OUTPUT-01"
+        ],
+        "disclosed_bytes": 455193,
+        "disclosed_characters": 455167,
+        "disclosure_digest": "aaca50f14ab49ef6dea85019d44eaf0bbe4c1a08dc2e2a87948f5a757cb61ff8",
+        "execution_profile": "SEMANTIC_WORKER",
+        "input_tokens": {
+          "availability": "ESTIMATED",
+          "lower": 9513,
+          "provenance": "LOW_CONFIDENCE_MATCHED_EMPIRICAL_BRACKET; WITHIN_OBSERVED_BYTE_ENVELOPE",
+          "upper": 534177
+        },
+        "invocation": "0023/C",
+        "model": "gpt-6-astra",
+        "observed_small_input_floor": {
+          "availability": "REPORTED",
+          "lower": 9513,
+          "provenance": "Observed small-disclosure calls; not proven fixed overhead",
+          "upper": 9515
+        },
+        "output_tokens": {
+          "availability": "ESTIMATED",
+          "lower": 0,
+          "provenance": "LOW_CONFIDENCE_BYTE_PLANNING_CEILING; NOT_A_TOKENIZER_OR_CAPACITY_BOUND",
+          "upper": 49916
+        },
+        "reasoning_effort": "High",
+        "response_maximum_bytes": 49916
+      },
+      {
+        "calibrations": [
+          "SYNTHETIC-ASTRA-HIGH-MINIMAL-01",
+          "SYNTHETIC-ASTRA-HIGH-CAPACITY-02",
+          "SYNTHETIC-ASTRA-HIGH-OUTPUT-01"
+        ],
+        "disclosed_bytes": 167224,
+        "disclosed_characters": 167218,
+        "disclosure_digest": "43ced3b0398a596021ca6c5c4c563bb644ba404bf6106acef024a9cef02d8c13",
+        "execution_profile": "SEMANTIC_WORKER",
+        "input_tokens": {
+          "availability": "ESTIMATED",
+          "lower": 9513,
+          "provenance": "LOW_CONFIDENCE_MATCHED_EMPIRICAL_BRACKET; WITHIN_OBSERVED_BYTE_ENVELOPE",
+          "upper": 534177
+        },
+        "invocation": "0024/C",
+        "model": "gpt-6-astra",
+        "observed_small_input_floor": {
+          "availability": "REPORTED",
+          "lower": 9513,
+          "provenance": "Observed small-disclosure calls; not proven fixed overhead",
+          "upper": 9515
+        },
+        "output_tokens": {
+          "availability": "ESTIMATED",
+          "lower": 0,
+          "provenance": "LOW_CONFIDENCE_BYTE_PLANNING_CEILING; NOT_A_TOKENIZER_OR_CAPACITY_BOUND",
+          "upper": 16274
+        },
+        "reasoning_effort": "High",
+        "response_maximum_bytes": 16274
+      },
+      {
+        "calibrations": [
+          "0022/grounding-primary",
+          "0023/grounding-primary"
+        ],
+        "disclosed_bytes": 150768,
+        "disclosed_characters": 150768,
+        "disclosure_digest": "f85a7faf300b9e1346347771f0480335b32562be29dd15b30bcab285ac6c5d77",
+        "execution_profile": "SEMANTIC_WORKER",
+        "input_tokens": {
+          "availability": "ESTIMATED",
+          "lower": 0,
+          "provenance": "LOW_CONFIDENCE_MATCHED_EMPIRICAL_BRACKET; WITHIN_OBSERVED_BYTE_ENVELOPE",
+          "upper": 154148
+        },
+        "invocation": "0024/B",
+        "model": "gpt-6-sol",
+        "observed_small_input_floor": {
+          "availability": "UNKNOWN",
+          "lower": null,
+          "provenance": "No compatible reported calibration",
+          "upper": null
+        },
+        "output_tokens": {
+          "availability": "ESTIMATED",
+          "lower": 0,
+          "provenance": "LOW_CONFIDENCE_BYTE_PLANNING_CEILING; NOT_A_TOKENIZER_OR_CAPACITY_BOUND",
+          "upper": 63357
+        },
+        "reasoning_effort": "High",
+        "response_maximum_bytes": 63357
+      }
+    ],
+    "confidence": "LOW; EMPIRICAL_ENVELOPES_NOT_CONFIDENCE_OR_TOKENIZER_BOUNDS",
+    "fresh_calls": 4,
+    "input_range": [
+      28539,
+      1756679
+    ],
+    "maximum_fresh_calls": 4,
+    "observed_window_contribution": {
+      "coverage": "PARTIAL_OBSERVED_USAGE_NOT_SUBSCRIPTION_QUOTA",
+      "fresh_call_share_formula": "100 * 4 / baseline.observed_fresh_invocations",
+      "input_share_formula": "100 * input_range / baseline.reported_input_subtotal",
+      "local_report": ".local/usage/candidate-discrimination-economics.json",
+      "provenance": "DERIVED_PRIVATE_OBSERVED_SNAPSHOT"
+    },
+    "output_range": [
+      0,
+      191923
+    ],
+    "private_observed_baseline": {
+      "coverage": "PARTIAL_OBSERVED_LOCAL_NOT_ACCOUNT_WIDE",
+      "observed_at": "2026-10-15T22:23:18.832479+00:00",
+      "path": ".local/usage/rolling-7-days-baseline.json",
+      "personal_history_published": false,
+      "schema": "private-observed-usage-snapshot-binding-v1",
+      "sha256": "5f18ef6261f208e663107190c4ac3e0d2da7f9a77a481ea21047156a89906506"
+    },
+    "schema": "semantic-economics-forecast-v1",
+    "subscription_or_API_cost": "NOT_INFERRED",
+    "weekly_numeric_limit": "UNSET"
+  },
+  "gold_instructions_sha256": "23f2e91aa18d95fd55216803c356f37974b961b1fa215a6337ac7eb844ebf02d",
+  "gold_judgments": [
+    "source_usefulness",
+    "target_usefulness",
+    "pursuit_value"
+  ],
+  "gold_labels": [
+    "USEFUL",
+    "NOT_USEFUL",
+    "UNCERTAIN"
+  ],
+  "gold_model": {
+    "model": "GPT-6 Astra",
+    "model_id": "gpt-6-astra",
+    "reasoning": "High"
+  },
+  "grace": 10,
+  "grounding_instructions_sha256": "11e60d58e0d6a2d9c45d3b615bb163f8fab7f255854de8743ea646a4f91a8a5e",
+  "grounding_model": {
+    "model": "GPT-6 Sol",
+    "model_id": "gpt-6-sol",
+    "reasoning": "High"
+  },
+  "grounding_timeout": 7200,
+  "grounding_verdicts": [
+    "GROUNDED_SOURCE",
+    "NOT_GROUNDED_SOURCE",
+    "UNCERTAIN_SOURCE"
+  ],
+  "historical_C_v1_gold_instructions_sha256": "457be17dcf615485471dedde1fe46818715713ddd620da76658f153075a5b763",
+  "launcher": {
+    "cli_version": "0.162.1",
+    "continuation": false,
+    "fresh": true
+  },
+  "mechanical_native_candidate_replay": "PERFORMED_WITHOUT_GROUNDING_OR_SCIENTIFIC_ENTRY",
+  "no_execution": {
+    "approval": 0,
+    "fresh_model_calls": 0,
+    "new_gold": 0,
+    "scientific_entered": 0,
+    "stage_d": 0
+  },
+  "no_execution_scope": "NEW_PROSPECTIVE_RUN_ONLY; ORIGINAL_B22_B23_ENTERED",
+  "population_sha256": "062d56eb131c97e0dcac62f77cd503de0a83ff80b54d1900d36fc3c3e56286c4",
+  "preserved_evidence": {
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/ENTERED.json": "b11b152e825c32ee60cd3c025bb5eba948e9b8d7be272d615a464dddece53e88",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0022/prepare/FAILED.json": "acc579df2aba1b1a3ab3d95eff57d127e5ac04cb9f43f40799142e142af804bf",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/ENTERED.json": "4b2a011e91a124bf3f553e3d52bad5a1b754ad1856fa717c8af0a0e2194bcb1c",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0023/prepare/FAILED.json": "3bb1995ab9b967efe46c0e88f941eeb1097ae4cc39bd8149c5f0f0bfd97655df",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/ENTERED.json": "83cd9e2a4922c0c5e29960f896b8b02f58a0ca19dd9f67901ca0ba5dd891c24d",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/journal/0024/prepare/FAILED.json": "894a0e509f892d419a56c0c8655812b6a7c727425297dc99811cfedde8de9e33",
+    "experiments/source_grounding/runs/b34e9e288e30f7289e14453f8a2f9ca8acd6940dee05037486c403c803b5d2c6/run.json": "a673f85966898f58ea1b4f612c8b8d32dbf716f58cd928cb6a71f5f2773c2ae6",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/ENTERED.json": "6c735ca13e0f88ffb861a6f42fc2f3548f20524212ca5173062090c0df18b593",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/B/RETURNED.json": "8bd14118d9bbd59158742fae103ae957769175e97f4a24cf556efc259ba006a5",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/ENTERED.json": "97ab56f5073a2f33d23897de0286b94651b7c378c5564153b347bf71e88f603e",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0022/C/FAILED.json": "966eeaa7eeb4e19479141a1fe7e928c57c93b199ee64f7854f4828cb7c2e3ee8",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/ENTERED.json": "da5dbe0b32271e43941561ba542ee45163f61299f6d59949cb6e1384c510a04a",
+    "experiments/source_grounding/runs/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/journal/0023/B/RETURNED.json": "7d74efdee478c91871e9e0fb2f2dab0c5de19b2a42c56b3092e5cc594bd032f7"
+  },
+  "ranking_modifications": 0,
+  "retry": "NEVER_SCIENTIFIC",
+  "schema": "purpose-relative-source-grounding-candidate-stage-a-v1",
+  "scientific_method": "experiments/source_grounding/stage_a/candidate-06/METHOD.md",
+  "semantic_execution": {
+    "additional_artifacts": [
+      "candidate-capture.json.gz",
+      "candidate-usage.json"
+    ],
+    "argv": [
+      "{python}",
+      "-B",
+      "{repository}/experiments/source_grounding/discrimination/entry.py",
+      "C",
+      "--workspace",
+      "{workspace}",
+      "--case",
+      "{case}",
+      "--frame",
+      "{frame}",
+      "--run-id",
+      "PACKET_BOUND",
+      "--stage-a",
+      "{stage_a_checkpoint}"
+    ],
+    "authorized_surface": "TREATMENT_INDEPENDENT_BROAD_CANDIDATES",
+    "bounded_response": true,
+    "capacity_receipt": {
+      "path": "experiments/orchestration/engineering/host_disclosure/capacity-receipt.json",
+      "sha256": "e0c59a834c9cc7deb4340e02c099df68eb01c7c34679c09c2d5a6a10b2ac833d"
+    },
+    "environment_allowlist": [
+      "PATH",
+      "SYSTEMROOT",
+      "WINDIR",
+      "TEMP",
+      "TMP",
+      "USERPROFILE",
+      "APPDATA",
+      "LOCALAPPDATA",
+      "COMSPEC",
+      "SystemDrive",
+      "ProgramFiles",
+      "ProgramW6432",
+      "ProgramData",
+      "ALLUSERSPROFILE",
+      "PUBLIC",
+      "HOMEDRIVE",
+      "HOMEPATH"
+    ],
+    "fresh_primary_thread": true,
+    "kind": "process",
+    "model": "GPT-6 Astra",
+    "model_id": "gpt-6-astra",
+    "output_receipt": {
+      "path": "experiments/orchestration/engineering/host_disclosure/output-receipt.json",
+      "sha256": "176b65232d4318adc80211315e0fcfd70cac220e6de277a3ffa6b7829275f1ba"
+    },
+    "prompt_file": "INSTRUCTIONS.md",
+    "reasoning": "High",
+    "runtime": {
+      "approval": "never",
+      "auto_compact_token_limit": 1000000000,
+      "automatic_scientific_retries": 0,
+      "cli_version": "0.162.1",
+      "delivery": "UTF8_STDIN",
+      "fresh": true,
+      "network": false,
+      "provider": "BUILTIN_OPENAI",
+      "provider_transport_retries": "BUILTIN_RUNTIME_DEFAULT",
+      "response": "NATIVE_JSON_SCHEMA_AND_FINAL_MESSAGE",
+      "schema": "host-disclosure-semantic-runtime-v3",
+      "scientific_filesystem_dependency": false,
+      "tools": "DISABLED; TOOL_ATTEMPT_REJECTS_RESPONSE",
+      "underlying_request_count": "UNKNOWN",
+      "web": "disabled",
+      "windows_sandbox": "mxc"
+    }
+  },
+  "status": "FROZEN / UNAPPROVED / NOT_EXECUTED",
+  "supersession": {
+    "B_semantic_results_inspected": false,
+    "B_semantics": "UNCHANGED",
+    "child_access": false,
+    "confirmation_reserve_access": false,
+    "engineering_checkpoint": "f080f9a2987e2f170e1e4078520870baeb4b304d",
+    "historical_failed_run": "b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982",
+    "prior_plan": "42b2590b8582e393b0761207775d0fd240840560",
+    "prior_run_id": "7e2f4b1258bd6b432f4c5608be2ba34a06145fba4bee209985f45697bc561d53",
+    "prior_stage_a": "b1c0a573ec7dd64396bae49c2ef9f578c5a65433",
+    "reason": "84-call governed method economically unacceptable for narrower discrimination question; remains unapproved/unexecuted historical prospective work"
+  },
+  "usage_budget": {
+    "authorization": "EXACT_PLAN_EXECUTION_APPROVAL",
+    "calls": {
+      "0022/C": {
+        "input_upper": 534177,
+        "model": "gpt-6-astra",
+        "output_upper": 62376
+      },
+      "0023/C": {
+        "input_upper": 534177,
+        "model": "gpt-6-astra",
+        "output_upper": 49916
+      },
+      "0024/B": {
+        "input_upper": 154148,
+        "model": "gpt-6-sol",
+        "output_upper": 63357
+      },
+      "0024/C": {
+        "input_upper": 534177,
+        "model": "gpt-6-astra",
+        "output_upper": 16274
+      }
+    },
+    "fresh_call_limit": 4,
+    "model_call_limits": {
+      "gpt-6-astra": 3,
+      "gpt-6-sol": 1
+    }
+  },
+  "validation_timeout": 3600,
+  "worker_entrypoints": {
+    "mode": "DIRECT_SCRIPT_HELP",
+    "schema": "python-worker-entrypoint-preflight-v1",
+    "scripts": {
+      "experiments/source_grounding/discrimination/entry.py": "72ccaa47b4e9bd16b80751a6ab743dd7c64f1f8254de92327ec0321c1d7e0c71"
+    },
+    "timeout_seconds": 30
+  },
+  "worker_timeout": 21600,
+  "workers": {
+    "gold": {
+      "additional_artifacts": [
+        "candidate-capture.json.gz",
+        "candidate-usage.json"
+      ],
+      "argv": [
+        "{python}",
+        "-B",
+        "{repository}/experiments/source_grounding/discrimination/entry.py",
+        "C",
+        "--workspace",
+        "{workspace}",
+        "--case",
+        "{case}",
+        "--frame",
+        "{frame}",
+        "--run-id",
+        "PACKET_BOUND",
+        "--stage-a",
+        "b185a75cea4428479c983be4b19f98683bb0050f"
+      ],
+      "authorized_surface": "TREATMENT_INDEPENDENT_BROAD_CANDIDATES",
+      "bounded_response": true,
+      "capacity_receipt": {
+        "path": "experiments/orchestration/engineering/host_disclosure/capacity-receipt.json",
+        "sha256": "e0c59a834c9cc7deb4340e02c099df68eb01c7c34679c09c2d5a6a10b2ac833d"
+      },
+      "environment_allowlist": [
+        "PATH",
+        "SYSTEMROOT",
+        "WINDIR",
+        "TEMP",
+        "TMP",
+        "USERPROFILE",
+        "APPDATA",
+        "LOCALAPPDATA",
+        "COMSPEC",
+        "SystemDrive",
+        "ProgramFiles",
+        "ProgramW6432",
+        "ProgramData",
+        "ALLUSERSPROFILE",
+        "PUBLIC",
+        "HOMEDRIVE",
+        "HOMEPATH"
+      ],
+      "fresh_primary_thread": true,
+      "kind": "process",
+      "model": "GPT-6 Astra",
+      "model_id": "gpt-6-astra",
+      "output_receipt": {
+        "path": "experiments/orchestration/engineering/host_disclosure/output-receipt.json",
+        "sha256": "176b65232d4318adc80211315e0fcfd70cac220e6de277a3ffa6b7829275f1ba"
+      },
+      "prompt_file": "INSTRUCTIONS.md",
+      "reasoning": "High",
+      "runtime": {
+        "approval": "never",
+        "auto_compact_token_limit": 1000000000,
+        "automatic_scientific_retries": 0,
+        "cli_version": "0.162.1",
+        "delivery": "UTF8_STDIN",
+        "fresh": true,
+        "network": false,
+        "provider": "BUILTIN_OPENAI",
+        "provider_transport_retries": "BUILTIN_RUNTIME_DEFAULT",
+        "response": "NATIVE_JSON_SCHEMA_AND_FINAL_MESSAGE",
+        "schema": "host-disclosure-semantic-runtime-v3",
+        "scientific_filesystem_dependency": false,
+        "tools": "DISABLED; TOOL_ATTEMPT_REJECTS_RESPONSE",
+        "underlying_request_count": "UNKNOWN",
+        "web": "disabled",
+        "windows_sandbox": "mxc"
+      }
+    },
+    "grounding": {
+      "auth_file": "C:/Users/recoveryadmin/.codex/auth.json",
+      "blindness": [
+        "NO_ACCESS:repository",
+        "NO_ACCESS:git_history",
+        "NO_ACCESS:parent_siblings",
+        "NO_ACCESS:prior_session",
+        "NO_ACCESS:web",
+        "NO_ACCESS:queries",
+        "NO_ACCESS:ranks_scores",
+        "NO_ACCESS:annotations",
+        "NO_ACCESS:references_treatment",
+        "NO_ACCESS:pairs",
+        "NO_ACCESS:timings",
+        "NO_ACCESS:graph_ppr_rrf",
+        "NO_ACCESS:other_cases",
+        "NO_ACCESS:child",
+        "NO_ACCESS:prior_gold",
+        "NO_ACCESS:confirmation_reserve"
+      ],
+      "builder_argv": [
+        "{python}",
+        "-B",
+        "{workspace}/stage_c_builder.py",
+        "build"
+      ],
+      "cli_version": "0.162.1",
+      "environment_allowlist": [
+        "PATH",
+        "SYSTEMROOT",
+        "WINDIR",
+        "TEMP",
+        "TMP",
+        "USERPROFILE",
+        "APPDATA",
+        "LOCALAPPDATA",
+        "COMSPEC",
+        "SystemDrive",
+        "ProgramFiles",
+        "ProgramW6432",
+        "ProgramData",
+        "ALLUSERSPROFILE",
+        "PUBLIC",
+        "HOMEDRIVE",
+        "HOMEPATH"
+      ],
+      "evidence_locator": "exact-quote-overlapping-occurrence-v1",
+      "kind": "codex",
+      "model": "GPT-6 Sol",
+      "model_id": "gpt-6-sol",
+      "output_receipt": {
+        "path": "experiments/orchestration/engineering/host_disclosure/output-receipt.json",
+        "sha256": "176b65232d4318adc80211315e0fcfd70cac220e6de277a3ffa6b7829275f1ba"
+      },
+      "prompt_file": "INSTRUCTIONS.md",
+      "reasoning": "High",
+      "response_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "cells": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "additional_information": {
+                  "type": "string"
+                },
+                "assumptions": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "obligation": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "source_key": {
+                  "type": "string"
+                },
+                "spans": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "occurrence": {
+                        "type": "integer"
+                      },
+                      "quote": {
+                        "type": "string"
+                      },
+                      "source_key": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "source_key",
+                      "quote",
+                      "occurrence"
+                    ],
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "statement": {
+                  "type": "string"
+                },
+                "uncertainty": {
+                  "type": "string"
+                },
+                "verdict": {
+                  "enum": [
+                    "GROUNDED_SOURCE",
+                    "NOT_GROUNDED_SOURCE",
+                    "UNCERTAIN_SOURCE"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "obligation",
+                "source_key",
+                "spans",
+                "reason",
+                "verdict",
+                "statement",
+                "assumptions",
+                "uncertainty",
+                "additional_information"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "gaps": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "self_review": {
+            "type": "string"
+          },
+          "units": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "cells",
+          "units",
+          "gaps",
+          "self_review"
+        ],
+        "type": "object"
+      },
+      "runtime": {
+        "approval": "never",
+        "auto_compact_token_limit": 1000000000,
+        "automatic_scientific_retries": 0,
+        "cli_version": "0.162.1",
+        "delivery": "UTF8_STDIN",
+        "fresh": true,
+        "network": false,
+        "provider": "BUILTIN_OPENAI",
+        "provider_transport_retries": "BUILTIN_RUNTIME_DEFAULT",
+        "response": "NATIVE_JSON_SCHEMA_AND_FINAL_MESSAGE",
+        "schema": "host-disclosure-semantic-runtime-v3",
+        "scientific_filesystem_dependency": false,
+        "tools": "DISABLED; TOOL_ATTEMPT_REJECTS_RESPONSE",
+        "underlying_request_count": "UNKNOWN",
+        "web": "disabled",
+        "windows_sandbox": "mxc"
+      },
+      "transport_receipt": {
+        "path": "experiments/orchestration/engineering/host_disclosure/capacity-receipt.json",
+        "sha256": "e0c59a834c9cc7deb4340e02c099df68eb01c7c34679c09c2d5a6a10b2ac833d"
+      }
+    }
+  }
+}
