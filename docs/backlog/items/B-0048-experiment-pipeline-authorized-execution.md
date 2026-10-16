@@ -76,10 +76,22 @@ help-only worker startup pass; fresh partial local usage and the unchanged
 four-call forecast are evidenced. Preparation remains BUDGET_UNAVAILABLE because
 numeric policy is unset; exact approval remains absent. The separate target uses
 its own synchronized main and local publication repository, preserving protected
-main and the completed feature branch. Remaining controlled decisions are the
-applicable numeric policy, publication/backup destination and exact human
+main and the completed feature branch. At that initial checkpoint, remaining
+decisions included numeric policy, publication/backup destination and exact human
 scientific authority, followed by a separately authorized execution/evaluation.
 No scientific call, approval, retry or acceptance follows from this preparation.
+
+The subsequent approved-budget operational review found a concrete deployment
+blocker: `usage_budget` skips a nonmatching experiment rule but treats nonempty
+configuration as numeric admission. Isolated unrelated-run and wrong-policy
+probes therefore return PASS. The approved exact-run candidate was retained but
+not installed, preserving fail-closed deployment. A separately authorized
+canonical scope correction and any required authenticated rebinding must precede
+execution readiness; no new implementation increment was performed. Local
+publication is accepted, and an isolated full Git/non-Git recovery rehearsal
+passes, but its same-SSD package establishes no independent durability. Fresh
+preparation remains BUDGET_UNAVAILABLE, with no approval or scientific entry.
+The linked deployment review records exact evidence and remaining conditions.
 
 The consumer is a human operator now and a future ExperimentManagerAgent.
 Remain concrete until repeated consumers justify more general semantics.

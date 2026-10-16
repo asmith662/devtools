@@ -1,10 +1,94 @@
 {
   "admission_refusal": {
-    "file_sha256": "1608b154bf170b62604d513b42bb2b96987f80897c09c6d908cc96de07ed1836",
-    "path": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\deployment-receipts\\source-grounding-successor\\candidate\\admission-refusal.json",
+    "file_sha256": "48b0e91fc4d31b8c6ef11a59987e04e5c13cf89b432cf95d8d9b4d2f75439865",
+    "path": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\deployment-receipts\\source-grounding-successor\\candidate\\operational-20261016175508\\final-target-integrity.json",
     "reason": "Execution NOT_AUTHORIZED: approval absent"
   },
   "approval": "NONE",
+  "approved_budget": {
+    "blocker": "Nonmatching EXPERIMENT rule is skipped but nonempty policy still yields PASS; unapproved scope is not refused",
+    "candidate": {
+      "limits": [
+        {
+          "identity": "ff37802e430190c9c683df87b03252de1bca09f2389fa8ad3eaf7ace7480c966",
+          "limits": {
+            "fresh_calls": 4,
+            "input_tokens": 1756679,
+            "output_tokens": 191923
+          },
+          "scope": "EXPERIMENT"
+        }
+      ]
+    },
+    "candidate_file": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\deployment-receipts\\source-grounding-successor\\candidate\\operational-20261016175508\\approved-policy-candidate.json",
+    "candidate_sha256": "caf43295d0a6728546e7d0740cbe01a5fb656751ae29a6036a72177d23d8e97c",
+    "compatibility_receipt": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\deployment-receipts\\source-grounding-successor\\candidate\\operational-20261016175508\\policy-compatibility.json",
+    "compatibility_receipt_sha256": "6796b6de7ab603829912a82764cbfa990308bc2efac799a0d55d3a84e050efec",
+    "decision": "MAINTAINER_APPROVED_EXACT_SUCCESSOR_ONLY",
+    "enforcement": "PRE_DISPATCH_OBSERVED_ROLLING_SEVEN_DAY_USAGE_PLUS_OUTSTANDING_FORECAST_RESERVATIONS_AND_PROPOSED_CALL; NOT_PROVIDER_RUNTIME_TOKEN_CEILINGS",
+    "installed": false,
+    "live_policy_sha256": null,
+    "negative_cases": {
+      "exact_run": {
+        "fresh_calls": 4,
+        "reservation_created": false,
+        "status": "BUDGET_CHECK_PASS"
+      },
+      "fresh_calls_insufficient": {
+        "reason": "BUDGET_BLOCKED: fresh_calls:EXCEEDED",
+        "status": "REFUSED"
+      },
+      "incompatible_policy": {
+        "fresh_calls": 4,
+        "reservation_created": false,
+        "status": "BUDGET_CHECK_PASS"
+      },
+      "input_tokens_insufficient": {
+        "reason": "BUDGET_BLOCKED: input_tokens:EXCEEDED",
+        "status": "REFUSED"
+      },
+      "missing_policy": {
+        "fresh_calls": 4,
+        "reservation_created": false,
+        "status": "UNSET"
+      },
+      "output_tokens_insufficient": {
+        "reason": "BUDGET_BLOCKED: output_tokens:EXCEEDED",
+        "status": "REFUSED"
+      },
+      "stale_observation": {
+        "reason": "BUDGET_BLOCKED: refresh metadata-only usage baseline before launch",
+        "status": "REFUSED"
+      },
+      "unrelated_run": {
+        "fresh_calls": 4,
+        "reservation_created": false,
+        "status": "BUDGET_CHECK_PASS"
+      }
+    },
+    "scope_compatibility": "FAIL"
+  },
+  "backup": {
+    "access_control": "RECOVERYADMIN_SYSTEM_ADMINISTRATORS_ONLY; NO_EXTERNAL_TRANSFER",
+    "all_members_verified": 34,
+    "backup": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-publication-backups\\source-grounding-successor\\20261016175508",
+    "backup_includes_future_science": false,
+    "bundle_sha256": "b43928504f63306c096199bdf596c3ce3303191e0ba7a8d86b100a5750db09bd",
+    "classification": "LOCAL_SAME_PHYSICAL_NVME_SSD_RECOVERY_REHEARSAL; INDEPENDENT_DURABILITY_NOT_ESTABLISHED",
+    "credential_and_venv_scope": "EXCLUDED; HOST_DEPENDENCIES_REQUIRED",
+    "durability": "UNESTABLISHED; SAME_PHYSICAL_DISK",
+    "external_archive_sha256": "2df99908217d729cbb802538d043844a6332d54b51ab742957248c7135f41077",
+    "forensic_files_verified": 13,
+    "git_fsck": "PASS",
+    "manifest_sha256": "e4dbce6d05e9b70387f884938a090a7fd66e88ae907c05320028d313cea3bb5a",
+    "original_publication_and_target_unchanged": true,
+    "recovery": "PASS",
+    "recovery_verification_sha256": "e1e8c6e37b858e3a5f7472e3db5d2d74e8701f46f3f58f035cdb2a9cfb708a60",
+    "restored_plan_sha256": "de5f0ef1e62823b4be9b7af89c28936aae0224fb1cb4d5720abf8a34b41877a9",
+    "restored_preparation_disposition": "BUDGET_UNAVAILABLE",
+    "seal_sha256": "377b2ff2606d95db6d4c2260cb4e979634e9bd3e5e9dfed8ed6765fcc92b9b8a",
+    "unreachable_objects_reflogs_hooks": "EXCLUDED; ORIGINALS_UNCHANGED"
+  },
   "binding_checkpoint": "784688570669916d5ad0d7e56f2e26a225f51132",
   "budget": {
     "fresh_calls": 4,
@@ -44,52 +128,58 @@
     "model_invocations": 0,
     "version": "codex-cli 0.162.1"
   },
+  "operational_review_observed_at": "2026-10-16T18:14:57.446694+00:00",
   "pipeline_version": "2",
   "plan": "experiments/source_grounding/plans/candidate-discrimination-pipeline-run-plan.json",
   "plan_sha256": "de5f0ef1e62823b4be9b7af89c28936aae0224fb1cb4d5720abf8a34b41877a9",
   "plan_state": "PLAN_VALID",
   "preparation_disposition": "BUDGET_UNAVAILABLE",
   "preparation_receipt": {
+    "file_sha256": "3ac67ef75fc5eece5c7169d9832404586c4357e13cd77436d8fbf561d0ebec0b",
+    "path": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\deployment-receipts\\source-grounding-successor\\candidate\\9f1eab10-d498-48f8-b069-c4ee18151f6d\\result.json",
+    "payload_sha256": "5f024b2376bcaeb55eec65fd812b8820d92e2f12809d8d5c0901b76b66ad4485"
+  },
+  "prior_preparation_receipt": {
     "file_sha256": "df7896fe1c08aeece32589f443c9c9e96ed51e1fc9450999a74b147d6033af60",
     "path": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\deployment-receipts\\source-grounding-successor\\candidate\\497c2ffc-1a92-4a2a-8d8f-af1dbc9754b8\\result.json",
     "payload_sha256": "cbfae5b36d962e2169bd90d0bc0074c5f3b0bff56192981e584c0cfc331c4706"
   },
   "publication_branch": "main",
+  "publication_decision": "LOCAL_PUBLICATION_DESTINATION_APPROVED; INDEPENDENT_DURABLE_BACKUP_REQUIRED",
   "publication_is_local": true,
   "publication_push": true,
   "publication_remote": "C:/Users/recoveryadmin/Workspace/tools/devtools/.local/deployments/source-grounding-successor/publication.git",
   "remaining_decisions": [
-    "EXPLICIT_APPLICABLE_NUMERIC_BUDGET_POLICY",
-    "LOCAL_PUBLICATION_DESTINATION_AND_BACKUP_REVIEW",
-    "EXACT_HOST_ISSUED_SCIENTIFIC_EXECUTION_AUTHORITY",
-    "SEPARATE_SCIENTIFIC_DISPATCH_AND_EVALUATION_ASSIGNMENT"
+    "SEPARATELY_AUTHORIZE_CANONICAL_SCOPE_REMEDIATION_AND_ANY_REQUIRED_AUTHENTICATED_REBINDING",
+    "APPROVED_INDEPENDENT_STORAGE_AND_RESTORE_FROM_THAT_BACKUP",
+    "SEPARATE_EXACT_SCIENTIFIC_EXECUTION_GRANT_ONLY_AFTER_TECHNICAL_BLOCKERS_RESOLVE"
   ],
   "run_id": "ff37802e430190c9c683df87b03252de1bca09f2389fa8ad3eaf7ace7480c966",
   "scientific_dispatches": 0,
   "scientific_run_directory_exists": false,
-  "scope": "HISTORICAL_READ_ONLY_DEPLOYMENT_PREPARATION; NOT_AUTHORITY",
+  "scope": "READ_ONLY_OPERATIONAL_DECISION_PACKET; BLOCKED; NOT_SCIENTIFIC_AUTHORITY",
   "source_checkpoint": "2aad8a1c8ccc3cd19a0476d7da13f1d95a833d42",
   "stages": [
     {
       "disposition": "PLAN_VALID",
-      "elapsed_seconds": 51.44747800001642,
-      "finished": "2026-10-16T17:22:43.255369+00:00",
+      "elapsed_seconds": 47.982989900017856,
+      "finished": "2026-10-16T17:56:35.828231+00:00",
       "name": "validation",
-      "started": "2026-10-16T17:21:51.807906+00:00"
+      "started": "2026-10-16T17:55:47.845259+00:00"
     },
     {
       "disposition": "PARTIAL",
-      "elapsed_seconds": 1.76309819999733,
-      "finished": "2026-10-16T17:22:45.020708+00:00",
+      "elapsed_seconds": 1.64799449997372,
+      "finished": "2026-10-16T17:56:37.479804+00:00",
       "name": "usage",
-      "started": "2026-10-16T17:22:43.257623+00:00"
+      "started": "2026-10-16T17:56:35.831827+00:00"
     },
     {
       "disposition": "UNSET",
-      "elapsed_seconds": 6.04033519999939,
-      "finished": "2026-10-16T17:22:51.063134+00:00",
+      "elapsed_seconds": 7.611722800007556,
+      "finished": "2026-10-16T17:56:45.094777+00:00",
       "name": "budget",
-      "started": "2026-10-16T17:22:45.022812+00:00"
+      "started": "2026-10-16T17:56:37.483067+00:00"
     }
   ],
   "target": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-source-grounding-successor",
@@ -109,11 +199,11 @@
     "budget_evidence": {
       "backfill.json": {
         "path": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-source-grounding-successor\\.local\\usage\\backfill.json",
-        "sha256": "6943d8d2964e492ccf3ab09529b9911fce74f16c48e3d379e9ac0b612148c908"
+        "sha256": "4149878e287191727976e9a5a519b8522e66861e24c1d4c5a0212f6f7aa57ff1"
       },
       "ledger.json": {
         "path": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-source-grounding-successor\\.local\\usage\\ledger.json",
-        "sha256": "fba523a025e88d806e40aa894c595cc104d1bf8b75d4dee055baabd06c48aaaa"
+        "sha256": "e8c57c33ba5bafe14b703a975a0cc7fdc1aab0d3bbfb6f3b1da28cfd4b5eadf3"
       },
       "policy.json": {
         "path": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-source-grounding-successor\\.local\\usage\\policy.json",
@@ -125,19 +215,25 @@
       }
     },
     "coverage": "PARTIAL / OBSERVED_LOCAL_AND_DEVTOOLS / NOT_ACCOUNT_WIDE",
-    "ledger_sha256": "fba523a025e88d806e40aa894c595cc104d1bf8b75d4dee055baabd06c48aaaa",
+    "ledger_sha256": "e8c57c33ba5bafe14b703a975a0cc7fdc1aab0d3bbfb6f3b1da28cfd4b5eadf3",
+    "observed_at": "2026-10-16T17:53:31.304818+00:00",
     "private_totals": "RETAINED_ONLY_IN_IGNORED_EXTERNAL_RECEIPTS",
     "unknown_categories_present": true
   },
   "verification": {
     "binding_replay": "PASS",
     "focused_pipeline_design_budget_tests": 60,
+    "isolated_recovery": "PASS",
+    "latest_budget_startup_tests_passed": 12,
+    "latest_isolated_compatibility_probes": 8,
     "new_binding_source_format": "PASS",
     "new_binding_source_ruff": "PASS",
     "new_binding_source_strict_mypy": "PASS",
     "plan_replay": "PASS",
+    "production_source_changes": false,
     "protected_development": "REUSED_UNCHANGED_PRODUCTION_AT_2aad8a1; 1662_PASSED_2_SKIPPED_100_PERCENT_BRANCH; NOT_RERUN_FOR_BINDINGS",
     "receipt_stage_hashes": "PASS",
+    "requested_fail_closed_scope_contract": "FAIL: unrelated and incompatible policy return PASS",
     "status_history": "PASS",
     "successor_equivalence_replay_tests": 4,
     "synthetic_authority_tests": 12
@@ -153,7 +249,7 @@
           "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-source-grounding-successor\\experiments\\source_grounding\\discrimination\\entry.py",
           "--help"
         ],
-        "cwd": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-worker-preflight-idg1il9u",
+        "cwd": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-worker-preflight-iwwhg4v6",
         "cwd_unchanged": true,
         "exit_code": 0,
         "external_cwd": true,

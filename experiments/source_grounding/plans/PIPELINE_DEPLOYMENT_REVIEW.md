@@ -1,4 +1,169 @@
-# Controlled pipeline deployment candidate: unapproved, budget unavailable
+# Controlled pipeline deployment: approved operational decisions, execution blocked
+
+## Latest operational decision and verification (2026-10-16)
+
+The maintainer approved **four fresh calls, 1,756,679 input tokens and 191,923
+output tokens**, scoped only to successor
+`ff37802e430190c9c683df87b03252de1bca09f2389fa8ad3eaf7ace7480c966`.
+The existing local publication destination is also accepted, conditional on a
+durable backup with verified recovery. These decisions grant **no scientific
+execution authority**. The pinned execution source and plan remain unchanged.
+
+**Deployment remains blocked.** Exact-scope fail-closed compatibility failed, so
+the live numeric policy was not installed. A local recovery rehearsal passed,
+but no approved independently durable storage destination was established.
+Fresh actual preparation reports PLAN_VALID / worker startup PASS /
+BUDGET_UNAVAILABLE. Scientific approval remains NONE; execution is NOT STARTED.
+
+### Budget compatibility: approved values retained, unsafe installation withheld
+
+The canonical candidate is one `EXPERIMENT` rule, identifying only the exact run
+above, with `fresh_calls: 4`, `input_tokens: 1756679`, `output_tokens: 191923`.
+No additional model, project, account-wide or overlapping-category limits were
+invented. Candidate bytes are retained outside the target at the operational
+receipt root below; SHA-256:
+`caf43295d0a6728546e7d0740cbe01a5fb656751ae29a6036a72177d23d8e97c`.
+Actual target `.local/usage/policy.json` remains absent, preserving its starting
+configuration. There is no installed policy digest or reservation.
+
+Eight isolated, metadata-only probes exercised the target's actual canonical
+preview with the frozen four-call inventory:
+
+| Probe | Actual result |
+| --- | --- |
+| Missing numeric policy | UNSET; pipeline refuses readiness |
+| Approved exact-run rule and matching run | BUDGET_CHECK_PASS; no reservation |
+| Same rule assessed for an unrelated run | **BUDGET_CHECK_PASS — fails required refusal** |
+| Policy names an unrelated run, assessed for this successor | **BUDGET_CHECK_PASS — fails required refusal** |
+| Fresh-call allowance one lower | REFUSED / EXCEEDED |
+| Input allowance one token lower | REFUSED / EXCEEDED |
+| Output allowance one token lower | REFUSED / EXCEEDED |
+| Stale observation | REFUSED / refresh required |
+
+`usage_budget._check_local` skips a nonmatching experiment rule at lines 142–143
+and returns the nonempty local configuration. `preview` treats any nonempty
+`limits` array as configured at line 224, then reports PASS at line 245, without
+requiring an applicable rule. Strict reservation likewise checks nonemptiness.
+The scientific controller's separate approval enforcement remains intact, but
+that does not repair the requested numeric admission boundary. No live policy
+was installed and no broader substitute policy was used. The negative result is
+recorded in `policy-compatibility.json`, SHA-256
+`6796b6de7ab603829912a82764cbfa990308bc2efac799a0d55d3a84e050efec`.
+
+For an applicable rule, the owner assesses selected observed consumption in its
+rolling seven-day window, outstanding unsettled forecast reservations and the
+next proposed forecast. Preview simulates all four calls in memory. Actual
+reservation precedes scientific entry; plan-owned call/model counters prevent
+expanding or repeating that inventory. These are **pre-dispatch admission and
+reservation bounds**, with post-run consumption assessment. They are not hard
+provider runtime input/output token ceilings or a lifetime token-accounting
+service. Cached input stays within input, and reasoning stays within output.
+Unknown constrained amounts fail rather than becoming zero. Actual consumption
+can exceed a forecast before later refusal/accounting detects it.
+
+The requested strict scope cannot be safely enabled under this frozen contract.
+Any canonical scope correction needs separate engineering authorization; changing
+bound code would also require authenticated source/binding review before any
+scientific grant. This assignment changes no code and constructs no new successor.
+
+### Publication recovery: PASS; independent durability: unestablished
+
+Read-only storage discovery found one physical NVMe SSD, the C: data volume and
+its same-disk recovery partition, no mapped backup share and no configured File
+History destination. OneDrive is configured, but experiment-backup authorization
+and independent recovery were not established; no cloud copy was made.
+
+The restricted local rehearsal package is:
+
+```text
+C:/Users/recoveryadmin/Workspace/tools/devtools-publication-backups/source-grounding-successor/20261016175508
+```
+
+It is outside the active publication, execution and authoring repositories, but
+shares physical disk 0. Its NTFS ACL permits recoveryadmin, SYSTEM and local
+Administrators. It is **not a verified disk-failure backup**. No independent
+durability or encryption guarantee is asserted.
+
+| Artifact | SHA-256 |
+| --- | --- |
+| `manifest.json` | `e4dbce6d05e9b70387f884938a090a7fd66e88ae907c05320028d313cea3bb5a` |
+| `publication.bundle` | `b43928504f63306c096199bdf596c3ce3303191e0ba7a8d86b100a5750db09bd` |
+| `external-evidence.zip` | `2df99908217d729cbb802538d043844a6332d54b51ab742957248c7135f41077` |
+| `recovery-verification.json` | `e1e8c6e37b858e3a5f7472e3db5d2d74e8701f46f3f58f035cdb2a9cfb708a60` |
+| `seal.json` | `377b2ff2606d95db6d4c2260cb4e979634e9bd3e5e9dfed8ed6765fcc92b9b8a` |
+
+The 1,579,073,140-byte Git bundle contains all objects reachable from publication
+refs, including the pinned source/binding/plan ancestry. Original unreferenced
+objects and reflogs are outside its coverage and remain untouched. The
+1,501,293-byte external archive contains 34 allowlisted members: all 13 preserved
+forensic files, current usage metadata, preparation/compatibility receipts and
+configuration/environment provenance. Absent policy/reservation files are
+explicitly recorded. Credentials, installed environments, caches and hooks are
+excluded. Historical Git content and opaque closures were backed up and hashed
+without inspecting protected semantic judgments.
+
+Actual recovery used a fresh access-restricted temporary directory. Git bundle
+verification, clone, full fsck, exact refs/HEAD, required ancestry and absence of
+external object alternates passed. Archive CRC, every member hash, all 13
+forensic hashes, frozen scientific artifacts and adopted closure hashes passed.
+A recovered checkout installed its own locked Python 3.14.0 environment and ran
+its own production preparation CLI: PLAN_VALID / worker startup PASS /
+BUDGET_UNAVAILABLE. Its target source and publication remote were the restored
+repositories. Original source paths were not needed for restored authentication;
+Git, Python, uv dependencies and trusted host access remain external prerequisites.
+Original publication refs/configuration, pinned target and scientific state were
+verified unchanged afterward. The initial bundle contains no future science.
+
+To satisfy durability, an approved independent destination must receive the
+sealed package with equivalent access restrictions; verify its hashes and perform
+another isolated restore **from that destination**. A same-disk copy or OneDrive
+environment variable is insufficient evidence. No new remote service was created.
+
+After any separately authorized future execution, obtain a stable controller
+checkpoint and preserve its actual uncertainty/terminal disposition. Under the
+existing controller writer/consistency contract, create a fresh capture directory
+and Git bundle from the synchronized publication refs. Capture the authoritative
+run journals and required external worker/return/usage evidence named by those
+receipts, plus dispatch intent, reservations, applicable policy and provenance.
+Use an explicit allowlist and per-file hashes; a Git bundle alone omits these
+external files. Never overwrite an earlier capture or remove forensic context.
+Transfer to approved independent storage, verify hashes there, restore in isolation,
+run full Git integrity checks and authenticate authoritative publications and
+non-Git evidence read-only. Preserve original pipeline receipt target identities;
+there is no automatic receipt-relocation contract. No recovery test may retry a
+scientific operation. The current assignment-local rehearsal pins the unexecuted
+initial state and must not be treated as a future live-backup service.
+
+### Current evidence and next protected decisions
+
+Operational receipt root:
+
+```text
+C:/Users/recoveryadmin/Workspace/tools/devtools/.local/deployment-receipts/source-grounding-successor/candidate/operational-20261016175508
+```
+
+It contains the approved policy candidate, compatibility and storage observations,
+recovery verification reference, final target integrity and complete operational
+decision packet. Fresh actual preparation is attempt
+`9f1eab10-d498-48f8-b069-c4ee18151f6d`, result SHA-256
+`3ac67ef75fc5eece5c7169d9832404586c4357e13cd77436d8fbf561d0ebec0b`.
+Payload/stage hashes and human status/history authenticate. Metadata refresh at
+`2026-10-16T17:53:31.304818+00:00` retains partial local coverage and unknown
+categories; private totals remain only in ignored receipts/handoff. No account
+capacity is inferred. Twelve focused existing budget/startup tests pass; no
+production code or protected development gate changed or was rerun.
+
+The maintainer's numeric and local-publication decisions are already recorded;
+they need not be requested again. The remaining technical blockers are canonical
+exact-scope compatibility and independently durable recovery. Resolve those
+under separate authorization before considering any scientific execution grant.
+The current exact candidate remains the plan/digest/run below, unapproved and
+unexecuted. If a separately authorized bound-code correction changes its identity,
+the resulting exact plan must be reviewed before granting authority. The older
+procedure below is historical context, not permission to enable this unsafe
+configuration or execute the currently blocked candidate.
+
+## Initial deployment preparation (historical)
 
 The binding-only successor is **PLAN_VALID** against a separate authenticated
 execution checkout. Actual worker startup passes. Preparation ends
@@ -163,7 +328,7 @@ Missing observations are not zero consumption. Cached input is a subset of input
 reasoning output is a subset of output. Preserve cache-write observations separately
 and never add overlapping categories to input/output budgets.
 
-## Economics and required policy decision
+## Economics and initial policy options (historical)
 
 The unchanged low-confidence forecast is **28,539–1,756,679 input tokens** and
 **0–191,923 output tokens**, across exactly four fresh calls. These empirical
@@ -181,7 +346,7 @@ window applies to all local observations. The window is rolling seven days.
 Missing ledger, stale evidence, unknown constrained categories, conflicting
 observations or unknown/mixed model attribution can prevent admission.
 
-Concrete options for separate maintainer review:
+Options considered before the approved operational decisions above:
 
 | Option | Consequence |
 | --- | --- |

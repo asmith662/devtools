@@ -1,5 +1,20 @@
 # Implementation Ledger
 
+## Approved operational decisions: compatibility and recovery verification (2026-10-16)
+
+The [existing deployment packet](../experiments/source_grounding/plans/PIPELINE_DEPLOYMENT_REVIEW.md)
+records the approved exact-run 4-call / 1,756,679-input / 191,923-output budget and
+acceptance of local publication subject to durable recovery. Eight isolated
+canonical probes exposed false PASS for unrelated-run and incompatible-policy
+cases; live policy installation was withheld. Twelve existing budget/startup
+tests pass. Fresh pinned-target preparation remains PLAN_VALID / startup PASS /
+BUDGET_UNAVAILABLE. A Git bundle plus 34 allowlisted external metadata members,
+including all 13 forensic files, restores and authenticates in isolation with an
+independent restored environment. Same-physical-SSD storage does not satisfy
+independent durability. Scope compatibility and independent backup remain
+technical blockers. No source, plan, scientific approval or execution changed;
+no new pipeline/controller increment or successor was constructed.
+
 ## Controlled source-grounding pipeline deployment preparation (2026-10-16)
 
 Published a [binding-only candidate-07 successor](../experiments/source_grounding/plans/PIPELINE_DEPLOYMENT_REVIEW.md)
