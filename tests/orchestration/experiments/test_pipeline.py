@@ -325,7 +325,12 @@ def test_cli(
                 ],
             )
             assert main() == 0
-            assert capsys.readouterr().out
+            rendered = capsys.readouterr().out
+            assert rendered
+            if command == "history" and not output:
+                assert "BUDGET_UNAVAILABLE" in rendered
+                assert "report=" in rendered
+                assert len(rendered.splitlines()) == 3
     monkeypatch.setattr(
         sys,
         "argv",

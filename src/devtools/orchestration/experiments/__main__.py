@@ -47,7 +47,15 @@ def main() -> int:
         return 0 if result["disposition"] == "READY_FOR_APPROVAL" else 1
     plan = args.plan.as_posix() if args.plan else None
     if args.command == "history":
-        print(receipts.encoded(receipts.history(root, plan)))
+        rows = receipts.history(root, plan)
+        if args.json:
+            print(receipts.encoded(rows))
+        else:
+            for row in rows:
+                print(
+                    f"{row['started']} {row['disposition']} {row['plan']} "
+                    f"target={row['target']} report={row['report']}",
+                )
     else:
         result = receipts.latest(root, plan)
         print(receipts.encoded(result) if args.json else summary(result))
