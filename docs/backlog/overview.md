@@ -125,5 +125,6 @@ provide dependency navigation without duplicating a second dependency graph.
 | [B-0045](items/B-0045-establish-minimal-model-interaction-core.md) | Establish minimal ModelInteraction core | IMPLEMENTED | models |
 | [B-0046](items/B-0046-investigate-advanced-model-interaction-provider-pressure.md) | Investigate advanced model-interaction/provider pressure | BACKLOG | models |
 | [B-0047](items/B-0047-protected-development-validation-profile.md) | Protected development validation profile | VALIDATED | evaluation |
+| [B-0048](items/B-0048-experiment-pipeline-authorized-execution.md) | Experiment pipeline authorized execution and terminal closeout | BACKLOG | orchestration |
 
 See [metadata.md](metadata.md) for record semantics and promotion discipline.

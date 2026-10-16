@@ -225,3 +225,57 @@ def test_frozen_profile_and_economics_cannot_be_retuned_in_plan() -> None:
         )
     legacy: Any = SimpleNamespace(value={})
     Controller.authenticate_usage_protocol(legacy, {})
+
+
+def test_preview_is_read_only_and_assesses_whole_inventory(tmp_path: Path) -> None:
+    """Combined forecast, existing consumption and reservations share admission."""
+    local = tmp_path / ".local/usage"
+    value = {**plan(), "economics": {"fresh_calls": 2}}
+    assert usage_budget.preview(tmp_path, {}, "run")["status"] == "UNAVAILABLE"
+    assert usage_budget.preview(tmp_path, value, "run")["status"] == "UNSET"
+    assert not local.exists()
+    save(
+        local / "policy.json",
+        {
+            "limits": [
+                {
+                    "scope": "OBSERVED_WINDOW",
+                    "identity": "local",
+                    "limits": {
+                        "fresh_calls": 2,
+                        "input_tokens": None,
+                        "output_tokens": None,
+                    },
+                },
+            ],
+        },
+    )
+    assert usage_budget.preview(tmp_path, value, "run")["status"] == "UNAVAILABLE"
+    save_observations(local / "ledger.json", ())
+    save(local / "backfill.json", {"observed_at": str(Timestamp.now())})
+    before = {p.name: p.read_bytes() for p in local.iterdir()}
+    result = usage_budget.preview(tmp_path, value, "run")
+    assert result["status"] == "BUDGET_CHECK_PASS" and not result["reservation_created"]
+    assert before == {p.name: p.read_bytes() for p in local.iterdir()}
+    save(
+        local / "policy.json",
+        {
+            "limits": [
+                {
+                    "scope": "OBSERVED_WINDOW",
+                    "identity": "local",
+                    "limits": {
+                        "fresh_calls": 1,
+                        "input_tokens": None,
+                        "output_tokens": None,
+                    },
+                },
+            ],
+        },
+    )
+    with pytest.raises(ValueError, match="EXCEEDED"):
+        usage_budget.preview(tmp_path, value, "run")
+    assert not (local / "reservations.json").exists()
+    usage_budget.reserve(tmp_path, value, "run", "one", "C", authorized=True)
+    with pytest.raises(ValueError, match="reconciliation"):
+        usage_budget.preview(tmp_path, value, "run")

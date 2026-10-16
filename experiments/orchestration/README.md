@@ -1,5 +1,14 @@
 # Approved experiment cohort controller
 
+The production [ExperimentExecutionPipeline preparation slice](../../src/devtools/orchestration/experiments/docs/overview.md)
+provides `python -m devtools.orchestration.experiments prepare <plan> --target <checkout>`,
+plus preparation status/history. It invokes this controller in the authenticated
+target environment, without approval publication or scientific dispatch.
+`usage_budget.preview` shares numeric checks with reservation admission while
+keeping proposed reservations in memory. Older frozen target controllers without
+that seam remain inspectable but cannot yield READY_FOR_APPROVAL through this
+pipeline. No frozen plan is automatically rebound to these engineering changes.
+
 Prospective Python worker startup is checked before PLAN_VALID and approval.
 The [startup contract and preparation-only recovery](engineering/startup/README.md)
 owns exact script inventory, external-CWD `python -B script --help` subprocesses,

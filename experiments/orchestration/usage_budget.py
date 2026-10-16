@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: ANN401, PLR0913, PLC0415 -- bounded controller admission/measurement composition
+# ruff: noqa: ANN401, PLR0913, PLR0917, PLC0415 -- bounded controller admission/measurement composition
 """Reserve declared observed-usage allowances before scientific entry.
 
 This local manifest is not a billing service or execution authority. The
@@ -54,111 +54,7 @@ def reserve(
             identity not in state["calls"],
             "BUDGET_BLOCKED: invocation already reserved; no retry",
         )
-        own = [v for v in state["calls"].values() if v["run_id"] == run_id]
-        require(
-            len(own) < policy["fresh_call_limit"],
-            "BUDGET_BLOCKED: experiment fresh-call limit",
-        )
-        require(
-            sum(v["model"] == call["model"] for v in own)
-            < policy["model_call_limits"][call["model"]],
-            "BUDGET_BLOCKED: model call limit",
-        )
-        # Optional local numeric constraints are never silently configured.
-        local_path = ledger_path.parent / "policy.json"
-        local = load(local_path) if local_path.exists() else {"limits": []}
-        observed = observations(ledger_path)
-        if local["limits"]:
-            last = load(ledger_path.parent / "backfill.json")
-            age = (
-                Timestamp.now().value
-                - Timestamp.from_isoformat(last["observed_at"]).value
-            ).total_seconds()
-            require(
-                0 <= age <= local.get("max_observation_age_seconds", 300),
-                "BUDGET_BLOCKED: refresh metadata-only usage baseline before launch",
-            )
-        for item in local["limits"]:
-            scope = BudgetScope(item["scope"])
-            model = item.get("model")
-            if model and model != call["model"]:
-                continue
-            if scope == BudgetScope.PROJECT and item["identity"] != "devtools":
-                continue
-            if scope == BudgetScope.EXPERIMENT and item["identity"] != run_id:
-                continue
-            if scope == BudgetScope.STAGE and item["identity"] != stage:
-                continue
-            require(
-                not model
-                or not any(
-                    g["dimension"] == "model"
-                    and g["value"] in {"UNKNOWN", "MIXED"}
-                    and g["fresh_invocations"]
-                    for g in report(observed, UsageWindow.rolling(Timestamp.now()))[
-                        "groups"
-                    ]
-                ),
-                "BUDGET_BLOCKED: model attribution UNKNOWN or MIXED",
-            )
-            selected = tuple(
-                r
-                for r in observed
-                if (not model or r.model == model)
-                and (
-                    scope != BudgetScope.PROJECT
-                    or r.attribution.project == item["identity"]
-                )
-                and (
-                    scope != BudgetScope.EXPERIMENT
-                    or r.attribution.experiment == run_id
-                )
-                and (scope != BudgetScope.STAGE or r.attribution.stage == stage)
-            )
-            summary = report(selected, UsageWindow.rolling(Timestamp.now()))
-            require(
-                not summary["conflicting_invocations_excluded"],
-                "BUDGET_BLOCKED: conflicting observed usage",
-            )
-            consumed = UsageAmount(
-                None
-                if summary["unallocated_timestamp_observations"]
-                else summary["fresh_invocations"],
-                None
-                if summary["unknown_category_observations"]["input_tokens"]
-                or summary["unallocated_timestamp_observations"]
-                else summary["tokens"]["input_tokens"],
-                None
-                if summary["unknown_category_observations"]["output_tokens"]
-                or summary["unallocated_timestamp_observations"]
-                else summary["tokens"]["output_tokens"],
-            )
-            pending = [
-                v
-                for v in state["calls"].values()
-                if not v["settled"]
-                and (not model or v["model"] == model)
-                and (scope != BudgetScope.EXPERIMENT or v["run_id"] == run_id)
-                and (scope != BudgetScope.STAGE or v["stage"] == stage)
-            ]
-            reserved = UsageAmount(
-                len(pending),
-                sum(v["input_upper"] for v in pending)
-                if all(v["input_upper"] is not None for v in pending)
-                else None,
-                sum(v["output_upper"] for v in pending)
-                if all(v["output_upper"] is not None for v in pending)
-                else None,
-            )
-            proposed = UsageAmount(1, call["input_upper"], call["output_upper"])
-            rule = UsageBudget(
-                scope,
-                item["identity"],
-                UsageAmount(**item["limits"]),
-                model,
-            )
-            decision = rule.check(consumed, reserved, proposed)
-            require(decision.allowed, "BUDGET_BLOCKED: " + ",".join(decision.reasons))
+        local = _assess_call(root, policy, run_id, stage, call, state)
         admission = {
             "invocation": identity,
             "run_id": run_id,
@@ -178,6 +74,156 @@ def reserve(
         state["calls"][identity] = admission
         save(path, state)
     return admission
+
+
+def _assess_call(
+    root: Path,
+    policy: Any,
+    run_id: str,
+    stage: str,
+    call: Any,
+    state: Any,
+) -> Any:
+    """Share existing numeric policy between reservation and read-only preview."""
+    ledger_path = root / ".local/usage/ledger.json"
+    own = [v for v in state["calls"].values() if v["run_id"] == run_id]
+    require(
+        len(own) < policy["fresh_call_limit"],
+        "BUDGET_BLOCKED: experiment fresh-call limit",
+    )
+    require(
+        sum(v["model"] == call["model"] for v in own)
+        < policy["model_call_limits"][call["model"]],
+        "BUDGET_BLOCKED: model call limit",
+    )
+    # Optional local numeric constraints are never silently configured.
+    local_path = ledger_path.parent / "policy.json"
+    local = load(local_path) if local_path.exists() else {"limits": []}
+    observed = observations(ledger_path)
+    if local["limits"]:
+        last = load(ledger_path.parent / "backfill.json")
+        age = (
+            Timestamp.now().value - Timestamp.from_isoformat(last["observed_at"]).value
+        ).total_seconds()
+        require(
+            0 <= age <= local.get("max_observation_age_seconds", 300),
+            "BUDGET_BLOCKED: refresh metadata-only usage baseline before launch",
+        )
+    for item in local["limits"]:
+        scope = BudgetScope(item["scope"])
+        model = item.get("model")
+        if model and model != call["model"]:
+            continue
+        if scope == BudgetScope.PROJECT and item["identity"] != "devtools":
+            continue
+        if scope == BudgetScope.EXPERIMENT and item["identity"] != run_id:
+            continue
+        if scope == BudgetScope.STAGE and item["identity"] != stage:
+            continue
+        require(
+            not model
+            or not any(
+                g["dimension"] == "model"
+                and g["value"] in {"UNKNOWN", "MIXED"}
+                and g["fresh_invocations"]
+                for g in report(observed, UsageWindow.rolling(Timestamp.now()))[
+                    "groups"
+                ]
+            ),
+            "BUDGET_BLOCKED: model attribution UNKNOWN or MIXED",
+        )
+        selected = tuple(
+            r
+            for r in observed
+            if (not model or r.model == model)
+            and (
+                scope != BudgetScope.PROJECT
+                or r.attribution.project == item["identity"]
+            )
+            and (scope != BudgetScope.EXPERIMENT or r.attribution.experiment == run_id)
+            and (scope != BudgetScope.STAGE or r.attribution.stage == stage)
+        )
+        summary = report(selected, UsageWindow.rolling(Timestamp.now()))
+        require(
+            not summary["conflicting_invocations_excluded"],
+            "BUDGET_BLOCKED: conflicting observed usage",
+        )
+        consumed = UsageAmount(
+            None
+            if summary["unallocated_timestamp_observations"]
+            else summary["fresh_invocations"],
+            None
+            if summary["unknown_category_observations"]["input_tokens"]
+            or summary["unallocated_timestamp_observations"]
+            else summary["tokens"]["input_tokens"],
+            None
+            if summary["unknown_category_observations"]["output_tokens"]
+            or summary["unallocated_timestamp_observations"]
+            else summary["tokens"]["output_tokens"],
+        )
+        pending = [
+            v
+            for v in state["calls"].values()
+            if not v["settled"]
+            and (not model or v["model"] == model)
+            and (scope != BudgetScope.EXPERIMENT or v["run_id"] == run_id)
+            and (scope != BudgetScope.STAGE or v["stage"] == stage)
+        ]
+        reserved = UsageAmount(
+            len(pending),
+            sum(v["input_upper"] for v in pending)
+            if all(v["input_upper"] is not None for v in pending)
+            else None,
+            sum(v["output_upper"] for v in pending)
+            if all(v["output_upper"] is not None for v in pending)
+            else None,
+        )
+        proposed = UsageAmount(1, call["input_upper"], call["output_upper"])
+        rule = UsageBudget(
+            scope,
+            item["identity"],
+            UsageAmount(**item["limits"]),
+            model,
+        )
+        decision = rule.check(consumed, reserved, proposed)
+        require(decision.allowed, "BUDGET_BLOCKED: " + ",".join(decision.reasons))
+
+    return local
+
+
+def preview(root: Path, plan: Any, run_id: str) -> Any:
+    """Assess the entire fresh inventory in memory; never reserve or authorize."""
+    if "usage_budget" not in plan or "economics" not in plan:
+        return {"status": "UNAVAILABLE", "reason": "Forecast or fresh inventory absent"}
+    path = root / ".local/usage/reservations.json"
+    state = load(path) if path.exists() else {"calls": {}}
+    policy = plan["usage_budget"]
+    local = root / ".local/usage/policy.json"
+    configured = local.exists() and bool(load(local)["limits"])
+    if configured and not (root / ".local/usage/ledger.json").exists():
+        return {
+            "status": "UNAVAILABLE",
+            "reason": "Configured budget has no observed usage ledger",
+        }
+    for key, call in policy["calls"].items():
+        identity = run_id + "/" + key
+        require(
+            identity not in state["calls"],
+            "BUDGET_BLOCKED: existing reservation requires reconciliation",
+        )
+        stage = key.split("/")[1]
+        _assess_call(root, policy, run_id, stage, call, state)
+        state["calls"][identity] = {
+            **call,
+            "run_id": run_id,
+            "stage": stage,
+            "settled": False,
+        }
+    return {
+        "status": "BUDGET_CHECK_PASS" if configured else "UNSET",
+        "fresh_calls": len(policy["calls"]),
+        "reservation_created": False,
+    }
 
 
 def verify(root: Path, run_id: str, case: str, stage: str) -> Any:
