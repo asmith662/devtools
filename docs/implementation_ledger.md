@@ -1,5 +1,22 @@
 # Implementation Ledger
 
+## Controlled source-grounding pipeline deployment preparation (2026-10-16)
+
+Published a [binding-only candidate-07 successor](../experiments/source_grounding/plans/PIPELINE_DEPLOYMENT_REVIEW.md)
+of the unchanged four-call candidate-06 science. Separate implementation, binding
+and plan publication identities remain explicit; execution target
+`35d464425ef13029b0ee6151e5aea232d8489068` contains the committed new plan.
+A separate exact-byte Python 3.14.0 checkout and local main publication repository
+authenticate without changing protected main or the completed pipeline feature.
+Actual pipeline preparation reports PLAN_VALID / startup PASS / BUDGET_UNAVAILABLE;
+canonical approval inspection refuses absent authority and creates no reservation.
+76 bounded deterministic tests pass, including exact scientific byte equivalence,
+adopted preservation, fifth-call refusal, replay and synthetic authority checks.
+New binding code passes Ruff, formatting and strict mypy. Unchanged production
+reuses the validated Increment 2 protected gate. Numeric policy, publication/backup
+review and exact scientific approval remain human decisions. No real science,
+approval, dead-run retry or sealed evaluation occurs.
+
 ## ExperimentExecutionPipeline governed execution Increment 2 (2026-10-16)
 
 The [concrete experiment pipeline](../src/devtools/orchestration/experiments/docs/overview.md)

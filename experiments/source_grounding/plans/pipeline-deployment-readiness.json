@@ -1,0 +1,169 @@
+{
+  "admission_refusal": {
+    "file_sha256": "1608b154bf170b62604d513b42bb2b96987f80897c09c6d908cc96de07ed1836",
+    "path": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\deployment-receipts\\source-grounding-successor\\candidate\\admission-refusal.json",
+    "reason": "Execution NOT_AUTHORIZED: approval absent"
+  },
+  "approval": "NONE",
+  "binding_checkpoint": "784688570669916d5ad0d7e56f2e26a225f51132",
+  "budget": {
+    "fresh_calls": 4,
+    "reservation_created": false,
+    "status": "UNSET"
+  },
+  "executable": {
+    "path": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-source-grounding-successor\\.venv\\Scripts\\python.exe",
+    "sha256": "7bcdf892816a8d651e89f008cfc2f1544a41f13089af70a227b9fc54ced8551f",
+    "version": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "execution_authorized": "NO",
+  "execution_target_checkpoint": "35d464425ef13029b0ee6151e5aea232d8489068",
+  "forecast": {
+    "Astra": 3,
+    "Sol": 1,
+    "adopted_dependencies": 2,
+    "adopted_new_consumption": 0,
+    "confidence": "LOW; EMPIRICAL_ENVELOPES_NOT_CONFIDENCE_OR_TOKENIZER_BOUNDS",
+    "fresh_calls": 4,
+    "input_range": [
+      28539,
+      1756679
+    ],
+    "maximum_fresh_calls": 4,
+    "output_range": [
+      0,
+      191923
+    ]
+  },
+  "fresh_source_grounding_model_calls": 0,
+  "launcher_version_check": {
+    "argv_suffix": [
+      "--no-daemon",
+      "--version"
+    ],
+    "model_invocations": 0,
+    "version": "codex-cli 0.162.1"
+  },
+  "pipeline_version": "2",
+  "plan": "experiments/source_grounding/plans/candidate-discrimination-pipeline-run-plan.json",
+  "plan_sha256": "de5f0ef1e62823b4be9b7af89c28936aae0224fb1cb4d5720abf8a34b41877a9",
+  "plan_state": "PLAN_VALID",
+  "preparation_disposition": "BUDGET_UNAVAILABLE",
+  "preparation_receipt": {
+    "file_sha256": "df7896fe1c08aeece32589f443c9c9e96ed51e1fc9450999a74b147d6033af60",
+    "path": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\deployment-receipts\\source-grounding-successor\\candidate\\497c2ffc-1a92-4a2a-8d8f-af1dbc9754b8\\result.json",
+    "payload_sha256": "cbfae5b36d962e2169bd90d0bc0074c5f3b0bff56192981e584c0cfc331c4706"
+  },
+  "publication_branch": "main",
+  "publication_is_local": true,
+  "publication_push": true,
+  "publication_remote": "C:/Users/recoveryadmin/Workspace/tools/devtools/.local/deployments/source-grounding-successor/publication.git",
+  "remaining_decisions": [
+    "EXPLICIT_APPLICABLE_NUMERIC_BUDGET_POLICY",
+    "LOCAL_PUBLICATION_DESTINATION_AND_BACKUP_REVIEW",
+    "EXACT_HOST_ISSUED_SCIENTIFIC_EXECUTION_AUTHORITY",
+    "SEPARATE_SCIENTIFIC_DISPATCH_AND_EVALUATION_ASSIGNMENT"
+  ],
+  "run_id": "ff37802e430190c9c683df87b03252de1bca09f2389fa8ad3eaf7ace7480c966",
+  "scientific_dispatches": 0,
+  "scientific_run_directory_exists": false,
+  "scope": "HISTORICAL_READ_ONLY_DEPLOYMENT_PREPARATION; NOT_AUTHORITY",
+  "source_checkpoint": "2aad8a1c8ccc3cd19a0476d7da13f1d95a833d42",
+  "stages": [
+    {
+      "disposition": "PLAN_VALID",
+      "elapsed_seconds": 51.44747800001642,
+      "finished": "2026-10-16T17:22:43.255369+00:00",
+      "name": "validation",
+      "started": "2026-10-16T17:21:51.807906+00:00"
+    },
+    {
+      "disposition": "PARTIAL",
+      "elapsed_seconds": 1.76309819999733,
+      "finished": "2026-10-16T17:22:45.020708+00:00",
+      "name": "usage",
+      "started": "2026-10-16T17:22:43.257623+00:00"
+    },
+    {
+      "disposition": "UNSET",
+      "elapsed_seconds": 6.04033519999939,
+      "finished": "2026-10-16T17:22:51.063134+00:00",
+      "name": "budget",
+      "started": "2026-10-16T17:22:45.022812+00:00"
+    }
+  ],
+  "target": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-source-grounding-successor",
+  "target_git_directory": "C:/Users/recoveryadmin/Workspace/tools/devtools-source-grounding-successor/.git",
+  "timeout_investigation": {
+    "git_calls": 81,
+    "git_seconds": 2.4026106001110747,
+    "pipeline_read_only_deadline_seconds": 300,
+    "prior_file_read_seconds": 17.567,
+    "prior_verify_seconds": 21.862157700001262,
+    "production_defect_established": false,
+    "test_cli_deadline_seconds": 30,
+    "timeout_change": false
+  },
+  "usage": {
+    "account_wide_quota": "UNKNOWN",
+    "budget_evidence": {
+      "backfill.json": {
+        "path": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-source-grounding-successor\\.local\\usage\\backfill.json",
+        "sha256": "6943d8d2964e492ccf3ab09529b9911fce74f16c48e3d379e9ac0b612148c908"
+      },
+      "ledger.json": {
+        "path": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-source-grounding-successor\\.local\\usage\\ledger.json",
+        "sha256": "fba523a025e88d806e40aa894c595cc104d1bf8b75d4dee055baabd06c48aaaa"
+      },
+      "policy.json": {
+        "path": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-source-grounding-successor\\.local\\usage\\policy.json",
+        "sha256": null
+      },
+      "reservations.json": {
+        "path": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-source-grounding-successor\\.local\\usage\\reservations.json",
+        "sha256": null
+      }
+    },
+    "coverage": "PARTIAL / OBSERVED_LOCAL_AND_DEVTOOLS / NOT_ACCOUNT_WIDE",
+    "ledger_sha256": "fba523a025e88d806e40aa894c595cc104d1bf8b75d4dee055baabd06c48aaaa",
+    "private_totals": "RETAINED_ONLY_IN_IGNORED_EXTERNAL_RECEIPTS",
+    "unknown_categories_present": true
+  },
+  "verification": {
+    "binding_replay": "PASS",
+    "focused_pipeline_design_budget_tests": 60,
+    "new_binding_source_format": "PASS",
+    "new_binding_source_ruff": "PASS",
+    "new_binding_source_strict_mypy": "PASS",
+    "plan_replay": "PASS",
+    "protected_development": "REUSED_UNCHANGED_PRODUCTION_AT_2aad8a1; 1662_PASSED_2_SKIPPED_100_PERCENT_BRANCH; NOT_RERUN_FOR_BINDINGS",
+    "receipt_stage_hashes": "PASS",
+    "status_history": "PASS",
+    "successor_equivalence_replay_tests": 4,
+    "synthetic_authority_tests": 12
+  },
+  "worker_startup": {
+    "model_calls": 0,
+    "schema": "python-worker-entrypoint-preflight-v1",
+    "scripts": [
+      {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-source-grounding-successor\\.venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-source-grounding-successor\\experiments\\source_grounding\\discrimination\\entry.py",
+          "--help"
+        ],
+        "cwd": "C:\\Users\\recoveryadmin\\AppData\\Local\\Temp\\devtools-worker-preflight-idg1il9u",
+        "cwd_unchanged": true,
+        "exit_code": 0,
+        "external_cwd": true,
+        "python_version": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+        "script": "experiments/source_grounding/discrimination/entry.py",
+        "sha256": "72ccaa47b4e9bd16b80751a6ab743dd7c64f1f8254de92327ec0321c1d7e0c71",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_sha256": "b1e95fbcf04c45dd973711ef957a0348daec17d4b02b122bd302cc319ca99b46"
+      }
+    ],
+    "status": "PASS"
+  }
+}

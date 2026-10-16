@@ -60,14 +60,26 @@ incomplete publications and partial/missing accounting. No provider-backed model
 or frozen source-grounding scientific call is used. Production static and
 protected development gates remain required for the engineering checkpoint.
 
-Scientific deployment is **not complete**. Establish an authenticated successor
-execution checkout and binding-only scientific successor, configure explicit
-budget policy and fresh usage evidence, obtain exact human approval, then execute
+Scientific deployment is **not complete**. Following the successor construction
+recorded below, configure explicit budget policy and fresh usage evidence,
+obtain exact human approval, then execute
 and evaluate the existing experiment under separate authorization. Preserve the
 permanently dead prior run and the four-fresh-call bound. The frozen `9225029`
 target lacks the preview/execution contracts and has no approval; this increment
 does not modify it. No automatic retry, receipt relocation protocol, remote/mobile
 approval UX, distributed execution or scientific interpretation is implemented.
+
+Controlled deployment preparation has since established the
+[binding-only successor and pinned execution checkout](../../../experiments/source_grounding/plans/PIPELINE_DEPLOYMENT_REVIEW.md)
+at `35d464425ef13029b0ee6151e5aea232d8489068`. Actual pipeline authentication and
+help-only worker startup pass; fresh partial local usage and the unchanged
+four-call forecast are evidenced. Preparation remains BUDGET_UNAVAILABLE because
+numeric policy is unset; exact approval remains absent. The separate target uses
+its own synchronized main and local publication repository, preserving protected
+main and the completed feature branch. Remaining controlled decisions are the
+applicable numeric policy, publication/backup destination and exact human
+scientific authority, followed by a separately authorized execution/evaluation.
+No scientific call, approval, retry or acceptance follows from this preparation.
 
 The consumer is a human operator now and a future ExperimentManagerAgent.
 Remain concrete until repeated consumers justify more general semantics.
