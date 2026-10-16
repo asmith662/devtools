@@ -1,5 +1,32 @@
 # Superseding prospective execution binding
 
+## Pipeline deployment successor
+
+`execution-07.json` and `execution-07-integrity.json` rebind the unchanged
+candidate-06 scientific artifacts to the completed pipeline implementation at
+`2aad8a1c8ccc3cd19a0476d7da13f1d95a833d42`. The original protocol, economics,
+candidate universes, selections, treatment disclosure template, adopted seals and
+closures remain byte-identical. No scientific implementation changes. The
+successor plan is published in a separate subsequent commit, using this binding
+commit as its Stage A checkpoint. Neither publication grants authority.
+
+The bounded [builder](successor.py) composes existing implementation discovery,
+Git blob authentication, canonical serialization, RunPlan and worker startup
+checks. It never calls controller approval or execution. From an exact-byte
+checkout of the successor with its own Python 3.14.0 environment:
+
+```text
+python -B -m experiments.source_grounding.bindings.successor verify
+python -B -m experiments.source_grounding.bindings.successor verify-plan --checkpoint <binding-commit>
+```
+
+`build` and `plan --checkpoint <binding-commit>` are write-once construction
+counterparts. Replay does not regenerate candidates, resample, evaluate science,
+or inspect semantic judgments. The later
+[deployment review](../plans/PIPELINE_DEPLOYMENT_REVIEW.md) records the exact
+published plan, target and readiness evidence. The earlier binding below remains
+historical evidence for its original lineage.
+
 Scientific semantics are unchanged. This checkpoint supersedes the implementation
 binding of the original frozen Stage A; it does not redesign its scientific
 protocol, cohort or semantic instructions. The original Stage A and approved

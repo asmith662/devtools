@@ -1,0 +1,96 @@
+{
+  "approval": "NONE_FOR_REPLACEMENT",
+  "confirmation_reserve_access": false,
+  "controller_sha256": "d60eceb33db21fe645427434d59b9b039bcb4661031445926b5fcb3ed274640e",
+  "gold_access": false,
+  "implementation_changes": {
+    "experiments/orchestration/controller.py": {
+      "new": "446113466432ebd31354853b751cdf953c6007784dc46c31585d17a80d0c3d30",
+      "old": "7ada29e22eb065f0b614479d62214bbafa5b3469d15f42d6b5f69ca99169db2a"
+    },
+    "experiments/orchestration/pipeline.py": {
+      "new": "853f3a5613bb7266449f68646c848ddc369deebc838e0b2f21a91e9023723e5a",
+      "old": null
+    },
+    "experiments/orchestration/usage_budget.py": {
+      "new": "6446afbf013982fde0484e20bec04fb211f375e0221e4ecfc2049a5bb91fb579",
+      "old": "5e2d0422568677cfb085993b14ee341586e1bad3b7429642ea8f70e5fa1680cf"
+    },
+    "experiments/source_grounding/bindings/successor.py": {
+      "new": "3f93a620beb319d8d38c0d6e0c81165ef44a1d29399ee21459241bbf4aef28ed",
+      "old": null
+    },
+    "src/devtools/orchestration/__init__.py": {
+      "new": "bec108afd32060e4f73151a1b6ca8752e85c72a3f3f8b9bf9e9a2401ee0b9111",
+      "old": "f83eec1345ca99be57d1381d7eb6bdb1c7d975770b6bfb2ebda55b523c8b4229"
+    },
+    "src/devtools/orchestration/experiments/__init__.py": {
+      "new": "605a6be647f62b9a2847668b01a440f7168e642b0c479c878b8a06d71c7c0cfd",
+      "old": null
+    },
+    "src/devtools/orchestration/experiments/__main__.py": {
+      "new": "9b8c4b9fec4a9b8569e79cd6773208ce1eddf71cca23d96e14eca1975f31d166",
+      "old": null
+    },
+    "src/devtools/orchestration/experiments/execution.py": {
+      "new": "ae5e2b56cd02d8941b1f58ee2984758391b686b46bdebbad65aae6f7034c2609",
+      "old": null
+    },
+    "src/devtools/orchestration/experiments/pipeline.py": {
+      "new": "9f99bf099dc139dedb44d2db0a6d560123b5c3a7314627f9a3be5d223157d7f5",
+      "old": null
+    },
+    "src/devtools/orchestration/experiments/receipts.py": {
+      "new": "ab1c2eb81f9b9faf3064816f89552ed606085f09dbec64a22d56aa1bfcc6e23f",
+      "old": null
+    },
+    "src/devtools/orchestration/experiments/target.py": {
+      "new": "02ec44abc658204d164b4e832c4775f53440491f8491e03d62d15488f166be12",
+      "old": null
+    }
+  },
+  "integrity_sha256": "67894fbf0535144b2e7cc794d8c26eb15a084a3ccf199699e0c5559665759a7d",
+  "maximum_fresh_calls": 4,
+  "predecessor_checkpoint": "92250292dacfb8289d129063d5523dd87b63162b",
+  "predecessor_plan": "experiments/source_grounding/plans/candidate-discrimination-startup-run-plan.json",
+  "predecessor_plan_sha256": "64d0d087fb2ace87a2c01c931f3c03eda71d0e1d7af1a762afd10bc35f1a5f48",
+  "predecessor_run_id": "7fdadd776309a3e25c14a3191e2cdf444473a0a4436492275dc76d8206c028f5",
+  "protocol_sha256": "6962c790c4d6767b7560ede8bbc70c7922312902fe273483c81b351a2b74750f",
+  "schema": "source-grounding-prospective-execution-binding-v1",
+  "scientific_artifacts_preserved": {
+    "experiments/codex_dogfood/case_0022/frame.json": "4eb392d31f35acdf8d131ba11ab6bc32bd0701035fee2195847946b22528a148",
+    "experiments/codex_dogfood/case_0022/protocol.json": "0212121ef5fbd182efcdc6cb7a3813f0361ecb8491d19b4dc29efe423b8251fb",
+    "experiments/codex_dogfood/case_0022/resources.json.gz": "1e7b38e5bf1b213c32e06cba0e8d9e59db1841880fd25df745a22823b0bd8211",
+    "experiments/codex_dogfood/case_0023/frame.json": "99baef580a408028902ce9d8e0f3ddfba37784ebb31d707f233724b22b8b3b37",
+    "experiments/codex_dogfood/case_0023/protocol.json": "b543fff155e2f31f0421dfb24758dabce183046581e4821cc80fc12c6ba6d796",
+    "experiments/codex_dogfood/case_0023/resources.json.gz": "5d1cd423748d0de8a001591719b406d597eaf38751d6bee8220bc7066b5d325e",
+    "experiments/codex_dogfood/case_0024/frame.json": "f959ea6f4449e7a41b287e673eda5753fc1edf4db8a9edae916ccf39218705e2",
+    "experiments/codex_dogfood/case_0024/protocol.json": "3c435ddbf165b4875a66560ade046f2d03ca02ed55f6c7ac9c7ac99cee112680",
+    "experiments/codex_dogfood/case_0024/resources.json.gz": "d35f4a2c5590e4420a3185f1949ccb4aa36f8e2a7e9014169feb78a490b01a12",
+    "experiments/orchestration/engineering/adopted_branches/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/0022/closure.json.gz": "8383adefcfcea598fb3a85ce85688e96a6f10d0fa1189838f58135ee0054c221",
+    "experiments/orchestration/engineering/adopted_branches/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/0022/seal.json": "12bb1f669bd4db7c1a0bdc83f072b0959949b778bc654cdf45c800420818f0f7",
+    "experiments/orchestration/engineering/adopted_branches/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/0023/closure.json.gz": "1a1644932cd433fb5d75f3ddd0f7fefdf7da967bc60c2f301106cc9cdf3dd9d1",
+    "experiments/orchestration/engineering/adopted_branches/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/0023/seal.json": "91fb32bfd6ab8548fb9dba30a0cb1a80e8fb7ac2de40d2f78f384e8cdf674328",
+    "experiments/source_grounding/INSTRUCTIONS_GOLD.md": "457be17dcf615485471dedde1fe46818715713ddd620da76658f153075a5b763",
+    "experiments/source_grounding/INSTRUCTIONS_GROUNDING.md": "11e60d58e0d6a2d9c45d3b615bb163f8fab7f255854de8743ea646a4f91a8a5e",
+    "experiments/source_grounding/reviewer.py": "b8f3cc6b796d9f8fc7cd2758762ede0ea6f413aceed864c5cc561799ce5998c4",
+    "experiments/source_grounding/stage_a/candidate-06/0022-selection.json": "c28e47ad6d665466cc057201e8714e7a02701bdc89fe92e7c6aca163b2e44238",
+    "experiments/source_grounding/stage_a/candidate-06/0022-universe.json": "eb39783234bf5bc6173f87d5915d335695aa49c17b8c3bc2449f9c9a0b8a8232",
+    "experiments/source_grounding/stage_a/candidate-06/0023-selection.json": "2c5f8e112700bb518cd6701fec81073c9dc7208991cdbb2049454cadfdeaed22",
+    "experiments/source_grounding/stage_a/candidate-06/0023-universe.json": "28f83e312ecd42e3e7d32b0003c72ce77719d4d03295a3c6530b7da23f5e63a1",
+    "experiments/source_grounding/stage_a/candidate-06/0024-selection.json": "0ffd09a499feb23761ef7ead16b0f28293954dfd9bf4c376393f9fb8d150baad",
+    "experiments/source_grounding/stage_a/candidate-06/0024-treatment-template.bin": "f85a7faf300b9e1346347771f0480335b32562be29dd15b30bcab285ac6c5d77",
+    "experiments/source_grounding/stage_a/candidate-06/0024-universe.json": "d42dbdc437bbdd321b4bb829016fa9e39ef5be4dd47328f047db30fb67adc238",
+    "experiments/source_grounding/stage_a/candidate-06/METHOD.md": "da1f00a06502c23a835bcb0855962206d905a921ab943d7ebd4efde4490d2001",
+    "experiments/source_grounding/stage_a/candidate-06/cohort.json": "2cc9fd55a1a833088ffa26b8759c57cff48ce4e80a783ad661cf354e4608a2a5",
+    "experiments/source_grounding/stage_a/candidate-06/economics.json": "144b237452cc30ba2e451eca27eb817b6040214045fad181e8c8c75c2a173f5a",
+    "experiments/source_grounding/stage_a/candidate-06/integrity.json": "251a04f6b65e3984b2f70dd2da1c04644d0e68b07b157fd7f60b67f4c671c138",
+    "experiments/source_grounding/stage_a/candidate-06/protocol.json": "6962c790c4d6767b7560ede8bbc70c7922312902fe273483c81b351a2b74750f",
+    "experiments/source_grounding/stage_a/chunked-04/0022-adoption-compatibility.json": "37503ee9c288c31f804ed5ee6361bc3a969590d866589ee4304fd619fb31ac35",
+    "experiments/source_grounding/stage_a/chunked-04/0023-adoption-compatibility.json": "38b6a51ae7649a40ea6aa81973b716de5417df0bd6728bd655bd581655e9e766"
+  },
+  "scientific_execution": 0,
+  "scientific_semantics": "BYTE_IDENTICAL",
+  "source_checkpoint": "2aad8a1c8ccc3cd19a0476d7da13f1d95a833d42",
+  "supersedes_stage_a_checkpoint": "a0aa874a5bde62234c124395e1b9a1742b7582a1"
+}
