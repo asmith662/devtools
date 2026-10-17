@@ -1,5 +1,32 @@
 # Implementation Ledger
 
+## First real Qwen development task: measured rejection (2026-10-17)
+
+The existing patch-proposal entrypoint gained a concrete native-Tool Markdown
+task consumer. It reuses RI observation, explicit Context planning/materialization,
+ModelInteraction and ModelToolDefinition/Call, the ToolInvocation/ToolRunner boundary,
+existing read Tool and managed Git/test execution. The fixture worker is preserved;
+its observational method replacements now use scoped patch handles with unchanged
+behavior and strict typing. No reusable Agent or workflow infrastructure is added.
+
+The real fence-closing defect and eight-case oracle were frozen before one live
+Qwen attempt. Native Tools succeeded: nine reads proposed, seven executed, five
+turns; no patch resulted. The final batch exceeded the cap. Independent acceptance
+still fails and production source is byte-identical to baseline. Worker wall time
+is 32.264547 s; reported input/output are 37,644/403 tokens. Server prompt/decode
+times are 15.176090/16.927210 s. Cache/reasoning and Codex coordination counts are
+UNKNOWN. The primary failure is repeated acquisition/continuation progress, not
+native transport. No retry, fallback or Codex implementation was substituted.
+
+Final validation: 304 focused tests; protected 1,662 passed, two skips and 100%
+production branch coverage; supported-source and experiment Ruff/format/strict
+mypy pass. The initial Python 3.12 selection exposed an unchanged slotted-dataclass
+fixture issue; Python 3.14 passes without changing that test. The
+[measured report](../experiments/qwen/docs/first_real_task.json) and existing package
+docs separate validated host behavior from absent accepted-task evidence. The
+smallest follow-up is trace review before any separately authorized continuation
+comparison. Source-grounding and protected main remain unchanged.
+
 ## Candidate-08 authorized execution: terminal incomplete (2026-10-17)
 
 The trusted host authenticated the maintainer's exact four-call grant and published

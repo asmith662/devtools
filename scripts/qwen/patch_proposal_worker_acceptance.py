@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: E402, E501, INP001, T201
+# ruff: noqa: E402, E501, INP001, T201, COM812
 """Run one bounded live Qwen B-0009 patch-proposal acceptance."""
 
 from __future__ import annotations
@@ -14,6 +14,7 @@ import tempfile
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import TYPE_CHECKING
+from unittest.mock import patch as observe_method
 from uuid import uuid4
 
 _REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
@@ -25,6 +26,7 @@ from devtools.agents.conversation import (
     ConversationMessage,
     InteractionSource,
 )
+from devtools.core.paths import resolve_path
 from devtools.core.time import Duration, Stopwatch
 from devtools.execution import Runtime
 from devtools.models.interaction import ModelSettings
@@ -37,6 +39,7 @@ from devtools.tools.filesystem import (
     ListRepositoryDirectoryTool,
     ReadRepositoryFileTool,
 )
+from experiments.qwen.development_task import freeze_markdown_task, run_markdown_task
 from experiments.qwen.patch_proposal_worker import (
     _BASELINE_FIXTURE,
     _SELECTION_STRESS_FIXTURE,
@@ -135,6 +138,8 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
         default="default",
     )
     parser.add_argument("--report-path", required=True, type=Path)
+    parser.add_argument("--repository-markdown-root", type=Path)
+    parser.add_argument("--freeze-only", action="store_true")
     return parser.parse_args(arguments)
 
 
@@ -167,7 +172,10 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
     original_list = ListRepositoryDirectoryTool.execute
     original_read = ReadRepositoryFileTool.execute
 
-    async def counted_list(tool: ListRepositoryDirectoryTool, path: ResolvedPath) -> object:
+    async def counted_list(
+        tool: ListRepositoryDirectoryTool,
+        path: ResolvedPath,
+    ) -> object:
         actions.append("list_repository_directory")
         paths.append(_relative_path(path, repository_root))
         return await original_list(tool, path)
@@ -182,8 +190,18 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
         model_terminations.append(response.termination)
         model_usages.append(response.usage)
 
-    ListRepositoryDirectoryTool.execute = counted_list
-    ReadRepositoryFileTool.execute = counted_read
+    list_observation = observe_method.object(
+        ListRepositoryDirectoryTool,
+        "execute",
+        counted_list,
+    )
+    read_observation = observe_method.object(
+        ReadRepositoryFileTool,
+        "execute",
+        counted_read,
+    )
+    list_observation.start()
+    read_observation.start()
     try:
         result = await QwenPatchProposalWorker(
             runtime=Runtime(),
@@ -223,8 +241,8 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
             _patch_evaluation(error),
         )
     finally:
-        ListRepositoryDirectoryTool.execute = original_list
-        ReadRepositoryFileTool.execute = original_read
+        list_observation.stop()
+        read_observation.stop()
     return B0009LiveReport(
         task,
         tuple(conversation.history),
@@ -406,7 +424,11 @@ def _live_task(
 
 def _message_payload(message: ConversationMessage) -> dict[str, str]:
     """Serialize retained conversation facts without absolute repository paths."""
-    return {"role": message.role.value, "source": message.source.value, "content": message.content}
+    return {
+        "role": message.role.value,
+        "source": message.source.value,
+        "content": message.content,
+    }
 
 
 def _cycle_payload(cycle: QwenReadOnlyCycle) -> dict[str, object]:
@@ -575,7 +597,9 @@ def _report_payload(outcome: B0009LiveOutcome) -> dict[str, object]:
             ],
             "corrections": [
                 {
-                    "premature_response": _message_payload(correction.premature_response),
+                    "premature_response": _message_payload(
+                        correction.premature_response,
+                    ),
                     "follow_up": _message_payload(correction.follow_up),
                     "acquired_paths": list(correction.acquired_paths),
                 }
@@ -673,19 +697,59 @@ def _print_outcome(outcome: B0009LiveOutcome) -> None:
     print(f"acceptance verdict: {_verdict(outcome)}")
     print(f"tool actions: {', '.join(outcome.report.execution_actions) or 'none'}")
     print(f"tool paths: {', '.join(outcome.report.execution_paths) or 'none'}")
-    print(f"persistent service status: {outcome.persistent_service_status or outcome.persistent_service_error_message}")
+    print(
+        f"persistent service status: {outcome.persistent_service_status or outcome.persistent_service_error_message}",
+    )
 
 
 def main(arguments: Sequence[str] | None = None) -> None:
     """Run one live attempt and require durable reporting regardless of its verdict."""
     parsed = parse_arguments(arguments)
+    if parsed.repository_markdown_root is not None:
+        root = resolve_path(
+            parsed.repository_markdown_root, base_directory=Path.cwd()
+        ).value
+        folder = resolve_path(
+            parsed.report_path.parent, base_directory=Path.cwd()
+        ).value
+        if parsed.freeze_only:
+            asyncio.run(freeze_markdown_task(root, folder))
+            print(
+                "Real Markdown task frozen; baseline defect reproduced; zero model turns",
+            )
+            return
+        result = asyncio.run(
+            run_markdown_task(
+                root,
+                folder,
+                LlamaCppInteraction(
+                    endpoint=parsed.endpoint,
+                    model=parsed.model,
+                    source=InteractionSource("qwen-real-markdown-task"),
+                ),
+            ),
+        )
+        _write_report(parsed.report_path, result)
+        print(
+            f"real-task accepted: {result['accepted']}; failure: {result['failure_class']}",
+        )
+        print(
+            f"turns: {len(result['turns'])}; actions: {len(result['actions'])}; elapsed: {result['elapsed_seconds']:.2f}s",
+        )
+        raise SystemExit(0 if result["accepted"] else 1)
+    if parsed.freeze_only:
+        message = "--freeze-only requires --repository-markdown-root"
+        raise ValueError(message)
     try:
         outcome = asyncio.run(run(parsed))
     except Exception as error:
-        payload = {
+        payload: dict[str, object] = {
             "schema": _REPORT_SCHEMA,
             "verdict": "FAIL — RUNNER",
-            "runner_failure": {"error_type": type(error).__name__, "error_message": str(error)},
+            "runner_failure": {
+                "error_type": type(error).__name__,
+                "error_message": str(error),
+            },
         }
         _write_report(parsed.report_path, payload)
         raise SystemExit(1) from error

@@ -1,0 +1,422 @@
+{
+  "artifacts": {
+    "attempt-01/acceptance.py": "373b20627f04d364b5624abbab4699e560d464b96993e9fa28097cc11e0be12b",
+    "attempt-01/action-1.json": "4a43174b290d1b9203090264d30bc031f1af768d4c116fe6b86841badaf1da19",
+    "attempt-01/action-2.json": "50ecee324a4e06a2ba9a49d172a7788bb446ca2004c7b682814cc51640a6530d",
+    "attempt-01/action-3.json": "14eba03540e96a062aace60b30f69f9db1c5583d3393cda251417d66e5612009",
+    "attempt-01/action-4.json": "c2936759bef22f27d2093faa1eff792354c9c14f3048c406a0a774ccbbf26f65",
+    "attempt-01/action-5.json": "3675e2a555b5c84ddd4b8f05626ffddfa5a85bce61625041dd22a2e8cd93d665",
+    "attempt-01/action-6.json": "2160ec1c4923155eb49c7760a70d11aa9d23ba0f9ece89879cd2f71585b96eeb",
+    "attempt-01/action-7.json": "89b894f5c3ca1dde5cc91f5527b3304877c4a84e00ad73129ef24fe0381b6ed2",
+    "attempt-01/attempt-start.json": "a6a5150e50b51e5d833be6a9a248f8400d123454441b76078b9113b33a29cd67",
+    "attempt-01/freeze.json": "1305a51251dc9e3de779eefadf1fc570835b905a0da20ef9f39b35a382f6a8a4",
+    "attempt-01/result.json": "05f7c4de38b90370d7c32633c3560b48fd87171382d2c730499c8788dd1a6fe1",
+    "attempt-01/source-before.py": "b01a8fdac51f3d5485275898b45d43cd643efac736b1e275b8a18fc205fd6195",
+    "attempt-01/turn-1-request.json": "dd02cb7971a913561d6d3bd5e29a1738c541b2db7293b747b14fd04b7b064677",
+    "attempt-01/turn-1-response.json": "2caaa5fcc6d86631616871ed269db47be501d4a1c8e6150290d4b2949c28363b",
+    "attempt-01/turn-2-request.json": "8e20bf8bb82e8e8e6fca0b1b29f6d4d89a0e4df8785eb5589c1cae18e5bdd154",
+    "attempt-01/turn-2-response.json": "6e5c4eba8361b1888ed606ac426a82a6a66391f02021f3e65322bde5f305fd4f",
+    "attempt-01/turn-3-request.json": "3a6379a8dd68d9401ea292c4a2a732c1d4570120e8682a71d8fd23dd39239da3",
+    "attempt-01/turn-3-response.json": "572d273f0916ac027125e3845a058710a9ac24f934342c92005eb273c9b65f27",
+    "attempt-01/turn-4-request.json": "775058db98bb336d166eae0f65b19382e8b823f64fcd413a0592d4491c7f8496",
+    "attempt-01/turn-4-response.json": "49a06f3f053978e14038a5f47744b438169611f92e473d5c6cd7cc431e896166",
+    "attempt-01/turn-5-request.json": "05c877dc31a25452b0a38167b0333da899b1a34a09e8090868fed786952736b1",
+    "attempt-01/turn-5-response.json": "1e803dd87658667bc7d47c5795bbfea2b7b65311b25872852353961fe1da76ef"
+  },
+  "baseline_head": "8bf87d4bb29349b8391de3fed2680bf1f7c94f28",
+  "branch": "feat/qwen-real-task",
+  "criteria": [
+    "Both backtick and tilde fences",
+    "Non-whitespace suffix is not a closer",
+    "Shorter or different-marker fence is not a closer",
+    "Equal/longer valid closer, including trailing spaces/tabs, remains valid",
+    "Hidden sections remain absent",
+    "Existing Markdown tests remain passing"
+  ],
+  "finished_at": "2026-10-17T18:15:09.887519+00:00",
+  "frozen_at": "2026-10-17T18:14:26.057712+00:00",
+  "harness_sha256": "f838bb868b244db334aa2b365cb60811005b23ccc4ee9f06189d92aa449fcb9f",
+  "limitations": [
+    "One failed task; no accepted Qwen implementation",
+    "Single stateless Prompt reconstructs Tool requests/results as text; no native multi-message continuation",
+    "Caller-chosen whole-resource Context; no automatic localization/search/sufficiency claim",
+    "Native Tool normalization/host execution succeeded; pure model reasoning cannot be separated from continuation representation",
+    "Provider-reported cached/reasoning categories and Codex coordination consumption unavailable",
+    "Trusted caller invokes from its own selected worktree/environment; cross-checkout deployment not established"
+  ],
+  "limits": {
+    "actions": 8,
+    "output_tokens_per_turn": 4096,
+    "thinking_enabled": false,
+    "turns": 10,
+    "wall_seconds": 900
+  },
+  "model": {
+    "context_size": 32768,
+    "endpoint": "http://127.0.0.1:8080",
+    "hardware": "RTX 4090 Laptop; 16376 MiB VRAM; peak allocation not measured",
+    "profile": "Qwen3.8-27B-UD-IQ4_XS",
+    "profile_fingerprint": "03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1",
+    "served_name": "qwen38-local",
+    "service_lifecycle_changes": 0
+  },
+  "next_step": "Inspect retained repeated-read trace; any revised continuation/prompt test needs separate single-attempt authorization. No further model call in this assignment.",
+  "oracle_sha256": "373b20627f04d364b5624abbab4699e560d464b96993e9fa28097cc11e0be12b",
+  "outcome": {
+    "accepted_actions": 7,
+    "attempted_native_calls": 9,
+    "cached_input_reasoning_tokens": "UNKNOWN; provider did not report",
+    "codex_coordination_usage": "UNKNOWN",
+    "complete": true,
+    "context": {
+      "disclosure": "76223f5f6179fdac1a857f671ee7e738d83c4e0ff5982d6aa0d1726dae48e1cc",
+      "initial_prompt_utf8_bytes": 9220,
+      "plan": "45c8e0d118ea9ebac3da95aff9e14fc7725bab0df96b5d0e741ce35fb98f1bb3",
+      "rendered_utf8_bytes": 8148,
+      "resources": [
+        "src/devtools/resources/filesystem/models/markdown/file.py"
+      ],
+      "selection": "CALLER_SELECTED_WHOLE_RESOURCE; no optimizer/sufficiency claim",
+      "snapshot": "08c2893dd18a69620eee8ad831e1ceb6305f25de3b4517595bbfb91f023fdc0f"
+    },
+    "error": "ValueError: Tool-action budget exhausted",
+    "files_read": [
+      "src/devtools/resources/filesystem/models/markdown/file.py",
+      "tests/resources/filesystem/models/markdown/test_file.py",
+      "src/devtools/resources/filesystem/models/markdown/file.py",
+      "tests/resources/filesystem/models/markdown/test_file.py",
+      "src/devtools/resources/filesystem/models/markdown/file.py",
+      "tests/resources/filesystem/models/markdown/test_file.py",
+      "src/devtools/resources/filesystem/models/markdown/file.py"
+    ],
+    "freeze_created_at": "2026-10-17T18:14:26.057712+00:00",
+    "harness_unchanged_since_freeze": true,
+    "independent_acceptance": "FAIL; frozen oracle still reproduces baseline defect",
+    "input_context_utilization": [
+      0.074981689453125,
+      0.156585693359375,
+      0.238067626953125,
+      0.319580078125,
+      0.359588623046875
+    ],
+    "input_tokens": 37644,
+    "live_failure": "TOOL_PROTOCOL",
+    "model_response_elapsed_seconds": 32.23015039996244,
+    "native_tool_compatibility": "PASS",
+    "output_tokens": 403,
+    "paid_cloud_calls": 0,
+    "patch_produced": false,
+    "primary_task_failure": "REASONING_OR_CONTINUATION_PROGRESS; repeated valid acquisition without a patch",
+    "reported_total_tokens": 38047,
+    "server_timings": {
+      "decode_seconds": 16.92721,
+      "interpretation": "Server counters; newly evaluated prompt counts differ from full API prompt counts. No cached-input category inferred.",
+      "per_turn_total_seconds": [
+        5.79826,
+        6.246569999999999,
+        8.13818,
+        5.80243,
+        6.11787
+      ],
+      "prompt_eval_seconds": 15.17609,
+      "total_seconds": 32.10331
+    },
+    "source_unchanged": true,
+    "task_accepted": false,
+    "turns": 5,
+    "worker_wall_seconds": 32.26454720000038
+  },
+  "required_tests": "tests/resources/filesystem/models/markdown/test_file.py",
+  "source": "src/devtools/resources/filesystem/models/markdown/file.py",
+  "source_sha256": "b01a8fdac51f3d5485275898b45d43cd643efac736b1e275b8a18fc205fd6195",
+  "started_at": "2026-10-17T18:14:37.622987+00:00",
+  "task": "Markdown fence closers with trailing non-whitespace must not expose fenced headings",
+  "tests_sha256": "92e5f321000054d18f30775387b24f65a1b2635fb02e15e2ea01643abdb4b7a9",
+  "turns": [
+    {
+      "native_calls": [
+        {
+          "arguments": {
+            "path": "src/devtools/resources/filesystem/models/markdown/file.py"
+          },
+          "name": "read_repository_file"
+        },
+        {
+          "arguments": {
+            "path": "tests/resources/filesystem/models/markdown/test_file.py"
+          },
+          "name": "read_repository_file"
+        }
+      ],
+      "ordinal": 1,
+      "response_seconds": 5.849889400007669,
+      "termination": "tool_call",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 2457,
+        "output_tokens": 71,
+        "reasoning_tokens": null,
+        "total_tokens": 2528
+      }
+    },
+    {
+      "native_calls": [
+        {
+          "arguments": {
+            "path": "src/devtools/resources/filesystem/models/markdown/file.py"
+          },
+          "name": "read_repository_file"
+        },
+        {
+          "arguments": {
+            "path": "tests/resources/filesystem/models/markdown/test_file.py"
+          },
+          "name": "read_repository_file"
+        }
+      ],
+      "ordinal": 2,
+      "response_seconds": 6.262970500043593,
+      "termination": "tool_call",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 5131,
+        "output_tokens": 71,
+        "reasoning_tokens": null,
+        "total_tokens": 5202
+      }
+    },
+    {
+      "native_calls": [
+        {
+          "arguments": {
+            "path": "src/devtools/resources/filesystem/models/markdown/file.py"
+          },
+          "name": "read_repository_file"
+        },
+        {
+          "arguments": {
+            "path": "tests/resources/filesystem/models/markdown/test_file.py"
+          },
+          "name": "read_repository_file"
+        }
+      ],
+      "ordinal": 3,
+      "response_seconds": 8.154869099962525,
+      "termination": "tool_call",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 7801,
+        "output_tokens": 114,
+        "reasoning_tokens": null,
+        "total_tokens": 7915
+      }
+    },
+    {
+      "native_calls": [
+        {
+          "arguments": {
+            "path": "src/devtools/resources/filesystem/models/markdown/file.py"
+          },
+          "name": "read_repository_file"
+        }
+      ],
+      "ordinal": 4,
+      "response_seconds": 5.825386899989098,
+      "termination": "tool_call",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 10472,
+        "output_tokens": 52,
+        "reasoning_tokens": null,
+        "total_tokens": 10524
+      }
+    },
+    {
+      "native_calls": [
+        {
+          "arguments": {
+            "path": "src/devtools/resources/filesystem/models/markdown/file.py"
+          },
+          "name": "read_repository_file"
+        },
+        {
+          "arguments": {
+            "path": "tests/resources/filesystem/models/markdown/test_file.py"
+          },
+          "name": "read_repository_file"
+        }
+      ],
+      "ordinal": 5,
+      "response_seconds": 6.1370344999595545,
+      "termination": "tool_call",
+      "usage": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 11783,
+        "output_tokens": 95,
+        "reasoning_tokens": null,
+        "total_tokens": 11878
+      }
+    }
+  ],
+  "validation": {
+    "diff": {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "elapsed_seconds": 0.041396,
+      "exit_code": 0,
+      "failed": false,
+      "finished": "2026-10-17T18:19:49.848668+00:00",
+      "stage": "diff",
+      "started": "2026-10-17T18:19:49.807272+00:00"
+    },
+    "existing-task-tests": {
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\worktrees\\qwen-real-task\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "tests/resources/filesystem/models/markdown/test_file.py"
+      ],
+      "elapsed_seconds": 0.673187,
+      "exit_code": 0,
+      "failed": false,
+      "finished": "2026-10-17T18:18:11.550179+00:00",
+      "stage": "existing-task-tests",
+      "started": "2026-10-17T18:18:10.876992+00:00"
+    },
+    "experiment-mypy": {
+      "argv": [
+        "mypy",
+        "--strict",
+        "--follow-imports=silent",
+        "experiments/qwen/development_task.py",
+        "scripts/qwen/patch_proposal_worker_acceptance.py",
+        "tests/experiments/qwen/test_development_task.py"
+      ],
+      "elapsed_seconds": 6.463202,
+      "exit_code": 0,
+      "failed": false,
+      "finished": "2026-10-17T18:19:49.794863+00:00",
+      "stage": "experiment-mypy",
+      "started": "2026-10-17T18:19:43.331661+00:00"
+    },
+    "experiment-ruff": {
+      "argv": [
+        "ruff",
+        "check",
+        "experiments/qwen/development_task.py",
+        "scripts/qwen/patch_proposal_worker_acceptance.py",
+        "tests/experiments/qwen/test_development_task.py"
+      ],
+      "elapsed_seconds": 0.021381,
+      "exit_code": 0,
+      "failed": false,
+      "finished": "2026-10-17T18:19:26.162535+00:00",
+      "stage": "experiment-ruff",
+      "started": "2026-10-17T18:19:26.141154+00:00"
+    },
+    "focused": {
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\worktrees\\qwen-real-task\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "--no-cov",
+        "-q",
+        "tests/experiments/qwen",
+        "tests/scripts/qwen/test_patch_proposal_worker_acceptance.py",
+        "tests/models/interaction/test_tools.py",
+        "tests/models/interaction/providers/test_llama_cpp.py",
+        "tests/tools"
+      ],
+      "elapsed_seconds": 7.280309,
+      "exit_code": 0,
+      "failed": false,
+      "finished": "2026-10-17T18:18:18.841660+00:00",
+      "stage": "focused",
+      "started": "2026-10-17T18:18:11.561351+00:00"
+    },
+    "format": {
+      "argv": [
+        "ruff",
+        "format",
+        "--check",
+        "--quiet",
+        "experiments/qwen/development_task.py",
+        "scripts/qwen/patch_proposal_worker_acceptance.py",
+        "tests/experiments/qwen/test_development_task.py"
+      ],
+      "elapsed_seconds": 0.021474,
+      "exit_code": 0,
+      "failed": false,
+      "finished": "2026-10-17T18:19:26.196642+00:00",
+      "stage": "format",
+      "started": "2026-10-17T18:19:26.175168+00:00"
+    },
+    "independent-final": {
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\worktrees\\qwen-real-task\\.venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\worktrees\\qwen-real-task\\.local\\qwen-first-task\\attempt-01\\acceptance.py"
+      ],
+      "elapsed_seconds": 0.10494,
+      "exit_code": 1,
+      "failed": true,
+      "finished": "2026-10-17T18:18:10.861174+00:00",
+      "stage": "independent-final",
+      "started": "2026-10-17T18:18:10.756234+00:00"
+    },
+    "mypy": {
+      "argv": [
+        "mypy",
+        "--strict",
+        "src",
+        "tests",
+        "--exclude",
+        "tests[/\\\\]experiments"
+      ],
+      "elapsed_seconds": 17.111431,
+      "exit_code": 0,
+      "failed": false,
+      "finished": "2026-10-17T18:19:43.317748+00:00",
+      "stage": "mypy",
+      "started": "2026-10-17T18:19:26.206317+00:00"
+    },
+    "protected": {
+      "argv": [
+        "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\worktrees\\qwen-real-task\\.venv\\Scripts\\python.exe",
+        "scripts/validate_development.py"
+      ],
+      "elapsed_seconds": 67.175083,
+      "exit_code": 0,
+      "failed": false,
+      "finished": "2026-10-17T18:19:26.029934+00:00",
+      "stage": "protected",
+      "started": "2026-10-17T18:18:18.854851+00:00"
+    },
+    "ruff": {
+      "argv": [
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "--exclude",
+        "tests/experiments"
+      ],
+      "elapsed_seconds": 0.080966,
+      "exit_code": 0,
+      "failed": false,
+      "finished": "2026-10-17T18:19:26.129565+00:00",
+      "stage": "ruff",
+      "started": "2026-10-17T18:19:26.048599+00:00"
+    }
+  }
+}

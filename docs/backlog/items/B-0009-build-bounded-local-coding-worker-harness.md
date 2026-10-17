@@ -55,3 +55,26 @@ for it yet, and scripted success does not establish Context pressure.
 - blocked_by: none
 - promotion_trigger: deterministic worker composition plus live task evidence
 - validation_level: LIVE_SINGLE_HARNESS
+
+## First real task evidence (2026-10-17)
+
+The [frozen Markdown task report](../../../experiments/qwen/docs/first_real_task.json)
+distinguishes validated host composition from **unaccepted real-task competence**.
+The existing acceptance entrypoint now composes native ModelToolDefinition/Call,
+ToolInvocation/ToolRunner and repository read Tools with caller-selected RI/Context
+disclosure and managed one-file Git patch admission. Historical fixtures and their
+exact patch grammar remain intact. No universal worker/Agent API is added.
+
+One local Qwen attempt ran for 32.26 s: five turns, nine proposed native reads,
+seven accepted reads, 37,644 input and 403 output tokens. Native normalization and
+host execution work, unlike the retained text-only list_files failure. Repeated
+source/test acquisition produced no patch; the final batch exceeded the action
+cap. Source is unchanged and the independent frozen oracle still fails. No second
+attempt or substituted Codex solution occurred. The primary task failure is
+reasoning/continuation progress; single-Prompt textual feedback remains a confound.
+
+Harness status stays VALIDATED, but **a real accepted Qwen development change has
+not been demonstrated**. Focused tests and protected validation pass, with 100%
+production branch coverage. The smallest next decision is to inspect the retained
+trace before separately authorizing a changed continuation/prompt attempt. This
+evidence authorizes no generic framework or automatic retry.

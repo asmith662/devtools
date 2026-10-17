@@ -1,6 +1,79 @@
 # Qwen experiment
 
-`experiments.qwen` contains bounded Qwen repository-read experiments.
+`experiments.qwen` contains bounded Qwen repository-read and patch experiments.
+
+## First real development task (2026-10-17)
+
+The [measured report](first_real_task.json) records **HARNESS VALIDATED / NATIVE
+TOOL COMPATIBILITY PASS / REAL TASK REJECTED**. This is one genuine local attempt,
+not a fixture success presented as Qwen coding competence.
+
+`development_task.py` composes existing RI observation, caller-selected
+whole-resource DisclosurePlan, materialization, rendering and ModelRequest
+assembly. It is invoked through the existing patch-proposal acceptance script;
+the historical fixture worker and its exact one-line patch grammar are preserved.
+No automatic Retrieval/Localization optimizer or Context-sufficiency claim is made.
+
+The independently reproduced task is a MarkdownFile defect: a fence followed by
+non-whitespace text incorrectly closes a code block and exposes a hidden heading.
+Before inference, the host froze the task, Git baseline, source/test hashes, eight
+behavioral scenarios, Context identities/byte sizes and bounds. Only
+`src/devtools/resources/filesystem/models/markdown/file.py` may be edited. Qwen
+must inspect `tests/resources/filesystem/models/markdown/test_file.py` through the
+native read Tool. The host-owned oracle contains no completed implementation.
+
+Only normalized ModelToolCall requests for the disclosed read_repository_file
+are admitted. The concrete ToolInvocation materializer enforces those two paths,
+rejects duplicate/extra arguments and resolved escapes, then uses the existing
+ToolRunner and ReadRepositoryFileTool. Tool-like text is never executed. No shell,
+Git or mutation Tool is exposed. The host accepts only a bounded exact-file plain
+unified diff, runs managed `git apply --check`, applies it and executes fixed
+validation. An unaccepted applied edit is preserved and restored to baseline;
+there is no model self-repair or retry loop.
+
+Bounds are 10 turns, 8 accepted reads and a 900-second host deadline. The existing
+profile has 32,768-token Context; requests use 4,096 output tokens and thinking
+disabled. A batch exceeding the action cap is refused in full. Provider settings
+are not universal resource governance. On timeout, external completion can remain
+unknown. This concrete runner is invoked from its own selected feature checkout
+and interpreter; cross-checkout deployment is not established.
+
+The live attempt used **five turns, nine proposed native reads, seven executed**
+(source four times, tests three). The final two-call batch exceeded the cap.
+No patch was produced, source stayed unchanged and the frozen oracle still fails.
+All seven existing Markdown tests pass. No second attempt, paid fallback or
+Codex-authored fix was substituted.
+
+The worker records `TOOL_PROTOCOL / Tool-action budget exhausted` at admission;
+native transport itself succeeded. The primary task failure is repeated acquisition
+without progress to a patch in this stateless continuation path. The single-Prompt
+API reconstructs native requests/results as text; it does not provide a native
+multi-message Tool-result conversation. Model reasoning cannot be separated from
+that feedback representation by this one attempt.
+
+Worker wall time was **32.264547 s**, response latency summed to 32.230150 s, and
+server logs report 15.176090 s prompt evaluation plus 16.927210 s decoding. The API
+reported **37,644 input / 403 output / 38,047 total tokens**. Maximum input was
+11,783 tokens (35.96% of configured Context). Initial rendered Context was 8,148
+UTF-8 bytes; assembled Prompt was 9,220 bytes. Cache/reasoning categories and Codex
+coordination consumption remain UNKNOWN. Server newly evaluated prompt counters
+differ from full API counts; do not sum them or infer formal cached input. No
+counterfactual Codex savings or accepted-task efficiency gain is established.
+
+The dedicated `feat/qwen-real-task` worktree retains ignored raw requests,
+responses, frozen oracle/source and validation logs under `.local/qwen-first-task/`.
+The committed report contains measured facts and artifact hashes, not complete
+transcripts. The existing service was READY with the pinned profile; it was not
+started, stopped or reconfigured. Candidate-08 and its recovery were untouched.
+
+The existing entrypoint accepts `--repository-markdown-root . --report-path
+.local/qwen-first-task/attempt-01/result.json`; `--freeze-only` first captures the
+failing baseline without inference. A retained attempt-start.json prevents another
+run in that directory. **Do not rerun this completed attempt.** Inspect the retained
+repeated-read trace before separately authorizing any revised continuation/prompt
+comparison. No universal Worker, Agent or workflow API is promoted.
+
+## Historical fixture consumers
 
 The llama.cpp transport adapter lives in
 `devtools.models.interaction.providers` as `LlamaCppInteraction`. It is
@@ -24,7 +97,7 @@ through controller-authored SYSTEM Messages. It permits only two reads before
 requiring a final plain-text answer. It is not generic orchestration,
 authorization, Context compilation, or Action infrastructure.
 
-The package does not implement streaming, native tool calls, generic usage
+The historical fixture consumers do not implement streaming, native tool calls, generic usage
 accounting, provider continuation, generic proposals, or a reusable
 coding-worker framework. `ModelResponse` may carry optional provider-reported
 usage and termination; the B-0009 acceptance report retains those per-turn
@@ -105,7 +178,7 @@ report; no thinking mode is selected by default. The optional
 uses ADR-0001 Phase 1 request values. Phase 2 now supplies optional reusable
 interaction Evidence and serving provenance through external composition; the
 acceptance report remains experiment-specific and is not rewritten as reusable
-Evidence. Native Tool calls and model-side Tool execution remain unimplemented.
-The reusable Phase 3 native Tool boundary remains separate from this experiment:
+Evidence. Native provider normalization is implemented; execution remains host-owned.
+The reusable Phase 3 native Tool boundary remains separate from this historical consumer:
 its textual list/read proposal grammar is retained as historical control
 evidence and is not automatically migrated or executed through ToolRunner.
