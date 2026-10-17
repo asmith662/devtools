@@ -1,9 +1,10 @@
 # Prospective unapproved controller plan
 
 The later [controlled pipeline deployment review](PIPELINE_DEPLOYMENT_REVIEW.md)
-owns the current binding-only candidate-07 successor of the four-call
-candidate-06 experiment. It records PLAN_VALID / startup PASS, BUDGET_UNAVAILABLE,
-approval NONE and no execution. The plan described below remains historical
+owns the current binding-only candidate-08 successor of the four-call
+candidate-06 experiment. It records PLAN_VALID / startup PASS, READY_FOR_APPROVAL
+with exact-run budget PASS, approval NONE and no execution. The plan described
+below remains historical
 evidence for its original lineage.
 
 This is the second publication boundary, after the immutable scientific Stage A.

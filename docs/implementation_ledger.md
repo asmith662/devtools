@@ -1,5 +1,20 @@
 # Implementation Ledger
 
+## Budget-bound candidate-08 preparation (2026-10-17)
+
+After the validated engineering checkpoint, one required binding-only successor
+preserves all 30 scientific artifacts and the frozen protocol. The existing target
+and publication repository pin plan commit `f9b96b374ee87a734dd4f8a4735f37cecd26663c`.
+The approved exact-run four-call/input/output policy is installed after 12 actual
+canonical applicability/reservation probes pass. Fresh preparation reaches
+READY_FOR_APPROVAL; exact approval verification still refuses authority. Existing
+recovery facilities receive a 79,448-byte incremental bundle and approved policy;
+the existing restored repository verifies 430 source blobs and 30 scientific
+objects with Git fsck PASS. Same-SSD limitations are explicitly accepted. No new
+repository, backup infrastructure, approval or scientific invocation is created.
+The [deployment review](../experiments/source_grounding/plans/PIPELINE_DEPLOYMENT_REVIEW.md)
+and machine packet distinguish source, binding, plan and later documentation commits.
+
 ## Canonical budget applicability correction (2026-10-16)
 
 The authorized narrow correction requires an applicable numeric rule for each

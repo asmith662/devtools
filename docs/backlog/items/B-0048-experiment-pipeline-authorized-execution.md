@@ -101,8 +101,13 @@ conflicting attribution is retained. All 258 controller regressions and protecte
 development validation pass. The changed controller hash requires one binding-only
 successor after the engineering checkpoint. The maintainer now explicitly accepts
 the verified same-SSD recovery package's limitations; no new backup infrastructure
-or independent-storage requirement is introduced. Scientific authority remains
-separate and absent; final successor preparation is recorded in the deployment review.
+or independent-storage requirement is introduced. Candidate-08 now binds the
+stabilized correction; the exact-run approved policy
+is installed after isolated real reservation probes. Fresh preparation reaches
+READY_FOR_APPROVAL with no authority. The existing recovery facility and restored
+repository verify an incremental Git/policy update, without new infrastructure.
+Scientific authority remains separate and absent; exact identities, freshness
+limits and the next protected grant are recorded in the deployment review.
 
 The consumer is a human operator now and a future ExperimentManagerAgent.
 Remain concrete until repeated consumers justify more general semantics.
