@@ -113,3 +113,14 @@ are experiment-local; no executable filesystem Tool is exposed. The request will
 be frozen against the committed harness before any inference. After that freeze,
 the live condition still requires explicit terminal opt-in. No Qwen request has
 yet been sent for this condition.
+
+The maintainer subsequently ran frozen attempt-04 once: native proposal protocol
+succeeded (4,100 input / 168 output tokens, 12.554 seconds), but raw old-text
+matching rejected an LF proposal against CRLF source. Exactly one match exists
+after newline normalization. This is a host representation defect; no patch or
+oracle outcome establishes coding competence. Historical receipts are unchanged.
+The minimum future correction is consistent newline matching/diff construction
+with LF/CRLF regression fixtures and preserved source bytes; it is not implemented
+by the diagnostic assignment. The local CLI now requires genuine console consent
+(default No) or explicit `--authorize-local-execution` for noninteractive use;
+chat-menu output is not terminal authorization. No new model attempt is authorized.

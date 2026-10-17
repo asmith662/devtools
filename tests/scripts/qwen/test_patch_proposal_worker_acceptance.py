@@ -8,6 +8,7 @@ import asyncio
 import importlib.util
 from dataclasses import dataclass, field
 from pathlib import Path
+from types import SimpleNamespace
 from typing import TYPE_CHECKING
 
 import pytest
@@ -60,6 +61,75 @@ def acceptance() -> ModuleType:
     module = importlib.util.module_from_spec(specification)
     specification.loader.exec_module(module)
     return module
+
+
+@pytest.mark.parametrize("answer", ["y", "YES", " yes "])
+def test_terminal_execution_confirmation(
+    acceptance: ModuleType,
+    monkeypatch: pytest.MonkeyPatch,
+    answer: str,
+) -> None:
+    """An actual console answer authorizes the selected attempt."""
+    monkeypatch.setattr(acceptance.sys, "stdin", SimpleNamespace(isatty=lambda: True))
+    prompts: list[str] = []
+
+    def respond(prompt: str) -> str:
+        prompts.append(prompt)
+        return answer
+
+    monkeypatch.setattr("builtins.input", respond)
+    arguments = acceptance.parse_arguments(
+        ["--structured-edit", "--report-path", "result.json"],
+    )
+    acceptance._confirm_local_execution(arguments)
+    assert len(prompts) == 1
+    assert "[y/N]" in prompts[0]
+    assert "one model invocation" in prompts[0]
+    assert "300-second" in prompts[0]
+
+
+@pytest.mark.parametrize("answer", ["", "n", "no", "anything else"])
+def test_terminal_refusal_stops_entrypoint(
+    acceptance: ModuleType,
+    monkeypatch: pytest.MonkeyPatch,
+    answer: str,
+) -> None:
+    """Blank and nonaffirmative answers exit before service or model work."""
+    monkeypatch.setattr(acceptance.sys, "stdin", SimpleNamespace(isatty=lambda: True))
+    monkeypatch.setattr("builtins.input", lambda _prompt: answer)
+    with pytest.raises(SystemExit, match="Execution declined"):
+        acceptance.main(["--report-path", "result.json"])
+
+
+@pytest.mark.parametrize("failure", [EOFError, KeyboardInterrupt])
+def test_terminal_confirmation_interruption(
+    acceptance: ModuleType,
+    monkeypatch: pytest.MonkeyPatch,
+    failure: type[BaseException],
+) -> None:
+    """Unavailable input and interruption cannot grant consent."""
+    monkeypatch.setattr(acceptance.sys, "stdin", SimpleNamespace(isatty=lambda: True))
+
+    def interrupted(_prompt: str) -> str:
+        raise failure
+
+    monkeypatch.setattr("builtins.input", interrupted)
+    with pytest.raises(SystemExit, match="Confirmation interrupted"):
+        acceptance.main(["--report-path", "result.json"])
+
+
+def test_noninteractive_execution_requires_explicit_authorization(
+    acceptance: ModuleType,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Piped execution fails closed; the explicit local opt-in bypasses input."""
+    monkeypatch.setattr(acceptance.sys, "stdin", SimpleNamespace(isatty=lambda: False))
+    with pytest.raises(SystemExit, match="--authorize-local-execution"):
+        acceptance.main(["--report-path", "result.json"])
+    for option in ("--authorize-local-execution", "--freeze-only"):
+        acceptance._confirm_local_execution(
+            acceptance.parse_arguments([option, "--report-path", "result.json"]),
+        )
 
 
 @dataclass(slots=True)

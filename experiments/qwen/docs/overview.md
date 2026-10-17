@@ -135,7 +135,7 @@ unified-diff file headers. The short response then ends inside a source fragment
 at `@property`, so it is not actionable under the frozen patch contract. No
 parser correction is warranted.
 
-## Structured edit proposal condition (prepared; awaiting explicit opt-in)
+## Structured edit proposal condition (attempt-04 rejected by host representation)
 
 The bounded next condition supplies the same complete source/test Context and
 exposes one native `propose_edit(path, old_text, new_text)` model-facing proposal
@@ -148,12 +148,52 @@ oversized or multi-call proposals fail closed. Rejected applied edits are
 retained as evidence and restored only when the target still matches the
 proposal; conflicting external changes are left for reconciliation.
 
-Deterministic validation is complete. The new complete-context request must be
-frozen against the committed harness and exact current source/test/oracle hashes
-before any inference; it is bounded to one proposal call, no retry, 4,096 output
-tokens, thinking disabled and a 300-second host timeout. **No Qwen call has been
-made for this condition.** After that freeze and readiness check, it still
-requires the explicit terminal opt-in; absent that opt-in, no inference is run.
+The maintainer manually executed the frozen attempt-04 at harness commit
+`f08d176b18aaf1a91b3d1a84bf88cd8d583791f3`. It began at
+2026-10-17T23:16:24.485127Z and finished at 23:16:37.040969Z. One invocation
+returned one native `propose_edit` call, empty text, and normalized termination
+`tool_call`: 4,100 input tokens, 168 output tokens, 4,268 total; cached-input and
+reasoning categories are unknown. Response duration was 12.542315 seconds and
+worker duration 12.554007 seconds. No retries occurred.
+
+JSON parsing, exact argument keys (`path`, `old_text`, `new_text`), authorized
+path and text bounds passed. The 111-character old-text region had two LF
+newlines; the 141-character replacement was bounded. The host's canonical
+filesystem read preserved 186 CRLF line endings in the source. The proposed
+region had **zero raw matches but exactly one match after CRLF-to-LF
+normalization**. This demonstrates an experiment-local host representation
+defect at old-text matching, rather than malformed native Tool output. The
+model proposed a regex replacement; its behavioral correctness remains
+unassessed. No diff was constructed, patch applied, tests run, or independent
+oracle evaluated. The unchanged source SHA-256 is
+`b01a8fdac51f3d5485275898b45d43cd643efac736b1e275b8a18fc205fd6195`.
+
+The historical `PROPOSAL_OR_VALIDATION_FAILURE` classification contains the
+more specific error `Old text must match exactly one source region`; diagnosis
+is **HOST_LINE_ENDING_MATCH_FAILURE**. Retained `response.json` is the normalized
+ModelResponse with the provider call ID and argument JSON; no separate raw HTTP
+response was retained. The provider adapter passes the native argument string
+through unchanged. Receipts remain under `.local/qwen-first-task/attempt-04/`
+and were not rewritten or retroactively accepted.
+
+The smallest future worker correction is consistent newline representation
+for proposal matching/diff construction, with LF/CRLF regression fixtures and
+preservation of baseline byte authentication, unique matching and source line
+endings. That correction has **not** been implemented and no further inference
+is authorized. A valid proposal alone would still not establish task acceptance.
+
+### Terminal execution consent
+
+The earlier chat-menu instructions did not provide actual terminal consent;
+the original CLI had no confirmation gate. The runner now uses console
+`input()` with a `[y/N]` prompt before execution. Blank, negative, malformed,
+EOF and interrupted responses stop before service/model work. `--freeze-only`
+does not invoke inference and needs no consent. Noninteractive execution fails
+unless the operator explicitly supplies `--authorize-local-execution` for the
+selected local experiment. This flag records caller intent only; it is not
+scientific-controller authority, does not relax bounds or permit retries, and
+must not be supplied automatically by an agent. Chat menus are not a substitute
+for this console confirmation. Do not rerun historical attempt-04.
 
 ## Historical fixture consumers
 

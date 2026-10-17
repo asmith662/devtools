@@ -150,10 +150,41 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
     parser.add_argument("--report-path", required=True, type=Path)
     parser.add_argument("--repository-markdown-root", type=Path)
     parser.add_argument("--freeze-only", action="store_true")
+    parser.add_argument(
+        "--authorize-local-execution",
+        action="store_true",
+        help="Explicitly authorize this local experiment attempt without a console prompt.",
+    )
     parser.add_argument("--upfront-context", action="store_true")
     parser.add_argument("--structured-edit", action="store_true")
     parser.add_argument("--host-timeout-seconds", type=int, default=120)
     return parser.parse_args(arguments)
+
+
+def _confirm_local_execution(arguments: argparse.Namespace) -> None:
+    """Require real console consent or explicit caller authorization before execution."""
+    if arguments.freeze_only or arguments.authorize_local_execution:
+        return
+    if not sys.stdin.isatty():
+        raise SystemExit(
+            "No interactive console; no model call made. Explicitly authorize this "
+            "local attempt with --authorize-local-execution or run in a terminal."
+        )
+    limits = (
+        "one model invocation, propose_edit only, 4096 output tokens, thinking off, "
+        "300-second host timeout, no retry"
+        if arguments.structured_edit
+        else "the selected bounded experiment limits"
+    )
+    try:
+        answer = input(
+            f"Run one local Qwen attempt ({arguments.model}; {limits})? "
+            f"Report: {arguments.report_path}. No paid fallback or unrestricted writes. [y/N] "
+        )
+    except (EOFError, KeyboardInterrupt):
+        raise SystemExit("Confirmation interrupted; no model call made.") from None
+    if answer.strip().casefold() not in {"y", "yes"}:
+        raise SystemExit("Execution declined; no model call made.")
 
 
 def _service_status_payload(result: dict[str, object]) -> dict[str, object]:
@@ -764,6 +795,7 @@ def main(  # noqa: C901, PLR0912, PLR0915 -- explicit experiment entrypoint stag
         raise ValueError(
             "--structured-edit requires --upfront-context and a repository root"
         )
+    _confirm_local_execution(parsed)
     if parsed.repository_markdown_root is not None:
         root = resolve_path(
             parsed.repository_markdown_root, base_directory=Path.cwd()
