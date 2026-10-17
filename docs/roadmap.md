@@ -88,6 +88,13 @@ Do not retry either frozen attempt or silently substitute a Codex solution.
 Candidate-08 remains scientifically incomplete and unchanged; its independent
 recovery does not block this development-worker workstream.
 
+One separately frozen output-budget comparison reused attempt-02's prompt
+byte-for-byte with a 4,096-token output cap. Qwen stopped normally but its short
+response failed exact patch admission; no patch or accepted task resulted. The
+[attempt-03 report](../experiments/qwen/docs/first_real_task_output_budget_comparison.json)
+retains the measured outcome. This further separates output truncation from
+patch-format failure without demonstrating coding competence.
+
 ### Future agent working and long-term memory
 
 Retain two distinct future capability needs without treating them as accepted

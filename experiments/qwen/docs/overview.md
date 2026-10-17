@@ -96,6 +96,27 @@ these attempts demonstrate working host boundaries and two failed real task
 conditions, not Qwen coding competence or a reusable coding agent. Do not retry
 or raise the output bound without a separately frozen and authorized task.
 
+## Output-budget comparison (2026-10-17)
+
+The [attempt-03 report](first_real_task_output_budget_comparison.json) continues
+the complete-context condition once with the same attempt-02 prompt bytes and
+all the same disclosed source/test Context, model profile, 32,768-token input
+configuration, disabled thinking, one request and zero Tools. The only changed
+model-request setting was the output allowance, increased from 1,500 to 4,096
+tokens; the host deadline was 300 seconds. The source, tests and eight-scenario
+oracle hashes were reverified, and the frozen baseline oracle still failed as
+expected.
+
+Qwen returned normally after 6.65 seconds with 3,801 input and 139 output tokens.
+The response did not satisfy the existing exact bounded unified-diff contract;
+host patch validation rejected it. No scope check, patch application, Markdown
+test or post-patch oracle ran, and the implementation hash is unchanged. This
+is a patch-format/admission failure, not an output-limit failure. There was one
+request, no Tool call, and no retry. The result still establishes neither an
+accepted Qwen coding task nor full autonomous-worker competence. Attempt-03
+does not prove that a larger output allowance is generally beneficial, and no
+Codex cost comparison is inferred.
+
 ## Historical fixture consumers
 
 The llama.cpp transport adapter lives in

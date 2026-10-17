@@ -84,9 +84,18 @@ request count, so it does not isolate continuation alone. The [separate measured
 report](../../../experiments/qwen/docs/first_real_task_upfront.json) records the
 prompt identity, usage and validation disposition.
 
+A separately authorized output-budget comparison reused attempt-02's exact
+prompt bytes, source/test/oracle hashes, model profile, Context configuration,
+disabled thinking, one request and zero Tools, changing only the output cap from
+1,500 to 4,096 tokens. Qwen stopped normally after 6.65 s with 3,801 input and
+139 output tokens, but its response failed the existing exact unified-diff
+admission contract. No patch was applied and neither the focused Markdown tests
+nor the independent oracle ran after inference. The source remains at its
+frozen hash. See the [attempt-03 report](../../../experiments/qwen/docs/first_real_task_output_budget_comparison.json).
+
 Harness status stays VALIDATED, but **a real accepted Qwen development change has
-not been demonstrated**. Focused deterministic tests, Ruff, formatting and strict
-mypy pass. The next step is to review whether a separately scoped, smaller-output
-task can test patch formation; neither prior task should be retried or have its
-frozen limits raised. This evidence authorizes no generic framework or automatic
-retry.
+not been demonstrated**. The attempts fail at distinct boundaries: repeated
+acquisition in attempt-01, output truncation in attempt-02, and patch-format
+admission in attempt-03. Focused deterministic tests, Ruff, formatting and strict
+mypy pass for the host harness. No automatic retry or generic framework is
+authorized by this evidence.
