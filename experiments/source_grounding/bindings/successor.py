@@ -23,23 +23,27 @@ from experiments.orchestration.publication import Repository
 from experiments.orchestration.storage import load, require
 from experiments.source_grounding import freeze
 
-SOURCE = "2aad8a1c8ccc3cd19a0476d7da13f1d95a833d42"
-PREDECESSOR = "92250292dacfb8289d129063d5523dd87b63162b"
+PREDECESSOR = "35d464425ef13029b0ee6151e5aea232d8489068"
 ORIGINAL = (
-    "experiments/source_grounding/plans/candidate-discrimination-startup-run-plan.json"
-)
-ORIGINAL_SHA = "64d0d087fb2ace87a2c01c931f3c03eda71d0e1d7af1a762afd10bc35f1a5f48"
-PREFIX = "experiments/source_grounding/bindings/"
-INTEGRITY = PREFIX + "execution-07-integrity.json"
-BINDING = PREFIX + "execution-07.json"
-BUILDER = PREFIX + "successor.py"
-PLAN = (
     "experiments/source_grounding/plans/candidate-discrimination-pipeline-run-plan.json"
 )
+ORIGINAL_SHA = "de5f0ef1e62823b4be9b7af89c28936aae0224fb1cb4d5720abf8a34b41877a9"
+PREFIX = "experiments/source_grounding/bindings/"
+INTEGRITY = PREFIX + "execution-08-integrity.json"
+BINDING = PREFIX + "execution-08.json"
+BUILDER = PREFIX + "successor.py"
+PLAN = (
+    "experiments/source_grounding/plans/candidate-discrimination-budget-run-plan.json"
+)
 
 
-async def bindings() -> dict[str, bytes]:
+async def bindings(source: str) -> dict[str, bytes]:
     """Retain artifact bytes and fail if scientific implementation has changed."""
+    require(
+        len(source) == len(PREDECESSOR)
+        and (await git("rev-parse", source)).decode().strip() == source,
+        "Exact committed source identity required",
+    )
     raw = (ROOT / ORIGINAL).read_bytes()
     require(digest(raw) == ORIGINAL_SHA, "Frozen original plan changed")
     require(raw == await git("show", PREDECESSOR + ":" + ORIGINAL), "Predecessor bytes")
@@ -55,12 +59,14 @@ async def bindings() -> dict[str, bytes]:
     current = freeze.implementations()
     for address, sha in prior["implementation"].items():
         observed = digest((ROOT / address).read_bytes())
-        if not address.startswith(("src/devtools/", "experiments/orchestration/")):
+        if address != BUILDER and not address.startswith(
+            ("src/devtools/", "experiments/orchestration/")
+        ):
             require(observed == sha, "Scientific implementation changed: " + address)
         current.setdefault(address, observed)
     for address, sha in current.items():
         require(
-            digest(await git("show", SOURCE + ":" + address)) == sha, "Source binding"
+            digest(await git("show", source + ":" + address)) == sha, "Source binding"
         )
     current[BUILDER] = digest(Path(__file__).read_bytes())
     integrity = json_bytes({**prior, "implementation": current})
@@ -83,7 +89,7 @@ async def bindings() -> dict[str, bytes]:
             preserved[address] = digest(data)
     record = {
         "schema": "source-grounding-prospective-execution-binding-v1",
-        "source_checkpoint": SOURCE,
+        "source_checkpoint": source,
         "predecessor_checkpoint": PREDECESSOR,
         "predecessor_plan": ORIGINAL,
         "predecessor_plan_sha256": ORIGINAL_SHA,
@@ -105,6 +111,11 @@ async def bindings() -> dict[str, bytes]:
         "gold_access": False,
         "confirmation_reserve_access": False,
     }
+    require(
+        set(record["implementation_changes"])
+        == {BUILDER, "experiments/orchestration/usage_budget.py"},
+        "Only the stabilized budget correction and binding builder may change",
+    )
     return {INTEGRITY: integrity, BINDING: json_bytes(record)}
 
 
@@ -112,7 +123,7 @@ async def plan(checkpoint: str) -> dict[str, Any]:
     """Derive identity using RunPlan; change only prospective execution bindings."""
     value: dict[str, Any] = copy.deepcopy(load(ROOT / ORIGINAL))
     value["attempt"] += 1
-    value["name"] = "purpose-relative-source-grounding-candidate-discrimination-07"
+    value["name"] = "purpose-relative-source-grounding-candidate-discrimination-08"
     value["stage_a"]["checkpoint"] = checkpoint
     value["stage_a"]["integrity"] = {
         "path": INTEGRITY,
@@ -136,12 +147,17 @@ async def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("mode", choices=("build", "verify", "plan", "verify-plan"))
     parser.add_argument("--checkpoint")
+    parser.add_argument("--source-checkpoint")
     args = parser.parse_args()
     if args.mode in {"plan", "verify-plan"}:
         require(bool(args.checkpoint), "Committed binding checkpoint required")
         files = {PLAN: json_bytes(await plan(args.checkpoint))}
     else:
-        files = await bindings()
+        require(
+            bool(args.source_checkpoint),
+            "Committed corrected source checkpoint required",
+        )
+        files = await bindings(args.source_checkpoint)
     for address, raw in files.items():
         destination = ROOT / address
         if args.mode in {"verify", "verify-plan"}:

@@ -14,6 +14,7 @@ from devtools.core.time import Timestamp
 from devtools.governance.usage import BudgetScope, UsageAmount, UsageBudget
 from devtools.models.interaction.usage import ModelUsage
 from devtools.observability.usage import Attribution, Purpose, UsageWindow, report
+from devtools.observability.usage.collection import reconcile
 from devtools.observability.usage.ingestion import from_capture
 from devtools.observability.usage.models import UsageObservation
 from devtools.observability.usage.storage import load as observations
@@ -114,6 +115,36 @@ def _assess_call(
     )
 
 
+def _observed_for_scope(
+    observed: tuple[UsageObservation, ...],
+    scope: BudgetScope,
+    identity: str,
+    model: str | None,
+) -> tuple[UsageObservation, ...]:
+    """Select reconciled original consumption, retaining relevant conflicts."""
+    selected: list[UsageObservation] = []
+    for component in reconcile(observed):
+        attrs = [component.attribution]
+        if component.conflict:
+            attrs = [
+                (r.original_attribution or Attribution())
+                if r.execution_origin == "ADOPTED"
+                else r.attribution
+                for r in component.observations
+            ]
+        if (not model or any(r.model == model for r in component.observations)) and any(
+            (scope != BudgetScope.PROJECT or attr.project == identity)
+            and (scope != BudgetScope.EXPERIMENT or attr.experiment == identity)
+            and (scope != BudgetScope.STAGE or attr.stage == identity)
+            for attr in attrs
+        ):
+            require(
+                not component.conflict, "BUDGET_BLOCKED: conflicting observed usage"
+            )
+            selected.extend(component.consumption)
+    return tuple(selected)
+
+
 def _check_local(
     root: Path, run_id: str, stage: str, call: Any, state: Any, proposed: UsageAmount
 ) -> Any:
@@ -122,8 +153,29 @@ def _check_local(
     # Optional local numeric constraints are never silently configured.
     local_path = ledger_path.parent / "policy.json"
     local = load(local_path) if local_path.exists() else {"limits": []}
+    applicable = []
+    for item in local["limits"]:
+        scope = BudgetScope(item["scope"])
+        if item.get("model") and item["model"] != call["model"]:
+            continue
+        if scope == BudgetScope.PROJECT and item["identity"] != "devtools":
+            continue
+        if scope == BudgetScope.EXPERIMENT and item["identity"] != run_id:
+            continue
+        if scope == BudgetScope.STAGE and item["identity"] != stage:
+            continue
+        applicable.append(item)
+    require(
+        not local["limits"]
+        or any(
+            any(value is not None for value in item["limits"].values())
+            for item in applicable
+        ),
+        "BUDGET_BLOCKED: no applicable numeric policy for invocation",
+    )
     observed = observations(ledger_path)
-    if local["limits"]:
+    if applicable:
+        require(ledger_path.exists(), "BUDGET_BLOCKED: observed usage ledger required")
         last = load(ledger_path.parent / "backfill.json")
         age = (
             Timestamp.now().value - Timestamp.from_isoformat(last["observed_at"]).value
@@ -132,17 +184,9 @@ def _check_local(
             0 <= age <= local.get("max_observation_age_seconds", 300),
             "BUDGET_BLOCKED: refresh metadata-only usage baseline before launch",
         )
-    for item in local["limits"]:
+    for item in applicable:
         scope = BudgetScope(item["scope"])
         model = item.get("model")
-        if model and model != call["model"]:
-            continue
-        if scope == BudgetScope.PROJECT and item["identity"] != "devtools":
-            continue
-        if scope == BudgetScope.EXPERIMENT and item["identity"] != run_id:
-            continue
-        if scope == BudgetScope.STAGE and item["identity"] != stage:
-            continue
         require(
             not model
             or not any(
@@ -155,17 +199,7 @@ def _check_local(
             ),
             "BUDGET_BLOCKED: model attribution UNKNOWN or MIXED",
         )
-        selected = tuple(
-            r
-            for r in observed
-            if (not model or r.model == model)
-            and (
-                scope != BudgetScope.PROJECT
-                or r.attribution.project == item["identity"]
-            )
-            and (scope != BudgetScope.EXPERIMENT or r.attribution.experiment == run_id)
-            and (scope != BudgetScope.STAGE or r.attribution.stage == stage)
-        )
+        selected = _observed_for_scope(observed, scope, item["identity"], model)
         summary = report(selected, UsageWindow.rolling(Timestamp.now()))
         require(
             not summary["conflicting_invocations_excluded"],
@@ -210,7 +244,7 @@ def _check_local(
         decision = rule.check(consumed, reserved, proposed)
         require(decision.allowed, "BUDGET_BLOCKED: " + ",".join(decision.reasons))
 
-    return local
+    return {**local, "limits": applicable}
 
 
 def preview(root: Path, plan: Any, run_id: str) -> Any:

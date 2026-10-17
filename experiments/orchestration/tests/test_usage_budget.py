@@ -2,21 +2,26 @@
 # ruff: noqa: ANN401, S101, PLR2004, PT018, E501 -- explicit synthetic admission fixtures
 """No-launch usage admission, reservations and original adoption attribution."""
 
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import replace
 from pathlib import Path
+from threading import Barrier
 from types import SimpleNamespace
 from typing import Any
 
 import pytest
 
 from devtools.core.time import Duration, Timestamp
+from devtools.models.interaction.usage import ModelUsage
 from devtools.observability.usage import Attribution, Purpose
 from devtools.observability.usage.ingestion import from_capture
-from devtools.observability.usage.storage import load
+from devtools.observability.usage.storage import load, writer
 from devtools.observability.usage.storage import save as save_observations
+from experiments.codex_dogfood.case_0009.artifacts import ROOT
 from experiments.orchestration import usage_budget
 from experiments.orchestration.controller import Controller
 from experiments.orchestration.pipeline import usage
+from experiments.orchestration.storage import load as read
 from experiments.orchestration.storage import save
 from experiments.orchestration.workers import accounting, measurement
 
@@ -168,6 +173,7 @@ def test_configured_weekly_block_prelaunch(tmp_path: Path) -> None:
         },
     )
     save(local / "backfill.json", {"observed_at": str(Timestamp.now())})
+    save_observations(local / "ledger.json", ())
     with pytest.raises(ValueError, match="BUDGET_BLOCKED"):
         usage_budget.reserve(tmp_path, plan(), "run", "one", "C", authorized=True)
     assert not (local / "reservations.json").exists()
@@ -177,12 +183,21 @@ def test_configured_weekly_block_prelaunch(tmp_path: Path) -> None:
 
 
 def test_unrelated_model_budget_is_not_charged(tmp_path: Path) -> None:
-    """A model-specific zero limit cannot accidentally block another model."""
+    """An unrelated rule adds no constraint when another rule covers the call."""
     local = tmp_path / ".local/usage"
     save(
         local / "policy.json",
         {
             "limits": [
+                {
+                    "scope": "PROJECT",
+                    "identity": "devtools",
+                    "limits": {
+                        "fresh_calls": 2,
+                        "input_tokens": None,
+                        "output_tokens": None,
+                    },
+                },
                 {
                     "scope": "OBSERVED_WINDOW",
                     "identity": "local",
@@ -193,6 +208,7 @@ def test_unrelated_model_budget_is_not_charged(tmp_path: Path) -> None:
         },
     )
     save(local / "backfill.json", {"observed_at": str(Timestamp.now())})
+    save_observations(local / "ledger.json", ())
     assert (
         usage_budget.reserve(tmp_path, plan(), "run", "one", "C", authorized=True)[
             "status"
@@ -394,3 +410,424 @@ def test_strict_reservation_and_terminal_consumption(tmp_path: Path) -> None:
         usage_budget.consumption(tmp_path, plan(), "run")["status"]
         == "BUDGET_CHECK_PASS"
     )
+
+
+def configured(root: Path, rules: list[Any]) -> None:
+    """Install an isolated numeric policy with a fresh empty observation set."""
+    local = root / ".local/usage"
+    save(local / "policy.json", {"limits": rules})
+    save(local / "backfill.json", {"observed_at": str(Timestamp.now())})
+    save_observations(local / "ledger.json", ())
+
+
+def rule(scope: str = "EXPERIMENT", identity: str = "run", **selectors: Any) -> Any:
+    """Name real canonical scopes; no alternative policy assessment."""
+    limits = selectors.pop(
+        "limits",
+        {"fresh_calls": 2, "input_tokens": 200, "output_tokens": 40},
+    )
+    return {
+        "scope": scope,
+        "identity": identity,
+        "limits": {
+            "fresh_calls": None,
+            "input_tokens": None,
+            "output_tokens": None,
+            **limits,
+        },
+        **selectors,
+    }
+
+
+@pytest.mark.parametrize(
+    "rules",
+    [
+        [rule(identity="unrelated")],
+        [rule(model="another-model")],
+        [rule(scope="STAGE", identity="B")],
+        [rule(scope="PROJECT", identity="another-project")],
+        [
+            rule(
+                limits={
+                    "fresh_calls": None,
+                    "input_tokens": None,
+                    "output_tokens": None,
+                },
+            ),
+        ],
+    ],
+)
+def test_inapplicable_policy_blocks_all_assessments(tmp_path: Path, rules: Any) -> None:
+    """Policy presence cannot admit an uncovered invocation through any seam."""
+    configured(tmp_path, rules)
+    value = {**plan(), "economics": {}}
+    with pytest.raises(ValueError, match="no applicable numeric policy"):
+        usage_budget.preview(tmp_path, value, "run")
+    with pytest.raises(ValueError, match="no applicable numeric policy"):
+        usage_budget.reserve(
+            tmp_path,
+            value,
+            "run",
+            "one",
+            "C",
+            authorized=True,
+            require_configured=True,
+        )
+    result = usage_budget.consumption(tmp_path, value, "run")
+    assert result["status"] == "UNAVAILABLE_OR_BLOCKED"
+    assert all("no applicable" in v["reason"] for v in result["decisions"].values())
+    assert not (tmp_path / ".local/usage/reservations.json").exists()
+
+
+@pytest.mark.parametrize(
+    ("scope", "identity"),
+    [
+        ("PROJECT", "devtools"),
+        ("STAGE", "C"),
+        ("OBSERVED_WINDOW", "local"),
+        ("EXPERIMENT", "run"),
+    ],
+)
+def test_applicable_broader_scopes_and_preview_agree(
+    tmp_path: Path,
+    scope: str,
+    identity: str,
+) -> None:
+    """Existing broader scopes remain usable, with identical real admission."""
+    configured(tmp_path, [rule(scope, identity)])
+    value = {**plan(), "economics": {}}
+    before = {p.name: p.read_bytes() for p in (tmp_path / ".local/usage").iterdir()}
+    assert usage_budget.preview(tmp_path, value, "run")["status"] == "BUDGET_CHECK_PASS"
+    assert before == {
+        p.name: p.read_bytes() for p in (tmp_path / ".local/usage").iterdir()
+    }
+    for case in ("one", "two"):
+        assert (
+            usage_budget.reserve(
+                tmp_path,
+                value,
+                "run",
+                case,
+                "C",
+                authorized=True,
+                require_configured=True,
+            )["status"]
+            == "BUDGET_RESERVED"
+        )
+    with pytest.raises(ValueError, match="already reserved"):
+        usage_budget.reserve(
+            tmp_path,
+            value,
+            "run",
+            "one",
+            "C",
+            authorized=True,
+            require_configured=True,
+        )
+    assert (
+        usage_budget.consumption(tmp_path, value, "run")["status"]
+        == "BUDGET_CHECK_PASS"
+    )
+
+
+def test_frozen_four_call_population_and_partial_coverage(tmp_path: Path) -> None:
+    """Real frozen inventory covers B/Sol and C/Astra without reserving live calls."""
+    value = read(
+        ROOT
+        / "experiments/source_grounding/plans/candidate-discrimination-pipeline-run-plan.json",
+    )
+    calls = value["usage_budget"]["calls"]
+    assert set(calls) == {"0024/B", "0022/C", "0023/C", "0024/C"}
+    assert calls["0024/B"]["model"] == "gpt-6-sol"
+    assert {calls[key]["model"] for key in calls if key.endswith("/C")} == {
+        "gpt-6-astra",
+    }
+    exact = rule(
+        limits={"fresh_calls": 4, "input_tokens": 1756679, "output_tokens": 191923},
+    )
+    configured(tmp_path, [exact])
+    assert usage_budget.preview(tmp_path, value, "run")["status"] == "BUDGET_CHECK_PASS"
+    with pytest.raises(ValueError, match="no applicable"):
+        usage_budget.preview(tmp_path, value, "unrelated")
+    for selector in (
+        {"model": "gpt-6-sol"},
+        {"model": "gpt-6-astra"},
+        {"scope": "STAGE", "identity": "B"},
+    ):
+        configured(tmp_path, [{**exact, **selector}])
+        with pytest.raises(ValueError, match="no applicable"):
+            usage_budget.preview(tmp_path, value, "run")
+    configured(tmp_path, [exact])
+    for key in calls:
+        case, stage = key.split("/")
+        usage_budget.reserve(
+            tmp_path,
+            value,
+            "run",
+            case,
+            stage,
+            authorized=True,
+            require_configured=True,
+        )
+    assert len(read(tmp_path / ".local/usage/reservations.json")["calls"]) == 4
+    assert (
+        usage_budget.reserve(
+            tmp_path,
+            value,
+            "run",
+            "0022",
+            "B",
+            authorized=True,
+            require_configured=True,
+        )
+        is None
+    )
+    assert (
+        usage_budget.reserve(
+            tmp_path,
+            value,
+            "run",
+            "0023",
+            "B",
+            authorized=True,
+            require_configured=True,
+        )
+        is None
+    )
+    expanded = read(
+        ROOT
+        / "experiments/source_grounding/plans/candidate-discrimination-pipeline-run-plan.json",
+    )
+    expanded["usage_budget"]["calls"]["extra/C"] = calls["0022/C"]
+    with pytest.raises(ValueError, match="fresh-call limit"):
+        usage_budget.reserve(
+            tmp_path,
+            expanded,
+            "run",
+            "extra",
+            "C",
+            authorized=True,
+            require_configured=True,
+        )
+
+
+def test_every_matching_rule_and_pending_reservation_count(tmp_path: Path) -> None:
+    """A permissive exact rule cannot override a stricter matching rule."""
+    configured(
+        tmp_path,
+        [rule(), rule("PROJECT", "devtools", limits={"fresh_calls": 1})],
+    )
+    value = {**plan(), "economics": {}}
+    with pytest.raises(ValueError, match="EXCEEDED"):
+        usage_budget.preview(tmp_path, value, "run")
+    usage_budget.reserve(
+        tmp_path,
+        value,
+        "run",
+        "one",
+        "C",
+        authorized=True,
+        require_configured=True,
+    )
+    with pytest.raises(ValueError, match="EXCEEDED"):
+        usage_budget.reserve(
+            tmp_path,
+            value,
+            "run",
+            "two",
+            "C",
+            authorized=True,
+            require_configured=True,
+        )
+
+
+@pytest.mark.parametrize(
+    "defect",
+    ["ledger", "baseline", "stale", "unknown", "conflict", "attribution_conflict"],
+)
+def test_required_accounting_fails_closed(tmp_path: Path, defect: str) -> None:
+    """Real reservation admission refuses absent, unknown or conflicting evidence."""
+    configured(tmp_path, [rule()])
+    local = tmp_path / ".local/usage"
+    row = from_capture(
+        capture(),
+        timestamp=Timestamp.now(),
+        source="SYNTHETIC",
+        source_digest="one",
+        attribution=Attribution("devtools", Purpose.SCIENCE, "run", "one", "C"),
+    )
+    if defect == "ledger":
+        (local / "ledger.json").unlink()
+    elif defect == "baseline":
+        (local / "backfill.json").unlink()
+    elif defect == "stale":
+        save(local / "backfill.json", {"observed_at": "2000-01-01T00:00:00Z"})
+    elif defect == "unknown":
+        save_observations(local / "ledger.json", (replace(row, usage=ModelUsage()),))
+    elif defect == "attribution_conflict":
+        save_observations(
+            local / "ledger.json",
+            (
+                row,
+                replace(
+                    row,
+                    source_digest="conflict",
+                    attribution=Attribution(
+                        "devtools",
+                        Purpose.SCIENCE,
+                        "another-run",
+                        "one",
+                        "C",
+                    ),
+                ),
+            ),
+        )
+    else:
+        save_observations(
+            local / "ledger.json",
+            (
+                row,
+                replace(
+                    row,
+                    source_digest="conflict",
+                    usage=ModelUsage(input_tokens=11, output_tokens=4),
+                ),
+            ),
+        )
+    with pytest.raises((ValueError, OSError)):
+        usage_budget.reserve(
+            tmp_path,
+            plan(),
+            "run",
+            "one",
+            "C",
+            authorized=True,
+            require_configured=True,
+        )
+    assert not (local / "reservations.json").exists()
+
+
+def test_adoption_and_overlapping_categories_are_not_charged_twice(
+    tmp_path: Path,
+) -> None:
+    """Input/output limits include their cached/reasoning subsets exactly once."""
+    configured(
+        tmp_path,
+        [rule(limits={"fresh_calls": 2, "input_tokens": 110, "output_tokens": 24})],
+    )
+    local = tmp_path / ".local/usage"
+    row = from_capture(
+        capture(),
+        timestamp=Timestamp.now(),
+        source="SYNTHETIC",
+        source_digest="one",
+        attribution=Attribution("devtools", Purpose.SCIENCE, "prior", "one", "B"),
+    )
+    fresh = replace(
+        row,
+        invocation_id="fresh",
+        thread_id="fresh-thread",
+        attribution=Attribution("devtools", Purpose.SCIENCE, "run", "one", "B"),
+    )
+    save_observations(local / "ledger.json", (row, fresh))
+    usage_budget.adoption(
+        tmp_path,
+        "run",
+        "one",
+        accounting.accept(capture(), "SYNTHETIC"),
+        "prior",
+    )
+    usage_budget.reserve(
+        tmp_path,
+        plan(),
+        "run",
+        "one",
+        "C",
+        authorized=True,
+        require_configured=True,
+    )
+    assert (
+        usage_budget.consumption(tmp_path, plan(), "run")["status"]
+        == "BUDGET_CHECK_PASS"
+    )
+
+
+def test_uncertain_outcome_blocks_consumption_and_retry(tmp_path: Path) -> None:
+    """Unknown usage is not zero; the existing invocation stays non-repeatable."""
+    configured(tmp_path, [rule()])
+    usage_budget.reserve(
+        tmp_path,
+        plan(),
+        "run",
+        "one",
+        "C",
+        authorized=True,
+        require_configured=True,
+    )
+    usage_budget.capture(tmp_path, "run", "one", "C", tmp_path / "absent.json")
+    with pytest.raises(ValueError, match="already reserved"):
+        usage_budget.reserve(
+            tmp_path,
+            plan(),
+            "run",
+            "one",
+            "C",
+            authorized=True,
+            require_configured=True,
+        )
+    with pytest.raises(ValueError, match="UNKNOWN"):
+        usage_budget.reserve(
+            tmp_path,
+            plan(),
+            "run",
+            "two",
+            "C",
+            authorized=True,
+            require_configured=True,
+        )
+    assert (
+        usage_budget.consumption(tmp_path, plan(), "run")["status"]
+        == "UNAVAILABLE_OR_BLOCKED"
+    )
+
+
+def test_competing_admissions_use_existing_writer_lease(tmp_path: Path) -> None:
+    """Concurrent attempts cannot oversubscribe or bypass an active writer lease."""
+    configured(tmp_path, [rule(limits={"fresh_calls": 1})])
+    ledger = tmp_path / ".local/usage/ledger.json"
+    start = Barrier(2)
+
+    def attempt(case: str) -> str:
+        start.wait(timeout=5)
+        try:
+            usage_budget.reserve(
+                tmp_path,
+                plan(),
+                "run",
+                case,
+                "C",
+                authorized=True,
+                require_configured=True,
+            )
+        except FileExistsError:
+            return "CONTENDED"
+        except ValueError as error:
+            return str(error)
+        return "RESERVED"
+
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        outcomes = list(executor.map(attempt, ("one", "two")))
+    assert outcomes.count("RESERVED") == 1
+    assert any(value == "CONTENDED" or "EXCEEDED" in value for value in outcomes)
+    assert len(read(ledger.parent / "reservations.json")["calls"]) == 1
+    assert not ledger.with_suffix(".writer").exists()
+    with writer(ledger), pytest.raises(FileExistsError):
+        usage_budget.reserve(
+            tmp_path,
+            plan(),
+            "run",
+            "one",
+            "C",
+            authorized=True,
+            require_configured=True,
+        )

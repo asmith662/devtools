@@ -34,6 +34,15 @@ experiment/stage constraints, and captures all available outcomes. Numeric budge
 permission never grants scientific authority. An ignored `.local/usage/policy.json`
 may configure limits; absent limits are UNSET, not a selected infinite budget.
 Configured limits require a fresh metadata backfill (default maximum age 300s).
+Every fresh invocation must have at least one applicable numeric rule; policy
+presence alone cannot admit an uncovered run, stage or model. All matching rules
+apply. Preview, reservation and consumption use the same applicability and
+canonical reconciled original-consumption selection. Adopted references do not
+charge their use-site experiment; relevant conflicting attribution fails closed.
+The optional legacy path without numeric policy remains explicitly UNSET; governed
+pipeline execution requires configured applicable policy. Limits assess observed
+rolling consumption plus outstanding and proposed forecast reservations, not
+provider-enforced runtime token ceilings.
 Conflicts/unknown required values fail BUDGET_BLOCKED before launch. Unresolved
 reservations remain charged until explicit reconciliation; no automatic retry.
 Superseded plan markers deny approval/execution without mutating historical plans.

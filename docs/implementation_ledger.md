@@ -1,5 +1,23 @@
 # Implementation Ledger
 
+## Canonical budget applicability correction (2026-10-16)
+
+The authorized narrow correction requires an applicable numeric rule for each
+fresh invocation, enforces all matching rules and shares that decision across
+preview, reservation and consumption. Existing broader scopes and explicitly
+UNSET legacy admission remain supported; governed execution requires configured
+policy. Canonical usage reconciliation now precedes scope selection, preserving
+adopted original attribution and relevant conflicts without changing arithmetic.
+Twenty-nine budget cases cover the frozen four-call inventory, partial model/stage
+coverage, accounting and actual competing reservations through the existing lease.
+All 258 controller regressions pass (3,967.72 seconds); protected validation passes
+1,662 tests with two skips and 100% production branch coverage (69.78 seconds).
+Ruff, formatter and strict mypy pass. A single binding-only replacement is required
+because the controller implementation hash changes. Its existing builder now
+requires an exact committed source checkpoint and permits only the budget module
+and builder to differ from candidate-07. Construction follows the stabilized
+engineering commit; this checkpoint grants no scientific authority.
+
 ## Approved operational decisions: compatibility and recovery verification (2026-10-16)
 
 The [existing deployment packet](../experiments/source_grounding/plans/PIPELINE_DEPLOYMENT_REVIEW.md)

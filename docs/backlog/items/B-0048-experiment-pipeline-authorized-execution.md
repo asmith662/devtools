@@ -93,6 +93,17 @@ passes, but its same-SSD package establishes no independent durability. Fresh
 preparation remains BUDGET_UNAVAILABLE, with no approval or scientific entry.
 The linked deployment review records exact evidence and remaining conditions.
 
+The subsequently authorized canonical correction is implemented and validated:
+every fresh call needs applicable numeric policy, all matching rules apply, and
+preview/reservation/consumption share applicability. Scope selection uses existing
+usage reconciliation so adopted work is not charged to its successor and relevant
+conflicting attribution is retained. All 258 controller regressions and protected
+development validation pass. The changed controller hash requires one binding-only
+successor after the engineering checkpoint. The maintainer now explicitly accepts
+the verified same-SSD recovery package's limitations; no new backup infrastructure
+or independent-storage requirement is introduced. Scientific authority remains
+separate and absent; final successor preparation is recorded in the deployment review.
+
 The consumer is a human operator now and a future ExperimentManagerAgent.
 Remain concrete until repeated consumers justify more general semantics.
 The roadmap is `ExperimentExecutionPipeline -> ExperimentManagerAgent -> ResearchAgent`;
