@@ -117,6 +117,44 @@ accepted Qwen coding task nor full autonomous-worker competence. Attempt-03
 does not prove that a larger output allowance is generally beneficial, and no
 Codex cost comparison is inferred.
 
+The retained response was **patch-like content with unsupported formatting**,
+not a valid patch incorrectly refused by the parser. Its opening excerpt is:
+
+```
+---
+---
+a/src/devtools/resources/filesystem/models/markdown/file.py
+b/src/devtools/resources/filesystem/models/markdown/file.py
+---
++++
+@@ -37,7 +37,8 @@
+```
+
+The existing parser correctly requires the first two lines to be the exact
+unified-diff file headers. The short response then ends inside a source fragment
+at `@property`, so it is not actionable under the frozen patch contract. No
+parser correction is warranted.
+
+## Structured edit proposal condition (prepared; awaiting explicit opt-in)
+
+The bounded next condition supplies the same complete source/test Context and
+exposes one native `propose_edit(path, old_text, new_text)` model-facing proposal
+definition. It is not an executable filesystem Tool. The host requires the exact
+permitted source path, a nonempty old-text region occurring exactly once, and
+bounded replacement text; it derives the unified diff and reuses the existing
+Git patch application, focused tests and independent oracle. No shell, direct
+write or publication operation is disclosed. Duplicate, malformed, ambiguous,
+oversized or multi-call proposals fail closed. Rejected applied edits are
+retained as evidence and restored only when the target still matches the
+proposal; conflicting external changes are left for reconciliation.
+
+Deterministic validation is complete. The new complete-context request must be
+frozen against the committed harness and exact current source/test/oracle hashes
+before any inference; it is bounded to one proposal call, no retry, 4,096 output
+tokens, thinking disabled and a 300-second host timeout. **No Qwen call has been
+made for this condition.** After that freeze and readiness check, it still
+requires the explicit terminal opt-in; absent that opt-in, no inference is run.
+
 ## Historical fixture consumers
 
 The llama.cpp transport adapter lives in

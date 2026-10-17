@@ -40,9 +40,13 @@ from devtools.tools.filesystem import (
     ReadRepositoryFileTool,
 )
 from experiments.qwen.development_task import (
+    STRUCTURED_EDIT_OUTPUT_TOKENS,
+    STRUCTURED_EDIT_TIMEOUT_SECONDS,
     freeze_markdown_task,
+    freeze_structured_edit_task,
     freeze_upfront_context_task,
     run_markdown_task,
+    run_structured_edit_task,
     run_upfront_context_task,
 )
 from experiments.qwen.patch_proposal_worker import (
@@ -147,6 +151,7 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
     parser.add_argument("--repository-markdown-root", type=Path)
     parser.add_argument("--freeze-only", action="store_true")
     parser.add_argument("--upfront-context", action="store_true")
+    parser.add_argument("--structured-edit", action="store_true")
     parser.add_argument("--host-timeout-seconds", type=int, default=120)
     return parser.parse_args(arguments)
 
@@ -748,9 +753,17 @@ def _print_outcome(outcome: B0009LiveOutcome) -> None:
     )
 
 
-def main(arguments: Sequence[str] | None = None) -> None:
+def main(  # noqa: C901, PLR0912, PLR0915 -- explicit experiment entrypoint stages
+    arguments: Sequence[str] | None = None,
+) -> None:
     """Run one live attempt and require durable reporting regardless of its verdict."""
     parsed = parse_arguments(arguments)
+    if parsed.structured_edit and (
+        not parsed.upfront_context or parsed.repository_markdown_root is None
+    ):
+        raise ValueError(
+            "--structured-edit requires --upfront-context and a repository root"
+        )
     if parsed.repository_markdown_root is not None:
         root = resolve_path(
             parsed.repository_markdown_root, base_directory=Path.cwd()
@@ -758,6 +771,8 @@ def main(arguments: Sequence[str] | None = None) -> None:
         folder = resolve_path(
             parsed.report_path.parent, base_directory=Path.cwd()
         ).value
+        if parsed.structured_edit and not parsed.upfront_context:
+            raise ValueError("--structured-edit requires --upfront-context")
         if parsed.upfront_context:
             service_payload = asyncio.run(_qwen_status(root))
             profile_sha = service_payload.get("expected_fingerprint")
@@ -766,6 +781,64 @@ def main(arguments: Sequence[str] | None = None) -> None:
                     "Existing Qwen status did not report its profile identity"
                 )
             oracle_path = root / ".local/qwen-first-task/attempt-01/acceptance.py"
+            if parsed.structured_edit:
+                if parsed.maximum_output_tokens not in (
+                    None,
+                    STRUCTURED_EDIT_OUTPUT_TOKENS,
+                ):
+                    raise ValueError(
+                        "Structured edit requires the frozen 4,096-token cap"
+                    )
+                if parsed.host_timeout_seconds != STRUCTURED_EDIT_TIMEOUT_SECONDS:
+                    raise ValueError(
+                        "Structured edit requires the frozen 300-second host timeout"
+                    )
+                if parsed.freeze_only:
+                    frozen = asyncio.run(
+                        freeze_structured_edit_task(
+                            root,
+                            folder,
+                            oracle_path=oracle_path,
+                            model=parsed.model,
+                            endpoint=parsed.endpoint,
+                            profile_fingerprint=profile_sha,
+                            profile_configuration=asdict(QWEN38_27B_UD_IQ4_XS),
+                            service_status=service_payload,
+                        ),
+                    )
+                    print(
+                        "Structured-edit task frozen; one proposal Tool; "
+                        f"prompt bytes: {len(frozen['prompt'].encode())}",
+                    )
+                    return
+                frozen = json.loads(
+                    (folder / "freeze.json").read_text(encoding="utf-8")
+                )
+                if (
+                    parsed.endpoint != frozen["model"]["endpoint"]
+                    or parsed.model != frozen["model"]["served_name"]
+                ):
+                    raise ValueError(
+                        "Selected endpoint/model differs from frozen attempt"
+                    )
+                result = asyncio.run(
+                    run_structured_edit_task(
+                        root,
+                        folder,
+                        LlamaCppInteraction(
+                            endpoint=parsed.endpoint,
+                            model=parsed.model,
+                            source=InteractionSource("qwen-markdown-structured-edit"),
+                        ),
+                        service_status=service_payload,
+                    ),
+                )
+                _write_report(parsed.report_path, result)
+                print(
+                    f"structured-edit accepted: {result['accepted']}; "
+                    f"failure: {result.get('failure_class')}",
+                )
+                raise SystemExit(0 if result["accepted"] else 1)
             if parsed.freeze_only:
                 frozen = asyncio.run(
                     freeze_upfront_context_task(

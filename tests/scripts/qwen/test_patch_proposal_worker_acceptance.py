@@ -135,6 +135,26 @@ def test_runner_parses_explicit_experiment_output_bound(acceptance: ModuleType) 
     assert arguments.maximum_output_tokens == _MAXIMUM_OUTPUT_TOKENS
 
 
+def test_runner_parses_structured_edit_condition(acceptance: ModuleType) -> None:
+    """The one-proposal condition is explicitly selected and keeps fixed bounds."""
+    arguments = acceptance.parse_arguments(
+        [
+            "--upfront-context",
+            "--structured-edit",
+            "--maximum-output-tokens",
+            "4096",
+            "--host-timeout-seconds",
+            "300",
+            "--report-path",
+            "report.json",
+        ],
+    )
+    assert arguments.upfront_context
+    assert arguments.structured_edit
+    assert arguments.maximum_output_tokens == acceptance.STRUCTURED_EDIT_OUTPUT_TOKENS
+    assert arguments.host_timeout_seconds == acceptance.STRUCTURED_EDIT_TIMEOUT_SECONDS
+
+
 @pytest.mark.parametrize(
     ("choice", "expected"),
     [("default", None), ("enabled", True), ("disabled", False)],

@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import asyncio
+import difflib
 import hashlib
 import json
 import sys
@@ -30,6 +31,8 @@ from devtools.models.interaction import (
     ModelRequest,
     ModelSettings,
     ModelTermination,
+    ModelToolCall,
+    ModelToolDefinition,
     Prompt,
 )
 from devtools.models.interaction.providers.llama_cpp_errors import (
@@ -54,6 +57,8 @@ if TYPE_CHECKING:
 
 SOURCE = "src/devtools/resources/filesystem/models/markdown/file.py"
 TESTS = "tests/resources/filesystem/models/markdown/test_file.py"
+STRUCTURED_EDIT_OUTPUT_TOKENS = 4_096
+STRUCTURED_EDIT_TIMEOUT_SECONDS = 300
 TASK = (
     "Repair MarkdownFile fenced-code heading handling. A matching fence followed "
     "by non-whitespace text must not close a fenced block. Preserve legitimate "
@@ -80,6 +85,18 @@ UPFRONT_CONTEXT_TASK = (
     "files are already present below; do not request more information or use "
     "tools. Return exactly one plain unified diff for the permitted source file, "
     "with no Markdown fences or explanation. Do not claim tests were run."
+)
+STRUCTURED_EDIT_TASK = (
+    "Repair MarkdownFile fence closing so a matching closing fence followed by "
+    "non-whitespace text cannot prematurely expose headings inside a fenced "
+    "block. Preserve legitimate backtick/tilde closers, trailing spaces/tabs, "
+    "longer closers, and existing minimum-length and matching-marker behavior. "
+    "Preserve public APIs and unrelated behavior. Only this source may change: "
+    f"{SOURCE}. The complete implementation and focused tests ({TESTS}) are "
+    "supplied below. Use exactly one native propose_edit operation with the "
+    "smallest contiguous source replacement. The host will validate and apply "
+    "your proposal; do not return a diff, call another operation, or claim "
+    "validation."
 )
 ACCEPTANCE = """from pathlib import Path
 from devtools.core.paths import resolve_path
@@ -177,7 +194,11 @@ def _context(root: Path) -> tuple[ModelRequest, dict[str, Any]]:
 
 
 def _upfront_context(
-    root: Path, *, maximum_output_tokens: int = 1_500
+    root: Path,
+    *,
+    maximum_output_tokens: int = 1_500,
+    task_prompt: str = UPFRONT_CONTEXT_TASK,
+    tools: tuple[ModelToolDefinition, ...] = (),
 ) -> tuple[ModelRequest, dict[str, Any]]:
     """Disclose the complete task source and focused tests in one explicit plan."""
     addresses = tuple(RepositoryResourceAddress(value) for value in (SOURCE, TESTS))
@@ -189,14 +210,14 @@ def _upfront_context(
     )
     options = tuple(
         choose_whole_resource_disclosure(
-            purpose=UPFRONT_CONTEXT_TASK,
+            purpose=task_prompt,
             snapshot=snapshot,
             resource_address=address,
         )
         for address in addresses
     )
     plan = plan_disclosures(
-        purpose=UPFRONT_CONTEXT_TASK,
+        purpose=task_prompt,
         snapshot=snapshot,
         disclosures=options,
     )
@@ -205,11 +226,11 @@ def _upfront_context(
     )
     request = assemble_context_disclosure_model_request(
         task_request=ModelRequest(
-            prompt=Prompt(UPFRONT_CONTEXT_TASK, role="user"),
+            prompt=Prompt(task_prompt, role="user"),
             settings=ModelSettings(
                 maximum_output_tokens=maximum_output_tokens, thinking_enabled=False
             ),
-            tools=(),
+            tools=tools,
         ),
         context=context,
     )
@@ -225,6 +246,115 @@ def _upfront_context(
         "prompt_utf8_bytes": len(request.prompt.content.encode()),
         "selection": "CALLER_SELECTED_COMPLETE_SOURCE_AND_TESTS",
     }
+
+
+def _structured_edit_definition() -> ModelToolDefinition:
+    """Expose one proposal-only operation through the existing model contract."""
+    return normalize_tool_descriptor(
+        ToolDescriptor(
+            name="propose_edit",
+            description=(
+                "Propose one bounded replacement in the authorized Markdown source. "
+                "This records a proposal; it does not write files."
+            ),
+            input_schema_json=json.dumps(
+                {
+                    "type": "object",
+                    "properties": {
+                        "path": {"type": "string", "enum": [SOURCE]},
+                        "old_text": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 4096,
+                        },
+                        "new_text": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 4096,
+                        },
+                    },
+                    "required": ["path", "old_text", "new_text"],
+                    "additionalProperties": False,
+                }
+            ),
+        )
+    )
+
+
+def _structured_edit_patch(  # noqa: C901 -- validate one explicit untrusted proposal
+    root: Path, source: str, call: ModelToolCall
+) -> tuple[str, str]:
+    """Validate one exact text replacement and derive its bounded host diff."""
+    if call.name != "propose_edit":
+        raise PatchProposalError("Unexpected proposal operation")
+    try:
+        arguments = json.loads(
+            call.arguments_json,
+            object_pairs_hook=_object_without_duplicate_keys,
+        )
+    except (json.JSONDecodeError, ValueError) as error:
+        raise PatchProposalError("Malformed structured edit arguments") from error
+    if not isinstance(arguments, dict) or set(arguments) != {
+        "path",
+        "old_text",
+        "new_text",
+    }:
+        raise PatchProposalError("Structured edit arguments do not match the contract")
+    path, old_text, new_text = (
+        arguments["path"],
+        arguments["old_text"],
+        arguments["new_text"],
+    )
+    if path != SOURCE:
+        raise PatchProposalError("Structured edit path is not the authorized source")
+    if not isinstance(old_text, str) or not isinstance(new_text, str):
+        raise PatchProposalError("Structured edit text values must be strings")
+    if (
+        not old_text
+        or not new_text
+        or "\x00" in old_text
+        or "\x00" in new_text
+        or len(old_text.encode()) > 4096
+        or len(new_text.encode()) > 4096
+        or old_text == new_text
+    ):
+        raise PatchProposalError(
+            "Structured edit text is empty, unchanged or oversized"
+        )
+    matches = 0
+    offset = 0
+    while (found := source.find(old_text, offset)) >= 0:
+        matches += 1
+        offset = found + 1
+        if matches > 1:
+            break
+    if matches != 1:
+        raise PatchProposalError("Old text must match exactly one source region")
+    updated = source.replace(old_text, new_text, 1)
+    if len(updated.encode()) > 32_768:
+        raise PatchProposalError("Structured edit exceeds the bounded source size")
+    patch = "".join(
+        difflib.unified_diff(
+            source.splitlines(keepends=True),
+            updated.splitlines(keepends=True),
+            fromfile=f"a/{SOURCE}",
+            tofile=f"b/{SOURCE}",
+            lineterm="\n",
+        )
+    )
+    _validate_patch_envelope(root, patch)
+    return patch, updated
+
+
+def _structured_edit_patch_from_calls(
+    root: Path, source: str, calls: tuple[ModelToolCall, ...]
+) -> tuple[ModelToolCall, str, str]:
+    """Admit exactly one proposal call; multiple calls are never partially used."""
+    if len(calls) != 1:
+        raise PatchProposalError("Exactly one structured edit proposal is required")
+    call = calls[0]
+    patch, updated = _structured_edit_patch(root, source, call)
+    return call, patch, updated
 
 
 async def freeze_upfront_context_task(  # noqa: PLR0913 -- freeze exact experimental inputs
@@ -533,6 +663,285 @@ async def run_upfront_context_task(  # noqa: C901, PLR0912, PLR0915 -- ordered s
         elapsed_seconds=time.perf_counter() - started,
         source_hash_after=_hash(root / SOURCE),
         automatic_retries=0,
+    )
+    _save(folder / "result.json", report)
+    return report
+
+
+async def freeze_structured_edit_task(  # noqa: PLR0913 -- freeze exact external identities
+    root: Path,
+    folder: Path,
+    *,
+    oracle_path: Path,
+    model: str,
+    endpoint: str,
+    profile_fingerprint: str,
+    profile_configuration: dict[str, Any],
+    service_status: dict[str, Any],
+) -> dict[str, Any]:
+    """Freeze one complete-context request with one proposal-only model Tool."""
+    if (
+        service_status.get("state") != "READY"
+        or service_status.get("observed_fingerprint") != profile_fingerprint
+    ):
+        raise ValueError("Pinned Qwen profile is not currently READY")
+    if folder.exists() and any(folder.iterdir()):
+        raise FileExistsError("Structured-edit attempt directory is not empty")
+    folder.mkdir(parents=True, exist_ok=True)
+    oracle_copy = folder / "acceptance.py"
+    oracle = _read_text(resolve_path(oracle_path))
+    oracle_digest = _hash(oracle_path)
+    write(TextFile(resolve_path(oracle_copy), oracle.content), overwrite=False)
+    if _hash(oracle_copy) != oracle_digest:
+        raise ValueError("Independent oracle copy changed during freezing")
+    baseline = await _timed_command(root, sys.executable, "-B", str(oracle_copy))
+    if not baseline["failed"] or "AssertionError" not in baseline["stderr"]:
+        raise ValueError("Frozen independent oracle does not fail on this baseline")
+    source = _read_text(resolve_path(root / SOURCE))
+    write(TextFile(resolve_path(folder / "source-before.py"), source.content))
+    tool = _structured_edit_definition()
+    request, context = _upfront_context(
+        root,
+        maximum_output_tokens=STRUCTURED_EDIT_OUTPUT_TOKENS,
+        task_prompt=STRUCTURED_EDIT_TASK,
+        tools=(tool,),
+    )
+    head = await _command(root, "git", "rev-parse", "HEAD")
+    branch = await _command(root, "git", "branch", "--show-current")
+    if head["failed"] or branch["failed"] or branch["stdout"].strip() in {"", "main"}:
+        raise ValueError("Structured edit requires an isolated feature branch")
+    frozen = {
+        "schema": "qwen-markdown-structured-edit-freeze-v1",
+        "created_at": str(Timestamp.now()),
+        "root": str(root),
+        "head": head["stdout"].strip(),
+        "branch": branch["stdout"].strip(),
+        "task": STRUCTURED_EDIT_TASK,
+        "allowed_edit": SOURCE,
+        "context_files": [SOURCE, TESTS],
+        "hashes": {path: _hash(root / path) for path in (SOURCE, TESTS)},
+        "harness_sha256": _hash(resolve_path(__file__).value),
+        "oracle_path": str(oracle_copy),
+        "oracle_sha256": _hash(oracle_copy),
+        "baseline_acceptance": baseline,
+        "context": context,
+        "prompt": request.prompt.content,
+        "prompt_sha256": hashlib.sha256(request.prompt.content.encode()).hexdigest(),
+        "request_settings": {
+            "maximum_output_tokens": STRUCTURED_EDIT_OUTPUT_TOKENS,
+            "thinking_enabled": False,
+            "tools": [asdict(tool)],
+        },
+        "limits": {
+            "requests": 1,
+            "proposal_calls": 1,
+            "retries": 0,
+            "timeout_seconds": STRUCTURED_EDIT_TIMEOUT_SECONDS,
+        },
+        "model": {
+            "served_name": model,
+            "endpoint": endpoint,
+            "profile_fingerprint": profile_fingerprint,
+            "profile_configuration": profile_configuration,
+            "service_status": service_status,
+        },
+    }
+    _save(folder / "freeze.json", frozen)
+    return frozen
+
+
+async def run_structured_edit_task(  # noqa: C901, PLR0912, PLR0915 -- ordered experiment stages
+    root: Path,
+    folder: Path,
+    interaction: ModelInteraction,
+    *,
+    service_status: dict[str, Any],
+) -> dict[str, Any]:
+    """Run once, interpret one proposal, and let host validation decide acceptance."""
+    frozen = json.loads(_read_text(resolve_path(folder / "freeze.json")).content)
+    if (
+        frozen["schema"] != "qwen-markdown-structured-edit-freeze-v1"
+        or frozen["task"] != STRUCTURED_EDIT_TASK
+        or str(root) != frozen["root"]
+        or _hash(resolve_path(__file__).value) != frozen["harness_sha256"]
+        or hashlib.sha256(frozen["prompt"].encode()).hexdigest()
+        != frozen["prompt_sha256"]
+        or _hash(Path(frozen["oracle_path"])) != frozen["oracle_sha256"]
+    ):
+        raise ValueError("Frozen structured-edit identity changed")
+    if (
+        frozen["request_settings"]["maximum_output_tokens"]
+        != STRUCTURED_EDIT_OUTPUT_TOKENS
+        or frozen["request_settings"]["thinking_enabled"] is not False
+        or frozen["request_settings"]["tools"]
+        != [asdict(_structured_edit_definition())]
+        or frozen["limits"]
+        != {
+            "requests": 1,
+            "proposal_calls": 1,
+            "retries": 0,
+            "timeout_seconds": STRUCTURED_EDIT_TIMEOUT_SECONDS,
+        }
+    ):
+        raise ValueError("Frozen structured-edit request exceeds its bounds")
+    if not frozen["baseline_acceptance"]["failed"]:
+        raise ValueError("Frozen baseline did not fail the independent oracle")
+    for path, digest in frozen["hashes"].items():
+        if _hash(root / path) != digest:
+            raise ValueError("Frozen task input changed")
+    if _hash(root / SOURCE) != frozen["hashes"][SOURCE]:
+        raise ValueError("Frozen source identity changed before dispatch")
+    head = await _command(root, "git", "rev-parse", "HEAD")
+    branch = await _command(root, "git", "branch", "--show-current")
+    if (
+        head["failed"]
+        or head["stdout"].strip() != frozen["head"]
+        or branch["failed"]
+        or branch["stdout"].strip() != frozen["branch"]
+    ):
+        raise ValueError("Frozen baseline revision changed")
+    if (
+        frozen["model"]["service_status"].get("state") != "READY"
+        or service_status.get("state") != "READY"
+        or service_status.get("observed_fingerprint")
+        != frozen["model"]["profile_fingerprint"]
+    ):
+        result = {
+            "schema": "qwen-markdown-structured-edit-result-v1",
+            "accepted": False,
+            "model_invocation": "NOT_STARTED",
+            "failure_class": "MODEL_SERVICE_NOT_READY_OR_PROFILE_CHANGED",
+            "service_status": service_status,
+            "automatic_retries": 0,
+        }
+        _save(folder / "result.json", result)
+        return result
+    if (folder / "attempt-start.json").exists():
+        raise FileExistsError("Structured-edit attempt already started; no retry")
+    _save(folder / "attempt-start.json", {"started_at": str(Timestamp.now())})
+    started = time.perf_counter()
+    tool = _structured_edit_definition()
+    request = ModelRequest(
+        prompt=Prompt(frozen["prompt"], role="user"),
+        settings=ModelSettings(
+            maximum_output_tokens=STRUCTURED_EDIT_OUTPUT_TOKENS,
+            thinking_enabled=False,
+        ),
+        tools=(tool,),
+    )
+    _save(
+        folder / "request.json",
+        {
+            "at": str(Timestamp.now()),
+            "prompt": frozen["prompt"],
+            "prompt_sha256": frozen["prompt_sha256"],
+            "tools": [asdict(tool)],
+            "settings": asdict(request.settings),
+        },
+    )
+    report: dict[str, Any] = {
+        "schema": "qwen-markdown-structured-edit-result-v1",
+        "model_invocation": "PENDING",
+        "accepted": False,
+        "proposal_valid": False,
+        "patch_application": "NOT_ATTEMPTED",
+        "independent_oracle": "NOT_RUN",
+        "existing_tests": "NOT_RUN",
+        "automatic_retries": 0,
+    }
+    proposed_source: str | None = None
+    try:
+        async with asyncio.timeout(STRUCTURED_EDIT_TIMEOUT_SECONDS):
+            response = await interaction.send(request)
+        report.update(
+            model_invocation="RESPONSE_RECEIVED",
+            response_seconds=time.perf_counter() - started,
+            response=asdict(response),
+            tool_calls_returned=len(response.tool_calls),
+        )
+        _save(folder / "response.json", asdict(response))
+        if response.termination == ModelTermination.OUTPUT_LIMIT:
+            raise PatchProposalError("Provider output limit; no retry")
+        if response.content.strip():
+            raise PatchProposalError("Unexpected text beside structured proposal")
+        if _hash(root / SOURCE) != frozen["hashes"][SOURCE]:
+            raise ValueError("Source changed while the model proposal was pending")
+        source_file = _read_text(resolve_path(root / SOURCE))
+        source = source_file.content
+        call, patch, updated = _structured_edit_patch_from_calls(
+            root, source, response.tool_calls
+        )
+        proposed_source = updated
+        _save(
+            folder / "proposed-edit.json",
+            {"name": call.name, "arguments_json": call.arguments_json},
+        )
+        report.update(
+            proposal_valid=True,
+            proposal_path=SOURCE,
+            old_text_bytes=len(json.loads(call.arguments_json)["old_text"].encode()),
+            new_text_bytes=len(json.loads(call.arguments_json)["new_text"].encode()),
+            host_patch_bytes=len(patch.encode()),
+            updated_source_sha256=hashlib.sha256(
+                updated.encode(source_file.encoding)
+            ).hexdigest(),
+        )
+        await apply_markdown_patch(root, folder, patch)
+        report["patch_application"] = "APPLIED_IN_ISOLATED_FEATURE_WORKTREE"
+        report["independent_oracle"] = await _timed_command(
+            root, sys.executable, "-B", frozen["oracle_path"]
+        )
+        report["existing_tests"] = await _timed_command(
+            root, sys.executable, "-m", "pytest", "--no-cov", "-q", TESTS
+        )
+        report["accepted"] = (
+            not report["independent_oracle"]["failed"]
+            and not report["existing_tests"]["failed"]
+        )
+        if not report["accepted"]:
+            report["failure_class"] = "INDEPENDENT_VALIDATION_FAILED"
+            raise PatchProposalError("Independent acceptance rejected the proposal")
+    except TimeoutError:
+        report.update(
+            model_invocation="COMPLETION_UNKNOWN_AFTER_TIMEOUT",
+            failure_class="MODEL_TIMEOUT",
+            error="300-second host timeout; no retry",
+        )
+    except (LlamaCppHttpError, LlamaCppTransportError) as error:
+        report.update(
+            model_invocation="PROVIDER_ERROR",
+            failure_class="MODEL_TRANSPORT",
+            error=type(error).__name__ + ": " + str(error),
+        )
+    except Exception as error:  # noqa: BLE001 -- persist bounded attempt disposition
+        report.setdefault("failure_class", "PROPOSAL_OR_VALIDATION_FAILURE")
+        report["error"] = type(error).__name__ + ": " + str(error)
+    final_hash = _hash(root / SOURCE)
+    if not report["accepted"] and final_hash != frozen["hashes"][SOURCE]:
+        if proposed_source is not None and _read_text(
+            resolve_path(root / SOURCE)
+        ).content.replace("\r\n", "\n") == proposed_source.replace("\r\n", "\n"):
+            rejected = _read_text(resolve_path(root / SOURCE))
+            write(
+                TextFile(
+                    resolve_path(folder / "unaccepted-source.py"), rejected.content
+                ),
+                overwrite=False,
+            )
+            original = _read_text(resolve_path(folder / "source-before.py"))
+            write(TextFile(resolve_path(root / SOURCE), original.content))
+            report["unaccepted_edit_restored"] = (
+                _hash(root / SOURCE) == frozen["hashes"][SOURCE]
+            )
+        else:
+            report["unaccepted_edit_restored"] = False
+            report["reconciliation_required"] = (
+                "Source changed after proposal application; left it untouched"
+            )
+    report.update(
+        finished_at=str(Timestamp.now()),
+        elapsed_seconds=time.perf_counter() - started,
+        source_hash_after=_hash(root / SOURCE),
     )
     _save(folder / "result.json", report)
     return report

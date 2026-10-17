@@ -99,3 +99,17 @@ acquisition in attempt-01, output truncation in attempt-02, and patch-format
 admission in attempt-03. Focused deterministic tests, Ruff, formatting and strict
 mypy pass for the host harness. No automatic retry or generic framework is
 authorized by this evidence.
+
+The attempt-03 response was patch-like but malformed at the file-header boundary
+(`---`, `---`, bare `a/<path>` and `b/<path>` lines, then `---`/`+++`); the
+existing parser correctly refused it. The response ended inside a source
+fragment, so this was not a valid patch incorrectly rejected. The next bounded
+condition uses one native `propose_edit(path, old_text, new_text)` proposal and
+the host-generated diff/application/oracle path. Its deterministic checks have
+passed: exact path and unique nonempty source-region checks, bounded replacement,
+duplicate/multiple-call refusal, host-generated diff application, and scripted
+oracle-rejection/restoration. The complete-context freeze and one-operation request
+are experiment-local; no executable filesystem Tool is exposed. The request will
+be frozen against the committed harness before any inference. After that freeze,
+the live condition still requires explicit terminal opt-in. No Qwen request has
+yet been sent for this condition.

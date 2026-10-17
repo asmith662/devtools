@@ -7,6 +7,7 @@ from __future__ import annotations
 import asyncio
 import hashlib
 import json
+from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
@@ -88,6 +89,167 @@ def test_upfront_context_output_allowance_does_not_change_disclosure(
     assert expanded.settings.maximum_output_tokens == 4_096
     assert expanded.settings.thinking_enabled is False
     assert expanded.tools == ()
+
+
+def _edit_call(
+    *, path: str = task.SOURCE, old_text: str = "old\n", new_text: str = "new\n"
+) -> ModelToolCall:
+    return ModelToolCall(
+        "propose_edit",
+        json.dumps({"path": path, "old_text": old_text, "new_text": new_text}),
+    )
+
+
+def test_structured_edit_generates_confined_host_diff_without_writing(
+    tmp_path: Path,
+) -> None:
+    """A model proposal produces one host diff but leaves the file untouched."""
+    root = _workspace(tmp_path)
+    source = "before\nold\ntext\nafter\n"
+    call = _edit_call(old_text="old\ntext\n", new_text="new\ntext\n")
+    patch, updated = task._structured_edit_patch(root, source, call)
+    assert patch.startswith(f"--- a/{task.SOURCE}\n+++ b/{task.SOURCE}\n@@ ")
+    assert "-old\n+new\n" in patch
+    assert updated == "before\nnew\ntext\nafter\n"
+    assert (root / task.SOURCE).read_text(encoding="utf-8") == "old\n"
+
+
+@pytest.mark.parametrize(
+    ("source", "arguments"),
+    [
+        ("old\n", {"path": "../outside.py", "old_text": "old\n", "new_text": "new\n"}),
+        ("old\n", {"path": task.SOURCE, "old_text": "absent", "new_text": "new"}),
+        ("old old\n", {"path": task.SOURCE, "old_text": "old", "new_text": "new"}),
+        ("old\n", {"path": task.SOURCE, "old_text": "", "new_text": "new"}),
+        (
+            "old\n",
+            {"path": task.SOURCE, "old_text": "old\n", "new_text": "x" * 4097},
+        ),
+    ],
+)
+def test_structured_edit_rejects_unauthorized_or_nonunique_region(
+    tmp_path: Path, source: str, arguments: dict[str, str]
+) -> None:
+    """Out-of-scope, absent, ambiguous and empty regions are refused."""
+    root = _workspace(tmp_path)
+    call = ModelToolCall("propose_edit", json.dumps(arguments))
+    with pytest.raises(PatchProposalError):
+        task._structured_edit_patch(root, source, call)
+    assert (root / task.SOURCE).read_text(encoding="utf-8") == "old\n"
+
+
+def test_structured_edit_rejects_duplicate_keys_and_multiple_calls(
+    tmp_path: Path,
+) -> None:
+    """Duplicate JSON fields and batches cannot become partial edits."""
+    root = _workspace(tmp_path)
+    duplicate_keys = ModelToolCall(
+        "propose_edit",
+        json.dumps({"path": task.SOURCE, "old_text": "old\n", "new_text": "new\n"})[:-1]
+        + ',"path":"../outside.py"}',
+    )
+    valid = _edit_call()
+    with pytest.raises(PatchProposalError, match="Malformed"):
+        task._structured_edit_patch(root, "old\n", duplicate_keys)
+    with pytest.raises(PatchProposalError, match="Exactly one"):
+        task._structured_edit_patch_from_calls(root, "old\n", (valid, valid))
+
+
+@pytest.mark.parametrize("oracle_disposition", ["reject", "accept"])
+def test_structured_edit_acceptance_follows_oracle_and_restores_rejections(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, oracle_disposition: str
+) -> None:
+    """Only the oracle disposition controls acceptance and source restoration."""
+    root = _workspace(tmp_path)
+    folder = root / "evidence"
+    folder.mkdir()
+    oracle = folder / "acceptance.py"
+    oracle.write_text("raise AssertionError('oracle rejection')\n", encoding="utf-8")
+    (folder / "source-before.py").write_text("old\n", encoding="utf-8", newline="")
+    tool = task._structured_edit_definition()
+    frozen = {
+        "schema": "qwen-markdown-structured-edit-freeze-v1",
+        "root": str(root),
+        "task": task.STRUCTURED_EDIT_TASK,
+        "harness_sha256": task._hash(Path(task.__file__)),
+        "prompt": "synthetic bounded task",
+        "prompt_sha256": hashlib.sha256(b"synthetic bounded task").hexdigest(),
+        "oracle_path": str(oracle),
+        "oracle_sha256": task._hash(oracle),
+        "baseline_acceptance": {"failed": True},
+        "hashes": {path: task._hash(root / path) for path in (task.SOURCE, task.TESTS)},
+        "head": "synthetic-baseline",
+        "branch": "synthetic-feature",
+        "model": {
+            "service_status": {"state": "READY"},
+            "profile_fingerprint": "profile",
+        },
+        "request_settings": {
+            "maximum_output_tokens": 4_096,
+            "thinking_enabled": False,
+            "tools": [asdict(tool)],
+        },
+        "limits": {
+            "requests": 1,
+            "proposal_calls": 1,
+            "retries": 0,
+            "timeout_seconds": 300,
+        },
+    }
+    task._save(folder / "freeze.json", frozen)
+    original_command = task._command
+
+    async def command(directory: Path, *args: str) -> dict[str, Any]:
+        if args == ("git", "rev-parse", "HEAD"):
+            return {"failed": False, "stdout": "synthetic-baseline\n"}
+        if args == ("git", "branch", "--show-current"):
+            return {"failed": False, "stdout": "synthetic-feature\n"}
+        return await original_command(directory, *args)
+
+    async def timed_command(_directory: Path, *args: str) -> dict[str, Any]:
+        if str(oracle) in args:
+            return {
+                "failed": oracle_disposition == "reject",
+                "stderr": "AssertionError: rejected"
+                if oracle_disposition == "reject"
+                else "",
+            }
+        return {"failed": False, "stdout": "focused tests passed"}
+
+    monkeypatch.setattr(task, "_command", command)
+    monkeypatch.setattr(task, "_timed_command", timed_command)
+    model = _Interaction(
+        [
+            ModelResponse(
+                "",
+                _Interaction.source,
+                tool_calls=(_edit_call(),),
+                termination=ModelTermination.TOOL_CALL,
+            )
+        ]
+    )
+    result = asyncio.run(
+        task.run_structured_edit_task(
+            root,
+            folder,
+            model,
+            service_status={"state": "READY", "observed_fingerprint": "profile"},
+        )
+    )
+    assert len(model.requests) == 1
+    assert [item.name for item in model.requests[0].tools] == ["propose_edit"]
+    assert model.requests[0].settings.maximum_output_tokens == 4_096
+    assert result["proposal_valid"]
+    assert (folder / "proposed-edit.json").is_file()
+    oracle_fails = oracle_disposition == "reject"
+    assert result["independent_oracle"]["failed"] is oracle_fails
+    assert result["accepted"] is not oracle_fails
+    if oracle_fails:
+        assert result["unaccepted_edit_restored"]
+        assert (root / task.SOURCE).read_text(encoding="utf-8") == "old\n"
+        assert (folder / "unaccepted-source.py").read_text(encoding="utf-8") == "new\n"
+    else:
+        assert (root / task.SOURCE).read_text(encoding="utf-8") == "new\n"
 
 
 def test_upfront_context_worker_makes_one_no_tool_request(
@@ -194,6 +356,7 @@ def test_real_git_patch_engine_changes_only_allowed_file(tmp_path: Path) -> None
     "patch",
     [
         "textual tool call",
+        f"---\n---\na/{task.SOURCE}\nb/{task.SOURCE}\n---\n+++\n@@ -37,7 +37,8 @@\n",
         _patch().replace(task.SOURCE, "../outside.py"),
         _patch() + "--- a/other.py\n+++ b/other.py\n@@ -1 +1 @@\n-x\n+y\n",
         _patch() + "diff --git a/other b/other\n",
