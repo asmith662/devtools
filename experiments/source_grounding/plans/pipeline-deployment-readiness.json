@@ -3,9 +3,19 @@
     "0022",
     "0023"
   ],
-  "approval": "NONE",
+  "approval": "AUTHENTICATED_PUBLISHED_AND_USED",
+  "approval_evidence": {
+    "approval_sha256": "391a40ca629433c680ffa9b5833e11ec26677b2993609506ccef888b34d23285",
+    "checkpoint": "60d0cd247b6341a463c362fb18e67f4cba55cc9a",
+    "decision_message": "msg_01a14a24-240e-7c60-8753-dff2c5b6f02c",
+    "decision_message_sha256": "27c8a19ece5eac5e8de1bf65ea2a20a9d4edecd1fdfc8450da43cceb0dd05fbd",
+    "kind": "TRUSTED_HOST",
+    "plan_sha256": "ea90029ffcf3c7bd90cd670bd7ffe35e3c97b6bcc20e353cd23b5480ad0c3b4e",
+    "principal": "recoveryadmin",
+    "run_id": "1d83144558006cd381eadfde2a22856aa8f86c8c30587d3db4de16403fbb1115"
+  },
   "approved_budget": {
-    "applicability_probes": "12 PASS; actual isolated reservations; zero real reservations",
+    "applicability_probes": "12 historical isolated probes PASS; live run has one settled B24 reservation",
     "enforcement": "FORECAST_ADMISSION_AND_RESERVATION; NOT_PROVIDER_RUNTIME_CEILINGS",
     "fresh_calls": 4,
     "identity": "1d83144558006cd381eadfde2a22856aa8f86c8c30587d3db4de16403fbb1115",
@@ -15,7 +25,96 @@
     "policy_sha256": "c0694b2d2aeba8e3961b3feb7403ff5531f18ce2f11452b6476226c773fa6ba6",
     "scope": "EXPERIMENT"
   },
-  "execution_authorized": false,
+  "blocker": {
+    "case": "0022",
+    "cause": "Repeated deterministic packet validation uses the same exclusive CLI-version log path",
+    "exception": "FileExistsError",
+    "path": "0022/0022-candidate-cli-preflight/stdout.log",
+    "retry_performed": false,
+    "scientific_entry": false,
+    "source_change_performed": false,
+    "stage": "C-packet-validate"
+  },
+  "consumption_budget": {
+    "decisions": {
+      "0022/C": {
+        "status": "BUDGET_CHECK_PASS"
+      },
+      "0023/C": {
+        "status": "BUDGET_CHECK_PASS"
+      },
+      "0024/B": {
+        "status": "BUDGET_CHECK_PASS"
+      },
+      "0024/C": {
+        "status": "BUDGET_CHECK_PASS"
+      }
+    },
+    "status": "BUDGET_CHECK_PASS"
+  },
+  "execution": {
+    "attempt": "c888d086-3fd3-41ef-a832-628aed9f5347",
+    "controller_return": "BLOCKED; MAINTAINER_DECISION_REQUIRED",
+    "disposition": "CONTROLLER_FAILED",
+    "elapsed_seconds": 2570.474028799974,
+    "finished": "2026-10-17T16:39:05.647132+00:00",
+    "journal_only_projection": "APPROVED; SAFE_QUEUED_WORK_MAY_RESUME",
+    "payload_sha256": "d750f1760b6c3c09bb56d86dcbd838687fe7acd7fed45471e2925e5653245e07",
+    "projection_warning": "Does not override actual blocked controller return or permit resume/retry",
+    "publications": {
+      "PACKET": {
+        "boundary": "PACKET",
+        "parent_head": "60d0cd247b6341a463c362fb18e67f4cba55cc9a",
+        "sha256": {
+          "PACKET/0022/INSTRUCTIONS.md": "23f2e91aa18d95fd55216803c356f37974b961b1fa215a6337ac7eb844ebf02d",
+          "PACKET/0022/candidate-host.json": "fc10b34d40f3b0f946e3024d53bb6166fed33e99500524b06d9d261f07d250f1",
+          "PACKET/0022/packet.json": "7ea8045dae1d7f24c86420ebf784f7118521c9235e63d17f487fc25945a3293c",
+          "PACKET/0022/stage_c_builder.py": "72fd055b92434f9f2b65f8b26f7a9f482ee91473ea2812a5350ef7a406fc79ca",
+          "PACKET/0023/INSTRUCTIONS.md": "23f2e91aa18d95fd55216803c356f37974b961b1fa215a6337ac7eb844ebf02d",
+          "PACKET/0023/candidate-host.json": "2f212d479c7f3c8632bde4bb78bd1603a06d1e2914f85a18402184ed00cb635a",
+          "PACKET/0023/packet.json": "2034fe8d513a84df7c86c97b3e24ad6c2531f0a6581d7f7e0278d81383db72fd",
+          "PACKET/0023/stage_c_builder.py": "72fd055b92434f9f2b65f8b26f7a9f482ee91473ea2812a5350ef7a406fc79ca",
+          "PACKET/0024/INSTRUCTIONS.md": "23f2e91aa18d95fd55216803c356f37974b961b1fa215a6337ac7eb844ebf02d",
+          "PACKET/0024/candidate-host.json": "62c251a38c099299c4a8da38baca80136ac630cc1e9785a53927cb1ee9f1aa8a",
+          "PACKET/0024/packet.json": "ad4601a008657c5c8b85a5cd022cbead951cfaa49694ddcbb43d55ec887a3020",
+          "PACKET/0024/stage_c_builder.py": "72fd055b92434f9f2b65f8b26f7a9f482ee91473ea2812a5350ef7a406fc79ca",
+          "PREPARATION/0022/INSTRUCTIONS_GOLD.md": "457be17dcf615485471dedde1fe46818715713ddd620da76658f153075a5b763",
+          "PREPARATION/0022/INSTRUCTIONS_GROUNDING.md": "11e60d58e0d6a2d9c45d3b615bb163f8fab7f255854de8743ea646a4f91a8a5e",
+          "PREPARATION/0022/design.json": "0212121ef5fbd182efcdc6cb7a3813f0361ecb8491d19b4dc29efe423b8251fb",
+          "PREPARATION/0022/frame.json": "4eb392d31f35acdf8d131ba11ab6bc32bd0701035fee2195847946b22528a148",
+          "PREPARATION/0022/implementation.json": "1c36b2397783caa5f105ffc6fdf72198f02757c376898df20ccedd7ca0b0cf7d",
+          "PREPARATION/0022/resources.json.gz": "1e7b38e5bf1b213c32e06cba0e8d9e59db1841880fd25df745a22823b0bd8211",
+          "PREPARATION/0022/reviewer_codec.py": "b8f3cc6b796d9f8fc7cd2758762ede0ea6f413aceed864c5cc561799ce5998c4",
+          "PREPARATION/0022/selection.json": "c28e47ad6d665466cc057201e8714e7a02701bdc89fe92e7c6aca163b2e44238",
+          "PREPARATION/0022/universe.json": "eb39783234bf5bc6173f87d5915d335695aa49c17b8c3bc2449f9c9a0b8a8232",
+          "PREPARATION/0022/worker_configuration.json": "6962c790c4d6767b7560ede8bbc70c7922312902fe273483c81b351a2b74750f",
+          "PREPARATION/0023/INSTRUCTIONS_GOLD.md": "457be17dcf615485471dedde1fe46818715713ddd620da76658f153075a5b763",
+          "PREPARATION/0023/INSTRUCTIONS_GROUNDING.md": "11e60d58e0d6a2d9c45d3b615bb163f8fab7f255854de8743ea646a4f91a8a5e",
+          "PREPARATION/0023/design.json": "b543fff155e2f31f0421dfb24758dabce183046581e4821cc80fc12c6ba6d796",
+          "PREPARATION/0023/frame.json": "99baef580a408028902ce9d8e0f3ddfba37784ebb31d707f233724b22b8b3b37",
+          "PREPARATION/0023/implementation.json": "1c36b2397783caa5f105ffc6fdf72198f02757c376898df20ccedd7ca0b0cf7d",
+          "PREPARATION/0023/resources.json.gz": "5d1cd423748d0de8a001591719b406d597eaf38751d6bee8220bc7066b5d325e",
+          "PREPARATION/0023/reviewer_codec.py": "b8f3cc6b796d9f8fc7cd2758762ede0ea6f413aceed864c5cc561799ce5998c4",
+          "PREPARATION/0023/selection.json": "2c5f8e112700bb518cd6701fec81073c9dc7208991cdbb2049454cadfdeaed22",
+          "PREPARATION/0023/universe.json": "28f83e312ecd42e3e7d32b0003c72ce77719d4d03295a3c6530b7da23f5e63a1",
+          "PREPARATION/0023/worker_configuration.json": "6962c790c4d6767b7560ede8bbc70c7922312902fe273483c81b351a2b74750f",
+          "PREPARATION/0024/INSTRUCTIONS_GOLD.md": "457be17dcf615485471dedde1fe46818715713ddd620da76658f153075a5b763",
+          "PREPARATION/0024/INSTRUCTIONS_GROUNDING.md": "11e60d58e0d6a2d9c45d3b615bb163f8fab7f255854de8743ea646a4f91a8a5e",
+          "PREPARATION/0024/design.json": "3c435ddbf165b4875a66560ade046f2d03ca02ed55f6c7ac9c7ac99cee112680",
+          "PREPARATION/0024/frame.json": "f959ea6f4449e7a41b287e673eda5753fc1edf4db8a9edae916ccf39218705e2",
+          "PREPARATION/0024/implementation.json": "1c36b2397783caa5f105ffc6fdf72198f02757c376898df20ccedd7ca0b0cf7d",
+          "PREPARATION/0024/resources.json.gz": "d35f4a2c5590e4420a3185f1949ccb4aa36f8e2a7e9014169feb78a490b01a12",
+          "PREPARATION/0024/reviewer_codec.py": "b8f3cc6b796d9f8fc7cd2758762ede0ea6f413aceed864c5cc561799ce5998c4",
+          "PREPARATION/0024/selection.json": "0ffd09a499feb23761ef7ead16b0f28293954dfd9bf4c376393f9fb8d150baad",
+          "PREPARATION/0024/universe.json": "d42dbdc437bbdd321b4bb829016fa9e39ef5be4dd47328f047db30fb67adc238",
+          "PREPARATION/0024/worker_configuration.json": "6962c790c4d6767b7560ede8bbc70c7922312902fe273483c81b351a2b74750f"
+        }
+      }
+    },
+    "report": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\deployment-receipts\\source-grounding-successor\\candidate\\budget-correction\\preparation\\c888d086-3fd3-41ef-a832-628aed9f5347\\result.json",
+    "started": "2026-10-17T15:56:15.173120+00:00"
+  },
+  "execution_authorized": true,
   "forecast": {
     "confidence": "LOW; unchanged frozen forecast",
     "input_range": [
@@ -57,6 +156,14 @@
       "gpt-6-sol": 1
     }
   },
+  "historical_engineering_validation": {
+    "controller_regressions": "258 passed / 3967.72s",
+    "focused_budget": "29 passed / 11.92s",
+    "missing_exact_approval": "REFUSED; read-only verifier exit 1; no execute command invoked",
+    "protected": "1662 passed; 2 skipped; 100% production branch coverage / 69.78s",
+    "static": "Ruff PASS; 72 files formatted; strict mypy 443 + 57 files PASS",
+    "successor_equivalence": "4 passed; canonical binding and plan replay PASS"
+  },
   "historical_initial_recovery": {
     "access_control": "RECOVERYADMIN_SYSTEM_ADMINISTRATORS_ONLY; NO_EXTERNAL_TRANSFER",
     "all_members_verified": 34,
@@ -78,8 +185,7 @@
     "seal_sha256": "377b2ff2606d95db6d4c2260cb4e979634e9bd3e5e9dfed8ed6765fcc92b9b8a",
     "unreachable_objects_reflogs_hooks": "EXCLUDED; ORIGINALS_UNCHANGED"
   },
-  "pinned_execution_checkpoint": "f9b96b374ee87a734dd4f8a4735f37cecd26663c",
-  "preparation": {
+  "historical_preparation": {
     "disposition": "READY_FOR_APPROVAL",
     "file_sha256": "2ac079ea349560979d1e042037b52b4ade5e9dd175bf2f96789592c5e0a9b759",
     "finished": "2026-10-17T04:00:29.949244+00:00",
@@ -104,8 +210,17 @@
     ],
     "started": "2026-10-17T03:59:42.335901+00:00"
   },
-  "real_reservations": 0,
-  "recovery": {
+  "new_dispatch_permitted": false,
+  "pinned_execution_checkpoint": "f9b96b374ee87a734dd4f8a4735f37cecd26663c",
+  "preparation": {
+    "attempt": "4f96efc2-1c37-4c4a-83d3-4ce07cae56b6",
+    "disposition": "READY_FOR_APPROVAL",
+    "finished": "2026-10-17T13:59:24.768782+00:00",
+    "payload_sha256": "59edd22b225566c39277645f58397ed3958b2e05e5b960cbcf659328aaea9fa4",
+    "report": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\deployment-receipts\\source-grounding-successor\\candidate\\budget-correction\\preparation\\4f96efc2-1c37-4c4a-83d3-4ce07cae56b6\\result.json",
+    "started": "2026-10-17T13:58:33.661998+00:00"
+  },
+  "prior_recovery": {
     "approved_policy_backup": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-publication-backups\\source-grounding-successor\\budget-correction-f9b96b374ee87a734dd4f8a4735f37cecd26663c-policy.json",
     "bundle_bytes": 79448,
     "bundle_refs": "f9b96b374ee87a734dd4f8a4735f37cecd26663c refs/heads/main\n",
@@ -136,12 +251,45 @@
     "status": "PASS",
     "usage_observations_copied": false
   },
+  "publication_head": "b5a3c824928985098347f0ccc8d39db8088e5810",
+  "real_reservations": 1,
+  "recovery": {
+    "archive": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-publication-backups\\source-grounding-successor\\candidate-08-1d83144558006cd381eadfde2a22856aa8f86c8c30587d3db4de16403fbb1115-external.zip",
+    "archive_bytes": 140051185,
+    "archive_sha256": "f75976b686909105c9fdfe8d0df9d9a1dc9c026d2e4df22696d8631d3c06a9a8",
+    "bundle": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-publication-backups\\source-grounding-successor\\candidate-08-terminal-b5a3c824928985098347f0ccc8d39db8088e5810.bundle",
+    "bundle_bytes": 1693697,
+    "bundle_sha256": "8f675d5b43fb4e4d17437101dfe1af77d1650a2942167a6f768472f77527fef1",
+    "durability": "Existing same-SSD facility; accepted limitation; no independent disk-failure protection",
+    "elapsed_seconds": 146.00872,
+    "finished": "2026-10-17T16:42:15.866037+00:00",
+    "future_publications_included": false,
+    "git_bundle_verification": "The bundle contains this ref:\nb5a3c824928985098347f0ccc8d39db8088e5810 refs/heads/main\nThe bundle requires this ref:\nf9b96b374ee87a734dd4f8a4735f37cecd26663c \nThe bundle uses this hash algorithm: sha1\n",
+    "git_fsck": "PASS",
+    "git_refs": "b5a3c824928985098347f0ccc8d39db8088e5810 refs/heads/main\n",
+    "hash_checks": "All restored members match manifest",
+    "manifest": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools-publication-backups\\source-grounding-successor\\candidate-08-1d83144558006cd381eadfde2a22856aa8f86c8c30587d3db4de16403fbb1115-manifest.json",
+    "manifest_sha256": "d3fd6692f6a7fbfe82f0c4c207fa39ea416d1e713f06711e484479603cd4ccdc",
+    "new_backup_infrastructure": 0,
+    "new_repositories": 0,
+    "original_evidence_unchanged": true,
+    "publication_head": "b5a3c824928985098347f0ccc8d39db8088e5810",
+    "restored_external": "C:\\Users\\RECOVE~1\\AppData\\Local\\Temp\\source-grounding-recovery-gebt7hzd\\candidate-08-1d83144558006cd381eadfde2a22856aa8f86c8c30587d3db4de16403fbb1115-external",
+    "restored_files": 1967,
+    "restored_git": "C:\\Users\\RECOVE~1\\AppData\\Local\\Temp\\source-grounding-recovery-gebt7hzd\\publication.git",
+    "run_id": "1d83144558006cd381eadfde2a22856aa8f86c8c30587d3db4de16403fbb1115",
+    "started": "2026-10-17T16:39:49.857317+00:00",
+    "status": "PASS"
+  },
   "remaining_conditions": [
-    "Separate exact human scientific grant",
-    "Fresh usage, preparation and controller admission before any later authorized dispatch",
-    "Continue updating the existing recovery facility for future scientific publications and necessary external journals"
+    "No resume, automatic scientific retry or replacement run is authorized",
+    "Separate bounded engineering decision required for concrete preflight-log reuse defect and projection limitation",
+    "Scientific usefulness conclusions remain unavailable; no production promotion",
+    "Next program checkpoint B consolidation; D0 baseline before C learning integration, D1 comparison and E continued development"
   ],
-  "scientific_execution": "NOT_STARTED",
+  "scientific_acceptance": "UNASSESSED",
+  "scientific_analysis": "NOT_RUN; no gold/import/B/C/D publication; no usefulness or selective-pursuit conclusion",
+  "scientific_execution": "STOPPED_INCOMPLETE",
   "scientific_identity": {
     "plan": "experiments/source_grounding/plans/candidate-discrimination-budget-run-plan.json",
     "protocol_sha256": "6962c790c4d6767b7560ede8bbc70c7922312902fe273483c81b351a2b74750f",
@@ -150,20 +298,42 @@
     "source_checkpoint": "f19d4fdfb957301f154373a9f6974cb09f5eb9c5",
     "stage_a": "15df9e18f59189c0c0512ef641e9723eeaafa39f"
   },
-  "scientific_model_calls": 0,
+  "scientific_model_calls": 1,
   "scientific_semantics": "BYTE_IDENTICAL; 30 artifact hashes; 13 forensic files preserved",
   "target": "C:/Users/recoveryadmin/Workspace/tools/devtools-source-grounding-successor",
   "usage": {
-    "coverage": "PARTIAL_OBSERVED_LOCAL_NOT_ACCOUNT_WIDE",
-    "private_observations_published": false,
-    "refresh_before_admission": true
+    "account_wide_quota": "UNKNOWN",
+    "adopted_dependencies": 2,
+    "codex_coordination": "UNKNOWN",
+    "conflicting_invocations_excluded": 0,
+    "coverage": "PARTIAL / OBSERVED_LOCAL_AND_DEVTOOLS / NOT_ACCOUNT_WIDE",
+    "evidence": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\deployment-receipts\\source-grounding-successor\\candidate\\budget-correction\\authorized-20261017\\scoped-usage.json",
+    "fresh_invocations": 1,
+    "managed_model_process_seconds": 35.774961,
+    "missing_usage_invocations": 0,
+    "model_only_duration": "UNKNOWN",
+    "observed_at": "2026-10-17T16:36:52.856489+00:00",
+    "overlapping_categories_summed": false,
+    "provider_reported_model": "UNKNOWN",
+    "tokens": {
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 0,
+      "input_tokens": 46245,
+      "output_tokens": 3609,
+      "reasoning_tokens": 917
+    },
+    "unallocated_timestamp_observations": 1
   },
   "verification": {
-    "controller_regressions": "258 passed / 3967.72s",
-    "focused_budget": "29 passed / 11.92s",
-    "missing_exact_approval": "REFUSED; read-only verifier exit 1; no execute command invoked",
-    "protected": "1662 passed; 2 skipped; 100% production branch coverage / 69.78s",
-    "static": "Ruff PASS; 72 files formatted; strict mypy 443 + 57 files PASS",
-    "successor_equivalence": "4 passed; canonical binding and plan replay PASS"
+    "B24_local_capture_and_validation": "PASS; QUARANTINED",
+    "canonical_available_evidence": "PASS",
+    "full_regression_rerun": false,
+    "integrity": "13 forensic files per checkout; 30 frozen scientific artifacts; 430 bound source files unchanged",
+    "packet_tests": "145 passed / 44.84s; scoped Ruff, formatting and mypy PASS",
+    "pipeline_accounting": "UNRESOLVED; failed cohort; partial local scope and unallocated timestamp retained",
+    "pipeline_disposition": "CONTROLLER_FAILED",
+    "production_code_changed": false,
+    "recovery": "PASS; existing Git restore/fsck and 1967 external restored file hashes",
+    "status_and_history": "PASS; both show CONTROLLER_FAILED"
   }
 }

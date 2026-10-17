@@ -2,8 +2,12 @@
 
 The later [controlled pipeline deployment review](PIPELINE_DEPLOYMENT_REVIEW.md)
 owns the current binding-only candidate-08 successor of the four-call
-candidate-06 experiment. It records PLAN_VALID / startup PASS, READY_FOR_APPROVAL
-with exact-run budget PASS, approval NONE and no execution. The plan described
+candidate-06 experiment. Candidate-08 received exact host-issued human approval
+and passed fresh admission, then stopped CONTROLLER_FAILED / INCOMPLETE at C22
+packet validation before any gold entry. One fresh B24 Sol turn completed and
+validated; surviving B results are quarantined. Only PACKET is published; no
+frozen analysis or retry occurred. The review and machine packet record authority,
+scoped usage, recovery verification and the concrete blocker. The plan described
 below remains historical
 evidence for its original lineage.
 

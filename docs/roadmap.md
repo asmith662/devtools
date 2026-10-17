@@ -30,7 +30,45 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
-### Automated experiment mechanics
+### Program checkpoints after the candidate-08 attempt
+
+**A — scientific closeout:** candidate-08 received exact human approval and passed
+fresh canonical admission, then stopped **CONTROLLER_FAILED / INCOMPLETE**.
+C22 packet validation reused an exclusive CLI-preflight log path and failed before
+gold entry. One fresh Sol/High B24 turn completed and validated; all B results
+were quarantined. No Astra invocation, B/C/D publication or frozen analysis exists.
+This supplies no source/target/pursuit-usefulness conclusion and changes no
+production retrieval or Context policy. The
+[deployment review](../experiments/source_grounding/plans/PIPELINE_DEPLOYMENT_REVIEW.md)
+owns exact authority, invocation, publication, recovery and blocker evidence.
+No automatic retry, resumed run or replacement plan is authorized by this record.
+
+The broader program sequence is:
+
+1. **A — Scientific closeout:** preserve the terminal incomplete result and the
+   unresolved adapter defect; scientific success is not claimed.
+2. **B — Consolidate active Devtools engineering for integrated agent use:** the
+   next engineering checkpoint; scope and validate existing active capabilities
+   before adding another experiment or orchestration increment. The recorded
+   preflight defect needs separate engineering authorization, not an in-run fix.
+3. **D0 — Minimal coding-agent benchmark:** establish a bounded non-learned
+   accepted-task/runtime/resource baseline before learning integration.
+4. **C — Learned Intelligence merge:** integrate the maintained implementation
+   under `src/devtools/learning` after consolidation and the baseline.
+5. **D1 — Learned comparison:** evaluate against D0 with comparable acceptance,
+   runtime, resource and autonomy measurements.
+6. **E — Continued autonomy/retrieval development:** use measured evidence to
+   select later agent, Localization, Context and retrieval work.
+
+None of B/D0/C/D1/E is implemented by the experiment closeout. The experiment is
+one investigation within Repository Intelligence/retrieval and reproducible
+evaluation, alongside Codex/Qwen developer-agent execution, governed durable
+work/orchestration, learning integration and accepted-task performance measurement.
+The capability progression remains `ExperimentExecutionPipeline ->
+ExperimentManagerAgent -> ResearchAgent`, with `FeatureCloseoutPipeline ->
+CodingAgent` separately; no new framework is implied.
+
+### Earlier experiment-mechanics checkpoints (historical)
 
 The current bounded increment adds metadata-only observed usage and optional
 prelaunch budgets. Every OpenAI-backed invocation should eventually be visible;

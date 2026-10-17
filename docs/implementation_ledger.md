@@ -1,5 +1,35 @@
 # Implementation Ledger
 
+## Candidate-08 authorized execution: terminal incomplete (2026-10-17)
+
+The trusted host authenticated the maintainer's exact four-call grant and published
+approval `60d0cd247b6341a463c362fb18e67f4cba55cc9a` for the unchanged candidate-08
+plan/run. Fresh pipeline admission passed. Controller PACKET publication
+`b5a3c824928985098347f0ccc8d39db8088e5810` passed 145 deterministic tests and its
+scoped static checks. C22 admission then failed before gold entry because repeated
+packet validation attempted exclusive creation of its existing CLI-preflight log.
+Concurrent B24 completed one Sol/High turn, local proof and validation; the
+controller quarantined surviving B results and stopped. No Astra call, B/C/D
+publication, gold import, frozen analysis or scientific retry occurred.
+
+Pipeline disposition is CONTROLLER_FAILED (2,570.47 s); canonical available-evidence
+verification passes without establishing scientific completeness. Scoped usage
+records one fresh invocation, two adopted dependencies, 46,245 input and 3,609
+output tokens, including 917 reasoning output; cached/cache-write input is zero.
+Local coverage remains partial with one unallocated timestamp observation. The
+unchanged exact-run policy and actual reservation/consumption machinery pass;
+economic admission is not scientific acceptance. Existing local recovery is updated
+and restore-verified for new Git and external evidence, retaining its accepted
+same-SSD limitation. No implementation or frozen scientific bytes changed.
+
+The [deployment review](../experiments/source_grounding/plans/PIPELINE_DEPLOYMENT_REVIEW.md)
+records the actual return versus the controller's optimistic journal-only queued
+projection; it authorizes no resume or repair. The roadmap next checkpoint is
+B consolidation for integrated agent use, then D0 baseline, C learning integration,
+D1 learned comparison and E continued autonomy/retrieval work. No later milestone
+was started. Candidate-08 remains scientifically incomplete, with no usefulness or
+selective-pursuit conclusion.
+
 ## Budget-bound candidate-08 preparation (2026-10-17)
 
 After the validated engineering checkpoint, one required binding-only successor

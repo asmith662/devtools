@@ -1,165 +1,164 @@
-# Controlled source-grounding successor: preparation ready, authority absent
+# Candidate-08: authorized execution stopped, scientific result incomplete
 
-Latest verified preparation: **READY_FOR_APPROVAL**, completed
-`2026-10-17T04:00:29.949244+00:00`. Plan authentication, help-only worker startup and
-canonical exact-run budget preview pass. This is a timestamped preparation
-observation, not a reservation or execution grant. Approval is **NONE**;
-scientific execution is **NOT STARTED**, with zero new source-grounding model calls.
+## Current terminal disposition (2026-10-17)
 
-## Exact scientific and implementation identities
+**CONTROLLER_FAILED / INCOMPLETE.** Exact human authority was authenticated and
+published, fresh admission passed, and the existing pipeline dispatched the
+controller once. Case 0022 C failed deterministic packet validation before gold
+entry. Concurrent case 0024 B completed its one Sol/High turn and validated, then
+the controller quarantined all surviving B results. No Astra call, gold import,
+B/C/D publication or Stage D analysis occurred. No scientific retry was made.
 
-| Identity | Immutable value |
+The exact plan digest remains
+`ea90029ffcf3c7bd90cd670bd7ffe35e3c97b6bcc20e353cd23b5480ad0c3b4e`, run
+`1d83144558006cd381eadfde2a22856aa8f86c8c30587d3db4de16403fbb1115`.
+Pinned source/plan commit remains `f9b96b374ee87a734dd4f8a4735f37cecd26663c`.
+The target and accepted local publication main advanced only through canonical
+approval `60d0cd247b6341a463c362fb18e67f4cba55cc9a` and PACKET
+`b5a3c824928985098347f0ccc8d39db8088e5810`. Later authoring documentation is
+separate from the authenticated execution source.
+
+The trusted host used its actual `recoveryadmin` principal and the actual user-role
+grant in message `msg_01a14a24-240e-7c60-8753-dff2c5b6f02c`; user-message SHA-256
+`27c8a19ece5eac5e8de1bf65ea2a20a9d4edecd1fdfc8450da43cceb0dd05fbd`.
+`Controller.approve(ApprovalRequest(..., kind="TRUSTED_HOST"))` published the
+once-only exact-run grant. Approval-file SHA-256:
+`391a40ca629433c680ffa9b5833e11ec26677b2993609506ccef888b34d23285`.
+No principal/reference was invented; this is the existing host trust contract,
+not a new cryptographic identity mechanism.
+
+| UTC milestone | Observed disposition |
 | --- | --- |
-| Stabilized budget engineering | `f19d4fdfb957301f154373a9f6974cb09f5eb9c5` |
-| Committed Stage A binding | `15df9e18f59189c0c0512ef641e9723eeaafa39f` |
-| Plan / pinned execution commit | `f9b96b374ee87a734dd4f8a4735f37cecd26663c` |
-| Successor plan | [candidate-discrimination-budget-run-plan.json](candidate-discrimination-budget-run-plan.json) |
-| Plan SHA-256 | `ea90029ffcf3c7bd90cd670bd7ffe35e3c97b6bcc20e353cd23b5480ad0c3b4e` |
-| Prospective scientific run | `1d83144558006cd381eadfde2a22856aa8f86c8c30587d3db4de16403fbb1115` |
-| Scientific protocol SHA-256 | `6962c790c4d6767b7560ede8bbc70c7922312902fe273483c81b351a2b74750f` |
-| Target checkout | `C:/Users/recoveryadmin/Workspace/tools/devtools-source-grounding-successor` |
+| 13:58:33–13:59:24 | Fresh preparation READY_FOR_APPROVAL; startup and budget preview PASS |
+| 14:59:55–15:02:38 | Canonical approval publication and authentication |
+| 15:56:15–15:57:48 | Fresh pipeline admission ADMITTED, 93.06 s |
+| 16:03:02–16:03:53 | PACKET checks/publication; 145 tests and scoped static checks PASS |
+| 16:04:43–16:04:44 | C22 packet validation failed before scientific entry |
+| 16:06:51–16:07:27 | One Sol/High B24 turn, managed-process duration 35.774961 s |
+| 16:35:42 / 16:36:07 | B24 local capture completed / final validation PASS |
+| 16:36:33 | Controller BLOCKED; all surviving B results quarantined |
+| 16:39:05 | Pipeline CONTROLLER_FAILED, total 2,570.47 s |
 
-Candidate-08 is the one required binding-only replacement of candidate-07
-(`de5f0ef1e62823b4be9b7af89c28936aae0224fb1cb4d5720abf8a34b41877a9`, run
-`ff37802e430190c9c683df87b03252de1bca09f2389fa8ad3eaf7ace7480c966`).
-The [binding record](../bindings/execution-08.json) and
-[integrity map](../bindings/execution-08-integrity.json) preserve the predecessor.
-The original candidate-06 plan remains byte-identical at SHA-256
-`64d0d087fb2ace87a2c01c931f3c03eda71d0e1d7af1a762afd10bc35f1a5f48`.
+The execution attempt is `c888d086-3fd3-41ef-a832-628aed9f5347` under the
+existing external `budget-correction/preparation` receipt root below. Its
+`experiment-execution-v1` result payload SHA-256 is
+`d750f1760b6c3c09bb56d86dcbd838687fe7acd7fed45471e2925e5653245e07`.
+Canonical verification authenticates the available evidence with PASS; it does
+not establish scientific completeness. Status/history report CONTROLLER_FAILED.
+An earlier host observation failure interrupted admission before dispatch intent;
+its retained attempt `cd888e5a-4197-441d-a4c6-2a2323f686db` had no controller
+dispatch or scientific entry. It was not a scientific retry.
 
-All 30 scientific artifacts, frozen question, BROAD universes, cases 0022/0023/0024,
-selections, inclusion weights, prompts, labels, estimators and claim boundaries
-remain unchanged. All 13 forensic files match in protected main, authoring and
-execution checkouts. Adopted Sol/High B work for 0022/0023 retains its seals and
-provenance; it is never reinvoked. Fresh work is exactly one Sol/High B call for
-0024 and three Astra/High C calls, one per case. A fifth call and automatic
-scientific retry remain prohibited. No sealed judgment content was inspected.
+### Exact blocker and observation limitation
 
-The only changed bound implementation files are `usage_budget.py` and the
-existing successor builder. Engineering was validated and committed before
-binding construction. Separate binding and plan commits avoid self-reference.
-The existing execution repository and local publication main were fast-forwarded
-to the plan commit. No deployment repository, publication remote, worktree or
-orchestration abstraction was added. Later documentation commits do not change
-this pinned execution identity.
+The bound `discrimination/lifecycle.py` packet validator invokes the CLI-version
+check in `root.parent / (case + "-candidate-cli-preflight")`. Initial PACKET
+validation created that log directory and reported the expected `codex-cli
+0.162.1`. C22 admission repeated validation with the same parent/case path.
+`workers/process.py` then refused exclusive `stdout.log` creation with
+`FileExistsError`, before C ENTERED or budget reservation. Existing evidence was
+not overwritten or deleted. C23/C24 remained queued; no gold call was dispatched.
 
-## Exact approved policy and actual admission
+The actual controller return records BLOCKED and quarantine. Its journal-only
+projection instead says `APPROVED; SAFE_QUEUED_WORK_MAY_RESUME`, since the
+pre-entry failure has no scientific FAILED journal. This projection does not
+override the terminal pipeline failure or authorize resumption. No resume,
+repair, code change, successor, extra call or further approval is part of this task.
+A separately authorized review of this concrete adapter defect is required
+before considering any future scientific action.
 
-The ignored target `.local/usage/policy.json` contains one `EXPERIMENT` rule
-identifying only the prospective run above: **4 fresh calls, 1,756,679 input
-tokens and 191,923 output tokens**. No model or stage selector excludes either
-population. No broader/project/account-wide policy was installed. Policy digest:
-`c0694b2d2aeba8e3961b3feb7403ff5531f18ce2f11452b6476226c773fa6ba6`. Previous target configuration was absent.
+### Scoped economics and scientific conclusion
 
-The canonical correction requires applicable numeric policy for every invocation;
-nonmatching or all-UNSET rules cannot confer admission. All matching rules apply.
-Preview, reservation and consumption share that decision. Existing genuinely
-broader scopes remain supported. Canonical usage reconciliation precedes scope
-selection, so adopted original consumption is not charged to its successor and
-relevant conflicting attribution cannot disappear during filtering.
+Canonical observed usage reports one fresh Sol/High invocation, two adopted
+dependencies, 46,245 input tokens, 3,609 output tokens, zero cached/cache-write
+input and 917 reasoning-output tokens. Reasoning is included in output; categories
+are not added together. The scoped report has no missing invocation usage or
+attribution conflict, but retains one unallocated timestamp observation and
+PARTIAL / OBSERVED_LOCAL_AND_DEVTOOLS / NOT_ACCOUNT_WIDE coverage. Provider-reported
+model identity, model-only duration, underlying HTTP request count, dollar cost
+and Codex coordination consumption remain unknown. The managed B24 stage took
+about 1,911 s including local capture/proof/validation, distinct from model-process
+duration. Its one canonical reservation settled; read-only consumption assessment
+passes. Observed treatment acceptance does not mean scientific cohort acceptance.
 
-Twelve target-native isolated probes pass, including actual four-call reservation,
-duplicate refusal, unrelated/obsolete run refusal, partial-model refusal, each
-insufficient numerical allowance, missing ledger/baseline and stale observations.
-There are **no real scientific reservations**. The unchanged writer lease protects
-authoritative reservation updates; deterministic competing-admission tests prove
-no oversubscription. Unknown outcomes remain charged/indeterminate and non-repeatable.
+Policy bytes and exact-run limits remain unchanged: four calls, 1,756,679 forecast
+input and 191,923 forecast output tokens. These are admission/reservation allowances,
+not provider runtime ceilings. Canonical metadata was refreshed during admission;
+post-run refresh at `2026-10-17T16:36:52.856489+00:00` remained partial with no import
+failures. No allowance was raised, reset or transferred.
 
-These limits govern pre-dispatch forecast admission/reservation and subsequent
-consumption assessment. They are **not provider-enforced runtime token ceilings**.
-Observed rolling-seven-day consumption, outstanding forecast reservations and the
-next proposed forecast count against applicable limits. Cached input is within
-input; reasoning is within output. No overlapping total is manufactured.
+No source/target/pursuit-usefulness estimates, retention/reduction results or
+selective-pursuit conclusion can be calculated from this incomplete cohort.
+The frozen ESTIMATION_FIRST procedure was not retuned or run on missing gold.
+Production retrieval, Context selection and coding-agent behavior are unchanged.
 
-The unchanged low-confidence forecast is **28,539–1,756,679 input** and
-**0–191,923 output** tokens. It is an empirical planning envelope, not a guaranteed
-capacity bound or subscription-price calculation. Refreshed local observations
-remain partial, with explicit unknown categories; private usage totals are not
-published here. Missing applicable evidence fails closed. The default baseline
-freshness limit is 300 seconds: refresh and revalidate before later admission.
+The [machine review packet](pipeline-deployment-readiness.json) records the current
+receipt and recovery identities. `authorized-20261017/` under the persistent root
+below holds grant/publication evidence, scoped usage, final integrity and recovery
+verification. The existing accepted same-SSD recovery facility preserves Git
+approval/PACKET objects plus new external journals, worker evidence, policy and
+receipts, with actual restore/hash verification; it does not protect against SSD
+loss. No new repository, remote or backup infrastructure was created.
 
-## Preparation evidence and protected authority
+The next program checkpoint is **B: consolidate active Devtools engineering for
+integrated agent use**, without starting it here. Candidate-08 remains scientifically
+incomplete. Subsequent sequence is D0 bounded non-learned coding-agent benchmark,
+C Learned Intelligence integration, D1 learned comparison, then E continued
+autonomy/retrieval development. No later milestone is implemented by this closeout.
 
-Persistent external receipts:
+## Provenance, recovery and validation
+
+The frozen protocol SHA-256 remains
+`6962c790c4d6767b7560ede8bbc70c7922312902fe273483c81b351a2b74750f`;
+policy SHA-256 remains
+`c0694b2d2aeba8e3961b3feb7403ff5531f18ce2f11452b6476226c773fa6ba6`.
+Engineering checkpoint is `f19d4fdfb957301f154373a9f6974cb09f5eb9c5`, Stage A
+binding is `15df9e18f59189c0c0512ef641e9723eeaafa39f`, and the plan/source
+publication is `f9b96b374ee87a734dd4f8a4735f37cecd26663c`. No successor or
+implementation change was made during this execution. Candidate-06/07 plans and
+all 13 historical forensic files remain unchanged. All 30 frozen scientific
+artifacts and 430 bound source files pass exact byte/hash comparison.
+
+Persistent receipt root:
 `C:/Users/recoveryadmin/Workspace/tools/devtools/.local/deployment-receipts/source-grounding-successor/candidate/budget-correction`.
-Preparation attempt: `fe7c8927-38e5-4b0c-b145-7308aa0f94d0`.
-Result file SHA-256: `2ac079ea349560979d1e042037b52b4ade5e9dd175bf2f96789592c5e0a9b759`.
-Versioned payload SHA-256: `2bf67ef1a19660cfe52c0df2ad199963001822314be0be4fc821ab4434441b19`.
-The `experiment-preparation-v1` result and all three referenced stage hashes
-authenticate through repository-owned status/history. Stages took 38.75 seconds
-(validation), 1.43 seconds (usage) and 7.35 seconds (budget); preparation took
-47.61 seconds, or 65.23 seconds including the preceding metadata refresh.
+The preparation result is `preparation/4f96efc2-1c37-4c4a-83d3-4ce07cae56b6/result.json`;
+the terminal result is `preparation/c888d086-3fd3-41ef-a832-628aed9f5347/result.json`.
+The host audit and scoped usage are in `authorized-20261017/` there. All referenced
+pipeline stage hashes authenticate through existing receipt readers.
 
-Actual controller plan authentication reports PLAN_VALID and execution authority
-NO. Existing target-process isolation and target interpreter/source contracts pass.
-Help-only external-CWD worker startup passes with zero model calls. Supersession
-checks pass; no new run directory, dispatch claim, orphan or reservation exists.
-The read-only exact approval verifier returns exit 1:
-`Execution NOT_AUTHORIZED: approval absent`. No execute command was invoked.
-
-## Existing publication and recovery facility
-
-Active publication remains
+Active publication is
 `C:/Users/recoveryadmin/Workspace/tools/devtools/.local/deployments/source-grounding-successor/publication.git`.
-The already verified initial Git/non-Git recovery package at
-`C:/Users/recoveryadmin/Workspace/tools/devtools-publication-backups/source-grounding-successor/20261016175508`
-is unchanged. Its 34 external members include the 13 forensic files.
-The maintainer explicitly accepts its same-SSD limitation; it supplies no protection
-against loss of that SSD. No new backup facility or independent-storage condition
-was introduced.
+The existing backup base is
+`C:/Users/recoveryadmin/Workspace/tools/devtools-publication-backups/source-grounding-successor`.
+Its original sealed package and earlier source/policy increment remain intact.
+The new 1,693,697-byte Git bundle (prerequisite pinned source F9) has SHA-256
+`8f675d5b43fb4e4d17437101dfe1af77d1650a2942167a6f768472f77527fef1`.
+The 140,051,185-byte external archive has SHA-256
+`f75976b686909105c9fdfe8d0df9d9a1dc9c026d2e4df22696d8631d3c06a9a8`;
+manifest SHA-256 is
+`d3fd6692f6a7fbfe82f0c4c207fa39ea416d1e713f06711e484479603cd4ccdc`.
+The existing restored bare repository fast-forwarded to PACKET and passed full
+Git fsck, exact plan and approval checks. All 1,967 external members restored in
+isolation with matching hashes. Verification finished at 16:42:15 UTC in 146.01 s.
+This covers current-run worker evidence (including quarantined/adopted bytes),
+scientific journals, controller observations, pipeline attempts, grant evidence,
+policy and reservations. It excludes unrelated private sessions/global usage
+ledger and future evidence. Restored bytes/refs are verified, not a new scientific
+execution or a demonstration of provider access from a relocated checkout.
 
-A **79,448-byte incremental Git bundle** in that existing
-destination adds the new committed source/plan, prerequisite `35d464425ef13029b0ee6151e5aea232d8489068`.
-Bundle SHA-256: `4d9770fa66b2f4dc66f83a384567b42b951dad05301682c85b943ec9be2551b3`.
-The approved ignored policy is backed up separately there; private usage was not
-copied. Recovery reused the existing restored bare repository: bundle verification,
-fast-forward restoration, full Git fsck, exact new plan SHA, all 430 bound source
-blobs and 30 unchanged scientific Git objects pass. Recovery took 58.66 seconds.
-The initial probe hit the canonical output cap on a large opaque closure; after
-confirming the restored ref, verification used Git object identity without decoding
-judgments or repeating the fetch. `recovery-update.json` records that correction.
+This task ran no broad controller regression suite or full development gate:
+production source was unchanged. Prior engineering validation remains historical
+(258 controller tests; 1,662 protected tests, two skips, 100% production branch
+coverage; scoped statics). Actual PACKET passed its frozen 145-test/static gate;
+B24 passed its frozen capture proof/validation. Available-evidence controller
+verification, receipt integrity, status/history, restoration and whitespace checks
+pass. No confirmation/reserve evidence or historical semantic judgments were
+inspected by the operator.
 
-No backup contains future scientific outputs. After any separately authorized
-publication, update the same facility with newly reachable Git objects and an
-allowlisted external-journal/measurement/configuration manifest, then verify
-restoration and hashes before closeout. Do not treat a Git bundle as an automatic
-backup of files outside Git.
-
-## Validation and next controlled procedure
-
-All 258 controller regressions pass (3,967.72 seconds), including 29 focused budget
-cases (11.92 seconds). Protected development: 1,662 passed, two live-test skips,
-100% production branch coverage (69.78 seconds). Four successor equivalence,
-adoption/fifth-call and canonical-replay tests pass. Binding and plan bytes replay.
-Ruff, formatting of 72 controller/binding files, strict mypy of 443 supported/test
-and 57 controller/binding files, and whitespace checks pass. Logs record start,
-profile, progress, elapsed time and terminal results. No protected gate was weakened.
-The earlier 30-second synthetic CLI timing concern did not reproduce in this full
-controller run; no production timeout was changed.
-
-Run from the pinned target with its interpreter:
-
-```powershell
-$plan = 'experiments/source_grounding/plans/candidate-discrimination-budget-run-plan.json'
-$receipts = 'C:/Users/recoveryadmin/Workspace/tools/devtools/.local/deployment-receipts/source-grounding-successor/candidate/budget-correction/preparation'
-.\.venv\Scripts\python.exe -B scripts/usage.py ingest
-.\.venv\Scripts\python.exe -B -m devtools.orchestration.experiments prepare $plan --target . --receipts $receipts
-.\.venv\Scripts\python.exe -B -m devtools.orchestration.experiments status $plan --target . --receipts $receipts
-.\.venv\Scripts\python.exe -B -m devtools.orchestration.experiments history $plan --target . --receipts $receipts
-```
-
-The remaining protected decision is a separate trusted human grant for **this
-exact plan digest and prospective run**, not its predecessor. The existing host
-`Controller.approve(ApprovalRequest(run_id, principal, decision_reference))` API
-requires an actual external grant and real principal/reference; this report
-supplies none. Publish approval only in a separately authorized task, authenticate
-its commit/publication, then refresh usage/preparation and consume authority through
-the existing `experiment execute` procedure. An interrupted/uncertain dispatch
-requires read-only reconciliation, never another scientific invocation.
-
-`PLAN_VALID != READY_FOR_APPROVAL != AUTHORIZED != EXECUTED != ACCEPTED`.
-The roadmap remains ExperimentExecutionPipeline → ExperimentManagerAgent →
-ResearchAgent, with FeatureCloseoutPipeline → CodingAgent separately. No future
-Agent or framework is implemented here. Protected main and the completed pipeline
-feature retain their original commits; no scientific approval, execution or
-acceptance follows from this engineering/deployment preparation.
+For observation, run the existing pipeline `status` or `history` with the exact
+plan, target and receipt root above, from the pinned target's own interpreter.
+Read-only `reconcile` is available for later evidence reconciliation. **Do not
+execute, resume or approve this failed run again based on this report.** The
+once-only grant and unused numeric allowance are not authority for replacement
+work. Protected main and the completed pipeline feature remain unchanged; no
+scientific acceptance or production promotion follows from this incomplete run.

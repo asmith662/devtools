@@ -109,6 +109,33 @@ repository verify an incremental Git/policy update, without new infrastructure.
 Scientific authority remains separate and absent; exact identities, freshness
 limits and the next protected grant are recorded in the deployment review.
 
+## First authorized scientific deployment (2026-10-17)
+
+Engineering remains VALIDATED; scientific deployment reached a terminal
+**CONTROLLER_FAILED / INCOMPLETE** outcome. Exact trusted-host human authority
+was published and fresh canonical admission passed. PACKET published after 145
+deterministic tests and scoped statics. C22 failed before gold entry when repeated
+packet validation reused an exclusive CLI-preflight log path. Concurrent B24
+completed its one authorized Sol/High turn and validated, then all surviving B
+results were quarantined. No Astra invocation, B/C/D publication or frozen analysis
+occurred. Two adopted B treatments were not reinvoked. There was no scientific retry.
+
+The existing pipeline receipts preserve the actual blocked controller return,
+although its journal-only projection says queued work may resume. That projection
+does not authorize another invocation or override the terminal failure. The
+[current deployment review](../../../experiments/source_grounding/plans/PIPELINE_DEPLOYMENT_REVIEW.md)
+and machine packet contain exact identities, scoped economics and verified recovery.
+The concrete experiment-adapter defect needs a separate bounded engineering
+decision; no fix, successor or new infrastructure was introduced during execution.
+Scientific usefulness conclusions and production promotion remain unsupported.
+
+The broader next checkpoint is B consolidation for integrated engineering-agent
+use, followed by D0 non-learned baseline, C Learned Intelligence integration,
+D1 comparison and E continued autonomy/retrieval development. Those are sequencing
+records, not implementation authorization. Earlier deployment paragraphs above
+describe their historical preparation checkpoints; authority is now published and
+the attempt is stopped.
+
 The consumer is a human operator now and a future ExperimentManagerAgent.
 Remain concrete until repeated consumers justify more general semantics.
 The roadmap is `ExperimentExecutionPipeline -> ExperimentManagerAgent -> ResearchAgent`;
