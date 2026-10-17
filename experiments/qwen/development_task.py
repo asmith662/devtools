@@ -176,7 +176,9 @@ def _context(root: Path) -> tuple[ModelRequest, dict[str, Any]]:
     }
 
 
-def _upfront_context(root: Path) -> tuple[ModelRequest, dict[str, Any]]:
+def _upfront_context(
+    root: Path, *, maximum_output_tokens: int = 1_500
+) -> tuple[ModelRequest, dict[str, Any]]:
     """Disclose the complete task source and focused tests in one explicit plan."""
     addresses = tuple(RepositoryResourceAddress(value) for value in (SOURCE, TESTS))
     snapshot = observe_repository_resources(
@@ -204,7 +206,9 @@ def _upfront_context(root: Path) -> tuple[ModelRequest, dict[str, Any]]:
     request = assemble_context_disclosure_model_request(
         task_request=ModelRequest(
             prompt=Prompt(UPFRONT_CONTEXT_TASK, role="user"),
-            settings=ModelSettings(maximum_output_tokens=1_500, thinking_enabled=False),
+            settings=ModelSettings(
+                maximum_output_tokens=maximum_output_tokens, thinking_enabled=False
+            ),
             tools=(),
         ),
         context=context,
@@ -233,12 +237,56 @@ async def freeze_upfront_context_task(  # noqa: PLR0913 -- freeze exact experime
     profile_fingerprint: str,
     profile_configuration: dict[str, Any],
     service_status: dict[str, Any],
+    maximum_output_tokens: int = 1_500,
+    timeout_seconds: int = 120,
+    comparison_freeze_path: Path | None = None,
 ) -> dict[str, Any]:
     """Freeze complete initial Context, unchanged oracle, identities and limits."""
+    if maximum_output_tokens not in {1_500, 4_096} or timeout_seconds not in {
+        120,
+        300,
+    }:
+        raise ValueError("Unsupported frozen output allowance or host timeout")
     if folder.exists() and any(folder.iterdir()):
         raise FileExistsError("Upfront-context attempt directory is not empty")
     folder.mkdir(parents=True, exist_ok=True)
-    request, context = _upfront_context(root)
+    request: ModelRequest
+    predecessor: dict[str, Any] | None = None
+    if comparison_freeze_path is not None:
+        predecessor = json.loads(
+            _read_text(resolve_path(comparison_freeze_path)).content
+        )
+        if (
+            predecessor["schema"] != "qwen-markdown-upfront-context-freeze-v1"
+            or predecessor["task"] != UPFRONT_CONTEXT_TASK
+            or predecessor["hashes"]
+            != {path: _hash(root / path) for path in (SOURCE, TESTS)}
+            or predecessor["oracle_sha256"] != _hash(oracle_path)
+            or predecessor["model"]["served_name"] != model
+            or predecessor["model"]["endpoint"] != endpoint
+            or predecessor["model"]["profile_fingerprint"] != profile_fingerprint
+            or predecessor["model"]["profile_configuration"] != profile_configuration
+            or predecessor["request_settings"]
+            != {
+                "maximum_output_tokens": 1_500,
+                "thinking_enabled": False,
+                "tools": [],
+            }
+        ):
+            raise ValueError("Attempt-02 frozen inputs or model profile do not match")
+        request = ModelRequest(
+            prompt=Prompt(predecessor["prompt"], role="user"),
+            settings=ModelSettings(
+                maximum_output_tokens=maximum_output_tokens,
+                thinking_enabled=False,
+            ),
+            tools=(),
+        )
+        context = predecessor["context"]
+    else:
+        request, context = _upfront_context(
+            root, maximum_output_tokens=maximum_output_tokens
+        )
     baseline = await _timed_command(root, sys.executable, "-B", str(oracle_path))
     if not baseline["failed"] or "AssertionError" not in baseline["stderr"]:
         raise ValueError("Frozen independent oracle does not fail on this baseline")
@@ -251,6 +299,8 @@ async def freeze_upfront_context_task(  # noqa: PLR0913 -- freeze exact experime
     branch = await _command(root, "git", "branch", "--show-current")
     if head["failed"] or branch["failed"] or branch["stdout"].strip() in {"main", ""}:
         raise ValueError("Real task requires an authenticated isolated feature branch")
+    if predecessor is not None and branch["stdout"].strip() != predecessor["branch"]:
+        raise ValueError("Current checkout is not on the frozen attempt-02 branch")
     frozen = {
         "schema": "qwen-markdown-upfront-context-freeze-v1",
         "created_at": str(Timestamp.now()),
@@ -269,7 +319,7 @@ async def freeze_upfront_context_task(  # noqa: PLR0913 -- freeze exact experime
         "prompt": request.prompt.content,
         "prompt_sha256": hashlib.sha256(request.prompt.content.encode()).hexdigest(),
         "request_settings": {
-            "maximum_output_tokens": 1_500,
+            "maximum_output_tokens": maximum_output_tokens,
             "thinking_enabled": False,
             "tools": [],
         },
@@ -280,7 +330,15 @@ async def freeze_upfront_context_task(  # noqa: PLR0913 -- freeze exact experime
             "profile_configuration": profile_configuration,
             "service_status": service_status,
         },
-        "limits": {"requests": 1, "tools": 0, "retries": 0, "timeout_seconds": 120},
+        "limits": {
+            "requests": 1,
+            "tools": 0,
+            "retries": 0,
+            "timeout_seconds": timeout_seconds,
+        },
+        "comparison_predecessor": (
+            str(comparison_freeze_path) if comparison_freeze_path else None
+        ),
     }
     _save(folder / "freeze.json", frozen)
     return frozen
@@ -303,6 +361,18 @@ async def run_upfront_context_task(  # noqa: C901, PLR0912, PLR0915 -- ordered s
         or _hash(Path(frozen["oracle_path"])) != frozen["oracle_sha256"]
     ):
         raise ValueError("Frozen prompt, harness, workspace or oracle identity changed")
+    if (
+        frozen["request_settings"]["maximum_output_tokens"] not in {1_500, 4_096}
+        or frozen["request_settings"]["thinking_enabled"] is not False
+        or frozen["request_settings"]["tools"] != []
+        or frozen["limits"]["requests"] != 1
+        or frozen["limits"]["tools"] != 0
+        or frozen["limits"]["retries"] != 0
+        or frozen["limits"]["timeout_seconds"] not in {120, 300}
+    ):
+        raise ValueError(
+            "Frozen request settings exceed the one-request, no-Tool contract"
+        )
     for path, sha in frozen["hashes"].items():
         if _hash(root / path) != sha:
             raise ValueError("Frozen source/test input changed")
@@ -343,7 +413,10 @@ async def run_upfront_context_task(  # noqa: C901, PLR0912, PLR0915 -- ordered s
     }
     request = ModelRequest(
         prompt=Prompt(frozen["prompt"], role="user"),
-        settings=ModelSettings(maximum_output_tokens=1_500, thinking_enabled=False),
+        settings=ModelSettings(
+            maximum_output_tokens=frozen["request_settings"]["maximum_output_tokens"],
+            thinking_enabled=False,
+        ),
         tools=(),
     )
     _save(
@@ -354,13 +427,15 @@ async def run_upfront_context_task(  # noqa: C901, PLR0912, PLR0915 -- ordered s
             "prompt_utf8_bytes": len(request.prompt.content.encode()),
             "tools": [],
             "settings": {
-                "maximum_output_tokens": 1_500,
+                "maximum_output_tokens": frozen["request_settings"][
+                    "maximum_output_tokens"
+                ],
                 "thinking_enabled": False,
             },
         },
     )
     try:
-        async with asyncio.timeout(120):
+        async with asyncio.timeout(frozen["limits"]["timeout_seconds"]):
             response = await interaction.send(request)
         report["model_invocation"] = "RESPONSE_RECEIVED"
         report["response_seconds"] = time.perf_counter() - started

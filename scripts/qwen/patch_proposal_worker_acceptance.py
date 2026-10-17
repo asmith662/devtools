@@ -89,6 +89,7 @@ _CALLER_SOURCE = InteractionSource("qwen-b0009-live-acceptance")
 _MAXIMUM_ACTIONS = 5
 _SELECTION_STRESS_MAXIMUM_ACTIONS = 7
 _MODEL_CONTEXT_CAPACITY_TOKENS = QWEN38_27B_UD_IQ4_XS.context_size
+_UPFRONT_COMPARISON_OUTPUT_TOKENS = 4_096
 _FIXTURE_CHOICES = ("baseline", "selection-stress")
 
 
@@ -146,6 +147,7 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
     parser.add_argument("--repository-markdown-root", type=Path)
     parser.add_argument("--freeze-only", action="store_true")
     parser.add_argument("--upfront-context", action="store_true")
+    parser.add_argument("--host-timeout-seconds", type=int, default=120)
     return parser.parse_args(arguments)
 
 
@@ -775,6 +777,14 @@ def main(arguments: Sequence[str] | None = None) -> None:
                         profile_fingerprint=profile_sha,
                         profile_configuration=asdict(QWEN38_27B_UD_IQ4_XS),
                         service_status=service_payload,
+                        maximum_output_tokens=parsed.maximum_output_tokens or 1_500,
+                        timeout_seconds=parsed.host_timeout_seconds,
+                        comparison_freeze_path=(
+                            root / ".local/qwen-first-task/attempt-02/freeze.json"
+                            if parsed.maximum_output_tokens
+                            == _UPFRONT_COMPARISON_OUTPUT_TOKENS
+                            else None
+                        ),
                     ),
                 )
                 print(
@@ -786,8 +796,16 @@ def main(arguments: Sequence[str] | None = None) -> None:
             if (
                 parsed.endpoint != frozen["model"]["endpoint"]
                 or parsed.model != frozen["model"]["served_name"]
+                or (
+                    parsed.maximum_output_tokens is not None
+                    and parsed.maximum_output_tokens
+                    != frozen["request_settings"]["maximum_output_tokens"]
+                )
+                or parsed.host_timeout_seconds != frozen["limits"]["timeout_seconds"]
             ):
-                raise ValueError("Selected endpoint/model differs from frozen attempt")
+                raise ValueError(
+                    "Selected request configuration differs from frozen attempt"
+                )
             result = asyncio.run(
                 run_upfront_context_task(
                     root,

@@ -72,6 +72,24 @@ def test_upfront_context_contains_complete_source_and_tests_without_tools(
     assert details["resource_bytes"] == {task.SOURCE: 4, task.TESTS: 17}
 
 
+def test_upfront_context_output_allowance_does_not_change_disclosure(
+    tmp_path: Path,
+) -> None:
+    """The comparison changes output capacity while keeping prompt/context fixed."""
+    root = _workspace(tmp_path)
+    _, baseline_details = task._upfront_context(root)
+    expanded, expanded_details = task._upfront_context(
+        root, maximum_output_tokens=4_096
+    )
+    assert task.SOURCE in expanded.prompt.content
+    assert task.TESTS in expanded.prompt.content
+    assert expanded_details["resources"] == baseline_details["resources"]
+    assert expanded_details["resource_bytes"] == baseline_details["resource_bytes"]
+    assert expanded.settings.maximum_output_tokens == 4_096
+    assert expanded.settings.thinking_enabled is False
+    assert expanded.tools == ()
+
+
 def test_upfront_context_worker_makes_one_no_tool_request(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -94,6 +112,12 @@ def test_upfront_context_worker_makes_one_no_tool_request(
             "service_status": {"state": "READY"},
             "profile_fingerprint": "profile",
         },
+        request_settings={
+            "maximum_output_tokens": 4_096,
+            "thinking_enabled": False,
+            "tools": [],
+        },
+        limits={"requests": 1, "tools": 0, "retries": 0, "timeout_seconds": 300},
     )
     task._save(folder / "freeze.json", frozen, overwrite=True)
     original_command = task._command
@@ -115,7 +139,7 @@ def test_upfront_context_worker_makes_one_no_tool_request(
     )
     assert len(model.requests) == 1
     assert model.requests[0].tools == ()
-    assert model.requests[0].settings.maximum_output_tokens == 1_500
+    assert model.requests[0].settings.maximum_output_tokens == 4_096
     assert result["model_invocation"] == "RESPONSE_RECEIVED"
     assert result["tool_calls_returned"] == 0
     assert not result["accepted"]

@@ -88,6 +88,23 @@ Do not retry either frozen attempt or silently substitute a Codex solution.
 Candidate-08 remains scientifically incomplete and unchanged; its independent
 recovery does not block this development-worker workstream.
 
+### Future agent working and long-term memory
+
+Retain two distinct future capability needs without treating them as accepted
+architecture or current implementation. **Task-local working memory** should
+support atomic durable checkpoints of the current objective, constraints,
+progress, verified evidence references, hypotheses, unresolved questions and
+next intended actions, so work can recover after interruption or Context
+replacement. **Long-term agent memory** may retain episodic experience,
+validated knowledge and reusable procedural strategies/playbooks, with
+agent-specific and shared scopes, provenance, applicability, revision and
+retirement, and Context-controlled recall rather than automatic disclosure.
+
+Keep active Context, conversation history, task-local working state and
+long-term Memory distinct. When implementation is justified, reuse the existing
+atomic filesystem-writing facilities; this roadmap entry adds no memory types,
+storage schemas, agent interfaces or persistence architecture.
+
 ### Earlier experiment-mechanics checkpoints (historical)
 
 The current bounded increment adds metadata-only observed usage and optional
