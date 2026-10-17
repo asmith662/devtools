@@ -1,0 +1,60 @@
+{
+  "approval": "NONE_FOR_REPLACEMENT",
+  "confirmation_reserve_access": false,
+  "controller_sha256": "d91ce683902daac7f49aedc68835679b34091535579634ef22456dec8923f4aa",
+  "gold_access": false,
+  "implementation_changes": {
+    "experiments/orchestration/usage_budget.py": {
+      "new": "edb8dc1de626d18e85bb53c840dae50e149676fa9d83b17ca1c5304a0e6d829d",
+      "old": "6446afbf013982fde0484e20bec04fb211f375e0221e4ecfc2049a5bb91fb579"
+    },
+    "experiments/source_grounding/bindings/successor.py": {
+      "new": "45f271c6e1982fc5d1afd6ca65d0e223f0551495629a426e6bcbde619c9ebc50",
+      "old": "3f93a620beb319d8d38c0d6e0c81165ef44a1d29399ee21459241bbf4aef28ed"
+    }
+  },
+  "integrity_sha256": "1c36b2397783caa5f105ffc6fdf72198f02757c376898df20ccedd7ca0b0cf7d",
+  "maximum_fresh_calls": 4,
+  "predecessor_checkpoint": "35d464425ef13029b0ee6151e5aea232d8489068",
+  "predecessor_plan": "experiments/source_grounding/plans/candidate-discrimination-pipeline-run-plan.json",
+  "predecessor_plan_sha256": "de5f0ef1e62823b4be9b7af89c28936aae0224fb1cb4d5720abf8a34b41877a9",
+  "predecessor_run_id": "ff37802e430190c9c683df87b03252de1bca09f2389fa8ad3eaf7ace7480c966",
+  "protocol_sha256": "6962c790c4d6767b7560ede8bbc70c7922312902fe273483c81b351a2b74750f",
+  "schema": "source-grounding-prospective-execution-binding-v1",
+  "scientific_artifacts_preserved": {
+    "experiments/codex_dogfood/case_0022/frame.json": "4eb392d31f35acdf8d131ba11ab6bc32bd0701035fee2195847946b22528a148",
+    "experiments/codex_dogfood/case_0022/protocol.json": "0212121ef5fbd182efcdc6cb7a3813f0361ecb8491d19b4dc29efe423b8251fb",
+    "experiments/codex_dogfood/case_0022/resources.json.gz": "1e7b38e5bf1b213c32e06cba0e8d9e59db1841880fd25df745a22823b0bd8211",
+    "experiments/codex_dogfood/case_0023/frame.json": "99baef580a408028902ce9d8e0f3ddfba37784ebb31d707f233724b22b8b3b37",
+    "experiments/codex_dogfood/case_0023/protocol.json": "b543fff155e2f31f0421dfb24758dabce183046581e4821cc80fc12c6ba6d796",
+    "experiments/codex_dogfood/case_0023/resources.json.gz": "5d1cd423748d0de8a001591719b406d597eaf38751d6bee8220bc7066b5d325e",
+    "experiments/codex_dogfood/case_0024/frame.json": "f959ea6f4449e7a41b287e673eda5753fc1edf4db8a9edae916ccf39218705e2",
+    "experiments/codex_dogfood/case_0024/protocol.json": "3c435ddbf165b4875a66560ade046f2d03ca02ed55f6c7ac9c7ac99cee112680",
+    "experiments/codex_dogfood/case_0024/resources.json.gz": "d35f4a2c5590e4420a3185f1949ccb4aa36f8e2a7e9014169feb78a490b01a12",
+    "experiments/orchestration/engineering/adopted_branches/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/0022/closure.json.gz": "8383adefcfcea598fb3a85ce85688e96a6f10d0fa1189838f58135ee0054c221",
+    "experiments/orchestration/engineering/adopted_branches/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/0022/seal.json": "12bb1f669bd4db7c1a0bdc83f072b0959949b778bc654cdf45c800420818f0f7",
+    "experiments/orchestration/engineering/adopted_branches/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/0023/closure.json.gz": "1a1644932cd433fb5d75f3ddd0f7fefdf7da967bc60c2f301106cc9cdf3dd9d1",
+    "experiments/orchestration/engineering/adopted_branches/b6cd4408b4dbc86a50c335f4a364898ff3b45c123becb7b6865c34208d3e1982/0023/seal.json": "91fb32bfd6ab8548fb9dba30a0cb1a80e8fb7ac2de40d2f78f384e8cdf674328",
+    "experiments/source_grounding/INSTRUCTIONS_GOLD.md": "457be17dcf615485471dedde1fe46818715713ddd620da76658f153075a5b763",
+    "experiments/source_grounding/INSTRUCTIONS_GROUNDING.md": "11e60d58e0d6a2d9c45d3b615bb163f8fab7f255854de8743ea646a4f91a8a5e",
+    "experiments/source_grounding/bindings/execution-07-integrity.json": "67894fbf0535144b2e7cc794d8c26eb15a084a3ccf199699e0c5559665759a7d",
+    "experiments/source_grounding/reviewer.py": "b8f3cc6b796d9f8fc7cd2758762ede0ea6f413aceed864c5cc561799ce5998c4",
+    "experiments/source_grounding/stage_a/candidate-06/0022-selection.json": "c28e47ad6d665466cc057201e8714e7a02701bdc89fe92e7c6aca163b2e44238",
+    "experiments/source_grounding/stage_a/candidate-06/0022-universe.json": "eb39783234bf5bc6173f87d5915d335695aa49c17b8c3bc2449f9c9a0b8a8232",
+    "experiments/source_grounding/stage_a/candidate-06/0023-selection.json": "2c5f8e112700bb518cd6701fec81073c9dc7208991cdbb2049454cadfdeaed22",
+    "experiments/source_grounding/stage_a/candidate-06/0023-universe.json": "28f83e312ecd42e3e7d32b0003c72ce77719d4d03295a3c6530b7da23f5e63a1",
+    "experiments/source_grounding/stage_a/candidate-06/0024-selection.json": "0ffd09a499feb23761ef7ead16b0f28293954dfd9bf4c376393f9fb8d150baad",
+    "experiments/source_grounding/stage_a/candidate-06/0024-treatment-template.bin": "f85a7faf300b9e1346347771f0480335b32562be29dd15b30bcab285ac6c5d77",
+    "experiments/source_grounding/stage_a/candidate-06/0024-universe.json": "d42dbdc437bbdd321b4bb829016fa9e39ef5be4dd47328f047db30fb67adc238",
+    "experiments/source_grounding/stage_a/candidate-06/METHOD.md": "da1f00a06502c23a835bcb0855962206d905a921ab943d7ebd4efde4490d2001",
+    "experiments/source_grounding/stage_a/candidate-06/cohort.json": "2cc9fd55a1a833088ffa26b8759c57cff48ce4e80a783ad661cf354e4608a2a5",
+    "experiments/source_grounding/stage_a/candidate-06/economics.json": "144b237452cc30ba2e451eca27eb817b6040214045fad181e8c8c75c2a173f5a",
+    "experiments/source_grounding/stage_a/candidate-06/protocol.json": "6962c790c4d6767b7560ede8bbc70c7922312902fe273483c81b351a2b74750f",
+    "experiments/source_grounding/stage_a/chunked-04/0022-adoption-compatibility.json": "37503ee9c288c31f804ed5ee6361bc3a969590d866589ee4304fd619fb31ac35",
+    "experiments/source_grounding/stage_a/chunked-04/0023-adoption-compatibility.json": "38b6a51ae7649a40ea6aa81973b716de5417df0bd6728bd655bd581655e9e766"
+  },
+  "scientific_execution": 0,
+  "scientific_semantics": "BYTE_IDENTICAL",
+  "source_checkpoint": "f19d4fdfb957301f154373a9f6974cb09f5eb9c5",
+  "supersedes_stage_a_checkpoint": "784688570669916d5ad0d7e56f2e26a225f51132"
+}
