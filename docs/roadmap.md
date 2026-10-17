@@ -76,13 +76,17 @@ ModelInteraction Tool requests, host read execution and confined patch admission
 are composed using existing mechanisms. Deterministic host checks pass, including
 the old fixtures. One real Qwen attempt completed with native Tools working but
 no patch or accepted task: repeated source/test reads exhausted action admission
-after five turns and 32.26 s. The real Markdown defect remains unfixed.
+after five turns and 32.26 s. A separate complete-context, single-request
+condition then supplied both source and tests without Tools; the response reached
+its 1,500-token output cap after 69.26 s without a diff. The real Markdown defect
+remains unfixed.
 
-This establishes neither Qwen coding competence nor the D0 benchmark. Inspect
-the retained continuation trace before separately authorizing another bounded
-attempt. Do not add a generic Agent/Worker framework or silently substitute a Codex
-solution. Candidate-08 remains scientifically incomplete and unchanged; its
-independent recovery does not block this development-worker workstream.
+These distinct conditions establish neither Qwen coding competence nor the D0
+benchmark. The complete-context report is
+[`first_real_task_upfront.json`](../experiments/qwen/docs/first_real_task_upfront.json).
+Do not retry either frozen attempt or silently substitute a Codex solution.
+Candidate-08 remains scientifically incomplete and unchanged; its independent
+recovery does not block this development-worker workstream.
 
 ### Earlier experiment-mechanics checkpoints (historical)
 

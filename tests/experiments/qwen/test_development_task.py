@@ -5,8 +5,10 @@
 from __future__ import annotations
 
 import asyncio
+import hashlib
 import json
-from typing import TYPE_CHECKING, Any
+from pathlib import Path
+from typing import Any
 
 import pytest
 
@@ -23,9 +25,6 @@ from devtools.tools import ToolInvocation, ToolRunner
 from devtools.tools.filesystem import ReadRepositoryFileTool
 from experiments.qwen import development_task as task
 from experiments.qwen.patch_proposal_worker import PatchProposalError
-
-if TYPE_CHECKING:
-    from pathlib import Path
 
 
 def _workspace(tmp_path: Path) -> Path:
@@ -54,6 +53,73 @@ def test_native_call_materializes_and_executes_existing_tool(tmp_path: Path) -> 
     assert isinstance(value, TextFile)
     assert value.content == "# existing tests\n"
     assert invocation.descriptor.name == call.name
+
+
+def test_upfront_context_contains_complete_source_and_tests_without_tools(
+    tmp_path: Path,
+) -> None:
+    """Both frozen resources arrive in one disclosure-bound request."""
+    root = _workspace(tmp_path)
+    request, details = task._upfront_context(root)
+    assert request.tools == ()
+    assert request.settings.maximum_output_tokens == 1_500
+    assert request.settings.thinking_enabled is False
+    assert task.SOURCE in request.prompt.content
+    assert task.TESTS in request.prompt.content
+    assert "old\n" in request.prompt.content
+    assert "# existing tests\n" in request.prompt.content
+    assert details["resources"] == [task.SOURCE, task.TESTS]
+    assert details["resource_bytes"] == {task.SOURCE: 4, task.TESTS: 17}
+
+
+def test_upfront_context_worker_makes_one_no_tool_request(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """One malformed answer is retained and rejected without a retry or Tool."""
+    root = _workspace(tmp_path)
+    folder = _frozen(root, monkeypatch)
+    frozen = json.loads((folder / "freeze.json").read_text(encoding="utf-8"))
+    request, _ = task._upfront_context(root)
+    oracle = folder / "acceptance.py"
+    frozen.update(
+        root=str(root),
+        harness_sha256=task._hash(Path(task.__file__)),
+        oracle_path=str(oracle),
+        oracle_sha256=task._hash(oracle),
+        prompt=request.prompt.content,
+        prompt_sha256=hashlib.sha256(request.prompt.content.encode()).hexdigest(),
+        hashes={path: task._hash(root / path) for path in (task.SOURCE, task.TESTS)},
+        head="synthetic-baseline",
+        model={
+            "service_status": {"state": "READY"},
+            "profile_fingerprint": "profile",
+        },
+    )
+    task._save(folder / "freeze.json", frozen, overwrite=True)
+    original_command = task._command
+
+    async def command(directory: Path, *args: str) -> dict[str, Any]:
+        if args == ("git", "rev-parse", "HEAD"):
+            return {"failed": False, "stdout": "synthetic-baseline\n"}
+        return await original_command(directory, *args)
+
+    monkeypatch.setattr(task, "_command", command)
+    model = _Interaction([ModelResponse("not a diff", _Interaction.source)])
+    result = asyncio.run(
+        task.run_upfront_context_task(
+            root,
+            folder,
+            model,
+            service_status={"state": "READY", "observed_fingerprint": "profile"},
+        )
+    )
+    assert len(model.requests) == 1
+    assert model.requests[0].tools == ()
+    assert model.requests[0].settings.maximum_output_tokens == 1_500
+    assert result["model_invocation"] == "RESPONSE_RECEIVED"
+    assert result["tool_calls_returned"] == 0
+    assert not result["accepted"]
+    assert result["automatic_retries"] == 0
 
 
 @pytest.mark.parametrize(

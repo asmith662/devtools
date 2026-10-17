@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: E402, E501, INP001, T201, COM812
+# ruff: noqa: E402, E501, INP001, T201, COM812, EM101, TRY003
 """Run one bounded live Qwen B-0009 patch-proposal acceptance."""
 
 from __future__ import annotations
@@ -11,7 +11,7 @@ import os
 import shutil
 import sys
 import tempfile
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import TYPE_CHECKING
 from unittest.mock import patch as observe_method
@@ -39,7 +39,12 @@ from devtools.tools.filesystem import (
     ListRepositoryDirectoryTool,
     ReadRepositoryFileTool,
 )
-from experiments.qwen.development_task import freeze_markdown_task, run_markdown_task
+from experiments.qwen.development_task import (
+    freeze_markdown_task,
+    freeze_upfront_context_task,
+    run_markdown_task,
+    run_upfront_context_task,
+)
 from experiments.qwen.patch_proposal_worker import (
     _BASELINE_FIXTURE,
     _SELECTION_STRESS_FIXTURE,
@@ -140,7 +145,46 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
     parser.add_argument("--report-path", required=True, type=Path)
     parser.add_argument("--repository-markdown-root", type=Path)
     parser.add_argument("--freeze-only", action="store_true")
+    parser.add_argument("--upfront-context", action="store_true")
     return parser.parse_args(arguments)
+
+
+def _service_status_payload(result: dict[str, object]) -> dict[str, object]:
+    """Retain the bounded fields printed by the existing read-only status CLI."""
+    if result["failed"]:
+        return {"state": "STATUS_ERROR", "error": result["stderr"]}
+    fields = {
+        key.strip().casefold().replace(" ", "_"): value.strip()
+        for line in str(result["stdout"]).splitlines()
+        if ":" in line
+        for key, _, value in (line.partition(":"),)
+    }
+    return {
+        "state": fields.get("state", "UNKNOWN"),
+        "expected_fingerprint": fields.get("expected_profile_fingerprint"),
+        "observed_fingerprint": fields.get("observed_profile_fingerprint"),
+        "container_id": fields.get("container_id"),
+        "profile_matches": fields.get("profile_matches"),
+        "model_ready": fields.get("model_ready"),
+        "raw_status": result["stdout"],
+    }
+
+
+async def _qwen_status(root: Path) -> dict[str, object]:
+    """Inspect the pinned service through its existing read-only CLI command."""
+    result = await CommandExecutor().execute(
+        Command(sys.executable)
+        .args(str(_SERVICE_SCRIPT), "status")
+        .cwd(resolve_path(root))
+        .with_timeout(Duration.minutes(2)),
+    )
+    return _service_status_payload(
+        {
+            "failed": result.failed,
+            "stdout": result.stdout.decode(errors="replace"),
+            "stderr": result.stderr.decode(errors="replace"),
+        },
+    )
 
 
 def _thinking_value(value: str) -> bool | None:
@@ -712,6 +756,56 @@ def main(arguments: Sequence[str] | None = None) -> None:
         folder = resolve_path(
             parsed.report_path.parent, base_directory=Path.cwd()
         ).value
+        if parsed.upfront_context:
+            service_payload = asyncio.run(_qwen_status(root))
+            profile_sha = service_payload.get("expected_fingerprint")
+            if not isinstance(profile_sha, str):
+                raise ValueError(
+                    "Existing Qwen status did not report its profile identity"
+                )
+            oracle_path = root / ".local/qwen-first-task/attempt-01/acceptance.py"
+            if parsed.freeze_only:
+                frozen = asyncio.run(
+                    freeze_upfront_context_task(
+                        root,
+                        folder,
+                        oracle_path=oracle_path,
+                        model=parsed.model,
+                        endpoint=parsed.endpoint,
+                        profile_fingerprint=profile_sha,
+                        profile_configuration=asdict(QWEN38_27B_UD_IQ4_XS),
+                        service_status=service_payload,
+                    ),
+                )
+                print(
+                    "Complete-context task frozen; baseline oracle verified; "
+                    f"tools disclosed: 0; prompt bytes: {len(frozen['prompt'].encode())}",
+                )
+                return
+            frozen = json.loads((folder / "freeze.json").read_text(encoding="utf-8"))
+            if (
+                parsed.endpoint != frozen["model"]["endpoint"]
+                or parsed.model != frozen["model"]["served_name"]
+            ):
+                raise ValueError("Selected endpoint/model differs from frozen attempt")
+            result = asyncio.run(
+                run_upfront_context_task(
+                    root,
+                    folder,
+                    LlamaCppInteraction(
+                        endpoint=parsed.endpoint,
+                        model=parsed.model,
+                        source=InteractionSource("qwen-markdown-upfront-context"),
+                    ),
+                    service_status=service_payload,
+                ),
+            )
+            _write_report(parsed.report_path, result)
+            print(
+                f"upfront-context accepted: {result['accepted']}; "
+                f"failure: {result.get('failure_class')}",
+            )
+            raise SystemExit(0 if result["accepted"] else 1)
         if parsed.freeze_only:
             asyncio.run(freeze_markdown_task(root, folder))
             print(
@@ -739,6 +833,9 @@ def main(arguments: Sequence[str] | None = None) -> None:
         raise SystemExit(0 if result["accepted"] else 1)
     if parsed.freeze_only:
         message = "--freeze-only requires --repository-markdown-root"
+        raise ValueError(message)
+    if parsed.upfront_context:
+        message = "--upfront-context requires --repository-markdown-root"
         raise ValueError(message)
     try:
         outcome = asyncio.run(run(parsed))

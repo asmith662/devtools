@@ -69,9 +69,32 @@ started, stopped or reconfigured. Candidate-08 and its recovery were untouched.
 The existing entrypoint accepts `--repository-markdown-root . --report-path
 .local/qwen-first-task/attempt-01/result.json`; `--freeze-only` first captures the
 failing baseline without inference. A retained attempt-start.json prevents another
-run in that directory. **Do not rerun this completed attempt.** Inspect the retained
-repeated-read trace before separately authorizing any revised continuation/prompt
-comparison. No universal Worker, Agent or workflow API is promoted.
+run in that directory. **Do not rerun this completed attempt.** The retained
+repeated-read trace was later inspected; see the distinct complete-context
+condition below. No universal Worker, Agent or workflow API is promoted.
+
+## Complete-context coding condition (2026-10-17)
+
+The [separate measured report](first_real_task_upfront.json) tests whether local
+Qwen can form a patch when the complete implementation and focused tests are
+already disclosed through existing RI/Context planning. It is a separate
+experimental condition: Context availability, Tool access and request count all
+differ from attempt-01, so this is not a continuation-only comparison.
+
+The unchanged baseline source, tests and eight-scenario oracle matched attempt-01
+by SHA-256, and the oracle failed before inference. One request contained both
+complete files (5,764 and 5,346 bytes), with no Tools, a 1,500-token output bound
+and the pinned READY Qwen profile. Qwen returned a response at the output limit
+after 69.26 seconds: 3,801 input and 1,500 output tokens. The response had no
+unified-diff header. Patch scope/application and post-patch tests/oracle were not
+reached. Source remains unchanged; there was no retry or fallback.
+
+The prior tool-loop condition used five turns, seven accepted reads, 37,644 input
+and 403 output tokens in 32.26 seconds and also produced no patch. The new result
+is not a controlled cost comparison or evidence of autonomous retrieval. Together
+these attempts demonstrate working host boundaries and two failed real task
+conditions, not Qwen coding competence or a reusable coding agent. Do not retry
+or raise the output bound without a separately frozen and authorized task.
 
 ## Historical fixture consumers
 

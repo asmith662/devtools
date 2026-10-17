@@ -69,12 +69,24 @@ One local Qwen attempt ran for 32.26 s: five turns, nine proposed native reads,
 seven accepted reads, 37,644 input and 403 output tokens. Native normalization and
 host execution work, unlike the retained text-only list_files failure. Repeated
 source/test acquisition produced no patch; the final batch exceeded the action
-cap. Source is unchanged and the independent frozen oracle still fails. No second
-attempt or substituted Codex solution occurred. The primary task failure is
-reasoning/continuation progress; single-Prompt textual feedback remains a confound.
+cap. Source is unchanged and the independent frozen oracle still fails. No Codex
+solution was substituted. The trace showed complete prior file contents in later
+prompts, but no structured multi-message continuation or explicit already-read
+instruction; the model repeated calls anyway.
+
+A later, distinct complete-context condition supplied the full source and tests in
+one initial Context disclosure with zero Tools and one request. It used the same
+source/test/oracle hashes; the baseline oracle failed before inference. The pinned
+model returned `output_limit` at 1,500 output tokens after 69.26 seconds, with no
+unified diff. Patch application and post-patch validation were not reached. Source
+remains unchanged. This condition changed Context availability, Tool access and
+request count, so it does not isolate continuation alone. The [separate measured
+report](../../../experiments/qwen/docs/first_real_task_upfront.json) records the
+prompt identity, usage and validation disposition.
 
 Harness status stays VALIDATED, but **a real accepted Qwen development change has
-not been demonstrated**. Focused tests and protected validation pass, with 100%
-production branch coverage. The smallest next decision is to inspect the retained
-trace before separately authorizing a changed continuation/prompt attempt. This
-evidence authorizes no generic framework or automatic retry.
+not been demonstrated**. Focused deterministic tests, Ruff, formatting and strict
+mypy pass. The next step is to review whether a separately scoped, smaller-output
+task can test patch formation; neither prior task should be retried or have its
+frozen limits raised. This evidence authorizes no generic framework or automatic
+retry.

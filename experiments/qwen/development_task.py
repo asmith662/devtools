@@ -10,6 +10,7 @@ import json
 import sys
 import time
 from dataclasses import asdict, replace
+from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from devtools.context import (
@@ -19,6 +20,7 @@ from devtools.context import (
     choose_whole_resource_disclosure,
     materialize_disclosure_plan,
     observe_repository_resource,
+    observe_repository_resources,
     plan_disclosures,
     render_context_disclosure,
 )
@@ -46,8 +48,6 @@ from experiments.qwen.two_action_read_only_experiment import (
 )
 
 if TYPE_CHECKING:
-    from pathlib import Path
-
     from devtools.core.paths import ResolvedPath
     from devtools.models.interaction import ModelInteraction
 
@@ -68,6 +68,18 @@ TASK = (
     "an executable request. Finish with only one plain unified diff, beginning "
     "--- a/ followed by +++ b/, without Markdown fences or explanation. "
     "You have at most 10 model turns and 8 accepted read actions; no retries."
+)
+UPFRONT_CONTEXT_TASK = (
+    "Repair MarkdownFile fenced-code heading handling: a candidate closing fence "
+    "followed by non-whitespace text must not terminate the fenced block. Preserve "
+    "valid backtick and tilde closers, including longer closers and trailing "
+    "spaces or tabs, plus existing minimum-length and marker-matching behavior. "
+    "Preserve public APIs and unrelated behavior. The complete implementation "
+    f"{SOURCE} is supplied in the Context as the sole permitted edit target. The "
+    f"complete existing tests {TESTS} are supplied as behavioral guidance. Both "
+    "files are already present below; do not request more information or use "
+    "tools. Return exactly one plain unified diff for the permitted source file, "
+    "with no Markdown fences or explanation. Do not claim tests were run."
 )
 ACCEPTANCE = """from pathlib import Path
 from devtools.core.paths import resolve_path
@@ -119,6 +131,15 @@ async def _command(root: Path, *args: str) -> dict[str, Any]:
     }
 
 
+async def _timed_command(root: Path, *args: str) -> dict[str, Any]:
+    """Retain stage timing for the one upfront-context experiment."""
+    started_at = str(Timestamp.now())
+    started = time.perf_counter()
+    result = await _command(root, *args)
+    result.update(started_at=started_at, elapsed_seconds=time.perf_counter() - started)
+    return result
+
+
 def _context(root: Path) -> tuple[ModelRequest, dict[str, Any]]:
     snapshot = observe_repository_resource(
         repository=Repository.new(),
@@ -153,6 +174,293 @@ def _context(root: Path) -> tuple[ModelRequest, dict[str, Any]]:
         "initial_prompt_utf8_bytes": len(request.prompt.content.encode()),
         "selection": "CALLER_SELECTED_WHOLE_RESOURCE; no optimizer/sufficiency claim",
     }
+
+
+def _upfront_context(root: Path) -> tuple[ModelRequest, dict[str, Any]]:
+    """Disclose the complete task source and focused tests in one explicit plan."""
+    addresses = tuple(RepositoryResourceAddress(value) for value in (SOURCE, TESTS))
+    snapshot = observe_repository_resources(
+        repository=Repository.new(),
+        root=resolve_path(root),
+        addresses=addresses,
+        maximum_resource_bytes=32_768,
+    )
+    options = tuple(
+        choose_whole_resource_disclosure(
+            purpose=UPFRONT_CONTEXT_TASK,
+            snapshot=snapshot,
+            resource_address=address,
+        )
+        for address in addresses
+    )
+    plan = plan_disclosures(
+        purpose=UPFRONT_CONTEXT_TASK,
+        snapshot=snapshot,
+        disclosures=options,
+    )
+    context = render_context_disclosure(
+        materialize_disclosure_plan(plan=plan, snapshot=snapshot)
+    )
+    request = assemble_context_disclosure_model_request(
+        task_request=ModelRequest(
+            prompt=Prompt(UPFRONT_CONTEXT_TASK, role="user"),
+            settings=ModelSettings(maximum_output_tokens=1_500, thinking_enabled=False),
+            tools=(),
+        ),
+        context=context,
+    )
+    return request, {
+        "snapshot": str(snapshot.id),
+        "plan": plan.identity,
+        "disclosure": context.disclosure.identity,
+        "resources": [SOURCE, TESTS],
+        "resource_bytes": {
+            str(resource.address): resource.byte_size for resource in snapshot.resources
+        },
+        "rendered_utf8_bytes": len(context.text.encode()),
+        "prompt_utf8_bytes": len(request.prompt.content.encode()),
+        "selection": "CALLER_SELECTED_COMPLETE_SOURCE_AND_TESTS",
+    }
+
+
+async def freeze_upfront_context_task(  # noqa: PLR0913 -- freeze exact experimental inputs
+    root: Path,
+    folder: Path,
+    *,
+    oracle_path: Path,
+    model: str,
+    endpoint: str,
+    profile_fingerprint: str,
+    profile_configuration: dict[str, Any],
+    service_status: dict[str, Any],
+) -> dict[str, Any]:
+    """Freeze complete initial Context, unchanged oracle, identities and limits."""
+    if folder.exists() and any(folder.iterdir()):
+        raise FileExistsError("Upfront-context attempt directory is not empty")
+    folder.mkdir(parents=True, exist_ok=True)
+    request, context = _upfront_context(root)
+    baseline = await _timed_command(root, sys.executable, "-B", str(oracle_path))
+    if not baseline["failed"] or "AssertionError" not in baseline["stderr"]:
+        raise ValueError("Frozen independent oracle does not fail on this baseline")
+    original = _read_text(resolve_path(root / SOURCE))
+    write(
+        TextFile(resolve_path(folder / "source-before.py"), original.content),
+        overwrite=False,
+    )
+    head = await _command(root, "git", "rev-parse", "HEAD")
+    branch = await _command(root, "git", "branch", "--show-current")
+    if head["failed"] or branch["failed"] or branch["stdout"].strip() in {"main", ""}:
+        raise ValueError("Real task requires an authenticated isolated feature branch")
+    frozen = {
+        "schema": "qwen-markdown-upfront-context-freeze-v1",
+        "created_at": str(Timestamp.now()),
+        "root": str(root),
+        "head": head["stdout"].strip(),
+        "branch": branch["stdout"].strip(),
+        "task": UPFRONT_CONTEXT_TASK,
+        "allowed_edit": SOURCE,
+        "context_files": [SOURCE, TESTS],
+        "hashes": {path: _hash(root / path) for path in (SOURCE, TESTS)},
+        "harness_sha256": _hash(resolve_path(__file__).value),
+        "oracle_path": str(oracle_path),
+        "oracle_sha256": _hash(oracle_path),
+        "baseline_acceptance": baseline,
+        "context": context,
+        "prompt": request.prompt.content,
+        "prompt_sha256": hashlib.sha256(request.prompt.content.encode()).hexdigest(),
+        "request_settings": {
+            "maximum_output_tokens": 1_500,
+            "thinking_enabled": False,
+            "tools": [],
+        },
+        "model": {
+            "served_name": model,
+            "endpoint": endpoint,
+            "profile_fingerprint": profile_fingerprint,
+            "profile_configuration": profile_configuration,
+            "service_status": service_status,
+        },
+        "limits": {"requests": 1, "tools": 0, "retries": 0, "timeout_seconds": 120},
+    }
+    _save(folder / "freeze.json", frozen)
+    return frozen
+
+
+async def run_upfront_context_task(  # noqa: C901, PLR0912, PLR0915 -- ordered stages
+    root: Path,
+    folder: Path,
+    interaction: ModelInteraction,
+    *,
+    service_status: dict[str, Any],
+) -> dict[str, Any]:
+    """Send one no-Tools request and evaluate its patch without model repair."""
+    frozen = json.loads(_read_text(resolve_path(folder / "freeze.json")).content)
+    if (
+        str(root) != frozen["root"]
+        or _hash(resolve_path(__file__).value) != frozen["harness_sha256"]
+        or hashlib.sha256(frozen["prompt"].encode()).hexdigest()
+        != frozen["prompt_sha256"]
+        or _hash(Path(frozen["oracle_path"])) != frozen["oracle_sha256"]
+    ):
+        raise ValueError("Frozen prompt, harness, workspace or oracle identity changed")
+    for path, sha in frozen["hashes"].items():
+        if _hash(root / path) != sha:
+            raise ValueError("Frozen source/test input changed")
+    head = await _command(root, "git", "rev-parse", "HEAD")
+    if head["failed"] or head["stdout"].strip() != frozen["head"]:
+        raise ValueError("Frozen baseline revision changed")
+    if (
+        frozen["model"]["service_status"].get("state") != "READY"
+        or service_status.get("state") != "READY"
+        or service_status.get("observed_fingerprint")
+        != frozen["model"]["profile_fingerprint"]
+    ):
+        result = {
+            "schema": "qwen-markdown-upfront-context-result-v1",
+            "accepted": False,
+            "model_invocation": "NOT_STARTED",
+            "failure_class": "MODEL_SERVICE_NOT_READY_OR_PROFILE_CHANGED",
+            "service_status": service_status,
+            "automatic_retries": 0,
+        }
+        _save(folder / "result.json", result)
+        return result
+    _save(folder / "attempt-start.json", {"started_at": str(Timestamp.now())})
+    started = time.perf_counter()
+    report: dict[str, Any] = {
+        "schema": "qwen-markdown-upfront-context-result-v1",
+        "task": UPFRONT_CONTEXT_TASK,
+        "started_at": str(Timestamp.now()),
+        "model_invocation": "PENDING",
+        "tool_calls_returned": 0,
+        "patch_format": "NOT_ASSESSED",
+        "patch_scope": "NOT_ASSESSED",
+        "isolated_application": "NOT_ATTEMPTED",
+        "independent_oracle": "NOT_RUN",
+        "existing_tests": "NOT_RUN",
+        "accepted": False,
+        "automatic_retries": 0,
+    }
+    request = ModelRequest(
+        prompt=Prompt(frozen["prompt"], role="user"),
+        settings=ModelSettings(maximum_output_tokens=1_500, thinking_enabled=False),
+        tools=(),
+    )
+    _save(
+        folder / "request.json",
+        {
+            "at": str(Timestamp.now()),
+            "prompt": request.prompt.content,
+            "prompt_utf8_bytes": len(request.prompt.content.encode()),
+            "tools": [],
+            "settings": {
+                "maximum_output_tokens": 1_500,
+                "thinking_enabled": False,
+            },
+        },
+    )
+    try:
+        async with asyncio.timeout(120):
+            response = await interaction.send(request)
+        report["model_invocation"] = "RESPONSE_RECEIVED"
+        report["response_seconds"] = time.perf_counter() - started
+        report["response"] = asdict(response)
+        report["tool_calls_returned"] = len(response.tool_calls)
+        _save(folder / "response.json", asdict(response))
+        if response.tool_calls:
+            report["failure_class"] = "UNEXPECTED_TOOL_CALL_WITH_NO_TOOLS_DISCLOSED"
+            raise ValueError(
+                "Provider returned Tool calls although request disclosed none"
+            )
+        if response.termination == ModelTermination.OUTPUT_LIMIT:
+            report["failure_class"] = "OUTPUT_LIMIT"
+            raise ValueError("The single model response reached its output limit")
+        proposal = response.content
+        write(
+            TextFile(resolve_path(folder / "proposal.txt"), proposal), overwrite=False
+        )
+        report["proposal_bytes"] = len(proposal.encode())
+        patch_file = folder / "proposal.patch"
+        _validate_patch_envelope(root, proposal)
+        report["patch_format"] = "VALID_UNIFIED_DIFF"
+        report["patch_scope"] = "EXACT_PERMITTED_FILE"
+        write(
+            TextFile(resolve_path(patch_file), proposal.removesuffix("\n") + "\n"),
+            overwrite=False,
+        )
+        checked = await _command(
+            root,
+            "git",
+            "apply",
+            "--check",
+            "--whitespace=error",
+            str(patch_file),
+        )
+        report["patch_check"] = checked
+        if checked["failed"]:
+            report["failure_class"] = "PATCH_NOT_APPLICABLE"
+            raise PatchProposalError("Managed git apply --check rejected the proposal")
+        applied = await _command(
+            root, "git", "apply", "--whitespace=error", str(patch_file)
+        )
+        report["application"] = applied
+        if applied["failed"]:
+            report["failure_class"] = "PATCH_APPLICATION_FAILED"
+            raise PatchProposalError("Managed git apply failed")
+        report["isolated_application"] = "APPLIED_IN_FEATURE_WORKTREE"
+        report["independent_oracle"] = await _timed_command(
+            root, sys.executable, "-B", frozen["oracle_path"]
+        )
+        report["existing_tests"] = await _timed_command(
+            root,
+            sys.executable,
+            "-m",
+            "pytest",
+            "--no-cov",
+            "-q",
+            TESTS,
+        )
+        report["accepted"] = (
+            not report["independent_oracle"]["failed"]
+            and not report["existing_tests"]["failed"]
+        )
+        if not report["accepted"]:
+            report["failure_class"] = "INDEPENDENT_VALIDATION_FAILED"
+            raise PatchProposalError("Oracle or existing focused tests rejected patch")
+    except TimeoutError:
+        report.update(
+            model_invocation="COMPLETION_UNKNOWN_AFTER_TIMEOUT",
+            failure_class="MODEL_TIMEOUT",
+            error="120-second host timeout; no retry",
+        )
+    except (LlamaCppHttpError, LlamaCppTransportError) as error:
+        report.update(
+            model_invocation="PROVIDER_ERROR",
+            failure_class="MODEL_TRANSPORT",
+            error=type(error).__name__ + ": " + str(error),
+        )
+    except Exception as error:  # noqa: BLE001 -- persist exact bounded attempt outcome
+        report.setdefault("failure_class", "PATCH_OR_ADMISSION_FAILURE")
+        report["error"] = type(error).__name__ + ": " + str(error)
+    if not report["accepted"] and _hash(root / SOURCE) != frozen["hashes"][SOURCE]:
+        rejected = _read_text(resolve_path(root / SOURCE))
+        write(
+            TextFile(resolve_path(folder / "unaccepted-source.py"), rejected.content),
+            overwrite=False,
+        )
+        original = _read_text(resolve_path(folder / "source-before.py"))
+        write(TextFile(resolve_path(root / SOURCE), original.content))
+        report["unaccepted_edit_restored"] = (
+            _hash(root / SOURCE) == frozen["hashes"][SOURCE]
+        )
+    report.update(
+        finished_at=str(Timestamp.now()),
+        elapsed_seconds=time.perf_counter() - started,
+        source_hash_after=_hash(root / SOURCE),
+        automatic_retries=0,
+    )
+    _save(folder / "result.json", report)
+    return report
 
 
 class _ReadInvocation:
@@ -246,6 +554,16 @@ async def freeze_markdown_task(root: Path, folder: Path) -> dict[str, Any]:
 
 async def apply_markdown_patch(root: Path, folder: Path, patch: str) -> None:
     """Admit one exact-file unified diff, then use Git's existing patch engine."""
+    _validate_patch_envelope(root, patch)
+    path = _store_patch(folder, patch)
+    for args in (("--check", "--whitespace=error"), ("--whitespace=error",)):
+        result = await _command(root, "git", "apply", *args, str(path))
+        if result["failed"]:
+            raise PatchProposalError(str(result))
+
+
+def _validate_patch_envelope(root: Path, patch: str) -> None:
+    """Check the one-file plain-diff grammar shared by both task conditions."""
     prefix = f"--- a/{SOURCE}\n+++ b/{SOURCE}\n@@ "
     lines = patch.splitlines()
     if len(patch.encode()) > 16_384 or not patch.startswith(prefix):
@@ -268,16 +586,17 @@ async def apply_markdown_patch(root: Path, folder: Path, patch: str) -> None:
     ):
         raise PatchProposalError("Unexpected patch header or additional file")
     target = resolve_path(SOURCE, base_directory=root)
-    if not target.value.is_relative_to(root):
+    if not target.value.is_relative_to(resolve_path(root).value):
         raise PatchProposalError("Patch target escapes workspace")
+
+
+def _store_patch(folder: Path, patch: str) -> Path:
+    """Persist one bounded admitted diff for the canonical managed Git command."""
     path = folder / "proposal.patch"
     write(
         TextFile(resolve_path(path), patch.removesuffix("\n") + "\n"), overwrite=False
     )
-    for args in (("--check", "--whitespace=error"), ("--whitespace=error",)):
-        result = await _command(root, "git", "apply", *args, str(path))
-        if result["failed"]:
-            raise PatchProposalError(str(result))
+    return path
 
 
 async def run_markdown_task(  # noqa: C901, PLR0912, PLR0915 -- explicit stage order
