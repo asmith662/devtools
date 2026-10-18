@@ -1,5 +1,26 @@
 # Implementation Ledger
 
+## First real delegated B-0048 Qwen work cycle (2026-10-18)
+
+Authenticated the maintainer-issued standing grant and the unchanged prepared
+assignment, recorded actual Codex scope/acceptance review, reserved allowance
+and dispatched the existing worker once. Three local Qwen calls and two bounded
+repairs produced an independently accepted JsonObjectFile-only candidate:
+15,390 input / 530 output tokens, 101.10 seconds worker time, 102.23 seconds
+bridge time. Unknown cached/reasoning consumption remains unknown. The frozen
+oracle passes Python 3.12.13 and 3.14.3; all 11 JSON regressions pass. Independent
+offline replay of the three captured proposals reproduced the final source
+hash and passing oracle/tests. Ruff and direct-file formatting pass.
+
+The existing result is REVIEW_CANDIDATE and actual Codex post-review records
+ACCEPT_RECOMMENDED, not integration authority. Candidate source and complete
+turn/validation evidence remain in existing local WorkCycle receipts; the clean
+target and maintained source are unchanged. No redundant human approval, fourth
+call, replacement attempt, protected publication or scientific work occurred.
+The [Qwen overview](../experiments/qwen/docs/overview.md#first-delegated-b-0048-review-candidate)
+records exact identities, turn timeline and measurements. B-0048 stays open:
+candidate integration and sibling JsonListFile/CsvFile defects remain unresolved.
+
 ## Routine Qwen standing delegation (2026-10-18)
 
 Extended the existing repository-local WorkCycle with immutable standing grants,

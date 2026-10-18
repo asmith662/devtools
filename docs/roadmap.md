@@ -71,7 +71,9 @@ active objective. Duplicate hints and append-only advisory/authorized reviews
 precede exact publication into canonical B-number Markdown records. Trusted-host
 checks gate promotion; intake approval grants no implementation or model authority.
 The initial Python 3.12 concern is approved and published as B-0048; its
-JsonObjectFile-only assignment is prepared and still unauthorized.
+JsonObjectFile-only assignment has now completed one genuinely delegated Qwen
+run and independent Codex review as REVIEW_CANDIDATE / ACCEPT_RECOMMENDED.
+Integration remains unauthorized; sibling list/CSV defects keep B-0048 open.
 This is the first governed intake boundary, not an autonomous supervisor.
 
 The concrete B-item-to-Qwen bridge is now implemented and deterministically
@@ -83,13 +85,15 @@ active scope. One designated coordinator owns canonical mutations.
 Scoped standing routine-Qwen delegation is now implemented in that same work
 bridge. A genuine one-time host grant can replace repeated per-task terminal
 consent, subject to exact Codex review, source/test/validation-code/model scope,
-cumulative reservations, expiration and revocation. No real grant has been
-issued. B-0048 qualifies under the proposed narrow object-model policy but
-remains prepared and unexecuted. This is not a persistent supervisor or scheduler.
+cumulative reservations, expiration and revocation. A real maintainer-issued
+grant admitted the first B-0048 run without redundant human confirmation; three
+Qwen calls and two repairs produced a cross-version-tested review candidate.
+See the [measured outcome](../experiments/qwen/docs/overview.md#first-delegated-b-0048-review-candidate).
+This is not a persistent supervisor or scheduler.
 
-Next: process one genuinely reviewed and separately authorized backlog item
-through this bridge on an isolated branch, validate against host-owned acceptance,
-obtain Codex advisory review and authorize integration/closeout separately. This checkpoint does not implement scheduling,
+Next: obtain separate integration authority for the exact accepted B-0048
+object-only candidate, publish permanent regression coverage and validate the
+maintained change. Broader compatibility work remains separately scoped. This checkpoint does not implement scheduling,
 persistent Codex supervision or authorize a new local model run. Precise Context
 Tools, structured continuation, task-local checkpoints, layered long-term Memory,
 Context benchmarking and Learned Intelligence integration remain on the roadmap.

@@ -221,9 +221,11 @@ Proposal `f47f3925-6988-4d84-81f4-c5b97a571484` captures the still-reproducing
 Python 3.12 `JsonObjectFile` constructor incompatibility. The
 [reproduction record](proposals/python312-reproduction.json) preserves source
 identity, existing interpreter, exact constructor and error. A Codex advisory
-review recommends maintainer triage; it remains **PENDING_REVIEW**, with no
-human approval, B-number, implementation or Qwen invocation. Related B-0009
-pressure is retained without duplicating it as an accepted item.
+review originally recommended maintainer triage. Subsequent genuine human
+approval promoted it once to B-0048. The object-only assignment has now completed
+one delegated Qwen run and independent Codex review as REVIEW_CANDIDATE /
+ACCEPT_RECOMMENDED, without source integration. Sibling list/CSV compatibility
+defects remain unresolved. Related B-0009 pressure and historical reviews remain.
 
 ## Governed backlog-to-Qwen cycle
 
@@ -346,8 +348,9 @@ and preserves original discovery/evidence. It creates only PENDING_REVIEW work,
 without altering objective, authority, limits or active source. Qwen still has
 only `propose_edit`; this increment does not add a new model Tool.
 
-The Python 3.12 proposal is now approved and published as B-0048. Its object-only
-assignment is prepared, with execution authorization NONE. Deterministic acceptance uses explicitly synthetic
+The Python 3.12 proposal is approved and published as B-0048. Its object-only
+assignment has completed under the authenticated standing grant and is awaiting
+separately authorized integration. Deterministic acceptance uses explicitly synthetic
 approval/grants and temporary Git fixtures, exercising the real worker path;
 it does not establish a new live Qwen success.
 
@@ -457,6 +460,10 @@ uv run python -m scripts.backlog delegation-revoke <grant-sha> --reference <actu
 ```
 
 No real grant or supervisory approval is issued by implementing this capability.
+Subsequently, the maintainer issued a genuine grant and B-0048 completed one
+delegated run; the [Qwen record](../../experiments/qwen/docs/overview.md#first-delegated-b-0048-review-candidate)
+preserves the actual outcome and review identities. This does not close B-0048
+or authorize candidate integration.
 The prepared B-0048 assignment and its pinned execution baseline remain intact;
 administrative authority is consumed by the coordinator, not imported into the
 authenticated implementation target. No new target revision is required merely

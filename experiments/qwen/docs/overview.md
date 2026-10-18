@@ -15,7 +15,70 @@ The [scripted measurement record](governed_work_cycle.json) retains two fixture
 turns, one repair, passing tests/oracle and 15.30 seconds end-to-end. Its token
 counts are synthetic, never Qwen usage. This is host integration evidence, not
 another live Qwen task acceptance. The
-Python 3.12 proposal remains pending and the rejected Task 02 remains failed.
+Python 3.12 proposal is approved as B-0048. Its first genuinely delegated local
+Qwen run is now independently accepted as a review candidate; the rejected
+Task 02 remains failed.
+
+### First delegated B-0048 review candidate
+
+On 2026-10-18 the existing standing grant
+`a5b20e0b6ade4af3603b40521d9a3d3a3c69b3fc3fab221d14c6e1324b1946f0`
+admitted the exact prepared assignment
+`179531289e28506c6a87508990a7d7aa0d14c76263d098c2a50ae099e659e298`.
+Codex recorded actual pre-dispatch review, reserved the existing allowance and
+dispatched once, without another human confirmation. The worker used the pinned
+Qwen3.8-27B IQ4_XS/32K profile, thinking disabled, native `propose_edit` only.
+
+The objective was the reproduced Python 3.12.13 JsonObjectFile constructor
+failure, scoped to `src/devtools/resources/filesystem/models/json/object.py`.
+Baseline source/test bytes and the host-owned cross-version oracle were unchanged.
+The first proposal introduced an invalid custom constructor (four regressions);
+the second restored Python 3.14 behavior but retained the Python 3.12 failure.
+The third passed both the frozen oracle and all 11 JSON regressions. All three
+proposals were admitted; two test-feedback repairs occurred within the original
+three-call allowance, without any replacement attempt.
+
+| Turn | UTC model request | Input / output tokens | Outcome |
+| --- | --- | --- | --- |
+| 1 | 21:57:34.064620 | 4,079 / 270 | Oracle and tests failed |
+| 2 | 21:57:52.619435 | 6,308 / 138 | Python 3.14 tests passed; 3.12 oracle failed |
+| 3 | 21:58:05.987119 | 5,003 / 122 | Oracle and all 11 tests passed |
+
+Actual provider totals: **15,390 input / 530 output tokens**. Cached-input,
+cache-write and reasoning observations are unknown; no overlapping categories
+are added. Model response time totals 40.77 seconds. Worker time was 101.10
+seconds; bridge execution 102.23 seconds. Host validation took 59.67 seconds,
+including 55.92 seconds in baseline pytest startup. These timings do not imply
+model-time or subscription savings. Codex coordination consumption is UNKNOWN.
+
+The consolidated candidate replaces the problematic zero-argument inherited
+post-initialization call with an explicit base call, checks the mapping root
+and retains recursive freezing. Constructor signature, frozen slots, mapping
+and transformation APIs remain intact. Final source SHA-256:
+`9b31553ec9982cba4886eaed39e6ddb0941598b57d3d0442771083f2fd4fd88f`.
+Independent supervisory replay reconstructed all three captured native proposals
+through the same host admission/application, reproduced that exact source,
+and reran the unchanged oracle successfully on Python 3.12.13 and 3.14.3 plus
+all 11 JSON tests. Ruff and direct-file formatting checks passed.
+
+Work result `0067bd485eef310d112b1e1f9b0bc85925075f48eb1fe01b1157e69a57e095fe`
+is `REVIEW_CANDIDATE`; Codex review
+`23a5dcbedbb4f6980068a8fc29ae94d1e436cc3a7078f585bb762fcb2cdc95ae`
+records `ACCEPT_RECOMMENDED`, with integration authority false. Existing local
+evidence is under coordinator `.local/backlog/work/B-0048/`: assignment,
+authorization, dispatch, worker turns/result/final source, candidate diff,
+supervisory-validation and the two supervisory records. Captures remain local;
+this documentation does not publish the candidate source or raw model messages.
+
+The target branch remains clean at `75cc74f7acda36cf91e91251efae8f9b3054f02a`.
+Neither maintained source nor the frozen acceptance criteria were modified.
+Worst-case reservation is retained: one task, three calls, 12,288 requested
+output tokens and 900 seconds. Remaining grant allowance is two tasks, six
+calls, 24,576 requested output tokens and 1,800 seconds; unused reservation is
+not refunded. No further B-0048 dispatch is permitted by this completed slot.
+JsonListFile/CsvFile compatibility defects remain outside scope, so B-0048 is
+not closed and full Python 3.12 compatibility is not established. Separately
+authorized integration and permanent regression publication are the next step.
 
 ## Task selection and second-task closeout
 
