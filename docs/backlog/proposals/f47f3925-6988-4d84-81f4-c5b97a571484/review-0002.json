@@ -1,0 +1,21 @@
+{
+  "schema": "backlog-review-v1",
+  "proposal": "f47f3925-6988-4d84-81f4-c5b97a571484",
+  "proposal_sha256": "80ac17dbc730bb60d9f793ff8017e062b2dcc355c862186256eb7c70ad643164",
+  "previous": "72763924cd752fa83530de52118ed4785dbc91b403a98a51e7bd5dd2fe58b2ad",
+  "at": "2026-10-18T19:42:20.103641+00:00",
+  "decision": "APPROVED",
+  "reviewer": "recoveryadmin",
+  "decision_reference": "Maintainer approval in the current Codex assignment: Promote Approved Python 3.12 Proposal and Prepare First Supervised Qwen Assignment; canonical backlog promotion only",
+  "rationale": "Approve backlog inclusion for the reproduced JsonObjectFile Python 3.12 constructor defect. No implementation or execution authority.",
+  "duplicates": [],
+  "duplicate_disposition": "No likely duplicate reported by the current detector; B-0009 is related parent pressure.",
+  "scope": "canonical-backlog-only; no execution authority",
+  "publication": {
+    "id": "B-0048",
+    "path": "items/B-0048-restore-python-3-12-json-file-model-compatibility.md",
+    "text": "# B-0048 \u2014 Restore Python 3.12 JSON file-model compatibility\n\n- type: STORY\n- status: BACKLOG\n- decision_maturity: DISCOVERED\n- primary_domain: resources\n- supporting_domains: unknown\n- evidence_basis: REPOSITORY\n- hard_dependencies: unknown\n- pressure_dependencies: unknown\n- operational_dependencies: unknown\n- validation_level: NONE\n- execution_authorization: NONE\n- proposal: ../proposals/f47f3925-6988-4d84-81f4-c5b97a571484/proposal.json\n- intake_review: ../proposals/f47f3925-6988-4d84-81f4-c5b97a571484/review-0002.json\n\n## Problem / value\n\nThe declared Python >=3.12 distribution fails a JsonObjectFile constructor on installed CPython 3.12.13. Current development verification uses Python 3.14; compatibility remains unresolved.\n\n## Proposed benefit\n\nRestore trustworthy declared-version compatibility and prevent local worker/environment confusion.\n\n## Uncertainty / unresolved semantics\n\nThe affected model family, minimal correction, and supported interpreter test matrix require investigation. This proposal provides no implementation or execution authority.\n\n## Discovery / parent\n\n{'kind': 'agent', 'reference': 'git:224644cc4276fd58074329be01be44b7012553b7:docs/implementation_ledger.md (Python 3.12 compatibility observation)'}\nB-0009\n\n## Evidence\n\ndocs/backlog/proposals/python312-reproduction.json\ndocs/implementation_ledger.md (unchanged-main JsonObjectFile reproduction and prior 54 Python 3.12 test failures)\n\n## Affected resources\n\nsrc/devtools/resources/filesystem/models/json/object.py\npyproject.toml\n\n## Possible dependencies\n\nB-0009: pressure only; the current worker remains validated on Python 3.14.\n\n## Consumers / invariants / risks\n\nunknown; preserve existing behavior and authority boundaries\n\n## Promotion / validation expectations\n\nBacklog inclusion only. Scope, priority, dependencies and acceptance require deliberate review before implementation.\n\n",
+    "row": "| [B-0048](items/B-0048-restore-python-3-12-json-file-model-compatibility.md) | Restore Python 3.12 JSON file-model compatibility | BACKLOG | resources |"
+  },
+  "sha256": "eb28fe96d1f6aaa3ae4de7ea94f7bffa28eeab3852c8ead403829b41fe551f2e"
+}
