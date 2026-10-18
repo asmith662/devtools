@@ -93,9 +93,12 @@ adds read-only visibility over existing work and worker receipts, with explicit
 synthetic/live provenance and unknown accounting. This is UI adoption, not an
 autonomous supervisor or memory implementation. Four source-derived intake
 inputs link optional CodeGraph exploration, layered recall, validated procedural
-skills and incrementally maintained knowledge to existing pressure. They remain
-uncaptured until coordinator queue additions are explicitly reconciled with
-preservation of the active work-cycle checkout. No implementation is authorized.
+skills and incrementally maintained knowledge to existing pressure. They have
+been captured at the designated coordinator and remain PENDING_REVIEW, with no
+implementation authority. The console now reads current records through a
+loopback-only read API and exposes actual run/turn proposals, validation and
+available captured messages. Missing historical continuation is explicit; this
+visibility increment does not change worker execution or memory architecture.
 
 These are planned needs, not implemented architecture. Task-local working memory
 should support atomic durable checkpoints of objective, constraints, progress,

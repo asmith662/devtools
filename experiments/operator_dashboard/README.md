@@ -1,75 +1,114 @@
-# Read-only operator dashboard adoption pilot
+﻿# Devtools read-only operator console
 
-This repository-local, non-installable consumer reuses the pinned MIT TencentDB
-MemoryPanel React/Tea shell and components; see [provenance](web/UPSTREAM.md).
-It does not implement Tencent memory services or a new Devtools authority API.
+This repository-local consumer retains the Tencent MemoryPanel React/Tea shell,
+list/detail panels, page header and status components. The pinned upstream MIT
+attribution remains in [UPSTREAM.md](web/UPSTREAM.md) and every build's license.
+No Tencent backend, database, authority service or worker instrumentation is added.
 
-From the isolated dashboard checkout, using Python 3.14 and Node 24/npm 11:
+## Start locally
+
+Prerequisites: Python 3.14, Node 24/npm 11, project Python dependencies, and the
+existing frontend dependencies (`npm ci --ignore-scripts --prefix
+experiments/operator_dashboard/web` once after checkout).
+
+From the dashboard checkout, **one operator command** builds the frontend and
+serves both UI and API:
 
 ```powershell
-npm ci --ignore-scripts --prefix experiments/operator_dashboard/web
-npm run build --prefix experiments/operator_dashboard/web
-uv run --python C:/Python314/python.exe python -m experiments.operator_dashboard.project --source C:/Users/recoveryadmin/Workspace/tools/devtools/.local/worktrees/qwen-context-worker
-npm start --prefix experiments/operator_dashboard/web
+uv run --python C:/Python314/python.exe python -m experiments.operator_dashboard.server --build --worker-root C:/Users/recoveryadmin/Workspace/tools/devtools/.local/worktrees/qwen-context-worker/.local/qwen-coding-worker --raw-details
 ```
 
-Open **http://127.0.0.1:4173/**. Ctrl+C stops the preview. The only served content
-is `web/dist`, not a repository root. Host is fixed to loopback; untrusted Host
-headers receive 403, non-GET/HEAD requests receive 405, CORS is disabled, and CSP
-restricts network access to this origin. Do not publish or forward this port.
-Snapshots contain private local metadata and must stay ignored.
+Open **http://127.0.0.1:4174/**; Ctrl+C stops this console. This replaces the V1
+static preview workflow on 4173. Do not start Vite preview for live supervision.
+Omit `--raw-details` to hide prompts, responses, native arguments, patches and
+validation output. The flag deliberately enables disclosure of trusted local
+worker records; it grants no execution authority. `--worker-root` is explicit,
+repeatable host configuration and cannot be changed by an HTTP client. No model,
+Docker or worker service is started. `--port` may select another loopback port.
 
-The build deletes the old snapshot. Rerun projection after each build or when
-records change, then reload the browser. Missing export displays an explicit
-error. A generated snapshot is historical observation, never current admission.
+The server authenticates the configured `devtools.backlogCoordinator` through
+existing Git/common-directory checks at startup. It does not relocate it. Current
+coordinator is `qwen-context-worker` at `3d6a86d`; the dashboard's own branch is
+not an alternative backlog. Only read-only Git HEAD inspection occurs per overview.
 
-## Data and truth boundaries
+## Fresh views and evidence
 
-Work Portfolio calls `Intake.queue/get` to authenticate proposals and review
-history, reads canonical B-item Markdown status, and calls `WorkCycle.status`
-to authenticate available assignment/result receipts. Pending, approved,
-review-candidate, escalation and reconciliation dispositions remain distinct.
-Legacy B-items without intake approval are listed as canonical inventory, not
-approved executable assignments. A recorded grant's presence is shown explicitly
-without claiming freshness or authorization. Missing assignments are reported.
+UI opens and view changes fetch current data. Refresh rereads the selected source
+records; visible pages also poll once per 60 seconds. Last successful observation
+is shown with local time and its UTC source. Fetch errors retain previously loaded
+data explicitly as STALE. Historical receipt presence never establishes a running
+worker, fresh admission, approval or implementation authority. There is no new
+persistent data store. Legacy `project` export remains available for offline
+metadata inspection, but live startup does not read or serve `data.json`.
 
-Worker Activity reads only `.local/qwen-coding-worker/*/result.json` in supported
-v1/v2 schemas, retaining result identity, timestamp, disposition, test/oracle exit
-codes, repairs, elapsed time and reported input/output/cache/reasoning categories.
-Provenance distinguishes **LOCAL_MODEL_RECEIPT**, **SCRIPTED_HOST_TEST_ONLY** and
-unclassified observations. Scripted tokens are not live model consumption. No
-cross-record token total is calculated. Cache/reasoning are subsets, unknown is
-not zero, and local observations do not describe account quota.
+- Work Portfolio reuses `Intake.queue/get/duplicates`, canonical Markdown and
+  `WorkCycle.status`. Select proposals for complete discovery, parent, benefit,
+  affected resources, evidence, uncertainty, dependencies, duplicate hints and
+  authenticated review history. Select backlog items for all recorded metadata,
+  dependency/split relationships, dedicated recorded disposition sections and
+  original body. Existing Markdown sections come from the canonical filesystem
+  Markdown model. Source body is rendered as readable plain text, never unsafe
+  HTML. Linked intake publication reviews are shown when recorded. Unspecified
+  rationale, priorities, acceptance and decisions remain NOT_RECORDED; lifecycle
+  status is not an inferred reason or grant. Missing standardized rationale fields
+  are a metadata gap for later review, not new metadata authored by this UI.
+- Worker Activity groups by explicit task name, or the legacy task's recorded
+  baseline source when no task-name field exists. A human-readable Markdown label
+  is identified from that legacy source contract. No cross-run session identity
+  is manufactured. Same directory names in different configured roots retain
+  separate reference-derived URL selectors, not new scientific/work identities.
+- Real local-model receipts and scripted host tests have separate filters and
+  provenance labels. The current inventory is five pending proposals, 41 leaf
+  backlog items, zero real assignments, two local-model runs and two scripted
+  preparations. Canonical epics can be resolved by their existing B-number detail
+  route; the overview retains its existing leaf-item inventory.
+- Each actual run opens its frozen objective, recorded model/profile, bounds,
+  usage, start/end and elapsed time, repair count and per-turn history. Context
+  records retain representation, source/snapshot identities, byte/span and token
+  information where captured. Host acquisition is distinct from model Tools.
+- Turns use `result.json` stage entries and their exact `turn-NN/request.json`,
+  `response.json` and `proposal.patch`. Native `propose_edit` names/argument JSON,
+  provider-call IDs and host proposal IDs remain correlated. Host validation argv,
+  exit codes and stdout/stderr remain separate from model proposals. Feedback is
+  the exact JSON substring following the archived HOST FEEDBACK marker in that
+  request, not reconstructed from later logs. Source-before/after versions and
+  per-turn reported usage are retained. No command shown in the UI is executable.
 
-All evidence references are plain local paths with exact UTF-8 byte hashes,
-not arbitrary filesystem-serving links. No prompts, complete logs, credentials,
-scientific journals or sealed evidence are projected. The original records stay
-authoritative; projection has no calls to capture, review, approve, authorize,
-execute, merge or memory-writing operations. JSON errors are surfaced. Source
-HEAD, branch and dirty flag identify the selected checkout. Export is not an
-atomic cross-file transaction; reconcile inconsistent records before refreshing.
+Historical Markdown has two turns: TESTS_FAILED then ACCEPTED. Python source
+segments has three TESTS_FAILED turns and REPAIR_BUDGET_EXHAUSTED. Those outcomes
+are unchanged. Requests contain flattened user-role prompt captures, not a native
+multi-message chat history; continuation identifiers and reasoning are commonly
+null and shown as NOT_CAPTURED. Absent raw files are not fabricated. Scripted
+usage is synthetic. Missing usage remains unknown; cached input/reasoning output
+are subsets and are never added to input/output totals. Local usage is not quota.
 
-## Validation
+## Security and bounded disclosure
 
-The 2026-10-18 pilot displayed source checkout `cf975fc15cd09ea65aa2ea58e1bcd59ec642bf3f`:
-one pending Python 3.12 proposal, no approved intake proposals or real assignments,
-the canonical backlog inventory, and four worker receipts. Two are explicitly
-scripted preparations. The two local-model receipts preserve Markdown ACCEPTED
-(2 calls, 8,178 input / 525 output, 34.76 seconds) and Python source task
-REPAIR_BUDGET_EXHAUSTED (3 calls, 19,587 input / 1,848 output, 105.74 seconds).
-No new inference was performed. Missing assignment and authority data is shown
-as missing, rather than populated with synthetic bridge demonstrations.
+The Python stdlib HTTP server binds only 127.0.0.1 and serves a closed static-asset
+list plus GET/HEAD `/api/overview`, `/api/proposals/<UUID>`,
+`/api/backlog/<B-number>` and `/api/runs/<indexed-selector>`. Strict Host, exact
+same-origin Origin when supplied, and Fetch-Site checks reject cross-origin
+access. No CORS permission is emitted. Mutation/preflight methods are refused.
+Queries, traversal/encoded paths, arbitrary files and roots are not accepted.
+Symlink resolution is checked against configured roots. No model, Git mutation,
+backlog write or approval endpoint exists.
 
-Acceptance: three projection tests, three React/jsdom tests, TypeScript build,
-Ruff, formatter and strict affected-module mypy checks passed. The installed
-Chrome smoke displayed both views and each actual receipt without page errors;
-POST returned 405 and an untrusted Host returned 403. Final Vite build took 4.31
-seconds and UI tests 1.46 seconds. All 363 preexisting coordinator proposal,
-worker and work evidence files in the preservation baseline remained byte-identical.
-No framework production behavior or active work-cycle source was changed.
+Response limit is 2 MiB; oversized responses fail visibly with 503. Raw text
+fields display at most 16,000 characters, with original character count and
+TRUNCATED labels. Source files are read using canonical bounded filesystem APIs
+and remain unchanged. At most ten archived turns are displayed, with explicit
+truncation/count if exceeded (current worker runs have at most three). The only
+raw sidecars read are the closed per-turn list above, plus freeze/result metadata;
+no arbitrary recorded path, global usage ledger, session directory, oracle-runner
+source, sealed scientific evidence or credential file is followed. File hashes
+identify observed archived bytes, not signed provenance or current authority.
+Cross-file reads are not an atomic snapshot; inconsistent records must be
+reconciled at the owning domain rather than repaired by the dashboard.
+
+## Focused verification
 
 ```powershell
-uv run --python C:/Python314/python.exe python -m pytest --no-cov tests/experiments/operator_dashboard -q
+uv run --python C:/Python314/python.exe python -m pytest --no-cov -p no:cacheprovider tests/experiments/operator_dashboard -q
 uv run ruff check experiments/operator_dashboard tests/experiments/operator_dashboard
 uv run ruff format --check experiments/operator_dashboard tests/experiments/operator_dashboard
 uv run mypy --follow-imports=silent experiments/operator_dashboard tests/experiments/operator_dashboard
@@ -77,44 +116,24 @@ npm test --prefix experiments/operator_dashboard/web
 npm run format:check --prefix experiments/operator_dashboard/web
 ```
 
-Optional real-data browser smoke, with the preview running (no browser download):
+With the local console running, browser verification uses installed Chrome/Edge,
+not a browser download:
 
 ```powershell
 Push-Location experiments/operator_dashboard/web
 $env:CHROME_PATH = 'C:/Program Files/Google/Chrome/Application/chrome.exe'
-$env:DASHBOARD_SMOKE_OUTPUT = 'C:/Users/recoveryadmin/Workspace/tools/devtools/.local/dashboard-smoke'
+$env:DASHBOARD_SMOKE_OUTPUT = 'C:/Users/recoveryadmin/Workspace/tools/devtools/.local/dashboard-v2-smoke'
 node browser-smoke.mjs
 Pop-Location
 ```
 
-The smoke switches both views, checks each actual worker receipt, captures
-screenshots and verifies method/Host refusal. It never invokes models. Framework
-source is unchanged, so no scientific or full protected suite is required by this
-pilot's scope; focused script/UI tests are the acceptance gate.
-
-## Future opportunities and intake constraint
-
-The four source-derived investigation payloads in `opportunities/` are **inputs,
-not captured proposals or approved backlog work**. Existing equivalents were
-checked: graph/RI pressure is retained in B-0002/B-0008 and current retrieval docs;
-layered and procedural Memory already appears in the canonical roadmap. Each
-input links that pressure rather than inventing another B-number or claiming an
-external project's behavior is implemented here.
-
-Only the designated coordinator can call `Intake.capture`. It is the protected
-active `qwen-context-worker` checkout. Capture would add pending queue files there;
-this assignment also prohibits modifying that checkout. Until the maintainer
-resolves that overlap, these inputs remain uncaptured, not a second queue. No
-coordinator relocation or alternate intake was introduced. After permission,
-run the existing CLI from that coordinator for each selected input:
-
-```powershell
-uv run python -m scripts.backlog capture C:/Users/recoveryadmin/Workspace/tools/devtools/.local/worktrees/operator-dashboard/experiments/operator_dashboard/opportunities/codegraph.json
-```
-
-Use `layered-memory.json`, `procedural-skills.json` and `knowledge-wiki.json` for
-the other inputs. Capture creates only PENDING_REVIEW; review/implementation are
-separate. Existing active assignments, Python 3.12 proposal and scientific state
-remain unchanged. The next dashboard decision is whether this limited static
-metadata surface merits maintained adoption; no write controls or backend follow
-automatically.
+The browser inspects actual proposal/backlog details and the two genuine run
+histories, native arguments, patches, filters and Refresh; screenshots and a
+verification receipt remain local. Isolated fixtures test newly added proposals
+and receipts without restart/build, missing messages, rejected origins/methods,
+traversal, response limits, distinct roots and unchanged source evidence. No live
+model call or controller regression suite is needed. Production framework code,
+coordinator metadata and worker execution are unchanged. Tea's legacy React peer
+and forwardRef warnings and the roughly 729 kB JS bundle remain known limitations.
+The next useful improvement is operator review of these detail/disclosure choices;
+missing native conversation capture requires separately authorized worker work.

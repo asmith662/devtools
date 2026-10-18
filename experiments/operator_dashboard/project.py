@@ -50,7 +50,21 @@ def _evidence_class(provenance: dict[str, Any]) -> str:
     return "UNCLASSIFIED_NOT_PROOF_OF_LIVE_INFERENCE"
 
 
-def project(root: Path) -> dict[str, Any]:
+def _worker_record(base: Path, path: Path) -> dict[str, Any]:
+    if not resolve_path(path).value.is_relative_to(resolve_path(base).value):
+        raise ValueError("Worker evidence escapes configured root")
+    return load_json(path)
+
+
+def _backlog_text(root: Path, path: Path) -> str:
+    if not resolve_path(path).value.is_relative_to(root):
+        raise ValueError("Backlog evidence escapes configured coordinator")
+    return _text(path)
+
+
+def project(
+    root: Path, *, worker_roots: tuple[Path, ...] | None = None
+) -> dict[str, Any]:
     """Read supported records and expose errors, missing values and provenance.
 
     A snapshot is historical evidence, never current authority. In particular a
@@ -79,7 +93,7 @@ def project(root: Path) -> dict[str, Any]:
         )
     backlog = []
     for path in sorted((root / "docs/backlog/items").glob("B-*.md")):
-        text = _text(path)
+        text = _backlog_text(root, path)
         status = re.search(r"^- status: (\w+)\s*$", text, re.MULTILINE)
         backlog.append(
             {
@@ -112,9 +126,17 @@ def project(root: Path) -> dict[str, Any]:
         except (ValueError, KeyError, TypeError, OSError, FilesystemError) as error:
             errors.append({"path": str(folder), "error": str(error)})
     workers = []
-    for path in sorted((root / ".local/qwen-coding-worker").glob("*/result.json")):
+    roots = (
+        worker_roots
+        if worker_roots is not None
+        else (root / ".local/qwen-coding-worker",)
+    )
+    paths = sorted(
+        {(base, path) for base in roots for path in base.glob("*/result.json")}
+    )
+    for base, path in paths:
         try:
-            result = load_json(path)
+            result = _worker_record(base, path)
             if result.get("schema") not in {
                 "qwen-markdown-coding-loop-v1",
                 "qwen-coding-loop-v2",
@@ -128,6 +150,19 @@ def project(root: Path) -> dict[str, Any]:
             workers.append(
                 {
                     "id": path.parent.name,
+                    "key": hashlib.sha256(
+                        str(resolve_path(path.parent)).encode()
+                    ).hexdigest(),
+                    "task_key": result.get("task_name")
+                    or next(iter(result.get("baseline", {})), "NOT_RECORDED"),
+                    "task_name": result.get("task_name")
+                    or (
+                        "Markdown fence closing"
+                        if any(
+                            "markdown/file.py" in p for p in result.get("baseline", {})
+                        )
+                        else "Task NOT_RECORDED"
+                    ),
                     "evidence_class": _evidence_class(provenance),
                     "disposition": result.get("disposition", "UNKNOWN"),
                     "accepted": result.get("accepted"),
@@ -175,7 +210,7 @@ def project(root: Path) -> dict[str, Any]:
         "workers": workers,
         "errors": errors,
         "limitations": [
-            "Read-only snapshot; rerun projection to refresh. No execution authority.",
+            "Read-only observation, not worker liveness or execution authority.",
             (
                 "Only .local/qwen-coding-worker/*/result.json is inventoried; "
                 "missing receipts are not zero consumption."

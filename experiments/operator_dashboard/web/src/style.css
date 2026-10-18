@@ -115,3 +115,56 @@ footer {
 ._asset-split-detail .panel {
   margin-top: 16px;
 }
+.refresh {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 16px 0;
+  flex-wrap: wrap;
+}
+.refresh button,
+select {
+  padding: 8px 12px;
+  border: 1px solid #b8c7d9;
+  border-radius: 5px;
+  background: white;
+  color: #25354a;
+}
+.turn,
+.archive {
+  margin: 12px 0;
+  padding: 12px;
+  border: 1px solid #dce3ed;
+  border-radius: 6px;
+  background: #fafbfd;
+}
+pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  max-height: 420px;
+  overflow: auto;
+  font-size: 12px;
+  line-height: 1.65;
+}
+.document {
+  max-height: 650px;
+  padding: 16px;
+  background: #f6f8fa;
+}
+dd {
+  min-width: 0;
+  max-width: 70%;
+}
+dd pre {
+  text-align: left;
+  margin: 0;
+}
+small {
+  font-size: 11px;
+  color: #52657c;
+}
+.run-list h3 {
+  margin: 16px 0 10px;
+  font-size: 14px;
+}

@@ -1,143 +1,128 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { ConsoleLayout } from "./ConsoleLayout";
 import { AssetSplitLayout } from "./upstream/AssetSplitLayout";
 import { AssetPageHeader } from "./upstream/AssetPageHeader";
 import { StatusTag } from "./upstream/StatusTag";
+import {
+  Evidence,
+  Fields,
+  LocalTime,
+  PortfolioDetail,
+  RunDetail,
+  useRecord,
+  type RecordData,
+} from "./Inspection";
 
-type Reference = { path: string; sha256: string };
-type Proposal = {
-  id: string;
-  title: string;
-  state: string;
-  parent: string | null;
-  evidence: string[];
-  reference: Reference;
-};
-type Item = { id: string; title: string; status: string; reference: Reference };
-type Work = {
-  item: string;
-  disposition: string;
-  grant_record_present: boolean;
-  branch: string | null;
-  reference: Reference;
-};
-type Worker = {
-  id: string;
-  evidence_class?: string;
-  disposition: string;
-  accepted: boolean | null;
-  started_at: string | null;
-  elapsed_seconds: number | null;
-  model_calls: number | null;
-  repair_cycles: number | null;
-  usage: Record<string, number | null>;
-  validation: Record<string, number | null>;
-  reference: Reference;
-  coverage: string;
-};
 export type Snapshot = {
   schema: string;
   observed_at: string;
   source: string;
   source_head?: string;
-  source_dirty?: boolean;
-  proposals: Proposal[];
-  backlog: Item[];
-  work: Work[];
-  workers: Worker[];
-  errors: { path: string; error: string }[];
+  proposals: RecordData[];
+  backlog: RecordData[];
+  work: RecordData[];
+  workers: RecordData[];
+  errors: RecordData[];
   limitations: string[];
 };
-const known = (value: unknown) =>
-  value === null || value === undefined ? "UNKNOWN" : String(value);
-function Evidence({ reference }: { reference: Reference }) {
-  return (
-    <div className="evidence">
-      <strong>Local evidence reference</strong>
-      <code>{reference.path}</code>
-      <code>SHA-256 {reference.sha256}</code>
-    </div>
-  );
-}
-function Empty({ children }: { children: string }) {
-  return <p className="empty">{children}</p>;
-}
+const taskTitle = (worker: RecordData) =>
+  String(worker.task_name ?? "Task NOT_RECORDED")
+    .replaceAll("-", " ")
+    .replace(/^./, (s) => s.toUpperCase());
 function Portfolio({ data }: { data: Snapshot }) {
+  const [selected, setSelected] = useState<{ kind: string; id: string } | null>(
+    null,
+  );
+  const [status, setStatus] = useState("ALL");
   return (
     <>
       <AssetPageHeader
         title="Work Portfolio"
-        scope="Snapshot / no mutation controls"
-        subtitle="Backlog review, implementation authority and protected integration remain separate."
+        scope="Current read-only records"
+        subtitle="Review, implementation authority and protected integration remain separate."
+      />
+      <label>
+        Lifecycle filter{" "}
+        <select
+          aria-label="Lifecycle filter"
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+        >
+          {[
+            "ALL",
+            ...new Set([
+              ...data.proposals.map((p) => p.state),
+              ...data.backlog.map((b) => b.status),
+            ]),
+          ].map((s) => (
+            <option key={s}>{s}</option>
+          ))}
+        </select>
+      </label>
+      <AssetSplitLayout
+        sidebar={
+          <div className="run-list">
+            <h3>Proposal queue</h3>
+            {data.proposals
+              .filter((p) => status === "ALL" || p.state === status)
+              .map((p) => (
+                <button
+                  key={p.id}
+                  onClick={() => setSelected({ kind: "proposals", id: p.id })}
+                >
+                  <strong>{p.title}</strong>
+                  <StatusTag label={p.state} />
+                </button>
+              ))}
+            {!data.proposals.length && <p>No proposal records found.</p>}
+            {!data.proposals.some((p) => p.state === "APPROVED") && (
+              <p>No approved intake proposals found.</p>
+            )}
+            <h3>Canonical backlog</h3>
+            {data.backlog
+              .filter((b) => status === "ALL" || b.status === status)
+              .map((b) => (
+                <button
+                  key={b.id}
+                  onClick={() => setSelected({ kind: "backlog", id: b.id })}
+                >
+                  <strong>{b.title}</strong>
+                  <StatusTag label={b.status} />
+                </button>
+              ))}
+          </div>
+        }
+        detail={
+          selected ? (
+            <PortfolioDetail
+              key={selected.kind + selected.id}
+              {...selected}
+              refresh={data.observed_at}
+            />
+          ) : (
+            <section className="panel">
+              <h3>Select work to inspect</h3>
+              <p>
+                Objective, evidence, dependencies and original source are
+                available through each record. Missing information is
+                NOT_RECORDED.
+              </p>
+            </section>
+          )
+        }
       />
       <section className="panel">
-        <h3>Proposal queue</h3>
-        {data.proposals.length === 0 && (
-          <Empty>No proposal records found.</Empty>
-        )}
-        {data.proposals.map((p) => (
-          <details key={p.id}>
-            <summary>
-              <StatusTag label={p.state} /> {p.title}
-            </summary>
-            <p>Parent: {known(p.parent)}</p>
-            <ul>
-              {p.evidence.map((e) => (
-                <li key={e}>{e}</li>
-              ))}
-            </ul>
-            <Evidence reference={p.reference} />
-          </details>
-        ))}
-      </section>
-      <section className="panel">
-        <h3>Approved intake proposals</h3>
-        {data.proposals.filter((p) => p.state === "APPROVED").length === 0 && (
-          <Empty>
-            No approved intake proposals found. Legacy backlog entries are not
-            inferred approval.
-          </Empty>
-        )}
-        {data.proposals
-          .filter((p) => p.state === "APPROVED")
-          .map((p) => (
-            <p key={p.id}>
-              {p.title} · {p.id}
-            </p>
-          ))}
-      </section>
-      <section className="panel">
         <h3>Assignments and review outcomes</h3>
-        {data.work.length === 0 && (
-          <Empty>No prepared assignments or work results found.</Empty>
+        {!data.work.length && (
+          <p>No prepared assignments or work results found.</p>
         )}
         {data.work.map((w) => (
           <details key={w.item}>
             <summary>
-              {w.item} <StatusTag label={w.disposition} />
+              {w.item} · {w.disposition}
             </summary>
-            <p>
-              Branch: {known(w.branch)} · Stored grant:{" "}
-              {w.grant_record_present
-                ? "present, current authority not assessed"
-                : "absent"}
-            </p>
-            <Evidence reference={w.reference} />
-          </details>
-        ))}
-      </section>
-      <section className="panel">
-        <h3>Canonical backlog inventory</h3>
-        <p>Recorded lifecycle status, not an implementation grant.</p>
-        {data.backlog.length === 0 && (
-          <Empty>No canonical backlog records found.</Empty>
-        )}
-        {data.backlog.map((b) => (
-          <details key={b.id}>
-            <summary>
-              {b.title} <StatusTag label={b.status} />
-            </summary>
-            <Evidence reference={b.reference} />
+            <Fields value={w} />
+            <p>Recorded grant presence is not current authority.</p>
           </details>
         ))}
       </section>
@@ -145,82 +130,109 @@ function Portfolio({ data }: { data: Snapshot }) {
   );
 }
 function Activity({ data }: { data: Snapshot }) {
+  const [filter, setFilter] = useState("ALL");
   const [selected, setSelected] = useState<string | null>(null);
-  const worker = data.workers.find((w) => w.id === selected) ?? data.workers[0];
+  const workers = data.workers.filter(
+    (w) => filter === "ALL" || w.evidence_class === filter,
+  );
+  const worker =
+    workers.find((w) => (w.key ?? w.id) === selected) ?? workers[0];
+  const groups = workers.reduce<Record<string, RecordData[]>>((acc, w) => {
+    const key = w.task_key ?? w.task_name ?? "Task NOT_RECORDED";
+    (acc[key] ??= []).push(w);
+    return acc;
+  }, {});
   return (
     <>
       <AssetPageHeader
         title="Worker Activity"
-        scope={`${data.workers.length} local result records`}
-        subtitle="Historical receipts. Unknown measurements remain unknown; accepted evaluation does not imply protected integration."
+        scope={`${data.workers.length} archived run records`}
+        subtitle="Task → actual run → captured turns. Historical receipts are not current liveness or authority."
       />
+      <label>
+        Evidence type{" "}
+        <select
+          aria-label="Evidence type"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        >
+          <option value="ALL">All evidence</option>
+          <option value="LOCAL_MODEL_RECEIPT">Real local-model receipts</option>
+          <option value="SCRIPTED_HOST_TEST_ONLY">Scripted host tests</option>
+        </select>
+      </label>
       {!worker ? (
-        <Empty>
-          No worker result receipts found. Missing records do not establish zero
-          model consumption.
-        </Empty>
+        <p>Missing records do not establish zero model consumption.</p>
       ) : (
         <AssetSplitLayout
           sidebar={
             <div className="run-list">
-              {data.workers.map((w) => (
-                <button
-                  type="button"
-                  key={w.id}
-                  aria-pressed={worker.id === w.id}
-                  onClick={() => setSelected(w.id)}
-                >
-                  <strong>{w.id}</strong>
-                  <small>{w.evidence_class ?? "UNCLASSIFIED"}</small>
-                  <StatusTag label={w.disposition} />
-                </button>
+              {Object.entries(groups).map(([task, runs]) => (
+                <section key={task}>
+                  <h3>
+                    {runs?.[0] ? taskTitle(runs[0]) : "Task NOT_RECORDED"}
+                  </h3>
+                  {runs?.map((w) => (
+                    <button
+                      key={w.key ?? w.id}
+                      aria-pressed={worker === w}
+                      onClick={() => setSelected(w.key ?? w.id)}
+                    >
+                      <strong>{w.id}</strong>
+                      <small>{w.evidence_class ?? "UNCLASSIFIED"}</small>
+                      <StatusTag label={w.disposition} />
+                    </button>
+                  ))}
+                </section>
               ))}
             </div>
           }
           detail={
             <article className="panel">
-              <h3>{worker.id}</h3>
-              <p>
-                <strong>
-                  {worker.evidence_class ??
-                    "UNCLASSIFIED — not proof of live inference"}
-                </strong>
-              </p>
-              {worker.evidence_class === "SCRIPTED_HOST_TEST_ONLY" && (
-                <p>
-                  Scripted host validation: calls and tokens below are
-                  synthetic, not Qwen consumption.
-                </p>
-              )}
+              <h3>
+                {taskTitle(worker)} · {worker.id}
+              </h3>
               <StatusTag
                 label={worker.disposition}
-                theme={worker.accepted === true ? "success" : "warning"}
+                theme={worker.accepted ? "success" : "warning"}
               />
-              <dl>
-                {Object.entries({
-                  "Started UTC": worker.started_at,
-                  "Elapsed seconds": worker.elapsed_seconds,
-                  "Model calls attempted": worker.model_calls,
-                  "Repair cycles": worker.repair_cycles,
-                  "Input tokens": worker.usage.input_tokens,
-                  "Output tokens": worker.usage.output_tokens,
-                  "Cached input (subset)": worker.usage.cached_input_tokens,
-                  "Reasoning output (subset)": worker.usage.reasoning_tokens,
-                  "Tests exit code": worker.validation.tests,
-                  "Independent oracle exit code": worker.validation.oracle,
-                }).map(([k, v]) => (
-                  <div key={k}>
-                    <dt>{k}</dt>
-                    <dd>{known(v)}</dd>
-                  </div>
-                ))}
-              </dl>
-              <p>{worker.coverage}</p>
+              {worker.evidence_class === "SCRIPTED_HOST_TEST_ONLY" && (
+                <p>
+                  <strong>
+                    SCRIPTED HOST TEST — reported calls/tokens are synthetic,
+                    not Qwen consumption.
+                  </strong>
+                </p>
+              )}
               <p>
-                Cached input and reasoning output are subsets; no category
-                totals are added here.
+                Started: <LocalTime value={worker.started_at} />
               </p>
-              <Evidence reference={worker.reference} />
+              <p>
+                Ended: <LocalTime value={worker.finished_at} />
+              </p>
+              <Fields
+                value={{
+                  elapsed_seconds: worker.elapsed_seconds,
+                  model_calls_attempted: worker.model_calls,
+                  repair_cycles: worker.repair_cycles,
+                  usage: worker.usage,
+                  validation_exit_codes: worker.validation,
+                }}
+              />
+              <p>
+                Unknown usage remains UNKNOWN / NOT_RECORDED. Cache and
+                reasoning are subsets, never added twice.
+              </p>
+              {worker.key ? (
+                <RunDetail
+                  key={worker.key}
+                  id={worker.key}
+                  refresh={data.observed_at}
+                />
+              ) : (
+                <p>Detailed record identity NOT_CAPTURED.</p>
+              )}
+              <Evidence value={worker.reference} />
             </article>
           }
         />
@@ -228,18 +240,42 @@ function Activity({ data }: { data: Snapshot }) {
     </>
   );
 }
-export function Dashboard({ data }: { data: Snapshot }) {
+export function Dashboard({
+  data,
+  onRefresh,
+  loading = false,
+  error = null,
+}: {
+  data: Snapshot;
+  onRefresh?: () => void;
+  loading?: boolean;
+  error?: string | null;
+}) {
   const [page, setPage] = useState("portfolio");
   return (
-    <ConsoleLayout page={page} onPage={setPage}>
-      <aside className="snapshot">
-        Observed {data.observed_at} · Source {data.source}
-        <code>
-          {data.source_head ?? "Revision UNKNOWN"}
-          {data.source_dirty ? " · uncommitted source records present" : ""}
-        </code>
-      </aside>
-      {data.errors.length > 0 && (
+    <ConsoleLayout
+      page={page}
+      onPage={(p) => {
+        setPage(p);
+        onRefresh?.();
+      }}
+    >
+      <div className="refresh">
+        <button onClick={onRefresh} disabled={loading}>
+          Refresh
+        </button>
+        <span>
+          {loading ? "Refreshing…" : "Last successful refresh: "}
+          <LocalTime value={data.observed_at} />
+        </span>
+      </div>
+      {error && (
+        <p role="alert">
+          {error} · STALE previous successful data; not current readiness.
+        </p>
+      )}
+      <Evidence value={{ source: data.source, head: data.source_head }} />
+      {!!data.errors.length && (
         <section role="alert" className="panel">
           <h3>Incomplete or invalid records</h3>
           {data.errors.map((e, i) => (
@@ -263,44 +299,31 @@ export function Dashboard({ data }: { data: Snapshot }) {
   );
 }
 export function App() {
-  const [data, setData] = useState<Snapshot | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [revision, setRevision] = useState(0);
+  const { data, error, loading } = useRecord("/api/overview", revision);
+  const refresh = () => setRevision((v) => v + 1);
   useEffect(() => {
-    fetch("/data.json", { cache: "no-store" })
-      .then(async (response) => {
-        if (!response.ok)
-          throw new Error(
-            `Snapshot unavailable (HTTP ${response.status}). Run the projection after building.`,
-          );
-        const value: Snapshot = await response.json();
-        if (
-          value.schema !== "devtools-operator-snapshot-v1" ||
-          ![
-            "proposals",
-            "backlog",
-            "work",
-            "workers",
-            "errors",
-            "limitations",
-          ].every((k) => Array.isArray(value[k as keyof Snapshot]))
-        )
-          throw new Error(
-            "Invalid snapshot schema. Regenerate the projection.",
-          );
-        setData(value);
-      })
-      .catch((e) => setError(String(e)));
+    const timer = setInterval(() => {
+      if (document.visibilityState === "visible") refresh();
+    }, 60000);
+    return () => clearInterval(timer);
   }, []);
-  if (error)
+  if (!data)
     return (
-      <main role="alert">
-        <h1>Snapshot unavailable</h1>
-        <p>{error}</p>
+      <main>
+        <h1>{error ? "Current data unavailable" : "Loading current data…"}</h1>
+        {error && <p role="alert">{error}</p>}
+        <button onClick={refresh}>Refresh</button>
       </main>
     );
-  return data ? (
-    <Dashboard data={data} />
-  ) : (
-    <main>Loading local snapshot…</main>
+  if (data.schema !== "devtools-operator-snapshot-v1")
+    return <main role="alert">Invalid API schema</main>;
+  return (
+    <Dashboard
+      data={data as Snapshot}
+      onRefresh={refresh}
+      loading={loading}
+      error={error}
+    />
   );
 }
