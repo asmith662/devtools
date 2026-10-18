@@ -176,11 +176,48 @@ response was retained. The provider adapter passes the native argument string
 through unchanged. Receipts remain under `.local/qwen-first-task/attempt-04/`
 and were not rewritten or retroactively accepted.
 
-The smallest future worker correction is consistent newline representation
-for proposal matching/diff construction, with LF/CRLF regression fixtures and
-preservation of baseline byte authentication, unique matching and source line
-endings. That correction has **not** been implemented and no further inference
-is authorized. A valid proposal alone would still not establish task acceptance.
+### Offline newline correction and captured-proposal assessment
+
+The subsequent experiment-local correction adapts homogeneous LF/CRLF proposal
+text to the source convention before strict unique-region matching. It never
+normalizes the source itself, other whitespace, or unrelated bytes. Mixed or
+unsupported line endings, normalized no-ops and oversized adapted replacements
+fail closed. Scoped Git application disables inherited `core.autocrlf` to avoid
+rewriting unrelated LF lines. Exact LF/CRLF, cross-convention proposals, unchanged
+outside-region bytes, ambiguous/absent regions, indentation differences, bounds,
+unsupported separators and failed-validation restoration have deterministic
+coverage; the focused Qwen suite passed **93 tests**.
+
+The [separate offline assessment](first_real_task_structured_edit_offline.json)
+authenticates and reuses the original response and frozen source/test/oracle
+bytes without invoking a model. The corrected host admitted the proposal and
+generated a 437-byte patch changing one regex line. It applied only in a
+disposable copy, with an assertion that test/oracle imports used that copy.
+All **7 existing Markdown tests passed**, but the **unchanged eight-scenario
+oracle failed** at its first heading assertion. A separate diagnostic over the
+same eight inputs found six passing cases and two failures: backtick and tilde
+closers followed by text expose `hidden` and hide `visible`. The proposed regex
+captures trailing text, but `_parse_headings` never checks that capture before
+closing the fence. The captured Qwen edit is therefore **not independently
+accepted**. It was not repaired or committed as an implementation change.
+
+The final offline assessment took 1.208 seconds (Markdown command 0.762 seconds,
+oracle 0.106 seconds). An initial isolated pytest invocation timed out at 120
+seconds; cleanup ran, and explicitly constraining pytest's configuration/root
+resolved the validation-harness issue. The final replay used the stabilized host
+after completing unsupported-separator regressions. Local timeout/intermediate
+records are preserved separately; the final record is under
+`.local/qwen-first-task/attempt-04-newline-assessment-final/`. Evaluation source
+was restored and its disposable workspace removed. All seven original
+attempt-04 artifacts remain byte-identical. Historical attempt-04 remains
+rejected by its original host; the new offline result is separately rejected
+by behavioral validation. **No new model call or model retry occurred.**
+
+The next worker-development evidence should test whether Qwen can propose a
+behaviorally correct change with the corrected host and independent validation;
+it requires a separately authorized attempt. Structured continuation, memory,
+Context-size benchmarking and integrated coding-agent acceptance remain future
+work; this correction promotes none of them.
 
 ### Terminal execution consent
 

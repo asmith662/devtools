@@ -114,6 +114,84 @@ def test_structured_edit_generates_confined_host_diff_without_writing(
     assert (root / task.SOURCE).read_text(encoding="utf-8") == "old\n"
 
 
+@pytest.mark.parametrize("source_newline", ["\n", "\r\n"])
+@pytest.mark.parametrize("proposal_newline", ["\n", "\r\n"])
+@pytest.mark.parametrize("replacement_newline", ["\n", "\r\n"])
+def test_structured_edit_preserves_source_bytes_and_scoped_git_patch(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    source_newline: str,
+    proposal_newline: str,
+    replacement_newline: str,
+) -> None:
+    """Exact and equivalent newline proposals change only the selected bytes."""
+    monkeypatch.setenv("GIT_CONFIG_COUNT", "1")
+    monkeypatch.setenv("GIT_CONFIG_KEY_0", "core.autocrlf")
+    monkeypatch.setenv("GIT_CONFIG_VALUE_0", "true")
+    root = _workspace(tmp_path)
+    prefix = "".join(f"prefix {i}{source_newline}" for i in range(10))
+    suffix = "".join(f"suffix {i}{source_newline}" for i in range(10))
+    original_region = f"    old{source_newline}    value{source_newline}"
+    source = prefix + original_region + suffix
+    (root / task.SOURCE).write_bytes(source.encode())
+    call = _edit_call(
+        old_text=f"    old{proposal_newline}    value{proposal_newline}",
+        new_text=f"    new{replacement_newline}    value{replacement_newline}",
+    )
+    patch, updated = task._structured_edit_patch(root, source, call)
+    expected = prefix + original_region.replace("old", "new") + suffix
+    assert updated.encode() == expected.encode()
+    assert "prefix 0" not in patch
+    assert "suffix 9" not in patch
+    assert sum(line.startswith("-") for line in patch.splitlines()[2:]) == 1
+    assert sum(line.startswith("+") for line in patch.splitlines()[2:]) == 1
+    folder = root / "evidence"
+    folder.mkdir()
+    asyncio.run(task.apply_markdown_patch(root, folder, patch))
+    assert (root / task.SOURCE).read_bytes() == expected.encode()
+    assert (root / task.TESTS).read_bytes() == b"# existing tests\n"
+
+
+@pytest.mark.parametrize(
+    ("source", "old_text", "new_text"),
+    [
+        ("old\r\nold\r\n", "old\n", "new\n"),
+        ("old\r\n", "altered\n", "new\n"),
+        ("    old\r\n", "\told\n", "new\n"),
+        ("old \r\n", "old\n", "new\n"),
+        ("old\r\nother\n", "old\r\n", "new\n"),
+        ("old\r", "old", "new"),
+        ("old\n", "old\r\nother\n", "new"),
+        ("old\n", "old", "new\r\nother\n"),
+        ("old\n", "old", "new\r"),
+        ("old\r\n", "old\n", "old\r\n"),
+        ("old\r\n", "old\n", "\n" * 2200),
+        *[
+            (f"old{separator}", "old", "new")
+            for separator in (
+                "\v",
+                "\f",
+                "\x1c",
+                "\x1d",
+                "\x1e",
+                "\x85",
+                "\u2028",
+                "\u2029",
+            )
+        ],
+    ],
+)
+def test_structured_edit_newline_compatibility_fails_closed(
+    tmp_path: Path, source: str, old_text: str, new_text: str
+) -> None:
+    """No whitespace repair, ambiguity, mixed endings or newline-only edits."""
+    root = _workspace(tmp_path)
+    with pytest.raises(PatchProposalError):
+        task._structured_edit_patch(
+            root, source, _edit_call(old_text=old_text, new_text=new_text)
+        )
+
+
 @pytest.mark.parametrize(
     ("source", "arguments"),
     [
@@ -156,16 +234,22 @@ def test_structured_edit_rejects_duplicate_keys_and_multiple_calls(
 
 
 @pytest.mark.parametrize("oracle_disposition", ["reject", "accept"])
+@pytest.mark.parametrize("source_newline", ["\n", "\r\n"])
 def test_structured_edit_acceptance_follows_oracle_and_restores_rejections(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, oracle_disposition: str
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    oracle_disposition: str,
+    source_newline: str,
 ) -> None:
     """Only the oracle disposition controls acceptance and source restoration."""
     root = _workspace(tmp_path)
+    baseline = ("old" + source_newline).encode()
+    (root / task.SOURCE).write_bytes(baseline)
     folder = root / "evidence"
     folder.mkdir()
     oracle = folder / "acceptance.py"
     oracle.write_text("raise AssertionError('oracle rejection')\n", encoding="utf-8")
-    (folder / "source-before.py").write_text("old\n", encoding="utf-8", newline="")
+    (folder / "source-before.py").write_bytes(baseline)
     tool = task._structured_edit_definition()
     frozen = {
         "schema": "qwen-markdown-structured-edit-freeze-v1",
@@ -246,10 +330,10 @@ def test_structured_edit_acceptance_follows_oracle_and_restores_rejections(
     assert result["accepted"] is not oracle_fails
     if oracle_fails:
         assert result["unaccepted_edit_restored"]
-        assert (root / task.SOURCE).read_text(encoding="utf-8") == "old\n"
+        assert (root / task.SOURCE).read_bytes() == baseline
         assert (folder / "unaccepted-source.py").read_text(encoding="utf-8") == "new\n"
     else:
-        assert (root / task.SOURCE).read_text(encoding="utf-8") == "new\n"
+        assert (root / task.SOURCE).read_bytes() == ("new" + source_newline).encode()
 
 
 def test_upfront_context_worker_makes_one_no_tool_request(

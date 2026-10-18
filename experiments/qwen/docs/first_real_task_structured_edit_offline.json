@@ -1,0 +1,76 @@
+{
+  "schema": "qwen-markdown-structured-edit-offline-v1",
+  "assessment": "attempt-04-newline-assessment-final",
+  "kind": "offline captured-proposal assessment, not a new model attempt",
+  "original_attempt": {
+    "id": "attempt-04",
+    "harness_head": "f08d176b18aaf1a91b3d1a84bf88cd8d583791f3",
+    "historical_outcome": "PROPOSAL_OR_VALIDATION_FAILURE",
+    "historical_error": "Old text must match exactly one source region",
+    "response_sha256": "e897974bd1c1e8fda050aed5b88c66a0d742c807aff090cb90908940dff247d9",
+    "result_sha256": "70a0690c810bc22c75c023cc569c41659efc865ca923de3143930abb646bed0d",
+    "all_seven_artifact_hashes_verified_unchanged": true,
+    "input_tokens": 4100,
+    "output_tokens": 168,
+    "elapsed_seconds": 12.554006899998058,
+    "termination": "tool_call"
+  },
+  "inputs": {
+    "source_sha256": "b01a8fdac51f3d5485275898b45d43cd643efac736b1e275b8a18fc205fd6195",
+    "tests_sha256": "92e5f321000054d18f30775387b24f65a1b2635fb02e15e2ea01643abdb4b7a9",
+    "oracle_sha256": "373b20627f04d364b5624abbab4699e560d464b96993e9fa28097cc11e0be12b",
+    "prompt_sha256": "6dab30735f2a04d36a4bd41c0edbd093a7bf91aad7f5e01456683963064978ed",
+    "captured_arguments_modified": false
+  },
+  "corrected_host": {
+    "implementation_parent_head": "499e0adad2eb68b9d063ccaea221ecf67832128d",
+    "module": "experiments/qwen/development_task.py",
+    "observed_module_sha256": "ed505ff57f38ad83681e87460bee4bc9ead5c103ca47fadf05b0430a5d441595",
+    "newline_semantics": "adapt only homogeneous LF/CRLF proposal text to source convention; require one exact adapted region; preserve outside bytes",
+    "git_application": "existing scoped git apply, with command-local core.autocrlf=false"
+  },
+  "assessment_result": {
+    "proposal_admitted": true,
+    "patch_application": "APPLIED_IN_DISPOSABLE_WORKSPACE",
+    "host_patch_bytes": 437,
+    "removed_lines": 1,
+    "added_lines": 1,
+    "proposed_source_sha256": "8ca447935effeff69630918107ad0de9e15ed5dec16ff7863490b4c8b301dabd",
+    "existing_markdown_tests": {"passed": 7, "failed": 0},
+    "unchanged_oracle": {
+      "passed": false,
+      "exit_code": 1,
+      "first_failure": "acceptance.py line 12: headings must equal ('visible',)",
+      "all_eight_scenarios_passed": false,
+      "note": "The unchanged oracle stops at its first assertion failure. Per-scenario results below are a separate diagnostic using the same inputs."
+    },
+    "separate_per_scenario_diagnostic": {
+      "passed": 6,
+      "failed": 2,
+      "failures": [
+        {"marker": "backtick", "case": "text_suffix", "actual_headings": ["hidden"], "expected_headings": ["visible"]},
+        {"marker": "tilde", "case": "text_suffix", "actual_headings": ["hidden"], "expected_headings": ["visible"]}
+      ]
+    },
+    "behavioral_defect": "The replacement regex captures trailing text but the fence-closing logic does not inspect the capture, so text-suffixed fences still close the block.",
+    "accepted": false,
+    "disposition": "REJECTED_INDEPENDENT_VALIDATION",
+    "evaluation_source_restored": true,
+    "disposable_workspace_removed": true,
+    "feature_source_unchanged": true
+  },
+  "measurements": {
+    "started_at": "2026-10-18T00:05:41.070401+00:00",
+    "finished_at": "2026-10-18T00:05:42.277309+00:00",
+    "elapsed_seconds": 1.2078936999896541,
+    "markdown_validation_command_seconds": 0.7620077999890782,
+    "oracle_command_seconds": 0.10583799995947629,
+    "new_model_invocations": 0,
+    "new_model_tokens": 0,
+    "codex_coordination_usage": "UNKNOWN"
+  },
+  "validation_harness_note": "The first isolated pytest invocation timed out at 120 seconds; source was restored and temporary workspace removed. Explicit pytest configuration/root fixed the offline harness. The final replay followed stabilization of all newline separator regressions.",
+  "focused_host_tests": {"passed": 93, "elapsed_seconds": 4.54},
+  "local_evidence": ".local/qwen-first-task/attempt-04-newline-assessment-final/",
+  "next_step": "Separately authorized bounded worker evaluation for a behaviorally correct patch; do not retry historical attempt-04 or repair its proposal."
+}

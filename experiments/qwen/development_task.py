@@ -281,7 +281,7 @@ def _structured_edit_definition() -> ModelToolDefinition:
     )
 
 
-def _structured_edit_patch(  # noqa: C901 -- validate one explicit untrusted proposal
+def _structured_edit_patch(  # noqa: C901, PLR0912 -- validate one explicit untrusted proposal
     root: Path, source: str, call: ModelToolCall
 ) -> tuple[str, str]:
     """Validate one exact text replacement and derive its bounded host diff."""
@@ -321,6 +321,38 @@ def _structured_edit_patch(  # noqa: C901 -- validate one explicit untrusted pro
         raise PatchProposalError(
             "Structured edit text is empty, unchanged or oversized"
         )
+    # Only homogeneous LF/CRLF text is supported. Adapt the proposal, never
+    # the source, so all bytes outside the selected region stay unchanged.
+    for text in (source, old_text, new_text):
+        without_crlf = text.replace("\r\n", "")
+        if (
+            "\r" in without_crlf
+            or ("\r\n" in text and "\n" in without_crlf)
+            or any(
+                marker in text
+                for marker in (
+                    "\v",
+                    "\f",
+                    "\x1c",
+                    "\x1d",
+                    "\x1e",
+                    "\x85",
+                    "\u2028",
+                    "\u2029",
+                )
+            )
+        ):
+            raise PatchProposalError(
+                "Mixed or unsupported structured edit line endings"
+            )
+    newline = "\r\n" if "\r\n" in source else "\n"
+    old_text = old_text.replace("\r\n", "\n").replace("\n", newline)
+    new_text = new_text.replace("\r\n", "\n").replace("\n", newline)
+    if (
+        old_text == new_text
+        or max(len(old_text.encode()), len(new_text.encode())) > 4096
+    ):
+        raise PatchProposalError("Adapted structured edit is unchanged or oversized")
     matches = 0
     offset = 0
     while (found := source.find(old_text, offset)) >= 0:
@@ -1041,7 +1073,9 @@ async def apply_markdown_patch(root: Path, folder: Path, patch: str) -> None:
     _validate_patch_envelope(root, patch)
     path = _store_patch(folder, patch)
     for args in (("--check", "--whitespace=error"), ("--whitespace=error",)):
-        result = await _command(root, "git", "apply", *args, str(path))
+        result = await _command(
+            root, "git", "-c", "core.autocrlf=false", "apply", *args, str(path)
+        )
         if result["failed"]:
             raise PatchProposalError(str(result))
 

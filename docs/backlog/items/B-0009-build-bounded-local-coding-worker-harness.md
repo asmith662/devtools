@@ -124,3 +124,16 @@ with LF/CRLF regression fixtures and preserved source bytes; it is not implement
 by the diagnostic assignment. The local CLI now requires genuine console consent
 (default No) or explicit `--authorize-local-execution` for noninteractive use;
 chat-menu output is not terminal authorization. No new model attempt is authorized.
+
+The subsequent bounded newline correction supports homogeneous LF/CRLF proposal
+equivalence with exact unique matching, original source convention and outside
+bytes preserved, and scoped Git autocrlf conversion disabled. Mixed/unsupported
+endings fail closed. The focused suite passed 93 tests. Offline assessment of the
+unchanged captured attempt-04 proposal admitted/applied the edit in a disposable
+copy: 7 existing Markdown tests passed, but the unchanged independent oracle
+failed. A separate eight-input diagnostic found 6 passing cases and 2 failures
+(text-suffixed backtick/tilde closers). The added regex capture is not checked by
+the closing-fence logic. No accepted Qwen coding task is established. Original
+receipts are unchanged; no model invocation occurred. The separate assessment
+record is linked from the Qwen overview. Continuation, working/long-term memory,
+Context-size benchmarking and integrated coding-agent acceptance remain planned.
