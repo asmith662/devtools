@@ -96,3 +96,20 @@ place it beside other explicit representations, including a retained whole
 resource. The adapter calls the existing materializer and renderer; it does
 not weaken their snapshot, content, or Reference/Call semantics. The original
 narrow API remains available unchanged.
+
+## Physical source-line correctness
+
+Exact extraction recognizes only Python physical LF, CRLF and CR line endings.
+`StringIO(..., newline="")` retains original terminators while iterating these
+lines; Unicode separators inside comments/literals remain source characters.
+Both endpoints must be valid UTF-8 boundaries within physical content, including
+empty ranges. No newline translation, whitespace normalization, filesystem read
+or source reparse occurs. Snapshot/content identity and existing public RI
+contracts are unchanged.
+
+This follows the [CPython AST coordinate contract](https://docs.python.org/3.14/library/ast.html#ast.AST.col_offset)
+and uses [ast.get_source_segment](https://docs.python.org/3.14/library/ast.html#ast.get_source_segment)
+as a valid-range regression reference. Invalid ranges are rejected explicitly
+rather than relying on that helper's permissive slicing. The 48-case separator,
+newline and sync/async matrix is now a maintained public-materialization test;
+the original Qwen task oracle remains historical and unchanged.

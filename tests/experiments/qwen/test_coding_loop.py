@@ -254,3 +254,54 @@ def test_noninteractive_worker_does_not_advertise_a_bypass(
             )
         )
     assert "--authorize-local-execution" not in str(refusal.value)
+
+
+def test_feedback_preserves_primary_failure_and_marks_truncation() -> None:
+    """Full logs remain untouched while primary facts survive secondary noise."""
+    facts = {
+        "nodeid": "test_primary",
+        "phase": "call",
+        "exception": "TypeError",
+        "message": "invalid split keyword",
+        "message_truncated": False,
+    }
+    stderr = (
+        "QWEN_TEST_FAILURE " + json.dumps(facts) + "\n" + "_pytest/formatter\n" * 2000
+    )
+    validation = {
+        name: {"exit_code": 1, "stdout": "5 failed, 3 passed", "stderr": stderr}
+        for name in ("oracle", "tests")
+    }
+    feedback = worker._validation_feedback(validation)
+    assert feedback["tests"]["primary_failures"] == [facts]
+    assert feedback["tests"]["reporting_failure"]
+    assert feedback["tests"]["stderr_truncated"]
+    assert "[TRUNCATED]" in feedback["tests"]["stderr"]
+    assert validation["tests"]["stderr"] == stderr
+    assert len(json.dumps(feedback)) < 6000
+
+
+def test_primary_exception_captured_before_pytest_reporting_failure(
+    tmp_path: Path,
+) -> None:
+    """An ast.parse prohibition must not hide the actual code error."""
+    folder = tmp_path / "diagnostics"
+    folder.mkdir()
+    workspace = worker._prepare_workspace(ROOT, folder)
+    test = workspace / "tests/resources/filesystem/models/markdown/test_file.py"
+    test.write_text(
+        "import ast\n"
+        "def test_primary(monkeypatch):\n"
+        "    def forbidden(*args, **kwargs):\n"
+        "        raise AssertionError('secondary formatter failure')\n"
+        "    monkeypatch.setattr(ast, 'parse', forbidden)\n"
+        "    raise TypeError('primary code failure')\n"
+    )
+    result = asyncio.run(worker.validate_workspace(workspace, folder))
+    assert result["tests"]["failed"]
+    feedback = worker._validation_feedback(result)
+    primary = feedback["tests"]["primary_failures"][0]
+    assert primary["nodeid"].endswith("::test_primary")
+    assert primary["exception"] == "TypeError"
+    assert primary["message"] == "primary code failure"
+    assert "secondary formatter failure" in result["tests"]["stderr"]

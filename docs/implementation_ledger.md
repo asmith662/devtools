@@ -1,5 +1,31 @@
 # Implementation Ledger
 
+## Task 02 failure closeout and physical source extraction (2026-10-18)
+
+Task 02 remains REPAIR_BUDGET_EXHAUSTED: three local Qwen calls and two repairs,
+19,587 input / 1,848 output tokens, 105.74 seconds. Its proposals, source hashes
+and frozen 48-case oracle are unchanged; see the
+[result record](../experiments/qwen/docs/second_task_result.json).
+Codex escalated the production repair: physical LF/CRLF/CR iteration preserves
+original source and UTF-8 endpoint validation rejects empty mid-codepoint spans.
+The baseline failed all 48 valid cases plus the empty-span regression; the
+corrected source passes both maintained regressions and the unchanged oracle.
+
+Turn 02's pytest stderr was 17,196 characters; turn 03 received its last 6,000
+without a truncation marker, dominated by secondary traceback errors. Its oracle
+feedback still contained the primary invalid-split TypeError. Future validation
+captures primary pytest facts before formatting and projects bounded, marked
+excerpts while retaining full logs. This is experiment-local feedback, not a
+new diagnostic or memory framework. No new model calls occurred in closeout.
+
+Protected Python 3.14 validation: 1,712 passed, two skipped, 100% production
+branch coverage; 41.04 seconds host / 39.74 seconds pytest. The task-selection
+isolation test now compares the caller source before/after execution instead of
+requiring the maintained file to equal the old defective baseline; the worker
+still authenticates and evaluates that pinned baseline only in isolation.
+First-task Qwen
+acceptance and future conversation/memory/Context-capacity work remain distinct.
+
 ## Host-selected Qwen tasks and second-task preparation (2026-10-18)
 
 Generalized the existing coding loop through experiment-local `CodingTask` values:

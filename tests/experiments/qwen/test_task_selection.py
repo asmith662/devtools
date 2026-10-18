@@ -48,6 +48,7 @@ def segment_proposal(old: str, new: str) -> ModelResponse:
 
 def test_second_task_baseline_fails_and_reference_is_accepted(tmp_path: Path) -> None:
     """The independent 48-check oracle distinguishes baseline and valid reference."""
+    original = _hash(ROOT / SOURCE_SEGMENTS.source)
     model = Scripted([segment_proposal(OLD_SPLIT, REFERENCE_SPLIT)])
     result = asyncio.run(
         worker.run_coding_task(
@@ -61,10 +62,8 @@ def test_second_task_baseline_fails_and_reference_is_accepted(tmp_path: Path) ->
     assert "48 exact AST segment checks" in validation["oracle"]["stdout"]
     assert result["original_unchanged"]
     assert result["workspace_removed"]
-    assert (
-        _hash(ROOT / SOURCE_SEGMENTS.source)
-        == dict(SOURCE_SEGMENTS.baseline_hashes)[SOURCE_SEGMENTS.source]
-    )
+    # The pinned baseline lives only in isolation after the maintained fix lands.
+    assert _hash(ROOT / SOURCE_SEGMENTS.source) == original
     request = model.requests[0]
     assert json.loads(request.tools[0].input_schema_json)["properties"]["path"][
         "enum"

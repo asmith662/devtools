@@ -31,8 +31,11 @@ The existing loop now accepts host-owned one-file task configuration through
 and second-task Context/validation/repair/refusal are deterministically tested.
 The [second task preparation](../../../experiments/qwen/docs/second_task_preparation.json)
 freezes an existing Python source-materialization defect, independent checks and
-all bounds. It is ready for terminal authorization; no second Qwen attempt has
-occurred. This is task configuration, not reusable Agent-framework promotion.
+all bounds. The live [second-task result](../../../experiments/qwen/docs/second_task_result.json)
+remains REPAIR_BUDGET_EXHAUSTED: three calls, two repairs, 19,587 input / 1,848
+output tokens, 105.74 seconds. Codex corrected the production materializer and
+added primary-exception feedback capture after this failure. Neither correction
+constitutes Qwen task acceptance or reusable Agent-framework promotion.
 Native structured continuation, atomic task-local state, long-term memory and
 32K/64K Context benchmarking remain planned work.
 

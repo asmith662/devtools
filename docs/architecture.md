@@ -806,9 +806,12 @@ correction is integrated with permanent regressions. This is single-task evidenc
 not reusable Agent promotion or proof of general coding reliability.
 The same consumer now takes a small experiment-local host task definition for
 objective, admitted source/search/disclosure, checks and bounds. One unchanged
-control loop serves Markdown and the prepared Python source-materialization
-task. This adds no framework Task lifecycle, registry or model-directed authority;
-the second live task is still awaiting operator authorization.
+control loop serves Markdown and the frozen Python source-materialization
+task. This adds no framework Task lifecycle, registry or model-directed authority.
+The second live task exhausted its repair budget; its production fix was a
+separate engineering escalation. Host feedback now captures primary pytest
+exceptions before formatting and supplies explicitly bounded log excerpts,
+while retaining full validation logs in evidence.
 
 Increment 23 independently validates this boundary but does not promote its
 directional-reservation-v1 realization. Canonical and practical top five each

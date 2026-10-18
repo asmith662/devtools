@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import ast
 from dataclasses import replace
 from typing import TYPE_CHECKING
 
@@ -24,12 +25,71 @@ from devtools.context import (
     observe_repository_resources,
     retrieve_python_functions_by_exact_name,
 )
+from devtools.context.python.function.materialization import _extract_source_segment
 from devtools.core.paths import ResolvedPath
 
 if TYPE_CHECKING:
     from pathlib import Path
 
 _REPOSITORY_ID = "00000000-0000-4000-8000-000000000001"
+
+
+@pytest.mark.parametrize(
+    "separator",
+    ["\v", "\f", "\x1c", "\x1d", "\x1e", "\x85", "\u2028", "\u2029"],
+)
+@pytest.mark.parametrize("newline", ["\n", "\r\n", "\r"])
+@pytest.mark.parametrize("prefix", ["", "async "])
+def test_exact_physical_lines_preserve_non_newline_separators(
+    tmp_path: Path,
+    separator: str,
+    newline: str,
+    prefix: str,
+) -> None:
+    """Match public AST extraction for all 48 independently frozen combinations."""
+    source = (
+        "# prefix "
+        + separator
+        + " text"
+        + newline
+        + prefix
+        + "def sample():"
+        + newline
+        + '    return "caf\u00e9'
+        + separator
+        + 'tail"'
+        + newline
+    )
+    node = ast.parse(source).body[0]
+    snapshot = _snapshot(tmp_path, source)
+    result = materialize_python_function_disclosure_source(
+        disclosure=_disclosure(snapshot, "sample"),
+        snapshot=snapshot,
+    )
+    assert result.items[0].source_text == ast.get_source_segment(source, node)
+
+
+@pytest.mark.parametrize(
+    ("source", "span", "message"),
+    [
+        ("", PythonSourceRange(1, 0, 1, 0), "line is outside"),
+        ("x\r\n", PythonSourceRange(1, 0, 2, 0), "line is outside"),
+        ("x\r", PythonSourceRange(1, 0, 2, 0), "line is outside"),
+        ("x", PythonSourceRange(0, 0, 1, 0), "line is outside"),
+        ("x", PythonSourceRange(1, -1, 1, 0), "column is outside"),
+        ("x", PythonSourceRange(1, 0, 1, 2), "column is outside"),
+        ("\u00e9x", PythonSourceRange(1, 1, 1, 1), "UTF-8 character boundaries"),
+        ("\u00e9x", PythonSourceRange(1, 0, 1, 1), "UTF-8 character boundaries"),
+    ],
+)
+def test_invalid_physical_ranges_and_empty_mid_codepoint_spans(
+    source: str,
+    span: PythonSourceRange,
+    message: str,
+) -> None:
+    """Validate endpoints independently, even when their empty slice decodes."""
+    with pytest.raises(PythonFunctionSourceMaterializationError, match=message):
+        _extract_source_segment(source, span)
 
 
 def _snapshot(
@@ -224,7 +284,8 @@ def test_materialization_does_not_reacquire_parse_derive_or_retrieve(
 
     monkeypatch.setattr("devtools.context.repository.observation.read", forbidden)
     monkeypatch.setattr(
-        "devtools.context.python.function.declarations.ast.parse", forbidden,
+        "devtools.context.python.function.declarations.ast.parse",
+        forbidden,
     )
     monkeypatch.setattr(
         "devtools.context.python.function.declarations.derive_python_function_declarations",

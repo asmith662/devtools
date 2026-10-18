@@ -53,10 +53,12 @@ implementation is integrated with permanent regressions; see the
 [provenance record](../experiments/qwen/docs/first_accepted_coding_task.json).
 Task selection now reuses that same worker via host-owned configuration. The
 second task, exact Python source materialization with non-newline separators,
-is frozen and deterministically prepared, but **not yet attempted by Qwen**;
-see its [readiness record](../experiments/qwen/docs/second_task_preparation.json).
-The next checkpoint is its operator-authorized execution and acceptance review,
-measuring generalization rather than another Markdown repair. General coding
+ended **REPAIR_BUDGET_EXHAUSTED** after three calls and two repairs; see its
+[measured result](../experiments/qwen/docs/second_task_result.json).
+Codex subsequently corrected the production defect with permanent regressions
+and bounded primary-failure feedback. This escalation is not Qwen success.
+The next checkpoint is failure-guided worker improvement and another independently
+bounded unresolved task, under separate local execution authorization. General coding
 reliability and autonomous multi-task coordination remain unproven.
 Native structured conversation continuation, integrated coding-agent acceptance
 and later 32K/64K Context benchmarking remain future work.

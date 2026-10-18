@@ -63,6 +63,36 @@ if TYPE_CHECKING:
     from devtools.models.interaction import ModelInteraction
 
 
+def _validation_feedback(validation: dict[str, Any]) -> dict[str, Any]:
+    """Project bounded diagnostics; complete original command logs stay in evidence."""
+    projected = {}
+    for name in ("oracle", "tests"):
+        result = validation[name]
+        failures = [
+            json.loads(line.removeprefix("QWEN_TEST_FAILURE "))
+            for line in result["stderr"].splitlines()
+            if line.startswith("QWEN_TEST_FAILURE ")
+        ]
+        details = {}
+        for field in ("stdout", "stderr"):
+            text = result[field]
+            details[field] = (
+                text
+                if len(text) <= 2000
+                else text[:1000] + "\n[TRUNCATED]\n" + text[-1000:]
+            )
+            details[field + "_truncated"] = len(text) > 2000
+        projected[name] = {
+            "exit_code": result["exit_code"],
+            "primary_failures": failures[:8],
+            "primary_failures_truncated": len(failures) > 8,
+            "reporting_failure": "INTERNALERROR" in result["stdout"]
+            or "_pytest/" in result["stderr"].replace("\\", "/"),
+            **details,
+        }
+    return projected
+
+
 def acquire_context(
     root: Path,
     repository: Repository,
@@ -240,7 +270,22 @@ def _prepare_workspace(root: Path, folder: Path, task: CodingTask = MARKDOWN) ->
         TextFile(
             resolve_path(folder / "tests-runner.py"),
             prelude
-            + (f"import pytest\nraise SystemExit(pytest.main({test_arguments!r}))\n"),
+            + "import json\nimport pytest\n"
+            # Capture primary facts before pytest's traceback formatting. Some
+            # tests deliberately forbid ast.parse, which formatters also use.
+            + "class PrimaryFailures:\n"
+            + "    @pytest.hookimpl(hookwrapper=True, tryfirst=True)\n"
+            + "    def pytest_runtest_makereport(self, item, call):\n"
+            + "        if call.excinfo is not None:\n"
+            + "            facts = dict(nodeid=item.nodeid, phase=call.when, "
+            + "exception=call.excinfo.type.__name__, "
+            + "message=str(call.excinfo.value)[:1000], "
+            + "message_truncated=len(str(call.excinfo.value)) > 1000)\n"
+            + "            print('QWEN_TEST_FAILURE ' + json.dumps(facts), "
+            + "file=sys.stderr, flush=True)\n"
+            + "        yield\n"
+            + f"arguments = {test_arguments!r}\n"
+            + "raise SystemExit(pytest.main(arguments, plugins=[PrimaryFailures()]))\n",
         )
     )
     write(TextFile(resolve_path(workspace / "pytest.ini"), "[pytest]\n"))
@@ -360,11 +405,7 @@ async def _turns(  # noqa: PLR0913 -- existing loop collaborators plus task conf
             "assistant_content": response.content[:4096],
             "source_after": stage["source_after"],
             "disposition": "EDIT_RETAINED_IN_ISOLATED_WORKSPACE; REVISE_CURRENT_SOURCE",
-            "validation": {
-                key: {field: value[field][-6000:] for field in ("stdout", "stderr")}
-                for key, value in validation.items()
-                if key != "accepted"
-            },
+            "validation": _validation_feedback(validation),
         }
     report["disposition"] = "REPAIR_BUDGET_EXHAUSTED"
 

@@ -2,7 +2,7 @@
 
 `experiments.qwen` contains bounded Qwen repository-read and coding consumers.
 
-## Task selection and prepared second task
+## Task selection and second-task closeout
 
 The same `coding_loop.run_coding_task(..., task=...)` now accepts the
 experiment-local immutable `CodingTask` configuration in `tasks.py`. The CLI
@@ -25,7 +25,7 @@ inputs. No scientific target-checkout contract is claimed.
 
 The second task fixes a demonstrated defect in
 `src/devtools/context/python/function/materialization.py`: valid Python AST
-ranges containing non-newline separators in strings/comments currently raise
+ranges containing non-newline separators in strings/comments previously raised
 out-of-range errors or materialize incorrect segments. Context admits only that
 source and `tests/context/python/function/test_materialization.py`. Symbol query
 `extract source segment UTF8 byte offset` expands the selected source to its file;
@@ -44,10 +44,24 @@ tests additionally retain malformed-range and UTF-8 boundary refusals.
 Scripted responses prove both task configurations, cross-task refusal, repair,
 exhaustion, provider/tool failure and cleanup. A CPython reference-only stand-in
 passes tests/oracle in isolation after an intentionally bad edit; it is neither a
-Qwen result nor a proposed maintained solution. Production source remains
-unchanged. Status: **READY_FOR_OPERATOR_AUTHORIZATION; QWEN_NOT_ATTEMPTED**.
+Qwen result nor a proposed maintained solution. That preparation record remains
+historical. The subsequent [Task 02 result](second_task_result.json) is
+**REPAIR_BUDGET_EXHAUSTED**: three admitted proposals, two repairs, 19,587 input
+and 1,848 output tokens in 105.74 seconds. No proposal passed the frozen oracle.
+The production repair is a separate Codex-authored engineering escalation;
+it is not Qwen-generated acceptance. The frozen task/oracle and original receipts
+remain unchanged.
 
-Run this from a real PowerShell console for the second task:
+The corrected materializer uses physical LF/CRLF/CR lines without translating
+source, and rejects invalid UTF-8 endpoints. All 48 original oracle cases pass.
+Future worker feedback captures primary pytest exception facts before traceback
+formatting, retaining full command logs in stage/result evidence. Bounded
+head/tail excerpts explicitly mark truncation; primary failures identify the test,
+phase, exception and message. Secondary pytest reporting errors remain separate
+from these primary facts. Outcome summaries remain in stdout; an interrupted
+pytest report does not establish complete test outcomes.
+
+The historical operator command was:
 
 ```powershell
 uv run --python C:/Python314/python.exe python scripts/qwen/coding_worker.py --task python-source-segments --report-directory .local/qwen-coding-worker/task-02-run-01
@@ -65,8 +79,8 @@ accepted source; disposable edits are removed on normal completion/failure.
 Process death may require manual workspace reconciliation; automatic resume
 and durable working memory are still unimplemented.
 
-Next: operator execution of this different task, then review actual acceptance
-and economics before any promotion. Multi-task autonomy, native structured
+Next: review failure-guided worker improvements before selecting another genuinely
+unresolved task; no additional live attempt is authorized by this closeout. Multi-task autonomy, native structured
 continuation, durable task-local memory, long-term memory and 32K/64K benchmarking
 remain future work. Python 3.14 is the verified environment; the separate known
 Python 3.12 compatibility issue is unchanged.
