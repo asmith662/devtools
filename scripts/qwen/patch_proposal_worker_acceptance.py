@@ -166,6 +166,11 @@ def _confirm_local_execution(arguments: argparse.Namespace) -> None:
     if arguments.freeze_only or arguments.authorize_local_execution:
         return
     if not sys.stdin.isatty():
+        if getattr(arguments, "coding_loop", False):
+            raise SystemExit(
+                "No interactive console; no model call made. Run coding_worker.py "
+                "in a real terminal and answer its default-No confirmation prompt."
+            )
         raise SystemExit(
             "No interactive console; no model call made. Explicitly authorize this "
             "local attempt with --authorize-local-execution or run in a terminal."

@@ -213,3 +213,21 @@ def test_confirmation_describes_loop_and_defaults_no(
         )
     assert "at most 3" in prompts[0]
     assert "[y/N]" in prompts[0]
+
+
+def test_noninteractive_worker_does_not_advertise_a_bypass(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Offer only terminal consent for the bounded coding worker."""
+    import argparse  # noqa: PLC0415
+
+    monkeypatch.setattr("sys.stdin.isatty", lambda: False)
+    with pytest.raises(SystemExit, match="real terminal") as refusal:
+        _confirm_local_execution(
+            argparse.Namespace(
+                freeze_only=False,
+                authorize_local_execution=False,
+                coding_loop=True,
+            )
+        )
+    assert "--authorize-local-execution" not in str(refusal.value)

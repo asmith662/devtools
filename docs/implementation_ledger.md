@@ -24,6 +24,8 @@ retained SCRIPTED_HOST_TEST_ONLY demonstration accepted its second proposal in
 2.69 s (2.28 s validation); the real Qwen call count was zero. Symbol selection
 located `MarkdownFile._parse_headings` and explicitly expanded its parent file;
 source/test text disclosure was 5,764 + 5,346 bytes. Token attribution is unknown.
+Final terminal-only refusal wording and its additional regression passed the
+29-case worker/CLI subset in 17.20 s, with affected Ruff/format/mypy clean.
 
 ## Multi-resolution repository search (2026-10-18)
 
