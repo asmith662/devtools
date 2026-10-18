@@ -1,0 +1,28 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "ae03cda7-955e-40c6-a131-9e2ba209c9a6",
+  "created_at": "2026-10-18T16:37:12.066405+00:00",
+  "payload": {
+    "kind": "investigation",
+    "title": "Evaluate optional task-conditioned CodeGraph exploration",
+    "summary": "External project advertises symbol exploration and impact acquisition. Evaluate optional consumption against existing RI/source search; do not replace identities or introduce another graph store.",
+    "discovery": {
+      "kind": "human",
+      "reference": "2026-10-18 MemoryPanel dashboard adoption assignment; https://github.com/colbymchenry/codegraph"
+    },
+    "parent": null,
+    "resources": [
+      "docs/backlog/epics/B-0002-coding-context-substrate.md"
+    ],
+    "evidence": [
+      "https://github.com/colbymchenry/codegraph",
+      "docs/backlog/epics/B-0002-coding-context-substrate.md"
+    ],
+    "benefit": "Preserve source-derived improvement pressure for deliberate review without interrupting active work.",
+    "uncertainty": "Utility, maintenance cost and semantic compatibility are unverified.",
+    "dependencies": [
+      "docs/backlog/epics/B-0002-coding-context-substrate.md"
+    ]
+  },
+  "payload_sha256": "dd4279690416530db1f91628d167ee230e5a97e1ab319fa9614a7f19d5c16fde"
+}
