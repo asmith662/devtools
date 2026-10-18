@@ -91,9 +91,15 @@ Qwen calls and two repairs produced a cross-version-tested review candidate.
 See the [measured outcome](../experiments/qwen/docs/overview.md#first-delegated-b-0048-review-candidate).
 This is not a persistent supervisor or scheduler.
 
-Next: obtain separate integration authority for the exact accepted B-0048
-object-only candidate, publish permanent regression coverage and validate the
-maintained change. Broader compatibility work remains separately scoped. This checkpoint does not implement scheduling,
+The [governed integration lifecycle](backlog/integration.md) now implements
+accepted-candidate installation, exact-tree gates/review, feature publication,
+separately permitted target promotion, post-promotion verification and canonical
+work closeout. Destination-based commits exclude unrelated worker ancestry.
+Next: issue a genuine separate integration grant for the accepted B-0048
+object-only candidate and independent permanent regressions, then consume the
+existing lifecycle. Main promotion additionally requires an explicit protected
+destination policy decision. No such grant is inferred from this implementation.
+Broader compatibility work remains separately scoped. This checkpoint does not implement scheduling,
 persistent Codex supervision or authorize a new local model run. Precise Context
 Tools, structured continuation, task-local checkpoints, layered long-term Memory,
 Context benchmarking and Learned Intelligence integration remain on the roadmap.

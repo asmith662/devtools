@@ -39,6 +39,14 @@ constitutes Qwen task acceptance or reusable Agent-framework promotion.
 Native structured continuation, atomic task-local state, long-term memory and
 32K/64K Context benchmarking remain planned work.
 
+The existing WorkCycle now provides a [separately governed integration lifecycle](../integration.md)
+for accepted candidates: destination-based installation, validation, exact-tree
+supervisory review, feature publication, authorized target promotion, verification
+and canonical backlog progress. Coding authority still grants no integration
+permission. B-0048 remains an accepted object-only candidate pending a genuine
+integration grant; sibling compatibility obligations remain open. No new Qwen
+run or protected merge is part of this engineering increment.
+
 Build one bounded experimental coding worker after B-0008 establishes the
 minimum repository fact-acquisition boundary. It may exercise
 ModelInteraction, experiment-local relevance choice, bounded Tool use,

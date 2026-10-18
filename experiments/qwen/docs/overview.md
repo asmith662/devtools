@@ -80,6 +80,13 @@ JsonListFile/CsvFile compatibility defects remain outside scope, so B-0048 is
 not closed and full Python 3.12 compatibility is not established. Separately
 authorized integration and permanent regression publication are the next step.
 
+The maintained [WorkCycle integration contract](../../../docs/backlog/integration.md)
+now supports that transition through independent test additions, exact-tree
+review/gates, feature publication, authorized destination promotion and verified
+work closeout. Its standing integration grant is separate from the Qwen coding
+delegation. Implementing this lifecycle does not install this candidate or grant
+main publication; B-0048 remains open until its separate obligations are resolved.
+
 ## Task selection and second-task closeout
 
 The same `coding_loop.run_coding_task(..., task=...)` now accepts the

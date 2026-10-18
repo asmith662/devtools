@@ -76,6 +76,16 @@ fresh per-call authority checks; it does not introduce framework governance.
 Manual terminal consent remains available. Protected integration is separate;
 see the [standing delegation contract](backlog/metadata.md#standing-routine-qwen-delegation).
 
+The same WorkCycle now owns the [development integration lifecycle](backlog/integration.md):
+authenticated accepted candidate, destination-based plan, separately delegated
+installation, exact-tree validation/review, feature commit/push, policy-controlled
+target promotion, post-promotion verification and canonical backlog progress.
+Standing integration grants are distinct from coding grants. Protected main also
+requires explicit repository policy; remote branch protections remain effective.
+Partial slices retain unresolved parent obligations. Immutable intents and exact
+Git-ref/tree reconciliation prevent blind repeat publication. This is maintained
+repository administration, not a generic framework workflow engine.
+
 ## Current boundaries
 
 ```text

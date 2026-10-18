@@ -3,8 +3,9 @@
 """One coordinator-owned B-item assignment through the existing Qwen coding loop.
 
 Receipt hashes bind scope and evidence, not human authority. Trusted hosts must
-authorize exact implementation grants and recheck them at dispatch. No method
-integrates code, closes a canonical backlog item or grants protected publication.
+authorize exact implementation grants and recheck them at dispatch. Integration
+phases separately consume standing integration authority; coding grants never
+confer commit, promotion or canonical backlog-close authority.
 """
 
 from __future__ import annotations
@@ -29,6 +30,7 @@ if TYPE_CHECKING:
     from pathlib import Path
 
     from devtools.models.interaction import ModelInteraction
+    from scripts.backlog.integration import Integration
 
 SCOPE = "bounded-local-qwen-implementation; review candidate only; no integration"
 
@@ -60,6 +62,13 @@ class WorkCycle:
         """Select the host coordinator; every mutation rechecks Git designation."""
         self.root = resolve_path(coordinator).value
         self.intake = Intake(self.root, coordinator=self.root)
+
+    @property
+    def integration(self) -> Integration:
+        """Expose the maintained integration phases of this same work lifecycle."""
+        from scripts.backlog.integration import Integration  # noqa: PLC0415
+
+        return Integration(self)
 
     async def _coordinator(self) -> None:
         if await locate(self.root) != self.root:
@@ -395,7 +404,18 @@ class WorkCycle:
         folder = self._folder(item)
         _load(folder / "assignment.json", "backlog-qwen-assignment-v1")
         if (folder / "result.json").exists():
-            return _load(folder / "result.json", "backlog-qwen-result-v1")
+            result = _load(folder / "result.json", "backlog-qwen-result-v1")
+            plans = folder / "integration"
+            if plans.exists():
+                result = {
+                    **result,
+                    "integration": [
+                        self.integration.status(item, p.name)
+                        for p in sorted(plans.iterdir())
+                        if p.is_dir()
+                    ],
+                }
+            return result
         return {
             "item": item,
             "disposition": "RECONCILIATION_REQUIRED"

@@ -19,6 +19,7 @@ from devtools.resources.filesystem.errors import FilesystemError
 from scripts.backlog.coordinator import designate, locate
 from scripts.backlog.delegation import Delegations
 from scripts.backlog.intake import DOMAINS, Intake, load_json
+from scripts.backlog.integration import cli as integration_cli
 from scripts.backlog.work import WorkCycle, task_from_dict
 
 
@@ -180,7 +181,7 @@ async def _work(args: argparse.Namespace, root: Path) -> dict[str, Any]:  # noqa
     raise ValueError("Unknown work operation")
 
 
-def main(arguments: list[str] | None = None) -> int:  # noqa: PLR0915 -- explicit local subcommands
+def main(arguments: list[str] | None = None) -> int:  # noqa: C901, PLR0915 -- explicit local subcommands
     """Capture/list/show/advisory/review/promote within one explicit checkout."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", default=".")
@@ -259,9 +260,24 @@ def main(arguments: list[str] | None = None) -> int:  # noqa: PLR0915 -- explici
     discovery = commands.add_parser("work-discover")
     discovery.add_argument("item")
     discovery.add_argument("input")
+    integration_cli.configure(commands)
     args = parser.parse_args(arguments)
     try:
         root = resolve_path(args.root, base_directory=Path.cwd()).value
+        if args.command.startswith("integration-"):
+            integration_result = asyncio.run(integration_cli.run(args, root))
+            print(json.dumps(integration_result, indent=2))
+            return (
+                1
+                if integration_result.get("disposition")
+                in {
+                    "REWORK_REQUIRED",
+                    "POST_INTEGRATION_FAILED",
+                    "RECONCILIATION_REQUIRED",
+                    "BLOCKED",
+                }
+                else 0
+            )
         if args.command.startswith(("work-", "delegation-")):
             work_result = asyncio.run(_work(args, root))
             print(json.dumps(work_result, indent=2))

@@ -1,5 +1,58 @@
 # Implementation Ledger
 
+## Governed development integration (2026-10-18)
+
+Extended the existing repository WorkCycle from accepted worker evidence through
+destination-based planning, separately delegated installation, integration gates,
+exact-tree Codex review, feature commit/push, policy-controlled target promotion,
+post-promotion verification and canonical backlog progress. The coordinator and
+Intake atomic writer remain the owners; no second executor, backlog, database or
+generic orchestration/policy framework was introduced. Coding grants and accepted
+worker recommendations still confer no integration authority.
+
+The standing integration mechanism has genuine default-No terminal issuance and
+revocation, exact source/test/oracle/remote/destination scope, bounded reservations,
+expiry and Codex review. Main/master promotion additionally requires explicit
+repository policy and remains subject to server protections. Installation binds
+its reserving grant; malformed reservations and cross-grant inheritance refuse.
+Intent-first Git operations reconcile exact parents, trees, bytes and remote refs
+instead of making replacement commits or overwriting divergence. Partial slices
+append verified progress without closing unfinished parent obligations.
+
+Validation launchers explicitly import the authenticated target source rather
+than an editable coordinator installation. Full captured command bytes, including
+non-UTF-8 output, are retained. Installation/pre-publication checks preserve exact
+candidate bytes; post-promotion checks authenticate the reviewed Git tree and
+record LF/CRLF checkout materialization separately. The explicit Windows
+`core.autocrlf=true` test covers independent test additions through actual
+feature publication, target promotion and verification.
+
+The final Python 3.14 protected profile passed **1,821 tests, two skipped, 100%
+production branch coverage in 266.97 seconds**. The focused backlog checkpoint
+passed 104 tests in 273.76 seconds; final target/CRLF/full-cycle focused checks
+passed five tests in 134.73 seconds. Affected Ruff/format checks, strict mypy over
+460 supported source/test/tool files and whitespace checks passed. Earlier
+protected checkpoints and final progress/logs remain in the existing local
+validation location. No coverage/test safeguards were weakened. Git fixtures
+substitute expensive gates explicitly; separate command tests, a real bound-target
+subprocess and the actual protected profile verify the shipped validation path.
+
+B-0048's exact accepted Qwen source/review were authenticated and read-only plan
+`076684241ee2f23bb4de0d10fcaefed1519d0fee1c5ef28037fd2d02c1ac5857`
+was prepared against protected main. Ten unrelated source commits are excluded.
+An independently authored permanent test addition is planned with separate
+provenance. Admission correctly reports missing integration authority: no actual
+integration grant, installation, source publication or protected promotion occurs.
+JsonListFile/CsvFile defects leave B-0048 open. See the
+[integration contract](backlog/integration.md) and
+[actual readiness packet](backlog/b-0048-integration-readiness.md).
+
+`work-status` exposes additive integration history; the separate dashboard UI
+does not yet render those fields. Conflicts, server-required PRs, interrupted
+validation, stale leases and expired/revoked in-flight grants remain explicit
+reconciliation boundaries. No new Qwen/scientific call, protected-main change or
+modification of immutable worker/scientific evidence was performed.
+
 ## First real delegated B-0048 Qwen work cycle (2026-10-18)
 
 Authenticated the maintainer-issued standing grant and the unchanged prepared

@@ -1,5 +1,11 @@
 # Backlog Metadata
 
+The [development integration contract](integration.md) extends WorkCycle after
+accepted coding review. It owns separately delegated installation, validated
+feature publication, target promotion, verification and canonical progress.
+Coding approval does not confer integration authority; partial slices leave the
+parent open. Existing proposal and worker evidence remain immutable.
+
 ## Required identity and lifecycle fields
 
 Each record has id, type, title, status, and decision_maturity. Unknown values
