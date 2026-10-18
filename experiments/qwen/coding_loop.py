@@ -1,6 +1,6 @@
 # Copyright (c) 2026
 # ruff: noqa: COM812, EM101, TRY003, TRY301, PLR2004, T201 -- bounded consumer composition
-"""Concrete Markdown coding worker: retrieved Context, proposal, tests and repair.
+"""Bounded configured coding worker: retrieved Context, proposal, tests and repair.
 
 This consumer is deliberately task-local. It exposes no commands or mutations to
 the model and does not implement provider conversation or general Agent state.
@@ -45,9 +45,7 @@ from devtools.models.interaction import (
 )
 from devtools.resources.filesystem import TextFile, write
 from experiments.qwen.development_task import (
-    ACCEPTANCE,
-    SOURCE,
-    TESTS,
+    _command,
     _hash,
     _save,
     _structured_edit_definition,
@@ -56,6 +54,7 @@ from experiments.qwen.development_task import (
     apply_markdown_patch,
 )
 from experiments.qwen.patch_proposal_worker import PatchProposalError, _read_text
+from experiments.qwen.tasks import MARKDOWN, CodingTask
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -64,26 +63,12 @@ if TYPE_CHECKING:
     from devtools.models.interaction import ModelInteraction
 
 
-TASK = (
-    "Repair Markdown fence closing: a matching closing fence followed by "
-    "non-whitespace text must not prematurely expose fenced headings. Preserve "
-    "backtick/tilde markers, longer closers, trailing spaces/tabs, minimum length, "
-    "public APIs and unrelated behavior. Only edit " + SOURCE + ". "
-    "Use exactly one native propose_edit call for a contiguous replacement. "
-    "The host applies and tests it; you have no write, shell or Git authority. "
-    "Do not claim to have run tests. Context below is the CURRENT source state, "
-    "not the original state. If tests fail, revise that current state using the "
-    "correlated host feedback. At most three proposals are permitted."
-)
-BASELINE_HASHES = {
-    SOURCE: "b01a8fdac51f3d5485275898b45d43cd643efac736b1e275b8a18fc205fd6195",
-    TESTS: "92e5f321000054d18f30775387b24f65a1b2635fb02e15e2ea01643abdb4b7a9",
-}
-ORACLE_HASH = "373b20627f04d364b5624abbab4699e560d464b96993e9fa28097cc11e0be12b"
-
-
 def acquire_context(
-    root: Path, repository: Repository, *, mode: SourceSearchMode = "symbol"
+    root: Path,
+    repository: Repository,
+    *,
+    task: CodingTask = MARKDOWN,
+    mode: SourceSearchMode | None = None,
 ) -> tuple[str, list[dict[str, Any]]]:
     """Search the two explicitly admitted resources and disclose exact expansions.
 
@@ -91,7 +76,9 @@ def acquire_context(
     expand a ranked symbol to its file. Tests are a separately selected file.
     No repository-wide disclosure or automatic sufficiency claim is made.
     """
-    addresses = tuple(RepositoryResourceAddress(path) for path in (SOURCE, TESTS))
+    addresses = tuple(
+        RepositoryResourceAddress(path) for path in (task.source, *task.tests)
+    )
     discovery = discover_repository_resource_addresses(
         repository=repository,
         root=resolve_path(root),
@@ -116,10 +103,8 @@ def acquire_context(
     )
     choices = []
     details = []
-    for path, query, view in (
-        (SOURCE, "MarkdownFile fence headings", mode),
-        (TESTS, "markdown headings fenced code", "file"),
-    ):
+    for path, query, configured_view, expansion in task.context:
+        view = mode if path == task.source and mode is not None else configured_view
         result = search_repository_source(
             index, query=query, mode=view, maximum_results=100
         )
@@ -129,8 +114,8 @@ def acquire_context(
         )
         if hit is None:
             raise ValueError("Required task resource not retrieved: " + path)
-        unit = index.expand(hit.unit, to="file")
-        choices.append(SourceSearchDisclosureOption(TASK, unit))
+        unit = hit.unit if expansion == "none" else index.expand(hit.unit, to=expansion)
+        choices.append(SourceSearchDisclosureOption(task.prompt, unit))
         details.append(
             {
                 "path": path,
@@ -151,7 +136,9 @@ def acquire_context(
                 "tokens": None,
             }
         )
-    plan = plan_disclosures(purpose=TASK, snapshot=snapshot, disclosures=tuple(choices))
+    plan = plan_disclosures(
+        purpose=task.prompt, snapshot=snapshot, disclosures=tuple(choices)
+    )
     return render_context_disclosure(
         materialize_disclosure_plan(
             plan=plan,
@@ -183,13 +170,39 @@ async def validate_workspace(root: Path, folder: Path) -> dict[str, Any]:
     }
 
 
-def _prepare_workspace(root: Path, folder: Path) -> Path:
+async def _authenticate_inputs(root: Path, workspace: Path, task: CodingTask) -> None:
+    """Restore only configured immutable inputs when maintained source moved on.
+
+    Git text normalization is reversed only when the resulting LF or CRLF bytes
+    match the frozen digest. This never writes into the caller's checkout.
+    """
+    for path, digest in task.baseline_hashes:
+        target = workspace / path
+        result = await _command(
+            root, "git", "show", task.baseline_revision + ":" + path
+        )
+        if result["failed"]:
+            raise ValueError("Cannot authenticate frozen baseline: " + path)
+        text = result["stdout"].replace("\r\n", "\n")
+        candidates = (text, text.replace("\n", "\r\n"))
+        matched = next(
+            (
+                value
+                for value in candidates
+                if hashlib.sha256(value.encode()).hexdigest() == digest
+            ),
+            None,
+        )
+        if matched is None:
+            raise ValueError("Frozen baseline identity mismatch: " + path)
+        if _hash(target) != digest:
+            write(TextFile(resolve_path(target), matched))
+        if _hash(target) != digest:
+            raise ValueError("Materialized baseline identity mismatch: " + path)
+
+
+def _prepare_workspace(root: Path, folder: Path, task: CodingTask = MARKDOWN) -> Path:
     """Copy supported source and focused tests, never Git or scientific evidence."""
-    for path, digest in BASELINE_HASHES.items():
-        if _hash(root / path) != digest:
-            raise ValueError("Frozen task baseline changed: " + path)
-    if hashlib.sha256(ACCEPTANCE.encode()).hexdigest() != ORACLE_HASH:
-        raise ValueError("Frozen oracle changed")
     workspace = folder / "workspace"
     workspace.mkdir()
     shutil.copytree(
@@ -200,20 +213,23 @@ def _prepare_workspace(root: Path, folder: Path) -> Path:
             "*.pyc",
         ),
     )
-    target = workspace / TESTS
-    target.parent.mkdir(parents=True)
-    shutil.copyfile(root / TESTS, target)
+    for test in task.tests:
+        target = workspace / test
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(root / test, target)
     # No inherited pytest configuration, parent conftest, or editable-install
     # imports. The exact local source is asserted before either validation.
+    module_name = task.source.removeprefix("src/").removesuffix(".py").replace("/", ".")
     prelude = (
         "import sys\nfrom pathlib import Path\n"
         f"sys.path.insert(0, {str(workspace / 'src')!r})\n"
-        "import devtools.resources.filesystem.models.markdown.file as module\n"
-        f"assert Path(module.__file__).resolve() == Path({str(workspace / SOURCE)!r})\n"
+        f"import {module_name} as module\n"
+        "assert Path(module.__file__).resolve() == "
+        f"Path({str(workspace / task.source)!r})\n"
     )
-    write(TextFile(resolve_path(folder / "oracle-runner.py"), prelude + ACCEPTANCE))
+    write(TextFile(resolve_path(folder / "oracle-runner.py"), prelude + task.oracle))
     test_arguments = [
-        str(target),
+        *(str(workspace / test) for test in task.tests),
         "-c",
         str(workspace / "pytest.ini"),
         f"--confcutdir={workspace}",
@@ -231,29 +247,34 @@ def _prepare_workspace(root: Path, folder: Path) -> Path:
     return workspace
 
 
-async def _turns(
+async def _turns(  # noqa: PLR0913 -- existing loop collaborators plus task configuration
     workspace: Path,
     folder: Path,
     interaction: ModelInteraction,
     report: dict[str, Any],
     *,
     maximum_calls: int,
+    task: CodingTask,
 ) -> None:
     repository = Repository.new()
     feedback: dict[str, Any] = {"disposition": "INITIAL_PROPOSAL"}
     for number in range(1, maximum_calls + 1):
         turn = folder / f"turn-{number:02d}"
         turn.mkdir()
-        context, resources = acquire_context(workspace, repository)
-        prompt = TASK + "\nHOST FEEDBACK:\n" + json.dumps(feedback) + "\n" + context
+        context, resources = acquire_context(workspace, repository, task=task)
+        prompt = (
+            task.prompt + "\nHOST FEEDBACK:\n" + json.dumps(feedback) + "\n" + context
+        )
         if len(prompt.encode()) > 60000:
             raise ValueError("Bounded Context byte allowance exceeded")
         request = ModelRequest(
             prompt=Prompt(prompt, role="user"),
-            settings=ModelSettings(maximum_output_tokens=4096, thinking_enabled=False),
-            tools=(_structured_edit_definition(),),
+            settings=ModelSettings(
+                maximum_output_tokens=task.output_tokens, thinking_enabled=False
+            ),
+            tools=(_structured_edit_definition(source_path=task.source),),
         )
-        source_hash = _hash(workspace / SOURCE)
+        source_hash = _hash(workspace / task.source)
         stage: dict[str, Any] = {
             "number": number,
             "started_at": str(Timestamp.now()),
@@ -275,7 +296,7 @@ async def _turns(
         )
         started = time.perf_counter()
         # No repeat after provider failure, unknown completion, or malformed call.
-        async with asyncio.timeout(300):
+        async with asyncio.timeout(task.call_seconds):
             response = await interaction.send(request)
         stage.update(
             model_seconds=time.perf_counter() - started,
@@ -292,21 +313,22 @@ async def _turns(
         _save(turn / "response.json", asdict(response))
         if response.termination == ModelTermination.OUTPUT_LIMIT:
             raise PatchProposalError("Output limit: no repair dispatch")
-        if _hash(workspace / SOURCE) != source_hash:
+        if _hash(workspace / task.source) != source_hash:
             raise PatchProposalError("Source changed while proposal pending")
         call, patch, updated = _structured_edit_patch_from_calls(
             workspace,
-            _read_text(resolve_path(workspace / SOURCE)).content,
+            _read_text(resolve_path(workspace / task.source)).content,
             response.tool_calls,
+            source_path=task.source,
         )
         stage["proposal_valid"] = True
         stage["proposal_id"] = call.provider_call_id
         stage["phase"] = "PATCH_APPLICATION"
         _save(turn / "stage.json", stage, overwrite=True)
-        await apply_markdown_patch(workspace, turn, patch)
-        if _read_text(resolve_path(workspace / SOURCE)).content != updated:
+        await apply_markdown_patch(workspace, turn, patch, source_path=task.source)
+        if _read_text(resolve_path(workspace / task.source)).content != updated:
             raise PatchProposalError("Applied source differs from admitted proposal")
-        stage["source_after"] = _hash(workspace / SOURCE)
+        stage["source_after"] = _hash(workspace / task.source)
         stage["phase"] = "VALIDATION"
         _save(turn / "stage.json", stage, overwrite=True)
         print(
@@ -347,12 +369,13 @@ async def _turns(
     report["disposition"] = "REPAIR_BUDGET_EXHAUSTED"
 
 
-async def run_coding_task(  # noqa: C901 -- bounded task stages and conservative cleanup
+async def run_coding_task(  # noqa: C901, PLR0913 -- bounded stages and task configuration
     root: Path,
     folder: Path,
     interaction: ModelInteraction,
     *,
-    maximum_calls: int = 3,
+    maximum_calls: int | None = None,
+    task: CodingTask = MARKDOWN,
     provenance: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Run one bounded engineering task; preserve evidence and discard all edits.
@@ -360,32 +383,38 @@ async def run_coding_task(  # noqa: C901 -- bounded task stages and conservative
     The caller must obtain local execution authorization before providing a live
     interaction. Reusing an output directory is refused before any invocation.
     """
-    if not 1 <= maximum_calls <= 3:
+    maximum_calls = task.maximum_calls if maximum_calls is None else maximum_calls
+    if not 1 <= maximum_calls <= task.maximum_calls:
         raise ValueError("Model call bound must be between one and three")
+    original_hashes = {path: _hash(root / path) for path, _ in task.baseline_hashes}
     folder = resolve_path(folder).value
     folder.mkdir(parents=True, exist_ok=False)
     started = time.perf_counter()
     report: dict[str, Any] = {
-        "schema": "qwen-markdown-coding-loop-v1",
+        "schema": "qwen-coding-loop-v2",
         "started_at": str(Timestamp.now()),
         "accepted": False,
         "disposition": "PREPARING",
         "turns": [],
         "limits": {
             "model_calls": maximum_calls,
-            "output_tokens": 4096,
-            "wall_seconds": 900,
-            "per_call_seconds": 300,
+            "output_tokens": task.output_tokens,
+            "wall_seconds": task.wall_seconds,
+            "per_call_seconds": task.call_seconds,
         },
-        "baseline": BASELINE_HASHES,
-        "oracle_sha256": ORACLE_HASH,
+        "task_name": task.name,
+        "task_definition": asdict(task),
+        "task_definition_sha256": task.definition_sha256,
+        "baseline": dict(task.baseline_hashes),
+        "oracle_sha256": task.oracle_sha256,
         "coordination_usage": "UNKNOWN",
         "provenance": provenance,
     }
     workspace: Path | None = None
     try:
-        async with asyncio.timeout(900):
-            workspace = _prepare_workspace(root, folder)
+        async with asyncio.timeout(task.wall_seconds):
+            workspace = _prepare_workspace(root, folder, task)
+            await _authenticate_inputs(root, workspace, task)
             report["baseline_validation"] = await validate_workspace(workspace, folder)
             baseline = report["baseline_validation"]
             if (
@@ -398,13 +427,22 @@ async def run_coding_task(  # noqa: C901 -- bounded task stages and conservative
                 folder / "freeze.json",
                 {
                     **report,
-                    "task": TASK,
-                    "tool": asdict(_structured_edit_definition()),
-                    "settings": asdict(ModelSettings(4096, thinking_enabled=False)),
+                    "task": task.prompt,
+                    "tool": asdict(
+                        _structured_edit_definition(source_path=task.source)
+                    ),
+                    "settings": asdict(
+                        ModelSettings(task.output_tokens, thinking_enabled=False)
+                    ),
                 },
             )
             await _turns(
-                workspace, folder, interaction, report, maximum_calls=maximum_calls
+                workspace,
+                folder,
+                interaction,
+                report,
+                maximum_calls=maximum_calls,
+                task=task,
             )
     except TimeoutError:
         report.update(
@@ -424,8 +462,8 @@ async def run_coding_task(  # noqa: C901 -- bounded task stages and conservative
         if resolve_path(workspace).value.parent != folder:
             report.update(accepted=False, disposition="CLEANUP_RECONCILIATION_REQUIRED")
         elif workspace.exists():
-            if (workspace / SOURCE).exists():
-                current = _read_text(resolve_path(workspace / SOURCE))
+            if (workspace / task.source).exists():
+                current = _read_text(resolve_path(workspace / task.source))
                 write(
                     TextFile(resolve_path(folder / "final-source.py"), current.content)
                 )
@@ -436,7 +474,7 @@ async def run_coding_task(  # noqa: C901 -- bounded task stages and conservative
             elapsed_seconds=time.perf_counter() - started,
             workspace_removed=not (folder / "workspace").exists(),
             original_unchanged=all(
-                _hash(root / path) == digest for path, digest in BASELINE_HASHES.items()
+                _hash(root / path) == digest for path, digest in original_hashes.items()
             ),
         )
         for stage in report["turns"]:

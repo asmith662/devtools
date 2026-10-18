@@ -1,0 +1,146 @@
+{
+  "baseline_existing_tests": {
+    "elapsed_seconds": 1.00557460001437,
+    "exit_code": 0,
+    "failed": false,
+    "stdout": "..........                                                               [100%]\r\n10 passed in 0.42s\r\n"
+  },
+  "baseline_oracle": {
+    "elapsed_seconds": 0.7563584999879822,
+    "exit_code": 1,
+    "failed": true,
+    "failure": "AssertionError: valid AST source containing a non-newline separator could not be materialized",
+    "stdout": ""
+  },
+  "definition": {
+    "baseline_hashes": [
+      [
+        "src/devtools/context/python/function/materialization.py",
+        "b67c8cb67598a59d4b9250e8086065b79d6a7a11040511f6e3d565a220d11fa6"
+      ],
+      [
+        "tests/context/python/function/test_materialization.py",
+        "7ac458ae2c86aa07326c184f5892f0c0542dc19f59aa961fb45fbbf8aa4c143c"
+      ]
+    ],
+    "baseline_revision": "11225000d7c1e728fa1313f92a0c54214b75a426",
+    "call_seconds": 300,
+    "context": [
+      [
+        "src/devtools/context/python/function/materialization.py",
+        "extract source segment UTF8 byte offset",
+        "symbol",
+        "file"
+      ],
+      [
+        "tests/context/python/function/test_materialization.py",
+        "materializes source utf8 range",
+        "file",
+        "file"
+      ]
+    ],
+    "maximum_calls": 3,
+    "name": "python-source-segments",
+    "objective": "Fix exact Python function source materialization for valid AST source ranges when Unicode/ASCII non-newline separators occur inside strings or comments. Preserve original source bytes, UTF-8 byte-column semantics, LF/CRLF/CR line endings, sync/async functions and existing invalid-range rejection. Do not change identities, public APIs or unrelated behavior.",
+    "oracle": "import ast\nfrom devtools.context import PythonSourceRange\nfrom devtools.context.python.function.materialization import _extract_source_segment\n\nchecks = 0\nfor separator in (\"\\v\", \"\\f\", \"\\x1c\", \"\\x1d\", \"\\x1e\", \"\\x85\", \"\\u2028\", \"\\u2029\"):\n    for newline in (\"\\n\", \"\\r\\n\", \"\\r\"):\n        for prefix in (\"\", \"async \"):\n            source = (\"# prefix \" + separator + \" text\" + newline + prefix\n                      + \"def sample():\" + newline + '    return \"caf\\u00e9'\n                      + separator + 'tail\"' + newline)\n            node = ast.parse(source).body[0]\n            span = PythonSourceRange(node.lineno, node.col_offset,\n                                     node.end_lineno, node.end_col_offset)\n            expected = ast.get_source_segment(source, node)\n            try:\n                actual = _extract_source_segment(source, span)\n            except Exception as error:\n                raise AssertionError(\"Valid AST source could not be materialized: \"\n                                     + repr((separator, newline, prefix))) from error\n            assert actual == expected, (separator, newline, prefix, actual, expected)\n            checks += 1\nassert checks == 48\nprint(\"PASS: 48 exact AST segment checks, Unicode separators, LF/CRLF/CR, sync/async\")\n",
+    "output_tokens": 4096,
+    "source": "src/devtools/context/python/function/materialization.py",
+    "tests": [
+      "tests/context/python/function/test_materialization.py"
+    ],
+    "wall_seconds": 900
+  },
+  "definition_sha256": "76e6230b168f42001cfc87c0a4739378109240fe6cf3cdaa8578a74259731ba6",
+  "disposition": "READY_FOR_OPERATOR_AUTHORIZATION",
+  "live_command": "uv run --python C:/Python314/python.exe python scripts/qwen/coding_worker.py --task python-source-segments --report-directory .local/qwen-coding-worker/task-02-run-01",
+  "maintained_source_unchanged": true,
+  "new_model_calls": 0,
+  "oracle_sha256": "cd38d4f509e069de561d0dc614b61493fdb1a5222f4621202eddb869bb7b36c2",
+  "qwen_attempt": "NOT_STARTED",
+  "scripted_reference": {
+    "accepted": true,
+    "context": [
+      {
+        "bytes": 6063,
+        "content_identity": "97667558fb9268410dc893e6782dd38008d9a37e8d0ae770a98b01b495e9bedb",
+        "materialized_kind": "file",
+        "mode": "symbol",
+        "path": "src/devtools/context/python/function/materialization.py",
+        "qualified_name": "MaterializedPythonFunctionDeclaration",
+        "query": "extract source segment UTF8 byte offset",
+        "rank": 1,
+        "repository": "f78171e3-2a0f-40c5-a6fd-f849fd5c6ac0",
+        "selected_kind": "symbol",
+        "selected_span": [
+          938,
+          1348
+        ],
+        "selected_unit": "7ebf3a4d57aaac2ee34a7a389da87b4432229cd43076196ae872e555b9a442ba",
+        "snapshot": "166311ee212d4627cb001091e53df19bd51c6d4725f4ce581036704d05697348",
+        "span": [
+          0,
+          6063
+        ],
+        "tokens": null,
+        "unit": "cdf37d874d3053ae1f8e4a8bae0222683a3460be23926badb763abb77286209f"
+      },
+      {
+        "bytes": 11346,
+        "content_identity": "8be182b753e4b3f7b2ca1b08396df4d533e29e75c9423c496699428b89c09f17",
+        "materialized_kind": "file",
+        "mode": "file",
+        "path": "tests/context/python/function/test_materialization.py",
+        "qualified_name": null,
+        "query": "materializes source utf8 range",
+        "rank": 2,
+        "repository": "f78171e3-2a0f-40c5-a6fd-f849fd5c6ac0",
+        "selected_kind": "file",
+        "selected_span": [
+          0,
+          11334
+        ],
+        "selected_unit": "a1657818d2c32ea5c3d0fe13e863e4304d425fd32b09963f20218314d668a297",
+        "snapshot": "166311ee212d4627cb001091e53df19bd51c6d4725f4ce581036704d05697348",
+        "span": [
+          0,
+          11334
+        ],
+        "tokens": null,
+        "unit": "a1657818d2c32ea5c3d0fe13e863e4304d425fd32b09963f20218314d668a297"
+      }
+    ],
+    "context_bytes": 19354,
+    "elapsed_seconds": 4.186022399982903,
+    "final_existing_tests": {
+      "elapsed_seconds": 0.6746932999812998,
+      "exit_code": 0,
+      "failed": false,
+      "stdout": "..........                                                               [100%]\r\n10 passed in 0.06s\r\n"
+    },
+    "final_oracle": {
+      "elapsed_seconds": 0.26214340003207326,
+      "exit_code": 0,
+      "failed": false,
+      "stdout": "PASS: 48 exact AST segment checks, Unicode separators, LF/CRLF/CR, sync/async\r\n"
+    },
+    "prompt_bytes": 20143,
+    "qualification": "CPython test-only reference, not a Qwen proposal or maintained task implementation",
+    "repair_cycles": 1,
+    "validation_seconds": 3.676437700050883
+  },
+  "validation_commands": [
+    [
+      "<python>",
+      "-I",
+      "-B",
+      "<run>/oracle-runner.py"
+    ],
+    [
+      "<python>",
+      "-I",
+      "-B",
+      "<run>/tests-runner.py"
+    ]
+  ],
+  "workspace_removed": true
+}

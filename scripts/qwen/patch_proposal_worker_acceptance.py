@@ -187,6 +187,7 @@ def _confirm_local_execution(arguments: argparse.Namespace) -> None:
     try:
         answer = input(
             f"Run one local Qwen attempt ({arguments.model}; {limits})? "
+            f"{getattr(arguments, 'task_objective', '')} "
             f"Report: {arguments.report_path}. No paid fallback or unrestricted writes. [y/N] "
         )
     except (EOFError, KeyboardInterrupt):

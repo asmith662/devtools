@@ -51,8 +51,13 @@ task is accepted after two Qwen calls and one repair (8,178 input / 525 output
 tokens; 34.76 seconds), with independent tests/oracle passing. Its exact captured
 implementation is integrated with permanent regressions; see the
 [provenance record](../experiments/qwen/docs/first_accepted_coding_task.json).
-The next checkpoint is a different real task to measure generalization, not
-another Markdown repair. General coding reliability remains unproven.
+Task selection now reuses that same worker via host-owned configuration. The
+second task, exact Python source materialization with non-newline separators,
+is frozen and deterministically prepared, but **not yet attempted by Qwen**;
+see its [readiness record](../experiments/qwen/docs/second_task_preparation.json).
+The next checkpoint is its operator-authorized execution and acceptance review,
+measuring generalization rather than another Markdown repair. General coding
+reliability and autonomous multi-task coordination remain unproven.
 Native structured conversation continuation, integrated coding-agent acceptance
 and later 32K/64K Context benchmarking remain future work.
 

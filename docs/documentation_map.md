@@ -515,10 +515,12 @@ package overview. Broader Evaluation architecture remains unimplemented.
 `experiments/` is non-installable composition and may depend on `devtools`;
 reusable source must not import it. [Qwen experiment documentation](../experiments/qwen/docs/overview.md)
 describes bounded read-only probes and the retrieved-Context Markdown coding
-worker, its terminal gate, isolated validation and limited repair. Its
+worker, its terminal gate, isolated validation, limited repair and host task selection. Its
 [first accepted task provenance](../experiments/qwen/docs/first_accepted_coding_task.json)
 binds captured proposals, source hashes and independent acceptance to the exact
-maintained Markdown correction. Operational entry points remain
+maintained Markdown correction. The [second task preparation](../experiments/qwen/docs/second_task_preparation.json)
+freezes the separate Python source-materialization objective, Context and checks;
+it records readiness, not live Qwen acceptance. Operational entry points remain
 under `scripts/`. The [protected development validation contract](development/validation.md)
 documents the canonical test command, its pre-collection experiment-tree
 exclusion, and the separate confirmation-validation boundary.

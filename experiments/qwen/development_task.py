@@ -248,20 +248,20 @@ def _upfront_context(
     }
 
 
-def _structured_edit_definition() -> ModelToolDefinition:
+def _structured_edit_definition(*, source_path: str = SOURCE) -> ModelToolDefinition:
     """Expose one proposal-only operation through the existing model contract."""
     return normalize_tool_descriptor(
         ToolDescriptor(
             name="propose_edit",
             description=(
-                "Propose one bounded replacement in the authorized Markdown source. "
+                "Propose one bounded replacement in the authorized source. "
                 "This records a proposal; it does not write files."
             ),
             input_schema_json=json.dumps(
                 {
                     "type": "object",
                     "properties": {
-                        "path": {"type": "string", "enum": [SOURCE]},
+                        "path": {"type": "string", "enum": [source_path]},
                         "old_text": {
                             "type": "string",
                             "minLength": 1,
@@ -282,7 +282,11 @@ def _structured_edit_definition() -> ModelToolDefinition:
 
 
 def _structured_edit_patch(  # noqa: C901, PLR0912 -- validate one explicit untrusted proposal
-    root: Path, source: str, call: ModelToolCall
+    root: Path,
+    source: str,
+    call: ModelToolCall,
+    *,
+    source_path: str = SOURCE,
 ) -> tuple[str, str]:
     """Validate one exact text replacement and derive its bounded host diff."""
     if call.name != "propose_edit":
@@ -305,7 +309,7 @@ def _structured_edit_patch(  # noqa: C901, PLR0912 -- validate one explicit untr
         arguments["old_text"],
         arguments["new_text"],
     )
-    if path != SOURCE:
+    if path != source_path:
         raise PatchProposalError("Structured edit path is not the authorized source")
     if not isinstance(old_text, str) or not isinstance(new_text, str):
         raise PatchProposalError("Structured edit text values must be strings")
@@ -369,23 +373,27 @@ def _structured_edit_patch(  # noqa: C901, PLR0912 -- validate one explicit untr
         difflib.unified_diff(
             source.splitlines(keepends=True),
             updated.splitlines(keepends=True),
-            fromfile=f"a/{SOURCE}",
-            tofile=f"b/{SOURCE}",
+            fromfile=f"a/{source_path}",
+            tofile=f"b/{source_path}",
             lineterm="\n",
         )
     )
-    _validate_patch_envelope(root, patch)
+    _validate_patch_envelope(root, patch, source_path=source_path)
     return patch, updated
 
 
 def _structured_edit_patch_from_calls(
-    root: Path, source: str, calls: tuple[ModelToolCall, ...]
+    root: Path,
+    source: str,
+    calls: tuple[ModelToolCall, ...],
+    *,
+    source_path: str = SOURCE,
 ) -> tuple[ModelToolCall, str, str]:
     """Admit exactly one proposal call; multiple calls are never partially used."""
     if len(calls) != 1:
         raise PatchProposalError("Exactly one structured edit proposal is required")
     call = calls[0]
-    patch, updated = _structured_edit_patch(root, source, call)
+    patch, updated = _structured_edit_patch(root, source, call, source_path=source_path)
     return call, patch, updated
 
 
@@ -1068,9 +1076,15 @@ async def freeze_markdown_task(root: Path, folder: Path) -> dict[str, Any]:
     return frozen
 
 
-async def apply_markdown_patch(root: Path, folder: Path, patch: str) -> None:
+async def apply_markdown_patch(
+    root: Path,
+    folder: Path,
+    patch: str,
+    *,
+    source_path: str = SOURCE,
+) -> None:
     """Admit one exact-file unified diff, then use Git's existing patch engine."""
-    _validate_patch_envelope(root, patch)
+    _validate_patch_envelope(root, patch, source_path=source_path)
     path = _store_patch(folder, patch)
     for args in (("--check", "--whitespace=error"), ("--whitespace=error",)):
         result = await _command(
@@ -1080,9 +1094,11 @@ async def apply_markdown_patch(root: Path, folder: Path, patch: str) -> None:
             raise PatchProposalError(str(result))
 
 
-def _validate_patch_envelope(root: Path, patch: str) -> None:
+def _validate_patch_envelope(
+    root: Path, patch: str, *, source_path: str = SOURCE
+) -> None:
     """Check the one-file plain-diff grammar shared by both task conditions."""
-    prefix = f"--- a/{SOURCE}\n+++ b/{SOURCE}\n@@ "
+    prefix = f"--- a/{source_path}\n+++ b/{source_path}\n@@ "
     lines = patch.splitlines()
     if len(patch.encode()) > 16_384 or not patch.startswith(prefix):
         raise PatchProposalError(
@@ -1103,7 +1119,7 @@ def _validate_patch_envelope(root: Path, patch: str) -> None:
         for line in lines[2:]
     ):
         raise PatchProposalError("Unexpected patch header or additional file")
-    target = resolve_path(SOURCE, base_directory=root)
+    target = resolve_path(source_path, base_directory=root)
     if not target.value.is_relative_to(resolve_path(root).value):
         raise PatchProposalError("Patch target escapes workspace")
 

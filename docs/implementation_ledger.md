@@ -1,5 +1,37 @@
 # Implementation Ledger
 
+## Host-selected Qwen tasks and second-task preparation (2026-10-18)
+
+Generalized the existing coding loop through experiment-local `CodingTask` values:
+objective, one allowed source, focused tests, pinned Git revision/hashes,
+retrieval/disclosure choices, host acceptance and bounded limits. The CLI selects
+`markdown-fences` or `python-source-segments`; no task-name branching or alternate
+executor was added to the loop. Existing structured-edit/schema/Git helpers take
+the selected path while retaining defaults for concrete older consumers.
+Canonical search, Context, ModelInteraction and managed validation are reused.
+Baseline materialization now authenticates Git objects in the shared worker;
+duplicate test-fixture reconstruction was removed. V2 receipts bind complete
+configuration; old receipts and first-task acceptance remain unchanged.
+
+The second real defect is exact Python source materialization with non-newline
+separators inside valid literals/comments. Baseline `11225000...` passes ten
+existing tests but fails an independently authored 48-case AST/source oracle.
+The [prepared task record](../experiments/qwen/docs/second_task_preparation.json)
+freezes full source/test identities, queries, objective, checks and limits.
+A separately labelled CPython reference-only scripted repair passes both checks
+in isolation: 4.186 seconds total / 3.676 seconds validation, one repair;
+19,354 rendered Context bytes and 20,143 initial prompt bytes. The reference is
+excluded from model Context and is not a maintained task implementation.
+Second-task Qwen execution is NOT_STARTED; new model calls are ZERO.
+
+Python 3.14 validation: 283 focused tests passed (45.65 s); one protected gate
+passed, 1,656 passed/two skipped, 100% production branch coverage
+(39.62 s pytest / 41.01 s host). Ruff, nine-file formatting and strict mypy over
+255 files passed. Production source, the first accepted Markdown bytes and
+scientific evidence are unchanged. Next: genuine terminal-authorized execution
+of this second task; autonomous multi-task coordination, structured continuation,
+task-local/long-term memory and Context capacity benchmarks remain future work.
+
 ## First accepted Qwen coding task: maintained closeout (2026-10-18)
 
 Authenticated the operator-run `.local/qwen-coding-worker/run-01` at

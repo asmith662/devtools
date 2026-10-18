@@ -804,6 +804,11 @@ Its stateless requests carry current source and correlated feedback. The first
 controlled Qwen Markdown task passed after one repair, and its exact captured
 correction is integrated with permanent regressions. This is single-task evidence,
 not reusable Agent promotion or proof of general coding reliability.
+The same consumer now takes a small experiment-local host task definition for
+objective, admitted source/search/disclosure, checks and bounds. One unchanged
+control loop serves Markdown and the prepared Python source-materialization
+task. This adds no framework Task lifecycle, registry or model-directed authority;
+the second live task is still awaiting operator authorization.
 
 Increment 23 independently validates this boundary but does not promote its
 directional-reservation-v1 realization. Canonical and practical top five each

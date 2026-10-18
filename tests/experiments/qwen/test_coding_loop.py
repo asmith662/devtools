@@ -6,7 +6,6 @@ from __future__ import annotations
 
 import asyncio
 import json
-import shutil
 from pathlib import Path
 from typing import TYPE_CHECKING, cast
 
@@ -21,7 +20,7 @@ from devtools.models.interaction import (
     ModelToolCall,
 )
 from experiments.qwen import coding_loop as worker
-from experiments.qwen.development_task import SOURCE, TESTS, _command, _hash
+from experiments.qwen.development_task import SOURCE, _hash
 from scripts.qwen.patch_proposal_worker_acceptance import _confirm_local_execution
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -31,36 +30,9 @@ if TYPE_CHECKING:
 
 
 @pytest.fixture(scope="module")
-def baseline_root(tmp_path_factory: pytest.TempPathFactory) -> Path:
-    """Keep the original frozen worker regression after its defect is fixed.
-
-    Git is already required by patch application. Read the authenticated original
-    source/tests from the integration checkpoint rather than resetting maintained
-    files, weakening hashes, or changing the frozen task/oracle.
-    """
-    root = tmp_path_factory.mktemp("frozen-markdown-baseline")
-    shutil.copytree(
-        ROOT / "src",
-        root / "src",
-        ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
-    )
-    for path in (SOURCE, TESTS):
-        result = asyncio.run(
-            _command(
-                ROOT,
-                "git",
-                "show",
-                "d9a118315450b1e3df8bc00b6bbc29798845877b:" + path,
-            )
-        )
-        assert not result["failed"]
-        target = root / path
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes(
-            result["stdout"].replace("\r\n", "\n").replace("\n", "\r\n").encode()
-        )
-        assert _hash(target) == worker.BASELINE_HASHES[path]
-    return root
+def baseline_root() -> Path:
+    """Let the configured worker authenticate/materialize its own Git baseline."""
+    return ROOT
 
 
 def proposal(old: str, new: str, *, path: str = SOURCE) -> ModelResponse:
@@ -144,6 +116,7 @@ def test_real_oracle_accepts_scripted_edit_and_cleans_workspace(
 ) -> None:
     """A passing real validation is required; the caller's source stays untouched."""
     model = Scripted([proposal(OLD, GOOD)])
+    original_hash = _hash(baseline_root / SOURCE)
     result = asyncio.run(worker.run_coding_task(baseline_root, tmp_path / "run", model))
     assert result["accepted"], result
     assert result["baseline_validation"]["oracle"]["failed"]
@@ -151,7 +124,7 @@ def test_real_oracle_accepts_scripted_edit_and_cleans_workspace(
     assert result["turns"][0]["validation"]["tests"]["exit_code"] == 0
     assert result["workspace_removed"]
     assert result["original_unchanged"]
-    assert _hash(baseline_root / SOURCE) == worker.BASELINE_HASHES[SOURCE]
+    assert _hash(baseline_root / SOURCE) == original_hash
     assert len(model.requests) == 1
     assert model.requests[0].conversation is None
     assert [tool.name for tool in model.requests[0].tools] == ["propose_edit"]

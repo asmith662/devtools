@@ -26,6 +26,13 @@ The exact captured edit is integrated with eight permanent regressions and
 [verified provenance](../../../experiments/qwen/docs/first_accepted_coding_task.json).
 No new inference occurred during closeout. General reliability and reusable
 Agent promotion remain unestablished; the next checkpoint is a different real task.
+The existing loop now accepts host-owned one-file task configuration through
+`run_coding_task(..., task=...)` and CLI `--task`. Original Markdown compatibility
+and second-task Context/validation/repair/refusal are deterministically tested.
+The [second task preparation](../../../experiments/qwen/docs/second_task_preparation.json)
+freezes an existing Python source-materialization defect, independent checks and
+all bounds. It is ready for terminal authorization; no second Qwen attempt has
+occurred. This is task configuration, not reusable Agent-framework promotion.
 Native structured continuation, atomic task-local state, long-term memory and
 32K/64K Context benchmarking remain planned work.
 

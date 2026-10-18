@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: INP001, PLR2004 -- operational CLI test conventions
+# ruff: noqa: INP001, PLR2004, COM812 -- operational CLI test conventions
 
 """Resolve and validate output locations before asking for any authorization."""
 
@@ -32,10 +32,12 @@ def cli() -> ModuleType:
 
 
 @pytest.mark.parametrize("absolute", [False, True])
+@pytest.mark.parametrize("task", ["markdown-fences", "python-source-segments"])
 def test_report_directory_resolves_against_cwd_before_confirmation(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
     cli: ModuleType,
+    task: str,
     *,
     absolute: bool,
 ) -> None:
@@ -43,10 +45,14 @@ def test_report_directory_resolves_against_cwd_before_confirmation(
     monkeypatch.chdir(tmp_path)
     expected = tmp_path / "new" / "run"
     value = str(expected) if absolute else "new/run"
-    monkeypatch.setattr("sys.argv", ["worker", "--report-directory", value])
+    monkeypatch.setattr(
+        "sys.argv", ["worker", "--task", task, "--report-directory", value]
+    )
 
     def boundary(arguments: argparse.Namespace) -> None:
         assert arguments.report_directory == expected
+        assert arguments.task == task
+        assert task in arguments.task_objective
         assert arguments.report_path == expected
         assert arguments.authorize_local_execution is False
         message = "confirmed path boundary; no execution"
