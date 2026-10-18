@@ -30,6 +30,18 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
+### Multi-resolution search engineering baseline
+
+Selectable file, recursive Python symbol, overlapping line-window and mixed
+retrieval are implemented under existing Context/Retrieval ownership. Legacy
+file BM25 is unchanged; independent source populations retain exact snapshot
+lineage and native ranks, with rank-only consolidation. Explicit Context
+expansion uses retained file/class source. See the
+[API and deterministic acceptance contract](../src/devtools/context/retrieval/docs/overview.md#selectable-source-representations).
+This completes the selectable representation baseline, without claiming better
+ranking or completing Context/retrieval research. No scientific study, model
+invocation, automatic Context optimizer or agent/memory implementation follows.
+
 ### Automated experiment mechanics
 
 The current bounded increment adds metadata-only observed usage and optional

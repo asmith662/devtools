@@ -1,5 +1,32 @@
 # Implementation Ledger
 
+## Multi-resolution repository search (2026-10-18)
+
+Added selectable file/symbol/window/mixed source retrieval under
+`devtools.context.retrieval.source`, composing existing corpus/document identity,
+native BM25, RI declarations, Python coordinates and shared rank-fusion
+arithmetic. Exact source slices retain parent resources and snapshot identity;
+decorated/nested/async syntax is indexed without inventing RI subjects outside
+the existing analyzers' scope. Invalid/unsupported symbol sources fall back to
+files. Explicit source choices and class/file expansion use the existing Context
+plan/materialization path. Legacy file scoring/order is preserved.
+Deterministic acceptance covers lineage, source preservation, nesting, window
+coverage/overlap, fallback, fusion and incompatible snapshots. External code-search
+patterns were reviewed; no new library or framework was required. Comparative
+retrieval superiority and agent-task effectiveness remain unproven. No model,
+scientific-controller run or scientific-input change is part of this checkpoint.
+
+Validation on the existing Python 3.14.3 runtime: 13 focused source-search cases
+with 100% new-code branch coverage; protected development profile 1,640 passed,
+2 skipped, 100% production branch coverage (40.69 seconds pytest, 42.11 seconds
+host elapsed). Ruff, changed-file formatting and strict mypy over supported
+source/Context tests pass. The first gate under uv's default Python 3.12.13 failed
+on 54 pre-existing filesystem/usage tests; a read-only unchanged-main
+`JsonObjectFile` construction reproduces the slotted-dataclass `super()` failure.
+That unrelated compatibility defect was not repaired or hidden by weakening
+tests or package requirements. The new source-search behavior is not a claim
+that the entire repository's Python 3.12 support is healthy.
+
 ## Host-disclosure replacement prospective plan (2026-10-14)
 
 Published a separate [unapproved v2 plan](../experiments/source_grounding/plans/HOST_DISCLOSURE_PLAN_REVIEW.md)

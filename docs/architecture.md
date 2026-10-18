@@ -1344,6 +1344,19 @@ documentation, [taxonomy.md](architecture/taxonomy.md) for definitions, and
 for the approved future boundary.
 
 
+### Selectable repository source retrieval
+
+Production Retrieval additionally provides selectable whole-file, recursive
+Python symbol-body, overlapping line-window and mixed source views. These
+compose existing observed resources, bounded RI declarations, AST coordinates,
+lexical BM25 and rank-only fusion. Source representation identity is distinct
+from semantic subject identity; nested syntax without a canonical RI subject
+does not invent one. Exact retained source can enter the existing explicit
+Context plan/materialization contract through `SourceSearchDisclosureOption`.
+Legacy file ranking remains unchanged. See the
+[retrieval package contract](../src/devtools/context/retrieval/docs/overview.md#selectable-source-representations).
+This implements selectable representations, not a comparative ranking claim.
+
 ### Repository-map structural retrieval
 
 Production Retrieval now also exposes a separate repository-map channel over

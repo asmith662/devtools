@@ -17,6 +17,8 @@ pass; corrected execution requires binding-only Stage A and a new exact run ID.
 - [Retrieval foundation](architecture/retrieval.md) owns detailed current
   Retrieval/RI/Localization capability status, lexical representation and fielding,
   empirical limits, retrieval-family hypotheses and the label constraint.
+  [Selectable source search](../src/devtools/context/retrieval/docs/overview.md#selectable-source-representations)
+  owns file/symbol/window/mixed APIs, source lineage, fallback and Context examples.
   [Roadmap](roadmap.md#current-sequencing) owns the coordinated tracks and mandatory
   R1, R1.5 diagnostics, R1.6 sensitivity, R1.7 query terms, then unconditional
   R2 BM25F experiments; these are not production behavior.

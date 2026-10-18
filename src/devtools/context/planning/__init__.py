@@ -21,6 +21,7 @@ from devtools.context.planning.resource import (
     WholeResourceDisclosureOption,
     choose_whole_resource_disclosure,
 )
+from devtools.context.planning.source import SourceSearchDisclosureOption
 
 __all__ = [
     "ContextDisclosure",
@@ -29,6 +30,7 @@ __all__ = [
     "MaterializedDisclosureItem",
     "PlannedDisclosure",
     "RenderedContextDisclosure",
+    "SourceSearchDisclosureOption",
     "WholeResourceDisclosureOption",
     "assemble_context_disclosure_model_request",
     "choose_whole_resource_disclosure",

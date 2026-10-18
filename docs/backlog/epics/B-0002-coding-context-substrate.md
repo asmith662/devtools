@@ -13,6 +13,18 @@
 
 ## Problem / value
 
+### Implemented selectable retrieval baseline (2026-10-18)
+
+Production now supports file, recursive Python symbol-body, line-window and mixed
+search through existing lexical ownership. Exact occurrence/resource/snapshot
+lineage, canonical bounded RI subjects, explicit unsupported/invalid-Python file
+fallback and caller-chosen Context expansion are retained. Nested syntax has
+representation identity without fabricated semantic subjects. Mixed ranks use
+RRF without summing incompatible BM25 scores. This closes the missing selectable
+representation implementation, not comparative effectiveness, automatic Context
+selection, or this broader epic. See the
+[package contract](../../../src/devtools/context/retrieval/docs/overview.md#selectable-source-representations).
+
 ### Current retrieval-foundation pressure
 
 This epic remains **BACKLOG / open**. The
