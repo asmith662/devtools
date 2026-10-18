@@ -1,0 +1,117 @@
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  color: #25354a;
+  background: #f3f5f8;
+  --tea-color-border-primary-default: #d9e0e9;
+  --tea-color-border-brand-default: #2563eb;
+  --tea-color-text-primary: #25354a;
+  --tea-color-text-tertiary: #627087;
+}
+/* Preserve complete governed dispositions rather than Tea's compact ellipsis. */
+._asset-status .tea-tag,
+._asset-status .tea-tag > span {
+  max-width: none;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  height: auto;
+  overflow-wrap: anywhere;
+}
+body {
+  margin: 0;
+}
+.operator-header {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 20px 28px;
+  background: #15283f;
+  color: #fff;
+}
+.operator-header strong {
+  font-size: 24px;
+}
+.operator-header span {
+  color: #c4d4e7;
+}
+main {
+  max-width: 1500px;
+  margin: auto;
+}
+.panel {
+  background: white;
+  border: 1px solid #e0e5ed;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 16px 0;
+}
+.panel h3 {
+  margin: 0 0 14px;
+}
+.snapshot,
+.limitations {
+  color: #53647a;
+  margin: 16px 0;
+  line-height: 1.6;
+}
+code {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.evidence {
+  margin-top: 14px;
+  color: #53647a;
+}
+details {
+  border-top: 1px solid #edf0f4;
+  padding: 12px 0;
+}
+summary {
+  cursor: pointer;
+}
+.empty {
+  color: #627087;
+  padding: 8px 0;
+}
+.run-list {
+  padding: 16px 10px 0 0;
+}
+.run-list button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #d8e0ea;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+}
+.run-list button[aria-pressed="true"] {
+  border-color: #2563eb;
+  background: #eff5ff;
+}
+dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid #edf0f4;
+  padding: 10px 0;
+}
+dd {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+footer {
+  padding: 20px;
+  text-align: center;
+  color: #627087;
+  font-size: 12px;
+}
+._asset-split-detail .panel {
+  margin-top: 16px;
+}

@@ -527,6 +527,13 @@ exclusion, and the separate confirmation-validation boundary.
 
 ## Backlog navigation
 
+The [read-only operator dashboard pilot](../experiments/operator_dashboard/README.md)
+projects existing intake, canonical backlog, work-cycle and Qwen result metadata
+into an isolated local MemoryPanel-derived React UI. It grants no authority and
+serves no arbitrary repository files. Its pinned reuse/license and public-build
+findings are recorded with the pilot; source-derived intake inputs remain
+uncaptured pending resolution of the coordinator-write constraint.
+
 [Backlog overview](backlog/overview.md) is the canonical record index, grouped
 by stable ID, lifecycle status, and primary domain. [Backlog metadata](backlog/metadata.md)
 defines ownership, split-lineage, dependency, and promotion terminology. Its

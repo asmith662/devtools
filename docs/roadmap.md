@@ -88,6 +88,15 @@ Context benchmarking and Learned Intelligence integration remain on the roadmap.
 
 ### Future agent working and long-term memory
 
+The [MemoryPanel operator pilot](../experiments/operator_dashboard/README.md)
+adds read-only visibility over existing work and worker receipts, with explicit
+synthetic/live provenance and unknown accounting. This is UI adoption, not an
+autonomous supervisor or memory implementation. Four source-derived intake
+inputs link optional CodeGraph exploration, layered recall, validated procedural
+skills and incrementally maintained knowledge to existing pressure. They remain
+uncaptured until coordinator queue additions are explicitly reconciled with
+preservation of the active work-cycle checkout. No implementation is authorized.
+
 These are planned needs, not implemented architecture. Task-local working memory
 should support atomic durable checkpoints of objective, constraints, progress,
 verified evidence references, hypotheses, unresolved questions and next intended
