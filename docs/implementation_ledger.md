@@ -1,5 +1,35 @@
 # Implementation Ledger
 
+## First accepted Qwen coding task: maintained closeout (2026-10-18)
+
+Authenticated the operator-run `.local/qwen-coding-worker/run-01` at
+`d9a118315450b1e3df8bc00b6bbc29798845877b`: two Qwen calls, one repair,
+8,178 input tokens, 525 output tokens and 34.7609 seconds. Seven existing
+Markdown tests and the original independent eight-scenario oracle passed.
+This closeout made zero model calls and does not establish general coding reliability.
+
+Replayed the two captured native proposals through existing newline-safe admission.
+Verified source SHA-256 chain `b01a8fda...` -> `0b326dfb...` -> `a5510a1b...`,
+exact host patches, saved final-source bytes, and unchanged hashes of all 13
+historical run artifacts. Fresh isolated validation preceded installation of the
+exact accepted source bytes; no Codex-authored replacement was used. The
+[permanent provenance record](../experiments/qwen/docs/first_accepted_coding_task.json)
+retains full identities, proposals, artifact hashes and observed usage. Eight
+permanent Markdown regressions cover the accepted behaviors. Frozen worker tests
+now obtain their original source/tests from authenticated Git history rather than
+weakening baseline identities or trying to fix an already-correct maintained file.
+
+Fixed only CLI report resolution: relative to explicit current working directory,
+absolute paths preserved, malformed/occupied locations refused before default-No
+terminal confirmation. No authorization bypass was introduced.
+
+Validation on Python 3.14.3: 208 focused tests passed (21.95 s); one protected
+gate passed, 1,654 passed/two skipped, 100% production branch coverage
+(43.56 s pytest / 44.90 s host). Ruff, formatting and strict mypy passed.
+Python 3.12 compatibility remains separate. Next: a different real development
+task through the existing worker, measuring generalization rather than repeating
+Markdown repair. Continuation/memory/Context-benchmark roadmap remains intact.
+
 ## Retrieved-Context Qwen coding loop (2026-10-18)
 
 Selectively integrated maintained structured-edit worker, CLI and tests from

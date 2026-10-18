@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import shutil
 from pathlib import Path
 from typing import TYPE_CHECKING, cast
 
@@ -20,13 +21,46 @@ from devtools.models.interaction import (
     ModelToolCall,
 )
 from experiments.qwen import coding_loop as worker
-from experiments.qwen.development_task import SOURCE, _hash
+from experiments.qwen.development_task import SOURCE, TESTS, _command, _hash
 from scripts.qwen.patch_proposal_worker_acceptance import _confirm_local_execution
 
 ROOT = Path(__file__).resolve().parents[3]
 
 if TYPE_CHECKING:
     from devtools.context.retrieval.source import SourceSearchMode
+
+
+@pytest.fixture(scope="module")
+def baseline_root(tmp_path_factory: pytest.TempPathFactory) -> Path:
+    """Keep the original frozen worker regression after its defect is fixed.
+
+    Git is already required by patch application. Read the authenticated original
+    source/tests from the integration checkpoint rather than resetting maintained
+    files, weakening hashes, or changing the frozen task/oracle.
+    """
+    root = tmp_path_factory.mktemp("frozen-markdown-baseline")
+    shutil.copytree(
+        ROOT / "src",
+        root / "src",
+        ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
+    )
+    for path in (SOURCE, TESTS):
+        result = asyncio.run(
+            _command(
+                ROOT,
+                "git",
+                "show",
+                "d9a118315450b1e3df8bc00b6bbc29798845877b:" + path,
+            )
+        )
+        assert not result["failed"]
+        target = root / path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(
+            result["stdout"].replace("\r\n", "\n").replace("\n", "\r\n").encode()
+        )
+        assert _hash(target) == worker.BASELINE_HASHES[path]
+    return root
 
 
 def proposal(old: str, new: str, *, path: str = SOURCE) -> ModelResponse:
@@ -80,11 +114,15 @@ class Scripted:
 
 
 @pytest.mark.parametrize("mode", ["file", "symbol", "window", "mixed"])
-def test_context_selection_materializes_exact_source(mode: str, tmp_path: Path) -> None:
+def test_context_selection_materializes_exact_source(
+    mode: str,
+    tmp_path: Path,
+    baseline_root: Path,
+) -> None:
     """All views use the admitted corpus with bound lineage and explicit expansion."""
     folder = tmp_path / "context"
     folder.mkdir()
-    isolated = worker._prepare_workspace(ROOT, folder)
+    isolated = worker._prepare_workspace(baseline_root, folder)
     context, resources = worker.acquire_context(
         isolated,
         Repository.new(),
@@ -100,28 +138,34 @@ def test_context_selection_materializes_exact_source(mode: str, tmp_path: Path) 
     assert all(item["bytes"] > 0 and item["content_identity"] for item in resources)
 
 
-def test_real_oracle_accepts_scripted_edit_and_cleans_workspace(tmp_path: Path) -> None:
+def test_real_oracle_accepts_scripted_edit_and_cleans_workspace(
+    tmp_path: Path,
+    baseline_root: Path,
+) -> None:
     """A passing real validation is required; the caller's source stays untouched."""
     model = Scripted([proposal(OLD, GOOD)])
-    result = asyncio.run(worker.run_coding_task(ROOT, tmp_path / "run", model))
+    result = asyncio.run(worker.run_coding_task(baseline_root, tmp_path / "run", model))
     assert result["accepted"], result
     assert result["baseline_validation"]["oracle"]["failed"]
     assert result["turns"][0]["validation"]["oracle"]["exit_code"] == 0
     assert result["turns"][0]["validation"]["tests"]["exit_code"] == 0
     assert result["workspace_removed"]
     assert result["original_unchanged"]
-    assert _hash(ROOT / SOURCE) == worker.BASELINE_HASHES[SOURCE]
+    assert _hash(baseline_root / SOURCE) == worker.BASELINE_HASHES[SOURCE]
     assert len(model.requests) == 1
     assert model.requests[0].conversation is None
     assert [tool.name for tool in model.requests[0].tools] == ["propose_edit"]
     assert model.requests[0].settings.maximum_output_tokens == 4096
 
 
-def test_failure_feedback_current_source_and_second_repair(tmp_path: Path) -> None:
+def test_failure_feedback_current_source_and_second_repair(
+    tmp_path: Path,
+    baseline_root: Path,
+) -> None:
     """A failed edit remains only in isolation and is the next proposal's baseline."""
     wrong = OLD.replace("len(fence) >=", "len(fence) >")
     model = Scripted([proposal(OLD, wrong), proposal(wrong, GOOD)])
-    result = asyncio.run(worker.run_coding_task(ROOT, tmp_path / "run", model))
+    result = asyncio.run(worker.run_coding_task(baseline_root, tmp_path / "run", model))
     assert result["accepted"], result
     assert len(model.requests) == 2
     assert result["turns"][0]["disposition"] == "TESTS_FAILED"
@@ -151,10 +195,11 @@ def test_failure_feedback_current_source_and_second_repair(tmp_path: Path) -> No
 def test_failures_do_not_redispatch_or_escape(
     tmp_path: Path,
     response: ModelResponse | Exception,
+    baseline_root: Path,
 ) -> None:
     """Invalid/native/provider outcomes stop rather than trying another call."""
     model = Scripted([response])
-    result = asyncio.run(worker.run_coding_task(ROOT, tmp_path / "run", model))
+    result = asyncio.run(worker.run_coding_task(baseline_root, tmp_path / "run", model))
     assert not result["accepted"]
     assert len(model.requests) == 1
     assert result["workspace_removed"]
@@ -162,17 +207,22 @@ def test_failures_do_not_redispatch_or_escape(
     assert not (tmp_path / "outside.py").exists()
 
 
-def test_exhaustion_and_directory_reuse_refused(tmp_path: Path) -> None:
+def test_exhaustion_and_directory_reuse_refused(
+    tmp_path: Path,
+    baseline_root: Path,
+) -> None:
     """Valid but behaviorally wrong edits stop at the configured call bound."""
     wrong = OLD.replace("len(fence) >=", "len(fence) >")
     model = Scripted([proposal(OLD, wrong)])
     folder = tmp_path / "run"
-    result = asyncio.run(worker.run_coding_task(ROOT, folder, model, maximum_calls=1))
+    result = asyncio.run(
+        worker.run_coding_task(baseline_root, folder, model, maximum_calls=1)
+    )
     assert result["disposition"] == "REPAIR_BUDGET_EXHAUSTED"
     assert result["workspace_removed"]
     assert result["original_unchanged"]
     with pytest.raises(FileExistsError):
-        asyncio.run(worker.run_coding_task(ROOT, folder, model))
+        asyncio.run(worker.run_coding_task(baseline_root, folder, model))
     assert len(model.requests) == 1
 
 

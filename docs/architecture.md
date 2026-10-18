@@ -800,8 +800,10 @@ now composes production multi-resolution retrieval/Context with native edit
 proposals, host-controlled isolated validation and at most two test-feedback
 repairs. This concrete experimental worker owns task bounds and acceptance;
 it adds no Agent hierarchy, Runtime loop, model write authority or Memory domain.
-Its stateless requests carry current source and correlated feedback. Scripted
-acceptance validates host behavior; live Qwen acceptance awaits console consent.
+Its stateless requests carry current source and correlated feedback. The first
+controlled Qwen Markdown task passed after one repair, and its exact captured
+correction is integrated with permanent regressions. This is single-task evidence,
+not reusable Agent promotion or proof of general coding reliability.
 
 Increment 23 independently validates this boundary but does not promote its
 directional-reservation-v1 realization. Canonical and practical top five each

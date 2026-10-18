@@ -14,6 +14,7 @@ _ROOT = Path(__file__).resolve().parents[2]
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
+from devtools.core.paths import PathError, resolve_path
 from devtools.models.interaction import InteractionSource
 from devtools.models.interaction.providers import LlamaCppInteraction
 from experiments.qwen.coding_loop import run_coding_task
@@ -28,8 +29,33 @@ from scripts.qwen.patch_proposal_worker_acceptance import (
 async def main() -> int:
     """Confirm before service inspection, then dispatch at most one worker run."""
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--report-directory", required=True, type=Path)
+    parser.add_argument(
+        "--report-directory",
+        required=True,
+        help=(
+            "New report directory; relative paths resolve against "
+            "the current working directory."
+        ),
+    )
     args = parser.parse_args()
+    try:
+        args.report_directory = resolve_path(
+            args.report_directory,
+            base_directory=Path.cwd(),
+        ).value
+        try:
+            args.report_directory.stat()
+        except FileNotFoundError:
+            pass
+        else:
+            parser.error("Report directory must not already exist.")
+        existing_parent = next(
+            parent for parent in args.report_directory.parents if parent.exists()
+        )
+        if not existing_parent.is_dir():
+            parser.error("Report directory has a non-directory parent.")
+    except (PathError, ValueError, OSError) as error:
+        parser.error(f"Invalid report directory: {error}")
     # This caller deliberately offers no noninteractive authorization switch.
     # The maintainer runs it in a real terminal and answers the default-No prompt.
     args.freeze_only = False

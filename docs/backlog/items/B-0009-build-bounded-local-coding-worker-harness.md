@@ -20,8 +20,12 @@ The [concrete coding worker](../../../experiments/qwen/docs/overview.md#retrieve
 now consumes multi-resolution Context, isolated native proposals and focused
 test-feedback repair, capped at three calls. Scripted responses validate initial
 acceptance, a corrected second edit, refusal, exhaustion and cleanup against the
-unchanged eight-scenario oracle. Live execution awaits real terminal confirmation;
-real Qwen task acceptance and reusable Agent promotion remain unestablished.
+unchanged eight-scenario oracle. The first real Markdown run is now accepted:
+two Qwen calls, one repair, 8,178 input / 525 output tokens, 34.76 seconds.
+The exact captured edit is integrated with eight permanent regressions and
+[verified provenance](../../../experiments/qwen/docs/first_accepted_coding_task.json).
+No new inference occurred during closeout. General reliability and reusable
+Agent promotion remain unestablished; the next checkpoint is a different real task.
 Native structured continuation, atomic task-local state, long-term memory and
 32K/64K Context benchmarking remain planned work.
 

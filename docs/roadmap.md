@@ -46,10 +46,13 @@ invocation, automatic Context optimizer or agent/memory implementation follows.
 
 The [concrete Markdown worker](../experiments/qwen/docs/overview.md#retrieved-context-markdown-coding-worker)
 consumes production multi-resolution search and explicit Context, native proposals,
-isolated validation and up to two test-feedback repairs. Scripted acceptance
-validates the host; a live local run awaits genuine terminal authorization.
-Qwen task acceptance remains unestablished. The next checkpoint is one authorized
-run measuring correctness, Context burden, repairs, tokens and elapsed time.
+isolated validation and up to two test-feedback repairs. The first real Markdown
+task is accepted after two Qwen calls and one repair (8,178 input / 525 output
+tokens; 34.76 seconds), with independent tests/oracle passing. Its exact captured
+implementation is integrated with permanent regressions; see the
+[provenance record](../experiments/qwen/docs/first_accepted_coding_task.json).
+The next checkpoint is a different real task to measure generalization, not
+another Markdown repair. General coding reliability remains unproven.
 Native structured conversation continuation, integrated coding-agent acceptance
 and later 32K/64K Context benchmarking remain future work.
 

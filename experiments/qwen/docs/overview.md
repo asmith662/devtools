@@ -19,11 +19,24 @@ or mixed. Receipts preserve selected/expanded unit identities, exact spans,
 snapshot, content identity, ranks and bytes. Caller-selected scope is not an
 automatic sufficiency policy or evidence of superior ranking.
 
-Run from the integration worktree in a real PowerShell console:
+The existing entrypoint, when operating on the frozen task baseline, is:
 
 ```powershell
 uv run --python C:/Python314/python.exe python scripts/qwen/coding_worker.py --report-directory .local/qwen-coding-worker/run-01
 ```
+
+Relative report paths resolve against the caller's current
+working directory; absolute paths remain supported. Invalid/occupied locations
+are rejected before confirmation. Do not repeat completed run-01 or reuse its
+directory. After maintained closeout the frozen Markdown worker refuses the
+changed baseline. Its regression tests retain the authenticated original source
+and tests from Git checkpoint `d9a118315450b1e3df8bc00b6bbc29798845877b`.
+
+Closeout validation on Python 3.14: 208 focused tests passed in 21.95 seconds;
+the protected gate passed once (1,654 passed, two skipped, 100% production branch
+coverage; 44.90 seconds host). Ruff, five-file formatting and strict mypy over
+250 files passed. The original oracle was separately rerun against maintained
+source. This validation made no model or scientific calls.
 
 The genuine terminal prompt defaults to No; no noninteractive bypass exists in
 this entrypoint. Confirmation precedes service inspection. An unavailable or
@@ -63,22 +76,35 @@ cached input/reasoning remain independent subcategories, never added twice.
 Per-resource token attribution is unknown; aggregate utilization uses reported
 input / 32,768. Codex coordination usage is UNKNOWN.
 
-Scripted checks exercise real retrieval/application/tests/oracle, including a
-failed edit followed by an accepted repair. They prove host behavior, not Qwen
-competence. The integration console check received EOF at the real prompt and
-made no call: **READY_FOR_LOCAL_WORKER_RUN / NOT_EVALUATED_LIVE**. Historical
-attempt-04 remains rejected; its separate newline replay passed six of eight
-scenarios. No historical outcome is changed. Python 3.14 is verified; the known
-Python 3.12 slotted-dataclass `super()` incompatibility remains unresolved.
+The first operator-run coding loop is **ACCEPTED**. Its
+[provenance record](first_accepted_coding_task.json) retains both native proposals,
+the source hash chain, captured artifact hashes and model profile. Qwen made
+two calls and one test-feedback repair: 8,178 input tokens, 525 output tokens,
+34.7609 seconds total. Seven existing tests and the unchanged independent
+eight-scenario oracle passed. Cache/reasoning categories remain unknown.
 
-Integration validation: 320 focused checks passed in 22.24 s. The protected
+Closeout replayed those captured proposals through existing admission, verified
+each intermediate hash and byte equality with saved `final-source.py`, and
+freshly reran tests/oracle before installing those exact bytes in maintained
+source. No Codex-authored Markdown implementation was substituted. All eight
+scenarios are now permanent regressions. The original run and earlier failures
+remain immutable; historical attempt-04 is still rejected, with six scenarios
+passing only in its separately identified newline replay.
+
+This establishes one accepted controlled task, now integrated, not general Qwen
+coding reliability or automatic Context sufficiency. The next milestone is a
+different real development task through the existing bounded worker approach.
+Python 3.14 is verified; the known Python 3.12 slotted-dataclass `super()` issue
+remains separate. This closeout made zero new model calls.
+
+Earlier integration validation: 320 focused checks passed in 22.24 s. The protected
 development gate passed once (1,640 passed, two skipped, 100% production branch
 coverage; 58.75 s host). Ruff, formatting and strict mypy passed. A preserved
 SCRIPTED_HOST_TEST_ONLY demonstration selected `MarkdownFile._parse_headings`,
 expanded the source to 5,764 bytes, and disclosed 5,346 bytes of focused tests.
 Its failed first edit and passing second repair took 2.69 s total / 2.28 s
 validation. Those are host timings with scripted responses, not inference
-performance or Qwen-generated acceptance evidence. Real calls/tokens: zero;
+performance or Qwen-generated acceptance evidence. Calls/tokens at that checkpoint: zero;
 Codex coordination tokens and per-resource model token burden: UNKNOWN.
 
 ## Earlier bounded consumers
