@@ -135,9 +135,12 @@ def load_json(path: Path) -> dict[str, Any]:
 class Intake:
     """Administer one checkout's docs/backlog with immutable proposal/review files."""
 
-    def __init__(self, root: Path) -> None:
+    def __init__(self, root: Path, *, coordinator: Path | None = None) -> None:
         """Select an explicit repository; no branch or active task is changed."""
         self.root = resolve_path(root).value
+        # Trusted hosts resolve the shared Git designation before binding writes.
+        # An unbound instance remains useful for read-only inspection.
+        self.coordinator = resolve_path(coordinator).value if coordinator else None
         self.backlog = self._path("docs/backlog")
         self.proposals = self._path("docs/backlog/proposals")
         if not (self.backlog / "overview.md").is_file():
@@ -151,6 +154,10 @@ class Intake:
 
     @contextmanager
     def _writer(self) -> Iterator[None]:
+        if self.coordinator != self.root:
+            raise PermissionError(
+                "Backlog mutations require the designated coordinator"
+            )
         # Same exclusive-directory pattern as the usage ledger. That ledger's
         # domain-specific writer is not a general locking API to import here.
         self.proposals.mkdir(exist_ok=True)
@@ -297,6 +304,59 @@ class Intake:
                     }
                 )
         return matches
+
+    def approved_item(self, identity: str) -> dict[str, Any]:
+        """Resolve one published, reviewed BACKLOG item for separate work admission."""
+        if not re.fullmatch(r"B-\d{4}", identity):
+            raise PermissionError(
+                "An approved canonical B-number is required, not a pending proposal"
+            )
+        queue = self.queue()
+        if queue["errors"]:
+            raise ValueError("Reconcile malformed intake records before assignment")
+        matches = []
+        for entry in queue["proposals"]:
+            record = self.get(entry["id"])
+            if record["state"] != "APPROVED":
+                continue
+            review = record["history"][-1]
+            publication = review["publication"]
+            if publication["id"] != identity:
+                continue
+            path = self._path("docs/backlog/" + publication["path"])
+            text = _read(path)
+            statuses = re.findall(r"^- status: (\w+)$", text, re.MULTILINE)
+            if statuses != ["BACKLOG"]:
+                raise PermissionError("Work item must currently be BACKLOG")
+            if (
+                not text.startswith(f"# {identity} ")
+                or f"../proposals/{entry['id']}/proposal.json" not in text
+            ):
+                raise ValueError("Canonical work item provenance differs")
+            prefix = f"| [{identity}]({publication['path']}) |"
+            rows = [
+                line
+                for line in _read(self.backlog / "overview.md").splitlines()
+                if line.startswith(prefix)
+            ]
+            if len(rows) != 1 or "| BACKLOG |" not in rows[0]:
+                raise ValueError("Approved item has not been unambiguously published")
+            matches.append(
+                {
+                    "id": identity,
+                    "status": "BACKLOG",
+                    "text": text,
+                    "item_sha256": _digest(text),
+                    "path": str(path),
+                    "proposal": record["proposal"],
+                    "review": review,
+                }
+            )
+        if len(matches) != 1:
+            raise PermissionError(
+                "Exactly one approved and published review is required"
+            )
+        return matches[0]
 
     def review(  # noqa: PLR0913 -- explicit closed review fields, separate host check
         self,

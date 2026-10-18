@@ -61,8 +61,14 @@ Trusted-host checks gate non-advisory review and exact backlog publication;
 Codex advice remains pending without delegated authority. Backlog inclusion is
 separate from engineering/scientific execution authorization. The
 [intake contract](backlog/metadata.md#governed-proposal-intake-repository-administration)
-owns schemas, commands, duplicate hints and conservative recovery. Reusable
-portfolio supervision, scheduling and general delegation remain unimplemented.
+owns schemas, commands, duplicate hints and conservative recovery. The
+[concrete work bridge](backlog/metadata.md#governed-backlog-to-qwen-cycle) now
+binds one approved canonical item to a separately authorized existing Qwen task,
+fresh target checks, one dispatch claim and a review candidate or escalation.
+Shared local Git configuration designates one coordinator for backlog mutations;
+feature worktrees are execution targets only. Worker output and Codex advice
+do not grant protected integration. Reusable portfolio supervision, scheduling
+and general delegation remain unimplemented.
 
 ## Current boundaries
 

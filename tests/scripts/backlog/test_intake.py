@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 
 
 @pytest.fixture
-def intake(tmp_path: Path) -> Intake:
+def intake(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Intake:
     """Create a canonical backlog plus an unrelated active task marker."""
     backlog = tmp_path / "docs/backlog"
     (backlog / "items").mkdir(parents=True)
@@ -42,7 +42,12 @@ def intake(tmp_path: Path) -> Intake:
         '{"objective":"unchanged"}',
         encoding="utf-8",
     )
-    return Intake(tmp_path)
+
+    async def designated(_root: Path) -> Path:
+        return tmp_path
+
+    monkeypatch.setattr(cli, "locate", designated)
+    return Intake(tmp_path, coordinator=tmp_path)
 
 
 @pytest.fixture

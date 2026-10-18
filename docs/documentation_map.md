@@ -532,7 +532,10 @@ by stable ID, lifecycle status, and primary domain. [Backlog metadata](backlog/m
 defines ownership, split-lineage, dependency, and promotion terminology. Its
 [proposal-intake contract](backlog/metadata.md#governed-proposal-intake-repository-administration)
 owns repository-local capture/review/publication APIs, provenance, host checks
-and recovery; pending proposals are not another authoritative backlog.
+and recovery; pending proposals are not another authoritative backlog. The
+[governed work-cycle contract](backlog/metadata.md#governed-backlog-to-qwen-cycle)
+owns coordinator designation, separate implementation authority, exact target/task
+binding, existing Qwen composition and review-candidate/escalation receipts.
 
 ## Update workflow
 

@@ -84,3 +84,41 @@ def test_invalid_report_directory_fails_before_confirmation(
     with pytest.raises(SystemExit) as result:
         asyncio.run(cli.main())
     assert result.value.code == 2
+
+
+@pytest.mark.parametrize("ready", [False, True])
+def test_shared_local_profile_factory_never_invokes_model(
+    cli: ModuleType, monkeypatch: pytest.MonkeyPatch, tmp_path: Path, *, ready: bool
+) -> None:
+    """Both entrypoints reuse existing readiness/profile and client construction."""
+
+    async def status(_root: Path) -> dict[str, object]:
+        return {
+            "state": "READY" if ready else "STOPPED",
+            "expected_fingerprint": "fixture",
+            "observed_fingerprint": "fixture",
+        }
+
+    calls = []
+    client = object()
+
+    def construct(**arguments: object) -> object:
+        calls.append(arguments)
+        return client
+
+    async def command(_root: Path, *_arguments: str) -> dict[str, str]:
+        return {"stdout": "fixture-head"}
+
+    monkeypatch.setattr(cli, "_qwen_status", status)
+    monkeypatch.setattr(cli, "_command", command)
+    monkeypatch.setattr(cli, "LlamaCppInteraction", construct)
+    if not ready:
+        with pytest.raises(RuntimeError, match="MODEL_SERVICE_NOT_READY"):
+            asyncio.run(cli.local_interaction(tmp_path))
+        assert calls == []
+    else:
+        interaction, provenance = asyncio.run(cli.local_interaction(tmp_path))
+        assert interaction is client
+        assert calls[0]["model"] == "qwen38-local"
+        assert provenance["model"] == "qwen38-local"
+        assert provenance["profile"]

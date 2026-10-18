@@ -2,6 +2,21 @@
 
 `experiments.qwen` contains bounded Qwen repository-read and coding consumers.
 
+## Governed backlog consumer
+
+The repository-local [work bridge](../../../docs/backlog/metadata.md#governed-backlog-to-qwen-cycle)
+now calls this same `run_coding_task` after approved backlog provenance, exact
+source/branch preparation and separate host implementation consent. It does not
+add a worker loop, task DSL or provider. The local-profile factory in
+`scripts/qwen/coding_worker.py` is shared by both entrypoints. Scripted integration
+covers actual retrieval/materialization, failed edit, test-feedback repair,
+independent acceptance, pending side discovery and conservative interruption.
+The [scripted measurement record](governed_work_cycle.json) retains two fixture
+turns, one repair, passing tests/oracle and 15.30 seconds end-to-end. Its token
+counts are synthetic, never Qwen usage. This is host integration evidence, not
+another live Qwen task acceptance. The
+Python 3.12 proposal remains pending and the rejected Task 02 remains failed.
+
 ## Task selection and second-task closeout
 
 The same `coding_loop.run_coding_task(..., task=...)` now accepts the

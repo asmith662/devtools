@@ -73,10 +73,15 @@ checks gate promotion; intake approval grants no implementation or model authori
 The initial Python 3.12 concern is reproduced and pending maintainer review.
 This is the first governed intake boundary, not an autonomous supervisor.
 
-Next: one explicitly approved backlog item should be assigned to the existing
-Qwen worker on an isolated branch, validated against host-owned acceptance,
-reviewed by Codex under defined authority, and integrated/closed only through
-repository publication policy. This checkpoint does not implement scheduling,
+The concrete B-item-to-Qwen bridge is now implemented and deterministically
+validated: approved/published backlog item, exact preparation, separate host
+authority, fresh target validation, existing Qwen execution, review candidate or
+bounded escalation. Side discoveries route to pending intake without changing
+active scope. One designated coordinator owns canonical mutations.
+
+Next: process one genuinely reviewed and separately authorized backlog item
+through this bridge on an isolated branch, validate against host-owned acceptance,
+obtain Codex advisory review and authorize integration/closeout separately. This checkpoint does not implement scheduling,
 persistent Codex supervision or authorize a new local model run. Precise Context
 Tools, structured continuation, task-local checkpoints, layered long-term Memory,
 Context benchmarking and Learned Intelligence integration remain on the roadmap.

@@ -9,6 +9,7 @@ import asyncio
 import sys
 from dataclasses import asdict
 from pathlib import Path
+from typing import TYPE_CHECKING, Any
 
 _ROOT = Path(__file__).resolve().parents[2]
 if str(_ROOT) not in sys.path:
@@ -25,6 +26,33 @@ from scripts.qwen.patch_proposal_worker_acceptance import (
     _confirm_local_execution,
     _qwen_status,
 )
+
+if TYPE_CHECKING:
+    from devtools.models.interaction import ModelInteraction
+
+
+async def local_interaction(root: Path) -> tuple[ModelInteraction, dict[str, Any]]:
+    """Check the existing local profile and construct its client; never invoke it."""
+    status = await _qwen_status(root)
+    if (
+        status.get("state") != "READY"
+        or not status.get("expected_fingerprint")
+        or status.get("observed_fingerprint") != status.get("expected_fingerprint")
+    ):
+        message = "MODEL_SERVICE_NOT_READY_OR_PROFILE_CHANGED"
+        raise RuntimeError(message)
+    model = "qwen38-local"
+    return LlamaCppInteraction(
+        endpoint="http://127.0.0.1:8080",
+        model=model,
+        source=InteractionSource("qwen-coding-worker"),
+    ), {
+        "model": model,
+        "endpoint": "http://127.0.0.1:8080",
+        "profile": asdict(QWEN38_27B_UD_IQ4_XS),
+        "service": status,
+        "source_head": await _command(root, "git", "rev-parse", "HEAD"),
+    }
 
 
 async def main() -> int:
@@ -69,31 +97,17 @@ async def main() -> int:
     args.report_path = args.report_directory
     args.task_objective = task.name + ": " + task.objective
     _confirm_local_execution(args)
-    status = await _qwen_status(_ROOT)
-    if (
-        status.get("state") != "READY"
-        or not status.get("expected_fingerprint")
-        or status.get("observed_fingerprint") != status.get("expected_fingerprint")
-    ):
+    try:
+        interaction, provenance = await local_interaction(_ROOT)
+    except RuntimeError:
         print("MODEL_SERVICE_NOT_READY_OR_PROFILE_CHANGED; no model invocation")
         return 2
-    interaction = LlamaCppInteraction(
-        endpoint="http://127.0.0.1:8080",
-        model=args.model,
-        source=InteractionSource("qwen-coding-worker"),
-    )
     result = await run_coding_task(
         _ROOT,
         args.report_directory,
         interaction,
         task=task,
-        provenance={
-            "model": args.model,
-            "endpoint": "http://127.0.0.1:8080",
-            "profile": asdict(QWEN38_27B_UD_IQ4_XS),
-            "service": status,
-            "source_head": await _command(_ROOT, "git", "rev-parse", "HEAD"),
-        },
+        provenance=provenance,
     )
     print(
         f"{result['disposition']}; calls: {len(result['turns'])}; "

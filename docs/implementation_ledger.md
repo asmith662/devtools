@@ -1,5 +1,37 @@
 # Implementation Ledger
 
+## Governed backlog-to-Qwen work bridge (2026-10-18)
+
+Connected canonical reviewed B-number work to the existing CodingTask and
+run_coding_task consumer through repository-local scripts/backlog/work.py.
+Preparation freezes objective, source/tests, Context, limits, branch/base and
+review provenance. Separate exact-scope host authority is revalidated at admission,
+including after terminal consent. A durable single dispatch claim prevents blind
+duplicate/ambiguous launch. The existing local-profile constructor is reused by
+both CLIs; retrieval, proposals, validation and repair remain in the existing loop.
+
+Shared local Git configuration now designates the existing qwen-context-worker
+checkout as canonical backlog coordinator. Unbound Intake is read-only, linked
+worktree writes are refused, and side discoveries route to coordinator intake
+as PENDING_REVIEW without changing assigned work. Candidate source/diff, test and
+usage evidence become REVIEW_CANDIDATE or ESCALATION_REQUIRED. Recommendations
+are advisory; no canonical closeout, commit, push or merge is automatic.
+
+Temporary synthetic Git fixtures exercise real worker repair/acceptance and
+bounded failure under fixture-only approval/grants. No real implementation grant
+or live Qwen call was created. The Python 3.12 proposal and historical worker
+outcomes remain unchanged. Future Context Tools, native continuation, memory,
+Codex portfolio management and Learned Intelligence integration remain planned.
+
+Validation: 60 focused checks passed in 59.44 seconds (60.22 seconds host);
+the two additional shared-profile construction cases also pass in the final gate.
+Protected Python 3.14 profile: 1,766 passed, two skipped, 100% production branch
+coverage; 110.47 seconds pytest / 112.05 seconds host. Ruff, formatting and strict
+mypy over ten affected Python files pass. The
+[scripted result](../experiments/qwen/docs/governed_work_cycle.json) retains two
+fixture turns, one repair, real tests/oracle and 15.30 seconds total; synthetic
+tokens are not provider consumption. No live models or scientific regressions ran.
+
 ## Governed backlog proposal intake (2026-10-18)
 
 Added repository administration under `scripts/backlog`, composing existing
