@@ -1,6 +1,87 @@
 # Qwen experiment
 
-`experiments.qwen` contains bounded Qwen repository-read experiments.
+`experiments.qwen` contains bounded Qwen repository-read and coding consumers.
+
+## Retrieved-Context Markdown coding worker
+
+`coding_loop.py` is a concrete task-specific worker consuming production
+multi-resolution search, `SourceSearchDisclosureOption` and existing Context
+materialization. It reuses `development_task.py` native proposal admission,
+LF/CRLF compatibility and managed Git application. Only maintained worker,
+CLI and tests were selectively integrated from Qwen commit
+`e84def2d08dfc59739fab8f778478d9a63604c7c`; no scientific ancestry was merged.
+
+The host admits only the frozen Markdown implementation and focused tests.
+Symbol search for `MarkdownFile fence headings` selects source; explicit file
+expansion supplies surrounding patterns/imports. Focused tests are independently
+retrieved by file. `acquire_context(..., mode=...)` accepts file, symbol, window
+or mixed. Receipts preserve selected/expanded unit identities, exact spans,
+snapshot, content identity, ranks and bytes. Caller-selected scope is not an
+automatic sufficiency policy or evidence of superior ranking.
+
+Run from the integration worktree in a real PowerShell console:
+
+```powershell
+uv run --python C:/Python314/python.exe python scripts/qwen/coding_worker.py --report-directory .local/qwen-coding-worker/run-01
+```
+
+The genuine terminal prompt defaults to No; no noninteractive bypass exists in
+this entrypoint. Confirmation precedes service inspection. An unavailable or
+mismatched existing Qwen3.8-27B IQ4_XS profile prevents inference; no serving
+lifecycle change occurs. Bounds: three requests, two test-feedback repairs,
+4,096 output tokens each, thinking disabled, existing 32K profile, 300 seconds
+per call and 15 minutes total. Cancellation cannot prove provider work stopped.
+The model sees only native `propose_edit`, never shell, Git or direct writes.
+
+The host authenticates frozen source/test/oracle hashes, proves baseline tests
+pass and the unchanged eight-scenario oracle fails, then records the task,
+settings/schema and each request before dispatch. It admits one bounded,
+unambiguous region on the one authorized path and applies the host-generated
+patch in a disposable workspace. Application must reproduce admitted bytes.
+Predetermined validation explicitly imports that isolated source, runs seven
+Markdown tests and the unchanged independent oracle, and excludes inherited
+pytest configuration/conftests. Valid edits failing tests may receive a repair;
+malformed proposals, unauthorized operations, provider failures, unknown
+completion and exhausted bounds stop. No model-controlled command exists.
+
+The llama.cpp adapter remains stateless. Each turn reconstructs objective,
+current source Context and latest correlated proposal, assistant content and
+test feedback, instead of accumulating redundant source copies. Full responses
+are preserved separately; this is not native conversation support or Memory.
+
+Each new report directory contains `freeze.json`, per-turn request/response/stage
+JSON, host `proposal.patch`, `final-source.py` and `result.json`. Directory reuse
+is refused. Both accepted and rejected edits are removed with the workspace;
+accepted source remains an inspectable artifact with no automatic application
+or publication. After process death, inspect preserved records/workspace manually;
+the worker does not resume or overwrite an existing run. Receipts are local
+records, not a general recovery framework.
+
+Reports retain call/proposal counts, repair cycles, phase timings, validation
+time, provider usage and Context bytes. Unknown categories remain unknown;
+cached input/reasoning remain independent subcategories, never added twice.
+Per-resource token attribution is unknown; aggregate utilization uses reported
+input / 32,768. Codex coordination usage is UNKNOWN.
+
+Scripted checks exercise real retrieval/application/tests/oracle, including a
+failed edit followed by an accepted repair. They prove host behavior, not Qwen
+competence. The integration console check received EOF at the real prompt and
+made no call: **READY_FOR_LOCAL_WORKER_RUN / NOT_EVALUATED_LIVE**. Historical
+attempt-04 remains rejected; its separate newline replay passed six of eight
+scenarios. No historical outcome is changed. Python 3.14 is verified; the known
+Python 3.12 slotted-dataclass `super()` incompatibility remains unresolved.
+
+Integration validation: 320 focused checks passed in 22.24 s. The protected
+development gate passed once (1,640 passed, two skipped, 100% production branch
+coverage; 58.75 s host). Ruff, formatting and strict mypy passed. A preserved
+SCRIPTED_HOST_TEST_ONLY demonstration selected `MarkdownFile._parse_headings`,
+expanded the source to 5,764 bytes, and disclosed 5,346 bytes of focused tests.
+Its failed first edit and passing second repair took 2.69 s total / 2.28 s
+validation. Those are host timings with scripted responses, not inference
+performance or Qwen-generated acceptance evidence. Real calls/tokens: zero;
+Codex coordination tokens and per-resource model token burden: UNKNOWN.
+
+## Earlier bounded consumers
 
 The llama.cpp transport adapter lives in
 `devtools.models.interaction.providers` as `LlamaCppInteraction`. It is

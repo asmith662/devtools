@@ -42,6 +42,30 @@ This completes the selectable representation baseline, without claiming better
 ranking or completing Context/retrieval research. No scientific study, model
 invocation, automatic Context optimizer or agent/memory implementation follows.
 
+### Bounded Qwen coding integration
+
+The [concrete Markdown worker](../experiments/qwen/docs/overview.md#retrieved-context-markdown-coding-worker)
+consumes production multi-resolution search and explicit Context, native proposals,
+isolated validation and up to two test-feedback repairs. Scripted acceptance
+validates the host; a live local run awaits genuine terminal authorization.
+Qwen task acceptance remains unestablished. The next checkpoint is one authorized
+run measuring correctness, Context burden, repairs, tokens and elapsed time.
+Native structured conversation continuation, integrated coding-agent acceptance
+and later 32K/64K Context benchmarking remain future work.
+
+### Future agent working and long-term memory
+
+These are planned needs, not implemented architecture. Task-local working memory
+should support atomic durable checkpoints of objective, constraints, progress,
+verified evidence references, hypotheses, unresolved questions and next intended
+actions, enabling recovery after interruption or Context replacement. Long-term
+memory should consider episodic experience, validated knowledge and procedural
+strategies/playbooks; agent-specific/shared scopes; provenance, applicability,
+revision and retirement; and Context-controlled recall. Keep active Context,
+conversation history, task-local working state and long-term memory distinct.
+Reuse existing atomic filesystem writing when implementation is justified.
+No memory types, schemas or new architecture are introduced in this checkpoint.
+
 ### Automated experiment mechanics
 
 The current bounded increment adds metadata-only observed usage and optional

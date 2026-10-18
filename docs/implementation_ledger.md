@@ -1,5 +1,30 @@
 # Implementation Ledger
 
+## Retrieved-Context Qwen coding loop (2026-10-18)
+
+Selectively integrated maintained structured-edit worker, CLI and tests from
+`e84def2d08dfc59739fab8f778478d9a63604c7c` onto retrieval commit
+`c21b4922355a6f868beed9e0b71c786cc52361e8`, without merging Qwen/scientific
+ancestry. The concrete Markdown worker uses canonical source search and Context,
+one native proposal operation, isolated application and host-owned tests/oracle.
+At most three calls permit two ordinary engineering repairs. Current source and
+correlated feedback replace stale transcript accumulation. Provider/invalid
+proposal failures stop; no generic Agent, conversation or Memory API was added.
+
+Final deterministic Qwen/retrieval/provider/CLI checks: 320 passed in 22.24 s
+on Python 3.14. Scripted initial acceptance and failed-edit/second-repair acceptance
+use real application, seven tests and the unchanged eight-scenario oracle.
+The genuine console gate received EOF: no live model invocation occurred and
+real Qwen task competence remains unestablished. Historical attempt-04 and all
+scientific evidence remain unchanged. The known Python 3.12 baseline issue
+remains separate. Protected Python 3.14 validation passed once: 1,640 passed,
+two skipped, 100% production branch coverage, 56.93 s pytest / 58.75 s host.
+Ruff, six-file formatting and strict mypy over 335 files passed. A separately
+retained SCRIPTED_HOST_TEST_ONLY demonstration accepted its second proposal in
+2.69 s (2.28 s validation); the real Qwen call count was zero. Symbol selection
+located `MarkdownFile._parse_headings` and explicitly expanded its parent file;
+source/test text disclosure was 5,764 + 5,346 bytes. Token attribution is unknown.
+
 ## Multi-resolution repository search (2026-10-18)
 
 Added selectable file/symbol/window/mixed source retrieval under

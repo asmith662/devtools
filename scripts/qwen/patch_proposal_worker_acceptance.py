@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: E402, E501, INP001, T201
+# ruff: noqa: E402, E501, INP001, T201, COM812, EM101, TRY003
 """Run one bounded live Qwen B-0009 patch-proposal acceptance."""
 
 from __future__ import annotations
@@ -11,9 +11,10 @@ import os
 import shutil
 import sys
 import tempfile
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import TYPE_CHECKING
+from unittest.mock import patch as observe_method
 from uuid import uuid4
 
 _REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
@@ -25,6 +26,7 @@ from devtools.agents.conversation import (
     ConversationMessage,
     InteractionSource,
 )
+from devtools.core.paths import resolve_path
 from devtools.core.time import Duration, Stopwatch
 from devtools.execution import Runtime
 from devtools.models.interaction import ModelSettings
@@ -36,6 +38,16 @@ from devtools.resources.commands import Command, CommandExecutor
 from devtools.tools.filesystem import (
     ListRepositoryDirectoryTool,
     ReadRepositoryFileTool,
+)
+from experiments.qwen.development_task import (
+    STRUCTURED_EDIT_OUTPUT_TOKENS,
+    STRUCTURED_EDIT_TIMEOUT_SECONDS,
+    freeze_markdown_task,
+    freeze_structured_edit_task,
+    freeze_upfront_context_task,
+    run_markdown_task,
+    run_structured_edit_task,
+    run_upfront_context_task,
 )
 from experiments.qwen.patch_proposal_worker import (
     _BASELINE_FIXTURE,
@@ -81,6 +93,7 @@ _CALLER_SOURCE = InteractionSource("qwen-b0009-live-acceptance")
 _MAXIMUM_ACTIONS = 5
 _SELECTION_STRESS_MAXIMUM_ACTIONS = 7
 _MODEL_CONTEXT_CAPACITY_TOKENS = QWEN38_27B_UD_IQ4_XS.context_size
+_UPFRONT_COMPARISON_OUTPUT_TOKENS = 4_096
 _FIXTURE_CHOICES = ("baseline", "selection-stress")
 
 
@@ -135,7 +148,84 @@ def parse_arguments(arguments: Sequence[str] | None = None) -> argparse.Namespac
         default="default",
     )
     parser.add_argument("--report-path", required=True, type=Path)
+    parser.add_argument("--repository-markdown-root", type=Path)
+    parser.add_argument("--freeze-only", action="store_true")
+    parser.add_argument(
+        "--authorize-local-execution",
+        action="store_true",
+        help="Explicitly authorize this local experiment attempt without a console prompt.",
+    )
+    parser.add_argument("--upfront-context", action="store_true")
+    parser.add_argument("--structured-edit", action="store_true")
+    parser.add_argument("--host-timeout-seconds", type=int, default=120)
     return parser.parse_args(arguments)
+
+
+def _confirm_local_execution(arguments: argparse.Namespace) -> None:
+    """Require real console consent or explicit caller authorization before execution."""
+    if arguments.freeze_only or arguments.authorize_local_execution:
+        return
+    if not sys.stdin.isatty():
+        raise SystemExit(
+            "No interactive console; no model call made. Explicitly authorize this "
+            "local attempt with --authorize-local-execution or run in a terminal."
+        )
+    limits = (
+        "at most 3 model invocations with test-feedback repair, propose_edit only, "
+        "4096 output tokens per call, thinking off, 15-minute total bound"
+        if getattr(arguments, "coding_loop", False)
+        else "one model invocation, propose_edit only, 4096 output tokens, thinking off, "
+        "300-second host timeout, no retry"
+        if arguments.structured_edit
+        else "the selected bounded experiment limits"
+    )
+    try:
+        answer = input(
+            f"Run one local Qwen attempt ({arguments.model}; {limits})? "
+            f"Report: {arguments.report_path}. No paid fallback or unrestricted writes. [y/N] "
+        )
+    except (EOFError, KeyboardInterrupt):
+        raise SystemExit("Confirmation interrupted; no model call made.") from None
+    if answer.strip().casefold() not in {"y", "yes"}:
+        raise SystemExit("Execution declined; no model call made.")
+
+
+def _service_status_payload(result: dict[str, object]) -> dict[str, object]:
+    """Retain the bounded fields printed by the existing read-only status CLI."""
+    if result["failed"]:
+        return {"state": "STATUS_ERROR", "error": result["stderr"]}
+    fields = {
+        key.strip().casefold().replace(" ", "_"): value.strip()
+        for line in str(result["stdout"]).splitlines()
+        if ":" in line
+        for key, _, value in (line.partition(":"),)
+    }
+    return {
+        "state": fields.get("state", "UNKNOWN"),
+        "expected_fingerprint": fields.get("expected_profile_fingerprint"),
+        "observed_fingerprint": fields.get("observed_profile_fingerprint"),
+        "container_id": fields.get("container_id"),
+        "profile_matches": fields.get("profile_matches"),
+        "model_ready": fields.get("model_ready"),
+        "raw_status": result["stdout"],
+    }
+
+
+async def _qwen_status(root: Path) -> dict[str, object]:
+    """Inspect the pinned service through its existing read-only CLI command."""
+    result = await CommandExecutor().execute(
+        Command(sys.executable)
+        .args(str(_SERVICE_SCRIPT), "status")
+        .cwd(resolve_path(root))
+        .with_timeout(Duration.minutes(2)),
+    )
+    return _service_status_payload(
+        {
+            "failed": result.failed,
+            "stdout": result.stdout.decode(errors="replace"),
+            "stderr": result.stderr.decode(errors="replace"),
+        },
+    )
 
 
 def _thinking_value(value: str) -> bool | None:
@@ -167,7 +257,10 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
     original_list = ListRepositoryDirectoryTool.execute
     original_read = ReadRepositoryFileTool.execute
 
-    async def counted_list(tool: ListRepositoryDirectoryTool, path: ResolvedPath) -> object:
+    async def counted_list(
+        tool: ListRepositoryDirectoryTool,
+        path: ResolvedPath,
+    ) -> object:
         actions.append("list_repository_directory")
         paths.append(_relative_path(path, repository_root))
         return await original_list(tool, path)
@@ -182,8 +275,18 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
         model_terminations.append(response.termination)
         model_usages.append(response.usage)
 
-    ListRepositoryDirectoryTool.execute = counted_list
-    ReadRepositoryFileTool.execute = counted_read
+    list_observation = observe_method.object(
+        ListRepositoryDirectoryTool,
+        "execute",
+        counted_list,
+    )
+    read_observation = observe_method.object(
+        ReadRepositoryFileTool,
+        "execute",
+        counted_read,
+    )
+    list_observation.start()
+    read_observation.start()
     try:
         result = await QwenPatchProposalWorker(
             runtime=Runtime(),
@@ -223,8 +326,8 @@ async def run_acceptance(  # noqa: PLR0913 - preserves explicit fixture-local co
             _patch_evaluation(error),
         )
     finally:
-        ListRepositoryDirectoryTool.execute = original_list
-        ReadRepositoryFileTool.execute = original_read
+        list_observation.stop()
+        read_observation.stop()
     return B0009LiveReport(
         task,
         tuple(conversation.history),
@@ -406,7 +509,11 @@ def _live_task(
 
 def _message_payload(message: ConversationMessage) -> dict[str, str]:
     """Serialize retained conversation facts without absolute repository paths."""
-    return {"role": message.role.value, "source": message.source.value, "content": message.content}
+    return {
+        "role": message.role.value,
+        "source": message.source.value,
+        "content": message.content,
+    }
 
 
 def _cycle_payload(cycle: QwenReadOnlyCycle) -> dict[str, object]:
@@ -575,7 +682,9 @@ def _report_payload(outcome: B0009LiveOutcome) -> dict[str, object]:
             ],
             "corrections": [
                 {
-                    "premature_response": _message_payload(correction.premature_response),
+                    "premature_response": _message_payload(
+                        correction.premature_response,
+                    ),
                     "follow_up": _message_payload(correction.follow_up),
                     "acquired_paths": list(correction.acquired_paths),
                 }
@@ -673,19 +782,197 @@ def _print_outcome(outcome: B0009LiveOutcome) -> None:
     print(f"acceptance verdict: {_verdict(outcome)}")
     print(f"tool actions: {', '.join(outcome.report.execution_actions) or 'none'}")
     print(f"tool paths: {', '.join(outcome.report.execution_paths) or 'none'}")
-    print(f"persistent service status: {outcome.persistent_service_status or outcome.persistent_service_error_message}")
+    print(
+        f"persistent service status: {outcome.persistent_service_status or outcome.persistent_service_error_message}",
+    )
 
 
-def main(arguments: Sequence[str] | None = None) -> None:
+def main(  # noqa: C901, PLR0912, PLR0915 -- explicit experiment entrypoint stages
+    arguments: Sequence[str] | None = None,
+) -> None:
     """Run one live attempt and require durable reporting regardless of its verdict."""
     parsed = parse_arguments(arguments)
+    if parsed.structured_edit and (
+        not parsed.upfront_context or parsed.repository_markdown_root is None
+    ):
+        raise ValueError(
+            "--structured-edit requires --upfront-context and a repository root"
+        )
+    _confirm_local_execution(parsed)
+    if parsed.repository_markdown_root is not None:
+        root = resolve_path(
+            parsed.repository_markdown_root, base_directory=Path.cwd()
+        ).value
+        folder = resolve_path(
+            parsed.report_path.parent, base_directory=Path.cwd()
+        ).value
+        if parsed.structured_edit and not parsed.upfront_context:
+            raise ValueError("--structured-edit requires --upfront-context")
+        if parsed.upfront_context:
+            service_payload = asyncio.run(_qwen_status(root))
+            profile_sha = service_payload.get("expected_fingerprint")
+            if not isinstance(profile_sha, str):
+                raise ValueError(
+                    "Existing Qwen status did not report its profile identity"
+                )
+            oracle_path = root / ".local/qwen-first-task/attempt-01/acceptance.py"
+            if parsed.structured_edit:
+                if parsed.maximum_output_tokens not in (
+                    None,
+                    STRUCTURED_EDIT_OUTPUT_TOKENS,
+                ):
+                    raise ValueError(
+                        "Structured edit requires the frozen 4,096-token cap"
+                    )
+                if parsed.host_timeout_seconds != STRUCTURED_EDIT_TIMEOUT_SECONDS:
+                    raise ValueError(
+                        "Structured edit requires the frozen 300-second host timeout"
+                    )
+                if parsed.freeze_only:
+                    frozen = asyncio.run(
+                        freeze_structured_edit_task(
+                            root,
+                            folder,
+                            oracle_path=oracle_path,
+                            model=parsed.model,
+                            endpoint=parsed.endpoint,
+                            profile_fingerprint=profile_sha,
+                            profile_configuration=asdict(QWEN38_27B_UD_IQ4_XS),
+                            service_status=service_payload,
+                        ),
+                    )
+                    print(
+                        "Structured-edit task frozen; one proposal Tool; "
+                        f"prompt bytes: {len(frozen['prompt'].encode())}",
+                    )
+                    return
+                frozen = json.loads(
+                    (folder / "freeze.json").read_text(encoding="utf-8")
+                )
+                if (
+                    parsed.endpoint != frozen["model"]["endpoint"]
+                    or parsed.model != frozen["model"]["served_name"]
+                ):
+                    raise ValueError(
+                        "Selected endpoint/model differs from frozen attempt"
+                    )
+                result = asyncio.run(
+                    run_structured_edit_task(
+                        root,
+                        folder,
+                        LlamaCppInteraction(
+                            endpoint=parsed.endpoint,
+                            model=parsed.model,
+                            source=InteractionSource("qwen-markdown-structured-edit"),
+                        ),
+                        service_status=service_payload,
+                    ),
+                )
+                _write_report(parsed.report_path, result)
+                print(
+                    f"structured-edit accepted: {result['accepted']}; "
+                    f"failure: {result.get('failure_class')}",
+                )
+                raise SystemExit(0 if result["accepted"] else 1)
+            if parsed.freeze_only:
+                frozen = asyncio.run(
+                    freeze_upfront_context_task(
+                        root,
+                        folder,
+                        oracle_path=oracle_path,
+                        model=parsed.model,
+                        endpoint=parsed.endpoint,
+                        profile_fingerprint=profile_sha,
+                        profile_configuration=asdict(QWEN38_27B_UD_IQ4_XS),
+                        service_status=service_payload,
+                        maximum_output_tokens=parsed.maximum_output_tokens or 1_500,
+                        timeout_seconds=parsed.host_timeout_seconds,
+                        comparison_freeze_path=(
+                            root / ".local/qwen-first-task/attempt-02/freeze.json"
+                            if parsed.maximum_output_tokens
+                            == _UPFRONT_COMPARISON_OUTPUT_TOKENS
+                            else None
+                        ),
+                    ),
+                )
+                print(
+                    "Complete-context task frozen; baseline oracle verified; "
+                    f"tools disclosed: 0; prompt bytes: {len(frozen['prompt'].encode())}",
+                )
+                return
+            frozen = json.loads((folder / "freeze.json").read_text(encoding="utf-8"))
+            if (
+                parsed.endpoint != frozen["model"]["endpoint"]
+                or parsed.model != frozen["model"]["served_name"]
+                or (
+                    parsed.maximum_output_tokens is not None
+                    and parsed.maximum_output_tokens
+                    != frozen["request_settings"]["maximum_output_tokens"]
+                )
+                or parsed.host_timeout_seconds != frozen["limits"]["timeout_seconds"]
+            ):
+                raise ValueError(
+                    "Selected request configuration differs from frozen attempt"
+                )
+            result = asyncio.run(
+                run_upfront_context_task(
+                    root,
+                    folder,
+                    LlamaCppInteraction(
+                        endpoint=parsed.endpoint,
+                        model=parsed.model,
+                        source=InteractionSource("qwen-markdown-upfront-context"),
+                    ),
+                    service_status=service_payload,
+                ),
+            )
+            _write_report(parsed.report_path, result)
+            print(
+                f"upfront-context accepted: {result['accepted']}; "
+                f"failure: {result.get('failure_class')}",
+            )
+            raise SystemExit(0 if result["accepted"] else 1)
+        if parsed.freeze_only:
+            asyncio.run(freeze_markdown_task(root, folder))
+            print(
+                "Real Markdown task frozen; baseline defect reproduced; zero model turns",
+            )
+            return
+        result = asyncio.run(
+            run_markdown_task(
+                root,
+                folder,
+                LlamaCppInteraction(
+                    endpoint=parsed.endpoint,
+                    model=parsed.model,
+                    source=InteractionSource("qwen-real-markdown-task"),
+                ),
+            ),
+        )
+        _write_report(parsed.report_path, result)
+        print(
+            f"real-task accepted: {result['accepted']}; failure: {result['failure_class']}",
+        )
+        print(
+            f"turns: {len(result['turns'])}; actions: {len(result['actions'])}; elapsed: {result['elapsed_seconds']:.2f}s",
+        )
+        raise SystemExit(0 if result["accepted"] else 1)
+    if parsed.freeze_only:
+        message = "--freeze-only requires --repository-markdown-root"
+        raise ValueError(message)
+    if parsed.upfront_context:
+        message = "--upfront-context requires --repository-markdown-root"
+        raise ValueError(message)
     try:
         outcome = asyncio.run(run(parsed))
     except Exception as error:
-        payload = {
+        payload: dict[str, object] = {
             "schema": _REPORT_SCHEMA,
             "verdict": "FAIL — RUNNER",
-            "runner_failure": {"error_type": type(error).__name__, "error_message": str(error)},
+            "runner_failure": {
+                "error_type": type(error).__name__,
+                "error_message": str(error),
+            },
         }
         _write_report(parsed.report_path, payload)
         raise SystemExit(1) from error

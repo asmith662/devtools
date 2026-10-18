@@ -263,6 +263,11 @@ coding query, not a comparative retrieval-quality experiment.
 
 ### Established patterns reviewed
 
+The [bounded Qwen coding consumer](../../../../../experiments/qwen/docs/overview.md#retrieved-context-markdown-coding-worker)
+uses this API with caller-admitted source/tests, symbol selection and explicit
+file expansion through Context. Host-owned acquisition exposes no second index,
+ranking policy or model-controlled filesystem mutation.
+
 [LlamaIndex CodeSplitter](https://developers.llamaindex.ai/python/framework-api-reference/node_parsers/code/)
 uses syntax-aware code chunking, while its
 [hierarchical parser](https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/node_parser/relational/hierarchical.py)

@@ -795,6 +795,14 @@ separately from later required-resource adjudication. The current read-only
 exhaustive tool activity, so dogfood observations require an explicit external
 recording source. The [roadmap](roadmap.md) defines the controlled protocol.
 
+The separate [Qwen coding consumer](../experiments/qwen/docs/overview.md#retrieved-context-markdown-coding-worker)
+now composes production multi-resolution retrieval/Context with native edit
+proposals, host-controlled isolated validation and at most two test-feedback
+repairs. This concrete experimental worker owns task bounds and acceptance;
+it adds no Agent hierarchy, Runtime loop, model write authority or Memory domain.
+Its stateless requests carry current source and correlated feedback. Scripted
+acceptance validates host behavior; live Qwen acceptance awaits console consent.
+
 Increment 23 independently validates this boundary but does not promote its
 directional-reservation-v1 realization. Canonical and practical top five each
 recover 10/18 known-useful resources; the rule exchanges one useful rank-five

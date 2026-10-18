@@ -14,6 +14,17 @@
 
 ## Problem / value
 
+### Current real-task integration checkpoint
+
+The [concrete coding worker](../../../experiments/qwen/docs/overview.md#retrieved-context-markdown-coding-worker)
+now consumes multi-resolution Context, isolated native proposals and focused
+test-feedback repair, capped at three calls. Scripted responses validate initial
+acceptance, a corrected second edit, refusal, exhaustion and cleanup against the
+unchanged eight-scenario oracle. Live execution awaits real terminal confirmation;
+real Qwen task acceptance and reusable Agent promotion remain unestablished.
+Native structured continuation, atomic task-local state, long-term memory and
+32K/64K Context benchmarking remain planned work.
+
 Build one bounded experimental coding worker after B-0008 establishes the
 minimum repository fact-acquisition boundary. It may exercise
 ModelInteraction, experiment-local relevance choice, bounded Tool use,
