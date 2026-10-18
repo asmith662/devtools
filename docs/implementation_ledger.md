@@ -1,5 +1,32 @@
 # Implementation Ledger
 
+## Governed backlog proposal intake (2026-10-18)
+
+Added repository administration under `scripts/backlog`, composing existing
+Core identities/time/paths and canonical bounded filesystem reads/atomic writes.
+Pending proposals retain source/parent/evidence and reviewable duplicate hints;
+append-only review hashes preserve advice, deferral, rejection and exact approval.
+Host authorization is default-deny for authoritative review/publication, with
+real default-No terminal confirmation. Approved publication writes canonical
+B-number Markdown/index entries and grants no execution authority. Interrupted
+publication reconciles equal bytes without overwriting conflicts; malformed
+records and stale writer leases fail closed. No framework package was introduced.
+
+The genuine Python 3.12 JsonObjectFile constructor defect was reproduced, captured
+as proposal f47f3925-6988-4d84-81f4-c5b97a571484, and reviewed by Codex as advice
+only. It remains PENDING_REVIEW, with no implementation or live model invocation.
+The first accepted and second rejected Qwen task evidence remain unchanged.
+Next: an approved item through isolated Qwen implementation, host validation,
+Codex review and governed integration; no continuous supervisor is claimed.
+
+Validation on Python 3.14: 34 focused cases passed in 0.97 seconds; Ruff,
+formatting and strict mypy passed. Final protected profile: 1,746 passed,
+two skipped, 100% production branch coverage; 43.39 seconds pytest /
+44.87 seconds host. An earlier gate also passed before the final serialized-size
+admission check (1,745 passed, two skipped, 100%; 60.99 seconds host). The
+final gate includes that additional regression. Real pending promotion was
+refused; no model/scientific call or protected-main merge occurred.
+
 ## Task 02 failure closeout and physical source extraction (2026-10-18)
 
 Task 02 remains REPAIR_BUDGET_EXHAUSTED: three local Qwen calls and two repairs,

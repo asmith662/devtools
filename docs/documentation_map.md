@@ -529,7 +529,10 @@ exclusion, and the separate confirmation-validation boundary.
 
 [Backlog overview](backlog/overview.md) is the canonical record index, grouped
 by stable ID, lifecycle status, and primary domain. [Backlog metadata](backlog/metadata.md)
-defines ownership, split-lineage, dependency, and promotion terminology.
+defines ownership, split-lineage, dependency, and promotion terminology. Its
+[proposal-intake contract](backlog/metadata.md#governed-proposal-intake-repository-administration)
+owns repository-local capture/review/publication APIs, provenance, host checks
+and recovery; pending proposals are not another authoritative backlog.
 
 ## Update workflow
 

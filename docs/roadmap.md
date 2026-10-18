@@ -63,6 +63,24 @@ reliability and autonomous multi-task coordination remain unproven.
 Native structured conversation continuation, integrated coding-agent acceptance
 and later 32K/64K Context benchmarking remain future work.
 
+### Governed work intake and portfolio progression
+
+Repository-local backlog proposal intake now captures discoveries with source,
+parent, affected resources, benefit, uncertainty and evidence, preserving the
+active objective. Duplicate hints and append-only advisory/authorized reviews
+precede exact publication into canonical B-number Markdown records. Trusted-host
+checks gate promotion; intake approval grants no implementation or model authority.
+The initial Python 3.12 concern is reproduced and pending maintainer review.
+This is the first governed intake boundary, not an autonomous supervisor.
+
+Next: one explicitly approved backlog item should be assigned to the existing
+Qwen worker on an isolated branch, validated against host-owned acceptance,
+reviewed by Codex under defined authority, and integrated/closed only through
+repository publication policy. This checkpoint does not implement scheduling,
+persistent Codex supervision or authorize a new local model run. Precise Context
+Tools, structured continuation, task-local checkpoints, layered long-term Memory,
+Context benchmarking and Learned Intelligence integration remain on the roadmap.
+
 ### Future agent working and long-term memory
 
 These are planned needs, not implemented architecture. Task-local working memory

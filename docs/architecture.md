@@ -52,6 +52,18 @@ observability dependency and grant no authority. Experiment-local composition ow
 reservations/admission. See [observed usage](../src/devtools/observability/usage/docs/overview.md).
 Generic Event/Trace/Telemetry, agent loops and broader governance remain deferred.
 
+## Repository work intake
+
+Repository-local `scripts/backlog` tooling captures original discoveries and
+append-only reviews beside the canonical Markdown backlog. It uses Core and
+filesystem substrates, not Runtime, framework Orchestration or a second database.
+Trusted-host checks gate non-advisory review and exact backlog publication;
+Codex advice remains pending without delegated authority. Backlog inclusion is
+separate from engineering/scientific execution authorization. The
+[intake contract](backlog/metadata.md#governed-proposal-intake-repository-administration)
+owns schemas, commands, duplicate hints and conservative recovery. Reusable
+portfolio supervision, scheduling and general delegation remain unimplemented.
+
 ## Current boundaries
 
 ```text
