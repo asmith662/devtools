@@ -68,7 +68,13 @@ fresh target checks, one dispatch claim and a review candidate or escalation.
 Shared local Git configuration designates one coordinator for backlog mutations;
 feature worktrees are execution targets only. Worker output and Codex advice
 do not grant protected integration. Reusable portfolio supervision, scheduling
-and general delegation remain unimplemented.
+and general delegation remain unimplemented. The concrete repository-local
+work bridge additionally supports scoped, expiring/revocable standing local-host
+delegation for routine Qwen maintenance. It retains exact Codex supervisory
+decisions, pinned validation code/model profile, cumulative reservations and
+fresh per-call authority checks; it does not introduce framework governance.
+Manual terminal consent remains available. Protected integration is separate;
+see the [standing delegation contract](backlog/metadata.md#standing-routine-qwen-delegation).
 
 ## Current boundaries
 

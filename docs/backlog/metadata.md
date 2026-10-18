@@ -346,7 +346,118 @@ and preserves original discovery/evidence. It creates only PENDING_REVIEW work,
 without altering objective, authority, limits or active source. Qwen still has
 only `propose_edit`; this increment does not add a new model Tool.
 
-The genuine Python 3.12 proposal remains pending. No real grant, assignment or
-Qwen execution was created. Deterministic acceptance uses explicitly synthetic
+The Python 3.12 proposal is now approved and published as B-0048. Its object-only
+assignment is prepared, with execution authorization NONE. Deterministic acceptance uses explicitly synthetic
 approval/grants and temporary Git fixtures, exercising the real worker path;
 it does not establish a new live Qwen success.
+
+### Standing routine-Qwen delegation
+
+The same coordinator and WorkCycle support an optional standing local-host grant.
+This is repository administration under `scripts/backlog/delegation.py`, not a
+framework policy service. Existing manual `work-authorize` and `work-execute`
+retain their independent genuine default-No terminal gates. Proposal review and
+backlog promotion retain their existing gates; delegation cannot promote work.
+
+Issue/revocation require the actual local OS principal and real terminal consent.
+The CLI has no `--yes` switch. Trusted host callers may attest Codex supervisory
+decisions under an active grant; worker/model text has no such API or Tool.
+This is the existing local trust boundary, **not cryptographic authentication of
+Codex or protection against a malicious process with coordinator write access**.
+Do not feed arbitrary model output into the administrative CLI.
+The worker's disposable workspace isolates source changes, not operating-system
+privileges. This increment does not sandbox arbitrary Python executed by tests
+or make adversarial generated code safe; existing host/OS controls and supervisory
+scope assessment remain necessary. No credential or financial operation is
+permitted by this delegation.
+
+The closed policy names exact source/test paths, reviewed proposal categories,
+SHA-256 identities of host-owned acceptance code, per-task calls/output/time/edit
+limits and cumulative task/call/output/time allowances. Pinning acceptance code
+is required because CodingTask oracles are executable host code. Scientific,
+financial, credential, grant-expansion and protected-publication effects are
+prohibited. Consequential execution/governance/model/agent infrastructure paths
+are excluded from routine edit scope. Only clean separate feature worktrees of
+the same repository, exact baselines and independently approved backlog items
+can qualify. Low risk remains a mandatory Codex supervisory judgment, not a
+classification inferred from task text or a guarantee about arbitrary code.
+
+The grant also pins `qwen38-local`, loopback port 8080 and the existing complete
+Qwen3.8 IQ4_XS/32K profile. Profile readiness/fingerprint checks occur before
+inference. Authority is checked again before every initial/repair call. Revoking
+a grant stops subsequent admission/calls; it cannot undo or forcibly cancel an
+already dispatched external invocation. Existing worker timeouts still apply.
+
+Records are immutable and content-hashed beneath `.local/backlog/delegations/`;
+the existing Intake atomic writer and coordinator lease serialize reservations,
+revocation and dispatch claims. An exact pre-dispatch `APPROVE_ROUTINE` record
+binds Codex review to the assignment and delegation. `work-delegate` then writes
+the existing per-assignment authorization plus a worst-case reservation. A valid
+delegated authorization makes `work-execute` noninteractive; it uses the same
+worker, isolation and closeout. It does not bypass OS or Codex execution controls.
+
+Every reservation consumes the task's maximum calls, calls multiplied by output
+allowance, and wall-time allowance. There are no refunds or automatic retries,
+including crashes between reservation/authorization and unknown call outcomes.
+Incomplete/corrupt records fail closed and require manual reconciliation. No
+input-token, monetary or subscription quota is implied. Output/time values are
+request/host admission bounds, not hard provider consumption guarantees. Missing
+usage remains unknown. An observed provider output overrun blocks that grant
+and forces escalation while retaining the response. Cached/reasoning categories
+remain the existing worker's separate overlapping observations.
+
+After execution, existing result/diff/test/usage/repair/branch/base evidence plus
+the original objective is available for review. `work-review --result-sha256`
+records `ACCEPT_RECOMMENDED`, `REWORK_RECOMMENDED`, `ESCALATE` or `REJECT`, with
+reviewer, rationale and provenance. Failed results cannot be recommended as
+accepted. These records confer no commit, integration, merge or backlog-close
+authority. Rework is a bounded recommendation; completed/ambiguous assignments
+cannot be reset or redispatched by this increment. Up to two test-feedback
+repairs already occur inside the reserved worker run.
+
+#### Proposed initial policy and one-time operator action
+
+[`routine-qwen-policy.example.json`](routine-qwen-policy.example.json) is an
+**inactive example**, not authority. It covers only object.py bug/refactor work,
+the existing JSON tests and the prepared B-0048 oracle. Per task: three calls,
+4,096 output tokens per call, 900 seconds, three one-file proposals. Cumulative:
+three tasks, nine calls, 36,864 requested output tokens and 2,700 reserved seconds.
+Each call retains the worker's 300-second timeout. It does not cover the sibling
+JsonListFile/CsvFile compatibility defects or arbitrary new acceptance commands.
+New host validation code requires explicit policy review and a newly issued grant.
+
+From the designated coordinator, inspect applicability without granting anything:
+
+```powershell
+uv run --python C:/Python314/python.exe python -m scripts.backlog delegation-check B-0048 --policy docs/backlog/routine-qwen-policy.example.json
+```
+
+To activate **only after deciding this policy and expiry are suitable**, run this
+single line directly in PowerShell. It prints the exact grant and defaults No;
+the seven-day expiration is computed when the operator runs it:
+
+```powershell
+uv run --python C:/Python314/python.exe python -m scripts.backlog delegation-issue --policy docs/backlog/routine-qwen-policy.example.json --reference 'Maintainer standing decision: routine local Qwen object-model maintenance under the displayed policy; no protected publication' --expires ([DateTimeOffset]::UtcNow.AddDays(7).ToString('o'))
+```
+
+Keep the returned delegation SHA. Codex can then review the exact assignment,
+record that decision, reserve and dispatch without further terminal consent:
+
+```text
+uv run python -m scripts.backlog work-review B-0048 --delegation <grant-sha> --decision APPROVE_ROUTINE --reference <actual-supervisory-decision> --rationale <scope-and-risk-assessment>
+uv run python -m scripts.backlog work-delegate B-0048 --delegation <grant-sha> --supervision <review-sha>
+uv run python -m scripts.backlog work-execute B-0048
+uv run python -m scripts.backlog work-review B-0048 --delegation <grant-sha> --decision ACCEPT_RECOMMENDED --result-sha256 <result-sha> --reference <actual-result-review> --rationale <evidence-based-assessment>
+```
+
+Revocation uses the same genuine default-No interactive host boundary:
+
+```text
+uv run python -m scripts.backlog delegation-revoke <grant-sha> --reference <actual-revocation-decision>
+```
+
+No real grant or supervisory approval is issued by implementing this capability.
+The prepared B-0048 assignment and its pinned execution baseline remain intact;
+administrative authority is consumed by the coordinator, not imported into the
+authenticated implementation target. No new target revision is required merely
+to use this repository-local administrative feature.

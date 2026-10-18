@@ -1,5 +1,34 @@
 # Implementation Ledger
 
+## Routine Qwen standing delegation (2026-10-18)
+
+Extended the existing repository-local WorkCycle with immutable standing grants,
+revocations, exact Codex supervisory decisions and conservative cumulative
+reservations. Trusted local-host issue/revocation requires genuine default-No
+terminal consent. Delegated assignment authorization/dispatch is noninteractive
+within exact source, test, validation-code, model/profile and resource bounds;
+manual consent remains supported. The existing worker and Intake writer/atomic
+filesystem facilities retain execution and persistence ownership. Per-call
+authority checks stop subsequent repairs after expiry/revocation; uncertain
+dispatches retain their allowance and cannot be blindly retried. Observed output
+overruns block further delegated work without discarding model evidence.
+
+The existing result plus original objective supports attributed post-run Codex
+acceptance/rework/escalation/rejection recommendations. No protected publication
+or canonical closeout is granted. The proposed initial B-0048 policy is inactive;
+read-only applicability passes, and the original prepared assignment remains
+unauthorized and unexecuted. This work creates no framework governance service,
+scheduler, agent hierarchy, scientific operation or live model evidence.
+
+Validation on Python 3.14.3: 75 focused backlog tests passed in 96.60 seconds
+(97.29 seconds host). The protected development profile passed once: 1,789
+passed, two skipped, 100% production branch coverage, 210.99 seconds pytest
+(212.59 seconds host). Relevant Ruff, formatting and strict mypy checks pass.
+An earlier focused run was interrupted by a validation helper's 120-second
+timeout; the completion run used a longer local validation wrapper without
+altering worker limits or maintained execution behavior. B-0048's exact prepared
+assignment passes read-only policy applicability with no grant or reservation.
+
 ## Governed backlog-to-Qwen work bridge (2026-10-18)
 
 Connected canonical reviewed B-number work to the existing CodingTask and

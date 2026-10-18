@@ -70,7 +70,8 @@ parent, affected resources, benefit, uncertainty and evidence, preserving the
 active objective. Duplicate hints and append-only advisory/authorized reviews
 precede exact publication into canonical B-number Markdown records. Trusted-host
 checks gate promotion; intake approval grants no implementation or model authority.
-The initial Python 3.12 concern is reproduced and pending maintainer review.
+The initial Python 3.12 concern is approved and published as B-0048; its
+JsonObjectFile-only assignment is prepared and still unauthorized.
 This is the first governed intake boundary, not an autonomous supervisor.
 
 The concrete B-item-to-Qwen bridge is now implemented and deterministically
@@ -78,6 +79,13 @@ validated: approved/published backlog item, exact preparation, separate host
 authority, fresh target validation, existing Qwen execution, review candidate or
 bounded escalation. Side discoveries route to pending intake without changing
 active scope. One designated coordinator owns canonical mutations.
+
+Scoped standing routine-Qwen delegation is now implemented in that same work
+bridge. A genuine one-time host grant can replace repeated per-task terminal
+consent, subject to exact Codex review, source/test/validation-code/model scope,
+cumulative reservations, expiration and revocation. No real grant has been
+issued. B-0048 qualifies under the proposed narrow object-model policy but
+remains prepared and unexecuted. This is not a persistent supervisor or scheduler.
 
 Next: process one genuinely reviewed and separately authorized backlog item
 through this bridge on an isolated branch, validate against host-owned acceptance,

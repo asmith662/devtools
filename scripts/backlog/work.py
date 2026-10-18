@@ -210,7 +210,7 @@ class WorkCycle:
         with self.intake._writer():
             return self._save(folder / "authorization.json", grant)
 
-    async def execute(
+    async def execute(  # noqa: C901 -- manual/delegated admission to one executor
         self,
         item: str,
         *,
@@ -239,7 +239,12 @@ class WorkCycle:
             raise PermissionError(
                 "Missing, stale or mismatched implementation authority"
             )
-        if authorize is None or not authorize(
+        delegated = "delegation" in grant
+        if delegated:
+            from scripts.backlog.delegation import Delegations  # noqa: PLC0415
+
+            Delegations(self).authority(grant, assignment, task)
+        elif authorize is None or not authorize(
             {"assignment": assignment, "grant": grant}
         ):
             raise PermissionError(
@@ -252,6 +257,8 @@ class WorkCycle:
         if now.value >= Timestamp.from_isoformat(grant["expires_at"]).value:
             raise PermissionError("Implementation authority expired before admission")
         with self.intake._writer():
+            if delegated:
+                Delegations(self).authority(grant, assignment, task)
             if (folder / "dispatch.json").exists() or (folder / "worker").exists():
                 raise PermissionError(
                     "Prior dispatch exists; reconcile, never blindly redispatch"
@@ -271,6 +278,10 @@ class WorkCycle:
         error = None
         try:
             interaction, provenance = await interaction_factory()
+            if delegated:
+                authority = Delegations(self)
+                authority.model(grant, provenance)
+                interaction = authority.guard(grant, task, interaction)
             worker = await run_coding_task(
                 target,
                 folder / "worker",
@@ -283,6 +294,11 @@ class WorkCycle:
                     "authorization_sha256": grant["sha256"],
                 },
             )
+            if (
+                delegated
+                and (authority.folder(grant["delegation"]) / "blocked.json").exists()
+            ):
+                error = "Delegated provider exceeded requested output allowance"
         except Exception as failure:  # noqa: BLE001 -- retain ambiguity; never redispatch
             error = f"{type(failure).__name__}: {failure}"
         result = await self._closeout(assignment, grant, worker, error)
@@ -328,6 +344,7 @@ class WorkCycle:
         validation = last.get("validation", {})
         accepted = bool(
             worker
+            and not error
             and worker["accepted"]
             and unchanged
             and worker["workspace_removed"]
@@ -339,6 +356,7 @@ class WorkCycle:
         )
         return {
             "schema": "backlog-qwen-result-v1",
+            "objective": task.objective,
             "item": item,
             "assignment_sha256": assignment["sha256"],
             "authorization_sha256": grant["sha256"],
