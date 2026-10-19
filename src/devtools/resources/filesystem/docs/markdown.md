@@ -13,9 +13,10 @@ ATX pattern. Setext headings are unsupported.
 
 Headings within recognized fenced code are ignored. Fences use backticks or
 tildes, permit up to three leading spaces, and close only with the same
-character at least as long as the opening fence. The current parser accepts
-trailing text after a closing fence prefix and does not claim complete
-CommonMark fence compliance.
+character at least as long as the opening fence, with only spaces or tabs after
+the markers. A fence-like line with non-whitespace trailing text does not end
+the block or expose its headings/sections. Longer closers and trailing spaces
+or tabs remain supported. This does not claim complete CommonMark compliance.
 
 ## Sections and lookup
 

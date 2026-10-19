@@ -1,0 +1,101 @@
+{
+  "schema": "qwen-markdown-upfront-output-comparison-v1",
+  "attempt": "attempt-03",
+  "comparison": {
+    "predecessor": "attempt-02",
+    "only_model_request_setting_changed": "maximum_output_tokens: 1500 -> 4096",
+    "host_timeout_seconds": 300,
+    "prompt_sha256": "fec4a261e4a902e5dd8bf4bf9bf7ceaebedf35456879bbb6f8c225d58150b69b",
+    "prompt_matches_attempt_02_byte_for_byte": true,
+    "context_window_tokens": 32768,
+    "thinking_enabled": false,
+    "tools": 0,
+    "requests": 1,
+    "automatic_retries": 0
+  },
+  "baseline": {
+    "branch": "feat/qwen-real-task",
+    "head": "a65ef00dff998151c6c631c60c738b8d3893206b",
+    "predecessor_attempt_head": "08ce637f5cbb6ac7e0e5495f08239dc6eafc77d7",
+    "source": "src/devtools/resources/filesystem/models/markdown/file.py",
+    "source_sha256": "b01a8fdac51f3d5485275898b45d43cd643efac736b1e275b8a18fc205fd6195",
+    "tests": "tests/resources/filesystem/models/markdown/test_file.py",
+    "tests_sha256": "92e5f321000054d18f30775387b24f65a1b2635fb02e15e2ea01643abdb4b7a9",
+    "oracle_sha256": "373b20627f04d364b5624abbab4699e560d464b96993e9fa28097cc11e0be12b",
+    "oracle_baseline": "FAILED as expected before inference"
+  },
+  "model": {
+    "served_name": "qwen38-local",
+    "profile": "Qwen3.8-27B-UD-IQ4_XS",
+    "profile_fingerprint": "03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1",
+    "endpoint": "http://127.0.0.1:8080",
+    "readiness": "READY; observed fingerprint matched",
+    "context_tokens": 32768,
+    "maximum_output_tokens": 4096,
+    "thinking_enabled": false,
+    "service_lifecycle_changes": 0
+  },
+  "outcome": {
+    "model_invocation": "RESPONSE_RECEIVED",
+    "provider_termination": "normal_stop",
+    "failure_class": "PATCH_OR_ADMISSION_FAILURE",
+    "host_validation_error": "Expected bounded plain unified diff for the sole permitted file",
+    "response_had_patch_like_prefix": true,
+    "patch_format": "REJECTED; did not satisfy the existing exact bounded unified-diff contract",
+    "patch_scope": "NOT_ASSESSED",
+    "isolated_application": "NOT_ATTEMPTED",
+    "focused_markdown_tests": "NOT_RUN; no patch was admitted",
+    "independent_eight_scenario_oracle": "NOT_RUN; no patch was admitted",
+    "accepted": false,
+    "source_sha256_after": "b01a8fdac51f3d5485275898b45d43cd643efac736b1e275b8a18fc205fd6195"
+  },
+  "usage": {
+    "input_tokens": 3801,
+    "output_tokens": 139,
+    "total_tokens": 3940,
+    "cached_input_tokens": "UNKNOWN; provider returned null",
+    "reasoning_tokens": "UNKNOWN; provider returned null",
+    "codex_coordination_usage": "UNKNOWN"
+  },
+  "timing_utc": {
+    "model_attempt_started": "2026-10-17T21:58:26.155865+00:00",
+    "model_response_seconds": 6.6534275,
+    "attempt_finished": "2026-10-17T21:58:32.813657+00:00",
+    "attempt_elapsed_seconds": 6.6578072,
+    "focused_host_tests": "43 passed in 2.14 seconds",
+    "ruff": "PASS",
+    "format": "PASS",
+    "strict_mypy": "PASS",
+    "diff_check": "PASS"
+  },
+  "evidence": {
+    "freeze": ".local/qwen-first-task/attempt-03/freeze.json",
+    "request": ".local/qwen-first-task/attempt-03/request.json",
+    "response": ".local/qwen-first-task/attempt-03/response.json",
+    "result": ".local/qwen-first-task/attempt-03/result.json",
+    "proposal": ".local/qwen-first-task/attempt-03/proposal.txt",
+    "attempt_01_and_attempt_02_modified": false,
+    "full_model_output_committed": false
+  },
+  "previous_attempt_comparison": {
+    "attempt_01": {
+      "turns": 5,
+      "accepted_tool_actions": 7,
+      "input_tokens": 37644,
+      "output_tokens": 403,
+      "worker_seconds": 32.2645472,
+      "patch": false
+    },
+    "attempt_02": {
+      "requests": 1,
+      "tools": 0,
+      "input_tokens": 3801,
+      "output_tokens": 1500,
+      "worker_seconds": 69.2634211,
+      "termination": "output_limit",
+      "patch": false
+    },
+    "interpretation": "Attempt-03 exactly reuses attempt-02's prompt and changes its output cap from 1,500 to 4,096. Qwen stopped normally with a short response, but the required patch contract rejected it. This does not establish accepted coding ability, and no cost-superiority claim is made."
+  },
+  "next_step": "Do not retry this frozen task. The measured failure is patch-format/admission rejection after a normal model stop, not output-limit termination. Any further live attempt requires separate task-level authorization and a newly frozen evaluation."
+}

@@ -1,0 +1,114 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "task_conditioned_graph",
+  "status": "CLOSED",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "Graph-3 completed development result GRAPH_HARMFUL; no production graph/routing policy promoted.",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+      "bytes": 14
+    },
+    {
+      "path": ".pytest_cache/.gitignore",
+      "sha256": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd",
+      "bytes": 37
+    },
+    {
+      "path": ".pytest_cache/CACHEDIR.TAG",
+      "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+      "bytes": 191
+    },
+    {
+      "path": ".pytest_cache/README.md",
+      "sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+      "bytes": 302
+    },
+    {
+      "path": ".pytest_cache/v/cache/lastfailed",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "bytes": 2
+    },
+    {
+      "path": ".pytest_cache/v/cache/nodeids",
+      "sha256": "02d14cd05e759501962f8267a4f1264205e94f8c71e3125d04dab281f171f050",
+      "bytes": 4333
+    },
+    {
+      "path": "__init__.py",
+      "sha256": "dabea9295712b6c9b3212e7c379f3306b321624dafb1630688c0152aba6a623a",
+      "bytes": 103
+    },
+    {
+      "path": "diagnostic.py",
+      "sha256": "82ed7c2a67e815a29b2898ecb1a4f3395cc9df89b79ef82a7c4c7efa702579b6",
+      "bytes": 6172
+    },
+    {
+      "path": "evidence.py",
+      "sha256": "50bd874dc583f4cc91b5f1153ad4075f8cc2a4a291af38dc4eb359b239ba3f4e",
+      "bytes": 5794
+    },
+    {
+      "path": "gates.py",
+      "sha256": "941e1360ff9c1e3a6109f9b50609c9db0801b3e2877552c87ee284f86752faf7",
+      "bytes": 4391
+    },
+    {
+      "path": "pytest.ini",
+      "sha256": "cacc10d18cae1577ab702132efba0289a0495f902171210ae980b7bd8c146418",
+      "bytes": 61
+    },
+    {
+      "path": "ranking.py",
+      "sha256": "9b641ae25f29252259bcf3092cab7ab0649370761a0bd6a1ff3fbd4185630078",
+      "bytes": 9818
+    },
+    {
+      "path": "README.md",
+      "sha256": "30df3d63eeb4c1605f0d4192192ddef36d2ca4c78ea66302d7b6b0918584face",
+      "bytes": 2802
+    },
+    {
+      "path": "seeds.py",
+      "sha256": "727f56787f3f0cf844ec1aca7d3d11d9396d5dfe3cfc4726f7975b109d900add",
+      "bytes": 1528
+    },
+    {
+      "path": "test_flow.py",
+      "sha256": "fc80540532bd5abdd2b95980bb52a525b63ad94a8c30f760a7a28403dfe6d8d1",
+      "bytes": 6109
+    },
+    {
+      "path": "test_gates.py",
+      "sha256": "47392cbe05a701d226625b0e51c0eb2a4f0937ced972f2d01e47cb508ab9685d",
+      "bytes": 3084
+    },
+    {
+      "path": "test_graph.py",
+      "sha256": "a8fbd79627eaf99d23c4fa5785d756d858e3e1844212043c3de273ca853a6b6b",
+      "bytes": 15746
+    },
+    {
+      "path": "view.py",
+      "sha256": "afab6091bbaa99596d64dd26853b9d91d7484466ed171ad83ea0fbc0867eee26",
+      "bytes": 4196
+    }
+  ],
+  "packet": {
+    "path": ".local/archives/experiments-2026-10-19/task_conditioned_graph.zip",
+    "sha256": "4729db038b8d23480a2c6baf9a8082dd180f51c55ec1580584765983eda8eced",
+    "bytes": 22101,
+    "restored_files": 18,
+    "recovery": "EXTRACTED_AND_SHA256_VERIFIED",
+    "durability": "LOCAL_SAME_SSD; not disk-loss protection"
+  },
+  "source_documents": [
+    ".pytest_cache/README.md",
+    "README.md"
+  ],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

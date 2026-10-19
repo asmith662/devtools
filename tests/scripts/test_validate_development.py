@@ -1,5 +1,4 @@
 # Copyright (c) 2026
-# ruff: noqa: INP001
 """Contract tests for the protected development validation entry point."""
 
 from __future__ import annotations

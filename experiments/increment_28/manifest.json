@@ -1,0 +1,88 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "increment_28",
+  "status": "CLOSED",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "Closed development-only breadth checkpoint; exact results and limits remain in README.md and the breadth production-gate synthesis. Confirmation remains sealed.",
+  "files": [
+    {
+      "path": "__init__.py",
+      "sha256": "8220c05e21d01954db0b976a3c646bef7022bf3827fa2b57a6f0e13606ff927d",
+      "bytes": 74
+    },
+    {
+      "path": "analysis.py",
+      "sha256": "0caaf9a0a6b3873f5c3fc93f2446ad36ce43553f9f9391f2712714b2c3919279",
+      "bytes": 9677
+    },
+    {
+      "path": "import_use.py",
+      "sha256": "4b1bbdf0c351f92fcb65dac570ed73b4505964e2251ecd1cdbf5d31b49bc60b2",
+      "bytes": 24966
+    },
+    {
+      "path": "import_use_development_results.json",
+      "sha256": "d771710f99dbce6fa394b6b0efec1495e5ee180ef781db2c74d21f377d554b87",
+      "bytes": 120624
+    },
+    {
+      "path": "import_use_evidence.json",
+      "sha256": "d82c9421aa2828ea62a48d99bb7d44a28a2eea2babcd66822b5d3bee2c80027f",
+      "bytes": 919125
+    },
+    {
+      "path": "import_use_freeze.json",
+      "sha256": "4c95652b5187a7be89897db885f3e30264781b5f467eaa5251262dc340f6bb73",
+      "bytes": 4160
+    },
+    {
+      "path": "localization/__init__.py",
+      "sha256": "eb221a228add6dab472ac6f03900fc0e0b86a5fbd5e0209f5861461a4019a137",
+      "bytes": 93
+    },
+    {
+      "path": "localization/analysis.py",
+      "sha256": "35f4ca9cf29f13422b3e5222cba980d0365f89bf5e21987edbea59c667983c2a",
+      "bytes": 9638
+    },
+    {
+      "path": "localization/evidence.py",
+      "sha256": "288c2816243f51803923340be9eb7aef216d1ebf33c0eb45c020add95f9e654f",
+      "bytes": 16637
+    },
+    {
+      "path": "localization_development_results.json",
+      "sha256": "400d20604b51a69c6e18ee68fb9e328337c937042d2125e4ae6e021d5c4729f2",
+      "bytes": 151832
+    },
+    {
+      "path": "localization_evidence.json",
+      "sha256": "bf16ab89a1f7ce057299e793dfed2a87a2beb7a442d22222045dc4a53373c831",
+      "bytes": 1509890
+    },
+    {
+      "path": "localization_freeze.json",
+      "sha256": "edc30d144b3abc535f8d40045db9f573945670bccce1de8dd24b27baab2cd06d",
+      "bytes": 3920
+    },
+    {
+      "path": "README.md",
+      "sha256": "0781da68979e30c2462f58fec1c94f8c17fe8b5acc3e1a71a1f731f1d62a1a93",
+      "bytes": 12622
+    }
+  ],
+  "packet": {
+    "path": ".local/archives/experiments-2026-10-19/increment_28.zip",
+    "sha256": "9289bb0571c7d21fa5a59a22561ff4c678e5a584e92d98b290a0a3c6b0630c94",
+    "bytes": 221940,
+    "restored_files": 13,
+    "recovery": "EXTRACTED_AND_SHA256_VERIFIED",
+    "durability": "LOCAL_SAME_SSD; not disk-loss protection"
+  },
+  "source_documents": [
+    "README.md"
+  ],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

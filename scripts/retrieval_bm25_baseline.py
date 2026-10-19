@@ -87,6 +87,8 @@ _EXCLUDED_EXACT_ADDRESSES = frozenset(
     {
         "architecture-archaeology-dossier.md",
         "evaluation-architecture-investigation-dossier.md",
+        "docs/research/architecture-archaeology-dossier.md",
+        "docs/research/evaluation-architecture-investigation-dossier.md",
         "docs/implementation_ledger.md",
         "scripts/retrieval_bm25_baseline.py",
         "tests/scripts/test_retrieval_bm25_baseline.py",

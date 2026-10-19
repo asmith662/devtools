@@ -10,6 +10,26 @@ from typing import TYPE_CHECKING, cast
 
 import pytest
 
+from apps.qwen.patch_proposal_worker import (
+    _EXPECTED_PATCH,
+    _ORIGINAL_SOURCE,
+    _SELECTION_STRESS_EXPECTED_PATCH,
+    _SELECTION_STRESS_FIXTURE,
+    _TARGET_PATH,
+    _UNRELATED_SOURCE,
+    PatchProposalError,
+    QwenPatchProposalWorker,
+    UngroundedFinalResponseError,
+    coding_worker_task,
+    create_patch_proposal_fixture,
+    create_selection_stress_fixture,
+    selection_stress_measurements,
+    selection_stress_task,
+)
+from apps.qwen.two_action_read_only_experiment import (
+    QwenListDirectoryCycle,
+    ReadOnlyProposalError,
+)
 from devtools.agents.conversation import Conversation, InteractionSource
 from devtools.core.paths import ResolvedPath, resolve_path
 from devtools.execution import Runtime
@@ -28,26 +48,6 @@ from devtools.resources.filesystem import (
 )
 from devtools.tools import ToolInputError
 from devtools.tools.filesystem import ListRepositoryDirectoryTool
-from experiments.qwen.patch_proposal_worker import (
-    _EXPECTED_PATCH,
-    _ORIGINAL_SOURCE,
-    _SELECTION_STRESS_EXPECTED_PATCH,
-    _SELECTION_STRESS_FIXTURE,
-    _TARGET_PATH,
-    _UNRELATED_SOURCE,
-    PatchProposalError,
-    QwenPatchProposalWorker,
-    UngroundedFinalResponseError,
-    coding_worker_task,
-    create_patch_proposal_fixture,
-    create_selection_stress_fixture,
-    selection_stress_measurements,
-    selection_stress_task,
-)
-from experiments.qwen.two_action_read_only_experiment import (
-    QwenListDirectoryCycle,
-    ReadOnlyProposalError,
-)
 
 if TYPE_CHECKING:
     from pathlib import Path

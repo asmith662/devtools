@@ -1,0 +1,53 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "repository_map_baseline",
+  "status": "CLOSED",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "Completed diagnostic Case 0002 replay; no universal ranking policy established.",
+  "files": [
+    {
+      "path": "__init__.py",
+      "sha256": "fe78e5110dcf10130f428bf75b31a75690998c11f9612e38602ca9901e9ed22e",
+      "bytes": 98
+    },
+    {
+      "path": "diagnostic_results.json",
+      "sha256": "c86afc7e50fc91e4b3e5e0af3b9a45c4e68cd168d1ed72803cb6fb852963a4d3",
+      "bytes": 744658
+    },
+    {
+      "path": "evaluate.py",
+      "sha256": "4eddbe1193ac218b3b2eb000ad5b00a47d06a1ae1aff0b71f8a13d602f9c15ec",
+      "bytes": 11111
+    },
+    {
+      "path": "freeze.json",
+      "sha256": "185e539a951318dd996e85ff655d2c8aa757ed69a7c2815a2d23c482391d158d",
+      "bytes": 6657
+    },
+    {
+      "path": "README.md",
+      "sha256": "c95e35f49d14665beb405cc085d950d95d1deff373177da4da5632d709181f98",
+      "bytes": 20161
+    },
+    {
+      "path": "validation.json",
+      "sha256": "ea4f5a63720aa7e212ef2b42594cfacf81d9f07f80875a8ac22213a8549c4ecf",
+      "bytes": 5409
+    }
+  ],
+  "packet": {
+    "path": ".local/archives/experiments-2026-10-19/repository_map_baseline.zip",
+    "sha256": "d696af8a6c64b1358e5689f2a0d414eb0114a475667275fb5f47fbddfe92a540",
+    "bytes": 119716,
+    "restored_files": 6,
+    "recovery": "EXTRACTED_AND_SHA256_VERIFIED",
+    "durability": "LOCAL_SAME_SSD; not disk-loss protection"
+  },
+  "source_documents": [
+    "README.md"
+  ],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

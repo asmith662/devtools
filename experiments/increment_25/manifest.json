@@ -1,0 +1,118 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "increment_25",
+  "status": "CLOSED",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "Closed development-only breadth checkpoint; exact results and limits remain in README.md and the breadth production-gate synthesis. Confirmation remains sealed.",
+  "files": [
+    {
+      "path": "__init__.py",
+      "sha256": "c995d2214308715bd944332d0093680cb22e2094cecc24782fcee57e8e17606d",
+      "bytes": 91
+    },
+    {
+      "path": "confirmation.py",
+      "sha256": "fcae8e23b4a2cf1b26766b67e0e2aa609463516280f5278d7f24f82b25b445c5",
+      "bytes": 6402
+    },
+    {
+      "path": "confirmation_candidate_evidence.json",
+      "sha256": "424138004af05dec82fb4ccf212ca237170ebbc31853508247423b79b28f79ad",
+      "bytes": 532940
+    },
+    {
+      "path": "confirmation_frozen_judgments.json",
+      "sha256": "ef76013a31ff263e26d798f0560627d26289e44387fdad5a9c9a5583791a7c4b",
+      "bytes": 22600
+    },
+    {
+      "path": "confirmation_judgment_input.json",
+      "sha256": "dcddc418004c7db5bbe37fa0f3d66830a78a9546018156d34944fc56d3279c74",
+      "bytes": 326282
+    },
+    {
+      "path": "confirmation_judgments.py",
+      "sha256": "e8693aeb09077880419d2531b1fab1b1442be91311123f16d122d5ea630cb05f",
+      "bytes": 13510
+    },
+    {
+      "path": "confirmation_neutral_mapping.json",
+      "sha256": "6c252793b31e9e340926601cd679d67068c5cb94c5394cf18024aa753df975cd",
+      "bytes": 9314
+    },
+    {
+      "path": "confirmation_results.json",
+      "sha256": "2ab6acb2c75a229070e90064c9b1e72caf6976913193874b4a017ac5b063e867",
+      "bytes": 64867
+    },
+    {
+      "path": "development.py",
+      "sha256": "27e2f9efc2782a178ef92c6db0fd9893e598f6bf3facc76b08023572493f3e32",
+      "bytes": 24000
+    },
+    {
+      "path": "development_candidate_evidence.json",
+      "sha256": "748d135451cdad497b8e892b38b0ab59351777a84a701bd5e3323bfff2622e6f",
+      "bytes": 254363
+    },
+    {
+      "path": "development_judgment_input.json",
+      "sha256": "5cb67a13ee4f3278edb21c9a71e051dadc3ec1f3d6968c98d71965f5c6d6c50b",
+      "bytes": 36826
+    },
+    {
+      "path": "evaluate_confirmation.py",
+      "sha256": "33615c2629c35310e0834a41bef0b285104ade30a1085df3baa13e31e8ca5a33",
+      "bytes": 1372
+    },
+    {
+      "path": "freeze_confirmation_judgments.py",
+      "sha256": "6a535cae4793ac807e7090b45475476201e8e5710f661a7a96a994b48613c58a",
+      "bytes": 1417
+    },
+    {
+      "path": "freeze_task_population.py",
+      "sha256": "06f7c7e50f67ccb97f6831d2cc3524e014a3ca2683b81e572d04ae9f5a477ecf",
+      "bytes": 1114
+    },
+    {
+      "path": "README.md",
+      "sha256": "03798ae1f3d18c9f8e4f3e9d3289aabbcf1636f12f7252fdf7062077d4a9f01a",
+      "bytes": 4866
+    },
+    {
+      "path": "run_confirmation.py",
+      "sha256": "bddab1adb4b797cdb1204fd164f42062e519ca931d5c46d491de3d209d3df1bc",
+      "bytes": 1507
+    },
+    {
+      "path": "run_development.py",
+      "sha256": "7090d67055d14fcc3c59f58c25b47fb9e24934c303e3a08779b8e8a675b4c6fb",
+      "bytes": 1451
+    },
+    {
+      "path": "task_population.py",
+      "sha256": "5cc92ed5f5730b0705fe758a1ef83d74469768c3512fdf492a8ecba32977c252",
+      "bytes": 16988
+    },
+    {
+      "path": "task_population_freeze.json",
+      "sha256": "23435d68aedff808084fe33c611140343870a1222bf1fcd3a8d47d175e41cfe3",
+      "bytes": 242544
+    }
+  ],
+  "packet": {
+    "path": ".local/archives/experiments-2026-10-19/increment_25.zip",
+    "sha256": "5abd639153f5e43e49382fc2d567aaf902a83d9a400e5c1fb9437871439d26d9",
+    "bytes": 208765,
+    "restored_files": 19,
+    "recovery": "EXTRACTED_AND_SHA256_VERIFIED",
+    "durability": "LOCAL_SAME_SSD; not disk-loss protection"
+  },
+  "source_documents": [
+    "README.md"
+  ],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

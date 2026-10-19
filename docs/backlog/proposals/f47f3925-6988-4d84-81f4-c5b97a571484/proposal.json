@@ -1,0 +1,29 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "f47f3925-6988-4d84-81f4-c5b97a571484",
+  "created_at": "2026-10-18T14:08:56.449761+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Restore Python 3.12 JSON file-model compatibility",
+    "summary": "The declared Python >=3.12 distribution fails a JsonObjectFile constructor on installed CPython 3.12.13. Current development verification uses Python 3.14; compatibility remains unresolved.",
+    "discovery": {
+      "kind": "agent",
+      "reference": "git:224644cc4276fd58074329be01be44b7012553b7:docs/implementation_ledger.md (Python 3.12 compatibility observation)"
+    },
+    "parent": "B-0009",
+    "resources": [
+      "src/devtools/resources/filesystem/models/json/object.py",
+      "pyproject.toml"
+    ],
+    "evidence": [
+      "docs/backlog/proposals/python312-reproduction.json",
+      "docs/implementation_ledger.md (unchanged-main JsonObjectFile reproduction and prior 54 Python 3.12 test failures)"
+    ],
+    "benefit": "Restore trustworthy declared-version compatibility and prevent local worker/environment confusion.",
+    "uncertainty": "The affected model family, minimal correction, and supported interpreter test matrix require investigation. This proposal provides no implementation or execution authority.",
+    "dependencies": [
+      "B-0009: pressure only; the current worker remains validated on Python 3.14."
+    ]
+  },
+  "payload_sha256": "7bed2d72d1ea593c38cfacb3f6d3c889131af581f6c67838da15285558328914"
+}

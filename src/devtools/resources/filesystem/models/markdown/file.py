@@ -27,7 +27,7 @@ class MarkdownFile(TextFile):
         r"^(?P<marker>#{1,6})[ \t]+(?P<text>.*?)[ \t]*#*[ \t]*$",
     )
     _FENCE_PATTERN: ClassVar[re.Pattern[str]] = re.compile(
-        r"^[ \t]{0,3}(?P<fence>`{3,}|~{3,})",
+        r"^[ \t]{0,3}(?P<fence>`{3,}|~{3,})[ \t]*(?P<info>.*?)[ \t]*$",
     )
 
     @property
@@ -129,7 +129,11 @@ class MarkdownFile(TextFile):
                     active_fence = fence
                     continue
 
-                if fence[0] == active_fence[0] and len(fence) >= len(active_fence):
+                if (
+                    fence_match.group("info") == ""
+                    and fence[0] == active_fence[0]
+                    and len(fence) >= len(active_fence)
+                ):
                     active_fence = None
                     continue
 

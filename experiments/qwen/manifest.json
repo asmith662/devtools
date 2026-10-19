@@ -1,0 +1,77 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "qwen",
+  "status": "CLOSED",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "Recorded Markdown task accepted and integrated at 1122500; source-materialization Task 02 remains REPAIR_BUDGET_EXHAUSTED (3 calls, 19,587 input / 1,848 output tokens). Maintained consumer code moved to apps/qwen; historical native/tool/diff attempts remain immutable on feat/qwen-real-task and in the preserved local packet. This closes recorded attempts, not general worker reliability.",
+  "files": [
+    {
+      "path": "__init__.py",
+      "sha256": "ab9c06e39a52ce0f7ed74cb14403715a4c9dee140eb5360b048dd473dd351fc3",
+      "bytes": 98
+    },
+    {
+      "path": "docs/first_accepted_coding_task.json",
+      "sha256": "ac17e2c0ca7dc908982399392baf666e7b2236c6704267751b0b0264aa25f1b3",
+      "bytes": 4878
+    },
+    {
+      "path": "docs/first_real_task.json",
+      "sha256": "92f49b6848998c20b2f2a6b13d96b73699edfc526d86ae7c14745a834b082a85",
+      "bytes": 16065
+    },
+    {
+      "path": "docs/first_real_task_output_budget_comparison.json",
+      "sha256": "b29dfc35437d7789dfd27cf76678adf9641bf8d7f0c3a848420a88b6ca198abe",
+      "bytes": 4524
+    },
+    {
+      "path": "docs/first_real_task_structured_edit_offline.json",
+      "sha256": "096fe3f513c3b42baa99ea2e875cd15c3d24f95791531b3aa648770aca337953",
+      "bytes": 4213
+    },
+    {
+      "path": "docs/first_real_task_upfront.json",
+      "sha256": "9a2d8dc4e89aa2ba515d5bd4d4ead0cd9e5a2fd68395d4d05f7cb9c303a5cda6",
+      "bytes": 4840
+    },
+    {
+      "path": "docs/overview.md",
+      "sha256": "4a3300ec59d5d07ba459d86dbbee75c68011fe5e45bbb24b002d1bc97dd929d0",
+      "bytes": 7131
+    },
+    {
+      "path": "docs/second_task_preparation.json",
+      "sha256": "3922020376f7e8fcffb350ada6839f4e932a082771b631c5fef7a7fd41e9baab",
+      "bytes": 6833
+    },
+    {
+      "path": "docs/second_task_result.json",
+      "sha256": "2ce3ea535b78d67eef87e66afe36a22d1116e0ce298c59c4fe47700e07d9e89f",
+      "bytes": 2372
+    },
+    {
+      "path": "read_experiment.py",
+      "sha256": "e278442089c625d1bbdc01e548ab5f723c7a029db092d72f41ee686837061799",
+      "bytes": 9264
+    }
+  ],
+  "packet": {
+    "path": ".local/archives/experiments-2026-10-19/qwen-main.zip",
+    "sha256": "b1eb3df0b92404f0406f6de921be738eaa3621adc69f1bc9cc48719746c4d816",
+    "bytes": 23584,
+    "restored_files": 10,
+    "recovery": "EXTRACTED_AND_SHA256_VERIFIED",
+    "durability": "LOCAL_SAME_SSD; not disk-loss protection"
+  },
+  "source_documents": [
+    "docs/overview.md"
+  ],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants.",
+  "source_revisions": [
+    "e84def2d08dfc59739fab8f778478d9a63604c7c",
+    "7dd5610e9533cbdb365940e4cf0b7c23311219ab"
+  ]
+}

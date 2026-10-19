@@ -1,0 +1,74 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "mechanism_routing",
+  "status": "CLOSED",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "Case 0013: SELECTIVE_MECHANISM_ROUTING_SUPPORTED within the frozen case scope.",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "d0d44a4acefa4cd1e4e1f50ad2def98eaf52c0332928ecf9f8c59dade7d97a0a",
+      "bytes": 52
+    },
+    {
+      "path": "__init__.py",
+      "sha256": "0e791853599432db67ac344b656499e3420a04c8a821d455b99fdb5f3519269e",
+      "bytes": 93
+    },
+    {
+      "path": "CAPABILITIES.md",
+      "sha256": "178abc5ecc74a01607d708598aa7e7a3a6cf6d3b144318b7045159f1c5470dac",
+      "bytes": 4820
+    },
+    {
+      "path": "composition.py",
+      "sha256": "676401ec23f47f102059abd090fb5a6a43bf508543cf129f281c2cbfaee73620",
+      "bytes": 2671
+    },
+    {
+      "path": "gates.py",
+      "sha256": "c37a994e4ad000fc93546806795c369bd21ca93cb79c0b23802973bdff9f4920",
+      "bytes": 3245
+    },
+    {
+      "path": "policy.py",
+      "sha256": "c0c59ddc2e7c7293f65fa0ed65c1d20a47c771b4f93cdc90fa9619b26973ef75",
+      "bytes": 5738
+    },
+    {
+      "path": "pytest.ini",
+      "sha256": "e3e9e02cbcf0b8d5307f64c607547b503facf6d2a773f8bc3c6063c474fef76f",
+      "bytes": 37
+    },
+    {
+      "path": "README.md",
+      "sha256": "907964baf43d3a6df9d457e8d2e7f55566931eca0deb0b59cdbb01920ec7126d",
+      "bytes": 1992
+    },
+    {
+      "path": "tests/__init__.py",
+      "sha256": "a81054c2e23c71be32d7984799ad53dd5c0636d1c1de18377654318d82a9b80d",
+      "bytes": 84
+    },
+    {
+      "path": "tests/test_policy.py",
+      "sha256": "e4ce8c2f8682cf01aa6ccbd31a76835e69d75a3ef8d8cfe79efc55be9a752193",
+      "bytes": 11878
+    }
+  ],
+  "packet": {
+    "path": ".local/archives/experiments-2026-10-19/mechanism_routing.zip",
+    "sha256": "e9f6023563e93199535cba593b275483988e3ccf3ae3a1ad7422985381a32a85",
+    "bytes": 11796,
+    "restored_files": 10,
+    "recovery": "EXTRACTED_AND_SHA256_VERIFIED",
+    "durability": "LOCAL_SAME_SSD; not disk-loss protection"
+  },
+  "source_documents": [
+    "CAPABILITIES.md",
+    "README.md"
+  ],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

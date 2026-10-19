@@ -1,5 +1,13 @@
 # Documentation Map
 
+The [canonical reconciliation record](development/reconciliation.md) owns the
+2026-10-19 branch/evidence disposition. [Experiment closeout](../experiments/README.md)
+owns the collection inventory and restoration contract. The maintained standalone
+[coding application](../apps/qwen/README.md) composes framework APIs; historical
+Qwen reports remain experiment evidence. Dashboard and governed-integration
+continuation are available on the ordinary consolidation branch, with blockers
+explicitly recorded rather than described as main production capabilities.
+
 The [experiment worker startup contract](../experiments/orchestration/engineering/startup/README.md)
 owns prospective direct-script preflight and the preparation-only source-grounding
 failure disposition. PLAN_VALID precedes approval only after real worker imports

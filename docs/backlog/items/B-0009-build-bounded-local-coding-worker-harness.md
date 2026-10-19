@@ -55,3 +55,8 @@ for it yet, and scripted success does not establish Context pressure.
 - blocked_by: none
 - promotion_trigger: deterministic worker composition plus live task evidence
 - validation_level: LIVE_SINGLE_HARNESS
+
+
+## Canonical consolidation checkpoint
+
+The standalone maintained worker is at apps/qwen. The first accepted Qwen Markdown correction is adopted; Task 02 remains failed and its source defect has a separately attributed Codex repair. General reliability, structured continuation and memory remain unfinished. WorkCycle/delegation/integration and the dashboard are retained on chore/repository-consolidation pending one-checkout compatibility and dependency review. No new model task was run during cleanup.

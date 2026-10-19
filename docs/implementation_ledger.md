@@ -1655,3 +1655,8 @@ Localization continuation remain preserved; production behavior is unchanged.
   witness acceptance, satisfaction or readiness. U3 FUTURE, R1.7 RETAINED,
   R2 true BM25F MANDATORY and Localization continuation PRESERVED. Maintainer
   review and separate explicit authorization precede Stage B.
+
+
+## 2026-10-19 canonical consolidation
+
+Preserved seven feature checkout histories and their unique evidence, removed linked checkouts and the obsolete scientific execution checkout, adopted the production-safe search/source/standalone-worker selection, and retained governed integration/dashboard continuation on an ordinary branch. No new model calls or scientific results. See docs/development/reconciliation.md for provenance, actual validation and blockers.

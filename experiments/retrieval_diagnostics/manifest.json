@@ -1,0 +1,77 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "retrieval_diagnostics",
+  "status": "INCOMPLETE",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "No authenticated consolidated terminal decision established during this cleanup. Existing records are retained; this is not an effectiveness conclusion.",
+  "files": [
+    {
+      "path": "__init__.py",
+      "sha256": "f9f5b7082023c48ccf6d732cad08f35bace851c2ae819a57f5b3522cecbc6793",
+      "bytes": 100
+    },
+    {
+      "path": "adapters.py",
+      "sha256": "f9f01169f16cf604423693cfcdc942c3471fdc422f60a2ca69c52652dabaefbd",
+      "bytes": 11069
+    },
+    {
+      "path": "attribution.py",
+      "sha256": "9e6507060266bb13a984621fc3669317122f42e3dd30bf47cb04e7b12e224744",
+      "bytes": 3908
+    },
+    {
+      "path": "case_0009.json.gz",
+      "sha256": "8287877622fcf36b714029afb2bc4c7d5d12479e3dbea585e8c3cd441d5b3648",
+      "bytes": 1011163
+    },
+    {
+      "path": "case_0009.md",
+      "sha256": "63c80bc37d09132140360df2417102b41de5b9549999c8c9bc3291e9248227af",
+      "bytes": 15788
+    },
+    {
+      "path": "comparison.py",
+      "sha256": "e7dd7748282bb6ec75cd17b2a91af090d73bffd82048b37dfdf38cc0f5f5851e",
+      "bytes": 6978
+    },
+    {
+      "path": "dogfood.py",
+      "sha256": "3c3957b7c5b1015d52c59ffa47368e709cae281f83a6c2d50e35bc03e2b8a528",
+      "bytes": 16343
+    },
+    {
+      "path": "mechanics.py",
+      "sha256": "41bc8a40648f2315488fe5ab1e86d815121c0475a5f8349662063d83ce719e33",
+      "bytes": 27301
+    },
+    {
+      "path": "models.py",
+      "sha256": "eaca2d0b90e7d8cea1564158a8177534cb94fd35187f640fbf0f7c3dba354dc3",
+      "bytes": 6349
+    },
+    {
+      "path": "README.md",
+      "sha256": "ea34835db8bb3cf4ec5ab69412b78ed153f72d58099f2279e3b6ab8ba7035047",
+      "bytes": 10352
+    },
+    {
+      "path": "serialization.py",
+      "sha256": "86ff2cd1fc660a5f45bc6876e48d26da3aafd7d14be970ef6cc8152541cfbae0",
+      "bytes": 504
+    },
+    {
+      "path": "supports.py",
+      "sha256": "4246a6b1e3f5ad9c16296ed81b5295089c129fcf72135ce91e40b505c4c42b54",
+      "bytes": 3106
+    }
+  ],
+  "packet": null,
+  "source_documents": [
+    "case_0009.md",
+    "README.md"
+  ],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

@@ -1,0 +1,48 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "typed_graph_baseline",
+  "status": "CLOSED",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "Completed typed-view diagnostic replay, not a prospective effectiveness claim.",
+  "files": [
+    {
+      "path": "__init__.py",
+      "sha256": "5b9475b753007b205c2804be314e07e0a5a273a3890ed89102fb4323699c07ee",
+      "bytes": 89
+    },
+    {
+      "path": "development_results.json",
+      "sha256": "04eb7085af7d9f6d441a91a181560c480b7c8228acbe88e6d5b6e238282eb37e",
+      "bytes": 163284
+    },
+    {
+      "path": "evaluate.py",
+      "sha256": "ca3487be9533cb7e16d599283ceb675a2520bb7ba8af8c7e4d55e41ddd3b2963",
+      "bytes": 15492
+    },
+    {
+      "path": "freeze.json",
+      "sha256": "c03a7705b95e6588e740fa652b82a48ed0fa0d487b0ff089e3cb4e91330af49f",
+      "bytes": 1885
+    },
+    {
+      "path": "README.md",
+      "sha256": "75862ead9f153abf565940aa7bfe1f956737eb51047606d135b5241f730951a1",
+      "bytes": 5638
+    }
+  ],
+  "packet": {
+    "path": ".local/archives/experiments-2026-10-19/typed_graph_baseline.zip",
+    "sha256": "6c3a0227547f9642d75e7e8b3ff2e92ada5c51dfdb6dc73101b5c2d93ae80323",
+    "bytes": 20369,
+    "restored_files": 5,
+    "recovery": "EXTRACTED_AND_SHA256_VERIFIED",
+    "durability": "LOCAL_SAME_SSD; not disk-loss protection"
+  },
+  "source_documents": [
+    "README.md"
+  ],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

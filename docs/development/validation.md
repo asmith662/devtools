@@ -30,6 +30,13 @@ Never remove the experiment-tree exclusion to make this profile pass.
 
 ## Other quality gates
 
+Run `uv run python scripts/validate_layout.py` for canonical root ownership.
+Default strict mypy checks maintained framework, tests and applications;
+retained experiments/generated programs and `tests/experiments/` have explicit
+experiment-specific checks. This avoids interpreting immutable generated
+scientific builders as duplicate supported modules. The protected pytest
+profile and 100% production branch-coverage requirement are unchanged.
+
 The protected command runs tests only. Run the applicable static checks as
 separate commands:
 

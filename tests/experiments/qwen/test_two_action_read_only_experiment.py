@@ -10,6 +10,14 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from apps.qwen import two_action_read_only_experiment as experiment
+from apps.qwen.two_action_read_only_experiment import (
+    QwenListDirectoryCycle,
+    QwenReadOnlyCycle,
+    QwenReadRepositoryFileCycle,
+    QwenTwoActionReadOnlyExperiment,
+    ReadOnlyProposalError,
+)
 from devtools.agents.conversation import (
     Conversation,
     ConversationMessage,
@@ -23,14 +31,6 @@ from devtools.resources.filesystem import FilesystemNotFoundError
 from devtools.tools.filesystem import (
     ListRepositoryDirectoryTool,
     ReadRepositoryFileTool,
-)
-from experiments.qwen import two_action_read_only_experiment as experiment
-from experiments.qwen.two_action_read_only_experiment import (
-    QwenListDirectoryCycle,
-    QwenReadOnlyCycle,
-    QwenReadRepositoryFileCycle,
-    QwenTwoActionReadOnlyExperiment,
-    ReadOnlyProposalError,
 )
 
 if TYPE_CHECKING:

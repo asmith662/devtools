@@ -1,0 +1,86 @@
+{
+  "baseline_revision": "d9a118315450b1e3df8bc00b6bbc29798845877b",
+  "captured_artifact_sha256": {
+    "final-source.py": "a5510a1b30945060c3d1438f0832cc8ffe5d9ee6248d5e24bd66feea6c5fb645",
+    "freeze.json": "f18a716389884b4a90ea47afef90ddd78b2fdc23d074d5acad965c33b5fbd972",
+    "oracle-runner.py": "80376518f4bdae3a03a03ab5d11022c4123f81f861feec1d09b1c08681794e1f",
+    "result.json": "8657a1dd402919d593ca5093d0495d0d66235f04b8d59557b5f183da54d514d4",
+    "tests-runner.py": "65bcd7b1f8150c3d54e8d00293b4d7d3bbc91af1911ba57078c74220c5514e15",
+    "turn-01\\proposal.patch": "91494dbd8aa83bb811a914ee547fb382fa6261096978ea1dd424364224903395",
+    "turn-01\\request.json": "5571b452089affdc1861b825fb8bdf3f30a3515f83144e8206ad16b2ed250cb5",
+    "turn-01\\response.json": "0b71b72b999ede3e2c2d99be937d4a9e3ee766958da574ff3e1635de0469788a",
+    "turn-01\\stage.json": "58ce0ec74c62dc7f9c80d676ef279df1c7c6197ab3c4da62a92cc890ea991615",
+    "turn-02\\proposal.patch": "ab84d765307d21107ecde9ef43844a386bf14b1f28b808437da7328f71446653",
+    "turn-02\\request.json": "b2ba054ac4805314bcd1203a3023ace9f2f4c0495f614a02e3c99b0ad01e15cf",
+    "turn-02\\response.json": "5bb94bb59ecd034cdf035ee848345f9e532022375d7c700b5dbf311b0fb5029c",
+    "turn-02\\stage.json": "a985d83d37a719b972fb784a66f8e76a22ae55e24924daed7c1415636a16c77d"
+  },
+  "final_git_blob": "64611ba0d53a7b64def3c1b8dc3da1f3cc83ed20",
+  "historical_result": {
+    "accepted": true,
+    "disposition": "ACCEPTED",
+    "elapsed_seconds": 34.76089530001627,
+    "finished_at": "2026-10-18T03:27:04.037954+00:00",
+    "model_calls_attempted": 2,
+    "repair_cycles": 1,
+    "started_at": "2026-10-18T03:26:29.277079+00:00",
+    "usage_totals": {
+      "cache_write_tokens": null,
+      "cached_input_tokens": null,
+      "input_tokens": 8178,
+      "output_tokens": 525,
+      "reasoning_tokens": null
+    }
+  },
+  "historical_run": ".local/qwen-coding-worker/run-01",
+  "historical_validation": {
+    "existing_markdown_tests_passed": 7,
+    "independent_scenarios_passed": 8
+  },
+  "model": {
+    "cache_type_k": "q4_0",
+    "cache_type_v": "q4_0",
+    "context_size": 32768,
+    "expected_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+    "flash_attention": "on",
+    "gpu_layers": "all",
+    "image_build_identity": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+    "model": {
+      "filename": "Qwen3.8-27B-UD-IQ4_XS.gguf",
+      "repository": "unsloth/Qwen3.8-27B-GGUF",
+      "revision": "16b6ae91d7429915de9e9a1c859c604731c78088"
+    },
+    "n_cpu_ffn": 0,
+    "parallel_sequences": 1,
+    "quant": "Unsloth Dynamic IQ4_XS"
+  },
+  "offline_replay": {
+    "exact_chain_verified": true,
+    "final_source_byte_equal": true,
+    "fresh_isolated_tests_and_oracle_passed": true,
+    "maintained_oracle_exit_code": 0,
+    "new_model_calls": 0
+  },
+  "oracle_sha256": "373b20627f04d364b5624abbab4699e560d464b96993e9fa28097cc11e0be12b",
+  "proposals": [
+    {
+      "arguments_json": "{\"path\":\"src/devtools/resources/filesystem/models/markdown/file.py\",\"old_text\":\"    _FENCE_PATTERN: ClassVar[re.Pattern[str]] = re.compile(\\n        r\\\"^[ \\\\t]{0,3}(?P<fence>`{3,}|~{3,})\\\",\\n    )\",\"new_text\":\"    _FENCE_PATTERN: ClassVar[re.Pattern[str]] = re.compile(\\n        r\\\"^[ \\\\t]{0,3}(?P<fence>`{3,}|~{3,})[ \\\\t]*(?P<info>.*?)[ \\\\t]*$\\\",\\n    )\"}",
+      "name": "propose_edit",
+      "provider_call_id": "0oIVHIN7OzEjxOmDBS8bYhFNDXPJABUS"
+    },
+    {
+      "arguments_json": "{\"path\":\"src/devtools/resources/filesystem/models/markdown/file.py\",\"old_text\":\"                if fence[0] == active_fence[0] and len(fence) >= len(active_fence):\\n                    active_fence = None\\n                    continue\",\"new_text\":\"                if (\\n                    fence_match.group(\\\"info\\\") == \\\"\\\"\\n                    and fence[0] == active_fence[0]\\n                    and len(fence) >= len(active_fence)\\n                ):\\n                    active_fence = None\\n                    continue\"}",
+      "name": "propose_edit",
+      "provider_call_id": "FR6Q02yD8SXdj1S5jnUiVO9wJWjRgKGg"
+    }
+  ],
+  "provenance_qualification": "Retained trusted-local-host records; no external cryptographic model attestation.",
+  "scope": "ONE_CONTROLLED_TASK_NOT_GENERAL_CODING_RELIABILITY",
+  "source_path": "src/devtools/resources/filesystem/models/markdown/file.py",
+  "source_sha256_chain_crlf_bytes": [
+    "b01a8fdac51f3d5485275898b45d43cd643efac736b1e275b8a18fc205fd6195",
+    "0b326dfb682e3b0090c8d009cbab56a5718053f770edbaddb64ce5187b03d29b",
+    "a5510a1b30945060c3d1438f0832cc8ffe5d9ee6248d5e24bd66feea6c5fb645"
+  ],
+  "task": "Markdown fence-closing correction"
+}

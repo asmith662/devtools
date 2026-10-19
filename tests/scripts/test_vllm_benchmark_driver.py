@@ -1,5 +1,4 @@
 # Copyright (c) 2026
-# ruff: noqa: INP001
 """Tests for the experimental vLLM benchmark composition script."""
 
 from __future__ import annotations

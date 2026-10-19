@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: ANN401, PT018, INP001 -- synthetic importer provenance fixtures
+# ruff: noqa: ANN401, PT018 -- synthetic importer provenance fixtures
 """Native-looking deterministic fixtures must never count as consumed usage."""
 
 import importlib.util

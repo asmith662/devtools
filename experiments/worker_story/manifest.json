@@ -1,0 +1,24 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "worker_story",
+  "status": "INCOMPLETE",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "No authenticated consolidated terminal decision established during this cleanup. Existing records are retained; this is not an effectiveness conclusion.",
+  "files": [
+    {
+      "path": "__init__.py",
+      "sha256": "48779fef99043dd29166d4bab9a36be7bfa3c9e291dadfd06aa3b372b9d4a778",
+      "bytes": 66
+    },
+    {
+      "path": "result.py",
+      "sha256": "d1598da7163398e194001e5c511f01a03475e30733892a74ef75f0c75861f974",
+      "bytes": 2955
+    }
+  ],
+  "packet": null,
+  "source_documents": [],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

@@ -1,0 +1,83 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "increment_30",
+  "status": "CLOSED",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "Closed development-only breadth checkpoint; exact results and limits remain in README.md and the breadth production-gate synthesis. Confirmation remains sealed.",
+  "files": [
+    {
+      "path": "__init__.py",
+      "sha256": "8a851967bfc7d36ab0958e6a78cbc569a8540a235d4ca34ea123bd5d1f6404ce",
+      "bytes": 90
+    },
+    {
+      "path": "analysis.py",
+      "sha256": "ddf0f14380e43d917607ba0213246da3ae7c7e0bb175840afca7ac8bd759385b",
+      "bytes": 10883
+    },
+    {
+      "path": "judgments.py",
+      "sha256": "cd02f5d9a0543a24b7dcfcc153dc161ff2a333ce2b47fca98d3ded8aa2dab05f",
+      "bytes": 7197
+    },
+    {
+      "path": "mechanics.py",
+      "sha256": "fb44dba0c65aef8861372cf04538a2435a76a4a5cf8a99b31d87f3edd2935612",
+      "bytes": 19578
+    },
+    {
+      "path": "package_containment_blinded_judgment_input.json",
+      "sha256": "7ea5664fd8ed90216b9f60e5afb16453e3cc0e6caf94452ce927c24caf8ba244",
+      "bytes": 11755
+    },
+    {
+      "path": "package_containment_candidates.json",
+      "sha256": "39c5624c312e259b002408e9707cb17237f2641d6922b3b20a8559f67efa29ad",
+      "bytes": 183488
+    },
+    {
+      "path": "package_containment_development_results.json",
+      "sha256": "1ff29c08c138b3ef990eb5b5e2cd1e173e2193c599ac5015ba62263284efd456",
+      "bytes": 86131
+    },
+    {
+      "path": "package_containment_freeze.json",
+      "sha256": "9be06e2dda17caafcc648ccdb05a2c1d8305126b5295f74685feb105c5dd36ae",
+      "bytes": 3511
+    },
+    {
+      "path": "package_containment_frozen_judgments.json",
+      "sha256": "408a65bbc4bc30d8284af287b047b737346a1751503d7a17cce5bdd7df1d043e",
+      "bytes": 14813
+    },
+    {
+      "path": "package_containment_judgment_freeze.json",
+      "sha256": "c3f61fac9c42d2e37ea718fa161a3ad8c9e179a0f7ba6b4c7b54b615b8fb10a5",
+      "bytes": 31525
+    },
+    {
+      "path": "population.py",
+      "sha256": "3a131f6cbfc20a483dfe1696e124f454a6136c1404424e44d0016839fce7c1b2",
+      "bytes": 13005
+    },
+    {
+      "path": "README.md",
+      "sha256": "93e045782a872f561ed43e5288907a4e22d88aea36b9e3806f3183fc404cfbc1",
+      "bytes": 8578
+    }
+  ],
+  "packet": {
+    "path": ".local/archives/experiments-2026-10-19/increment_30.zip",
+    "sha256": "539269b2a6b5f2ef752be52aec5b1914b92dcf1e7ff21d0a5c382ee4c16eb0ad",
+    "bytes": 53863,
+    "restored_files": 12,
+    "recovery": "EXTRACTED_AND_SHA256_VERIFIED",
+    "durability": "LOCAL_SAME_SSD; not disk-loss protection"
+  },
+  "source_documents": [
+    "README.md"
+  ],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

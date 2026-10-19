@@ -262,6 +262,30 @@ research artifact, experiment record, or production implementation.
 
 ## Git and external-state safety
 
+### Canonical checkout and layout
+
+Operate in `C:/Users/recoveryadmin/Workspace/tools/devtools`. Use ordinary Git
+branches in this checkout. Do not create additional Devtools worktrees, clones,
+backup repositories or independently maintained checkouts. Preserve branch refs
+and unique ignored evidence before removing obsolete checkout storage.
+Git fixture tests that create linked working copies require a separately scoped
+exception; do not silently invoke them under a no-worktree assignment.
+
+Production framework code belongs in `src/devtools/`; maintained local
+applications in `apps/`; tests in `tests/`; supported developer/operator commands
+in `scripts/`; architecture, decisions and backlog in `docs/`; research and its
+closeout records in `experiments/`; ignored runtime/evidence state in `.local/`.
+The root contains supported project configuration and entry-point documents,
+plus explicitly permitted ignored developer caches. Run
+`uv run python scripts/validate_layout.py` before publication. Do not create
+root-level scratch programs, research JSON reports or investigation dossiers.
+Applications compose framework APIs; framework source must not import `apps`,
+`scripts` or `experiments`. Experiment reopening and archival follow
+`experiments/README.md`; restored evidence never restores execution authority.
+Backlog administration is bound to this canonical checkout. Historic receipts
+and grants retain their original path bindings and must not be rewritten into
+new authority after relocation.
+
 - Inspect HEAD, branch, index, worktree, and `git diff --check` before edits.
 - Never discard pre-existing user work. Do not reset, clean, checkout, stage,
   commit, or push unless explicitly authorized.

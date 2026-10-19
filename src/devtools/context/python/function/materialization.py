@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import hashlib
 from dataclasses import dataclass
+from io import StringIO
 from typing import TYPE_CHECKING, ClassVar
 
 if TYPE_CHECKING:
@@ -114,7 +115,10 @@ def _extract_source_segment(content: str, source_range: PythonSourceRange) -> st
         raise PythonFunctionSourceMaterializationError(msg)
 
     encoded_lines = tuple(
-        line.encode("utf-8") for line in content.splitlines(keepends=True)
+        # Universal physical newlines without translating the original bytes.
+        # str.splitlines also splits Unicode separators that Python AST does not.
+        line.encode("utf-8")
+        for line in StringIO(content, newline="")
     )
     start = _absolute_byte_offset(
         encoded_lines,
@@ -126,11 +130,7 @@ def _extract_source_segment(content: str, source_range: PythonSourceRange) -> st
         line_number=source_range.end_line,
         column=source_range.end_column_utf8,
     )
-    try:
-        return content.encode("utf-8")[start:end].decode("utf-8")
-    except UnicodeDecodeError as error:
-        msg = "Source occurrence columns do not fall on UTF-8 character boundaries."
-        raise PythonFunctionSourceMaterializationError(msg) from error
+    return content.encode("utf-8")[start:end].decode("utf-8")
 
 
 def _absolute_byte_offset(
@@ -149,6 +149,11 @@ def _absolute_byte_offset(
     if column < 0 or column > len(source_line):
         msg = "Source occurrence column is outside the observed source line."
         raise PythonFunctionSourceMaterializationError(msg)
+    try:
+        source_line[:column].decode("utf-8")
+    except UnicodeDecodeError as error:
+        msg = "Source occurrence columns do not fall on UTF-8 character boundaries."
+        raise PythonFunctionSourceMaterializationError(msg) from error
     return sum(len(previous) for previous in encoded_lines[: line_number - 1]) + column
 
 

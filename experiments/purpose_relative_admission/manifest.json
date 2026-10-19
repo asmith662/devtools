@@ -1,0 +1,74 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "purpose_relative_admission",
+  "status": "INCOMPLETE",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "No authenticated consolidated terminal decision established during this cleanup. Existing records are retained; this is not an effectiveness conclusion.",
+  "files": [
+    {
+      "path": "__init__.py",
+      "sha256": "4a1dc4b3c08f22c9dacce6a517caaa44012fb88b5f687ff7b34d0822803c5f73",
+      "bytes": 98
+    },
+    {
+      "path": "design.py",
+      "sha256": "8add119ca899c7e0f4318df99c13ba0d80ff807a5d04254f8776024c2f765694",
+      "bytes": 4479
+    },
+    {
+      "path": "direct_resolution.py",
+      "sha256": "1adcd8d6a9dde1cbd923149f03e43a5e73a913ae0125380e34dd587c86cad462",
+      "bytes": 1570
+    },
+    {
+      "path": "evaluation.py",
+      "sha256": "084d04bf4b4bb2341ca3731ec34df7d0cfa76546d1b57a9ea62f00cf76bd1ea4",
+      "bytes": 27887
+    },
+    {
+      "path": "reservation.py",
+      "sha256": "dfd813ab1e034e5f1d5d2b272701b8cf75d04dd26de9bdbc96b00b0946f0366a",
+      "bytes": 5943
+    },
+    {
+      "path": "surfaces.py",
+      "sha256": "8427149856d34e36cdd0d7d8af0d89fc1221f64ffdd2cf60cb215e30c8482228",
+      "bytes": 1777
+    },
+    {
+      "path": "validation_adjudication.py",
+      "sha256": "276ca7b6f4e362cf648d011d0a0097ffbe31ade7742e8c112ac0656b0b16a390",
+      "bytes": 16848
+    },
+    {
+      "path": "validation_capture.py",
+      "sha256": "cf66bedb66b84b71a60f2505aa898f4f617523dd1f8161593563dfa985033e21",
+      "bytes": 6250
+    },
+    {
+      "path": "validation_design.py",
+      "sha256": "2623060e4310730c807b174d81ce6c3f402be20c1ee45c5abc69cda25f68f7b3",
+      "bytes": 21786
+    },
+    {
+      "path": "validation_evaluation.py",
+      "sha256": "6ffd98e4c4e7dd3fd2e95bb7c00bb8d964adb3692286d84f93426930d50812c7",
+      "bytes": 16441
+    },
+    {
+      "path": "validation_execution.py",
+      "sha256": "00958c61ee89cd5c5c2f06b1113f9666355e0765dc78b0d283dc56f6dd05a752",
+      "bytes": 36564
+    },
+    {
+      "path": "validation_reporting.py",
+      "sha256": "ad8f4627fd8fd8cdbe265845c19ce4ef3d2e47c6e8f9579992f235d780973416",
+      "bytes": 27342
+    }
+  ],
+  "packet": null,
+  "source_documents": [],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

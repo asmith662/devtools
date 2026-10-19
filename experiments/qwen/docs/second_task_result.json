@@ -1,0 +1,59 @@
+{
+  "schema": "qwen-task-02-closeout-v1",
+  "historical_result": ".local/qwen-coding-worker/task-02-run-01/result.json",
+  "result_sha256": "d229fa9757e7f20054e9bd4bedde5577010990418c5a5b9779f8c3c23443e53c",
+  "disposition": "REPAIR_BUDGET_EXHAUSTED",
+  "accepted": false,
+  "elapsed_seconds": 105.74287459999323,
+  "model_calls": 3,
+  "repair_cycles": 2,
+  "usage": {
+    "cache_write_tokens": null,
+    "cached_input_tokens": null,
+    "input_tokens": 19587,
+    "output_tokens": 1848,
+    "reasoning_tokens": null
+  },
+  "turns": [
+    {
+      "number": 1,
+      "source_after": "7c8b6dd5a765cd7ce85d4b11c72fcb798878e4231b04b32ac59fe17c891f0846",
+      "tests_exit": 0,
+      "oracle_exit": 1
+    },
+    {
+      "number": 2,
+      "source_after": "6dbd1cbf48e6e46178f39d0be04e812c6a48bc97415a9a14f522e0301298e745",
+      "tests_exit": 1,
+      "oracle_exit": 1
+    },
+    {
+      "number": 3,
+      "source_after": "1cf001bb3748efc44f3401751eadc882fe0883b7204f91ef31372a62ddc865a4",
+      "tests_exit": 1,
+      "oracle_exit": 1
+    }
+  ],
+  "engineering_closeout": {
+    "authorship": "Codex; separate from Qwen evaluation",
+    "new_model_calls": 0,
+    "oracle_checks": 48,
+    "baseline_regressions": "49 failed / 7 passed: all 48 valid cases and one invalid empty UTF-8 span failed",
+    "protected_validation": {
+      "passed": 1712,
+      "skipped": 2,
+      "production_branch_coverage_percent": 100,
+      "host_seconds": 41.0350547
+    },
+    "corrected_source_sha256": "6bcc26800d51ab62712d4fd78664b0f6db2af1cbcbd78aa57ea6415975e9b42b",
+    "focused_validation": "141 passed in 20.15s (function package and coding loop); additional focused Qwen run: 101 passed, 1 stale isolation assertion failed; corrected task-selection assertion: 15 passed in 21.36s. No production changes after protected gate."
+  },
+  "feedback": {
+    "turn_02_stderr_characters": 17196,
+    "turn_03_test_stderr_disclosed": 6000,
+    "primary_type_error_retained_in_oracle_feedback": true,
+    "correction": "Capture primary test facts before reporting; bounded head/tail excerpts with explicit truncation; preserve full command logs"
+  },
+  "oracle_sha256": "cd38d4f509e069de561d0dc614b61493fdb1a5222f4621202eddb869bb7b36c2",
+  "baseline_source_sha256": "b67c8cb67598a59d4b9250e8086065b79d6a7a11040511f6e3d565a220d11fa6"
+}
