@@ -35,6 +35,23 @@ invalidating observations of unchanged functions. The correction refreshes only
 verified, previously observed unchanged source intervals with exact provenance;
 it does not invent unseen source or relax edit matching.
 
+Development comparisons completed with no accepted task in either condition.
+The unchanged regex case made import-only edits then fabricated source; the
+unchanged JSON case referenced an undefined helper and fabricated later source.
+With improved feedback/source refresh, regex still misinterpreted a callback
+assertion and proposed an oversized replacement. JSON added a helper but used
+an unsupported standard-library keyword; the latest duplicated test diagnostics
+then exhausted active Context. Thinking enabled on regex exhausted 4,096 output
+tokens in its third request before proposing an edit (220.18 worker seconds).
+The off default is retained; these results do not demonstrate improved acceptance.
+
+Before held-out evaluation, a deterministic replay narrowed the JSON Context
+failure to duplicated latest pytest diagnostics. Keeping captured primary
+exceptions, the outcome tail and nonduplicate stderr reduced the reconstructed
+next request from 37,793 to 33,806 bytes, with identical current source regions
+and no exchanges omitted. This final feedback projection is tested; it is not a
+successful rerun of JSON. The original terminal receipt remains unchanged.
+
 Raw private evidence: `.local/qwen-coding-worker/native-cohort-03/`, including
 baseline preflight logs, serving-template readiness, per-turn native archives,
 source/diff identities and original-source restoration. Summarized measured

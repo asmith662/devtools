@@ -210,6 +210,59 @@ def test_invalid_thinking_setting_has_no_source_effect(tmp_path: Path) -> None:
     assert not (tmp_path / "unused").exists()
 
 
+def test_primary_pytest_failures_are_not_repeated_in_raw_feedback() -> None:
+    failure = {
+        "nodeid": "::test_preserve_contract",
+        "phase": "call",
+        "exception": "TypeError",
+        "message": "unexpected keyword argument 'parse_object'",
+    }
+    original = {
+        "oracle": {"exit_code": 1, "stdout": "", "stderr": "TypeError"},
+        "tests": {
+            "exit_code": 1,
+            "stdout": "repeated traceback\n" * 1000 + "17 failed in 0.02s\n",
+            "stderr": "secondary reporting failure\n"
+            + ("QWEN_TEST_FAILURE " + json.dumps(failure) + "\n") * 17,
+        },
+    }
+    before = json.dumps(original)
+    result = coding_loop._validation_feedback(original)
+    assert result["tests"]["primary_failures"][0] == failure
+    assert result["tests"]["primary_failures_truncated"]
+    assert "17 failed" in result["tests"]["stdout"]
+    assert "secondary reporting failure" in result["tests"]["stderr"]
+    assert "QWEN_TEST_FAILURE" not in result["tests"]["stderr"]
+    assert result["tests"]["stdout_truncated"]
+    assert result["tests"]["stderr_truncated"]
+    assert json.dumps(original) == before
+
+
+def test_context_budget_refusal_is_not_reported_as_a_tool_failure(
+    captured_inputs: Callable[[CodingTask], Path],
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    def refuse(*_args: object, **_kwargs: object) -> None:
+        msg = "Context budget cannot retain current source and latest validation"
+        raise ValueError(msg)
+
+    monkeypatch.setattr(coding_loop, "select_messages", refuse)
+    root = captured_inputs(MARKDOWN)
+    model = Investigating([])
+    result = asyncio.run(
+        coding_loop.run_coding_task(
+            root,
+            tmp_path / "budget",
+            model,
+            task=replace(MARKDOWN, context_mode="on-demand"),
+        )
+    )
+    assert result["disposition"] == "CONTEXT_BUDGET_FAILED"
+    assert result["source_restored"]
+    assert not model.requests
+
+
 def test_preflight_checks_exact_inputs_without_inference(
     captured_inputs: Callable[[CodingTask], Path],
     tmp_path: Path,

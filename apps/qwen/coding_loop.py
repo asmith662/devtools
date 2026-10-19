@@ -90,12 +90,24 @@ def _validation_feedback(
         details = {}
         for field in ("stdout", "stderr"):
             text = result[field]
+            if failures:
+                if field == "stderr":
+                    text = "\n".join(
+                        line
+                        for line in text.splitlines()
+                        if not line.startswith("QWEN_TEST_FAILURE ")
+                    )
+                elif len(text) > 600:
+                    text = (
+                        "[PYTEST TRACEBACKS OMITTED: see primary_failures; "
+                        "complete log archived]\n" + text[-600:]
+                    )
             details[field] = (
                 text
                 if len(text) <= 2000
                 else text[:1000] + "\n[TRUNCATED]\n" + text[-1000:]
             )
-            details[field + "_truncated"] = len(text) > 2000
+            details[field + "_truncated"] = len(text) > 2000 or text != result[field]
         category = {
             "oracle": "behavior",
             "tests": "regression",
@@ -957,6 +969,11 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
         )
     except Exception as error:  # noqa: BLE001 -- retain terminal failures without redispatch
         phase = report["turns"][-1]["phase"] if report["turns"] else "PREPARATION"
+        if isinstance(error, ValueError) and str(error) in {
+            "Context budget cannot retain current source and latest validation",
+            "Bounded Context byte allowance exceeded",
+        }:
+            phase = "CONTEXT_BUDGET"
         report.update(
             disposition=phase + "_FAILED", error=f"{type(error).__name__}: {error}"
         )

@@ -117,7 +117,7 @@ current source spans. Existing exact/unique LF/CRLF-safe admission remains intac
 No approximate edit is applied. Nonunique or unobserved text returns no-effect
 feedback within the same three-proposal bound. After admission, old source
 observations are invalidated. Previously observed portions outside the exact edit
-are refreshed only after byte-for-text verification against the current source;
+are refreshed only after exact-text verification against the current source;
 their original read/version/span and admitted edit remain referenced. Unseen or
 changed text is never inferred. The exact admitted replacement becomes a
 correlated current observation available for repair.
@@ -133,6 +133,10 @@ or typing, records the evaluated source version, and repeats the frozen public
 requirements alongside already-passing checks. A lint suggestion cannot override
 the task's API or exception contract. All required checks must pass on the same
 candidate. Complete logs remain separate from this bounded projection.
+When the test runner has captured structured primary failures, repeated pytest
+tracebacks are replaced by those facts and the outcome tail; nonduplicate stderr
+and explicit truncation remain. A source-preserving working-set refusal is
+reported as `CONTEXT_BUDGET_FAILED`, rather than attributing it to the last Tool.
 
 Before freezing a new task, review public behavior and exception compatibility,
 legitimate alternative implementations, independent acceptance, existing tests,
