@@ -1,5 +1,6 @@
 # Copyright (c) 2026
 # ruff: noqa: EM101, TRY003, PLR2004 -- fixed experiment task definitions
+
 """Host-selected configuration for the existing bounded coding loop.
 
 These are two concrete development obligations, not a task/plugin registry or
@@ -13,6 +14,7 @@ import json
 from dataclasses import asdict, dataclass
 from typing import TYPE_CHECKING
 
+from apps.qwen.api_contracts import API_TARGETS
 from apps.qwen.development_task import ACCEPTANCE, SOURCE, TESTS
 from apps.qwen.source_segment_acceptance import ACCEPTANCE as SEGMENT_ACCEPTANCE
 from devtools.context import RepositoryResourceAddress
@@ -23,7 +25,7 @@ if TYPE_CHECKING:
 
 @dataclass(frozen=True, slots=True)
 class CodingTask:
-    """One host-owned one-file objective, admitted Context, checks and bounds."""
+    """One host-owned bounded objective, exact source/read scopes and checks."""
 
     name: str
     objective: str
@@ -40,12 +42,25 @@ class CodingTask:
     context_mode: str = "prepared"
     read_paths: tuple[str, ...] = ()
     quality_checks: bool = False
+    additional_edit_paths: tuple[str, ...] = ()
+    api_targets: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: C901, PLR0912 -- narrow configuration admission
         """Validate scope and prevent configured bounds exceeding host limits."""
         if type(self.quality_checks) is not bool:
             raise ValueError("quality_checks must be a host-selected boolean")
-        paths = (self.source, *self.tests, *self.read_paths)
+        if (
+            not isinstance(self.additional_edit_paths, tuple)
+            or len(self.additional_edit_paths) > 3
+            or any(
+                not p.startswith("src/devtools/") for p in self.additional_edit_paths
+            )
+            or not isinstance(self.api_targets, tuple)
+            or len(set(self.api_targets)) != len(self.api_targets)
+            or any(p not in API_TARGETS for p in self.api_targets)
+        ):
+            raise ValueError("Task edit/API scope is not host-supported")
+        paths = (*self.sources, *self.tests, *self.read_paths)
         if self.context_mode not in {"prepared", "on-demand"}:
             raise ValueError("Unknown Context acquisition mode")
         if not isinstance(self.read_paths, tuple) or len(paths) > 32:
@@ -98,6 +113,11 @@ class CodingTask:
                 raise ValueError("Task exceeds the bounded local worker limits")
 
     @property
+    def sources(self) -> tuple[str, ...]:
+        """Exact permitted implementation resources; tests remain immutable."""
+        return (self.source, *self.additional_edit_paths)
+
+    @property
     def oracle_sha256(self) -> str:
         """Identify exact host-only acceptance code."""
         return hashlib.sha256(self.oracle.encode()).hexdigest()
@@ -106,6 +126,9 @@ class CodingTask:
     def definition_sha256(self) -> str:
         """Bind the complete host definition, including all checks and bounds."""
         value = asdict(self)
+        for field in ("additional_edit_paths", "api_targets"):
+            if not value[field]:
+                del value[field]
         if not self.quality_checks:
             del value["quality_checks"]
         # Existing assignment-v1 receipts predate these optional fields. Their

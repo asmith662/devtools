@@ -153,6 +153,47 @@ chat template, serving process or context-window change is implied. See
 
 ## Execution and inspection
 
+### Coordinated source edits and installed API contracts
+
+Trusted local tasks may explicitly declare `additional_edit_paths` (at most
+three existing implementation files under `src/devtools/`) and `api_targets`.
+All edit and read resources remain frozen by baseline revision/content hashes;
+tests and oracles remain host-owned and immutable. Select `--coordinated-edits`
+on the same CLI, or `coordinated_edits=True` on `run_local_task`. Historical
+single-edit definitions/digests and the default legacy invocation remain valid.
+
+The native `propose_edits(plan, api_evidence, edits)` operation carries a brief
+compatibility/implementation plan and up to eight exact observed anchors. Each
+component names its authorized path, exact current source version, old text and
+replacement. Empty replacements support anchored deletion. All components refer
+to one pre-edit state; stale, unobserved, ambiguous, overlapping and unauthorized
+anchors refuse before mutation. Existing exact LF/CRLF admission is reused.
+Each region remains bounded by 4,096 UTF-8 bytes, with 8,192 combined old/new
+bytes and a 16,384-byte combined patch cap: multiple regions do not enlarge the
+legacy aggregate text budget. The Checkout owner journals every file expectation
+before one native Git apply/check operation. Per-edit provenance, combined diff,
+all candidate source hashes and interrupted/restored state remain in the existing
+`qwen-coding-loop-v2` evidence. No parallel editing engine was introduced.
+
+`inspect_api(target)` uses ToolRunner to observe a fixed host-allowlisted installed
+stdlib object's actual signature/docstring, package/runtime version, truncation
+and observation digest. It permits no model-selected imports, object traversal,
+API execution or arbitrary Python. Initial supported targets are JSON loads and
+decoder contracts, regex Pattern finditer/search/fullmatch, bytes.decode and
+str.encode. JSON loads observations also disclose the actual delegated decoder
+signature; this exposes unsupported keyword assumptions without supplying a
+completed implementation. The task selects permitted and required targets.
+Transactions cite genuine observation IDs covering those targets; the host
+authenticates observations, not the semantic correctness of the model's plan.
+
+Source and API observations remain correlated and deduplicated in bounded active
+Context. Current tested source versions across the edit scope and passed/failing
+behavior/quality obligations accompany repair feedback. Validation and cleanup
+cover all authorized files; unknown bytes require reconciliation. The existing
+one-file governed assignment-v1 refuses multi-file preparation; local capability
+does not silently expand production execution or integration authority. The
+dashboard displays either proposal shape through the same read-only raw evidence.
+
 The existing CLI also accepts a trusted host task definition:
 
 ```powershell

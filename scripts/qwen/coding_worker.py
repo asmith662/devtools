@@ -1,5 +1,6 @@
 # Copyright (c) 2026
 # ruff: noqa: E402, INP001, T201 -- concrete local entrypoint
+
 """Run a bounded local coding evaluation; production publication is separate."""
 
 from __future__ import annotations
@@ -75,13 +76,14 @@ def report_directory(value: str | Path) -> Path:
     return folder
 
 
-async def run_local_task(
+async def run_local_task(  # noqa: PLR0913 -- explicit bounded host options
     root: Path,
     folder: Path,
     *,
     task: CodingTask,
     branch: str | None = None,
     thinking_enabled: bool = False,
+    coordinated_edits: bool = False,
 ) -> dict[str, Any]:
     """Trusted host invocation authorizes this local evaluation, not publication.
 
@@ -92,24 +94,30 @@ async def run_local_task(
     if type(thinking_enabled) is not bool:
         message = "thinking_enabled must be an explicit host boolean"
         raise ValueError(message)
+    if (
+        type(coordinated_edits) is not bool
+        or (task.additional_edit_paths and not coordinated_edits)
+        or (coordinated_edits and task.context_mode != "on-demand")
+    ):
+        message = "Coordinated edits require explicit native scoped operation"
+        raise ValueError(message)
     folder = report_directory(folder)
     cycle = WorkCycle(root)
     selected = branch or "feat/qwen-local-" + task.definition_sha256[:12]
     if not selected.startswith("feat/"):
         message = "Local evaluation requires an ordinary feature branch."
         raise PermissionError(message)
-    source = await cycle._baseline(  # noqa: SLF001 -- existing exact Git binding
-        task,
-        task.source,
-        dict(task.baseline_hashes)[task.source],
-    )
+    sources = {
+        p: await cycle._baseline(task, p, dict(task.baseline_hashes)[p])  # noqa: SLF001 -- existing exact Git binding
+        for p in task.sources
+    }
     worker_head = await git(root, "rev-parse", "HEAD")
     async with Checkout(
         cycle,
         "local-evaluation:" + task.definition_sha256,
         selected,
         task.baseline_revision,
-        files=[{"path": task.source, "text": source}],
+        files=[{"path": p, "text": text} for p, text in sources.items()],
         create=True,
     ) as owner:
         interaction, provenance = await local_interaction(root)
@@ -126,6 +134,7 @@ async def run_local_task(
             provenance=provenance,
             admit_edit=owner.expect,
             thinking_enabled=thinking_enabled,
+            coordinated_edits=coordinated_edits,
         )
 
 
@@ -159,6 +168,14 @@ async def main() -> int:
         help=(
             "Exact baseline, regression/quality/type checks; no inference. "
             "Engineering review remains required."
+        ),
+    )
+    parser.add_argument(
+        "--coordinated-edits",
+        action="store_true",
+        help=(
+            "Atomic observed/versioned multi-region edits with "
+            "host-allowlisted API inspection."
         ),
     )
     args = parser.parse_args()
@@ -202,6 +219,7 @@ async def main() -> int:
             task=task,
             branch=args.branch,
             **({"thinking_enabled": True} if args.thinking == "enabled" else {}),
+            **({"coordinated_edits": True} if args.coordinated_edits else {}),
         )
     except RuntimeError:
         print("MODEL_SERVICE_NOT_READY_OR_PROFILE_CHANGED; no model invocation")

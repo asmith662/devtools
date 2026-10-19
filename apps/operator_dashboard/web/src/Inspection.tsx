@@ -92,21 +92,29 @@ function EditArguments({ value }: { value: RecordData }) {
       /* Preserve unparseable archived JSON below. */
     }
   }
+  const edits: RecordData[] = fields
+    ? Array.isArray(fields.edits)
+      ? fields.edits.filter(
+          (edit: unknown) =>
+            edit && typeof edit === "object" && !Array.isArray(edit),
+        )
+      : [fields]
+    : [];
   return (
     <>
-      {fields && (
-        <>
+      {edits.map((edit, index) => (
+        <div key={index}>
           <p>
-            Recorded edit target: <code>{known(fields.path)}</code>
+            Recorded edit target: <code>{known(edit.path)}</code>
           </p>
           {["old_text", "new_text"].map((key) => (
             <details key={key}>
               <summary>Decoded {key}</summary>
-              <pre>{known(fields![key])}</pre>
+              <pre>{known(edit[key])}</pre>
             </details>
           ))}
-        </>
-      )}
+        </div>
+      ))}
       <Archived
         title="Native arguments (path, old_text, new_text)"
         value={value}
@@ -293,12 +301,12 @@ export function RunDetail({ id, refresh }: { id: string; refresh: string }) {
                 <div key={i}>
                   <strong>{tool.name}</strong>
                   <p>
-                    {tool.name === "propose_edit"
+                    {["propose_edit", "propose_edits"].includes(tool.name)
                       ? `Edit proposal; host admission: ${known(turn.stage.proposal_valid)}`
                       : "Read-only Context request; inspect its recorded host result."}
                   </p>
                   <code>{known(tool.provider_call_id)}</code>
-                  {tool.name === "propose_edit" ? (
+                  {["propose_edit", "propose_edits"].includes(tool.name) ? (
                     <EditArguments value={tool.arguments} />
                   ) : (
                     <Archived

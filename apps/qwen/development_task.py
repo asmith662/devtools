@@ -1,5 +1,6 @@
 # Copyright (c) 2026
 # ruff: noqa: COM812, EM101, TRY003, TRY301, ASYNC240, PLR2004 -- bounded experiment assertions and artifacts
+
 """One real Markdown repair through Context, native Tools and patch admission."""
 
 from __future__ import annotations
@@ -287,6 +288,7 @@ def _structured_edit_patch(  # noqa: C901, PLR0912 -- validate one explicit untr
     call: ModelToolCall,
     *,
     source_path: str = SOURCE,
+    allow_empty_new: bool = False,
 ) -> tuple[str, str]:
     """Validate one exact text replacement and derive its bounded host diff."""
     if call.name != "propose_edit":
@@ -315,7 +317,7 @@ def _structured_edit_patch(  # noqa: C901, PLR0912 -- validate one explicit untr
         raise PatchProposalError("Structured edit text values must be strings")
     if (
         not old_text
-        or not new_text
+        or (not new_text and not allow_empty_new)
         or "\x00" in old_text
         or "\x00" in new_text
         or len(old_text.encode()) > 4096
@@ -369,6 +371,11 @@ def _structured_edit_patch(  # noqa: C901, PLR0912 -- validate one explicit untr
     updated = source.replace(old_text, new_text, 1)
     if len(updated.encode()) > 32_768:
         raise PatchProposalError("Structured edit exceeds the bounded source size")
+    return _source_patch(root, source, updated, source_path=source_path), updated
+
+
+def _source_patch(root: Path, source: str, updated: str, *, source_path: str) -> str:
+    """Generate the shared exact-source unified diff; Git owns application."""
     patch = "".join(
         difflib.unified_diff(
             source.splitlines(keepends=True),
@@ -379,7 +386,7 @@ def _structured_edit_patch(  # noqa: C901, PLR0912 -- validate one explicit untr
         )
     )
     _validate_patch_envelope(root, patch, source_path=source_path)
-    return patch, updated
+    return patch
 
 
 def _structured_edit_patch_from_calls(
@@ -1084,8 +1091,26 @@ async def apply_markdown_patch(
     source_path: str = SOURCE,
 ) -> None:
     """Admit one exact-file unified diff, then use Git's existing patch engine."""
-    _validate_patch_envelope(root, patch, source_path=source_path)
-    path = _store_patch(folder, patch)
+    await apply_source_patches(root, folder, {source_path: patch})
+
+
+async def apply_source_patches(
+    root: Path, folder: Path, patches: dict[str, str]
+) -> None:
+    """Check all scoped diffs then apply once with native Git atomic semantics.
+
+    No --reject/partial application mode is permitted. Checkout owns exclusion
+    and recovery; the planned source hashes must be journaled before entry.
+    """
+    if (
+        not patches
+        or len(patches) > 4
+        or sum(len(p.encode()) for p in patches.values()) > 16384
+    ):
+        raise PatchProposalError("Combined patch exceeds the existing byte bound")
+    for source_path, patch in patches.items():
+        _validate_patch_envelope(root, patch, source_path=source_path)
+    path = _store_patch(folder, "".join(patches.values()))
     for args in (("--check", "--whitespace=error"), ("--whitespace=error",)):
         result = await _command(
             root, "git", "-c", "core.autocrlf=false", "apply", *args, str(path)

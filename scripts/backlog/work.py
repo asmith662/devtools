@@ -64,6 +64,8 @@ def task_from_dict(value: dict[str, Any]) -> CodingTask:
             "baseline_hashes": tuple(tuple(v) for v in value["baseline_hashes"]),
             "context": tuple(tuple(v) for v in value["context"]),
             "read_paths": tuple(value.get("read_paths", ())),
+            "additional_edit_paths": tuple(value.get("additional_edit_paths", ())),
+            "api_targets": tuple(value.get("api_targets", ())),
         }
     )
 
@@ -148,6 +150,11 @@ class WorkCycle:
         await self._coordinator()
         target = resolve_path(target).value
         binding = self.intake.approved_item(item)
+        if task.additional_edit_paths:
+            raise PermissionError(
+                "Governed assignment-v1 remains one-file; "
+                "use exact authorized local scope"
+            )
         if task.source not in binding["proposal"]["payload"]["resources"]:
             raise PermissionError(
                 "Edit target is outside the reviewed proposal resources"

@@ -138,72 +138,90 @@ it("renders original backlog rationale, dependencies and source as plain text", 
   expect(node.querySelector("script")).toBeNull();
 });
 
-it("associates failed and accepted turns, native proposals and validation commands", async () => {
-  const captured = {
-    availability: "CAPTURED",
-    text: "exact archived <script>model</script>",
-    truncated: true,
-    total_characters: 18000,
-  };
-  const turns = [1, 2].map((number) => ({
-    number,
-    stage: {
-      disposition: number === 1 ? "TESTS_FAILED" : "ACCEPTED",
-      proposal_valid: true,
-      source_before: "before",
-      source_after: "after",
-      context: [],
-    },
-    tools: [
-      {
-        name: "propose_edit",
-        provider_call_id: `call-${number}`,
-        arguments: {
-          ...captured,
-          truncated: false,
-          text: JSON.stringify({
-            path: "src/example.py",
-            old_text: "old\nregion",
-            new_text: "new\n<script>inert</script>",
-          }),
+it.each(["propose_edit", "propose_edits"])(
+  "associates failed and accepted turns, native %s and validation commands",
+  async (proposalName) => {
+    const captured = {
+      availability: "CAPTURED",
+      text: "exact archived <script>model</script>",
+      truncated: true,
+      total_characters: 18000,
+    };
+    const turns = [1, 2].map((number) => ({
+      number,
+      stage: {
+        disposition: number === 1 ? "TESTS_FAILED" : "ACCEPTED",
+        proposal_valid: true,
+        source_before: "before",
+        source_after: "after",
+        context: [],
+      },
+      tools: [
+        {
+          name: proposalName,
+          provider_call_id: `call-${number}`,
+          arguments: {
+            ...captured,
+            truncated: false,
+            text: JSON.stringify(
+              proposalName === "propose_edits"
+                ? {
+                    plan: "Coordinate recorded edits",
+                    api_evidence: [],
+                    edits: [
+                      {
+                        path: "src/example.py",
+                        version: "a".repeat(64),
+                        old_text: "old\nregion",
+                        new_text: "new\n<script>inert</script>",
+                      },
+                    ],
+                  }
+                : {
+                    path: "src/example.py",
+                    old_text: "old\nregion",
+                    new_text: "new\n<script>inert</script>",
+                  },
+            ),
+          },
+        },
+      ],
+      request_text: captured,
+      response_text: captured,
+      feedback: captured,
+      patch: captured,
+      proposal_correlation: "MATCH",
+      validation: {
+        tests: {
+          argv: ["python", "fixture-tests"],
+          exit_code: number === 1 ? 1 : 0,
+          stdout: captured,
+          stderr: { availability: "NOT_CAPTURED", text: "NOT_CAPTURED" },
         },
       },
-    ],
-    request_text: captured,
-    response_text: captured,
-    feedback: captured,
-    patch: captured,
-    proposal_correlation: "MATCH",
-    validation: {
-      tests: {
-        argv: ["python", "fixture-tests"],
-        exit_code: number === 1 ? 1 : 0,
-        stdout: captured,
-        stderr: { availability: "NOT_CAPTURED", text: "NOT_CAPTURED" },
-      },
-    },
-  }));
-  vi.stubGlobal(
-    "fetch",
-    vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => ({
-        objective: captured,
-        turns,
-        raw_disclosure: true,
-        limitations: [],
-        reference: { path: "fixture" },
+    }));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          objective: captured,
+          turns,
+          raw_disclosure: true,
+          limitations: [],
+          reference: { path: "fixture" },
+        }),
       }),
-    }),
-  );
-  const node = await render(<RunDetail id="fixture" refresh="one" />);
-  expect(node.textContent).toContain("Turn 1 · TESTS_FAILED");
-  expect(node.textContent).toContain("Turn 2 · ACCEPTED");
-  expect(node.textContent).toContain("propose_edit");
-  expect(node.textContent).toContain("Recorded edit target:");
-  expect(node.textContent).toContain("src/example.py");
-  expect(node.textContent).toContain("new\n<script>inert</script>");
-  expect(node.textContent).toContain("NOT_CAPTURED");
-  expect(node.textContent).toContain("TRUNCATED");
-  expect(node.querySelector("script")).toBeNull();
-});
+    );
+    const node = await render(<RunDetail id="fixture" refresh="one" />);
+    expect(node.textContent).toContain("Turn 1 · TESTS_FAILED");
+    expect(node.textContent).toContain("Turn 2 · ACCEPTED");
+    expect(node.textContent).toContain("propose_edit");
+    expect(node.textContent).toContain("Recorded edit target:");
+    expect(node.textContent).toContain("src/example.py");
+    expect(node.textContent).toContain("new\n<script>inert</script>");
+    expect(node.textContent).toContain("NOT_CAPTURED");
+    expect(node.textContent).toContain("TRUNCATED");
+    expect(node.querySelector("script")).toBeNull();
+  },
+);

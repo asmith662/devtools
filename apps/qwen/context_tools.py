@@ -1,5 +1,6 @@
 # Copyright (c) 2026
 # ruff: noqa: COM812, EM101, TRY003, PLR2004 -- concrete bounded worker composition
+
 """Read-only Qwen Tools over the existing admitted RI/Context source index.
 
 No independent index, semantic identity, command capability or edit authority is
@@ -13,6 +14,7 @@ import json
 from dataclasses import asdict
 from typing import TYPE_CHECKING, Any, cast
 
+from apps.qwen.api_contracts import inspect_contract
 from apps.qwen.model_tool_composition import normalize_tool_descriptor
 from devtools.context import (
     Repository,
@@ -55,6 +57,7 @@ CONTEXT_TOOL_NAMES = (
     "read_source",
     "expand_source",
     "source_relationships",
+    "inspect_api",
 )
 
 
@@ -129,9 +132,33 @@ _DEFINITIONS = (
 )
 
 
-def context_tool_definitions() -> tuple[ModelToolDefinition, ...]:
+def context_tool_definitions(
+    api_targets: tuple[str, ...] = (),
+) -> tuple[ModelToolDefinition, ...]:
     """Use the existing Tool disclosure composition for this fixed Tool surface."""
-    return tuple(normalize_tool_descriptor(d) for d in _DEFINITIONS)
+    descriptors: tuple[ToolDescriptor, ...] = _DEFINITIONS
+    if api_targets:
+        descriptors += (
+            ToolDescriptor(
+                "inspect_api",
+                (
+                    "Inspect an actual host-allowlisted installed Python API "
+                    "signature/docstring/version. Never executes the API or imports "
+                    "a model-selected module. Verify keywords before editing."
+                ),
+                json.dumps(
+                    {
+                        "type": "object",
+                        "properties": {
+                            "target": {"type": "string", "enum": list(api_targets)}
+                        },
+                        "required": ["target"],
+                        "additionalProperties": False,
+                    }
+                ),
+            ),
+        )
+    return tuple(normalize_tool_descriptor(d) for d in descriptors)
 
 
 class ContextTools:
@@ -147,7 +174,7 @@ class ContextTools:
         self.repository = Repository.new()
         self.addresses = tuple(
             RepositoryResourceAddress(p)
-            for p in (task.source, *task.tests, *task.read_paths)
+            for p in (*task.sources, *task.tests, *task.read_paths)
         )
         # Existing metadata discovery, not content acquisition. Only the selected
         # <=32 resources enter the existing source index. Failure is fail-closed.
@@ -161,11 +188,12 @@ class ContextTools:
         self.snapshot = self._observe()
         self._index()
         self.observations: list[dict[str, Any]] = []
+        self.api_observations: dict[str, dict[str, Any]] = {}
 
     @property
     def definitions(self) -> tuple[ModelToolDefinition, ...]:
         """Disclose the existing ToolDescriptor projection, never executable writes."""
-        return context_tool_definitions()
+        return context_tool_definitions(self.task.api_targets)
 
     def _observe(self) -> RepositorySnapshot:
         for address in self.addresses:
@@ -267,10 +295,95 @@ class ContextTools:
         self._index()
         self.observations = retained
 
+    def accept_transaction(  # noqa: C901 -- exact interval reconciliation
+        self,
+        updates: dict[str, str],
+        edits: list[dict[str, Any]],
+        *,
+        call_id: str | None,
+    ) -> None:
+        """Reconcile one admitted transaction and retain only verified source."""
+        current = self._observe()
+        for resource in current.resources:
+            previous = self.snapshot.resource_at(resource.address)
+            if resource.content != updates.get(
+                resource.address.value, previous.content
+            ):
+                raise ValueError("SOURCE_DRIFT after transaction")
+        retained = [o for o in self.observations if o["path"] not in updates]
+        for path, updated in updates.items():
+            address = RepositoryResourceAddress(path)
+            old = self.snapshot.resource_at(address)
+            new = current.resource_at(address)
+            changes = sorted(
+                (e for e in edits if e["path"] == path), key=lambda e: e["start"]
+            )
+            for observation in self.observations:
+                if observation["path"] != path:
+                    continue
+                left, right = observation["span"]
+                if old.content[left:right] != observation["text"]:
+                    raise ValueError("Observed coordinates changed")
+                segments = [(left, right)]
+                for edit in changes:
+                    segments = [
+                        (a, b)
+                        for first, last in segments
+                        for a, b in (
+                            (first, min(last, edit["start"])),
+                            (max(first, edit["end"]), last),
+                        )
+                        if a < b
+                    ]
+                for first, last in segments:
+                    shift = sum(
+                        e["new_length"] - (e["end"] - e["start"])
+                        for e in changes
+                        if e["end"] <= first
+                    )
+                    text = old.content[first:last]
+                    if updated[first + shift : last + shift] != text:
+                        raise ValueError(
+                            "Unchanged transaction region failed verification"
+                        )
+                    retained.append(
+                        {
+                            "path": path,
+                            "version": str(new.content_identity),
+                            "span": [first + shift, last + shift],
+                            "text": text,
+                            "derived_from": {
+                                "observation_call_id": observation.get(
+                                    "observation_call_id"
+                                ),
+                                "version": observation["version"],
+                                "span": observation["span"],
+                                "admitted_edit_call_id": call_id,
+                            },
+                        }
+                    )
+            shift = 0
+            for edit in changes:
+                first = edit["start"] + shift
+                last = first + edit["new_length"]
+                retained.append(
+                    {
+                        "path": path,
+                        "version": str(new.content_identity),
+                        "span": [first, last],
+                        "text": updated[first:last],
+                        "observation_call_id": call_id,
+                    }
+                )
+                shift += edit["new_length"] - (edit["end"] - edit["start"])
+        self.snapshot = current
+        self._index()
+        self.observations = retained
+
     def validate(self, arguments: tuple[str, dict[str, Any]]) -> None:
         """Validate keys/types/enums; schema disclosure grants no authority."""
         name, values = arguments
-        descriptor = next((d for d in _DEFINITIONS if d.name == name), None)
+        descriptor = next((d for d in self.definitions if d.name == name), None)
         if descriptor is None or not isinstance(values, dict):
             raise ValueError("Unknown or malformed Context Tool")
         properties = json.loads(descriptor.input_schema_json)["properties"]
@@ -327,6 +440,10 @@ class ContextTools:
     async def execute(self, arguments: tuple[str, dict[str, Any]]) -> dict[str, Any]:
         """Project existing search, source units, expansion and relationship facts."""
         name, values = arguments
+        if name == "inspect_api":
+            observation = inspect_contract(values["target"], self.task.api_targets)
+            self.api_observations[observation["observation_id"]] = observation
+            return observation
         if name == "search_source":
             result = search_repository_source(
                 self.index,
@@ -426,17 +543,17 @@ class ContextTools:
         self.observations.append(result)
         return result
 
-    def observed(self, old_text: str) -> bool:
+    def observed(self, old_text: str, *, path: str | None = None) -> bool:
         """Require exact logical text in a union of current observed source spans."""
         version = str(
             self.snapshot.resource_at(
-                RepositoryResourceAddress(self.task.source)
+                RepositoryResourceAddress(path or self.task.source)
             ).content_identity
         )
         regions = sorted(
             (o["span"][0], o["text"])
             for o in self.observations
-            if o["path"] == self.task.source and o["version"] == version
+            if o["path"] == (path or self.task.source) and o["version"] == version
         )
         merged: list[tuple[int, str]] = []
         for start, text in regions:

@@ -1,7 +1,7 @@
 # Copyright (c) 2026
+# ruff: noqa: ANN401, C901, ARG001, PLW2901, COM812 -- bounded JSON projection
 """Task-local projection of archived native exchanges, never a memory store."""
 
-# ruff: noqa: ANN401, C901, ARG001, PLW2901, COM812 -- bounded JSON projection
 from __future__ import annotations
 
 import hashlib
@@ -39,7 +39,7 @@ def _compact(value: Any) -> Any:
     return value
 
 
-def select_messages(
+def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API projection
     history: list[PromptMessage],
     *,
     maximum_bytes: int = ACTIVE_BYTES,
@@ -52,12 +52,14 @@ def select_messages(
     assistant claims. No arbitrary prefix is preferred over a later symbol.
     Complete native exchanges are indivisible during eviction.
     """
-    latest = {
-        v["path"]: v["version"]
-        for m in history
-        if (v := _result(m)).get("path") and v.get("version")
-    }
+    latest = {}
+    for message in history:
+        value = _result(message)
+        for observed in [value, *value.get("source_observations", [])]:
+            if observed.get("path") and observed.get("version"):
+                latest[observed["path"]] = observed["version"]
     seen: dict[tuple[str, str, str], str | None] = {}
+    seen_apis: dict[str, str | None] = {}
 
     def project_source(value: dict[str, Any], call_id: str | None) -> dict[str, Any]:
         if isinstance(value.get("text"), str) and value.get("path"):
@@ -77,6 +79,17 @@ def select_messages(
     for message in history:
         original = _result(message)
         value = project_source(_compact(original), message.tool_call_id)
+        if "observation_id" in value and "signature" in value:
+            identity = value["observation_id"]
+            if identity in seen_apis:
+                value = {
+                    "observation_id": identity,
+                    "target": value["target"],
+                    "api_omitted": "DUPLICATE; installed observation retained",
+                    "retained_tool_call_id": seen_apis[identity],
+                }
+            else:
+                seen_apis[identity] = message.tool_call_id
         if isinstance(value.get("source_observations"), list):
             value["source_observations"] = [
                 project_source(observation, message.tool_call_id)
@@ -108,6 +121,7 @@ def select_messages(
             if any(
                 (
                     isinstance(_result(m).get("text"), str)
+                    or "signature" in _result(m)
                     or any(
                         isinstance(o.get("text"), str)
                         for o in _result(m).get("source_observations", [])
