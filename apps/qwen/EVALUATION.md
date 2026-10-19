@@ -90,6 +90,72 @@ both worker modes use them. No failed model invocation was retried.
 
 ## Authority and next checkpoint
 
+### Fresh native coding evaluation admission — 2026-10-19
+
+At `59f968d7dce44c6fdb01419e87dc9d12b36bb105`, the canonical coordinator
+had only the historical `a5b20e0...` standing grant. The actual
+`Delegations.active` check refused it because its coordinator is the deleted
+worktree, rather than the canonical repository. No coding invocation, new
+assignment, supervisory approval or grant was issued during this check.
+
+An **inactive proposed policy** is available locally at
+`.local/qwen-coding-worker/native-authority/policy.json`, SHA-256
+`964e0946f9654b50efe3eff5d5082e79009c4bd7155a1baffad9fbd668168492`.
+It passes the existing closed policy validator. It permits bug/refactor categories,
+the exact JSON `list.py`, `base.py`, `conversion.py` and filesystem model
+`text.py`, `base.py` source paths, plus the existing
+`tests/resources/filesystem/test_json_models.py`. Per task: ten total model
+requests, 4,096 requested output tokens/request, 900 seconds and three edit
+proposals. Cumulative: three tasks, 30 requests, 122,880 requested output tokens
+and 2,700 seconds. These are reserved/requested bounds, not provider-runtime
+consumption guarantees. Model/profile and prohibited effects remain those of
+the existing standing-delegation contract; no protected publication is allowed.
+
+The sole allowed host oracle is pinned to
+`ad1475355c33e6ba3173f884432bd23c2c17e47a45d2a1b3228f272bc1143fb0`.
+Its local source is `native-authority/oracle.py` beneath the directory above.
+It checks JSON-list construction, sequence behavior, nested immutability,
+transformations, inherited validation and root-shape rejection on Python 3.12
+and the worker interpreter. Independently executing the check against unchanged
+source reproduced the constructor TypeError on CPython 3.12.13 and passed on
+3.14.3. This is host acceptance preparation, **not a Qwen coding result**.
+Exact check output is retained in `native-authority/verification.json`.
+
+The current policy schema has a shared source allowlist, not separate grant-level
+read/edit lists. Each future assignment must separately bind its one permitted
+edit target and additional read-only paths. The broader allowlist makes discovery
+across related modules possible; it does not authorize editing every retrieved
+file in one task. This is bounded module-family discovery, not repository-wide
+autonomous localization.
+
+The single next operator action, from the canonical root in a genuine PowerShell
+terminal, is to inspect the displayed policy and confirm only if acceptable:
+
+```powershell
+uv run --python C:/Python314/python.exe python -m scripts.backlog delegation-issue --policy .local/qwen-coding-worker/native-authority/policy.json --reference 'Maintainer standing decision: routine local JSON-list maintenance under displayed policy; Codex supervision; no protected publication' --expires ([DateTimeOffset]::UtcNow.AddDays(7).ToString('o'))
+```
+
+This command defaults to No and creates no coding dispatch. It is a proposed
+decision reference to be adopted by the actual operator through confirmation,
+not evidence that a decision already occurred. The automated session cannot
+supply that maintainer terminal confirmation.
+
+After issuance, fresh work approval remains independent: the JSON-list slice is
+a prospective candidate, not yet an eligible canonical assignment. B-0048's
+reviewed resource is `json/object.py` and its one WorkCycle slot was consumed.
+Neither its approval nor its successful object-model candidate authorizes a
+new JSON-list assignment. Use Intake to link/deduplicate the fresh slice against
+the remaining B-0048 obligation and obtain the required backlog decision before
+preparing its exact on-demand task and Codex review. Do not reset B-0048, reuse
+its dispatch or widen its original review. The proposed three-task grant can be
+reused only by independently eligible work satisfying these exact pinned checks;
+new oracle code requires a separately reviewed grant.
+
+**Disposition: BLOCKED_BY_AUTHORITY.** Zero new model calls; no coding outcome,
+cost comparison or effectiveness improvement is claimed. No new worker
+implementation was needed. Learning integration remains a separately scoped
+boundary/acceptance review after an authorized coding evaluation.
+
 Historical grant `a5b20e0b6ade4af3603b40521d9a3d3a3c69b3fc3fab221d14c6e1324b1946f0`
 is bound to the deleted Qwen checkout. Actual canonical admission refused it:
 `Standing grant expired, revoked or differs from host/scope`. It was not rewritten
