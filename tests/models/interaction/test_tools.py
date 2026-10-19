@@ -14,7 +14,7 @@ from devtools.models.interaction import (
     Prompt,
 )
 from devtools.tools import ToolDescriptor
-from experiments.qwen.model_tool_composition import normalize_tool_descriptor
+from apps.qwen.model_tool_composition import normalize_tool_descriptor
 
 _SCHEMA = (
     '{"type":"object","properties":{"path":{"type":"string"}},'

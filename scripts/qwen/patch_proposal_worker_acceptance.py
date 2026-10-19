@@ -21,6 +21,38 @@ _REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 if str(_REPOSITORY_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPOSITORY_ROOT))
 
+from apps.qwen.development_task import (
+    STRUCTURED_EDIT_OUTPUT_TOKENS,
+    STRUCTURED_EDIT_TIMEOUT_SECONDS,
+    freeze_markdown_task,
+    freeze_structured_edit_task,
+    freeze_upfront_context_task,
+    run_markdown_task,
+    run_structured_edit_task,
+    run_upfront_context_task,
+)
+from apps.qwen.patch_proposal_worker import (
+    _BASELINE_FIXTURE,
+    _SELECTION_STRESS_FIXTURE,
+    PatchProposalError,
+    QwenGroundingCorrection,
+    QwenPatchProposalWorker,
+    QwenPatchProposalWorkerResult,
+    QwenSelectionMeasurements,
+    UngroundedFinalResponseError,
+    _PatchProposalFixture,
+    coding_worker_task,
+    create_patch_proposal_fixture,
+    create_selection_stress_fixture,
+    selection_stress_measurements,
+    selection_stress_task,
+)
+from apps.qwen.two_action_read_only_experiment import (
+    QwenListDirectoryCycle,
+    QwenReadOnlyCycle,
+    QwenReadRepositoryFileCycle,
+    ReadOnlyProposalError,
+)
 from devtools.agents.conversation import (
     Conversation,
     ConversationMessage,
@@ -38,38 +70,6 @@ from devtools.resources.commands import Command, CommandExecutor
 from devtools.tools.filesystem import (
     ListRepositoryDirectoryTool,
     ReadRepositoryFileTool,
-)
-from experiments.qwen.development_task import (
-    STRUCTURED_EDIT_OUTPUT_TOKENS,
-    STRUCTURED_EDIT_TIMEOUT_SECONDS,
-    freeze_markdown_task,
-    freeze_structured_edit_task,
-    freeze_upfront_context_task,
-    run_markdown_task,
-    run_structured_edit_task,
-    run_upfront_context_task,
-)
-from experiments.qwen.patch_proposal_worker import (
-    _BASELINE_FIXTURE,
-    _SELECTION_STRESS_FIXTURE,
-    PatchProposalError,
-    QwenGroundingCorrection,
-    QwenPatchProposalWorker,
-    QwenPatchProposalWorkerResult,
-    QwenSelectionMeasurements,
-    UngroundedFinalResponseError,
-    _PatchProposalFixture,
-    coding_worker_task,
-    create_patch_proposal_fixture,
-    create_selection_stress_fixture,
-    selection_stress_measurements,
-    selection_stress_task,
-)
-from experiments.qwen.two_action_read_only_experiment import (
-    QwenListDirectoryCycle,
-    QwenReadOnlyCycle,
-    QwenReadRepositoryFileCycle,
-    ReadOnlyProposalError,
 )
 from scripts.qwen.llama_cpp_profile import QWEN38_27B_UD_IQ4_XS
 

@@ -12,6 +12,14 @@ from typing import TYPE_CHECKING
 
 import pytest
 
+from apps.qwen.patch_proposal_worker import (
+    _EXPECTED_PATCH,
+    _SELECTION_STRESS_EXPECTED_PATCH,
+    _SELECTION_STRESS_FIXTURE,
+    create_patch_proposal_fixture,
+    create_selection_stress_fixture,
+    selection_stress_task,
+)
 from devtools.agents.conversation import InteractionSource
 from devtools.models.interaction import (
     ModelRequest,
@@ -20,14 +28,6 @@ from devtools.models.interaction import (
     ModelTermination,
     ModelUsage,
     Prompt,
-)
-from experiments.qwen.patch_proposal_worker import (
-    _EXPECTED_PATCH,
-    _SELECTION_STRESS_EXPECTED_PATCH,
-    _SELECTION_STRESS_FIXTURE,
-    create_patch_proposal_fixture,
-    create_selection_stress_fixture,
-    selection_stress_task,
 )
 
 if TYPE_CHECKING:

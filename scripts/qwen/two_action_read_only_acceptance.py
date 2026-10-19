@@ -20,6 +20,14 @@ _REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 if str(_REPOSITORY_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPOSITORY_ROOT))
 
+from apps.qwen.two_action_read_only_experiment import (
+    QwenListDirectoryCycle,
+    QwenReadOnlyCycle,
+    QwenReadRepositoryFileCycle,
+    QwenTwoActionReadOnlyExperiment,
+    QwenTwoActionReadOnlyExperimentResult,
+    ReadOnlyProposalError,
+)
 from devtools.agents.conversation import (
     Conversation,
     ConversationMessage,
@@ -36,14 +44,6 @@ from devtools.resources.commands import Command, CommandExecutor
 from devtools.tools.filesystem import (
     ListRepositoryDirectoryTool,
     ReadRepositoryFileTool,
-)
-from experiments.qwen.two_action_read_only_experiment import (
-    QwenListDirectoryCycle,
-    QwenReadOnlyCycle,
-    QwenReadRepositoryFileCycle,
-    QwenTwoActionReadOnlyExperiment,
-    QwenTwoActionReadOnlyExperimentResult,
-    ReadOnlyProposalError,
 )
 
 if TYPE_CHECKING:

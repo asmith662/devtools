@@ -28,7 +28,7 @@ from devtools.resources.filesystem import (
 )
 from devtools.tools import ToolInputError
 from devtools.tools.filesystem import ListRepositoryDirectoryTool
-from experiments.qwen.patch_proposal_worker import (
+from apps.qwen.patch_proposal_worker import (
     _EXPECTED_PATCH,
     _ORIGINAL_SOURCE,
     _SELECTION_STRESS_EXPECTED_PATCH,
@@ -44,7 +44,7 @@ from experiments.qwen.patch_proposal_worker import (
     selection_stress_measurements,
     selection_stress_task,
 )
-from experiments.qwen.two_action_read_only_experiment import (
+from apps.qwen.two_action_read_only_experiment import (
     QwenListDirectoryCycle,
     ReadOnlyProposalError,
 )

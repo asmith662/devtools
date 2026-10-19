@@ -527,7 +527,7 @@ exclusion, and the separate confirmation-validation boundary.
 
 ## Backlog navigation
 
-The [read-only operator console](../experiments/operator_dashboard/README.md)
+The [read-only operator console](../apps/operator_dashboard/README.md)
 serves current intake, canonical backlog, work-cycle and Qwen evidence through
 a loopback-only API and the existing MemoryPanel-derived React UI. Task/run/turn
 inspection retains exact archived proposals, feedback and validation under

@@ -14,13 +14,13 @@ import re
 from dataclasses import asdict
 from typing import TYPE_CHECKING, Any
 
+from apps.qwen.coding_loop import run_coding_task
+from apps.qwen.development_task import _hash
+from apps.qwen.patch_proposal_worker import _read_text
+from apps.qwen.tasks import CodingTask
 from devtools.core.paths import resolve_path
 from devtools.core.time import Stopwatch, Timestamp
 from devtools.resources.filesystem import TextFile, write
-from experiments.qwen.coding_loop import run_coding_task
-from experiments.qwen.development_task import _hash
-from experiments.qwen.patch_proposal_worker import _read_text
-from experiments.qwen.tasks import CodingTask
 from scripts.backlog.coordinator import common_directory, git, locate
 from scripts.backlog.intake import Intake, _digest, load_json
 

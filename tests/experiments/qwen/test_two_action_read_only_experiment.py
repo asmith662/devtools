@@ -24,8 +24,8 @@ from devtools.tools.filesystem import (
     ListRepositoryDirectoryTool,
     ReadRepositoryFileTool,
 )
-from experiments.qwen import two_action_read_only_experiment as experiment
-from experiments.qwen.two_action_read_only_experiment import (
+from apps.qwen import two_action_read_only_experiment as experiment
+from apps.qwen.two_action_read_only_experiment import (
     QwenListDirectoryCycle,
     QwenReadOnlyCycle,
     QwenReadRepositoryFileCycle,

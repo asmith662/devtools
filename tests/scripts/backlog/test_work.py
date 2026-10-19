@@ -13,6 +13,8 @@ from typing import TYPE_CHECKING, Any, cast
 
 import pytest
 
+from apps.qwen.development_task import _command, _hash
+from apps.qwen.tasks import MARKDOWN
 from devtools.core.time import Duration, Timestamp
 from devtools.models.interaction import (
     InteractionSource,
@@ -22,8 +24,6 @@ from devtools.models.interaction import (
     ModelToolCall,
 )
 from devtools.models.interaction.usage import ModelUsage
-from experiments.qwen.development_task import _command, _hash
-from experiments.qwen.tasks import MARKDOWN
 from scripts.backlog import __main__ as cli
 from scripts.backlog.coordinator import designate, git, locate
 from scripts.backlog.intake import Intake

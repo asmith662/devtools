@@ -15,12 +15,12 @@ _ROOT = Path(__file__).resolve().parents[2]
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
+from apps.qwen.coding_loop import run_coding_task
+from apps.qwen.development_task import _command
+from apps.qwen.tasks import TASK_NAMES, select_task
 from devtools.core.paths import PathError, resolve_path
 from devtools.models.interaction import InteractionSource
 from devtools.models.interaction.providers import LlamaCppInteraction
-from experiments.qwen.coding_loop import run_coding_task
-from experiments.qwen.development_task import _command
-from experiments.qwen.tasks import TASK_NAMES, select_task
 from scripts.qwen.llama_cpp_profile import QWEN38_27B_UD_IQ4_XS
 from scripts.qwen.patch_proposal_worker_acceptance import (
     _confirm_local_execution,

@@ -88,7 +88,7 @@ Context benchmarking and Learned Intelligence integration remain on the roadmap.
 
 ### Future agent working and long-term memory
 
-The [MemoryPanel operator pilot](../experiments/operator_dashboard/README.md)
+The [MemoryPanel operator pilot](../apps/operator_dashboard/README.md)
 adds read-only visibility over existing work and worker receipts, with explicit
 synthetic/live provenance and unknown accounting. This is UI adoption, not an
 autonomous supervisor or memory implementation. Four source-derived intake
