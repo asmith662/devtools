@@ -1,0 +1,80 @@
+{
+  "frozen_at": "2026-10-19T22:27:10.491568+00:00",
+  "baseline": "39a3fd95900a583d1b8578523dd6acd8b86ba038",
+  "cases": [
+    {
+      "name": "regex-overlap",
+      "split": "development",
+      "objective": "PUBLIC BEHAVIOR: Add opt-in overlapping=True keyword support to both iter_regex and find_all_regex. Return all successive-start overlapping matches with existing immutable RegexMatch data. Zero-width matches must terminate, including an empty-input terminal match. Default behavior remains nonoverlapping. COMPATIBILITY: Preserve flags, compiled-pattern flag errors, lazy iterator/tuple result types, named/group values and all other operations. QUALITY: Independent overlap/edge/compatibility acceptance, existing tests, strict mypy, Ruff and formatting must pass. Investigate and coordinate related definitions; verify important standard-library API assumptions. No specific implementation is prescribed.",
+      "source": "src/devtools/core/regex/search.py",
+      "additional_edit_paths": [],
+      "baseline_hashes": {
+        "src/devtools/core/regex/search.py": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+        "tests/core/regex/test_search.py": "32a5e5aceaf2301dadd6c30673de754b772ce8419b364d39dc6ac915f7110d59",
+        "src/devtools/core/regex/models.py": "5c7d3fa9a96bd88556a27c3f42a4423fcc8e87547d964c6c706f0d4669016d46",
+        "src/devtools/core/regex/__init__.py": "cb0f1550acea4bdbd65631bfc9f60ef9dbaa8454c4855c4b04b456102663ef8d"
+      },
+      "oracle_sha256": "3efea32d948a422525e1482cd9dc05c7141cbf0fa15b290bdc61bf2320ed75cb",
+      "legacy_task_sha256": "fbb76f47a69cbd54d7c57f5102cbe56891b3777304fdf49b7a0835a9977cf2d8",
+      "api_targets": [
+        "re.Pattern.finditer",
+        "re.Pattern.search"
+      ],
+      "review": "Codex: explicit opt-in new APIs; existing exception defaults retained; TRY004/type validation agrees; no conflicting test/lint rules found; independent behavior and fixed managed typing; alternatives allowed. Judgment, not satisfiability proof."
+    },
+    {
+      "name": "text-error-policy",
+      "split": "development",
+      "objective": "PUBLIC BEHAVIOR: Add explicit keyword errors=\"strict\" to both TextCodec.decode and TextCodec.encode, honoring the standard Python codec error-handling policies including strict, ignore, replace and backslashreplace. COMPATIBILITY: Keep strict defaults, domain exception wrapping and causes, encoding overrides, exact newline/text preservation, source-byte metadata and immutable input models. Unknown handler failures must retain the relevant text domain exception. QUALITY: Independent behavior/compatibility assertions, current tests, strict mypy, Ruff and formatting must pass. Coordinate both method contracts and implementations; verify actual Python API contracts. Multiple implementations are legitimate.",
+      "source": "src/devtools/resources/filesystem/codecs/text.py",
+      "additional_edit_paths": [],
+      "baseline_hashes": {
+        "src/devtools/resources/filesystem/codecs/text.py": "bb4414628fe80fc3635b6fa9d22bcf66f1b641e767eda263eb5491862b40603a",
+        "tests/resources/filesystem/codecs/test_text.py": "c324f8943e671422e94bab0c77a025f1e8d82333fe824ef84c6b54934117960d",
+        "src/devtools/resources/filesystem/models/text.py": "2f24adefe62f99ed3a4cece3391c637458beecfcf910f463d902091543717111",
+        "src/devtools/resources/filesystem/errors.py": "6a25ee5ac1caca1be3eb9e9d51a73b6229c4dd20b7e0c8a259ca91d411a0de93"
+      },
+      "oracle_sha256": "52bd0469a7caa1b36a9aa77adf467e3516bf4794bcf32cac195d7bca00157649",
+      "legacy_task_sha256": "ba2da3861b52fdd1b3c560a03d632c43bbd65ce672963357f44dbcece6f54673",
+      "api_targets": [
+        "bytes.decode",
+        "str.encode"
+      ],
+      "review": "Codex: explicit opt-in new APIs; existing exception defaults retained; TRY004/type validation agrees; no conflicting test/lint rules found; independent behavior and fixed managed typing; alternatives allowed. Judgment, not satisfiability proof."
+    },
+    {
+      "name": "regex-whole-string",
+      "split": "held-out",
+      "objective": "PUBLIC BEHAVIOR: Add fullmatch_regex(text, pattern, *, flags=0) returning a framework RegexMatch only when the pattern matches the entire string, otherwise None. Export it through the normal devtools.core.regex public API. COMPATIBILITY: Preserve group/named-group and Unicode character spans, empty matches, string/compiled patterns, flags and existing compiled-pattern flag errors. Existing search, replacement and match models remain unchanged. QUALITY: Independent whole-string/public-export/compatibility acceptance, existing tests, strict typing, Ruff and formatting must pass. Investigate and coordinate the authorized files; verify relevant installed API contracts. Do not redesign existing APIs.",
+      "source": "src/devtools/core/regex/search.py",
+      "additional_edit_paths": [
+        "src/devtools/core/regex/__init__.py"
+      ],
+      "baseline_hashes": {
+        "src/devtools/core/regex/search.py": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+        "tests/core/regex/test_search.py": "32a5e5aceaf2301dadd6c30673de754b772ce8419b364d39dc6ac915f7110d59",
+        "src/devtools/core/regex/models.py": "5c7d3fa9a96bd88556a27c3f42a4423fcc8e87547d964c6c706f0d4669016d46",
+        "src/devtools/core/regex/__init__.py": "cb0f1550acea4bdbd65631bfc9f60ef9dbaa8454c4855c4b04b456102663ef8d"
+      },
+      "oracle_sha256": "25207abc5ed09fad1db211831ea73e950233b0684ced3d04501a2ba360dd9d4e",
+      "legacy_task_sha256": "05516fb3550538f43bc4d756d39177779b8f7f79d6ad12611bc135e7142b06c3",
+      "api_targets": [
+        "re.Pattern.fullmatch"
+      ],
+      "review": "Codex: explicit opt-in new APIs; existing exception defaults retained; TRY004/type validation agrees; no conflicting test/lint rules found; independent behavior and fixed managed typing; alternatives allowed. Judgment, not satisfiability proof."
+    }
+  ],
+  "budget": {
+    "runs": 6,
+    "model_calls": 60,
+    "worker_seconds": 5400,
+    "context_actions_per_run": 8,
+    "proposals_per_run": 3,
+    "output_tokens_per_call": 4096,
+    "context_tokens": 32768
+  },
+  "conditions": "two unchanged single-edit development runs; same objective/source/tests/oracles/bounds under coordinated edit/API tools; once-only fresh two-file held-out after configuration selection; reserve at most one separately frozen repair-only run if development does not exercise repair",
+  "thinking_enabled": false,
+  "no_paid_comparator": true,
+  "no_production_publication": true
+}
