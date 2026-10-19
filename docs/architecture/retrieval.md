@@ -25,6 +25,7 @@ not a mandatory pipeline or a default fusion policy.
 | Capability | Current behavior and owner |
 | --- | --- |
 | Whole-resource sparse retrieval | [Lexical BM25](../../src/devtools/context/retrieval/lexical/bm25.py): content-only API and canonical content plus filename-stem API; positive matches over caller-selected observed text resources |
+| Selectable source views | [Source search](../../src/devtools/context/retrieval/docs/overview.md#selectable-source-representations): file, recursive Python symbol, configurable overlapping line-window, and mixed rank-fused search; exact source lineage and caller-chosen Context expansion |
 | Filename evidence | [Independent filename index](../../src/devtools/context/retrieval/lexical/filename.py), weighted 0.25 in canonical resource scoring |
 | Exact addressed and symbolic acquisition | Snapshot resource lookup, [module lookup](../../src/devtools/context/python/modules/lookup.py), [exact declared-name retrieval](../../src/devtools/context/python/function/retrieval.py), native declaration/class/method selection and bounded import/member resolution; not lexical ranking |
 | Exact task-anchor grounding | [Localization grounding](../../src/devtools/context/localization/grounding/resolve.py): explicit resource/module/source-declaration/method locators; preserves unsupported, unresolved and ambiguous results |
@@ -165,10 +166,15 @@ lexical view/channel, or an empirically justified hybrid. Representation answers
 **what terms exist**; BM25F asks **where terms occur and how field evidence
 contributes**. They may be complementary.
 
-Canonical retrieval is whole-resource. Repository-map relevance has compact
-symbol metadata, not function/class body retrieval. Function/method/class and
-other semantic granularities have not been comprehensively tested. Fixed windows
-did not settle retrieval granularity or Context disclosure granularity.
+The legacy canonical BM25 API remains whole-resource. The selectable source API
+now also indexes recursive function/method/class bodies and exact line windows,
+with snapshot-bound source spans and independent lexical populations. Mixed
+retrieval uses rank-only RRF and retains native evidence; Context disclosure
+remains a separate caller choice. Repository-map relevance still has compact
+symbol metadata. Deterministic source-search acceptance establishes engineering
+correctness, not comprehensive comparative effectiveness. Historical fixed-window
+results did not settle retrieval or disclosure granularity, and do not prohibit
+this user-selectable production baseline.
 
 [Case 0002 PPR](../../experiments/graph_ranking_baseline/README.md),
 [typed graph](../../experiments/typed_graph_baseline/README.md) and

@@ -17,6 +17,8 @@ pass; corrected execution requires binding-only Stage A and a new exact run ID.
 - [Retrieval foundation](architecture/retrieval.md) owns detailed current
   Retrieval/RI/Localization capability status, lexical representation and fielding,
   empirical limits, retrieval-family hypotheses and the label constraint.
+  [Selectable source search](../src/devtools/context/retrieval/docs/overview.md#selectable-source-representations)
+  owns file/symbol/window/mixed APIs, source lineage, fallback and Context examples.
   [Roadmap](roadmap.md#current-sequencing) owns the coordinated tracks and mandatory
   R1, R1.5 diagnostics, R1.6 sensitivity, R1.7 query terms, then unconditional
   R2 BM25F experiments; these are not production behavior.
@@ -512,7 +514,13 @@ package overview. Broader Evaluation architecture remains unimplemented.
 
 `experiments/` is non-installable composition and may depend on `devtools`;
 reusable source must not import it. [Qwen experiment documentation](../experiments/qwen/docs/overview.md)
-describes the bounded read-only experiments. Operational entry points remain
+describes bounded read-only probes and the retrieved-Context Markdown coding
+worker, its terminal gate, isolated validation, limited repair and host task selection. Its
+[first accepted task provenance](../experiments/qwen/docs/first_accepted_coding_task.json)
+binds captured proposals, source hashes and independent acceptance to the exact
+maintained Markdown correction. The [second task preparation](../experiments/qwen/docs/second_task_preparation.json)
+freezes the separate Python source-materialization objective, Context and checks;
+it records readiness, not live Qwen acceptance. Operational entry points remain
 under `scripts/`. The [protected development validation contract](development/validation.md)
 documents the canonical test command, its pre-collection experiment-tree
 exclusion, and the separate confirmation-validation boundary.
@@ -521,7 +529,13 @@ exclusion, and the separate confirmation-validation boundary.
 
 [Backlog overview](backlog/overview.md) is the canonical record index, grouped
 by stable ID, lifecycle status, and primary domain. [Backlog metadata](backlog/metadata.md)
-defines ownership, split-lineage, dependency, and promotion terminology.
+defines ownership, split-lineage, dependency, and promotion terminology. Its
+[proposal-intake contract](backlog/metadata.md#governed-proposal-intake-repository-administration)
+owns repository-local capture/review/publication APIs, provenance, host checks
+and recovery; pending proposals are not another authoritative backlog. The
+[governed work-cycle contract](backlog/metadata.md#governed-backlog-to-qwen-cycle)
+owns coordinator designation, separate implementation authority, exact target/task
+binding, existing Qwen composition and review-candidate/escalation receipts.
 
 ## Update workflow
 

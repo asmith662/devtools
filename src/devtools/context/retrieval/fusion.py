@@ -186,8 +186,13 @@ def _fused_resource_order(
     scored = (
         (
             address,
-            (1 / (60 + lexical[address]) if address in lexical else 0)
-            + (1 / (60 + structural[address]) if address in structural else 0),
+            _reciprocal_rank_score(
+                *(
+                    ranks[address]
+                    for ranks in (lexical, structural)
+                    if address in ranks
+                ),
+            ),
         )
         for address in lexical.keys() | structural.keys()
     )
@@ -197,3 +202,8 @@ def _fused_resource_order(
             key=lambda row: (-row[1], lexical.get(row[0], float("inf")), str(row[0])),
         )
     )
+
+
+def _reciprocal_rank_score(*ranks: int) -> float:
+    """Share the existing equal-channel k=60 rank arithmetic, never raw scores."""
+    return sum(1 / (60 + rank) for rank in ranks)

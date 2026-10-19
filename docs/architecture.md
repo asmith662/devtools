@@ -52,6 +52,24 @@ observability dependency and grant no authority. Experiment-local composition ow
 reservations/admission. See [observed usage](../src/devtools/observability/usage/docs/overview.md).
 Generic Event/Trace/Telemetry, agent loops and broader governance remain deferred.
 
+## Repository work intake
+
+Repository-local `scripts/backlog` tooling captures original discoveries and
+append-only reviews beside the canonical Markdown backlog. It uses Core and
+filesystem substrates, not Runtime, framework Orchestration or a second database.
+Trusted-host checks gate non-advisory review and exact backlog publication;
+Codex advice remains pending without delegated authority. Backlog inclusion is
+separate from engineering/scientific execution authorization. The
+[intake contract](backlog/metadata.md#governed-proposal-intake-repository-administration)
+owns schemas, commands, duplicate hints and conservative recovery. The
+[concrete work bridge](backlog/metadata.md#governed-backlog-to-qwen-cycle) now
+binds one approved canonical item to a separately authorized existing Qwen task,
+fresh target checks, one dispatch claim and a review candidate or escalation.
+Shared local Git configuration designates one coordinator for backlog mutations;
+feature worktrees are execution targets only. Worker output and Codex advice
+do not grant protected integration. Reusable portfolio supervision, scheduling
+and general delegation remain unimplemented.
+
 ## Current boundaries
 
 ```text
@@ -795,6 +813,24 @@ separately from later required-resource adjudication. The current read-only
 exhaustive tool activity, so dogfood observations require an explicit external
 recording source. The [roadmap](roadmap.md) defines the controlled protocol.
 
+The separate [Qwen coding consumer](../experiments/qwen/docs/overview.md#retrieved-context-markdown-coding-worker)
+now composes production multi-resolution retrieval/Context with native edit
+proposals, host-controlled isolated validation and at most two test-feedback
+repairs. This concrete experimental worker owns task bounds and acceptance;
+it adds no Agent hierarchy, Runtime loop, model write authority or Memory domain.
+Its stateless requests carry current source and correlated feedback. The first
+controlled Qwen Markdown task passed after one repair, and its exact captured
+correction is integrated with permanent regressions. This is single-task evidence,
+not reusable Agent promotion or proof of general coding reliability.
+The same consumer now takes a small experiment-local host task definition for
+objective, admitted source/search/disclosure, checks and bounds. One unchanged
+control loop serves Markdown and the frozen Python source-materialization
+task. This adds no framework Task lifecycle, registry or model-directed authority.
+The second live task exhausted its repair budget; its production fix was a
+separate engineering escalation. Host feedback now captures primary pytest
+exceptions before formatting and supplies explicitly bounded log excerpts,
+while retaining full validation logs in evidence.
+
 Increment 23 independently validates this boundary but does not promote its
 directional-reservation-v1 realization. Canonical and practical top five each
 recover 10/18 known-useful resources; the rule exchanges one useful rank-five
@@ -1343,6 +1379,19 @@ documentation, [taxonomy.md](architecture/taxonomy.md) for definitions, and
 [ADR-0001](architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
 for the approved future boundary.
 
+
+### Selectable repository source retrieval
+
+Production Retrieval additionally provides selectable whole-file, recursive
+Python symbol-body, overlapping line-window and mixed source views. These
+compose existing observed resources, bounded RI declarations, AST coordinates,
+lexical BM25 and rank-only fusion. Source representation identity is distinct
+from semantic subject identity; nested syntax without a canonical RI subject
+does not invent one. Exact retained source can enter the existing explicit
+Context plan/materialization contract through `SourceSearchDisclosureOption`.
+Legacy file ranking remains unchanged. See the
+[retrieval package contract](../src/devtools/context/retrieval/docs/overview.md#selectable-source-representations).
+This implements selectable representations, not a comparative ranking claim.
 
 ### Repository-map structural retrieval
 

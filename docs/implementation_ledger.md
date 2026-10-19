@@ -1,5 +1,206 @@
 # Implementation Ledger
 
+## Governed backlog-to-Qwen work bridge (2026-10-18)
+
+Connected canonical reviewed B-number work to the existing CodingTask and
+run_coding_task consumer through repository-local scripts/backlog/work.py.
+Preparation freezes objective, source/tests, Context, limits, branch/base and
+review provenance. Separate exact-scope host authority is revalidated at admission,
+including after terminal consent. A durable single dispatch claim prevents blind
+duplicate/ambiguous launch. The existing local-profile constructor is reused by
+both CLIs; retrieval, proposals, validation and repair remain in the existing loop.
+
+Shared local Git configuration now designates the existing qwen-context-worker
+checkout as canonical backlog coordinator. Unbound Intake is read-only, linked
+worktree writes are refused, and side discoveries route to coordinator intake
+as PENDING_REVIEW without changing assigned work. Candidate source/diff, test and
+usage evidence become REVIEW_CANDIDATE or ESCALATION_REQUIRED. Recommendations
+are advisory; no canonical closeout, commit, push or merge is automatic.
+
+Temporary synthetic Git fixtures exercise real worker repair/acceptance and
+bounded failure under fixture-only approval/grants. No real implementation grant
+or live Qwen call was created. The Python 3.12 proposal and historical worker
+outcomes remain unchanged. Future Context Tools, native continuation, memory,
+Codex portfolio management and Learned Intelligence integration remain planned.
+
+Validation: 60 focused checks passed in 59.44 seconds (60.22 seconds host);
+the two additional shared-profile construction cases also pass in the final gate.
+Protected Python 3.14 profile: 1,766 passed, two skipped, 100% production branch
+coverage; 110.47 seconds pytest / 112.05 seconds host. Ruff, formatting and strict
+mypy over ten affected Python files pass. The
+[scripted result](../experiments/qwen/docs/governed_work_cycle.json) retains two
+fixture turns, one repair, real tests/oracle and 15.30 seconds total; synthetic
+tokens are not provider consumption. No live models or scientific regressions ran.
+
+## Governed backlog proposal intake (2026-10-18)
+
+Added repository administration under `scripts/backlog`, composing existing
+Core identities/time/paths and canonical bounded filesystem reads/atomic writes.
+Pending proposals retain source/parent/evidence and reviewable duplicate hints;
+append-only review hashes preserve advice, deferral, rejection and exact approval.
+Host authorization is default-deny for authoritative review/publication, with
+real default-No terminal confirmation. Approved publication writes canonical
+B-number Markdown/index entries and grants no execution authority. Interrupted
+publication reconciles equal bytes without overwriting conflicts; malformed
+records and stale writer leases fail closed. No framework package was introduced.
+
+The genuine Python 3.12 JsonObjectFile constructor defect was reproduced, captured
+as proposal f47f3925-6988-4d84-81f4-c5b97a571484, and reviewed by Codex as advice
+only. It remains PENDING_REVIEW, with no implementation or live model invocation.
+The first accepted and second rejected Qwen task evidence remain unchanged.
+Next: an approved item through isolated Qwen implementation, host validation,
+Codex review and governed integration; no continuous supervisor is claimed.
+
+Validation on Python 3.14: 34 focused cases passed in 0.97 seconds; Ruff,
+formatting and strict mypy passed. Final protected profile: 1,746 passed,
+two skipped, 100% production branch coverage; 43.39 seconds pytest /
+44.87 seconds host. An earlier gate also passed before the final serialized-size
+admission check (1,745 passed, two skipped, 100%; 60.99 seconds host). The
+final gate includes that additional regression. Real pending promotion was
+refused; no model/scientific call or protected-main merge occurred.
+
+## Task 02 failure closeout and physical source extraction (2026-10-18)
+
+Task 02 remains REPAIR_BUDGET_EXHAUSTED: three local Qwen calls and two repairs,
+19,587 input / 1,848 output tokens, 105.74 seconds. Its proposals, source hashes
+and frozen 48-case oracle are unchanged; see the
+[result record](../experiments/qwen/docs/second_task_result.json).
+Codex escalated the production repair: physical LF/CRLF/CR iteration preserves
+original source and UTF-8 endpoint validation rejects empty mid-codepoint spans.
+The baseline failed all 48 valid cases plus the empty-span regression; the
+corrected source passes both maintained regressions and the unchanged oracle.
+
+Turn 02's pytest stderr was 17,196 characters; turn 03 received its last 6,000
+without a truncation marker, dominated by secondary traceback errors. Its oracle
+feedback still contained the primary invalid-split TypeError. Future validation
+captures primary pytest facts before formatting and projects bounded, marked
+excerpts while retaining full logs. This is experiment-local feedback, not a
+new diagnostic or memory framework. No new model calls occurred in closeout.
+
+Protected Python 3.14 validation: 1,712 passed, two skipped, 100% production
+branch coverage; 41.04 seconds host / 39.74 seconds pytest. The task-selection
+isolation test now compares the caller source before/after execution instead of
+requiring the maintained file to equal the old defective baseline; the worker
+still authenticates and evaluates that pinned baseline only in isolation.
+First-task Qwen
+acceptance and future conversation/memory/Context-capacity work remain distinct.
+
+## Host-selected Qwen tasks and second-task preparation (2026-10-18)
+
+Generalized the existing coding loop through experiment-local `CodingTask` values:
+objective, one allowed source, focused tests, pinned Git revision/hashes,
+retrieval/disclosure choices, host acceptance and bounded limits. The CLI selects
+`markdown-fences` or `python-source-segments`; no task-name branching or alternate
+executor was added to the loop. Existing structured-edit/schema/Git helpers take
+the selected path while retaining defaults for concrete older consumers.
+Canonical search, Context, ModelInteraction and managed validation are reused.
+Baseline materialization now authenticates Git objects in the shared worker;
+duplicate test-fixture reconstruction was removed. V2 receipts bind complete
+configuration; old receipts and first-task acceptance remain unchanged.
+
+The second real defect is exact Python source materialization with non-newline
+separators inside valid literals/comments. Baseline `11225000...` passes ten
+existing tests but fails an independently authored 48-case AST/source oracle.
+The [prepared task record](../experiments/qwen/docs/second_task_preparation.json)
+freezes full source/test identities, queries, objective, checks and limits.
+A separately labelled CPython reference-only scripted repair passes both checks
+in isolation: 4.186 seconds total / 3.676 seconds validation, one repair;
+19,354 rendered Context bytes and 20,143 initial prompt bytes. The reference is
+excluded from model Context and is not a maintained task implementation.
+Second-task Qwen execution is NOT_STARTED; new model calls are ZERO.
+
+Python 3.14 validation: 283 focused tests passed (45.65 s); one protected gate
+passed, 1,656 passed/two skipped, 100% production branch coverage
+(39.62 s pytest / 41.01 s host). Ruff, nine-file formatting and strict mypy over
+255 files passed. Production source, the first accepted Markdown bytes and
+scientific evidence are unchanged. Next: genuine terminal-authorized execution
+of this second task; autonomous multi-task coordination, structured continuation,
+task-local/long-term memory and Context capacity benchmarks remain future work.
+
+## First accepted Qwen coding task: maintained closeout (2026-10-18)
+
+Authenticated the operator-run `.local/qwen-coding-worker/run-01` at
+`d9a118315450b1e3df8bc00b6bbc29798845877b`: two Qwen calls, one repair,
+8,178 input tokens, 525 output tokens and 34.7609 seconds. Seven existing
+Markdown tests and the original independent eight-scenario oracle passed.
+This closeout made zero model calls and does not establish general coding reliability.
+
+Replayed the two captured native proposals through existing newline-safe admission.
+Verified source SHA-256 chain `b01a8fda...` -> `0b326dfb...` -> `a5510a1b...`,
+exact host patches, saved final-source bytes, and unchanged hashes of all 13
+historical run artifacts. Fresh isolated validation preceded installation of the
+exact accepted source bytes; no Codex-authored replacement was used. The
+[permanent provenance record](../experiments/qwen/docs/first_accepted_coding_task.json)
+retains full identities, proposals, artifact hashes and observed usage. Eight
+permanent Markdown regressions cover the accepted behaviors. Frozen worker tests
+now obtain their original source/tests from authenticated Git history rather than
+weakening baseline identities or trying to fix an already-correct maintained file.
+
+Fixed only CLI report resolution: relative to explicit current working directory,
+absolute paths preserved, malformed/occupied locations refused before default-No
+terminal confirmation. No authorization bypass was introduced.
+
+Validation on Python 3.14.3: 208 focused tests passed (21.95 s); one protected
+gate passed, 1,654 passed/two skipped, 100% production branch coverage
+(43.56 s pytest / 44.90 s host). Ruff, formatting and strict mypy passed.
+Python 3.12 compatibility remains separate. Next: a different real development
+task through the existing worker, measuring generalization rather than repeating
+Markdown repair. Continuation/memory/Context-benchmark roadmap remains intact.
+
+## Retrieved-Context Qwen coding loop (2026-10-18)
+
+Selectively integrated maintained structured-edit worker, CLI and tests from
+`e84def2d08dfc59739fab8f778478d9a63604c7c` onto retrieval commit
+`c21b4922355a6f868beed9e0b71c786cc52361e8`, without merging Qwen/scientific
+ancestry. The concrete Markdown worker uses canonical source search and Context,
+one native proposal operation, isolated application and host-owned tests/oracle.
+At most three calls permit two ordinary engineering repairs. Current source and
+correlated feedback replace stale transcript accumulation. Provider/invalid
+proposal failures stop; no generic Agent, conversation or Memory API was added.
+
+Final deterministic Qwen/retrieval/provider/CLI checks: 320 passed in 22.24 s
+on Python 3.14. Scripted initial acceptance and failed-edit/second-repair acceptance
+use real application, seven tests and the unchanged eight-scenario oracle.
+The genuine console gate received EOF: no live model invocation occurred and
+real Qwen task competence remains unestablished. Historical attempt-04 and all
+scientific evidence remain unchanged. The known Python 3.12 baseline issue
+remains separate. Protected Python 3.14 validation passed once: 1,640 passed,
+two skipped, 100% production branch coverage, 56.93 s pytest / 58.75 s host.
+Ruff, six-file formatting and strict mypy over 335 files passed. A separately
+retained SCRIPTED_HOST_TEST_ONLY demonstration accepted its second proposal in
+2.69 s (2.28 s validation); the real Qwen call count was zero. Symbol selection
+located `MarkdownFile._parse_headings` and explicitly expanded its parent file;
+source/test text disclosure was 5,764 + 5,346 bytes. Token attribution is unknown.
+Final terminal-only refusal wording and its additional regression passed the
+29-case worker/CLI subset in 17.20 s, with affected Ruff/format/mypy clean.
+
+## Multi-resolution repository search (2026-10-18)
+
+Added selectable file/symbol/window/mixed source retrieval under
+`devtools.context.retrieval.source`, composing existing corpus/document identity,
+native BM25, RI declarations, Python coordinates and shared rank-fusion
+arithmetic. Exact source slices retain parent resources and snapshot identity;
+decorated/nested/async syntax is indexed without inventing RI subjects outside
+the existing analyzers' scope. Invalid/unsupported symbol sources fall back to
+files. Explicit source choices and class/file expansion use the existing Context
+plan/materialization path. Legacy file scoring/order is preserved.
+Deterministic acceptance covers lineage, source preservation, nesting, window
+coverage/overlap, fallback, fusion and incompatible snapshots. External code-search
+patterns were reviewed; no new library or framework was required. Comparative
+retrieval superiority and agent-task effectiveness remain unproven. No model,
+scientific-controller run or scientific-input change is part of this checkpoint.
+
+Validation on the existing Python 3.14.3 runtime: 13 focused source-search cases
+with 100% new-code branch coverage; protected development profile 1,640 passed,
+2 skipped, 100% production branch coverage (40.69 seconds pytest, 42.11 seconds
+host elapsed). Ruff, changed-file formatting and strict mypy over supported
+source/Context tests pass. The first gate under uv's default Python 3.12.13 failed
+on 54 pre-existing filesystem/usage tests; a read-only unchanged-main
+`JsonObjectFile` construction reproduces the slotted-dataclass `super()` failure.
+That unrelated compatibility defect was not repaired or hidden by weakening
+tests or package requirements. The new source-search behavior is not a claim
+that the entire repository's Python 3.12 support is healthy.
+
 ## Host-disclosure replacement prospective plan (2026-10-14)
 
 Published a separate [unapproved v2 plan](../experiments/source_grounding/plans/HOST_DISCLOSURE_PLAN_REVIEW.md)

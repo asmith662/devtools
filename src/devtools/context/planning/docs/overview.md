@@ -7,6 +7,13 @@ an observed RepositorySnapshot, and an ordered set of concrete disclosure
 choices. plan_disclosures records that choice; it does no retrieval, ranking,
 automatic selection, cost optimization, or sufficiency assessment.
 
+`SourceSearchDisclosureOption` also accepts an explicitly selected
+`RepositorySourceUnit` from [multi-resolution retrieval](../../retrieval/docs/overview.md#selectable-source-representations).
+It uses this same plan/materialization contract, authenticating retained
+snapshot/resource state and disclosing source pointers, exact spans and original
+text. Retrieval mode and rank do not select disclosure or establish sufficiency.
+The existing whole-resource option remains available for file expansion.
+
 ~~~text
 InformationNeed / caller purpose
           |

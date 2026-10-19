@@ -58,6 +58,13 @@ from devtools.context.retrieval.lexical import (
     retrieve_repository_text_documents_by_content_bm25,
     summarize_repository_text_lexical_retrieval_evaluations,
 )
+from devtools.context.retrieval.source import (
+    RepositorySourceUnit,
+    SourceSearchIndex,
+    SourceSearchResult,
+    build_source_search_index,
+    search_repository_source,
+)
 from devtools.context.retrieval.structural import (
     PythonDirectStructuralResourceCandidate,
     PythonDirectStructuralResourceEvidence,
@@ -86,6 +93,7 @@ __all__ = [
     "PythonGraphRankedResource",
     "PythonGraphRankingResult",
     "PythonGraphView",
+    "RepositorySourceUnit",
     "RepositoryTextLexicalBm25Match",
     "RepositoryTextLexicalBm25RetrievalResult",
     "RepositoryTextLexicalBm25Settings",
@@ -106,12 +114,15 @@ __all__ = [
     "RepositoryTextLexicalRetrievedRelevantResource",
     "RepositoryTextLexicalTermFrequency",
     "RepositoryTextLexicalTermPostings",
+    "SourceSearchIndex",
+    "SourceSearchResult",
     "analyze_repository_text_document",
     "analyze_repository_text_document_collection",
     "analyze_repository_text_lexical_query",
     "build_python_graph_view",
     "build_python_resource_graph_view",
     "build_repository_text_lexical_inverted_index",
+    "build_source_search_index",
     "calculate_repository_text_lexical_corpus_statistics",
     "compose_lexical_structural_resource_evidence",
     "evaluate_repository_text_lexical_bm25_retrieval",
@@ -120,5 +131,6 @@ __all__ = [
     "retrieve_python_direct_structural_resources",
     "retrieve_repository_text_documents_by_bm25",
     "retrieve_repository_text_documents_by_content_bm25",
+    "search_repository_source",
     "summarize_repository_text_lexical_retrieval_evaluations",
 ]

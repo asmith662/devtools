@@ -15,6 +15,19 @@ under [architecture decisions](../architecture/decisions/); unresolved pressure
 remains in this backlog. An ADR does not by itself mark implementation work
 complete.
 
+## Proposal intake
+
+[Governed proposal intake](metadata.md#governed-proposal-intake-repository-administration)
+captures discoveries without changing active work. Pending proposals and advisory
+review history live under `proposals/`; only a host-authorized backlog decision
+can publish a normal canonical B-number item. Backlog inclusion still grants no
+implementation or execution authority. The real Python 3.12 compatibility
+proposal remains pending maintainer review. The
+[work-cycle bridge](metadata.md#governed-backlog-to-qwen-cycle) consumes a published
+approved item only under separate implementation authority; a single designated
+coordinator owns canonical mutations, while isolated workers return reviewable
+candidates or escalation evidence without protected publication.
+
 ## Structure
 
     docs/backlog/

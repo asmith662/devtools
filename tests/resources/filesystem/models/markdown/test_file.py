@@ -6,6 +6,8 @@ from __future__ import annotations
 import re
 from typing import TYPE_CHECKING
 
+import pytest
+
 from devtools.core.paths import ResolvedPath
 from devtools.resources.filesystem import MarkdownFile
 
@@ -166,3 +168,34 @@ def test_section_content_is_normalized_logical_source(tmp_path: Path) -> None:
     file = MarkdownFile(ResolvedPath(tmp_path / "logical.md"), source)
 
     assert file.sections[0].content == "Body"
+
+
+@pytest.mark.parametrize("marker", ["`", "~"])
+@pytest.mark.parametrize("closer", ["text-suffix", "shorter", "other-marker", "longer"])
+def test_fence_closer_requires_matching_markers_and_no_text_suffix(
+    tmp_path: Path,
+    marker: str,
+    closer: str,
+) -> None:
+    """Keep all eight independently accepted fence scenarios as regressions."""
+    opening = marker * 4
+    other = ("~" if marker == "`" else "`") * 4
+    candidates = {
+        "text-suffix": opening + "not-a-closer",
+        "shorter": marker * 3,
+        "other-marker": other,
+    }
+    if closer == "longer":
+        source = opening + "python\n# hidden\n" + marker * 5 + "\n# visible\n"
+    else:
+        source = (
+            opening
+            + "python\n"
+            + candidates[closer]
+            + "\n# hidden\n"
+            + opening
+            + " \t\n# visible\n"
+        )
+    file = MarkdownFile(ResolvedPath(tmp_path / "regression.md"), source)
+    assert tuple(heading.text for heading in file.headings) == ("visible",)
+    assert file.find_section("hidden") is None

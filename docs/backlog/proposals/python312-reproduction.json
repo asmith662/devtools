@@ -1,0 +1,14 @@
+{
+  "schema": "backlog-discovery-evidence-v1",
+  "observed_at": "2026-10-18T14:08:56.235421+00:00",
+  "source_commit": "224644cc4276fd58074329be01be44b7012553b7",
+  "interpreter": "CPython 3.12.13 (existing uv installation)",
+  "source": "src/devtools/resources/filesystem/models/json/object.py",
+  "source_sha256": "05dbb1fbc14a7a3c9c6a4bfd54ad7b654e5887a31956599c8f1f2acbc822817d",
+  "declared_support": "pyproject.toml requires-python >=3.12",
+  "reproduction": "JsonObjectFile(resolve_path(Path.cwd() / '.local/unused.json'), '', value={})",
+  "result": "TypeError: super(type, obj): obj must be an instance or subtype of type",
+  "exit_code": 1,
+  "effects": "No file write: construction only. No model or service invocation.",
+  "scope": "Constructor incompatibility reproduced; affected-model scope and remedy remain unresolved."
+}

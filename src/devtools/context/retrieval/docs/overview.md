@@ -143,3 +143,140 @@ Resource BM25 and query-conditioned Personalized PageRank (PPR) remain separate.
 Optional Reciprocal Rank Fusion (RRF) preserves native channel evidence.
 Ranks and declaration spans can later support Context Planning's compact
 representations, without Retrieval rendering or selecting disclosure.
+
+## Selectable source representations
+
+`devtools.context.retrieval.source` provides `build_source_search_index` and
+`search_repository_source` (also exported by `devtools.context.retrieval`).
+This is in-memory composition of the existing explicit text corpus, lexical
+analysis/statistics, content-plus-filename BM25 and rank-fusion arithmetic.
+It adds no external dependency, discovery policy, persistent index, embedding,
+or default change to legacy lexical callers. Build once, then choose a mode:
+
+| Mode | Search population |
+| --- | --- |
+| `file` (default) | Every admitted corpus resource; identical text, document identity, BM25 score and ordering to existing whole-file retrieval |
+| `symbol` | Recursive Python classes, synchronous/asynchronous functions and methods; decorator-inclusive exact slices and lexical qualified names |
+| `window` | Exact contiguous line windows, default 80 lines with 20 lines of overlap; configurable when building the index |
+| `mixed` | All three native rankings, consolidated through equal-view RRF with constant 60; native scores are never added across populations |
+
+Python syntax uses stdlib AST with the existing Python 3.12 grammar contract.
+Canonical RI module functions/classes/direct methods retain their original
+declaration and subject objects. Nested/conditional declarations outside those
+bounded RI analyzers retain `PythonSourceOccurrence` and a representation
+identity, **not an invented semantic subject**. Qualified names describe syntax
+nesting; they do not assert runtime binding resolution. Qualified names are
+metadata; body/filename BM25 retains existing tokenization and adds no separate
+qualified-name field scorer. Decorators are included
+in the search occurrence, while the native declaration's original support is
+unchanged. Invalid Python, other file types and Python with no declarations
+fall back to the original file in symbol mode; `view.fallbacks` gives the reason.
+Window mode also covers code outside definitions and long functions. Empty
+windows and already-contained tail windows are not emitted. It is a line bound,
+not a byte/token budget: one long line can still be large.
+
+`RepositorySourceUnit` specializes the existing `RepositoryTextDocument` and
+uses its existing identity wrapper; it does not create another document system
+or RepositorySubject. Its parent is the original observed resource. Every unit
+retains repository/snapshot identity, parent content identity, representation
+kind, half-open decoded-character offsets `[start, end)`, logical line numbers,
+exact original `text`, and symbol/parent metadata where applicable. Python
+occurrences additionally retain canonical one-based line/UTF-8 byte-column
+ranges. UTF-8 columns and character offsets are distinct. LF, CRLF and bare-CR
+source bytes are preserved. The snapshot is the existing bounded text
+observation; the API does not claim an authenticated Git revision or a
+repository-wide simultaneous filesystem observation.
+
+Mixed results retain `native_results` and, on every hit, `evidence` with native
+view/rank/match/source unit. Exact or contained non-symbol evidence is assigned
+once to the highest native-ranked eligible symbol, then window. Each view
+contributes only its best rank in that group to RRF. File-fallback origins retain
+provenance, but contribute no duplicate symbol vote. Distinct symbol declarations
+(including nested classes/methods) remain selectable. Partially overlapping
+windows with novel source remain separate; this avoids discarding their tails.
+All original candidate evidence remains in the retained native results even
+when the final hit limit truncates presentation. This deterministic consolidation
+is an engineering baseline, not calibrated relevance or empirical superiority.
+
+Source-level native populations contain multiple representations of a resource;
+they are not inputs to legacy one-document-per-resource composition/graph-fusion
+contracts. Those contracts and their validation remain unchanged. Use the source
+result's consolidation and native evidence for source-level consumers.
+
+### Python caller examples
+
+Use the existing discovery/observation and `define_repository_text_corpus` /
+`realize_repository_text_corpus` APIs to prepare `snapshot` and `corpus` with
+explicit authorized membership. An all-repository corpus searches all admitted
+text resources; a selected corpus searches only that scope. Indexing does no
+additional filesystem acquisition or implicit inclusion of ignored/private files.
+
+```python
+from devtools.context.retrieval import (
+    build_source_search_index, search_repository_source,
+)
+
+index = build_source_search_index(
+    snapshot, corpus=corpus, window_lines=40, overlap_lines=10,
+)
+files = search_repository_source(index, query="timeout", mode="file")
+symbols = search_repository_source(index, query="with_timeout", mode="symbol")
+windows = search_repository_source(index, query="timeout", mode="window")
+mixed = search_repository_source(index, query="timeout", mode="mixed")
+unit = symbols.hits[0].unit
+whole_file = index.expand(unit, to="file")
+enclosing_class = index.expand(unit, to="class")
+```
+
+Class expansion returns the nearest containing class (including the unit itself
+when it is a class); absence raises `ValueError`. Windows must lie entirely
+inside a class to expand that way. Expansion and disclosure remain caller choices:
+
+```python
+from devtools.context.planning import (
+    SourceSearchDisclosureOption, choose_whole_resource_disclosure,
+    materialize_disclosure_plan, plan_disclosures,
+)
+
+choice = SourceSearchDisclosureOption("inspect timeout", enclosing_class)
+plan = plan_disclosures(
+    purpose="inspect timeout", snapshot=snapshot, disclosures=(choice,),
+)
+context = materialize_disclosure_plan(plan=plan, snapshot=snapshot)
+# Alternatively use the existing whole-resource option:
+file_choice = choose_whole_resource_disclosure(
+    purpose="inspect timeout", snapshot=snapshot,
+    resource_address=whole_file.resource.address,
+)
+```
+
+The source option materializes path/span/snapshot/content metadata plus exact
+retained source through the existing plan/materialization pipeline. It rejects
+missing/changed resources and incompatible purpose/repository/snapshot state.
+
+A read-only demo over this repository's maintained command package queried
+`timeout` with 12-line windows and overlap 3: file mode returned
+`models/command.py` (lines 1-151); symbol mode returned `Command.with_timeout`
+(132-141); window mode located `execution.py` (226-237). Mixed results preserved
+their contributing native ranks. These are distinct useful views of the same
+coding query, not a comparative retrieval-quality experiment.
+
+### Established patterns reviewed
+
+The [bounded Qwen coding consumer](../../../../../experiments/qwen/docs/overview.md#retrieved-context-markdown-coding-worker)
+uses this API with caller-admitted source/tests, symbol selection and explicit
+file expansion through Context. Host-owned acquisition exposes no second index,
+ranking policy or model-controlled filesystem mutation.
+
+[LlamaIndex CodeSplitter](https://developers.llamaindex.ai/python/framework-api-reference/node_parsers/code/)
+uses syntax-aware code chunking, while its
+[hierarchical parser](https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/node_parser/relational/hierarchical.py)
+retains parent/child levels.
+[LangChain PythonCodeTextSplitter](https://github.com/langchain-ai/langchain/blob/master/libs/text-splitters/langchain_text_splitters/python.py)
+specializes recursive text splitting with Python separators.
+[Aider's map](https://aider.chat/docs/repomap.html) uses Tree-sitter-derived symbol
+structure; [Sourcegraph](https://sourcegraph.com/docs/code-search/types/symbol)
+distinguishes symbol declarations from ordinary file/text results. These patterns
+support explicit units and source lineage. Devtools already owns the required
+AST coordinates, RI subjects, lexical scoring and disclosure contracts; adding
+those libraries would not remove that integration work and is unnecessary here.

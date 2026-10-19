@@ -14,6 +14,31 @@
 
 ## Problem / value
 
+### Current real-task integration checkpoint
+
+The [concrete coding worker](../../../experiments/qwen/docs/overview.md#retrieved-context-markdown-coding-worker)
+now consumes multi-resolution Context, isolated native proposals and focused
+test-feedback repair, capped at three calls. Scripted responses validate initial
+acceptance, a corrected second edit, refusal, exhaustion and cleanup against the
+unchanged eight-scenario oracle. The first real Markdown run is now accepted:
+two Qwen calls, one repair, 8,178 input / 525 output tokens, 34.76 seconds.
+The exact captured edit is integrated with eight permanent regressions and
+[verified provenance](../../../experiments/qwen/docs/first_accepted_coding_task.json).
+No new inference occurred during closeout. General reliability and reusable
+Agent promotion remain unestablished; the next checkpoint is a different real task.
+The existing loop now accepts host-owned one-file task configuration through
+`run_coding_task(..., task=...)` and CLI `--task`. Original Markdown compatibility
+and second-task Context/validation/repair/refusal are deterministically tested.
+The [second task preparation](../../../experiments/qwen/docs/second_task_preparation.json)
+freezes an existing Python source-materialization defect, independent checks and
+all bounds. The live [second-task result](../../../experiments/qwen/docs/second_task_result.json)
+remains REPAIR_BUDGET_EXHAUSTED: three calls, two repairs, 19,587 input / 1,848
+output tokens, 105.74 seconds. Codex corrected the production materializer and
+added primary-exception feedback capture after this failure. Neither correction
+constitutes Qwen task acceptance or reusable Agent-framework promotion.
+Native structured continuation, atomic task-local state, long-term memory and
+32K/64K Context benchmarking remain planned work.
+
 Build one bounded experimental coding worker after B-0008 establishes the
 minimum repository fact-acquisition boundary. It may exercise
 ModelInteraction, experiment-local relevance choice, bounded Tool use,

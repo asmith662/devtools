@@ -30,6 +30,75 @@ and Evidence ownership terminology, remain in the
 
 ## Current sequencing
 
+### Multi-resolution search engineering baseline
+
+Selectable file, recursive Python symbol, overlapping line-window and mixed
+retrieval are implemented under existing Context/Retrieval ownership. Legacy
+file BM25 is unchanged; independent source populations retain exact snapshot
+lineage and native ranks, with rank-only consolidation. Explicit Context
+expansion uses retained file/class source. See the
+[API and deterministic acceptance contract](../src/devtools/context/retrieval/docs/overview.md#selectable-source-representations).
+This completes the selectable representation baseline, without claiming better
+ranking or completing Context/retrieval research. No scientific study, model
+invocation, automatic Context optimizer or agent/memory implementation follows.
+
+### Bounded Qwen coding integration
+
+The [concrete Markdown worker](../experiments/qwen/docs/overview.md#retrieved-context-markdown-coding-worker)
+consumes production multi-resolution search and explicit Context, native proposals,
+isolated validation and up to two test-feedback repairs. The first real Markdown
+task is accepted after two Qwen calls and one repair (8,178 input / 525 output
+tokens; 34.76 seconds), with independent tests/oracle passing. Its exact captured
+implementation is integrated with permanent regressions; see the
+[provenance record](../experiments/qwen/docs/first_accepted_coding_task.json).
+Task selection now reuses that same worker via host-owned configuration. The
+second task, exact Python source materialization with non-newline separators,
+ended **REPAIR_BUDGET_EXHAUSTED** after three calls and two repairs; see its
+[measured result](../experiments/qwen/docs/second_task_result.json).
+Codex subsequently corrected the production defect with permanent regressions
+and bounded primary-failure feedback. This escalation is not Qwen success.
+The next checkpoint is failure-guided worker improvement and another independently
+bounded unresolved task, under separate local execution authorization. General coding
+reliability and autonomous multi-task coordination remain unproven.
+Native structured conversation continuation, integrated coding-agent acceptance
+and later 32K/64K Context benchmarking remain future work.
+
+### Governed work intake and portfolio progression
+
+Repository-local backlog proposal intake now captures discoveries with source,
+parent, affected resources, benefit, uncertainty and evidence, preserving the
+active objective. Duplicate hints and append-only advisory/authorized reviews
+precede exact publication into canonical B-number Markdown records. Trusted-host
+checks gate promotion; intake approval grants no implementation or model authority.
+The initial Python 3.12 concern is reproduced and pending maintainer review.
+This is the first governed intake boundary, not an autonomous supervisor.
+
+The concrete B-item-to-Qwen bridge is now implemented and deterministically
+validated: approved/published backlog item, exact preparation, separate host
+authority, fresh target validation, existing Qwen execution, review candidate or
+bounded escalation. Side discoveries route to pending intake without changing
+active scope. One designated coordinator owns canonical mutations.
+
+Next: process one genuinely reviewed and separately authorized backlog item
+through this bridge on an isolated branch, validate against host-owned acceptance,
+obtain Codex advisory review and authorize integration/closeout separately. This checkpoint does not implement scheduling,
+persistent Codex supervision or authorize a new local model run. Precise Context
+Tools, structured continuation, task-local checkpoints, layered long-term Memory,
+Context benchmarking and Learned Intelligence integration remain on the roadmap.
+
+### Future agent working and long-term memory
+
+These are planned needs, not implemented architecture. Task-local working memory
+should support atomic durable checkpoints of objective, constraints, progress,
+verified evidence references, hypotheses, unresolved questions and next intended
+actions, enabling recovery after interruption or Context replacement. Long-term
+memory should consider episodic experience, validated knowledge and procedural
+strategies/playbooks; agent-specific/shared scopes; provenance, applicability,
+revision and retirement; and Context-controlled recall. Keep active Context,
+conversation history, task-local working state and long-term memory distinct.
+Reuse existing atomic filesystem writing when implementation is justified.
+No memory types, schemas or new architecture are introduced in this checkpoint.
+
 ### Automated experiment mechanics
 
 The current bounded increment adds metadata-only observed usage and optional
