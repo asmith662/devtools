@@ -1,0 +1,64 @@
+{
+  "baseline_hashes": [
+    [
+      "src/devtools/resources/filesystem/codecs/json.py",
+      "dbe906a673e9071f13a404c694af0ba4b51718c0ec6d88f1caa1618d04ea7f41"
+    ],
+    [
+      "tests/resources/filesystem/codecs/test_json.py",
+      "626de2fe50988e8b2f19fd9ec6d43c91aa6ec09874889386e46abdecc6f94479"
+    ],
+    [
+      "src/devtools/resources/filesystem/errors.py",
+      "6a25ee5ac1caca1be3eb9e9d51a73b6229c4dd20b7e0c8a259ca91d411a0de93"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/json/conversion.py",
+      "c982a25f2964fd28f89d69898c310d23f674a7a8a0d9dfaadd0b52fba8d1f1bf"
+    ]
+  ],
+  "baseline_revision": "d8741a52f9342bd180e414832e8f31b52f4c8c9a",
+  "call_seconds": 300,
+  "context": [
+    [
+      "src/devtools/resources/filesystem/codecs/json.py",
+      "json duplicate members",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/resources/filesystem/codecs/test_json.py",
+      "json duplicate members",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/errors.py",
+      "json duplicate members",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/json/conversion.py",
+      "json duplicate members",
+      "mixed",
+      "none"
+    ]
+  ],
+  "context_mode": "on-demand",
+  "maximum_calls": 10,
+  "name": "json-duplicate-members",
+  "objective": "PUBLIC BEHAVIOR: Reject repeated JSON object member names, including nested objects and escaped names that decode to the same string, with the existing FileFormatError domain exception. Both JsonCodec.parse and decode must enforce this. Reuse existing codec/error ownership; do not add a public exception or change model APIs.\nCOMPATIBILITY: Equal names in different sibling objects are valid. Preserve ordinary object/list/scalar parsing, exact source text/byte metadata, encoding errors, serialization round trips and rejection of nonstandard constants. No last-value-wins duplicate acceptance.\nQUALITY: Existing tests, independent nested/escaped/member assertions, strict typing, Ruff and formatting are mandatory. A parser hook or equivalent exact member accounting is acceptable; do not relax the existing error contract.",
+  "oracle": "from devtools.resources.filesystem import JsonCodec, FileFormatError, TextDecodingError\nfrom devtools.core.paths import resolve_path\ncodec=JsonCodec();path=resolve_path(Path.cwd()/\"duplicate-check.json\")\nfor text in ('{\"x\":1,\"x\":2}','{\"a\":{\"x\":0,\"x\":0}}','[{\"a\":1,\"\\u0061\":2}]'):\n    for encoded in (False,True):\n        try: codec.decode(path,text.encode()) if encoded else codec.parse(path,text)\n        except FileFormatError: pass\n        else: raise AssertionError((text,encoded,\"duplicate member accepted\"))\nfor text in ('{\"a\":{\"x\":1},\"b\":{\"x\":2}}','[1,true,null]','\"\u00e9\"','{}'):\n    file=codec.decode(path,text.encode())\n    assert file.content==text and file.byte_size==len(text.encode())\n    assert codec.parse(path,codec.serialize(file)).value==file.value\nfor text in ('NaN','Infinity','{\"x\":-Infinity}'):\n    try: codec.parse(path,text)\n    except FileFormatError: pass\n    else: raise AssertionError(\"nonstandard constant accepted\")\ntry: codec.decode(path,b\"\\xff\",encoding=\"utf-8\")\nexcept TextDecodingError: pass\nelse: raise AssertionError(\"encoding error contract lost\")\nprint(\"14 duplicate-member/compatibility scenarios passed\")\n\nprint(\"QWEN_BEHAVIOR_PASSED\", flush=True)\nimport asyncio, sys\nfrom devtools.resources.commands import Command, CommandExecutor\nfrom devtools.core.paths import resolve_path\nfrom devtools.core.time import Duration\nproject = next(p for p in Path(module.__file__).parents if (p / \"pyproject.toml\").is_file())\ncommand = Command(sys.executable).args(\"-m\", \"mypy\", str(Path(module.__file__))).cwd(resolve_path(project)).with_timeout(Duration.seconds(60))\nchecked = asyncio.run(CommandExecutor().execute(command))\nprint(checked.stdout.decode(errors=\"replace\"), flush=True)\nassert checked.exit_code == 0, \"Independent typing acceptance failed: \" + checked.stderr.decode(errors=\"replace\")\n",
+  "output_tokens": 4096,
+  "quality_checks": true,
+  "read_paths": [
+    "src/devtools/resources/filesystem/errors.py",
+    "src/devtools/resources/filesystem/models/json/conversion.py"
+  ],
+  "source": "src/devtools/resources/filesystem/codecs/json.py",
+  "tests": [
+    "tests/resources/filesystem/codecs/test_json.py"
+  ],
+  "wall_seconds": 900
+}

@@ -1,0 +1,72 @@
+{
+  "acceptance": "behavior AND existing regressions AND strict mypy AND Ruff AND format",
+  "baseline": "d8741a52f9342bd180e414832e8f31b52f4c8c9a",
+  "budget": {
+    "context_tokens": 32768,
+    "model_calls": 60,
+    "output_tokens_per_call": 4096,
+    "runs": 6,
+    "worker_seconds": 5400
+  },
+  "cases": [
+    {
+      "contract_review": {
+        "alternatives": "any correctly typed, scoped implementation satisfying behavior and original regressions; no prescribed patch",
+        "behavior": "explicit PUBLIC BEHAVIOR and COMPATIBILITY in objective; independent oracle never disclosed",
+        "exceptions": "callback exceptions unchanged; JSON data errors remain FileFormatError; timestamp wrong-type errors TypeError and malformed strings retain domain error",
+        "limits": "review is engineering judgment, not automated satisfiability proof",
+        "lint_compatibility": "TRY004 agrees with timestamp TypeError; duplicate-member rejection is data validation rather than isinstance misuse; no rule disable or changed oracle",
+        "reviewed_at": "2026-10-19T21:14:23.945544+00:00",
+        "reviewer": "Codex",
+        "typing": "same fixed managed strict mypy in every oracle, only after behavior assertions pass"
+      },
+      "definition_sha256": "f3e07986b8cf7539f7790807230cfb20724382e3febb4824fe6d53ad04bae773",
+      "name": "regex-callback",
+      "oracle_sha256": "99b51f7a9d03970eb6f8de92592203e36a1ddc0ce2b08e1af41ec8a8a4eb4864",
+      "split": "development",
+      "task_file_sha256": "840076ce454aa58ca60afa04df59904a87de1bfe691fee04fb4f08a6a118feff"
+    },
+    {
+      "contract_review": {
+        "alternatives": "any correctly typed, scoped implementation satisfying behavior and original regressions; no prescribed patch",
+        "behavior": "explicit PUBLIC BEHAVIOR and COMPATIBILITY in objective; independent oracle never disclosed",
+        "exceptions": "callback exceptions unchanged; JSON data errors remain FileFormatError; timestamp wrong-type errors TypeError and malformed strings retain domain error",
+        "limits": "review is engineering judgment, not automated satisfiability proof",
+        "lint_compatibility": "TRY004 agrees with timestamp TypeError; duplicate-member rejection is data validation rather than isinstance misuse; no rule disable or changed oracle",
+        "reviewed_at": "2026-10-19T21:14:23.959663+00:00",
+        "reviewer": "Codex",
+        "typing": "same fixed managed strict mypy in every oracle, only after behavior assertions pass"
+      },
+      "definition_sha256": "fd53bdc07a594e1b533f640b45841a39c4f24ce62582b3c09e5556a26b9fc55a",
+      "name": "json-duplicate-members",
+      "oracle_sha256": "9e73960d98c71c3c3eb2f98fa5cb9800d3d65a930ebe5d390d7b74fbcaccaff6",
+      "split": "development",
+      "task_file_sha256": "3f0b79eb243a04855b7f75823784044979d39a002937d7548aec7562f0e0a2f7"
+    },
+    {
+      "contract_review": {
+        "alternatives": "any correctly typed, scoped implementation satisfying behavior and original regressions; no prescribed patch",
+        "behavior": "explicit PUBLIC BEHAVIOR and COMPATIBILITY in objective; independent oracle never disclosed",
+        "exceptions": "callback exceptions unchanged; JSON data errors remain FileFormatError; timestamp wrong-type errors TypeError and malformed strings retain domain error",
+        "limits": "review is engineering judgment, not automated satisfiability proof",
+        "lint_compatibility": "TRY004 agrees with timestamp TypeError; duplicate-member rejection is data validation rather than isinstance misuse; no rule disable or changed oracle",
+        "reviewed_at": "2026-10-19T21:14:23.974762+00:00",
+        "reviewer": "Codex",
+        "typing": "same fixed managed strict mypy in every oracle, only after behavior assertions pass"
+      },
+      "definition_sha256": "9187979ffc3ab022b56fff8426db943231ef741536b08b39897fe151b86276e9",
+      "name": "timestamp-input-contract",
+      "oracle_sha256": "eb77b1c6723f54f4ea8fbd552262e3affb2dafe057d2ebce802a159e0dc58085",
+      "split": "held-out",
+      "task_file_sha256": "afde6ae22d796a2e10e43b59537201aec516e95f5ed5da3963e53fa8e742eea0"
+    }
+  ],
+  "comparisons": [
+    "old feedback/off vs improved feedback/off on both development cases",
+    "improved off vs on for regex-callback only",
+    "fresh timestamp held-out only after development configuration chosen"
+  ],
+  "frozen_at": "2026-10-19T21:14:23.974786+00:00",
+  "no_production_publication": true,
+  "no_solutions_disclosed": true
+}
