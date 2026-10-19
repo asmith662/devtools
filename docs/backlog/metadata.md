@@ -380,6 +380,14 @@ it does not establish a new live Qwen success.
 
 ### Standing routine-Qwen delegation
 
+Standing delegation applies to governed WorkCycle assignments, not trusted local
+development/evaluation. The latter may invoke `scripts/qwen/coding_worker.py` or
+its `run_local_task` entry directly with a host-owned bounded CodingTask and the
+same source owner, without backlog promotion, grants or terminal consent. Local
+results are evidence/candidates only. They do not advance backlog state or grant
+integration/protected publication authority. Existing manual WorkCycle consent
+and all production standing-delegation checks below remain unchanged.
+
 The same coordinator and WorkCycle support an optional standing local-host grant.
 This is repository administration under `scripts/backlog/delegation.py`, not a
 framework policy service. Existing manual `work-authorize` and `work-execute`

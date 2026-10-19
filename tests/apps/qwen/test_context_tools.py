@@ -283,6 +283,93 @@ def test_context_eviction_retains_latest_actual_validation_feedback() -> None:
         select_messages(history, maximum_bytes=1000)
 
 
+def test_version_refusal_is_correlated_and_can_be_corrected(
+    captured_inputs: Callable[[CodingTask], Path], tmp_path: Path
+) -> None:
+    """A bad version is refused, not guessed; Qwen receives bounded feedback."""
+    root = captured_inputs(MARKDOWN)
+
+    class Recovering(Scripted):
+        async def send(self, request: ModelRequest) -> ModelResponse:
+            self.requests.append(request)
+            number = len(self.requests)
+            if number == 1:
+                native = call(
+                    "read_source",
+                    path=MARKDOWN.source,
+                    version="CURRENT",
+                    start=0,
+                    end=10,
+                )
+            elif number == 2:
+                message = request.prompt.messages[-1]
+                result = json.loads(message.content)
+                assert message.role == "tool"
+                assert message.tool_call_id == "fixture-call"
+                assert result["status"] == "REFUSED"
+                assert result["error"] == "SOURCE_VERSION_MISMATCH"
+                assert result["host_limits"]["context_actions_remaining"] == 7
+                assert "text" not in result
+                native = call("search_source", query="MarkdownFile", mode="file")
+            elif number == 3:
+                result = json.loads(request.prompt.messages[-1].content)
+                hit = next(h for h in result["matches"] if h["path"] == MARKDOWN.source)
+                native = call(
+                    "read_source",
+                    path=hit["path"],
+                    version=hit["version"],
+                    start=0,
+                    end=10,
+                )
+            else:
+                assert "text" in json.loads(request.prompt.messages[-1].content)
+                return proposal(OLD, GOOD)
+            return ModelResponse("", self.source, tool_calls=(native,))
+
+    model = Recovering([])
+    result = asyncio.run(
+        coding_loop.run_coding_task(
+            root,
+            tmp_path / "refusal",
+            model,
+            task=replace(MARKDOWN, context_mode="on-demand", maximum_calls=4),
+        )
+    )
+    assert result["accepted"]
+    assert result["source_restored"]
+    assert result["context_actions_attempted"] == 3
+    assert result["context_actions_accepted"] == 2
+    event = result["turns"][0]["context_tools"][0]
+    assert event["status"] == "REFUSED"
+    assert event["result"]["status"] == "REFUSED"
+    assert len(model.requests) == 4
+
+
+def test_version_refusals_cannot_expand_action_allowance(
+    captured_inputs: Callable[[CodingTask], Path], tmp_path: Path
+) -> None:
+    """Repeated refusals consume the same eight actions and never acquire source."""
+    root = captured_inputs(MARKDOWN)
+    native = call(
+        "read_source", path=MARKDOWN.source, version="CURRENT", start=0, end=1
+    )
+    model = Scripted([ModelResponse("", Scripted.source, tool_calls=(native,))] * 9)
+    result = asyncio.run(
+        coding_loop.run_coding_task(
+            root,
+            tmp_path / "exhausted",
+            model,
+            task=replace(MARKDOWN, context_mode="on-demand", maximum_calls=10),
+        )
+    )
+    assert result["disposition"] == "CONTEXT_TOOL_EXECUTION_FAILED"
+    assert result["context_actions_attempted"] == 8
+    assert result["context_actions_accepted"] == 0
+    assert len(model.requests) == 9
+    assert [t.name for t in model.requests[-1].tools] == ["propose_edit"]
+    assert result["source_restored"]
+
+
 class Investigating(Scripted):
     """Script actions using actual earlier Tool results, then propose and repair."""
 

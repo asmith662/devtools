@@ -8,8 +8,10 @@ remain in `src/devtools`. Legacy fixture helpers remain because the existing
 patch-proposal CLI and deterministic acceptance still consume them; they are not
 a generic Agent API.
 
-`scripts/qwen/coding_worker.py` remains the genuine default-No terminal entrypoint.
-No local inference is authorized by consolidation. Historical Markdown and source
+`scripts/qwen/coding_worker.py` is the trusted local evaluation entrypoint. Its
+invocation supplies bounded development authority without backlog promotion,
+standing grants or interactive confirmation. It does not authorize production
+publication. Historical Markdown and source
 segment task definitions pin their original Git baselines; they are reproducible
 evaluation definitions, not unresolved current defects. Complete evidence and
 outcomes remain in `experiments/qwen/` and `.local/qwen-coding-worker/`.
@@ -74,7 +76,11 @@ overall. Task/grant limits may be smaller. Investigation consumes reserved model
 calls; it is not an extra allowance. Future policies may permit ten calls, but
 existing grants retain their actual limits. After eight reads only the proposal
 is disclosed. Invalid calls, output-limit responses and ambiguous outcomes
-terminate without automatic retry.
+terminate without automatic retry. A version mismatch on an admitted, unchanged
+read is returned as a correlated REFUSED Tool result, consuming the same action
+budget. Qwen may obtain the actual version and make a new request; the host never
+accepts CURRENT or silently retries. Drift, unauthorized paths and malformed
+requests remain terminal. Tool descriptions explain the search/lookup prerequisite.
 
 Active selection is capped at 24,000 serialized message bytes, retaining the
 objective, newest complete exchanges and latest actual validation feedback.
@@ -93,8 +99,14 @@ The existing CLI also accepts a trusted host task definition:
 uv run python scripts/qwen/coding_worker.py --task-definition .local/backlog/preparation/WORK/task.json --report-directory .local/qwen-coding-worker/NEW-RUN
 ```
 
-This template grants no authority for a historical task. Paths/config are checked
-before genuine default-No consent. Model-authored task JSON is never authority.
+Trusted invocation is local evaluation authority, including for an explicitly
+selected historical baseline; model-authored task JSON is never authority.
+Paths/config are checked before source or service effects. The CLI selects or
+creates an ordinary `feat/qwen-local-<task-hash-prefix>` branch at the exact task
+base, uses the existing exclusive Checkout owner, restores source and returns to
+the original branch. `--branch` can name another ordinary feature branch at that
+same base. Dirty/index/collision checks remain enforced. Reusing a report directory
+refuses before dispatch. There is no confirmation prompt or `--yes` switch.
 Delegated WorkCycle execution uses its existing exact-task review, reservation,
 source owner and per-call guard without redundant consent. Reads must fit the
 standing source/test scope; publication remains separate. Never reuse an old

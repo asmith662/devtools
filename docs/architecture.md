@@ -1,5 +1,15 @@
 # Architecture
 
+Trusted local Qwen development/evaluation is distinct from governed production
+WorkCycle execution. Invoking the bounded coding application with a host-owned
+CodingTask authorizes local inference, temporary scoped edits and fixed tests;
+it does not require backlog promotion, standing delegation or interactive consent.
+The existing canonical Checkout owner still serializes source mutation and
+restores the selected ordinary branch. Local results are candidate evidence;
+production backlog progression, integration, protected publication and privileged
+external effects retain their own authority. No new executor or policy engine
+owns this distinction. See `apps/qwen/README.md` and `docs/backlog/metadata.md`.
+
 Repository-local maintained applications live in `apps/`, composing installed
 framework APIs. They are not additional framework domains. The bounded coding
 worker lives in `apps/qwen`; its supported terminal entrypoint remains in

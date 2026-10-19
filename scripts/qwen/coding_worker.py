@@ -1,6 +1,6 @@
 # Copyright (c) 2026
 # ruff: noqa: E402, INP001, T201 -- concrete local entrypoint
-"""Run one host-selected coding task after real terminal confirmation."""
+"""Run a bounded local coding evaluation; production publication is separate."""
 
 from __future__ import annotations
 
@@ -17,7 +17,6 @@ if str(_ROOT) not in sys.path:
 
 from apps.qwen.coding_loop import run_coding_task
 from apps.qwen.development_task import _command
-from apps.qwen.patch_proposal_worker import _read_text
 from apps.qwen.tasks import TASK_NAMES, select_task
 from devtools.core.paths import PathError, resolve_path
 from devtools.models.interaction import InteractionSource
@@ -28,12 +27,10 @@ from scripts.backlog.coordinator import git
 from scripts.backlog.intake import load_json
 from scripts.backlog.work import WorkCycle, task_from_dict
 from scripts.qwen.llama_cpp_profile import QWEN38_27B_UD_IQ4_XS
-from scripts.qwen.patch_proposal_worker_acceptance import (
-    _confirm_local_execution,
-    _qwen_status,
-)
+from scripts.qwen.patch_proposal_worker_acceptance import _qwen_status
 
 if TYPE_CHECKING:
+    from apps.qwen.tasks import CodingTask
     from devtools.models.interaction import ModelInteraction
 
 
@@ -61,8 +58,74 @@ async def local_interaction(root: Path) -> tuple[ModelInteraction, dict[str, Any
     }
 
 
+def report_directory(value: str | Path) -> Path:
+    """Resolve a new evidence directory before service or source operations."""
+    folder = resolve_path(value, base_directory=Path.cwd()).value
+    try:
+        folder.stat()
+    except FileNotFoundError:
+        pass
+    else:
+        message = "Report directory must not already exist."
+        raise ValueError(message)
+    existing_parent = next(parent for parent in folder.parents if parent.exists())
+    if not existing_parent.is_dir():
+        message = "Report directory has a non-directory parent."
+        raise ValueError(message)
+    return folder
+
+
+async def run_local_task(
+    root: Path,
+    folder: Path,
+    *,
+    task: CodingTask,
+    branch: str | None = None,
+) -> dict[str, Any]:
+    """Trusted host invocation authorizes this local evaluation, not publication.
+
+    Checkout supplies serialization/recovery. No approved backlog item, standing
+    grant or WorkCycle assignment is consulted/created. Never let model-provided
+    data select the host task or validation commands.
+    """
+    folder = report_directory(folder)
+    cycle = WorkCycle(root)
+    selected = branch or "feat/qwen-local-" + task.definition_sha256[:12]
+    if not selected.startswith("feat/"):
+        message = "Local evaluation requires an ordinary feature branch."
+        raise PermissionError(message)
+    source = await cycle._baseline(  # noqa: SLF001 -- existing exact Git binding
+        task,
+        task.source,
+        dict(task.baseline_hashes)[task.source],
+    )
+    worker_head = await git(root, "rev-parse", "HEAD")
+    async with Checkout(
+        cycle,
+        "local-evaluation:" + task.definition_sha256,
+        selected,
+        task.baseline_revision,
+        files=[{"path": task.source, "text": source}],
+        create=True,
+    ) as owner:
+        interaction, provenance = await local_interaction(root)
+        provenance.update(
+            worker_source_head=worker_head,
+            execution_category="trusted-local-development-evaluation",
+            publication_authority="NONE",
+        )
+        return await run_coding_task(
+            root,
+            folder,
+            interaction,
+            task=task,
+            provenance=provenance,
+            admit_edit=owner.expect,
+        )
+
+
 async def main() -> int:
-    """Confirm before service inspection, then dispatch at most one worker run."""
+    """Invoke one constrained local task without production approval rituals."""
     parser = argparse.ArgumentParser(description=__doc__)
     selection = parser.add_mutually_exclusive_group()
     selection.add_argument("--task", choices=TASK_NAMES, default="markdown-fences")
@@ -78,6 +141,7 @@ async def main() -> int:
             "the current working directory."
         ),
     )
+    parser.add_argument("--branch", help="Optional ordinary feature source branch.")
     args = parser.parse_args()
     try:
         task = (
@@ -103,64 +167,19 @@ async def main() -> int:
         parser.error(f"Invalid host task definition: {error}")
     args.task = task.name
     try:
-        args.report_directory = resolve_path(
-            args.report_directory,
-            base_directory=Path.cwd(),
-        ).value
-        try:
-            args.report_directory.stat()
-        except FileNotFoundError:
-            pass
-        else:
-            parser.error("Report directory must not already exist.")
-        existing_parent = next(
-            parent for parent in args.report_directory.parents if parent.exists()
-        )
-        if not existing_parent.is_dir():
-            parser.error("Report directory has a non-directory parent.")
+        args.report_directory = report_directory(args.report_directory)
     except (PathError, ValueError, OSError) as error:
         parser.error(f"Invalid report directory: {error}")
-    # This caller deliberately offers no noninteractive authorization switch.
-    # The maintainer runs it in a real terminal and answers the default-No prompt.
-    args.freeze_only = False
-    args.authorize_local_execution = False
-    args.coding_loop = True
-    args.structured_edit = True
-    args.model = "qwen38-local"
-    args.report_path = args.report_directory
-    args.task_objective = task.name + ": " + task.objective
-    args.coding_limits = (
-        f"at most {task.maximum_calls} model invocations, 3 edit proposals, "
-        f"{8 if task.context_mode == 'on-demand' else 0} read-only Context actions; "
-        f"{task.output_tokens} output tokens per call; thinking off; "
-        f"{task.wall_seconds}-second total bound; read scope "
-        + str([task.source, *task.tests, *task.read_paths])
-    )
-    _confirm_local_execution(args)
     try:
-        interaction, provenance = await local_interaction(_ROOT)
+        result = await run_local_task(
+            _ROOT,
+            args.report_directory,
+            task=task,
+            branch=args.branch,
+        )
     except RuntimeError:
         print("MODEL_SERVICE_NOT_READY_OR_PROFILE_CHANGED; no model invocation")
         return 2
-    cycle = WorkCycle(_ROOT)
-    branch = await git(_ROOT, "branch", "--show-current")
-    await cycle._target(_ROOT, branch, task)  # noqa: SLF001 -- same concrete host boundary
-    source = _read_text(resolve_path(_ROOT / task.source)).content
-    async with Checkout(
-        cycle,
-        "manual-coding:" + task.definition_sha256,
-        branch,
-        task.baseline_revision,
-        files=[{"path": task.source, "text": source}],
-    ) as owner:
-        result = await run_coding_task(
-            _ROOT,
-            args.report_directory,
-            interaction,
-            task=task,
-            provenance=provenance,
-            admit_edit=owner.expect,
-        )
     print(
         f"{result['disposition']}; calls: {len(result['turns'])}; "
         f"elapsed: {result['elapsed_seconds']:.2f}s; "

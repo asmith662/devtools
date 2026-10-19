@@ -302,6 +302,15 @@ new authority after relocation.
 
 ### Governed source mutation
 
+Trusted local development/evaluation may invoke the existing bounded Qwen worker
+directly, without backlog promotion, a standing grant or terminal confirmation.
+The host-owned CodingTask, exact source/read/edit scope, fixed validation and
+model/action/time limits remain mandatory. Use the canonical checkout owner for
+serialization, branch safety and restoration. A local accepted candidate is
+evidence, not production publication authority. WorkCycle backlog progression,
+integration, protected promotion and consequential external actions retain their
+separate authorization requirements.
+
 WorkCycle and integration use the canonical checkout with ordinary branches.
 Only one source-mutating operation may hold `.local/backlog/checkout-owner`.
 Do not remove an abandoned owner or redispatch after an ambiguous outcome.

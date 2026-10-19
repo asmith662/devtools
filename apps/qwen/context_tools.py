@@ -69,8 +69,9 @@ def _schema(name: str, properties: dict[str, Any]) -> ToolDescriptor:
                 "Exact qualified Python source-view name lookup; retains all matches."
             ),
             "read_source": (
-                "Read an exact character range from a known path and version; "
-                "bounded, possibly truncated."
+                "Read an exact character range. FIRST obtain the exact version "
+                "from search_source or lookup_symbol; never guess or use CURRENT. "
+                "Bounded, possibly truncated."
             ),
             "expand_source": (
                 "Expand a known unit to its parent symbol, class or file; "
@@ -106,7 +107,13 @@ _DEFINITIONS = (
         "read_source",
         {
             "path": _TEXT,
-            "version": _TEXT,
+            "version": {
+                **_TEXT,
+                "description": (
+                    "Exact version from a prior search/lookup result. "
+                    "CURRENT is not a valid version."
+                ),
+            },
             "start": {"type": "integer", "minimum": 0},
             "end": {"type": "integer", "minimum": 0},
         },

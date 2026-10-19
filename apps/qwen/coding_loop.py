@@ -444,8 +444,26 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                         _save(
                             turn / "tools.json", stage["context_tools"], overwrite=True
                         )
-                        raise
-                    event.update(status="RETURNED", result=result)
+                        if not (
+                            isinstance(error, ValueError)
+                            and str(error) == "SOURCE_VERSION_MISMATCH"
+                        ):
+                            raise
+                        # Refusal on an admitted, unchanged source. Return it;
+                        # never reinterpret CURRENT or silently retry a read.
+                        result = {
+                            "status": "REFUSED",
+                            "error": "SOURCE_VERSION_MISMATCH",
+                            "instruction": (
+                                "Obtain the exact version using search_source "
+                                "or lookup_symbol, then read with that returned "
+                                "version. Do not guess or use CURRENT. This "
+                                "refusal consumed a Context action."
+                            ),
+                        }
+                    else:
+                        event["status"] = "RETURNED"
+                    event["result"] = result
                     event["elapsed_seconds"] = time.perf_counter() - acquisition_started
                     result["host_limits"] = {
                         "context_actions_remaining": 8 - context_actions,
@@ -596,8 +614,9 @@ async def run_coding_task(  # noqa: C901, PLR0913, PLR0915 -- one bounded worker
 ) -> dict[str, Any]:
     """Run one bounded engineering task; preserve evidence and discard all edits.
 
-    The caller must obtain local execution authorization before providing a live
-    interaction. Reusing an output directory is refused before any invocation.
+    A trusted local development invocation supplies evaluation authority; it
+    confers no production publication or WorkCycle authority. Reusing an output
+    directory is refused before any invocation.
     """
     maximum_calls = task.maximum_calls if maximum_calls is None else maximum_calls
     if not 1 <= maximum_calls <= task.maximum_calls:
