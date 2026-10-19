@@ -160,8 +160,35 @@ def test_delegated_native_context_worker_preserves_assignment_scope(
                             ),
                         ),
                     )
+                if len(self.requests) == 1:
+                    self.requests.append(request)
+                    hit = next(
+                        h
+                        for h in json.loads(request.prompt.messages[-1].content)[
+                            "matches"
+                        ]
+                        if h["path"] == fixture["task"].source
+                    )
+                    return ModelResponse(
+                        "Read actual source",
+                        self.source,
+                        tool_calls=(
+                            ModelToolCall(
+                                "read_source",
+                                json.dumps(
+                                    {
+                                        "path": hit["path"],
+                                        "version": hit["version"],
+                                        "start": hit["span"][0],
+                                        "end": hit["span"][1],
+                                    }
+                                ),
+                                "read",
+                            ),
+                        ),
+                    )
                 self.requests.append(request)
-                # Use the existing scripted proposal as the second native call.
+                # Propose only after a correlated, authoritative source read.
                 return await helpers.Scripted([(helpers.OLD, helpers.GOOD)]).send(
                     request
                 )
@@ -175,7 +202,7 @@ def test_delegated_native_context_worker_preserves_assignment_scope(
             fixture["item"], interaction_factory=factory
         )
         assert result["disposition"] == "REVIEW_CANDIDATE", result
-        assert result["model_calls"] == 2
+        assert result["model_calls"] == 3
         assert assignment["task_sha256"] == fixture["task"].definition_sha256
         assert model.requests[1].prompt.messages[-1].role == "tool"
         assert not result["integration_authorized"]

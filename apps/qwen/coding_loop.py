@@ -21,7 +21,7 @@ from apps.qwen.context_tools import (
     ContextTools,
     context_tool_definitions,
 )
-from apps.qwen.continuation import select_messages
+from apps.qwen.continuation import ACTIVE_BYTES, select_messages
 from apps.qwen.development_task import (
     _command,
     _hash,
@@ -72,8 +72,10 @@ if TYPE_CHECKING:
 
 def _validation_feedback(validation: dict[str, Any]) -> dict[str, Any]:
     """Project bounded diagnostics; complete original command logs stay in evidence."""
-    projected = {}
-    for name in ("oracle", "tests"):
+    projected: dict[str, Any] = {}
+    for name in ("oracle", "tests", "ruff", "format"):
+        if name not in validation:
+            continue
         result = validation[name]
         failures = [
             json.loads(line.removeprefix("QWEN_TEST_FAILURE "))
@@ -186,7 +188,9 @@ def acquire_context(
     ).text, details
 
 
-async def validate_workspace(root: Path, folder: Path) -> dict[str, Any]:
+async def validate_workspace(
+    root: Path, folder: Path, *, task: CodingTask = MARKDOWN
+) -> dict[str, Any]:
     """Execute only host-selected commands with the isolated source on sys.path."""
     oracle = await _timed_command(
         root,
@@ -202,11 +206,16 @@ async def validate_workspace(root: Path, folder: Path) -> dict[str, Any]:
         "-B",
         str(folder / "tests-runner.py"),
     )
-    return {
-        "oracle": oracle,
-        "tests": tests,
-        "accepted": not oracle["failed"] and not tests["failed"],
-    }
+    result = {"oracle": oracle, "tests": tests}
+    if task.quality_checks:
+        for name, arguments in (
+            ("ruff", ("check",)),
+            ("format", ("format", "--diff")),
+        ):
+            result[name] = await _timed_command(
+                root, sys.executable, "-m", "ruff", *arguments, task.source
+            )
+    return {**result, "accepted": all(not check["failed"] for check in result.values())}
 
 
 async def _authenticate_inputs(root: Path, workspace: Path, task: CodingTask) -> None:
@@ -343,7 +352,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             model_prompt = Prompt("", role="messages", messages=messages)
             prompt = json.dumps(asdict(model_prompt))
             context = ""  # Disclosed only on demand in correlated Tool results.
-        if len(prompt.encode()) > 60000:
+        if len(prompt.encode()) > (ACTIVE_BYTES + 2000 if tools is not None else 60000):
             raise ValueError("Bounded Context byte allowance exceeded")
         request = ModelRequest(
             prompt=model_prompt,
@@ -462,7 +471,11 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                             ),
                         }
                     else:
-                        event["status"] = "RETURNED"
+                        event["status"] = (
+                            "REFUSED"
+                            if result.get("status") == "REFUSED"
+                            else "RETURNED"
+                        )
                     event["result"] = result
                     event["elapsed_seconds"] = time.perf_counter() - acquisition_started
                     result["host_limits"] = {
@@ -522,17 +535,27 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 response.tool_calls,
                 source_path=task.source,
             )
-        except PatchProposalError as error:
-            if (
-                tools is None
-                or str(error) != "Old text must match exactly one source region"
+            if tools is not None and not tools.observed(
+                json.loads(call.arguments_json)["old_text"]
             ):
+                raise PatchProposalError(
+                    "Edit source was not observed at current version"
+                )
+        except PatchProposalError as error:
+            if tools is None or str(error) not in {
+                "Old text must match exactly one source region",
+                "Edit source was not observed at current version",
+            }:
                 raise
             # Admission failed before any write. Do not guess an edit or relax
             # uniqueness. Let the same bounded conversation correct its proposal.
             result = {
                 "status": "REFUSED",
-                "error": "OLD_TEXT_NOT_UNIQUE",
+                "error": (
+                    "SOURCE_NOT_OBSERVED"
+                    if "not observed" in str(error)
+                    else "OLD_TEXT_NOT_UNIQUE"
+                ),
                 "instruction": (
                     "No edit was applied. Copy old_text exactly from CURRENT "
                     "source, including indentation. Re-read the relevant range "
@@ -565,6 +588,16 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 report["disposition"] = "PROPOSAL_ADMISSION_FAILED"
                 return
             continue
+        before = _read_text(resolve_path(workspace / task.source)).content
+        arguments = json.loads(call.arguments_json)
+        observed_old = arguments["old_text"].replace("\r\n", "\n")
+        replacement = arguments["new_text"].replace("\r\n", "\n")
+        if "\r\n" in before:
+            observed_old = observed_old.replace("\n", "\r\n")
+            replacement = replacement.replace("\n", "\r\n")
+        admitted_start = before.find(observed_old)
+        if admitted_start < 0:
+            raise PatchProposalError("Cannot locate admitted source region")
         stage["proposal_valid"] = True
         stage["proposal_id"] = call.provider_call_id
         stage["phase"] = "PATCH_APPLICATION"
@@ -577,13 +610,28 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
         stage["source_after"] = _hash(workspace / task.source)
         if tools is not None:
             tools.accept_source(updated)
+            # The admitted replacement is itself a correlated host observation.
+            # Earlier source versions are invalidated, not reused as current.
+            start = admitted_start
+            tools.observations.append(
+                {
+                    "path": task.source,
+                    "version": str(
+                        tools.snapshot.resource_at(
+                            RepositoryResourceAddress(task.source)
+                        ).content_identity
+                    ),
+                    "span": [start, start + len(replacement)],
+                    "text": replacement,
+                }
+            )
         stage["phase"] = "VALIDATION"
         _save(turn / "stage.json", stage, overwrite=True)
         print(
             f"{Timestamp.now()} turn {number}: edit admitted; focused validation",
             flush=True,
         )
-        validation = await validate_workspace(workspace, folder)
+        validation = await validate_workspace(workspace, folder, task=task)
         stage.update(
             validation=validation,
             elapsed_seconds=time.perf_counter() - started,
@@ -601,6 +649,13 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                     ).content_identity
                 ),
                 "validation": _validation_feedback(validation),
+                "text": replacement,
+                "span": [start, start + len(replacement)],
+                "host_limits": {
+                    "proposals_remaining": 3 - proposals,
+                    "context_actions_remaining": 8 - context_actions,
+                    "model_calls_remaining": maximum_calls - number,
+                },
                 "instruction": (
                     "Host retained the edit. Revise CURRENT source after failure; "
                     "read it again if needed."
@@ -684,7 +739,7 @@ async def run_coding_task(  # noqa: C901, PLR0913, PLR0915 -- one bounded worker
             "per_call_seconds": task.call_seconds,
             "context_actions": 8 if task.context_mode == "on-demand" else 0,
             "proposals": min(maximum_calls, 3),
-            "active_messages_bytes": 24000
+            "active_messages_bytes": ACTIVE_BYTES
             if task.context_mode == "on-demand"
             else 60000,
         },
@@ -702,7 +757,9 @@ async def run_coding_task(  # noqa: C901, PLR0913, PLR0915 -- one bounded worker
         async with asyncio.timeout(task.wall_seconds):
             workspace = _prepare_workspace(root, folder, task)
             await _authenticate_inputs(root, workspace, task)
-            report["baseline_validation"] = await validate_workspace(workspace, folder)
+            report["baseline_validation"] = await validate_workspace(
+                workspace, folder, task=task
+            )
             baseline = report["baseline_validation"]
             if (
                 not baseline["oracle"]["failed"]

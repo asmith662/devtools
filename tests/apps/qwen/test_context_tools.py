@@ -168,7 +168,7 @@ def test_source_drift_and_refreshed_unit_identity(tools: ContextTools) -> None:
 
 def test_read_bounds_unicode_truncation_and_invalid_python(tools: ContextTools) -> None:
     """UTF-8-safe truncation and invalid-Python file fallback remain explicit."""
-    updated = "# " + "é" * 5000 + "\nthis is not valid python!\n"
+    updated = "# " + "Ã©" * 5000 + "\nthis is not valid python!\n"
     target = tools.root / tools.task.source
     target.write_text(updated, encoding="utf-8", newline="")
     tools.accept_source(updated)
@@ -185,15 +185,16 @@ def test_read_bounds_unicode_truncation_and_invalid_python(tools: ContextTools) 
     assert result["text"] == updated[slice(*result["span"])]
     assert result["bytes"] <= 4096
     for start, end in ((0, 0), (1, 0), (0, len(updated) + 1)):
-        with pytest.raises(ValueError, match="range"):
-            dispatch(
-                tools,
-                "read_source",
-                path=tools.task.source,
-                version=version,
-                start=start,
-                end=end,
-            )
+        result = dispatch(
+            tools,
+            "read_source",
+            path=tools.task.source,
+            version=version,
+            start=start,
+            end=end,
+        )
+        assert result["error"] == "SOURCE_RANGE_OUT_OF_BOUNDS"
+        assert result["valid_range"] == [0, len(updated)]
     relations = dispatch(
         tools, "source_relationships", path=tools.task.source, version=version
     )
@@ -318,8 +319,8 @@ def test_version_refusal_is_correlated_and_can_be_corrected(
                     "read_source",
                     path=hit["path"],
                     version=hit["version"],
-                    start=0,
-                    end=10,
+                    start=max(0, hit["span"][1] - 4096),
+                    end=hit["span"][1],
                 )
             else:
                 assert "text" in json.loads(request.prompt.messages[-1].content)
@@ -398,10 +399,11 @@ def test_unmatched_proposal_gets_bounded_no_effect_feedback(
             task=replace(MARKDOWN, context_mode="on-demand"),
         )
     )
-    assert result["accepted"]
-    assert result["proposal_refusals"] == 1
+    # An unobserved but byte-correct guess remains refused, not installed.
+    assert not result["accepted"]
+    assert result["proposal_refusals"] == 2
     assert result["proposals_attempted"] == 2
-    assert result["proposals_admitted"] == 1
+    assert result["proposals_admitted"] == 0
     assert result["original_unchanged"]
     assert result["turns"][0]["disposition"] == "PROPOSAL_REFUSED"
     exhausted = Scripted([proposal("absent", "replacement")] * 4)
@@ -524,7 +526,7 @@ def test_investigation_then_edit_and_repair_uses_same_worker(
 @pytest.mark.parametrize(
     ("responses", "disposition"),
     [
-        ([proposal(OLD, GOOD)], "ACCEPTED"),
+        ([proposal(OLD, GOOD)], "MODEL_CALL_BUDGET_EXHAUSTED"),
         (
             [ModelResponse("Cannot solve", Scripted.source)],
             "MODEL_COMPLETED_WITHOUT_EDIT",
@@ -586,18 +588,23 @@ def test_dynamic_repair_and_action_bounds_stop_before_extra_effects(
     """Three proposals or eight read actions never become unlimited model repair."""
     root = captured_inputs(MARKDOWN)
     task = replace(MARKDOWN, context_mode="on-demand", maximum_calls=6)
-    model = Scripted(
-        [
-            proposal(OLD, OLD + " and True"),
-            proposal(OLD + " and True", OLD + " and True and True"),
-            proposal(OLD + " and True and True", OLD + " and True and True and True"),
-        ]
-    )
+
+    class BoundedRepair(Investigating):
+        async def send(self, request: ModelRequest) -> ModelResponse:
+            if len(self.requests) < 3:
+                return await super().send(request)
+            self.requests.append(request)
+            count = len(self.requests) - 3
+            return proposal(OLD + " and True" * count, OLD + " and True" * (count + 1))
+
+    model: Scripted = BoundedRepair([])
     result = asyncio.run(
         coding_loop.run_coding_task(root, tmp_path / "repairs", model, task=task)
     )
     assert result["disposition"] == "REPAIR_BUDGET_EXHAUSTED"
-    assert len(model.requests) == 3
+    assert len(model.requests) == 5
+    assert result["proposals_admitted"] == 3
+    assert result["repair_cycles"] == 2
     assert result["source_restored"]
     calls = tuple(
         ModelToolCall("search_source", '{"query":"MarkdownFile","mode":"file"}', str(i))

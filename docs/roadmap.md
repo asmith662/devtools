@@ -1400,3 +1400,11 @@ Its next step was prospective Stage A/plan review before execution; subsequent
 blocked-run and replacement status is recorded in Current sequencing above.
 Accepted results, SEARCH_POLICY_FAILURE =
 NOT_ASSESSED and LIVE_INCREMENTAL_RI = REQUIRED / NOT_IMPLEMENTED are unchanged.
+
+
+Native coding source-grounding continuation: the existing application now retains
+all current observed source regions, refuses unobserved edits, returns recoverable
+read bounds and supports host-frozen Ruff/format feedback. Fresh cohort 02 records
+actual outcomes separately; this does not establish general Qwen proficiency.
+Long-running structured continuation, atomic task checkpoints, layered long-term memory and
+32K/64K benchmarking remain planned, without a new Memory framework.

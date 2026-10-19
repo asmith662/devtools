@@ -1,0 +1,30 @@
+{
+  "acceptance": "existing tests AND independent oracle AND Ruff AND format; no production authority",
+  "baseline": "5102e5a8d4f4d132a2d999a26b36eb50122341ce",
+  "cases": [
+    {
+      "file_sha256": "019641d108e6714433b4260c8bb1cde8b6af04f10e432f08ff62655771333dc1",
+      "name": "regex-span-consistency",
+      "oracle_sha256": "8abdb9b0539b13343fe010da20ba890550b5f79b6ada05d4c8473f05637032cb",
+      "split": "development",
+      "task_sha256": "fa30741ee6ee874d2a55f50a281a4c801240d53cab5baab3de3960d0b1289156"
+    },
+    {
+      "file_sha256": "ca045124dcc5bed46ff8c8c7c14f84b7fbd7f98a8651583295cca0879427a370",
+      "name": "command-output-integer-limits",
+      "oracle_sha256": "a4a7e6988aeb296337098d1e30c0769b93614390eab607c6c0fe8fd14f473aa1",
+      "split": "held-out",
+      "task_sha256": "617baf9b0f84105ace11b9bf64b84fed20ff66c1a2bd38ba6cbf0b6c62e96e8b"
+    }
+  ],
+  "frozen_at": "2026-10-19T20:02:48.983743+00:00",
+  "held_out": "command-output-integer-limits: run after development changes fixed; do not tune using its result",
+  "limits": {
+    "model_requests": 20,
+    "output_tokens_per_request": 4096,
+    "proposals_per_task": 3,
+    "read_actions_per_task": 8,
+    "tasks": 2,
+    "wall_seconds": 1800
+  }
+}

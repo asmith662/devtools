@@ -39,9 +39,12 @@ class CodingTask:
     call_seconds: int = 300
     context_mode: str = "prepared"
     read_paths: tuple[str, ...] = ()
+    quality_checks: bool = False
 
     def __post_init__(self) -> None:  # noqa: C901, PLR0912 -- narrow configuration admission
         """Validate scope and prevent configured bounds exceeding host limits."""
+        if type(self.quality_checks) is not bool:
+            raise ValueError("quality_checks must be a host-selected boolean")
         paths = (self.source, *self.tests, *self.read_paths)
         if self.context_mode not in {"prepared", "on-demand"}:
             raise ValueError("Unknown Context acquisition mode")
@@ -103,6 +106,8 @@ class CodingTask:
     def definition_sha256(self) -> str:
         """Bind the complete host definition, including all checks and bounds."""
         value = asdict(self)
+        if not self.quality_checks:
+            del value["quality_checks"]
         # Existing assignment-v1 receipts predate these optional fields. Their
         # exact definition hashes remain valid only for legacy prepared mode.
         if self.context_mode == "prepared" and not self.read_paths:
@@ -114,12 +119,21 @@ class CodingTask:
         """Combine the objective with the same host-controlled proposal boundary."""
         if self.context_mode == "on-demand":
             return (
-                self.objective + " Only edit " + self.source + ". "
+                self.objective
+                + (
+                    " Host acceptance includes Ruff and formatting; "
+                    "repair their diagnostics. "
+                    if self.quality_checks
+                    else ""
+                )
+                + " Only edit "
+                + self.source
+                + ". "
                 "Investigate with native read-only Context Tools as needed. "
                 "Propose one contiguous replacement using native propose_edit. "
                 "The host applies and tests it; you have no write, shell or Git "
-                "authority. Do not claim tests ran. Read results identify CURRENT "
-                "source versions. After failure revise current source using the "
+                "authority. Do not claim tests ran. Read results identify exact "
+                "source version hashes. After failure revise current source using the "
                 "correlated Tool result. At most 3 edit proposals, 8 Context "
                 f"actions and {self.maximum_calls} total model calls are permitted."
             )

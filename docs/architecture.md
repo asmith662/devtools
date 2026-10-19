@@ -28,11 +28,13 @@ reuses source search, exact qualified source-unit names, source/version checks,
 enclosing expansion, static references/calls, disclosure materialization and
 ToolRunner. `PromptMessage` values are selected invocation input with native
 assistant/call/tool-result roles, not durable Conversation state. Active message
-selection preserves objective/latest validation while explicitly omitting older
-complete exchanges under a byte budget; full captures remain inspectable.
-Exact task scope and standing-call reservations still gate coding. A measured
-read-only native smoke passed; live coding effectiveness under this mode awaits
-genuine current-checkout task authority. See the [worker contract](../apps/qwen/README.md)
+selection preserves all distinct current observed source regions and latest
+validation, deduplicates source with explicit observation provenance, and refuses
+if required information cannot fit. Full captures remain inspectable. Native
+edits must be grounded in current observed source. Optional host-frozen quality
+checks participate in bounded repair. Exact task scope gates local development;
+production WorkCycle retains separate delegated authority. Cohort 01 produced
+genuine but limited coding evidence; subsequent outcomes are recorded separately. See the [worker contract](../apps/qwen/README.md)
 and [evaluation status](../apps/qwen/EVALUATION.md). Main adoption is separate.
 
 `devtools` is organized by responsibility. This document is the canonical

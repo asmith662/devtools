@@ -160,6 +160,7 @@ class ContextTools:
         )
         self.snapshot = self._observe()
         self._index()
+        self.observations: list[dict[str, Any]] = []
 
     @property
     def definitions(self) -> tuple[ModelToolDefinition, ...]:
@@ -215,6 +216,9 @@ class ContextTools:
                 raise ValueError("SOURCE_DRIFT after admitted edit")
         self.snapshot = current
         self._index()
+        self.observations = [
+            o for o in self.observations if o["path"] != self.task.source
+        ]
 
     def validate(self, arguments: tuple[str, dict[str, Any]]) -> None:
         """Validate keys/types/enums; schema disclosure grants no authority."""
@@ -331,7 +335,19 @@ class ContextTools:
         )
         start, end = values["start"], values["end"]
         if not 0 <= start < end <= len(unit.text):
-            raise ValueError("Read range must be a nonempty exact source span")
+            return {
+                "status": "REFUSED",
+                "error": "SOURCE_RANGE_OUT_OF_BOUNDS",
+                "path": values["path"],
+                "version": values["version"],
+                "source_length": len(unit.text),
+                "valid_range": [0, len(unit.text)],
+                "coordinate_convention": "half-open Unicode character offsets",
+                "requested_span": [start, end],
+                "instruction": (
+                    "Use start < end within valid_range; read <=4096 bytes at a time."
+                ),
+            }
         # Existing Context materialization authenticates the unit and snapshot.
         materialize_disclosure_plan(
             plan=plan_disclosures(
@@ -342,9 +358,13 @@ class ContextTools:
             snapshot=self.snapshot,
         )
         text = unit.text[start:end].encode()[:4096].decode(errors="ignore")
-        return {
+        result = {
             "path": str(unit.resource.address),
             "version": str(unit.resource.content_identity),
+            "source_length": len(unit.text),
+            "valid_range": [0, len(unit.text)],
+            "coordinate_convention": "half-open Unicode character offsets",
+            "continuation_start": start + len(text),
             "parent": self._metadata(unit),
             "representation": "exact-character-range",
             "text": text,
@@ -354,6 +374,35 @@ class ContextTools:
             "bytes": len(text.encode()),
             "uncertainty": "exact retained source; no runtime interpretation",
         }
+        self.observations.append(result)
+        return result
+
+    def observed(self, old_text: str) -> bool:
+        """Require exact logical text in a union of current observed source spans."""
+        version = str(
+            self.snapshot.resource_at(
+                RepositoryResourceAddress(self.task.source)
+            ).content_identity
+        )
+        regions = sorted(
+            (o["span"][0], o["text"])
+            for o in self.observations
+            if o["path"] == self.task.source and o["version"] == version
+        )
+        merged: list[tuple[int, str]] = []
+        for start, text in regions:
+            if merged and start <= merged[-1][0] + len(merged[-1][1]):
+                previous, content = merged[-1]
+                merged[-1] = (
+                    previous,
+                    content + text[max(0, previous + len(content) - start) :],
+                )
+            else:
+                merged.append((start, text))
+        needle = old_text.replace("\r\n", "\n")
+        return bool(needle) and any(
+            needle in text.replace("\r\n", "\n") for _, text in merged
+        )
 
     def _relationships(self, address: RepositoryResourceAddress) -> dict[str, Any]:
         interpretations = tuple(

@@ -82,26 +82,48 @@ budget. Qwen may obtain the actual version and make a new request; the host neve
 accepts CURRENT or silently retries. Drift, unauthorized paths and malformed
 requests remain terminal. Tool descriptions explain the search/lookup prerequisite.
 
-Active selection is capped at 24,000 serialized message bytes, retaining the
-objective, newest complete exchanges and latest actual validation feedback.
-Older exchanges are explicitly omitted with archive references, never silently
-summarized; assistant/call/result groups stay intact. If a pinned exchange cannot
-fit, admission refuses. Reads emit at most 4,096 source UTF-8 bytes and complete
-Tool responses at most 12,000 bytes. These are **byte bounds, not token estimates**.
-Actual provider prompt/completion counts and configured 32,768-token occupancy
-are recorded. Unknown cache/reasoning categories remain unknown.
+### Source-grounded working set
 
-Development traces showed an implementation prefix being evicted while later
-tails/tests survived. Selection now protects a current-version edit-target
-prefix exchange (or the latest target read when no prefix exists), as well as
-latest validation and the newest exchange. Native batches stay indivisible;
-other omissions remain explicit. If required groups cannot fit the same byte
-budget, the worker refuses rather than silently dropping them. This is bounded
-task-local selection, not durable Memory or a Context sufficiency guarantee.
-An unmatched/nonunique `old_text` proposal receives correlated no-effect feedback
-and may be corrected within the same three-proposal limit. Unauthorized paths,
-malformed/multiple edits and source drift still terminate; matching is never
-approximated. Receipts separately count proposal attempts/refusals/admissions.
+The application projects its archived native exchanges into a bounded active
+working set. Every distinct current observed source region (including tails,
+dependencies and tests), the objective and latest validation are retained.
+Repeated identical text is referenced by its original Tool call; stale text is
+explicitly marked and removed after a host-admitted edit. Redundant parent
+metadata is projected away with the original Tool-message SHA-256 and call ID.
+Exact raw requests, responses and Tool observations remain immutable in evidence.
+This is task-local Context selection, not a Memory repository or inferred summary.
+
+Complete assistant/call/result groups remain correlated. Lower-value complete
+exchanges may be omitted explicitly; if current source and validation cannot
+fit, selection refuses instead of silently dropping code. A prefix has no
+priority over a later symbol. The active cap is 36,000 serialized message bytes.
+The planning estimate uses 1.5 UTF-8 bytes/token, 4,096 output tokens, 2,048 for
+Tool schemas and 2,048 safety tokens under the unchanged 32,768-token profile.
+This is a conservative engineering estimate for the measured English/Python
+workload, **not a tokenizer or provider-enforced token guarantee**. Actual input
+usage/occupancy remains recorded. Cohort 01 full CSV histories were about 35.5K
+bytes: the old 24K eviction, rather than the model window, discarded source.
+
+Reads disclose at most 4,096 UTF-8 source bytes, exact half-open Unicode character
+coordinates, current version, parent source identity, source length, valid range,
+truncation and continuation start. An authorized out-of-bounds read returns a
+correlated REFUSED result with bounds and consumes its action. Wrong versions
+still refuse; unauthorized paths, drift and malformed calls remain terminal.
+The returned span is identified by resource path/version and exact coordinates;
+the parent source unit is never rebound to the smaller span.
+
+Native edits additionally require old text within the union of actually observed
+current source spans. Existing exact/unique LF/CRLF-safe admission remains intact.
+No approximate edit is applied. Nonunique or unobserved text returns no-effect
+feedback within the same three-proposal bound. After admission, old source
+observations are invalidated; the exact admitted replacement becomes a correlated
+current observation available for repair. Unchanged regions may be re-read.
+
+Host task definitions may freeze `quality_checks: true`. Acceptance then requires
+the existing tests, independent oracle, scoped Ruff and formatter checks. Complete
+logs remain archived; bounded Ruff diagnostics and formatter diff join existing
+native validation feedback for repair. Legacy false/default configurations keep
+their original definition digests and do not retroactively change prior outcomes.
 
 ## Execution and inspection
 

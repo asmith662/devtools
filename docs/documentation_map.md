@@ -13,8 +13,8 @@ not claim those branch capabilities have already entered main.
 
 The [worker's native Context contract](../apps/qwen/README.md#native-context-investigation)
 owns its task-local Tool/continuation bounds. Its [evaluation note](../apps/qwen/EVALUATION.md)
-separates historical coding outcomes, scripted acceptance, live read-only native
-conformance and the remaining coding-authority blocker.
+separates historical coding outcomes, scripted acceptance, genuine native coding
+evidence and remaining source-grounding/quality limitations.
 
 The [experiment worker startup contract](../experiments/orchestration/engineering/startup/README.md)
 owns prospective direct-script preflight and the preparation-only source-grounding

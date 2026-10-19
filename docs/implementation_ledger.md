@@ -2059,3 +2059,12 @@ three conditions, held-out source rejected at read bounds. Total 25 calls,
 141,083 input / 7,341 output tokens, 439.08 worker seconds. No main integration
 or Codex performance claim. Frozen task/oracle bytes and historical evidence
 remain unchanged. See apps/qwen/evaluation/native-cohort-01/results.json.
+
+
+## 2026-10-19 — Qwen source-grounded continuation
+
+Replaced prefix-pinning with complete current-source retention/deduplication,
+explicit native Tool projection provenance and stale-source invalidation. Added
+observed-source edit admission, recoverable authorized read bounds and optional
+host-frozen Ruff/formatter feedback. Legacy task digests remain compatible.
+Cohort 02 preserves fresh live outcomes independently of archived CSV replay.

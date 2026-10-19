@@ -1,0 +1,64 @@
+{
+  "baseline_hashes": [
+    [
+      "src/devtools/core/regex/models.py",
+      "5c7d3fa9a96bd88556a27c3f42a4423fcc8e87547d964c6c706f0d4669016d46"
+    ],
+    [
+      "tests/core/regex/test_models.py",
+      "e86b7c2ca1aea3c3c4a642cc79047dff59017b0559f0df3d6eed4f8c0ddbebc2"
+    ],
+    [
+      "tests/core/regex/test_search.py",
+      "32a5e5aceaf2301dadd6c30673de754b772ce8419b364d39dc6ac915f7110d59"
+    ],
+    [
+      "src/devtools/core/regex/search.py",
+      "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6"
+    ]
+  ],
+  "baseline_revision": "5102e5a8d4f4d132a2d999a26b36eb50122341ce",
+  "call_seconds": 300,
+  "context": [
+    [
+      "src/devtools/core/regex/models.py",
+      "regex match",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/core/regex/test_models.py",
+      "regex match",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/core/regex/test_search.py",
+      "regex match",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/regex/search.py",
+      "regex match",
+      "mixed",
+      "none"
+    ]
+  ],
+  "context_mode": "on-demand",
+  "maximum_calls": 10,
+  "name": "regex-span-consistency",
+  "objective": "A RegexMatch can currently claim a value whose character length disagrees with its source span. Reject inconsistent value/span combinations at construction. Preserve valid Unicode and empty matches, group access, immutability and existing negative/reversed-offset rejection. Locate the responsible value-object implementation and retain its APIs.",
+  "oracle": "from devtools.core.regex import RegexMatch, search_regex\nfor value,start,end in [(\"abc\",0,1),(\"\",2,3),(\"ab\",4,4),(\"\u00e9\",0,2)]:\n    try: RegexMatch(value,start,end)\n    except ValueError: pass\n    else: raise AssertionError((value,start,end,\"inconsistent match admitted\"))\nfor value,start,end in [(\"abc\",4,7),(\"\",3,3),(\"\u00e9\",2,3),(\"\ud83d\ude42\",0,1)]:\n    match=RegexMatch(value,start,end)\n    assert match.length==len(value) and match.span==(start,end)\nassert search_regex(\"abc\", \"b\").value==\"b\"\nprint(\"8 independent consistency scenarios passed\")\n",
+  "output_tokens": 4096,
+  "quality_checks": true,
+  "read_paths": [
+    "src/devtools/core/regex/search.py"
+  ],
+  "source": "src/devtools/core/regex/models.py",
+  "tests": [
+    "tests/core/regex/test_models.py",
+    "tests/core/regex/test_search.py"
+  ],
+  "wall_seconds": 900
+}
