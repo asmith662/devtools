@@ -24,12 +24,12 @@ if TYPE_CHECKING:
     from collections.abc import Callable
     from pathlib import Path
 
+    from apps.qwen.tasks import CodingTask
     from devtools.models.interaction import (
         ModelInteraction,
         ModelRequest,
         ModelResponse,
     )
-    from experiments.qwen.tasks import CodingTask
     from scripts.backlog.work import WorkCycle
 
 PROHIBITED = (

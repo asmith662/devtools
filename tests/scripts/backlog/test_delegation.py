@@ -13,6 +13,7 @@ from typing import TYPE_CHECKING, Any
 
 import pytest
 
+from apps.qwen.development_task import _structured_edit_definition
 from devtools.core.time import Duration, Timestamp
 from devtools.models.interaction import (
     ModelRequest,
@@ -21,7 +22,6 @@ from devtools.models.interaction import (
     Prompt,
 )
 from devtools.resources.filesystem.errors import FilesystemError
-from experiments.qwen.development_task import _structured_edit_definition
 from scripts.backlog import __main__ as cli
 from scripts.backlog.delegation import Delegations, validate_policy
 from scripts.qwen.llama_cpp_profile import QWEN38_27B_UD_IQ4_XS
