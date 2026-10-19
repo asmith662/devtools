@@ -194,6 +194,14 @@ one-file governed assignment-v1 refuses multi-file preparation; local capability
 does not silently expand production execution or integration authority. The
 dashboard displays either proposal shape through the same read-only raw evidence.
 
+A read/API batch exceeding a positive remaining allowance is refused as a whole,
+with one correlated result per call and no Tool dispatch. The model may select a
+smaller batch within its original call/time/action limits. Requested, dispatched
+and returned actions remain distinguishable; eight actual dispatch attempts are
+still the maximum, including version refusals. Requests after total exhaustion
+remain terminal. This permits bounded recovery without refunding actions or
+silently increasing the task budget.
+
 The existing CLI also accepts a trusted host task definition:
 
 ```powershell

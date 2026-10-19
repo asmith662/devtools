@@ -564,6 +564,46 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 stage["context_actions_requested"] = len(response.tool_calls)
                 stage["context_tools"] = []
                 _save(turn / "stage.json", stage, overwrite=True)
+                if 0 < 8 - context_actions < len(response.tool_calls):
+                    result: dict[str, Any] = {
+                        "status": "REFUSED",
+                        "error": "CONTEXT_BATCH_EXCEEDS_REMAINING",
+                        "instruction": (
+                            "No Tool was dispatched. Select at most "
+                            f"{8 - context_actions} necessary read/API actions; "
+                            "use narrow ranges and avoid redundant acquisition."
+                        ),
+                        "host_limits": {
+                            "context_actions_remaining": 8 - context_actions,
+                            "model_calls_remaining": maximum_calls - number,
+                            "proposals_remaining": 3 - proposals,
+                        },
+                    }
+                    for call in response.tool_calls:
+                        stage["context_tools"].append(
+                            {
+                                "call": asdict(call),
+                                "status": "REFUSED",
+                                "dispatched": False,
+                                "result": result,
+                                "elapsed_seconds": 0,
+                            }
+                        )
+                        history.append(
+                            PromptMessage(
+                                "tool",
+                                json.dumps(result),
+                                tool_call_id=call.provider_call_id,
+                            )
+                        )
+                    stage.update(
+                        disposition="CONTEXT_BATCH_REFUSED",
+                        finished_at=str(Timestamp.now()),
+                        elapsed_seconds=time.perf_counter() - started,
+                    )
+                    _save(turn / "tools.json", stage["context_tools"], overwrite=True)
+                    _save(turn / "stage.json", stage, overwrite=True)
+                    continue
                 for call in response.tool_calls:
                     if context_actions >= 8:
                         raise PatchProposalError("Context action budget exhausted")
@@ -1137,7 +1177,9 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
             0, sum(bool(s.get("proposal_valid")) for s in report["turns"]) - 1
         )
         report["context_actions_attempted"] = sum(
-            len(s.get("context_tools", ())) for s in report["turns"]
+            e.get("dispatched", True)
+            for s in report["turns"]
+            for e in s.get("context_tools", ())
         )
         report["context_actions_requested"] = sum(
             s.get("context_actions_requested", 0) for s in report["turns"]

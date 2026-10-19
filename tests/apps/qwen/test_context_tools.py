@@ -610,13 +610,21 @@ def test_dynamic_repair_and_action_bounds_stop_before_extra_effects(
         ModelToolCall("search_source", '{"query":"MarkdownFile","mode":"file"}', str(i))
         for i in range(9)
     )
-    model = Scripted([ModelResponse("", Scripted.source, tool_calls=calls)])
+    model = Scripted(
+        [
+            ModelResponse("", Scripted.source, tool_calls=calls),
+            ModelResponse("", Scripted.source),
+        ]
+    )
     result = asyncio.run(
         coding_loop.run_coding_task(root, tmp_path / "actions", model, task=task)
     )
-    assert result["disposition"] == "CONTEXT_TOOL_EXECUTION_FAILED"
-    assert result["context_actions_attempted"] == 8
-    assert len(model.requests) == 1
+    assert result["disposition"] == "MODEL_COMPLETED_WITHOUT_EDIT"
+    assert result["context_actions_requested"] == 9
+    assert result["context_actions_attempted"] == 0
+    assert len(model.requests) == 2
+    assert result["turns"][0]["disposition"] == "CONTEXT_BATCH_REFUSED"
+    assert all(not e["dispatched"] for e in result["turns"][0]["context_tools"])
     assert result["source_restored"]
 
 
