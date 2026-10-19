@@ -202,7 +202,13 @@ class ContextTools:
         if self._observe() != self.snapshot:
             raise ValueError("SOURCE_DRIFT: admitted Context changed")
 
-    def accept_source(self, updated: str) -> None:
+    def accept_source(  # noqa: C901 -- exact verified interval refresh, not fuzzy matching
+        self,
+        updated: str,
+        *,
+        replaced_span: tuple[int, int] | None = None,
+        edit_call_id: str | None = None,
+    ) -> None:
         """Refresh only the exact host-admitted edit; unrelated drift still refuses."""
         current = self._observe()
         for resource in current.resources:
@@ -214,11 +220,52 @@ class ContextTools:
             )
             if resource.content != expected:
                 raise ValueError("SOURCE_DRIFT after admitted edit")
+        old_resource = self.snapshot.resource_at(
+            RepositoryResourceAddress(self.task.source)
+        )
+        new_resource = current.resource_at(RepositoryResourceAddress(self.task.source))
+        retained = [o for o in self.observations if o["path"] != self.task.source]
+        if replaced_span is not None:
+            start, end = replaced_span
+            if not 0 <= start <= end <= len(old_resource.content):
+                raise ValueError("Invalid admitted replacement span")
+            delta = len(updated) - len(old_resource.content)
+            for observation in self.observations:
+                if observation["path"] != self.task.source:
+                    continue
+                left, right = observation["span"]
+                if old_resource.content[left:right] != observation["text"]:
+                    raise ValueError(
+                        "Observed source does not match admitted coordinates"
+                    )
+                for first, last, shift in (
+                    (left, min(right, start), 0),
+                    (max(left, end), right, delta),
+                ):
+                    if first >= last:
+                        continue
+                    text = old_resource.content[first:last]
+                    if updated[first + shift : last + shift] != text:
+                        raise ValueError("Unchanged source refresh verification failed")
+                    retained.append(
+                        {
+                            "path": self.task.source,
+                            "version": str(new_resource.content_identity),
+                            "span": [first + shift, last + shift],
+                            "text": text,
+                            "derived_from": {
+                                "observation_call_id": observation.get(
+                                    "observation_call_id"
+                                ),
+                                "version": observation["version"],
+                                "span": observation["span"],
+                                "admitted_edit_call_id": edit_call_id,
+                            },
+                        }
+                    )
         self.snapshot = current
         self._index()
-        self.observations = [
-            o for o in self.observations if o["path"] != self.task.source
-        ]
+        self.observations = retained
 
     def validate(self, arguments: tuple[str, dict[str, Any]]) -> None:
         """Validate keys/types/enums; schema disclosure grants no authority."""
@@ -244,6 +291,8 @@ class ContextTools:
         """Materialize native arguments and execute exactly once via ToolRunner."""
         values = json.loads(call.arguments_json)
         result = await ToolRunner().execute(self, (call.name, values))
+        if "text" in result:
+            result["observation_call_id"] = call.provider_call_id
         result = {
             "repository": str(self.repository.id),
             "snapshot": str(self.snapshot.id),

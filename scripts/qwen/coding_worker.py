@@ -15,7 +15,7 @@ _ROOT = Path(__file__).resolve().parents[2]
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
-from apps.qwen.coding_loop import run_coding_task
+from apps.qwen.coding_loop import preflight_coding_task, run_coding_task
 from apps.qwen.development_task import _command
 from apps.qwen.tasks import TASK_NAMES, select_task
 from devtools.core.paths import PathError, resolve_path
@@ -81,6 +81,7 @@ async def run_local_task(
     *,
     task: CodingTask,
     branch: str | None = None,
+    thinking_enabled: bool = False,
 ) -> dict[str, Any]:
     """Trusted host invocation authorizes this local evaluation, not publication.
 
@@ -88,6 +89,9 @@ async def run_local_task(
     grant or WorkCycle assignment is consulted/created. Never let model-provided
     data select the host task or validation commands.
     """
+    if type(thinking_enabled) is not bool:
+        message = "thinking_enabled must be an explicit host boolean"
+        raise ValueError(message)
     folder = report_directory(folder)
     cycle = WorkCycle(root)
     selected = branch or "feat/qwen-local-" + task.definition_sha256[:12]
@@ -121,6 +125,7 @@ async def run_local_task(
             task=task,
             provenance=provenance,
             admit_edit=owner.expect,
+            thinking_enabled=thinking_enabled,
         )
 
 
@@ -142,6 +147,20 @@ async def main() -> int:
         ),
     )
     parser.add_argument("--branch", help="Optional ordinary feature source branch.")
+    parser.add_argument(
+        "--thinking",
+        choices=("disabled", "enabled"),
+        default="disabled",
+        help="Per-request local template setting; default unchanged.",
+    )
+    parser.add_argument(
+        "--preflight-only",
+        action="store_true",
+        help=(
+            "Exact baseline, regression/quality/type checks; no inference. "
+            "Engineering review remains required."
+        ),
+    )
     args = parser.parse_args()
     try:
         task = (
@@ -170,12 +189,19 @@ async def main() -> int:
         args.report_directory = report_directory(args.report_directory)
     except (PathError, ValueError, OSError) as error:
         parser.error(f"Invalid report directory: {error}")
+    if args.preflight_only:
+        result = await preflight_coding_task(_ROOT, args.report_directory, task=task)
+        print(result["disposition"])
+        return (
+            0 if result["disposition"] == "PREFLIGHT_CHECKS_PASS_REVIEW_REQUIRED" else 1
+        )
     try:
         result = await run_local_task(
             _ROOT,
             args.report_directory,
             task=task,
             branch=args.branch,
+            **({"thinking_enabled": True} if args.thinking == "enabled" else {}),
         )
     except RuntimeError:
         print("MODEL_SERVICE_NOT_READY_OR_PROFILE_CHANGED; no model invocation")

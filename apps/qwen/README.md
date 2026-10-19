@@ -116,14 +116,36 @@ Native edits additionally require old text within the union of actually observed
 current source spans. Existing exact/unique LF/CRLF-safe admission remains intact.
 No approximate edit is applied. Nonunique or unobserved text returns no-effect
 feedback within the same three-proposal bound. After admission, old source
-observations are invalidated; the exact admitted replacement becomes a correlated
-current observation available for repair. Unchanged regions may be re-read.
+observations are invalidated. Previously observed portions outside the exact edit
+are refreshed only after byte-for-text verification against the current source;
+their original read/version/span and admitted edit remain referenced. Unseen or
+changed text is never inferred. The exact admitted replacement becomes a
+correlated current observation available for repair.
 
 Host task definitions may freeze `quality_checks: true`. Acceptance then requires
 the existing tests, independent oracle, scoped Ruff and formatter checks. Complete
 logs remain archived; bounded Ruff diagnostics and formatter diff join existing
 native validation feedback for repair. Legacy false/default configurations keep
 their original definition digests and do not retroactively change prior outcomes.
+
+Repair feedback identifies each check as behavior, regression, lint, formatting
+or typing, records the evaluated source version, and repeats the frozen public
+requirements alongside already-passing checks. A lint suggestion cannot override
+the task's API or exception contract. All required checks must pass on the same
+candidate. Complete logs remain separate from this bounded projection.
+
+Before freezing a new task, review public behavior and exception compatibility,
+legitimate alternative implementations, independent acceptance, existing tests,
+Ruff, formatting and typing together. `--preflight-only` runs baseline checks and
+strict scoped mypy without inference; its successful disposition still requires
+this engineering review and is not a proof that arbitrary specifications are
+satisfiable. It adds no execution approval gate. Cohort definitions can include
+fixed managed typing checks in their independent oracle.
+
+`--thinking enabled` explicitly selects the existing model template's reasoning
+option for a measured local evaluation. The default remains disabled. No model,
+chat template, serving process or context-window change is implied. See
+`evaluation/native-cohort-03/` for the frozen development comparison.
 
 ## Execution and inspection
 

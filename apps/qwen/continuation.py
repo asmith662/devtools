@@ -58,10 +58,8 @@ def select_messages(
         if (v := _result(m)).get("path") and v.get("version")
     }
     seen: dict[tuple[str, str, str], str | None] = {}
-    selected = []
-    for message in history:
-        original = _result(message)
-        value = _compact(original)
+
+    def project_source(value: dict[str, Any], call_id: str | None) -> dict[str, Any]:
         if isinstance(value.get("text"), str) and value.get("path"):
             key = (value["path"], value.get("version", ""), value["text"])
             if value.get("version") != latest.get(value["path"]):
@@ -72,7 +70,18 @@ def select_messages(
                 value["source_omitted"] = "DUPLICATE; retained earlier observation"
                 value["retained_tool_call_id"] = seen[key]
             else:
-                seen[key] = message.tool_call_id
+                seen[key] = call_id
+        return value
+
+    selected = []
+    for message in history:
+        original = _result(message)
+        value = project_source(_compact(original), message.tool_call_id)
+        if isinstance(value.get("source_observations"), list):
+            value["source_observations"] = [
+                project_source(observation, message.tool_call_id)
+                for observation in value["source_observations"]
+            ]
         if value != original:
             value["host_projection"] = {
                 "original_tool_call_id": message.tool_call_id,
@@ -97,7 +106,13 @@ def select_messages(
         protected = {validation}
         for region in ranges:
             if any(
-                isinstance(_result(m).get("text"), str)
+                (
+                    isinstance(_result(m).get("text"), str)
+                    or any(
+                        isinstance(o.get("text"), str)
+                        for o in _result(m).get("source_observations", [])
+                    )
+                )
                 for m in selected[region[0] : region[1]]
             ):
                 protected.add(region)

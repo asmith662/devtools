@@ -70,10 +70,15 @@ if TYPE_CHECKING:
     from devtools.models.interaction import ModelInteraction
 
 
-def _validation_feedback(validation: dict[str, Any]) -> dict[str, Any]:
+def _validation_feedback(
+    validation: dict[str, Any],
+    *,
+    task: CodingTask | None = None,
+    source_version: str | None = None,
+) -> dict[str, Any]:
     """Project bounded diagnostics; complete original command logs stay in evidence."""
     projected: dict[str, Any] = {}
-    for name in ("oracle", "tests", "ruff", "format"):
+    for name in ("oracle", "tests", "ruff", "format", "typing"):
         if name not in validation:
             continue
         result = validation[name]
@@ -91,13 +96,50 @@ def _validation_feedback(validation: dict[str, Any]) -> dict[str, Any]:
                 else text[:1000] + "\n[TRUNCATED]\n" + text[-1000:]
             )
             details[field + "_truncated"] = len(text) > 2000
+        category = {
+            "oracle": "behavior",
+            "tests": "regression",
+            "ruff": "lint",
+            "format": "formatting",
+            "typing": "typing",
+        }[name]
+        behavior_passed = name == "oracle" and (
+            result["exit_code"] == 0 or "QWEN_BEHAVIOR_PASSED" in result["stdout"]
+        )
+        if name == "oracle" and behavior_passed and result["exit_code"] != 0:
+            category = "typing"
         projected[name] = {
+            "category": category,
+            "status": "PASS" if result["exit_code"] == 0 else "FAIL",
+            "behavior_passed": behavior_passed if name == "oracle" else None,
             "exit_code": result["exit_code"],
             "primary_failures": failures[:8],
             "primary_failures_truncated": len(failures) > 8,
             "reporting_failure": "INTERNALERROR" in result["stdout"]
             or "_pytest/" in result["stderr"].replace("\\", "/"),
             **details,
+        }
+    if task is not None:
+        projected["repair_contract"] = {
+            "source_version": source_version,
+            "frozen_requirements": task.objective,
+            "passed_checks": [
+                name for name, result in projected.items() if result["status"] == "PASS"
+            ],
+            "failed_checks": [
+                name for name, result in projected.items() if result["status"] == "FAIL"
+            ],
+            "independent_behavior_passed": projected["oracle"]["behavior_passed"],
+            "invariants": (
+                "All required checks must pass together on the same source version. "
+                "Preserve already-passing behavior and regressions "
+                "while repairing failures. "
+                "A lint recommendation is not permission to change a frozen public API "
+                "or exception contract. Seek a compatible implementation; do not trade "
+                "behavioral correctness for style or typing. If requirements conflict, "
+                "report the precise conflict rather than silently redefining success. "
+                "Do not modify host tests, acceptance criteria or validation commands."
+            ),
         }
     return projected
 
@@ -218,6 +260,56 @@ async def validate_workspace(
     return {**result, "accepted": all(not check["failed"] for check in result.values())}
 
 
+async def preflight_coding_task(
+    root: Path,
+    folder: Path,
+    *,
+    task: CodingTask,
+) -> dict[str, Any]:
+    """Check a frozen baseline without inference; engineering review stays explicit.
+
+    This verifies reproduction, regression/quality baselines and exact input
+    identities. It does not prove specifications satisfiable or authorize work.
+    The trusted caller must separately review public/exception contracts, lint
+    compatibility, alternatives and independent success criteria before freezing.
+    """
+    await asyncio.to_thread(folder.mkdir, parents=True, exist_ok=False)
+    _prepare_workspace(root, folder, task)
+    await _authenticate_inputs(root, root, task)
+    validation = await validate_workspace(root, folder, task=task)
+    typing = await _timed_command(root, sys.executable, "-m", "mypy", task.source)
+    await _authenticate_inputs(root, root, task)
+    accepted = (
+        validation["oracle"]["failed"]
+        and "AssertionError" in validation["oracle"]["stderr"]
+        and all(
+            not value["failed"]
+            for name, value in validation.items()
+            if isinstance(value, dict) and name != "oracle"
+        )
+        and not typing["failed"]
+    )
+    result = {
+        "task_definition_sha256": task.definition_sha256,
+        "baseline_revision": task.baseline_revision,
+        "validation": validation,
+        "typing": typing,
+        "disposition": "PREFLIGHT_CHECKS_PASS_REVIEW_REQUIRED"
+        if accepted
+        else "PREFLIGHT_REFUSED",
+        "model_calls": 0,
+        "review_required": [
+            "public behavior and exception compatibility",
+            "lint/format/typing compatibility",
+            "legitimate alternatives",
+            "independent acceptance coverage",
+        ],
+        "satisfiability_proof": False,
+    }
+    _save(folder / "preflight.json", result)
+    return result
+
+
 async def _authenticate_inputs(root: Path, workspace: Path, task: CodingTask) -> None:
     """Authenticate configured immutable inputs in the selected ordinary branch.
 
@@ -306,6 +398,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
     maximum_calls: int,
     task: CodingTask,
     admit_edit: Callable[[str, str], None] | None = None,
+    thinking_enabled: bool = False,
 ) -> None:
     repository = Repository.new()
     feedback: dict[str, Any] = {"disposition": "INITIAL_PROPOSAL"}
@@ -357,7 +450,8 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
         request = ModelRequest(
             prompt=model_prompt,
             settings=ModelSettings(
-                maximum_output_tokens=task.output_tokens, thinking_enabled=False
+                maximum_output_tokens=task.output_tokens,
+                thinking_enabled=thinking_enabled,
             ),
             tools=(
                 _structured_edit_definition(source_path=task.source),
@@ -609,7 +703,11 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             raise PatchProposalError("Applied source differs from admitted proposal")
         stage["source_after"] = _hash(workspace / task.source)
         if tools is not None:
-            tools.accept_source(updated)
+            tools.accept_source(
+                updated,
+                replaced_span=(admitted_start, admitted_start + len(observed_old)),
+                edit_call_id=call.provider_call_id,
+            )
             # The admitted replacement is itself a correlated host observation.
             # Earlier source versions are invalidated, not reused as current.
             start = admitted_start
@@ -623,6 +721,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                     ),
                     "span": [start, start + len(replacement)],
                     "text": replacement,
+                    "observation_call_id": call.provider_call_id,
                 }
             )
         stage["phase"] = "VALIDATION"
@@ -648,9 +747,39 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                         RepositoryResourceAddress(task.source)
                     ).content_identity
                 ),
-                "validation": _validation_feedback(validation),
+                "validation": _validation_feedback(
+                    validation,
+                    task=task,
+                    source_version=(
+                        str(
+                            tools.snapshot.resource_at(
+                                RepositoryResourceAddress(task.source)
+                            ).content_identity
+                        )
+                        if tools is not None
+                        else stage["source_after"]
+                    ),
+                ),
                 "text": replacement,
                 "span": [start, start + len(replacement)],
+                "source_observations": [
+                    {
+                        key: value
+                        for key, value in o.items()
+                        if key
+                        in {
+                            "path",
+                            "version",
+                            "span",
+                            "text",
+                            "derived_from",
+                            "observation_call_id",
+                        }
+                    }
+                    for o in tools.observations
+                    if o["path"] == task.source
+                    and o.get("observation_call_id") != call.provider_call_id
+                ],
                 "host_limits": {
                     "proposals_remaining": 3 - proposals,
                     "context_actions_remaining": 8 - context_actions,
@@ -693,7 +822,19 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             "assistant_content": response.content[:4096],
             "source_after": stage["source_after"],
             "disposition": "EDIT_RETAINED_IN_ISOLATED_WORKSPACE; REVISE_CURRENT_SOURCE",
-            "validation": _validation_feedback(validation),
+            "validation": _validation_feedback(
+                validation,
+                task=task,
+                source_version=(
+                    str(
+                        tools.snapshot.resource_at(
+                            RepositoryResourceAddress(task.source)
+                        ).content_identity
+                    )
+                    if tools is not None
+                    else stage["source_after"]
+                ),
+            ),
         }
     report["disposition"] = (
         "REPAIR_BUDGET_EXHAUSTED"
@@ -702,7 +843,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
     )
 
 
-async def run_coding_task(  # noqa: C901, PLR0913, PLR0915 -- one bounded worker and conservative terminal accounting
+async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker and conservative terminal accounting
     root: Path,
     folder: Path,
     interaction: ModelInteraction,
@@ -711,6 +852,7 @@ async def run_coding_task(  # noqa: C901, PLR0913, PLR0915 -- one bounded worker
     task: CodingTask = MARKDOWN,
     provenance: dict[str, Any] | None = None,
     admit_edit: Callable[[str, str], None] | None = None,
+    thinking_enabled: bool = False,
 ) -> dict[str, Any]:
     """Run one bounded engineering task; preserve evidence and discard all edits.
 
@@ -718,13 +860,15 @@ async def run_coding_task(  # noqa: C901, PLR0913, PLR0915 -- one bounded worker
     confers no production publication or WorkCycle authority. Reusing an output
     directory is refused before any invocation.
     """
+    if type(thinking_enabled) is not bool:
+        raise ValueError("thinking_enabled must be an explicit host boolean")
     maximum_calls = task.maximum_calls if maximum_calls is None else maximum_calls
     if not 1 <= maximum_calls <= task.maximum_calls:
         raise ValueError("Model call bound exceeds the authenticated task limit")
     original_hashes = {path: _hash(root / path) for path, _ in task.baseline_hashes}
     original_source = _read_text(resolve_path(root / task.source)).content
     folder = resolve_path(folder).value
-    folder.mkdir(parents=True, exist_ok=False)
+    await asyncio.to_thread(folder.mkdir, parents=True, exist_ok=False)
     started = time.perf_counter()
     report: dict[str, Any] = {
         "schema": "qwen-coding-loop-v2",
@@ -779,7 +923,9 @@ async def run_coding_task(  # noqa: C901, PLR0913, PLR0915 -- one bounded worker
                     if task.context_mode == "on-demand"
                     else [],
                     "settings": asdict(
-                        ModelSettings(task.output_tokens, thinking_enabled=False)
+                        ModelSettings(
+                            task.output_tokens, thinking_enabled=thinking_enabled
+                        )
                     ),
                 },
             )
@@ -791,6 +937,7 @@ async def run_coding_task(  # noqa: C901, PLR0913, PLR0915 -- one bounded worker
                 maximum_calls=maximum_calls,
                 task=task,
                 admit_edit=admit_edit,
+                thinking_enabled=thinking_enabled,
             )
     except asyncio.CancelledError:
         report.update(
