@@ -2,6 +2,16 @@
 
 ## Immediate priority: native Qwen coding effectiveness
 
+[Cohort 03](../apps/qwen/evaluation/native-cohort-03/README.md) adds explicit
+contract/quality preflight, versioned requirement-preserving feedback and exact
+refresh of observed unchanged source after edits. Both paired development tasks
+failed before and after; a fresh held-out timestamp task passed 19 regressions,
+16 behavior scenarios, typing, Ruff and formatting with no repair. Thinking-on
+development exhausted output before an edit; the default stays off. Next:
+coherent multi-region edits, external API assumptions and genuinely successful
+behavior-preserving repair. No reliability improvement or Codex parity is claimed.
+Accepted candidates remain unintegrated until separately authorized integration.
+
 [Cohort 01](../apps/qwen/evaluation/native-cohort-01/README.md) now has real native
 coding evidence: duration passed frozen behavioral checks but needs style
 rework; CSV and the held-out source task failed. Local evaluation uses trusted

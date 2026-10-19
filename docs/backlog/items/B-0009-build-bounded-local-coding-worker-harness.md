@@ -128,6 +128,22 @@ General proficiency, fresh native test-feedback repair and fair Codex comparison
 remain open; no historical result or proposal status was converted into success.
 
 
+## Requirement-preserving native cohort 03
+
+Contract/quality preflight, source-version/check-category feedback, exact refresh
+of already observed unchanged source and bounded nonduplicate pytest feedback
+are implemented on the existing worker. Six genuine local runs consumed 39
+requests, 248,998 input / 13,100 output tokens and 730.07 worker seconds. Paired
+development acceptance was 0/2 before and 0/2 after. Fresh held-out timestamp
+compatibility passed 19 tests, 16 scenarios, typing, Ruff and formatting after
+one edit without repair. Thinking enabled did not improve acceptance and hit
+output limit; default remains off. See the maintained cohort 03 records.
+
+Reliable live behavioral repair, coherent multi-region editing, external API
+verification and a fair Codex comparison remain unresolved. Neither this local
+candidate nor prior regex/duration candidates were integrated. Historical
+cohorts retain their original outcomes; no backlog approval or authority changed.
+
 ## Source-grounded native cohort 02
 
 The maintained working set retains all current observed source regions instead

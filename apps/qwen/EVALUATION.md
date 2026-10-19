@@ -1,6 +1,16 @@
 # Native Context worker acceptance and evaluation
 
-Latest checkpoint: [native cohort 02](evaluation/native-cohort-02/README.md)
+Latest checkpoint: [native cohort 03](evaluation/native-cohort-03/README.md).
+Requirement/version/check-category feedback and verified unchanged-source refresh
+are implemented and tested. Paired development acceptance was 0/2 unchanged and
+0/2 improved; reasoning enabled hit the output ceiling without an edit. Final
+held-out timestamp compatibility passed all behavior/typing/quality checks after
+one edit with no repair. This is another genuine native coding success, not
+evidence of reliable repair, comparative improvement or Codex parity. The exact
+candidate remains in evidence only. See the cohort's `results.json` for costs,
+source/proposal identities, frozen configuration and limitations.
+
+Previous checkpoint: [native cohort 02](evaluation/native-cohort-02/README.md)
 contains one accepted source-grounded coding task and one held-out repair-budget
 failure with explicit exception-contract/lint tension. Eleven real local requests
 used 53,865 input / 2,085 output tokens. No paid Codex comparison or production

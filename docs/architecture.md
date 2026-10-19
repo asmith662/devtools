@@ -22,6 +22,14 @@ are maintained framework behavior; B-0048's separate accepted candidate remains
 unintegrated. Dashboard/governed-integration continuation and authority/adoption
 requirements are recorded in [reconciliation](development/reconciliation.md).
 
+The Qwen application's task preparation reviews behavioral/API/exception and
+quality/typing criteria together; baseline preflight is evidence, not a proof
+of specification satisfiability. Repair feedback binds passed/failed check
+categories and frozen requirements to the actual source version. Admitted edits
+refresh only exactly verified unchanged portions of previously observed spans,
+preserving original observation and edit provenance. These are task-local
+Context/feedback operations, not a new Memory, persistence or authority domain.
+
 On `feat/qwen-context-worker`, the maintained worker also supports on-demand
 native repository Context Tools in its existing proposal/validation loop. It
 reuses source search, exact qualified source-unit names, source/version checks,

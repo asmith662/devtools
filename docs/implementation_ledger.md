@@ -1,5 +1,31 @@
 # Implementation Ledger
 
+## 2026-10-19 — Requirement-preserving Qwen repair and cohort 03
+
+Cohort 02's held-out repair demoted an explicit ValueError contract in favor of
+Ruff TypeError advice despite source/requirements remaining visible. Added
+reviewed contract/quality/typing preflight, exact requirements and passed-check
+invariants bound to candidate versions, and provenance-preserving refresh of
+already observed unchanged source after admitted edits. No edit matching or
+authority was weakened. Repeated pytest traces now yield captured primary
+failures, outcome tail and nonduplicate stderr with full logs archived.
+
+Six genuine frozen local runs used 39 calls, 248,998 input / 13,100 output tokens
+and 730.07 worker seconds. Paired development acceptance stayed 0/2 versus 0/2;
+thinking enabled hit output limit before an edit. Final fresh held-out timestamp
+compatibility passed 19 tests, 16 scenarios, strict typing, Ruff/format after one
+edit without repair. Independent replay authenticated seven admitted edits,
+native correlation and all restorations. The exact accepted candidate remains
+local evidence; historical outcomes and production main were preserved.
+
+Development JSON exposed duplicate latest diagnostics exhausting Context. Replay
+with the final feedback projection reduced 37,793 to 33,806 bytes, retaining all
+nine current source regions and zero omitted exchanges. This deterministic
+replay is not successful live repair. Final protected validation: 2,042 passed,
+two skipped, 100% production branch coverage, 441.23s; strict mypy 479 files and
+relevant Ruff/format/layout pass. See native-cohort-03 README/results. General
+reliability and Codex comparison remain open; Qwen remains the active priority.
+
 ## Governed development integration (2026-10-18)
 
 Extended the existing repository WorkCycle from accepted worker evidence through

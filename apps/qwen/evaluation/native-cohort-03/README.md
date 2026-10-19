@@ -55,4 +55,53 @@ successful rerun of JSON. The original terminal receipt remains unchanged.
 Raw private evidence: `.local/qwen-coding-worker/native-cohort-03/`, including
 baseline preflight logs, serving-template readiness, per-turn native archives,
 source/diff identities and original-source restoration. Summarized measured
-results are recorded here after terminal evaluation; none are assumed in advance.
+results are in [results.json](results.json).
+
+## Terminal outcomes
+
+| Condition | Task | Accepted | Calls | Input / output tokens | Worker seconds |
+|---|---|---|---:|---:|---:|
+| Unchanged, thinking off | Regex callback | No | 8 | 59,142 / 1,780 | 127.13 |
+| Unchanged, thinking off | JSON duplicate members | No | 10 | 69,319 / 1,440 | 107.12 |
+| Improved, thinking off | Regex callback | No | 6 | 36,335 / 2,947 | 146.12 |
+| Improved, thinking off | JSON duplicate members | No | 7 | 52,247 / 1,468 | 93.80 |
+| Improved, thinking on | Regex callback | No | 3 | 14,724 / 4,864 | 220.18 |
+| Final configuration, held-out | Timestamp input contract | **Yes** | 5 | 17,231 / 601 | 35.71 |
+
+Total: 39 calls, 248,998 input / 13,100 output tokens, 730.07 worker seconds and
+53,541 source bytes disclosed, within the six-run/60-call/5,400-second budget.
+The timestamp candidate passed 19 original tests, all 16 independent behavior
+scenarios, strict mypy, Ruff and formatting after one edit. It needed no repair.
+Its SHA-256 is
+`d2f1f59bc0288cd8623b6d70d4ba5b9677841e828c3c119dcbc671508448dd27`.
+Codex independently recommends this local candidate; it remains unintegrated.
+
+Seven admitted edits reconstruct exactly through the existing host parser;
+request/response hashes, native call/result correlation, frozen task/oracle
+identities and restoration pass for all six runs. Both JSON runs explicitly
+omitted older complete exchanges; the held-out and regex runs omitted none.
+The improved JSON failure was a budget refusal despite successful reads, with
+an already incorrect implementation. The final feedback fix was tested by replay,
+not a second JSON attempt. Maximum reported input occupancy ranged from 20.18%
+to 37.96% per run; the byte cap is conservative and not a tokenizer guarantee.
+
+Paired acceptance remains **0/2 versus 0/2**. The single held-out success has no
+matched old-worker comparator and establishes no acceptance-rate improvement.
+Thinking on supported native Tools but hit its final output ceiling before an
+edit; provider reasoning-token subtotals remain unknown. No serving profile or
+default was changed. There was no Codex comparator inference, model-side
+supervisor intervention or manually supplied replacement patch. Codex selected
+tasks, reviewed contracts/traces, changed the harness between development stages,
+and reviewed terminal candidates. Coordination usage and local energy/cost are
+UNKNOWN.
+
+Protected validation: 2,042 passed, two skipped, 100% production branch coverage
+in 441.23 seconds; strict mypy 479 files, scoped Ruff/format and layout passed.
+The prior regex accepted candidate and duration style-rework candidate retain
+their original hashes. Historical held-out outcomes, production main, scientific
+branches and the thirteen untracked forensic files remain unchanged.
+
+The next reliability target is coherent multi-region editing and verification
+of external API assumptions. Requirement-preserving live repair and a fair,
+separately budgeted Codex comparison remain open. Do not count scripted repair
+tests or this no-repair held-out success as proof of reliable repair.
