@@ -1,5 +1,38 @@
 # Implementation Ledger
 
+## 2026-10-19 — Verified coordinated Qwen engineering
+
+Extended the existing CodingTask/native loop/Checkout path for observed,
+versioned atomic edit transactions across up to four existing implementation
+files. Each component reuses strict exact/newline-safe admission; shared native
+Git check/apply owns mutation. Planned hashes precede entry; combined diffs,
+per-edit provenance and all source candidates remain under qwen-coding-loop-v2.
+Historical single-edit digests/behavior remain supported. Governed assignment-v1
+explicitly refuses multi-file scope rather than inheriting wider authority.
+
+Added ToolRunner observations of seven fixed installed standard-library APIs,
+with actual signatures/docstrings/runtime identities and authenticated digests.
+No model-selected import, execution, shell or general documentation framework.
+Native plans cite required observations; current source versions/passed checks
+guide repair. Dashboard inspection handles both proposal shapes without new data
+ownership. New pre-dispatch whole-batch refusal fixes an observed Context-budget
+failure without enlarging action/model/time allowances.
+
+Six real cohort 04 runs: 27 calls, 172,310 input / 10,817 output tokens, 602.14
+worker seconds. Final paired acceptance 0/2 unchanged versus 2/2 final, plus one
+accepted two-file held-out task. Regex development genuinely repaired behavior
+and quality while preserving regressions. Initial improved read-budget failure
+remains intact; a prospective amendment allocates the reserved sixth comparison.
+This small bundled comparison does not establish general reliability or parity.
+No task implementation came from Codex. Candidates remain evidence only.
+
+Independent replay authenticated ten applied proposals/twelve anchors and all
+restorations; thirteen prior receipts and three prior candidates matched hashes.
+Protected gate once: 2,063 passed, two skipped, 100% branch coverage, 459.74s.
+Strict mypy 482 files, relevant Ruff/format/layout, seven React tests, TypeScript
+and frontend build passed. See native-cohort-04 README/results for identities,
+actual stage timing, limitations and the next Qwen reliability checkpoint.
+
 ## 2026-10-19 — Requirement-preserving Qwen repair and cohort 03
 
 Cohort 02's held-out repair demoted an explicit ValueError contract in favor of

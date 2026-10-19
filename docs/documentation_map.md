@@ -16,6 +16,11 @@ owns its task-local Tool/continuation bounds. Its [evaluation note](../apps/qwen
 separates historical coding outcomes, scripted acceptance, genuine native coding
 evidence and remaining source-grounding/quality limitations.
 
+[Coordinated source edits and installed API contracts](../apps/qwen/README.md#coordinated-source-edits-and-installed-api-contracts)
+owns the existing worker's versioned multi-region/multi-file local proposal
+boundary, fixed installed-API observations, atomic Git application and legacy
+compatibility. It does not expand governed assignment or integration authority.
+
 The [experiment worker startup contract](../experiments/orchestration/engineering/startup/README.md)
 owns prospective direct-script preflight and the preparation-only source-grounding
 failure disposition. PLAN_VALID precedes approval only after real worker imports

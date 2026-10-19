@@ -128,6 +128,22 @@ General proficiency, fresh native test-feedback repair and fair Codex comparison
 remain open; no historical result or proposal status was converted into success.
 
 
+## Verified coordinated native cohort 04
+
+The later [cohort 04](../../../apps/qwen/evaluation/native-cohort-04/README.md)
+implements and measures atomic observed/versioned multi-region editing and
+allowlisted installed API inspection through the existing worker. Final paired
+development acceptance is 0/2 unchanged versus 2/2 final; one fresh two-file
+held-out task also passes. One genuine behavioral/quality repair is observed.
+The initial improved read-budget failure remains recorded and a prospective
+development amendment accounts for its corrected comparison. Six runs used
+27 calls, 172,310 input / 10,817 output tokens and 602.14 worker seconds.
+
+Local candidates remain unintegrated. Multi-file local capability does not expand
+one-file governed assignment-v1 or protected publication authority. Broader task
+reliability, repeated repair, external-package API scope and a fair Codex baseline
+remain open; this does not close the overarching autonomous-worker obligation.
+
 ## Requirement-preserving native cohort 03
 
 Contract/quality preflight, source-version/check-category feedback, exact refresh

@@ -1,0 +1,2677 @@
+{
+  "observed_at": "2026-10-19T23:35:12.207528+00:00",
+  "status": "FINAL_PAIRED_DEVELOPMENT_2_OF_2_ACCEPTED;HELD_OUT_ACCEPTED;GENERAL_RELIABILITY_OPEN",
+  "source_baseline": "39a3fd95900a583d1b8578523dd6acd8b86ba038",
+  "authority": "Trusted direct local development/evaluation; no production publication or integration grant",
+  "model": {
+    "endpoint": "http://127.0.0.1:8080",
+    "execution_category": "trusted-local-development-evaluation",
+    "model": "qwen38-local",
+    "profile": {
+      "cache_type_k": "q4_0",
+      "cache_type_v": "q4_0",
+      "context_size": 32768,
+      "expected_sha256": "40fac4050e940397dbf13087afd50f4734a11805bf9d65ef8ddd7483470e6199",
+      "flash_attention": "on",
+      "gpu_layers": "all",
+      "image_build_identity": "ghcr.io/ggml-org/llama.cpp:server-cuda-b10868@sha256:7625abb46c6bb8357e214f949b409a152c0944228e5a653fbab112f98ad2de7e",
+      "model": {
+        "filename": "Qwen3.8-27B-UD-IQ4_XS.gguf",
+        "repository": "unsloth/Qwen3.8-27B-GGUF",
+        "revision": "16b6ae91d7429915de9e9a1c859c604731c78088"
+      },
+      "n_cpu_ffn": 0,
+      "parallel_sequences": 1,
+      "quant": "Unsloth Dynamic IQ4_XS"
+    },
+    "publication_authority": "NONE",
+    "service": {
+      "container_id": "71c46aa469a1d141a181f7b3513922127f3b86f46856e7429a391886fd6d4b57",
+      "expected_fingerprint": "03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1",
+      "model_ready": "True",
+      "observed_fingerprint": "03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1",
+      "profile_matches": "True",
+      "raw_status": "state: READY\r\nendpoint: http://127.0.0.1:8080\r\nserved model: qwen38-local\r\ncontainer name: devtools-qwen38-llama-cpp\r\ncontainer id: 71c46aa469a1d141a181f7b3513922127f3b86f46856e7429a391886fd6d4b57\r\nexpected profile fingerprint: 03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1\r\nobserved profile fingerprint: 03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1\r\nprofile matches: True\r\ncontainer running: True\r\nmodel ready: True\r\n",
+      "state": "READY"
+    },
+    "source_head": {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "failed": false,
+      "stderr": "",
+      "stdout": "39a3fd95900a583d1b8578523dd6acd8b86ba038\n"
+    },
+    "worker_source_head": "06c394cb58a44fe576427144daf3e22842174fe9"
+  },
+  "runs": [
+    {
+      "task_name": "regex-overlap",
+      "task_definition_sha256": "fbb76f47a69cbd54d7c57f5102cbe56891b3777304fdf49b7a0835a9977cf2d8",
+      "oracle_sha256": "3efea32d948a422525e1482cd9dc05c7141cbf0fa15b290bdc61bf2320ed75cb",
+      "accepted": false,
+      "disposition": "REPAIR_BUDGET_EXHAUSTED",
+      "error": null,
+      "started_at": "2026-10-19T22:34:21.989993+00:00",
+      "finished_at": "2026-10-19T22:37:40.160339+00:00",
+      "elapsed_seconds": 198.17035969998688,
+      "usage_totals": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 48158,
+        "output_tokens": 3532,
+        "reasoning_tokens": null
+      },
+      "context_actions_requested": 7,
+      "context_actions_attempted": 7,
+      "context_actions_accepted": 7,
+      "source_text_bytes_disclosed": 9321,
+      "context_bytes_disclosed": 20124,
+      "proposals_attempted": 3,
+      "proposals_admitted": 3,
+      "proposal_refusals": 0,
+      "repair_cycles": 2,
+      "source_restored": true,
+      "original_unchanged": true,
+      "limits": {
+        "active_messages_bytes": 36000,
+        "context_actions": 8,
+        "model_calls": 10,
+        "output_tokens": 4096,
+        "per_call_seconds": 300,
+        "proposals": 3,
+        "wall_seconds": 900
+      },
+      "condition": "baseline",
+      "worker_revision": "6783b4382389cc35cab279161db442ebb623dcdf",
+      "evidence": ".local/qwen-coding-worker/native-cohort-04/baseline/regex-overlap",
+      "result_sha256": "02748dbc26f61d4e1dede5eb1003c5608f4ac0039bc9b949e746a2c8a4222099",
+      "candidates": [
+        {
+          "path": "src/devtools/core/regex/search.py",
+          "evidence": "final-source.py",
+          "sha256": "7eba5a8232e50daeb6fe86f6e32c0bba1cfdf63cc3c485df432b8f5d5f40ebc4"
+        }
+      ],
+      "behavioral_acceptance": true,
+      "full_quality_acceptance": false,
+      "typing": "FAIL",
+      "existing_test_summary": "....                                                                     [100%]\r\n4 passed in 0.01s\r\n",
+      "oracle_summary": "14 overlapping regex compatibility checks passed\r\nQWEN_BEHAVIOR_PASSED\r\nsrc\\devtools\\core\\regex\\search.py:115: error: Incompatible types in assignment (expression has type \"Match[str] | None\", variable has type \"Match[str]\")  [assignment]\r\r\nFound 1 error in 1 file (checked 1 source file)\r\r\n\r\n",
+      "resources_inspected": [
+        {
+          "path": "src/devtools/core/regex/search.py",
+          "version": "3c70edf56b4cac0ca79f45900f46cc2126153bb39092ee19a0dc5d52fc513248",
+          "span": [
+            0,
+            3459
+          ],
+          "bytes": 3459,
+          "truncated": false
+        },
+        {
+          "path": "src/devtools/core/regex/models.py",
+          "version": "aeea94f7e37d16c6b755c752cd449f7dfddc91a80bedff98c01c9cd84b9b754d",
+          "span": [
+            0,
+            2165
+          ],
+          "bytes": 2165,
+          "truncated": false
+        },
+        {
+          "path": "tests/core/regex/test_search.py",
+          "version": "1843c27fc42cd38efa94309884e7e84b26f864d578dc1e215e2e85e0a4e8d0d6",
+          "span": [
+            0,
+            2178
+          ],
+          "bytes": 2178,
+          "truncated": false
+        },
+        {
+          "path": "src/devtools/core/regex/__init__.py",
+          "version": "ee40b678a236e2c4cc3dc785532ed3ce039f2f985119db1630e3fab5b0e8223c",
+          "span": [
+            0,
+            439
+          ],
+          "bytes": 439,
+          "truncated": false
+        },
+        {
+          "path": "src/devtools/core/regex/search.py",
+          "version": "2d715a75bc2645fc895140a01fa231d5a0ed2977270afb681ebb45baf5f512a2",
+          "span": [
+            2820,
+            3900
+          ],
+          "bytes": 1080,
+          "truncated": false
+        }
+      ],
+      "api_observations": [],
+      "turns": [
+        {
+          "number": 1,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T22:34:22.819072+00:00",
+          "finished_at": "2026-10-19T22:34:34.379791+00:00",
+          "elapsed_seconds": 11.552475399977993,
+          "model_seconds": 11.536876500002109,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1323,
+            "output_tokens": 68,
+            "reasoning_tokens": null,
+            "total_tokens": 1391
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 1907,
+          "context_utilization": 0.040374755859375,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "search_source",
+              "provider_call_id": "8MENAWXSqBt5f3QBBr1iJvxdYAJNYQNC",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/regex-overlap/turn-01/response.json",
+              "path": null,
+              "target": null
+            },
+            {
+              "name": "lookup_symbol",
+              "provider_call_id": "hZSRDCCkjxEvANTl2sOccd8OArrrwyY7",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/regex-overlap/turn-01/response.json",
+              "path": null,
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T22:34:34.383108+00:00",
+          "finished_at": "2026-10-19T22:34:46.894327+00:00",
+          "elapsed_seconds": 12.502099400036968,
+          "model_seconds": 12.479080700024497,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 3328,
+            "output_tokens": 246,
+            "reasoning_tokens": null,
+            "total_tokens": 3574
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 5943,
+          "context_utilization": 0.1015625,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "read_source",
+              "provider_call_id": "3bYwqkaVR9tXX3nwRScwT6fVkgZJHc5p",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/regex-overlap/turn-02/response.json",
+              "path": "src/devtools/core/regex/search.py",
+              "target": null
+            },
+            {
+              "name": "read_source",
+              "provider_call_id": "I2HGW7D0P8qFveagQgniYxvv5ny0vIFT",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/regex-overlap/turn-02/response.json",
+              "path": "src/devtools/core/regex/models.py",
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T22:34:46.898834+00:00",
+          "finished_at": "2026-10-19T22:35:00.972928+00:00",
+          "elapsed_seconds": 14.06391549995169,
+          "model_seconds": 14.041196099948138,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 6085,
+            "output_tokens": 270,
+            "reasoning_tokens": null,
+            "total_tokens": 6355
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 15211,
+          "context_utilization": 0.185699462890625,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "read_source",
+              "provider_call_id": "IM7PUJa1nQOVFVyJofjt9KLjF4Ut6GIs",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/regex-overlap/turn-03/response.json",
+              "path": "tests/core/regex/test_search.py",
+              "target": null
+            },
+            {
+              "name": "read_source",
+              "provider_call_id": "FZFM0Nc1WMFzbejNKUBvcaxTsHnF71Da",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/regex-overlap/turn-03/response.json",
+              "path": "src/devtools/core/regex/__init__.py",
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "phase": "VALIDATION",
+          "disposition": "TESTS_FAILED",
+          "started_at": "2026-10-19T22:35:00.977104+00:00",
+          "finished_at": "2026-10-19T22:35:51.657476+00:00",
+          "elapsed_seconds": 50.6705321999616,
+          "model_seconds": 49.85537940001814,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 8108,
+            "output_tokens": 1074,
+            "reasoning_tokens": null,
+            "total_tokens": 9182
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 21330,
+          "context_utilization": 0.2474365234375,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": "61a49f476eba73f95a186d9717254f8782aa7598bdc79b6b33ad98dd519a8ef7",
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {
+            "format": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.06902549997903407
+            },
+            "oracle": {
+              "exit_code": 1,
+              "elapsed_seconds": 0.09475360001670197
+            },
+            "ruff": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.08072520000860095
+            },
+            "tests": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.4573907000012696
+            }
+          },
+          "tool_actions": [
+            {
+              "name": "propose_edit",
+              "provider_call_id": "pA3ascaDRzaTalypSxyHFvta1J93hxCV",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/regex-overlap/turn-04/response.json",
+              "path": "src/devtools/core/regex/search.py",
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "phase": "VALIDATION",
+          "disposition": "TESTS_FAILED",
+          "started_at": "2026-10-19T22:35:51.662522+00:00",
+          "finished_at": "2026-10-19T22:36:29.522932+00:00",
+          "elapsed_seconds": 37.85241039999528,
+          "model_seconds": 37.009483799978625,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 10907,
+            "output_tokens": 580,
+            "reasoning_tokens": null,
+            "total_tokens": 11487
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 32004,
+          "context_utilization": 0.332855224609375,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "61a49f476eba73f95a186d9717254f8782aa7598bdc79b6b33ad98dd519a8ef7",
+          "source_after": "7a7a2ce40b5edffd72ef2f6a14a5c4fb7ffb31118626e357e2702ccb8f8a6260",
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {
+            "format": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.11321889999089763
+            },
+            "oracle": {
+              "exit_code": 1,
+              "elapsed_seconds": 0.08392710000043735
+            },
+            "ruff": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.10729559999890625
+            },
+            "tests": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.4267779000219889
+            }
+          },
+          "tool_actions": [
+            {
+              "name": "propose_edit",
+              "provider_call_id": "lMo5XB42VScl3Ay1q10aa0a3xyl9IJTD",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/regex-overlap/turn-05/response.json",
+              "path": "src/devtools/core/regex/search.py",
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T22:36:29.529774+00:00",
+          "finished_at": "2026-10-19T22:36:47.374919+00:00",
+          "elapsed_seconds": 17.836987900023814,
+          "model_seconds": 17.823220999969635,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 8733,
+            "output_tokens": 170,
+            "reasoning_tokens": null,
+            "total_tokens": 8903
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 26964,
+          "context_utilization": 0.266510009765625,
+          "messages_omitted_from_active_context": 5,
+          "source_before": "7a7a2ce40b5edffd72ef2f6a14a5c4fb7ffb31118626e357e2702ccb8f8a6260",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "read_source",
+              "provider_call_id": "zOce7Kkk4N5gwGJSqelydIgfiriIffnz",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/regex-overlap/turn-06/response.json",
+              "path": "src/devtools/core/regex/search.py",
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "phase": "VALIDATION",
+          "disposition": "TESTS_FAILED",
+          "started_at": "2026-10-19T22:36:47.379373+00:00",
+          "finished_at": "2026-10-19T22:37:40.153755+00:00",
+          "elapsed_seconds": 52.7650632999721,
+          "model_seconds": 51.55354059999809,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 9674,
+            "output_tokens": 1124,
+            "reasoning_tokens": null,
+            "total_tokens": 10798
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 29835,
+          "context_utilization": 0.29522705078125,
+          "messages_omitted_from_active_context": 5,
+          "source_before": "7a7a2ce40b5edffd72ef2f6a14a5c4fb7ffb31118626e357e2702ccb8f8a6260",
+          "source_after": "7eba5a8232e50daeb6fe86f6e32c0bba1cfdf63cc3c485df432b8f5d5f40ebc4",
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {
+            "format": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.11511770001379773
+            },
+            "oracle": {
+              "exit_code": 1,
+              "elapsed_seconds": 0.490709199977573
+            },
+            "ruff": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.10322539997287095
+            },
+            "tests": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.418314200011082
+            }
+          },
+          "tool_actions": [
+            {
+              "name": "propose_edit",
+              "provider_call_id": "J5tfPiMG8ldxoX9UXNXrU9hmVOd1q9Bs",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/regex-overlap/turn-07/response.json",
+              "path": "src/devtools/core/regex/search.py",
+              "target": null
+            }
+          ]
+        }
+      ],
+      "model_seconds": 194.29877809993923,
+      "validation_command_seconds": 3.286433900007978,
+      "supervisory_review": "REJECTED_FULL_TASK",
+      "production_integration": "NONE",
+      "in_run_manual_interventions": 0
+    },
+    {
+      "task_name": "text-error-policy",
+      "task_definition_sha256": "ba2da3861b52fdd1b3c560a03d632c43bbd65ce672963357f44dbcece6f54673",
+      "oracle_sha256": "52bd0469a7caa1b36a9aa77adf467e3516bf4794bcf32cac195d7bca00157649",
+      "accepted": false,
+      "disposition": "REPAIR_BUDGET_EXHAUSTED",
+      "error": null,
+      "started_at": "2026-10-19T22:41:32.462404+00:00",
+      "finished_at": "2026-10-19T22:42:57.374495+00:00",
+      "elapsed_seconds": 84.91210620000493,
+      "usage_totals": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 35750,
+        "output_tokens": 1213,
+        "reasoning_tokens": null
+      },
+      "context_actions_requested": 6,
+      "context_actions_attempted": 6,
+      "context_actions_accepted": 6,
+      "source_text_bytes_disclosed": 9446,
+      "context_bytes_disclosed": 21089,
+      "proposals_attempted": 3,
+      "proposals_admitted": 3,
+      "proposal_refusals": 0,
+      "repair_cycles": 2,
+      "source_restored": true,
+      "original_unchanged": true,
+      "limits": {
+        "active_messages_bytes": 36000,
+        "context_actions": 8,
+        "model_calls": 10,
+        "output_tokens": 4096,
+        "per_call_seconds": 300,
+        "proposals": 3,
+        "wall_seconds": 900
+      },
+      "condition": "baseline",
+      "worker_revision": "6783b4382389cc35cab279161db442ebb623dcdf",
+      "evidence": ".local/qwen-coding-worker/native-cohort-04/baseline/text-error-policy",
+      "result_sha256": "cf359283719980849be5870defd84e59e472aaf6222e12710ff3f5132259d13e",
+      "candidates": [
+        {
+          "path": "src/devtools/resources/filesystem/codecs/text.py",
+          "evidence": "final-source.py",
+          "sha256": "90a414540177668721e87a8b0aa2677b25c3af35cf48b71f8e40cd41d519db0d"
+        }
+      ],
+      "behavioral_acceptance": false,
+      "full_quality_acceptance": false,
+      "typing": "NOT_REACHED",
+      "existing_test_summary": "........                                                                 [100%]\r\n8 passed in 0.03s\r\n",
+      "oracle_summary": "",
+      "resources_inspected": [
+        {
+          "path": "src/devtools/resources/filesystem/codecs/text.py",
+          "version": "e408f6ca75508acc25debc8023d15d78e03665c509e7e0c478fddea8ce46b303",
+          "span": [
+            0,
+            2133
+          ],
+          "bytes": 2133,
+          "truncated": false
+        },
+        {
+          "path": "src/devtools/resources/filesystem/models/text.py",
+          "version": "beffe8d57eaed9c504a35747390aa3b6006ed87ac8e2cf4c2f9cecb8aa4e634b",
+          "span": [
+            0,
+            3159
+          ],
+          "bytes": 3159,
+          "truncated": false
+        },
+        {
+          "path": "src/devtools/resources/filesystem/errors.py",
+          "version": "bbdcbcaac0bdfec082c4f459b1cd2829b6747c95fc3226e68e5ad9aa00c61caf",
+          "span": [
+            0,
+            988
+          ],
+          "bytes": 988,
+          "truncated": false
+        },
+        {
+          "path": "tests/resources/filesystem/codecs/test_text.py",
+          "version": "b8f9cc0b3d2ab072dafffca15ce6fe2f507cf6b8e3d8b94bbdf350d86395a3bc",
+          "span": [
+            0,
+            3158
+          ],
+          "bytes": 3166,
+          "truncated": false
+        }
+      ],
+      "api_observations": [],
+      "turns": [
+        {
+          "number": 1,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T22:41:33.389631+00:00",
+          "finished_at": "2026-10-19T22:41:41.441750+00:00",
+          "elapsed_seconds": 8.043087499972899,
+          "model_seconds": 8.025813399988692,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1328,
+            "output_tokens": 80,
+            "reasoning_tokens": null,
+            "total_tokens": 1408
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 1982,
+          "context_utilization": 0.04052734375,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "bb4414628fe80fc3635b6fa9d22bcf66f1b641e767eda263eb5491862b40603a",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "search_source",
+              "provider_call_id": "HfYn0h530kIcE9X7h8MqSTLnXQi9ONMH",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/text-error-policy/turn-01/response.json",
+              "path": null,
+              "target": null
+            },
+            {
+              "name": "search_source",
+              "provider_call_id": "2fAMFGyCzA8RpcXx9sFFKjrMxLmufkSj",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/text-error-policy/turn-01/response.json",
+              "path": null,
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T22:41:41.444997+00:00",
+          "finished_at": "2026-10-19T22:42:05.173188+00:00",
+          "elapsed_seconds": 23.720458599971607,
+          "model_seconds": 23.69389160000719,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 4552,
+            "output_tokens": 487,
+            "reasoning_tokens": null,
+            "total_tokens": 5039
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 8215,
+          "context_utilization": 0.138916015625,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "bb4414628fe80fc3635b6fa9d22bcf66f1b641e767eda263eb5491862b40603a",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "read_source",
+              "provider_call_id": "EuYXwB4rBB6shVcNJgpUvsDxrHU0czJT",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/text-error-policy/turn-02/response.json",
+              "path": "src/devtools/resources/filesystem/codecs/text.py",
+              "target": null
+            },
+            {
+              "name": "read_source",
+              "provider_call_id": "YN72fXB5rcrKrefyOwDX8QfvwULtqM3j",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/text-error-policy/turn-02/response.json",
+              "path": "src/devtools/resources/filesystem/models/text.py",
+              "target": null
+            },
+            {
+              "name": "read_source",
+              "provider_call_id": "OofiaghrT8iqzfNXu5AbpcpJ8pZUQvPN",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/text-error-policy/turn-02/response.json",
+              "path": "src/devtools/resources/filesystem/errors.py",
+              "target": null
+            },
+            {
+              "name": "read_source",
+              "provider_call_id": "J7vUSDye5VWw64IqIOFcc4hafwySi4c8",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/text-error-policy/turn-02/response.json",
+              "path": "tests/resources/filesystem/codecs/test_text.py",
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "phase": "VALIDATION",
+          "disposition": "TESTS_FAILED",
+          "started_at": "2026-10-19T22:42:05.177095+00:00",
+          "finished_at": "2026-10-19T22:42:19.728749+00:00",
+          "elapsed_seconds": 14.542529700032901,
+          "model_seconds": 13.592721300025005,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 9513,
+            "output_tokens": 212,
+            "reasoning_tokens": null,
+            "total_tokens": 9725
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 25088,
+          "context_utilization": 0.290313720703125,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "bb4414628fe80fc3635b6fa9d22bcf66f1b641e767eda263eb5491862b40603a",
+          "source_after": "85a9842934d0f4c809a8a60fc20c700c9f6332c7017a1cc820f2a491a8d8807c",
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {
+            "format": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.09461410000221804
+            },
+            "oracle": {
+              "exit_code": 1,
+              "elapsed_seconds": 0.14127490000100806
+            },
+            "ruff": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.10646159999305382
+            },
+            "tests": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.5025653999764472
+            }
+          },
+          "tool_actions": [
+            {
+              "name": "propose_edit",
+              "provider_call_id": "RhohFlrHtsFXhNflEuTmD2Lmq6e6ynOv",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/text-error-policy/turn-03/response.json",
+              "path": "src/devtools/resources/filesystem/codecs/text.py",
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "phase": "VALIDATION",
+          "disposition": "TESTS_FAILED",
+          "started_at": "2026-10-19T22:42:19.734796+00:00",
+          "finished_at": "2026-10-19T22:42:38.191711+00:00",
+          "elapsed_seconds": 18.448395300016273,
+          "model_seconds": 17.519979900040198,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 11422,
+            "output_tokens": 244,
+            "reasoning_tokens": null,
+            "total_tokens": 11666
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 31960,
+          "context_utilization": 0.34857177734375,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "85a9842934d0f4c809a8a60fc20c700c9f6332c7017a1cc820f2a491a8d8807c",
+          "source_after": "6fdccafc318b5a787d91da75443954729f6e4abb3917dbf9ef2c8153fe665891",
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {
+            "format": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.09836190001806244
+            },
+            "oracle": {
+              "exit_code": 1,
+              "elapsed_seconds": 0.13227880001068115
+            },
+            "ruff": {
+              "exit_code": 1,
+              "elapsed_seconds": 0.08187349996296689
+            },
+            "tests": {
+              "exit_code": 1,
+              "elapsed_seconds": 0.5181671000318602
+            }
+          },
+          "tool_actions": [
+            {
+              "name": "propose_edit",
+              "provider_call_id": "3uqHDm8njCDpGpo9GAFYeVd2xM3kKnlo",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/text-error-policy/turn-04/response.json",
+              "path": "src/devtools/resources/filesystem/codecs/text.py",
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "phase": "VALIDATION",
+          "disposition": "TESTS_FAILED",
+          "started_at": "2026-10-19T22:42:38.198916+00:00",
+          "finished_at": "2026-10-19T22:42:57.367468+00:00",
+          "elapsed_seconds": 19.160624100011773,
+          "model_seconds": 18.297342100006063,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 8935,
+            "output_tokens": 190,
+            "reasoning_tokens": null,
+            "total_tokens": 9125
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 29023,
+          "context_utilization": 0.272674560546875,
+          "messages_omitted_from_active_context": 5,
+          "source_before": "6fdccafc318b5a787d91da75443954729f6e4abb3917dbf9ef2c8153fe665891",
+          "source_after": "90a414540177668721e87a8b0aa2677b25c3af35cf48b71f8e40cd41d519db0d",
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {
+            "format": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.07635630003642291
+            },
+            "oracle": {
+              "exit_code": 1,
+              "elapsed_seconds": 0.11444529995787889
+            },
+            "ruff": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.08795650000683963
+            },
+            "tests": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.4856277999933809
+            }
+          },
+          "tool_actions": [
+            {
+              "name": "propose_edit",
+              "provider_call_id": "qex1fAjUEMie2fjhWQJsnNSU5nGc3s78",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/baseline/text-error-policy/turn-05/response.json",
+              "path": "src/devtools/resources/filesystem/codecs/text.py",
+              "target": null
+            }
+          ]
+        }
+      ],
+      "model_seconds": 81.12974830006715,
+      "validation_command_seconds": 3.2542477000388317,
+      "supervisory_review": "REJECTED_FULL_TASK",
+      "production_integration": "NONE",
+      "in_run_manual_interventions": 0
+    },
+    {
+      "task_name": "regex-whole-string",
+      "task_definition_sha256": "5d919083ccc193ce024ce5467fe3304c031ceda32c38839b06a11eb5a86ff857",
+      "oracle_sha256": "25207abc5ed09fad1db211831ea73e950233b0684ced3d04501a2ba360dd9d4e",
+      "accepted": true,
+      "disposition": "ACCEPTED",
+      "error": null,
+      "started_at": "2026-10-19T23:23:52.416883+00:00",
+      "finished_at": "2026-10-19T23:25:14.078581+00:00",
+      "elapsed_seconds": 81.6617155999993,
+      "usage_totals": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 36583,
+        "output_tokens": 1505,
+        "reasoning_tokens": null
+      },
+      "context_actions_requested": 7,
+      "context_actions_attempted": 7,
+      "context_actions_accepted": 7,
+      "source_text_bytes_disclosed": 2822,
+      "context_bytes_disclosed": 17436,
+      "proposals_attempted": 1,
+      "proposals_admitted": 1,
+      "proposal_refusals": 0,
+      "repair_cycles": 0,
+      "source_restored": true,
+      "original_unchanged": true,
+      "limits": {
+        "active_messages_bytes": 36000,
+        "context_actions": 8,
+        "model_calls": 10,
+        "output_tokens": 4096,
+        "per_call_seconds": 300,
+        "proposals": 3,
+        "wall_seconds": 900
+      },
+      "condition": "held-out",
+      "worker_revision": "06c394cb58a44fe576427144daf3e22842174fe9",
+      "evidence": ".local/qwen-coding-worker/native-cohort-04/held-out/regex-whole-string",
+      "result_sha256": "6ea230bea3752e59bef937c024c5d80c0e038e5aa9e5fd920c8fd8df66e0331b",
+      "candidates": [
+        {
+          "evidence": "final-source.py",
+          "path": "src/devtools/core/regex/search.py",
+          "sha256": "a2d6cb6fd93a2fd55f2ad980e7508e00e3c70049a517880bc4fdc9e19c5bcf0e"
+        },
+        {
+          "evidence": "final-sources/src/devtools/core/regex/__init__.py",
+          "path": "src/devtools/core/regex/__init__.py",
+          "sha256": "8be9af09b9e070d12a78adc69e1130560eadf0ba1426a744078ddd24ed4197fd"
+        }
+      ],
+      "behavioral_acceptance": true,
+      "full_quality_acceptance": true,
+      "typing": "PASS",
+      "existing_test_summary": "....                                                                     [100%]\r\n4 passed in 0.01s\r\n",
+      "oracle_summary": "11 whole-string public API compatibility checks passed\r\nQWEN_BEHAVIOR_PASSED\r\nSuccess: no issues found in 2 source files\r\r\n\r\n",
+      "resources_inspected": [
+        {
+          "path": "src/devtools/core/regex/search.py",
+          "version": "3c70edf56b4cac0ca79f45900f46cc2126153bb39092ee19a0dc5d52fc513248",
+          "span": [
+            0,
+            1560
+          ],
+          "bytes": 1560,
+          "truncated": false
+        },
+        {
+          "path": "src/devtools/core/regex/__init__.py",
+          "version": "ee40b678a236e2c4cc3dc785532ed3ce039f2f985119db1630e3fab5b0e8223c",
+          "span": [
+            0,
+            439
+          ],
+          "bytes": 439,
+          "truncated": false
+        },
+        {
+          "path": "src/devtools/core/regex/search.py",
+          "version": "3c70edf56b4cac0ca79f45900f46cc2126153bb39092ee19a0dc5d52fc513248",
+          "span": [
+            3068,
+            3459
+          ],
+          "bytes": 391,
+          "truncated": false
+        },
+        {
+          "path": "src/devtools/core/regex/search.py",
+          "version": "3c70edf56b4cac0ca79f45900f46cc2126153bb39092ee19a0dc5d52fc513248",
+          "span": [
+            1559,
+            1991
+          ],
+          "bytes": 432,
+          "truncated": false
+        }
+      ],
+      "api_observations": [
+        {
+          "target": "re.Pattern.fullmatch",
+          "observation_id": "512b91b0bee2584e0c4e893572f2b4ef7559952a5665169e6253fe1f11b65f3b",
+          "package": "Python standard library",
+          "package_version": "3.14.3",
+          "bytes": 981
+        }
+      ],
+      "turns": [
+        {
+          "number": 1,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T23:23:53.249723+00:00",
+          "finished_at": "2026-10-19T23:24:02.751435+00:00",
+          "elapsed_seconds": 9.493020800000522,
+          "model_seconds": 9.470305100025143,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1719,
+            "output_tokens": 107,
+            "reasoning_tokens": null,
+            "total_tokens": 1826
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 2214,
+          "context_utilization": 0.052459716796875,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "search_source",
+              "provider_call_id": "CGHcqEwIyeGwkbzbiWFBrRvVS7WPjXQg",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/held-out/regex-whole-string/turn-01/response.json",
+              "path": null,
+              "target": null
+            },
+            {
+              "name": "search_source",
+              "provider_call_id": "aBGuDEBWYM7QzRNUZRDZfmZEKPl18MIb",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/held-out/regex-whole-string/turn-01/response.json",
+              "path": null,
+              "target": null
+            },
+            {
+              "name": "inspect_api",
+              "provider_call_id": "D8Zu0cMeL24p7Ldv00bvlieE2DD1oZRV",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/held-out/regex-whole-string/turn-01/response.json",
+              "path": null,
+              "target": "re.Pattern.fullmatch"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T23:24:02.755647+00:00",
+          "finished_at": "2026-10-19T23:24:18.906877+00:00",
+          "elapsed_seconds": 16.141231400019024,
+          "model_seconds": 16.12211609998485,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 6795,
+            "output_tokens": 269,
+            "reasoning_tokens": null,
+            "total_tokens": 7064
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 11958,
+          "context_utilization": 0.207366943359375,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "read_source",
+              "provider_call_id": "uPTdLt4xQaoli0q6jKx8t0X6nh9ACzxT",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/held-out/regex-whole-string/turn-02/response.json",
+              "path": "src/devtools/core/regex/search.py",
+              "target": null
+            },
+            {
+              "name": "read_source",
+              "provider_call_id": "S8SOG7SkTCjESXfs11utQnKQccf8VYDO",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/held-out/regex-whole-string/turn-02/response.json",
+              "path": "src/devtools/core/regex/__init__.py",
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T23:24:18.910902+00:00",
+          "finished_at": "2026-10-19T23:24:26.917328+00:00",
+          "elapsed_seconds": 7.995626699994318,
+          "model_seconds": 7.981826399976853,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 8586,
+            "output_tokens": 145,
+            "reasoning_tokens": null,
+            "total_tokens": 8731
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 17274,
+          "context_utilization": 0.26202392578125,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "read_source",
+              "provider_call_id": "PNhjN7lrRrRtuYUUlRqle10pnTmWSKbQ",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/held-out/regex-whole-string/turn-03/response.json",
+              "path": "src/devtools/core/regex/search.py",
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T23:24:26.921139+00:00",
+          "finished_at": "2026-10-19T23:24:35.474463+00:00",
+          "elapsed_seconds": 8.543555900047068,
+          "model_seconds": 8.525058300001547,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 9344,
+            "output_tokens": 169,
+            "reasoning_tokens": null,
+            "total_tokens": 9513
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 19309,
+          "context_utilization": 0.28515625,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "read_source",
+              "provider_call_id": "YmCnzHGBnWU7obIOatFmD7blaL0VeEL5",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/held-out/regex-whole-string/turn-04/response.json",
+              "path": "src/devtools/core/regex/search.py",
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "phase": "VALIDATION",
+          "disposition": "ACCEPTED",
+          "started_at": "2026-10-19T23:24:35.478134+00:00",
+          "finished_at": "2026-10-19T23:25:14.066525+00:00",
+          "elapsed_seconds": 38.57952450000448,
+          "model_seconds": 37.384719000023324,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 10139,
+            "output_tokens": 815,
+            "reasoning_tokens": null,
+            "total_tokens": 10954
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 21486,
+          "context_utilization": 0.309417724609375,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": "a2d6cb6fd93a2fd55f2ad980e7508e00e3c70049a517880bc4fdc9e19c5bcf0e",
+          "sources_before": {
+            "src/devtools/core/regex/__init__.py": "cb0f1550acea4bdbd65631bfc9f60ef9dbaa8454c4855c4b04b456102663ef8d",
+            "src/devtools/core/regex/search.py": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6"
+          },
+          "sources_after": {
+            "src/devtools/core/regex/__init__.py": "8be9af09b9e070d12a78adc69e1130560eadf0ba1426a744078ddd24ed4197fd",
+            "src/devtools/core/regex/search.py": "a2d6cb6fd93a2fd55f2ad980e7508e00e3c70049a517880bc4fdc9e19c5bcf0e"
+          },
+          "edits": [
+            {
+              "end": 1578,
+              "new_length": 540,
+              "new_text_sha256": "06e9079a15c598f4f9ccc1ef57040ddb7cfc55a0909223ec726af29ee040a589",
+              "old_text_sha256": "b36514cecc46f8516536c99c80d645a931ff5768f01c9781d80f288d0febb239",
+              "path": "src/devtools/core/regex/search.py",
+              "proposal_call_id": "JKQ6qV5RFT67imQ93HZsJY35OSjGFGPI",
+              "start": 1559,
+              "version": "3c70edf56b4cac0ca79f45900f46cc2126153bb39092ee19a0dc5d52fc513248"
+            },
+            {
+              "end": 438,
+              "new_length": 351,
+              "new_text_sha256": "553dc61ff1e0b72cf96c7c1677f9c7ddd2b73ae0e834a6dde4adcab7cf441b2e",
+              "old_text_sha256": "8a3368397ae48df77031e4611cbe42459f3b708a5ed20f7a443f50a36093d525",
+              "path": "src/devtools/core/regex/__init__.py",
+              "proposal_call_id": "JKQ6qV5RFT67imQ93HZsJY35OSjGFGPI",
+              "start": 131,
+              "version": "ee40b678a236e2c4cc3dc785532ed3ce039f2f985119db1630e3fab5b0e8223c"
+            }
+          ],
+          "implementation_plan": {
+            "api_evidence": [
+              "512b91b0bee2584e0c4e893572f2b4ef7559952a5665169e6253fe1f11b65f3b"
+            ],
+            "plan": "Add fullmatch_regex to search.py using compile_regex + Pattern.fullmatch, following the same structure as search_regex. Export it from __init__.py. Preserves existing search, replace, and match models unchanged."
+          },
+          "checks": {
+            "format": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.11261969996849075
+            },
+            "oracle": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.43444750003982335
+            },
+            "ruff": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.09204449999378994
+            },
+            "tests": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.4501206999993883
+            }
+          },
+          "tool_actions": [
+            {
+              "name": "propose_edits",
+              "provider_call_id": "JKQ6qV5RFT67imQ93HZsJY35OSjGFGPI",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/held-out/regex-whole-string/turn-05/response.json",
+              "path": null,
+              "target": null
+            }
+          ]
+        }
+      ],
+      "model_seconds": 79.48402490001172,
+      "validation_command_seconds": 1.8046371000236832,
+      "supervisory_review": "ACCEPT_RECOMMENDED_LOCAL_CANDIDATE",
+      "production_integration": "NONE",
+      "in_run_manual_interventions": 0
+    },
+    {
+      "task_name": "regex-overlap",
+      "task_definition_sha256": "c6706cc8cbeaee5c5d48d1333055962badd5f72ca329e87ce8a63a6932f2694e",
+      "oracle_sha256": "3efea32d948a422525e1482cd9dc05c7141cbf0fa15b290bdc61bf2320ed75cb",
+      "accepted": false,
+      "disposition": "CONTEXT_TOOL_EXECUTION_FAILED",
+      "error": "PatchProposalError: Context action budget exhausted",
+      "started_at": "2026-10-19T23:13:32.663406+00:00",
+      "finished_at": "2026-10-19T23:14:10.539505+00:00",
+      "elapsed_seconds": 37.87611489999108,
+      "usage_totals": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 12473,
+        "output_tokens": 629,
+        "reasoning_tokens": null
+      },
+      "context_actions_requested": 9,
+      "context_actions_attempted": 8,
+      "context_actions_accepted": 7,
+      "source_text_bytes_disclosed": 5625,
+      "context_bytes_disclosed": 10303,
+      "proposals_attempted": 0,
+      "proposals_admitted": 0,
+      "proposal_refusals": 0,
+      "repair_cycles": 0,
+      "source_restored": true,
+      "original_unchanged": true,
+      "limits": {
+        "active_messages_bytes": 36000,
+        "context_actions": 8,
+        "model_calls": 10,
+        "output_tokens": 4096,
+        "per_call_seconds": 300,
+        "proposals": 3,
+        "wall_seconds": 900
+      },
+      "condition": "improved",
+      "worker_revision": "2760b7cfe35c77b86f5665138efab357f9a0c6c3",
+      "evidence": ".local/qwen-coding-worker/native-cohort-04/improved/regex-overlap",
+      "result_sha256": "5725b9646d1758c2319121b757dfb1dfeb32f16bbb6cc56b17879e50fb8056d9",
+      "candidates": [
+        {
+          "evidence": "final-source.py",
+          "path": "src/devtools/core/regex/search.py",
+          "sha256": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6"
+        }
+      ],
+      "behavioral_acceptance": false,
+      "full_quality_acceptance": false,
+      "typing": "NOT_REACHED",
+      "existing_test_summary": "",
+      "oracle_summary": "",
+      "resources_inspected": [
+        {
+          "path": "src/devtools/core/regex/search.py",
+          "version": "3c70edf56b4cac0ca79f45900f46cc2126153bb39092ee19a0dc5d52fc513248",
+          "span": [
+            0,
+            3459
+          ],
+          "bytes": 3459,
+          "truncated": false
+        },
+        {
+          "path": "src/devtools/core/regex/models.py",
+          "version": "aeea94f7e37d16c6b755c752cd449f7dfddc91a80bedff98c01c9cd84b9b754d",
+          "span": [
+            0,
+            2166
+          ],
+          "bytes": 2166,
+          "truncated": false
+        }
+      ],
+      "api_observations": [
+        {
+          "target": "re.Pattern.finditer",
+          "observation_id": "fae7aab7b3e269138d912df71d1578153c3f4025a8ad85e418a572c1654c6191",
+          "package": "Python standard library",
+          "package_version": "3.14.3",
+          "bytes": 1083
+        },
+        {
+          "target": "re.Pattern.search",
+          "observation_id": "17deea2b83fc18e13cf67c9b72e4cbcb9f76d3c04f325dcbd498504539043d18",
+          "package": "Python standard library",
+          "package_version": "3.14.3",
+          "bytes": 1087
+        }
+      ],
+      "turns": [
+        {
+          "number": 1,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T23:13:33.607773+00:00",
+          "finished_at": "2026-10-19T23:13:43.278905+00:00",
+          "elapsed_seconds": 9.662218699988443,
+          "model_seconds": 9.640013900003396,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1699,
+            "output_tokens": 126,
+            "reasoning_tokens": null,
+            "total_tokens": 1825
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 2197,
+          "context_utilization": 0.051849365234375,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "read_source",
+              "provider_call_id": "anhv12gGyb3p63fc5FA96DbWWN5kktsD",
+              "status": "REFUSED",
+              "dispatched": true,
+              "error": "SOURCE_VERSION_MISMATCH",
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved/regex-overlap/turn-01/response.json",
+              "path": "src/devtools/core/regex/search.py",
+              "target": null
+            },
+            {
+              "name": "inspect_api",
+              "provider_call_id": "v8pSxYiEJywVUJCs2NklyGv4hbTBVOAF",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved/regex-overlap/turn-01/response.json",
+              "path": null,
+              "target": "re.Pattern.finditer"
+            },
+            {
+              "name": "inspect_api",
+              "provider_call_id": "HC4ZaBrTaWIYiWnHKFvnXUPJ4Z0TR9fy",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved/regex-overlap/turn-01/response.json",
+              "path": null,
+              "target": "re.Pattern.search"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T23:13:43.282016+00:00",
+          "finished_at": "2026-10-19T23:13:49.968178+00:00",
+          "elapsed_seconds": 6.677165700006299,
+          "model_seconds": 6.653060899989214,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 2930,
+            "output_tokens": 131,
+            "reasoning_tokens": null,
+            "total_tokens": 3061
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 5942,
+          "context_utilization": 0.08941650390625,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "search_source",
+              "provider_call_id": "sLFKJJyNjwZ3gpGHgWgTCZGdmilMPqy5",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved/regex-overlap/turn-02/response.json",
+              "path": null,
+              "target": null
+            },
+            {
+              "name": "search_source",
+              "provider_call_id": "Iql4l6m8kzQHURLZVaEUBreSt5d7WgPQ",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved/regex-overlap/turn-02/response.json",
+              "path": null,
+              "target": null
+            },
+            {
+              "name": "search_source",
+              "provider_call_id": "u886HihUtFjLVgFGdeihMIBXTZSJQOSv",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved/regex-overlap/turn-02/response.json",
+              "path": null,
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_TOOL_EXECUTION_FAILED",
+          "started_at": "2026-10-19T23:13:49.972194+00:00",
+          "finished_at": "2026-10-19T23:14:10.540996+00:00",
+          "elapsed_seconds": 20.568800299952272,
+          "model_seconds": 20.532341399986763,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 7844,
+            "output_tokens": 372,
+            "reasoning_tokens": null,
+            "total_tokens": 8216
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 15121,
+          "context_utilization": 0.2393798828125,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "read_source",
+              "provider_call_id": "HKppSYGgzjN2iadVA8JNmHaVQJ7pA6BI",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved/regex-overlap/turn-03/response.json",
+              "path": "src/devtools/core/regex/search.py",
+              "target": null
+            },
+            {
+              "name": "read_source",
+              "provider_call_id": "euULBbaafQRDxHjHECSFE8W6bMc10Rqa",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved/regex-overlap/turn-03/response.json",
+              "path": "src/devtools/core/regex/models.py",
+              "target": null
+            }
+          ]
+        }
+      ],
+      "model_seconds": 36.82541619997937,
+      "validation_command_seconds": 0.7180233999970369,
+      "supervisory_review": "REJECTED_FULL_TASK",
+      "production_integration": "NONE",
+      "in_run_manual_interventions": 0
+    },
+    {
+      "task_name": "regex-overlap",
+      "task_definition_sha256": "c6706cc8cbeaee5c5d48d1333055962badd5f72ca329e87ce8a63a6932f2694e",
+      "oracle_sha256": "3efea32d948a422525e1482cd9dc05c7141cbf0fa15b290bdc61bf2320ed75cb",
+      "accepted": true,
+      "disposition": "ACCEPTED",
+      "error": null,
+      "started_at": "2026-10-19T23:20:28.510250+00:00",
+      "finished_at": "2026-10-19T23:22:09.664631+00:00",
+      "elapsed_seconds": 101.15439659997355,
+      "usage_totals": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 25256,
+        "output_tokens": 1924,
+        "reasoning_tokens": null
+      },
+      "context_actions_requested": 6,
+      "context_actions_attempted": 6,
+      "context_actions_accepted": 6,
+      "source_text_bytes_disclosed": 6064,
+      "context_bytes_disclosed": 15402,
+      "proposals_attempted": 2,
+      "proposals_admitted": 2,
+      "proposal_refusals": 0,
+      "repair_cycles": 1,
+      "source_restored": true,
+      "original_unchanged": true,
+      "limits": {
+        "active_messages_bytes": 36000,
+        "context_actions": 8,
+        "model_calls": 10,
+        "output_tokens": 4096,
+        "per_call_seconds": 300,
+        "proposals": 3,
+        "wall_seconds": 900
+      },
+      "condition": "improved-final",
+      "worker_revision": "06c394cb58a44fe576427144daf3e22842174fe9",
+      "evidence": ".local/qwen-coding-worker/native-cohort-04/improved-final/regex-overlap",
+      "result_sha256": "2834fff9a3f1fe75a4d34f8a5f67c2289fbd95b4fd2c8521e594e36125a5509a",
+      "candidates": [
+        {
+          "evidence": "final-source.py",
+          "path": "src/devtools/core/regex/search.py",
+          "sha256": "be67d069ba3bfd1333392bab2873315d7050595499f464a2f3f5ead6deac27cb"
+        }
+      ],
+      "behavioral_acceptance": true,
+      "full_quality_acceptance": true,
+      "typing": "PASS",
+      "existing_test_summary": "....                                                                     [100%]\r\n4 passed in 0.01s\r\n",
+      "oracle_summary": "14 overlapping regex compatibility checks passed\r\nQWEN_BEHAVIOR_PASSED\r\nSuccess: no issues found in 1 source file\r\r\n\r\n",
+      "resources_inspected": [
+        {
+          "path": "src/devtools/core/regex/search.py",
+          "version": "3c70edf56b4cac0ca79f45900f46cc2126153bb39092ee19a0dc5d52fc513248",
+          "span": [
+            0,
+            3459
+          ],
+          "bytes": 3459,
+          "truncated": false
+        },
+        {
+          "path": "src/devtools/core/regex/models.py",
+          "version": "aeea94f7e37d16c6b755c752cd449f7dfddc91a80bedff98c01c9cd84b9b754d",
+          "span": [
+            0,
+            2166
+          ],
+          "bytes": 2166,
+          "truncated": false
+        },
+        {
+          "path": "src/devtools/core/regex/__init__.py",
+          "version": "ee40b678a236e2c4cc3dc785532ed3ce039f2f985119db1630e3fab5b0e8223c",
+          "span": [
+            0,
+            439
+          ],
+          "bytes": 439,
+          "truncated": false
+        }
+      ],
+      "api_observations": [
+        {
+          "target": "re.Pattern.finditer",
+          "observation_id": "fae7aab7b3e269138d912df71d1578153c3f4025a8ad85e418a572c1654c6191",
+          "package": "Python standard library",
+          "package_version": "3.14.3",
+          "bytes": 1083
+        },
+        {
+          "target": "re.Pattern.search",
+          "observation_id": "17deea2b83fc18e13cf67c9b72e4cbcb9f76d3c04f325dcbd498504539043d18",
+          "package": "Python standard library",
+          "package_version": "3.14.3",
+          "bytes": 1087
+        }
+      ],
+      "turns": [
+        {
+          "number": 1,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T23:20:29.304292+00:00",
+          "finished_at": "2026-10-19T23:20:36.476501+00:00",
+          "elapsed_seconds": 7.1686474999878556,
+          "model_seconds": 7.145419400010724,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1699,
+            "output_tokens": 100,
+            "reasoning_tokens": null,
+            "total_tokens": 1799
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 2197,
+          "context_utilization": 0.051849365234375,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "search_source",
+              "provider_call_id": "0jxEwm2P3RO1Kx1uAVvhIYrOFBhGCrnM",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved-final/regex-overlap/turn-01/response.json",
+              "path": null,
+              "target": null
+            },
+            {
+              "name": "inspect_api",
+              "provider_call_id": "CNc1WPcRKcOhPAs2nmQW4hrHCpJvIZsA",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved-final/regex-overlap/turn-01/response.json",
+              "path": null,
+              "target": "re.Pattern.finditer"
+            },
+            {
+              "name": "inspect_api",
+              "provider_call_id": "6qSsxYNdTvAqzFi3KyGxy7nHUGL5MXy8",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved-final/regex-overlap/turn-01/response.json",
+              "path": null,
+              "target": "re.Pattern.search"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T23:20:36.479865+00:00",
+          "finished_at": "2026-10-19T23:20:55.144652+00:00",
+          "elapsed_seconds": 18.65520859998651,
+          "model_seconds": 18.629231699975207,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 4402,
+            "output_tokens": 371,
+            "reasoning_tokens": null,
+            "total_tokens": 4773
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 8309,
+          "context_utilization": 0.13433837890625,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "read_source",
+              "provider_call_id": "F9qnMgncOei5FDZmeU4bASdTgCKy0scZ",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved-final/regex-overlap/turn-02/response.json",
+              "path": "src/devtools/core/regex/search.py",
+              "target": null
+            },
+            {
+              "name": "read_source",
+              "provider_call_id": "KsfL6ETTbuAinTPMlZbraPWVhQUNShxo",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved-final/regex-overlap/turn-02/response.json",
+              "path": "src/devtools/core/regex/models.py",
+              "target": null
+            },
+            {
+              "name": "read_source",
+              "provider_call_id": "4jVLutE2UHcGnQIdpHG9euuk05s7SFTV",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved-final/regex-overlap/turn-02/response.json",
+              "path": "src/devtools/core/regex/__init__.py",
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "phase": "VALIDATION",
+          "disposition": "TESTS_FAILED",
+          "started_at": "2026-10-19T23:20:55.149080+00:00",
+          "finished_at": "2026-10-19T23:21:41.382643+00:00",
+          "elapsed_seconds": 46.22319410002092,
+          "model_seconds": 45.33995680004591,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 7878,
+            "output_tokens": 991,
+            "reasoning_tokens": null,
+            "total_tokens": 8869
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 19551,
+          "context_utilization": 0.24041748046875,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+          "source_after": "c916e71e0a9d2016b9c62963506d11d473d74ffa6de0b94d067c8e69cf7fc21c",
+          "sources_before": {
+            "src/devtools/core/regex/search.py": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6"
+          },
+          "sources_after": {
+            "src/devtools/core/regex/search.py": "c916e71e0a9d2016b9c62963506d11d473d74ffa6de0b94d067c8e69cf7fc21c"
+          },
+          "edits": [
+            {
+              "end": 2481,
+              "new_length": 1544,
+              "new_text_sha256": "ec5d5e93a28c118d24ad40209fa34ef679de4d60fe4951879cef4a31dbf0d450",
+              "old_text_sha256": "b523eec36ee61f6222f50b4d553f50069918eaf21252f6d42ae9b0624f2554a0",
+              "path": "src/devtools/core/regex/search.py",
+              "proposal_call_id": "WkDoNDXNN8SPRgQ7nkY3Zj4ejXZxZYBN",
+              "start": 1559,
+              "version": "3c70edf56b4cac0ca79f45900f46cc2126153bb39092ee19a0dc5d52fc513248"
+            }
+          ],
+          "implementation_plan": {
+            "api_evidence": [
+              "fae7aab7b3e269138d912df71d1578153c3f4025a8ad85e418a572c1654c6191",
+              "17deea2b83fc18e13cf67c9b72e4cbcb9f76d3c04f325dcbd498504539043d18"
+            ],
+            "plan": "Add opt-in overlapping=True keyword to iter_regex and find_all_regex. Default False keeps existing finditer non-overlapping path. When True, lazily call Pattern.search from successive start positions; zero-width matches advance one position to terminate, including a terminal empty-input match. Results remain RegexMatch tuples/iterators and all flags/compile/group behavior is preserved."
+          },
+          "checks": {
+            "format": {
+              "exit_code": 1,
+              "elapsed_seconds": 0.07476980000501499
+            },
+            "oracle": {
+              "exit_code": 1,
+              "elapsed_seconds": 0.08760690002236515
+            },
+            "ruff": {
+              "exit_code": 1,
+              "elapsed_seconds": 0.10226209997199476
+            },
+            "tests": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.48551449994556606
+            }
+          },
+          "tool_actions": [
+            {
+              "name": "propose_edits",
+              "provider_call_id": "WkDoNDXNN8SPRgQ7nkY3Zj4ejXZxZYBN",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved-final/regex-overlap/turn-03/response.json",
+              "path": null,
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "phase": "VALIDATION",
+          "disposition": "ACCEPTED",
+          "started_at": "2026-10-19T23:21:41.388882+00:00",
+          "finished_at": "2026-10-19T23:22:09.657098+00:00",
+          "elapsed_seconds": 28.25913760002004,
+          "model_seconds": 27.021439700038172,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 11277,
+            "output_tokens": 462,
+            "reasoning_tokens": null,
+            "total_tokens": 11739
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 30629,
+          "context_utilization": 0.344146728515625,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "c916e71e0a9d2016b9c62963506d11d473d74ffa6de0b94d067c8e69cf7fc21c",
+          "source_after": "be67d069ba3bfd1333392bab2873315d7050595499f464a2f3f5ead6deac27cb",
+          "sources_before": {
+            "src/devtools/core/regex/search.py": "c916e71e0a9d2016b9c62963506d11d473d74ffa6de0b94d067c8e69cf7fc21c"
+          },
+          "sources_after": {
+            "src/devtools/core/regex/search.py": "be67d069ba3bfd1333392bab2873315d7050595499f464a2f3f5ead6deac27cb"
+          },
+          "edits": [
+            {
+              "end": 3103,
+              "new_length": 218,
+              "new_text_sha256": "d8a1cc17930e2039e1dbb92bbaa61e8d8c3d21324165c04108541b83da3e4af5",
+              "old_text_sha256": "d87f4bf250cfd42ee5b1693e51ecb36bc65da9aceec7eb7b96aa6ad24e801707",
+              "path": "src/devtools/core/regex/search.py",
+              "proposal_call_id": "6ZrHtql6cXYEic0CHYQCivg3B6ENg92A",
+              "start": 2818,
+              "version": "663fe41422daffacbcead0023731a56818c8468911288a0becf097acc6860ef2"
+            }
+          ],
+          "implementation_plan": {
+            "api_evidence": [
+              "fae7aab7b3e269138d912df71d1578153c3f4025a8ad85e418a572c1654c6191",
+              "17deea2b83fc18e13cf67c9b72e4cbcb9f76d3c04f325dcbd498504539043d18"
+            ],
+            "plan": "Repair overlapping semantics by using Pattern.search from every successive start position, yielding the match when found, then advancing position by match.start()+1 (so zero-width matches terminate and an empty-input terminal match at position 0 is included once). This matches the acceptance example [(1,4),(3,6)] and keeps default non-overlapping finditer path unchanged. Also wrap long line for Ruff/format."
+          },
+          "checks": {
+            "format": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.11334780004108325
+            },
+            "oracle": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.4258629000396468
+            },
+            "ruff": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.11469780001789331
+            },
+            "tests": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.45005879999371246
+            }
+          },
+          "tool_actions": [
+            {
+              "name": "propose_edits",
+              "provider_call_id": "6ZrHtql6cXYEic0CHYQCivg3B6ENg92A",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved-final/regex-overlap/turn-04/response.json",
+              "path": null,
+              "target": null
+            }
+          ]
+        }
+      ],
+      "model_seconds": 98.13604760007001,
+      "validation_command_seconds": 2.5395786000299267,
+      "supervisory_review": "ACCEPT_RECOMMENDED_LOCAL_CANDIDATE",
+      "production_integration": "NONE",
+      "in_run_manual_interventions": 0
+    },
+    {
+      "task_name": "text-error-policy",
+      "task_definition_sha256": "f1d081513661d593ae9818b9f7cc7674bfda9cf78994d6efca7839b04ab0d5ce",
+      "oracle_sha256": "52bd0469a7caa1b36a9aa77adf467e3516bf4794bcf32cac195d7bca00157649",
+      "accepted": true,
+      "disposition": "ACCEPTED",
+      "error": null,
+      "started_at": "2026-10-19T23:17:36.860794+00:00",
+      "finished_at": "2026-10-19T23:19:15.226773+00:00",
+      "elapsed_seconds": 98.36599419999402,
+      "usage_totals": {
+        "cache_write_tokens": null,
+        "cached_input_tokens": null,
+        "input_tokens": 14090,
+        "output_tokens": 2014,
+        "reasoning_tokens": null
+      },
+      "context_actions_requested": 6,
+      "context_actions_attempted": 6,
+      "context_actions_accepted": 6,
+      "source_text_bytes_disclosed": 6287,
+      "context_bytes_disclosed": 16399,
+      "proposals_attempted": 1,
+      "proposals_admitted": 1,
+      "proposal_refusals": 0,
+      "repair_cycles": 0,
+      "source_restored": true,
+      "original_unchanged": true,
+      "limits": {
+        "active_messages_bytes": 36000,
+        "context_actions": 8,
+        "model_calls": 10,
+        "output_tokens": 4096,
+        "per_call_seconds": 300,
+        "proposals": 3,
+        "wall_seconds": 900
+      },
+      "condition": "improved-final",
+      "worker_revision": "06c394cb58a44fe576427144daf3e22842174fe9",
+      "evidence": ".local/qwen-coding-worker/native-cohort-04/improved-final/text-error-policy",
+      "result_sha256": "34d6fe5cb9680e43b053a8f2bf47b17310ce022462cbe9c8d5c0ddcf8309b64b",
+      "candidates": [
+        {
+          "evidence": "final-source.py",
+          "path": "src/devtools/resources/filesystem/codecs/text.py",
+          "sha256": "b3a5dac31faa5755297a30e31dfdf2fe8094f7210a6f797be9b8162fe1beb69a"
+        }
+      ],
+      "behavioral_acceptance": true,
+      "full_quality_acceptance": true,
+      "typing": "PASS",
+      "existing_test_summary": "........                                                                 [100%]\r\n8 passed in 0.03s\r\n",
+      "oracle_summary": "13 text codec policy and compatibility checks passed\r\nQWEN_BEHAVIOR_PASSED\r\nSuccess: no issues found in 1 source file\r\r\n\r\n",
+      "resources_inspected": [
+        {
+          "path": "src/devtools/resources/filesystem/codecs/text.py",
+          "version": "e408f6ca75508acc25debc8023d15d78e03665c509e7e0c478fddea8ce46b303",
+          "span": [
+            0,
+            2133
+          ],
+          "bytes": 2133,
+          "truncated": false
+        },
+        {
+          "path": "tests/resources/filesystem/codecs/test_text.py",
+          "version": "b8f9cc0b3d2ab072dafffca15ce6fe2f507cf6b8e3d8b94bbdf350d86395a3bc",
+          "span": [
+            0,
+            3158
+          ],
+          "bytes": 3166,
+          "truncated": false
+        },
+        {
+          "path": "src/devtools/resources/filesystem/errors.py",
+          "version": "bbdcbcaac0bdfec082c4f459b1cd2829b6747c95fc3226e68e5ad9aa00c61caf",
+          "span": [
+            0,
+            988
+          ],
+          "bytes": 988,
+          "truncated": false
+        }
+      ],
+      "api_observations": [
+        {
+          "target": "bytes.decode",
+          "observation_id": "13dc4cb27476e133d917575c5e12e2e8e78b455fa8839527097e9660177559f3",
+          "package": "Python standard library",
+          "package_version": "3.14.3",
+          "bytes": 1372
+        },
+        {
+          "target": "str.encode",
+          "observation_id": "d4f4dfd42b82aed16ebfe970998046498ab6f88b0da98c74134cec3cb6b4db0a",
+          "package": "Python standard library",
+          "package_version": "3.14.3",
+          "bytes": 1376
+        }
+      ],
+      "turns": [
+        {
+          "number": 1,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T23:17:37.834020+00:00",
+          "finished_at": "2026-10-19T23:17:46.760594+00:00",
+          "elapsed_seconds": 8.917515799985267,
+          "model_seconds": 8.894385199993849,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 1698,
+            "output_tokens": 96,
+            "reasoning_tokens": null,
+            "total_tokens": 1794
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 2258,
+          "context_utilization": 0.05181884765625,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "bb4414628fe80fc3635b6fa9d22bcf66f1b641e767eda263eb5491862b40603a",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "search_source",
+              "provider_call_id": "IJNHb2yl6YUJ4BPTU9XryjDdINyFDVFO",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved-final/text-error-policy/turn-01/response.json",
+              "path": null,
+              "target": null
+            },
+            {
+              "name": "inspect_api",
+              "provider_call_id": "DxxuPBWtXiCOChq2LLWJb3o6oZ0in17l",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved-final/text-error-policy/turn-01/response.json",
+              "path": null,
+              "target": "bytes.decode"
+            },
+            {
+              "name": "inspect_api",
+              "provider_call_id": "8iqXStCPm7tYdUg0eZPlVdwtPfwaG9p0",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved-final/text-error-policy/turn-01/response.json",
+              "path": null,
+              "target": "str.encode"
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "phase": "CONTEXT_TOOL_EXECUTION",
+          "disposition": "CONTEXT_RETURNED",
+          "started_at": "2026-10-19T23:17:46.764247+00:00",
+          "finished_at": "2026-10-19T23:18:04.665256+00:00",
+          "elapsed_seconds": 17.89190020004753,
+          "model_seconds": 17.866627600044012,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 4430,
+            "output_tokens": 366,
+            "reasoning_tokens": null,
+            "total_tokens": 4796
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 8997,
+          "context_utilization": 0.13519287109375,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "bb4414628fe80fc3635b6fa9d22bcf66f1b641e767eda263eb5491862b40603a",
+          "source_after": null,
+          "sources_before": null,
+          "sources_after": null,
+          "edits": null,
+          "implementation_plan": null,
+          "checks": {},
+          "tool_actions": [
+            {
+              "name": "read_source",
+              "provider_call_id": "scCGRvHTzoAvJgzqVTZ7mJ8NmqAswWly",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved-final/text-error-policy/turn-02/response.json",
+              "path": "src/devtools/resources/filesystem/codecs/text.py",
+              "target": null
+            },
+            {
+              "name": "read_source",
+              "provider_call_id": "r7ewt9CEExNiTzgjCJiJpmu9LtcKFbIM",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved-final/text-error-policy/turn-02/response.json",
+              "path": "tests/resources/filesystem/codecs/test_text.py",
+              "target": null
+            },
+            {
+              "name": "read_source",
+              "provider_call_id": "VUICSgCWj78Uk8B3or8zz5oJH7nnWAAI",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved-final/text-error-policy/turn-02/response.json",
+              "path": "src/devtools/resources/filesystem/errors.py",
+              "target": null
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "phase": "VALIDATION",
+          "disposition": "ACCEPTED",
+          "started_at": "2026-10-19T23:18:04.669578+00:00",
+          "finished_at": "2026-10-19T23:19:15.218138+00:00",
+          "elapsed_seconds": 70.53848019998986,
+          "model_seconds": 69.29484370001592,
+          "usage": {
+            "cache_write_tokens": null,
+            "cached_input_tokens": null,
+            "input_tokens": 7962,
+            "output_tokens": 1552,
+            "reasoning_tokens": null,
+            "total_tokens": 9514
+          },
+          "termination": "tool_call",
+          "prompt_bytes": 20798,
+          "context_utilization": 0.24298095703125,
+          "messages_omitted_from_active_context": 0,
+          "source_before": "bb4414628fe80fc3635b6fa9d22bcf66f1b641e767eda263eb5491862b40603a",
+          "source_after": "b3a5dac31faa5755297a30e31dfdf2fe8094f7210a6f797be9b8162fe1beb69a",
+          "sources_before": {
+            "src/devtools/resources/filesystem/codecs/text.py": "bb4414628fe80fc3635b6fa9d22bcf66f1b641e767eda263eb5491862b40603a"
+          },
+          "sources_after": {
+            "src/devtools/resources/filesystem/codecs/text.py": "b3a5dac31faa5755297a30e31dfdf2fe8094f7210a6f797be9b8162fe1beb69a"
+          },
+          "edits": [
+            {
+              "end": 1342,
+              "new_length": 1147,
+              "new_text_sha256": "33236244a50c2618e99dd826e6c24abbbcc55f027fd7cf52d8d32e5b0358d194",
+              "old_text_sha256": "e40b7c05733e2d54a2f576db2dafe772b86270056ccba962b6b2b1838b61ad18",
+              "path": "src/devtools/resources/filesystem/codecs/text.py",
+              "proposal_call_id": "ldjhJEKr0xdfjMKzuif1iht6LoGY21pS",
+              "start": 433,
+              "version": "e408f6ca75508acc25debc8023d15d78e03665c509e7e0c478fddea8ce46b303"
+            },
+            {
+              "end": 2132,
+              "new_length": 1024,
+              "new_text_sha256": "42e263e8eb0f14492965112c3db92ff950a07fcf03948cdb9b8e29d775932bc4",
+              "old_text_sha256": "60dc7a679f2a116228930ab38c7c677836595243c462a894e555aac47bab6be4",
+              "path": "src/devtools/resources/filesystem/codecs/text.py",
+              "proposal_call_id": "ldjhJEKr0xdfjMKzuif1iht6LoGY21pS",
+              "start": 1344,
+              "version": "e408f6ca75508acc25debc8023d15d78e03665c509e7e0c478fddea8ce46b303"
+            }
+          ],
+          "implementation_plan": {
+            "api_evidence": [
+              "13dc4cb27476e133d917575c5e12e2e8e78b455fa8839527097e9660177559f3",
+              "d4f4dfd42b82aed16ebfe970998046498ab6f88b0da98c74134cec3cb6b4db0a"
+            ],
+            "plan": "Add an explicit keyword parameter `errors: str = \"strict\"` to TextCodec.decode and TextCodec.encode, and pass it to `bytes.decode`/`str.encode` (verified via API observations 13dc4cb27476e133d917575c5e12e2e8e78b455fa8839527097e9660177559f3 and d4f4dfd42b82aed16ebfe970998046498ab6f88b0da98c74134cec3cb6b4db0a). Strict default preserved; unknown handler failures raise the codec's UnicodeDecodeError/UnicodeEncodeError which are caught alongside LookupError and wrapped in the same domain exceptions with the original cause. Newline/text preservation, metadata (byte_size), encoding override, and immutable TextFile model unchanged."
+          },
+          "checks": {
+            "format": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.0734713000128977
+            },
+            "oracle": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.45152919995598495
+            },
+            "ruff": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.1084625999792479
+            },
+            "tests": {
+              "exit_code": 0,
+              "elapsed_seconds": 0.5049177999608219
+            }
+          },
+          "tool_actions": [
+            {
+              "name": "propose_edits",
+              "provider_call_id": "ldjhJEKr0xdfjMKzuif1iht6LoGY21pS",
+              "status": "RETURNED",
+              "dispatched": true,
+              "error": null,
+              "arguments_reference": ".local/qwen-coding-worker/native-cohort-04/improved-final/text-error-policy/turn-03/response.json",
+              "path": null,
+              "target": null
+            }
+          ]
+        }
+      ],
+      "model_seconds": 96.05585650005378,
+      "validation_command_seconds": 2.004654899938032,
+      "supervisory_review": "ACCEPT_RECOMMENDED_LOCAL_CANDIDATE",
+      "production_integration": "NONE",
+      "in_run_manual_interventions": 0
+    }
+  ],
+  "totals": {
+    "runs": 6,
+    "accepted": 3,
+    "model_calls": 27,
+    "input_tokens": 172310,
+    "output_tokens": 10817,
+    "worker_seconds": 602.1406871999498,
+    "model_seconds": 585.9298716001213,
+    "source_bytes": 39565,
+    "context_dispatch_attempts": 40,
+    "context_returned": 39,
+    "api_observations": 7
+  },
+  "budget": {
+    "runs": 6,
+    "model_calls": 60,
+    "worker_seconds": 5400,
+    "context_actions_per_run": 8,
+    "proposals_per_run": 3,
+    "output_tokens_per_call": 4096,
+    "context_tokens": 32768
+  },
+  "comparison": {
+    "unchanged_development": "0/2 fully accepted; regex eventually passed behavior but failed strict typing; text repaired decode but left encode unsupported",
+    "final_development": "2/2 fully accepted; text coordinates two method regions in one transaction; regex repairs a real overlap-behavior and lint/format failure without breaking passing regressions",
+    "held_out": "Once-only public whole-string API, one atomic two-file transaction; all frozen behavior/regressions/typing/quality pass; no repair required",
+    "amendment": "Initial improved regex failed before editing on partially executed overlarge read batch. Preserved unchanged. A prospective amendment uses the sixth reserved slot to assess final regex after a tested atomic refusal fix. No task/oracle/resource-limit change; no automatic blind retry.",
+    "limitations": "Single non-seeded paired samples; bundled editing/API/batch-refusal changes; fixed order and development repetition. Held-out shares regex source package with a development case, though it is a distinct frozen objective with fresh conversation and original baseline. No general acceptance-rate, causality or Codex parity claim.",
+    "codex": "No paid/comparable Codex baseline; coordination usage UNKNOWN. No model-output patch was supplied by Codex. Harness engineering and task/oracle preparation are Codex-authored, outside task implementations."
+  },
+  "implementation": {
+    "editing": "Up to eight nonoverlapping exact/versioned/observed anchored edits across at most four declared existing implementation files. Reuses strict single-edit admission and shared diff/Git apply. Aggregate old+new text stays <=8192 bytes and combined patch <=16384 bytes. Whole transaction refuses before any mutation on invalid component; durable planned hashes precede application; all source restored.",
+    "api": "ToolRunner over seven fixed actual installed stdlib objects; signatures/docstrings/runtime identity and evidence digests, no model-selected imports/traversal/execution. JSON delegated decoder signature exposes unsupported parse_object assumption in deterministic test. Native accepted cases cite real required observations; IDs do not prove model understanding.",
+    "planning": "Brief native plan plus exact source/API anchors; host-owned tests and current tree version maps/passed obligations guide repair. No generic planner or Memory.",
+    "budget_recovery": "Oversized batch with positive allowance refuses every call without dispatch, preserving native result correlation. Requested versus dispatched versus returned remain distinct. Eight actual dispatch attempts and ten model calls remain enforced. Initial failed receipt is unchanged; final live runs did not require this recovery.",
+    "compatibility": "Legacy single-edit mode/digests preserved; new flags opt in to transactions. Existing governed assignment-v1 explicitly stays one-file. Dashboard decodes both native proposal shapes and combined diffs through unchanged evidence ownership."
+  },
+  "audit": {
+    "runs": [
+      {
+        "evidence": ".local/qwen-coding-worker/native-cohort-04/baseline/regex-overlap",
+        "native_correlations": 30,
+        "admitted_transactions": [
+          {
+            "turn": 4,
+            "anchors": [
+              {
+                "path": "src/devtools/core/regex/search.py",
+                "version": "3c70edf56b4cac0ca79f45900f46cc2126153bb39092ee19a0dc5d52fc513248",
+                "span": [
+                  1559,
+                  2480
+                ],
+                "old_sha256": "29778d3285380da47d57657ccdafef6f763a5da2e0a4c71f1d4abe21eb447b89",
+                "new_sha256": "96d73fc0a48b731673caf9445f06f80bea7ee7d19fb0243d679a374dd47e1bb3"
+              }
+            ],
+            "combined_patch_sha256": "f1f1cb41233a51bccd1b0c766234587ce48c3be08e5efc336267b59866486c21",
+            "api_evidence": []
+          },
+          {
+            "turn": 5,
+            "anchors": [
+              {
+                "path": "src/devtools/core/regex/search.py",
+                "version": "a334a6904aaa3d1c5f029b34720b941244bd02867c2bae95e6bfc3da3931d6af",
+                "span": [
+                  2872,
+                  3364
+                ],
+                "old_sha256": "569956c7534a926ecc742ca6bca6ba1440abd8317d767dcdede51e62e6988567",
+                "new_sha256": "d50954e4647f4a7ede3c2f8f69a645be5469fb89a54e95288fb42f1f06b3aa46"
+              }
+            ],
+            "combined_patch_sha256": "d074685e9dcf911319787ca1e748cad5fdfb62e50c6d29b5cd13796f8a17c593",
+            "api_evidence": []
+          },
+          {
+            "turn": 7,
+            "anchors": [
+              {
+                "path": "src/devtools/core/regex/search.py",
+                "version": "2d715a75bc2645fc895140a01fa231d5a0ed2977270afb681ebb45baf5f512a2",
+                "span": [
+                  2872,
+                  3795
+                ],
+                "old_sha256": "d50954e4647f4a7ede3c2f8f69a645be5469fb89a54e95288fb42f1f06b3aa46",
+                "new_sha256": "c20421c9d9ec58969dddd798d02834c389e3c385cf92d5c1e7c0aa2a199ca22d"
+              }
+            ],
+            "combined_patch_sha256": "978a6af02297cc383197059a28c5327431ff63e5ec2716a9790ef5ce94f8dc4f",
+            "api_evidence": []
+          }
+        ],
+        "api_observations": {},
+        "all_inputs_restored": true,
+        "all_exact_bytes_and_grounding": true,
+        "candidates": [
+          {
+            "path": "src/devtools/core/regex/search.py",
+            "sha256": "7eba5a8232e50daeb6fe86f6e32c0bba1cfdf63cc3c485df432b8f5d5f40ebc4"
+          }
+        ]
+      },
+      {
+        "evidence": ".local/qwen-coding-worker/native-cohort-04/baseline/text-error-policy",
+        "native_correlations": 20,
+        "admitted_transactions": [
+          {
+            "turn": 3,
+            "anchors": [
+              {
+                "path": "src/devtools/resources/filesystem/codecs/text.py",
+                "version": "e408f6ca75508acc25debc8023d15d78e03665c509e7e0c478fddea8ce46b303",
+                "span": [
+                  742,
+                  1003
+                ],
+                "old_sha256": "1b185aff2b472353fb4c40fd4fe4df99a0dc38eb61a00f9f6c7ac6d8d2f1ac22",
+                "new_sha256": "fba51220b7e8052c91bfb55a0552d0c9050e76244a53f341c4b69af8c54a634f"
+              }
+            ],
+            "combined_patch_sha256": "12880bb2d2f217a46342169ca986345156a86edc5a47333092633ee8295a88e8",
+            "api_evidence": []
+          },
+          {
+            "turn": 4,
+            "anchors": [
+              {
+                "path": "src/devtools/resources/filesystem/codecs/text.py",
+                "version": "3b052f14f763bc22301ee1af3b8f29e04c09207856601546d86d0400bbf39586",
+                "span": [
+                  742,
+                  1020
+                ],
+                "old_sha256": "fba51220b7e8052c91bfb55a0552d0c9050e76244a53f341c4b69af8c54a634f",
+                "new_sha256": "93fdf6386e4bf7f9341733c9b4bf61bbcb11a8ef9f9e65565ac2ccc61603ad18"
+              }
+            ],
+            "combined_patch_sha256": "7317d775befad381868b428f1a361a46a46e4c97c52b522fb34b7700fa40d6d2",
+            "api_evidence": []
+          },
+          {
+            "turn": 5,
+            "anchors": [
+              {
+                "path": "src/devtools/resources/filesystem/codecs/text.py",
+                "version": "2e008ec9cad2deceb64513abeaae8a0751d054b48d8c398a02d723fe2fd3cd14",
+                "span": [
+                  433,
+                  577
+                ],
+                "old_sha256": "c9ead31ea5a34a2b356a643fdd34720e81d28a79c1791c971eabd20c820f4c96",
+                "new_sha256": "5f0ce8012966218b79b686a581f7e97a359c414e6596bc63e314616a9a1f52b2"
+              }
+            ],
+            "combined_patch_sha256": "a69837d92a5bc4e00a97703dec162949978cb1086f89d910aeb123d88e4b5b4d",
+            "api_evidence": []
+          }
+        ],
+        "api_observations": {},
+        "all_inputs_restored": true,
+        "all_exact_bytes_and_grounding": true,
+        "candidates": [
+          {
+            "path": "src/devtools/resources/filesystem/codecs/text.py",
+            "sha256": "90a414540177668721e87a8b0aa2677b25c3af35cf48b71f8e40cd41d519db0d"
+          }
+        ]
+      },
+      {
+        "evidence": ".local/qwen-coding-worker/native-cohort-04/held-out/regex-whole-string",
+        "native_correlations": 21,
+        "admitted_transactions": [
+          {
+            "turn": 5,
+            "anchors": [
+              {
+                "path": "src/devtools/core/regex/search.py",
+                "version": "3c70edf56b4cac0ca79f45900f46cc2126153bb39092ee19a0dc5d52fc513248",
+                "span": [
+                  1559,
+                  1578
+                ],
+                "old_sha256": "b36514cecc46f8516536c99c80d645a931ff5768f01c9781d80f288d0febb239",
+                "new_sha256": "06e9079a15c598f4f9ccc1ef57040ddb7cfc55a0909223ec726af29ee040a589"
+              },
+              {
+                "path": "src/devtools/core/regex/__init__.py",
+                "version": "ee40b678a236e2c4cc3dc785532ed3ce039f2f985119db1630e3fab5b0e8223c",
+                "span": [
+                  131,
+                  438
+                ],
+                "old_sha256": "8a3368397ae48df77031e4611cbe42459f3b708a5ed20f7a443f50a36093d525",
+                "new_sha256": "553dc61ff1e0b72cf96c7c1677f9c7ddd2b73ae0e834a6dde4adcab7cf441b2e"
+              }
+            ],
+            "combined_patch_sha256": "2c9a28a32fdb4f82d22021c0e776f2025caab97b4335f83bf4f0051663289f12",
+            "api_evidence": [
+              "512b91b0bee2584e0c4e893572f2b4ef7559952a5665169e6253fe1f11b65f3b"
+            ]
+          }
+        ],
+        "api_observations": {
+          "512b91b0bee2584e0c4e893572f2b4ef7559952a5665169e6253fe1f11b65f3b": "re.Pattern.fullmatch"
+        },
+        "all_inputs_restored": true,
+        "all_exact_bytes_and_grounding": true,
+        "candidates": [
+          {
+            "path": "src/devtools/core/regex/search.py",
+            "sha256": "a2d6cb6fd93a2fd55f2ad980e7508e00e3c70049a517880bc4fdc9e19c5bcf0e"
+          },
+          {
+            "path": "src/devtools/core/regex/__init__.py",
+            "sha256": "8be9af09b9e070d12a78adc69e1130560eadf0ba1426a744078ddd24ed4197fd"
+          }
+        ]
+      },
+      {
+        "evidence": ".local/qwen-coding-worker/native-cohort-04/improved/regex-overlap",
+        "native_correlations": 9,
+        "admitted_transactions": [],
+        "api_observations": {
+          "fae7aab7b3e269138d912df71d1578153c3f4025a8ad85e418a572c1654c6191": "re.Pattern.finditer",
+          "17deea2b83fc18e13cf67c9b72e4cbcb9f76d3c04f325dcbd498504539043d18": "re.Pattern.search"
+        },
+        "all_inputs_restored": true,
+        "all_exact_bytes_and_grounding": true,
+        "candidates": [
+          {
+            "path": "src/devtools/core/regex/search.py",
+            "sha256": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6"
+          }
+        ]
+      },
+      {
+        "evidence": ".local/qwen-coding-worker/native-cohort-04/improved-final/regex-overlap",
+        "native_correlations": 16,
+        "admitted_transactions": [
+          {
+            "turn": 3,
+            "anchors": [
+              {
+                "path": "src/devtools/core/regex/search.py",
+                "version": "3c70edf56b4cac0ca79f45900f46cc2126153bb39092ee19a0dc5d52fc513248",
+                "span": [
+                  1559,
+                  2481
+                ],
+                "old_sha256": "b523eec36ee61f6222f50b4d553f50069918eaf21252f6d42ae9b0624f2554a0",
+                "new_sha256": "ec5d5e93a28c118d24ad40209fa34ef679de4d60fe4951879cef4a31dbf0d450"
+              }
+            ],
+            "combined_patch_sha256": "0b194d469dafb4b208f8c8bc5b9ad81db3af3b74c1c084178855a550e29495ce",
+            "api_evidence": [
+              "fae7aab7b3e269138d912df71d1578153c3f4025a8ad85e418a572c1654c6191",
+              "17deea2b83fc18e13cf67c9b72e4cbcb9f76d3c04f325dcbd498504539043d18"
+            ]
+          },
+          {
+            "turn": 4,
+            "anchors": [
+              {
+                "path": "src/devtools/core/regex/search.py",
+                "version": "663fe41422daffacbcead0023731a56818c8468911288a0becf097acc6860ef2",
+                "span": [
+                  2818,
+                  3103
+                ],
+                "old_sha256": "d87f4bf250cfd42ee5b1693e51ecb36bc65da9aceec7eb7b96aa6ad24e801707",
+                "new_sha256": "d8a1cc17930e2039e1dbb92bbaa61e8d8c3d21324165c04108541b83da3e4af5"
+              }
+            ],
+            "combined_patch_sha256": "13d82114631dd3ddd4e5f10bcc09182918cf2e1765055ace08917270939e5a12",
+            "api_evidence": [
+              "fae7aab7b3e269138d912df71d1578153c3f4025a8ad85e418a572c1654c6191",
+              "17deea2b83fc18e13cf67c9b72e4cbcb9f76d3c04f325dcbd498504539043d18"
+            ]
+          }
+        ],
+        "api_observations": {
+          "fae7aab7b3e269138d912df71d1578153c3f4025a8ad85e418a572c1654c6191": "re.Pattern.finditer",
+          "17deea2b83fc18e13cf67c9b72e4cbcb9f76d3c04f325dcbd498504539043d18": "re.Pattern.search"
+        },
+        "all_inputs_restored": true,
+        "all_exact_bytes_and_grounding": true,
+        "candidates": [
+          {
+            "path": "src/devtools/core/regex/search.py",
+            "sha256": "be67d069ba3bfd1333392bab2873315d7050595499f464a2f3f5ead6deac27cb"
+          }
+        ]
+      },
+      {
+        "evidence": ".local/qwen-coding-worker/native-cohort-04/improved-final/text-error-policy",
+        "native_correlations": 9,
+        "admitted_transactions": [
+          {
+            "turn": 3,
+            "anchors": [
+              {
+                "path": "src/devtools/resources/filesystem/codecs/text.py",
+                "version": "e408f6ca75508acc25debc8023d15d78e03665c509e7e0c478fddea8ce46b303",
+                "span": [
+                  433,
+                  1342
+                ],
+                "old_sha256": "e40b7c05733e2d54a2f576db2dafe772b86270056ccba962b6b2b1838b61ad18",
+                "new_sha256": "33236244a50c2618e99dd826e6c24abbbcc55f027fd7cf52d8d32e5b0358d194"
+              },
+              {
+                "path": "src/devtools/resources/filesystem/codecs/text.py",
+                "version": "e408f6ca75508acc25debc8023d15d78e03665c509e7e0c478fddea8ce46b303",
+                "span": [
+                  1344,
+                  2132
+                ],
+                "old_sha256": "60dc7a679f2a116228930ab38c7c677836595243c462a894e555aac47bab6be4",
+                "new_sha256": "42e263e8eb0f14492965112c3db92ff950a07fcf03948cdb9b8e29d775932bc4"
+              }
+            ],
+            "combined_patch_sha256": "da4ec1df648bbbbcfd85f7dbf50fa56c6961a591f338d18273759b0befe1a664",
+            "api_evidence": [
+              "13dc4cb27476e133d917575c5e12e2e8e78b455fa8839527097e9660177559f3",
+              "d4f4dfd42b82aed16ebfe970998046498ab6f88b0da98c74134cec3cb6b4db0a"
+            ]
+          }
+        ],
+        "api_observations": {
+          "13dc4cb27476e133d917575c5e12e2e8e78b455fa8839527097e9660177559f3": "bytes.decode",
+          "d4f4dfd42b82aed16ebfe970998046498ab6f88b0da98c74134cec3cb6b4db0a": "str.encode"
+        },
+        "all_inputs_restored": true,
+        "all_exact_bytes_and_grounding": true,
+        "candidates": [
+          {
+            "path": "src/devtools/resources/filesystem/codecs/text.py",
+            "sha256": "b3a5dac31faa5755297a30e31dfdf2fe8094f7210a6f797be9b8162fe1beb69a"
+          }
+        ]
+      }
+    ],
+    "prior_candidates_preserved": true,
+    "paired_objectives_baselines_checks_and_limits_identical": true,
+    "only_condition_additions": [
+      "atomic edit protocol",
+      "required allowlisted API observations",
+      "documented development batch-recovery correction"
+    ],
+    "no_source_writes": true,
+    "no_inference": true
+  },
+  "verification": {
+    "protected": {
+      "passed": 2063,
+      "skipped": 2,
+      "seconds": 459.74,
+      "production_branch_coverage_percent": 100,
+      "log": ".local/native04-protected.log",
+      "runs": 1
+    },
+    "focused_existing_and_new": "187 passed in 68.78s; final transaction/feedback checkpoint 33 passed in 9.67s; batch/context/transaction suite 54 passed in 23.91s",
+    "strict_mypy": "PASS: 482 configured files",
+    "ruff": "PASS: affected Qwen apps/CLI/backlog and tests",
+    "format": "PASS: 22 maintained Python files; changed TSX prettier",
+    "frontend": "7 focused React tests passed; tsc and Vite build passed; existing component/chunk warnings retained",
+    "layout": "PASS",
+    "independent_replay": "6 runs, 10 applied proposals, 12 exact anchors; API evidence, native correlation, source bytes and restoration verified",
+    "historical_receipt_hashes_verified": 13
+  },
+  "remaining_limits": [
+    "existing Python implementation files only; no arbitrary/new file writes or model shell",
+    "API allowlist is fixed stdlib surface, not arbitrary package inspection",
+    "one observed successful behavioral/quality repair and three accepted cases do not establish general reliability",
+    "multi-file trusted local evaluation is implemented; current governed assignment-v1 intentionally refuses multi-file scope",
+    "two regex candidates share a source baseline; composition and integration require explicit reviewed authority and revalidation",
+    "no independent Codex performance/cost baseline"
+  ],
+  "historical_preservation": "All Cohort 01-03 receipts unmodified; exact duration/regex/timestamp candidates hash-verified. No candidate-08 or scientific state operation.",
+  "publication": "Worker capability on feat/qwen-context-worker only; candidates remain evidence; main and scientific branch unchanged",
+  "codex_coordination_usage": "UNKNOWN",
+  "cached_and_reasoning_token_subtotals": "UNKNOWN (provider null)",
+  "local_energy_and_monetary_cost": "UNKNOWN",
+  "paid_comparator_calls": 0,
+  "next_priority": "Fresh diverse multi-module/API-dependent Python tasks, repeated requirement-preserving repair under fixed acceptance, and a separately budgeted fair Codex comparison. Keep Qwen primary; do not switch workstreams."
+}

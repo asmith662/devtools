@@ -1,6 +1,17 @@
 # Native Context worker acceptance and evaluation
 
-Latest checkpoint: [native cohort 03](evaluation/native-cohort-03/README.md).
+Latest checkpoint: [native cohort 04](evaluation/native-cohort-04/README.md).
+Versioned observed edit transactions coordinate multiple regions and authorized
+files while citing installed allowlisted API contracts. Final paired development
+acceptance was 0/2 unchanged versus 2/2 final; the once-only two-file held-out case
+also passed. Regex development included genuine behavior/quality repair. The
+initial improved read-budget failure is preserved, with a prospective allocation
+amendment and tested same-budget refusal/recovery. Six runs used 27 requests,
+172,310 input / 10,817 output tokens and 602.14 worker seconds. This small bundled
+comparison is not a general reliability estimate or Codex benchmark. All
+candidates remain unintegrated; full provenance is in the cohort results.
+
+Previous checkpoint: [native cohort 03](evaluation/native-cohort-03/README.md).
 Requirement/version/check-category feedback and verified unchanged-source refresh
 are implemented and tested. Paired development acceptance was 0/2 unchanged and
 0/2 improved; reasoning enabled hit the output ceiling without an edit. Final

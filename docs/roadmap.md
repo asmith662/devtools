@@ -2,6 +2,15 @@
 
 ## Immediate priority: native Qwen coding effectiveness
 
+[Cohort 04](../apps/qwen/evaluation/native-cohort-04/README.md) demonstrates real
+coordinated editing/API inspection: final paired development 0/2 unchanged versus
+2/2 final, plus one accepted two-file held-out task. One regex case repaired
+behavioral/quality failures while preserving passing regressions. The earlier
+improved read-budget failure remains recorded. This small bundled sample does
+not establish general reliability or Codex parity. Next: fresh multi-module/API
+tasks and repeated repair under independent acceptance. Candidates remain
+evidence; overlapping regex snapshots require composition before integration.
+
 [Cohort 03](../apps/qwen/evaluation/native-cohort-03/README.md) adds explicit
 contract/quality preflight, versioned requirement-preserving feedback and exact
 refresh of observed unchanged source after edits. Both paired development tasks
@@ -23,8 +32,8 @@ Native refusal feedback and source retention were improved from development
 traces, but accepted outcomes did not improve across this small sample. Continue
 Qwen work on source-exact edits, relevant source retention, read-bound usability
 and quality-aware independent acceptance, then fresh cases and a fair Codex
-comparison. Reliability, successful native test-feedback repair and Codex parity
-remain unproven. Do not switch this priority to Learned Intelligence, trading,
+comparison. One successful native behavioral/quality repair is now observed;
+reliability and Codex parity remain unproven. Do not switch to Learned Intelligence, trading,
 swarming, new governance frameworks or unrelated research.
 
 ## Canonical consolidation checkpoint

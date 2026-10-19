@@ -30,6 +30,22 @@ refresh only exactly verified unchanged portions of previously observed spans,
 preserving original observation and edit provenance. These are task-local
 Context/feedback operations, not a new Memory, persistence or authority domain.
 
+The application also supports explicit host-scoped transactions across up to
+four existing implementation files. All versioned observed anchors are admitted
+before one shared Git apply operation; invalid, stale, overlapping or unauthorized
+components refuse the proposal. Source expectations, combined diffs, per-edit
+provenance and candidate hashes use the existing Checkout/evidence contracts.
+Legacy one-file proposals and definition identities remain supported. Governed
+assignment-v1 does not silently inherit multi-file authority. Oversized read/API
+batches with positive remaining allowance refuse before dispatch and may be
+narrowed within unchanged model/action/time limits.
+
+Installed API inspection is a concrete ToolRunner consumer over fixed,
+host-allowlisted Python standard-library objects. It is not model-selected
+import/execution or a documentation-search framework. Transactions cite genuine
+signature/docstring/runtime observation digests; the host authenticates evidence
+and independent acceptance rather than the semantic correctness of a model plan.
+
 On `feat/qwen-context-worker`, the maintained worker also supports on-demand
 native repository Context Tools in its existing proposal/validation loop. It
 reuses source search, exact qualified source-unit names, source/version checks,
