@@ -1,5 +1,13 @@
 # B-0048 object-slice integration readiness
 
+> Operational pause after canonical-checkout consolidation: these implemented
+> WorkCycle/integration paths still require or create additional checkouts.
+> They must not execute under the current one-checkout policy. Existing grants
+> and plans retain obsolete path bindings and are not transferred. Only
+> read-only history inspection is supported until the concrete compatibility
+> gap in docs/development/reconciliation.md is resolved. No new grant is issued.
+
+
 ## Actual state
 
 The development-integration implementation is available through the existing

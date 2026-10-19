@@ -1,5 +1,13 @@
 # Governed development integration
 
+> Operational pause after canonical-checkout consolidation: these implemented
+> WorkCycle/integration paths still require or create additional checkouts.
+> They must not execute under the current one-checkout policy. Existing grants
+> and plans retain obsolete path bindings and are not transferred. Only
+> read-only history inspection is supported until the concrete compatibility
+> gap in docs/development/reconciliation.md is resolved. No new grant is issued.
+
+
 `WorkCycle.integration` is the repository administrator for an accepted worker
 candidate through verified destination publication and canonical work progress.
 It extends the existing work item, coordinator, Intake writer and immutable
