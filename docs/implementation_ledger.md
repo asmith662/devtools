@@ -2068,3 +2068,10 @@ explicit native Tool projection provenance and stale-source invalidation. Added
 observed-source edit admission, recoverable authorized read bounds and optional
 host-frozen Ruff/formatter feedback. Legacy task digests remain compatible.
 Cohort 02 preserves fresh live outcomes independently of archived CSV replay.
+
+Measured continuation: cohort 02 accepted regex-span-consistency; held-out command
+output limits exhausted repair under disclosed ValueError/Ruff TRY004 tension.
+Eleven actual calls, 53,865 input / 2,085 output tokens, 122.62 worker seconds.
+Final protected gate: 2,030 passed / two skipped / 100% production branch coverage;
+strict mypy 478 files passed. See the cohort record for source identities and
+limits. No local candidate was silently installed into maintained source.

@@ -1,5 +1,12 @@
 # Native Context worker acceptance and evaluation
 
+Latest checkpoint: [native cohort 02](evaluation/native-cohort-02/README.md)
+contains one accepted source-grounded coding task and one held-out repair-budget
+failure with explicit exception-contract/lint tension. Eleven real local requests
+used 53,865 input / 2,085 output tokens. No paid Codex comparison or production
+candidate integration occurred; general reliability and successful live behavioral
+repair remain open.
+
 ## Current native coding evidence
 
 [Cohort 01](evaluation/native-cohort-01/README.md) has five real local runs over
@@ -123,3 +130,23 @@ and privileged effects retain separate authority. Local evaluation outcomes are
 evidence and candidates only. No pending proposal or B-0048 slot was promoted,
 reset or redispatched. Qwen remains the immediate workstream; this checkpoint
 does not recommend switching to Learned Intelligence or another major system.
+
+
+## Source-grounded native cohort 02
+
+The maintained working set retains all current observed source regions instead
+of pinning arbitrary prefixes. Authorized range errors are recoverable; native
+edits require observed current source; optional frozen Ruff/format gates feed
+bounded repair. Two fresh cases ran: regex consistency ACCEPTED (4 calls), command
+output limits REPAIR_BUDGET_EXHAUSTED (7 calls, 2 repairs). Total 53,865 input /
+2,085 output tokens and 122.62 worker seconds. The held-out first edit passed
+behavior but conflicted with Ruff TRY004; repairs failed to reconcile the explicit
+ValueError contract. This task-design tension limits the conclusion. No active
+source exchanges were evicted and all admitted edits reconstruct exactly.
+
+See `apps/qwen/evaluation/native-cohort-02/README.md` and `results.json` for fixed
+criteria, raw evidence references and limitations. One genuinely accepted native
+coding case is evidence of capability, not general reliability or measured
+superiority. Live successful behavioral repair and a fair Codex comparison remain
+open. The historical duration style-rework candidate and all cohort 01 records
+remain unchanged. No candidate was integrated or protected source published.

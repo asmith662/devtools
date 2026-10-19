@@ -1408,3 +1408,11 @@ read bounds and supports host-frozen Ruff/format feedback. Fresh cohort 02 recor
 actual outcomes separately; this does not establish general Qwen proficiency.
 Long-running structured continuation, atomic task checkpoints, layered long-term memory and
 32K/64K benchmarking remain planned, without a new Memory framework.
+
+
+Cohort 02 now provides one accepted native Context coding task and one failed
+held-out repair (with a disclosed exception-contract/Ruff tension). The next Qwen
+checkpoint is fresh multi-region, requirement-preserving repair evaluation with
+preflighted behavioral/quality compatibility; no Codex parity claim or workstream
+transition follows from this small sample. Exact evidence is in the maintained
+cohort 02 record. Source integration of accepted local candidates remains separate.
