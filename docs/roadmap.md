@@ -1,5 +1,24 @@
 # Roadmap
 
+## Canonical consolidation checkpoint
+
+Development now uses one canonical checkout and ordinary branches. Production-safe
+adoption covers multi-resolution search, the exact accepted Qwen Markdown fix,
+the Codex Python source-materialization correction and standalone bounded worker.
+Task 02 remains a Qwen failure. B-0048 remains an accepted, unintegrated object
+candidate with sibling compatibility obligations open. Candidate-08 remains
+scientifically incomplete after its C22 pre-entry failure; no retry is implied.
+
+The maintained dashboard and governed-development continuation are consolidated
+on `feat/qwen-context-worker`, not claimed as main production capabilities.
+Reconcile WorkCycle's extra-checkout requirement with the canonical branch
+workflow and review the dashboard dependency audit before further adoption.
+Old checkout-bound grants remain historical. The
+[reconciliation record](development/reconciliation.md) records every branch and
+blocker. Learned Intelligence integration remains separate. Precise Context
+Tools, structured continuation, atomic task-local checkpoints, layered long-term
+Memory and 32K/64K Context benchmarking remain planned.
+
 ## Purpose
 
 This document records deliberately selected current sequencing. It is not an

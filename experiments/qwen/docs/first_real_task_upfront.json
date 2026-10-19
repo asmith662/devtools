@@ -1,0 +1,100 @@
+{
+  "schema": "qwen-markdown-upfront-context-report-v1",
+  "attempt": "attempt-02",
+  "comparison": "This condition differs from attempt-01 in Context availability, Tool exposure, and request count; it does not isolate continuation alone.",
+  "baseline": {
+    "branch": "feat/qwen-real-task",
+    "head": "08ce637f5cbb6ac7e0e5495f08239dc6eafc77d7",
+    "predecessor_attempt": "attempt-01",
+    "source": "src/devtools/resources/filesystem/models/markdown/file.py",
+    "source_sha256": "b01a8fdac51f3d5485275898b45d43cd643efac736b1e275b8a18fc205fd6195",
+    "tests": "tests/resources/filesystem/models/markdown/test_file.py",
+    "tests_sha256": "92e5f321000054d18f30775387b24f65a1b2635fb02e15e2ea01643abdb4b7a9",
+    "oracle_sha256": "373b20627f04d364b5624abbab4699e560d464b96993e9fa28097cc11e0be12b",
+    "oracle_baseline": "FAILED with AssertionError before inference; unchanged eight-scenario oracle"
+  },
+  "task": "A matching Markdown closing fence followed by non-whitespace text must not close the fenced block and expose headings.",
+  "context": {
+    "resources": [
+      "src/devtools/resources/filesystem/models/markdown/file.py",
+      "tests/resources/filesystem/models/markdown/test_file.py"
+    ],
+    "source_bytes": 5764,
+    "tests_bytes": 5346,
+    "rendered_bytes": 14871,
+    "prompt_bytes": 15955,
+    "disclosure_plan_identity": "0ab345fb56248838ec4e047940b9177ca963eb54692ee55258cd220cab9815be",
+    "disclosure_identity": "9d55a104263161cbec881fd77c0dd7f3c8aca8fae8e2403da4d04839c559c90e",
+    "prompt_sha256": "fec4a261e4a902e5dd8bf4bf9bf7ceaebedf35456879bbb6f8c225d58150b69b",
+    "freeze_receipt": ".local/qwen-first-task/attempt-02/freeze.json",
+    "request_receipt": ".local/qwen-first-task/attempt-02/request.json"
+  },
+  "model": {
+    "served_name": "qwen38-local",
+    "profile": "Qwen3.8-27B-UD-IQ4_XS",
+    "profile_fingerprint": "03758e5bc51c9aa9fbdd1850c1f25541d1eba76a80a54b74598886d882264bf1",
+    "endpoint": "http://127.0.0.1:8080",
+    "readiness": "READY; observed fingerprint matched",
+    "context_tokens": 32768,
+    "maximum_output_tokens": 1500,
+    "thinking_enabled": false,
+    "requests": 1,
+    "tools_disclosed": 0,
+    "automatic_retries": 0,
+    "service_lifecycle_changes": 0
+  },
+  "outcome": {
+    "model_invocation": "RESPONSE_RECEIVED",
+    "provider_termination": "output_limit",
+    "failure_class": "OUTPUT_LIMIT",
+    "response_contains_unified_diff_header": false,
+    "reported_output_characters": 6021,
+    "patch_format": "NOT_ACCEPTED; response ended at provider output limit without a unified-diff header",
+    "patch_scope": "NOT_REACHED",
+    "isolated_application": "NOT_ATTEMPTED",
+    "independent_oracle_after_patch": "NOT_RUN; no candidate patch was admitted",
+    "existing_tests_after_patch": "NOT_RUN; no candidate patch was admitted",
+    "accepted": false,
+    "source_sha256_after": "b01a8fdac51f3d5485275898b45d43cd643efac736b1e275b8a18fc205fd6195"
+  },
+  "usage": {
+    "input_tokens": 3801,
+    "output_tokens": 1500,
+    "total_tokens": 5301,
+    "cached_input_tokens": "UNKNOWN; provider returned null",
+    "reasoning_tokens": "UNKNOWN; provider returned null",
+    "codex_coordination_usage": "UNKNOWN"
+  },
+  "timing_utc": {
+    "baseline_oracle_started": "2026-10-17T18:52:06.237658+00:00",
+    "baseline_oracle_seconds": 0.1042523,
+    "freeze_created": "2026-10-17T18:52:06.383613+00:00",
+    "model_attempt_started": "2026-10-17T18:52:22.720552+00:00",
+    "model_response_seconds": 69.2614604,
+    "attempt_finished": "2026-10-17T18:53:31.983958+00:00",
+    "attempt_elapsed_seconds": 69.2634211,
+    "freeze_to_finish_seconds": 85.600345,
+    "focused_host_tests": "42 passed in 2.15 seconds",
+    "ruff": "PASS",
+    "format": "PASS",
+    "strict_mypy": "PASS"
+  },
+  "evidence": {
+    "result": ".local/qwen-first-task/attempt-02/result.json",
+    "response": ".local/qwen-first-task/attempt-02/response.json",
+    "previous_attempt_modified": false,
+    "full_model_output_committed": false
+  },
+  "previous_attempt_comparison": {
+    "attempt_01": {
+      "turns": 5,
+      "accepted_tool_actions": 7,
+      "input_tokens": 37644,
+      "output_tokens": 403,
+      "worker_seconds": 32.2645472,
+      "patch": false
+    },
+    "interpretation": "Attempt-02 used fewer input tokens and one request, but stopped at the output cap before returning a patch. The conditions also differed in upfront test disclosure and zero Tool access. This is not evidence of cost superiority or autonomous retrieval competence."
+  },
+  "next_step": "Do not retry. Preserve the output-limit failure. Any later task would need separately authorized experimental bounds or a smaller task/output need; do not silently raise this frozen run's output cap."
+}

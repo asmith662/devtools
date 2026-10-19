@@ -10,24 +10,6 @@ from typing import TYPE_CHECKING, cast
 
 import pytest
 
-from devtools.agents.conversation import Conversation, InteractionSource
-from devtools.core.paths import ResolvedPath, resolve_path
-from devtools.execution import Runtime
-from devtools.models.interaction import (
-    ModelRequest,
-    ModelResponse,
-    ModelSettings,
-    Prompt,
-)
-from devtools.resources.filesystem import (
-    FileFormat,
-    FilesystemNotFoundError,
-    TextFile,
-    read,
-    write,
-)
-from devtools.tools import ToolInputError
-from devtools.tools.filesystem import ListRepositoryDirectoryTool
 from apps.qwen.patch_proposal_worker import (
     _EXPECTED_PATCH,
     _ORIGINAL_SOURCE,
@@ -48,6 +30,24 @@ from apps.qwen.two_action_read_only_experiment import (
     QwenListDirectoryCycle,
     ReadOnlyProposalError,
 )
+from devtools.agents.conversation import Conversation, InteractionSource
+from devtools.core.paths import ResolvedPath, resolve_path
+from devtools.execution import Runtime
+from devtools.models.interaction import (
+    ModelRequest,
+    ModelResponse,
+    ModelSettings,
+    Prompt,
+)
+from devtools.resources.filesystem import (
+    FileFormat,
+    FilesystemNotFoundError,
+    TextFile,
+    read,
+    write,
+)
+from devtools.tools import ToolInputError
+from devtools.tools.filesystem import ListRepositoryDirectoryTool
 
 if TYPE_CHECKING:
     from pathlib import Path

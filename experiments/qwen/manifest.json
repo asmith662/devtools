@@ -16,14 +16,29 @@
       "bytes": 4878
     },
     {
-      "path": "docs/governed_work_cycle.json",
-      "sha256": "3c6363f5fb5464a311b9f626905a40d1ded6ab1da8cb997cfcca2b5c7fa38a8a",
-      "bytes": 2337
+      "path": "docs/first_real_task.json",
+      "sha256": "92f49b6848998c20b2f2a6b13d96b73699edfc526d86ae7c14745a834b082a85",
+      "bytes": 16065
+    },
+    {
+      "path": "docs/first_real_task_output_budget_comparison.json",
+      "sha256": "b29dfc35437d7789dfd27cf76678adf9641bf8d7f0c3a848420a88b6ca198abe",
+      "bytes": 4524
+    },
+    {
+      "path": "docs/first_real_task_structured_edit_offline.json",
+      "sha256": "096fe3f513c3b42baa99ea2e875cd15c3d24f95791531b3aa648770aca337953",
+      "bytes": 4213
+    },
+    {
+      "path": "docs/first_real_task_upfront.json",
+      "sha256": "9a2d8dc4e89aa2ba515d5bd4d4ead0cd9e5a2fd68395d4d05f7cb9c303a5cda6",
+      "bytes": 4840
     },
     {
       "path": "docs/overview.md",
-      "sha256": "2f6e82f11673240392da598e116dea1ee37abacd06d690e6042fae1a9c60610b",
-      "bytes": 20315
+      "sha256": "4a3300ec59d5d07ba459d86dbbee75c68011fe5e45bbb24b002d1bc97dd929d0",
+      "bytes": 7131
     },
     {
       "path": "docs/second_task_preparation.json",
@@ -42,10 +57,10 @@
     }
   ],
   "packet": {
-    "path": ".local/archives/experiments-2026-10-19/qwen.zip",
-    "sha256": "bb77e505e0effa2e1f89a8d1ef11d6bbdfcb355c92e380682d4dde3096a33341",
-    "bytes": 19021,
-    "restored_files": 7,
+    "path": ".local/archives/experiments-2026-10-19/qwen-main.zip",
+    "sha256": "b1eb3df0b92404f0406f6de921be738eaa3621adc69f1bc9cc48719746c4d816",
+    "bytes": 23584,
+    "restored_files": 10,
     "recovery": "EXTRACTED_AND_SHA256_VERIFIED",
     "durability": "LOCAL_SAME_SSD; not disk-loss protection"
   },
@@ -54,5 +69,9 @@
   ],
   "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
   "originals_retained": true,
-  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants.",
+  "source_revisions": [
+    "e84def2d08dfc59739fab8f778478d9a63604c7c",
+    "7dd5610e9533cbdb365940e4cf0b7c23311219ab"
+  ]
 }

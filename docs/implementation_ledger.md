@@ -1956,3 +1956,8 @@ unchanged. See the [console contract](../apps/operator_dashboard/README.md).
 No worker instrumentation, model call, new database or authority interface was
 introduced. Native conversation capture and standardized backlog rationale gaps
 remain separate future decisions.
+
+
+## 2026-10-19 canonical consolidation
+
+Preserved seven feature checkout histories and their unique evidence, removed linked checkouts and the obsolete scientific execution checkout, adopted the production-safe search/source/standalone-worker selection, and retained governed integration/dashboard continuation on an ordinary branch. No new model calls or scientific results. See docs/development/reconciliation.md for provenance, actual validation and blockers.

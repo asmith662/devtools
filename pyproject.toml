@@ -74,6 +74,7 @@ ignore = [
 [tool.mypy]
 python_version = "3.12"
 strict = true
-files = ["src", "tests", "experiments"]
+files = ["src", "tests", "apps"]
+exclude = ["^tests/experiments/"]
 explicit_package_bases = true
 mypy_path = ["src"]

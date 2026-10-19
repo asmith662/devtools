@@ -1,5 +1,4 @@
 # Copyright (c) 2026
-# ruff: noqa: INP001
 """Tests for the bounded real-repository content-only BM25 benchmark script."""
 
 from __future__ import annotations

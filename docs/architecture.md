@@ -1,5 +1,17 @@
 # Architecture
 
+Repository-local maintained applications live in `apps/`, composing installed
+framework APIs. They are not additional framework domains. The bounded coding
+worker lives in `apps/qwen`; its supported terminal entrypoint remains in
+`scripts/qwen`. Source-search/Context, native model proposals, host-owned edit
+admission, tests and limited repair retain their existing owners. Framework
+source does not import applications or experiments. Historical Qwen controls
+and measured outcomes remain under `experiments/qwen`. The first accepted
+Markdown fix and the independently authored Python source-coordinate repair
+are maintained framework behavior; B-0048's separate accepted candidate remains
+unintegrated. Dashboard/governed-integration continuation and checkout-policy
+blockers are recorded in [reconciliation](development/reconciliation.md).
+
 `devtools` is organized by responsibility. This document is the canonical
 overview of current and accepted system architecture: it records domains,
 cross-package ownership, dependency direction, and cross-domain composition.

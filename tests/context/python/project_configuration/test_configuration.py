@@ -91,6 +91,7 @@ def test_actual_project_selectors_retained_content_and_coverage(tmp_path: Path) 
             "src/devtools/__init__.py": "",
             "src/devtools/a.py": "",
             "tests/test_a.py": "",
+            "apps/example.py": "",
             "experiments/example.py": "",
             "testsmith/test_a.py": "distractor",
         },
