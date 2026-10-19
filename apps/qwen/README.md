@@ -91,6 +91,18 @@ Tool responses at most 12,000 bytes. These are **byte bounds, not token estimate
 Actual provider prompt/completion counts and configured 32,768-token occupancy
 are recorded. Unknown cache/reasoning categories remain unknown.
 
+Development traces showed an implementation prefix being evicted while later
+tails/tests survived. Selection now protects a current-version edit-target
+prefix exchange (or the latest target read when no prefix exists), as well as
+latest validation and the newest exchange. Native batches stay indivisible;
+other omissions remain explicit. If required groups cannot fit the same byte
+budget, the worker refuses rather than silently dropping them. This is bounded
+task-local selection, not durable Memory or a Context sufficiency guarantee.
+An unmatched/nonunique `old_text` proposal receives correlated no-effect feedback
+and may be corrected within the same three-proposal limit. Unauthorized paths,
+malformed/multiple edits and source drift still terminate; matching is never
+approximated. Receipts separately count proposal attempts/refusals/admissions.
+
 ## Execution and inspection
 
 The existing CLI also accepts a trusted host task definition:

@@ -370,6 +370,96 @@ def test_version_refusals_cannot_expand_action_allowance(
     assert result["source_restored"]
 
 
+def test_unmatched_proposal_gets_bounded_no_effect_feedback(
+    captured_inputs: Callable[[CodingTask], Path], tmp_path: Path
+) -> None:
+    """No guessed patch is applied; the same native exchange can correct it."""
+    root = captured_inputs(MARKDOWN)
+
+    class Correcting(Scripted):
+        async def send(self, request: ModelRequest) -> ModelResponse:
+            self.requests.append(request)
+            if len(self.requests) == 1:
+                return proposal("invented helper that is absent", "replacement")
+            message = request.prompt.messages[-1]
+            result = json.loads(message.content)
+            assert message.role == "tool"
+            assert result["error"] == "OLD_TEXT_NOT_UNIQUE"
+            assert result["host_limits"]["proposals_remaining"] == 2
+            assert OLD in (root / MARKDOWN.source).read_text(encoding="utf-8")
+            return proposal(OLD, GOOD)
+
+    model = Correcting([])
+    result = asyncio.run(
+        coding_loop.run_coding_task(
+            root,
+            tmp_path / "corrected",
+            model,
+            task=replace(MARKDOWN, context_mode="on-demand"),
+        )
+    )
+    assert result["accepted"]
+    assert result["proposal_refusals"] == 1
+    assert result["proposals_attempted"] == 2
+    assert result["proposals_admitted"] == 1
+    assert result["original_unchanged"]
+    assert result["turns"][0]["disposition"] == "PROPOSAL_REFUSED"
+    exhausted = Scripted([proposal("absent", "replacement")] * 4)
+    result = asyncio.run(
+        coding_loop.run_coding_task(
+            root,
+            tmp_path / "exhausted-proposals",
+            exhausted,
+            task=replace(MARKDOWN, context_mode="on-demand", maximum_calls=5),
+        )
+    )
+    assert result["disposition"] == "PROPOSAL_ADMISSION_FAILED"
+    assert result["proposal_refusals"] == 3
+    assert result["proposals_admitted"] == 0
+    assert len(exhausted.requests) == 3
+    assert result["source_restored"]
+
+
+def test_selection_retains_current_edit_source_before_search_metadata() -> None:
+    """CSV's observed code eviction cannot recur for the pinned prefix/tail."""
+    path = "src/devtools/example.py"
+
+    def exchange(identity: str, value: dict[str, Any]) -> list[PromptMessage]:
+        return [
+            PromptMessage(
+                "assistant",
+                "",
+                tool_calls=(ModelToolCall("read_source", "{}", identity),),
+            ),
+            PromptMessage("tool", json.dumps(value), tool_call_id=identity),
+        ]
+
+    prefix = {"path": path, "version": "a", "text": "prefix" * 200, "span": [0, 1200]}
+    tail = {"path": path, "version": "a", "text": "tail" * 200, "span": [1200, 2000]}
+    history = [PromptMessage("user", "Task")]
+    history += exchange("prefix", prefix)
+    history += exchange("search", {"matches": [{"metadata": "x" * 5000}]})
+    history += exchange("tail", tail)
+    history += exchange("tests", {"path": "tests/example.py", "text": "test" * 200})
+    selected, omitted = select_messages(history, maximum_bytes=4500, source_path=path)
+    assert omitted == 2
+    assert any(m.content == json.dumps(prefix) for m in selected)
+    assert any(m.content == json.dumps(tail) for m in selected)
+    assert (
+        len(json.dumps([{"role": m.role, "content": m.content} for m in selected]))
+        < 4500
+    )
+    assert Prompt("", "messages", selected)
+    history += exchange(
+        "validation", {"path": path, "version": "b", "validation": "TESTS_FAILED"}
+    )
+    history += exchange("latest", {"text": "latest" * 200})
+    selected, _ = select_messages(history, maximum_bytes=3500, source_path=path)
+    assert not any(m.content == json.dumps(prefix) for m in selected)
+    assert not any(m.content == json.dumps(tail) for m in selected)
+    assert any("TESTS_FAILED" in m.content for m in selected)
+
+
 class Investigating(Scripted):
     """Script actions using actual earlier Tool results, then propose and repair."""
 

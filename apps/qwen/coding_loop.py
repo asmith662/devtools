@@ -339,7 +339,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             model_prompt = Prompt(prompt, role="user")
         else:
             tools.check_current()
-            messages, omitted = select_messages(history)
+            messages, omitted = select_messages(history, source_path=task.source)
             model_prompt = Prompt("", role="messages", messages=messages)
             prompt = json.dumps(asdict(model_prompt))
             context = ""  # Disclosed only on demand in correlated Tool results.
@@ -514,12 +514,57 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             if proposals >= 3:
                 raise PatchProposalError("Edit proposal budget exhausted")
             proposals += 1
-        call, patch, updated = _structured_edit_patch_from_calls(
-            workspace,
-            _read_text(resolve_path(workspace / task.source)).content,
-            response.tool_calls,
-            source_path=task.source,
-        )
+        stage["proposal_attempted"] = True
+        try:
+            call, patch, updated = _structured_edit_patch_from_calls(
+                workspace,
+                _read_text(resolve_path(workspace / task.source)).content,
+                response.tool_calls,
+                source_path=task.source,
+            )
+        except PatchProposalError as error:
+            if (
+                tools is None
+                or str(error) != "Old text must match exactly one source region"
+            ):
+                raise
+            # Admission failed before any write. Do not guess an edit or relax
+            # uniqueness. Let the same bounded conversation correct its proposal.
+            result = {
+                "status": "REFUSED",
+                "error": "OLD_TEXT_NOT_UNIQUE",
+                "instruction": (
+                    "No edit was applied. Copy old_text exactly from CURRENT "
+                    "source, including indentation. Re-read the relevant range "
+                    "if needed; do not invent helpers or approximate a match."
+                ),
+                "host_limits": {
+                    "proposals_remaining": 3 - proposals,
+                    "context_actions_remaining": 8 - context_actions,
+                    "model_calls_remaining": maximum_calls - number,
+                },
+            }
+            call = response.tool_calls[0]
+            history.append(
+                PromptMessage(
+                    "tool", json.dumps(result), tool_call_id=call.provider_call_id
+                )
+            )
+            stage.update(
+                disposition="PROPOSAL_REFUSED",
+                proposal_valid=False,
+                finished_at=str(Timestamp.now()),
+                elapsed_seconds=time.perf_counter() - started,
+            )
+            _save(
+                turn / "tools.json",
+                [{"call": asdict(call), "status": "REFUSED", "result": result}],
+            )
+            _save(turn / "stage.json", stage, overwrite=True)
+            if proposals >= 3:
+                report["disposition"] = "PROPOSAL_ADMISSION_FAILED"
+                return
+            continue
         stage["proposal_valid"] = True
         stage["proposal_id"] = call.provider_call_id
         stage["phase"] = "PATCH_APPLICATION"
@@ -775,6 +820,12 @@ async def run_coding_task(  # noqa: C901, PLR0913, PLR0915 -- one bounded worker
             for e in s.get("context_tools", ())
         )
         report["model_calls_attempted"] = len(report["turns"])
+        report["proposals_attempted"] = sum(
+            bool(stage.get("proposal_attempted")) for stage in report["turns"]
+        )
+        report["proposal_refusals"] = sum(
+            stage["disposition"] == "PROPOSAL_REFUSED" for stage in report["turns"]
+        )
         report["proposals_admitted"] = sum(
             bool(stage.get("proposal_valid")) for stage in report["turns"]
         )

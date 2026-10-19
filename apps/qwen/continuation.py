@@ -5,12 +5,16 @@ from __future__ import annotations
 
 import json
 from dataclasses import asdict
+from typing import TYPE_CHECKING, Any
 
 from devtools.models.interaction import PromptMessage
 
+if TYPE_CHECKING:
+    from collections.abc import Iterator
 
-def _has_validation(messages: list[PromptMessage]) -> bool:
-    """Recognize only host Tool-result validation fields, never infer a summary."""
+
+def _tool_results(messages: list[PromptMessage]) -> Iterator[dict[str, Any]]:
+    """Inspect only archived host Tool results, not assistant claims."""
     for message in messages:
         if message.role != "tool":
             continue
@@ -18,15 +22,20 @@ def _has_validation(messages: list[PromptMessage]) -> bool:
             value = json.loads(message.content)
         except ValueError:
             continue
-        if isinstance(value, dict) and "validation" in value:
-            return True
-    return False
+        if isinstance(value, dict):
+            yield value
+
+
+def _has_validation(messages: list[PromptMessage]) -> bool:
+    """Recognize only host Tool-result validation fields, never infer a summary."""
+    return any("validation" in value for value in _tool_results(messages))
 
 
 def select_messages(
     history: list[PromptMessage],
     *,
     maximum_bytes: int = 24000,
+    source_path: str | None = None,
 ) -> tuple[tuple[PromptMessage, ...], int]:
     """Retain the objective and newest complete exchanges, explicitly omit older ones.
 
@@ -50,17 +59,50 @@ def select_messages(
             ),
             None,
         )
+        protected = {latest_validation}
+        observations = (
+            [
+                (start, end, value)
+                for start, end in ranges
+                for value in _tool_results(selected[start:end])
+                if value.get("path") == source_path
+                and isinstance(value.get("version"), str)
+            ]
+            if source_path is not None
+            else []
+        )
+        if observations:
+            version = observations[-1][2]["version"]
+            reads = [
+                (start, end, value)
+                for start, end, value in observations
+                if value["version"] == version and isinstance(value.get("text"), str)
+            ]
+            if reads:
+                prefix = next(
+                    (
+                        (start, end)
+                        for start, end, value in reversed(reads)
+                        if value.get("span", [None])[0] == 0
+                    ),
+                    None,
+                )
+                # Native batches are indivisible; pinning every source-bearing
+                # batch can itself exceed the byte budget. Prefer the current
+                # prefix over later tails, otherwise retain the latest read.
+                protected.add(prefix if prefix is not None else reads[-1][:2])
         removable = next(
             (
                 (start, end)
                 for start, end in ranges[:-1]
-                if (start, end) != latest_validation
+                if (start, end) not in protected
             ),
             None,
         )
         if removable is None:
             msg = (
-                "Active structured Context byte budget cannot retain latest validation."
+                "Active structured Context byte budget cannot retain latest validation "
+                "and selected current source reads."
             )
             raise ValueError(msg)
         first, following = removable
