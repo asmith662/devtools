@@ -1,0 +1,58 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "graph_ranking_baseline",
+  "status": "CLOSED",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "Diagnostic replay: expanded connectivity without a complete-depth ranking win.",
+  "files": [
+    {
+      "path": "__init__.py",
+      "sha256": "a5ee2b4a06d036b05350c3a13a1d321c5a063a13f1476ffad8ea5dc4a9f5783a",
+      "bytes": 99
+    },
+    {
+      "path": "development_results.json",
+      "sha256": "b7025eeb6ce58a3e100432c8276d71580fa1e295c639c9e85297e0fdd67d74e1",
+      "bytes": 5967
+    },
+    {
+      "path": "evaluate.py",
+      "sha256": "58f2f9eaac21797ff99653aa62890d1b22369e29d01b3413f785afc02b947c1f",
+      "bytes": 6518
+    },
+    {
+      "path": "freeze.json",
+      "sha256": "219fc9fa2de177ff472445b792c849fcf1917e68e0a976fac372650a151229e9",
+      "bytes": 1265
+    },
+    {
+      "path": "README.md",
+      "sha256": "b98a17abe6fff035b7be9f9b0941a6a5510074697000fba939ce93200a06ce6e",
+      "bytes": 6147
+    },
+    {
+      "path": "structural_replay.json",
+      "sha256": "ce4091c8b4d38b37896f6fa52c1ef55f50d17701c5a693d4499ec604ce0893a6",
+      "bytes": 5378
+    },
+    {
+      "path": "structural_replay.py",
+      "sha256": "06202943a5fbcf549902c90868f4e3695ba3532ef092151acb2fec092c461333",
+      "bytes": 8875
+    }
+  ],
+  "packet": {
+    "path": ".local/archives/experiments-2026-10-19/graph_ranking_baseline.zip",
+    "sha256": "5e289e98b516baac80f25b836ee95c353c20881a18a08635d91b74c3e11a1ae8",
+    "bytes": 11088,
+    "restored_files": 7,
+    "recovery": "EXTRACTED_AND_SHA256_VERIFIED",
+    "durability": "LOCAL_SAME_SSD; not disk-loss protection"
+  },
+  "source_documents": [
+    "README.md"
+  ],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

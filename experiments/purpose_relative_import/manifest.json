@@ -1,0 +1,29 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "purpose_relative_import",
+  "status": "INCOMPLETE",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "No authenticated consolidated terminal decision established during this cleanup. Existing records are retained; this is not an effectiveness conclusion.",
+  "files": [
+    {
+      "path": "__init__.py",
+      "sha256": "acc7e98c0444dd4ec6d3510d6fa34320732b46257f7e77578f04bc512627bc7b",
+      "bytes": 80
+    },
+    {
+      "path": "cases.py",
+      "sha256": "c58cc4cb60844588820ebaf7016133d4902725822df98f231fa1252f756f79e0",
+      "bytes": 7931
+    },
+    {
+      "path": "comparison.py",
+      "sha256": "d9c69dcc40273bc8f72ad6314e84ab9501cdad96bbd3acbb102d3fdab6320262",
+      "bytes": 21154
+    }
+  ],
+  "packet": null,
+  "source_documents": [],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

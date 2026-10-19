@@ -1,0 +1,99 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "bm25f",
+  "status": "CLOSED",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "BM25F_HARMFUL in Case 0015; no production BM25F promotion.",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+      "bytes": 14
+    },
+    {
+      "path": ".pytest_cache/.gitignore",
+      "sha256": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd",
+      "bytes": 37
+    },
+    {
+      "path": ".pytest_cache/CACHEDIR.TAG",
+      "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+      "bytes": 191
+    },
+    {
+      "path": ".pytest_cache/README.md",
+      "sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+      "bytes": 302
+    },
+    {
+      "path": ".pytest_cache/v/cache/lastfailed",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "bytes": 2
+    },
+    {
+      "path": ".pytest_cache/v/cache/nodeids",
+      "sha256": "4c265cc45f0d6b7de37b34b5ddc5ad90e12381ee0987efa2a659b2c5b72dea22",
+      "bytes": 9524
+    },
+    {
+      "path": "__init__.py",
+      "sha256": "48036f090e6beb7f4a72d6898eca8d76db7bc37366ba185bed43dc38720b39ec",
+      "bytes": 98
+    },
+    {
+      "path": "fields.py",
+      "sha256": "8ef700b45ebc65e0ae3429850a33040b9a7eed0034dc805b8c60ee936480d9b3",
+      "bytes": 3565
+    },
+    {
+      "path": "gates.py",
+      "sha256": "591a1729a37835389a44462756798123f8a2b9ed25e40a2cc8d9fea0d4096920",
+      "bytes": 3806
+    },
+    {
+      "path": "pytest.ini",
+      "sha256": "926259040f1008a3a12b27d6fef82e62291af7f0a8911914991a188719714142",
+      "bytes": 66
+    },
+    {
+      "path": "README.md",
+      "sha256": "6f2ad39bf8f9a2d6502b39fc8030c93331c11a51c647ea69999f9c32a81fd6bb",
+      "bytes": 3857
+    },
+    {
+      "path": "scoring.py",
+      "sha256": "1b248158f57c85935591b28bc526d25e9f85fcca01c6e5d9c694a3b5baba127a",
+      "bytes": 10119
+    },
+    {
+      "path": "test_gates.py",
+      "sha256": "3cd0f1bfddf29dcf581cbe2753976d7c635380c6af2fe92e7bf82d6399c7a093",
+      "bytes": 3769
+    },
+    {
+      "path": "test_scoring.py",
+      "sha256": "ce9aaafcf820bfa57aecc3c54ff2435dcb7b554e07e3c775bca36df172af2f73",
+      "bytes": 12307
+    },
+    {
+      "path": "trace.py",
+      "sha256": "b5c49170cf26b672e5ab2b862a9ee35c3757f2381992cc6c75a93b028acaad51",
+      "bytes": 5421
+    }
+  ],
+  "packet": {
+    "path": ".local/archives/experiments-2026-10-19/bm25f.zip",
+    "sha256": "1223fb5e62334538b4cba00eb57e539a184631dcc1a62354b70b88df8d55e021",
+    "bytes": 17319,
+    "restored_files": 15,
+    "recovery": "EXTRACTED_AND_SHA256_VERIFIED",
+    "durability": "LOCAL_SAME_SSD; not disk-loss protection"
+  },
+  "source_documents": [
+    ".pytest_cache/README.md",
+    "README.md"
+  ],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

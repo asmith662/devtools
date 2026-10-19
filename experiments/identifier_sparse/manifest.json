@@ -1,0 +1,58 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "identifier_sparse",
+  "status": "CLOSED",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "Case 0009: RETAIN AS SEPARATE RETRIEVAL VIEW, not a canonical replacement.",
+  "files": [
+    {
+      "path": "__init__.py",
+      "sha256": "ba9c760c2431f7d9ff984386d5b2b9086787e7fd463189899312796ec8cae56e",
+      "bytes": 96
+    },
+    {
+      "path": "analysis.py",
+      "sha256": "64cd4265ced9c41c95e67d94b776802e219362710310e38aaa458fea21fba07a",
+      "bytes": 2251
+    },
+    {
+      "path": "analyzer_definition.json",
+      "sha256": "52fc9054985add191ac0f1066f694aa74d6c8b82066863ebbc09aea1b770e79d",
+      "bytes": 1206
+    },
+    {
+      "path": "historical_diagnostic.json",
+      "sha256": "4e8cbc4fabad1f9418eff5dedebd6c124a8f899a81a36b11b5b415ef7903567a",
+      "bytes": 2060
+    },
+    {
+      "path": "index.py",
+      "sha256": "4a5ad4d5f0bd68b26fd8d57fb22c5136c4d52111cc547f0e8360d129bf8e0e07",
+      "bytes": 2242
+    },
+    {
+      "path": "README.md",
+      "sha256": "e763a2a9030bfc5e74172c9c5c3ffb6aaf84089b3e06997167409a638fecfde6",
+      "bytes": 5220
+    },
+    {
+      "path": "retrieval.py",
+      "sha256": "0afaf3cfde30c1590cdbc833c5c1f7c0fd3276710028686a72d0cd0b1739e3a1",
+      "bytes": 4687
+    }
+  ],
+  "packet": {
+    "path": ".local/archives/experiments-2026-10-19/identifier_sparse.zip",
+    "sha256": "db8b6b6feb19d2efa631b3fc4e4c9dbafe67e472f095a83d1cb1118c915a5d37",
+    "bytes": 8003,
+    "restored_files": 7,
+    "recovery": "EXTRACTED_AND_SHA256_VERIFIED",
+    "durability": "LOCAL_SAME_SSD; not disk-loss protection"
+  },
+  "source_documents": [
+    "README.md"
+  ],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

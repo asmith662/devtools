@@ -1,0 +1,130 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "exact_hint_routing",
+  "status": "CLOSED",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "Case 0012: EXACT_HINT_ROUTING_SUPPORTED within the frozen case scope.",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "bytes": 8
+    },
+    {
+      "path": ".pytest_cache/.gitignore",
+      "sha256": "3ed731b65d06150c138e2dadb0be0697550888a6b47eb8c45ecc9adba8b8e9bd",
+      "bytes": 37
+    },
+    {
+      "path": ".pytest_cache/CACHEDIR.TAG",
+      "sha256": "37dc88ef9a0abeddbe81053a6dd8fdfb13afb613045ea1eb4a5c815a74a3bde4",
+      "bytes": 191
+    },
+    {
+      "path": ".pytest_cache/README.md",
+      "sha256": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+      "bytes": 302
+    },
+    {
+      "path": ".pytest_cache/v/cache/lastfailed",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "bytes": 2
+    },
+    {
+      "path": ".pytest_cache/v/cache/nodeids",
+      "sha256": "161ea1bdf5168463126e566c6605106ca83dc24e3a1caf107df87b7d0c098748",
+      "bytes": 3488
+    },
+    {
+      "path": "__init__.py",
+      "sha256": "a6bc914b63609de82b83fdc72fa8a6abc0195d7ec738f2db47372285da7bfa8b",
+      "bytes": 100
+    },
+    {
+      "path": "behavior.py",
+      "sha256": "6be6ef9b3caa033179d49d8d06bec03b258e462ebe4a07861ebffd62d1e2a52c",
+      "bytes": 9859
+    },
+    {
+      "path": "CAPABILITIES.md",
+      "sha256": "c5cfc89b4630da3c4c278f1d33289949d9fcaceccfe1e3c1b370b6d1bcdeafff",
+      "bytes": 6613
+    },
+    {
+      "path": "extraction.py",
+      "sha256": "c05b8da268b72c17e92075de39eab0fe246bf0c153c052826ba2bab469b8d6e3",
+      "bytes": 5298
+    },
+    {
+      "path": "models.py",
+      "sha256": "af0f69cac1cc7807e0f5028e4ebf506178136e1374ebccf01057fae4b36c5572",
+      "bytes": 8065
+    },
+    {
+      "path": "presentation.py",
+      "sha256": "d20cd8681f1d6d4d41a17526bd544e28b73adda69c3c768f3f53291451e8483a",
+      "bytes": 6032
+    },
+    {
+      "path": "pytest.ini",
+      "sha256": "e3e9e02cbcf0b8d5307f64c607547b503facf6d2a773f8bc3c6063c474fef76f",
+      "bytes": 37
+    },
+    {
+      "path": "README.md",
+      "sha256": "9e58be1b0f02f124709eee4162207b40d404fe60eda80edd7ca0602a724b606c",
+      "bytes": 4632
+    },
+    {
+      "path": "routing.py",
+      "sha256": "d30df28d98cb4fa014ef1ed71b407be3e5c028b3e43d902c3396dba2d2e3689f",
+      "bytes": 10130
+    },
+    {
+      "path": "serialization.py",
+      "sha256": "ed0dbdc696b8392ed0752b3373f3b228d76e95e7fadb495eb468512d1fbc8cb2",
+      "bytes": 1536
+    },
+    {
+      "path": "tests/__init__.py",
+      "sha256": "4ec7e4d4b8767bedb1929cec8d5b6926e7e48abd824a5619471851b592808816",
+      "bytes": 98
+    },
+    {
+      "path": "tests/conftest.py",
+      "sha256": "5c1e5be6a8b1b63a9b63a1393c84981f9769ad24d14526f961703aa0ec46bdf0",
+      "bytes": 4117
+    },
+    {
+      "path": "tests/test_behavior.py",
+      "sha256": "d14109c9ed3562dae5369640678dddc031132b73a8ddf3151ab7d54feab117c3",
+      "bytes": 10712
+    },
+    {
+      "path": "tests/test_extraction.py",
+      "sha256": "a499a6c16401751ee3541a3d7d36038ed52f75d5a700a975af419b0f396a4451",
+      "bytes": 4179
+    },
+    {
+      "path": "tests/test_routing.py",
+      "sha256": "426fc942247765e178f265299415191f74de1e53c13f70abd0fa405d69e8e429",
+      "bytes": 10960
+    }
+  ],
+  "packet": {
+    "path": ".local/archives/experiments-2026-10-19/exact_hint_routing.zip",
+    "sha256": "0e2c8ce2a125349252461a0dc9d3322bcc71d6802f1212a1d4f16c1c774c3aca",
+    "bytes": 28986,
+    "restored_files": 21,
+    "recovery": "EXTRACTED_AND_SHA256_VERIFIED",
+    "durability": "LOCAL_SAME_SSD; not disk-loss protection"
+  },
+  "source_documents": [
+    ".pytest_cache/README.md",
+    "CAPABILITIES.md",
+    "README.md"
+  ],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

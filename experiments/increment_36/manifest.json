@@ -1,0 +1,53 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "increment_36",
+  "status": "CLOSED",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "Closed development-only breadth checkpoint; exact results and limits remain in README.md and the breadth production-gate synthesis. Confirmation remains sealed.",
+  "files": [
+    {
+      "path": "__init__.py",
+      "sha256": "1bf635a0c0f69d3f0d9f2c6987043fa3477b901128bbf8aeeed52498ac7efe58",
+      "bytes": 68
+    },
+    {
+      "path": "analysis.py",
+      "sha256": "8977d26e97dcea6b2b5cdd514db60636b2d885ee42de39d674d6d71231c3498d",
+      "bytes": 14924
+    },
+    {
+      "path": "mechanics.py",
+      "sha256": "ef1c2ee9c01e351f1df4d223e4394383f060e92c586dfa489c5e6ba5f689a4f8",
+      "bytes": 8260
+    },
+    {
+      "path": "README.md",
+      "sha256": "b02975ac2c35c7cd0f2b4361eab274a2a442832aa4c9d8dbc8281b291296323e",
+      "bytes": 8949
+    },
+    {
+      "path": "simple_rank_fusion_development_results.json",
+      "sha256": "923fdd82a4a1f8a2fbc59b55d1553cc532ecb3ffd58882fb7d92c2c35d0b0c43",
+      "bytes": 254724
+    },
+    {
+      "path": "simple_rank_fusion_freeze.json",
+      "sha256": "b76d50e630eac938204feed1f218dac35f626ae73a06394c00a513a7b7d99ea2",
+      "bytes": 535626
+    }
+  ],
+  "packet": {
+    "path": ".local/archives/experiments-2026-10-19/increment_36.zip",
+    "sha256": "2def75db166a4dddbc17993f17838cb5fea2a2eccd3a16beff55629d702f77a1",
+    "bytes": 57647,
+    "restored_files": 6,
+    "recovery": "EXTRACTED_AND_SHA256_VERIFIED",
+    "durability": "LOCAL_SAME_SSD; not disk-loss protection"
+  },
+  "source_documents": [
+    "README.md"
+  ],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

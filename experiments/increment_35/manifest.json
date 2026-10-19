@@ -1,0 +1,43 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "increment_35",
+  "status": "CLOSED",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "Closed development-only breadth checkpoint; exact results and limits remain in README.md and the breadth production-gate synthesis. Confirmation remains sealed.",
+  "files": [
+    {
+      "path": "__init__.py",
+      "sha256": "811726a872157d0efc5209a11c0fb3a21d01abfc032a225d169e6788a48f0023",
+      "bytes": 76
+    },
+    {
+      "path": "analysis.py",
+      "sha256": "8b03edde14e70e04ac44740943df001f96739b97bc4a7d2498d8068533ec0127",
+      "bytes": 24106
+    },
+    {
+      "path": "heterogeneous_union_development_results.json",
+      "sha256": "6d00ecc14e6845e3dd1289f9ab52a3b4a1681c3b2c187a37eed3ff2760e6da4f",
+      "bytes": 2001024
+    },
+    {
+      "path": "README.md",
+      "sha256": "8dae2aa7e740895c38fd8fea85fe639d350b77a336dcec34009493463969387b",
+      "bytes": 9294
+    }
+  ],
+  "packet": {
+    "path": ".local/archives/experiments-2026-10-19/increment_35.zip",
+    "sha256": "4de82b061e2c2bc399633da934bee49281321b66f6e6083cb1481a3c80c1150e",
+    "bytes": 89645,
+    "restored_files": 4,
+    "recovery": "EXTRACTED_AND_SHA256_VERIFIED",
+    "durability": "LOCAL_SAME_SSD; not disk-loss protection"
+  },
+  "source_documents": [
+    "README.md"
+  ],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}

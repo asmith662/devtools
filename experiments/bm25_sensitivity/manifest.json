@@ -1,0 +1,117 @@
+{
+  "schema": "devtools-experiment-closeout-v1",
+  "name": "bm25_sensitivity",
+  "status": "CLOSED",
+  "revision": "b0c88a9c01cf630fec68dd3e1c672c40354ac46a",
+  "scope": "MIXED / NO SAFE REPLACEMENT; frozen Case 0010 result; no production parameter change.",
+  "files": [
+    {
+      "path": "__init__.py",
+      "sha256": "103eb9776bba7b99986ffa2f3001768dbc9dab55c66280b073dc11878d396b59",
+      "bytes": 90
+    },
+    {
+      "path": "analysis.md",
+      "sha256": "d0da69d1ffca010d1718180ebdcac46b6d6f93acb6c0ca424edd585ab4354581",
+      "bytes": 5086
+    },
+    {
+      "path": "cases.py",
+      "sha256": "813569edc00ebd4930e64b3e136aa6c94710964c9b62e59b1b43f45d7a0d92ea",
+      "bytes": 13003
+    },
+    {
+      "path": "costs.json",
+      "sha256": "2cf7f05d66a6d312655535cff4a597258e1daa2d05e3e641d8624c97a66fbe69",
+      "bytes": 2505
+    },
+    {
+      "path": "development.json.gz",
+      "sha256": "bb29cd234d5440925d89f2f3d73cec7513b59aa28487fc29821d83cbed2daf06",
+      "bytes": 1271176
+    },
+    {
+      "path": "diagnostics.json.gz",
+      "sha256": "6b497862735d89e4b795c7e144f4098ad0b5bbbcbe460645af981feda7b8913d",
+      "bytes": 6356477
+    },
+    {
+      "path": "interpretation.md",
+      "sha256": "21577bc0c10af99a0cb6450470596761ebad6c7b695d22aeb0ebe57708bf4498",
+      "bytes": 5245
+    },
+    {
+      "path": "metrics.py",
+      "sha256": "4808baff0cc0e2394cf113f19a3f96378a061405f3bc0e1382d92fb02013e6f3",
+      "bytes": 5785
+    },
+    {
+      "path": "protocol.json",
+      "sha256": "5f7648277800be0ae99507adffbb9441c29df1ead75375a3c3891c772120015b",
+      "bytes": 14473
+    },
+    {
+      "path": "PROTOCOL.md",
+      "sha256": "11255b305ad6ceab1e76d4e502238865c18b6750196e41aaaddee3cb25b9c691",
+      "bytes": 8968
+    },
+    {
+      "path": "protocol.py",
+      "sha256": "f44ffa58872319a17f3be61e78c63e477d8d0343d276efd7cd0a8be10fc5d7f6",
+      "bytes": 3012
+    },
+    {
+      "path": "README.md",
+      "sha256": "70aa694f5bbe8d5b3b42b3e5bec0b3f88940ee62e0577f82ebfb0ed8d9f5b9df",
+      "bytes": 2562
+    },
+    {
+      "path": "scoring.py",
+      "sha256": "dbc92ffa21bb3b6d9d26d4193b67176594ee6868dcf08a5c9e6deae6e8ff3311",
+      "bytes": 3343
+    },
+    {
+      "path": "sensitivity_details.json",
+      "sha256": "467d3520e3d4acaecafca9292934e9a40c435cd59378e95bc6a6cda341e656d9",
+      "bytes": 236067
+    },
+    {
+      "path": "storage.py",
+      "sha256": "fbb593c7269ff8c3918b8778076bdd047bcf0c49c5dcd1a089014f0e98c0f920",
+      "bytes": 1083
+    },
+    {
+      "path": "study.py",
+      "sha256": "ffc8239bd59d6203bce4b6c2e7cfbb69ce010d0583956152d7dcbc0dd027d056",
+      "bytes": 18693
+    },
+    {
+      "path": "summary.py",
+      "sha256": "dfd6dc454d36bc5cc7350d365fcd105698aa7ad254a173386259b2e1676ae6a5",
+      "bytes": 3941
+    },
+    {
+      "path": "VARIANTS.md",
+      "sha256": "831c37f73b0a047faeb169453f91ec6c94bdfd0e7377ada50e48ceb1b1d428f8",
+      "bytes": 3290
+    }
+  ],
+  "packet": {
+    "path": ".local/archives/experiments-2026-10-19/bm25_sensitivity.zip",
+    "sha256": "491747ef1a6111a984db3172aa62ef9999f131ab96295d2ca73f0138f80ffdcb",
+    "bytes": 7437526,
+    "restored_files": 18,
+    "recovery": "EXTRACTED_AND_SHA256_VERIFIED",
+    "durability": "LOCAL_SAME_SSD; not disk-loss protection"
+  },
+  "source_documents": [
+    "analysis.md",
+    "interpretation.md",
+    "PROTOCOL.md",
+    "README.md",
+    "VARIANTS.md"
+  ],
+  "restoration": "Extract the verified packet into this directory; verify each file SHA-256 against this manifest. For committed inputs, use git show <revision>:experiments/<name>/<path>. Restore dependent packets together. Do not execute models or inspect sealed inputs without separate authority.",
+  "originals_retained": true,
+  "retention_reason": "Frozen inputs, cross-experiment dependencies and deterministic replay addresses are preserved. Archives are not execution grants."
+}
