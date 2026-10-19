@@ -133,3 +133,47 @@ Final unchanged protected profile: 1818 passed, 2 skipped, 100% production branc
 Fourteen legacy root .devtools evidence files were additionally moved, hash-verified, to .local/preserved-root/devtools. Their independent root-runtime-manifest.json is in the repository archive directory. All 13 forensic files remain at their original paths, byte-identical and untracked.
 
 The adopted source checkpoint is main commit `ff2b135ad7cbc9109a0b80f150e238a78e4743b6`. The continuation branch is `feat/qwen-context-worker`. The final hidden-checkout scan discovered the legacy `.local/deployments/source-grounding-successor/target` at `35d464425ef13029b0ee6151e5aea232d8489068`; its 16 operational files were preserved, compressed, extracted and verified before removal. Its Git history remains at `refs/archive/scientific-legacy-target/main` and in the complete scientific bundle. Three existing host-disclosure fixtures contain synthetic alpha/beta/gamma data, not Devtools clones; they remain preserved test evidence.
+
+## Single-checkout governed-development continuation
+
+The former WorkCycle/installation/verification checkout blocker is removed on
+`feat/qwen-context-worker`. The existing lifecycle now uses ordinary branch
+selection under exclusive, recoverable coordinator-owned source mutation.
+The [integration contract](../backlog/integration.md#canonical-checkout-phase-boundary)
+documents temporary exact-byte installation, tree review, feature publication,
+local/remote destination promotion, verification and administrative closeout.
+No worktree, repository copy or source-tree clone is created. Tiny Git fixtures
+exercise real Git effects with explicitly synthetic authority and validation;
+they do not establish a real protected-main integration.
+
+B-0048's new canonical plan is recorded in its existing readiness document.
+It remains blocked by missing genuine integration authority; its old coding
+assignment and checkout-bound grants remain historical. Main is unchanged at
+`862bda2d3d1d812893f84ab69691fc068ecce268`.
+
+Four redundant `workspace/src` payloads were found in canonical/preserved Qwen
+closeout and B-0048 preparation evidence. Every file was compared with its
+decompressed member in the existing `checkout-evidence.zip`; matching baseline
+source was additionally checked against recorded Git blob identities. Only
+these verified payload directories were removed. Original receipts, candidate
+source, historical reviews, all 13 forensic files and the unchanged recovery
+packet remain. Its SHA-256 is
+`5debf60d98465c920f77ea4b6ae13a4855699f912ebcef1ad1ea15aed8f4ea5e`.
+The existing archive directory contains `redundant-source-payloads.json` and
+`redundant-source-removal.json` with per-file recovery addresses and hashes.
+This recovers 5,291,562 redundant bytes without creating another backup facility.
+
+The dashboard dependency review and production-adoption authority remain
+separate. Experiment classifications remain 24 CLOSED / nine INCOMPLETE /
+two BLOCKED. No scientific result, Qwen attempt or historical authority was
+changed by this continuation.
+
+Final continuation verification: 1950 passed, two skipped, 100% production branch
+coverage on Python 3.14 (398.63 seconds pytest / 400.13 seconds host). The existing
+`.local/reconciliation/single-checkout-*` receipts retain focused, protected,
+static and integrity evidence. Changed Python files pass Ruff/formatting; strict
+mypy passes its 472-file default and 14-file administration scopes. Ten unchanged
+source/document formatting differences and frozen-experiment static findings
+remain outside this bounded implementation. Framework adoption still requires
+reviewed integration authority; the remaining dashboard dependency blocker must
+not be imported simply by merging all feature ancestry into main.

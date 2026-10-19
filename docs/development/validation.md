@@ -1,11 +1,8 @@
 # Development validation
 
-> Feature-branch restriction: the legacy backlog work/delegation/integration
-> fixtures create linked worktrees. Do not run this branch full profile under
-> the current no-worktree instruction. This is a production-adoption blocker,
-> not a waived gate. The main source checkpoint passed the unchanged canonical
-> profile. Reconcile the existing fixture/execution strategy before adopting
-> these additional capabilities; see reconciliation.md.
+> WorkCycle/delegation/integration fixtures now use tiny authored repositories
+> and ordinary branches in one checkout. They create no linked worktrees or
+> Devtools source-tree copies. The normal protected profile applies unchanged.
 
 
 ## Protected development test profile

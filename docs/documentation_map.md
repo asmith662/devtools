@@ -5,8 +5,11 @@ The [canonical reconciliation record](development/reconciliation.md) owns the
 owns the collection inventory and restoration contract. The maintained standalone
 [coding application](../apps/qwen/README.md) composes framework APIs; historical
 Qwen reports remain experiment evidence. Dashboard and governed-integration
-continuation are available on the ordinary consolidation branch, with blockers
-explicitly recorded rather than described as main production capabilities.
+continuation are available on `feat/qwen-context-worker`, with remaining
+authority/adoption requirements explicitly recorded. The
+[single-checkout contract](backlog/integration.md#canonical-checkout-phase-boundary)
+owns source serialization, ordinary branch operations and recovery; this does
+not claim those branch capabilities have already entered main.
 
 The [experiment worker startup contract](../experiments/orchestration/engineering/startup/README.md)
 owns prospective direct-script preflight and the preparation-only source-grounding

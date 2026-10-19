@@ -41,7 +41,7 @@ async def blob(root: Path, revision: str, path: str) -> str:
 
 async def clean(root: Path) -> None:
     """Require a clean index and worktree without discarding anything."""
-    if await git(root, "status", "--porcelain", "--untracked-files=all"):
+    if await git(root, "status", "--porcelain", "--untracked-files=no"):
         raise PermissionError("Integration checkout is not clean")
 
 

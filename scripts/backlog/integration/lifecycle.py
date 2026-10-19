@@ -12,18 +12,20 @@ import difflib
 import getpass
 import hashlib
 import re
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, cast
 
 from devtools.context import RepositoryResourceAddress
 from devtools.core.paths import resolve_path
 from devtools.core.time import Timestamp
 from devtools.resources.filesystem import TextFile, write
+from scripts.backlog.checkout import Checkout
+from scripts.backlog.checkout import untracked as untracked_files
 from scripts.backlog.coordinator import common_directory, git
 from scripts.backlog.intake import _digest, _read
 from scripts.backlog.integration.authority import IntegrationAuthority
 from scripts.backlog.integration.git import blob, clean, publish, remote_head
 from scripts.backlog.integration.validation import validate_tree
-from scripts.backlog.work import _load, task_from_dict
+from scripts.backlog.work import _load, same_backlog, task_from_dict
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -138,13 +140,14 @@ class Integration:
         candidate = self.candidate(item, review)
         assignment = candidate["assignment"]
         task = task_from_dict(assignment["task"])
-        if self.cycle.intake.approved_item(item) != assignment["backlog"]:
+        backlog = self.cycle.intake.approved_item(item)
+        if not same_backlog(backlog, assignment["backlog"], relocated=True):
             raise PermissionError("Backlog changed; review the new scope explicitly")
         if set(spec) != {
             "remote",
             "destination",
             "feature",
-            "worktree",
+            "checkout",
             "additions",
             "parent_complete",
             "remaining",
@@ -187,6 +190,14 @@ class Integration:
         )
         if not destination:
             raise ValueError("Intended destination must already exist")
+        local_destination = await git(
+            self.cycle.root,
+            "for-each-ref",
+            "--format=%(objectname)",
+            "refs/heads/" + spec["destination"],
+        )
+        if local_destination and local_destination != destination:
+            raise PermissionError("Local destination differs from the pinned remote")
         await git(self.cycle.root, "cat-file", "-e", destination + "^{commit}")
         original = await blob(self.cycle.root, destination, task.source)
         normalized = original.replace("\r\n", "\n")
@@ -227,9 +238,9 @@ class Integration:
             files.append({**addition, "sha256": digest_text(addition["text"])})
         if len({f["path"] for f in spec["additions"]}) != len(spec["additions"]):
             raise ValueError("Duplicate addition paths")
-        worktree = resolve_path(spec["worktree"]).value
-        if worktree == self.cycle.root or worktree.exists():
-            raise PermissionError("Plan requires an unused isolated worktree path")
+        checkout = resolve_path(spec["checkout"]).value
+        if checkout != self.cycle.root:
+            raise PermissionError("Plan must use the canonical checkout")
         base = await git(
             self.cycle.root, "merge-base", destination, assignment["base_head"]
         )
@@ -267,11 +278,10 @@ class Integration:
             ),
             "destination": spec["destination"],
             "destination_base": destination,
+            "destination_local_base": local_destination,
             "feature": spec["feature"],
-            "worktree": str(worktree),
-            "verification_worktree": str(
-                worktree.with_name(worktree.name + "-verified")
-            ),
+            "checkout": str(checkout),
+            "operating_model": "single-checkout-v1",
             "merge_base": base,
             "excluded_source_commits": unrelated,
             "strategy": "destination-based-reviewed-fast-forward",
@@ -280,7 +290,8 @@ class Integration:
             "remaining": spec["remaining"],
             "rationale": spec["rationale"],
             "validation_seconds": spec["validation_seconds"],
-            "backlog": assignment["backlog"],
+            "backlog": backlog,
+            "original_backlog_location": assignment["backlog"]["path"],
         }
         identity = _digest(plan)
         with self.cycle.intake._writer():
@@ -311,6 +322,170 @@ class Integration:
             raise PermissionError("Different grant cannot inherit this integration")
         return plan
 
+    async def _operate(
+        self, item: str, identity: str, grant: str, phase: str, **decision: str
+    ) -> dict[str, Any]:
+        """Materialize a phase temporarily; Git objects and receipts retain state.
+
+        Returning to the administrative branch keeps the CLI available even when
+        the destination predates the governed-development implementation.
+        """
+        action = {"review": "publish", "close_review": "closeout"}.get(phase, phase)
+        plan = await self._context(item, identity, grant, action)
+        authority = await self.authority.admit(grant, plan, action)
+        if (
+            await git(self.cycle.root, "branch", "--show-current")
+            != authority["coordinator_branch"]
+        ):
+            raise PermissionError(
+                "Administrative branch differs from integration grant"
+            )
+        if plan.get("operating_model") != "single-checkout-v1" or plan.get(
+            "checkout"
+        ) != str(self.cycle.root):
+            raise PermissionError(
+                "Historical checkout-bound plan requires a new plan and grant"
+            )
+        administrative = phase in {"promote", "close_review", "closeout"}
+        branch = (
+            await git(self.cycle.root, "branch", "--show-current")
+            if administrative
+            else plan["feature"]
+        )
+        revision = (
+            await git(self.cycle.root, "rev-parse", "HEAD")
+            if administrative
+            else await git(
+                self.cycle.root,
+                "for-each-ref",
+                "--format=%(objectname)",
+                "refs/heads/" + branch,
+            )
+        )
+        if not revision:
+            if (
+                phase != "install"
+                or (self.folder(item, identity) / "install-intent.json").exists()
+            ):
+                raise PermissionError(
+                    "Integration branch missing; reconcile without recreating an effect"
+                )
+            revision = plan["destination_base"]
+        publication_path = self.folder(item, identity) / "publication.json"
+        if (
+            not administrative
+            and publication_path.exists()
+            and revision != self.record(item, identity, "publication")["commit"]
+        ):
+            raise PermissionError(
+                "Published branch identity changed; reconcile without another commit"
+            )
+        if (
+            not administrative
+            and revision != plan["destination_base"]
+            and (
+                not (self.folder(item, identity) / "publication-intent.json").exists()
+                or await git(self.cycle.root, "show", "-s", "--format=%P", revision)
+                != plan["destination_base"]
+                or "Integration-Plan: " + identity
+                not in await git(self.cycle.root, "show", "-s", "--format=%B", revision)
+            )
+        ):
+            raise PermissionError("Unrelated integration feature history")
+        async with Checkout(
+            self.cycle,
+            "integration:" + identity + ":" + phase,
+            branch,
+            revision,
+            files=[] if administrative else plan["files"],
+            create=not administrative,
+            commit_allowed=phase in {"publish", "closeout"},
+        ) as checkout:
+            self._checkout = checkout
+            if not administrative and phase not in {"install", "verify"}:
+                self.record(item, identity, "install")
+                for file in plan["files"]:
+                    path = self._path(self.cycle.root, file["path"])
+                    path.parent.mkdir(parents=True, exist_ok=True)
+                    write(TextFile(resolve_path(path), file["text"]))
+                if phase in {"review", "publish"}:
+                    await git(
+                        self.cycle.root,
+                        "add",
+                        "--",
+                        *(f["path"] for f in plan["files"]),
+                    )
+            return cast(
+                "dict[str, Any]",
+                await getattr(self, "_" + phase)(item, identity, grant, **decision),
+            )
+
+    async def install(self, item: str, identity: str, grant: str) -> dict[str, Any]:
+        """Admit and stage installation using the single canonical checkout."""
+        return await self._operate(item, identity, grant, "install")
+
+    async def validate(self, item: str, identity: str, grant: str) -> dict[str, Any]:
+        """Validate the exact temporarily materialized integration tree."""
+        return await self._operate(item, identity, grant, "validate")
+
+    async def review(  # noqa: PLR0913 -- explicit supervisory provenance
+        self,
+        item: str,
+        identity: str,
+        grant: str,
+        *,
+        decision: str,
+        reference: str,
+        rationale: str,
+    ) -> dict[str, Any]:
+        """Record supervisory review of the exact validated tree."""
+        return await self._operate(
+            item,
+            identity,
+            grant,
+            "review",
+            decision=decision,
+            reference=reference,
+            rationale=rationale,
+        )
+
+    async def publish(self, item: str, identity: str, grant: str) -> dict[str, Any]:
+        """Commit and publish the destination-based bounded feature."""
+        return await self._operate(item, identity, grant, "publish")
+
+    async def promote(self, item: str, identity: str, grant: str) -> dict[str, Any]:
+        """Advance only the independently authorized destination ref."""
+        return await self._operate(item, identity, grant, "promote")
+
+    async def verify(self, item: str, identity: str, grant: str) -> dict[str, Any]:
+        """Check the actual destination commit in this checkout and return."""
+        return await self._operate(item, identity, grant, "verify")
+
+    async def close_review(  # noqa: PLR0913 -- explicit completion provenance
+        self,
+        item: str,
+        identity: str,
+        grant: str,
+        *,
+        decision: str,
+        reference: str,
+        rationale: str,
+    ) -> dict[str, Any]:
+        """Review parent versus slice completion after destination verification."""
+        return await self._operate(
+            item,
+            identity,
+            grant,
+            "close_review",
+            decision=decision,
+            reference=reference,
+            rationale=rationale,
+        )
+
+    async def closeout(self, item: str, identity: str, grant: str) -> dict[str, Any]:
+        """Publish authoritative progress under the same source ownership."""
+        return await self._operate(item, identity, grant, "closeout")
+
     def _intent(self, item: str, identity: str, phase: str, grant: str) -> None:
         path = self.folder(item, identity) / (phase + "-intent.json")
         if path.exists():
@@ -335,9 +510,7 @@ class Integration:
         if await common_directory(checkout) != await common_directory(self.cycle.root):
             raise PermissionError("Integration checkout belongs to another repository")
         branch = await git(checkout, "branch", "--show-current")
-        expected = (
-            plan["feature"] if checkout == resolve_path(plan["worktree"]).value else ""
-        )
+        expected = plan["feature"]
         if branch != expected:
             raise PermissionError("Integration checkout branch differs from the plan")
         observed = {}
@@ -359,7 +532,10 @@ class Integration:
                 await git(checkout, "ls-files", "--others", "--exclude-standard")
             ).splitlines()
         )
-        if not (changed | untracked) <= {f["path"] for f in plan["files"]}:
+        preserved = set(self._checkout.record["untracked"])
+        if not (changed | (untracked - preserved)) <= {
+            f["path"] for f in plan["files"]
+        }:
             raise PermissionError("Unapproved files in integration checkout")
         return observed
 
@@ -399,24 +575,14 @@ class Integration:
             },
         )
 
-    async def install(self, item: str, identity: str, grant: str) -> dict[str, Any]:
+    async def _install(self, item: str, identity: str, grant: str) -> dict[str, Any]:
         """Install only authenticated bytes in a destination-based worktree."""
         plan = await self._context(item, identity, grant, "install")
         folder = self.folder(item, identity)
-        checkout = resolve_path(plan["worktree"]).value
+        checkout = resolve_path(plan["checkout"]).value
         with self.cycle.intake._writer():
             await self._reserve(grant, plan)
             self._intent(item, identity, "install", grant)
-            if not checkout.exists():
-                await git(
-                    self.cycle.root,
-                    "worktree",
-                    "add",
-                    "-b",
-                    plan["feature"],
-                    str(checkout),
-                    plan["destination_base"],
-                )
             if (folder / "install.json").exists():
                 await self._files(plan, checkout)
                 return self.record(item, identity, "install")
@@ -455,12 +621,12 @@ class Integration:
                 },
             )
 
-    async def validate(self, item: str, identity: str, grant: str) -> dict[str, Any]:
+    async def _validate(self, item: str, identity: str, grant: str) -> dict[str, Any]:
         """Validate exact source; retain failure without silently repairing it."""
         plan = await self._context(item, identity, grant, "validate")
         self.record(item, identity, "install")
         folder = self.folder(item, identity)
-        checkout = resolve_path(plan["worktree"]).value
+        checkout = resolve_path(plan["checkout"]).value
         await self._files(plan, checkout)
         if (folder / "validation.json").exists():
             return self.record(item, identity, "validation")
@@ -496,7 +662,7 @@ class Integration:
                 },
             )
 
-    async def review(  # noqa: PLR0913 -- explicit decision provenance
+    async def _review(  # noqa: PLR0913 -- explicit decision provenance
         self,
         item: str,
         identity: str,
@@ -520,7 +686,11 @@ class Integration:
             and validation["disposition"] != "VALIDATED"
         ):
             raise PermissionError("Failed validation cannot be approved")
-        await self._files(plan, resolve_path(plan["worktree"]).value)
+        await self._files(plan, resolve_path(plan["checkout"]).value)
+        if await git(self.cycle.root, "write-tree") != validation["tree"]:
+            raise PermissionError(
+                "Materialized tree differs from validated integration"
+            )
         with self.cycle.intake._writer():
             return self.save(
                 item,
@@ -539,7 +709,7 @@ class Integration:
                 },
             )
 
-    async def publish(self, item: str, identity: str, grant: str) -> dict[str, Any]:
+    async def _publish(self, item: str, identity: str, grant: str) -> dict[str, Any]:
         """Create one reviewed commit; verify or reconcile feature publication."""
         plan = await self._context(item, identity, grant, "publish")
         review = self.record(item, identity, "review")
@@ -550,7 +720,7 @@ class Integration:
             or review["tree"] != validation["tree"]
         ):
             raise PermissionError("Exact validated-tree integration approval required")
-        checkout = resolve_path(plan["worktree"]).value
+        checkout = resolve_path(plan["checkout"]).value
         with self.cycle.intake._writer():
             self._intent(item, identity, "publication", grant)
             await self.authority.admit(grant, plan, "publish")
@@ -611,7 +781,7 @@ class Integration:
                 },
             )
 
-    async def promote(self, item: str, identity: str, grant: str) -> dict[str, Any]:
+    async def _promote(self, item: str, identity: str, grant: str) -> dict[str, Any]:
         """Promote only the destination-based reviewed commit via exact-ref lease."""
         plan = await self._context(item, identity, grant, "promote")
         publication = self.record(item, identity, "publication")
@@ -630,6 +800,25 @@ class Integration:
                 publication["commit"],
                 plan["destination_base"],
             )
+            local = await git(
+                self.cycle.root,
+                "for-each-ref",
+                "--format=%(objectname)",
+                "refs/heads/" + plan["destination"],
+            )
+            if local != publication["commit"]:
+                if local != plan["destination_local_base"]:
+                    raise PermissionError(
+                        "Local destination moved; reconcile promotion"
+                    )
+                await self.authority.admit(grant, plan, "promote")
+                await git(
+                    self.cycle.root,
+                    "update-ref",
+                    "refs/heads/" + plan["destination"],
+                    publication["commit"],
+                    local or "0" * len(publication["commit"]),
+                )
             if (self.folder(item, identity) / "promotion.json").exists():
                 return self.record(item, identity, "promotion")
             return self.save(
@@ -645,14 +834,18 @@ class Integration:
                 },
             )
 
-    async def verify(self, item: str, identity: str, grant: str) -> dict[str, Any]:
+    async def _verify(self, item: str, identity: str, grant: str) -> dict[str, Any]:
         """Authenticate the destination and run post-integration acceptance."""
         plan = await self._context(item, identity, grant, "verify")
         promoted = self.record(item, identity, "promotion")
         folder = self.folder(item, identity)
-        checkout = resolve_path(plan["verification_worktree"]).value
+        checkout = resolve_path(plan["checkout"]).value
         if (
             await remote_head(self.cycle.root, plan["remote"], plan["destination"])
+            != promoted["destination_commit"]
+            or await git(
+                self.cycle.root, "rev-parse", "refs/heads/" + plan["destination"]
+            )
             != promoted["destination_commit"]
         ):
             raise PermissionError(
@@ -666,17 +859,13 @@ class Integration:
                     "Interrupted post-validation requires reconciliation"
                 )
             self._intent(item, identity, "verification", grant)
-            await git(
-                self.cycle.root,
-                "worktree",
-                "add",
-                "--detach",
-                str(checkout),
-                promoted["destination_commit"],
-            )
         pre = self.record(item, identity, "validation")
         if await git(checkout, "rev-parse", "HEAD^{tree}") != pre["tree"]:
             raise PermissionError("Destination differs from protected-validated tree")
+        if await git(checkout, "rev-parse", "HEAD") != promoted["destination_commit"]:
+            raise PermissionError(
+                "Verification checkout differs from the exact destination commit"
+            )
         materialized = await self._files(plan, checkout, git_checkout=True)
         task = task_from_dict(
             self.candidate(item, plan["accepted_review"])["assignment"]["task"]
@@ -748,6 +937,15 @@ class Integration:
         )
         return {
             "plan": identity,
+            "operating_model": plan.get(
+                "operating_model", "historical-secondary-checkout"
+            ),
+            "checkout": plan.get("checkout"),
+            "temporary_source_restored_between_commands": plan.get("operating_model")
+            == "single-checkout-v1",
+            "checkout_reconciliation_required": (
+                self.cycle.root / ".local/backlog/checkout-owner"
+            ).exists(),
             "item": item,
             "destination": plan["destination"],
             "strategy": plan["strategy"],
@@ -782,7 +980,7 @@ class Integration:
             folder.mkdir(exist_ok=True)
             self.cycle._save(folder / (_digest(value) + ".json"), value)
 
-    async def close_review(  # noqa: PLR0913 -- explicit completion provenance
+    async def _close_review(  # noqa: PLR0913 -- explicit completion provenance
         self,
         item: str,
         identity: str,
@@ -822,7 +1020,7 @@ class Integration:
                 },
             )
 
-    async def closeout(self, item: str, identity: str, grant: str) -> dict[str, Any]:  # noqa: C901, PLR0912, PLR0915 -- one recoverable Git/backlog transaction
+    async def _closeout(self, item: str, identity: str, grant: str) -> dict[str, Any]:  # noqa: C901, PLR0912, PLR0915 -- one recoverable Git/backlog transaction
         """Publish authoritative backlog progress, keeping incomplete parents open."""
         plan = await self._context(item, identity, grant, "closeout")
         verified = self.record(item, identity, "verification")
@@ -874,7 +1072,7 @@ class Integration:
                 if await remote_head(self.cycle.root, plan["remote"], branch) != base:
                     raise PermissionError("Coordinator remote must be synchronized")
                 current = self.cycle.intake.approved_item(item)
-                if current != plan["backlog"]:
+                if not same_backlog(current, plan["backlog"]):
                     raise PermissionError("Backlog changed before closeout")
                 path = resolve_path(current["path"]).value
                 overview = self.cycle.root / "docs/backlog/overview.md"
@@ -964,10 +1162,11 @@ class Integration:
                     await git(self.cycle.root, "diff", "--name-only", intent["base"])
                 ).splitlines()
             )
-            untracked = await git(
-                self.cycle.root, "ls-files", "--others", "--exclude-standard"
-            )
-            if not changed <= set(paths) or untracked:
+            if (
+                not changed <= set(paths)
+                or await untracked_files(self.cycle.root)
+                != self._checkout.record["untracked"]
+            ):
                 raise PermissionError(
                     "Unrelated coordinator work prevents closeout publication"
                 )
@@ -977,6 +1176,10 @@ class Integration:
                     raise PermissionError(
                         "Conflicting backlog closeout requires reconciliation"
                     )
+                self._checkout.record["files"].append(
+                    {"path": f["path"], "expected": []}
+                )
+                self._checkout.expect(f["path"], f["after"])
                 write(TextFile(resolve_path(path), f["after"]))
             head = await git(self.cycle.root, "rev-parse", "HEAD")
             if head == intent["base"]:

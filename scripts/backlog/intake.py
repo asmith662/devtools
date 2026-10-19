@@ -160,13 +160,22 @@ class Intake:
             )
         # Same exclusive-directory pattern as the usage ledger. That ledger's
         # domain-specific writer is not a general locking API to import here.
-        self.proposals.mkdir(exist_ok=True)
-        lease = self._path("docs/backlog/proposals/.writer")
+        if (self.proposals / ".writer").exists():
+            raise FileExistsError("Historical backlog writer requires reconciliation")
+        lease = self._path(".local/backlog/writer")
+        lease.parent.mkdir(parents=True, exist_ok=True)
         lease.mkdir()
         try:
             yield
         finally:
             lease.rmdir()
+
+    def _source_idle(self) -> None:
+        if self._path(".local/backlog/checkout-owner").exists():
+            raise PermissionError(
+                "Canonical backlog writes wait for the active source "
+                "operation to return"
+            )
 
     def _save(self, path: Path, value: object) -> None:
         text = json.dumps(value, indent=2) + "\n"
@@ -182,6 +191,8 @@ class Intake:
         _validate(payload)
         identity = str(ProposalId(Identity.new()))
         with self._writer():
+            self._source_idle()
+            self.proposals.mkdir(exist_ok=True)
             folder = self._path("docs/backlog/proposals/" + identity)
             folder.mkdir()
             self._save(
@@ -325,7 +336,7 @@ class Intake:
                 continue
             path = self._path("docs/backlog/" + publication["path"])
             text = _read(path)
-            statuses = re.findall(r"^- status: (\w+)$", text, re.MULTILINE)
+            statuses = re.findall(r"^- status: (\w+)\r?$", text, re.MULTILINE)
             if statuses != ["BACKLOG"]:
                 raise PermissionError("Work item must currently be BACKLOG")
             if (
@@ -382,6 +393,7 @@ class Intake:
         for value in (reviewer, reference, rationale, duplicate_disposition):
             _text(value)
         with self._writer():
+            self._source_idle()
             record = self.get(identity)
             if record["state"] in {"APPROVED", "REJECTED"}:
                 raise ValueError("Terminal review requires a new related proposal")
@@ -497,6 +509,7 @@ class Intake:
         """
         identity = str(ProposalId.parse(identity))
         with self._writer():
+            self._source_idle()
             record = self.get(identity)
             if record["state"] != "APPROVED":
                 raise PermissionError("Only host-approved proposals may be promoted")

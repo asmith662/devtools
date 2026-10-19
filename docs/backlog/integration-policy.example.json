@@ -1,19 +1,32 @@
 {
-  "sources": ["src/devtools/resources/filesystem/models/json/object.py"],
+  "sources": [
+    "src/devtools/resources/filesystem/models/json/object.py"
+  ],
   "tests": [
     "tests/resources/filesystem/test_json_models.py",
     "tests/resources/filesystem/test_json_object_compatibility.py"
   ],
-  "oracles": ["c1376804658259023cc9cd701b357c86ae4eef466f46decdbf869d25f51b7322"],
+  "oracles": [
+    "c1376804658259023cc9cd701b357c86ae4eef466f46decdbf869d25f51b7322"
+  ],
   "remote": "origin",
-  "destinations": ["main"],
-  "worktree_root": "C:/Users/recoveryadmin/Workspace/tools/devtools/.local/worktrees",
-  "actions": ["install", "validate", "publish", "promote", "verify", "closeout"],
+  "destinations": [
+    "main"
+  ],
+  "actions": [
+    "install",
+    "validate",
+    "publish",
+    "promote",
+    "verify",
+    "closeout"
+  ],
   "protected": true,
   "corrections": false,
   "parent_close": false,
   "max_integrations": 1,
   "max_files": 2,
   "max_bytes": 65536,
-  "validation_seconds": 900
+  "validation_seconds": 900,
+  "checkout": "C:/Users/recoveryadmin/Workspace/tools/devtools"
 }

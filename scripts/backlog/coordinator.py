@@ -17,7 +17,9 @@ if TYPE_CHECKING:
 KEY = "devtools.backlogCoordinator"
 
 
-async def git(root: Path, *arguments: str, missing_ok: bool = False) -> str:
+async def git(
+    root: Path, *arguments: str, missing_ok: bool = False, trim: bool = True
+) -> str:
     """Run bounded repository administration through canonical managed commands."""
     result = await CommandExecutor().execute(
         Command("git")
@@ -34,7 +36,8 @@ async def git(root: Path, *arguments: str, missing_ok: bool = False) -> str:
             + "\n"
             + result.stderr[:2048].decode("utf-8", errors="replace")
         )
-    return result.stdout.decode("utf-8").strip()
+    text = result.stdout.decode("utf-8")
+    return text.strip() if trim else text
 
 
 async def common_directory(root: Path) -> Path:

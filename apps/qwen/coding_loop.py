@@ -11,7 +11,6 @@ from __future__ import annotations
 import asyncio
 import hashlib
 import json
-import shutil
 import sys
 import time
 from dataclasses import asdict
@@ -57,6 +56,7 @@ from devtools.models.interaction import (
 from devtools.resources.filesystem import TextFile, write
 
 if TYPE_CHECKING:
+    from collections.abc import Callable
     from pathlib import Path
 
     from devtools.context.retrieval.source import SourceSearchMode
@@ -201,10 +201,10 @@ async def validate_workspace(root: Path, folder: Path) -> dict[str, Any]:
 
 
 async def _authenticate_inputs(root: Path, workspace: Path, task: CodingTask) -> None:
-    """Restore only configured immutable inputs when maintained source moved on.
+    """Authenticate configured immutable inputs in the selected ordinary branch.
 
-    Git text normalization is reversed only when the resulting LF or CRLF bytes
-    match the frozen digest. This never writes into the caller's checkout.
+    Git LF/CRLF candidates must identify the frozen input; current source/test
+    bytes must independently match it. This function never rewrites inputs.
     """
     for path, digest in task.baseline_hashes:
         target = workspace / path
@@ -226,29 +226,16 @@ async def _authenticate_inputs(root: Path, workspace: Path, task: CodingTask) ->
         if matched is None:
             raise ValueError("Frozen baseline identity mismatch: " + path)
         if _hash(target) != digest:
-            write(TextFile(resolve_path(target), matched))
-        if _hash(target) != digest:
-            raise ValueError("Materialized baseline identity mismatch: " + path)
+            raise ValueError(
+                "Select the exact ordinary baseline branch before execution: " + path
+            )
 
 
 def _prepare_workspace(root: Path, folder: Path, task: CodingTask = MARKDOWN) -> Path:
-    """Copy supported source and focused tests, never Git or scientific evidence."""
-    workspace = folder / "workspace"
-    workspace.mkdir()
-    shutil.copytree(
-        root / "src",
-        workspace / "src",
-        ignore=shutil.ignore_patterns(
-            "__pycache__",
-            "*.pyc",
-        ),
-    )
-    for test in task.tests:
-        target = workspace / test
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(root / test, target)
-    # No inherited pytest configuration, parent conftest, or editable-install
-    # imports. The exact local source is asserted before either validation.
+    """Bind validation to the selected checkout; never copy a source tree."""
+    workspace = root
+    # Fixed pytest options and exact local imports. Repository conftest code is
+    # part of the pinned host-owned validation environment, not model authority.
     module_name = task.source.removeprefix("src/").removesuffix(".py").replace("/", ".")
     prelude = (
         "import sys\nfrom pathlib import Path\n"
@@ -261,7 +248,7 @@ def _prepare_workspace(root: Path, folder: Path, task: CodingTask = MARKDOWN) ->
     test_arguments = [
         *(str(workspace / test) for test in task.tests),
         "-c",
-        str(workspace / "pytest.ini"),
+        str(folder / "pytest.ini"),
         f"--confcutdir={workspace}",
         "--no-cov",
         "-q",
@@ -288,7 +275,7 @@ def _prepare_workspace(root: Path, folder: Path, task: CodingTask = MARKDOWN) ->
             + "raise SystemExit(pytest.main(arguments, plugins=[PrimaryFailures()]))\n",
         )
     )
-    write(TextFile(resolve_path(workspace / "pytest.ini"), "[pytest]\n"))
+    write(TextFile(resolve_path(folder / "pytest.ini"), "[pytest]\n"))
     return workspace
 
 
@@ -300,6 +287,7 @@ async def _turns(  # noqa: PLR0913 -- existing loop collaborators plus task conf
     *,
     maximum_calls: int,
     task: CodingTask,
+    admit_edit: Callable[[str, str], None] | None = None,
 ) -> None:
     repository = Repository.new()
     feedback: dict[str, Any] = {"disposition": "INITIAL_PROPOSAL"}
@@ -369,6 +357,8 @@ async def _turns(  # noqa: PLR0913 -- existing loop collaborators plus task conf
         stage["proposal_valid"] = True
         stage["proposal_id"] = call.provider_call_id
         stage["phase"] = "PATCH_APPLICATION"
+        if admit_edit is not None:
+            admit_edit(task.source, updated)
         _save(turn / "stage.json", stage, overwrite=True)
         await apply_markdown_patch(workspace, turn, patch, source_path=task.source)
         if _read_text(resolve_path(workspace / task.source)).content != updated:
@@ -410,7 +400,7 @@ async def _turns(  # noqa: PLR0913 -- existing loop collaborators plus task conf
     report["disposition"] = "REPAIR_BUDGET_EXHAUSTED"
 
 
-async def run_coding_task(  # noqa: C901, PLR0913 -- bounded stages and task configuration
+async def run_coding_task(  # noqa: C901, PLR0913, PLR0915 -- one bounded worker and conservative terminal accounting
     root: Path,
     folder: Path,
     interaction: ModelInteraction,
@@ -418,6 +408,7 @@ async def run_coding_task(  # noqa: C901, PLR0913 -- bounded stages and task con
     maximum_calls: int | None = None,
     task: CodingTask = MARKDOWN,
     provenance: dict[str, Any] | None = None,
+    admit_edit: Callable[[str, str], None] | None = None,
 ) -> dict[str, Any]:
     """Run one bounded engineering task; preserve evidence and discard all edits.
 
@@ -428,6 +419,7 @@ async def run_coding_task(  # noqa: C901, PLR0913 -- bounded stages and task con
     if not 1 <= maximum_calls <= task.maximum_calls:
         raise ValueError("Model call bound must be between one and three")
     original_hashes = {path: _hash(root / path) for path, _ in task.baseline_hashes}
+    original_source = _read_text(resolve_path(root / task.source)).content
     folder = resolve_path(folder).value
     folder.mkdir(parents=True, exist_ok=False)
     started = time.perf_counter()
@@ -450,6 +442,7 @@ async def run_coding_task(  # noqa: C901, PLR0913 -- bounded stages and task con
         "oracle_sha256": task.oracle_sha256,
         "coordination_usage": "UNKNOWN",
         "provenance": provenance,
+        "execution_location": "selected-canonical-checkout; no source-tree copy",
     }
     workspace: Path | None = None
     try:
@@ -484,7 +477,16 @@ async def run_coding_task(  # noqa: C901, PLR0913 -- bounded stages and task con
                 report,
                 maximum_calls=maximum_calls,
                 task=task,
+                admit_edit=admit_edit,
             )
+    except asyncio.CancelledError:
+        report.update(
+            accepted=False,
+            disposition="CANCELLED_COMPLETION_UNKNOWN_NO_RETRY"
+            if report["turns"] and report["turns"][-1]["phase"] == "MODEL_REQUEST"
+            else "HOST_CANCELLED",
+        )
+        raise
     except TimeoutError:
         report.update(
             disposition=(
@@ -499,21 +501,27 @@ async def run_coding_task(  # noqa: C901, PLR0913 -- bounded stages and task con
             disposition=phase + "_FAILED", error=f"{type(error).__name__}: {error}"
         )
     finally:
-        workspace = folder / "workspace"
-        if resolve_path(workspace).value.parent != folder:
-            report.update(accepted=False, disposition="CLEANUP_RECONCILIATION_REQUIRED")
-        elif workspace.exists():
-            if (workspace / task.source).exists():
-                current = _read_text(resolve_path(workspace / task.source))
-                write(
-                    TextFile(resolve_path(folder / "final-source.py"), current.content)
+        if workspace is not None:
+            current = _read_text(resolve_path(root / task.source)).content
+            write(TextFile(resolve_path(folder / "final-source.py"), current))
+            # Only the host-admitted one-file proposal can be restored. Unknown
+            # external changes remain for explicit checkout reconciliation.
+            expected = (
+                report["turns"][-1].get("source_after")
+                if report["turns"]
+                else original_hashes[task.source]
+            )
+            if _hash(root / task.source) in {expected, original_hashes[task.source]}:
+                write(TextFile(resolve_path(root / task.source), original_source))
+            else:
+                report.update(
+                    accepted=False, disposition="CLEANUP_RECONCILIATION_REQUIRED"
                 )
-            # Only the workspace created above, never caller or Git worktree paths.
-            shutil.rmtree(workspace)
         report.update(
             finished_at=str(Timestamp.now()),
             elapsed_seconds=time.perf_counter() - started,
             workspace_removed=not (folder / "workspace").exists(),
+            source_restored=_hash(root / task.source) == original_hashes[task.source],
             original_unchanged=all(
                 _hash(root / path) == digest for path, digest in original_hashes.items()
             ),

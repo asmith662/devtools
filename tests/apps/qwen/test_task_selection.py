@@ -8,7 +8,7 @@ import asyncio
 import json
 from dataclasses import replace
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import pytest
 
@@ -19,6 +19,20 @@ from devtools.models.interaction import InteractionSource, ModelResponse, ModelT
 from tests.apps.qwen.test_coding_loop import GOOD, OLD, Scripted, proposal
 
 ROOT = Path(__file__).resolve().parents[3]
+if TYPE_CHECKING:
+    from collections.abc import Callable
+
+    from apps.qwen.tasks import CodingTask
+
+
+@pytest.fixture(autouse=True)
+def captured_task_root(
+    captured_inputs: Callable[[CodingTask], Path], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Bind only the historical task inputs; never mutate maintained source."""
+    monkeypatch.setattr(__name__ + ".ROOT", captured_inputs(SOURCE_SEGMENTS))
+
+
 OLD_SPLIT = "content.splitlines(keepends=True)"
 # Reference-only stand-in: the stdlib's own segment splitter. This is not a
 # proposed maintained implementation and is never part of model Context.

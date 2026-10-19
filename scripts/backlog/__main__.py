@@ -93,6 +93,31 @@ def confirm_delegation(request: dict[str, Any]) -> bool:
 async def _work(args: argparse.Namespace, root: Path) -> dict[str, Any]:  # noqa: C901, PLR0911 -- explicit commands
     cycle = WorkCycle(root)
     match args.command:
+        case "work-recover":
+            from scripts.backlog.checkout import recover  # noqa: PLC0415
+
+            if not sys.stdin.isatty() or not sys.stdout.isatty():
+                raise PermissionError(
+                    "Checkout recovery requires a genuine interactive terminal"
+                )
+            print(
+                json.dumps(
+                    load_json(root / ".local/backlog/checkout-owner/owner.json"),
+                    indent=2,
+                )
+            )
+            consent = (
+                input(  # noqa: ASYNC250 -- deliberate trusted terminal boundary
+                    "Confirm the recorded owner is stopped and restore only "
+                    "authenticated temporary edits? No redispatch or authority "
+                    "transfer. [y/N] "
+                )
+                .strip()
+                .lower()
+                == "y"
+            )
+            await recover(cycle, authorize=consent)
+            return {"disposition": "CHECKOUT_RECOVERED", "dispatch_authorized": False}
         case "delegation-issue":
             return await Delegations(cycle).issue(
                 load_json(resolve_path(args.policy, base_directory=Path.cwd()).value),
@@ -187,6 +212,7 @@ def main(arguments: list[str] | None = None) -> int:  # noqa: C901, PLR0915 -- e
     parser.add_argument("--root", default=".")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("designate")
+    commands.add_parser("work-recover")
     capture = commands.add_parser("capture")
     capture.add_argument(
         "input", help="JSON proposal with discovery/evidence references"

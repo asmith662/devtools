@@ -6,14 +6,13 @@ from __future__ import annotations
 
 import asyncio
 import json
-import shutil
 from dataclasses import replace
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, cast
 
 import pytest
 
-from apps.qwen.development_task import _command, _hash
+from apps.qwen.development_task import _hash
 from apps.qwen.tasks import MARKDOWN
 from devtools.core.time import Duration, Timestamp
 from devtools.models.interaction import (
@@ -104,19 +103,28 @@ def fixture(tmp_path: Path) -> dict[str, Any]:
         await git(coordinator, "init", "-b", "coordinator")
         await git(coordinator, "config", "user.name", "Synthetic Fixture")
         await git(coordinator, "config", "user.email", "fixture@example.invalid")
-        shutil.copytree(
-            ROOT / "src",
-            coordinator / "src",
-            ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
+        source = coordinator / MARKDOWN.source
+        source.parent.mkdir(parents=True)
+        for parent in source.parents:
+            if parent == coordinator / "src":
+                break
+            (parent / "__init__.py").write_text("")
+        source.write_text(
+            '"""Tiny authored fence fixture, not a Devtools source copy."""\n'
+            "import re\ndef closes(line):\n"
+            '    active_fence = "```"\n'
+            '    fence_match = re.match(r"(`+)", line)\n'
+            "    fence = fence_match[0]\n"
+            "    " + OLD + "\n        return True\n    return False\n",
+            encoding="utf-8",
+            newline="",
         )
-        for relative in (MARKDOWN.source, *MARKDOWN.tests):
-            raw = await _command(
-                ROOT, "git", "show", MARKDOWN.baseline_revision + ":" + relative
-            )
-            assert not raw["failed"]
-            path = coordinator / relative
-            path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(raw["stdout"], encoding="utf-8", newline="")
+        test = coordinator / MARKDOWN.tests[0]
+        test.parent.mkdir(parents=True)
+        test.write_text(
+            "from devtools.resources.filesystem.models.markdown.file import closes\n"
+            'def test_close():\n    assert closes("```")\n'
+        )
         (coordinator / ".gitignore").write_text(
             ".local/\n__pycache__/\n.pytest_cache/\n"
         )
@@ -152,13 +160,16 @@ def fixture(tmp_path: Path) -> dict[str, Any]:
             "Synthetic approved backlog and source baseline",
         )
         base = await git(coordinator, "rev-parse", "HEAD")
-        target = tmp_path / "feature"
-        await git(
-            coordinator, "worktree", "add", "-b", "feat/fixture", str(target), base
-        )
+        target = coordinator
+        await git(coordinator, "branch", "feat/fixture", base)
         task = replace(
             MARKDOWN,
             baseline_revision=base,
+            oracle='assert not module.closes("``` trailing")\n',
+            context=(
+                (MARKDOWN.source, "closes fence", "symbol", "file"),
+                (MARKDOWN.tests[0], "test_close closes", "file", "file"),
+            ),
             baseline_hashes=tuple(
                 (p, _hash(target / p)) for p in (MARKDOWN.source, *MARKDOWN.tests)
             ),
@@ -259,7 +270,12 @@ def test_real_scripted_cycle_repair_discovery_and_review_candidate(
     result = asyncio.run(run())
     assert result["model_calls"] == 2
     record_testsuite_property("scripted_work_cycle_result", json.dumps(result))
-    assert asyncio.run(git(fixture["target"], "status", "--porcelain")) == ""
+    assert (
+        asyncio.run(
+            git(fixture["target"], "status", "--porcelain", "--untracked-files=no")
+        )
+        == ""
+    )
 
 
 def test_failed_work_remains_bounded_escalation(fixture: dict[str, Any]) -> None:
@@ -339,7 +355,7 @@ def test_fresh_admission_refuses_without_factory_or_model(
         elif kind == "changed-target":
             (fixture["target"] / MARKDOWN.source).write_text("changed")
         elif kind == "wrong-branch":
-            await git(fixture["target"], "branch", "-m", "feat/other")
+            await git(fixture["target"], "branch", "-m", "feat/fixture", "feat/other")
 
         async def forbidden() -> tuple[ModelInteraction, dict[str, Any]]:
             pytest.fail("Refused work must not reach the model factory")
@@ -412,12 +428,15 @@ def test_duplicate_preparation_and_ambiguous_dispatch_never_relaunch(
 def test_only_designated_coordinator_can_mutate(fixture: dict[str, Any]) -> None:
     """A linked execution worktree cannot publish independent canonical state."""
     assert asyncio.run(locate(fixture["target"])) == fixture["root"]
+    other = fixture["root"] / "subdirectory"
+    (other / "docs/backlog").mkdir(parents=True)
+    (other / "docs/backlog/overview.md").write_text("# Unowned fixture\n")
     with pytest.raises(PermissionError, match="designated coordinator"):
-        Intake(fixture["target"], coordinator=fixture["root"]).capture(discovery())
+        Intake(other, coordinator=fixture["root"]).capture(discovery())
     with pytest.raises(PermissionError, match="designated coordinator"):
         Intake(fixture["root"]).capture(discovery())
-    with pytest.raises(PermissionError, match="different coordinator"):
-        asyncio.run(designate(fixture["target"], authorize=lambda _: True))
+    with pytest.raises(ValueError, match="exact checkout root"):
+        asyncio.run(designate(other, authorize=lambda _: True))
 
 
 def test_terminal_work_authority_defaults_no(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -533,3 +552,47 @@ def test_missing_designation_cannot_fall_back_to_local_writes(
     )
     with pytest.raises(ValueError, match="Git inspection failed"):
         asyncio.run(prepare(fixture))
+
+
+def test_implementation_branch_need_not_contain_later_backlog_approval(
+    fixture: dict[str, Any],
+) -> None:
+    """Administration remains bound to its entry revision while source switches."""
+
+    async def run() -> None:
+        f = fixture
+        binding = f["intake"].approved_item(f["item"])
+        await git(f["root"], "switch", "feat/fixture")
+        await git(
+            f["root"],
+            "rm",
+            "-r",
+            "--",
+            str(Path(binding["path"]).relative_to(f["root"])),
+            "docs/backlog/proposals/" + f["proposal"],
+        )
+        await git(
+            f["root"],
+            "commit",
+            "-m",
+            "Authored fixture source without later administrative records",
+        )
+        revision = await git(f["root"], "rev-parse", "HEAD")
+        await git(f["root"], "switch", "coordinator")
+        f["task"] = replace(f["task"], baseline_revision=revision)
+        await prepare(f)
+        await grant(f)
+        result = await f["cycle"].execute(
+            f["item"],
+            interaction_factory=factory(Scripted([(OLD, GOOD)])),
+            authorize=lambda _: True,
+        )
+        assert result["disposition"] == "REVIEW_CANDIDATE"
+        assert await git(f["root"], "branch", "--show-current") == "coordinator"
+        current = f["intake"].approved_item(f["item"])
+        assert current["review"] == binding["review"]
+        assert current["text"].replace("\r\n", "\n") == binding["text"].replace(
+            "\r\n", "\n"
+        )
+
+    asyncio.run(run())

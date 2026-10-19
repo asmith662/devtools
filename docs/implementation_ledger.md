@@ -1961,3 +1961,41 @@ remain separate future decisions.
 ## 2026-10-19 canonical consolidation
 
 Preserved seven feature checkout histories and their unique evidence, removed linked checkouts and the obsolete scientific execution checkout, adopted the production-safe search/source/standalone-worker selection, and retained governed integration/dashboard continuation on an ordinary branch. No new model calls or scientific results. See docs/development/reconciliation.md for provenance, actual validation and blockers.
+
+## 2026-10-19 single-checkout governed development
+
+Restored the existing WorkCycle and integration lifecycle on
+`feat/qwen-context-worker`, starting at `cc7fbae836c8fcd23014c1311dba3e60edcce46d`.
+The canonical checkout now owns serialized ordinary branch selection, bounded
+in-place worker edits/restoration, exact-tree review, feature publication,
+local/remote target promotion, destination verification and canonical closeout.
+Intake's writer is canonical ignored operational state; source-changing intake
+waits for source ownership to end. Legacy leases/grants/plans fail closed.
+Missing integration branches never create replacement commits automatically.
+History remains immutable; no Qwen or scientific invocation occurred.
+
+Tiny independently authored Git fixtures exercise the full native Git lifecycle
+with synthetic authority. Historical coding regressions materialize only frozen
+task files and import maintained dependencies; no Devtools source tree is copied.
+Affected-area verification passed 230 cases; additional serialization/recovery
+checks passed 49. The final protected Python 3.14 profile passed **1950 tests,
+two skipped, 100% production branch coverage** (398.63 seconds pytest / 400.13
+seconds host). An earlier protected checkpoint passed 1947 cases before final
+missing-branch and source/intake serialization regressions were added; the final
+profile was repeated for those concrete safety changes. Changed-file Ruff and
+formatting, default strict mypy (472 files), administration mypy (14 files),
+layout and whitespace checks pass. Broader formatting still reports ten
+unchanged source/document files; scanning frozen experiment code also reports
+historical lint findings and a formatter panic. Those files were not rewritten.
+
+B-0048 candidate `9b31553ec9982cba4886eaed39e6ddb0941598b57d3d0442771083f2fd4fd88f`
+and accepted review authenticate. Its canonical plan
+`5d430dd3309248b11d4ced56ee46b9d7a2eb0f2b0c2fb731a1e34757606cddc8`
+pins main `862bda2d3d1d812893f84ab69691fc068ecce268`, excludes nine unrelated
+source commits and remains BLOCKED by missing genuine integration authority.
+No candidate source was installed, no allowance reserved and no grant issued.
+The parent remains BACKLOG with list/CSV compatibility obligations unresolved.
+All 13 forensic files and 34 archived B-0048 work files hash-match preservation.
+Four redundant source payloads were removed only after complete comparison with
+the existing recovery packet; all unique bytes remain recoverable. Main,
+scientific results and 24/9/2 experiment classifications remain unchanged.

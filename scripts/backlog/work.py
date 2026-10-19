@@ -11,6 +11,7 @@ confer commit, promotion or canonical backlog-close authority.
 from __future__ import annotations
 
 import difflib
+import hashlib
 import re
 from dataclasses import asdict
 from typing import TYPE_CHECKING, Any
@@ -22,7 +23,8 @@ from apps.qwen.tasks import CodingTask
 from devtools.core.paths import resolve_path
 from devtools.core.time import Stopwatch, Timestamp
 from devtools.resources.filesystem import TextFile, write
-from scripts.backlog.coordinator import common_directory, git, locate
+from scripts.backlog.checkout import Checkout, idle
+from scripts.backlog.coordinator import git, locate
 from scripts.backlog.intake import Intake, _digest, load_json
 
 if TYPE_CHECKING:
@@ -33,6 +35,24 @@ if TYPE_CHECKING:
     from scripts.backlog.integration import Integration
 
 SCOPE = "bounded-local-qwen-implementation; review candidate only; no integration"
+
+
+def _digest_text(text: str) -> str:
+    return hashlib.sha256(text.encode()).hexdigest()
+
+
+def same_backlog(
+    left: dict[str, Any], right: dict[str, Any], *, relocated: bool = False
+) -> bool:
+    """Authenticate scope across Git newline materialization, never new decisions."""
+    represented = {"text", "item_sha256"} | ({"path"} if relocated else set())
+    return (
+        {k: v for k, v in left.items() if k not in represented}
+        == {k: v for k, v in right.items() if k not in represented}
+        and left["text"].replace("\r\n", "\n") == right["text"].replace("\r\n", "\n")
+        and left["item_sha256"] == _digest(left["text"])
+        and right["item_sha256"] == _digest(right["text"])
+    )
 
 
 def task_from_dict(value: dict[str, Any]) -> CodingTask:
@@ -62,6 +82,7 @@ class WorkCycle:
         """Select the host coordinator; every mutation rechecks Git designation."""
         self.root = resolve_path(coordinator).value
         self.intake = Intake(self.root, coordinator=self.root)
+        self._checkout: Checkout | None = None
 
     @property
     def integration(self) -> Integration:
@@ -87,28 +108,37 @@ class WorkCycle:
         return sealed
 
     async def _target(self, target: Path, branch: str, task: CodingTask) -> None:
-        if target == self.root:
-            raise PermissionError("Use a separate feature worktree for implementation")
+        if target != self.root:
+            raise PermissionError(
+                "Implementation target must be the canonical coordinator"
+            )
+        if branch in {"main", "master"} or not branch.startswith("feat/"):
+            raise PermissionError("A named ordinary feature branch is required")
         if (
-            resolve_path(await git(target, "rev-parse", "--show-toplevel")).value
-            != target
+            await git(
+                target, "for-each-ref", "--format=%(objectname)", "refs/heads/" + branch
+            )
+            != task.baseline_revision
         ):
-            raise ValueError("Target must be an exact worktree root")
-        if await common_directory(target) != await common_directory(self.root):
-            raise ValueError("Target must share the coordinator's Git repository")
-        if (
-            branch in {"main", "master"}
-            or await git(target, "branch", "--show-current") != branch
-        ):
-            raise PermissionError("Actual feature branch differs from assignment")
-        if await git(target, "rev-parse", "HEAD") != task.baseline_revision:
             raise PermissionError("Target/base revision changed")
-        if await git(target, "status", "--porcelain", "--untracked-files=all"):
-            raise PermissionError("Target worktree must be clean")
+        await idle(target)
+        if (
+            self.root / ".local/backlog/checkout-owner"
+        ).exists() and self._checkout is None:
+            raise PermissionError("Checkout owned; explicit recovery required")
         for relative, digest in task.baseline_hashes:
-            path = resolve_path(relative, base_directory=target).value
-            if not path.is_relative_to(target) or _hash(path) != digest:
-                raise PermissionError("Task source/test identity differs from target")
+            await self._baseline(task, relative, digest)
+
+    async def _baseline(self, task: CodingTask, relative: str, digest: str) -> str:
+        from scripts.backlog.integration.git import blob  # noqa: PLC0415
+
+        text = (await blob(self.root, task.baseline_revision, relative)).replace(
+            "\r\n", "\n"
+        )
+        for candidate in (text, text.replace("\n", "\r\n")):
+            if _digest_text(candidate) == digest:
+                return candidate
+        raise PermissionError("Task source/test identity differs from target")
 
     async def prepare(
         self, item: str, *, target: Path, branch: str, task: CodingTask
@@ -140,9 +170,9 @@ class WorkCycle:
                     "branch": branch,
                     "base_head": task.baseline_revision,
                     "task": asdict(task),
-                    "baseline_source": _read_text(
-                        resolve_path(target / task.source)
-                    ).content,
+                    "baseline_source": await self._baseline(
+                        task, task.source, dict(task.baseline_hashes)[task.source]
+                    ),
                     "task_sha256": task.definition_sha256,
                     "allowed_files": [task.source],
                     "actions": {
@@ -159,8 +189,19 @@ class WorkCycle:
         await self._coordinator()
         if assignment["coordinator"] != str(self.root) or assignment["scope"] != SCOPE:
             raise PermissionError("Assignment coordinator/scope changed")
-        binding = self.intake.approved_item(assignment["item"])
-        if binding != assignment["backlog"]:
+        if self._checkout is None:
+            binding = self.intake.approved_item(assignment["item"])
+        else:
+            # The administrative backlog was authenticated before switching.
+            # An older implementation base need not contain its later approval.
+            owner = self._checkout.record
+            if (
+                await git(self.root, "rev-parse", owner["return_branch"])
+                != owner["return_head"]
+            ):
+                raise PermissionError("Administrative backlog revision changed")
+            binding = assignment["backlog"]
+        if not same_backlog(binding, assignment["backlog"]):
             raise PermissionError(
                 "Backlog status/content/review changed after preparation"
             )
@@ -219,7 +260,42 @@ class WorkCycle:
         with self.intake._writer():
             return self._save(folder / "authorization.json", grant)
 
-    async def execute(  # noqa: C901 -- manual/delegated admission to one executor
+    async def execute(
+        self,
+        item: str,
+        *,
+        interaction_factory: Callable[
+            [], Awaitable[tuple[ModelInteraction, dict[str, Any]]]
+        ],
+        authorize: Callable[[dict[str, Any]], bool] | None = None,
+    ) -> dict[str, Any]:
+        """Own the canonical source while the existing bounded worker executes."""
+        folder = self._folder(item)
+        assignment = _load(folder / "assignment.json", "backlog-qwen-assignment-v1")
+        await self._validate(assignment)
+        if (folder / "dispatch.json").exists():
+            raise PermissionError("Prior dispatch exists; reconcile, never redispatch")
+        async with Checkout(
+            self,
+            "coding:" + assignment["sha256"],
+            assignment["branch"],
+            assignment["base_head"],
+            files=[
+                {
+                    "path": assignment["task"]["source"],
+                    "text": assignment["baseline_source"],
+                }
+            ],
+        ) as checkout:
+            self._checkout = checkout
+            try:
+                return await self._execute(
+                    item, interaction_factory=interaction_factory, authorize=authorize
+                )
+            finally:
+                self._checkout = None
+
+    async def _execute(  # noqa: C901 -- manual/delegated admission to one executor
         self,
         item: str,
         *,
@@ -302,6 +378,7 @@ class WorkCycle:
                     "assignment_sha256": assignment["sha256"],
                     "authorization_sha256": grant["sha256"],
                 },
+                admit_edit=self._checkout.expect if self._checkout else None,
             )
             if (
                 delegated
@@ -348,7 +425,7 @@ class WorkCycle:
                 write(TextFile(resolve_path(diff_path), diff), overwrite=False)
         unchanged = await git(target, "rev-parse", "HEAD") == assignment[
             "base_head"
-        ] and not await git(target, "status", "--porcelain", "--untracked-files=all")
+        ] and not await git(target, "status", "--porcelain", "--untracked-files=no")
         last = worker["turns"][-1] if worker and worker["turns"] else {}
         validation = last.get("validation", {})
         accepted = bool(

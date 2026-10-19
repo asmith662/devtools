@@ -32,7 +32,7 @@ def policy_check(value: dict[str, Any]) -> None:  # noqa: C901, PLR0912 -- close
         "oracles",
         "remote",
         "destinations",
-        "worktree_root",
+        "checkout",
         "actions",
         "protected",
         "corrections",
@@ -71,7 +71,7 @@ def policy_check(value: dict[str, Any]) -> None:  # noqa: C901, PLR0912 -- close
     ):
         if type(value[name]) is not int or not 1 <= value[name] <= limit:
             raise ValueError("Invalid integration allowance")
-    resolve_path(value["worktree_root"])
+    resolve_path(value["checkout"])
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*", value["remote"]):
         raise ValueError("Invalid existing remote name")
 
@@ -99,7 +99,13 @@ class IntegrationAuthority:
     ) -> dict[str, Any]:
         """Issue only under an actual local maintainer decision, default deny."""
         await self.cycle._coordinator()
+        if (self.cycle.root / ".local/backlog/checkout-owner").exists():
+            raise PermissionError(
+                "Issue integration authority only from an idle administrative checkout"
+            )
         policy_check(policy)
+        if resolve_path(policy["checkout"]).value != self.cycle.root:
+            raise PermissionError("Integration grant must bind the canonical checkout")
         for branch in policy["destinations"]:
             await git(self.cycle.root, "check-ref-format", "refs/heads/" + branch)
         if not reference.strip() or expires.value <= Timestamp.now().value:
@@ -167,7 +173,7 @@ class IntegrationAuthority:
                 },
             )
 
-    async def admit(  # noqa: C901 -- fixed scope, expiry and effect admission
+    async def admit(
         self, identity: str, plan: dict[str, Any], action: str
     ) -> dict[str, Any]:
         """Authenticate current authority independently of coding/review evidence."""
@@ -214,14 +220,14 @@ class IntegrationAuthority:
                 and not policy["corrections"]
             ):
                 raise PermissionError("Unapproved source/test addition or correction")
-        for path in (plan["worktree"], plan["verification_worktree"]):
-            resolved = resolve_path(path).value
-            allowed = resolve_path(policy["worktree_root"]).value
-            if not resolved.is_relative_to(allowed) or resolved in (
-                allowed,
-                self.cycle.root,
-            ):
-                raise PermissionError("Integration worktree outside grant")
+        if (
+            plan.get("operating_model") != "single-checkout-v1"
+            or plan.get("checkout") != str(self.cycle.root)
+            or resolve_path(policy["checkout"]).value != self.cycle.root
+        ):
+            raise PermissionError(
+                "Integration requires a canonical-checkout grant and plan"
+            )
         if plan["parent_complete"] and not policy["parent_close"]:
             raise PermissionError("Parent backlog closeout is not delegated")
         if action == "promote" and plan["destination"] in {"main", "master"}:

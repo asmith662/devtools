@@ -1,11 +1,9 @@
 # Backlog Metadata
 
-> Operational pause after canonical-checkout consolidation: these implemented
-> WorkCycle/integration paths still require or create additional checkouts.
-> They must not execute under the current one-checkout policy. Existing grants
-> and plans retain obsolete path bindings and are not transferred. Only
-> read-only history inspection is supported until the concrete compatibility
-> gap in docs/development/reconciliation.md is resolved. No new grant is issued.
+> Single-checkout continuation: WorkCycle and integration use the canonical
+> checkout and ordinary branches under exclusive source ownership. Historical
+> secondary-checkout assignments, grants and plans remain inspection-only; they
+> acquire no current authority. B-0048 still requires a genuine integration grant.
 
 
 The [development integration contract](integration.md) extends WorkCycle after
@@ -222,11 +220,13 @@ not reserve or execute engineering/scientific work.
 Malformed/missing records remain visible as queue errors; repair from verified
 Git/history or reconcile explicitly, never silently reset them. Sibling atomic
 writer `.tmp` files are not canonical records. Concurrent writer contention or a
-crash leaving `proposals/.writer/` fails closed without retry. An operator must
+crash leaving `.local/backlog/writer/` fails closed without retry. Historical
+`proposals/.writer/` leases also block admission until explicitly reconciled.
+An operator must
 verify no active writer and inspect incomplete files before removing a stale
 empty lease. This follows the existing exclusive-directory local-writer pattern;
-there is no cross-worktree/distributed lock. Git conflicts between separate
-checkouts require normal explicit reconciliation. Filesystem power-loss limits
+there is no distributed lock. Only the canonical checkout may mutate source;
+ordinary branches share its exclusive source owner. Filesystem power-loss limits
 remain those documented by the canonical atomic writer.
 
 ### First real discovery
@@ -261,17 +261,15 @@ uv run python -m scripts.backlog designate
 ```
 
 This genuine terminal decision defaults to No and authorizes administration
-only. Existing different/multiple designations are refused. This increment
-selected the existing `qwen-context-worker` feature checkout as coordinator;
-no implementation authority was granted. Relocation is a later explicit host
-administrative reconciliation, never an automatic fallback.
+only. Existing different/multiple designations are refused. The canonical repository root is the designated coordinator following explicit
+administrative reconciliation. Immutable records retain original paths; this
+relocation does not renew or transfer execution authority.
 
 An unbound `Intake(root)` is now read-only. Trusted programmatic hosts must
 resolve `coordinator.locate(root)` before binding the existing synchronous Intake
 API; coordinator binding is host capability, never model data. The CLI refuses
-mutations from linked feature worktrees. `WorkCycle` rechecks shared designation
-for every mutation. Linked feature worktrees share Git objects/configuration but
-never independently publish canonical backlog state. Existing local writer leases
+mutations from any different checkout. `WorkCycle` rechecks designation for every
+mutation. Source operations use ordinary branches in the same physical checkout. Existing local writer leases
 serialize coordinator writes; no cross-node/distributed locking is introduced.
 
 ### Preparation and separate implementation authority
@@ -289,9 +287,11 @@ bindings are refused. Legacy hand-authored items without intake approval
 provenance are also refused; do not fabricate a duplicate B-number to bypass
 that requirement. Supporting another review provenance requires explicit later
 host integration. The one editable file must be an affected resource of the
-reviewed proposal. Targets must be clean, separate feature worktrees of the same
-Git repository, at the exact supplied `CodingTask.baseline_revision`, with matching
-source/test hashes. Caller data cannot substitute an old task baseline under a
+reviewed proposal. The target must be the canonical root. Its named ordinary feature branch must
+resolve to the exact `CodingTask.baseline_revision`, with matching source/test
+hashes. A clean tracked tree/index and no conflicting Git operation are required.
+Noncolliding untracked evidence is fingerprinted and preserved. The source-owner
+claim serializes mutations and safe branch switching; it never stashes user work. Caller data cannot substitute an old task baseline under a
 new HEAD. The branch, objective, one-file scope, Context choices, oracle/tests,
 source identities and existing model/time/action limits are frozen together.
 
@@ -314,7 +314,7 @@ smaller task limits remain supported. There is no paid fallback or model shell,
 Git, direct-write or protected-publication capability.
 
 ```powershell
-uv run python -m scripts.backlog work-prepare B-xxxx --target <absolute-feature-worktree> --branch <feature-branch> --task-definition <host-task.json>
+uv run python -m scripts.backlog work-prepare B-xxxx --target <absolute-canonical-root> --branch <feature-branch> --task-definition <host-task.json>
 uv run python -m scripts.backlog work-authorize B-xxxx --reference <actual-human-decision-reference> --expires <explicit-UTC-expiry>
 uv run python -m scripts.backlog work-execute B-xxxx
 uv run python -m scripts.backlog work-status B-xxxx
@@ -335,7 +335,9 @@ the B-number remains the work identity. `assignment.json`, `authorization.json`,
 receipts remain under `worker/`, with the original request/response/stage logs,
 source hashes, full validation evidence, final source and resource observations.
 `candidate.patch` describes the consolidated isolated edit against frozen source;
-no target checkout change is applied. No mutable parallel backlog state is added.
+temporary source is restored before returning to the administrative branch.
+No source tree is copied. The candidate remains immutable evidence until separately
+authorized integration. No mutable parallel backlog state is added.
 
 There is one assignment/dispatch slot per B-number in this first increment.
 Duplicate preparation or a durable prior dispatch never blindly launches another
@@ -382,7 +384,7 @@ decisions under an active grant; worker/model text has no such API or Tool.
 This is the existing local trust boundary, **not cryptographic authentication of
 Codex or protection against a malicious process with coordinator write access**.
 Do not feed arbitrary model output into the administrative CLI.
-The worker's disposable workspace isolates source changes, not operating-system
+The worker's one-file scope and exact-byte restoration isolate admitted changes, not operating-system
 privileges. This increment does not sandbox arbitrary Python executed by tests
 or make adversarial generated code safe; existing host/OS controls and supervisory
 scope assessment remain necessary. No credential or financial operation is
@@ -394,7 +396,7 @@ limits and cumulative task/call/output/time allowances. Pinning acceptance code
 is required because CodingTask oracles are executable host code. Scientific,
 financial, credential, grant-expansion and protected-publication effects are
 prohibited. Consequential execution/governance/model/agent infrastructure paths
-are excluded from routine edit scope. Only clean separate feature worktrees of
+are excluded from routine edit scope. Only clean ordinary feature branches in the canonical checkout of
 the same repository, exact baselines and independently approved backlog items
 can qualify. Low risk remains a mandatory Codex supervisory judgment, not a
 classification inferred from task text or a guarantee about arbitrary code.
@@ -482,3 +484,27 @@ The prepared B-0048 assignment and its pinned execution baseline remain intact;
 administrative authority is consumed by the coordinator, not imported into the
 authenticated implementation target. No new target revision is required merely
 to use this repository-local administrative feature.
+
+### Single-checkout operation and recovery
+
+`.local/backlog/checkout-owner/owner.json` identifies the operation, PID, entry
+branch/HEAD, exact target revision, admitted edit fingerprints and original
+untracked file identities. Atomic directory creation excludes another source
+writer. It is not execution authority and never expires automatically.
+Interrupted ownership must be inspected after the old process has stopped:
+
+```powershell
+uv run python -m scripts.backlog work-recover
+```
+
+This genuine default-No prompt restores only known temporary bytes and returns
+to the unchanged entry branch. Unknown files, moved refs, conflicting Git
+operations and corrupted records refuse. Recovery does not redispatch a model,
+rerun validation, renew authority or refund reservations. Planning/review can
+continue without source mutation; portfolio scheduling is not implemented.
+
+The administrative backlog is authenticated before switching and its branch
+revision remains pinned throughout execution. The implementation branch need
+not contain a later backlog approval. Commands return to administration before
+any subsequent canonical backlog mutation. CLI code may therefore be newer than
+the implementation/destination base without needing another checkout.

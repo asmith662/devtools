@@ -1,11 +1,9 @@
 # Governed development integration
 
-> Operational pause after canonical-checkout consolidation: these implemented
-> WorkCycle/integration paths still require or create additional checkouts.
-> They must not execute under the current one-checkout policy. Existing grants
-> and plans retain obsolete path bindings and are not transferred. Only
-> read-only history inspection is supported until the concrete compatibility
-> gap in docs/development/reconciliation.md is resolved. No new grant is issued.
+> Single-checkout continuation: WorkCycle and integration use the canonical
+> checkout and ordinary branches under exclusive source ownership. Historical
+> secondary-checkout assignments, grants and plans remain inspection-only; they
+> acquire no current authority. B-0048 still requires a genuine integration grant.
 
 
 `WorkCycle.integration` is the repository administrator for an accepted worker
@@ -21,12 +19,12 @@ second backlog or source of human authority. Coding delegation and
 | --- | --- |
 | CANDIDATE / SUPERVISORY_REVIEW | Existing assignment, coding authorization, accepted result, exact source/diff and Codex `ACCEPT_RECOMMENDED` authenticate. |
 | INTEGRATION_PLAN | Read-only destination ref, original source, merge base, excluded source commits, target diff, final file bytes/authorship, tests and parent obligations are frozen. |
-| INSTALLED | Separate standing integration authority reserves allowance and installs exact bytes in an ordinary isolated worktree based on the destination. |
+| INSTALLED | Separate standing integration authority reserves allowance and temporarily installs exact bytes on a destination-based ordinary feature branch, then restores the administrative checkout. |
 | VALIDATED / REWORK_REQUIRED | Host-owned acceptance, focused tests, Ruff, formatting, strict mypy and the protected development gate run against the installed tree. Failure never inherits candidate approval. |
 | APPROVE_INTEGRATION / REJECT | Codex records a decision, rationale and reference against that exact validated Git tree, plan and grant. |
 | FEATURE_PUBLISHED | One attributed commit is created and its exact remote feature ref verified. |
 | TARGET_PROMOTED | The reviewed commit advances the pinned destination using an exact expected-ref lease. |
-| DESTINATION_VERIFIED / POST_INTEGRATION_FAILED | A separate detached worktree authenticates the actual destination tree and reruns acceptance/focused tests. Protected validation is reused only for the identical tree. |
+| DESTINATION_VERIFIED / POST_INTEGRATION_FAILED | The same checkout selects the published feature at the exact local/remote destination commit and reruns acceptance/focused tests, then returns. Protected validation is reused only for the identical tree. |
 | COMPLETION_REVIEWED / VERIFIED_COMPLETION | Explicit Codex parent-vs-slice review precedes committed/pushed canonical backlog progress and verified publication. |
 
 The worker remains responsible for coding and bounded repair. WorkCycle owns
@@ -44,7 +42,7 @@ existing CLI. The closed JSON specification has:
   "remote": "origin",
   "destination": "main",
   "feature": "feat/integrate-reviewed-slice",
-  "worktree": "C:/absolute/unused/integration-worktree",
+  "checkout": "C:/Users/recoveryadmin/Workspace/tools/devtools",
   "additions": [],
   "parent_complete": false,
   "remaining": ["Explicit unresolved parent obligation"],
@@ -83,8 +81,8 @@ a new explicit plan/review. No implicit rebase, whole-feature merge, conflict
 resolution or history rewriting occurs. Remote branch protections still apply;
 a server requiring a PR refuses this direct operation. This increment does not
 bypass it or automate a hosting-service PR workflow.
-The implementation uses Git's existing [worktrees](https://git-scm.com/docs/git-worktree)
-and [expected-ref leases](https://git-scm.com/docs/git-push). Parent/tree checks
+The implementation uses ordinary `git branch`/`git switch`, exact staged Git
+trees, scoped `git restore` and [expected-ref leases](https://git-scm.com/docs/git-push). Parent/tree checks
 separately ensure that promotion advances the reviewed base rather than
 replacing unrelated history.
 
@@ -186,8 +184,8 @@ Raw log bytes, including non-UTF-8 output, are preserved exactly; only the
 operator excerpts use replacement decoding.
 Post-promotion failure cannot automatically roll back a published commit.
 Receipts retain prior commit and `git revert` provenance; a revert needs separate
-authority and review. Local Git worktrees are preserved, never automatically
-cleaned or deleted.
+authority and review. Unexpected working source is preserved for explicit stopped-owner recovery;
+no checkout is created or deleted.
 
 `WorkCycle.status()` adds an `integration` projection with plan/destination,
 recorded disposition, pending intents, chronological phase evidence and parent
@@ -213,3 +211,47 @@ policy, failures and interruption. Their expensive validation runner is explicit
 scripted; separate tests verify the shipped fixed command gates, and the actual
 protected development profile validates this implementation. Synthetic evidence
 does not establish a real integration grant or a newly completed Qwen task.
+
+## Canonical-checkout phase boundary
+
+New plans use `operating_model: single-checkout-v1` and exact canonical `checkout`;
+new integration policies use `checkout` instead of historical `worktree_root`.
+The existing record hashes distinguish these contracts. Historical records remain
+readable through status; their obsolete fields cannot authorize new effects.
+Planning can consume a historical accepted candidate after authenticating its
+unchanged proposal/review and backlog text. Only canonical-path relocation and
+Git LF/CRLF materialization may differ; the new plan binds current exact bytes
+and records the original backlog location. Original grants are not transferred.
+
+Every source phase claims the coordinator's exclusive checkout owner before
+switching branches. It refuses tracked/index dirt, unfinished Git operations,
+wrong branch/revision, path aliases and untracked/ignored collisions. Existing
+noncolliding untracked evidence is retained by unfiltered Git-blob identity.
+Each completed phase restores only its authenticated temporary changes and
+returns to the same administrative branch/HEAD. A permitted commit may advance
+the selected integration or administrative branch; unrelated commits refuse.
+
+`INSTALLED` records a successfully authenticated installation, not a persistent
+dirty working tree. Validation rematerializes the exact planned bytes and saves
+the staged tree identity; review/publication rematerialize and compare that tree.
+There is no alternate index checkout, source-tree copy or second executor.
+This makes the normal multi-command CLI usable even when the destination does
+not contain the newer administration modules. Status explicitly projects this
+temporary-source behavior and whether checkout reconciliation is required.
+
+Feature publication creates one destination-based single-parent commit, excluding
+the recorded unrelated source history. Promotion authenticates the remote feature,
+uses the pinned destination-ref lease and advances the local destination ref by
+compare-and-swap. Verification checks local and remote destination identities and
+the exact protected-validated tree in the same checkout. Failed post-validation
+does not undo a published effect or permit an automatic retry/revert.
+
+The authoritative backlog remains on the administrative branch. Its closeout
+commit/push is separately admitted by the integration grant. A partial slice
+retains BACKLOG status and explicit remaining obligations. B-0048's list/CSV
+compatibility work therefore remains open even after a future object integration.
+
+All phases recheck expiry/revocation and exact scope. Routine authorized stages
+need no additional per-stage confirmation. Issue/revoke/protected-target policy
+still use genuine default-No terminal authority. No live grant was issued by
+the single-checkout engineering assignment.

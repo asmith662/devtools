@@ -1,14 +1,31 @@
 # B-0048 object-slice integration readiness
 
-> Operational pause after canonical-checkout consolidation: these implemented
-> WorkCycle/integration paths still require or create additional checkouts.
-> They must not execute under the current one-checkout policy. Existing grants
-> and plans retain obsolete path bindings and are not transferred. Only
-> read-only history inspection is supported until the concrete compatibility
-> gap in docs/development/reconciliation.md is resolved. No new grant is issued.
+> Single-checkout continuation: WorkCycle and integration use the canonical
+> checkout and ordinary branches under exclusive source ownership. Historical
+> secondary-checkout assignments, grants and plans remain inspection-only; they
+> acquire no current authority. B-0048 still requires a genuine integration grant.
 
 
-## Actual state
+## Current canonical-checkout plan
+
+Candidate and accepted review still authenticate after relocation. The new
+read-only plan is
+`5d430dd3309248b11d4ced56ee46b9d7a2eb0f2b0c2fb731a1e34757606cddc8`,
+pinned to production main `862bda2d3d1d812893f84ab69691fc068ecce268`.
+It excludes nine unrelated source commits and binds the canonical checkout,
+unchanged Qwen candidate and existing independently authored regression source.
+The canonical backlog differs from its historical binding only in location and
+Git LF/CRLF materialization; proposal/review and logical text remain unchanged.
+The exact current bytes are separately bound by the new plan.
+
+`single-checkout-spec.json` and `single-checkout-readiness.json` in the existing
+`.local/backlog/integration-validation/` record preparation and actual missing-grant
+admission refusal. There was no reservation, installation, model call or authority
+transfer. The historical coding assignment refuses at coordinator identity.
+A genuine new integration grant and protected-main repository policy are still
+required. Both sibling compatibility obligations remain open.
+
+## Historical initial preparation
 
 The development-integration implementation is available through the existing
 [WorkCycle contract](integration.md). B-0048 itself remains **BLOCKED pending

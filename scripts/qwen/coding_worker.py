@@ -17,10 +17,14 @@ if str(_ROOT) not in sys.path:
 
 from apps.qwen.coding_loop import run_coding_task
 from apps.qwen.development_task import _command
+from apps.qwen.patch_proposal_worker import _read_text
 from apps.qwen.tasks import TASK_NAMES, select_task
 from devtools.core.paths import PathError, resolve_path
 from devtools.models.interaction import InteractionSource
 from devtools.models.interaction.providers import LlamaCppInteraction
+from scripts.backlog.checkout import Checkout
+from scripts.backlog.coordinator import git
+from scripts.backlog.work import WorkCycle
 from scripts.qwen.llama_cpp_profile import QWEN38_27B_UD_IQ4_XS
 from scripts.qwen.patch_proposal_worker_acceptance import (
     _confirm_local_execution,
@@ -102,13 +106,25 @@ async def main() -> int:
     except RuntimeError:
         print("MODEL_SERVICE_NOT_READY_OR_PROFILE_CHANGED; no model invocation")
         return 2
-    result = await run_coding_task(
-        _ROOT,
-        args.report_directory,
-        interaction,
-        task=task,
-        provenance=provenance,
-    )
+    cycle = WorkCycle(_ROOT)
+    branch = await git(_ROOT, "branch", "--show-current")
+    await cycle._target(_ROOT, branch, task)  # noqa: SLF001 -- same concrete host boundary
+    source = _read_text(resolve_path(_ROOT / task.source)).content
+    async with Checkout(
+        cycle,
+        "manual-coding:" + task.definition_sha256,
+        branch,
+        task.baseline_revision,
+        files=[{"path": task.source, "text": source}],
+    ) as owner:
+        result = await run_coding_task(
+            _ROOT,
+            args.report_directory,
+            interaction,
+            task=task,
+            provenance=provenance,
+            admit_edit=owner.expect,
+        )
     print(
         f"{result['disposition']}; calls: {len(result['turns'])}; "
         f"elapsed: {result['elapsed_seconds']:.2f}s; "

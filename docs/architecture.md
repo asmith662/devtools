@@ -9,8 +9,8 @@ source does not import applications or experiments. Historical Qwen controls
 and measured outcomes remain under `experiments/qwen`. The first accepted
 Markdown fix and the independently authored Python source-coordinate repair
 are maintained framework behavior; B-0048's separate accepted candidate remains
-unintegrated. Dashboard/governed-integration continuation and checkout-policy
-blockers are recorded in [reconciliation](development/reconciliation.md).
+unintegrated. Dashboard/governed-integration continuation and authority/adoption
+requirements are recorded in [reconciliation](development/reconciliation.md).
 
 `devtools` is organized by responsibility. This document is the canonical
 overview of current and accepted system architecture: it records domains,
@@ -78,7 +78,9 @@ owns schemas, commands, duplicate hints and conservative recovery. The
 binds one approved canonical item to a separately authorized existing Qwen task,
 fresh target checks, one dispatch claim and a review candidate or escalation.
 Shared local Git configuration designates one coordinator for backlog mutations;
-feature worktrees are execution targets only. Worker output and Codex advice
+ordinary feature branches in the canonical checkout are execution targets.
+A durable source-owner claim serializes switching, coding, validation and recovery;
+completed operations restore known temporary edits and return to administration. Worker output and Codex advice
 do not grant protected integration. Reusable portfolio supervision, scheduling
 and general delegation remain unimplemented. The concrete repository-local
 work bridge additionally supports scoped, expiring/revocable standing local-host

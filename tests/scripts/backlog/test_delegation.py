@@ -23,6 +23,7 @@ from devtools.models.interaction import (
 )
 from devtools.resources.filesystem.errors import FilesystemError
 from scripts.backlog import __main__ as cli
+from scripts.backlog.coordinator import git
 from scripts.backlog.delegation import Delegations, validate_policy
 from scripts.qwen.llama_cpp_profile import QWEN38_27B_UD_IQ4_XS
 from tests.scripts.backlog import test_work as helpers
@@ -288,11 +289,15 @@ def test_competing_admission_and_writer_lease(fixture: dict[str, Any]) -> None:
             authorize=lambda _: True,
         )
         second = intake.promote(proposal, authorize=lambda _: True)
+        await git(fixture["root"], "add", "docs/backlog")
+        await git(fixture["root"], "commit", "-m", "Second approved fixture item")
+        second_base = await git(fixture["root"], "rev-parse", "HEAD")
+        await git(fixture["root"], "branch", "feat/second", second_base)
         await fixture["cycle"].prepare(
             second,
             target=fixture["target"],
-            branch="feat/fixture",
-            task=fixture["task"],
+            branch="feat/second",
+            task=replace(fixture["task"], baseline_revision=second_base),
         )
         review_two = await owner.review(
             second,

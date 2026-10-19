@@ -268,8 +268,9 @@ Operate in `C:/Users/recoveryadmin/Workspace/tools/devtools`. Use ordinary Git
 branches in this checkout. Do not create additional Devtools worktrees, clones,
 backup repositories or independently maintained checkouts. Preserve branch refs
 and unique ignored evidence before removing obsolete checkout storage.
-Git fixture tests that create linked working copies require a separately scoped
-exception; do not silently invoke them under a no-worktree assignment.
+Git lifecycle tests use tiny independently authored repositories and ordinary
+branches in one checkout. Do not copy the Devtools source tree into fixtures.
+Individual frozen task input files may remain bounded evidence fixtures.
 
 Production framework code belongs in `src/devtools/`; maintained local
 applications in `apps/`; tests in `tests/`; supported developer/operator commands
@@ -297,3 +298,16 @@ new authority after relocation.
   operations.
 - Treat live acceptance artifacts as temporary unless explicitly designated
   repository artifacts.
+
+
+### Governed source mutation
+
+WorkCycle and integration use the canonical checkout with ordinary branches.
+Only one source-mutating operation may hold `.local/backlog/checkout-owner`.
+Do not remove an abandoned owner or redispatch after an ambiguous outcome.
+Inspect the receipt and stop the original process before the genuine default-No
+`python -m scripts.backlog work-recover` procedure. Unknown changes remain for
+manual reconciliation. Completed phases return to their administrative branch;
+no source-tree copy or second checkout is an execution/validation workaround.
+Historical checkout-bound grants remain historical. Current coding and
+integration authority must independently bind the canonical root and exact scope.

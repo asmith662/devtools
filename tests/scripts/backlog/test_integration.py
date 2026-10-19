@@ -94,7 +94,7 @@ async def setup(f: dict[str, Any]) -> dict[str, Any]:
         "remote": "origin",
         "destination": "delivery",
         "feature": "feat/integration-fixture",
-        "worktree": str(f["root"].parent / "integration-tree"),
+        "checkout": str(f["root"]),
         "additions": [],
         "parent_complete": False,
         "remaining": ["A separate parent obligation remains"],
@@ -108,7 +108,7 @@ async def setup(f: dict[str, Any]) -> dict[str, Any]:
         "oracles": [f["task"].oracle_sha256],
         "remote": "origin",
         "destinations": ["delivery", "main"],
-        "worktree_root": str(f["root"].parent),
+        "checkout": str(f["root"]),
         "actions": list(ACTIONS),
         "protected": False,
         "corrections": False,
@@ -227,7 +227,7 @@ def test_full_git_cycle_and_partial_parent_closeout(prepared: dict[str, Any]) ->
         )
         assert (
             await git(
-                Path(f["spec"]["worktree"]),
+                Path(f["spec"]["checkout"]),
                 "show",
                 "-s",
                 "--format=%P",
@@ -236,6 +236,43 @@ def test_full_git_cycle_and_partial_parent_closeout(prepared: dict[str, Any]) ->
             == f["task"].baseline_revision
         )
         assert await git(f["target"], "status", "--porcelain") == ""
+
+    asyncio.run(run())
+
+
+@pytest.mark.parametrize("published", [False, True])
+def test_missing_integration_branch_requires_reconciliation(
+    prepared: dict[str, Any], *, published: bool
+) -> None:
+    """A deleted branch never silently creates another integration commit."""
+
+    async def run() -> None:
+        f = prepared
+        i, p, g, item = (
+            f["integration"],
+            f["plan"]["sha256"],
+            f["grant"]["sha256"],
+            f["item"],
+        )
+        if published:
+            result = await through_publish(f)
+        else:
+            await i.install(item, p, g)
+        await git(f["root"], "branch", "-D", f["spec"]["feature"])
+        operation = i.publish if published else i.install
+        with pytest.raises(PermissionError, match="branch missing"):
+            await operation(item, p, g)
+        assert not await git(
+            f["root"],
+            "for-each-ref",
+            "--format=%(objectname)",
+            "refs/heads/" + f["spec"]["feature"],
+        )
+        if published:
+            assert (
+                await remote_head(f["root"], "origin", f["spec"]["feature"])
+                == result["commit"]
+            )
 
     asyncio.run(run())
 
@@ -266,7 +303,7 @@ def test_integration_authority_refusals(
             path.write_text(json.dumps(f["grant"]))
         with pytest.raises((PermissionError, ValueError, OSError, FilesystemError)):
             await i.install(f["item"], f["plan"]["sha256"], g)
-        assert not Path(f["spec"]["worktree"]).exists()
+        assert not (f["root"] / ".local/backlog/checkout-owner").exists()
 
     asyncio.run(run())
 
@@ -300,11 +337,13 @@ def test_unapproved_changes_and_validation_failure_block_publication(
         p = f["plan"]["sha256"]
         g = f["grant"]["sha256"]
         await i.install(f["item"], p, g)
-        extra = Path(f["spec"]["worktree"]) / "unapproved.py"
-        extra.write_text("x = 1\n")
-        with pytest.raises(PermissionError, match="Unapproved"):
+        extra = f["root"] / ".gitignore"
+        original = extra.read_bytes()
+        extra.write_bytes(original + b"# unrelated edit\n")
+        with pytest.raises(PermissionError, match="not clean"):
             await i.validate(f["item"], p, g)
-        extra.unlink()
+        assert extra.read_bytes() == original + b"# unrelated edit\n"
+        extra.write_bytes(original)
 
         async def fail(*_args: object, **_kwargs: object) -> dict[str, Any]:
             return {"passed": False, "fixture_only": True}
@@ -373,17 +412,17 @@ def test_commit_interruption_reconciles_without_duplicate(
         monkeypatch.setattr(lifecycle, "publish", unavailable)
         with pytest.raises(OSError, match="connection"):
             await through_publish(f)
-        commit = await git(Path(f["spec"]["worktree"]), "rev-parse", "HEAD")
+        commit = await git(f["root"], "rev-parse", f["spec"]["feature"])
         assert i.status(f["item"], p)["disposition"] == "RECONCILIATION_REQUIRED"
         monkeypatch.setattr(lifecycle, "publish", original)
         result = await i.publish(f["item"], p, g)
         assert result["commit"] == commit
         assert (
             await git(
-                Path(f["spec"]["worktree"]),
+                Path(f["spec"]["checkout"]),
                 "rev-list",
                 "--count",
-                f["task"].baseline_revision + "..HEAD",
+                f["task"].baseline_revision + ".." + f["spec"]["feature"],
             )
             == "1"
         )
@@ -615,7 +654,7 @@ def test_each_integration_scope_is_enforced(
         )
         with pytest.raises(PermissionError):
             await i.install(f["item"], f["plan"]["sha256"], grant["sha256"])
-        assert not Path(f["spec"]["worktree"]).exists()
+        assert not (f["root"] / ".local/backlog/checkout-owner").exists()
 
     asyncio.run(run())
 
@@ -648,12 +687,12 @@ def test_reservation_exhaustion_and_partial_install_recovery(
         spec = {
             **f["spec"],
             "feature": "feat/another",
-            "worktree": str(f["root"].parent / "another"),
+            "checkout": str(f["root"]),
         }
         second = await i.plan(item, f["review"]["sha256"], spec)
         with pytest.raises(PermissionError, match="exhausted"):
             await i.install(item, second["sha256"], grant["sha256"])
-        assert not Path(spec["worktree"]).exists()
+        assert not (f["root"] / ".local/backlog/checkout-owner").exists()
 
     asyncio.run(run())
 
@@ -713,11 +752,11 @@ def test_branch_switch_and_unrelated_commit_refuse(prepared: dict[str, Any]) -> 
             f["item"],
         )
         await i.install(item, p, g)
-        checkout = Path(f["spec"]["worktree"])
+        checkout = Path(f["spec"]["checkout"])
         await git(checkout, "switch", "-c", "feat/rogue")
         with pytest.raises(PermissionError, match="branch differs"):
             await i.validate(item, p, g)
-        await git(checkout, "switch", f["spec"]["feature"])
+        await git(checkout, "switch", "coordinator")
         await i.validate(item, p, g)
         decision = await i.review(
             item,
@@ -738,10 +777,18 @@ def test_branch_switch_and_unrelated_commit_refuse(prepared: dict[str, Any]) -> 
             )
             == decision
         )
+        await git(checkout, "switch", f["spec"]["feature"])
         await git(
-            checkout, "commit", "-m", "Unrelated commit without integration provenance"
+            checkout,
+            "commit",
+            "--allow-empty",
+            "-m",
+            "Unrelated commit without integration provenance",
         )
-        with pytest.raises(PermissionError, match="Unrelated history"):
+        await git(checkout, "switch", "coordinator")
+        with pytest.raises(
+            PermissionError, match="Unrelated integration feature history"
+        ):
             await i.publish(item, p, g)
         assert not await remote_head(f["root"], "origin", f["spec"]["feature"])
 
@@ -766,6 +813,34 @@ def test_rejected_candidate_review_refuses_planning(prepared: dict[str, Any]) ->
     asyncio.run(run())
 
 
+def test_windows_backlog_materialization_preserves_review_binding(
+    prepared: dict[str, Any],
+) -> None:
+    """Git newline conversion does not change the original approved work scope."""
+
+    async def run() -> None:
+        f = prepared
+        binding = f["intake"].approved_item(f["item"])
+        path = Path(binding["path"])
+        path.write_bytes(
+            binding["text"].replace("\r\n", "\n").replace("\n", "\r\n").encode()
+        )
+        current = f["intake"].approved_item(f["item"])
+        assert current["review"] == binding["review"]
+        plan = await f["integration"].plan(
+            f["item"],
+            f["review"]["sha256"],
+            {**f["spec"], "rationale": "Rebind only current canonical materialization"},
+        )
+        assert plan["backlog"] == current
+        assert plan["candidate_sha256"] == f["plan"]["candidate_sha256"]
+        path.write_bytes(path.read_bytes() + b"\nChanged objective\n")
+        with pytest.raises(PermissionError, match="Backlog changed"):
+            await f["integration"].plan(f["item"], f["review"]["sha256"], f["spec"])
+
+    asyncio.run(run())
+
+
 def test_cli_refusal_is_durable_and_nonexecuting(prepared: dict[str, Any]) -> None:
     """A missing integration grant produces inspectable BLOCKED evidence only."""
     f = prepared
@@ -780,7 +855,7 @@ def test_cli_refusal_is_durable_and_nonexecuting(prepared: dict[str, Any]) -> No
     state = f["integration"].status(f["item"], f["plan"]["sha256"])
     assert state["disposition"] == "BLOCKED"
     assert state["refusals"][0]["action"] == "integration-install"
-    assert not Path(f["spec"]["worktree"]).exists()
+    assert not (f["root"] / ".local/backlog/checkout-owner").exists()
 
 
 def test_corrupt_reservation_refuses_resume(prepared: dict[str, Any]) -> None:
@@ -802,7 +877,11 @@ def test_corrupt_reservation_refuses_resume(prepared: dict[str, Any]) -> None:
         with pytest.raises(ValueError, match="identity/schema"):
             await i.install(item, p, g)
         assert (
-            Path(f["spec"]["worktree"]) / f["task"].source
-        ).read_bytes().decode() == f["plan"]["files"][0]["text"]
+            Path(f["spec"]["checkout"]) / f["task"].source
+        ).read_bytes().decode().replace("\r\n", "\n") == f[
+            "cycle"
+        ].integration.candidate(f["item"], f["review"]["sha256"])["assignment"][
+            "baseline_source"
+        ].replace("\r\n", "\n")
 
     asyncio.run(run())

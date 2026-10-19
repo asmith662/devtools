@@ -11,8 +11,10 @@ scientifically incomplete after its C22 pre-entry failure; no retry is implied.
 
 The maintained dashboard and governed-development continuation are consolidated
 on `feat/qwen-context-worker`, not claimed as main production capabilities.
-Reconcile WorkCycle's extra-checkout requirement with the canonical branch
-workflow and review the dashboard dependency audit before further adoption.
+The single-checkout WorkCycle/integration continuation now uses serialized
+ordinary branch operations, exact-byte restoration and recoverable ownership.
+Next: review/publish the maintained capability and issue genuinely canonical-bound
+integration authority for B-0048; review the dashboard dependency audit separately.
 Old checkout-bound grants remain historical. The
 [reconciliation record](development/reconciliation.md) records every branch and
 blocker. Learned Intelligence integration remains separate. Precise Context
