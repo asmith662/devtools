@@ -2,18 +2,20 @@
 
 ## Immediate priority: native Qwen coding effectiveness
 
-Continue the existing Qwen workstream through real native Context coding
-baselines, trace-supported improvements and fresh independent acceptance.
-[Cohort 01](../apps/qwen/evaluation/native-cohort-01/README.md) is frozen and
-prepared, with pending backlog proposals and an inactive bounded standing policy.
-No fresh coding outcomes or fair Codex comparison exist yet. The next operating
-steps are genuine current-root authority and the separate backlog decisions,
-then the two development cases through the unchanged worker before optimization.
-One held-out source case is reserved for subsequent evaluation. The empirical
-target remains multiple accepted tasks and a fair measured Codex comparison;
-neither read-only Tool conformance nor one accepted example establishes it.
-Do not switch this immediate effort to Learned Intelligence, trading, swarming,
-another governance framework or unrelated research because execution is blocked.
+[Cohort 01](../apps/qwen/evaluation/native-cohort-01/README.md) now has real native
+coding evidence: duration passed frozen behavioral checks but needs style
+rework; CSV and the held-out source task failed. Local evaluation uses trusted
+direct invocation without backlog/grant/terminal rituals, preserving bounded
+scope, source ownership/restoration and independent acceptance. Production
+WorkCycle/integration authority is unchanged. No task candidate entered main.
+
+Native refusal feedback and source retention were improved from development
+traces, but accepted outcomes did not improve across this small sample. Continue
+Qwen work on source-exact edits, relevant source retention, read-bound usability
+and quality-aware independent acceptance, then fresh cases and a fair Codex
+comparison. Reliability, successful native test-feedback repair and Codex parity
+remain unproven. Do not switch this priority to Learned Intelligence, trading,
+swarming, new governance frameworks or unrelated research.
 
 ## Canonical consolidation checkpoint
 
@@ -34,8 +36,9 @@ Old checkout-bound grants remain historical. The
 [reconciliation record](development/reconciliation.md) records every branch and
 blocker. Learned Intelligence integration remains separate. Precise read-only
 Context Tools and task-local native continuation now operate in the same bounded
-worker on this feature branch; live read-only conformance passed. Live coding
-effectiveness awaits genuine canonical-bound authority. General structured
+worker on this feature branch; live read-only conformance and one native
+behavioral coding task passed. Broader coding effectiveness remains unproven;
+trusted local evaluation does not require production standing authority. General structured
 continuation, atomic task-local checkpoints, layered long-term Memory and
 32K/64K Context benchmarking remain planned.
 

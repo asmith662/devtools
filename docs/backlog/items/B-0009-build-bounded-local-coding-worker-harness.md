@@ -114,3 +114,15 @@ been fabricated. Baseline defect checks and 83 existing regressions pass their
 expected dispositions. No new Qwen coding task, improvement measurement or
 Codex comparison has run. Qwen effectiveness remains the immediate program
 priority; see the cohort README for exact authority and continuation steps.
+
+## Native coding cohort execution
+
+The later cohort is genuinely executed under trusted local development authority:
+duration passed behavioral acceptance but requires style rework; CSV failed and
+the held-out source task failed before editing. Five local runs used 25 requests,
+141,083 input / 7,341 output tokens and 439.08 worker seconds. No production
+candidate integration occurred. Local execution no longer depends on backlog
+promotion or grants; production WorkCycle authority is unchanged. See the cohort
+README/results for exact identities, Tool/evidence coverage and limitations.
+General proficiency, fresh native test-feedback repair and fair Codex comparison
+remain open; no historical result or proposal status was converted into success.

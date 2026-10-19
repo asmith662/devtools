@@ -2044,3 +2044,18 @@ authority. Live on-demand coding effectiveness and main adoption remain unproven
 and unauthorized, respectively. Atomic task-local state, durable structured
 continuation, layered Memory, Context-capacity evaluation and Learned Intelligence
 integration remain separate future work.
+
+
+## 2026-10-19 — Trusted local Qwen coding and measured cohort
+
+The maintained CLI now invokes the existing bounded worker and canonical source
+owner without production backlog/delegation/terminal gates. Production WorkCycle
+and integration protections are unchanged. Development evidence selected explicit
+version-lookup descriptions, correlated safe read/proposal refusal feedback and
+current-source retention in the existing byte budget; no second executor, Memory
+framework or policy was created. Five genuine runs over three frozen tasks:
+duration behavior accepted with independent style rework, CSV rejected across
+three conditions, held-out source rejected at read bounds. Total 25 calls,
+141,083 input / 7,341 output tokens, 439.08 worker seconds. No main integration
+or Codex performance claim. Frozen task/oracle bytes and historical evidence
+remain unchanged. See apps/qwen/evaluation/native-cohort-01/results.json.
