@@ -1,5 +1,108 @@
 # Implementation Ledger
 
+## Governed development integration (2026-10-18)
+
+Extended the existing repository WorkCycle from accepted worker evidence through
+destination-based planning, separately delegated installation, integration gates,
+exact-tree Codex review, feature commit/push, policy-controlled target promotion,
+post-promotion verification and canonical backlog progress. The coordinator and
+Intake atomic writer remain the owners; no second executor, backlog, database or
+generic orchestration/policy framework was introduced. Coding grants and accepted
+worker recommendations still confer no integration authority.
+
+The standing integration mechanism has genuine default-No terminal issuance and
+revocation, exact source/test/oracle/remote/destination scope, bounded reservations,
+expiry and Codex review. Main/master promotion additionally requires explicit
+repository policy and remains subject to server protections. Installation binds
+its reserving grant; malformed reservations and cross-grant inheritance refuse.
+Intent-first Git operations reconcile exact parents, trees, bytes and remote refs
+instead of making replacement commits or overwriting divergence. Partial slices
+append verified progress without closing unfinished parent obligations.
+
+Validation launchers explicitly import the authenticated target source rather
+than an editable coordinator installation. Full captured command bytes, including
+non-UTF-8 output, are retained. Installation/pre-publication checks preserve exact
+candidate bytes; post-promotion checks authenticate the reviewed Git tree and
+record LF/CRLF checkout materialization separately. The explicit Windows
+`core.autocrlf=true` test covers independent test additions through actual
+feature publication, target promotion and verification.
+
+The final Python 3.14 protected profile passed **1,821 tests, two skipped, 100%
+production branch coverage in 266.97 seconds**. The focused backlog checkpoint
+passed 104 tests in 273.76 seconds; final target/CRLF/full-cycle focused checks
+passed five tests in 134.73 seconds. Affected Ruff/format checks, strict mypy over
+460 supported source/test/tool files and whitespace checks passed. Earlier
+protected checkpoints and final progress/logs remain in the existing local
+validation location. No coverage/test safeguards were weakened. Git fixtures
+substitute expensive gates explicitly; separate command tests, a real bound-target
+subprocess and the actual protected profile verify the shipped validation path.
+
+B-0048's exact accepted Qwen source/review were authenticated and read-only plan
+`076684241ee2f23bb4de0d10fcaefed1519d0fee1c5ef28037fd2d02c1ac5857`
+was prepared against protected main. Ten unrelated source commits are excluded.
+An independently authored permanent test addition is planned with separate
+provenance. Admission correctly reports missing integration authority: no actual
+integration grant, installation, source publication or protected promotion occurs.
+JsonListFile/CsvFile defects leave B-0048 open. See the
+[integration contract](backlog/integration.md) and
+[actual readiness packet](backlog/b-0048-integration-readiness.md).
+
+`work-status` exposes additive integration history; the separate dashboard UI
+does not yet render those fields. Conflicts, server-required PRs, interrupted
+validation, stale leases and expired/revoked in-flight grants remain explicit
+reconciliation boundaries. No new Qwen/scientific call, protected-main change or
+modification of immutable worker/scientific evidence was performed.
+
+## First real delegated B-0048 Qwen work cycle (2026-10-18)
+
+Authenticated the maintainer-issued standing grant and the unchanged prepared
+assignment, recorded actual Codex scope/acceptance review, reserved allowance
+and dispatched the existing worker once. Three local Qwen calls and two bounded
+repairs produced an independently accepted JsonObjectFile-only candidate:
+15,390 input / 530 output tokens, 101.10 seconds worker time, 102.23 seconds
+bridge time. Unknown cached/reasoning consumption remains unknown. The frozen
+oracle passes Python 3.12.13 and 3.14.3; all 11 JSON regressions pass. Independent
+offline replay of the three captured proposals reproduced the final source
+hash and passing oracle/tests. Ruff and direct-file formatting pass.
+
+The existing result is REVIEW_CANDIDATE and actual Codex post-review records
+ACCEPT_RECOMMENDED, not integration authority. Candidate source and complete
+turn/validation evidence remain in existing local WorkCycle receipts; the clean
+target and maintained source are unchanged. No redundant human approval, fourth
+call, replacement attempt, protected publication or scientific work occurred.
+The [Qwen overview](../experiments/qwen/docs/overview.md#first-delegated-b-0048-review-candidate)
+records exact identities, turn timeline and measurements. B-0048 stays open:
+candidate integration and sibling JsonListFile/CsvFile defects remain unresolved.
+
+## Routine Qwen standing delegation (2026-10-18)
+
+Extended the existing repository-local WorkCycle with immutable standing grants,
+revocations, exact Codex supervisory decisions and conservative cumulative
+reservations. Trusted local-host issue/revocation requires genuine default-No
+terminal consent. Delegated assignment authorization/dispatch is noninteractive
+within exact source, test, validation-code, model/profile and resource bounds;
+manual consent remains supported. The existing worker and Intake writer/atomic
+filesystem facilities retain execution and persistence ownership. Per-call
+authority checks stop subsequent repairs after expiry/revocation; uncertain
+dispatches retain their allowance and cannot be blindly retried. Observed output
+overruns block further delegated work without discarding model evidence.
+
+The existing result plus original objective supports attributed post-run Codex
+acceptance/rework/escalation/rejection recommendations. No protected publication
+or canonical closeout is granted. The proposed initial B-0048 policy is inactive;
+read-only applicability passes, and the original prepared assignment remains
+unauthorized and unexecuted. This work creates no framework governance service,
+scheduler, agent hierarchy, scientific operation or live model evidence.
+
+Validation on Python 3.14.3: 75 focused backlog tests passed in 96.60 seconds
+(97.29 seconds host). The protected development profile passed once: 1,789
+passed, two skipped, 100% production branch coverage, 210.99 seconds pytest
+(212.59 seconds host). Relevant Ruff, formatting and strict mypy checks pass.
+An earlier focused run was interrupted by a validation helper's 120-second
+timeout; the completion run used a longer local validation wrapper without
+altering worker limits or maintained execution behavior. B-0048's exact prepared
+assignment passes read-only policy applicability with no grant or reservation.
+
 ## Governed backlog-to-Qwen work bridge (2026-10-18)
 
 Connected canonical reviewed B-number work to the existing CodingTask and

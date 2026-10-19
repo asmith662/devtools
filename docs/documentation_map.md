@@ -7,6 +7,10 @@ pass; corrected execution requires binding-only Stage A and a new exact run ID.
 
 ## Authority and ownership
 
+- [Governed development integration](backlog/integration.md) owns the existing
+  WorkCycle's candidate-to-destination lifecycle, separate standing integration
+  authority, exact-tree review, Git reconciliation and canonical closeout.
+
 - [Central architecture](architecture.md) is the canonical current and accepted
   system-architecture overview: domains, boundaries, dependency direction,
   cross-domain composition, and whether architecture is implemented/current or

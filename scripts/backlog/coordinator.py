@@ -28,7 +28,12 @@ async def git(root: Path, *arguments: str, missing_ok: bool = False) -> str:
     if missing_ok and result.exit_code == 1:
         return ""
     if result.failed or result.stdout_truncated or result.stderr_truncated:
-        raise ValueError("Git inspection failed: " + " ".join(arguments))
+        raise ValueError(
+            "Git inspection failed: "
+            + " ".join(arguments)
+            + "\n"
+            + result.stderr[:2048].decode("utf-8", errors="replace")
+        )
     return result.stdout.decode("utf-8").strip()
 
 
