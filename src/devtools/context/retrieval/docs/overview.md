@@ -146,6 +146,16 @@ representations, without Retrieval rendering or selecting disclosure.
 
 ## Selectable source representations
 
+The maintained [Qwen consumer](../../../../../apps/qwen/README.md) now selects
+these views on demand through native read-only Tools. Its byte/call budgets and
+authority remain application concerns, not ranking or RI truth. Explicit task
+corpora can call `discover_repository_resource_addresses(...,
+requested_addresses=addresses)` to probe only required canonical regular-file
+paths. The discovery result retains the requested selection and its `semantics`;
+component probes are bounded, required links/missing paths refuse, and unrelated
+directories are not enumerated. Omitting this option preserves recursive
+discovery. This is metadata discovery, not acquisition or an exhaustive corpus.
+
 `devtools.context.retrieval.source` provides `build_source_search_index` and
 `search_repository_source` (also exported by `devtools.context.retrieval`).
 This is in-memory composition of the existing explicit text corpus, lexical

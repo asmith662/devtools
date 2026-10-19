@@ -22,9 +22,11 @@ from apps.qwen.tasks import TASK_NAMES, select_task
 from devtools.core.paths import PathError, resolve_path
 from devtools.models.interaction import InteractionSource
 from devtools.models.interaction.providers import LlamaCppInteraction
+from devtools.resources.filesystem import FilesystemError
 from scripts.backlog.checkout import Checkout
 from scripts.backlog.coordinator import git
-from scripts.backlog.work import WorkCycle
+from scripts.backlog.intake import load_json
+from scripts.backlog.work import WorkCycle, task_from_dict
 from scripts.qwen.llama_cpp_profile import QWEN38_27B_UD_IQ4_XS
 from scripts.qwen.patch_proposal_worker_acceptance import (
     _confirm_local_execution,
@@ -62,7 +64,12 @@ async def local_interaction(root: Path) -> tuple[ModelInteraction, dict[str, Any
 async def main() -> int:
     """Confirm before service inspection, then dispatch at most one worker run."""
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--task", choices=TASK_NAMES, default="markdown-fences")
+    selection = parser.add_mutually_exclusive_group()
+    selection.add_argument("--task", choices=TASK_NAMES, default="markdown-fences")
+    selection.add_argument(
+        "--task-definition",
+        help="Trusted host CodingTask JSON; never accept model-authored configuration.",
+    )
     parser.add_argument(
         "--report-directory",
         required=True,
@@ -72,7 +79,29 @@ async def main() -> int:
         ),
     )
     args = parser.parse_args()
-    task = select_task(args.task)
+    try:
+        task = (
+            task_from_dict(
+                load_json(
+                    resolve_path(
+                        args.task_definition,
+                        base_directory=Path.cwd(),
+                    ).value,
+                ),
+            )
+            if args.task_definition
+            else select_task(args.task)
+        )
+    except (
+        PathError,
+        ValueError,
+        TypeError,
+        KeyError,
+        FilesystemError,
+        OSError,
+    ) as error:
+        parser.error(f"Invalid host task definition: {error}")
+    args.task = task.name
     try:
         args.report_directory = resolve_path(
             args.report_directory,
@@ -100,6 +129,13 @@ async def main() -> int:
     args.model = "qwen38-local"
     args.report_path = args.report_directory
     args.task_objective = task.name + ": " + task.objective
+    args.coding_limits = (
+        f"at most {task.maximum_calls} model invocations, 3 edit proposals, "
+        f"{8 if task.context_mode == 'on-demand' else 0} read-only Context actions; "
+        f"{task.output_tokens} output tokens per call; thinking off; "
+        f"{task.wall_seconds}-second total bound; read scope "
+        + str([task.source, *task.tests, *task.read_paths])
+    )
     _confirm_local_execution(args)
     try:
         interaction, provenance = await local_interaction(_ROOT)

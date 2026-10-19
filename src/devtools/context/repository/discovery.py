@@ -19,6 +19,8 @@ from devtools.context.repository.resource import RepositoryResourceAddress
 from devtools.core.paths import ResolvedPath, resolve_path
 
 if TYPE_CHECKING:
+    from collections.abc import Collection
+
     from devtools.context.repository.identity import Repository, RepositoryId
 
 
@@ -47,10 +49,18 @@ class RepositoryResourceDiscovery:
     maximum_traversal_entry_count: int
     examined_entry_count: int
     addresses: tuple[RepositoryResourceAddress, ...]
+    requested_addresses: tuple[RepositoryResourceAddress, ...] | None = None
 
     DISCOVERY_SEMANTICS: ClassVar[str] = (
         "recursive-entry-bounded-regular-files-skip-links-lexical-address-order-v2"
     )
+
+    @property
+    def semantics(self) -> str:
+        """Distinguish explicit component probes from recursive enumeration."""
+        if self.requested_addresses is not None:
+            return "explicit-address-component-bounded-regular-files-v1"
+        return self.DISCOVERY_SEMANTICS
 
 
 @dataclass(slots=True)
@@ -90,6 +100,7 @@ def discover_repository_resource_addresses(
     root: ResolvedPath,
     maximum_resource_count: int,
     maximum_traversal_entry_count: int,
+    requested_addresses: Collection[RepositoryResourceAddress] | None = None,
 ) -> RepositoryResourceDiscovery:
     """Discover regular-file addresses recursively beneath an explicit root.
 
@@ -98,6 +109,12 @@ def discover_repository_resource_addresses(
     limits bound examined filesystem entries and discovered regular resources.
     Exceeding either limit or encountering a required traversal failure raises
     without publishing a partial discovery result.
+
+    With ``requested_addresses``, probe only those canonical paths without
+    directory enumeration. Each component probe counts against the traversal
+    limit, including repeated parents. Missing/nonregular/link-like required
+    paths refuse. ``requested_addresses`` and ``semantics`` retain this scope;
+    it is never a claim to have discovered the entire repository.
     """
     if maximum_resource_count <= 0:
         msg = "Maximum discovered resource count must be positive."
@@ -112,10 +129,15 @@ def discover_repository_resource_addresses(
         maximum_resource_count=maximum_resource_count,
         maximum_traversal_entry_count=maximum_traversal_entry_count,
     )
-    _discover_regular_files(
-        state=state,
-        directory=normalized_root.value,
-    )
+    requested = None
+    if requested_addresses is None:
+        _discover_regular_files(state=state, directory=normalized_root.value)
+    else:
+        requested = tuple(sorted(requested_addresses, key=lambda a: a.value))
+        if len(set(requested)) != len(requested):
+            msg = "Requested discovery addresses must be distinct."
+            raise ValueError(msg)
+        _discover_requested_files(state, requested)
     return RepositoryResourceDiscovery(
         repository_id=repository.id,
         root=normalized_root,
@@ -125,7 +147,38 @@ def discover_repository_resource_addresses(
         addresses=tuple(
             sorted(state.discovered, key=lambda address: address.value),
         ),
+        requested_addresses=requested,
     )
+
+
+def _discover_requested_files(
+    state: _DiscoveryState,
+    addresses: tuple[RepositoryResourceAddress, ...],
+) -> None:
+    """Probe only required paths; count each component probe against the bound.
+
+    Link-like required components refuse rather than silently returning partial
+    membership. This is metadata discovery, not content acquisition or an atomic
+    filesystem claim. Unrequested directories are never enumerated.
+    """
+    for address in addresses:
+        candidate = state.root.value
+        try:
+            for part in address.parts:
+                state.examine_entry()
+                candidate = candidate / part
+                if candidate.is_symlink() or candidate.is_junction():
+                    msg = f"Requested discovery path contains a link: {address}."
+                    raise RepositoryResourceDiscoveryError(root=state.root, message=msg)
+            if not candidate.is_file():
+                msg = f"Requested discovery path is not a regular file: {address}."
+                raise RepositoryResourceDiscoveryError(root=state.root, message=msg)
+        except OSError as error:
+            raise RepositoryResourceDiscoveryError(
+                root=state.root,
+                message=str(error),
+            ) from error
+        state.add_resource(address)
 
 
 def _discover_regular_files(

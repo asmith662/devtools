@@ -26,6 +26,9 @@ def assemble_python_function_context_model_request(
     context: RenderedPythonFunctionContext,
 ) -> ModelRequest:
     """Return a request preserving task and request semantics around Context."""
+    if task_request.prompt.messages:
+        msg = "Text Context assembly does not accept structured message input."
+        raise ValueError(msg)
     task_text = task_request.prompt.content
     prompt_content = "".join(
         (

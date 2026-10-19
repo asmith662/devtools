@@ -6,6 +6,20 @@ This package owns one bounded model invocation boundary:
 ModelRequest -> ModelInteraction -> ModelResponse
 ```
 
+`Prompt` supports either legacy `content, role` or `Prompt("", "messages",
+messages=(...))` with immutable `PromptMessage(role, content, tool_calls,
+tool_call_id)` values. Complete native assistant/call/result groups are checked
+before dispatch; orphaned, duplicate pending or unresolved calls refuse. These
+are invocation-input values, not durable ConversationMessage identities or
+provider-owned continuation. llama.cpp forwards the explicit roles/calls/results
+without flattening; it remains stateless and rejects opaque ConversationRef.
+The caller owns history, selection, Tool execution, authority and evidence.
+Existing single-text callers remain unchanged. Text-only Context assemblers
+reject structured input rather than silently discard it. Optional observed
+Prompt capture includes structured input under its existing policy, with native
+argument fields independently captured/omitted/redacted; worker archives remain
+separate exact request/response captures.
+
 `ModelRequest` is an immutable semantic invocation value containing a `Prompt`,
 immutable portable `ModelSettings`, an optional provider continuation, and an
 optional typed provider request extension. `Prompt` is per-invocation

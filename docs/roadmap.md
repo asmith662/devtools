@@ -17,9 +17,12 @@ Next: review/publish the maintained capability and issue genuinely canonical-bou
 integration authority for B-0048; review the dashboard dependency audit separately.
 Old checkout-bound grants remain historical. The
 [reconciliation record](development/reconciliation.md) records every branch and
-blocker. Learned Intelligence integration remains separate. Precise Context
-Tools, structured continuation, atomic task-local checkpoints, layered long-term
-Memory and 32K/64K Context benchmarking remain planned.
+blocker. Learned Intelligence integration remains separate. Precise read-only
+Context Tools and task-local native continuation now operate in the same bounded
+worker on this feature branch; live read-only conformance passed. Live coding
+effectiveness awaits genuine canonical-bound authority. General structured
+continuation, atomic task-local checkpoints, layered long-term Memory and
+32K/64K Context benchmarking remain planned.
 
 ## Purpose
 
@@ -81,8 +84,12 @@ and bounded primary-failure feedback. This escalation is not Qwen success.
 The next checkpoint is failure-guided worker improvement and another independently
 bounded unresolved task, under separate local execution authorization. General coding
 reliability and autonomous multi-task coordination remain unproven.
-Native structured conversation continuation, integrated coding-agent acceptance
-and later 32K/64K Context benchmarking remain future work.
+Task-local native assistant/Tool continuation, dynamic source acquisition and
+bounded test-feedback repair are implemented and deterministically integrated;
+the real read-only smoke is recorded in the [evaluation note](../apps/qwen/EVALUATION.md).
+The next checkpoint is one genuinely authorized, previously unattempted coding
+task and independent acceptance. General structured conversation/recovery,
+multi-task coding reliability and later 32K/64K benchmarking remain unfinished.
 
 ### Governed work intake and portfolio progression
 
@@ -121,9 +128,10 @@ object-only candidate and independent permanent regressions, then consume the
 existing lifecycle. Main promotion additionally requires an explicit protected
 destination policy decision. No such grant is inferred from this implementation.
 Broader compatibility work remains separately scoped. This checkpoint does not implement scheduling,
-persistent Codex supervision or authorize a new local model run. Precise Context
-Tools, structured continuation, task-local checkpoints, layered long-term Memory,
-Context benchmarking and Learned Intelligence integration remain on the roadmap.
+persistent Codex supervision or authorize a new coding run. Task-local native
+Context/continuation is implemented as described above; broader precise Context
+coverage, durable continuation/checkpoints, layered long-term Memory, Context
+benchmarking and Learned Intelligence integration remain on the roadmap.
 
 ### Future agent working and long-term memory
 

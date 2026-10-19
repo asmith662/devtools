@@ -12,6 +12,19 @@ are maintained framework behavior; B-0048's separate accepted candidate remains
 unintegrated. Dashboard/governed-integration continuation and authority/adoption
 requirements are recorded in [reconciliation](development/reconciliation.md).
 
+On `feat/qwen-context-worker`, the maintained worker also supports on-demand
+native repository Context Tools in its existing proposal/validation loop. It
+reuses source search, exact qualified source-unit names, source/version checks,
+enclosing expansion, static references/calls, disclosure materialization and
+ToolRunner. `PromptMessage` values are selected invocation input with native
+assistant/call/tool-result roles, not durable Conversation state. Active message
+selection preserves objective/latest validation while explicitly omitting older
+complete exchanges under a byte budget; full captures remain inspectable.
+Exact task scope and standing-call reservations still gate coding. A measured
+read-only native smoke passed; live coding effectiveness under this mode awaits
+genuine current-checkout task authority. See the [worker contract](../apps/qwen/README.md)
+and [evaluation status](../apps/qwen/EVALUATION.md). Main adoption is separate.
+
 `devtools` is organized by responsibility. This document is the canonical
 overview of current and accepted system architecture: it records domains,
 cross-package ownership, dependency direction, and cross-domain composition.

@@ -308,10 +308,18 @@ backlog/review/status, source/branch/base, exact scope, grant and current host
 consent. It rechecks after a potentially long terminal prompt. Grant expiry is
 an admission deadline for the whole bounded worker run, not a new per-model-turn
 reservation engine. Current host refusal/revocation stops admission. Bounds stay
-at three proposals/model calls, one native edit per call, 4,096 output tokens per
+at three proposals, one native edit per proposal, 4,096 output tokens per
 call, 300 seconds per call, 900 seconds total and the existing local 32K profile;
 smaller task limits remain supported. There is no paid fallback or model shell,
 Git, direct-write or protected-publication capability.
+
+Prepared mode retains three total model calls. Host task definitions may select
+`context_mode="on-demand"` with up to ten total calls and eight bounded read-only
+Context actions, sharing the exact reviewed/reserved call allowance. Optional
+`read_paths` are frozen with baseline hashes and must fit the grant's source/test
+scope. Exact native schemas are checked before every delegated call. Existing
+grants retain issued bounds; Context Tools do not expand a grant. Original
+prepared task digests remain compatible. See the [worker contract](../../apps/qwen/README.md).
 
 ```powershell
 uv run python -m scripts.backlog work-prepare B-xxxx --target <absolute-canonical-root> --branch <feature-branch> --task-definition <host-task.json>

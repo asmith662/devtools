@@ -36,8 +36,15 @@ remains REPAIR_BUDGET_EXHAUSTED: three calls, two repairs, 19,587 input / 1,848
 output tokens, 105.74 seconds. Codex corrected the production materializer and
 added primary-exception feedback capture after this failure. Neither correction
 constitutes Qwen task acceptance or reusable Agent-framework promotion.
-Native structured continuation, atomic task-local state, long-term memory and
-32K/64K Context benchmarking remain planned work.
+Task-local native structured continuation and five read-only Context operations
+are now connected to that same coding loop on `feat/qwen-context-worker`.
+Scripted search/read/edit/failure/repair passes the unchanged oracle and genuine
+local native search/read completed (3 requests, 4 reads, 12,152 input / 645 output
+tokens, 40.037 seconds). No new coding authority exists at the canonical checkout,
+so this is not another accepted Qwen task or demonstrated coding improvement.
+See the [maintained contract and evaluation](../../../apps/qwen/README.md).
+General continuation, atomic task-local state, long-term memory and 32K/64K
+benchmarking remain planned.
 
 The existing WorkCycle now provides a [separately governed integration lifecycle](../integration.md)
 for accepted candidates: destination-based installation, validation, exact-tree
@@ -92,4 +99,9 @@ for it yet, and scripted success does not establish Context pressure.
 
 ## Canonical consolidation checkpoint
 
-The standalone maintained worker is at apps/qwen. The first accepted Qwen Markdown correction is adopted; Task 02 remains failed and its source defect has a separately attributed Codex repair. General reliability, structured continuation and memory remain unfinished. WorkCycle/delegation/integration and the dashboard are retained on feat/qwen-context-worker pending one-checkout compatibility and dependency review. No new model task was run during cleanup.
+The standalone worker is at `apps/qwen`. The first accepted Markdown correction
+is adopted; Task 02 remains failed with a separate Codex repair. Single-checkout
+WorkCycle/integration is implemented on `feat/qwen-context-worker`; main adoption
+and dashboard dependency review remain separate. No model task ran during cleanup.
+The later native Context increment adds measured read-only conformance, not a new
+coding result. General reliability, durable continuation and Memory remain open.

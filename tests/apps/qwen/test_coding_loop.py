@@ -226,7 +226,7 @@ def test_exhaustion_and_directory_reuse_refused(
 
 def test_call_bound_refused_before_preparation(tmp_path: Path) -> None:
     """A caller cannot enlarge the admitted repair bound."""
-    with pytest.raises(ValueError, match="between one and three"):
+    with pytest.raises(ValueError, match="authenticated task limit"):
         asyncio.run(
             worker.run_coding_task(
                 ROOT, tmp_path / "run", Scripted([]), maximum_calls=4

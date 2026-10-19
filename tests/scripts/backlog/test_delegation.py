@@ -19,6 +19,7 @@ from devtools.models.interaction import (
     ModelRequest,
     ModelResponse,
     ModelSettings,
+    ModelToolCall,
     Prompt,
 )
 from devtools.resources.filesystem.errors import FilesystemError
@@ -129,6 +130,70 @@ def test_delegated_scripted_repair_and_review_without_terminal(
             await fixture["cycle"].execute(fixture["item"], interaction_factory=factory)
         assert len(model.requests) == 2
         assert authority["delegation"] == grant["sha256"]
+
+    asyncio.run(run())
+
+
+def test_delegated_native_context_worker_preserves_assignment_scope(
+    fixture: dict[str, Any],
+) -> None:
+    """New task digest admits exact read-only native Tools through the same guard."""
+
+    async def run() -> None:
+        fixture["task"] = replace(fixture["task"], context_mode="on-demand")
+        owner, grant, assignment = await setup(fixture)
+        decision = await review(owner, fixture, grant)
+        await owner.authorize(fixture["item"], grant["sha256"], decision["sha256"])
+
+        class Investigate(helpers.Scripted):
+            async def send(self, request: ModelRequest) -> ModelResponse:
+                if not self.requests:
+                    self.requests.append(request)
+                    return ModelResponse(
+                        "Inspect source",
+                        self.source,
+                        tool_calls=(
+                            ModelToolCall(
+                                "search_source",
+                                '{"query":"closes","mode":"symbol"}',
+                                "search",
+                            ),
+                        ),
+                    )
+                self.requests.append(request)
+                # Use the existing scripted proposal as the second native call.
+                return await helpers.Scripted([(helpers.OLD, helpers.GOOD)]).send(
+                    request
+                )
+
+        model = Investigate([])
+
+        async def factory() -> tuple[Any, dict[str, Any]]:
+            return model, provenance()
+
+        result = await fixture["cycle"].execute(
+            fixture["item"], interaction_factory=factory
+        )
+        assert result["disposition"] == "REVIEW_CANDIDATE", result
+        assert result["model_calls"] == 2
+        assert assignment["task_sha256"] == fixture["task"].definition_sha256
+        assert model.requests[1].prompt.messages[-1].role == "tool"
+        assert not result["integration_authorized"]
+        # Broader read paths never inherit an eligible source-only grant.
+        other = replace(
+            fixture["task"],
+            read_paths=("src/devtools/private.py",),
+            baseline_hashes=(
+                *fixture["task"].baseline_hashes,
+                ("src/devtools/private.py", "0" * 64),
+            ),
+            context=(
+                *fixture["task"].context,
+                ("src/devtools/private.py", "private", "file", "file"),
+            ),
+        )
+        with pytest.raises(PermissionError, match="outside delegation"):
+            owner.eligible(grant["policy"], assignment, other)
 
     asyncio.run(run())
 

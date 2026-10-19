@@ -63,6 +63,7 @@ def task_from_dict(value: dict[str, Any]) -> CodingTask:
             "tests": tuple(value["tests"]),
             "baseline_hashes": tuple(tuple(v) for v in value["baseline_hashes"]),
             "context": tuple(tuple(v) for v in value["context"]),
+            "read_paths": tuple(value.get("read_paths", ())),
         }
     )
 
@@ -178,7 +179,15 @@ class WorkCycle:
                     "actions": {
                         "tool": "propose_edit",
                         "per_call": 1,
-                        "total": task.maximum_calls,
+                        "total": min(task.maximum_calls, 3),
+                        **(
+                            {
+                                "read_only_context_tools": 8,
+                                "model_calls_total": task.maximum_calls,
+                            }
+                            if task.context_mode == "on-demand"
+                            else {}
+                        ),
                     },
                     "scope": SCOPE,
                     "execution_authorized": False,

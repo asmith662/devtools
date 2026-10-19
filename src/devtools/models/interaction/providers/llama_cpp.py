@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-"""One-turn llama.cpp implementation of the interaction protocol."""
+"""Stateless llama.cpp invocation with explicit caller-owned message input."""
 
 from __future__ import annotations
 
@@ -20,6 +20,7 @@ from devtools.models.interaction import (
     ModelToolCall,
     ModelToolDefinition,
     ModelUsage,
+    Prompt,
 )
 from devtools.models.interaction.providers.llama_cpp_errors import (
     LlamaCppHttpError,
@@ -91,12 +92,7 @@ class LlamaCppInteraction:
 
         payload: dict[str, object] = {
             "model": self._model,
-            "messages": [
-                {
-                    "role": _provider_role(request.prompt.role),
-                    "content": request.prompt.content,
-                },
-            ],
+            "messages": _provider_messages(request.prompt),
             "stream": False,
         }
         if request.settings.maximum_output_tokens is not None:
@@ -160,6 +156,28 @@ def _parse_endpoint(endpoint: str) -> SplitResult:
 def _provider_role(role: str) -> str:
     """Map the existing conversational role to its llama.cpp chat equivalent."""
     return role
+
+
+def _provider_messages(prompt: Prompt) -> list[dict[str, object]]:
+    """Serialize explicit native assistant/call/result roles without execution."""
+    if not prompt.messages:
+        return [{"role": _provider_role(prompt.role), "content": prompt.content}]
+    messages: list[dict[str, object]] = []
+    for message in prompt.messages:
+        value: dict[str, object] = {"role": message.role, "content": message.content}
+        if message.tool_calls:
+            value["tool_calls"] = [
+                {
+                    "id": call.provider_call_id,
+                    "type": "function",
+                    "function": {"name": call.name, "arguments": call.arguments_json},
+                }
+                for call in message.tool_calls
+            ]
+        if message.tool_call_id is not None:
+            value["tool_call_id"] = message.tool_call_id
+        messages.append(value)
+    return messages
 
 
 async def _post_chat_completion(
@@ -459,10 +477,14 @@ def _model_usage(response: dict[str, object]) -> ModelUsage | None:
         output_tokens=_usage_token_count(raw_usage, "completion_tokens"),
         total_tokens=_usage_token_count(raw_usage, "total_tokens"),
     )
-    return usage if any(
-        value is not None
-        for value in (usage.input_tokens, usage.output_tokens, usage.total_tokens)
-    ) else None
+    return (
+        usage
+        if any(
+            value is not None
+            for value in (usage.input_tokens, usage.output_tokens, usage.total_tokens)
+        )
+        else None
+    )
 
 
 def _model_termination(response: dict[str, object]) -> ModelTermination | None:
@@ -522,8 +544,7 @@ def _usage_token_count(usage: dict[object, object], field: str) -> int | None:
         return None
     if isinstance(value, bool) or not isinstance(value, int) or value < 0:
         msg = (
-            "llama.cpp successful response usage "
-            f"{field} must be non-negative integer."
+            f"llama.cpp successful response usage {field} must be non-negative integer."
         )
         raise LlamaCppResponseError(msg)
     return value

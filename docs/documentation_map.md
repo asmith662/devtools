@@ -11,6 +11,11 @@ authority/adoption requirements explicitly recorded. The
 owns source serialization, ordinary branch operations and recovery; this does
 not claim those branch capabilities have already entered main.
 
+The [worker's native Context contract](../apps/qwen/README.md#native-context-investigation)
+owns its task-local Tool/continuation bounds. Its [evaluation note](../apps/qwen/EVALUATION.md)
+separates historical coding outcomes, scripted acceptance, live read-only native
+conformance and the remaining coding-authority blocker.
+
 The [experiment worker startup contract](../experiments/orchestration/engineering/startup/README.md)
 owns prospective direct-script preflight and the preparation-only source-grounding
 failure disposition. PLAN_VALID precedes approval only after real worker imports

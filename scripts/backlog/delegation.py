@@ -14,6 +14,8 @@ import re
 from dataclasses import asdict
 from typing import TYPE_CHECKING, Any
 
+from apps.qwen.context_tools import context_tool_definitions
+from apps.qwen.development_task import _structured_edit_definition
 from devtools.context import RepositoryResourceAddress
 from devtools.core.time import Timestamp
 from scripts.backlog.intake import _digest
@@ -29,6 +31,7 @@ if TYPE_CHECKING:
         ModelInteraction,
         ModelRequest,
         ModelResponse,
+        ModelToolDefinition,
     )
     from scripts.backlog.work import WorkCycle
 
@@ -40,7 +43,7 @@ PROHIBITED = (
     "model-authored commands",
     "grant expansion",
 )
-PER_TASK = {"calls": 3, "output_tokens": 4096, "seconds": 900, "edits": 3}
+PER_TASK = {"calls": 10, "output_tokens": 4096, "seconds": 900, "edits": 3}
 
 
 def validate_policy(policy: dict[str, Any]) -> None:  # noqa: C901, PLR0912 -- closed policy validation
@@ -259,6 +262,7 @@ class Delegations:
             or task.source not in policy["sources"]
             or not set(task.tests) <= set(policy["tests"])
             or task.oracle_sha256 not in policy["oracles"]
+            or not set(task.read_paths) <= set(policy["sources"]) | set(policy["tests"])
         ):
             raise PermissionError(
                 "Task category, source, tests or acceptance code outside delegation"
@@ -267,7 +271,7 @@ class Delegations:
             "calls": task.maximum_calls,
             "output_tokens": task.output_tokens,
             "seconds": task.wall_seconds,
-            "edits": task.maximum_calls,
+            "edits": min(task.maximum_calls, 3),
         }
         if any(v > policy["per_task"][k] for k, v in requested.items()):
             raise PermissionError("Task exceeds delegated limits")
@@ -478,11 +482,15 @@ class Delegations:
 
             async def send(self, request: ModelRequest) -> ModelResponse:
                 owner.active(grant["delegation"])
+                proposal_tools = (_structured_edit_definition(source_path=task.source),)
+                expected_tools: tuple[ModelToolDefinition, ...] = proposal_tools
+                if task.context_mode == "on-demand":
+                    expected_tools += context_tool_definitions()
                 if (
                     self.calls >= task.maximum_calls
                     or request.settings.maximum_output_tokens != task.output_tokens
                     or request.settings.thinking_enabled is not False
-                    or [tool.name for tool in request.tools] != ["propose_edit"]
+                    or request.tools not in (expected_tools, proposal_tools)
                 ):
                     raise PermissionError(
                         "Invocation differs from reserved worker limits"

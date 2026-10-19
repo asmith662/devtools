@@ -64,6 +64,17 @@ def _captured(folder: Path, name: str, *, raw: bool) -> dict[str, Any]:
 
 
 def _feedback(request: dict[str, Any]) -> str | None:
+    for message in reversed(request.get("prompt", {}).get("messages", [])):
+        if message.get("role") == "tool":
+            content = message.get("content")
+            if not isinstance(content, str):
+                continue
+            try:
+                result = json.loads(content)
+            except ValueError:
+                continue
+            if isinstance(result, dict) and "validation" in result:
+                return content  # exact native result, no invented summary
     prompt = request.get("prompt", {}).get("content", "")
     if not isinstance(prompt, str):
         return None
@@ -138,7 +149,9 @@ def turn_detail(folder: Path, stage: dict[str, Any], *, raw: bool) -> dict[str, 
         "request_reference": _reference(request_path) if request else None,
         "response_reference": _reference(response_path) if response else None,
         "request_text": display(
-            request.get("prompt", {}).get("content"), disclosed=raw
+            request.get("prompt", {}).get("messages")
+            or request.get("prompt", {}).get("content"),
+            disclosed=raw,
         ),
         "response_text": display(response.get("content"), disclosed=raw),
         "reasoning_text": display(response.get("reasoning_content"), disclosed=raw),
@@ -152,6 +165,7 @@ def turn_detail(folder: Path, stage: dict[str, Any], *, raw: bool) -> dict[str, 
         else "NOT_ESTABLISHED",
         "feedback": display(_feedback(request), disclosed=raw),
         "patch": _captured(turn, "proposal.patch", raw=raw),
+        "tool_results": _captured(turn, "tools.json", raw=raw),
         "validation": _validation(stage.get("validation", {}), raw=raw),
     }
 

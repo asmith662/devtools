@@ -283,17 +283,29 @@ export function RunDetail({ id, refresh }: { id: string; refresh: string }) {
                 title="Exact host feedback in this request"
                 value={turn.feedback}
               />
-              <h4>Model-requested native Tool proposals</h4>
+              <Archived
+                title="Recorded host Tool results"
+                value={turn.tool_results}
+              />
+              <h4>Model-requested native Tool calls</h4>
               {!turn.tools.length && <p>NOT_CAPTURED</p>}
               {turn.tools.map((tool: RecordData, i: number) => (
                 <div key={i}>
                   <strong>{tool.name}</strong>
                   <p>
-                    Proposal only; no model-controlled write. Host admission:{" "}
-                    {known(turn.stage.proposal_valid)}
+                    {tool.name === "propose_edit"
+                      ? `Edit proposal; host admission: ${known(turn.stage.proposal_valid)}`
+                      : "Read-only Context request; inspect its recorded host result."}
                   </p>
                   <code>{known(tool.provider_call_id)}</code>
-                  <EditArguments value={tool.arguments} />
+                  {tool.name === "propose_edit" ? (
+                    <EditArguments value={tool.arguments} />
+                  ) : (
+                    <Archived
+                      title="Native Context arguments"
+                      value={tool.arguments}
+                    />
+                  )}
                 </div>
               ))}
               <Archived

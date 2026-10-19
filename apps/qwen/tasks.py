@@ -1,5 +1,5 @@
 # Copyright (c) 2026
-# ruff: noqa: COM812, EM101, TRY003, PLR2004 -- fixed experiment task definitions
+# ruff: noqa: EM101, TRY003, PLR2004 -- fixed experiment task definitions
 """Host-selected configuration for the existing bounded coding loop.
 
 These are two concrete development obligations, not a task/plugin registry or
@@ -37,10 +37,16 @@ class CodingTask:
     output_tokens: int = 4096
     wall_seconds: int = 900
     call_seconds: int = 300
+    context_mode: str = "prepared"
+    read_paths: tuple[str, ...] = ()
 
-    def __post_init__(self) -> None:  # noqa: C901 -- narrow configuration admission
+    def __post_init__(self) -> None:  # noqa: C901, PLR0912 -- narrow configuration admission
         """Validate scope and prevent configured bounds exceeding host limits."""
-        paths = (self.source, *self.tests)
+        paths = (self.source, *self.tests, *self.read_paths)
+        if self.context_mode not in {"prepared", "on-demand"}:
+            raise ValueError("Unknown Context acquisition mode")
+        if not isinstance(self.read_paths, tuple) or len(paths) > 32:
+            raise ValueError("Task requires a bounded tuple of read paths")
         if (
             not self.name.strip()
             or not self.objective.strip()
@@ -76,7 +82,7 @@ class CodingTask:
             if not query.strip():
                 raise ValueError("Task requires explicit nonempty retrieval queries")
         for value, bound in (
-            (self.maximum_calls, 3),
+            (self.maximum_calls, 10 if self.context_mode == "on-demand" else 3),
             (self.output_tokens, 4096),
             (self.wall_seconds, 900),
             (self.call_seconds, 300),
@@ -96,13 +102,27 @@ class CodingTask:
     @property
     def definition_sha256(self) -> str:
         """Bind the complete host definition, including all checks and bounds."""
-        return hashlib.sha256(
-            json.dumps(asdict(self), sort_keys=True).encode()
-        ).hexdigest()
+        value = asdict(self)
+        # Existing assignment-v1 receipts predate these optional fields. Their
+        # exact definition hashes remain valid only for legacy prepared mode.
+        if self.context_mode == "prepared" and not self.read_paths:
+            del value["context_mode"], value["read_paths"]
+        return hashlib.sha256(json.dumps(value, sort_keys=True).encode()).hexdigest()
 
     @property
     def prompt(self) -> str:
         """Combine the objective with the same host-controlled proposal boundary."""
+        if self.context_mode == "on-demand":
+            return (
+                self.objective + " Only edit " + self.source + ". "
+                "Investigate with native read-only Context Tools as needed. "
+                "Propose one contiguous replacement using native propose_edit. "
+                "The host applies and tests it; you have no write, shell or Git "
+                "authority. Do not claim tests ran. Read results identify CURRENT "
+                "source versions. After failure revise current source using the "
+                "correlated Tool result. At most 3 edit proposals, 8 Context "
+                f"actions and {self.maximum_calls} total model calls are permitted."
+            )
         return (
             self.objective + " Only edit " + self.source + ". "
             "Use exactly one native propose_edit call for a contiguous replacement. "

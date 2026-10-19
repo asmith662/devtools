@@ -1999,3 +1999,48 @@ All 13 forensic files and 34 archived B-0048 work files hash-match preservation.
 Four redundant source payloads were removed only after complete comparison with
 the existing recovery packet; all unique bytes remain recoverable. Main,
 scientific results and 24/9/2 experiment classifications remain unchanged.
+
+### 2026-10-19 — Native Context investigation in the maintained Qwen worker
+
+The existing coding loop now supports task-bound on-demand search, exact qualified
+source-view lookup, range reading, enclosing symbol/class/file expansion and
+bounded static references/calls. Existing RI/search, Context materialization,
+ToolDescriptor/ToolRunner, structured edit admission and host tests/oracle remain
+owners. Explicit Prompt messages preserve native assistant/call/result roles;
+capture policy independently protects historical call arguments. Exact-address
+metadata discovery prevents unrelated private-directory enumeration. Active
+message selection preserves objective/latest validation and explicitly omits
+older complete exchanges; full worker captures remain unchanged by selection.
+Range responses distinguish parent-unit identity from returned character spans.
+The dashboard reads the same request/response/tools archives behind raw controls.
+
+Task mode/read paths bind the assignment digest; legacy prepared digests remain
+valid. On-demand requests share genuine delegated call reservations (up to ten
+when actually granted), eight read actions and three edit proposals. Exact schemas
+and read scope are checked; existing grants do not expand. No new grant or coding
+authority was created. Canonical admission rejects the historical deleted-path
+grant. B-0048 remains an unchanged accepted candidate, not integrated or retried.
+
+Scripted native search/read/edit/test-failure/repair passes the unchanged oracle.
+Affected-area verification passed 421 tests plus final focused provenance checks.
+The final protected Python 3.14 gate passed **2017 tests, two skipped, 100% devtools
+branch coverage** in 418.31 seconds. The initial protected checkpoint also passed
+2017/2/100% (421.51 seconds); repetition followed the concrete parent/range
+provenance correction. Strict mypy, affected-file Ruff/format, layout and diff
+checks pass. Frontend tests passed six cases and TypeScript/Vite build passed;
+the changed component formats correctly, while 11 unchanged frontend files fail
+the broad existing format check. Dependencies were restored from the unchanged
+lock, with no new package or model-service configuration.
+
+One authorized read-only local smoke completed native two-search/two-read
+continuation and a final answer: three Qwen requests, 12,152 input / 645 output
+tokens, 40.037 seconds, 2,136 exact source bytes. A prior preparation failed before
+any invocation because recursive discovery reached preserved private evidence;
+its receipt remains intact. No coding model call or scientific execution occurred.
+All 13 forensic files and 34 original B-0048 artifacts hash-match preservation.
+The [maintained evaluation note](../apps/qwen/EVALUATION.md) defines the small
+historical regression population, comparisons, measured scope and exact remaining
+authority. Live on-demand coding effectiveness and main adoption remain unproven
+and unauthorized, respectively. Atomic task-local state, durable structured
+continuation, layered Memory, Context-capacity evaluation and Learned Intelligence
+integration remain separate future work.

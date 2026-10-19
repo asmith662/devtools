@@ -7,10 +7,14 @@ from __future__ import annotations
 
 import asyncio
 import importlib.util
+import json
+from dataclasses import asdict, replace
 from pathlib import Path
 from typing import TYPE_CHECKING
 
 import pytest
+
+from apps.qwen.tasks import MARKDOWN
 
 if TYPE_CHECKING:
     import argparse
@@ -122,3 +126,34 @@ def test_shared_local_profile_factory_never_invokes_model(
         assert calls[0]["model"] == "qwen38-local"
         assert provenance["model"] == "qwen38-local"
         assert provenance["profile"]
+
+
+def test_host_definition_selects_native_worker_before_real_confirmation(
+    cli: ModuleType,
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The existing task contract selects read scope and truthful invocation bounds."""
+    monkeypatch.chdir(tmp_path)
+    task = replace(MARKDOWN, context_mode="on-demand", maximum_calls=6)
+    (tmp_path / "task.json").write_text(json.dumps(asdict(task)), encoding="utf-8")
+    monkeypatch.setattr(
+        "sys.argv",
+        ["worker", "--task-definition", "task.json", "--report-directory", "run"],
+    )
+
+    def confirm(arguments: argparse.Namespace) -> None:
+        assert arguments.task == task.name
+        assert "6 model invocations" in arguments.coding_limits
+        assert "8 read-only Context actions" in arguments.coding_limits
+        assert arguments.report_directory == tmp_path / "run"
+        message = "real confirmation boundary reached; no call"
+        raise SystemExit(message)
+
+    monkeypatch.setattr(cli, "_confirm_local_execution", confirm)
+    with pytest.raises(SystemExit, match="boundary"):
+        asyncio.run(cli.main())
+    (tmp_path / "task.json").write_text("{}", encoding="utf-8")
+    with pytest.raises(SystemExit) as error:
+        asyncio.run(cli.main())
+    assert error.value.code == 2
