@@ -10,7 +10,7 @@ candidate with sibling compatibility obligations open. Candidate-08 remains
 scientifically incomplete after its C22 pre-entry failure; no retry is implied.
 
 The maintained dashboard and governed-development continuation are consolidated
-on `chore/repository-consolidation`, not claimed as main production capabilities.
+on `feat/qwen-context-worker`, not claimed as main production capabilities.
 Reconcile WorkCycle's extra-checkout requirement with the canonical branch
 workflow and review the dashboard dependency audit before further adoption.
 Old checkout-bound grants remain historical. The

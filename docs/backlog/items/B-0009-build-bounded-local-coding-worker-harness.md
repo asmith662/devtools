@@ -59,4 +59,4 @@ for it yet, and scripted success does not establish Context pressure.
 
 ## Canonical consolidation checkpoint
 
-The standalone maintained worker is at apps/qwen. The first accepted Qwen Markdown correction is adopted; Task 02 remains failed and its source defect has a separately attributed Codex repair. General reliability, structured continuation and memory remain unfinished. WorkCycle/delegation/integration and the dashboard are retained on chore/repository-consolidation pending one-checkout compatibility and dependency review. No new model task was run during cleanup.
+The standalone maintained worker is at apps/qwen. The first accepted Qwen Markdown correction is adopted; Task 02 remains failed and its source defect has a separately attributed Codex repair. General reliability, structured continuation and memory remain unfinished. WorkCycle/delegation/integration and the dashboard are retained on feat/qwen-context-worker pending one-checkout compatibility and dependency review. No new model task was run during cleanup.

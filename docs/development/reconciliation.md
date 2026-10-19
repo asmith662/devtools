@@ -3,8 +3,8 @@
 ## Operating structure and branch disposition
 
 The canonical checkout is `C:/Users/recoveryadmin/Workspace/tools/devtools`.
-Seven linked checkouts and the independent source-grounding execution checkout
-were preserved and removed. `git worktree list` now contains only this root;
+Seven linked checkouts and two independent source-grounding execution/deployment
+checkouts were preserved and removed. `git worktree list` now contains only this root;
 `.local/worktrees` does not exist. Learned Intelligence and the unrelated repoctx
 repository were not modified. No checkout, clone, repository, model operation or
 scientific result was created by consolidation.
@@ -12,13 +12,13 @@ scientific result was created by consolidation.
 | Original branch / authenticated tip | Disposition |
 | --- | --- |
 | `feat/multi-resolution-search` / `c21b4922355a6f868beed9e0b71c786cc52361e8` | SUPERSEDED_OR_REDUNDANT after adoption into main at c21b4922; original history preserved. |
-| `feat/qwen-context-worker` / `3e0402bf7e6cc46b71cbbd85f152beb94007dec6` | SUPERSEDED_OR_REDUNDANT as an active checkout: all history retained in the consolidation branch. Production-safe source fixes and standalone worker can be adopted separately; checkout-bound WorkCycle remains blocked. |
+| `feat/qwen-context-worker` / original `3e0402bf7e6cc46b71cbbd85f152beb94007dec6` | ACTIVE_FEATURE; consolidates remaining dashboard and governed-development history. Production-safe source/standalone worker adopted separately; checkout-bound WorkCycle remains blocked. |
 | `feat/operator-dashboard` / `cf696a6d5d255d0428a049d803408f7ca5caf375` | SUPERSEDED_OR_REDUNDANT as an active checkout: preserved and merged into consolidation; maintained application relocated to `apps/operator_dashboard`. Full adoption awaits the blockers below. |
 | `feat/qwen-real-task` / `e84def2d08dfc59739fab8f778478d9a63604c7c` | EVIDENCE_ONLY; historical attempts immutable; necessary worker code already selectively incorporated. |
 | `feat/b-0048-python312-json-object` / `75cc74f7acda36cf91e91251efae8f9b3054f02a` | EVIDENCE_ONLY baseline; accepted candidate remains operational evidence, not installed source. |
 | `feat/experiment-execution-pipeline-prepare` / `2aad8a1c8ccc3cd19a0476d7da13f1d95a833d42` | INCOMPLETE_OR_BLOCKED for current deployment; engineering checkpoint preserved, not merged together with incomplete science. |
 | `experiment/source-grounding-successor` / `8bf87d4bb29349b8391de3fed2680bf1f7c94f28` | INCOMPLETE_OR_BLOCKED; candidate-08 remains incomplete. |
-| `chore/repository-consolidation` | ACTIVE_FEATURE for the combined maintained dashboard and governed-development work not safely adopted into main. This is the one continuation branch; historical branches remain refs, not additional implementation checkouts. |
+| `chore/repository-consolidation` | SUPERSEDED_OR_REDUNDANT cleanup topic; history retained on the ordinary Qwen continuation branch. No further implementation assignment for this topic. |
 
 Original local and remote refs were authenticated. The B-0048 baseline had no
 remote branch; preserve its commit through existing branch/history rather than
@@ -131,3 +131,5 @@ Main adopts multi-resolution search through its original c21b4922 ancestry, the 
 Final unchanged protected profile: 1818 passed, 2 skipped, 100% production branch coverage; 89.31 seconds pytest / 90.71 seconds host. The first run had one actual-project configuration fixture missing the newly selected apps resource (1817 passed, 1 failed, 100% coverage). The fixture was synchronized without relaxing assertions; the final profile then passed. Main Ruff, formatting, strict mypy (457 files), layout and diff checks passed. Protected logs and both terminal timing receipts are under .local/reconciliation. The default mypy scope now names maintained source/tests/apps instead of immutable generated experiments; production coverage was not changed.
 
 Fourteen legacy root .devtools evidence files were additionally moved, hash-verified, to .local/preserved-root/devtools. Their independent root-runtime-manifest.json is in the repository archive directory. All 13 forensic files remain at their original paths, byte-identical and untracked.
+
+The adopted source checkpoint is main commit `ff2b135ad7cbc9109a0b80f150e238a78e4743b6`. The continuation branch is `feat/qwen-context-worker`. The final hidden-checkout scan discovered the legacy `.local/deployments/source-grounding-successor/target` at `35d464425ef13029b0ee6151e5aea232d8489068`; its 16 operational files were preserved, compressed, extracted and verified before removal. Its Git history remains at `refs/archive/scientific-legacy-target/main` and in the complete scientific bundle. Three existing host-disclosure fixtures contain synthetic alpha/beta/gamma data, not Devtools clones; they remain preserved test evidence.
