@@ -527,6 +527,14 @@ exclusion, and the separate confirmation-validation boundary.
 
 ## Backlog navigation
 
+The [read-only operator console](../experiments/operator_dashboard/README.md)
+serves current intake, canonical backlog, work-cycle and Qwen evidence through
+a loopback-only API and the existing MemoryPanel-derived React UI. Task/run/turn
+inspection retains exact archived proposals, feedback and validation under
+explicit raw-disclosure configuration. It grants no authority and serves no
+arbitrary repository files. Its pinned reuse/license findings remain recorded;
+the four external discoveries are now pending at the designated coordinator.
+
 [Backlog overview](backlog/overview.md) is the canonical record index, grouped
 by stable ID, lifecycle status, and primary domain. [Backlog metadata](backlog/metadata.md)
 defines ownership, split-lineage, dependency, and promotion terminology. Its

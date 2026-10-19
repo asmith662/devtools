@@ -1829,3 +1829,27 @@ Localization continuation remain preserved; production behavior is unchanged.
   witness acceptance, satisfaction or readiness. U3 FUTURE, R1.7 RETAINED,
   R2 true BM25F MANDATORY and Localization continuation PRESERVED. Maintainer
   review and separate explicit authorization precede Stage B.
+
+## Read-only operator dashboard adoption pilot — 2026-10-18
+
+Reused pinned TencentDB MemoryPanel React/Tea layout and display components in
+an isolated repository-local pilot. Public upstream and subset builds succeed;
+read-only metadata projection reuses Intake and WorkCycle status and preserves
+historical worker evidence, including distinct scripted/live observations.
+See [pilot contract and source provenance](../experiments/operator_dashboard/README.md).
+No authority, model call, scientific operation or memory backend was added.
+Four validated future-intake inputs are prepared but not captured because the
+designated coordinator is the active checkout protected by this assignment.
+
+## Live read-only operator console — 2026-10-18
+
+The existing MemoryPanel-derived dashboard now reads current coordinator data
+through a bounded loopback-only API and exposes source-grounded proposal/backlog
+content and actual task/run/turn evidence. Refresh and visible-page polling do not
+establish worker liveness or authority. Raw messages, native proposals, patches
+and validation output require explicit local disclosure; absent captures remain
+NOT_CAPTURED. Archived first/second Qwen outcomes and coordinator data are
+unchanged. See the [console contract](../experiments/operator_dashboard/README.md).
+No worker instrumentation, model call, new database or authority interface was
+introduced. Native conversation capture and standardized backlog rationale gaps
+remain separate future decisions.
