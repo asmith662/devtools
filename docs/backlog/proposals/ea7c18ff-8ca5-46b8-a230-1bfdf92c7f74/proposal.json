@@ -1,0 +1,28 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "ea7c18ff-8ca5-46b8-a230-1bfdf92c7f74",
+  "created_at": "2026-10-19T18:14:21.744053+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Correct duration boundary contract",
+    "summary": "Reject negative duration factory inputs even when below stored time resolution. Preserve documented non-negative value invariants, existing positive rounding, zero, arithmetic and public APIs. Investigate the relevant source and tests; propose a bounded correction.",
+    "discovery": {
+      "kind": "tool",
+      "reference": "git:e02c9044311036883134df955438b1b809db353b; apps/qwen/evaluation/native-cohort-01/duration-boundary.json; frozen baseline assertion failure"
+    },
+    "parent": "B-0009",
+    "resources": [
+      "src/devtools/core/time/models/duration.py"
+    ],
+    "evidence": [
+      "apps/qwen/evaluation/native-cohort-01/duration-boundary.json",
+      ".local/qwen-coding-worker/native-cohort-01/duration-boundary-baseline.json"
+    ],
+    "benefit": "Correct a reproduced maintained API contract defect; provide a fresh independently checked native Context coding case.",
+    "uncertainty": "No Qwen coding result yet; exact correction must be produced by the worker. Cross-domain generalization, integration and Codex parity are unproven.",
+    "dependencies": [
+      "B-0009: operational; valid canonical coding delegation and separate backlog review required"
+    ]
+  },
+  "payload_sha256": "b751256a2c0aef5c7a076a09a81a4ec43d28c15eca6e3c65c1613ca02a0e8dc8"
+}

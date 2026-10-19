@@ -1,0 +1,28 @@
+{
+  "schema": "backlog-proposal-v1",
+  "id": "5aa7a431-fd3c-4d46-a3a2-cb4e59e9c28e",
+  "created_at": "2026-10-19T18:14:21.977080+00:00",
+  "payload": {
+    "kind": "bug",
+    "title": "Correct source physical spans contract",
+    "summary": "Ensure selectable source representations preserve exact physical source coordinates and text for valid Python containing non-newline Unicode separators in strings, with LF, CRLF or CR source. Preserve decorated async symbols, windows, source coverage, identity and existing search behavior. Investigate the responsible implementation and related contracts before proposing a one-file correction.",
+    "discovery": {
+      "kind": "tool",
+      "reference": "git:e02c9044311036883134df955438b1b809db353b; apps/qwen/evaluation/native-cohort-01/source-physical-spans.json; frozen baseline assertion failure"
+    },
+    "parent": "B-0009",
+    "resources": [
+      "src/devtools/context/retrieval/source/representation.py"
+    ],
+    "evidence": [
+      "apps/qwen/evaluation/native-cohort-01/source-physical-spans.json",
+      ".local/qwen-coding-worker/native-cohort-01/source-physical-spans-baseline.json"
+    ],
+    "benefit": "Correct a reproduced maintained API contract defect; provide a fresh independently checked native Context coding case.",
+    "uncertainty": "No Qwen coding result yet; exact correction must be produced by the worker. Cross-domain generalization, integration and Codex parity are unproven.",
+    "dependencies": [
+      "B-0009: operational; valid canonical coding delegation and separate backlog review required"
+    ]
+  },
+  "payload_sha256": "f45c7f622958c04aab5298352a89482874c9acda98cbca44442ffab7e2665d53"
+}

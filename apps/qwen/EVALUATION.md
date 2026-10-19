@@ -1,5 +1,24 @@
 # Native Context worker acceptance and evaluation
 
+## Active priority: genuine coding baseline and optimization
+
+The current workstream remains Qwen coding effectiveness, not learning-system
+integration. [Native cohort 01](evaluation/native-cohort-01/README.md) freezes two
+development defects (duration boundary validation and CSV dialect behavior) and
+one held-out source-representation case, with exact source/test/oracle identities.
+All baseline defects reproduce; 83 existing regression/task-selection tests pass.
+Three genuine discoveries were captured through Intake and remain pending review.
+The broader proposed standing policy is inactive; the historical deleted-checkout
+grant still refuses. The cohort README provides the exact real grant command and
+separate canonical review/promotion commands, plus continuation through the
+existing WorkCycle. Grant issuance alone does not approve its work items.
+
+No new Qwen coding invocation, worker improvement or controlled Codex comparison
+has occurred in this preparation. The overall capability goal is **OPEN**.
+Initial cohort diversity and current one-file/refactor restrictions are stated
+explicitly. Do not interpret these configurations, scripted tests or the earlier
+read-only smoke as successful native coding or a measured performance gain.
+
 Prepared-Context and on-demand native Tools use the same coding loop.
 Scripted models establish host correctness, not Qwen competence. Historical
 results are immutable; this increment issued no coding grant.

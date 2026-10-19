@@ -1,0 +1,52 @@
+{
+  "status": "FROZEN_PENDING_AUTHORITY_AND_BACKLOG_REVIEW",
+  "baseline_revision": "e02c9044311036883134df955438b1b809db353b",
+  "policy_file_sha256": "e5061f9d294c0fd503888fef6f658050e79858fae3d2dd2d6987eb05423ac5da",
+  "prepared_at": "2026-10-19T18:13:16.982891+00:00",
+  "cases": [
+    {
+      "name": "duration-boundary",
+      "split": "development",
+      "source": "src/devtools/core/time/models/duration.py",
+      "domain": "core",
+      "task_sha256": "b5d2e3e64235c1c19803414c022d91e07c8ae0d9ba641432e5e2105cba55a1c9",
+      "oracle_sha256": "1e56696a6ca01caf65662ab7f4031078ab9fa956cd878f51d3cf87c5dbfeeecb",
+      "definition_file_sha256": "3b6ed760e6f6cdff9f3672ea79a61d6d0c9be44788d4f43fd3bc3ba6b92bf065",
+      "proposal_id": "ea7c18ff-8ca5-46b8-a230-1bfdf92c7f74",
+      "duplicates": [],
+      "baseline_failure": "AssertionError: ('negative duration inputs accepted', [('nanoseconds', -1), ('nanoseconds', -499), ('seconds', -1e-12), ('milliseconds', -1e-09), ('minutes', -1e-12), ('hours', -1e-14)])",
+      "read_resource_count": 6,
+      "edit_resource_count": 1
+    },
+    {
+      "name": "csv-dialect",
+      "split": "development",
+      "source": "src/devtools/resources/filesystem/codecs/csv.py",
+      "domain": "resources",
+      "task_sha256": "db62c4814dd5dba1829ce2b7ec47104fd47f1e6999d5f3b9936bb1351cb3de40",
+      "oracle_sha256": "7b4fad82968cd53f850adca5fed2f7d66fb4703856fd1933c30569cb06f37f73",
+      "definition_file_sha256": "0a1ff07370f01e6d4c887486c94a2883187b36c60fc1ca792bdc79329b71a215",
+      "proposal_id": "67f7d086-86d9-400f-bfaf-d9bc4df9aea1",
+      "duplicates": [],
+      "baseline_failure": "AssertionError: NONNUMERIC must retain exact string-valued cells",
+      "read_resource_count": 8,
+      "edit_resource_count": 1
+    },
+    {
+      "name": "source-physical-spans",
+      "split": "held-out",
+      "source": "src/devtools/context/retrieval/source/representation.py",
+      "domain": "context",
+      "task_sha256": "bc63f9197e5a316f9afee6a2bf5eabd725fc74f38c34ff4448b742246275bbdb",
+      "oracle_sha256": "9b016385acd398b9fa49689ab1ad7bb794efd5973498c3ea4ed7ce6b288335a0",
+      "definition_file_sha256": "b61cc861e93da2d6f898847f18c045506b3a90eaf6d90ceee202aa7513581aad",
+      "proposal_id": "5aa7a431-fd3c-4d46-a3a2-cb4e59e9c28e",
+      "duplicates": [],
+      "baseline_failure": "AssertionError: (\"'\\\\x0b'\", \"'\\\\n'\", '\\'\"\\\\n@decorate\\\\nasync def targe\\'')",
+      "read_resource_count": 7,
+      "edit_resource_count": 1
+    }
+  ],
+  "model_calls": 0,
+  "scope_note": "Task-local disjoint read corpora; development runs cannot read held-out task resources through Context Tools."
+}

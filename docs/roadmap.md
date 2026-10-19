@@ -1,5 +1,20 @@
 # Roadmap
 
+## Immediate priority: native Qwen coding effectiveness
+
+Continue the existing Qwen workstream through real native Context coding
+baselines, trace-supported improvements and fresh independent acceptance.
+[Cohort 01](../apps/qwen/evaluation/native-cohort-01/README.md) is frozen and
+prepared, with pending backlog proposals and an inactive bounded standing policy.
+No fresh coding outcomes or fair Codex comparison exist yet. The next operating
+steps are genuine current-root authority and the separate backlog decisions,
+then the two development cases through the unchanged worker before optimization.
+One held-out source case is reserved for subsequent evaluation. The empirical
+target remains multiple accepted tasks and a fair measured Codex comparison;
+neither read-only Tool conformance nor one accepted example establishes it.
+Do not switch this immediate effort to Learned Intelligence, trading, swarming,
+another governance framework or unrelated research because execution is blocked.
+
 ## Canonical consolidation checkpoint
 
 Development now uses one canonical checkout and ordinary branches. Production-safe

@@ -1,0 +1,48 @@
+{
+  "categories": [
+    "bug",
+    "refactor"
+  ],
+  "sources": [
+    "src/devtools/core/time/models/duration.py",
+    "src/devtools/core/time/models/timestamp.py",
+    "src/devtools/core/time/parsing.py",
+    "src/devtools/core/time/errors.py",
+    "src/devtools/resources/filesystem/codecs/csv.py",
+    "src/devtools/resources/filesystem/models/csv.py",
+    "src/devtools/resources/filesystem/models/text.py",
+    "src/devtools/resources/filesystem/models/base.py",
+    "src/devtools/resources/filesystem/errors.py",
+    "src/devtools/context/retrieval/source/representation.py",
+    "src/devtools/context/retrieval/source/index.py",
+    "src/devtools/context/retrieval/source/search.py",
+    "src/devtools/context/python/function/materialization.py",
+    "src/devtools/context/python/function/declarations.py",
+    "src/devtools/context/python/classes/declarations.py"
+  ],
+  "tests": [
+    "tests/core/time/test_models.py",
+    "tests/core/time/test_parsing.py",
+    "tests/resources/filesystem/codecs/test_csv.py",
+    "tests/resources/filesystem/models/csv/test_dialect.py",
+    "tests/resources/filesystem/models/csv/test_file.py",
+    "tests/context/retrieval/source/test_search.py"
+  ],
+  "oracles": [
+    "1e56696a6ca01caf65662ab7f4031078ab9fa956cd878f51d3cf87c5dbfeeecb",
+    "7b4fad82968cd53f850adca5fed2f7d66fb4703856fd1933c30569cb06f37f73",
+    "9b016385acd398b9fa49689ab1ad7bb794efd5973498c3ea4ed7ce6b288335a0"
+  ],
+  "per_task": {
+    "calls": 10,
+    "output_tokens": 4096,
+    "seconds": 900,
+    "edits": 3
+  },
+  "total": {
+    "tasks": 3,
+    "calls": 30,
+    "output_tokens": 122880,
+    "seconds": 2700
+  }
+}

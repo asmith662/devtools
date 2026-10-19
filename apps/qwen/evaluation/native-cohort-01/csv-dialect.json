@@ -1,0 +1,107 @@
+{
+  "name": "csv-dialect",
+  "objective": "Make NONNUMERIC CSV dialect parsing honor the documented string-valued filesystem model contract, preserving original cell spelling and source provenance. Preserve custom dialects, decode/parse consistency, serialization round trips and malformed-input rejection. Investigate the code and tests before proposing a one-file correction.",
+  "source": "src/devtools/resources/filesystem/codecs/csv.py",
+  "tests": [
+    "tests/resources/filesystem/codecs/test_csv.py",
+    "tests/resources/filesystem/models/csv/test_dialect.py",
+    "tests/resources/filesystem/models/csv/test_file.py"
+  ],
+  "baseline_revision": "e02c9044311036883134df955438b1b809db353b",
+  "baseline_hashes": [
+    [
+      "src/devtools/resources/filesystem/codecs/csv.py",
+      "4189d3f300dc76f20ae09b5f61e591f750fe37b8553c40bd2c1132ea5a57bf0e"
+    ],
+    [
+      "tests/resources/filesystem/codecs/test_csv.py",
+      "6d1ff32d44e6467ab39aeda8233ff726edc0721cd9f6a74f153fbe6208487065"
+    ],
+    [
+      "tests/resources/filesystem/models/csv/test_dialect.py",
+      "bfb5eb76e29ac8600a5cd0ec93b116b61001416ec1ae585a745c75ebd0c23e21"
+    ],
+    [
+      "tests/resources/filesystem/models/csv/test_file.py",
+      "d1a3c583bb268f8c5078eeb2777f9513f6470f43b69277a3f144db4869753f1d"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/csv.py",
+      "1095ba082e1fe5e93781e945a1d93e2d8e5d926121baeea24db92c032d943951"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/text.py",
+      "2f24adefe62f99ed3a4cece3391c637458beecfcf910f463d902091543717111"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/base.py",
+      "adb8e3f020aff2c4b7208f02396fcf4c116ad9afc7a0a90f1b7368e45a933e09"
+    ],
+    [
+      "src/devtools/resources/filesystem/errors.py",
+      "6a25ee5ac1caca1be3eb9e9d51a73b6229c4dd20b7e0c8a259ca91d411a0de93"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/resources/filesystem/codecs/csv.py",
+      "filesystem codecs csv.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/resources/filesystem/codecs/test_csv.py",
+      "filesystem codecs test_csv.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/resources/filesystem/models/csv/test_dialect.py",
+      "models csv test_dialect.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/resources/filesystem/models/csv/test_file.py",
+      "models csv test_file.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/csv.py",
+      "filesystem models csv.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/text.py",
+      "filesystem models text.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/models/base.py",
+      "filesystem models base.py",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/resources/filesystem/errors.py",
+      "resources filesystem errors.py",
+      "mixed",
+      "none"
+    ]
+  ],
+  "oracle": "\nfrom pathlib import Path\nfrom devtools.core.paths import resolve_path\nfrom devtools.resources.filesystem import CsvCodec, CsvDialect, CsvQuoting, FileFormatError\ncodec = CsvCodec()\npath = resolve_path(Path.cwd() / '.local/unwritten-cohort.csv')\ndialect = CsvDialect(quoting=CsvQuoting.NONNUMERIC)\nsources = [('\"id\",\"name\"\\n1,\"Ada\"\\n', ('id', 'name'), ('1', 'Ada')),\n           ('\"id\",\"value\"\\n001,1.50\\n', ('id', 'value'), ('001', '1.50')),\n           ('\"id\",\"value\"\\n1e2,-0\\n', ('id', 'value'), ('1e2', '-0'))]\nfor text, headers, cells in sources:\n    try:\n        file = codec.parse(path, text, dialect=dialect)\n    except Exception as error:\n        raise AssertionError('NONNUMERIC must retain exact string-valued cells') from error\n    assert file.headers == headers and file[0].values() == cells\n    assert file.content == text and file.byte_size == len(text.encode())\n    assert all(isinstance(value, str) for value in file[0])\n    assert codec.parse(path, codec.serialize(file), dialect=dialect).rows == file.rows\n    assert codec.decode(path, text.encode(), dialect=dialect).rows == file.rows\ncustom = CsvDialect(delimiter=';', quoting=CsvQuoting.NONNUMERIC)\nassert codec.parse(path, '\"id\";\"value\"\\n007;\"x;y\"\\n', dialect=custom)[0].values() == ('007', 'x;y')\nassert codec.parse(path, 'id,value\\n1,2\\n')[0].values() == ('1', '2')\nfor text in ('\"id\",\"value\"\\n1\\n', '\"id\",\"id\"\\n1,2\\n', '\"id\",\"value\"\\n\"unterminated'):\n    try:\n        codec.parse(path, text, dialect=dialect)\n    except FileFormatError:\n        pass\n    else:\n        raise AssertionError('invalid CSV accepted')\nprint('CSV_ACCEPTANCE_PASS')\n",
+  "maximum_calls": 10,
+  "output_tokens": 4096,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/resources/filesystem/models/csv.py",
+    "src/devtools/resources/filesystem/models/text.py",
+    "src/devtools/resources/filesystem/models/base.py",
+    "src/devtools/resources/filesystem/errors.py"
+  ]
+}

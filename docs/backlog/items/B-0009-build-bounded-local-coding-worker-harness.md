@@ -105,3 +105,12 @@ WorkCycle/integration is implemented on `feat/qwen-context-worker`; main adoptio
 and dashboard dependency review remain separate. No model task ran during cleanup.
 The later native Context increment adds measured read-only conformance, not a new
 coding result. General reliability, durable continuation and Memory remain open.
+
+The next bounded native coding population is frozen in
+`apps/qwen/evaluation/native-cohort-01/`: duration boundaries, CSV dialect
+behavior and a held-out source-representation case. Three distinct Intake
+proposals are pending; no review/promotion or current-root standing grant has
+been fabricated. Baseline defect checks and 83 existing regressions pass their
+expected dispositions. No new Qwen coding task, improvement measurement or
+Codex comparison has run. Qwen effectiveness remains the immediate program
+priority; see the cohort README for exact authority and continuation steps.
