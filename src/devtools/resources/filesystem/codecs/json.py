@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import math
 from collections.abc import Mapping
 from typing import TYPE_CHECKING
 
@@ -87,6 +88,7 @@ class JsonCodec:
             parsed = json.loads(
                 content,
                 parse_constant=_reject_nonstandard_constant,
+                parse_float=_parse_finite_float,
             )
         except (json.JSONDecodeError, ValueError) as error:
             msg = _format_parse_error(error)
@@ -187,6 +189,24 @@ def _reject_nonstandard_constant(value: str) -> None:
     """Reject non-standard JSON constants accepted by Python's parser."""
     msg = f"Invalid JSON constant: {value}."
     raise ValueError(msg)
+
+
+def _parse_finite_float(value: str) -> float:
+    """Parse a JSON numeric literal as a finite float.
+
+    :param value: Raw decimal literal from the JSON source.
+    :returns: The parsed finite float value.
+    :raises ValueError: If the literal overflows to a non-finite float.
+    """
+    try:
+        result = float(value)
+    except OverflowError as error:
+        msg = f"JSON numeric literal {value!r} overflows finite float range."
+        raise ValueError(msg) from error
+    if not math.isfinite(result):
+        msg = f"JSON numeric literal {value!r} is not a finite number."
+        raise ValueError(msg)
+    return result
 
 
 def _format_parse_error(error: json.JSONDecodeError | ValueError) -> str:
