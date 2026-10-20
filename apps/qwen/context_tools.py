@@ -522,7 +522,7 @@ class ContextTools:
             else None,
         }
 
-    async def execute(self, arguments: tuple[str, dict[str, Any]]) -> dict[str, Any]:  # noqa: C901, PLR0911 -- fixed source/API operations
+    async def execute(self, arguments: tuple[str, dict[str, Any]]) -> dict[str, Any]:  # noqa: C901, PLR0911, PLR0912 -- fixed source/API operations
         """Project existing search, source units, expansion and relationship facts."""
         name, values = arguments
         if name == "inspect_source":

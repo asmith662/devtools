@@ -14,6 +14,10 @@
     [
       "tests/resources/filesystem/test_reading.py",
       "1b2a861787a3ca983e076d0d4754bdeaf714b668518e5c911c071f2411a4e707"
+    ],
+    [
+      "src/devtools/resources/filesystem/errors.py",
+      "6a25ee5ac1caca1be3eb9e9d51a73b6229c4dd20b7e0c8a259ca91d411a0de93"
     ]
   ],
   "context": [
@@ -28,6 +32,12 @@
       "read-disappearance",
       "mixed",
       "file"
+    ],
+    [
+      "src/devtools/resources/filesystem/errors.py",
+      "filesystem domain errors",
+      "symbol",
+      "file"
     ]
   ],
   "oracle": "from pathlib import Path\nfrom tempfile import TemporaryDirectory\nfrom unittest.mock import patch\nfrom devtools.core.paths import resolve_path\nfrom devtools.resources.filesystem import read,FilesystemNotFoundError,NotAFileError,TextFile\nwith TemporaryDirectory() as directory:\n    raw=Path(directory)/'gone.txt';raw.write_text('content',encoding='utf-8');p=resolve_path(raw)\n    assert isinstance(read(p),TextFile)\n    for method in ['read_bytes','stat']:\n        original=FileNotFoundError('disappeared after initial observation')\n        if method=='read_bytes':context=patch.object(type(raw),method,side_effect=original)\n        else:\n            real=type(raw).stat;calls=[0]\n            def changing(self,*a,**kw):\n                if self==raw:\n                    calls[0]+=1\n                    if calls[0]>=3:raise original\n                return real(self,*a,**kw)\n            context=patch.object(type(raw),method,changing)\n        with context:\n            try:read(p)\n            except FilesystemNotFoundError as e:assert e.__cause__ is original and str(p) in str(e)\n            except FileNotFoundError as error:raise AssertionError('Unnormalized disappearance') from error\n            else:raise AssertionError('Disappearance not domain normalized')\n    original=IsADirectoryError('became a directory')\n    with patch.object(type(raw),'read_bytes',side_effect=original):\n        try:read(p)\n        except NotAFileError as e:assert e.__cause__ is original\n        except IsADirectoryError as error:raise AssertionError('Unnormalized directory race') from error\n        else:raise AssertionError('Directory race not normalized')\nprint('QWEN_BEHAVIOR_PASSED')\n",
@@ -36,7 +46,9 @@
   "wall_seconds": 900,
   "call_seconds": 300,
   "context_mode": "on-demand",
-  "read_paths": [],
+  "read_paths": [
+    "src/devtools/resources/filesystem/errors.py"
+  ],
   "quality_checks": true,
   "additional_edit_paths": [],
   "api_targets": [],

@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-20T14:37:44.115411+00:00",
+  "before_either_confirmation_invocation": true,
+  "configuration": "observed-flat-batch-v1 + explicit path-based read through existing versioned materialization; same original model/sampler/32K bounds",
+  "production_code_sha256": {
+    "apps/qwen/coding_loop.py": "afcdbaf6e8caa19aebe3a746f5b1dbaed5cb34fce2978e9f7441f688a8061f82",
+    "apps/qwen/context_tools.py": "e5dc4e4e3705f65ddb5e9a28c4c38f87cf76197d2fec06434cbde1d9b6da2c7a",
+    "apps/qwen/edits.py": "e79fec9bf2c443fec49ccfc51dcd6747d166d2dd59977ee08d9bdc506ca5c8f9",
+    "apps/qwen/commands.py": "19638dc160201e7780f46cc7f6b7aa7053ba6c64679b7c02cd0bdcae3f12a677",
+    "scripts/qwen/coding_worker.py": "ce7924ce99b2ecd8c7ffba8629f5673960ae62935e0cb7f1c09677b20a5895db",
+    ".local/reference06.mjs": "6b58085c1dd51a79ebd61ec54754e7e832a7feb09b73c3e670e9634587eebe87",
+    ".local/run-reference06.py": "93ec03adcb890d620e6d6f1258db2835175a6d7db785b952f247331c206f67b3",
+    ".local/run-dev06.py": "218f0936a5618611ad09b41404078c67f49b6bb72211ef1dca1632a00174ec49"
+  },
+  "development_outcomes": "Command accepted after typing repair; lazy API failed before editing twice; no third attempt. Pi accepted both.",
+  "selection_rationale": "Nested editing bookkeeping removed. Unit/empty-version failures return correlated feedback, and direct path reads delegate version bookkeeping to host. Tests prove no additional authority or source index. Fresh confirmation measures this selected configuration; no inference success is claimed for the failed lazy task.",
+  "confirmation_task_sha256": "9a3d78c31e4e8b2fa79f90368f4b22afec7d61e5e1823d9915c92e94cf2b542f",
+  "oracle_sha256": "c300ff318baeac7f3b4278b2036cac5667e30e7a6e54fa7f7ffb23847f9bd00b",
+  "read_scope_amendment": {
+    "old_task_sha256": "655971b7e911f5ba68b5eceebfc98b5c585f336863b6ccd78e122d8e33b3c711",
+    "addition": "src/devtools/resources/filesystem/errors.py",
+    "edit_scope_unchanged": true,
+    "oracle_unchanged": true,
+    "reason": "Read-only domain exception definitions are a direct dependency of the frozen target behavior; same resource is visible to Pi. No solution provided."
+  },
+  "remaining_planned_runs": [
+    "devtools-read",
+    "pi-read"
+  ],
+  "no_further_development_retry": true
+}
