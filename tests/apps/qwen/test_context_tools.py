@@ -210,6 +210,34 @@ def test_parent_symbol_absence_is_explicit(tools: ContextTools) -> None:
         dispatch(tools, "expand_source", unit=unit["unit"], to="symbol")
 
 
+def test_unknown_source_prompt_withholds_edit_hint_but_preserves_scope(
+    captured_inputs: Callable[[CodingTask], Path], tmp_path: Path
+) -> None:
+    """The model gets a sorted investigation corpus, not the editable subset."""
+    task = replace(
+        MARKDOWN,
+        context_mode="on-demand",
+        disclose_edit_paths=False,
+    )
+    model = Scripted([ModelResponse("No proposal", Scripted.source)])
+    result = asyncio.run(
+        coding_loop.run_coding_task(
+            captured_inputs(task),
+            tmp_path / "unknown-source",
+            model,
+            task=task,
+            coordinated_edits=True,
+            observed_edits=True,
+        )
+    )
+    prompt = model.requests[0].prompt.messages[0].content
+    assert "Allowed edit paths:" not in prompt
+    assert "Only edit " not in prompt
+    assert "host independently enforces" in prompt
+    assert "Read scope: " + json.dumps(sorted((*task.sources, *task.tests))) in prompt
+    assert result["original_unchanged"]
+
+
 def test_path_alias_and_oversized_tool_result_refuse(
     tools: ContextTools,
     tmp_path: Path,

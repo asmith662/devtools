@@ -48,12 +48,18 @@ class CodingTask:
     mechanical_format: bool = False
     tool_actions: int = 8
     new_paths: tuple[str, ...] = ()
+    disclose_edit_paths: bool = True
 
     def __post_init__(self) -> None:  # noqa: C901, PLR0912 -- narrow configuration admission
         """Validate scope and prevent configured bounds exceeding host limits."""
         if any(
             type(x) is not bool
-            for x in (self.quality_checks, self.command_tools, self.mechanical_format)
+            for x in (
+                self.quality_checks,
+                self.command_tools,
+                self.mechanical_format,
+                self.disclose_edit_paths,
+            )
         ):
             raise ValueError("quality_checks must be a host-selected boolean")
         if (
@@ -70,7 +76,7 @@ class CodingTask:
         paths = (*self.existing_sources, *self.tests, *self.read_paths)
         if (
             not isinstance(self.new_paths, tuple)
-            or len(self.sources) > 4
+            or len(self.sources) > 5
             or len({*paths, *self.new_paths}) != len(paths) + len(self.new_paths)
         ):
             raise ValueError("New source paths must be distinct and bounded")
@@ -166,6 +172,8 @@ class CodingTask:
                 del value[field]
         if self.tool_actions == 8:
             del value["tool_actions"]
+        if self.disclose_edit_paths:
+            del value["disclose_edit_paths"]
         if not self.quality_checks:
             del value["quality_checks"]
         # Existing assignment-v1 receipts predate these optional fields. Their

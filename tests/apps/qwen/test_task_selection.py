@@ -195,6 +195,36 @@ def test_unknown_task_is_not_model_selected() -> None:
         select_task("arbitrary-task")
 
 
+def test_discovery_hint_is_optional_and_historical_hashes_stay_stable() -> None:
+    """Withholding a filename hint changes neither scope nor old receipts."""
+    legacy = replace(MARKDOWN)
+    hidden = replace(MARKDOWN, disclose_edit_paths=False)
+    assert hidden.sources == legacy.sources
+    assert hidden.definition_sha256 != legacy.definition_sha256
+    assert replace(legacy, disclose_edit_paths=True).definition_sha256 == (
+        legacy.definition_sha256
+    )
+    with pytest.raises(ValueError, match="boolean"):
+        replace(legacy, disclose_edit_paths="false")  # type: ignore[arg-type]
+
+
+def test_five_file_operation_remains_explicitly_bounded() -> None:
+    """A codec plus resolution/writer/exports fits; a sixth file refuses."""
+    paths = tuple(f"src/devtools/extra_{number}.py" for number in range(3))
+    task = replace(
+        MARKDOWN,
+        additional_edit_paths=paths,
+        baseline_hashes=MARKDOWN.baseline_hashes
+        + tuple((path, "0" * 64) for path in paths),
+        context=MARKDOWN.context
+        + tuple((path, "extra", "file", "none") for path in paths),
+        new_paths=("src/devtools/new.py",),
+    )
+    assert task.sources == (MARKDOWN.source, *paths, "src/devtools/new.py")
+    with pytest.raises(ValueError, match="bounded"):
+        replace(task, new_paths=(*task.new_paths, "src/devtools/another.py"))
+
+
 def test_nonexistent_baseline_revision_stops_before_model(tmp_path: Path) -> None:
     """Matching current bytes cannot substitute for the configured Git identity."""
     model = Scripted([])

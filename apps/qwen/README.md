@@ -14,6 +14,15 @@ an atomic proposal uses that version and empty old text. Unknown files, aliases,
 collisions and unobserved absence refuse. Existing resources keep exact source
 observation requirements. Historical task digests/defaults remain unchanged.
 
+An explicitly scoped local operation may now contain up to five implementation
+files (at most four existing plus authorized new paths), within the unchanged
+32-resource corpus and transaction byte limits. `disclose_edit_paths=False`
+withholds the exact editable subset from the initial native prompt for genuine
+diagnosis tasks. The model receives a sorted read corpus with plausible
+alternatives; admission still enforces the exact frozen paths. The default
+retains prior hints and definition digests. This is task-local investigation,
+not authority to edit every visible resource.
+
 Native tasks may explicitly reserve up to 12,288 output tokens and 600 seconds
 per call for reasoning evaluation; defaults remain 4,096/300 and the 900-second
 task ceiling remains. `--thinking enabled --reasoning-effort medium` selects the
