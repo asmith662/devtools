@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING, Any
 
 import pytest
 
-from apps.qwen import coding_loop
+from apps.qwen import coding_loop, commands
 from apps.qwen.context_tools import ContextTools
 from apps.qwen.continuation import select_messages
 from apps.qwen.development_task import _timed_command
@@ -281,7 +281,7 @@ def test_preflight_checks_exact_inputs_without_inference(
             }
         return await actual(root, *args)
 
-    monkeypatch.setattr(coding_loop, "_timed_command", command)
+    monkeypatch.setattr(commands, "_timed_command", command)
     result = asyncio.run(
         coding_loop.preflight_coding_task(root, tmp_path / "preflight", task=MARKDOWN)
     )

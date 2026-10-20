@@ -32,6 +32,27 @@ if TYPE_CHECKING:
     from pathlib import Path
 
 
+def test_quality_checks_only_defer_explicit_absent_new_slots(
+    tools: ContextTools,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Existing missing files remain errors; a new file is checked once created."""
+    task = replace(tools.task, new_paths=("src/devtools/new.py",))
+    calls: list[tuple[str, ...]] = []
+
+    async def execute(_root: Path, *args: str) -> dict[str, Any]:
+        calls.append(args)
+        return {"exit_code": 0, "failed": False}
+
+    monkeypatch.setattr(commands, "_timed_command", execute)
+    asyncio.run(commands.run_check(tools.root, tools.root, task, "typing"))
+    assert task.source in calls[-1]
+    assert task.new_paths[0] not in calls[-1]
+    (tools.root / task.new_paths[0]).write_bytes(b"value = 1\n")
+    asyncio.run(commands.run_check(tools.root, tools.root, task, "typing"))
+    assert task.new_paths[0] in calls[-1]
+
+
 def test_actual_capacity_refusal_retains_pending_request_without_model_dispatch(
     tools: ContextTools, tmp_path: Path
 ) -> None:
