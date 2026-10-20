@@ -22,8 +22,9 @@ flat native edit calls with zero admission refusals and zero omitted exchanges.
 The original 80-call/7,200-second budget was unchanged when the run-count cap was
 prospectively amended from eight to nine to replace the invalid confirmation.
 See [frozen definitions and detailed results](evaluation/editing-06/README.md).
-The Command candidate is selected for shared reviewed closeout; the decoded
-output candidate remains evidence pending separate integration.
+The exact Command candidate is now integrated on the feature branch through
+shared reviewed closeout; the decoded-output candidate remains evidence pending
+separate integration.
 
 Latest checkpoint: [coding environment 05](evaluation/environment-05/README.md).
 The independently hashed GGUF matches its pinned upstream LFS artifact. A scoped
@@ -213,3 +214,8 @@ coding case is evidence of capability, not general reliability or measured
 superiority. Live successful behavioral repair and a fair Codex comparison remain
 open. The historical duration style-rework candidate and all cohort 01 records
 remain unchanged. No candidate was integrated or protected source published.
+
+
+Editing-06 Command closeout is now published on the feature branch in
+`0f121bca1baf4c896050a92994fca5023699eec5`, with unchanged Qwen source, independent permanent
+regressions and protected validation. Other editing-06 candidates remain evidence.

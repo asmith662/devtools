@@ -3088,5 +3088,235 @@
   "comparison": "Development: Devtools Command accepted, lazy failed twice; Pi both accepted. Final selected configuration: output API matched acceptance. Read-disappearance invalid confirmation is excluded from scoring; raw failures preserved. Worker revisions changed during development; do not claim uniform final-configuration 3-task benchmark.",
   "coordination_usage": "UNKNOWN",
   "paid_model_calls": 0,
-  "energy_and_cost": "UNKNOWN"
+  "energy_and_cost": "UNKNOWN",
+  "integration": {
+    "candidate_sha256": "1d6ba377cbd443271a7550956d0f16506c1d313a9870af0554112136e02c6d71",
+    "receipt": ".local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout.json",
+    "receipt_sha256": "df332471d96b60ec13ebb097f54d28f02ebd2838e542cb0bcd73ac7e594bf112",
+    "disposition": "FEATURE_PUBLISHED",
+    "commit": "0f121bca1baf4c896050a92994fca5023699eec5",
+    "review_subject": "ae26a694ddf0508ad04fa48820a5e620f8ee593389d79197d00ee6fe1a715e82",
+    "review": {
+      "subject": "ae26a694ddf0508ad04fa48820a5e620f8ee593389d79197d00ee6fe1a715e82",
+      "reviewer": "Codex",
+      "disposition": "ACCEPT_RECOMMENDED",
+      "rationale": "Independently inspected the exact Qwen source and scoped diff. Constructor and fluent validation reject mutable/non-string argv and non-string executables without changing literal arguments, blank-string ValueError, annotations or execution semantics. No shell or publication authority is added. The frozen oracle, twenty permanent tests including ten independent Codex regressions, Ruff, format, strict typing and the 2138-pass/2-skip protected gate with 100 percent branch coverage pass. Preserve Qwen source bytes unchanged; publish only the authorized existing ordinary feature branch. Other candidates remain evidence."
+    },
+    "files": [
+      {
+        "path": "src/devtools/resources/commands/models/command.py",
+        "author": "Qwen",
+        "reference": "63b2dff6c41394162e9ea6131bb930fbf0a29d50824fd57412d565afd756139a",
+        "sha256": "1d6ba377cbd443271a7550956d0f16506c1d313a9870af0554112136e02c6d71"
+      },
+      {
+        "path": "tests/resources/commands/test_models.py",
+        "author": "Codex",
+        "reference": "Independent permanent regressions for frozen editing-06 Command contract",
+        "sha256": "48d5d74b48aba88e2066030f68b9ae7fbb33e1d6935049dbada2b05386cabb0b"
+      }
+    ],
+    "validation": {
+      "oracle": {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-26-19.955239+00-00\\oracle-runner.py"
+        ],
+        "exit_code": 0,
+        "stdout": "QWEN_BEHAVIOR_PASSED\r\n",
+        "stderr": "",
+        "failed": false,
+        "started_at": "2026-10-20T15:26:19.959179+00:00",
+        "elapsed_seconds": 0.20241470006294549
+      },
+      "tests": {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-26-19.955239+00-00\\tests-runner.py"
+        ],
+        "exit_code": 0,
+        "stdout": "....................                                                     [100%]\r\n20 passed in 8.75s\r\n",
+        "stderr": "",
+        "failed": false,
+        "started_at": "2026-10-20T15:26:20.161642+00:00",
+        "elapsed_seconds": 9.309300000080839
+      },
+      "ruff": {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "ruff",
+          "check",
+          "src/devtools/resources/commands/models/command.py"
+        ],
+        "exit_code": 0,
+        "stdout": "All checks passed!\n",
+        "stderr": "",
+        "failed": false,
+        "started_at": "2026-10-20T15:26:29.470991+00:00",
+        "elapsed_seconds": 0.12661399994976819
+      },
+      "format": {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "ruff",
+          "format",
+          "--diff",
+          "src/devtools/resources/commands/models/command.py"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "warning: The following rule may cause conflicts when used with the formatter: `COM812`. To avoid unexpected behavior, we recommend disabling this rule, either by removing it from the `lint.select` or `lint.extend-select` configuration, or adding it to the `lint.ignore` configuration.\n1 file already formatted\n",
+        "failed": false,
+        "started_at": "2026-10-20T15:26:29.597652+00:00",
+        "elapsed_seconds": 0.08407520002219826
+      },
+      "typing": {
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "mypy",
+          "--strict",
+          "src/devtools/resources/commands/models/command.py"
+        ],
+        "exit_code": 0,
+        "stdout": "Success: no issues found in 1 source file\r\n",
+        "stderr": "",
+        "failed": false,
+        "started_at": "2026-10-20T15:26:29.681776+00:00",
+        "elapsed_seconds": 0.21312889992259443
+      },
+      "accepted": true
+    },
+    "protected_validation": {
+      "started_at": "2026-10-20T15:16:39.630806+00:00",
+      "profile": "pre-publication-protected",
+      "checks": [
+        {
+          "name": "oracle",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected\\oracle.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.179586,
+          "stdout_sha256": "bcff110356e2ca56172b700a445f3a21dc4036b6f7644d45eeebfc09dad651b0",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "tests",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected\\tests.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.52208,
+          "stdout_sha256": "4901b07ba4e274835bfe3bbb3999fa7621c87d7bd471ddc8d9fe46d19e8484d8",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "ruff",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-m",
+            "ruff",
+            "check",
+            "src/devtools/resources/commands/models/command.py",
+            "tests/resources/commands/test_models.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.106773,
+          "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "format",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-m",
+            "ruff",
+            "format",
+            "--check",
+            "src/devtools/resources/commands/models/command.py",
+            "tests/resources/commands/test_models.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.139344,
+          "stdout_sha256": "3bc53bf3e981a98a34a852e175bf9b77af841edea74fca595d9aedcbaf9a4938",
+          "stderr_sha256": "f9a55a9d08d5744dc2bac49e644825aac8c318cdb1679556dd106cb8b4eef4d1",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "mypy",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-m",
+            "mypy",
+            "--strict",
+            "src/devtools/resources/commands/models/command.py",
+            "tests/resources/commands/test_models.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.286987,
+          "stdout_sha256": "0c37c4158c91ef55c724ba017bf6465f26018199badb08e3ff13f98acdf056c2",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": false,
+          "truncated": false
+        },
+        {
+          "name": "protected",
+          "argv": [
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+            "-I",
+            "-B",
+            "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected\\protected.py"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 503.710234,
+          "stdout_sha256": "a938034937ab0dd87440ba071231f799a4a7f1f4294867761d44262cf8f15f7f",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\editing-06\\devtools-command\\closeout-validation-2026-10-20T15-16-38.609246+00-00\\protected",
+          "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+          "excerpt_truncated": true,
+          "truncated": false
+        }
+      ],
+      "passed": true,
+      "active_check": null,
+      "finished_at": "2026-10-20T15:25:04.586047+00:00",
+      "elapsed_seconds": 504.955243,
+      "protected_suite_summary": "2138 passed, 2 skipped in 501.98s; 100.00 percent production branch coverage"
+    },
+    "source_authorship": "Qwen; unchanged accepted candidate bytes",
+    "regression_authorship": "Codex; ten new cases, twenty total focused tests",
+    "destination": "origin/feat/qwen-context-worker only; protected main unchanged",
+    "other_candidates": "Evidence only; no competing Pi or output implementation installed",
+    "focused_regressions": "20 passed including 10 newly authored permanent cases"
+  }
 }

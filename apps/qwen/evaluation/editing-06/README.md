@@ -1,5 +1,7 @@
 # Flat observed editing: matched development and confirmation
 
+## Original frozen plan (retained)
+
 The frozen manifest and task definitions precede inference. Budget: at most eight
 runs, 80 model calls, 7,200 worker seconds; each run ten calls, 4,096 output
 tokens/call, 900 seconds, original q4/32K/thinking-off server and sampler.
@@ -93,3 +95,21 @@ Its implementation is Qwen-authored; permanent regressions and oracle review are
 Codex-authored. Other accepted candidates remain evidence, not production claims.
 Codex coordination tokens, energy, incremental hardware cost and monetary cost
 are UNKNOWN. No paid-model or scientific-controller invocation occurred.
+
+
+## Verified feature closeout
+
+The exact Command candidate above was independently reviewed and published through
+the existing WorkCycle `closeout_local` operation in commit `0f121bca1baf4c896050a92994fca5023699eec5`
+on `origin/feat/qwen-context-worker`. Source SHA-256 is unchanged from the genuine
+Qwen run. Codex authored ten permanent regression cases (twenty focused tests
+total), not a replacement implementation. The frozen oracle, Ruff, formatting,
+strict typing and the canonical protected development gate passed before
+publication. Full check timings and exact receipt/review hashes are in
+`results.json`. Feature publication does not imply protected-main integration.
+The decoded-output and Pi candidates remain evidence only.
+
+Focused application/CLI checks: 282 passed in 81.89 seconds. Maintained source,
+tests, applications and scripts passed Ruff; strict mypy passed 486 files.
+Changed Python files passed formatting and layout/diff checks. Frozen generated
+scientific payloads were not reformatted or validated as maintained code.

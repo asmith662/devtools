@@ -2156,3 +2156,8 @@ Eleven actual calls, 53,865 input / 2,085 output tokens, 122.62 worker seconds.
 Final protected gate: 2,030 passed / two skipped / 100% production branch coverage;
 strict mypy 478 files passed. See the cohort record for source identities and
 limits. No local candidate was silently installed into maintained source.
+
+
+Editing-06 closeout: exact Qwen Command candidate published in `0f121bca1baf4c896050a92994fca5023699eec5`
+through shared reviewed closeout with independently authored permanent tests and
+protected validation. Protected main unchanged; other candidates remain evidence.

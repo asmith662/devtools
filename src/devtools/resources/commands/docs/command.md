@@ -15,6 +15,10 @@ Command(
 ```
 
 `Command` is a frozen, slotted value object. Blank executables are invalid.
+Construction and fluent replacements reject non-string executables and require
+a tuple containing only strings for arguments (`TypeError`). Blank string
+executables still raise `ValueError`. Empty, Unicode and shell-looking argument
+strings remain literal values; validation never strips or splits arguments.
 The executable and arguments remain separate; no shell parsing, interpolation,
 or quoting occurs. `argv` returns the complete tuple passed to process launch.
 
