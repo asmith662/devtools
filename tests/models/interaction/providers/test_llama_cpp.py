@@ -778,6 +778,39 @@ def test_interaction_accepts_its_empty_typed_extension() -> None:
     assert settings.provider == "llama.cpp"
 
 
+@pytest.mark.parametrize("invalid", ["none", "template", "tokens"])
+def test_native_token_budget_uses_exact_template_and_no_inference(
+    monkeypatch: pytest.MonkeyPatch,
+    invalid: str,
+) -> None:
+    """Count locally rendered schemas/messages and reject malformed observations."""
+    paths: list[str] = []
+
+    async def post(
+        _endpoint: object, path: str, payload: dict[str, object],
+    ) -> dict[str, object]:
+        paths.append(path)
+        if path == "/apply-template":
+            assert payload["model"] == "qwen-local"
+            return {
+                "prompt": None if invalid == "template" else "exact rendered prompt",
+            }
+        assert path == "/tokenize"
+        assert payload == {"content": "exact rendered prompt", "add_special": False}
+        return {"tokens": None if invalid == "tokens" else [1, 2, 3]}
+
+    monkeypatch.setattr(llama_cpp, "_post_json", post)
+    request = ModelRequest(
+        Prompt("question", "user"), provider_settings=LlamaCppRequestSettings(),
+    )
+    if invalid == "none":
+        assert asyncio.run(_interaction().count_input_tokens(request)) == 3  # noqa: PLR2004 -- tiny token fixture
+        assert paths == ["/apply-template", "/tokenize"]
+    else:
+        with pytest.raises(LlamaCppResponseError):
+            asyncio.run(_interaction().count_input_tokens(request))
+
+
 @pytest.mark.parametrize("thinking", [None, True])
 def test_explicit_medium_reasoning_and_native_reasoning_continuity(
     monkeypatch: pytest.MonkeyPatch,

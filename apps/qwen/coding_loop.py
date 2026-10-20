@@ -69,7 +69,10 @@ from devtools.models.interaction import (
     Prompt,
     PromptMessage,
 )
-from devtools.models.interaction.providers import LlamaCppRequestSettings
+from devtools.models.interaction.providers import (
+    LlamaCppInteraction,
+    LlamaCppRequestSettings,
+)
 from devtools.resources.filesystem import TextFile, write
 
 if TYPE_CHECKING:
@@ -424,6 +427,12 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
     coordinated_edits: bool = False,
     reasoning_effort: str | None = None,
 ) -> None:
+    measured_capacity = isinstance(interaction, LlamaCppInteraction)
+    active_limit = (
+        131072
+        if measured_capacity
+        else min(ACTIVE_BYTES, int((32768 - task.output_tokens - 4096) * 1.5))
+    )
     repository = Repository.new()
     feedback: dict[str, Any] = {"disposition": "INITIAL_PROPOSAL"}
     prepared_at = time.perf_counter()
@@ -495,16 +504,14 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             model_prompt = Prompt(prompt, role="user")
         else:
             tools.check_current()
-            active_bytes = min(
-                ACTIVE_BYTES, int((32768 - task.output_tokens - 4096) * 1.5)
-            )
+            active_bytes = active_limit
             messages, omitted = select_messages(
                 history, source_path=task.source, maximum_bytes=active_bytes
             )
             model_prompt = Prompt("", role="messages", messages=messages)
             prompt = json.dumps(asdict(model_prompt))
             context = ""  # Disclosed only on demand in correlated Tool results.
-        if len(prompt.encode()) > (ACTIVE_BYTES + 2000 if tools is not None else 60000):
+        if len(prompt.encode()) > (active_limit + 2000 if tools is not None else 60000):
             raise ValueError("Bounded Context byte allowance exceeded")
         request = ModelRequest(
             prompt=model_prompt,
@@ -530,9 +537,19 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 ),
             ),
         )
+        measured_tokens = None
+        if isinstance(interaction, LlamaCppInteraction):
+            async with asyncio.timeout(30):
+                measured_tokens = await interaction.count_input_tokens(request)
+            if measured_tokens + task.output_tokens + 2048 > 32768:
+                raise ValueError(
+                    "Measured input plus output/safety exceeds actual 32K capacity"
+                )
         source_hash = _hash(workspace / task.source)
         stage: dict[str, Any] = {
             "number": number,
+            "input_tokens_measured": measured_tokens,
+            "capacity_safety_tokens": 2048 if measured_capacity else None,
             "started_at": str(Timestamp.now()),
             "started_monotonic": time.perf_counter(),
             "source_before": source_hash,
@@ -1195,6 +1212,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
         if isinstance(error, ValueError) and str(error) in {
             "Context budget cannot retain current source and latest validation",
             "Bounded Context byte allowance exceeded",
+            "Measured input plus output/safety exceeds actual 32K capacity",
         }:
             phase = "CONTEXT_BUDGET"
         report.update(

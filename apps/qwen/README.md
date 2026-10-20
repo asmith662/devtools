@@ -38,6 +38,14 @@ their exact frozen bytes for evaluation, and restores their original checkout
 bytes afterward. Any difference beyond LF/CRLF equivalence refuses. Read/test
 materialization is host-owned and grants no model edit authority over tests.
 
+For the actual llama.cpp provider, active input is now measured with its same
+native message/schema/template serialization via `/apply-template` and
+`/tokenize` before inference. Input plus requested output plus 2,048 safety tokens
+must fit 32,768. A 131,072-byte transport ceiling bounds selection independently;
+it is not a larger model window. Non-provider scripted interactions retain the
+conservative byte projection. The measured cohort documents why the old 36K-byte
+cap refused a 14,923-token pending repair which fit the actual model window.
+
 Maintained repository-local application composition now lives here. The existing
 worker, native proposal admission, LF/CRLF handling, task configuration and
 host-owned validation were relocated without changing their contracts. Framework

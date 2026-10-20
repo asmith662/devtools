@@ -79,6 +79,36 @@ class LlamaCppInteraction:
         """Send one Prompt through llama.cpp and return final assistant text."""
         started_at = Timestamp.now()
         interaction_id = ModelInteractionId.new()
+        payload = self._request_payload(request)
+        response = await _post_chat_completion(self._endpoint, payload)
+        content = _final_assistant_content(response)
+        model_response = ModelResponse(
+            content=content,
+            reasoning_content=_model_reasoning_content(response),
+            source=self.source,
+            termination=_model_termination(response),
+            usage=_model_usage(response),
+            tool_calls=_model_tool_calls(response),
+        )
+        observer = self._observer
+        if observer is not None:
+            observer.interaction_completed(
+                ModelInteractionObservation(
+                    interaction_id=interaction_id,
+                    provider="llama.cpp",
+                    source=self.source,
+                    request=request,
+                    response=model_response,
+                    started_at=started_at,
+                    completed_at=Timestamp.now(),
+                    provider_response_id=_optional_provider_text(response, "id"),
+                    provider_model=_optional_provider_text(response, "model"),
+                ),
+            )
+        return model_response
+
+    def _request_payload(self, request: ModelRequest) -> dict[str, object]:
+        """Share exact native serialization between inference and token counting."""
         if request.conversation is not None:
             msg = "The stateless llama.cpp interaction does not support continuation."
             raise ValueError(msg)
@@ -115,32 +145,29 @@ class LlamaCppInteraction:
             payload["tools"] = [
                 _provider_tool_definition(tool) for tool in request.tools
             ]
-        response = await _post_chat_completion(self._endpoint, payload)
-        content = _final_assistant_content(response)
-        model_response = ModelResponse(
-            content=content,
-            reasoning_content=_model_reasoning_content(response),
-            source=self.source,
-            termination=_model_termination(response),
-            usage=_model_usage(response),
-            tool_calls=_model_tool_calls(response),
+        return payload
+
+    async def count_input_tokens(self, request: ModelRequest) -> int:
+        """Measure the installed server template/tokenizer without inference.
+
+        Includes schemas and generation prefix. The caller still reserves output
+        and a safety margin; this does not change the server's context capacity.
+        """
+        rendered = await _post_json(
+            self._endpoint, "/apply-template", self._request_payload(request),
         )
-        observer = self._observer
-        if observer is not None:
-            observer.interaction_completed(
-                ModelInteractionObservation(
-                    interaction_id=interaction_id,
-                    provider="llama.cpp",
-                    source=self.source,
-                    request=request,
-                    response=model_response,
-                    started_at=started_at,
-                    completed_at=Timestamp.now(),
-                    provider_response_id=_optional_provider_text(response, "id"),
-                    provider_model=_optional_provider_text(response, "model"),
-                ),
-            )
-        return model_response
+        prompt = rendered.get("prompt")
+        if not isinstance(prompt, str):
+            msg = "llama.cpp template response requires prompt text"
+            raise LlamaCppResponseError(msg)
+        tokenized = await _post_json(
+            self._endpoint, "/tokenize", {"content": prompt, "add_special": False},
+        )
+        tokens = tokenized.get("tokens")
+        if not isinstance(tokens, list):
+            msg = "llama.cpp tokenize response requires a token list"
+            raise LlamaCppResponseError(msg)
+        return len(tokens)
 
 
 def _parse_endpoint(endpoint: str) -> SplitResult:
@@ -197,13 +224,20 @@ async def _post_chat_completion(
     payload: dict[str, object],
 ) -> dict[str, object]:
     """Perform one narrow non-streaming JSON chat request over HTTP."""
+    return await _post_json(endpoint, _CHAT_COMPLETIONS_PATH, payload)
+
+
+async def _post_json(
+    endpoint: SplitResult, path: str, payload: dict[str, object],
+) -> dict[str, object]:
+    """Post to one adapter-selected local endpoint; never a model-selected URL."""
     host = endpoint.hostname
     if host is None:  # Defensive after _parse_endpoint validation.
         raise LlamaCppTransportError
     port = endpoint.port or 80
     body = json.dumps(payload, separators=(",", ":")).encode()
     request = (
-        f"POST {_CHAT_COMPLETIONS_PATH} HTTP/1.1\r\n"
+        f"POST {path} HTTP/1.1\r\n"
         f"Host: {host}\r\n"
         "Content-Type: application/json\r\n"
         "Accept: application/json\r\n"
