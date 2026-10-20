@@ -11,6 +11,35 @@ if TYPE_CHECKING:
     from devtools.core.time import Duration
 
 
+def _validate_executable(executable: object) -> None:
+    """Validate that the executable is a string.
+
+    :param executable: Candidate executable value.
+    :raises TypeError: If the executable is not a string.
+    """
+    if not isinstance(executable, str):
+        msg = f"Command executable must be a string, got {type(executable).__name__}."
+        raise TypeError(msg)
+
+
+def _validate_arguments(arguments: object) -> None:
+    """Validate that the arguments form a tuple of strings.
+
+    :param arguments: Candidate arguments value.
+    :raises TypeError: If the arguments are not a tuple of strings.
+    """
+    if not isinstance(arguments, tuple):
+        msg = f"Command arguments must be a tuple, got {type(arguments).__name__}."
+        raise TypeError(msg)
+    for argument in arguments:
+        if not isinstance(argument, str):
+            msg = (
+                "Command arguments must only contain strings, "
+                f"got {type(argument).__name__}."
+            )
+            raise TypeError(msg)
+
+
 @dataclass(frozen=True, slots=True)
 class Command:
     """Describe an immutable command execution specification.
@@ -47,8 +76,12 @@ class Command:
     def _validate(self) -> None:
         """Validate the command specification.
 
+        :raises TypeError: If the executable is not a string, or the
+            arguments are not a tuple whose members are all strings.
         :raises ValueError: If the executable is empty or whitespace-only.
         """
+        _validate_executable(self.executable)
+        _validate_arguments(self.arguments)
         if not self.executable.strip():
             msg = "Command executable cannot be empty."
             raise ValueError(msg)
@@ -69,6 +102,7 @@ class Command:
 
         :param arguments: Arguments to append.
         :returns: New command containing the appended arguments.
+        :raises TypeError: If any supplied argument is not a string.
         """
         return replace(
             self,
@@ -80,6 +114,7 @@ class Command:
 
         :param arguments: Complete replacement argument sequence.
         :returns: New command containing only the supplied arguments.
+        :raises TypeError: If any supplied argument is not a string.
         """
         return replace(
             self,
@@ -101,6 +136,7 @@ class Command:
 
         :param executable: Replacement executable name or path.
         :returns: New command with the replacement executable.
+        :raises TypeError: If the replacement executable is not a string.
         :raises ValueError: If the replacement executable is blank.
         """
         return replace(
