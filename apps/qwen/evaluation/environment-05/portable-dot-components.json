@@ -1,0 +1,43 @@
+{
+  "name": "portable-dot-components",
+  "objective": "Correct dot-path parsing so filesystem separators, absolute/drive syntax and colon-containing components cannot be smuggled into a mechanically relative dot path. Reject slash, backslash and colon in every component using PathParsingError, including through resolve_dot_path. Preserve whitespace trimming, empty-component and suffix error behavior, normal suffixes and non-identifier component names; do not impose Python identifier rules. Do not change parse_path or ordinary filesystem resolution.",
+  "source": "src/devtools/core/paths/resolution.py",
+  "tests": [
+    "tests/core/paths/test_resolution.py"
+  ],
+  "baseline_revision": "44c98aeb341bf9d9e306d57a07fe8fa6db5c3305",
+  "baseline_hashes": [
+    [
+      "src/devtools/core/paths/resolution.py",
+      "b54780c07c875e46817def7b01b247d1ef1763e0854016f0ded7d93c05b76619"
+    ],
+    [
+      "tests/core/paths/test_resolution.py",
+      "4db60e7aa92cd914733fbb6e83be8bd4cbfd1b3e8e207e0efbb76975d94ede2d"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/core/paths/resolution.py",
+      "portable dot components",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/core/paths/test_resolution.py",
+      "portable dot components",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "from pathlib import Path\nfrom devtools.core.paths import parse_dot_path, resolve_dot_path, PathParsingError\nfor bad in ['a/b.c', 'a\\\\b.c', '/root.name', 'C:drive.part', 'a.b:c', 'a.\\\\server', 'a./b']:\n    for call in (lambda: parse_dot_path(bad), lambda: resolve_dot_path(bad,base_directory=Path.cwd())):\n        try: call()\n        except PathParsingError: pass\n        else: raise AssertionError('Must reject filesystem syntax: '+repr(bad))\nfor good in ['a.b','  a.b  ','hyphen-name.child','a b.child','unicod\u00e9.child']:\n    assert parse_dot_path(good)==Path(*good.strip().split('.'))\nassert parse_dot_path('a.b',suffix='py')==Path('a','b.py')\nprint('QWEN_BEHAVIOR_PASSED')\n\nimport subprocess, sys\nraise SystemExit(subprocess.call([sys.executable,\"-m\",\"mypy\",\"--strict\",'src/devtools/core/paths/resolution.py']))\n",
+  "maximum_calls": 10,
+  "output_tokens": 4096,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [],
+  "quality_checks": true,
+  "additional_edit_paths": [],
+  "api_targets": []
+}
