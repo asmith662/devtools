@@ -1,0 +1,49 @@
+{
+  "name": "decoded-command-output",
+  "objective": "Add public CommandResult.stdout_text and stderr_text methods as explicit decoded views over captured byte output. Each accepts keyword-only encoding=\"utf-8\" and errors=\"strict\", returning decoded text. Preserve native codec behavior: valid encodings, UnicodeDecodeError for invalid bytes under strict, replacement/ignore policies, and LookupError for unknown encodings. Do not wrap decoding exceptions, mutate retained bytes, or change truncation flags, command, duration or exit dispositions. Existing result construction and all regressions must remain compatible. Verify the installed bytes.decode API contract before using it. Only result.py may be edited; tests remain host-owned.",
+  "source": "src/devtools/resources/commands/models/result.py",
+  "tests": [
+    "tests/resources/commands/test_models.py"
+  ],
+  "baseline_revision": "05e2600340b91d662f5764478d77bbdf7835fdae",
+  "baseline_hashes": [
+    [
+      "src/devtools/resources/commands/models/result.py",
+      "1f3161e157b8c6a8338700a5dabf218713a5aaaadc515c95488dbbc050321c42"
+    ],
+    [
+      "tests/resources/commands/test_models.py",
+      "87d1044e5cc9e333922d12f53e074590799a421580dbc6ec22099b388d2cb244"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/resources/commands/models/result.py",
+      "command result text output",
+      "mixed",
+      "file"
+    ],
+    [
+      "tests/resources/commands/test_models.py",
+      "command result text output",
+      "mixed",
+      "file"
+    ]
+  ],
+  "oracle": "from devtools.resources.commands import Command,CommandResult\nfrom devtools.core.time import Duration\nfrom inspect import signature,Parameter\nassert callable(getattr(CommandResult,'stdout_text',None)) and callable(getattr(CommandResult,'stderr_text',None)), 'Missing decoded output API'\nr=CommandResult(Command('echo'),0,'caf\u00e9'.encode(),b'bad\\xff',Duration.seconds(0),stdout_truncated=True)\nbefore=(r.command,r.exit_code,r.stdout,r.stderr,r.duration,r.stdout_truncated,r.stderr_truncated)\nassert r.stdout_text()=='caf\u00e9' and r.stderr_text(errors='replace')=='bad\ufffd' and r.stderr_text(errors='ignore')=='bad'\nassert r.stderr_text(encoding='latin-1')=='bad\u00ff'\nfor method in [r.stdout_text,r.stderr_text]:\n    s=signature(method);assert s.parameters['encoding'].kind is Parameter.KEYWORD_ONLY and s.parameters['errors'].kind is Parameter.KEYWORD_ONLY\n    assert s.parameters['encoding'].default=='utf-8' and s.parameters['errors'].default=='strict'\n    try:method(encoding='no-such-codec')\n    except LookupError:pass\n    else:raise AssertionError('Unknown encoding swallowed')\ntry:r.stderr_text()\nexcept UnicodeDecodeError:pass\nelse:raise AssertionError('Decode error swallowed')\nassert before==(r.command,r.exit_code,r.stdout,r.stderr,r.duration,r.stdout_truncated,r.stderr_truncated)\nempty=CommandResult(Command('echo'),1,b'',b'',Duration.seconds(0));assert empty.stdout_text()==empty.stderr_text()=='' and empty.failed\nprint('QWEN_BEHAVIOR_PASSED')\n",
+  "maximum_calls": 10,
+  "output_tokens": 4096,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [],
+  "quality_checks": true,
+  "additional_edit_paths": [],
+  "api_targets": [
+    "bytes.decode"
+  ],
+  "command_tools": true,
+  "mechanical_format": false,
+  "tool_actions": 24,
+  "new_paths": []
+}
