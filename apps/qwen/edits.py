@@ -98,9 +98,13 @@ def admit_observed(  # noqa: C901 -- resolve references before the existing atom
                 or old.replace("\r\n", "\n")
                 not in observation["text"].replace("\r\n", "\n")
             ):
-                raise PatchProposalError(
-                    "Old text is outside referenced observed source"
+                message = (
+                    "Old text is outside referenced observed source: "
+                    f"{value['reference']} ({path}, span [{first}, {last})). "
+                    "Use the observation covering this exact anchor or inspect "
+                    "that source region again; no component was applied."
                 )
+                raise PatchProposalError(message)
         elif value["old_text"]:
             raise PatchProposalError("Absent source requires empty old_text")
         rows.append(

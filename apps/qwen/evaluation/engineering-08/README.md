@@ -41,3 +41,20 @@ requests, responses, candidate sources, validation and comparison records belong
 under `.local/qwen-coding-worker/engineering-08/`. Previous cohorts stay immutable.
 
 Results and actual publication evidence will be added after execution.
+
+## Development checkpoint after Assignment A
+
+The first run located the owner and read its three source ranges, but associated
+three coordinated edits with the wrong observed ranges. The transaction was
+correctly refused. Before a ninth request, measured input (22,667) plus the
+8,192 generation ceiling and 2,048 safety margin exceeded 32K by 139 tokens.
+The terminal result remains `CONTEXT_BUDGET_FAILED`, eight actual requests, no
+mutation. A proposed helper was also incomplete; the refusal prevented testing
+its correctness. This is not an accepted implementation or a rerun opportunity.
+
+Before the distinct second assignment, precise wrong-handle/span feedback and
+safe effective generation reservation were selected and regression tested. The
+latter can reserve the remaining allowance if at least the normal 4K editing
+capacity remains, without omitting source or increasing the frozen task ceiling.
+These are measured failure responses, not a new Context-selection mechanism.
+The second task's objective, baseline, oracle and maximum budgets stay unchanged.

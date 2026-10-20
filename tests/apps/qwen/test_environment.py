@@ -105,6 +105,55 @@ def test_actual_capacity_refusal_retains_pending_request_without_model_dispatch(
     )
 
 
+@pytest.mark.parametrize("thinking", [False, True])
+def test_measured_capacity_can_reduce_only_unused_nonreasoning_output_reservation(
+    tools: ContextTools,
+    tmp_path: Path,
+    *,
+    thinking: bool,
+) -> None:
+    class MeasuredWindow(LlamaCppInteraction):
+        async def count_input_tokens(self, _request: ModelRequest) -> int:
+            return 22667
+
+        async def send(self, request: ModelRequest) -> ModelResponse:
+            assert request.settings.maximum_output_tokens == 8053
+            return ModelResponse("No proposal", InteractionSource("measured-fixture"))
+
+    task = replace(tools.task, output_tokens=8192)
+    folder = tmp_path / "measured-reservation"
+    folder.mkdir()
+    model = MeasuredWindow(
+        endpoint="http://127.0.0.1:8080",
+        model="fixture",
+        source=InteractionSource("capacity-fixture"),
+    )
+
+    async def run() -> None:
+        await coding_loop._turns(  # noqa: SLF001 -- actual pre-dispatch accounting
+            tools.root,
+            folder,
+            model,
+            {"turns": []},
+            maximum_calls=1,
+            task=task,
+            coordinated_edits=True,
+            observed_edits=True,
+            thinking_enabled=thinking,
+        )
+
+    if thinking:
+        with pytest.raises(ValueError, match="actual 32K"):
+            asyncio.run(run())
+    else:
+        asyncio.run(run())
+        request = json.loads((folder / "turn-01/request.json").read_text())
+        assert request["settings"]["maximum_output_tokens"] == 8053
+    capacity = json.loads((folder / "turn-01/capacity.json").read_text())
+    assert capacity["task_output_ceiling"] == 8192
+    assert capacity["output_tokens"] == (8192 if thinking else 8053)
+
+
 def test_installed_dependencies_are_observed_without_model_import_selection() -> None:
     for target, package in (
         ("pytest.main", "pytest"),

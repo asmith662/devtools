@@ -23,6 +23,15 @@ alternatives; admission still enforces the exact frozen paths. The default
 retains prior hints and definition digests. This is task-local investigation,
 not authority to edit every visible resource.
 
+For observed, thinking-off requests with an output ceiling above 4,096, measured
+32K capacity may reduce the requested generation allowance to available space,
+provided at least 4,096 tokens remain after the unchanged 2,048-token safety
+margin. Evidence records the task ceiling and effective request limit. Source
+observations are retained; reasoning-mode allowances are not reduced. A full
+input or insufficient remaining generation capacity still refuses dispatch.
+Wrong-region edit refusals name the exact observation handle/path/span; the
+host never substitutes another anchor or partially applies the transaction.
+
 Native tasks may explicitly reserve up to 12,288 output tokens and 600 seconds
 per call for reasoning evaluation; defaults remain 4,096/300 and the 900-second
 task ceiling remains. `--thinking enabled --reasoning-effort medium` selects the

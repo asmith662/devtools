@@ -199,6 +199,28 @@ def test_version_drift_and_refreshed_evidence(tools: ContextTools) -> None:
     assert tools.edit_references[o["edit_ref"]]["version"] == o["version"]
 
 
+def test_wrong_observation_region_reports_exact_handle_without_mutation(
+    tools: ContextTools,
+) -> None:
+    before = (tools.root / tools.task.source).read_bytes()
+    observation = dispatch(
+        tools,
+        "read_source",
+        path=tools.task.source,
+        version=str(tools.snapshot.resources[0].content_identity),
+        start=0,
+        end=10,
+    )
+    with pytest.raises(PatchProposalError, match=r"R1 .*span \[0, 10\)"):
+        admit_observed(
+            tools.root,
+            {tools.task.source: before.decode()},
+            (native(observation["edit_ref"], "return 1", "return 2"),),
+            tools,
+        )
+    assert (tools.root / tools.task.source).read_bytes() == before
+
+
 @pytest.mark.parametrize("newline", ["\n", "\r\n"])
 def test_unicode_whole_region_and_new_file(tools: ContextTools, newline: str) -> None:
     path = tools.task.source

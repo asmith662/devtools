@@ -573,20 +573,40 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
         )
         _save(turn / "request.json", asdict(request))
         measured_tokens = None
+        effective_output = task.output_tokens
         if isinstance(interaction, LlamaCppInteraction):
             async with asyncio.timeout(30):
                 measured_tokens = await interaction.count_input_tokens(request)
+            available_output = 32768 - measured_tokens - 2048
+            # The task specifies a ceiling, not an obligation to reserve unused
+            # generation capacity. Preserve normal 4K editing capacity and all
+            # source observations; do not reduce a thinking request's allowance.
+            if (
+                observed_edits
+                and not thinking_enabled
+                and 4096 <= available_output < task.output_tokens
+            ):
+                effective_output = available_output
+                request = replace(
+                    request,
+                    settings=replace(
+                        request.settings,
+                        maximum_output_tokens=effective_output,
+                    ),
+                )
+                _save(turn / "request.json", asdict(request), overwrite=True)
             _save(
                 turn / "capacity.json",
                 {
                     "input_tokens": measured_tokens,
-                    "output_tokens": task.output_tokens,
+                    "output_tokens": effective_output,
+                    "task_output_ceiling": task.output_tokens,
                     "safety_tokens": 2048,
                     "context_tokens": 32768,
                     "phase": "PRE_DISPATCH_CAPACITY",
                 },
             )
-            if measured_tokens + task.output_tokens + 2048 > 32768:
+            if measured_tokens + effective_output + 2048 > 32768:
                 raise ValueError(
                     "Measured input plus output/safety exceeds actual 32K capacity"
                 )
