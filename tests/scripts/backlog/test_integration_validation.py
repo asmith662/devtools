@@ -71,6 +71,9 @@ def test_protected_subprocess_uses_target_source(
     scripts = tmp_path / "scripts"
     scripts.mkdir()
     (scripts / "validate_development.py").write_text(
+        "import sys\n"
+        "assert not any(k == 'devtools' or k.startswith('devtools.') "
+        "for k in sys.modules)\n"
         "from devtools.example import VALUE\nassert VALUE == 'candidate'\n"
         "print('TARGET_GATE_PASS')\n"
     )

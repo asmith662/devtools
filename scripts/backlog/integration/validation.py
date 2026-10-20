@@ -61,11 +61,11 @@ async def validate_tree(
         write(
             TextFile(
                 resolve_path(protected_path),
-                prelude
-                + "import runpy\n"
-                + f"sys.path.insert(0, {str(checkout)!r})\n"
-                + f"runpy.run_path({str(protected_script)!r},"
-                + " run_name='__main__')\n",
+                "import sys\nimport runpy\n"
+                f"sys.path.insert(0, {str(checkout / 'src')!r})\n"
+                f"sys.path.insert(0, {str(checkout)!r})\n"
+                f"runpy.run_path({str(protected_script)!r},"
+                " run_name='__main__')\n",
             )
         )
     commands: list[tuple[str, tuple[str, ...]]] = [
