@@ -276,7 +276,7 @@ on the same CLI, or `coordinated_edits=True` on `run_local_task`. Historical
 single-edit definitions/digests and the default legacy invocation remain valid.
 
 The native `propose_edits(plan, api_evidence, edits)` operation carries a brief
-compatibility/implementation plan and up to eight exact observed anchors. Each
+compatibility/implementation plan and up to sixteen exact observed anchors. Each
 component names its authorized path, exact current source version, old text and
 replacement. Empty replacements support anchored deletion. All components refer
 to one pre-edit state; stale, unobserved, ambiguous, overlapping and unauthorized

@@ -221,6 +221,44 @@ def test_wrong_observation_region_reports_exact_handle_without_mutation(
     assert (tools.root / tools.task.source).read_bytes() == before
 
 
+def test_sixteen_small_anchors_share_one_atomic_bounded_operation(
+    tools: ContextTools,
+) -> None:
+    count = 16
+    before = "".join(f"value_{i} = 0\n" for i in range(count))
+    (tools.root / tools.task.source).write_bytes(before.encode())
+    current = ContextTools(tools.root, tools.task, direct_reads=True)
+    observation = dispatch(
+        current,
+        "inspect_source",
+        path=tools.task.source,
+        start=0,
+    )
+    calls = tuple(
+        native(observation["edit_ref"], f"value_{i} = 0", f"value_{i} = 1", str(i))
+        for i in range(count)
+    )
+    _, updates, metadata, _ = admit_observed(
+        tools.root,
+        {tools.task.source: before},
+        calls,
+        current,
+    )
+    assert len(metadata) == count
+    assert updates[tools.task.source] == "".join(
+        f"value_{i} = 1\n" for i in range(count)
+    )
+    assert (tools.root / tools.task.source).read_bytes() == before.encode()
+    with pytest.raises(PatchProposalError, match="sixteen"):
+        admit_observed(
+            tools.root,
+            {tools.task.source: before},
+            (*calls, calls[0]),
+            current,
+        )
+    assert (tools.root / tools.task.source).read_bytes() == before.encode()
+
+
 @pytest.mark.parametrize("newline", ["\n", "\r\n"])
 def test_unicode_whole_region_and_new_file(tools: ContextTools, newline: str) -> None:
     path = tools.task.source

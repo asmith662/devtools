@@ -22,6 +22,8 @@ if TYPE_CHECKING:
     from apps.qwen.context_tools import ContextTools
     from devtools.models.interaction import ModelToolDefinition
 
+MAX_TRANSACTION_EDITS = 16
+
 
 def observed_definition() -> ModelToolDefinition:
     """Flat native strings; the host resolves path, version and API evidence."""
@@ -33,8 +35,10 @@ def observed_definition() -> ModelToolDefinition:
             "unique snippet inside that observation; empty means its whole region "
             "(or authorized absent file). new_text is literal Python source, never "
             "JSON syntax. Return multiple replace_source calls in ONE response for "
-            "coordinated regions/files: the host admits and applies the entire batch "
-            "atomically, then validates. No writes occur on refusal.",
+            "up to 16 coordinated regions/files: the host admits the entire batch "
+            "atomically, then validates. Each old/new region is at most 4096 "
+            "UTF-8 bytes; all old+new text totals at most 8192 bytes. "
+            "No writes occur on refusal.",
             json.dumps(
                 {
                     "type": "object",
@@ -58,8 +62,8 @@ def admit_observed(  # noqa: C901 -- resolve references before the existing atom
     tools: ContextTools,
 ) -> tuple[dict[str, str], dict[str, str], list[dict[str, Any]], dict[str, Any]]:
     """Resolve observed references, then reuse the sole atomic admission engine."""
-    if not 1 <= len(calls) <= 8:
-        raise PatchProposalError("One to eight coordinated calls required")
+    if not 1 <= len(calls) <= MAX_TRANSACTION_EDITS:
+        raise PatchProposalError("One to sixteen coordinated calls required")
     tools.check_current()
     rows = []
     refs = []
@@ -172,7 +176,7 @@ def transaction_definition(
             "edits": {
                 "type": "array",
                 "minItems": 1,
-                "maxItems": 8,
+                "maxItems": MAX_TRANSACTION_EDITS,
                 "items": {
                     "type": "object",
                     "additionalProperties": False,
@@ -193,7 +197,7 @@ def transaction_definition(
             "propose_edits",
             (
                 "Propose one atomic implementation. Include imports, helpers "
-                "and function changes together; anchors refer to CURRENT observed "
+                "and function changes together (up to 16 edits); CURRENT observed "
                 "pre-edit versions. Any invalid/overlapping edit rejects the proposal. "
                 "Total old+new UTF-8 text <=8192 bytes; each region <=4096. Cite "
                 "host-required API observations. No writes or shell authority."
@@ -235,8 +239,8 @@ def admit_transaction(  # noqa: C901, PLR0912, PLR0915 -- authenticate all edits
     if not set(tools.task.api_targets) <= verified:
         raise PatchProposalError("Required API contracts not inspected")
     rows = values["edits"]
-    if not isinstance(rows, list) or not 1 <= len(rows) <= 8:
-        raise PatchProposalError("Transaction requires one to eight edits")
+    if not isinstance(rows, list) or not 1 <= len(rows) <= MAX_TRANSACTION_EDITS:
+        raise PatchProposalError("Transaction requires one to sixteen edits")
     tools.check_current()
     intervals: dict[str, list[dict[str, Any]]] = {}
     metadata = []

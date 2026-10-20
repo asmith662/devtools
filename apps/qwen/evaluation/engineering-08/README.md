@@ -58,3 +58,21 @@ latter can reserve the remaining allowance if at least the normal 4K editing
 capacity remains, without omitting source or increasing the frozen task ceiling.
 These are measured failure responses, not a new Context-selection mechanism.
 The second task's objective, baseline, oracle and maximum budgets stay unchanged.
+
+## Terminal live results and offline disposition
+
+Assignment B reached a ten-call coordinated implementation after investigating
+the filesystem packages. The host refused all components because its count
+ceiling was eight, a bound absent from the flat Tool description. A subsequent
+request had 28,589 input tokens, leaving only 2,131 tokens after safety: the normal
+4K editing floor correctly prevented dispatch. It remains `CONTEXT_BUDGET_FAILED`,
+nine actual model requests, no source mutation or behavioral validation.
+
+Both live assignments are unsuccessful. No run is repeated and no model budget
+is extended. The flat and nested admission owner now permits sixteen small
+components within the unchanged 8,192 aggregate text/16,384 patch byte limits,
+and explicitly describes the limits. Focused tests verify sixteen-component
+atomic admission and seventeen-component refusal. Assessment of the unchanged
+captured transaction under this corrected contract is separately identified;
+it must never be counted as an autonomous live task success or a successful
+model repair. The original rejected live receipt is immutable.
