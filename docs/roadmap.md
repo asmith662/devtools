@@ -1,5 +1,13 @@
 # Roadmap
 
+[Editing comparison 06](../apps/qwen/evaluation/editing-06/README.md) adds flat
+observed edit calls and bounded path-based source inspection through existing
+owners. Valid paired development: Devtools 1/2, Pi 2/2; replacement confirmation
+both accepted. Editing admission failures disappeared in this sample, but
+multi-file/new-module investigation still failed before editing. Next priority:
+reliable Tool selection and efficient multi-file investigation, measured on
+fresh tasks. Qwen remains primary; general reliability and Codex parity are open.
+
 Qwen remains the active engineering priority. [Environment 05](../apps/qwen/evaluation/environment-05/README.md)
 verifies actual weights/runtime and compares a scoped Pi harness with Devtools on
 two fresh tasks. Native task-scoped Git/check Tools, absence-bound new files,

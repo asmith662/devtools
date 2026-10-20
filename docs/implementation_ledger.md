@@ -1,5 +1,15 @@
 # Implementation Ledger
 
+## 2026-10-20 — Flat observed Qwen editing and matched Pi comparison
+
+Added opt-in flat observed atomic edits, source-reference bookkeeping and
+bounded direct source reads using existing Context, ToolRunner and admission.
+Historical native contracts remain. Nine real runs: 53 requests, 363,197 input /
+12,030 output tokens, 745.01 worker seconds. Valid development Devtools 1/2 versus
+Pi 2/2; replacement confirmation both accepted. An invalid independent oracle is
+explicitly excluded with original failures retained. No general parity claim.
+See apps/qwen/evaluation/editing-06 for frozen criteria, limitations and closeout.
+
 ## 2026-10-20 — Verified local Qwen coding environment
 
 Full GGUF hashing and pinned upstream metadata authenticate the actual model.

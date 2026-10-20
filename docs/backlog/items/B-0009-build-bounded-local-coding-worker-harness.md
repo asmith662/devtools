@@ -191,3 +191,14 @@ These small development results do not establish general reliability or Codex pa
 See `apps/qwen/evaluation/environment-05/README.md` for budget, conditions and
 limitations. Prior accepted candidates and failed evaluations retain their original
 attribution and integration status. This item remains open.
+
+
+## Flat observed editing comparison 06
+
+Simplified native edit arguments retain exact versioned atomic admission and
+shared closeout. Valid paired development accepted 1/2 in Devtools versus 2/2
+in Pi; a replacement fresh confirmation passed both. The invalid original
+confirmation oracle and its failures remain recorded, excluded from scoring.
+Zero edit-admission refusals in five transactions do not establish general
+reliability. Multi-file/new-module investigation remains a demonstrated gap.
+See `apps/qwen/evaluation/editing-06/README.md`. This item remains open.

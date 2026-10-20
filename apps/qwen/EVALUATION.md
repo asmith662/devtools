@@ -1,5 +1,30 @@
 # Native Context worker acceptance and evaluation
 
+## Editing comparison 06 — measured outcome
+
+Flat observed native edits reuse existing atomic admission and source ownership.
+On valid paired development tasks, Devtools accepted 1/2 versus Pi 2/2. The
+Command correction genuinely repaired a typing failure while preserving passed
+behavior; the lazy new-module task failed before editing. Safe unit/schema
+feedback and a direct bounded source-read adapter were selected from those
+development failures; no third run of that task was performed.
+
+A replacement fresh confirmation passed both harnesses (5 versus 4 requests).
+The original disappearance confirmation is excluded: its independently authored
+oracle incorrectly assumed CPython 3.14 Path.exists/is_file call overridden stat.
+Its two failed receipts remain immutable. The replacement Pi allocation followed
+Devtools success, limiting the independence of pair selection. No general parity
+or comparative correctness improvement is established by this small sample.
+
+Nine real runs consumed 53 calls, 363,197 input / 12,030 output tokens and
+745.01 summed worker seconds. Five admitted Devtools transactions contained 14
+flat native edit calls with zero admission refusals and zero omitted exchanges.
+The original 80-call/7,200-second budget was unchanged when the run-count cap was
+prospectively amended from eight to nine to replace the invalid confirmation.
+See [frozen definitions and detailed results](evaluation/editing-06/README.md).
+The Command candidate is selected for shared reviewed closeout; the decoded
+output candidate remains evidence pending separate integration.
+
 Latest checkpoint: [coding environment 05](evaluation/environment-05/README.md).
 The independently hashed GGUF matches its pinned upstream LFS artifact. A scoped
 Pi 1.3.0 comparison accepted both fresh development tasks versus 0/2 for the

@@ -38,7 +38,10 @@ def test_path_read_reuses_versioned_materialization_and_absence(
     assert first["text"] == direct.snapshot.resources[0].content
     assert first["edit_ref"]
     bad = dispatch(
-        direct, "inspect_source", path=task.source, start=len(first["text"]) + 1,
+        direct,
+        "inspect_source",
+        path=task.source,
+        start=len(first["text"]) + 1,
     )
     assert bad["error"] == "SOURCE_RANGE_OUT_OF_BOUNDS"
     absent = dispatch(direct, "inspect_source", path=task.new_paths[0], start=0)

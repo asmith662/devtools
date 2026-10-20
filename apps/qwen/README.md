@@ -218,6 +218,25 @@ chat template, serving process or context-window change is implied. See
 
 ### Coordinated source edits and installed API contracts
 
+For simpler native editing, select `--observed-edits` (or
+`observed_edits=True, coordinated_edits=True` on `run_local_task`). Source
+observations return short task-local `edit_ref` handles. The flat native Tool is
+`replace_source(reference, old_text, new_text)`: the host resolves paths, exact
+versions and required installed-API observations. Empty old text selects the
+whole observed span, or an explicitly authorized absent new file. Nonempty old
+text must still match exactly. Multiple calls in one assistant response form
+one atomic transaction through the existing admission/application path.
+No approximate matching, suffix repair or partial mutation is permitted.
+
+`inspect_source(path, start)` resolves the current authorized source version
+and returns at most 4,096 UTF-8 bytes, source length, continuation coordinates
+and an observation handle. It reuses Context disclosure and grants no edit
+authority. Historical versioned reads, single-edit and nested transactions
+remain compatible. Safe unknown-unit/empty-version mistakes produce correlated
+bounded feedback; authorization and source-drift refusals remain enforced.
+See [editing comparison 06](evaluation/editing-06/README.md) for measured results.
+The simpler interface is opt-in; historical receipts are unchanged.
+
 Trusted local tasks may explicitly declare `additional_edit_paths` (at most
 three existing implementation files under `src/devtools/`) and `api_targets`.
 All edit and read resources remain frozen by baseline revision/content hashes;
