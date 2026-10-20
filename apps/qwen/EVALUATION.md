@@ -11,6 +11,12 @@ thinking-off/medium comparisons do not establish a better default or general
 proficiency. Shared integration closeout now handles local accepted evidence and
 independently authored tests; publication remains an explicit feature-only effect.
 
+The exact accepted JSON candidate is now installed and published on the feature
+branch in `d09f4cf22fa0fb99910990de5753313f13b28449`, with 15 independently
+authored permanent regressions. Shared closeout authenticated, validated and
+reviewed it; the protected gate passed 2,110 tests, two skipped, 100% production
+branch coverage. This is maintained feature source, not a protected-main merge.
+
 Previous checkpoint: [native cohort 04](evaluation/native-cohort-04/README.md).
 Versioned observed edit transactions coordinate multiple regions and authorized
 files while citing installed allowlisted API contracts. Final paired development

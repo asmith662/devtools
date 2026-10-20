@@ -128,3 +128,47 @@ candidates are not silently integrated or reclassified by this assignment.
 The next priority is reliable native edit argument construction and precise
 source-mismatch diagnostics, followed by fresh diverse paired tasks. There is
 still no fair paid Codex baseline or evidence of general Codex parity.
+
+## Completed maintained-source integration and verification
+
+Shared closeout reached `FEATURE_PUBLISHED` in commit
+`d09f4cf22fa0fb99910990de5753313f13b28449` on `feat/qwen-context-worker`.
+The exact selected Qwen source hash above is installed in maintained source,
+alongside 15 independently authored permanent regressions (32 JSON tests total).
+Codex reviewed the actual source, reconstructed native proposal anchors and exact
+candidate bytes, and recorded the subject-bound `ACCEPT_RECOMMENDED` decision.
+Eight native runs replayed in memory: seven admitted transactions authenticated
+their observed regions and final candidates, with request/response hash and native
+message/call correlation checks. No model inference was used for this audit.
+
+The protected gate passed **2,110 tests, two skipped, 100% production branch
+coverage**, in 471.78 seconds. An earlier gate passed all tests but failed coverage
+at 97.27% because the existing integration bootstrap imported Devtools before
+coverage started. The bootstrap and its real-subprocess regression were corrected,
+then the required gate passed; the coverage threshold was not relaxed. Independent
+test preparation also exposed Windows decoding, lint and typing defects in host
+test drafts. Only those independently authored drafts were corrected, not Qwen's
+code or the frozen oracle. Separate validation directories retain these failures.
+
+Final maintained-tree Ruff passes; changed-file formatting passes for 24 Python
+files; strict mypy passes 485 files; layout and Git diff checks pass. Two test-only
+formatting corrections after the gate are AST-equivalent and their 134 focused
+regressions pass. Whole-tree formatting still identifies 58 unchanged files;
+unscoped scans additionally encounter historical scientific payload findings and
+a Ruff renderer panic. Those unrelated files were preserved.
+
+The original q4 service is restored: 32,768 Context, one slot, exact embedded/server
+template match, approximately 14,000 MiB GPU and 9.474 GiB container RAM at final
+idle observation. Recorded q4 decode rates were 20.92–24.19 tokens/s; q8 rates
+20.94–23.48 tokens/s. Prefix caching affects prefill timings; these are slot
+observations, not an independent hardware benchmark. The current server's default
+permissive CORS/no-key configuration is preserved, behind its loopback publication.
+
+Protected main remains `862bda2d3d1d812893f84ab69691fc068ecce268`.
+There is one physical checkout and the 13 pre-existing forensic files remain
+untracked and untouched. No Qwen attempts beyond the ten-run budget, paid fallback,
+scientific execution, backlog closure or protected promotion occurred. Observed
+assignment timestamps begin `2026-10-19T23:58:14.481688Z`; the final results record
+the completion timestamp. This span includes long gaps and is not measured active
+Codex time. Coordination usage, electrical consumption and monetary costs remain
+UNKNOWN.

@@ -816,7 +816,11 @@ def test_supported_sampling_is_exactly_forwarded(
 
     monkeypatch.setattr(llama_cpp, "_post_chat_completion", post)
     settings = LlamaCppRequestSettings(
-        temperature=0.7, top_p=0.8, top_k=20, min_p=0, presence_penalty=1.5,
+        temperature=0.7,
+        top_p=0.8,
+        top_k=20,
+        min_p=0,
+        presence_penalty=1.5,
     )
     asyncio.run(
         _interaction().send(

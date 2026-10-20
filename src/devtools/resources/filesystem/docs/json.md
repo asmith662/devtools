@@ -51,7 +51,10 @@ conversion receives the scalar, and list conversion thaws each item.
 scalar models; `serialize()` renders current `.value`; `encode()` produces
 bytes. The codec never reads or writes disk.
 
-Parsing is strict: nonstandard constants such as `NaN` are rejected. Invalid
+Parsing is strict: nonstandard constants such as `NaN` and floating-point literals
+that overflow to non-finite values are rejected at every nesting depth. Finite
+floats, underflow and arbitrary-size integers retain their normal Python JSON
+semantics. Conversion failures retain their cause through `FileFormatError`. Invalid
 source becomes `FileFormatError`, with line/column information for ordinary
 JSON decode failures. Serialization defaults to indent `2`, `ensure_ascii=False`,
 unsorted keys, and a trailing newline; indentation, ASCII escaping, key sorting,

@@ -53,7 +53,7 @@ def test_actual_capacity_refusal_retains_pending_request_without_model_dispatch(
     report: dict[str, Any] = {"turns": []}
     with pytest.raises(ValueError, match="actual 32K"):
         asyncio.run(
-                coding_loop._turns(  # noqa: SLF001 -- exercise the real pre-dispatch boundary
+            coding_loop._turns(  # noqa: SLF001 -- exercise the real pre-dispatch boundary
                 tools.root,
                 folder,
                 model,
