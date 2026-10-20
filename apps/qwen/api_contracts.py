@@ -7,8 +7,10 @@ from __future__ import annotations
 import hashlib
 import inspect
 import json
+import math
 import re
 import sys
+from pathlib import PurePath
 from typing import Any
 
 # Host-owned concrete objects only. No importlib, eval, getattr traversal or
@@ -16,6 +18,8 @@ from typing import Any
 _APIS: dict[str, Any] = {
     "bytes.decode": bytes.decode,
     "str.encode": str.encode,
+    "math.isfinite": math.isfinite,
+    "pathlib.PurePath.with_suffix": PurePath.with_suffix,
     "json.loads": json.loads,
     "json.JSONDecoder": json.JSONDecoder,
     "re.Pattern.finditer": re.Pattern.finditer,

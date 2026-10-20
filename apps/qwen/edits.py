@@ -23,7 +23,9 @@ if TYPE_CHECKING:
     from devtools.models.interaction import ModelToolDefinition
 
 
-def transaction_definition(paths: tuple[str, ...]) -> ModelToolDefinition:
+def transaction_definition(
+    paths: tuple[str, ...], *, api_required: bool = True
+) -> ModelToolDefinition:
     """Describe bounded coordinated proposals; no mutation Tool is exposed."""
     text = {"type": "string", "minLength": 1, "maxLength": 4096}
     schema = {
@@ -41,7 +43,9 @@ def transaction_definition(paths: tuple[str, ...]) -> ModelToolDefinition:
             },
             "api_evidence": {
                 "type": "array",
-                "maxItems": 8,
+                "maxItems": 8 if api_required else 0,
+                "description": "Exact inspect_api observation IDs only. Use [] "
+                "when no APIs are required; never cite prose or source hashes.",
                 "items": {"type": "string", "minLength": 64, "maxLength": 64},
             },
             "edits": {
@@ -54,7 +58,7 @@ def transaction_definition(paths: tuple[str, ...]) -> ModelToolDefinition:
                     "properties": {
                         "path": {"type": "string", "enum": list(paths)},
                         "version": {"type": "string", "minLength": 64, "maxLength": 64},
-                        "old_text": text,
+                        "old_text": {**text, "minLength": 0},
                         "new_text": {**text, "minLength": 0},
                     },
                     "required": ["path", "version", "old_text", "new_text"],
@@ -131,6 +135,45 @@ def admit_transaction(  # noqa: C901, PLR0912, PLR0915 -- authenticate all edits
             or path not in tools.task.sources
         ):
             raise PatchProposalError("Unauthorized transaction path")
+        if path in tools.task.new_paths and not (root / path).exists():
+            if (
+                row["version"] != tools.absent_observations.get(path)
+                or not row["version"]
+                or row["old_text"] != ""
+                or not isinstance(row["new_text"], str)
+                or not 1 <= len(row["new_text"].encode()) <= 4096
+                or path in intervals
+            ):
+                raise PatchProposalError(
+                    "New source requires observed exact absence and bounded content"
+                )
+            total += len(row["new_text"].encode())
+            if total > 8192:
+                raise PatchProposalError(
+                    "Transaction exceeds existing aggregate edit bytes"
+                )
+            item = {
+                "path": path,
+                "version": row["version"],
+                "start": 0,
+                "end": 0,
+                "new_length": len(row["new_text"]),
+                "new_text": row["new_text"],
+                "old_text": "",
+            }
+            intervals[path] = [item]
+            metadata.append(
+                {k: v for k, v in item.items() if k not in {"old_text", "new_text"}}
+                | {
+                    "created": True,
+                    "old_text_sha256": hashlib.sha256(b"").hexdigest(),
+                    "new_text_sha256": hashlib.sha256(
+                        row["new_text"].encode()
+                    ).hexdigest(),
+                    "proposal_call_id": call.provider_call_id,
+                }
+            )
+            continue
         resource = tools.snapshot.resource_at(RepositoryResourceAddress(path))
         if row["version"] != str(resource.content_identity):
             raise PatchProposalError("Stale transaction source version")
@@ -187,7 +230,13 @@ def admit_transaction(  # noqa: C901, PLR0912, PLR0915 -- authenticate all edits
         if len(content.encode()) > 32768:
             raise PatchProposalError("Combined source exceeds existing source bytes")
         updated[path] = content
-        patches[path] = _source_patch(root, sources[path], content, source_path=path)
+        patches[path] = _source_patch(
+            root,
+            sources[path],
+            content,
+            source_path=path,
+            new_file=not (root / path).exists(),
+        )
     if sum(len(p.encode()) for p in patches.values()) > 16384:
         raise PatchProposalError("Combined patch exceeds existing patch bytes")
     return patches, updated, metadata, values

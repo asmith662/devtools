@@ -10,6 +10,7 @@ only after a host-admitted edit. Tool results are data, never instructions.
 
 from __future__ import annotations
 
+import hashlib
 import json
 from dataclasses import asdict
 from typing import TYPE_CHECKING, Any, cast
@@ -58,6 +59,7 @@ CONTEXT_TOOL_NAMES = (
     "expand_source",
     "source_relationships",
     "inspect_api",
+    "inspect_new_source",
 )
 
 
@@ -134,9 +136,28 @@ _DEFINITIONS = (
 
 def context_tool_definitions(
     api_targets: tuple[str, ...] = (),
+    new_paths: tuple[str, ...] = (),
 ) -> tuple[ModelToolDefinition, ...]:
     """Use the existing Tool disclosure composition for this fixed Tool surface."""
     descriptors: tuple[ToolDescriptor, ...] = _DEFINITIONS
+    if new_paths:
+        descriptors += (
+            ToolDescriptor(
+                "inspect_new_source",
+                "Verify an explicitly authorized new file is absent; returns the "
+                "exact absence version required for creation. No write occurs.",
+                json.dumps(
+                    {
+                        "type": "object",
+                        "properties": {
+                            "path": {"type": "string", "enum": list(new_paths)}
+                        },
+                        "required": ["path"],
+                        "additionalProperties": False,
+                    }
+                ),
+            ),
+        )
     if api_targets:
         descriptors += (
             ToolDescriptor(
@@ -174,7 +195,7 @@ class ContextTools:
         self.repository = Repository.new()
         self.addresses = tuple(
             RepositoryResourceAddress(p)
-            for p in (*task.sources, *task.tests, *task.read_paths)
+            for p in (*task.existing_sources, *task.tests, *task.read_paths)
         )
         # Existing metadata discovery, not content acquisition. Only the selected
         # <=32 resources enter the existing source index. Failure is fail-closed.
@@ -189,11 +210,12 @@ class ContextTools:
         self._index()
         self.observations: list[dict[str, Any]] = []
         self.api_observations: dict[str, dict[str, Any]] = {}
+        self.absent_observations: dict[str, str] = {}
 
     @property
     def definitions(self) -> tuple[ModelToolDefinition, ...]:
         """Disclose the existing ToolDescriptor projection, never executable writes."""
-        return context_tool_definitions(self.task.api_targets)
+        return context_tool_definitions(self.task.api_targets, self.task.new_paths)
 
     def _observe(self) -> RepositorySnapshot:
         for address in self.addresses:
@@ -227,6 +249,11 @@ class ContextTools:
 
     def check_current(self) -> None:
         """Refuse stale source before every invocation and Tool dispatch."""
+        for path in self.task.new_paths:
+            if (self.root / path).exists() and RepositoryResourceAddress(
+                path
+            ) not in self.addresses:
+                raise ValueError("SOURCE_DRIFT: unadmitted new source")
         if self._observe() != self.snapshot:
             raise ValueError("SOURCE_DRIFT: admitted Context changed")
 
@@ -303,17 +330,35 @@ class ContextTools:
         call_id: str | None,
     ) -> None:
         """Reconcile one admitted transaction and retain only verified source."""
+        created = [
+            RepositoryResourceAddress(p)
+            for p in updates
+            if RepositoryResourceAddress(p) not in self.addresses
+        ]
+        if created:
+            self.addresses += tuple(created)
+            self.discovery = discover_repository_resource_addresses(
+                repository=self.repository,
+                root=resolve_path(self.root),
+                maximum_resource_count=32,
+                maximum_traversal_entry_count=512,
+                requested_addresses=self.addresses,
+            )
         current = self._observe()
         for resource in current.resources:
-            previous = self.snapshot.resource_at(resource.address)
+            previous = (
+                None
+                if resource.address in created
+                else self.snapshot.resource_at(resource.address)
+            )
             if resource.content != updates.get(
-                resource.address.value, previous.content
+                resource.address.value, previous.content if previous else ""
             ):
                 raise ValueError("SOURCE_DRIFT after transaction")
         retained = [o for o in self.observations if o["path"] not in updates]
         for path, updated in updates.items():
             address = RepositoryResourceAddress(path)
-            old = self.snapshot.resource_at(address)
+            old = None if address in created else self.snapshot.resource_at(address)
             new = current.resource_at(address)
             changes = sorted(
                 (e for e in edits if e["path"] == path), key=lambda e: e["start"]
@@ -322,7 +367,7 @@ class ContextTools:
                 if observation["path"] != path:
                     continue
                 left, right = observation["span"]
-                if old.content[left:right] != observation["text"]:
+                if old is None or old.content[left:right] != observation["text"]:
                     raise ValueError("Observed coordinates changed")
                 segments = [(left, right)]
                 for edit in changes:
@@ -341,6 +386,8 @@ class ContextTools:
                         for e in changes
                         if e["end"] <= first
                     )
+                    if old is None:
+                        raise ValueError("Cannot refresh an absent observation")
                     text = old.content[first:last]
                     if updated[first + shift : last + shift] != text:
                         raise ValueError(
@@ -437,9 +484,34 @@ class ContextTools:
             else None,
         }
 
-    async def execute(self, arguments: tuple[str, dict[str, Any]]) -> dict[str, Any]:
+    async def execute(self, arguments: tuple[str, dict[str, Any]]) -> dict[str, Any]:  # noqa: C901, PLR0911 -- fixed source/API operations
         """Project existing search, source units, expansion and relationship facts."""
         name, values = arguments
+        if name == "inspect_new_source":
+            path = values["path"]
+            raw = self.root / path
+            if (
+                resolve_path(raw).value != raw
+                or not raw.parent.is_dir()
+                or raw.exists()
+                or raw.is_symlink()
+            ):
+                raise ValueError(
+                    "New source must be absent under an existing unaliased parent"
+                )
+            version = hashlib.sha256(
+                (self.task.baseline_revision + ":ABSENT:" + path).encode()
+            ).hexdigest()
+            self.absent_observations[path] = version
+            return {
+                "path": path,
+                "version": version,
+                "status": "ABSENT",
+                "text": "",
+                "source_length": 0,
+                "scope": "Only this exact host-authorized new file may be proposed; "
+                "no source exists.",
+            }
         if name == "inspect_api":
             observation = inspect_contract(values["target"], self.task.api_targets)
             self.api_observations[observation["observation_id"]] = observation

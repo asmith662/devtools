@@ -84,6 +84,7 @@ async def run_local_task(  # noqa: PLR0913 -- explicit bounded host options
     branch: str | None = None,
     thinking_enabled: bool = False,
     coordinated_edits: bool = False,
+    reasoning_effort: str | None = None,
 ) -> dict[str, Any]:
     """Trusted host invocation authorizes this local evaluation, not publication.
 
@@ -94,9 +95,12 @@ async def run_local_task(  # noqa: PLR0913 -- explicit bounded host options
     if type(thinking_enabled) is not bool:
         message = "thinking_enabled must be an explicit host boolean"
         raise ValueError(message)
+    if reasoning_effort is not None and not thinking_enabled:
+        message = "Reasoning effort requires thinking enabled"
+        raise ValueError(message)
     if (
         type(coordinated_edits) is not bool
-        or (task.additional_edit_paths and not coordinated_edits)
+        or ((task.additional_edit_paths or task.new_paths) and not coordinated_edits)
         or (coordinated_edits and task.context_mode != "on-demand")
     ):
         message = "Coordinated edits require explicit native scoped operation"
@@ -109,15 +113,20 @@ async def run_local_task(  # noqa: PLR0913 -- explicit bounded host options
         raise PermissionError(message)
     sources = {
         p: await cycle._baseline(task, p, dict(task.baseline_hashes)[p])  # noqa: SLF001 -- existing exact Git binding
-        for p in task.sources
+        for p in task.existing_sources
     }
+    for p in task.new_paths:
+        if (root / p).exists() or not (root / p).parent.is_dir():
+            message = "New source must be absent under existing parent"
+            raise ValueError(message)
     worker_head = await git(root, "rev-parse", "HEAD")
     async with Checkout(
         cycle,
         "local-evaluation:" + task.definition_sha256,
         selected,
         task.baseline_revision,
-        files=[{"path": p, "text": text} for p, text in sources.items()],
+        files=[{"path": p, "text": text} for p, text in sources.items()]
+        + [{"path": p, "text": ""} for p in task.new_paths],
         create=True,
     ) as owner:
         interaction, provenance = await local_interaction(root)
@@ -135,10 +144,11 @@ async def run_local_task(  # noqa: PLR0913 -- explicit bounded host options
             admit_edit=owner.expect,
             thinking_enabled=thinking_enabled,
             coordinated_edits=coordinated_edits,
+            reasoning_effort=reasoning_effort,
         )
 
 
-async def main() -> int:
+async def main() -> int:  # noqa: C901 -- closed local run/closeout entrypoint
     """Invoke one constrained local task without production approval rituals."""
     parser = argparse.ArgumentParser(description=__doc__)
     selection = parser.add_mutually_exclusive_group()
@@ -156,6 +166,30 @@ async def main() -> int:
         ),
     )
     parser.add_argument("--branch", help="Optional ordinary feature source branch.")
+    parser.add_argument(
+        "--closeout",
+        action="store_true",
+        help="Validate an accepted local result through WorkCycle.integration; "
+        "no inference.",
+    )
+    parser.add_argument(
+        "--expected-head",
+        help="Exact current feature HEAD for closeout.",
+    )
+    parser.add_argument(
+        "--review-json",
+        help="Trusted supervisory review of the exact closeout subject.",
+    )
+    parser.add_argument(
+        "--commit",
+        action="store_true",
+        help="Explicit trusted feature commit effect; no protected promotion.",
+    )
+    parser.add_argument(
+        "--push",
+        action="store_true",
+        help="Publish that exact reviewed ordinary feature commit.",
+    )
     parser.add_argument(
         "--thinking",
         choices=("disabled", "enabled"),
@@ -178,6 +212,7 @@ async def main() -> int:
             "host-allowlisted API inspection."
         ),
     )
+    parser.add_argument("--reasoning-effort", choices=("low", "medium", "xhigh"))
     args = parser.parse_args()
     try:
         task = (
@@ -202,6 +237,27 @@ async def main() -> int:
     ) as error:
         parser.error(f"Invalid host task definition: {error}")
     args.task = task.name
+    if args.closeout:
+        if not args.expected_head or args.preflight_only:
+            parser.error("Closeout requires --expected-head and excludes preflight")
+        cycle = WorkCycle(_ROOT)
+        result = await cycle.integration.closeout_local(
+            task,
+            resolve_path(args.report_directory, base_directory=Path.cwd()).value,
+            branch=args.branch or await git(_ROOT, "branch", "--show-current"),
+            expected_head=args.expected_head,
+            review=load_json(
+                resolve_path(args.review_json, base_directory=Path.cwd()).value,
+            )
+            if args.review_json
+            else None,
+            commit=args.commit,
+            push=args.push,
+        )
+        print(result["disposition"])
+        return 0 if result["validation"]["accepted"] else 1
+    if args.commit or args.push or args.review_json or args.expected_head:
+        parser.error("Publication/review options require --closeout")
     try:
         args.report_directory = report_directory(args.report_directory)
     except (PathError, ValueError, OSError) as error:
@@ -212,14 +268,20 @@ async def main() -> int:
         return (
             0 if result["disposition"] == "PREFLIGHT_CHECKS_PASS_REVIEW_REQUIRED" else 1
         )
+    options: dict[str, Any] = {}
+    if args.thinking == "enabled":
+        options["thinking_enabled"] = True
+    if args.coordinated_edits:
+        options["coordinated_edits"] = True
+    if args.reasoning_effort:
+        options["reasoning_effort"] = args.reasoning_effort
     try:
         result = await run_local_task(
             _ROOT,
             args.report_directory,
             task=task,
             branch=args.branch,
-            **({"thinking_enabled": True} if args.thinking == "enabled" else {}),
-            **({"coordinated_edits": True} if args.coordinated_edits else {}),
+            **options,
         )
     except RuntimeError:
         print("MODEL_SERVICE_NOT_READY_OR_PROFILE_CHANGED; no model invocation")

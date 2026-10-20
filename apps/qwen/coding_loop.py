@@ -17,6 +17,13 @@ import time
 from dataclasses import asdict
 from typing import TYPE_CHECKING, Any
 
+from apps.qwen.commands import (
+    COMMAND_TOOL_NAMES,
+    CodingCommands,
+    command_definitions,
+    format_sources,
+    run_check,
+)
 from apps.qwen.context_tools import (
     CONTEXT_TOOL_NAMES,
     ContextTools,
@@ -62,6 +69,7 @@ from devtools.models.interaction import (
     Prompt,
     PromptMessage,
 )
+from devtools.models.interaction.providers import LlamaCppRequestSettings
 from devtools.resources.filesystem import TextFile, write
 
 if TYPE_CHECKING:
@@ -250,20 +258,8 @@ async def validate_workspace(
     root: Path, folder: Path, *, task: CodingTask = MARKDOWN
 ) -> dict[str, Any]:
     """Execute only host-selected commands with the isolated source on sys.path."""
-    oracle = await _timed_command(
-        root,
-        sys.executable,
-        "-I",
-        "-B",
-        str(folder / "oracle-runner.py"),
-    )
-    tests = await _timed_command(
-        root,
-        sys.executable,
-        "-I",
-        "-B",
-        str(folder / "tests-runner.py"),
-    )
+    oracle = await run_check(root, folder, task, "oracle")
+    tests = await run_check(root, folder, task, "tests")
     result = {"oracle": oracle, "tests": tests}
     if task.quality_checks:
         for name, arguments in (
@@ -273,6 +269,8 @@ async def validate_workspace(
             result[name] = await _timed_command(
                 root, sys.executable, "-m", "ruff", *arguments, *task.sources
             )
+    if task.command_tools:
+        result["typing"] = await run_check(root, folder, task, "typing")
     return {**result, "accepted": all(not check["failed"] for check in result.values())}
 
 
@@ -332,6 +330,14 @@ async def _authenticate_inputs(root: Path, workspace: Path, task: CodingTask) ->
     Git LF/CRLF candidates must identify the frozen input; current source/test
     bytes must independently match it. This function never rewrites inputs.
     """
+    for path in task.new_paths:
+        if (workspace / path).exists() or not (workspace / path).parent.is_dir():
+            raise ValueError("New source is not absent under existing parent")
+        probe = await _command(
+            root, "git", "ls-tree", "--name-only", task.baseline_revision, "--", path
+        )
+        if probe["failed"] or probe["stdout"].strip():
+            raise ValueError("New source exists in baseline")
     for path, digest in task.baseline_hashes:
         target = workspace / path
         result = await _command(
@@ -416,11 +422,13 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
     admit_edit: Callable[[str, str], None] | None = None,
     thinking_enabled: bool = False,
     coordinated_edits: bool = False,
+    reasoning_effort: str | None = None,
 ) -> None:
     repository = Repository.new()
     feedback: dict[str, Any] = {"disposition": "INITIAL_PROPOSAL"}
     prepared_at = time.perf_counter()
     tools = ContextTools(workspace, task) if task.context_mode == "on-demand" else None
+    commands = CodingCommands(workspace, folder, task)
     report["context_preparation_seconds"] = time.perf_counter() - prepared_at
     active_prompt = task.prompt
     if coordinated_edits:
@@ -437,10 +445,18 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             "inspect_api, then cite their observation IDs; do not invent API "
             "keywords. Required API observations: "
             + json.dumps(task.api_targets)
-            + ". You have no direct writes, shell or Git authority. Host-owned "
+            + ". No direct writes, shell or Git mutation authority. Host-owned "
             "behavior/regression/typing/quality checks decide acceptance. "
             "Preserve passed requirements while repairing. Maximum 3 proposals, "
-            "8 combined read/API actions, " + str(maximum_calls) + " model calls."
+            f"{task.tool_actions} combined read/check/API actions, "
+            + str(maximum_calls)
+            + " model calls."
+        )
+    if task.command_tools:
+        active_prompt += (
+            " Use git_inspect for scoped status/diff/history and run_check for "
+            "fixed tests, oracle, Ruff, formatting or typing when useful. "
+            "These are host-owned bounded operations, not shell access."
         )
     history = [
         PromptMessage(
@@ -453,7 +469,8 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 "Read scope: "
                 + json.dumps([*task.sources, *task.tests, *task.read_paths])
                 + ". Read spans are half-open character offsets. Search/lookup "
-                "return versions required for reading. At most 8 Context actions "
+                "return versions required for reading. At most "
+                f"{task.tool_actions} Context/check actions "
                 "and 3 edit proposals; all requests share the total model-call "
                 "bound. Do not call Tools unnecessarily."
             ),
@@ -478,7 +495,12 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             model_prompt = Prompt(prompt, role="user")
         else:
             tools.check_current()
-            messages, omitted = select_messages(history, source_path=task.source)
+            active_bytes = min(
+                ACTIVE_BYTES, int((32768 - task.output_tokens - 4096) * 1.5)
+            )
+            messages, omitted = select_messages(
+                history, source_path=task.source, maximum_bytes=active_bytes
+            )
             model_prompt = Prompt("", role="messages", messages=messages)
             prompt = json.dumps(asdict(model_prompt))
             context = ""  # Disclosed only on demand in correlated Tool results.
@@ -486,19 +508,24 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             raise ValueError("Bounded Context byte allowance exceeded")
         request = ModelRequest(
             prompt=model_prompt,
+            provider_settings=LlamaCppRequestSettings(reasoning_effort=reasoning_effort)
+            if reasoning_effort
+            else None,
             settings=ModelSettings(
                 maximum_output_tokens=task.output_tokens,
                 thinking_enabled=thinking_enabled,
             ),
             tools=(
                 (
-                    transaction_definition(task.sources)
+                    transaction_definition(
+                        task.sources, api_required=bool(task.api_targets)
+                    )
                     if coordinated_edits
                     else _structured_edit_definition(source_path=task.source)
                 ),
                 *(
-                    tools.definitions
-                    if tools is not None and context_actions < 8
+                    (*tools.definitions, *command_definitions(task))
+                    if tools is not None and context_actions < task.tool_actions
                     else ()
                 ),
             ),
@@ -549,7 +576,14 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             raise PatchProposalError("Source changed while proposal pending")
         if tools is not None:
             history.append(
-                PromptMessage("assistant", response.content, response.tool_calls)
+                PromptMessage(
+                    "assistant",
+                    response.content,
+                    response.tool_calls,
+                    reasoning_content=response.reasoning_content
+                    if thinking_enabled
+                    else None,
+                )
             )
             if not response.tool_calls:
                 stage["disposition"] = "MODEL_COMPLETED_WITHOUT_EDIT"
@@ -559,22 +593,26 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             ids = [c.provider_call_id for c in response.tool_calls]
             if any(not identity for identity in ids) or len(set(ids)) != len(ids):
                 raise PatchProposalError("Native calls require distinct nonempty IDs")
-            if all(c.name in CONTEXT_TOOL_NAMES for c in response.tool_calls):
+            if all(
+                c.name in (*CONTEXT_TOOL_NAMES, *COMMAND_TOOL_NAMES)
+                for c in response.tool_calls
+            ):
                 stage["phase"] = "CONTEXT_TOOL_EXECUTION"
                 stage["context_actions_requested"] = len(response.tool_calls)
                 stage["context_tools"] = []
                 _save(turn / "stage.json", stage, overwrite=True)
-                if 0 < 8 - context_actions < len(response.tool_calls):
+                if 0 < task.tool_actions - context_actions < len(response.tool_calls):
                     result: dict[str, Any] = {
                         "status": "REFUSED",
                         "error": "CONTEXT_BATCH_EXCEEDS_REMAINING",
                         "instruction": (
                             "No Tool was dispatched. Select at most "
-                            f"{8 - context_actions} necessary read/API actions; "
+                            f"{task.tool_actions - context_actions} read/API actions; "
                             "use narrow ranges and avoid redundant acquisition."
                         ),
                         "host_limits": {
-                            "context_actions_remaining": 8 - context_actions,
+                            "context_actions_remaining": task.tool_actions
+                            - context_actions,
                             "model_calls_remaining": maximum_calls - number,
                             "proposals_remaining": 3 - proposals,
                         },
@@ -605,7 +643,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                     _save(turn / "stage.json", stage, overwrite=True)
                     continue
                 for call in response.tool_calls:
-                    if context_actions >= 8:
+                    if context_actions >= task.tool_actions:
                         raise PatchProposalError("Context action budget exhausted")
                     context_actions += 1
                     event: dict[str, Any] = {
@@ -617,7 +655,11 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                     stage["context_tools"].append(event)
                     _save(turn / "tools.json", stage["context_tools"], overwrite=True)
                     try:
-                        result = await tools.dispatch(call)
+                        result = await (
+                            commands.dispatch(call)
+                            if call.name in COMMAND_TOOL_NAMES
+                            else tools.dispatch(call)
+                        )
                     except Exception as error:
                         event.update(
                             status="REFUSED", error=f"{type(error).__name__}: {error}"
@@ -654,7 +696,8 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                     event["result"] = result
                     event["elapsed_seconds"] = time.perf_counter() - acquisition_started
                     result["host_limits"] = {
-                        "context_actions_remaining": 8 - context_actions,
+                        "context_actions_remaining": task.tool_actions
+                        - context_actions,
                         "model_calls_remaining": maximum_calls - number,
                         "proposals_remaining": 3 - proposals,
                     }
@@ -714,6 +757,8 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
         )
         sources = {
             path: _read_text(resolve_path(workspace / path)).content
+            if (workspace / path).exists()
+            else ""
             for path in task.sources
         }
         plan: dict[str, Any] = {}
@@ -784,13 +829,16 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 ),
                 "diagnostic": str(error),
                 "instruction": (
-                    "No edit was applied. Copy old_text exactly from CURRENT "
+                    "No edit was applied. If API evidence failed, cite exact "
+                    "inspect_api observation IDs; use [] when no APIs are required. "
+                    "Never substitute source hashes or prose. Otherwise copy "
+                    "old_text exactly from CURRENT "
                     "source, including indentation. Re-read the relevant range "
                     "if needed; do not invent helpers or approximate a match."
                 ),
                 "host_limits": {
                     "proposals_remaining": 3 - proposals,
-                    "context_actions_remaining": 8 - context_actions,
+                    "context_actions_remaining": task.tool_actions - context_actions,
                     "model_calls_remaining": maximum_calls - number,
                 },
             }
@@ -821,7 +869,10 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             phase="PATCH_APPLICATION",
             edits=edits,
             implementation_plan={k: v for k, v in plan.items() if k != "edits"},
-            sources_before={p: _hash(workspace / p) for p in updates},
+            sources_before={
+                p: _hash(workspace / p) if (workspace / p).exists() else None
+                for p in updates
+            },
             proposed_sources={
                 p: hashlib.sha256(text.encode()).hexdigest()
                 for p, text in updates.items()
@@ -842,6 +893,27 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
         stage["source_after"] = _hash(workspace / task.source)
         if tools is not None:
             tools.accept_transaction(updates, edits, call_id=call.provider_call_id)
+        if task.mechanical_format:
+            formatted = await format_sources(workspace, turn, task, admit_edit)
+            if formatted:
+                formatter_edits = [
+                    {
+                        "path": p,
+                        "start": 0,
+                        "end": len(updates.get(p, sources[p])),
+                        "new_length": len(text),
+                    }
+                    for p, text in formatted.items()
+                ]
+                if tools is not None:
+                    tools.accept_transaction(
+                        formatted, formatter_edits, call_id=call.provider_call_id
+                    )
+                stage["mechanical_format"] = {
+                    p: _hash(workspace / p) for p in formatted
+                }
+                stage["sources_after"].update(stage["mechanical_format"])
+                stage["source_after"] = _hash(workspace / task.source)
         stage["phase"] = "VALIDATION"
         _save(turn / "stage.json", stage, overwrite=True)
         print(
@@ -907,7 +979,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 "sources_after": stage["sources_after"],
                 "host_limits": {
                     "proposals_remaining": 3 - proposals,
-                    "context_actions_remaining": 8 - context_actions,
+                    "context_actions_remaining": task.tool_actions - context_actions,
                     "model_calls_remaining": maximum_calls - number,
                 },
                 "instruction": (
@@ -986,6 +1058,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
     admit_edit: Callable[[str, str], None] | None = None,
     thinking_enabled: bool = False,
     coordinated_edits: bool = False,
+    reasoning_effort: str | None = None,
 ) -> dict[str, Any]:
     """Run one bounded engineering task; preserve evidence and discard all edits.
 
@@ -998,16 +1071,20 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
     maximum_calls = task.maximum_calls if maximum_calls is None else maximum_calls
     if not 1 <= maximum_calls <= task.maximum_calls:
         raise ValueError("Model call bound exceeds the authenticated task limit")
-    original_hashes = {path: _hash(root / path) for path, _ in task.baseline_hashes}
+    original_hashes: dict[str, str | None] = {
+        path: _hash(root / path) for path, _ in task.baseline_hashes
+    }
     if (
         type(coordinated_edits) is not bool
         or (coordinated_edits and task.context_mode != "on-demand")
-        or (task.additional_edit_paths and not coordinated_edits)
+        or ((task.additional_edit_paths or task.new_paths) and not coordinated_edits)
     ):
         raise ValueError("Coordinated edits require explicit native scoped operation")
     original_sources = {
-        p: _read_text(resolve_path(root / p)).content for p in task.sources
+        p: _read_text(resolve_path(root / p)).content if (root / p).exists() else None
+        for p in task.sources
     }
+    original_hashes.update(dict.fromkeys(task.new_paths))
     folder = resolve_path(folder).value
     await asyncio.to_thread(folder.mkdir, parents=True, exist_ok=False)
     started = time.perf_counter()
@@ -1022,7 +1099,9 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
             "output_tokens": task.output_tokens,
             "wall_seconds": task.wall_seconds,
             "per_call_seconds": task.call_seconds,
-            "context_actions": 8 if task.context_mode == "on-demand" else 0,
+            "context_actions": task.tool_actions
+            if task.context_mode == "on-demand"
+            else 0,
             "proposals": min(maximum_calls, 3),
             "active_messages_bytes": ACTIVE_BYTES
             if task.context_mode == "on-demand"
@@ -1061,12 +1140,18 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
                     **report,
                     "task": task.objective if coordinated_edits else task.prompt,
                     "tool": asdict(
-                        transaction_definition(task.sources)
+                        transaction_definition(
+                            task.sources, api_required=bool(task.api_targets)
+                        )
                         if coordinated_edits
                         else _structured_edit_definition(source_path=task.source)
                     ),
                     "context_tools": [
-                        asdict(t) for t in context_tool_definitions(task.api_targets)
+                        asdict(t)
+                        for t in context_tool_definitions(
+                            task.api_targets, task.new_paths
+                        )
+                        + command_definitions(task)
                     ]
                     if task.context_mode == "on-demand"
                     else [],
@@ -1087,6 +1172,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
                 admit_edit=admit_edit,
                 thinking_enabled=thinking_enabled,
                 coordinated_edits=coordinated_edits,
+                reasoning_effort=reasoning_effort,
             )
     except asyncio.CancelledError:
         report.update(
@@ -1119,7 +1205,11 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
             candidates = []
             restorable = True
             for path in task.sources:
-                current = _read_text(resolve_path(root / path)).content
+                current = (
+                    _read_text(resolve_path(root / path)).content
+                    if (root / path).exists()
+                    else ""
+                )
                 target = (
                     folder / "final-source.py"
                     if path == task.source
@@ -1131,7 +1221,9 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
                     {
                         "path": path,
                         "evidence": str(target.relative_to(folder)).replace("\\", "/"),
-                        "sha256": _hash(root / path),
+                        "sha256": _hash(root / path)
+                        if (root / path).exists()
+                        else None,
                     }
                 )
                 known = {original_hashes[path]}
@@ -1141,11 +1233,18 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
                             known.add(stage[key][path])
                     if path == task.source and "source_after" in stage:
                         known.add(stage["source_after"])
-                restorable = restorable and _hash(root / path) in known
+                restorable = (
+                    restorable
+                    and (_hash(root / path) if (root / path).exists() else None)
+                    in known
+                )
             report["candidates"] = candidates
             if restorable:
                 for path, text in original_sources.items():
-                    write(TextFile(resolve_path(root / path), text))
+                    if text is None:
+                        (root / path).unlink(missing_ok=True)
+                    else:
+                        write(TextFile(resolve_path(root / path), text))
             else:
                 report.update(
                     accepted=False, disposition="CLEANUP_RECONCILIATION_REQUIRED"
@@ -1155,10 +1254,12 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
             elapsed_seconds=time.perf_counter() - started,
             workspace_removed=not (folder / "workspace").exists(),
             source_restored=all(
-                _hash(root / p) == original_hashes[p] for p in task.sources
+                (_hash(root / p) if (root / p).exists() else None) == original_hashes[p]
+                for p in task.sources
             ),
             original_unchanged=all(
-                _hash(root / path) == digest for path, digest in original_hashes.items()
+                (_hash(root / path) if (root / path).exists() else None) == digest
+                for path, digest in original_hashes.items()
             ),
         )
         for stage in report["turns"]:

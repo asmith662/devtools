@@ -1,5 +1,8 @@
 # Architecture
 
+The local Qwen application composes scoped Git/check Commands as native Tools, atomic observed edits, explicit absence-bound new files and optional AST-equivalent host formatting. Local accepted candidates enter WorkCycle.integration.closeout_local for shared validation, exact-source Codex review and explicitly requested ordinary-feature publication. Protected promotion and canonical backlog completion retain separate governed authority. Model text never supplies arbitrary argv or publication authority.
+
+
 Trusted local Qwen development/evaluation is distinct from governed production
 WorkCycle execution. Invoking the bounded coding application with a host-owned
 CodingTask authorizes local inference, temporary scoped edits and fixed tests;

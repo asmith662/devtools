@@ -30,6 +30,7 @@ from scripts.backlog.work import _load, same_backlog, task_from_dict
 if TYPE_CHECKING:
     from pathlib import Path
 
+    from apps.qwen.tasks import CodingTask
     from scripts.backlog.work import WorkCycle
 
 
@@ -45,6 +46,19 @@ class Integration:
         """Reuse the coordinator and its state/atomic writer."""
         self.cycle = cycle
         self.authority = IntegrationAuthority(cycle)
+
+    async def closeout_local(
+        self,
+        task: CodingTask,
+        evidence: Path,
+        **options: Any,  # noqa: ANN401 -- explicit local operator options forwarded unchanged
+    ) -> dict[str, Any]:
+        """Trusted local candidate entry; protected/backlog operations stay separate."""
+        from scripts.backlog.integration.local import (  # noqa: PLC0415 -- avoid WorkCycle module cycle
+            closeout_local,
+        )
+
+        return await closeout_local(self, task, evidence, **options)
 
     def folder(self, item: str, identity: str) -> Path:
         """Resolve an immutable plan within the existing work-item state."""

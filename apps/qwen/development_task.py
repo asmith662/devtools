@@ -374,18 +374,20 @@ def _structured_edit_patch(  # noqa: C901, PLR0912 -- validate one explicit untr
     return _source_patch(root, source, updated, source_path=source_path), updated
 
 
-def _source_patch(root: Path, source: str, updated: str, *, source_path: str) -> str:
+def _source_patch(
+    root: Path, source: str, updated: str, *, source_path: str, new_file: bool = False
+) -> str:
     """Generate the shared exact-source unified diff; Git owns application."""
     patch = "".join(
         difflib.unified_diff(
             source.splitlines(keepends=True),
             updated.splitlines(keepends=True),
-            fromfile=f"a/{source_path}",
+            fromfile="/dev/null" if new_file else f"a/{source_path}",
             tofile=f"b/{source_path}",
             lineterm="\n",
         )
     )
-    _validate_patch_envelope(root, patch, source_path=source_path)
+    _validate_patch_envelope(root, patch, source_path=source_path, allow_new=new_file)
     return patch
 
 
@@ -1109,7 +1111,12 @@ async def apply_source_patches(
     ):
         raise PatchProposalError("Combined patch exceeds the existing byte bound")
     for source_path, patch in patches.items():
-        _validate_patch_envelope(root, patch, source_path=source_path)
+        _validate_patch_envelope(
+            root,
+            patch,
+            source_path=source_path,
+            allow_new=not (root / source_path).exists(),
+        )
     path = _store_patch(folder, "".join(patches.values()))
     for args in (("--check", "--whitespace=error"), ("--whitespace=error",)):
         result = await _command(
@@ -1120,10 +1127,11 @@ async def apply_source_patches(
 
 
 def _validate_patch_envelope(
-    root: Path, patch: str, *, source_path: str = SOURCE
+    root: Path, patch: str, *, source_path: str = SOURCE, allow_new: bool = False
 ) -> None:
     """Check the one-file plain-diff grammar shared by both task conditions."""
-    prefix = f"--- a/{source_path}\n+++ b/{source_path}\n@@ "
+    previous = "/dev/null" if allow_new else "a/" + source_path
+    prefix = f"--- {previous}\n+++ b/{source_path}\n@@ "
     lines = patch.splitlines()
     if len(patch.encode()) > 16_384 or not patch.startswith(prefix):
         raise PatchProposalError(

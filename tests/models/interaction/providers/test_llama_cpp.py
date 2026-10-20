@@ -20,6 +20,7 @@ from devtools.models.interaction import (
     ModelToolDefinition,
     ModelUsage,
     Prompt,
+    PromptMessage,
     ProviderRequestSettings,
 )
 from devtools.models.interaction.providers import (
@@ -351,10 +352,10 @@ def test_interaction_rejects_malformed_thinking_control_before_provider_request(
 ) -> None:
     """Malformed thinking controls fail at the provider request boundary."""
     with pytest.raises(TypeError, match="boolean"):
-            _message(
-                ConversationMessageRole.USER,
-                thinking_enabled=value,  # type: ignore[arg-type]
-            )
+        _message(
+            ConversationMessageRole.USER,
+            thinking_enabled=value,  # type: ignore[arg-type]
+        )
 
 
 @pytest.mark.parametrize("value", [0, -1, True, False, "8", 8.0])
@@ -363,10 +364,10 @@ def test_interaction_rejects_invalid_output_bound_before_provider_request(
 ) -> None:
     """Invalid shared request constraints never become provider HTTP failures."""
     with pytest.raises(ValueError, match="positive integer"):
-            _message(
-                ConversationMessageRole.USER,
-                maximum_output_tokens=value,  # type: ignore[arg-type]
-            )
+        _message(
+            ConversationMessageRole.USER,
+            maximum_output_tokens=value,  # type: ignore[arg-type]
+        )
 
 
 def test_interaction_preserves_pinned_llama_cpp_standard_usage(
@@ -775,6 +776,60 @@ def test_interaction_accepts_its_empty_typed_extension() -> None:
     """The empty Phase 1 llama.cpp extension preserves the provider seam."""
     settings = LlamaCppRequestSettings()
     assert settings.provider == "llama.cpp"
+
+
+@pytest.mark.parametrize("thinking", [None, True])
+def test_explicit_medium_reasoning_and_native_reasoning_continuity(
+    monkeypatch: pytest.MonkeyPatch,
+    thinking: bool | None,  # noqa: FBT001 -- explicit parametrized template mode
+) -> None:
+    """Serialize actual template effort and explicitly returned assistant reasoning."""
+    captured: list[dict[str, object]] = []
+
+    async def post(_endpoint: object, payload: dict[str, object]) -> dict[str, object]:
+        captured.append(payload)
+        return {
+            "choices": [
+                {
+                    "message": {"role": "assistant", "content": "done"},
+                    "finish_reason": "stop",
+                },
+            ],
+        }
+
+    monkeypatch.setattr(llama_cpp, "_post_chat_completion", post)
+    request = ModelRequest(
+        Prompt(
+            "",
+            "messages",
+            (
+                PromptMessage(
+                    "assistant",
+                    "visible",
+                    reasoning_content="provider-returned reasoning",
+                ),
+                PromptMessage("user", "continue"),
+            ),
+        ),
+        settings=ModelSettings(12288, thinking_enabled=thinking),
+        provider_settings=LlamaCppRequestSettings(reasoning_effort="medium"),
+    )
+    asyncio.run(_interaction().send(request))
+    expected: dict[str, object] = {"reasoning_effort": "medium"}
+    if thinking is not None:
+        expected["enable_thinking"] = thinking
+    assert captured[0]["chat_template_kwargs"] == expected
+    messages = json.loads(json.dumps(captured[0]["messages"]))
+    assert messages[0]["reasoning_content"] == "provider-returned reasoning"
+
+
+def test_reasoning_settings_and_roles_refuse_invalid_values() -> None:
+    """No arbitrary template kwargs or non-assistant reasoning input is admitted."""
+    with pytest.raises(ValueError, match="reasoning effort"):
+        LlamaCppRequestSettings(reasoning_effort="unsupported")
+    for role, value in (("user", "text"), ("assistant", 5)):
+        with pytest.raises(ValueError, match="assistant input"):
+            PromptMessage(role, "", reasoning_content=value)  # type: ignore[arg-type]
 
 
 @pytest.mark.parametrize(

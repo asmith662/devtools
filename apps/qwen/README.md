@@ -1,5 +1,36 @@
 # Bounded local coding worker
 
+The coding environment also supports task-opted-in `git_inspect` (scoped status,
+diff and history) and `run_check` (fixed regression/oracle/Ruff/format/strict mypy)
+through ToolRunner and managed Commands. No model-selected argv or shell is
+accepted. Full check logs are archived; model results are bounded and source-bound.
+`command_tools`, `tool_actions` (default eight, host ceiling 32) and
+`mechanical_format` enter the task digest. Formatting is opt-in, AST-equivalent,
+and journaled before writing; behavior/typing failures use the same repair loop.
+
+Explicit `new_paths` admit existing-parent Python implementation files only.
+`inspect_new_source` verifies actual absence and returns its task-bound version;
+an atomic proposal uses that version and empty old text. Unknown files, aliases,
+collisions and unobserved absence refuse. Existing resources keep exact source
+observation requirements. Historical task digests/defaults remain unchanged.
+
+Native tasks may explicitly reserve up to 12,288 output tokens and 600 seconds
+per call for reasoning evaluation; defaults remain 4,096/300 and the 900-second
+task ceiling remains. `--thinking enabled --reasoning-effort medium` selects the
+actual supported template control. The 32K input/output allocation is respected
+by the existing working-set budget. Returned assistant reasoning can be retained
+in native continuation; unavailable internal reasoning is never invented.
+
+Local accepted candidates enter the existing integration owner via
+`WorkCycle.integration.closeout_local` or the same CLI with `--closeout`, an
+existing `--report-directory`, task definition and exact `--expected-head`.
+Initial closeout authenticates bytes and scope, installs temporarily, runs the
+shared checks and returns a review subject. `--review-json` binds Codex's
+`ACCEPT_RECOMMENDED` rationale to that exact subject. Explicit `--commit` and
+`--push` effects permit only an ordinary `feat/` branch; no model Tool can invoke
+them. Duplicate publication verifies the exact commit/ref. Backlog progression
+and protected target promotion retain the existing governed lifecycle.
+
 Maintained repository-local application composition now lives here. The existing
 worker, native proposal admission, LF/CRLF handling, task configuration and
 host-owned validation were relocated without changing their contracts. Framework

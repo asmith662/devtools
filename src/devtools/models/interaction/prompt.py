@@ -14,9 +14,15 @@ class PromptMessage:
     content: str
     tool_calls: tuple[ModelToolCall, ...] = ()
     tool_call_id: str | None = None
+    reasoning_content: str | None = None
 
     def __post_init__(self) -> None:
         """Reject malformed roles and tool-result/call associations locally."""
+        if self.reasoning_content is not None and (
+            self.role != "assistant" or not isinstance(self.reasoning_content, str)
+        ):
+            msg = "Only assistant input may retain textual provider reasoning."
+            raise ValueError(msg)
         if self.role not in {"system", "user", "assistant", "tool"} or not isinstance(
             self.content,
             str,

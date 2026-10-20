@@ -44,10 +44,17 @@ class CodingTask:
     quality_checks: bool = False
     additional_edit_paths: tuple[str, ...] = ()
     api_targets: tuple[str, ...] = ()
+    command_tools: bool = False
+    mechanical_format: bool = False
+    tool_actions: int = 8
+    new_paths: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: C901, PLR0912 -- narrow configuration admission
         """Validate scope and prevent configured bounds exceeding host limits."""
-        if type(self.quality_checks) is not bool:
+        if any(
+            type(x) is not bool
+            for x in (self.quality_checks, self.command_tools, self.mechanical_format)
+        ):
             raise ValueError("quality_checks must be a host-selected boolean")
         if (
             not isinstance(self.additional_edit_paths, tuple)
@@ -60,10 +67,27 @@ class CodingTask:
             or any(p not in API_TARGETS for p in self.api_targets)
         ):
             raise ValueError("Task edit/API scope is not host-supported")
-        paths = (*self.sources, *self.tests, *self.read_paths)
+        paths = (*self.existing_sources, *self.tests, *self.read_paths)
+        if (
+            not isinstance(self.new_paths, tuple)
+            or len(self.sources) > 4
+            or len({*paths, *self.new_paths}) != len(paths) + len(self.new_paths)
+        ):
+            raise ValueError("New source paths must be distinct and bounded")
+        for path in self.new_paths:
+            RepositoryResourceAddress(path)
+            if not path.startswith("src/devtools/") or not path.endswith(".py"):
+                raise ValueError(
+                    "New source requires an explicit Python implementation path",
+                )
+        if type(self.tool_actions) is not int or not 1 <= self.tool_actions <= 32:
+            raise ValueError("Tool actions must be host-bounded to at most 32")
         if self.context_mode not in {"prepared", "on-demand"}:
             raise ValueError("Unknown Context acquisition mode")
-        if not isinstance(self.read_paths, tuple) or len(paths) > 32:
+        if (
+            not isinstance(self.read_paths, tuple)
+            or len(paths) + len(self.new_paths) > 32
+        ):
             raise ValueError("Task requires a bounded tuple of read paths")
         if (
             not self.name.strip()
@@ -101,9 +125,9 @@ class CodingTask:
                 raise ValueError("Task requires explicit nonempty retrieval queries")
         for value, bound in (
             (self.maximum_calls, 10 if self.context_mode == "on-demand" else 3),
-            (self.output_tokens, 4096),
+            (self.output_tokens, 12288 if self.context_mode == "on-demand" else 4096),
             (self.wall_seconds, 900),
-            (self.call_seconds, 300),
+            (self.call_seconds, 600 if self.context_mode == "on-demand" else 300),
         ):
             if (
                 not isinstance(value, int)
@@ -115,6 +139,11 @@ class CodingTask:
     @property
     def sources(self) -> tuple[str, ...]:
         """Exact permitted implementation resources; tests remain immutable."""
+        return (*self.existing_sources, *self.new_paths)
+
+    @property
+    def existing_sources(self) -> tuple[str, ...]:
+        """Only baseline-existing files have frozen content observations."""
         return (self.source, *self.additional_edit_paths)
 
     @property
@@ -126,9 +155,17 @@ class CodingTask:
     def definition_sha256(self) -> str:
         """Bind the complete host definition, including all checks and bounds."""
         value = asdict(self)
-        for field in ("additional_edit_paths", "api_targets"):
+        for field in (
+            "additional_edit_paths",
+            "api_targets",
+            "command_tools",
+            "mechanical_format",
+            "new_paths",
+        ):
             if not value[field]:
                 del value[field]
+        if self.tool_actions == 8:
+            del value["tool_actions"]
         if not self.quality_checks:
             del value["quality_checks"]
         # Existing assignment-v1 receipts predate these optional fields. Their

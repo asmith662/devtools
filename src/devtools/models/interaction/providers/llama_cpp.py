@@ -101,6 +101,16 @@ class LlamaCppInteraction:
             payload["chat_template_kwargs"] = {
                 "enable_thinking": request.settings.thinking_enabled,
             }
+        if (
+            provider_settings is not None
+            and provider_settings.reasoning_effort is not None
+        ):
+            kwargs: dict[str, object] = {
+                "reasoning_effort": provider_settings.reasoning_effort,
+            }
+            if request.settings.thinking_enabled is not None:
+                kwargs["enable_thinking"] = request.settings.thinking_enabled
+            payload["chat_template_kwargs"] = kwargs
         if request.tools:
             payload["tools"] = [
                 _provider_tool_definition(tool) for tool in request.tools
@@ -165,6 +175,8 @@ def _provider_messages(prompt: Prompt) -> list[dict[str, object]]:
     messages: list[dict[str, object]] = []
     for message in prompt.messages:
         value: dict[str, object] = {"role": message.role, "content": message.content}
+        if message.reasoning_content is not None:
+            value["reasoning_content"] = message.reasoning_content
         if message.tool_calls:
             value["tool_calls"] = [
                 {
