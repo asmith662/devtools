@@ -53,6 +53,7 @@ if TYPE_CHECKING:
 
 
 CONTEXT_TOOL_NAMES = (
+    "inspect_source",
     "search_source",
     "lookup_symbol",
     "read_source",
@@ -67,6 +68,12 @@ def _schema(name: str, properties: dict[str, Any]) -> ToolDescriptor:
     return ToolDescriptor(
         name,
         {
+            "inspect_source": (
+                "Read a known authorized file by path and start character offset "
+                "(use 0 initially). Host resolves the exact current version. "
+                "Returns <=4096 bytes, edit_ref and continuation_start. Prefer "
+                "this for known paths; no version hashes or unit IDs needed."
+            ),
             "search_source": (
                 "Search the admitted corpus; returns versioned source units."
             ),
@@ -138,9 +145,18 @@ _DEFINITIONS = (
 def context_tool_definitions(
     api_targets: tuple[str, ...] = (),
     new_paths: tuple[str, ...] = (),
+    *,
+    direct_reads: bool = False,
 ) -> tuple[ModelToolDefinition, ...]:
     """Use the existing Tool disclosure composition for this fixed Tool surface."""
     descriptors: tuple[ToolDescriptor, ...] = _DEFINITIONS
+    if direct_reads:
+        descriptors += (
+            _schema(
+                "inspect_source",
+                {"path": _TEXT, "start": {"type": "integer", "minimum": 0}},
+            ),
+        )
     if new_paths:
         descriptors += (
             ToolDescriptor(
@@ -189,10 +205,13 @@ class ContextTools:
     name = "qwen_repository_context"
     description = "Read-only RI/Context acquisition within the admitted task corpus."
 
-    def __init__(self, root: Path, task: CodingTask) -> None:
+    def __init__(
+        self, root: Path, task: CodingTask, *, direct_reads: bool = False
+    ) -> None:
         """Observe only explicitly admitted sources; discovery discloses no extras."""
         self.root = resolve_path(root).value
         self.task = task
+        self.direct_reads = direct_reads
         self.repository = Repository.new()
         self.addresses = tuple(
             RepositoryResourceAddress(p)
@@ -232,7 +251,9 @@ class ContextTools:
     @property
     def definitions(self) -> tuple[ModelToolDefinition, ...]:
         """Disclose the existing ToolDescriptor projection, never executable writes."""
-        return context_tool_definitions(self.task.api_targets, self.task.new_paths)
+        return context_tool_definitions(
+            self.task.api_targets, self.task.new_paths, direct_reads=self.direct_reads
+        )
 
     def _observe(self) -> RepositorySnapshot:
         for address in self.addresses:
@@ -504,6 +525,22 @@ class ContextTools:
     async def execute(self, arguments: tuple[str, dict[str, Any]]) -> dict[str, Any]:  # noqa: C901, PLR0911 -- fixed source/API operations
         """Project existing search, source units, expansion and relationship facts."""
         name, values = arguments
+        if name == "inspect_source":
+            path = values["path"]
+            if path in self.task.new_paths and not (self.root / path).exists():
+                return await self.execute(("inspect_new_source", {"path": path}))
+            address = RepositoryResourceAddress(path)
+            if address not in self.addresses:
+                raise ValueError("Unauthorized source read")
+            resource = self.snapshot.resource_at(address)
+            return self._read(
+                {
+                    "path": path,
+                    "version": str(resource.content_identity),
+                    "start": values["start"],
+                    "end": min(len(resource.content), values["start"] + 4096),
+                }
+            )
         if name == "inspect_new_source":
             path = values["path"]
             raw = self.root / path

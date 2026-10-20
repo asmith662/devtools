@@ -436,7 +436,11 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
     repository = Repository.new()
     feedback: dict[str, Any] = {"disposition": "INITIAL_PROPOSAL"}
     prepared_at = time.perf_counter()
-    tools = ContextTools(workspace, task) if task.context_mode == "on-demand" else None
+    tools = (
+        ContextTools(workspace, task, direct_reads=observed_edits)
+        if task.context_mode == "on-demand"
+        else None
+    )
     commands = CodingCommands(workspace, folder, task)
     report["context_preparation_seconds"] = time.perf_counter() - prepared_at
     active_prompt = task.prompt
@@ -482,6 +486,10 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             "exact snippet; empty old_text replaces the whole referenced region. "
             "For multi-region edits emit multiple replace_source calls together; "
             "never encode a nested edits array or put JSON syntax in Python text."
+            " Prefer inspect_source(path, start=0) for known files. It returns "
+            "current source, edit_ref and continuation_start without asking you "
+            "to copy version hashes. Search and structural tools remain useful "
+            "for locating symbols; use actual unit IDs for expansion."
         )
     history = [
         PromptMessage(
@@ -1285,7 +1293,9 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
                     "context_tools": [
                         asdict(t)
                         for t in context_tool_definitions(
-                            task.api_targets, task.new_paths
+                            task.api_targets,
+                            task.new_paths,
+                            direct_reads=observed_edits,
                         )
                         + command_definitions(task)
                     ]

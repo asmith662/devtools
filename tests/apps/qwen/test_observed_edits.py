@@ -28,6 +28,26 @@ def native(ref: str, old: str, new: str, identity: str = "edit") -> ModelToolCal
     )
 
 
+def test_path_read_reuses_versioned_materialization_and_absence(
+    tools: ContextTools,
+) -> None:
+    task = replace(tools.task, new_paths=("src/devtools/new.py",))
+    direct = ContextTools(tools.root, task, direct_reads=True)
+    first = dispatch(direct, "inspect_source", path=task.source, start=0)
+    assert first["version"] == str(direct.snapshot.resources[0].content_identity)
+    assert first["text"] == direct.snapshot.resources[0].content
+    assert first["edit_ref"]
+    bad = dispatch(
+        direct, "inspect_source", path=task.source, start=len(first["text"]) + 1,
+    )
+    assert bad["error"] == "SOURCE_RANGE_OUT_OF_BOUNDS"
+    absent = dispatch(direct, "inspect_source", path=task.new_paths[0], start=0)
+    assert absent["status"] == "ABSENT"
+    assert absent["edit_ref"]
+    with pytest.raises(ValueError, match="Unauthorized"):
+        dispatch(direct, "inspect_source", path="src/devtools/private.py", start=0)
+
+
 def read(tools: ContextTools) -> dict[str, Any]:
     source = tools.snapshot.resources[0]
     return dispatch(
