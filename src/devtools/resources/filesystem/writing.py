@@ -9,6 +9,7 @@ from tempfile import NamedTemporaryFile
 from typing import TYPE_CHECKING
 
 from devtools.resources.filesystem.codecs import (
+    BinaryCodec,
     CsvCodec,
     JsonCodec,
     MarkdownCodec,
@@ -19,6 +20,7 @@ from devtools.resources.filesystem.errors import (
     FilesystemPermissionError,
 )
 from devtools.resources.filesystem.models import (
+    BinaryFile,
     CsvFile,
     JsonFile,
     MarkdownFile,
@@ -63,6 +65,8 @@ def write(
     codec = resolve_codec(file.format)
 
     match file, codec:
+        case BinaryFile() as binary_file, BinaryCodec() as binary_codec:
+            content = binary_codec.encode(binary_file)
         case CsvFile() as csv_file, CsvCodec() as csv_codec:
             content = csv_codec.encode(csv_file)
         case JsonFile() as json_file, JsonCodec() as json_codec:
