@@ -14,7 +14,7 @@ import hashlib
 import json
 import sys
 import time
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from typing import TYPE_CHECKING, Any
 
 from apps.qwen.commands import (
@@ -426,6 +426,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
     thinking_enabled: bool = False,
     coordinated_edits: bool = False,
     reasoning_effort: str | None = None,
+    request_settings: LlamaCppRequestSettings | None = None,
 ) -> None:
     measured_capacity = isinstance(interaction, LlamaCppInteraction)
     active_limit = (
@@ -515,9 +516,12 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             raise ValueError("Bounded Context byte allowance exceeded")
         request = ModelRequest(
             prompt=model_prompt,
-            provider_settings=LlamaCppRequestSettings(reasoning_effort=reasoning_effort)
+            provider_settings=replace(
+                request_settings or LlamaCppRequestSettings(),
+                reasoning_effort=reasoning_effort,
+            )
             if reasoning_effort
-            else None,
+            else request_settings,
             settings=ModelSettings(
                 maximum_output_tokens=task.output_tokens,
                 thinking_enabled=thinking_enabled,
@@ -1076,6 +1080,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
     thinking_enabled: bool = False,
     coordinated_edits: bool = False,
     reasoning_effort: str | None = None,
+    request_settings: LlamaCppRequestSettings | None = None,
 ) -> dict[str, Any]:
     """Run one bounded engineering task; preserve evidence and discard all edits.
 
@@ -1190,6 +1195,7 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
                 thinking_enabled=thinking_enabled,
                 coordinated_edits=coordinated_edits,
                 reasoning_effort=reasoning_effort,
+                request_settings=request_settings,
             )
     except asyncio.CancelledError:
         report.update(

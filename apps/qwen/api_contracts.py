@@ -10,8 +10,12 @@ import json
 import math
 import re
 import sys
+from importlib.metadata import version
 from pathlib import PurePath
 from typing import Any
+
+import pytest
+from huggingface_hub import hf_hub_download
 
 # Host-owned concrete objects only. No importlib, eval, getattr traversal or
 # callable execution from model strings. These are observations, not edit scope.
@@ -20,6 +24,8 @@ _APIS: dict[str, Any] = {
     "str.encode": str.encode,
     "math.isfinite": math.isfinite,
     "pathlib.PurePath.with_suffix": PurePath.with_suffix,
+    "pytest.main": pytest.main,
+    "huggingface_hub.hf_hub_download": hf_hub_download,
     "json.loads": json.loads,
     "json.JSONDecoder": json.JSONDecoder,
     "re.Pattern.finditer": re.Pattern.finditer,
@@ -35,13 +41,17 @@ def inspect_contract(target: str, allowed: tuple[str, ...]) -> dict[str, Any]:
         raise ValueError("API target is not host-authorized")
     obj = _APIS[target]
     doc = inspect.getdoc(obj) or "NOT_DOCUMENTED"
+    package = {
+        "pytest.main": "pytest",
+        "huggingface_hub.hf_hub_download": "huggingface-hub",
+    }.get(target)
     value: dict[str, Any] = {
         "target": target,
         "signature": str(inspect.signature(obj)),
         "docstring": doc[:3500],
         "truncated": len(doc) > 3500,
-        "package": "Python standard library",
-        "package_version": sys.version.split()[0],
+        "package": package or "Python standard library",
+        "package_version": version(package) if package else sys.version.split()[0],
         "implementation": sys.implementation.name,
         "authority": "installed allowlisted API observation; not model inference",
         "limitations": (

@@ -778,6 +778,63 @@ def test_interaction_accepts_its_empty_typed_extension() -> None:
     assert settings.provider == "llama.cpp"
 
 
+@pytest.mark.parametrize(
+    "settings",
+    [
+        {"temperature": float("nan")},
+        {"temperature": 3.0},
+        {"top_p": -1.0},
+        {"min_p": "not numeric"},
+        {"presence_penalty": True},
+        {"top_k": -1},
+        {"top_k": 2048},
+        {"top_k": True},
+    ],
+)
+def test_provider_sampling_refuses_invalid_values(settings: dict[str, object]) -> None:
+    """Host sampling controls are typed and finite; no untyped payload expansion."""
+    with pytest.raises(ValueError, match=r"sampling|top_k"):
+        LlamaCppRequestSettings(**settings)  # type: ignore[arg-type]
+
+
+def test_supported_sampling_is_exactly_forwarded(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Optional official instruct settings do not modify server defaults."""
+    captured: list[dict[str, object]] = []
+
+    async def post(_endpoint: object, payload: dict[str, object]) -> dict[str, object]:
+        captured.append(payload)
+        return {
+            "choices": [
+                {
+                    "message": {"role": "assistant", "content": "done"},
+                    "finish_reason": "stop",
+                },
+            ],
+        }
+
+    monkeypatch.setattr(llama_cpp, "_post_chat_completion", post)
+    settings = LlamaCppRequestSettings(
+        temperature=0.7, top_p=0.8, top_k=20, min_p=0, presence_penalty=1.5,
+    )
+    asyncio.run(
+        _interaction().send(
+            ModelRequest(Prompt("question", "user"), provider_settings=settings),
+        ),
+    )
+    assert {
+        k: captured[0][k]
+        for k in ("temperature", "top_p", "top_k", "min_p", "presence_penalty")
+    } == {
+        "temperature": 0.7,
+        "top_p": 0.8,
+        "top_k": 20,
+        "min_p": 0,
+        "presence_penalty": 1.5,
+    }
+
+
 @pytest.mark.parametrize("invalid", ["none", "template", "tokens"])
 def test_native_token_budget_uses_exact_template_and_no_inference(
     monkeypatch: pytest.MonkeyPatch,
@@ -787,7 +844,9 @@ def test_native_token_budget_uses_exact_template_and_no_inference(
     paths: list[str] = []
 
     async def post(
-        _endpoint: object, path: str, payload: dict[str, object],
+        _endpoint: object,
+        path: str,
+        payload: dict[str, object],
     ) -> dict[str, object]:
         paths.append(path)
         if path == "/apply-template":
@@ -801,7 +860,8 @@ def test_native_token_budget_uses_exact_template_and_no_inference(
 
     monkeypatch.setattr(llama_cpp, "_post_json", post)
     request = ModelRequest(
-        Prompt("question", "user"), provider_settings=LlamaCppRequestSettings(),
+        Prompt("question", "user"),
+        provider_settings=LlamaCppRequestSettings(),
     )
     if invalid == "none":
         assert asyncio.run(_interaction().count_input_tokens(request)) == 3  # noqa: PLR2004 -- tiny token fixture

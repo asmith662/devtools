@@ -127,6 +127,20 @@ class LlamaCppInteraction:
         }
         if request.settings.maximum_output_tokens is not None:
             payload["max_tokens"] = request.settings.maximum_output_tokens
+        if provider_settings is not None:
+            payload.update(
+                {
+                    name: value
+                    for name in (
+                        "temperature",
+                        "top_p",
+                        "top_k",
+                        "min_p",
+                        "presence_penalty",
+                    )
+                    if (value := getattr(provider_settings, name)) is not None
+                },
+            )
         if request.settings.thinking_enabled is not None:
             payload["chat_template_kwargs"] = {
                 "enable_thinking": request.settings.thinking_enabled,
@@ -154,14 +168,18 @@ class LlamaCppInteraction:
         and a safety margin; this does not change the server's context capacity.
         """
         rendered = await _post_json(
-            self._endpoint, "/apply-template", self._request_payload(request),
+            self._endpoint,
+            "/apply-template",
+            self._request_payload(request),
         )
         prompt = rendered.get("prompt")
         if not isinstance(prompt, str):
             msg = "llama.cpp template response requires prompt text"
             raise LlamaCppResponseError(msg)
         tokenized = await _post_json(
-            self._endpoint, "/tokenize", {"content": prompt, "add_special": False},
+            self._endpoint,
+            "/tokenize",
+            {"content": prompt, "add_special": False},
         )
         tokens = tokenized.get("tokens")
         if not isinstance(tokens, list):
@@ -228,7 +246,9 @@ async def _post_chat_completion(
 
 
 async def _post_json(
-    endpoint: SplitResult, path: str, payload: dict[str, object],
+    endpoint: SplitResult,
+    path: str,
+    payload: dict[str, object],
 ) -> dict[str, object]:
     """Post to one adapter-selected local endpoint; never a model-selected URL."""
     host = endpoint.hostname

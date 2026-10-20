@@ -31,6 +31,13 @@ shared checks and returns a review subject. `--review-json` binds Codex's
 them. Duplicate publication verifies the exact commit/ref. Backlog progression
 and protected target promotion retain the existing governed lifecycle.
 
+Optional `--sampling-profile qwen-instruct` and `qwen-thinking` select the
+manufacturer's explicit request settings for the corresponding thinking mode.
+`baseline` remains the default and retains the actual server's metadata-derived
+settings. A named preset is not evidence of better acceptance; measured results
+and any differences are recorded separately. No weights, cache or resident
+service are changed by this request option.
+
 Git may rematerialize logically identical baseline resources with different
 LF/CRLF bytes. The direct runner authenticates the frozen Git/content binding,
 journals all baseline input resources under the existing owner, materializes

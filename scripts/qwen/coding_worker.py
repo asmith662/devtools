@@ -21,13 +21,20 @@ from apps.qwen.development_task import _command
 from apps.qwen.tasks import TASK_NAMES, select_task
 from devtools.core.paths import PathError, resolve_path
 from devtools.models.interaction import InteractionSource
-from devtools.models.interaction.providers import LlamaCppInteraction
+from devtools.models.interaction.providers import (
+    LlamaCppInteraction,
+    LlamaCppRequestSettings,
+)
 from devtools.resources.filesystem import FilesystemError, TextFile, write
 from scripts.backlog.checkout import Checkout
 from scripts.backlog.coordinator import git
 from scripts.backlog.intake import load_json
 from scripts.backlog.work import WorkCycle, task_from_dict
-from scripts.qwen.llama_cpp_profile import QWEN38_27B_UD_IQ4_XS
+from scripts.qwen.llama_cpp_profile import (
+    QWEN38_27B_UD_IQ4_XS,
+    QWEN38_INSTRUCT_SAMPLING,
+    QWEN38_THINKING_SAMPLING,
+)
 from scripts.qwen.patch_proposal_worker_acceptance import _qwen_status
 
 if TYPE_CHECKING:
@@ -76,6 +83,32 @@ def report_directory(value: str | Path) -> Path:
     return folder
 
 
+def _sampling_settings(
+    sampling_profile: str, *, thinking_enabled: bool,
+) -> LlamaCppRequestSettings | None:
+    """Select only explicit host-owned request presets; preserve baseline."""
+    if (
+        sampling_profile not in {"baseline", "qwen-instruct", "qwen-thinking"}
+        or (sampling_profile == "qwen-instruct" and thinking_enabled)
+        or (sampling_profile == "qwen-thinking" and not thinking_enabled)
+    ):
+        message = "Sampling profile must match the selected thinking mode"
+        raise ValueError(message)
+    selected_settings = None
+    if sampling_profile != "baseline":
+        values = (
+            QWEN38_THINKING_SAMPLING if thinking_enabled else QWEN38_INSTRUCT_SAMPLING
+        )
+        selected_settings = LlamaCppRequestSettings(
+            temperature=values["temperature"],
+            top_p=values["top_p"],
+            top_k=int(values["top_k"]),
+            min_p=values["min_p"],
+            presence_penalty=values["presence_penalty"],
+        )
+    return selected_settings
+
+
 async def run_local_task(  # noqa: PLR0913, C901 -- explicit bounded ownership/materialization options
     root: Path,
     folder: Path,
@@ -85,6 +118,7 @@ async def run_local_task(  # noqa: PLR0913, C901 -- explicit bounded ownership/m
     thinking_enabled: bool = False,
     coordinated_edits: bool = False,
     reasoning_effort: str | None = None,
+    sampling_profile: str = "baseline",
 ) -> dict[str, Any]:
     """Trusted host invocation authorizes this local evaluation, not publication.
 
@@ -98,6 +132,9 @@ async def run_local_task(  # noqa: PLR0913, C901 -- explicit bounded ownership/m
     if reasoning_effort is not None and not thinking_enabled:
         message = "Reasoning effort requires thinking enabled"
         raise ValueError(message)
+    selected_settings = _sampling_settings(
+        sampling_profile, thinking_enabled=thinking_enabled,
+    )
     if (
         type(coordinated_edits) is not bool
         or ((task.additional_edit_paths or task.new_paths) and not coordinated_edits)
@@ -161,6 +198,7 @@ async def run_local_task(  # noqa: PLR0913, C901 -- explicit bounded ownership/m
                 thinking_enabled=thinking_enabled,
                 coordinated_edits=coordinated_edits,
                 reasoning_effort=reasoning_effort,
+                request_settings=selected_settings,
             )
         finally:
             for path, text in originals.items():
@@ -170,7 +208,7 @@ async def run_local_task(  # noqa: PLR0913, C901 -- explicit bounded ownership/m
                     write(TextFile(resolve_path(root / path), text))
 
 
-async def main() -> int:  # noqa: C901 -- closed local run/closeout entrypoint
+async def main() -> int:  # noqa: C901, PLR0915 -- closed local run/closeout entrypoint
     """Invoke one constrained local task without production approval rituals."""
     parser = argparse.ArgumentParser(description=__doc__)
     selection = parser.add_mutually_exclusive_group()
@@ -235,6 +273,12 @@ async def main() -> int:  # noqa: C901 -- closed local run/closeout entrypoint
         ),
     )
     parser.add_argument("--reasoning-effort", choices=("low", "medium", "xhigh"))
+    parser.add_argument(
+        "--sampling-profile",
+        choices=("baseline", "qwen-instruct", "qwen-thinking"),
+        default="baseline",
+        help="Explicit measured request settings; no server/default change.",
+    )
     args = parser.parse_args()
     try:
         task = (
@@ -297,6 +341,8 @@ async def main() -> int:  # noqa: C901 -- closed local run/closeout entrypoint
         options["coordinated_edits"] = True
     if args.reasoning_effort:
         options["reasoning_effort"] = args.reasoning_effort
+    if args.sampling_profile != "baseline":
+        options["sampling_profile"] = args.sampling_profile
     try:
         result = await run_local_task(
             _ROOT,

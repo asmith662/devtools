@@ -55,9 +55,14 @@ the request.
 `ProviderRequestSettings` is an immutable typed extension seam for one
 provider's per-request settings. Portable core does not import provider types;
 an adapter rejects another provider's extension instead of silently ignoring
-it. `LlamaCppRequestSettings` currently has no extra field because the two
-established llama.cpp controls are portable settings. It reserves a typed
-provider-owned seam rather than an untyped options dictionary.
+it. `LlamaCppRequestSettings` supports validated template reasoning effort and
+explicit finite temperature/top-p/top-k/min-p/presence-penalty controls. Unset
+fields preserve server defaults; there is no untyped payload dictionary.
+`PromptMessage.reasoning_content` may retain actually returned assistant reasoning
+for a native continuation; other roles refuse it. Unavailable reasoning is not
+invented. The llama.cpp adapter's `count_input_tokens(request)` uses its same
+serialization with `/apply-template` and `/tokenize`, without inference, so local
+consumers can reserve output and safety against the real serving window.
 
 All three phases of [ADR-0001](../../../../../docs/architecture/decisions/ADR-0001-cohesive-model-interaction-boundary.md)
 are implemented. A provider may emit a completed `ModelInteractionObservation`

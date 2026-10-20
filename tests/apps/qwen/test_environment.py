@@ -12,6 +12,7 @@ from typing import TYPE_CHECKING, Any
 import pytest
 
 from apps.qwen import commands
+from apps.qwen.api_contracts import inspect_contract
 from apps.qwen.commands import CodingCommands, format_sources
 from apps.qwen.context_tools import ContextTools
 from apps.qwen.development_task import apply_source_patches
@@ -23,6 +24,18 @@ from tests.apps.qwen.test_context_tools import tools as tools  # noqa: PLC0414
 
 if TYPE_CHECKING:
     from pathlib import Path
+
+
+def test_installed_dependencies_are_observed_without_model_import_selection() -> None:
+    for target, package in (
+        ("pytest.main", "pytest"),
+        ("huggingface_hub.hf_hub_download", "huggingface-hub"),
+    ):
+        observed = inspect_contract(target, (target,))
+        assert observed["package"] == package
+        assert observed["package_version"]
+        assert observed["signature"]
+        assert len(observed["observation_id"]) == 64
 
 
 def test_observed_creation_atomic_application_refresh_and_refusal(
