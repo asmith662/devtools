@@ -55,3 +55,66 @@ Raw new evidence belongs under `.local/qwen-coding-worker/investigation-07/`.
 Historical editing-06 records and all prior cohorts remain unchanged. Results,
 limitations, exact candidate provenance and closeout will be recorded after
 execution. No extra checkout or source-tree copy is created.
+
+
+## Actual outcome
+
+| Task | Devtools: accepted / requests / seconds | Pi: accepted / requests / seconds |
+| --- | --- | --- |
+| New regex module and public export | yes / 5 / 63.09 | yes / 10 / 92.92 |
+| BSD model plus detector | yes / 3 / 38.86 | yes / 5 / 40.89 |
+| UUID Identity invariant, confirmation | yes / 5 / 67.71 | yes / 5 / 43.71 |
+
+Both accepted 2/2 development and 1/1 confirmation tasks. Devtools input/output
+tokens: 67,379 / 2,570; Pi: 79,770 / 2,498. Summed worker times: 169.66 versus
+177.52 seconds. These small task-dependent differences are descriptive, not a
+statistical parity or causal improvement claim against the different editing-06
+tasks. The selected worker did not change during these six runs. Git autocrlf
+materialized coding_loop.py as CRLF after branch switching; the complete
+normalized source matches the frozen bytes (confirmation-selection.json).
+
+Devtools independently selected direct source reads: regex exports/helper/tests
+plus absence, five related BSD model/detector/export/test files, and Identity
+with a related style example during repair. There was no prepared full-file
+Context. All choices were inside a frozen admitted corpus that included related
+files and distractors. No search/lookup action was needed or used: this does not
+demonstrate unconstrained repository discovery or live unknown-unit recovery.
+Source disclosure bytes: 6,076 / 3,595 / 4,378 respectively; peak prompt input
+tokens: 6,070 / 5,518 / 12,103, all within the unchanged 32K profile. Zero active
+exchanges were omitted. All eight native edit calls were admitted across five
+atomic transactions with exactly reconstructed source, absence, observation
+handles and combined diffs. The new file was genuinely created, not supplied by
+Codex. All temporary sources and new-file absences were restored after each run.
+
+Identity required two real Ruff repairs (TRY003/EM102/COM812, then TRY003/EM101).
+Behavior and existing regressions passed on every admitted version. Qwen's final
+proposal passed all quality checks. This proves live quality-feedback repair;
+it is not a new demonstration of behavioral-failure repair. No Devtools read,
+schema, admission or integrity failure occurred; recovery claims rely on the
+focused scripted regression suite, not invented live mistakes.
+
+Pi's splitting run recovered from one missing-new-file read and a Ruff/format
+failure. The accepted candidate is verified independently, but Pi's final
+assistant stop is `error: Model call budget exhausted`; do not label it clean
+conversation completion. Its other runs completed normally. Pi's native write/
+edit surface and action population differ from Devtools atomic proposals as
+frozen above. Native SDK raw responses, requests, arguments and final candidate
+bytes remain archived alongside Devtools evidence; no cloud fallback or model
+reconfiguration occurred.
+
+All six runs fit the original ceiling: 33 calls, 147,149 input / 5,068 output
+tokens, 347.18 worker seconds. Model-generated JSON provider arguments match
+normalization exactly; native roles and exact candidate reconstruction pass.
+All 314 recorded editing-06 evidence files retain their hashes. Paid fallback
+calls: zero. Codex coordination usage, energy, RAM/VRAM resampling and incremental
+cost: UNKNOWN. No need to replace orchestration with Pi is established by this
+sample; adding a Node SDK/bridge below governance would introduce a second
+runtime dependency and require preserving host atomic admission, source
+ownership and evidence correlation rather than substituting unrestricted SDK
+writes. No such replacement is implemented.
+
+The regex candidate is selected for shared reviewed closeout with independently
+authored permanent regressions. BSD and Identity remain accepted evidence until
+separate integration. The earlier decoded CommandResult candidate is preserved;
+it is not silently combined into this task's reviewed change scope. Broader
+Qwen reliability and a controlled Codex comparison remain open.

@@ -232,7 +232,7 @@ def test_installed_api_contract_is_real_bounded_and_not_arbitrary_execution(
     assert loads == inspect_contract("json.loads", ("json.loads",))
     assert dispatch(bundle, "inspect_api", target="bytes.decode")["observation_id"]
     for target in ("os.system", "json.loads", "__import__('os')", "bytes.__class__"):
-        with pytest.raises(ValueError, match="Unsupported"):
+        with pytest.raises(ValueError, match="must be one of"):
             dispatch(bundle, "inspect_api", target=target)
 
 
@@ -331,9 +331,11 @@ class Engineering:
             hits = [v["matches"][0] for v in values if "matches" in v]
             calls = tuple(
                 ModelToolCall(
-                    "read_source",
+                    "inspect_source" if self.flat else "read_source",
                     json.dumps(
-                        {
+                        {"path": h["path"], "start": h["span"][0]}
+                        if self.flat
+                        else {
                             "path": h["path"],
                             "version": h["version"],
                             "start": h["span"][0],

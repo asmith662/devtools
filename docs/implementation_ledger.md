@@ -1,5 +1,17 @@
 # Implementation Ledger
 
+## 2026-10-20 — Recoverable Qwen source investigation
+
+Reused Context materialization for a sole disclosed direct reader with truthful
+truncation/continuation and empty/absent observations. Application-local typed
+request refusals preserve native correlation and meaningful action accounting;
+integrity failures still stop. Six fresh scoped Qwen/Pi runs consumed 33 calls,
+147,149 input / 5,068 output tokens and 347.18 worker seconds. Both accepted two
+development tasks and one frozen confirmation. Devtools created a module and
+exports, coordinated two existing modules and repaired two Ruff failures without
+behavioral regression. All old evaluations remain immutable. Exact candidate
+closeout is recorded separately after validation; no protected promotion.
+
 ## 2026-10-20 — Flat observed Qwen editing and matched Pi comparison
 
 Added opt-in flat observed atomic edits, source-reference bookkeeping and

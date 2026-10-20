@@ -1,5 +1,15 @@
 # Roadmap
 
+[Investigation comparison 07](../apps/qwen/evaluation/investigation-07/README.md)
+demonstrates new-module/export creation, coordinated two-module implementation
+and requirement-preserving Ruff repair with genuine native Qwen. Fresh
+development 2/2 and confirmation 1/1 accepted in both Devtools and scoped Pi;
+Devtools used 13 versus 20 requests. No general reliability or Codex parity claim.
+Next Qwen priority: repeated harder multi-module tasks and behavioral repair,
+while measuring source discovery beyond known admitted paths. Read-error
+recovery is deterministic-tested; the new live tasks had no read failures.
+Other long-term workstreams remain planned rather than implemented here.
+
 [Editing comparison 06](../apps/qwen/evaluation/editing-06/README.md) adds flat
 observed edit calls and bounded path-based source inspection through existing
 owners. Valid paired development: Devtools 1/2, Pi 2/2; replacement confirmation

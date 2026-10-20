@@ -202,3 +202,14 @@ confirmation oracle and its failures remain recorded, excluded from scoring.
 Zero edit-admission refusals in five transactions do not establish general
 reliability. Multi-file/new-module investigation remains a demonstrated gap.
 See `apps/qwen/evaluation/editing-06/README.md`. This item remains open.
+
+
+## Recoverable source investigation 07
+
+Fresh native development accepted 2/2 in both Devtools and scoped Pi; separately
+frozen confirmation accepted in both. Devtools demonstrated new-module/export
+creation, coordinated two-file edits and two Ruff repairs preserving behavior.
+No live read errors occurred; safe recovery is deterministically tested.
+See `apps/qwen/evaluation/investigation-07/README.md`. This small admitted-corpus
+sample does not establish general reliability, behavioral repair competence or
+Codex parity. This work item remains open.

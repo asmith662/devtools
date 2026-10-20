@@ -382,6 +382,7 @@ def test_bad_read_in_batch_preserves_later_native_results(
         async def send(self, request: ModelRequest) -> ModelResponse:
             self.requests.append(request)
             number = len(self.requests)
+            operations: tuple[ModelToolCall, ...]
             if number == 1:
                 operations = (
                     ModelToolCall("read_source", '{"path":"missing"}', "bad"),

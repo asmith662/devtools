@@ -1,5 +1,13 @@
 # Architecture
 
+The Qwen application's direct-read mode uses the existing Context materializer
+for bounded current-source observations and truthful continuation. Its local
+ContextRequestError distinguishes model-request schema/unit/version/parent
+mistakes from integrity and authorization failures; ToolRunner itself retains
+unchanged validation/execution semantics. Historical source-read contracts and
+the existing flat atomic editing protocol remain supported. This introduces no
+framework error registry, source store or orchestration owner.
+
 The Qwen application's opt-in flat observed edit interface resolves task-local
 source handles into the existing exact atomic transaction contract. Context
 still owns disclosure/materialization, ToolRunner dispatches fixed capabilities,

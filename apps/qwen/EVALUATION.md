@@ -1,5 +1,34 @@
 # Native Context worker acceptance and evaluation
 
+## Source investigation comparison 07
+
+The direct observed mode now exposes one path-based reader, with truthful
+UTF-8-bounded continuation and distinct authorized absence observations.
+Typed request errors return operation/schema/recovery guidance in correlated
+native Tool messages; drift, aliases and unauthorized reads remain terminal.
+Existing Context/RI, ToolRunner, flat admission, validation and Checkout own
+their original responsibilities. No serving or editing-protocol redesign.
+
+Fresh frozen development accepted 2/2 in both Devtools and scoped Pi. Devtools
+created a new regex splitting module/export in five requests and coordinated
+BSD model/detection changes in three. A prospectively frozen Identity
+confirmation passed both: Devtools used five requests and two Ruff repairs;
+behavior remained passing throughout those repairs. All eight Devtools native
+edit calls were admitted across five atomic transactions. No Tool failures,
+source omissions or edit-admission refusals occurred in these live tasks.
+
+Six runs used 33 requests, 147,149 input / 5,068 output tokens and 347.18 summed
+worker seconds, within the original six-run/60-request/5,400-second ceiling.
+Devtools used 13 requests versus Pi 20. Accepted candidates are distinguished
+from clean conversation termination: Pi's splitting candidate passed all host
+checks but its final conversation hit the request ceiling. This is a small
+bounded-corpus comparison, not general reliability, global discovery or Codex
+parity. The old failed lazy attempts never reached implementation and are not
+reused as fresh evidence. Safe error recovery is regression-tested; these live
+Devtools runs did not encounter a read error.
+
+See [frozen tasks and evidence](evaluation/investigation-07/README.md).
+
 ## Editing comparison 06 — measured outcome
 
 Flat observed native edits reuse existing atomic admission and source ownership.
