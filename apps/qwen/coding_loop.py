@@ -724,6 +724,7 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                             in {
                                 "SOURCE_VERSION_MISMATCH",
                                 "Unknown or stale source unit",
+                                "Context Tool requires bounded nonempty text",
                             }
                         ):
                             raise
@@ -747,6 +748,15 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                                 "unit ID using search_source or lookup_symbol, "
                                 "then expand that unit. A file path is not a unit "
                                 "ID. This refusal consumed a Context action."
+                            )
+                        if str(error) == "Context Tool requires bounded nonempty text":
+                            result["error"] = "SOURCE_ARGUMENTS_REFUSED"
+                            result["instruction"] = (
+                                "No source was read or changed. Context string "
+                                "arguments must be nonempty and bounded. Obtain "
+                                "the exact source version/unit from search or "
+                                "lookup; do not use an empty version. This "
+                                "refusal consumed a Context action."
                             )
                     else:
                         event["status"] = (

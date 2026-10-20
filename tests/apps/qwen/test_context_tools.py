@@ -284,7 +284,7 @@ def test_context_eviction_retains_latest_actual_validation_feedback() -> None:
         select_messages(history, maximum_bytes=1000)
 
 
-@pytest.mark.parametrize("failure", ["version", "unit"])
+@pytest.mark.parametrize("failure", ["version", "unit", "empty-version"])
 def test_version_refusal_is_correlated_and_can_be_corrected(
     captured_inputs: Callable[[CodingTask], Path], tmp_path: Path, failure: str
 ) -> None:
@@ -305,6 +305,10 @@ def test_version_refusal_is_correlated_and_can_be_corrected(
                 )
                 if failure == "unit":
                     native = call("expand_source", unit=MARKDOWN.source, to="file")
+                if failure == "empty-version":
+                    native = call(
+                        "read_source", path=MARKDOWN.source, version="", start=0, end=1
+                    )
             elif number == 2:
                 message = request.prompt.messages[-1]
                 result = json.loads(message.content)
@@ -315,6 +319,8 @@ def test_version_refusal_is_correlated_and_can_be_corrected(
                     "SOURCE_VERSION_MISMATCH"
                     if failure == "version"
                     else "SOURCE_UNIT_MISMATCH"
+                    if failure == "unit"
+                    else "SOURCE_ARGUMENTS_REFUSED"
                 )
                 assert result["host_limits"]["context_actions_remaining"] == 7
                 assert "text" not in result
