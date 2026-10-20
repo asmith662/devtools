@@ -10,6 +10,7 @@ from devtools.core.regex.search import (
     replace_regex,
     search_regex,
 )
+from devtools.core.regex.splitting import split_regex
 
 __all__ = [
     "RegexMatch",
@@ -19,4 +20,5 @@ __all__ = [
     "iter_regex",
     "replace_regex",
     "search_regex",
+    "split_regex",
 ]
