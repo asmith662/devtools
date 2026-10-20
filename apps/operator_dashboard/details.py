@@ -100,7 +100,8 @@ def _validation(value: dict[str, Any], *, raw: bool) -> dict[str, Any]:
             "stderr": display(command.get("stderr"), disclosed=raw),
         }
         for name, command in value.items()
-        if name in {"tests", "oracle"} and isinstance(command, dict)
+        if name in {"tests", "oracle", "ruff", "format", "typing"}
+        and isinstance(command, dict)
     }
 
 
@@ -144,6 +145,11 @@ def turn_detail(folder: Path, stage: dict[str, Any], *, raw: bool) -> dict[str, 
                 "context_bytes",
                 "context_utilization",
                 "prompt_bytes",
+                "input_tokens_measured",
+                "sources_before",
+                "sources_after",
+                "edits",
+                "mechanical_format",
             )
         },
         "request_reference": _reference(request_path) if request else None,
@@ -157,6 +163,7 @@ def turn_detail(folder: Path, stage: dict[str, Any], *, raw: bool) -> dict[str, 
         "reasoning_text": display(response.get("reasoning_content"), disclosed=raw),
         "conversation": display(response.get("conversation"), disclosed=raw),
         "settings": request.get("settings"),
+        "provider_settings": request.get("provider_settings"),
         "request_role": request.get("prompt", {}).get("role", "NOT_CAPTURED"),
         "response_source": response.get("source", "NOT_CAPTURED"),
         "tools": tools,
@@ -166,6 +173,7 @@ def turn_detail(folder: Path, stage: dict[str, Any], *, raw: bool) -> dict[str, 
         "feedback": display(_feedback(request), disclosed=raw),
         "patch": _captured(turn, "proposal.patch", raw=raw),
         "tool_results": _captured(turn, "tools.json", raw=raw),
+        "capacity": _captured(turn, "capacity.json", raw=raw),
         "validation": _validation(stage.get("validation", {}), raw=raw),
     }
 
@@ -189,6 +197,12 @@ def run_detail(path: Path, *, raw: bool) -> dict[str, Any]:
         "profile": provenance.get("profile", "NOT_RECORDED"),
         "limits": result.get("limits"),
         "baseline": result.get("baseline"),
+        "closeout": _captured(folder, "closeout.json", raw=raw),
+        "command_checks": [
+            _captured(folder, f"coding-command-{n:02d}.json", raw=raw)
+            for n in range(1, 33)
+            if confined(folder, folder / f"coding-command-{n:02d}.json").is_file()
+        ],
         "validation_seconds": result.get("validation_seconds"),
         "raw_disclosure": raw,
         "recorded_turn_count": len(result.get("turns", [])),

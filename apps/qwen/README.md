@@ -31,6 +31,16 @@ shared checks and returns a review subject. `--review-json` binds Codex's
 them. Duplicate publication verifies the exact commit/ref. Backlog progression
 and protected target promotion retain the existing governed lifecycle.
 
+Closeout admits `--additions-json` with a `files` array of independently authored
+`{path,text,author,reference}` test records. Qwen candidate source cannot be
+overridden through this entry. Use `--protected-validation` once on the final
+installed tree; the exact subject-bound passing result is reusable for subsequent
+review/commit. Feature push can bind `--expected-remote` when reviewed framework
+commits are not yet published; divergent or moved refs refuse. Commit intent,
+parent/tree and trailer reconcile interrupted publication without duplicate commits.
+The same integration owner serves Codex and other trusted supervisors; no model
+Tool has access to these effects.
+
 Optional `--sampling-profile qwen-instruct` and `qwen-thinking` select the
 manufacturer's explicit request settings for the corresponding thinking mode.
 `baseline` remains the default and retains the actual server's metadata-derived

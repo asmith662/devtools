@@ -39,6 +39,38 @@ def digest_text(value: str) -> str:
     return hashlib.sha256(value.encode()).hexdigest()
 
 
+def independent_files(
+    files: list[dict[str, Any]],
+    additions: list[dict[str, str]],
+    source: str,
+    *,
+    allow_source: bool = True,
+) -> list[dict[str, Any]]:
+    """Admit bounded independently attributed additions for both integration entries."""
+    if not isinstance(additions, list) or len(additions) > 19:
+        raise ValueError("Bounded independent test/correction additions required")
+    if len({f["path"] for f in additions}) != len(additions):
+        raise ValueError("Duplicate addition paths")
+    for addition in additions:
+        if (
+            set(addition) != {"path", "text", "author", "reference"}
+            or not addition["author"].strip()
+            or addition["author"] == "Qwen"
+            or not addition["reference"].strip()
+            or not isinstance(addition["text"], str)
+        ):
+            raise ValueError("Independently authored additions require provenance")
+        path = addition["path"]
+        RepositoryResourceAddress(path)
+        if not path.endswith(".py") or not (
+            path.startswith("tests/") or (allow_source and path == source)
+        ):
+            raise PermissionError("Addition outside source/test boundary")
+        files = [v for v in files if v["path"] != path]
+        files.append({**addition, "sha256": digest_text(addition["text"])})
+    return files
+
+
 class Integration:
     """Implement the integration phases of the existing WorkCycle only."""
 
@@ -146,7 +178,7 @@ class Integration:
             "patch_sha256": digest_text(patch),
         }
 
-    async def plan(  # noqa: C901, PLR0912, PLR0915 -- closed plan admission checks
+    async def plan(  # noqa: C901, PLR0912 -- closed plan admission checks
         self, item: str, review: str, spec: dict[str, Any]
     ) -> dict[str, Any]:
         """Freeze a read-only destination-based plan; no grant is inferred."""
@@ -231,27 +263,7 @@ class Integration:
                 "reference": candidate["result"]["sha256"],
             }
         ]
-        if not isinstance(spec["additions"], list) or len(spec["additions"]) > 19:
-            raise ValueError("Bounded independent test/correction additions required")
-        for addition in spec["additions"]:
-            if (
-                set(addition) != {"path", "text", "author", "reference"}
-                or not addition["author"].strip()
-                or addition["author"] == "Qwen"
-                or not addition["reference"].strip()
-                or not isinstance(addition["text"], str)
-            ):
-                raise ValueError("Independently authored additions require provenance")
-            path = addition["path"]
-            RepositoryResourceAddress(path)
-            if not path.endswith(".py") or not (
-                path.startswith("tests/") or path == task.source
-            ):
-                raise PermissionError("Addition outside source/test boundary")
-            files = [v for v in files if v["path"] != path]
-            files.append({**addition, "sha256": digest_text(addition["text"])})
-        if len({f["path"] for f in spec["additions"]}) != len(spec["additions"]):
-            raise ValueError("Duplicate addition paths")
+        files = independent_files(files, spec["additions"], task.source)
         checkout = resolve_path(spec["checkout"]).value
         if checkout != self.cycle.root:
             raise PermissionError("Plan must use the canonical checkout")

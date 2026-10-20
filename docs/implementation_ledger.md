@@ -1,5 +1,17 @@
 # Implementation Ledger
 
+## 2026-10-20 — Verified local Qwen coding environment
+
+Full GGUF hashing and pinned upstream metadata authenticate the actual model.
+Environment 05 records ten genuine runs (79 calls, 594,565 input / 23,108 output
+tokens, 1,294.13 worker seconds), including scoped Pi comparisons, q8 CUDA KV
+and reasoning-medium comparisons. Improved JSON acceptance and real repair
+coexist with a remaining path-proposal failure. Scoped Git/check Tools, explicit
+new-file admission, native token measurement and shared local integration closeout
+reuse existing owners. No protected publication or paid model fallback occurred.
+See `apps/qwen/evaluation/environment-05/README.md` and its immutable-evidence
+manifest for conditions, limitations and exact candidate provenance.
+
 ## 2026-10-19 — Verified coordinated Qwen engineering
 
 Extended the existing CodingTask/native loop/Checkout path for observed,

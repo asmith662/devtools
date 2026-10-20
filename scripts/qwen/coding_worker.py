@@ -84,7 +84,9 @@ def report_directory(value: str | Path) -> Path:
 
 
 def _sampling_settings(
-    sampling_profile: str, *, thinking_enabled: bool,
+    sampling_profile: str,
+    *,
+    thinking_enabled: bool,
 ) -> LlamaCppRequestSettings | None:
     """Select only explicit host-owned request presets; preserve baseline."""
     if (
@@ -133,7 +135,8 @@ async def run_local_task(  # noqa: PLR0913, C901 -- explicit bounded ownership/m
         message = "Reasoning effort requires thinking enabled"
         raise ValueError(message)
     selected_settings = _sampling_settings(
-        sampling_profile, thinking_enabled=thinking_enabled,
+        sampling_profile,
+        thinking_enabled=thinking_enabled,
     )
     if (
         type(coordinated_edits) is not bool
@@ -241,6 +244,19 @@ async def main() -> int:  # noqa: C901, PLR0915 -- closed local run/closeout ent
         help="Trusted supervisory review of the exact closeout subject.",
     )
     parser.add_argument(
+        "--additions-json",
+        help="Trusted independent test additions: {files: [...]}",
+    )
+    parser.add_argument(
+        "--protected-validation",
+        action="store_true",
+        help="Run the protected gate on the exact installed candidate and tests.",
+    )
+    parser.add_argument(
+        "--expected-remote",
+        help="Explicit expected origin feature HEAD before publication.",
+    )
+    parser.add_argument(
         "--commit",
         action="store_true",
         help="Explicit trusted feature commit effect; no protected promotion.",
@@ -319,10 +335,27 @@ async def main() -> int:  # noqa: C901, PLR0915 -- closed local run/closeout ent
             else None,
             commit=args.commit,
             push=args.push,
+            additions=load_json(
+                resolve_path(args.additions_json, base_directory=Path.cwd()).value,
+            )["files"]
+            if args.additions_json
+            else None,
+            protected_validation=args.protected_validation,
+            expected_remote=args.expected_remote,
         )
         print(result["disposition"])
         return 0 if result["validation"]["accepted"] else 1
-    if args.commit or args.push or args.review_json or args.expected_head:
+    if any(
+        (
+            args.commit,
+            args.push,
+            args.review_json,
+            args.expected_head,
+            args.additions_json,
+            args.protected_validation,
+            args.expected_remote,
+        ),
+    ):
         parser.error("Publication/review options require --closeout")
     try:
         args.report_directory = report_directory(args.report_directory)

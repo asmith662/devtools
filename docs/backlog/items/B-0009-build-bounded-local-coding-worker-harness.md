@@ -178,3 +178,16 @@ coding case is evidence of capability, not general reliability or measured
 superiority. Live successful behavioral repair and a fair Codex comparison remain
 open. The historical duration style-rework candidate and all cohort 01 records
 remain unchanged. No candidate was integrated or protected source published.
+
+## Verified coding environment 05
+
+The mounted model bytes match the pinned upstream GGUF. A scoped Pi 1.3.0 SDK
+accepted both fresh development tasks versus 0/2 for the original worker. The
+maintained worker now exposes scoped Git/check Tools, explicit new-file admission,
+measured native prompt capacity and shared reviewed local closeout. JSON overflow
+passed all behavioral/quality gates; separate q8 and medium-thinking runs exercised
+genuine behavioral/typing repair. The final path proposal still failed admission.
+These small development results do not establish general reliability or Codex parity.
+See `apps/qwen/evaluation/environment-05/README.md` for budget, conditions and
+limitations. Prior accepted candidates and failed evaluations retain their original
+attribution and integration status. This item remains open.

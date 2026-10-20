@@ -13,6 +13,7 @@ from typing import Any
 import pytest
 
 from scripts.backlog.coordinator import git
+from scripts.backlog.integration import local as local_integration
 from tests.scripts.backlog.test_work import GOOD, OLD
 from tests.scripts.backlog.test_work import fixture as fixture  # noqa: PLC0414
 
@@ -45,8 +46,14 @@ def evidence(f: dict[str, Any]) -> Path:
 
 def test_local_candidate_validation_review_commit_push_and_idempotence(
     fixture: dict[str, Any],
+    monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     """Use actual scoped validation, feature commit and a bare fixture remote."""
+
+    async def protected_fixture(*_args: object, **_kwargs: object) -> dict[str, Any]:
+        return {"passed": True, "profile": "SCRIPTED-FIXTURE-ONLY"}
+
+    monkeypatch.setattr(local_integration, "validate_tree", protected_fixture)
 
     async def run() -> None:
         f = fixture
@@ -59,14 +66,33 @@ def test_local_candidate_validation_review_commit_push_and_idempotence(
         await git(root, "init", "--bare", str(remote))
         await git(root, "remote", "add", "origin", str(remote))
         await git(root, "push", "origin", "HEAD:refs/heads/feat/fixture")
+        addition = {
+            "path": "tests/test_independent.py",
+            "text": "def test_independent():\n    assert True\n",
+            "author": "Codex",
+            "reference": "independent synthetic regression",
+        }
+        # This host-authored test is absent before and after temporary validation.
+        assert not (root / addition["path"]).exists()
         record = await f["cycle"].integration.closeout_local(
-            task, candidate, branch="feat/fixture", expected_head=head
+            task,
+            candidate,
+            branch="feat/fixture",
+            expected_head=head,
+            protected_validation=True,
+            additions=[addition],
         )
         assert record["disposition"] == "SUPERVISORY_REVIEW"
         assert await git(root, "diff") == ""
+        assert not (root / addition["path"]).exists()
         with pytest.raises(PermissionError, match="Codex review"):
             await f["cycle"].integration.closeout_local(
-                task, candidate, branch="feat/fixture", expected_head=head, commit=True
+                task,
+                candidate,
+                branch="feat/fixture",
+                expected_head=head,
+                commit=True,
+                additions=[addition],
             )
         review = {
             "subject": record["review_subject"],
@@ -82,8 +108,13 @@ def test_local_candidate_validation_review_commit_push_and_idempotence(
             review=review,
             commit=True,
             push=True,
+            additions=[addition],
+            expected_remote=head,
         )
         assert record["disposition"] == "FEATURE_PUBLISHED"
+        # Model a lost response after the local commit; reconcile, never recommit.
+        interrupted = dict(record, commit=None, disposition="COMMIT_INTENT")
+        (candidate / "closeout.json").write_text(json.dumps(interrupted))
         again = await f["cycle"].integration.closeout_local(
             task,
             candidate,
@@ -92,8 +123,10 @@ def test_local_candidate_validation_review_commit_push_and_idempotence(
             review=review,
             commit=True,
             push=True,
+            additions=[addition],
         )
         assert again["commit"] == record["commit"]
+        assert (root / addition["path"]).is_file()
         assert await git(root, "status", "--porcelain", "--untracked-files=no") == ""
 
     asyncio.run(run())

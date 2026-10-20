@@ -13,19 +13,25 @@ import json
 from typing import TYPE_CHECKING, Any
 
 from apps.qwen.coding_loop import _prepare_workspace, validate_workspace
-from apps.qwen.development_task import _hash
+from apps.qwen.patch_proposal_worker import _read_text
 from devtools.core.paths import resolve_path
 from devtools.core.time import Timestamp
 from devtools.resources.filesystem import TextFile, write
 from scripts.backlog.checkout import Checkout
 from scripts.backlog.coordinator import git
 from scripts.backlog.integration.git import publish, remote_head
+from scripts.backlog.integration.lifecycle import independent_files
+from scripts.backlog.integration.validation import validate_tree
 
 if TYPE_CHECKING:
     from pathlib import Path
 
     from apps.qwen.tasks import CodingTask
     from scripts.backlog.integration import Integration
+
+MAX_SOURCE_BYTES = 32768
+MAX_FILES = 8
+MAX_INSTALL_BYTES = 131072
 
 
 async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable installation/review/publication phase
@@ -38,6 +44,9 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
     review: dict[str, Any] | None = None,
     commit: bool = False,
     push: bool = False,
+    additions: list[dict[str, str]] | None = None,
+    protected_validation: bool = False,
+    expected_remote: str | None = None,
 ) -> dict[str, Any]:
     """Authenticate, install, validate, review and optionally publish one candidate.
 
@@ -46,6 +55,8 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
     Interrupted commit/push is reconciled by exact commit/ref, not repeated.
     """
     root, cycle = integration.cycle.root, integration.cycle
+    if any(type(value) is not bool for value in (commit, push, protected_validation)):
+        raise TypeError("Closeout effects require explicit boolean flags")
     evidence = resolve_path(evidence).value
     if not evidence.is_relative_to(root / ".local") or not branch.startswith("feat/"):
         raise PermissionError(
@@ -54,8 +65,9 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
     if push and not commit:
         raise PermissionError("Push requires explicit feature commit authority")
     result_path = evidence / "result.json"
-    result_sha = _hash(result_path)
-    result = json.loads(result_path.read_text(encoding="utf-8"))
+    result_text = _read_text(resolve_path(result_path)).content
+    result_sha = hashlib.sha256(result_text.encode()).hexdigest()
+    result = json.loads(result_text)
     if (
         not result.get("accepted")
         or result.get("task_definition_sha256") != task.definition_sha256
@@ -71,27 +83,79 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
     baseline: dict[str, str | None] = {}
     for candidate in candidates:
         path = candidate["path"]
+        raw = evidence / candidate["evidence"]
         file = resolve_path(candidate["evidence"], base_directory=evidence).value
+        if file != raw or not file.is_relative_to(evidence):
+            raise PermissionError("Candidate path alias is not admitted")
+        text = _read_text(resolve_path(file)).content
         if (
             not file.is_relative_to(evidence)
             or file.is_symlink()
-            or _hash(file) != candidate["sha256"]
+            or hashlib.sha256(text.encode()).hexdigest() != candidate["sha256"]
+            or len(text.encode()) > MAX_SOURCE_BYTES
         ):
             raise PermissionError("Candidate bytes or evidence path changed")
-        sources[path] = file.read_bytes().decode("utf-8")
+        sources[path] = text
         baseline[path] = (
             None
             if path in task.new_paths
             else await cycle._baseline(task, path, dict(task.baseline_hashes)[path])
         )
+    files = independent_files(
+        [
+            {
+                "path": p,
+                "text": t,
+                "author": "Qwen",
+                "reference": result_sha,
+                "sha256": hashlib.sha256(t.encode()).hexdigest(),
+            }
+            for p, t in sources.items()
+        ],
+        additions or [],
+        task.source,
+        allow_source=False,
+    )
+    if (
+        len(files) > MAX_FILES
+        or sum(len(f["text"].encode()) for f in files) > MAX_INSTALL_BYTES
+    ):
+        raise ValueError("Local closeout source/test scope exceeds bounded size")
+    for addition in additions or []:
+        path = addition["path"]
+        raw = root / path
+        if resolve_path(raw).value != raw or not raw.parent.is_dir():
+            raise PermissionError("Test addition aliases or has no maintained parent")
+        baseline[path] = _read_text(resolve_path(raw)).content if raw.exists() else None
+    installed = {f["path"]: f["text"] for f in files}
     receipt = evidence / "closeout.json"
+    previous: dict[str, Any] = {}
     if receipt.exists():
-        previous: dict[str, Any] = json.loads(receipt.read_text())
+        previous = json.loads(receipt.read_text())
         if (
             previous.get("result_sha256") != result_sha
             or previous.get("branch") != branch
         ):
             raise PermissionError("Existing closeout binding changed")
+        if previous.get("disposition") == "COMMIT_INTENT" and not previous.get(
+            "commit"
+        ):
+            observed = await git(root, "rev-parse", branch)
+            if observed != expected_head:
+                if (
+                    await git(root, "show", "-s", "--format=%P", observed)
+                    != expected_head
+                    or await git(root, "rev-parse", observed + "^{tree}")
+                    != previous["tree"]
+                    or "Local-Closeout: " + previous["review_subject"]
+                    not in await git(root, "show", "-s", "--format=%B", observed)
+                ):
+                    raise PermissionError(
+                        "Ambiguous commit intent requires reconciliation"
+                    )
+                previous["commit"] = observed
+                previous["disposition"] = "FEATURE_COMMITTED"
+                write(TextFile(resolve_path(receipt), json.dumps(previous, indent=2)))
         if previous.get("commit"):
             head = previous["commit"]
             if (
@@ -99,7 +163,16 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
                 or await git(root, "show", "-s", "--format=%P", head) != expected_head
             ):
                 raise PermissionError("Recorded feature commit diverged")
-            for path, text in sources.items():
+            changed = set(
+                (
+                    await git(
+                        root, "diff-tree", "--no-commit-id", "--name-only", "-r", head
+                    )
+                ).splitlines()
+            )
+            if not changed <= set(installed) or not changed:
+                raise PermissionError("Recorded commit contains unapproved changes")
+            for path, text in installed.items():
                 if await git(
                     root, "show", head + ":" + path, trim=False
                 ) != text.replace("\r\n", "\n"):
@@ -138,6 +211,20 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
         "implementation_by": "Qwen",
         "supervision_by": "Codex",
         "commit": None,
+        "files": [{k: v for k, v in f.items() if k != "text"} for f in files],
+        "host_mechanical_changes": [
+            s.get("mechanical_format")
+            for s in result.get("turns", [])
+            if s.get("mechanical_format")
+        ],
+        "validation_inputs": {
+            p: hashlib.sha256(
+                (
+                    installed.get(p) or _read_text(resolve_path(root / p)).content
+                ).encode()
+            ).hexdigest()
+            for p in task.tests
+        },
     }
     async with Checkout(
         cycle,
@@ -147,7 +234,7 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
         files=[{"path": p, "text": t or ""} for p, t in baseline.items()],
         commit_allowed=commit,
     ) as owner:
-        for path, text in sources.items():
+        for path, text in installed.items():
             owner.expect(path, text)
             write(TextFile(resolve_path(root / path), text))
         checks = evidence / (
@@ -157,6 +244,19 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
         _prepare_workspace(root, checks, task)
         validation = await validate_workspace(root, checks, task=task)
         record["validation"] = validation
+        if validation["accepted"] and protected_validation:
+            plan = {
+                "source": task.source,
+                "tests": list(task.tests),
+                "files": files,
+                "validation_seconds": 1800,
+            }
+            record["protected_validation"] = await validate_tree(
+                root, checks / "protected", plan, task.oracle, post=False
+            )
+            validation["accepted"] = (
+                validation["accepted"] and record["protected_validation"]["passed"]
+            )
         record["disposition"] = (
             "SUPERVISORY_REVIEW"
             if validation["accepted"]
@@ -167,11 +267,18 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
                 {
                     "result": result_sha,
                     "base": expected_head,
-                    "files": record["candidate_sha256"],
+                    "files": record["files"],
                 },
                 sort_keys=True,
             ).encode()
         ).hexdigest()
+        if previous.get("review_subject") == record["review_subject"] and previous.get(
+            "protected_validation", {}
+        ).get("passed"):
+            record.setdefault("protected_validation", previous["protected_validation"])
+        record["publication_eligible"] = validation["accepted"] and record.get(
+            "protected_validation", {}
+        ).get("passed", False)
         write(TextFile(resolve_path(receipt), json.dumps(record, indent=2)))
         if not validation["accepted"] or not commit:
             return record
@@ -185,15 +292,30 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
             raise PermissionError(
                 "Exact final-source Codex review required before commit"
             )
+        if not record["publication_eligible"]:
+            raise PermissionError(
+                "Protected development validation of this exact candidate is required"
+            )
         record["review"] = review
         record["remote_before"] = (
             await remote_head(root, "origin", branch) if push else ""
         )
-        if push and record["remote_before"] != expected_head:
-            raise PermissionError(
-                "Publish framework checkpoint first; remote feature advanced or stale"
-            )
-        await git(root, "add", "--", *task.sources)
+        if push:
+            if record["remote_before"] != (expected_remote or expected_head):
+                raise PermissionError(
+                    "Remote feature advanced or explicit expected remote is missing"
+                )
+            if (
+                record["remote_before"]
+                and await git(
+                    root, "merge-base", record["remote_before"], expected_head
+                )
+                != record["remote_before"]
+            ):
+                raise PermissionError(
+                    "Feature publication would import divergent ancestry"
+                )
+        await git(root, "add", "--", *installed)
         record["tree"] = await git(root, "write-tree")
         record["disposition"] = "COMMIT_INTENT"
         write(TextFile(resolve_path(receipt), json.dumps(record, indent=2)))
@@ -210,9 +332,13 @@ async def closeout_local(  # noqa: C901, PLR0912, PLR0915 -- one recoverable ins
         )
         record["commit"] = await git(root, "rev-parse", "HEAD")
         record["disposition"] = "FEATURE_COMMITTED"
+        record["revert_parent"] = expected_head
+        record["revert_command"] = "git revert " + record["commit"]
         write(TextFile(resolve_path(receipt), json.dumps(record, indent=2)))
         if push:
-            await publish(root, "origin", branch, record["commit"], expected_head)
+            await publish(
+                root, "origin", branch, record["commit"], record["remote_before"]
+            )
             record["disposition"] = "FEATURE_PUBLISHED"
             write(TextFile(resolve_path(receipt), json.dumps(record, indent=2)))
     return record

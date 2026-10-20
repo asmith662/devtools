@@ -1,6 +1,17 @@
 # Native Context worker acceptance and evaluation
 
-Latest checkpoint: [native cohort 04](evaluation/native-cohort-04/README.md).
+Latest checkpoint: [coding environment 05](evaluation/environment-05/README.md).
+The independently hashed GGUF matches its pinned upstream LFS artifact. A scoped
+Pi 1.3.0 comparison accepted both fresh development tasks versus 0/2 for the
+original worker. Corrected API-evidence feedback and measured native input capacity
+enabled accepted JSON implementations and genuine behavioral/typing repairs.
+The final path task still failed strict proposal admission. Ten runs used 79
+calls, 594,565 input / 23,108 output tokens and 1,294.13 worker seconds. q4/q8 and
+thinking-off/medium comparisons do not establish a better default or general
+proficiency. Shared integration closeout now handles local accepted evidence and
+independently authored tests; publication remains an explicit feature-only effect.
+
+Previous checkpoint: [native cohort 04](evaluation/native-cohort-04/README.md).
 Versioned observed edit transactions coordinate multiple regions and authorized
 files while citing installed allowlisted API contracts. Final paired development
 acceptance was 0/2 unchanged versus 2/2 final; the once-only two-file held-out case

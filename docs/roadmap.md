@@ -1,5 +1,13 @@
 # Roadmap
 
+Qwen remains the active engineering priority. [Environment 05](../apps/qwen/evaluation/environment-05/README.md)
+verifies actual weights/runtime and compares a scoped Pi harness with Devtools on
+two fresh tasks. Native task-scoped Git/check Tools, absence-bound new files,
+actual llama.cpp input measurement and shared reviewed feature closeout are
+implemented. Accepted JSON and genuine repair evidence coexist with a remaining
+path-proposal failure; general reliability and Codex parity remain unproven.
+No alternate serving profile is promoted from these small development comparisons.
+
 ## Immediate priority: native Qwen coding effectiveness
 
 [Cohort 04](../apps/qwen/evaluation/native-cohort-04/README.md) demonstrates real
