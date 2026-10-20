@@ -39,7 +39,10 @@ def command_definitions(task: CodingTask) -> tuple[ModelToolDefinition, ...]:
             ),
             {
                 "operation": {"type": "string", "enum": ["status", "diff", "history"]},
-                "path": {"type": "string", "enum": list(task.sources)},
+                "path": {
+                    "type": "string",
+                    "enum": sorted({*task.sources, *task.tests, *task.read_paths}),
+                },
             },
         ),
         (

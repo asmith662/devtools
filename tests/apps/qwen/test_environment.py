@@ -53,6 +53,19 @@ def test_quality_checks_only_defer_explicit_absent_new_slots(
     assert task.new_paths[0] in calls[-1]
 
 
+def test_git_inspection_uses_read_authority_without_exposing_edit_subset(
+    tools: ContextTools,
+) -> None:
+    task = replace(tools.task, command_tools=True, disclose_edit_paths=False)
+    definition = commands.command_definitions(task)[0]
+    paths = json.loads(definition.input_schema_json)["properties"]["path"]["enum"]
+    assert paths == sorted({*task.sources, *task.tests, *task.read_paths})
+    coding = CodingCommands(tools.root, tools.root, task)
+    coding.validate(("git_inspect", {"operation": "history", "path": task.tests[0]}))
+    with pytest.raises(ValueError, match="Unsupported"):
+        coding.validate(("git_inspect", {"operation": "diff", "path": "AGENTS.md"}))
+
+
 def test_actual_capacity_refusal_retains_pending_request_without_model_dispatch(
     tools: ContextTools, tmp_path: Path
 ) -> None:
