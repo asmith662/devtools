@@ -15,7 +15,7 @@ from apps.qwen import coding_loop, commands
 from apps.qwen.api_contracts import inspect_contract
 from apps.qwen.commands import CodingCommands, format_sources
 from apps.qwen.context_tools import ContextTools
-from apps.qwen.development_task import apply_source_patches
+from apps.qwen.development_task import _source_patch, apply_source_patches
 from apps.qwen.edits import admit_transaction, transaction_definition
 from apps.qwen.patch_proposal_worker import PatchProposalError
 from devtools.models.interaction import (
@@ -260,6 +260,32 @@ def test_observed_creation_atomic_application_refresh_and_refusal(
         )["properties"]["api_evidence"]["maxItems"]
         == 0
     )
+
+
+def test_five_file_patch_application_matches_task_scope_ceiling(
+    tools: ContextTools,
+    tmp_path: Path,
+) -> None:
+    paths = [f"src/devtools/scoped_{i}.py" for i in range(5)]
+    for path in paths:
+        (tools.root / path).write_bytes(b"old\n")
+    patches = {
+        path: _source_patch(tools.root, "old\n", "new\n", source_path=path)
+        for path in paths
+    }
+    folder = tmp_path / "five-file-patch"
+    folder.mkdir()
+    asyncio.run(apply_source_patches(tools.root, folder, patches))
+    assert all((tools.root / p).read_bytes() == b"new\n" for p in paths)
+    with pytest.raises(PatchProposalError, match="byte bound"):
+        asyncio.run(
+            apply_source_patches(
+                tools.root,
+                folder,
+                {**patches, "src/devtools/sixth.py": next(iter(patches.values()))},
+            )
+        )
+    assert all((tools.root / p).read_bytes() == b"new\n" for p in paths)
 
 
 @pytest.mark.parametrize("failure", ["unobserved", "stale", "oversized", "collision"])

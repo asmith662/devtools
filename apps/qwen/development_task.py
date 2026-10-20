@@ -1106,7 +1106,7 @@ async def apply_source_patches(
     """
     if (
         not patches
-        or len(patches) > 4
+        or len(patches) > 5
         or sum(len(p.encode()) for p in patches.values()) > 16384
     ):
         raise PatchProposalError("Combined patch exceeds the existing byte bound")
