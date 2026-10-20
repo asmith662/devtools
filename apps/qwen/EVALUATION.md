@@ -248,3 +248,28 @@ remain unchanged. No candidate was integrated or protected source published.
 Editing-06 Command closeout is now published on the feature branch in
 `0f121bca1baf4c896050a92994fca5023699eec5`, with unchanged Qwen source, independent permanent
 regressions and protected validation. Other editing-06 candidates remain evidence.
+
+
+## Verified maintained feature closeout
+
+The exact Qwen regex module and public exports are published in
+`373b350b934700a4f7422329e8b995a250d8bf9f` on `origin/feat/qwen-context-worker` through existing
+WorkCycle local closeout. Ten independent Codex-authored permanent regressions
+were added. Seventeen focused cases, frozen oracle, Ruff, formatting, strict
+typing and the canonical protected gate passed. Protected result: 2154 passed, 2 skipped in 503.31s,
+100% production branch coverage. Only one full protected suite ran; an earlier
+installation stopped at the independent test's import ordering before that
+suite. No Qwen implementation was modified to satisfy integration checks.
+
+The decoded-output candidate was authenticated unchanged and revalidated using
+the same closeout owner against current regression tests; disposition remains
+SUPERVISORY_REVIEW with publication_eligible=false pending its own full closeout.
+Its original model receipt and response are unchanged. BSD and Identity remain
+accepted candidates, not maintained source or protected-main integration.
+
+The old lazy follow-up's top-eight ConversionError search hits did not include
+errors.py; read_source required a version the model had not obtained. The
+oversized-range refusal was saved but no later model request received it because
+the subsequent empty-version error terminated the task. The simpler direct
+reader removes that identity-copying burden without weakening exact source
+attestation; exact lookup remains an alternative for known qualified names.

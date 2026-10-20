@@ -1610,5 +1610,177 @@
   "coordination_usage": "UNKNOWN",
   "paid_model_fallback_calls": 0,
   "energy_and_incremental_cost": "UNKNOWN",
-  "comparison_limit": "Two development pairs and one prospectively frozen confirmation pair; bounded admitted corpus, small tasks, no claim of general reliability or Codex parity. No worker/serving tuning between conditions. Source-control CRLF materialization is documented in confirmation-selection.json."
+  "comparison_limit": "Two development pairs and one prospectively frozen confirmation pair; bounded admitted corpus, small tasks, no claim of general reliability or Codex parity. No worker/serving tuning between conditions. Source-control CRLF materialization is documented in confirmation-selection.json.",
+  "integration": {
+    "receipt": ".local/qwen-coding-worker/investigation-07/devtools-split/closeout.json",
+    "receipt_sha256": "41fda4312898eae4497134bbb056c272f6431cb323cad3ff022216f7924057f7",
+    "disposition": "FEATURE_PUBLISHED",
+    "commit": "373b350b934700a4f7422329e8b995a250d8bf9f",
+    "review_subject": "7c5205a40af2696b23fdc44fcb06c66e49d91b63697e3d85694fdaf461e6a4b7",
+    "review": {
+      "subject": "7c5205a40af2696b23fdc44fcb06c66e49d91b63697e3d85694fdaf461e6a4b7",
+      "reviewer": "Codex",
+      "disposition": "ACCEPT_RECOMMENDED",
+      "rationale": "Independently inspected exact Qwen-created splitting.py and package exports, authenticated both candidate hashes and the atomic observed transaction. The implementation delegates to existing compile_regex, preserves compiled-pattern policy, returns immutable split pieces including None captures and exposes the intended public API without unrelated source changes. Frozen oracle and original regressions pass; ten independent Codex regression cases bring focused tests to seventeen. Ruff, formatting, strict typing and the 2154-pass/2-skip protected gate with 100 percent production branch coverage pass. Test-only import sorting is independently attributed; no Qwen implementation bytes changed. Publish only the existing ordinary feature; no protected promotion or unrelated candidate integration."
+    },
+    "files": [
+      {
+        "path": "src/devtools/core/regex/__init__.py",
+        "author": "Qwen",
+        "reference": "8c75491da54733c82710a55af0f707f9b65dcceeb6735374b2d04d42b003a8b4",
+        "sha256": "c1dd1b728bd288f8d95d7735da2a3881f007ab022cd7947b93f89257a96a860f"
+      },
+      {
+        "path": "src/devtools/core/regex/splitting.py",
+        "author": "Qwen",
+        "reference": "8c75491da54733c82710a55af0f707f9b65dcceeb6735374b2d04d42b003a8b4",
+        "sha256": "5c2950d6f479ba51c65555ddf92c4e5858e8002e12017a7b06a16da86e2e6f3f"
+      },
+      {
+        "path": "tests/core/regex/test_splitting.py",
+        "author": "Codex",
+        "reference": "Independent permanent regressions for the frozen investigation-07 splitting API",
+        "sha256": "37a3ae711b1a839d9f899754ae63f9e3cbd352bf30d263015382251811ba7344"
+      }
+    ],
+    "validation": {
+      "oracle": 0,
+      "tests": 0,
+      "ruff": 0,
+      "format": 0,
+      "typing": 0
+    },
+    "protected_summary": "2154 passed, 2 skipped in 503.31s",
+    "production_branch_coverage": "100%",
+    "protected_elapsed_seconds": 505.97299,
+    "checks": [
+      {
+        "name": "oracle",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected\\oracle.py"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.069372,
+        "stdout_sha256": "bcff110356e2ca56172b700a445f3a21dc4036b6f7644d45eeebfc09dad651b0",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected",
+        "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+        "excerpt_truncated": false,
+        "truncated": false
+      },
+      {
+        "name": "tests",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected\\tests.py"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.49574,
+        "stdout_sha256": "1d2247607883784212739783613c9828d0daf9605ecfd014b2753243f86735f4",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected",
+        "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+        "excerpt_truncated": false,
+        "truncated": false
+      },
+      {
+        "name": "ruff",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "ruff",
+          "check",
+          "src/devtools/core/regex/__init__.py",
+          "src/devtools/core/regex/splitting.py",
+          "tests/core/regex/test_splitting.py"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.095301,
+        "stdout_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected",
+        "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+        "excerpt_truncated": false,
+        "truncated": false
+      },
+      {
+        "name": "format",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "ruff",
+          "format",
+          "--check",
+          "src/devtools/core/regex/__init__.py",
+          "src/devtools/core/regex/splitting.py",
+          "tests/core/regex/test_splitting.py"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.089321,
+        "stdout_sha256": "eee76f865de5a9f2456950f710ae5d5f9b5bd0ea02aa54f614c5eed6642a0bfd",
+        "stderr_sha256": "f9a55a9d08d5744dc2bac49e644825aac8c318cdb1679556dd106cb8b4eef4d1",
+        "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected",
+        "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+        "excerpt_truncated": false,
+        "truncated": false
+      },
+      {
+        "name": "mypy",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-m",
+          "mypy",
+          "--strict",
+          "src/devtools/core/regex/__init__.py",
+          "src/devtools/core/regex/splitting.py",
+          "tests/core/regex/test_splitting.py"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.265641,
+        "stdout_sha256": "281a094c39385b4d7b53e5db635f52158036861433c2a4975b9039e77a627a24",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected",
+        "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+        "excerpt_truncated": false,
+        "truncated": false
+      },
+      {
+        "name": "protected",
+        "argv": [
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.venv\\Scripts\\python.exe",
+          "-I",
+          "-B",
+          "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected\\protected.py"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 504.947148,
+        "stdout_sha256": "5ecacf88456c28ecc17cc3a26dd8b3cba3d094f54d329680dfdbdee50e6fcd03",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "log_directory": "C:\\Users\\recoveryadmin\\Workspace\\tools\\devtools\\.local\\qwen-coding-worker\\investigation-07\\devtools-split\\closeout-validation-2026-10-20T17-46-12.068082+00-00\\protected",
+        "log_bytes": "exact; excerpts decoded utf-8 with replacement",
+        "excerpt_truncated": true,
+        "truncated": false
+      }
+    ],
+    "publication": "Only origin/feat/qwen-context-worker; protected main untouched",
+    "independent_regressions": "Ten Codex-authored permanent cases, seventeen focused regex cases total; Qwen source unchanged",
+    "pre_gate_correction": "First installation precheck stopped at independent-test import ordering before the protected suite ran. Only test imports were corrected; one full protected suite ran."
+  },
+  "previous_output_closeout": {
+    "candidate_sha256": "161dea87c0641c15d5c92e88e63ebecb9ddd582d61b6742a1618ff0f634a99f2",
+    "receipt": ".local\\qwen-coding-worker\\editing-06\\devtools-output\\closeout.json",
+    "receipt_sha256": "09785dd2ab746667277d3de87f362d417f06f1640da8a30bdb14330d35efa0de",
+    "disposition": "SUPERVISORY_REVIEW",
+    "focused_validation": true,
+    "publication_eligible": false,
+    "remaining": "Own permanent regressions, exact-current-tree protected validation and reviewed publication; no combining unrelated candidates into this scope.",
+    "advisory_review": ".local\\qwen-coding-worker\\editing-06\\devtools-output\\supervisory-review.json",
+    "advisory_review_sha256": "6ee0be8cee256e9b70cbc2f20c3776221df30009d3fb4f4c1f8329ecf7385eca"
+  },
+  "timing_coverage": "Devtools elapsed_seconds measures run_coding_task and excludes outer Checkout/readiness setup. Pi adapter elapsed_seconds includes baseline/Checkout/SDK setup and final validation. Their recorded worker seconds are descriptive; uniform CLI end-to-end time and setup overhead were not instrumented."
 }

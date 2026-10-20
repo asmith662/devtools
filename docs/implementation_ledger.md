@@ -2173,3 +2173,8 @@ limits. No local candidate was silently installed into maintained source.
 Editing-06 closeout: exact Qwen Command candidate published in `0f121bca1baf4c896050a92994fca5023699eec5`
 through shared reviewed closeout with independently authored permanent tests and
 protected validation. Protected main unchanged; other candidates remain evidence.
+
+
+Investigation-07 exact regex module/export candidate published in `373b350b934700a4f7422329e8b995a250d8bf9f`
+with ten independent permanent regressions, shared closeout and the protected
+gate. Other candidates remain evidence; protected main was not promoted.
