@@ -196,10 +196,12 @@ def test_cli_reports_local_outcome_without_input(
     assert asyncio.run(cli.main()) == (2 if accepted is None else int(not accepted))
 
 
-def test_local_runner_owns_source_without_backlog_approval(
+@pytest.mark.parametrize("git_newlines", [False, True])
+def test_local_runner_owns_source_without_backlog_approval(  # noqa: PLR0915 -- complete branch/materialization/restoration scenario
     cli: ModuleType,
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
+    git_newlines: bool,  # noqa: FBT001 -- explicit Git materialization fixture
 ) -> None:
     """An authored tiny repository exercises ownership/restoration, not live Qwen."""
     source = "src/devtools/example.py"
@@ -285,6 +287,15 @@ def test_local_runner_owns_source_without_backlog_approval(
                 await cli.run_local_task(
                     tmp_path, tmp_path / ".local/refused", task=task, branch=branch
                 )
+        if git_newlines:
+            await git(tmp_path, "config", "core.autocrlf", "true")
+            for relative in (source, tests):
+                path = tmp_path / relative
+                path.write_bytes(path.read_bytes().replace(b"\n", b"\r\n"))
+            # Adopt the fixture's newline policy without changing its Git blobs.
+            await git(tmp_path, "add", "--renormalize", "--", source, tests)
+            assert await git(tmp_path, "diff", "--cached") == ""
+        original_bytes = (tmp_path / source).read_bytes()
         result = await cli.run_local_task(tmp_path, tmp_path / ".local/run", task=task)
         assert result["accepted"]
         assert result["source_restored"]
@@ -296,6 +307,7 @@ def test_local_runner_owns_source_without_backlog_approval(
         assert await git(tmp_path, "branch", "--show-current") == "feat/host"
         assert await git(tmp_path, "rev-parse", "HEAD") == head
         assert (tmp_path / source).read_text() == "def number():\n    return 1\n"
+        assert (tmp_path / source).read_bytes() == original_bytes
         assert not (tmp_path / ".local/backlog/checkout-owner").exists()
         assert not (tmp_path / ".local/backlog/work").exists()
         assert not (tmp_path / ".local/backlog/delegations").exists()

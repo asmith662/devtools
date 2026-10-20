@@ -31,6 +31,13 @@ shared checks and returns a review subject. `--review-json` binds Codex's
 them. Duplicate publication verifies the exact commit/ref. Backlog progression
 and protected target promotion retain the existing governed lifecycle.
 
+Git may rematerialize logically identical baseline resources with different
+LF/CRLF bytes. The direct runner authenticates the frozen Git/content binding,
+journals all baseline input resources under the existing owner, materializes
+their exact frozen bytes for evaluation, and restores their original checkout
+bytes afterward. Any difference beyond LF/CRLF equivalence refuses. Read/test
+materialization is host-owned and grants no model edit authority over tests.
+
 Maintained repository-local application composition now lives here. The existing
 worker, native proposal admission, LF/CRLF handling, task configuration and
 host-owned validation were relocated without changing their contracts. Framework

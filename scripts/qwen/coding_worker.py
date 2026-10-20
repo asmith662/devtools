@@ -22,7 +22,7 @@ from apps.qwen.tasks import TASK_NAMES, select_task
 from devtools.core.paths import PathError, resolve_path
 from devtools.models.interaction import InteractionSource
 from devtools.models.interaction.providers import LlamaCppInteraction
-from devtools.resources.filesystem import FilesystemError
+from devtools.resources.filesystem import FilesystemError, TextFile, write
 from scripts.backlog.checkout import Checkout
 from scripts.backlog.coordinator import git
 from scripts.backlog.intake import load_json
@@ -76,7 +76,7 @@ def report_directory(value: str | Path) -> Path:
     return folder
 
 
-async def run_local_task(  # noqa: PLR0913 -- explicit bounded host options
+async def run_local_task(  # noqa: PLR0913, C901 -- explicit bounded ownership/materialization options
     root: Path,
     folder: Path,
     *,
@@ -113,7 +113,7 @@ async def run_local_task(  # noqa: PLR0913 -- explicit bounded host options
         raise PermissionError(message)
     sources = {
         p: await cycle._baseline(task, p, dict(task.baseline_hashes)[p])  # noqa: SLF001 -- existing exact Git binding
-        for p in task.existing_sources
+        for p, _ in task.baseline_hashes
     }
     for p in task.new_paths:
         if (root / p).exists() or not (root / p).parent.is_dir():
@@ -129,23 +129,45 @@ async def run_local_task(  # noqa: PLR0913 -- explicit bounded host options
         + [{"path": p, "text": ""} for p in task.new_paths],
         create=True,
     ) as owner:
-        interaction, provenance = await local_interaction(root)
-        provenance.update(
-            worker_source_head=worker_head,
-            execution_category="trusted-local-development-evaluation",
-            publication_authority="NONE",
-        )
-        return await run_coding_task(
-            root,
-            folder,
-            interaction,
-            task=task,
-            provenance=provenance,
-            admit_edit=owner.expect,
-            thinking_enabled=thinking_enabled,
-            coordinated_edits=coordinated_edits,
-            reasoning_effort=reasoning_effort,
-        )
+        originals = {p: (root / p).read_bytes().decode("utf-8") for p in sources}
+        try:
+            for path, text in sources.items():
+                if originals[path].replace("\r\n", "\n") != text.replace("\r\n", "\n"):
+                    message = (
+                        "Frozen baseline differs beyond Git line-ending materialization"
+                    )
+                    raise ValueError(message)
+                owner.expect(path, originals[path])
+                if originals[path] != text:
+                    write(TextFile(resolve_path(root / path), text))
+            interaction, provenance = await local_interaction(root)
+            provenance.update(
+                worker_source_head=worker_head,
+                execution_category="trusted-local-development-evaluation",
+                publication_authority="NONE",
+                baseline_materialization={
+                    p: "exact frozen bytes; original checkout bytes restored"
+                    for p in sources
+                    if originals[p] != sources[p]
+                },
+            )
+            return await run_coding_task(
+                root,
+                folder,
+                interaction,
+                task=task,
+                provenance=provenance,
+                admit_edit=owner.expect,
+                thinking_enabled=thinking_enabled,
+                coordinated_edits=coordinated_edits,
+                reasoning_effort=reasoning_effort,
+            )
+        finally:
+            for path, text in originals.items():
+                current = (root / path).read_bytes().decode("utf-8")
+                # Never overwrite an unknown semantic change during recovery.
+                if current.replace("\r\n", "\n") == sources[path].replace("\r\n", "\n"):
+                    write(TextFile(resolve_path(root / path), text))
 
 
 async def main() -> int:  # noqa: C901 -- closed local run/closeout entrypoint
