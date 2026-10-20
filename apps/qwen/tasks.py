@@ -130,9 +130,9 @@ class CodingTask:
             if not query.strip():
                 raise ValueError("Task requires explicit nonempty retrieval queries")
         for value, bound in (
-            (self.maximum_calls, 10 if self.context_mode == "on-demand" else 3),
+            (self.maximum_calls, 24 if self.context_mode == "on-demand" else 3),
             (self.output_tokens, 12288 if self.context_mode == "on-demand" else 4096),
-            (self.wall_seconds, 900),
+            (self.wall_seconds, 1800 if self.context_mode == "on-demand" else 900),
             (self.call_seconds, 600 if self.context_mode == "on-demand" else 300),
         ):
             if (

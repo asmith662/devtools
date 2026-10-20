@@ -534,13 +534,20 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
         else:
             tools.check_current()
             active_bytes = active_limit
+            if measured_capacity:
+                active_bytes = max(
+                    active_bytes,
+                    len(json.dumps([asdict(m) for m in history]).encode()) + 2000,
+                )
             messages, omitted = select_messages(
                 history, source_path=task.source, maximum_bytes=active_bytes
             )
             model_prompt = Prompt("", role="messages", messages=messages)
             prompt = json.dumps(asdict(model_prompt))
             context = ""  # Disclosed only on demand in correlated Tool results.
-        if len(prompt.encode()) > (active_limit + 2000 if tools is not None else 60000):
+        if not (measured_capacity and tools is not None) and len(prompt.encode()) > (
+            active_limit + 2000 if tools is not None else 60000
+        ):
             raise ValueError("Bounded Context byte allowance exceeded")
         request = ModelRequest(
             prompt=model_prompt,
@@ -577,16 +584,65 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
         if isinstance(interaction, LlamaCppInteraction):
             async with asyncio.timeout(30):
                 measured_tokens = await interaction.count_input_tokens(request)
+            measurements = [
+                {"projection": "source-preserving", "input_tokens": measured_tokens}
+            ]
+            # Investigation responses need room for short native calls, not an
+            # unconditional 8K reservation. Edits/refusals/validation retain the
+            # full requested repair ceiling. Exact server measurements decide.
+            last_assistant = next(
+                (m for m in reversed(history) if m.role == "assistant"), None
+            )
+            investigating = bool(
+                last_assistant
+                and last_assistant.tool_calls
+                and all(
+                    c.name not in {"replace_source", "propose_edits", "propose_edit"}
+                    for c in last_assistant.tool_calls
+                )
+            )
+            desired_output = (
+                min(task.output_tokens, 4096)
+                if investigating and not thinking_enabled
+                else task.output_tokens
+            )
+            if tools is not None and measured_tokens + desired_output + 2048 > 32768:
+                for reacquire in range(1 + sum(m.role == "tool" for m in history)):
+                    messages, omitted = select_messages(
+                        history,
+                        source_path=task.source,
+                        maximum_bytes=active_bytes,
+                        compact=True,
+                        reacquire=reacquire,
+                    )
+                    request = replace(
+                        request, prompt=Prompt("", role="messages", messages=messages)
+                    )
+                    async with asyncio.timeout(30):
+                        measured_tokens = await interaction.count_input_tokens(request)
+                    measurements.append(
+                        {
+                            "projection": "compact",
+                            "reacquire_read_only": reacquire,
+                            "input_tokens": measured_tokens,
+                        }
+                    )
+                    if measured_tokens + desired_output + 2048 <= 32768:
+                        break
+                    if (
+                        reacquire
+                        and measurements[-1]["input_tokens"]
+                        == measurements[-2]["input_tokens"]
+                    ):
+                        break
+                prompt = json.dumps(asdict(request.prompt))
+                _save(turn / "request.json", asdict(request), overwrite=True)
             available_output = 32768 - measured_tokens - 2048
             # The task specifies a ceiling, not an obligation to reserve unused
             # generation capacity. Preserve normal 4K editing capacity and all
             # source observations; do not reduce a thinking request's allowance.
-            if (
-                observed_edits
-                and not thinking_enabled
-                and 4096 <= available_output < task.output_tokens
-            ):
-                effective_output = available_output
+            if observed_edits and not thinking_enabled and available_output >= 4096:
+                effective_output = min(desired_output, available_output)
                 request = replace(
                     request,
                     settings=replace(
@@ -604,6 +660,10 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                     "safety_tokens": 2048,
                     "context_tokens": 32768,
                     "phase": "PRE_DISPATCH_CAPACITY",
+                    "measurements": measurements,
+                    "generation_phase": "investigation"
+                    if investigating
+                    else "implementation-or-repair",
                 },
             )
             if measured_tokens + effective_output + 2048 > 32768:
@@ -1272,7 +1332,9 @@ async def run_coding_task(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bound
                     **report,
                     "task": task.objective if coordinated_edits else task.prompt,
                     "tool": asdict(
-                        transaction_definition(
+                        observed_definition()
+                        if observed_edits
+                        else transaction_definition(
                             task.sources, api_required=bool(task.api_targets)
                         )
                         if coordinated_edits

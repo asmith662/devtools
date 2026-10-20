@@ -77,6 +77,71 @@ def test_tail_multiple_regions_duplicates_and_stale_versions() -> None:
         select_messages(history[:3], maximum_bytes=100)
 
 
+def test_capacity_projection_keeps_edit_sources_and_correlated_refusal() -> None:
+    history = [PromptMessage("user", "frozen objective and invariants")]
+    common = {"repository": "repo", "snapshot": "snapshot", "revision": "head"}
+    history += exchange(
+        "dependency",
+        {
+            **common,
+            "path": "tests/example.py",
+            "version": "t1",
+            "span": [0, 100],
+            "text": "dependency" * 10,
+        },
+    )
+    for i in range(5):
+        history += exchange(
+            str(i),
+            {
+                **common,
+                "path": f"src/devtools/{i}.py",
+                "version": "v1",
+                "span": [0, 4],
+                "text": "code",
+                "edit_ref": f"R{i}",
+            },
+        )
+    history += exchange(
+        "failure",
+        {
+            "status": "REFUSED",
+            "diagnostic": "sixteen components maximum",
+            "host_limits": {"proposals_remaining": 2},
+        },
+    )
+    history += exchange(
+        "same-failure",
+        {
+            "status": "REFUSED",
+            "diagnostic": "sixteen components maximum",
+            "host_limits": {"proposals_remaining": 2},
+        },
+    )
+    original = json.dumps([asdict(m) for m in history])
+    selected, omitted = select_messages(
+        history, maximum_bytes=131072, compact=True, reacquire=1
+    )
+    Prompt("", "messages", selected)
+    assert omitted == 0
+    assert selected[0] == history[0]
+    results = {
+        m.tool_call_id: json.loads(m.content) for m in selected if m.role == "tool"
+    }
+    assert "text" not in results["dependency"]
+    assert "CAPACITY" in results["dependency"]["source_omitted"]
+    assert results["dependency"]["repository"] == "repo"
+    for i in range(5):
+        assert results[str(i)]["edit_ref"] == f"R{i}"
+        assert results[str(i)]["text"] == "code"
+        assert results[str(i)]["version"] == "v1"
+        assert results[str(i)]["source_envelope_tool_call_id"] == "dependency"
+    assert results["failure"]["diagnostic"] == "sixteen components maximum"
+    assert results["same-failure"]["same_result_as_tool_call_id"] == "failure"
+    assert "proposals_remaining" in selected[1].content
+    assert json.dumps([asdict(m) for m in history]) == original
+
+
 def test_grounding_union_drift_and_actionable_bounds(tools: ContextTools) -> None:
     hit = dispatch(tools, "lookup_symbol", name="helper")["matches"][0]
     args = {"path": hit["path"], "version": hit["version"]}

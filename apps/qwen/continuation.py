@@ -44,6 +44,8 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
     *,
     maximum_bytes: int = ACTIVE_BYTES,
     source_path: str | None = None,
+    compact: bool = False,
+    reacquire: int = 0,
 ) -> tuple[tuple[PromptMessage, ...], int]:
     """Keep every distinct current source region and latest validation, or refuse.
 
@@ -60,6 +62,9 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
                 latest[observed["path"]] = observed["version"]
     seen: dict[tuple[str, str, str], str | None] = {}
     seen_apis: dict[str, str | None] = {}
+    envelopes: dict[str, str | None] = {}
+    outcomes: dict[str, str | None] = {}
+    read_only_omitted = 0
 
     def project_source(value: dict[str, Any], call_id: str | None) -> dict[str, Any]:
         if isinstance(value.get("text"), str) and value.get("path"):
@@ -79,6 +84,55 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
     for message in history:
         original = _result(message)
         value = project_source(_compact(original), message.tool_call_id)
+        if compact and value:
+            # Exact current source and edit handles stay in their correlated
+            # Tool result. Repeated attestation envelopes are references, not
+            # invented source summaries. Full originals remain in evidence.
+            envelope = {
+                k: value[k]
+                for k in ("repository", "snapshot", "revision")
+                if k in value
+            }
+            if envelope:
+                key = json.dumps(envelope, sort_keys=True)
+                if key in envelopes:
+                    for envelope_field in envelope:
+                        del value[envelope_field]
+                    value["source_envelope_tool_call_id"] = envelopes[key]
+                else:
+                    envelopes[key] = message.tool_call_id
+            for k in (
+                "requested_span",
+                "bytes",
+                "observation_call_id",
+                "representation",
+                "coordinate_convention",
+                "host_limits",
+            ):
+                value.pop(k, None)
+            if value.get("status") == "REFUSED":
+                key = json.dumps(
+                    {k: v for k, v in value.items() if k != "host_projection"},
+                    sort_keys=True,
+                )
+                if key in outcomes:
+                    value = {
+                        "status": "REFUSED",
+                        "same_result_as_tool_call_id": outcomes[key],
+                    }
+                else:
+                    outcomes[key] = message.tool_call_id
+            if (
+                read_only_omitted < reacquire
+                and isinstance(value.get("text"), str)
+                and not value.get("edit_ref")
+            ):
+                del value["text"]
+                value["source_omitted"] = (
+                    "CAPACITY; exact source can be reacquired with "
+                    "inspect_source(path, start=span[0])"
+                )
+                read_only_omitted += 1
         if "observation_id" in value and "signature" in value:
             identity = value["observation_id"]
             if identity in seen_apis:
@@ -96,14 +150,44 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
                 for observation in value["source_observations"]
             ]
         if value != original:
-            value["host_projection"] = {
+            value["host_projection"] = original.get("host_projection") or {
                 "original_tool_call_id": message.tool_call_id,
                 "original_message_sha256": hashlib.sha256(
                     message.content.encode()
                 ).hexdigest(),
             }
-            message = replace(message, content=json.dumps(value, ensure_ascii=False))
+            message = replace(
+                message,
+                content=json.dumps(
+                    value,
+                    ensure_ascii=False,
+                    separators=(",", ":") if compact else None,
+                ),
+            )
         selected.append(message)
+    if compact:
+        selected.insert(
+            1,
+            PromptMessage(
+                "user",
+                "HOST CAPACITY PROJECTION: Tool envelopes/duplicate outcomes "
+                "are referenced by original call ID; source coordinates are "
+                "half-open Unicode characters. Full originals remain archived. "
+                "Exact text, versions and edit_ref handles are authoritative; "
+                "omitted source must be reacquired before relying on its "
+                "contents. Latest remaining action/call/proposal budgets: "
+                + json.dumps(
+                    next(
+                        (
+                            _result(m).get("host_limits")
+                            for m in reversed(history)
+                            if _result(m).get("host_limits")
+                        ),
+                        {},
+                    )
+                ),
+            ),
+        )
     omitted = 0
     while len(json.dumps([asdict(m) for m in selected]).encode()) > maximum_bytes:
         boundaries = [i for i, m in enumerate(selected) if m.role == "assistant"]
@@ -112,15 +196,30 @@ def select_messages(  # noqa: PLR0912, PLR0915 -- correlated bounded source/API 
             (
                 r
                 for r in reversed(ranges)
-                if any("validation" in _result(m) for m in selected[r[0] : r[1]])
+                if any(
+                    "validation" in _result(m) or _result(m).get("status") == "REFUSED"
+                    for m in selected[r[0] : r[1]]
+                )
             ),
             None,
         )
         protected = {validation}
+        referenced = {
+            v
+            for m in selected
+            for k, v in _result(m).items()
+            if k
+            in {
+                "source_envelope_tool_call_id",
+                "same_result_as_tool_call_id",
+                "retained_tool_call_id",
+            }
+        }
         for region in ranges:
             if any(
                 (
-                    isinstance(_result(m).get("text"), str)
+                    m.tool_call_id in referenced
+                    or isinstance(_result(m).get("text"), str)
                     or "signature" in _result(m)
                     or any(
                         isinstance(o.get("text"), str)

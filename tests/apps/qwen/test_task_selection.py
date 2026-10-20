@@ -195,6 +195,18 @@ def test_unknown_task_is_not_model_selected() -> None:
         select_task("arbitrary-task")
 
 
+def test_long_native_task_has_separate_cumulative_and_request_bounds() -> None:
+    """Long work allows more calls, never a larger per-request model window."""
+    task = replace(
+        SOURCE_SEGMENTS, context_mode="on-demand", maximum_calls=24, wall_seconds=1800
+    )
+    assert task.maximum_calls == 24  # noqa: PLR2004 -- explicit cumulative ceiling
+    with pytest.raises(ValueError, match="bounded"):
+        replace(task, maximum_calls=25)
+    with pytest.raises(ValueError, match="bounded"):
+        replace(task, wall_seconds=1801)
+
+
 def test_discovery_hint_is_optional_and_historical_hashes_stay_stable() -> None:
     """Withholding a filename hint changes neither scope nor old receipts."""
     legacy = replace(MARKDOWN)

@@ -166,6 +166,47 @@ def test_installed_dependencies_are_observed_without_model_import_selection() ->
         assert len(observed["observation_id"]) == 64
 
 
+def test_exact_capacity_compacts_then_remeasures_before_dispatch(
+    tools: ContextTools, tmp_path: Path
+) -> None:
+    class CompactWindow(LlamaCppInteraction):
+        async def count_input_tokens(self, request: ModelRequest) -> int:
+            return (
+                22000
+                if len(request.prompt.messages) > 1
+                and "HOST CAPACITY PROJECTION" in request.prompt.messages[1].content
+                else 28589
+            )
+
+        async def send(self, request: ModelRequest) -> ModelResponse:
+            assert request.settings.maximum_output_tokens == 8192
+            assert request.prompt.messages[0].content
+            return ModelResponse("No proposal", InteractionSource("compact-fixture"))
+
+    model = CompactWindow(
+        endpoint="http://127.0.0.1:8080",
+        model="fixture",
+        source=InteractionSource("capacity-fixture"),
+    )
+    folder = tmp_path / "compacted"
+    folder.mkdir()
+    asyncio.run(
+        coding_loop._turns(  # noqa: SLF001 -- actual pre-dispatch boundary
+            tools.root,
+            folder,
+            model,
+            {"turns": []},
+            maximum_calls=1,
+            task=replace(tools.task, output_tokens=8192),
+            coordinated_edits=True,
+            observed_edits=True,
+        )
+    )
+    capacity = json.loads((folder / "turn-01/capacity.json").read_text())
+    assert capacity["input_tokens"] == 22000
+    assert len(capacity["measurements"]) == 2
+
+
 def test_plan_metadata_does_not_reject_an_observed_edit_for_an_old_768_char_limit(
     tools: ContextTools,
 ) -> None:

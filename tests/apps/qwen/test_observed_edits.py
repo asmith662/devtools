@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING
 import pytest
 
 from apps.qwen.context_tools import ContextRequestError, ContextTools
-from apps.qwen.edits import admit_observed, observed_definition
+from apps.qwen.edits import admit_observed, observed_definition, transaction_definition
 from apps.qwen.patch_proposal_worker import PatchProposalError
 from devtools.models.interaction import ModelToolCall
 from tests.apps.qwen.test_context_tools import dispatch, tools  # noqa: F401
@@ -225,6 +225,13 @@ def test_sixteen_small_anchors_share_one_atomic_bounded_operation(
     tools: ContextTools,
 ) -> None:
     count = 16
+    assert "16" in observed_definition().description
+    assert (
+        json.loads(transaction_definition(tools.task.sources).input_schema_json)[
+            "properties"
+        ]["edits"]["maxItems"]
+        == count
+    )
     before = "".join(f"value_{i} = 0\n" for i in range(count))
     (tools.root / tools.task.source).write_bytes(before.encode())
     current = ContextTools(tools.root, tools.task, direct_reads=True)

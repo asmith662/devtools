@@ -1,5 +1,19 @@
 # Bounded local coding worker
 
+Exact tokenizer measurement precedes capacity refusal. The worker first removes
+redundant attestation envelopes and repeated refusal bodies with explicit links
+to original archived Tool call IDs/hashes. When necessary, older read-only source
+excerpts are explicitly marked for reacquisition; current editable observation
+text, versions, handles and recent refusal/validation feedback remain intact.
+Native assistant/call/result associations remain complete. No LLM summary or
+new Memory store is involved. Investigation continuations reserve at most 4K
+output; initial implementation and edit/repair continuations target the frozen
+ceiling, with a 4K minimum fallback and the unchanged 2K safety allowance.
+On-demand task ceilings are 24 model requests and 1,800 cumulative seconds,
+independent of the unchanged 32K per-request server capacity. Defaults and
+historical receipts are unchanged. Actual `freeze.tool` now records the flat
+observed schema when selected; historical `request.tools` remain authoritative.
+
 The coding environment also supports task-opted-in `git_inspect` (scoped status,
 diff and history) and `run_check` (fixed regression/oracle/Ruff/format/strict mypy)
 through ToolRunner and managed Commands. No model-selected argv or shell is
