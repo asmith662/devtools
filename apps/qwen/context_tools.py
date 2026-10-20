@@ -64,6 +64,15 @@ CONTEXT_TOOL_NAMES = (
 )
 
 
+class ContextRequestError(ValueError):
+    """A bounded read-request mistake, distinct from authority or source drift."""
+
+    def __init__(self, code: str, detail: str) -> None:
+        """Retain the invalid-input diagnostic for correlated native feedback."""
+        super().__init__(detail)
+        self.code = code
+
+
 def _schema(name: str, properties: dict[str, Any]) -> ToolDescriptor:
     return ToolDescriptor(
         name,
@@ -151,13 +160,14 @@ def context_tool_definitions(
     """Use the existing Tool disclosure composition for this fixed Tool surface."""
     descriptors: tuple[ToolDescriptor, ...] = _DEFINITIONS
     if direct_reads:
-        descriptors += (
+        descriptors = (
+            *(d for d in descriptors if d.name != "read_source"),
             _schema(
                 "inspect_source",
                 {"path": _TEXT, "start": {"type": "integer", "minimum": 0}},
             ),
         )
-    if new_paths:
+    if new_paths and not direct_reads:
         descriptors += (
             ToolDescriptor(
                 "inspect_new_source",
@@ -469,20 +479,40 @@ class ContextTools:
         """Validate keys/types/enums; schema disclosure grants no authority."""
         name, values = arguments
         descriptor = next((d for d in self.definitions if d.name == name), None)
-        if descriptor is None or not isinstance(values, dict):
+        if descriptor is None:
+            if name in CONTEXT_TOOL_NAMES:
+                raise ContextRequestError(
+                    "SOURCE_OPERATION_UNAVAILABLE", "Use a disclosed Context operation"
+                )
             raise ValueError("Unknown or malformed Context Tool")
+        if not isinstance(values, dict):
+            raise ContextRequestError(
+                "SOURCE_ARGUMENTS_REFUSED", "Arguments must be a JSON object"
+            )
         properties = json.loads(descriptor.input_schema_json)["properties"]
         if set(values) != set(properties):
-            raise ValueError("Context Tool requires exact argument keys")
+            raise ContextRequestError(
+                "SOURCE_ARGUMENTS_REFUSED",
+                "Required argument keys: " + ", ".join(properties),
+            )
         for key, spec in properties.items():
             value = values[key]
             if spec["type"] == "string":
                 if not isinstance(value, str) or not value or len(value) > 512:
-                    raise ValueError("Context Tool requires bounded nonempty text")
+                    raise ContextRequestError(
+                        "SOURCE_ARGUMENTS_REFUSED",
+                        f"Argument {key} requires nonempty text (<=512 characters)",
+                    )
             elif type(value) is not int or value < 0:
-                raise ValueError("Source offsets must be nonnegative integers")
+                raise ContextRequestError(
+                    "SOURCE_ARGUMENTS_REFUSED",
+                    f"Argument {key} must be a nonnegative integer character offset",
+                )
             if "enum" in spec and value not in spec["enum"]:
-                raise ValueError("Unsupported Context Tool selection")
+                raise ContextRequestError(
+                    "SOURCE_ARGUMENTS_REFUSED",
+                    f"Argument {key} must be one of {spec['enum']}",
+                )
         self.check_current()
 
     async def dispatch(self, call: ModelToolCall) -> dict[str, Any]:
@@ -492,6 +522,7 @@ class ContextTools:
         if "text" in result:
             result["observation_call_id"] = call.provider_call_id
         result = {
+            "operation": call.name,
             "repository": str(self.repository.id),
             "snapshot": str(self.snapshot.id),
             "revision": self.task.baseline_revision,
@@ -504,6 +535,33 @@ class ContextTools:
         if len(json.dumps(result, ensure_ascii=False).encode()) > 12000:
             raise ValueError("Context response byte budget exceeded")
         return self.reference(result)
+
+    def refusal(
+        self, call: ModelToolCall, error: ContextRequestError
+    ) -> dict[str, Any]:
+        """Explain a safe mistake without reading source or relaxing admission."""
+        self.check_current()
+        descriptor = next((d for d in self.definitions if d.name == call.name), None)
+        return {
+            "status": "REFUSED",
+            "error": error.code,
+            "operation": call.name,
+            "diagnostic": str(error),
+            "arguments_schema": json.loads(descriptor.input_schema_json)
+            if descriptor
+            else None,
+            "instruction": (
+                "No source was read or changed. This dispatch consumed one action. "
+                "Use inspect_source(path, start=0) for a known admitted path; "
+                "continue at continuation_start when truncated. "
+                if self.direct_reads
+                else "No source was read or changed. This consumed one action. "
+                "Use read_source with the exact returned version and valid range. "
+            )
+            + "Search unknown paths/names with search_source. Expand only actual "
+            "unit IDs from search/lookup; paths are not unit IDs. A missing parent "
+            "can be expanded to file instead. Never guess versions or identities.",
+        }
 
     def _metadata(self, unit: RepositorySourceUnit) -> dict[str, Any]:
         return {
@@ -538,7 +596,7 @@ class ContextTools:
                     "path": path,
                     "version": str(resource.content_identity),
                     "start": values["start"],
-                    "end": min(len(resource.content), values["start"] + 4096),
+                    "end": len(resource.content),
                 }
             )
         if name == "inspect_new_source":
@@ -579,6 +637,7 @@ class ContextTools:
             )
             rows = [dict(self._metadata(h.unit), rank=h.rank) for h in result.hits]
             return {
+                "query": values["query"],
                 "matches": rows[:8],
                 "truncated": len(rows) > 8,
                 "scope": "host-admitted corpus only; rank is not sufficiency",
@@ -590,27 +649,46 @@ class ContextTools:
                 if u.kind == "symbol" and u.qualified_name == values["name"]
             ]
             return {
+                "name": values["name"],
                 "matches": rows[:8],
                 "truncated": len(rows) > 8,
                 "scope": "exact qualified source-view name; not runtime binding",
+                "status": "RETURNED" if rows else "NOT_FOUND",
+                "instruction": (
+                    "Use search_source to discover names; no match is not proof "
+                    "of absence outside the admitted corpus."
+                ),
             }
         if name == "expand_source":
             units = {str(u.id): u for view in self.index.views for u in view.units}
             if values["unit"] not in units:
-                raise ValueError("Unknown or stale source unit")
+                raise ContextRequestError(
+                    "SOURCE_UNIT_MISMATCH", "Unknown or stale source unit"
+                )
             selected = units[values["unit"]]
             if values["to"] == "symbol":
                 if selected.parent_symbol_id is None:
-                    raise ValueError("Source unit has no parent symbol")
+                    raise ContextRequestError(
+                        "SOURCE_PARENT_NOT_FOUND", "Source unit has no parent symbol"
+                    )
                 unit = units[str(selected.parent_symbol_id)]
             else:
-                unit = self.index.expand(selected, to=values["to"])
+                try:
+                    unit = self.index.expand(selected, to=values["to"])
+                except ValueError as error:
+                    if str(error) != "Source unit has no enclosing class.":
+                        raise
+                    raise ContextRequestError(
+                        "SOURCE_PARENT_NOT_FOUND", str(error)
+                    ) from error
             return {**self._metadata(unit), "truncated": False}
         # ResourceAddress performs canonical-path admission before lookup.
         address = RepositoryResourceAddress(values["path"])
         resource = self.snapshot.resource_at(address)
         if values["version"] != str(resource.content_identity):
-            raise ValueError("SOURCE_VERSION_MISMATCH")
+            raise ContextRequestError(
+                "SOURCE_VERSION_MISMATCH", "SOURCE_VERSION_MISMATCH"
+            )
         if name == "source_relationships":
             return {
                 "path": str(address),
@@ -626,7 +704,9 @@ class ContextTools:
             if u.resource.address.value == values["path"]
         )
         start, end = values["start"], values["end"]
-        if not 0 <= start < end <= len(unit.text):
+        if not (
+            0 <= start < end <= len(unit.text) or start == end == len(unit.text) == 0
+        ):
             return {
                 "status": "REFUSED",
                 "error": "SOURCE_RANGE_OUT_OF_BOUNDS",

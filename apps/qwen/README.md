@@ -117,7 +117,10 @@ in `baseline_hashes` and `context`. At most 32 resources are admitted: this is n
 unrestricted repository access or automatic obligation sufficiency. Explicit-
 address discovery never enumerates `.local` or unrelated directories. Observation
 is bounded at 131,072 bytes/resource. Drift, stale versions/units, aliases,
-unauthorized paths and malformed calls refuse. Only an exact host-admitted edit
+unauthorized paths and malformed calls refuse. Safe request-schema, unknown-unit,
+stale-version and missing-parent mistakes return correlated actionable feedback
+and consume their action without terminating sibling reads. Authority/alias/drift
+failures remain terminal. Only an exact host-admitted edit
 can refresh the snapshot. Results retain repository/snapshot/revision, source
 versions/spans where applicable, explicit truncation and static-analysis limits.
 For range reads, `span` describes the exact returned text; `parent` retains the
@@ -236,6 +239,16 @@ remain compatible. Safe unknown-unit/empty-version mistakes produce correlated
 bounded feedback; authorization and source-drift refusals remain enforced.
 See [editing comparison 06](evaluation/editing-06/README.md) for measured results.
 The simpler interface is opt-in; historical receipts are unchanged.
+
+In this mode, `inspect_source` is the sole disclosed range-reading operation;
+version-heavy `read_source` and redundant `inspect_new_source` remain available
+in historical mode. Truncation reflects remaining source, not just a capped
+request. Continue at the returned character offset; each payload is at most
+4,096 UTF-8 bytes. Empty existing files and authorized absent files are distinct.
+`ContextRequestError` is an application-local request refusal, not a new framework
+failure protocol. Recovery checks source integrity before returning feedback;
+source drift or unauthorized access is not reinterpreted as a harmless typo.
+See [investigation comparison 07](evaluation/investigation-07/README.md).
 
 Trusted local tasks may explicitly declare `additional_edit_paths` (at most
 three existing implementation files under `src/devtools/`) and `api_targets`.

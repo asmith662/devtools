@@ -1,0 +1,81 @@
+{
+  "name": "identity-uuid-invariant",
+  "objective": "Enforce the advertised UUID-backed Identity invariant during direct construction: a non-UUID value must raise TypeError rather than creating a malformed identity. Preserve valid UUID object identity, frozen/hash/equality/string behavior, new and parse return types including subclasses, and ValueError for invalid UUID parsing. The invariant must also hold for ordinary inherited construction. Do not change tests or replace UUID with a parallel identity type.",
+  "source": "src/devtools/core/identity/models.py",
+  "tests": [
+    "tests/core/identity/test_models.py"
+  ],
+  "baseline_revision": "97f24e4ca7b4c48fa22b122a692303ea5713575a",
+  "baseline_hashes": [
+    [
+      "src/devtools/core/identity/models.py",
+      "5e3ebd3f738619165eab1f46a37ebe4368498f2956825bb9ce123669aec7ae3f"
+    ],
+    [
+      "tests/core/identity/test_models.py",
+      "cfa29b7ad5f18ad7cfe6a4e50e7f9ee7c90db18da20818a85ddb43ee86c9d1ef"
+    ],
+    [
+      "src/devtools/core/identity/__init__.py",
+      "75c7cfc36aa61b8d136df1c85bd73be8674c04657a0ed772b69e70a892561d55"
+    ],
+    [
+      "src/devtools/core/paths/models.py",
+      "1fec6def3993a7d88057916f6f73ac01fa046965958a5f8c5f7c8b70e178b7e9"
+    ],
+    [
+      "src/devtools/core/system/models.py",
+      "33ef5e10fd47a26d214e2485f78c26674f001c2dd1a102b757e6f745f3d24782"
+    ]
+  ],
+  "context": [
+    [
+      "src/devtools/core/identity/models.py",
+      "identity-uuid-invariant",
+      "mixed",
+      "none"
+    ],
+    [
+      "tests/core/identity/test_models.py",
+      "identity-uuid-invariant",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/identity/__init__.py",
+      "identity-uuid-invariant",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/paths/models.py",
+      "identity-uuid-invariant",
+      "mixed",
+      "none"
+    ],
+    [
+      "src/devtools/core/system/models.py",
+      "identity-uuid-invariant",
+      "mixed",
+      "none"
+    ]
+  ],
+  "oracle": "from uuid import UUID\nfrom dataclasses import FrozenInstanceError\nfrom devtools.core.identity import Identity\nfor invalid in (None,'bf2835b2-99ec-41d0-b943-f27542106094',b'abc',1,True,object()):\n    try:Identity(invalid)\n    except TypeError:pass\n    else:raise AssertionError('Non-UUID identity construction must raise TypeError')\nvalue=UUID('bf2835b2-99ec-41d0-b943-f27542106094')\nidentifier=Identity(value)\nassert identifier.value is value\nassert str(identifier)==str(value)\nassert identifier==Identity.parse(str(value))\nassert hash(identifier)==hash(Identity(value))\nassert isinstance(Identity.new().value,UUID)\nclass Child(Identity):pass\nassert isinstance(Child.new(),Child)\nassert isinstance(Child.parse(str(value)),Child)\ntry:Child('wrong')\nexcept TypeError:pass\nelse:raise AssertionError('Inherited construction must enforce UUID invariant')\ntry:Identity.parse('invalid')\nexcept ValueError:pass\nelse:raise AssertionError('Invalid parsing changed')\ntry:identifier.value=value\nexcept FrozenInstanceError:pass\nelse:raise AssertionError('Lost immutability')\nprint('QWEN_BEHAVIOR_PASSED')\n",
+  "maximum_calls": 10,
+  "output_tokens": 4096,
+  "wall_seconds": 900,
+  "call_seconds": 300,
+  "context_mode": "on-demand",
+  "read_paths": [
+    "src/devtools/core/identity/__init__.py",
+    "src/devtools/core/paths/models.py",
+    "src/devtools/core/system/models.py"
+  ],
+  "quality_checks": true,
+  "additional_edit_paths": [],
+  "api_targets": [],
+  "command_tools": true,
+  "mechanical_format": false,
+  "tool_actions": 24,
+  "new_paths": []
+}

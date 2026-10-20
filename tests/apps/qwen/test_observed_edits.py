@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from apps.qwen.context_tools import ContextTools
+from apps.qwen.context_tools import ContextRequestError, ContextTools
 from apps.qwen.edits import admit_observed, observed_definition
 from apps.qwen.patch_proposal_worker import PatchProposalError
 from devtools.models.interaction import ModelToolCall
@@ -49,6 +49,61 @@ def test_path_read_reuses_versioned_materialization_and_absence(
     assert absent["edit_ref"]
     with pytest.raises(ValueError, match="Unauthorized"):
         dispatch(direct, "inspect_source", path="src/devtools/private.py", start=0)
+
+
+def test_direct_continuation_and_empty_source(tools: ContextTools) -> None:
+    path = tools.root / tools.task.source
+    content = "# " + "雪" * 2500 + "\n"
+    path.write_bytes(content.encode())
+    direct = ContextTools(tools.root, tools.task, direct_reads=True)
+    names = {d.name for d in direct.definitions}
+    assert "inspect_source" in names
+    assert "read_source" not in names
+    first = dispatch(direct, "inspect_source", path=tools.task.source, start=0)
+    maximum_bytes = 4096
+    assert first["truncated"]
+    assert first["bytes"] <= maximum_bytes
+    second = dispatch(
+        direct,
+        "inspect_source",
+        path=tools.task.source,
+        start=first["continuation_start"],
+    )
+    assert first["text"] + second["text"] == content
+    assert not second["truncated"]
+    assert first["edit_ref"] != second["edit_ref"]
+    path.write_bytes(b"")
+    empty = ContextTools(tools.root, tools.task, direct_reads=True)
+    observation = dispatch(empty, "inspect_source", path=tools.task.source, start=0)
+    assert observation["text"] == ""
+    assert observation["span"] == [0, 0]
+    assert not observation["truncated"]
+
+
+def test_safe_feedback_keeps_integrity_failures_terminal(tools: ContextTools) -> None:
+    operation = ModelToolCall("expand_source", "{}", "bad")
+    with pytest.raises(ContextRequestError) as captured:
+        dispatch(tools, "expand_source", unit=tools.task.source, to="file")
+    result = tools.refusal(operation, captured.value)
+    assert result["operation"] == "expand_source"
+    assert result["error"] == "SOURCE_UNIT_MISMATCH"
+    assert result["arguments_schema"]["required"] == ["unit", "to"]
+    assert not tools.observations
+    source = tools.root / tools.task.source
+    source.write_bytes(b"# drift\n")
+    with pytest.raises(ValueError, match="SOURCE_DRIFT"):
+        tools.refusal(operation, captured.value)
+
+
+def test_missing_symbol_and_parent_have_recovery_guidance(tools: ContextTools) -> None:
+    missing = dispatch(tools, "lookup_symbol", name="Missing.symbol")
+    assert missing["status"] == "NOT_FOUND"
+    assert not missing["matches"]
+    assert "search_source" in missing["instruction"]
+    found = dispatch(tools, "lookup_symbol", name="helper")["matches"][0]
+    for target in ("class", "symbol"):
+        with pytest.raises(ContextRequestError, match="no"):
+            dispatch(tools, "expand_source", unit=found["unit"], to=target)
 
 
 def read(tools: ContextTools) -> dict[str, Any]:

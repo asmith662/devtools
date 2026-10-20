@@ -25,6 +25,7 @@ from apps.qwen.commands import (
 )
 from apps.qwen.context_tools import (
     CONTEXT_TOOL_NAMES,
+    ContextRequestError,
     ContextTools,
     context_tool_definitions,
 )
@@ -726,46 +727,9 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                         _save(
                             turn / "tools.json", stage["context_tools"], overwrite=True
                         )
-                        if not (
-                            isinstance(error, ValueError)
-                            and str(error)
-                            in {
-                                "SOURCE_VERSION_MISMATCH",
-                                "Unknown or stale source unit",
-                                "Context Tool requires bounded nonempty text",
-                            }
-                        ):
+                        if not isinstance(error, ContextRequestError):
                             raise
-                        # Refusal on an admitted, unchanged source. Return it;
-                        # never reinterpret CURRENT or silently retry a read.
-                        result = {
-                            "status": "REFUSED",
-                            "error": "SOURCE_VERSION_MISMATCH"
-                            if str(error) == "SOURCE_VERSION_MISMATCH"
-                            else "SOURCE_UNIT_MISMATCH",
-                            "instruction": (
-                                "Obtain the exact version using search_source "
-                                "or lookup_symbol, then read with that returned "
-                                "version. Do not guess or use CURRENT. This "
-                                "refusal consumed a Context action."
-                            ),
-                        }
-                        if str(error) == "Unknown or stale source unit":
-                            result["instruction"] = (
-                                "No source was read or changed. Obtain the exact "
-                                "unit ID using search_source or lookup_symbol, "
-                                "then expand that unit. A file path is not a unit "
-                                "ID. This refusal consumed a Context action."
-                            )
-                        if str(error) == "Context Tool requires bounded nonempty text":
-                            result["error"] = "SOURCE_ARGUMENTS_REFUSED"
-                            result["instruction"] = (
-                                "No source was read or changed. Context string "
-                                "arguments must be nonempty and bounded. Obtain "
-                                "the exact source version/unit from search or "
-                                "lookup; do not use an empty version. This "
-                                "refusal consumed a Context action."
-                            )
+                        result = tools.refusal(call, error)
                     else:
                         event["status"] = (
                             "REFUSED"

@@ -284,7 +284,9 @@ def test_context_eviction_retains_latest_actual_validation_feedback() -> None:
         select_messages(history, maximum_bytes=1000)
 
 
-@pytest.mark.parametrize("failure", ["version", "unit", "empty-version"])
+@pytest.mark.parametrize(
+    "failure", ["version", "unit", "empty-version", "shape", "offset"]
+)
 def test_version_refusal_is_correlated_and_can_be_corrected(
     captured_inputs: Callable[[CodingTask], Path], tmp_path: Path, failure: str
 ) -> None:
@@ -308,6 +310,16 @@ def test_version_refusal_is_correlated_and_can_be_corrected(
                 if failure == "empty-version":
                     native = call(
                         "read_source", path=MARKDOWN.source, version="", start=0, end=1
+                    )
+                if failure == "shape":
+                    native = call("read_source", path=MARKDOWN.source)
+                if failure == "offset":
+                    native = call(
+                        "read_source",
+                        path=MARKDOWN.source,
+                        version="x",
+                        start=-1,
+                        end=10,
                     )
             elif number == 2:
                 message = request.prompt.messages[-1]
@@ -357,6 +369,71 @@ def test_version_refusal_is_correlated_and_can_be_corrected(
     assert event["status"] == "REFUSED"
     assert event["result"]["status"] == "REFUSED"
     assert len(model.requests) == 4
+
+
+def test_bad_read_in_batch_preserves_later_native_results(
+    captured_inputs: Callable[[CodingTask], Path],
+    tmp_path: Path,
+) -> None:
+    """A safe request error consumes its action but does not discard siblings."""
+    root = captured_inputs(MARKDOWN)
+
+    class Batched(Scripted):
+        async def send(self, request: ModelRequest) -> ModelResponse:
+            self.requests.append(request)
+            number = len(self.requests)
+            if number == 1:
+                operations = (
+                    ModelToolCall("read_source", '{"path":"missing"}', "bad"),
+                    ModelToolCall("lookup_symbol", '{"name":"Missing"}', "missing"),
+                    ModelToolCall(
+                        "search_source",
+                        '{"query":"MarkdownFile","mode":"file"}',
+                        "search",
+                    ),
+                )
+            elif number == 2:
+                messages = request.prompt.messages[-3:]
+                assert [m.tool_call_id for m in messages] == [
+                    "bad",
+                    "missing",
+                    "search",
+                ]
+                assert (
+                    json.loads(messages[0].content)["error"]
+                    == "SOURCE_ARGUMENTS_REFUSED"
+                )
+                assert json.loads(messages[1].content)["status"] == "NOT_FOUND"
+                hit = next(
+                    h
+                    for h in json.loads(messages[2].content)["matches"]
+                    if h["path"] == MARKDOWN.source
+                )
+                operations = (
+                    call(
+                        "read_source",
+                        path=hit["path"],
+                        version=hit["version"],
+                        start=max(0, hit["span"][1] - 4096),
+                        end=hit["span"][1],
+                    ),
+                )
+            else:
+                return proposal(OLD, GOOD)
+            return ModelResponse("", self.source, tool_calls=operations)
+
+    result = asyncio.run(
+        coding_loop.run_coding_task(
+            root,
+            tmp_path / "batch-recovery",
+            Batched([]),
+            task=replace(MARKDOWN, context_mode="on-demand", maximum_calls=3),
+        )
+    )
+    assert result["accepted"]
+    assert result["context_actions_attempted"] == 4
+    assert result["context_actions_accepted"] == 3
+    assert result["source_restored"]
 
 
 def test_version_refusals_cannot_expand_action_allowance(

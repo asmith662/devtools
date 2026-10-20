@@ -1,0 +1,74 @@
+{
+  "at": "2026-10-20T16:43:17.920146+00:00",
+  "baseline": "97f24e4ca7b4c48fa22b122a692303ea5713575a",
+  "maximum_runs": 6,
+  "maximum_model_calls": 60,
+  "maximum_worker_seconds": 5400,
+  "per_run": {
+    "model_calls": 10,
+    "output_tokens": 4096,
+    "wall_seconds": 900,
+    "context_actions": 24,
+    "edit_proposals": 3
+  },
+  "profile": "unchanged qwen38-local, 32768 Context, q4_0 K/V, thinking disabled",
+  "conditions": [
+    "Devtools direct observed editing",
+    "Pi 1.3.0 scoped native read/edit/write + fixed validate"
+  ],
+  "confirmation_rule": "Run once per harness only if development yields at least one accepted Devtools task without integrity failure. Freeze selected configuration before dispatch; no tuning on confirmation. Unused slots are not additional retries.",
+  "case_review": "Public behavior, existing tests, compatible quality and typing reviewed before inference. Standard-library outputs are independent references, not implementation instructions. BSD patch target verified on actual imported detection module; no Path/stat or call-count assumption. Baseline must fail intended oracle and pass original regressions and quality.",
+  "cases": [
+    {
+      "name": "regex-split-public",
+      "partition": "development",
+      "task_sha256": "80853507b64c01dc1c417b1cae440b6ee96529468666f2f062c9eb435d7f7737",
+      "oracle_sha256": "ec70f9b2c185e114b9126c0788db3427af47901425f72b4963ccc9bc2e0b1a73",
+      "baseline_hashes": {
+        "src/devtools/core/regex/__init__.py": "cb0f1550acea4bdbd65631bfc9f60ef9dbaa8454c4855c4b04b456102663ef8d",
+        "tests/core/regex/test_search.py": "32a5e5aceaf2301dadd6c30673de754b772ce8419b364d39dc6ac915f7110d59",
+        "tests/core/regex/test_models.py": "e86b7c2ca1aea3c3c4a642cc79047dff59017b0559f0df3d6eed4f8c0ddbebc2",
+        "src/devtools/core/regex/search.py": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+        "src/devtools/core/regex/models.py": "5c7d3fa9a96bd88556a27c3f42a4423fcc8e87547d964c6c706f0d4669016d46",
+        "src/devtools/core/conversion/conversion.py": "824fe4339d3bd68afc4a40c66aebcfeaac0e6948393ae53ea004e99709900262",
+        "src/devtools/core/conversion/errors.py": "596f2eb831ea41d318c5476c15cb87bdbecbdfc25f044162c966b3854a04ce28",
+        "src/devtools/core/system/detection.py": "3ee83784a4a3941c7353bb9c4033e9d37b3fe99438e707ec4c09dee161cf8f1c",
+        "src/devtools/core/system/models.py": "33ef5e10fd47a26d214e2485f78c26674f001c2dd1a102b757e6f745f3d24782"
+      },
+      "new_paths": [
+        "src/devtools/core/regex/splitting.py"
+      ]
+    },
+    {
+      "name": "bsd-family",
+      "partition": "development",
+      "task_sha256": "2f99e150f78b8d886643ece21ae79d7705c344b48988908b74c5f4c90f45cc91",
+      "oracle_sha256": "ad83bf5cad21bffacc1775b1038e65a85313e9fc97f17ad0431acd2eaa0ec5ab",
+      "baseline_hashes": {
+        "src/devtools/core/system/detection.py": "3ee83784a4a3941c7353bb9c4033e9d37b3fe99438e707ec4c09dee161cf8f1c",
+        "src/devtools/core/system/models.py": "33ef5e10fd47a26d214e2485f78c26674f001c2dd1a102b757e6f745f3d24782",
+        "tests/core/system/test_detection.py": "24a2b06f9c9f64385a771f0b9aa9efbcb70b6eef6bc217b94aa5f656a449a174",
+        "tests/core/system/test_models.py": "3dd6656b520a13dd13afb61d26dc206dfb42ce9a974134baf1863bc9bdfee493",
+        "src/devtools/core/system/__init__.py": "dabee7a800c467abafb533e33416cff83984c9d8941dc6f63db1050de08f4ab5",
+        "src/devtools/core/identity/models.py": "5e3ebd3f738619165eab1f46a37ebe4368498f2956825bb9ce123669aec7ae3f",
+        "src/devtools/core/regex/search.py": "6a412648ebff56528ffe79358624aefecab2d64476b6c3d0459718d4123599a6",
+        "src/devtools/core/paths/models.py": "1fec6def3993a7d88057916f6f73ac01fa046965958a5f8c5f7c8b70e178b7e9"
+      },
+      "new_paths": []
+    },
+    {
+      "name": "identity-uuid-invariant",
+      "partition": "confirmation",
+      "task_sha256": "19c465d3c77ef83ffe34405944f8f6ecbb0207850328ec1cfe73857c56af054e",
+      "oracle_sha256": "0f0fb9cc523e69af3b3cb823c0c3343dace7282b733fc238d3d9c3bb7ba06064",
+      "baseline_hashes": {
+        "src/devtools/core/identity/models.py": "5e3ebd3f738619165eab1f46a37ebe4368498f2956825bb9ce123669aec7ae3f",
+        "tests/core/identity/test_models.py": "cfa29b7ad5f18ad7cfe6a4e50e7f9ee7c90db18da20818a85ddb43ee86c9d1ef",
+        "src/devtools/core/identity/__init__.py": "75c7cfc36aa61b8d136df1c85bd73be8674c04657a0ed772b69e70a892561d55",
+        "src/devtools/core/paths/models.py": "1fec6def3993a7d88057916f6f73ac01fa046965958a5f8c5f7c8b70e178b7e9",
+        "src/devtools/core/system/models.py": "33ef5e10fd47a26d214e2485f78c26674f001c2dd1a102b757e6f745f3d24782"
+      },
+      "new_paths": []
+    }
+  ]
+}
