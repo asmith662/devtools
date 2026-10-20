@@ -1,5 +1,17 @@
 # Roadmap
 
+[Engineering assignments 08](../apps/qwen/evaluation/engineering-08/README.md)
+did not establish graduation: both live runs stopped before behavioral validation.
+The source-search case was diagnostic reuse, incorrectly labeled fresh during
+preparation; fresh binary I/O live acceptance is 0/1. Its unchanged captured
+implementation was recovered under corrected practical bounds, mechanically
+formatted, independently validated and feature-published. This is useful delivery
+with supervisory intervention, not reliable autonomous substantial engineering.
+The Codex reference did not deliver a candidate and is not a calibrated comparison.
+Qwen remains primary: historical-case eligibility, efficient investigation,
+correct region references and actually delivered validation/repair feedback are
+the next measured obligations. No transition to other long-term workstreams.
+
 [Investigation comparison 07](../apps/qwen/evaluation/investigation-07/README.md)
 demonstrates new-module/export creation, coordinated two-module implementation
 and requirement-preserving Ruff repair with genuine native Qwen. Fresh

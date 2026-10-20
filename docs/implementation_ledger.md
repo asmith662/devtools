@@ -2178,3 +2178,14 @@ protected validation. Protected main unchanged; other candidates remain evidence
 Investigation-07 exact regex module/export candidate published in `373b350b934700a4f7422329e8b995a250d8bf9f`
 with ten independent permanent regressions, shared closeout and the protected
 gate. Other candidates remain evidence; protected main was not promoted.
+
+Engineering-08: two native Qwen runs failed before validation; source search was
+mistakenly labeled fresh and is explicitly corrected to diagnostic reuse. The
+captured binary transaction was separately admitted after practical component
+and five-file application corrections; existing host AST-equivalent formatting
+resolved two annotation-layout differences. Reviewed Qwen binary I/O plus
+independent regressions was published through WorkCycle in
+`f799be1d32c2dffc22a39ff5110a0a4af5714b07`. One protected gate: 2,169 passed,
+two skipped, 100% production branch coverage. Live autonomy and a calibrated
+Codex comparison remain unproved. Prior candidate receipts/source remain
+preserved and separate; no protected-main promotion occurred.

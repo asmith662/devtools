@@ -213,3 +213,23 @@ No live read errors occurred; safe recovery is deterministically tested.
 See `apps/qwen/evaluation/investigation-07/README.md`. This small admitted-corpus
 sample does not establish general reliability, behavioral repair competence or
 Codex parity. This work item remains open.
+
+## Substantive engineering checkpoint 08
+
+Two local attempts consumed 17 requests, 238,990 input / 4,120 output tokens and
+260.10 worker seconds, both ending before behavioral validation. A late novelty
+audit classifies source search as reuse of the observed cohort-01 physical-span
+case, not fresh evidence. Fresh binary I/O is 0/1 live acceptance. Corrected
+practical edit bounds allow its unchanged captured transaction to pass behavior
+and typing; host-only AST-equivalent formatting completes quality acceptance.
+The reviewed feature and independent regressions are published in `f799be1d`.
+This is supervisory recovery, not autonomous live success. The read-only Codex
+session produced no deliverable and no calibrated comparison is claimed.
+
+See `apps/qwen/evaluation/engineering-08/README.md` and its eligibility correction.
+Source-search proposal `416658bd-8ab9-43c4-bbb3-98a18a88cd4d` remains unresolved;
+binary proposal `b3cc8ac0-bccc-4df2-8e78-7bbaa7d9933e` remains pending canonical
+review despite explicitly authorized local feature publication. Neither was
+automatically promoted or approved. BSD, Identity and decoded-output candidates
+have separate passing focused closeouts but still require permanent regressions
+and their own exact-tree protected publication. This item remains open.

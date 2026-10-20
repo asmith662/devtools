@@ -1,5 +1,37 @@
 # Native Context worker acceptance and evaluation
 
+## Engineering assignments 08: graduation not established
+
+Two genuine local runs used 17 requests, 238,990 input / 4,120 output tokens and
+260.10 worker seconds. Both ended `CONTEXT_BUDGET_FAILED` before behavioral
+validation: source-search edits used wrong observation regions; a five-module
+binary implementation exceeded the unadvertised eight-edit bound. Neither
+received the archived refusal in a later dispatched request. No live repair
+success or acceptance improvement is established.
+
+The source-search case was mistakenly labeled new; a late audit identifies it
+as continuation of cohort 01's observed physical-spans defect. It is excluded
+from fresh scoring and Codex calibration. Binary I/O alone is fresh (0/1 live
+acceptance). Original frozen records and unfavorable outcomes remain unchanged.
+
+The captured binary proposal passes independent behavior, regressions and typing
+under corrected sixteen-component/five-file admission. Existing AST-equivalent
+host formatting resolved its only quality failure. That separately identified,
+reviewed candidate and independent permanent tests are feature-published in
+`f799be1d32c2dffc22a39ff5110a0a4af5714b07`, with one protected gate (2,169 passed,
+two skipped, 100% branch coverage). This is supervisory recovery of Qwen source,
+not autonomous live success. No Codex semantic replacement was attributed to Qwen.
+
+One independent read-only Codex session returned an audit instead of candidate
+JSON; no host-accepted implementation was available. Its reused case is also
+ineligible for fresh calibration. The fixed one-session budget was not extended.
+No fair Codex comparison or parity claim is established. See the
+[full outcome and eligibility correction](evaluation/engineering-08/README.md).
+
+Future task preparation must inspect historical case/source/oracle identities
+before freezing novelty or confirmation eligibility. Preflight reproduction and
+quality compatibility alone do not establish novelty or satisfiability.
+
 ## Source investigation comparison 07
 
 The direct observed mode now exposes one path-based reader, with truthful

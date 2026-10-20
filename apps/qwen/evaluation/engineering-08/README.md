@@ -1,5 +1,13 @@
 # Substantive engineering assignments 08
 
+**Eligibility correction:** Assignment A revisits cohort 01's observed
+`source-physical-spans` defect with the same implementation bytes. The original
+novelty assertion below was a preparation error. Treat A as diagnostic
+continuation, exclude it from fresh scoring and Codex calibration, and retain
+all original failed outcomes. [The audit](eligibility-correction.json) records
+the exact identities. Binary I/O alone is fresh. No replacement inference was
+launched beyond the declared budget.
+
 Frozen before inference: two real package obligations, not seeded bugs or
 repeated historical held-out tasks. The host-only manifest and CodingTask JSON
 bind objectives, exact sources, permitted changes, independent acceptance and
@@ -76,3 +84,111 @@ atomic admission and seventeen-component refusal. Assessment of the unchanged
 captured transaction under this corrected contract is separately identified;
 it must never be counted as an autonomous live task success or a successful
 model repair. The original rejected live receipt is immutable.
+
+## Measured outcome and maintained delivery
+
+| Work | Genuine live outcome | Requests | Input / output tokens | Worker seconds |
+| --- | --- | ---: | ---: | ---: |
+| Physical source search, diagnostic continuation | CONTEXT_BUDGET_FAILED | 8 | 96,733 / 1,742 | 111.04 |
+| Explicit binary I/O, fresh | CONTEXT_BUDGET_FAILED | 9 | 142,257 / 2,378 | 149.06 |
+
+All live outcomes: 0/2 accepted; fresh outcomes: 0/1. There were 33 read/check
+actions and 15 refused edit calls across two atomic proposals, zero admitted
+live transactions and zero behavioral repair cycles. Qwen independently chose
+source reads from the admitted alternatives; neither objective supplied a
+completed implementation. The read corpus contained 15 and 19 resources,
+respectively, rather than the entire repository. Unique observed source bytes:
+35,328 / 40,542. No active exchanges were omitted. Peak dispatched input:
+21,015 / 25,898 tokens; pending refused requests measured 22,667 / 28,589.
+The native provider argument strings match normalized calls in all 17 responses.
+Both refusal exchanges were archived in pending requests but never delivered
+to a subsequent model call because capacity admission stopped dispatch.
+
+The source-search proposal also referenced an undefined `_physical_lines`
+helper and proposed questionable newline-terminated line counts. Those are
+source-review findings, not executed behavioral failures: the unadmitted code
+was never installed. This is not solely a host-capacity problem. The production
+source-search defect remains unresolved under proposal
+`416658bd-8ab9-43c4-bbb3-98a18a88cd4d`.
+
+The ten captured binary edits were replayed without alteration through the
+corrected existing admission/application/validation machinery. Behavior,
+regressions, Ruff and strict typing passed; only formatter layout in two type
+annotations failed. A separately identified assessment used existing host Ruff
+formatting with AST equivalence, after which all checks passed. This is
+supervisory recovery, not Qwen repair or retroactive live acceptance. Raw rejected
+and original unformatted assessments remain preserved. Offline reports live
+under `.local/closeout-candidates/`, outside the genuine worker-run collection.
+
+The reviewed five-file implementation and three independently authored test
+files are published through WorkCycle closeout in
+`f799be1d32c2dffc22a39ff5110a0a4af5714b07` on the existing feature branch.
+`BinaryCodec`, both public exports, explicit binary read and atomic binary write
+are maintained software now. The Qwen implementation received no Codex semantic
+rewrite. Host-only formatting and Codex-authored regression changes have separate
+provenance. Protected validation ran once: **2,169 passed, two skipped, 100%
+production branch coverage**, 504.90 pytest seconds / 508.29 integration-gate
+seconds. Exact-source review/publication reused that gate. Full maintained Ruff
+and strict mypy passed (490 files). No protected-main promotion occurred.
+
+BSD, UUID Identity and decoded CommandResult output were authenticated and
+separately advanced to focused `SUPERVISORY_REVIEW` against the published binary
+feature base. Each passed its unchanged oracle, current regressions and quality
+checks. Their original candidate hashes/model receipts remain unchanged; the
+previous decoded-output operational closeout was archived byte-for-byte before
+updating current state. They remain unintegrated pending independent permanent
+regressions and their own exact-tree protected review/publication. Existing local
+feature authority is available; this is unfinished validation, not a fabricated
+permission blocker. Exact identities and receipt locations are in `results.json`.
+
+## Codex reference limitation
+
+One clean CLI session ran before Qwen, with the same initial objective, baseline,
+admitted source corpus and host-owned acceptance, without Qwen evidence. The
+existing adapter's read-only session returned an audit and reported an in-memory
+correction, ignoring the required complete-source JSON deliverable. No candidate
+was manufactured from that explanation and no independent acceptance was claimed.
+Using this adapter/prompt contract was an inadequate coding-comparison setup.
+The late novelty audit independently excludes its case from fresh calibration.
+
+Actual reference observations: `gpt-6.1-sol`, high reasoning, 11 reported provider
+responses within one CLI turn, 556,621 input tokens (501,120 cached), 6,302 output
+tokens (1,899 reasoning), 172.35 end-to-end seconds. Its CLI tools and mandatory
+repository-document inspection differ from Qwen's ToolRunner surface. Paid
+cost is UNKNOWN; the one-session budget was consumed without a valid calibrated
+reference result. No claim about relative model correctness or speed follows.
+
+Qwen totals: 17 requests, 238,990 input / 4,120 output tokens, 260.10 worker
+seconds, within 20 requests / 1,800 seconds. Checkout-held lifetimes were 113.78
+and 151.88 seconds, including setup/restoration. Worker time excludes outer
+readiness/Checkout setup, unlike the reference's end-to-end measurement.
+Preparation, supervision and closeout are additional costs. Coordination tokens,
+dollar/energy cost and RAM/VRAM resampling are UNKNOWN. Serving configuration
+remained unchanged. No live model retry, paid fallback or additional Devtools
+checkout was used.
+
+Next checkpoint: preflight historical-case eligibility before selection, use
+the now-advertised practical editing bounds, and evaluate one genuinely new
+substantive assignment with a realistically bounded investigation/repair budget.
+Reduce repeated refusal/metadata burden without dropping required source or
+breaking native call/result correlation. A separately budgeted clean Codex
+implementation must deliver an exact candidate before a calibrated comparison
+is possible. Qwen has not graduated to reliable autonomous substantial work.
+
+## Production adoption and verification boundaries
+
+Main remains `862bda2d3d1d812893f84ab69691fc068ecce268`. It already owns the
+reconciled source-search baseline; the continuation branch also contains
+governance/worker history that must not be merged wholesale with unrelated
+scientific ancestry. Adoption requires the existing destination-based reviewed
+integration plan, a bounded exact target diff, applicable protected validation,
+and an authentic grant specifically permitting named-destination promotion.
+The current local feature publication is not that authority. No new grant was
+issued or inferred, and B-0048 was not replayed.
+
+The protected gate and full static checks used Python 3.14. Python 3.12
+distribution compatibility remains a separate unresolved obligation. Native
+requests/results remain compatible with the existing worker trace; offline
+assessments are kept outside its genuine model-run collection. Exactly one
+physical Devtools checkout remains. All 13 forensic files match their original
+Checkout fingerprints. Both new proposal records remain pending review.

@@ -1,5 +1,15 @@
 # Architecture
 
+The maintained Qwen application can withhold the editable subset from diagnosis
+prompts while the host retains exact scope. Read-only Git observations use the
+admitted read corpus. Existing atomic admission supports up to sixteen anchored
+components across five explicitly authorized implementation files within the
+unchanged aggregate byte limits. Measured thinking-off continuation may reduce
+unused output reservation while retaining normal 4K generation capacity and all
+required source observations. These are application bounds, not new framework
+authority or Context ownership. [Engineering 08](../apps/qwen/evaluation/engineering-08/README.md)
+distinguishes failed live attempts from separately validated supervisory recovery.
+
 The Qwen application's direct-read mode uses the existing Context materializer
 for bounded current-source observations and truthful continuation. Its local
 ContextRequestError distinguishes model-request schema/unit/version/parent

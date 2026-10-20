@@ -12,8 +12,9 @@
 | `.txt` | Text |
 
 Unsupported or unimplemented formats raise `FileFormatError`. An explicit
-`file_format` passed to `read()` bypasses suffix inference. Binary has no
-codec-backed suffix support.
+`file_format` passed to `read()` bypasses suffix inference. Binary is explicit
+only: `read(path, file_format=FileFormat.BINARY)` preserves arbitrary bytes under
+the same byte limits. Neither `.bin` nor an unknown suffix implies binary.
 
 ## Reading
 
@@ -43,7 +44,8 @@ bounded reads are not implemented.
 write(file, *, overwrite=True)
 ```
 
-The model's `format`, not the target suffix, selects its codec. Explicit model
+The model's `format`, not the target suffix, selects its codec. `BinaryFile`
+uses `BinaryCodec` and the same overwrite/atomic-replacement policy. Explicit model
 and codec matching prevents JSON, Markdown, and CSV TextFile subclasses from
 being encoded by TextCodec. Missing parent directories are not created.
 `overwrite=False` raises built-in `FileExistsError` when the destination exists.
