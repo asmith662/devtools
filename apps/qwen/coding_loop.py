@@ -541,10 +541,21 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 ),
             ),
         )
+        _save(turn / "request.json", asdict(request))
         measured_tokens = None
         if isinstance(interaction, LlamaCppInteraction):
             async with asyncio.timeout(30):
                 measured_tokens = await interaction.count_input_tokens(request)
+            _save(
+                turn / "capacity.json",
+                {
+                    "input_tokens": measured_tokens,
+                    "output_tokens": task.output_tokens,
+                    "safety_tokens": 2048,
+                    "context_tokens": 32768,
+                    "phase": "PRE_DISPATCH_CAPACITY",
+                },
+            )
             if measured_tokens + task.output_tokens + 2048 > 32768:
                 raise ValueError(
                     "Measured input plus output/safety exceeds actual 32K capacity"
@@ -565,7 +576,6 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
             "messages_omitted_from_active_context": omitted,
         }
         report["turns"].append(stage)
-        _save(turn / "request.json", asdict(request))
         stage["request_sha256"] = _hash(turn / "request.json")
         _save(turn / "stage.json", stage)
         print(
@@ -850,7 +860,10 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                 ),
                 "diagnostic": str(error),
                 "instruction": (
-                    "No edit was applied. If API evidence failed, cite exact "
+                    "No edit was applied. If the plan was refused, provide brief "
+                    "text of at most 4096 characters; that is a metadata failure, "
+                    "not evidence that the source anchors are wrong. "
+                    "If API evidence failed, cite exact "
                     "inspect_api observation IDs; use [] when no APIs are required. "
                     "Never substitute source hashes or prose. Otherwise copy "
                     "old_text exactly from CURRENT "

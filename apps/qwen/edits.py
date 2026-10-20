@@ -35,7 +35,7 @@ def transaction_definition(
             "plan": {
                 "type": "string",
                 "minLength": 1,
-                "maxLength": 768,
+                "maxLength": 4096,
                 "description": (
                     "Brief behavior/compatibility plan, coordinated regions, "
                     "API evidence and preserved invariants; not internal reasoning."
@@ -101,7 +101,7 @@ def admit_transaction(  # noqa: C901, PLR0912, PLR0915 -- authenticate all edits
         or set(values) != {"plan", "api_evidence", "edits"}
     ):
         raise PatchProposalError("Malformed edit transaction contract")
-    if not isinstance(values["plan"], str) or not 1 <= len(values["plan"]) <= 768:
+    if not isinstance(values["plan"], str) or not 1 <= len(values["plan"]) <= 4096:
         raise PatchProposalError("Bounded implementation plan required")
     refs = values["api_evidence"]
     if (

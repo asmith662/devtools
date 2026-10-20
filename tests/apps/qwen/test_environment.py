@@ -11,19 +11,64 @@ from typing import TYPE_CHECKING, Any
 
 import pytest
 
-from apps.qwen import commands
+from apps.qwen import coding_loop, commands
 from apps.qwen.api_contracts import inspect_contract
 from apps.qwen.commands import CodingCommands, format_sources
 from apps.qwen.context_tools import ContextTools
 from apps.qwen.development_task import apply_source_patches
 from apps.qwen.edits import admit_transaction, transaction_definition
 from apps.qwen.patch_proposal_worker import PatchProposalError
-from devtools.models.interaction import ModelToolCall
+from devtools.models.interaction import (
+    InteractionSource,
+    ModelRequest,
+    ModelResponse,
+    ModelToolCall,
+)
+from devtools.models.interaction.providers import LlamaCppInteraction
 from tests.apps.qwen.test_context_tools import dispatch
 from tests.apps.qwen.test_context_tools import tools as tools  # noqa: PLC0414
 
 if TYPE_CHECKING:
     from pathlib import Path
+
+
+def test_actual_capacity_refusal_retains_pending_request_without_model_dispatch(
+    tools: ContextTools, tmp_path: Path
+) -> None:
+    class FullWindow(LlamaCppInteraction):
+        async def count_input_tokens(self, request: ModelRequest) -> int:
+            assert request.tools
+            return 32768
+
+        async def send(self, _request: ModelRequest) -> ModelResponse:
+            pytest.fail("Capacity refusal must precede inference")
+
+    model = FullWindow(
+        endpoint="http://127.0.0.1:8080",
+        model="fixture",
+        source=InteractionSource("capacity-fixture"),
+    )
+    folder = tmp_path / "capacity"
+    folder.mkdir()
+    report: dict[str, Any] = {"turns": []}
+    with pytest.raises(ValueError, match="actual 32K"):
+        asyncio.run(
+                coding_loop._turns(  # noqa: SLF001 -- exercise the real pre-dispatch boundary
+                tools.root,
+                folder,
+                model,
+                report,
+                maximum_calls=1,
+                task=tools.task,
+                coordinated_edits=True,
+            )
+        )
+    assert not report["turns"]
+    assert (folder / "turn-01/request.json").exists()
+    assert (
+        json.loads((folder / "turn-01/capacity.json").read_text())["input_tokens"]
+        == 32768
+    )
 
 
 def test_installed_dependencies_are_observed_without_model_import_selection() -> None:
@@ -36,6 +81,41 @@ def test_installed_dependencies_are_observed_without_model_import_selection() ->
         assert observed["package_version"]
         assert observed["signature"]
         assert len(observed["observation_id"]) == 64
+
+
+def test_plan_metadata_does_not_reject_an_observed_edit_for_an_old_768_char_limit(
+    tools: ContextTools,
+) -> None:
+    resource = tools.snapshot.resources[0]
+    dispatch(
+        tools,
+        "read_source",
+        path=tools.task.source,
+        version=str(resource.content_identity),
+        start=0,
+        end=len(resource.content),
+    )
+    values = {
+        "plan": "p" * 962,
+        "api_evidence": [],
+        "edits": [
+            {
+                "path": tools.task.source,
+                "version": str(resource.content_identity),
+                "old_text": "return 1",
+                "new_text": "return 2",
+            }
+        ],
+    }
+    sources = {tools.task.source: resource.content}
+    call = ModelToolCall("propose_edits", json.dumps(values), "plan")
+    _, updated, _, _ = admit_transaction(tools.root, sources, call, tools)
+    assert "return 2" in updated[tools.task.source]
+    values["plan"] = "p" * 4097
+    with pytest.raises(PatchProposalError, match="plan"):
+        admit_transaction(
+            tools.root, sources, replace(call, arguments_json=json.dumps(values)), tools
+        )
 
 
 def test_observed_creation_atomic_application_refresh_and_refusal(
