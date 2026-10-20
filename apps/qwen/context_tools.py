@@ -80,7 +80,8 @@ def _schema(name: str, properties: dict[str, Any]) -> ToolDescriptor:
             ),
             "expand_source": (
                 "Expand a known unit to its parent symbol, class or file; "
-                "returns metadata for optional reading."
+                "returns metadata for optional reading. Use the exact unit ID "
+                "from search_source/lookup_symbol; a file path is not a unit ID."
             ),
             "source_relationships": (
                 "Inspect bounded static outgoing Python references/calls in a "

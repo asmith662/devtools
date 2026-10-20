@@ -720,14 +720,20 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                         )
                         if not (
                             isinstance(error, ValueError)
-                            and str(error) == "SOURCE_VERSION_MISMATCH"
+                            and str(error)
+                            in {
+                                "SOURCE_VERSION_MISMATCH",
+                                "Unknown or stale source unit",
+                            }
                         ):
                             raise
                         # Refusal on an admitted, unchanged source. Return it;
                         # never reinterpret CURRENT or silently retry a read.
                         result = {
                             "status": "REFUSED",
-                            "error": "SOURCE_VERSION_MISMATCH",
+                            "error": "SOURCE_VERSION_MISMATCH"
+                            if str(error) == "SOURCE_VERSION_MISMATCH"
+                            else "SOURCE_UNIT_MISMATCH",
                             "instruction": (
                                 "Obtain the exact version using search_source "
                                 "or lookup_symbol, then read with that returned "
@@ -735,6 +741,13 @@ async def _turns(  # noqa: C901, PLR0912, PLR0913, PLR0915 -- one bounded worker
                                 "refusal consumed a Context action."
                             ),
                         }
+                        if str(error) == "Unknown or stale source unit":
+                            result["instruction"] = (
+                                "No source was read or changed. Obtain the exact "
+                                "unit ID using search_source or lookup_symbol, "
+                                "then expand that unit. A file path is not a unit "
+                                "ID. This refusal consumed a Context action."
+                            )
                     else:
                         event["status"] = (
                             "REFUSED"

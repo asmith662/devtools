@@ -284,8 +284,9 @@ def test_context_eviction_retains_latest_actual_validation_feedback() -> None:
         select_messages(history, maximum_bytes=1000)
 
 
+@pytest.mark.parametrize("failure", ["version", "unit"])
 def test_version_refusal_is_correlated_and_can_be_corrected(
-    captured_inputs: Callable[[CodingTask], Path], tmp_path: Path
+    captured_inputs: Callable[[CodingTask], Path], tmp_path: Path, failure: str
 ) -> None:
     """A bad version is refused, not guessed; Qwen receives bounded feedback."""
     root = captured_inputs(MARKDOWN)
@@ -302,13 +303,19 @@ def test_version_refusal_is_correlated_and_can_be_corrected(
                     start=0,
                     end=10,
                 )
+                if failure == "unit":
+                    native = call("expand_source", unit=MARKDOWN.source, to="file")
             elif number == 2:
                 message = request.prompt.messages[-1]
                 result = json.loads(message.content)
                 assert message.role == "tool"
                 assert message.tool_call_id == "fixture-call"
                 assert result["status"] == "REFUSED"
-                assert result["error"] == "SOURCE_VERSION_MISMATCH"
+                assert result["error"] == (
+                    "SOURCE_VERSION_MISMATCH"
+                    if failure == "version"
+                    else "SOURCE_UNIT_MISMATCH"
+                )
                 assert result["host_limits"]["context_actions_remaining"] == 7
                 assert "text" not in result
                 native = call("search_source", query="MarkdownFile", mode="file")
